@@ -1,0 +1,37 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "iluwatar",
+      "name": "Ilkka Seppälä",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/582346?v=4",
+      "profile": "https://github.com/iluwatar",
+      "contributions": [
+        "projectManagement",
+        "maintenance",
+        "content"
+      ]
+    },
+    {
+      "login": "ohbus",
+      "name": "Subhrodip Mohanta",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13291222?v=4",
+      "profile": "http://subho.xyz",
+      "contributions": [
+        "code",
+        "review",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "java-development-practice",
+  "projectOwner": "tu-yucheng",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
