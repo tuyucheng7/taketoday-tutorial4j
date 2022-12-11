@@ -170,6 +170,11 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>${sonar-maven-plugin.version}</version>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.7.1</version>
@@ -1342,5 +1347,12 @@
 		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
 		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
 		<jacoco.version>0.8.8</jacoco.version>
+		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+		<!-- SonarCloud -->
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>tuyucheng</sonar.organization>
+		<sonar.projectKey>tu-yucheng_taketoday-tutorial4j</sonar.projectKey>
+		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+		<sonar.projectName>taketoday-tutorial4j</sonar.projectName>
 	</properties>
 </project>
