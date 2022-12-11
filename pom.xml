@@ -163,6 +163,7 @@
 					</execution>
 					<execution>
 						<id>report</id>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -1354,5 +1355,6 @@
 		<sonar.projectKey>tu-yucheng_taketoday-tutorial4j</sonar.projectKey>
 		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
 		<sonar.projectName>taketoday-tutorial4j</sonar.projectName>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 </project>
