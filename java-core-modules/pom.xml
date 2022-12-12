@@ -115,7 +115,7 @@
 		<!--<module>java-security-3</module>-->
 		<!--<module>java-serialization</module>-->
 		<!--<module>java-security-algorithms</module>-->
-		<!--<module>java-streams-1</module>-->
+		<module>java-streams-1</module>
 		<!--<module>java-streams-2</module>-->
 		<!--<module>java-streams-3</module>-->
 		<!--<module>java-string-algorithms-1</module>-->

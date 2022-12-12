@@ -404,7 +404,7 @@
 
 				<!--<module>core-groovy-modules</module>-->
 
-				<!--<module>core-java-modules</module>-->
+				<module>java-core-modules</module>
 
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
@@ -499,7 +499,7 @@
 				<!--<module>microservices-modules</module>-->
 				<!--<module>muleesb</module>-->
 				<!--<module>mustache</module>-->
-				<module>mybatis</module>
+				<!--<module>mybatis</module>-->
 
 				<!--<module>netflix-modules</module>-->
 
@@ -654,7 +654,7 @@
 				<!--<module>webrtc</module>-->
 				<!--<module>xml</module>-->
 				<!--<module>xml-2</module>-->
-				<module>xstream</module>
+				<!--<module>xstream</module>-->
 			</modules>
 		</profile>
 
@@ -783,7 +783,7 @@
 
 				<!--<module>core-groovy-modules</module>-->
 
-				<!--<module>core-java-modules</module>-->
+				<module>java-core-modules</module>
 
 				<!--<module>couchbase</module>-->
 				<!--<module>custom-pmd</module>-->
@@ -1355,6 +1355,8 @@
 		<sonar.projectKey>tu-yucheng_taketoday-tutorial4j</sonar.projectKey>
 		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
 		<sonar.projectName>taketoday-tutorial4j</sonar.projectName>
-		<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.basedir}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 </project>

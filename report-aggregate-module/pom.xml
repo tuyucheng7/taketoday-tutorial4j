@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>taketoday-tutorial4j</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>report-aggregate-module</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+			<artifactId>java-lambdas</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+			<artifactId>java-streams-1</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>report-aggregate</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report-aggregate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
