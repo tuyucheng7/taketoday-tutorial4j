@@ -38,7 +38,7 @@ jobs:
                 run: sudo apt-get install -y xvfb
 
             -   name: Build with Maven and run SonarQube analysis
-                run: xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tu-yucheng_taketoday-tutorial4j -Dsonar.organization=tuyucheng -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Pdefault-first
+                run: xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tu-yucheng_taketoday-tutorial4j -Dsonar.organization=tuyucheng -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Pdefault-first,default-second
                 env:
                     # These two env variables are needed for sonar analysis
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
