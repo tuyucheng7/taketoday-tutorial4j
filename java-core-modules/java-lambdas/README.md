@@ -5,6 +5,6 @@
 + [Java 8中的函数式接口](docs/Java8中的函数式接口.md)
 + [Lambda表达式和函数式接口的技巧和最佳实践](docs/Lambda表达式和函数接口技巧和最佳实践.md)
 + [Java 8 Lambda表达式中的异常](docs/Java8-Lambda表达式中的异常.md)
-+ []()
++ [Java中的方法引用](docs/Java中的方法引用.md)
 + []()
 + []()
