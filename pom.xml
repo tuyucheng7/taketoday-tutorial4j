@@ -366,7 +366,8 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
+				<module>report-aggregate-module</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -565,7 +566,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
@@ -646,7 +647,7 @@
 				<!--<module>static-analysis</module>-->
 
 				<!--<module>tensorflow-java</module>-->
-				<!--<module>testing-modules</module>-->
+				<module>software.test</module>
 
 				<!--<module>vertx-modules</module>-->
 				<!--<module>video-tutorials</module>-->
@@ -691,7 +692,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 
 				<!--<module>apache-spark</module>-->
 
@@ -745,7 +746,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -935,7 +936,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
@@ -1017,7 +1018,7 @@
 				<!--<module>static-analysis</module>-->
 
 				<!--<module>tensorflow-java</module>-->
-				<!--<module>testing-modules</module>-->
+				<module>software.test</module>
 
 				<!--<module>vertx-modules</module>-->
 				<!--<module>video-tutorials</module>-->
@@ -1055,7 +1056,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 
 				<!--<module>apache-spark</module>-->
 
