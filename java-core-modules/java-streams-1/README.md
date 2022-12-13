@@ -9,7 +9,7 @@
 + [Java中的“流已经被操作或关闭”异常](docs/Java中的流已经被操作或关闭异常.md)
 + [Iterable转化为Stream](docs/Iterable转化为Stream.md)
 + [如何使用索引迭代流](docs/如何使用索引迭代流.md)
-+ []()
++ [Java中的流排序](docs/Java中的流排序.md)
 + []()
 + []()
 + []()
