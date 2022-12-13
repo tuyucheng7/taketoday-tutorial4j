@@ -32,6 +32,13 @@
 			<artifactId>junit-5-annotations</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<!-- design-patterns-modules -->
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday</groupId>
+			<artifactId>coupling</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
