@@ -27,16 +27,16 @@ Taketoday Tutorial4j
 
 因此，我们总共有8个配置Profile：
 
-|           Profile            |      包含       |      启用的测试类型       |
-|:----------------------------:|:-------------:|:------------------:|
-|        default-first         |     第一批项目     |     *UnitTest      |
-|    integration-lite-first    |     第一批项目     |  *IntegrationTest  |
-|        default-second        |     第二批项目     |     *UnitTest      |
-|   integration-lite-second    |     第二批项目     |  *IntegrationTest  |
-|        default-heavy         |  繁重/长时间运行的项目  |     *UnitTest      |
-|      integration-heavy       |  繁重/长时间运行的项目  |  *IntegrationTest  |
-|    default-jdk9-and-above    |   JDK9及以上项目   |     *UnitTest      |
-|  integration-jdk9-and-above  |   JDK9及以上项目   |  *IntegrationTest  |
+|          Profile           |     包含      |     启用的测试类型      |
+|:--------------------------:|:-----------:|:----------------:|
+|       default-first        |    第一批项目    |    *UnitTest     |
+|   integration-lite-first   |    第一批项目    | *IntegrationTest |
+|       default-second       |    第二批项目    |    *UnitTest     |
+|  integration-lite-second   |    第二批项目    | *IntegrationTest |
+|       default-heavy        | 繁重/长时间运行的项目 |    *UnitTest     |
+|     integration-heavy      | 繁重/长时间运行的项目 | *IntegrationTest |
+|   default-jdk9-and-above   |  JDK9及以上项目  |    *UnitTest     |
+| integration-jdk9-and-above |  JDK9及以上项目  | *IntegrationTest |
 
 构建项目
 ====================
@@ -90,7 +90,7 @@ Taketoday Tutorial4j
 
 取决于我们的模块所在的列表
 
-内容清单
+内容列表
 ===================
 
 **Java Core**
@@ -100,6 +100,10 @@ Taketoday Tutorial4j
     + [Java Core Concurrency Basic](java-core/java-concurrency-simple/README.md)
     + [Java Core Concurrency Advanced](java-core/java-concurrency-advanced-1/README.md)
     + [Java Core Concurrency Collections](java-core/java-concurrency-collections-1/README.md)
+
+**Design Pattern**
+
++ [Coupling](design-pattern/coupling/README.md)
 
 **Jackson**
 
