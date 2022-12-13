@@ -507,7 +507,7 @@
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 
-				<!--<module>patterns-modules</module>-->
+				<module>design-patterns-modules</module>
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
@@ -885,7 +885,7 @@
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 
-				<!--<module>patterns-modules</module>-->
+				<module>design-patterns-modules</module>
 				<!--<module>pdf</module>-->
 				<!--<module>performance-tests</module>-->
 				<!--<module>persistence-modules</module>-->
