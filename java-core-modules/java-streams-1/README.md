@@ -10,7 +10,7 @@
 + [Iterable转化为Stream](docs/Iterable转化为Stream.md)
 + [如何使用索引迭代流](docs/如何使用索引迭代流.md)
 + [Java中的流排序](docs/Java中的流排序.md)
-+ []()
++ [使用Lambda表达式的Java流过滤器](docs/使用Lambda表达式的Java流过滤器.md)
 + []()
 + []()
 + []()
