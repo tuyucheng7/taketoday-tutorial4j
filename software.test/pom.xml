@@ -25,7 +25,7 @@
 		<!--<module>junit-5-advanced</module>-->
 		<!--<module>junit-5-basics</module>-->
 		<module>junit-5</module>
-		<!--<module>junit5-annotations</module>-->
+		<module>junit-5-annotations</module>
 		<!--<module>junit5-migration</module>-->
 		<!--<module>load-testing-comparison</module>-->
 		<!--<module>mockito</module>-->
