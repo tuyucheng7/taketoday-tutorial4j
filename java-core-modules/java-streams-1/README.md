@@ -8,7 +8,7 @@
 + [如何在Java中获取流的最后一个元素](docs/如何在Java中获取流的最后一个元素.md)
 + [Java中的“流已经被操作或关闭”异常](docs/Java中的流已经被操作或关闭异常.md)
 + [Iterable转化为Stream](docs/Iterable转化为Stream.md)
-+ []()
++ [如何使用索引迭代流](docs/如何使用索引迭代流.md)
 + []()
 + []()
 + []()
