@@ -12,7 +12,7 @@
 + [Java中的流排序](docs/Java中的流排序.md)
 + [使用Lambda表达式的Java流过滤器](docs/使用Lambda表达式的Java流过滤器.md)
 + [计算流过滤器上的匹配项](docs/计算流过滤器上的匹配项.md)
-+ []()
++ [使用Java中的Stream对数字求和](docs/使用Java流对数字求和.md)
 + []()
 
 - 更多文章： [[next -->]](../java-streams-2/README.md)
