@@ -20,25 +20,51 @@ public class Calculator {
 	}
 
 	public int calculateUsingSwitch(int a, int b, String operator) {
-		return switch (operator) {
-			case "add" -> a + b;
-			case "multiply" -> a * b;
-			case "divide" -> a / b;
-			case "subtract" -> a - b;
-			case "modulo" -> a % b;
-			default -> Integer.MIN_VALUE;
-		};
+		int result = 0;
+		switch (operator) {
+			case "add":
+				result = a + b;
+				break;
+			case "multiply":
+				result = a * b;
+				break;
+			case "divide":
+				result = a / b;
+				break;
+			case "subtract":
+				result = a - b;
+				break;
+			case "modulo":
+				result = a % b;
+				break;
+			default:
+				result = Integer.MIN_VALUE;
+		}
+		return result;
 	}
 
 	public int calculateUsingSwitch(int a, int b, Operator operator) {
-		return switch (operator) {
-			case ADD -> a + b;
-			case MULTIPLY -> a * b;
-			case DIVIDE -> a / b;
-			case SUBTRACT -> a - b;
-			case MODULO -> a % b;
-			default -> Integer.MIN_VALUE;
-		};
+		int result = 0;
+		switch (operator) {
+			case ADD:
+				result = a + b;
+				break;
+			case MULTIPLY:
+				result = a * b;
+				break;
+			case DIVIDE:
+				result = a / b;
+				break;
+			case SUBTRACT:
+				result = a - b;
+				break;
+			case MODULO:
+				result = a % b;
+				break;
+			default:
+				result = Integer.MIN_VALUE;
+		}
+		return result;
 	}
 
 	public int calculate(int a, int b, Operator operator) {
@@ -46,8 +72,7 @@ public class Calculator {
 	}
 
 	public int calculateUsingFactory(int a, int b, String operation) {
-		Operation targetOperation = OperatorFactory
-			.getOperation(operation)
+		Operation targetOperation = OperatorFactory.getOperation(operation)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid Operator"));
 		return targetOperation.apply(a, b);
 	}
