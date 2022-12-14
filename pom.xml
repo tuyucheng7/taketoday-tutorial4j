@@ -497,7 +497,7 @@
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
-				<!--<module>maven-modules</module>-->
+				<module>maven.modules</module>
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
@@ -875,7 +875,7 @@
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
-				<!--<module>maven-modules</module>-->
+				<module>maven.modules</module>
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
