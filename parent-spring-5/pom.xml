@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>parent-spring-5</artifactId>
+	<version>1.0.0</version>
+	<name>parent-spring-5</name>
+	<packaging>pom</packaging>
+	<description>所有Spring 5 核心模块的父模块</description>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>taketoday-tutorial4j</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<spring.version>5.3.23</spring.version>
+		<spring-security.version>5.7.3</spring-security.version>
+		<spring-boot-starter-test.version>1.5.10.RELEASE</spring-boot-starter-test.version>
+	</properties>
+</project>
