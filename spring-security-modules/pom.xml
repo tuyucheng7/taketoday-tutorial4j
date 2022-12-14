@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>spring-security-modules</artifactId>
+	<version>1.0.0</version>
+	<name>spring-security-modules</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>taketoday-tutorial4j</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<modules>
+		<!--<module>spring-security-acl</module>-->
+		<!--<module>spring-security-auth0</module>-->
+		<!--<module>spring-security-cognito</module>-->
+		<!--<module>spring-security-core-1</module>-->
+		<!--<module>spring-security-core-2</module>-->
+		<!--<module>spring-security-ldap</module>-->
+		<!--<module>spring-security-legacy-oidc</module>-->
+		<!--<module>spring-security-oauth2</module>-->
+		<!--<module>spring-security-oauth2-sso</module>-->
+		<!--<module>spring-security-oidc</module>-->
+		<!--<module>spring-security-okta</module>-->
+		<!--<module>spring-security-saml</module>-->
+		<!--<module>spring-security-social-login</module>-->
+		<!--<module>spring-security-web-angular</module>-->
+		<!--<module>spring-security-web-boot-1</module>-->
+		<!--<module>spring-security-web-boot-2</module>-->
+		<!--<module>spring-security-web-boot-3</module>-->
+		<!--<module>spring-security-web-boot-4</module>-->
+		<!--<module>spring-security-web-digest-auth</module>-->
+		<!--<module>spring-security-web-login-1</module>-->
+		<!--<module>spring-security-web-login-2</module>-->
+		<!--<module>spring-security-web-mvc-custom</module>-->
+		<!--<module>spring-security-web-mvc</module>-->
+		<!--<module>spring-security-web-persistent-login</module>-->
+		<!--<module>spring-security-web-react</module>-->
+		<!--<module>spring-security-web-rest-basic-auth</module>-->
+		<!--<module>spring-security-web-rest-custom</module>-->
+		<!--<module>spring-security-web-rest</module>-->
+		<!--<module>spring-security-web-springdoc</module>-->
+		<!--<module>spring-security-web-sockets</module>-->
+		<!--<module>spring-security-web-thymeleaf</module>-->
+		<!--<module>spring-security-web-x509</module>-->
+		<!--<module>spring-security-opa</module>-->
+		<!--<module>spring-security-pkce</module>-->
+	</modules>
+</project>

@@ -634,7 +634,7 @@
 				<!--<module>spring-roo</module>-->
 
 				<!--<module>spring-scheduling</module>-->
-				<!--<module>spring-security-modules</module>-->
+				<module>spring-security-modules</module>
 				<!--<module>spring-shell</module>-->
 				<!--<module>spring-soap</module>-->
 				<!--<module>spring-spel</module>-->
@@ -1005,7 +1005,7 @@
 				<!--<module>spring-roo</module>-->
 
 				<!--<module>spring-scheduling</module>-->
-				<!--<module>spring-security-modules</module>-->
+				<module>spring-security-modules</module>
 				<!--<module>spring-shell</module>-->
 				<!--<module>spring-soap</module>-->
 				<!--<module>spring-spel</module>-->
