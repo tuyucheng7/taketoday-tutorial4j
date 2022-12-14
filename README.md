@@ -6,7 +6,7 @@ Taketoday Tutorial4j
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=ncloc)](https://sonarcloud.io/project/overview?id=tu-yucheng_taketoday-tutorial4j)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=coverage)](https://sonarcloud.io/dashboard?id=tu-yucheng_taketoday-tutorial4j)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tu-yucheng_taketoday-tutorial4j)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 这个项目是**一个小型和重点教程的集合**，每个教程都涵盖了Java生态系统中一个明确定义的开发领域。
 当然，其中一个重点在于Spring框架、Spring Data、Spring Boot和Spring Security。
@@ -100,6 +100,8 @@ Taketoday Tutorial4j
     + [Java Core Concurrency Basic](java-core/java-concurrency-simple/README.md)
     + [Java Core Concurrency Advanced](java-core/java-concurrency-advanced-1/README.md)
     + [Java Core Concurrency Collections](java-core/java-concurrency-collections-1/README.md)
+* [Java Lambdas](java-core-modules/java-lambdas/README.md)
+* [Java Streams](java-core-modules/java-streams-1/README.md)
 
 **Design Pattern**
 
