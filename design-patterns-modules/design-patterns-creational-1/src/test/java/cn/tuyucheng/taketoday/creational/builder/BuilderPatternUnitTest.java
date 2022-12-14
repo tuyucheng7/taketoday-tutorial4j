@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BuilderPatternIntegrationTest {
+class BuilderPatternUnitTest {
 	@Test
 	void whenCreatingObjectThroughBuilder_thenObjectValid() {
 		BankAccount newAccount = new BankAccount

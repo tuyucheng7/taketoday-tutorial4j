@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  * @author tuyucheng
  */
-class SingletonSynchronizationIntegrationTest {
+class SingletonSynchronizationUnitTest {
 
 	/**
 	 * Size of the thread pools used.

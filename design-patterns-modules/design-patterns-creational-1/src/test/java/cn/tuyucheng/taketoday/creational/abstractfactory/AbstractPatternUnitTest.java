@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AbstractPatternIntegrationTest {
+class AbstractPatternUnitTest {
 	@Test
 	void givenAbstractFactory_whenGettingBrownDogObjects_thenSuccessful() {
 		AbstractFactory abstractFactory;
