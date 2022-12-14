@@ -368,7 +368,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -516,7 +516,7 @@
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
-				<!--<module>persistence-modules</module>-->
+				<module>spring-data-modules</module>
 				<!--<module>protobuffer</module>-->
 
 				<!--<module>quarkus-modules</module>-->
@@ -568,7 +568,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -694,7 +694,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -748,7 +748,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -893,7 +893,7 @@
 				<module>design-patterns-modules</module>
 				<!--<module>pdf</module>-->
 				<!--<module>performance-tests</module>-->
-				<!--<module>persistence-modules</module>-->
+				<module>spring-data-modules</module>
 				<!--<module>protobuffer</module>-->
 
 				<!--<module>quarkus-modules</module>-->
@@ -938,7 +938,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1058,7 +1058,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
