@@ -1,9 +1,12 @@
 package cn.tuyucheng.taketoday.java8.entity;
 
+import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
+
 public class Human {
 	private String name;
 	private int age;
 
+	@ExcludeFromJacocoGeneratedReport
 	public Human() {
 		super();
 	}
@@ -39,6 +42,7 @@ public class Human {
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -48,6 +52,7 @@ public class Human {
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
@@ -68,6 +73,7 @@ public class Human {
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public String toString() {
 		return "Human [name=" + name + ", age=" + age + "]";
 	}

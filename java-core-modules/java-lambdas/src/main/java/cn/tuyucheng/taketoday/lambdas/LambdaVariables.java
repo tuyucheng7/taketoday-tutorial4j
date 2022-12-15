@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.lambdas;
 
+import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
+
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,6 +11,7 @@ import java.util.stream.IntStream;
 /**
  * Class with examples about working with capturing lambdas.
  */
+@ExcludeFromJacocoGeneratedReport
 public class LambdaVariables {
 
 	private volatile boolean run = true;
