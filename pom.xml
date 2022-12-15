@@ -87,6 +87,16 @@
 		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>cn.tuyucheng.taketoday</groupId>
+				<artifactId>custom-jacoco-exclude-annotations</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -157,6 +167,8 @@
 				<configuration>
 					<excludes>
 						<exclude>cn/tuyucheng/taketoday/freebuilder/*</exclude>
+						<exclude>**/config/*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
@@ -414,6 +426,7 @@
 
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
@@ -572,6 +585,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
@@ -698,6 +712,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>apache-spark</module>-->
 
@@ -752,6 +767,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -942,6 +958,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
@@ -1062,6 +1079,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>apache-spark</module>-->
 
