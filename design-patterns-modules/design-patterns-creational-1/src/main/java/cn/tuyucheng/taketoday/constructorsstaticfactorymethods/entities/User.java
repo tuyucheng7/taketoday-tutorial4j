@@ -1,12 +1,13 @@
 package cn.tuyucheng.taketoday.constructorsstaticfactorymethods.entities;
 
 import java.time.LocalTime;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class User {
 
-	private static volatile User instance = null;
+	private static final AtomicReference<User> instance = new AtomicReference<>();
 	private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 	private final String name;
 	private final String email;
@@ -23,14 +24,14 @@ public class User {
 	}
 
 	public static User getSingletonInstance(String name, String email, String country) {
-		if (instance == null) {
+		if (instance.get() ==  null) {
 			synchronized (User.class) {
-				if (instance == null) {
-					instance = new User(name, email, country);
+				if (instance.get() == null) {
+					instance.set(new User(name, email, country));
 				}
 			}
 		}
-		return instance;
+		return instance.get();
 	}
 
 	private User(String name, String email, String country) {

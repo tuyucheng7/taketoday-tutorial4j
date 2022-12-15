@@ -27,6 +27,7 @@ public class Car implements Vehicle {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			LOG.error("Error while creating a new car", e);
+			Thread.currentThread().interrupt();
 		}
 	}
 

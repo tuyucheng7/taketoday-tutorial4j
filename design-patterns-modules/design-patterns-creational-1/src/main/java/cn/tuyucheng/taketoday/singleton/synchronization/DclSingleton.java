@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.singleton.synchronization;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * Double-checked locking design pattern applied to a singleton.
  *
@@ -10,7 +12,7 @@ public class DclSingleton {
 	/**
 	 * Current instance of the singleton.
 	 */
-	private static volatile DclSingleton instance;
+	private static final AtomicReference<DclSingleton> instance = new AtomicReference<>();
 
 	/**
 	 * Private constructor to avoid instantiation.
@@ -24,13 +26,13 @@ public class DclSingleton {
 	 * @return the current instance of the singleton
 	 */
 	public static DclSingleton getInstance() {
-		if (instance == null) {
+		if (instance.get() == null) {
 			synchronized (DclSingleton.class) {
-				if (instance == null) {
-					instance = new DclSingleton();
+				if (instance.get() == null) {
+					instance.set(new DclSingleton());
 				}
 			}
 		}
-		return instance;
+		return instance.get();
 	}
 }
