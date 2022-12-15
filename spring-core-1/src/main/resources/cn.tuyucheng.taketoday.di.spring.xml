@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="indexService" class="cn.tuyucheng.taketoday.di.spring.IndexService"/>
+
+	<bean id="messageService" class="cn.tuyucheng.taketoday.di.spring.MessageService">
+		<constructor-arg value="${message.value}"/>
+	</bean>
+
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="cn.tuyucheng.taketoday.di.spring.properties"/>
+	</bean>
+
+	<bean id="messageServiceFromStaticFactory" class="cn.tuyucheng.taketoday.di.spring.StaticServiceFactory"
+		  factory-method="getService">
+		<constructor-arg value="1"/>
+	</bean>
+
+	<bean id="indexServiceFactory" class="cn.tuyucheng.taketoday.di.spring.InstanceServiceFactory"/>
+
+	<bean id="messageServiceFromInstanceFactory" class="cn.tuyucheng.taketoday.di.spring.InstanceServiceFactory"
+		  factory-method="getService" factory-bean="indexServiceFactory">
+		<constructor-arg value="1"/>
+	</bean>
+
+	<bean id="indexApp" class="cn.tuyucheng.taketoday.di.spring.IndexApp">
+		<property name="service" ref="indexService"/>
+	</bean>
+
+	<bean id="indexAppWithStaticFactory" class="cn.tuyucheng.taketoday.di.spring.IndexApp">
+		<property name="service" ref="messageServiceFromStaticFactory"/>
+	</bean>
+
+	<bean id="indexAppWithFactoryMethod" class="cn.tuyucheng.taketoday.di.spring.IndexApp">
+		<property name="service" ref="messageServiceFromInstanceFactory"/>
+	</bean>
+
+	<bean id="messageWorldApp" class="cn.tuyucheng.taketoday.di.spring.MessageApp">
+		<constructor-arg ref="messageService"/>
+	</bean>
+</beans>
