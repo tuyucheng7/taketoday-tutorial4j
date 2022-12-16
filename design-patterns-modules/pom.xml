@@ -20,7 +20,7 @@
 		<!--<module>design-patterns-cloud</module>-->
 		<module>design-patterns-creational-1</module>
 		<module>design-patterns-creational-2</module>
-		<!--<module>design-patterns-functional</module>-->
+		<module>design-patterns-functional</module>
 		<module>design-patterns-structural</module>
 		<!--<module>dip</module>-->
 		<!--<module>cqrs-es</module>-->
