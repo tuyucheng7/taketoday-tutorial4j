@@ -167,6 +167,7 @@
 				<configuration>
 					<excludes>
 						<exclude>cn/tuyucheng/taketoday/freebuilder/*</exclude>
+						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
 						<exclude>**/config/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
 					</excludes>
