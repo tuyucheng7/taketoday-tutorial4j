@@ -14,7 +14,7 @@
 	</parent>
 
 	<modules>
-		<!--<module>design-patterns-architectural</module>-->
+		<module>design-patterns-architectural</module>
 		<module>design-patterns-behavioral-1</module>
 		<module>design-patterns-behavioral-2</module>
 		<module>design-patterns-cloud</module>
