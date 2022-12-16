@@ -1,15 +1,9 @@
 package cn.tuyucheng.taketoday.facade;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.AppenderBase;
+import cn.tuyucheng.taketoday.util.InMemoryCustomTestAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -60,24 +54,5 @@ class CarEngineFacadeIntegrationTest {
 		assertTrue(appender.logContains("Stopping Cooling Controller.."));
 		assertTrue(appender.logContains("Radiator switched off!"));
 		assertTrue(appender.logContains("Air controller switched off."));
-	}
-
-	private class InMemoryCustomTestAppender extends AppenderBase<ILoggingEvent> {
-
-		private final List<ILoggingEvent> logs = new ArrayList<>();
-
-		InMemoryCustomTestAppender() {
-			((Logger) LoggerFactory.getLogger("root")).addAppender(this);
-			start();
-		}
-
-		@Override
-		protected void append(ILoggingEvent eventObject) {
-			logs.add(eventObject);
-		}
-
-		boolean logContains(String message) {
-			return logs.stream().anyMatch(event -> event.getFormattedMessage().equals(message));
-		}
 	}
 }
