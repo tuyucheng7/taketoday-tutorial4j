@@ -533,7 +533,7 @@
 				<module>spring-data-modules</module>
 				<!--<module>protobuffer</module>-->
 
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
@@ -913,7 +913,7 @@
 				<module>spring-data-modules</module>
 				<!--<module>protobuffer</module>-->
 
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
@@ -1481,7 +1481,7 @@
 				<module>spring-data-modules</module>
 				<!--<module>protobuffer</module>-->
 
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
