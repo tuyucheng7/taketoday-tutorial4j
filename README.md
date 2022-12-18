@@ -106,7 +106,14 @@ Taketoday Tutorial4j
 **Design Pattern**
 
 + [Coupling](design-patterns-modules/coupling/README.md)
++ [SOLID](design-patterns-modules/design-patterns-solid/README.md)
 + [Creational](design-patterns-modules/design-patterns-creational-1/README.md)
++ [Structural](design-patterns-modules/design-patterns-structural/README.md)
++ [Behavioral](design-patterns-modules/design-patterns-behavioral-1/README.md)
++ [Cloud](design-patterns-modules/design-patterns-cloud/README.md)
++ [Functional](design-patterns-modules/design-patterns-functional/README.md)
++ [Singleton](design-patterns-modules/design-patterns-singleton/README.md)
++ [DIP](design-patterns-modules/dip/README.md)
 
 **Jackson**
 
