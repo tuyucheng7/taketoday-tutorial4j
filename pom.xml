@@ -170,6 +170,7 @@
 						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
 						<exclude>**/config/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
