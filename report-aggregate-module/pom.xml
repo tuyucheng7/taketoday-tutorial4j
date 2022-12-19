@@ -12,6 +12,7 @@
 	<artifactId>report-aggregate-module</artifactId>
 
 	<dependencies>
+		<!-- Java Core Modules -->
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
 			<artifactId>java-lambdas</artifactId>
@@ -22,6 +23,8 @@
 			<artifactId>java-streams-1</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+		<!-- Software Testing -->
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday</groupId>
 			<artifactId>junit-5</artifactId>
@@ -33,7 +36,7 @@
 			<version>1.0.0</version>
 		</dependency>
 
-		<!-- design-patterns-modules -->
+		<!-- Design Patterns Modules -->
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday</groupId>
 			<artifactId>coupling</artifactId>
@@ -99,6 +102,13 @@
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday</groupId>
 			<artifactId>spring-core-1</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- Spring Boot Modules -->
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

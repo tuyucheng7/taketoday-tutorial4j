@@ -17,7 +17,7 @@
 	</parent>
 
 	<modules>
-		<!--<module>spring-boot-actuator</module>-->
+		<module>spring-boot-actuator</module>
 		<!--<module>spring-boot-admin</module>-->
 		<!--<module>spring-boot-angular</module>-->
 		<!--<module>spring-boot-annotations-1</module>-->
