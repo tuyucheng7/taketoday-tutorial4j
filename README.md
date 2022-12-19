@@ -95,11 +95,11 @@ Taketoday Tutorial4j
 
 **Java Core**
 
-* [Java 8-17](java-core/java8-1/README.md)
+* [Java 8-17](java-core-modules/java8-1/README.md)
 * Java Core Concurrency
-    + [Java Core Concurrency Basic](java-core/java-concurrency-simple/README.md)
-    + [Java Core Concurrency Advanced](java-core/java-concurrency-advanced-1/README.md)
-    + [Java Core Concurrency Collections](java-core/java-concurrency-collections-1/README.md)
+    + [Java Core Concurrency Basic](java-core-modules/java-concurrency-simple/README.md)
+    + [Java Core Concurrency Advanced](java-core-modules/java-concurrency-advanced-1/README.md)
+    + [Java Core Concurrency Collections](java-core-modules/java-concurrency-collections-1/README.md)
 * [Java Lambdas](java-core-modules/java-lambdas/README.md)
 * [Java Streams](java-core-modules/java-streams-1/README.md)
 
@@ -137,11 +137,12 @@ Taketoday Tutorial4j
 
 **Spring Boot**
 
+* [Spring Boot Actuator](spring-boot-modules/spring-boot-actuator/README.md)
 * [Spring Boot Admin](spring-boot-modules/spring-boot-admin/README.md)
 * [Spring Boot Data](spring-boot-modules/spring-boot-data-1/README.md)
 * [Spring Boot Annotations](spring-boot-modules/spring-boot-annotations-1/README.md)
 * [Spring Boot Customization](spring-boot-modules/spring-boot-basic-customization-1/README.md)
-* [Spring Boot Mvc](spring-boot-modules/spring-boot-mvc-1/README.md)
+* [Spring Boot MVC](spring-boot-modules/spring-boot-mvc-1/README.md)
 
 **Spring Data**
 
@@ -173,24 +174,24 @@ Taketoday Tutorial4j
 
 **Software Testing**
 
-* [Junit 4](software-test/junit-4/README.md)
-* [Junit 5](software-test/junit-5/README.md)
-* [TestNG](software-test/testng-selenium/README.md)
-* [Mockito](software-test/mockito-1/README.md)
-* [PowerMock](software-test/powermock/README.md)
-* [EasyMock](software-test/easymock/README.md)
-* [Mocks](software-test/mocks-1/README.md)
-* [Cucumber](software-test/cucumber-1/README.md)
-* [Rest Assured](software-test/rest-assured/README.md)
-* [Spring Test](software-test/spring-1/README.md)
-* [MockServer](software-test/mockserver/README.md)
-* [Rest API](software-test/rest-testing/README.md)
-* [Assertion Libraries](software-test/assertion-libraries/README.md)
-* [Hamcrest](software-test/hamcrest/README.md)
-* [Test Libraries](software-test/libraries-1/README.md)
-* [Groovy Spock](software-test/groovy-spock/README.md)
-* [TestContainers](software-test/containers/README.md)
-* [EasyRandom](software-test/easy-random/README.md)
+* [Junit 4](software.test/junit-4/README.md)
+* [Junit 5](software.test/junit-5/README.md)
+* [TestNG](software.test/testng-selenium/README.md)
+* [Mockito](software.test/mockito-1/README.md)
+* [PowerMock](software.test/powermock/README.md)
+* [EasyMock](software.test/easymock/README.md)
+* [Mocks](software.test/mocks-1/README.md)
+* [Cucumber](software.test/cucumber-1/README.md)
+* [Rest Assured](software.test/rest-assured/README.md)
+* [Spring Test](software.test/spring-1/README.md)
+* [MockServer](software.test/mockserver/README.md)
+* [Rest API](software.test/rest-testing/README.md)
+* [Assertion Libraries](software.test/assertion-libraries/README.md)
+* [Hamcrest](software.test/hamcrest/README.md)
+* [Test Libraries](software.test/testing-libraries-1/README.md)
+* [Groovy Spock](software.test/groovy-spock/README.md)
+* [TestContainers](software.test/containers/README.md)
+* [EasyRandom](software.test/easy-random/README.md)
 
 **Message Queue**
 
