@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [将Spring Boot WAR部署到Tomcat服务器中](docs/将SpringBoot-WAR部署到Tomcat服务器中.md)
-+ []()
++ [Spring Boot控制台应用程序](docs/SpringBoot控制台应用程序.md)
 + []()
 + []()
 + []()
