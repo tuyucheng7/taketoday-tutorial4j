@@ -161,6 +161,11 @@
 			<artifactId>spring-boot-crud</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-ctx-fluent</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
