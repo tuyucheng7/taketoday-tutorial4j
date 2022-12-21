@@ -14,7 +14,7 @@
 	</parent>
 
 	<modules>
-		<!--<module>assertion-libraries</module>-->
+		<module>assertion-libraries</module>
 		<!--<module>cucumber</module>-->
 		<!--<module>easy-random</module>-->
 		<!--<module>easymock</module>-->
