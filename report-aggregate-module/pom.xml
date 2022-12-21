@@ -166,6 +166,22 @@
 			<artifactId>spring-boot-ctx-fluent</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!-- Spring Boot Custom Starter -->
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>greeter-library</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>greeter-spring-boot-autoconfigure</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>greeter-spring-boot-sample-app</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
