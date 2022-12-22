@@ -5,4 +5,4 @@
 ## 相关文章
 
 + [Spring Boot配置主类](docs/SpringBoot配置主类.md)
-+ []()
++ [Spring Boot与瘦JAR](docs/SpringBoot与瘦JAR.md)
