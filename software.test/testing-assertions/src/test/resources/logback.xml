@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+                %boldMagenta(%d{HH:mm:ss.SSS}) %boldYellow([%thread]) %highlight(%-5level) %boldGreen([%logger{36}]) >>> %boldCyan(%msg) %n
+			</Pattern>
+		</layout>
+	</appender>
+	<root level="error">
+		<appender-ref ref="CONSOLE"/>
+	</root>
+</configuration>
