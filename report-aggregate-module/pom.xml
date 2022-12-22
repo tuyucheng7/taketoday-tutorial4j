@@ -204,11 +204,6 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-			<artifactId>spring-boot-environment</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
 			<artifactId>spring-boot-flowable</artifactId>
 			<version>1.0.0</version>
 		</dependency>
@@ -220,6 +215,11 @@
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday.jasypt</groupId>
 			<artifactId>spring-boot-jasypt</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-jsp</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
