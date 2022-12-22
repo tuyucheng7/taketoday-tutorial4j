@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.tuyucheng.taketoday.environmentpostprocessor.autoconfig.PriceCalculationAutoConfig
+org.springframework.boot.env.EnvironmentPostProcessor=\
+cn.tuyucheng.taketoday.environmentpostprocessor.PriceCalculationEnvironmentPostProcessor
+
