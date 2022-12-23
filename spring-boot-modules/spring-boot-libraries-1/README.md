@@ -8,7 +8,7 @@
 + [Spring Web库Problem指南](docs/SpringWeb库Problem指南.md)
 + [在Java中生成条形码和二维码](docs/在Java中生成条形码和二维码.md)
 + [使用Bucket4j对Spring API进行速率限制](docs/使用Bucket4j对SpringAPI进行速率限制.md)
-+ []()
++ [Spring Boot和Caffeine缓存](docs/SpringBoot和Caffeine缓存.md)
 + []()
 
 - 更多文章： [[next -->]](../spring-boot-libraries-2/README.md)
