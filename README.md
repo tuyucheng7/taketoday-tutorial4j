@@ -15,28 +15,27 @@ Taketoday Tutorial4j
 基于Maven Profile的隔离
 ====================
 
-我们使用Maven构建Profile来隔离我们仓库中庞大的单个项目列表。
+我们使用Maven构建Profile来隔离我们仓库中庞大的单个项目列表，就目前而言，绝大多数模块都需要JDK 8才能正确构建和运行。
 
-就目前而言，绝大多数模块都需要JDK 8才能正确构建和运行。
+这些项目大致分为3个列表：first、second和heavy。接下来，根据我们要执行的测试进一步隔离它们。
 
-这些项目大致分为3个列表：first、second和heavy。
+此外，还有2个专用于JDK 9及更高版本的Profile，以及3个专用于SonarCloud的Profile。
 
-接下来，根据我们要执行的测试进一步隔离它们。
+因此，我们总共有11个配置Profile：
 
-此外，还有2个专用于JDK 9及更高版本的Profile。
-
-因此，我们总共有8个配置Profile：
-
-|          Profile           |     包含      |     启用的测试类型      |
-|:--------------------------:|:-----------:|:----------------:|
-|       default-first        |    第一批项目    |    *UnitTest     |
-|   integration-lite-first   |    第一批项目    | *IntegrationTest |
-|       default-second       |    第二批项目    |    *UnitTest     |
-|  integration-lite-second   |    第二批项目    | *IntegrationTest |
-|       default-heavy        | 繁重/长时间运行的项目 |    *UnitTest     |
-|     integration-heavy      | 繁重/长时间运行的项目 | *IntegrationTest |
-|   default-jdk9-and-above   |  JDK9及以上项目  |    *UnitTest     |
-| integration-jdk9-and-above |  JDK9及以上项目  | *IntegrationTest |
+|          Profile           |     包含      |           启用的测试类型           |
+|:--------------------------:|:-----------:|:---------------------------:|
+|       default-first        |    第一批项目    |          *UnitTest          |
+|   integration-lite-first   |    第一批项目    |      *IntegrationTest       |
+|      sonarcloud-first      |    第一批项目    | *IntegrationTest、\*UnitTest |
+|       default-second       |    第二批项目    |          *UnitTest          |
+|  integration-lite-second   |    第二批项目    |      *IntegrationTest       |
+|     sonarcloud-second      |    第二批项目    | *IntegrationTest、\*UnitTest |
+|       default-heavy        | 繁重/长时间运行的项目 |          *UnitTest          |
+|     integration-heavy      | 繁重/长时间运行的项目 |      *IntegrationTest       |
+|   default-jdk9-and-above   |  JDK9及以上项目  |          *UnitTest          |
+| integration-jdk9-and-above |  JDK9及以上项目  |      *IntegrationTest       |
+|     sonarcloud-jdk9-and-above       | JDK9及以上项目 | *IntegrationTest、\*UnitTest |
 
 构建项目
 ====================
@@ -93,111 +92,16 @@ Taketoday Tutorial4j
 内容列表
 ===================
 
-**Java Core**
-
-* [Java 8-17](java-core-modules/java8-1/README.md)
-* Java Core Concurrency
-    + [Java Core Concurrency Basic](java-core-modules/java-concurrency-simple/README.md)
-    + [Java Core Concurrency Advanced](java-core-modules/java-concurrency-advanced-1/README.md)
-    + [Java Core Concurrency Collections](java-core-modules/java-concurrency-collections-1/README.md)
-* [Java Lambdas](java-core-modules/java-lambdas/README.md)
-* [Java Streams](java-core-modules/java-streams-1/README.md)
-
-**Design Pattern**
-
-+ [Coupling](design-patterns-modules/coupling/README.md)
-+ [SOLID](design-patterns-modules/design-patterns-solid/README.md)
-+ [Creational](design-patterns-modules/design-patterns-creational-1/README.md)
-+ [Structural](design-patterns-modules/design-patterns-structural/README.md)
-+ [Behavioral](design-patterns-modules/design-patterns-behavioral-1/README.md)
-+ [Cloud](design-patterns-modules/design-patterns-cloud/README.md)
-+ [Functional](design-patterns-modules/design-patterns-functional/README.md)
-+ [Singleton](design-patterns-modules/design-patterns-singleton/README.md)
-+ [DIP](design-patterns-modules/dip/README.md)
-
-**Jackson**
-
-+ [Jackson Core](jackson-modules/jackson-core/README.md)
-
-**Build Tools**
-
-+ [Maven](maven.modules/maven-multi-source/README.md)
-+ [Gradle](gradle.modules/gradle-7/README.md)
-
-**Spring Framework**
-
-* [Spring Core](spring-framework/spring-core-1/README.md)
-* [Spring DI](spring-framework/spring-di-1/README.md)
-* [Spring Aop](spring-framework/spring-aop-1/README.md)
-* [Spring Caching](spring-framework/spring-caching-1/README.md)
-
-**Spring MVC**
-
-* [Spring MVC Basic](spring-web-modules/spring-mvc-basics-1/README.md)
-
-**Spring Boot**
-
-* [Spring Boot Actuator](spring-boot-modules/spring-boot-actuator/README.md)
-* [Spring Boot Admin](spring-boot-modules/spring-boot-admin/README.md)
-* [Spring Boot Data](spring-boot-modules/spring-boot-data-1/README.md)
-* [Spring Boot Annotations](spring-boot-modules/spring-boot-annotations-1/README.md)
-* [Spring Boot Customization](spring-boot-modules/spring-boot-basic-customization-1/README.md)
-* [Spring Boot MVC](spring-boot-modules/spring-boot-mvc-1/README.md)
-
-**Spring Data**
-
-* [Spring Data JPA CRUD](spring-data-modules/spring-data-jpa-crud-1/README.md)
-* [Spring Data JPA Query](spring-data-modules/spring-data-jpa-query-1/README.md)
-* [Spring Data JPA Repository](spring-data-modules/spring-data-jpa-repo-1/README.md)
-* [Spring Data JPA Enterprise](spring-data-modules/spring-data-jpa-enterprise-1/README.md)
-* [Spring Data JPA Annotations](spring-data-modules/spring-data-jpa-annotations/README.md)
-* [Spring Data JPA Filtering](spring-data-modules/spring-data-jpa-filtering/README.md)
-* [Spring Data JDBC](spring-data-modules/spring-data-jdbc/README.md)
-* [Spring Data Rest](spring-data-modules/spring-data-rest-1/README.md)
-* [Spring Boot Persistence](spring-data-modules/spring-boot-persistence-1/README.md)
-* [Spring Boot Persistence Mongodb](spring-data-modules/spring-boot-persistence-mongodb-1/README.md)
-
-**Spring Security**
-
-* [Spring Security Core](spring-security-modules/spring-security-core-1/README.md)
-* [Spring Security Web Boot](spring-security-modules/spring-security-web-boot-1/README.md)
-* [Spring Security Web Login](spring-security-modules/spring-security-web-login-1/README.md)
-* [Spring Security Auth0](spring-security-modules/spring-security-auth0/README.md)
-* [Spring Security Acl](spring-security-modules/spring-security-acl/README.md)
-* [Spring Security Angular](spring-security-modules/spring-security-web-angular/README.md)
-
-**Spring Cloud**
-
-**Reactive Stack**
-
-* [Reactor Core](reactive-stack/reactor-core/README.md)
-
-**Software Testing**
-
-* [Junit 4](software.test/junit-4/README.md)
-* [Junit 5](software.test/junit-5/README.md)
-* [TestNG](software.test/testng-selenium/README.md)
-* [Mockito](software.test/mockito-1/README.md)
-* [PowerMock](software.test/powermock/README.md)
-* [EasyMock](software.test/easymock/README.md)
-* [Mocks](software.test/mocks-1/README.md)
-* [Cucumber](software.test/cucumber-1/README.md)
-* [Rest Assured](software.test/rest-assured/README.md)
-* [Spring Test](software.test/spring-1/README.md)
-* [MockServer](software.test/mockserver/README.md)
-* [Rest API](software.test/rest-testing/README.md)
-* [Assertion Libraries](software.test/assertion-libraries/README.md)
-* [Hamcrest](software.test/hamcrest/README.md)
-* [Test Libraries](software.test/testing-libraries-1/README.md)
-* [Groovy Spock](software.test/groovy-spock/README.md)
-* [TestContainers](software.test/containers/README.md)
-* [EasyRandom](software.test/easy-random/README.md)
-
-**Message Queue**
-
-* [RabbitMQ](messaging.queue/rabbitmq/README.md)
-* [Spring JMS](messaging.queue/spring-jms/README.md)
-* [JGroups](messaging.queue/jgroups/README.md)
++ [Java Core](java-core-modules/README.md)
++ [Design Patterns](design-patterns-modules/README.md)
++ [Spring Core](spring-core-1/README.md)
++ [Spring Data](spring-data-modules/README.md)
++ [Spring Boot](spring-boot-modules/README.md)
++ [Spring Security](spring-security-modules/README.md)
++ [Message Queue](messaging-modules/README.md)
++ [Software Testing](software.test/README.md)
++ [GraphQL](graphql.modules/README.md)
++ [gRPC](grpc/README.md)
 
 贡献人员
 ==============
