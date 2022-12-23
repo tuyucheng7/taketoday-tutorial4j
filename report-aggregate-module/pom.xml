@@ -124,6 +124,13 @@
 			<version>1.0.0</version>
 		</dependency>
 
+		<!-- GraphQL Modules-->
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.graphql</groupId>
+			<artifactId>graphql-java</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<!-- Spring Core -->
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday</groupId>
