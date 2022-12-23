@@ -118,6 +118,12 @@
 			<version>1.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday</groupId>
+			<artifactId>grpc</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 		<!-- Spring Core -->
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday</groupId>
