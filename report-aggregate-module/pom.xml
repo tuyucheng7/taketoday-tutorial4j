@@ -176,6 +176,16 @@
 		</dependency>
 		<dependency>
 			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-annotations-1</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-annotations-2</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
 			<artifactId>spring-boot-autoconfiguration</artifactId>
 			<version>1.0.0</version>
 		</dependency>

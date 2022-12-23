@@ -20,8 +20,8 @@
 		<module>spring-boot-actuator</module>
 		<module>spring-boot-admin</module>
 		<!--<module>spring-boot-angular</module>-->
-		<!--<module>spring-boot-annotations-1</module>-->
-		<!--<module>spring-boot-annotations-2</module>-->
+		<module>spring-boot-annotations-1</module>
+		<module>spring-boot-annotations-2</module>
 		<module>spring-boot-artifacts-1</module>
 		<module>spring-boot-artifacts-2</module>
 		<module>spring-boot-autoconfiguration</module>
