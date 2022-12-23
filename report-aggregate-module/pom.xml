@@ -130,6 +130,11 @@
 			<artifactId>graphql-java</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.graphql</groupId>
+			<artifactId>graphql-spqr</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 		<!-- Spring Core -->
 		<dependency>
