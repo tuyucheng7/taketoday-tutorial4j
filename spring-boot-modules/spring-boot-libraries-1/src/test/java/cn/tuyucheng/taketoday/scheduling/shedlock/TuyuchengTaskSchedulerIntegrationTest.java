@@ -29,7 +29,7 @@ class TuyuchengTaskSchedulerIntegrationTest {
 		// test
 		taskScheduler.scheduledTask();
 		System.out.flush();
-		String expected = "Running ShedLock task\r\n";
+		String expected = "Running ShedLock task\n";
 		assertThat(consoleOutput.toString()).hasToString(expected);
 
 		// restore the old out
