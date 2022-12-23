@@ -52,7 +52,7 @@
 		<!--<module>spring-boot-keycloak-1</module>-->
 		<!--<module>spring-boot-keycloak-2</module>-->
 		<module>spring-boot-libraries-1</module>
-		<!--<module>spring-boot-libraries-2</module>-->
+		<module>spring-boot-libraries-2</module>
 		<!--<module>spring-boot-process-automation</module>-->
 		<!--<module>spring-boot-logging-log4j2</module>-->
 		<!--<module>spring-boot-mvc-1</module>-->
