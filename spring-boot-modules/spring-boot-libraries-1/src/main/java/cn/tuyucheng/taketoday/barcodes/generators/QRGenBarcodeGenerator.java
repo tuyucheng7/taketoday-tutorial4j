@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.barcodes.generators;
 
+import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import net.glxn.qrgen.javase.QRCode;
 
 import javax.imageio.ImageIO;
@@ -7,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+@ExcludeFromJacocoGeneratedReport
 public class QRGenBarcodeGenerator {
 
 	public static BufferedImage generateQRCodeImage(String barcodeText) throws Exception {
