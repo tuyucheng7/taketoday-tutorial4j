@@ -271,6 +271,11 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>cn.tuyucheng.taketoday.keycloak</groupId>
+			<artifactId>spring-boot-keycloak-1</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
 			<artifactId>spring-boot-libraries-1</artifactId>
 			<version>1.0.0</version>
