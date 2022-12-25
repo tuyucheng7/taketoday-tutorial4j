@@ -6,7 +6,7 @@
 
 + [Spring @Value注解的快速指南](docs/Spring的@Value快速指南.md)
 + [使用带默认值的Spring @Value注解](docs/使用带默认值的Spring@Value.md)
-+ []()
++ [如何将属性值注入到非Spring管理的类中](docs/如何将属性值注入到非Spring管理的类中.md)
 + []()
 + []()
 + []()
