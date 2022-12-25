@@ -6,7 +6,7 @@
 
 + [在Spring Boot中使用Keycloak的快速指南](docs/在SpringBoot中使用Keycloak的快速指南.md)
 + [使用Keycloak自定义用户属性](docs/使用Keycloak自定义用户属性.md)
-+ []()
++ [自定义Keycloak的登录页面](docs/自定义Keycloak的登录页面.md)
 + [为Keycloak定制主题](docs/为Keycloak定制主题.md)
 + []()
 + []()
