@@ -10,6 +10,6 @@
 + [为Keycloak定制主题](docs/为Keycloak定制主题.md)
 + [Keycloak用户自注册](docs/Keycloak用户自注册.md)
 + [使用Keycloak保护SOAP Web Service](docs/使用Keycloak保护SOAPWeb服务.md)
-+ []()
++ [在Spring中获取Keycloak用户ID](docs/在Spring中获取Keycloak用户ID.md)
 
 - 更多文章： [[next -->]](../spring-boot-keycloak-2/README.md)
