@@ -69,7 +69,7 @@
 		<module>spring-boot-properties-2</module>
 		<module>spring-boot-properties-3</module>
 		<module>spring-boot-properties-migrator-demo</module>
-		<!--<module>spring-boot-property-exp</module>-->
+		<module>spring-boot-property-exp</module>
 		<!--<module>spring-boot-runtime-1</module>-->
 		<!--<module>spring-boot-runtime-2</module>-->
 		<!--<module>spring-boot-security</module>-->
