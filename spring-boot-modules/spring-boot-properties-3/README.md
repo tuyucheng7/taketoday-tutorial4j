@@ -6,7 +6,7 @@
 
 + [如何在YAML中为POJO定义Map](docs/如何在YAML中为POJO定义Map.md)
 + [在Spring Boot中使用application.yml和application.properties](docs/在SpringBoot中使用yml和properties)
-+ []()
++ [从JSON文件加载Spring Boot属性](docs/从JSON文件加载SpringBoot属性.md)
 + []()
 + []()
 
