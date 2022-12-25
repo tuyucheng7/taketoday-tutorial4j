@@ -8,7 +8,7 @@
 + [Spring Boot中的@ConfigurationProperties指南](docs/SpringBoot中的@ConfigurationProperties指南.md)
 + [@EnableConfigurationProperties指南](docs/@EnableConfigurationProperties指南.md)
 + [Spring和Spring Boot中的属性](docs/Spring和SpringBoot中的属性.md)
-+ []()
++ [Spring YAML配置](docs/Spring-YAML配置.md)
 + []()
 + []()
 
