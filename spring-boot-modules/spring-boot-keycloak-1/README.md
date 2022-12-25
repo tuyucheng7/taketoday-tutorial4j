@@ -9,7 +9,7 @@
 + [自定义Keycloak的登录页面](docs/自定义Keycloak的登录页面.md)
 + [为Keycloak定制主题](docs/为Keycloak定制主题.md)
 + [Keycloak用户自注册](docs/Keycloak用户自注册.md)
-+ []()
++ [使用Keycloak保护SOAP Web Service](docs/使用Keycloak保护SOAPWeb服务.md)
 + []()
 
 - 更多文章： [[next -->]](../spring-boot-keycloak-2/README.md)
