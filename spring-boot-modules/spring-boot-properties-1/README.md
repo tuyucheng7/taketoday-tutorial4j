@@ -10,6 +10,6 @@
 + [Spring和Spring Boot中的属性](docs/Spring和SpringBoot中的属性.md)
 + [Spring YAML配置](docs/Spring-YAML配置.md)
 + [将构建属性添加到Spring Boot应用程序](docs/将构建属性添加到SpringBoot应用程序.md)
-+ []()
++ [Spring YAML与Properties](docs/Spring-YAML与Properties.md)
 
 - 更多文章： [[next -->]](../spring-boot-properties-2/README.md)
