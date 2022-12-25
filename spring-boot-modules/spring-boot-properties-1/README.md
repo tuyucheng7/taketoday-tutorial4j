@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [在Spring中重新加载属性文件](docs/在Spring中重新加载属性文件.md)
-+ []()
++ [Spring Boot中的@ConfigurationProperties指南](docs/SpringBoot中的@ConfigurationProperties指南.md)
 + []()
 + []()
 + []()
