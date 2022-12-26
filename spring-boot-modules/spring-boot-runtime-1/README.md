@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [关闭Spring Boot应用程序](docs/关闭SpringBoot应用程序.md)
-+ []()
++ [以编程方式重新启动Spring Boot应用程序](docs/以编程方式重新启动SpringBoot应用程序.md)
 + []()
 + []()
 + []()
