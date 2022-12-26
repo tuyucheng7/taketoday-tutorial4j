@@ -370,6 +370,11 @@
 			<artifactId>spring-boot-runtime-2</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-security</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
