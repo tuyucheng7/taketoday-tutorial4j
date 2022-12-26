@@ -10,7 +10,7 @@
 + [Spring Security中的@CurrentSecurityContext指南](docs/SpringSecurity中的@CurrentSecurityContext指南.md)
 + [在Spring Boot中禁用特定Profile的安全性](docs/在SpringBoot中禁用Profile的安全性.md)
 + [Spring中的@EnableWebSecurity与@EnableGlobalMethodSecurity](docs/Spring中的@EnableWebSecurity与@EnableGlobalMethodSecurity.md)
-+ []()
++ [Spring Security配置不同的URL](docs/SpringSecurity配置不同的URL.md)
 
 ## Spring Boot Security自动配置
 
