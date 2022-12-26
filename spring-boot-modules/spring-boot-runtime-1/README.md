@@ -7,7 +7,7 @@
 + [关闭Spring Boot应用程序](docs/关闭SpringBoot应用程序.md)
 + [以编程方式重新启动Spring Boot应用程序](docs/以编程方式重新启动SpringBoot应用程序.md)
 + [使用Spring Boot Actuator HTTP跟踪记录HTTP请求](docs/使用SpringBoot-Actuator-HTTP跟踪记录HTTP请求.md)
-+ []()
++ [Spring Boot嵌入式Tomcat日志](docs/SpringBoot嵌入式Tomcat日志.md)
 + []()
 + []()
 + []()
