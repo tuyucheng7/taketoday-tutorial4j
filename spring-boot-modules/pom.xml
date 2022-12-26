@@ -74,7 +74,7 @@
 		<module>spring-boot-runtime-1</module>
 		<module>spring-boot-runtime-2</module>
 		<module>spring-boot-security</module>
-		<!--<module>spring-boot-springdoc</module>-->
+		<module>spring-boot-springdoc</module>
 		<!--<module>spring-boot-swagger-1</module>-->
 		<!--<module>spring-boot-swagger-2</module>-->
 		<!--<module>spring-boot-swagger-jwt</module>-->
