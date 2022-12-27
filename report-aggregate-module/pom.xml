@@ -380,6 +380,11 @@
 			<artifactId>spring-boot-springdoc</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-swagger-1</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

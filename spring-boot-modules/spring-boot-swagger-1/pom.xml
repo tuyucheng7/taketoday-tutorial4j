@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>spring-boot-swagger-1</artifactId>
+	<version>1.0.0</version>
+	<name>spring-boot-swagger-1</name>
+	<packaging>jar</packaging>
+	<description>Module For Spring Boot Swagger</description>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+		<artifactId>spring-boot-modules</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>${springfox.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.kongchen</groupId>
+			<artifactId>swagger-maven-plugin</artifactId>
+			<version>${swagger-maven-plugin.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>${swagger-maven-plugin.version}</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>false</springmvc>
+							<locations>cn.tuyucheng.taketoday.swaggerenums.controller</locations>
+							<schemes>http,https</schemes>
+							<host>tuyucheng.com</host>
+							<basePath>/api</basePath>
+							<info>
+								<title>Tuyucheng - Document Enum</title>
+								<version>v1</version>
+								<description>This is a Tuyucheng Document Enum Sample Code</description>
+								<contact>
+									<email>pmurria@tuyucheng.com</email>
+									<name>Parikshit Murria</name>
+								</contact>
+								<license>
+									<url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+									<name>Apache 2.0</name>
+								</license>
+							</info>
+							<swaggerDirectory>${basedir}/target/swagger-ui</swaggerDirectory>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<springfox.version>3.0.0</springfox.version>
+		<swagger-maven-plugin.version>3.1.1</swagger-maven-plugin.version>
+	</properties>
+</project>
