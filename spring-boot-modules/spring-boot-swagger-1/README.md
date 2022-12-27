@@ -5,7 +5,7 @@
 + [从Swagger API文档生成PDF](docs/从SwaggerAPI文档生成PDF.md)
 + [删除SpringFox SwaggerUI中的基本错误控制器](docs/删除SpringFox-SwaggerUI中的基本错误控制器.md)
 + [使用Swagger设置示例和说明](docs/使用Swagger设置示例和说明.md)
-+ []()
++ [Swagger中的枚举文档](docs/Swagger中的枚举文档.md)
 + []()
 
 - 更多文章： [[next -->]](../spring-boot-swagger-2/README.md)
