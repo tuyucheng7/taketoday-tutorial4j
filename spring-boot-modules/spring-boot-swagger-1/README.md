@@ -4,7 +4,7 @@
 + [Swagger中的@Api描述已弃用](docs/Swagger中的@Api描述已弃用.md)
 + [从Swagger API文档生成PDF](docs/从SwaggerAPI文档生成PDF.md)
 + [删除SpringFox SwaggerUI中的基本错误控制器](docs/删除SpringFox-SwaggerUI中的基本错误控制器.md)
-+ []()
++ [使用Swagger设置示例和说明](docs/使用Swagger设置示例和说明.md)
 + []()
 + []()
 
