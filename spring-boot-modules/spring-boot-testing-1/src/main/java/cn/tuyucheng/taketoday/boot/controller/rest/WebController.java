@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.boot.controller.rest;
 
+import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
+@ExcludeFromJacocoGeneratedReport
 @RequestMapping("/hello")
 public class WebController {
 

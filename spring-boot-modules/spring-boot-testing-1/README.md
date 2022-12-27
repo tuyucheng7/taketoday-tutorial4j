@@ -10,6 +10,6 @@
 + [测试Spring Boot中的@ConfigurationProperties](docs/测试SpringBoot中的@ConfigurationProperties.md)
 + [防止ApplicationRunner或CommandLineRunner Bean在JUnit测试期间执行](docs/防止ApplicationRunner或CommandLineRunner-Bean在JUnit测试期间执行.md)
 + [Spring Boot中的测试](docs/SpringBoot中的测试.md)
-+ []()
++ [修复NoSuchMethodError JUnit错误](docs/修复NoSuchMethodError-JUnit错误.md)
 
 - 更多文章： [[next -->]](../spring-boot-testing-2/README.md)
