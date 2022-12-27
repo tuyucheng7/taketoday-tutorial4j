@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [使用Spring和Spock进行测试](docs/使用Spring和Spock进行测试.md)
-+ []()
++ [在Spring Boot测试中排除自动配置类](docs/在SpringBoot测试中排除自动配置类.md)
 + []()
 + []()
 + []()
