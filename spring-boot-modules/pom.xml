@@ -82,7 +82,7 @@
 		<module>spring-boot-testing-1</module>
 		<module>spring-boot-testing-2</module>
 		<module>spring-boot-validation</module>
-		<!--<module>spring-boot-vue</module>-->
+		<module>spring-boot-vue</module>
 	</modules>
 
 	<dependencyManagement>
