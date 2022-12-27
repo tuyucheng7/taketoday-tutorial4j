@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [测试时在Spring Boot中设置日志级别](docs/测试时在SpringBoot中设置日志级别.md)
-+ []()
++ [无法为Spring Controller的JUnit测试加载ApplicationContext](docs/无法为Spring-Controller的JUnit测试加载ApplicationContext.md)
 + []()
 + []()
 + []()
