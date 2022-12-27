@@ -6,7 +6,7 @@
 
 + [使用Spring和Spock进行测试](docs/使用Spring和Spock进行测试.md)
 + [在Spring Boot测试中排除自动配置类](docs/在SpringBoot测试中排除自动配置类.md)
-+ []()
++ [使用嵌入式Redis服务器进行Spring Boot测试](docs/使用嵌入式Redis服务器进行SpringBoot测试.md)
 + []()
 + []()
 + []()
