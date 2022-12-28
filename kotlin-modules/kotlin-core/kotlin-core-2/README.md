@@ -8,3 +8,4 @@
 + [在Kotlin的标签处返回](docs/在Kotlin的标签处返回.md)
 + [Kotlin中的类型别名](docs/Kotlin中的类型别名.md)
 + [Kotlin中的可变参数和扩展运算符](docs/Kotlin中的可变参数和扩展运算符.md)
++ [Kotlin中String到Long的转换](docs/Kotlin中String到Long的转换.md)
