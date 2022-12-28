@@ -9,3 +9,7 @@
 + [Kotlin中的类型别名](docs/Kotlin中的类型别名.md)
 + [Kotlin中的可变参数和扩展运算符](docs/Kotlin中的可变参数和扩展运算符.md)
 + [Kotlin中String到Long的转换](docs/Kotlin中String到Long的转换.md)
++ [Kotlin中的open关键字](docs/Kotlin中的open关键字.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-1/README.md)
+- 更多文章： [[next -->]](../kotlin-core-3/README.md)
