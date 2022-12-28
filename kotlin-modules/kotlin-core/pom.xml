@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>kotlin-core</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday.kotlin-modules</groupId>
+		<artifactId>kotlin-modules</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<modules>
+		<module>kotlin-core-1</module>
+		<!--<module>kotlin-core-2</module>-->
+		<!--<module>kotlin-core-3</module>-->
+		<!--<module>kotlin-core-4</module>-->
+		<!--<module>kotlin-core-5</module>-->
+		<!--<module>kotlin-core-6</module>-->
+		<!--<module>kotlin-core-advanced-1</module>-->
+		<!--<module>kotlin-core-advanced-2</module>-->
+		<!--<module>kotlin-core-annotations</module>-->
+		<!--<module>kotlin-core-arrays</module>-->
+		<!--<module>kotlin-core-collections-1</module>-->
+		<!--<module>kotlin-core-collections-2</module>-->
+		<!--<module>kotlin-core-collections-3</module>-->
+		<!--<module>kotlin-core-concurrency-1</module>-->
+		<!--<module>kotlin-core-concurrency-2</module>-->
+		<!--<module>kotlin-core-date-time</module>-->
+		<!--<module>kotlin-core-design-patterns</module>-->
+		<!--<module>kotlin-core-io</module>-->
+		<!--<module>kotlin-core-lang-1</module>-->
+		<!--<module>kotlin-core-lang-2</module>-->
+		<!--<module>kotlin-core-lang-3</module>-->
+		<!--<module>kotlin-core-lang-scope</module>-->
+		<!--<module>kotlin-core-lang-oop-1</module>-->
+		<!--<module>kotlin-core-lang-oop-2</module>-->
+		<!--<module>kotlin-core-lang-oop-3</module>-->
+		<!--<module>kotlin-core-strings-1</module>-->
+		<!--<module>kotlin-core-strings-2</module>-->
+		<!--<module>kotlin-core-strings-3</module>-->
+		<!--<module>kotlin-core-files</module>-->
+	</modules>
+</project>
