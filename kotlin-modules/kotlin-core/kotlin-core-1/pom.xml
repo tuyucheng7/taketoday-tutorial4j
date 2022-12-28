@@ -12,4 +12,11 @@
 		<artifactId>kotlin-core</artifactId>
 		<version>1.0.0</version>
 	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>cn.tuyucheng.taketoday</groupId>
+			<artifactId>custom-jacoco-exclude-annotations</artifactId>
+		</dependency>
+	</dependencies>
 </project>
