@@ -7,3 +7,4 @@
 + [Kotlin中的when语句块指南](docs/Kotlin中的when语句块指南.md)
 + [Kotlin中“==”和“===”运算符的区别](docs/Kotlin中==和===运算符的区别.md)
 + [在Kotlin中嵌套forEach](docs/在Kotlin中嵌套forEach.md)
++ [Kotlin中的解构声明](docs/Kotlin中的解构声明.md)
