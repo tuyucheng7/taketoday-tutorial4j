@@ -10,3 +10,4 @@
 + [Kotlin中的解构声明](docs/Kotlin中的解构声明.md)
 + [Kotlin中的try-with-resources](docs/Kotlin中的try-with-resources.md)
 + [Kotlin中的运算符重载](docs/Kotlin中的运算符重载.md)
++ [Kotlin中的内联函数](docs/Kotlin中的内联函数.md)
