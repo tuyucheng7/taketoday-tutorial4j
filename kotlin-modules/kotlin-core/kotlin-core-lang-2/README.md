@@ -13,3 +13,7 @@
 + [Kotlin作用域函数](docs/Kotlin作用域函数.md)
 + [Kotlin中的If-Else表达式](docs/Kotlin中的If-Else表达式.md)
 + [检查lateinit var是否在Kotlin中初始化](docs/检查lateinit-var是否在Kotlin中初始化.md)
++ [Kotlin的yield函数指南](docs/Kotlin的yield函数指南.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-lang-1/README.md)
+- 更多文章： [[next -->]](../kotlin-core-lang-3/README.md)
