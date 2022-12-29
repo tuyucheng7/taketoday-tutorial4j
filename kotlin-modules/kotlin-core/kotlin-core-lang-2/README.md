@@ -12,3 +12,4 @@
 + [Kotlin空安全综合指南](docs/Kotlin空安全综合指南.md)
 + [Kotlin作用域函数](docs/Kotlin作用域函数.md)
 + [Kotlin中的If-Else表达式](docs/Kotlin中的If-Else表达式.md)
++ [检查lateinit var是否在Kotlin中初始化](docs/检查lateinit-var是否在Kotlin中初始化.md)
