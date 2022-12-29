@@ -6,3 +6,4 @@
 
 + [Kotlin中的return、break、continue关键词](docs/Kotlin-return-break-continue关键词.md)
 + [Kotlin中的中缀函数](docs/Kotlin中的中缀函数.md)
++ [Kotlin中的Lambda表达式](docs/Kotlin中的Lambda表达式.md)
