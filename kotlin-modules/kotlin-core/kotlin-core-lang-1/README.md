@@ -1,0 +1,7 @@
+## Core Kotlin Lang
+
+本模块包含有关Kotlin语言核心功能的文章。
+
+## 相关文章
+
++ [Kotlin中的when语句块指南](docs/Kotlin中的when语句块指南.md)
