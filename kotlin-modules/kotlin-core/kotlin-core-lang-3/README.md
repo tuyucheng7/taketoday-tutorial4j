@@ -11,3 +11,4 @@
 + [Kotlin中的包私有替代方案](docs/Kotlin中的包私有替代方案.md)
 + [在Kotlin中使用常量的最佳实践](docs/在Kotlin中使用常量的最佳实践.md)
 + [解决Kotlin中“Smart cast to ‘Type’ is impossible”的错误](docs/修复Kotlin智能转换为类型是不可能的错误.md)
++ [Kotlin中的类型检查和转换](docs/Kotlin中的类型检查和转换.md)
