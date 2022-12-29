@@ -12,3 +12,4 @@
 + [Kotlin构造函数](docs/Kotlin构造函数.md)
 + [Kotlin嵌套类和内部类](docs/Kotlin嵌套类和内部类.md)
 + [Kotlin接口指南](docs/Kotlin接口指南.md)
++ [Kotlin中的内联类](docs/Kotlin中的内联类.md)
