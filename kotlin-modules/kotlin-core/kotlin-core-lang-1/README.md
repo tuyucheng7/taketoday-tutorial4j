@@ -8,3 +8,4 @@
 + [Kotlin中“==”和“===”运算符的区别](docs/Kotlin中==和===运算符的区别.md)
 + [在Kotlin中嵌套forEach](docs/在Kotlin中嵌套forEach.md)
 + [Kotlin中的解构声明](docs/Kotlin中的解构声明.md)
++ [Kotlin中的try-with-resources](docs/Kotlin中的try-with-resources.md)
