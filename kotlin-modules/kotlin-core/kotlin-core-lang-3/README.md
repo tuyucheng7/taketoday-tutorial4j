@@ -13,3 +13,6 @@
 + [解决Kotlin中“Smart cast to ‘Type’ is impossible”的错误](docs/修复Kotlin智能转换为类型是不可能的错误.md)
 + [Kotlin中的类型检查和转换](docs/Kotlin中的类型检查和转换.md)
 + [Kotlin中的“super is not an expression”错误](docs/Kotlin-super-is-not-an-expression错误.md)
++ [在Kotlin中同时扩展类和实现接口](docs/在Kotlin中同时扩展类和实现接口.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-lang-2/README.md)
