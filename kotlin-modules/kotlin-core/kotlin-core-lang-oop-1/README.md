@@ -7,3 +7,4 @@
 + [Kotlin中的数据类](docs/Kotlin中的数据类.md)
 + [Kotlin中的密封类](docs/Kotlin中的密封类.md)
 + [Kotlin中的扩展函数](docs/Kotlin中的扩展函数.md)
++ [Kotlin中的对象](docs/Kotlin中的对象.md)
