@@ -34,7 +34,7 @@
 		<!--<module>kotlin-core-io</module>-->
 		<module>kotlin-core-lang-1</module>
 		<module>kotlin-core-lang-2</module>
-		<!--<module>kotlin-core-lang-3</module>-->
+		<module>kotlin-core-lang-3</module>
 		<!--<module>kotlin-core-lang-scope</module>-->
 		<!--<module>kotlin-core-lang-oop-1</module>-->
 		<!--<module>kotlin-core-lang-oop-2</module>-->
