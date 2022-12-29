@@ -32,7 +32,7 @@
 		<!--<module>kotlin-core-date-time</module>-->
 		<!--<module>kotlin-core-design-patterns</module>-->
 		<!--<module>kotlin-core-io</module>-->
-		<!--<module>kotlin-core-lang-1</module>-->
+		<module>kotlin-core-lang-1</module>
 		<!--<module>kotlin-core-lang-2</module>-->
 		<!--<module>kotlin-core-lang-3</module>-->
 		<!--<module>kotlin-core-lang-scope</module>-->
