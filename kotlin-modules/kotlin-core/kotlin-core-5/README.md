@@ -9,3 +9,4 @@
 + [在Kotlin中获取数组的前N个元素](docs/在Kotlin中获取数组的前N个元素.md)
 + [协程：runBlocking与coroutineScope](docs/协程-runBlocking与coroutineScope.md)
 + [创建Kotlin数据类的深层副本](docs/创建Kotlin数据类的深层副本.md)
++ [在Kotlin中捕获多个异常](docs/在Kotlin中捕获多个异常.md)
