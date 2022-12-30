@@ -8,3 +8,4 @@
 + [Kotlin中的委托属性](docs/Kotlin中的委托属性.md)
 + [Kotlin中的委托模式](docs/Kotlin中的委托模式.md)
 + [Kotlin中的匿名内部类](docs/Kotlin中的匿名内部类.md)
++ [在Kotlin中获取密封类的所有子类](docs/在Kotlin中获取密封类的所有子类.md)
