@@ -8,3 +8,4 @@
 + [在Kotlin中通过值查找枚举](docs/在Kotlin中通过值查找枚举.md)
 + [如何在Kotlin中为枚举创建静态方法](docs/如何在Kotlin中为枚举创建静态方法.md)
 + [在Kotlin中将字符串转换为枚举](docs/在Kotlin中将字符串转换为枚举.md)
++ [Kotlin接口中的伴生对象](docs/Kotlin接口中的伴生对象.md)
