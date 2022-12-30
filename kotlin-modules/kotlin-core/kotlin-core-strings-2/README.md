@@ -12,3 +12,4 @@
 + [在Kotlin中从字符串中删除一个字符](docs/在Kotlin中从字符串中删除一个字符.md)
 + [Kotlin中的数字格式化](docs/Kotlin中的数字格式化.md)
 + [使用Kotlin计算位数](docs/使用Kotlin计算位数.md)
++ [在Kotlin中将字符串转换为字节数组](docs/在Kotlin中将字符串转换为字节数组.md)
