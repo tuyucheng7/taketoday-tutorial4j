@@ -18,7 +18,7 @@
 		<module>kotlin-core-2</module>
 		<module>kotlin-core-3</module>
 		<module>kotlin-core-4</module>
-		<!--<module>kotlin-core-5</module>-->
+		<module>kotlin-core-5</module>
 		<!--<module>kotlin-core-6</module>-->
 		<!--<module>kotlin-core-advanced-1</module>-->
 		<!--<module>kotlin-core-advanced-2</module>-->
