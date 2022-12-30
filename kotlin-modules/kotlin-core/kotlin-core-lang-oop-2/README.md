@@ -13,3 +13,7 @@
 + [Kotlin伴生对象](docs/Kotlin伴生对象.md)
 + [使用空构造函数实例化Kotlin数据类](docs/使用空构造函数实例化Kotlin数据类.md)
 + [Kotlin中的匿名对象](docs/Kotlin中的匿名对象.md)
++ [Kotlin的SOLID原则](docs/Kotlin的SOLID原则.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-lang-oop-1/README.md)
+- 更多文章： [[next -->]](../kotlin-core-lang-oop-3/README.md)
