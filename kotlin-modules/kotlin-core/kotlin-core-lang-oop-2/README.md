@@ -7,3 +7,4 @@
 + [Kotlin中的泛型](docs/Kotlin中的泛型.md)
 + [Kotlin中的委托属性](docs/Kotlin中的委托属性.md)
 + [Kotlin中的委托模式](docs/Kotlin中的委托模式.md)
++ [Kotlin中的匿名内部类](docs/Kotlin中的匿名内部类.md)
