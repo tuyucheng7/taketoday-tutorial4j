@@ -10,3 +10,7 @@
 + [协程：runBlocking与coroutineScope](docs/协程-runBlocking与coroutineScope.md)
 + [创建Kotlin数据类的深层副本](docs/创建Kotlin数据类的深层副本.md)
 + [在Kotlin中捕获多个异常](docs/在Kotlin中捕获多个异常.md)
++ [解析URL字符串](docs/解析URL字符串.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-4/README.md)
+- 更多文章： [[next -->]](../kotlin-core-6/README.md)
