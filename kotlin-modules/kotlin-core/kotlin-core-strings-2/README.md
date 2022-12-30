@@ -13,3 +13,7 @@
 + [Kotlin中的数字格式化](docs/Kotlin中的数字格式化.md)
 + [使用Kotlin计算位数](docs/使用Kotlin计算位数.md)
 + [在Kotlin中将字符串转换为字节数组](docs/在Kotlin中将字符串转换为字节数组.md)
++ [如何将字符串模板转换为文本字符串](docs/如何将字符串模板转换为文本字符串.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-strings-1/README.md)
+- 更多文章： [[next -->]](../kotlin-core-strings-3/README.md)
