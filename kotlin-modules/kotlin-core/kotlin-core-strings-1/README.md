@@ -7,3 +7,4 @@
 + [在Kotlin中生成随机字母数字字符串](docs/在Kotlin中生成随机字母数字字符串.md)
 + [Kotlin中的字符串比较](docs/Kotlin中的字符串比较.md)
 + [在Kotlin中拼接字符串](docs/在Kotlin中拼接字符串.md)
++ [Kotlin字符串模板](docs/Kotlin字符串模板.md)
