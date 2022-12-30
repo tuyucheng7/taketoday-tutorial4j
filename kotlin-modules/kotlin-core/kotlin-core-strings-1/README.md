@@ -12,3 +12,4 @@
 + [在Kotlin中将Int转换为十六进制字符串](docs/在Kotlin中将Int转换为十六进制字符串.md)
 + [在Kotlin中拆分字符串](docs/在Kotlin中拆分字符串.md)
 + [在Kotlin中替换字符串的一部分的函数](docs/在Kotlin中替换字符串的一部分的函数.md)
++ [删除Kotlin中的所有非字母数字字符](docs/删除Kotlin中的所有非字母数字字符.md)
