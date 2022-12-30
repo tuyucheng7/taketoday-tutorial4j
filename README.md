@@ -93,6 +93,7 @@ Taketoday Tutorial4j
 ===================
 
 + [Java Core](java-core-modules/README.md)
++ [Kotlin Core](kotlin-modules/kotlin-core/README.md)
 + [Design Patterns](design-patterns-modules/README.md)
 + [Spring Core](spring-core-1/README.md)
 + [Spring Data](spring-data-modules/README.md)
