@@ -12,3 +12,4 @@
 + [Kotlin中的密封类与枚举](docs/Kotlin中的密封类与枚举.md)
 + [Kotlin伴生对象](docs/Kotlin伴生对象.md)
 + [使用空构造函数实例化Kotlin数据类](docs/使用空构造函数实例化Kotlin数据类.md)
++ [Kotlin中的匿名对象](docs/Kotlin中的匿名对象.md)
