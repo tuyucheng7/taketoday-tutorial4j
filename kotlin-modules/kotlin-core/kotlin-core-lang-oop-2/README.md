@@ -10,3 +10,4 @@
 + [Kotlin中的匿名内部类](docs/Kotlin中的匿名内部类.md)
 + [在Kotlin中获取密封类的所有子类](docs/在Kotlin中获取密封类的所有子类.md)
 + [Kotlin中的密封类与枚举](docs/Kotlin中的密封类与枚举.md)
++ [Kotlin伴生对象](docs/Kotlin伴生对象.md)
