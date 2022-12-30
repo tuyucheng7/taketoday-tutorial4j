@@ -41,7 +41,7 @@
 		<module>kotlin-core-lang-scope</module>
 		<module>kotlin-core-strings-1</module>
 		<module>kotlin-core-strings-2</module>
-		<!--<module>kotlin-core-strings-3</module>-->
+		<module>kotlin-core-strings-3</module>
 		<!--<module>kotlin-core-files</module>-->
 	</modules>
 </project>
