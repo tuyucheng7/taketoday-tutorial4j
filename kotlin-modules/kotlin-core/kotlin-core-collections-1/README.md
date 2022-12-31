@@ -9,3 +9,4 @@
 + [Kotlin集合API概述](docs/Kotlin集合API概述.md)
 + [在Kotlin中将List转换为Map](docs/在Kotlin中将List转换为Map.md)
 + [过滤Kotlin集合](docs/过滤Kotlin集合.md)
++ [Kotlin中的集合转换](docs/Kotlin中的集合转换.md)
