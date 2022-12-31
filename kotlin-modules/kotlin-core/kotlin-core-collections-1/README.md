@@ -12,3 +12,4 @@
 + [Kotlin中的集合转换](docs/Kotlin中的集合转换.md)
 + [Kotlin中fold和reduce的区别](docs/Kotlin中fold和reduce的区别.md)
 + [Kotlin排序指南](docs/Kotlin排序指南.md)
++ [在Kotlin中使用列表](docs/在Kotlin中使用列表.md)
