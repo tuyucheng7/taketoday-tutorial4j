@@ -22,7 +22,7 @@
 		<module>kotlin-core-6</module>
 		<!--<module>kotlin-core-advanced-1</module>-->
 		<!--<module>kotlin-core-advanced-2</module>-->
-		<!--<module>kotlin-core-annotations</module>-->
+		<module>kotlin-core-annotations</module>
 		<!--<module>kotlin-core-arrays</module>-->
 		<module>kotlin-core-collections-1</module>
 		<module>kotlin-core-collections-2</module>
