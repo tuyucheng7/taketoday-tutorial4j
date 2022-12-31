@@ -7,3 +7,4 @@
 + [就地修改Kotlin列表](docs/就地修改Kotlin列表.md)
 + [在Kotlin中迭代Map](docs/在Kotlin中迭代Map.md)
 + [在Kotlin中初始化Map](docs/在Kotlin中初始化Map.md)
++ [在Kotlin中在List和Set之间转换](docs/在Kotlin中在List和Set之间转换.md)
