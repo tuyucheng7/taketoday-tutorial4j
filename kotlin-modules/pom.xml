@@ -89,7 +89,7 @@
 		<module>kotlin-parent-boot-2</module>
 
 		<module>kotlin-core</module>
-		<!--<module>core-kotlin-companion</module>-->
+		<module>kotlin-core-companion</module>
 		<!--<module>jee-kotlin</module>-->
 		<!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
 		<!--<module>kotlin-json</module>-->
