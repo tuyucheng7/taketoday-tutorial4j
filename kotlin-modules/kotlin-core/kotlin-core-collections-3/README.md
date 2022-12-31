@@ -11,3 +11,4 @@
 + [在Kotlin中将列表转换为字符串](docs/在Kotlin中将列表转换为字符串.md)
 + [在Kotlin中初始化一个List](docs/在Kotlin中初始化一个List.md)
 + [在Kotlin中比较两个List](docs/在Kotlin中比较两个List.md)
++ [在Kotlin中按多个字段对对象集合进行排序](docs/在Kotlin中按多个字段对对象集合进行排序.md)
