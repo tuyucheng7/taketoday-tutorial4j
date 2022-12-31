@@ -10,3 +10,4 @@
 + [在Kotlin中在List和Set之间转换](docs/在Kotlin中在List和Set之间转换.md)
 + [在Kotlin中将列表转换为字符串](docs/在Kotlin中将列表转换为字符串.md)
 + [在Kotlin中初始化一个List](docs/在Kotlin中初始化一个List.md)
++ [在Kotlin中比较两个List](docs/在Kotlin中比较两个List.md)
