@@ -13,3 +13,6 @@
 + [在Kotlin中比较两个List](docs/在Kotlin中比较两个List.md)
 + [在Kotlin中按多个字段对对象集合进行排序](docs/在Kotlin中按多个字段对对象集合进行排序.md)
 + [在Kotlin中向List添加元素](docs/在Kotlin中向List添加元素.md)
++ [在Kotlin中对整数列表中的所有元素求和](docs/在Kotlin中对整数列表中的所有元素求和.md)
+
+- 更多文章： [[<-- prev]](../kotlin-core-collections-2/README.md)
