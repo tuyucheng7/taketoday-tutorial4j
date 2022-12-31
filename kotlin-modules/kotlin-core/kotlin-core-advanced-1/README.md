@@ -11,3 +11,4 @@
 + [使用Kotlin进行反射](docs/使用Kotlin进行反射.md)
 + [Kotlin契约](docs/Kotlin契约.md)
 + [获取Kotlin中当前正在执行的函数的名称](docs/获取Kotlin中当前正在执行的函数的名称.md)
++ [在Kotlin中从KClass创建新实例](docs/在Kotlin中从KClass创建新实例.md)
