@@ -13,3 +13,6 @@
 + [Kotlin中fold和reduce的区别](docs/Kotlin中fold和reduce的区别.md)
 + [Kotlin排序指南](docs/Kotlin排序指南.md)
 + [在Kotlin中使用列表](docs/在Kotlin中使用列表.md)
++ [在Kotlin中按索引迭代集合](docs/在Kotlin中按索引迭代集合.md)
+
+- 更多文章： [[next -->]](../kotlin-core-collections-2/README.md)
