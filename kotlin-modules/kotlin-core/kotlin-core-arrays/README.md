@@ -6,3 +6,4 @@
 + [Kotlin数组指南](docs/Kotlin数组指南.md)
 + [在Kotlin中比较数组的指南](docs/在Kotlin中比较数组的指南.md)
 + [在Kotlin中将列表转换为数组](docs/在Kotlin中将列表转换为数组.md)
++ [在Kotlin中检查数组是否包含给定值](docs/在Kotlin中检查数组是否包含给定值.md)
