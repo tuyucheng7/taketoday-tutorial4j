@@ -10,7 +10,7 @@
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday.kotlin-modules</groupId>
-		<artifactId>kotlin-core</artifactId>
+		<artifactId>kotlin-modules</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
