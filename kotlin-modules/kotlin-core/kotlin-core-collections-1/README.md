@@ -7,3 +7,4 @@
 + [在Kotlin中将列表拆分为多个部分](docs/在Kotlin中将列表拆分为多个部分.md)
 + [使用Kotlin在列表中查找元素](docs/使用Kotlin在列表中查找元素.md)
 + [Kotlin集合API概述](docs/Kotlin集合API概述.md)
++ [在Kotlin中将List转换为Map](docs/在Kotlin中将List转换为Map.md)
