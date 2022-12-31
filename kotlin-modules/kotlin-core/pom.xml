@@ -26,7 +26,7 @@
 		<!--<module>kotlin-core-arrays</module>-->
 		<module>kotlin-core-collections-1</module>
 		<module>kotlin-core-collections-2</module>
-		<!--<module>kotlin-core-collections-3</module>-->
+		<module>kotlin-core-collections-3</module>
 		<!--<module>kotlin-core-concurrency-1</module>-->
 		<!--<module>kotlin-core-concurrency-2</module>-->
 		<!--<module>kotlin-core-date-time</module>-->
