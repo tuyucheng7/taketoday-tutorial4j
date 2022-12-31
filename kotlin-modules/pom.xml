@@ -103,7 +103,7 @@
 		<!--<module>kotlin-testing</module>-->
 		<!--<module>machine-learning</module>-->
 		<!--<module>kotlin-spring-boot-1</module>-->
-		<!--<module>spring-boot-kotlin-2</module>-->
+		<module>kotlin-spring-boot-2</module>
 		<!--<module>spring-boot-test-kotlin</module>-->
 		<!--<module>spring-mvc-kotlin</module>-->
 		<!--<module>spring-reactive-kotlin</module>-->
