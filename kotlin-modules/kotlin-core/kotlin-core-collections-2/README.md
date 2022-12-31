@@ -8,3 +8,4 @@
 + [在Kotlin中使用Map](docs/在Kotlin中使用Map.md)
 + [在Kotlin中将数组转换为列表](docs/在Kotlin中将数组转换为列表.md)
 + [在Kotlin中过滤列表](docs/在Kotlin中过滤列表.md)
++ [从Kotlin的列表中获取随机项](docs/从Kotlin的列表中获取随机项.md)
