@@ -11,3 +11,4 @@
 + [从Kotlin的列表中获取随机项](docs/从Kotlin的列表中获取随机项.md)
 + [在Kotlin中创建具有重复元素的集合](docs/在Kotlin中创建具有重复元素的集合.md)
 + [Kotlin中map()和flatMap()的区别](docs/Kotlin中map()和flatMap()的区别.md)
++ [在Kotlin中复制Map](docs/在Kotlin中复制Map.md)
