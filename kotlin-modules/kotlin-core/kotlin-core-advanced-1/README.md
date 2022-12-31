@@ -13,3 +13,6 @@
 + [获取Kotlin中当前正在执行的函数的名称](docs/获取Kotlin中当前正在执行的函数的名称.md)
 + [在Kotlin中从KClass创建新实例](docs/在Kotlin中从KClass创建新实例.md)
 + [Kotlin中crossinline和noinline的区别](docs/Kotlin中crossinline和noinline的区别.md)
++ [Kotlin中的@Throws注解指南](docs/Kotlin中的@Throws注解指南.md)
+
+- 更多文章： [[next -->]](../kotlin-core-advanced-2/README.md)
