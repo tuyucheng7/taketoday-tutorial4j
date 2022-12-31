@@ -86,7 +86,7 @@
 	</dependencies>
 
 	<modules>
-		<!--<module>parent-boot-2</module>-->
+		<module>kotlin-parent-boot-2</module>
 
 		<module>kotlin-core</module>
 		<!--<module>core-kotlin-companion</module>-->
@@ -102,7 +102,7 @@
 		<!--<module>kotlin-quasar</module>-->
 		<!--<module>kotlin-testing</module>-->
 		<!--<module>machine-learning</module>-->
-		<!--<module>spring-boot-kotlin</module>-->
+		<!--<module>kotlin-spring-boot-1</module>-->
 		<!--<module>spring-boot-kotlin-2</module>-->
 		<!--<module>spring-boot-test-kotlin</module>-->
 		<!--<module>spring-mvc-kotlin</module>-->
