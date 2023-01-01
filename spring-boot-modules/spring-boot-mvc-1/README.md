@@ -10,3 +10,4 @@
 + [使用Spring fox通过Spring REST API设置Swagger 2](docs/使用Springfox通过Spring-RestAPI设置Swagger2.md)
 + [使用Spring ResponseEntity操作HTTP响应](docs/使用Spring的ResponseEntity操作HTTP响应.md)
 + [Spring Boot中的@ServletComponentScan注解](docs/SpringBoot中的@ServletComponentScan注解.md)
++ [Spring Boot国际化指南](docs/SpringBoot国际化指南.md)

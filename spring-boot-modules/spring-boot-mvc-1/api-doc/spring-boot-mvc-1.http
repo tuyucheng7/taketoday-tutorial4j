@@ -1,0 +1,3 @@
+### custom validation message source
+POST localhost:8080/loginform?email=&password=123456
+Accept-Language: zh-CN
