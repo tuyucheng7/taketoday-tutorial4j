@@ -5,7 +5,7 @@
 ## 相关文章
 
 - [Spring MVC中的函数式控制器介绍](docs/SpringMVC中的函数式控制器.md)
-- []()
+- [使用多种MIME类型测试REST](docs/使用多种MIME类型测试REST.md)
 - []()
 - []()
 - []()
