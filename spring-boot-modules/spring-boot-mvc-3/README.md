@@ -7,7 +7,7 @@
 + [循环视图路径错误](docs/循环视图路径错误.md)
 + [使用Spring MVC下载图像或文件](docs/使用SpringMVC下载图像或文件.md)
 + [Spring MVC异步与Spring WebFlux](docs/SpringMVC异步与SpringWebFlux.md)
-+ []()
++ [Spring中@Valid和@Validated注解的区别](docs/Spring中@Valid和@Validated注解的区别.md)
 + []()
 + []()
 + []()
