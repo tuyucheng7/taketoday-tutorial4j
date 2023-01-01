@@ -6,3 +6,4 @@
 
 + [Spring Boot中的自定义验证消息源](docs/SpringBoot中的自定义验证消息源.md)
 + [使用Spring MVC显示RSS提要](docs/使用SpringMVC显示RSS提要.md)
++ [使用Spring Boot和JSF的Controller、Service和DAO示例](docs/使用SpringBoot和JSF的Controller-Service和DAO示例.md)
