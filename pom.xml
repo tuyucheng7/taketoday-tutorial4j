@@ -1294,7 +1294,7 @@
 				<!--<module>docker-modules</module>-->
 				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven-modules/compiler-plugin-java-9</module>-->
+				<module>maven.modules/compiler-plugin-java-9</module>
 				<!--<module>maven-modules/maven-generate-war</module>-->
 				<!--<module>maven-modules/multimodulemavenproject</module>-->
 				<!--<module>optaplanner</module>-->
@@ -1371,7 +1371,7 @@
 				<!--<module>docker-modules</module>-->
 				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven-modules/compiler-plugin-java-9</module>-->
+				<module>maven.modules/compiler-plugin-java-9</module>
 				<!--<module>maven-modules/maven-generate-war</module>-->
 				<!--<module>maven-modules/multimodulemavenproject</module>-->
 				<!--<module>optaplanner</module>-->
@@ -1792,7 +1792,7 @@
 				<!--<module>docker-modules</module>-->
 				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven-modules/compiler-plugin-java-9</module>-->
+				<module>maven.modules/compiler-plugin-java-9</module>
 				<!--<module>maven-modules/maven-generate-war</module>-->
 				<!--<module>maven-modules/multimodulemavenproject</module>-->
 				<!--<module>optaplanner</module>-->
