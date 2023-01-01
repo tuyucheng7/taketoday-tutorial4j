@@ -306,6 +306,11 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+			<artifactId>spring-boot-mvc-4</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>cn.tuyucheng.taketoday.boot</groupId>
 			<artifactId>spring-boot-jersey</artifactId>
 			<version>1.0.0</version>
