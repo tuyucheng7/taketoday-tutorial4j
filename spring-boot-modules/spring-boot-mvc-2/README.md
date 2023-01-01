@@ -6,7 +6,7 @@
 
 - [Spring MVC中的函数式控制器介绍](docs/SpringMVC中的函数式控制器.md)
 - [使用多种MIME类型测试REST](docs/使用多种MIME类型测试REST.md)
-- []()
+- [使用Postman集合测试Web API](docs/使用Postman集合测试WebAPI.md)
 - []()
 - []()
 - []()
