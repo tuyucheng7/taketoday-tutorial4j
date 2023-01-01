@@ -55,7 +55,7 @@
 		<module>spring-boot-libraries-2</module>
 		<module>spring-boot-logging-log4j2</module>
 		<module>spring-boot-mvc-1</module>
-		<!--<module>spring-boot-mvc-2</module>-->
+		<module>spring-boot-mvc-2</module>
 		<!--<module>spring-boot-mvc-3</module>-->
 		<!--<module>spring-boot-mvc-4</module>-->
 		<!--<module>spring-boot-mvc-5</module>-->
