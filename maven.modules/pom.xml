@@ -38,7 +38,7 @@
 		<module>maven-builder-plugin</module>
 		<module>host-maven-repo-example</module>
 		<!--<module>maven-surefire-plugin</module>-->
-		<!--<module>maven-parent-pom-resolution</module>-->
+		<module>maven-parent-pom-resolution</module>
 		<!--<module>maven-simple</module>-->
 		<module>maven-classifier</module>
 		<!--<module>maven-repositories</module>-->
