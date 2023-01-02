@@ -9,6 +9,17 @@
 	<name>kotlin-modules</name>
 	<packaging>pom</packaging>
 
+	<repositories>
+		<repository>
+			<id>kotlin-ktor</id>
+			<url>https://dl.bintray.com/kotlin/ktor/</url>
+		</repository>
+		<repository>
+			<id>kotlin-eap</id>
+			<url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+		</repository>
+	</repositories>x
+
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>taketoday-tutorial4j</artifactId>

@@ -97,16 +97,16 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<repositories>
-		<repository>
-			<id>kotlin-ktor</id>
-			<url>https://dl.bintray.com/kotlin/ktor/</url>
-		</repository>
-		<repository>
-			<id>kotlin-eap</id>
-			<url>http://dl.bintray.com/kotlin/kotlin-eap</url>
-		</repository>
-	</repositories>
+	<!--<repositories>-->
+	<!--	<repository>-->
+	<!--		<id>kotlin-ktor</id>-->
+	<!--		<url>https://dl.bintray.com/kotlin/ktor/</url>-->
+	<!--	</repository>-->
+	<!--	<repository>-->
+	<!--		<id>kotlin-eap</id>-->
+	<!--		<url>http://dl.bintray.com/kotlin/kotlin-eap</url>-->
+	<!--	</repository>-->
+	<!--</repositories>-->
 
 	<pluginRepositories>
 		<pluginRepository>
