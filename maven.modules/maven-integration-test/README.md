@@ -5,3 +5,4 @@
 ## 相关文章
 
 + [使用Maven进行集成测试](docs/使用Maven进行集成测试.md)
++ [使用Maven构建一个Jar并忽略测试结果](docs/使用Maven构建一个Jar并忽略测试结果.md)
