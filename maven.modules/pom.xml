@@ -35,7 +35,7 @@
 		<!--<module>version-overriding-plugins</module>-->
 		<!--<module>versions-maven-plugin</module>-->
 		<!--<module>maven-printing-plugins</module>-->
-		<!--<module>maven-builder-plugin</module>-->
+		<module>maven-builder-plugin</module>
 		<module>host-maven-repo-example</module>
 		<!--<module>maven-surefire-plugin</module>-->
 		<!--<module>maven-parent-pom-resolution</module>-->
