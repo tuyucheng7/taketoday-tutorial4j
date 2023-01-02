@@ -1,0 +1,42 @@
+<!-- start of settings.xml here -->
+
+<!--
+    Proxies section (extract of settings.xml) containing example proxy definitions:
+    * BaeldungProxy_Encrypted - an example http proxy with an encrypted password - encrypted using 'mvn --encrypt-password'
+    * BaeldungProxy_Authenticated - an example http proxy with a plain text password.
+    * BaeldungProxy - an example minimalist unauthenticated http proxy
+    All of these are 'active' - so maven will use the first one in the list.
+-->
+<proxies>
+
+	<proxy>
+		<id>TuyuchengProxy_Encrypted</id>
+		<active>true</active>
+		<protocol>http</protocol>
+		<host>proxy.tuyucheng.com</host>
+		<port>80</port>
+		<username>tuyucheng</username>
+		<password>{U2iMf+7aJXQHRquuQq6MX+n7GOeh97zB9/4e7kkEQYs=}</password>
+		<nonProxyHosts>internal.tuyucheng.com|localhost|127.*|[::1]</nonProxyHosts>
+	</proxy>
+
+	<proxy>
+		<id>TuyuchengProxy_Authenticated</id>
+		<active>true</active>
+		<protocol>http</protocol>
+		<host>proxy.tuyucheng.com</host>
+		<port>80</port>
+		<username>tuyucheng</username>
+		<password>changeme</password>
+		<nonProxyHosts>internal.tuyucheng.com|localhost|127.*|[::1]</nonProxyHosts>
+	</proxy>
+
+	<proxy>
+		<id>TuyuchengProxy</id>
+		<host>proxy.tuyucheng.com</host>
+		<port>80</port>
+		<nonProxyHosts>internal.tuyucheng.com|localhost|127.*|[::1]</nonProxyHosts>
+	</proxy>
+</proxies>
+
+	<!-- rest of settings.xml here -->
