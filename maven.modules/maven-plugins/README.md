@@ -7,5 +7,5 @@
 + [核心Maven插件指南](docs/核心Maven插件指南.md)
 + [Maven Resources插件](docs/Maven-Resources插件.md)
 + [Maven Verifier插件](docs/Maven-Verifier插件.md)
-+ []()
++ [Maven Clean插件](docs/Maven-Clean插件.md)
 + []()
