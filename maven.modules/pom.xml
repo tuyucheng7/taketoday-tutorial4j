@@ -25,7 +25,7 @@
 		<module>maven-integration-test</module>
 		<module>maven-multi-source</module>
 		<module>maven-plugins</module>
-		<!--<module>maven-polyglot</module>-->
+		<module>maven-polyglot</module>
 		<!--<module>maven-properties</module>-->
 		<!--<module>maven-proxy</module>-->  <!-- Not a maven project -->
 		<!--<module>maven-unused-dependencies</module>-->
