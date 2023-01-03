@@ -22,3 +22,4 @@
 + [Maven日志记录选项](docs/Maven日志记录选项.md)
 + [从另一个目录运行mvn命令](docs/从另一个目录运行mvn命令.md)
 + [从pom.xml中引用环境变量](docs/从pom.xml中引用环境变量.md)
++ [处理Maven的”Invalid LOC Header“错误](docs/处理Maven无效的LOC标头错误.md)
