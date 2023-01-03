@@ -39,3 +39,4 @@
 + [Spring Maven仓库](docs/Spring-Maven仓库.md)
 + [Maven发布到Nexus](docs/Maven发布到Nexus.md)
 + [Spring Security与Maven](docs/SpringSecurity与Maven.md)
++ [Maven部署到Nexus](docs/Maven部署到Nexus.md)
