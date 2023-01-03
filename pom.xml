@@ -241,7 +241,15 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>${checkstyle-maven-plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${checkstyle.version}</version>
+					</dependency>
+				</dependencies>
 				<configuration>
+					<excludes>**/module-info.java</excludes>
 					<configLocation>checkstyle.xml</configLocation>
 				</configuration>
 				<executions>
@@ -1296,7 +1304,7 @@
 				<!--<module>libraries-concurrency</module>-->
 				<module>maven.modules/compiler-plugin-java-9</module>
 				<module>maven.modules/maven-generate-war</module>
-				<!--<module>maven-modules/multimodulemavenproject</module>-->
+				<module>maven.modules/multimodulemavenproject</module>
 				<!--<module>optaplanner</module>-->
 				<!--<module>persistence-modules/sirix</module>-->
 				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
@@ -1373,7 +1381,7 @@
 				<!--<module>libraries-concurrency</module>-->
 				<module>maven.modules/compiler-plugin-java-9</module>
 				<module>maven.modules/maven-generate-war</module>
-				<!--<module>maven-modules/multimodulemavenproject</module>-->
+				<module>maven.modules/multimodulemavenproject</module>
 				<!--<module>optaplanner</module>-->
 				<!--<module>persistence-modules/sirix</module>-->
 				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
@@ -1794,7 +1802,7 @@
 				<!--<module>libraries-concurrency</module>-->
 				<module>maven.modules/compiler-plugin-java-9</module>
 				<module>maven.modules/maven-generate-war</module>
-				<!--<module>maven-modules/multimodulemavenproject</module>-->
+				<module>maven.modules/multimodulemavenproject</module>
 				<!--<module>optaplanner</module>-->
 				<!--<module>persistence-modules/sirix</module>-->
 				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
@@ -1890,6 +1898,7 @@
 		<guava.version>31.1-jre</guava.version>
 		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
 		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
+		<checkstyle.version>8.8</checkstyle.version>
 		<jacoco.version>0.8.8</jacoco.version>
 		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
 		<!-- SonarCloud -->
