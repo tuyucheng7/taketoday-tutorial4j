@@ -15,3 +15,4 @@
 + [禁用Maven Javadoc插件](docs/禁用Maven-Javadoc插件.md)
 + [使用Maven强制更新仓库](docs/使用Maven强制更新仓库.md)
 + [Maven中的settings.xml文件](docs/Maven中的settings.xml文件.md)
++ [作为Maven属性的命令行参数](docs/作为Maven属性的命令行参数.md)
