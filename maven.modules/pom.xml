@@ -28,7 +28,7 @@
 		<module>maven-polyglot</module>
 		<module>maven-properties</module>
 		<!--<module>maven-proxy</module>-->  <!-- Not a maven project -->
-		<!--<module>maven-unused-dependencies</module>-->
+		<module>maven-unused-dependencies</module>
 		<!--<module>maven-war-plugin</module>-->
 		<!--<module>optional-dependencies</module>-->
 		<!--<module>version-collision</module>-->
