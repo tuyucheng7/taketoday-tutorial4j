@@ -37,3 +37,4 @@
 + [如何使用Maven创建可执行JAR](docs/如何使用Maven创建可执行JAR.md)
 + [Maven的本地仓库在哪里](docs/Maven的本地仓库在哪里.md)
 + [Spring Maven仓库](docs/Spring-Maven仓库.md)
++ [Maven发布到Nexus](docs/Maven发布到Nexus.md)
