@@ -17,3 +17,4 @@
 + [Maven中的settings.xml文件](docs/Maven中的settings.xml文件.md)
 + [作为Maven属性的命令行参数](docs/作为Maven属性的命令行参数.md)
 + [清除Maven缓存](docs/清除Maven缓存.md)
++ [Maven离线模式](docs/Maven离线模式.md)
