@@ -30,3 +30,4 @@
 + [Maven目标和阶段](docs/Maven目标和阶段.md)
 + [使用Maven运行Ant任务](docs/使用Maven运行Ant任务.md)
 + [Maven Site插件](docs/Maven-Site插件.md)
++ [Maven Deploy插件](docs/Maven-Deploy插件.md)
