@@ -25,3 +25,4 @@
 + [处理Maven的”Invalid LOC Header“错误](docs/处理Maven无效的LOC标头错误.md)
 + [使用Maven跳过测试](docs/使用Maven跳过测试.md)
 + [Eclipse中Maven构建的JDK配置](docs/Eclipse中Maven构建的JDK配置.md)
++ [Maven错误”JAVA_HOME should point to a JDK not a JRE“](docs/Maven错误JAVA_HOME应指向JDK而不是JRE.md)
