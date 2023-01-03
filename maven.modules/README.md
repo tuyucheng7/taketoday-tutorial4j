@@ -24,3 +24,4 @@
 + [从pom.xml中引用环境变量](docs/从pom.xml中引用环境变量.md)
 + [处理Maven的”Invalid LOC Header“错误](docs/处理Maven无效的LOC标头错误.md)
 + [使用Maven跳过测试](docs/使用Maven跳过测试.md)
++ [Eclipse中Maven构建的JDK配置](docs/Eclipse中Maven构建的JDK配置.md)
