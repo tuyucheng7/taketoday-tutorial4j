@@ -30,7 +30,7 @@
 		<!--<module>maven-proxy</module>-->  <!-- Not a maven project -->
 		<module>maven-unused-dependencies</module>
 		<module>maven-war-plugin</module>
-		<!--<module>optional-dependencies</module>-->
+		<module>optional-dependencies</module>
 		<!--<module>version-collision</module>-->
 		<!--<module>version-overriding-plugins</module>-->
 		<!--<module>versions-maven-plugin</module>-->
