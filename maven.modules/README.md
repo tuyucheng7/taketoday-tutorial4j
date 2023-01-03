@@ -41,3 +41,4 @@
 + [Spring Security与Maven](docs/SpringSecurity与Maven.md)
 + [Maven部署到Nexus](docs/Maven部署到Nexus.md)
 + [Spring与Maven](docs/Spring与Maven.md)
++ [使用Maven安装本地jar](docs/使用Maven安装本地jar.md)
