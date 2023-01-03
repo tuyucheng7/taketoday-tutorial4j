@@ -27,3 +27,4 @@
 + [Eclipse中Maven构建的JDK配置](docs/Eclipse中Maven构建的JDK配置.md)
 + [Maven错误”JAVA_HOME should point to a JDK not a JRE“](docs/Maven错误JAVA_HOME应指向JDK而不是JRE.md)
 + [在Maven中设置Java版本](docs/在Maven中设置Java版本.md)
++ [Maven目标和阶段](docs/Maven目标和阶段.md)
