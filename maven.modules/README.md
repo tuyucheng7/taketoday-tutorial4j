@@ -21,3 +21,4 @@
 + [使用Maven下载源代码和Javadoc](docs/使用Maven下载源代码和Javadoc.md)
 + [Maven日志记录选项](docs/Maven日志记录选项.md)
 + [从另一个目录运行mvn命令](docs/从另一个目录运行mvn命令.md)
++ [从pom.xml中引用环境变量](docs/从pom.xml中引用环境变量.md)
