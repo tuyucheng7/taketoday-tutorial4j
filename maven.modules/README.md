@@ -19,3 +19,4 @@
 + [清除Maven缓存](docs/清除Maven缓存.md)
 + [Maven离线模式](docs/Maven离线模式.md)
 + [使用Maven下载源代码和Javadoc](docs/使用Maven下载源代码和Javadoc.md)
++ [Maven日志记录选项](docs/Maven日志记录选项.md)
