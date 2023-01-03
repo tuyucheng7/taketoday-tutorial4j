@@ -11,3 +11,4 @@
 + [为什么Maven找不到要运行的JUnit测试](docs/为什么Maven找不到要运行的JUnit测试.md)
 + [什么是Apache Maven工件](docs/什么是Apache-Maven工件.md)
 + [为什么Maven使用不同的JDK](docs/为什么Maven使用不同的JDK.md)
++ [使用Maven删除重复的依赖项](docs/使用Maven删除重复的依赖项.md)
