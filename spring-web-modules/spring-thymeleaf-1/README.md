@@ -10,6 +10,9 @@
 + [Spring MVC + Thymeleaf 3新特性](docs/SpringMVC+Thymeleaf3新特性.md)
 + [如何在Thymeleaf中使用日期](docs/如何在Thymeleaf中使用日期.md)
 + [在Thymeleaf中使用片段](docs/在Thymeleaf中使用片段.md)
++ [使用Thymeleaf调用JavaScript函数](docs/使用Thymeleaf调用JavaScript函数.md)
+
+- 更多文章： [[next -->]](../spring-thymeleaf-2/README.md)
 
 ## 构建项目
 
