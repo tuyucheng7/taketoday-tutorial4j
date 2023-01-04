@@ -9,3 +9,4 @@
 + [Spring RestTemplate错误处理](docs/Spring-RestTemplate错误处理.md)
 + [使用RestTemplateBuilder配置RestTemplate](docs/使用RestTemplateBuilder配置RestTemplate.md)
 + [在Spring中Mock一个RestTemplate](docs/在Spring中Mock一个RestTemplate.md)
++ [使用Spring RestTemplate拦截器](docs/使用Spring-RestTemplate拦截器.md)
