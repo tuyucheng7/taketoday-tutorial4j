@@ -5,6 +5,7 @@
 ## 相关文章
 
 + [使用Spring和JPA Criteria的REST查询语言](docs/使用Spring和JPA-Criteria的REST查询语言.md)
++ [使用Spring Data JPA Criteria的REST查询语言](docs/使用SpringDataJPA-Criteria的REST查询语言.md)
 
 ## 构建项目
 
