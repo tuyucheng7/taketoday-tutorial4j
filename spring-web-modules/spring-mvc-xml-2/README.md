@@ -5,5 +5,6 @@
 ## 相关文章
 
 + [探讨Spring MVC的表单标签库](docs/探索SpringMVC的表单标签库.md)
++ [在Spring中校验请求参数和路径变量](docs/在Spring中验证RequestParams和PathVariables.md)
 
 - 更多文章： [[<-- prev]](../spring-mvc-xml-1/README.md)
