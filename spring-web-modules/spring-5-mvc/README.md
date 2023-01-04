@@ -6,3 +6,4 @@
 
 + [Spring MVC Streaming和SSE请求处理](docs/SpringMVC-Streaming和SSE请求处理.md)
 + [Spring中的接口驱动控制器](docs/Spring中的接口驱动控制器.md)
++ [从Spring MVC控制器返回纯HTML](docs/从SpringMVC控制器返回纯HTML.md)
