@@ -4,5 +4,6 @@
 + [在Spring中使用日期参数](docs/在Spring中使用日期参数.md)
 + [带点(.)的SpringMVC @PathVariable被截断](docs/带点(.)的SpringMVC-@PathVariable被截断.md)
 + [Spring MVC矩阵变量快速指南](docs/SpringMVC矩阵变量快速指南.md)
++ [将Spring MultipartFile转换为File](docs/将Spring-MultipartFile转换为File.md)
 
 - 更多文章： [[<-- prev]](../spring-mvc-java-1/README.md)
