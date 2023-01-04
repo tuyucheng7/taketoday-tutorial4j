@@ -11,7 +11,7 @@
     <input type="text" name="name"/>
     <label for="color">Color: </label>
     <select name="color">
-        <option th:each="colorOpt : ${T(com.baeldung.thymeleaf.enums.Color).values()}" th:value="${colorOpt}"
+        <option th:each="colorOpt : ${T(cn.tuyucheng.taketoday.thymeleaf.enums.Color).values()}" th:value="${colorOpt}"
                 th:text="${colorOpt.displayValue}"></option>
     </select>
     <input type="submit" value="Submit"/>
