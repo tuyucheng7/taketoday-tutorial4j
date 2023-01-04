@@ -6,6 +6,7 @@
 
 + [使用Spring MVC和Thymeleaf进行CSRF保护](docs/使用SpringMVC和Thymeleaf进行CSRF保护.md)
 + [Thymeleaf中的条件语句](docs/Thymeleaf中的条件语句.md)
++ [Thymeleaf中的迭代](docs/Thymeleaf中的迭代.md)
 
 ## 构建项目
 
