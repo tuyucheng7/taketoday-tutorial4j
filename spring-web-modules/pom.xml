@@ -40,7 +40,7 @@
 		<module>spring-rest-shell</module>
 		<module>spring-rest-simple</module>
 		<module>spring-rest-testing</module>
-		<!--<module>spring-resttemplate-1</module>-->
+		<module>spring-resttemplate-1</module>
 		<!--<module>spring-resttemplate-2</module>-->
 		<!--<module>spring-resttemplate-3</module>-->
 		<!--<module>spring-session</module>-->
