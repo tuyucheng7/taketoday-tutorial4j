@@ -1,0 +1,22 @@
+## Spring REST Query Language
+
+本模块包含有关使用Spring的REST查询语言的文章
+
+## 相关文章
+
++ [使用Spring和JPA Criteria的REST查询语言](docs/使用Spring和JPA-Criteria的REST查询语言.md)
+
+## 构建项目
+
+```
+mvn clean install
+```
+
+## 设置MySQL
+
+```
+mysql -u root -p 
+> CREATE USER 'tutorialuser'@'localhost' IDENTIFIED BY 'tutorialmy5ql';
+> GRANT ALL PRIVILEGES ON *.* TO 'tutorialuser'@'localhost';
+> FLUSH PRIVILEGES;
+```
