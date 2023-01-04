@@ -10,3 +10,4 @@
 + [使用Spring MVC上传和显示Excel文件](docs/使用SpringMVC上传和显示Excel文件.md)
 + [web.xml与Spring的初始化程序](docs/web.xml与Spring的初始化程序.md)
 + [没有web.xml的Java Web应用程序](docs/没有web.xml的JavaWeb应用程序.md)
++ [在JavaScript中访问Spring MVC模型对象](docs/在JavaScript中访问SpringMVC模型对象.md)
