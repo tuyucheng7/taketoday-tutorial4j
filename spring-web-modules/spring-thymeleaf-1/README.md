@@ -6,6 +6,7 @@
 
 + [在Spring中使用Thymeleaf的介绍](docs/在Spring中使用Thymeleaf的介绍.md)
 + [Thymeleaf自定义布局方言](docs/Thymeleaf自定义布局方言.md)
++ [Spring和Thymeleaf 3表达式](docs/Spring和Thymeleaf3表达式.md)
 
 ## 构建项目
 
