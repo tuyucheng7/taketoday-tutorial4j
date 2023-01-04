@@ -15,7 +15,7 @@
 	</parent>
 
 	<modules>
-		<!--<module>spring-5-mvc</module>-->
+		<module>spring-5-mvc</module>
 		<!--<module>spring-freemarker</module>-->
 		<!--<module>spring-mvc-basics-1</module>-->
 		<!--<module>spring-mvc-basics-2</module>-->
