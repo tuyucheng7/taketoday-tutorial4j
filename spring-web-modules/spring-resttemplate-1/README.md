@@ -6,3 +6,4 @@
 
 + [RestTemplate指南](docs/RestTemplate指南.md)
 + [SpringBoot TestRestTemplate](docs/SpringBoot-TestRestTemplate.md)
++ [Spring RestTemplate错误处理](docs/Spring-RestTemplate错误处理.md)
