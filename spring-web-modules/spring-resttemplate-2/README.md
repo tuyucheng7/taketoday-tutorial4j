@@ -8,3 +8,4 @@
 + [使用RestTemplate的代理](docs/使用RestTemplate的代理.md)
 + [Spring Rest API的自定义媒体类型](docs/Spring-RestAPI的自定义媒体类型.md)
 + [RestTemplate使用JSON发布请求](docs/RestTemplate使用JSON发布请求.md)
++ [如何使用Spring RestTemplate压缩请求](docs/如何使用Spring-RestTemplate压缩请求.md)
