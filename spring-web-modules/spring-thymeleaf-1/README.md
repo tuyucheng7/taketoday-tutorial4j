@@ -8,6 +8,7 @@
 + [Thymeleaf自定义布局方言](docs/Thymeleaf自定义布局方言.md)
 + [Spring和Thymeleaf 3表达式](docs/Spring和Thymeleaf3表达式.md)
 + [Spring MVC + Thymeleaf 3新特性](docs/SpringMVC+Thymeleaf3新特性.md)
++ [如何在Thymeleaf中使用日期](docs/如何在Thymeleaf中使用日期.md)
 
 ## 构建项目
 
