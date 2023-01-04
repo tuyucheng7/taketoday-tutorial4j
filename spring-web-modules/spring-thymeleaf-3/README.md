@@ -10,3 +10,7 @@
 + [Thymeleaf中的条件CSS类](docs/Thymeleaf中的条件CSS类.md)
 + [在Spring和Thymeleaf中使用隐藏Input](docs/在Spring和Thymeleaf中使用隐藏输入.md)
 + [Thymeleaf变量](docs/Thymeleaf变量.md)
++ [在Spring中使用Thymeleaf显示错误消息](docs/在Spring中使用Thymeleaf显示错误消息.md)
+
+- 更多文章： [[<-- prev]](../spring-thymeleaf-2/README.md)
+- 更多文章： [[next -->]](../spring-thymeleaf-4/README.md)
