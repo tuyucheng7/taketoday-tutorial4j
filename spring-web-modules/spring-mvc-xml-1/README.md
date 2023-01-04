@@ -5,6 +5,7 @@
 ## 相关文章
 
 + [Java会话超时](docs/Java会话超时.md)
++ [使用Spring MVC返回图像/媒体数据](docs/使用SpringMVC返回图像-媒体数据.md)
 
 - 更多文章： [[next -->]](../spring-mvc-xml-2/README.md)
 
