@@ -7,6 +7,10 @@
 + [使用Spring MVC和Thymeleaf进行CSRF保护](docs/使用SpringMVC和Thymeleaf进行CSRF保护.md)
 + [Thymeleaf中的条件语句](docs/Thymeleaf中的条件语句.md)
 + [Thymeleaf中的迭代](docs/Thymeleaf中的迭代.md)
++ [Spring和Thymeleaf对列表进行分页](docs/带有Thymeleaf分页的Spring列表.md)
+
+- 更多文章： [[<-- prev]](../spring-thymeleaf-3/README.md)
+- 更多文章： [[next -->]](../spring-thymeleaf-5/README.md)
 
 ## 构建项目
 
