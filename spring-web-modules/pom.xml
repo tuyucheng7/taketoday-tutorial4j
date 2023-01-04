@@ -37,7 +37,7 @@
 		<module>spring-rest-http-2</module>
 		<module>spring-rest-http-3</module>
 		<module>spring-rest-query-language</module>
-		<!--<module>spring-rest-shell</module>-->
+		<module>spring-rest-shell</module>
 		<!--<module>spring-rest-simple</module>-->
 		<!--<module>spring-rest-testing</module>-->
 		<!--<module>spring-resttemplate-1</module>-->
