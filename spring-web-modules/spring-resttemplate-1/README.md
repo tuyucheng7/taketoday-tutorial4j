@@ -7,3 +7,4 @@
 + [RestTemplate指南](docs/RestTemplate指南.md)
 + [SpringBoot TestRestTemplate](docs/SpringBoot-TestRestTemplate.md)
 + [Spring RestTemplate错误处理](docs/Spring-RestTemplate错误处理.md)
++ [使用RestTemplateBuilder配置RestTemplate](docs/使用RestTemplateBuilder配置RestTemplate.md)
