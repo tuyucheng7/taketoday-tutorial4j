@@ -8,5 +8,6 @@
 + [从Spring控制器返回自定义状态码](docs/从Spring控制器返回自定义状态码.md)
 + [Spring请求映射](docs/Spring请求映射.md)
 + [Spring中的DeferredResult指南](docs/Spring中的DeferredResult指南.md)
++ [在Spring REST API中使用JSON Patch](docs/在Spring-RESTAPI中使用JSON-Patch.md)
 
 - 更多文章： [[next -->]](../spring-rest-http-2/README.md)
