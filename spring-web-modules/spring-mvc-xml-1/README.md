@@ -8,6 +8,7 @@
 + [使用Spring MVC返回图像/媒体数据](docs/使用SpringMVC返回图像-媒体数据.md)
 + [在Java中通过IP进行地理定位](docs/在Java中通过IP进行地理定位.md)
 + [JavaServer Pages(JSP)指南](docs/JavaServerPages(JSP)指南.md)
++ [web.xml与Spring的初始化程序](docs/web.xml与Spring的初始化程序.md)
 
 - 更多文章： [[next -->]](../spring-mvc-xml-2/README.md)
 
