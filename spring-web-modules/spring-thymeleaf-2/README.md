@@ -9,3 +9,4 @@
 + [Thymeleaf List工具对象](docs/Thymeleaf-List工具对象.md)
 + [Thymeleaf的Spring路径变量](docs/Thymeleaf的Spring路径变量.md)
 + [在Thymeleaf中使用数组](docs/在Thymeleaf中使用数组.md)
++ [在Thymeleaf中使用布尔值](docs/在Thymeleaf中使用布尔值.md)
