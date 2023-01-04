@@ -10,3 +10,7 @@
 + [Thymeleaf的Spring路径变量](docs/Thymeleaf的Spring路径变量.md)
 + [在Thymeleaf中使用数组](docs/在Thymeleaf中使用数组.md)
 + [在Thymeleaf中使用布尔值](docs/在Thymeleaf中使用布尔值.md)
++ [在Thymeleaf中使用自定义HTML属性](docs/在Thymeleaf中使用自定义HTML属性.md)
+
+- 更多文章： [[<-- prev]](../spring-thymeleaf-1/README.md)
+- 更多文章： [[next -->]](../spring-thymeleaf-3/README.md)
