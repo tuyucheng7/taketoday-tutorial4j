@@ -13,3 +13,6 @@
 + [Vavr的Validation API介绍](docs/Vavr的Validation-API介绍.md)
 + [Vavr中的集合API指南](docs/Vavr中的集合API指南.md)
 + [Vavr的集合工厂方法](docs/Vavr的集合工厂方法.md)
++ [Vavr中的Future简介](docs/Vavr中的Future简介.md)
+
+- 更多文章： [[next -->]](../vavr-2/README.md)
