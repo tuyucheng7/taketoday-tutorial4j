@@ -642,7 +642,7 @@
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>rxjava-modules</module>
 				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
@@ -1023,7 +1023,7 @@
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>rxjava-modules</module>
 				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
@@ -1592,7 +1592,7 @@
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>rxjava-modules</module>
 				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
