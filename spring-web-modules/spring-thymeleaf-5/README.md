@@ -7,3 +7,4 @@
 + [在Spring Boot中更改Thymeleaf模板目录](docs/在SpringBoot中更改Thymeleaf模板目录.md)
 + [如何使用Maven创建可执行JAR](docs/如何使用Maven创建可执行JAR.md)
 + [Spring MVC Data和Thymeleaf](docs/SpringMVC-Data和Thymeleaf.md)
++ [使用Spring Boot和Thymeleaf上传图像](docs/使用SpringBoot和Thymeleaf上传图像.md)
