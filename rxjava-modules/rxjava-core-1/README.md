@@ -14,3 +14,4 @@
 + [组合RxJava Completables](docs/组合Completables.md)
 + [RxJava中的钩子](docs/RxJava中的Hooks.md)
 + [在RxJava中延迟重试](docs/在RxJava中延迟重试.md)
++ [RxJava Single.just()与Single.fromCallable()](docs/RxJava-Single.just()与Single.fromCallable().md)
