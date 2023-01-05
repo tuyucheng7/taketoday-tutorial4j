@@ -18,7 +18,7 @@
 
 	<modules>
 		<!--<module>spring-5-data-reactive</module>-->
-		<!--<module>spring-5-reactive-1</module>-->
+		<module>spring-5-reactive-1</module>
 		<!--<module>spring-5-reactive-2</module>-->
 		<!--<module>spring-5-reactive-3</module>-->
 		<!--<module>spring-5-reactive-client-1</module>-->
