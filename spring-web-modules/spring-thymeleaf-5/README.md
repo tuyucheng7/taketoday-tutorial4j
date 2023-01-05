@@ -8,3 +8,4 @@
 + [如何使用Maven创建可执行JAR](docs/如何使用Maven创建可执行JAR.md)
 + [Spring MVC Data和Thymeleaf](docs/SpringMVC-Data和Thymeleaf.md)
 + [使用Spring Boot和Thymeleaf上传图像](docs/使用SpringBoot和Thymeleaf上传图像.md)
++ [在Thymeleaf中获取URL属性值](docs/在Thymeleaf中获取URL属性值.md)
