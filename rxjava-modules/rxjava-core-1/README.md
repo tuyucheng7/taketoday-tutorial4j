@@ -11,3 +11,4 @@
 + [RxJava中Flatmap和Switchmap的区别](docs/RxJava中Flatmap和Switchmap的区别.md)
 + [RxJava中的错误处理](docs/RxJava中的错误处理.md)
 + [RxJava中的Maybe](docs/RxJava中的Maybe.md)
++ [组合RxJava Completables](docs/组合Completables.md)
