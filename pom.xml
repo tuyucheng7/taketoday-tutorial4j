@@ -647,7 +647,7 @@
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
-				<!--<module>vavr-modules</module>-->
+				<module>vavr-modules</module>
 				<!--<module>web-modules</module>-->
 			</modules>
 		</profile>
@@ -837,7 +837,7 @@
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 
 				<!--<module>vaadin</module>-->
-				<!--<module>vavr-modules</module>-->
+				<module>vavr-modules</module>
 			</modules>
 		</profile>
 
@@ -1028,7 +1028,7 @@
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
-				<!--<module>vavr-modules</module>-->
+				<module>vavr-modules</module>
 				<!--<module>web-modules</module>-->
 			</modules>
 		</profile>
@@ -1205,7 +1205,7 @@
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 
 				<!--<module>vaadin</module>-->
-				<!--<module>vavr-modules</module>-->
+				<module>vavr-modules</module>
 			</modules>
 		</profile>
 
@@ -1597,7 +1597,7 @@
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
-				<!--<module>vavr-modules</module>-->
+				<module>vavr-modules</module>
 				<!--<module>web-modules</module>-->
 			</modules>
 		</profile>
