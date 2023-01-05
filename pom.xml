@@ -773,7 +773,7 @@
 				<!--<module>tensorflow-java</module>-->
 				<module>software.test</module>
 
-				<!--<module>vertx-modules</module>-->
+				<module>vertx-modules</module>
 				<!--<module>video-tutorials</module>-->
 
 				<!--<module>webrtc</module>-->
@@ -1148,7 +1148,7 @@
 				<!--<module>tensorflow-java</module>-->
 				<module>software.test</module>
 
-				<!--<module>vertx-modules</module>-->
+				<module>vertx-modules</module>
 				<!--<module>video-tutorials</module>-->
 
 				<!--<module>webrtc</module>-->
@@ -1723,7 +1723,7 @@
 				<!--<module>tensorflow-java</module>-->
 				<module>software.test</module>
 
-				<!--<module>vertx-modules</module>-->
+				<module>vertx-modules</module>
 				<!--<module>video-tutorials</module>-->
 
 				<!--<module>webrtc</module>-->
