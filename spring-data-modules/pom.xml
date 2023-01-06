@@ -14,8 +14,9 @@
 	</parent>
 
 	<modules>
-		<!--<module>spring-boot-persistence-1</module>-->
+		<module>spring-boot-persistence-1</module>
 		<!--<module>spring-boot-persistence-2</module>-->
+		<!--<module>spring-boot-persistence-3</module>-->
 		<!--<module>spring-boot-mysql</module>-->
 		<!--<module>spring-boot-persistence-h2</module>-->
 		<!--<module>spring-boot-persistence-mongodb</module>-->
