@@ -20,6 +20,13 @@
 		</repository>
 	</repositories>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>kotlin-eap</id>
+			<url>http://dl.bintray.com/kotlin/kotlin-eap</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>taketoday-tutorial4j</artifactId>
