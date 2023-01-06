@@ -6,3 +6,4 @@
 
 + [Spring 5中函数式端点的校验](docs/Spring5中函数式端点的校验.md)
 + [使用StepVerifier和TestPublisher测试响应流](docs/使用StepVerifier和TestPublisher测试响应流.md)
++ [Spring WebFlux中的静态内容](docs/Spring-WebFlux中的静态内容.md)
