@@ -19,7 +19,7 @@
 		<!--<module>java</module>-->
 		<!--<module>java8-1</module>-->
 		<!--<module>java8-2</module>-->
-		<!--<module>java-annotations</module>-->
+		<module>java-annotations</module>
 		<!--<module>java-arrays-sorting</module>-->
 		<!--<module>java-arrays-guides</module>-->
 		<!--<module>java-arrays-multidimensional</module>-->
