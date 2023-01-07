@@ -104,6 +104,16 @@
 		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>cn.tuyucheng.taketoday</groupId>
+				<artifactId>custom-jacoco-exclude-annotations</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -545,7 +555,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<!--<module>akka-modules</module>-->
@@ -584,7 +594,7 @@
 
 				<!--<module>groovy.core</module>-->
 
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
@@ -749,7 +759,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<module>custom-pmd</module>
@@ -885,7 +895,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1041,7 +1051,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<!--<module>akka-modules</module>-->
@@ -1080,7 +1090,7 @@
 
 				<!--<module>groovy.core</module>-->
 
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
@@ -1239,7 +1249,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<module>custom-pmd</module>
@@ -1369,7 +1379,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1494,7 +1504,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<!--<module>akka-modules</module>-->
@@ -1533,7 +1543,7 @@
 
 				<!--<module>groovy.core</module>-->
 
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
@@ -1670,7 +1680,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
 				<module>custom-pmd</module>
@@ -1778,7 +1788,7 @@
 				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
-				<!--<module>parent-java</module>-->
+				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1827,6 +1837,7 @@
 				<!-- <module>core-java-modules/core-java-15</module> --> <!-- uses preview features, to be decided how to handle -->
 				<!-- <module>core-java-modules/core-java-16</module> --> <!-- uses preview features, to be decided how to handle -->
 				<!-- <module>core-java-modules/core-java-17</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>java-core-modules/java19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
 				<!--<module>core-java-modules/core-java-collections-set</module>-->
 				<!--<module>core-java-modules/core-java-collections-list-4</module>-->
 				<!--<module>core-java-modules/core-java-collections-maps-4</module>-->
