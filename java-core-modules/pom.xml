@@ -53,10 +53,10 @@
         <module>java-datetime-conversion</module>
         <module>java-datetime-string-1</module>
         <module>java-datetime-string-2</module>
-        <!--<module>java-exceptions-1</module>-->
-        <!--<module>java-exceptions-2</module>-->
-        <!--<module>java-exceptions-3</module>-->
-        <!--<module>java-exceptions-4</module>-->
+        <module>java-exceptions-1</module>
+        <module>java-exceptions-2</module>
+        <module>java-exceptions-3</module>
+        <module>java-exceptions-4</module>
         <!--<module>java-function</module>-->
         <!--<module>java-functional</module>-->
         <!--<module>java-io-1</module>-->
