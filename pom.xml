@@ -51,10 +51,10 @@
 		<logback.version>1.2.11</logback.version>
 
 		<!-- plugins -->
-		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
 		<build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
-		<maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
 		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<java.version>17</java.version>
@@ -460,7 +460,7 @@
 							<property>tutorialsproject.basedir</property>
 							<project>
 								<groupId>cn.tuyucheng.taketoday</groupId>
-								<artifactId>fullstack-tutorials4j</artifactId>
+								<artifactId>taketoday-tutorial4j</artifactId>
 							</project>
 						</configuration>
 					</execution>
@@ -1674,8 +1674,6 @@
 				<module>jacoco-aggregate-report</module>
 
 				<module>custom-pmd</module>
-				<module>module1</module>
-				<module>module2</module>
 
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
