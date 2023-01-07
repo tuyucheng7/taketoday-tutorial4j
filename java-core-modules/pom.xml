@@ -4,17 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
-    <artifactId>java-core-modules</artifactId>
-    <name>java-core-modules</name>
-    <packaging>pom</packaging>
-
-    <parent>
-        <groupId>cn.tuyucheng.taketoday</groupId>
-        <artifactId>parent-java</artifactId>
-        <version>1.0.0</version>
-        <relativePath>../parent-java</relativePath>
-    </parent>
-
     <modules>
         <!--<module>java</module>-->
         <!--<module>java8-1</module>-->
@@ -55,11 +44,15 @@
         <!--<module>java-concurrency-basic-3</module>-->
         <!--<module>java-concurrency-collections-1</module>-->
         <!--<module>java-concurrency-collections-2</module>-->
-        <!--<module>java-console</module>-->
+        <module>java-console</module>
+        <!--<module>java-8-datetime-1</module>-->
         <!--<module>java-8-datetime-2</module>-->
-        <!--<module>java-date-operations-2</module>-->
-        <!--<module>java-date-operations-3</module>-->
-        <!--<module>java-8-datetime</module>-->
+        <module>java-date-operations-1</module>
+        <module>java-date-operations-2</module>
+        <module>java-date-operations-3</module>
+        <module>java-datetime-conversion</module>
+        <module>java-datetime-string-1</module>
+        <module>java-datetime-string-2</module>
         <!--<module>java-exceptions-1</module>-->
         <!--<module>java-exceptions-2</module>-->
         <!--<module>java-exceptions-3</module>-->
@@ -136,6 +129,17 @@
         <!--<module>java-uuid</module>-->
         <!--<module>java-pre-jpms</module>-->
     </modules>
+    <artifactId>java-core-modules</artifactId>
+    <name>java-core-modules</name>
+
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>cn.tuyucheng.taketoday</groupId>
+        <artifactId>parent-java</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../parent-java</relativePath>
+    </parent>
 
     <dependencyManagement>
         <dependencies>
