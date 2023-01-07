@@ -1,0 +1,17 @@
+package cn.tuyucheng.taketoday.implementsvsextends.media.player.impl;
+
+import cn.tuyucheng.taketoday.implementsvsextends.media.model.Media;
+import cn.tuyucheng.taketoday.implementsvsextends.media.player.MediaPlayer;
+
+public class CustomMediaPlayer extends Media implements MediaPlayer {
+
+	@Override
+	public void play() {
+		System.out.println("CustomMediaPlayer is Playing");
+	}
+
+	@Override
+	public void pause() {
+		System.out.println("CustomMediaPlayer is Paused");
+	}
+}
