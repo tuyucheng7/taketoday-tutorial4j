@@ -8,3 +8,4 @@
 + [在Java中创建自定义注解](docs/在Java中创建自定义注解.md)
 + [Java中高效的词频计算器](docs/Java中高效的词频计算器.md)
 + [为什么缺少注解不会导致ClassNotFoundException](docs/为什么缺少注解不会导致ClassNotFoundException.md)
++ [有效的@SuppressWarnings警告名称](docs/有效的@SuppressWarnings警告名称.md)
