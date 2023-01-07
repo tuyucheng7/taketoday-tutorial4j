@@ -59,6 +59,7 @@
         <module>java-exceptions-4</module>
         <module>java-function</module>
         <module>java-functional</module>
+        <module>java-httpclient</module>
         <!--<module>java-io-1</module>-->
         <!--<module>java-io-2</module>-->
         <!--<module>java-io-3</module>-->
