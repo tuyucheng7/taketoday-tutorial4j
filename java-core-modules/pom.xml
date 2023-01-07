@@ -23,7 +23,7 @@
 		<!--<module>java-arrays-sorting</module>-->
 		<!--<module>java-arrays-guides</module>-->
 		<!--<module>java-arrays-multidimensional</module>-->
-		<!--<module>java-arrays-convert</module>-->
+		<module>java-arrays-convert</module>
 		<!--<module>java-arrays-operations-basic</module>-->
 		<!--<module>java-arrays-operations-advanced</module>-->
 		<!--<module>java-char</module>-->
