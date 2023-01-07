@@ -3,11 +3,106 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>cn.tuyucheng.taketoday</groupId>
 	<artifactId>taketoday-tutorial4j</artifactId>
+	<packaging>pom</packaging>
 	<version>1.0.0</version>
 	<name>taketoday-tutorial4j</name>
-	<packaging>pom</packaging>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/repository/public</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<properties>
+		<skip.unit.tests>false</skip.unit.tests>
+		<skip.integration.tests>true</skip.integration.tests>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>
+		<gib.skipTestsForUpstreamModules>true</gib.skipTestsForUpstreamModules>
+		<gib.buildUpstream>false</gib.buildUpstream>
+		<gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
+		<gib.failOnError>false</gib.failOnError>
+		<gib.disable>true</gib.disable>
+
+		<!-- 仅用于依赖关系管理以强制此版本，不包括为直接依赖关系 -->
+		<junit.version>4.13.2</junit.version>
+		<assertj.version>3.22.0</assertj.version>
+		<hamcrest.version>2.2</hamcrest.version>
+		<hamcrest-all.version>1.3</hamcrest-all.version>
+		<mockito.version>4.5.1</mockito.version>
+		<byte-buddy.version>1.12.13</byte-buddy.version>
+
+		<!-- logging -->
+		<org.slf4j.version>1.7.36</org.slf4j.version>
+		<logback.version>1.2.11</logback.version>
+
+		<!-- plugins -->
+		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+		<build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
+		<maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+		<java.version>17</java.version>
+		<kotlin.version>1.7.22</kotlin.version>
+		<log4j.version>1.2.17</log4j.version>
+		<esapi.version>2.5.0.0</esapi.version>
+		<jmh-core.version>1.35</jmh-core.version>
+		<jmh-generator.version>1.35</jmh-generator.version>
+		<maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
+		<commons-collections4.version>4.4</commons-collections4.version>
+		<commons-io.version>2.11.0</commons-io.version>
+		<commons-lang.version>2.6</commons-lang.version>
+		<commons-lang3.version>3.12.0</commons-lang3.version>
+		<commons-cli.version>1.5.0</commons-cli.version>
+		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+		<javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+		<jstl-api.version>1.2</jstl-api.version>
+		<javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
+		<jstl.version>1.2</jstl.version>
+		<jackson.version>2.13.4</jackson.version>
+		<commons-fileupload.version>1.4</commons-fileupload.version>
+		<junit-platform.version>1.8.2</junit-platform.version>
+		<junit-jupiter.version>5.8.2</junit-jupiter.version>
+		<junit-platform-surefire-provider.version>1.3.2</junit-platform-surefire-provider.version>
+		<directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
+		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+		<custom-pmd.version>1.0.0</custom-pmd.version>
+		<gitflow-incremental-builder.version>3.12.2</gitflow-incremental-builder.version>
+		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+		<maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
+		<lombok.version>1.18.24</lombok.version>
+		<h2.version>2.1.214</h2.version>
+		<guava.version>31.1-jre</guava.version>
+		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
+		<checkstyle.version>8.8</checkstyle.version>
+		<jacoco.version>0.8.8</jacoco.version>
+		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+		<!-- SonarCloud -->
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.organization>tuyucheng</sonar.organization>
+		<sonar.projectKey>tu-yucheng_fullstack-tutorials4j</sonar.projectKey>
+		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+		<sonar.projectName>fullstack-tutorials4j</sonar.projectName>
+		<sonar.coverage.jacoco.xmlReportPaths>
+			${project.basedir}/jacoco-aggregate-report/target/site/jacoco-aggregate/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -87,16 +182,6 @@
 		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>cn.tuyucheng.taketoday</groupId>
-				<artifactId>custom-jacoco-exclude-annotations</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -106,35 +191,6 @@
 				<configuration>
 					<executable>maven</executable>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-				<configuration>
-					<forkCount>3</forkCount>
-					<reuseForks>true</reuseForks>
-					<excludes>
-						<exclude>**/*IntegrationTest.java</exclude>
-						<exclude>**/*IntTest.java</exclude>
-						<exclude>**/*LongRunningUnitTest.java</exclude>
-						<exclude>**/*ManualTest.java</exclude>
-						<exclude>**/JdbcTest.java</exclude>
-						<exclude>**/*LiveTest.java</exclude>
-					</excludes>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.junit.jupiter</groupId>
-						<artifactId>junit-jupiter-engine</artifactId>
-						<version>${junit-jupiter.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.junit.vintage</groupId>
-						<artifactId>junit-vintage-engine</artifactId>
-						<version>${junit-jupiter.version}</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
@@ -219,6 +275,107 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- 默认情况下，单元测试"mvn clean install"(可选：-P unit)跳过集成测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<forkCount>3</forkCount>
+					<reuseForks>true</reuseForks>
+					<skipTests>${skip.unit.tests}</skipTests>
+					<excludes>
+						<exclude>**/*IntegrationTest.java</exclude>
+						<exclude>**/*IntTest.java</exclude>
+						<exclude>**/*LongRunningUnitTest.java</exclude>
+						<exclude>**/*ManualTest.java</exclude>
+						<exclude>**/JdbcTest.java</exclude>
+						<exclude>**/*LiveTest.java</exclude>
+					</excludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>${junit-jupiter.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.vintage</groupId>
+						<artifactId>junit-vintage-engine</artifactId>
+						<version>${junit-jupiter.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!-- 通过"mvn clean install -P integration-test"进行集成测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.0</version>
+				<executions>
+					<execution>
+						<id>integration-tests</id>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<skipTests>${skip.integration.tests}</skipTests>
+							<excludes>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+								<include>**/*IntTest.java</include>
+							</includes>
+							<reuseForks>true</reuseForks>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>${junit-jupiter.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.vintage</groupId>
+						<artifactId>junit-vintage-engine</artifactId>
+						<version>${junit-jupiter.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!-- findbugs用于代码质量 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-maven-plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -243,37 +400,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco.version}</version>
-				<configuration>
-					<excludes>
-						<exclude>cn/tuyucheng/taketoday/freebuilder/*</exclude>
-						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
-						<exclude>**/config/*</exclude>
-						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
-						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
-						<exclude>cn/tuyucheng/taketoday/**/*App.*</exclude>
-						<exclude>cn/tuyucheng/taketoday/runtime/**</exclude>
-					</excludes>
-				</configuration>
-				<executions>
-					<execution>
-						<id>prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>${sonar-maven-plugin.version}</version>
@@ -281,7 +407,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
+				<version>3.12.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -334,7 +460,7 @@
 							<property>tutorialsproject.basedir</property>
 							<project>
 								<groupId>cn.tuyucheng.taketoday</groupId>
-								<artifactId>taketoday-tutorial4j</artifactId>
+								<artifactId>fullstack-tutorials4j</artifactId>
 							</project>
 						</configuration>
 					</execution>
@@ -375,65 +501,15 @@
 				<version>${gitflow-incremental-builder.version}</version>
 			</extension>
 		</extensions>
-		<pluginManagement>
-			<plugins>
-				<!-- 此插件的配置只用于存储Eclipse m2e设置，它对Maven构建本身没有影响 -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.commonjava.maven.plugins
-										</groupId>
-										<artifactId>
-											directory-maven-plugin
-										</artifactId>
-										<versionRange>
-											[0.3.1,)
-										</versionRange>
-										<goals>
-											<goal>directory-of</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-install-plugin
-										</artifactId>
-										<versionRange>
-											[2.5.1,)
-										</versionRange>
-										<goals>
-											<goal>install-file</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<profiles>
+		<!-- 仅执行单元测试的Profile -->
 		<profile>
-			<id>default-first</id>
+			<id>first-unit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -466,11 +542,11 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
+				<!--<module>parent-boot-2</module>-->
 				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>report-aggregate-module</module>
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -508,12 +584,11 @@
 
 				<!--<module>groovy.core</module>-->
 
-				<module>java-core-modules</module>
-				<module>kotlin-modules</module>
+				<!--<module>java-core-modules</module>-->
+				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
-				<module>custom-jacoco-exclude-annotations</module>
 
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
@@ -534,8 +609,8 @@
 				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!-- <module>grails</module> --> <!-- Not a maven project -->
-				<module>graphql.modules</module>
-				<module>grpc</module>
+				<!--<module>graphql.modules</module>-->
+				<!--<module>grpc</module>-->
 				<!--<module>guava-modules</module>-->
 				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
 
@@ -597,7 +672,7 @@
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
-				<module>maven.modules</module>
+				<!--<module>maven.modules</module>-->
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
@@ -612,618 +687,39 @@
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 
-				<module>design-patterns-modules</module>
+				<!--<module>design-patterns-modules</module>-->
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
-				<module>spring-data-modules</module>
+				<!--<module>spring-data-modules</module>-->
 				<!--<module>protobuffer</module>-->
 
-				<module>quarkus-modules</module>
+				<!--<module>quarkus-modules</module>-->
 
 				<!--<module>reactor-core</module>-->
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
-				<module>rxjava-modules</module>
+				<!--<module>rxjava-modules</module>-->
 				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
-				<module>vavr-modules</module>
+				<!--<module>vavr-modules</module>-->
 				<!--<module>web-modules</module>-->
 			</modules>
 		</profile>
 
 		<profile>
-			<id>default-second</id>
+			<id>second-unit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<forkCount>3</forkCount>
-							<reuseForks>true</reuseForks>
-							<includes>
-								<include>SpringContextTest</include>
-								<include>**/*UnitTest</include>
-							</includes>
-							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<systemPropertyVariables>
-								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
-								</logback.configurationFile>
-							</systemPropertyVariables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
-				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>custom-jacoco-exclude-annotations</module>
-
-				<!--<module>saas-modules</module>-->
-				<!--<module>server-modules</module>-->
-
-				<!--<module>spf4j</module>-->
-
-				<!--<module>spring-4</module>-->
-
-				<!--<module>spring-5</module>-->
-				<module>spring-reactive-modules</module>
-				<!--<module>spring-5-webflux</module>-->
-				<!--<module>spring-5-webflux-2</module>-->
-
-				<!--<module>spring-activiti</module>-->
-				<!--<module>spring-aop</module>-->
-				<!--<module>spring-aop-2</module>-->
-
-				<!--<module>spring-batch</module>-->
-				<!--<module>spring-batch-2</module>-->
-				<!--<module>spring-bom</module>-->
-				<module>spring-boot-modules</module>
-				<!--<module>spring-boot-rest</module>-->
-
-				<!--<module>spring-caching</module>-->
-				<!--<module>spring-caching-2</module>-->
-
-				<module>spring-cloud-modules</module>
-				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
-
-				<module>spring-core-1</module>
-				<!--<module>spring-core-2</module>-->
-				<!--<module>spring-core-3</module>-->
-				<!--<module>spring-core-4</module>-->
-				<!--<module>spring-core-5</module>-->
-				<!--<module>spring-cucumber</module>-->
-
-				<!--<module>spring-di</module>-->
-				<!--<module>spring-di-2</module>-->
-				<!--<module>spring-di-3</module>-->
-				<module>spring-drools</module>
-
-				<!--<module>spring-ejb-modules</module>-->
-				<!--<module>spring-exceptions</module>-->
-
-				<!--<module>spring-integration</module>-->
-
-				<!--<module>spring-jenkins-pipeline</module>-->
-				<!--<module>spring-jersey</module>-->
-				<!--<module>spring-jinq</module>-->
-
-				<!--<module>spring-kafka</module>-->
-				<!--<module>spring-katharsis</module>-->
-
-				<!--<module>spring-mobile</module>-->
-				<!--<module>spring-native</module>-->
-				<!--<module>spring-protobuf</module>-->
-				<!--<module>spring-quartz</module>-->
-
-				<!--<module>spring-remoting-modules</module>-->
-				<!--<module>spring-roo</module>-->
-
-				<!--<module>spring-scheduling</module>-->
-				<module>spring-security-modules</module>
-				<!--<module>spring-shell</module>-->
-				<!--<module>spring-soap</module>-->
-				<!--<module>spring-spel</module>-->
-				<!--<module>spring-state-machine</module>-->
-				<!--<module>spring-static-resources</module>-->
-				<!--<module>spring-swagger-codegen</module>-->
-
-				<!--<module>spring-threads</module>-->
-
-				<!--<module>spring-vault</module>-->
-
-				<module>spring-web-modules</module>
-				<!--<module>spring-websockets</module>-->
-
-				<!--<module>static-analysis</module>-->
-
-				<!--<module>tensorflow-java</module>-->
-				<module>software.test</module>
-
-				<module>vertx-modules</module>
-				<!--<module>video-tutorials</module>-->
-
-				<!--<module>webrtc</module>-->
-				<!--<module>xml</module>-->
-				<!--<module>xml-2</module>-->
-				<!--<module>xstream</module>-->
-			</modules>
-		</profile>
-
-		<profile>
-			<id>default-heavy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<forkCount>3</forkCount>
-							<reuseForks>true</reuseForks>
-							<includes>
-								<include>SpringContextTest</include>
-								<include>**/*UnitTest</include>
-							</includes>
-							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
-				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>custom-jacoco-exclude-annotations</module>
-
-				<!--<module>apache-spark</module>-->
-
-				<!--<module>image-processing</module>-->
-
-				<!--<module>jenkins-modules</module>-->
-				<!--<module>jhipster-modules</module>-->
-				<!--<module>jhipster-5</module>-->
-				<!--<module>jws</module>-->
-
-				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
-				<!--<module>libraries-4</module>-->
-				<!--<module>libraries-5</module>-->
-				<!--<module>libraries-6</module>-->
-
-				<!--<module>spring-boot-modules/spring-boot-react</module>-->
-				<!--<module>spring-ejb-modules/ejb-beans</module>-->
-
-				<!--<module>vaadin</module>-->
-				<module>vavr-modules</module>
-			</modules>
-		</profile>
-
-		<profile>
-			<id>integration-lite-first</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
-							</includes>
-							<systemPropertyVariables>
-								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
-								</logback.configurationFile>
-							</systemPropertyVariables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
-				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>custom-jacoco-exclude-annotations</module>
-
-				<!--<module>akka-modules</module>-->
-
-				<!--<module>algorithms-modules</module>-->
-				<!--<module>annotations</module>-->
-				<!--<module>antlr</module>-->
-
-				<!--<module>apache-cxf-modules</module>-->
-				<!--<module>apache-kafka</module>-->
-				<!--<module>apache-kafka-2</module>-->
-				<!--<module>apache-libraries</module>-->
-				<!--<module>apache-olingo</module>-->
-				<!--<module>apache-poi</module>-->
-				<!--<module>apache-poi-2</module>-->
-				<!--<module>apache-rocketmq</module>-->
-				<!--<module>apache-thrift</module>-->
-				<!--<module>apache-tika</module>-->
-				<!--<module>apache-velocity</module>-->
-
-				<!--<module>asciidoctor</module>-->
-				<!--<module>asm</module>-->
-
-				<!--<module>atomix</module>-->
-
-				<!--<module>aws-modules</module>-->
-
-				<!--<module>axon</module>-->
-
-				<!--<module>azure</module>-->
-
-				<!--<module>bazel</module>-->
-				<!--<module>checker-plugin</module>-->
-				<!-- <module>clojure</module> --> <!-- Not a maven project -->
-				<!--<module>code-generation</module>-->
-
-				<!--<module>groovy.core</module>-->
-
-				<module>java-core-modules</module>
-				<module>kotlin-modules</module>
-
-				<!--<module>couchbase</module>-->
-				<!--<module>custom-pmd</module>-->
-
-				<!--<module>data-structures</module>-->
-				<!--<module>ddd</module>-->
-				<!--<module>deeplearning4j</module>-->
-				<!--<module>di-modules</module>-->
-				<!--<module>discord4j</module>-->
-				<!--<module>disruptor</module>-->
-				<!--<module>dozer</module>-->
-				<!--<module>drools</module>-->
-				<!--<module>dubbo</module>-->
-
-				<!-- <module>ethereum</module> --> <!-- JAVA-6001 -->
-
-				<!--<module>feign</module>-->
-
-				<!--<module>geotools</module>-->
-				<!--<module>google-cloud</module>-->
-				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
-				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
-				<!-- <module>grails</module> --> <!-- Not a maven project -->
-				<module>graphql.modules</module>
-				<module>grpc</module>
-				<!--<module>guava-modules</module>-->
-				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
-
-				<!--<module>hazelcast</module>-->
-				<!--<module>apache-httpclient</module>-->
-				<!--<module>httpclient-simple</module>-->
-				<!--<module>hystrix</module>-->
-
-				<!--<module>jackson-modules</module>-->
-				<!--<module>jackson-simple</module>-->
-				<!--<module>java-blockchain</module>-->
-				<!--<module>javafx</module>-->
-				<!--<module>java-jdi</module>-->
-				<!--<module>java-rmi</module>-->
-				<!--<module>java-spi</module>-->
-				<!--<module>java-websocket</module>-->
-				<!--<module>javax-sound</module>-->
-				<!--<module>javaxval</module>-->
-				<!--<module>javaxval-2</module>-->
-				<!--<module>javax-validation-advanced</module>-->
-				<!--<module>jaxb</module>-->
-				<!--<module>jersey</module>-->
-				<!--<module>jgit</module>-->
-				<!--<module>jhipster-5</module>-->
-				<!--<module>jib</module>-->
-				<!--<module>jmeter</module>-->
-				<!--<module>jmh</module>-->
-				<!--<module>java-native</module>-->
-				<!--<module>jsf</module>-->
-				<!--<module>json-modules</module>-->
-				<!--<module>jsoup</module>-->
-				<!--<module>kubernetes-modules</module>-->
-				<!--<module>ksqldb</module>-->
-				<!-- <module>lagom</module> --> <!-- Not a maven project -->
-				<!--<module>language-interop</module>-->
-				<!--<module>libraries-2</module>-->
-				<!--<module>libraries-3</module>-->
-
-				<!--<module>libraries-apache-commons</module>-->
-				<!--<module>libraries-apache-commons-collections</module>-->
-				<!--<module>libraries-apache-commons-io</module>-->
-				<!--<module>libraries-data</module>-->
-				<!--<module>libraries-data-2</module>-->
-				<!--<module>libraries-data-db</module>-->
-				<!--<module>libraries-data-io</module>-->
-				<!--<module>libraries-files</module>-->
-				<!--<module>libraries-http</module>-->
-				<!--<module>libraries-http-2</module>-->
-				<!--<module>libraries-io</module>-->
-				<!--<module>libraries-primitive</module>-->
-				<!--<module>libraries-rpc</module>-->
-				<!--<module>libraries-security</module>-->
-				<!--<module>libraries-server</module>-->
-				<!--<module>libraries-server-2</module>-->
-				<!--<module>libraries-testing</module>-->
-				<!--<module>logging-modules</module>-->
-				<!--<module>lombok-modules</module>-->
-				<!--<module>lucene</module>-->
-				<!--<module>mapstruct</module>-->
-
-				<module>maven.modules</module>
-
-				<!--<module>mesos-marathon</module>-->
-				<!--<module>messaging-modules</module>-->
-				<!--<module>metrics</module>-->
-				<!--<module>microservices-modules</module>-->
-				<!--<module>muleesb</module>-->
-				<!--<module>mustache</module>-->
-				<!--<module>mybatis</module>-->
-
-				<!--<module>netflix-modules</module>-->
-
-				<!--<module>orika</module>-->
-				<!--<module>osgi</module>-->
-
-				<module>design-patterns-modules</module>
-				<!--<module>pdf</module>-->
-				<!--<module>performance-tests</module>-->
-				<module>spring-data-modules</module>
-				<!--<module>protobuffer</module>-->
-
-				<module>quarkus-modules</module>
-
-				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
-				<!--<module>rule-engines-modules</module>-->
-				<module>rxjava-modules</module>
-				<!--<module>atomikos</module>-->
-				<!--<module>reactive-systems</module>-->
-				<!--<module>security-modules</module>-->
-				<!--<module>slack</module>-->
-				<module>vavr-modules</module>
-				<!--<module>web-modules</module>-->
-			</modules>
-		</profile>
-
-		<profile>
-			<id>integration-lite-second</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
-							</includes>
-							<systemPropertyVariables>
-								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
-								</logback.configurationFile>
-							</systemPropertyVariables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
-				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>custom-jacoco-exclude-annotations</module>
-
-				<!--<module>saas-modules</module>-->
-				<!--<module>server-modules</module>-->
-
-				<!--<module>spf4j</module>-->
-
-				<!--<module>spring-4</module>-->
-
-				<!--<module>spring-5</module>-->
-				<module>spring-reactive-modules</module>
-				<!--<module>spring-5-webflux</module>-->
-				<!--<module>spring-5-webflux-2</module>-->
-
-
-				<!--<module>spring-activiti</module>-->
-				<!--<module>spring-aop</module>-->
-				<!--<module>spring-aop-2</module>-->
-
-				<!--<module>spring-batch</module>-->
-				<!--<module>spring-batch-2</module>-->
-				<!--<module>spring-bom</module>-->
-				<module>spring-boot-modules</module>
-				<!--<module>spring-boot-rest</module>-->
-
-				<!--<module>spring-caching</module>-->
-				<!--<module>spring-caching-2</module>-->
-
-				<module>spring-cloud-modules</module>
-				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
-
-				<module>spring-core-1</module>
-				<!--<module>spring-core-2</module>-->
-				<!--<module>spring-core-3</module>-->
-				<!--<module>spring-core-4</module>-->
-				<!--<module>spring-core-5</module>-->
-				<!--<module>spring-cucumber</module>-->
-
-				<!--<module>spring-di</module>-->
-				<!--<module>spring-di-2</module>-->
-				<!--<module>spring-di-3</module>-->
-				<module>spring-drools</module>
-
-				<!--<module>spring-ejb-modules</module>-->
-				<!--<module>spring-exceptions</module>-->
-
-				<!--<module>spring-integration</module>-->
-
-				<!--<module>spring-jenkins-pipeline</module>-->
-				<!--<module>spring-jersey</module>-->
-				<!--<module>spring-jinq</module>-->
-
-				<!--<module>spring-kafka</module>-->
-				<!--<module>spring-katharsis</module>-->
-
-				<!--<module>spring-mobile</module>-->
-				<!--<module>spring-native</module>-->
-				<!--<module>spring-protobuf</module>-->
-				<!--<module>spring-quartz</module>-->
-
-				<!--<module>spring-remoting-modules</module>-->
-				<!--<module>spring-roo</module>-->
-
-				<!--<module>spring-scheduling</module>-->
-				<module>spring-security-modules</module>
-				<!--<module>spring-shell</module>-->
-				<!--<module>spring-soap</module>-->
-				<!--<module>spring-spel</module>-->
-				<!--<module>spring-state-machine</module>-->
-				<!--<module>spring-static-resources</module>-->
-				<!--<module>spring-swagger-codegen</module>-->
-
-				<!--<module>spring-threads</module>-->
-
-				<!--<module>spring-vault</module>-->
-
-				<module>spring-web-modules</module>
-				<!--<module>spring-websockets</module>-->
-
-				<!--<module>static-analysis</module>-->
-
-				<!--<module>tensorflow-java</module>-->
-				<module>software.test</module>
-
-				<module>vertx-modules</module>
-				<!--<module>video-tutorials</module>-->
-
-				<!--<module>webrtc</module>-->
-				<!--<module>xml</module>-->
-				<!--<module>xml-2</module>-->
-				<!--<module>xstream</module>-->
-			</modules>
-		</profile>
-
-		<profile>
-			<id>integration-heavy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
-							</includes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>parent-boot-1</module>-->
-				<module>parent-boot-2</module>
-				<!--<module>parent-spring-4</module>-->
-				<module>parent-spring-5</module>
-				<module>parent-java</module>
-				<module>custom-jacoco-exclude-annotations</module>
-
-				<!--<module>apache-spark</module>-->
-
-				<!--<module>image-processing</module>-->
-
-				<!--<module>jenkins-modules</module>-->
-				<!--<module>jhipster-modules</module>-->
-				<!--<module>jhipster-5</module>-->
-				<!--<module>jws</module>-->
-
-				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
-				<!--<module>libraries-4</module>-->
-				<!--<module>libraries-5</module>-->
-				<!--<module>libraries-6</module>-->
-
-				<!--<module>spring-boot-modules/spring-boot-react</module>-->
-				<!--<module>spring-ejb-modules/ejb-beans</module>-->
-
-				<!--<module>vaadin</module>-->
-				<module>vavr-modules</module>
-			</modules>
-		</profile>
-
-		<profile>
-			<id>live-all</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>**/SpringContextTest.java</exclude>
-								<exclude>**/*UnitTest.java</exclude>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*JdbcTest.java</exclude>
-							</excludes>
-							<includes>
-								<include>**/*LiveTest.java</include>
-							</includes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>default-jdk9-and-above</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<forkCount>3</forkCount>
 							<reuseForks>true</reuseForks>
@@ -1239,6 +735,212 @@
 								<exclude>**/JdbcTest.java</exclude>
 								<exclude>**/*LiveTest.java</exclude>
 							</excludes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
+
+				<module>custom-pmd</module>
+
+				<!--<module>saas-modules</module>-->
+				<!--<module>server-modules</module>-->
+
+				<!--<module>spf4j</module>-->
+
+				<!--<module>spring-4</module>-->
+
+				<!--<module>spring-5</module>-->
+				<!--<module>spring-reactive-modules</module>-->
+				<!--<module>spring-5-webflux</module>-->
+				<!--<module>spring-5-webflux-2</module>-->
+
+				<!--<module>spring-activiti</module>-->
+				<!--<module>spring-aop</module>-->
+				<!--<module>spring-aop-2</module>-->
+
+				<!--<module>spring-batch</module>-->
+				<!--<module>spring-batch-2</module>-->
+				<!--<module>spring-bom</module>-->
+				<!--<module>spring-boot-modules</module>-->
+				<!--<module>spring-boot-rest</module>-->
+
+				<!--<module>spring-caching</module>-->
+				<!--<module>spring-caching-2</module>-->
+
+				<!--<module>spring-cloud-modules</module>-->
+				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
+
+				<!--<module>spring-core-1</module>-->
+				<!--<module>spring-core-2</module>-->
+				<!--<module>spring-core-3</module>-->
+				<!--<module>spring-core-4</module>-->
+				<!--<module>spring-core-5</module>-->
+				<!--<module>spring-cucumber</module>-->
+
+				<!--<module>spring-di</module>-->
+				<!--<module>spring-di-2</module>-->
+				<!--<module>spring-di-3</module>-->
+				<!--<module>spring-drools</module>-->
+
+				<!--<module>spring-ejb-modules</module>-->
+				<!--<module>spring-exceptions</module>-->
+
+				<!--<module>spring-integration</module>-->
+
+				<!--<module>spring-jenkins-pipeline</module>-->
+				<!--<module>spring-jersey</module>-->
+				<!--<module>spring-jinq</module>-->
+
+				<!--<module>spring-kafka</module>-->
+				<!--<module>spring-katharsis</module>-->
+
+				<!--<module>spring-mobile</module>-->
+				<!--<module>spring-native</module>-->
+				<!--<module>spring-protobuf</module>-->
+				<!--<module>spring-quartz</module>-->
+
+				<!--<module>spring-remoting-modules</module>-->
+				<!--<module>spring-roo</module>-->
+
+				<!--<module>spring-scheduling</module>-->
+				<!--<module>spring-security-modules</module>-->
+				<!--<module>spring-shell</module>-->
+				<!--<module>spring-soap</module>-->
+				<!--<module>spring-spel</module>-->
+				<!--<module>spring-state-machine</module>-->
+				<!--<module>spring-static-resources</module>-->
+				<!--<module>spring-swagger-codegen</module>-->
+
+				<!--<module>spring-threads</module>-->
+
+				<!--<module>spring-vault</module>-->
+
+				<!--<module>spring-web-modules</module>-->
+				<!--<module>spring-websockets</module>-->
+
+				<!--<module>static-analysis</module>-->
+
+				<!--<module>tensorflow-java</module>-->
+				<module>software.test</module>
+
+				<!--<module>vertx-modules</module>-->
+				<!--<module>video-tutorials</module>-->
+
+				<!--<module>webrtc</module>-->
+				<!--<module>xml</module>-->
+				<!--<module>xml-2</module>-->
+				<!--<module>xstream</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>heavy-unit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<configuration>
+							<forkCount>3</forkCount>
+							<reuseForks>true</reuseForks>
+							<includes>
+								<include>SpringContextTest</include>
+								<include>**/*UnitTest</include>
+							</includes>
+							<excludes>
+								<exclude>**/*IntegrationTest.java</exclude>
+								<exclude>**/*IntTest.java</exclude>
+								<exclude>**/*LongRunningUnitTest.java</exclude>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/JdbcTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>custom-pmd</module>
+				<module>jacoco-aggregate-report</module>
+
+				<!--<module>apache-spark</module>-->
+
+				<!--<module>image-processing</module>-->
+
+				<!--<module>jenkins-modules</module>-->
+				<!--<module>jhipster-modules</module>-->
+				<!--<module>jhipster-5</module>-->
+				<!--<module>jws</module>-->
+
+				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
+				<!--<module>libraries-4</module>-->
+				<!--<module>libraries-5</module>-->
+				<!--<module>libraries-6</module>-->
+
+				<!--<module>spring-boot-modules/spring-boot-react</module>-->
+				<!--<module>spring-ejb-modules/ejb-beans</module>-->
+
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>jdk9-and-above-unit</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<configuration>
+							<forkCount>3</forkCount>
+							<reuseForks>true</reuseForks>
+							<includes>
+								<include>SpringContextTest</include>
+								<include>**/*UnitTest</include>
+							</includes>
+							<excludes>
+								<exclude>**/*IntegrationTest.java</exclude>
+								<exclude>**/*IntTest.java</exclude>
+								<exclude>**/*LongRunningUnitTest.java</exclude>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/JdbcTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -1284,9 +986,9 @@
 				<!--<module>docker-modules</module>-->
 				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
-				<module>maven.modules/compiler-plugin-java-9</module>
-				<module>maven.modules/maven-generate-war</module>
-				<module>maven.modules/multimodulemavenproject</module>
+				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
+				<!--<module>maven.modules/maven-generate-war</module>-->
+				<!--<module>maven.modules/multimodulemavenproject</module>-->
 				<!--<module>optaplanner</module>-->
 				<!--<module>persistence-modules/sirix</module>-->
 				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
@@ -1297,15 +999,20 @@
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
 				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
-				<module>software.test/testing-assertions</module>
+				<!--<module>software.test/testing-assertions</module>-->
 				<!--<module>persistence-modules/fauna</module>-->
 				<!--<module>lightrun</module>-->
 				<!--<module>tablesaw</module>-->
 			</modules>
 		</profile>
 
+		<!-- 仅执行集成测试的Profile -->
 		<profile>
-			<id>integration-jdk9-and-above</id>
+			<id>first-integration</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
@@ -1320,6 +1027,398 @@
 								<include>**/*IntegrationTest.java</include>
 								<include>**/*IntTest.java</include>
 							</includes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
+
+				<!--<module>akka-modules</module>-->
+
+				<!--<module>algorithms-modules</module>-->
+				<!--<module>annotations</module>-->
+				<!--<module>antlr</module>-->
+
+				<!--<module>apache-cxf-modules</module>-->
+				<!--<module>apache-kafka</module>-->
+				<!--<module>apache-kafka-2</module>-->
+				<!--<module>apache-libraries</module>-->
+				<!--<module>apache-olingo</module>-->
+				<!--<module>apache-poi</module>-->
+				<!--<module>apache-poi-2</module>-->
+				<!--<module>apache-rocketmq</module>-->
+				<!--<module>apache-thrift</module>-->
+				<!--<module>apache-tika</module>-->
+				<!--<module>apache-velocity</module>-->
+
+				<!--<module>asciidoctor</module>-->
+				<!--<module>asm</module>-->
+
+				<!--<module>atomix</module>-->
+
+				<!--<module>aws-modules</module>-->
+
+				<!--<module>axon</module>-->
+
+				<!--<module>azure</module>-->
+
+				<!--<module>bazel</module>-->
+				<!--<module>checker-plugin</module>-->
+				<!-- <module>clojure</module> --> <!-- Not a maven project -->
+				<!--<module>code-generation</module>-->
+
+				<!--<module>groovy.core</module>-->
+
+				<!--<module>java-core-modules</module>-->
+				<!--<module>kotlin-modules</module>-->
+
+				<!--<module>couchbase</module>-->
+				<module>custom-pmd</module>
+
+				<!--<module>data-structures</module>-->
+				<!--<module>ddd</module>-->
+				<!--<module>deeplearning4j</module>-->
+				<!--<module>di-modules</module>-->
+				<!--<module>discord4j</module>-->
+				<!--<module>disruptor</module>-->
+				<!--<module>dozer</module>-->
+				<!--<module>drools</module>-->
+				<!--<module>dubbo</module>-->
+
+				<!-- <module>ethereum</module> --> <!-- JAVA-6001 -->
+
+				<!--<module>feign</module>-->
+
+				<!--<module>geotools</module>-->
+				<!--<module>google-cloud</module>-->
+				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
+				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
+				<!-- <module>grails</module> --> <!-- Not a maven project -->
+				<!--<module>graphql.modules</module>-->
+				<!--<module>grpc</module>-->
+				<!--<module>guava-modules</module>-->
+				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
+
+				<!--<module>hazelcast</module>-->
+				<!--<module>apache-httpclient</module>-->
+				<!--<module>httpclient-simple</module>-->
+				<!--<module>hystrix</module>-->
+
+				<!--<module>jackson-modules</module>-->
+				<!--<module>jackson-simple</module>-->
+				<!--<module>java-blockchain</module>-->
+				<!--<module>javafx</module>-->
+				<!--<module>java-jdi</module>-->
+				<!--<module>java-rmi</module>-->
+				<!--<module>java-spi</module>-->
+				<!--<module>java-websocket</module>-->
+				<!--<module>javax-sound</module>-->
+				<!--<module>javaxval</module>-->
+				<!--<module>javaxval-2</module>-->
+				<!--<module>javax-validation-advanced</module>-->
+				<!--<module>jaxb</module>-->
+				<!--<module>jersey</module>-->
+				<!--<module>jgit</module>-->
+				<!--<module>jhipster-5</module>-->
+				<!--<module>jib</module>-->
+				<!--<module>jmeter</module>-->
+				<!--<module>jmh</module>-->
+				<!--<module>java-native</module>-->
+				<!--<module>jsf</module>-->
+				<!--<module>json-modules</module>-->
+				<!--<module>jsoup</module>-->
+				<!--<module>kubernetes-modules</module>-->
+				<!--<module>ksqldb</module>-->
+				<!-- <module>lagom</module> --> <!-- Not a maven project -->
+				<!--<module>language-interop</module>-->
+				<!--<module>libraries-2</module>-->
+				<!--<module>libraries-3</module>-->
+				<!--<module>libraries-7</module>-->
+
+				<!--<module>libraries-apache-commons</module>-->
+				<!--<module>libraries-apache-commons-collections</module>-->
+				<!--<module>libraries-apache-commons-io</module>-->
+				<!--<module>libraries-data</module>-->
+				<!--<module>libraries-data-2</module>-->
+				<!--<module>libraries-data-db</module>-->
+				<!--<module>libraries-data-io</module>-->
+				<!--<module>libraries-files</module>-->
+				<!--<module>libraries-http</module>-->
+				<!--<module>libraries-http-2</module>-->
+				<!--<module>libraries-io</module>-->
+				<!--<module>libraries-primitive</module>-->
+				<!--<module>libraries-rpc</module>-->
+				<!--<module>libraries-security</module>-->
+				<!--<module>libraries-server</module>-->
+				<!--<module>libraries-server-2</module>-->
+				<!--<module>libraries-testing</module>-->
+				<!--<module>logging-modules</module>-->
+				<!--<module>lombok-modules</module>-->
+				<!--<module>lucene</module>-->
+				<!--<module>mapstruct</module>-->
+
+				<!--<module>maven.modules</module>-->
+
+				<!--<module>mesos-marathon</module>-->
+				<!--<module>messaging-modules</module>-->
+				<!--<module>metrics</module>-->
+				<!--<module>microservices-modules</module>-->
+				<!--<module>muleesb</module>-->
+				<!--<module>mustache</module>-->
+				<!--<module>mybatis</module>-->
+
+				<!--<module>netflix-modules</module>-->
+
+				<!--<module>orika</module>-->
+				<!--<module>osgi</module>-->
+
+				<!--<module>design-patterns-modules</module>-->
+				<!--<module>pdf</module>-->
+				<!--<module>pdf-2</module>-->
+				<!--<module>performance-tests</module>-->
+				<!--<module>spring-data-modules</module>-->
+				<!--<module>protobuffer</module>-->
+
+				<!--<module>quarkus-modules</module>-->
+
+				<!--<module>reactor-core</module>-->
+				<!--<module>rsocket</module>-->
+				<!--<module>rule-engines-modules</module>-->
+				<!--<module>rxjava-modules</module>-->
+				<!--<module>atomikos</module>-->
+				<!--<module>reactive-systems</module>-->
+				<!--<module>security-modules</module>-->
+				<!--<module>slack</module>-->
+				<!--<module>vavr-modules</module>-->
+				<!--<module>web-modules</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>second-integration</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+								<include>**/*IntTest.java</include>
+							</includes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
+
+				<module>custom-pmd</module>
+
+				<!--<module>saas-modules</module>-->
+				<!--<module>server-modules</module>-->
+
+				<!--<module>spf4j</module>-->
+
+				<!--<module>spring-4</module>-->
+
+				<!--<module>spring-5</module>-->
+				<!--<module>spring-reactive-modules</module>-->
+				<!--<module>spring-5-webflux</module>-->
+				<!--<module>spring-5-webflux-2</module>-->
+
+				<!--<module>spring-activiti</module>-->
+				<!--<module>spring-aop</module>-->
+				<!--<module>spring-aop-2</module>-->
+
+				<!--<module>spring-batch</module>-->
+				<!--<module>spring-batch-2</module>-->
+				<!--<module>spring-bom</module>-->
+				<!--<module>spring-boot-modules</module>-->
+				<!--<module>spring-boot-rest</module>-->
+
+				<!--<module>spring-caching</module>-->
+				<!--<module>spring-caching-2</module>-->
+
+				<!--<module>spring-cloud-modules</module>-->
+				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
+
+				<!--<module>spring-core-1</module>-->
+				<!--<module>spring-core-2</module>-->
+				<!--<module>spring-core-3</module>-->
+				<!--<module>spring-core-4</module>-->
+				<!--<module>spring-core-5</module>-->
+				<!--<module>spring-cucumber</module>-->
+
+				<!--<module>spring-di</module>-->
+				<!--<module>spring-di-2</module>-->
+				<!--<module>spring-di-3</module>-->
+				<!--<module>spring-drools</module>-->
+
+				<!--<module>spring-ejb-modules</module>-->
+				<!--<module>spring-exceptions</module>-->
+
+				<!--<module>spring-integration</module>-->
+
+				<!--<module>spring-jenkins-pipeline</module>-->
+				<!--<module>spring-jersey</module>-->
+				<!--<module>spring-jinq</module>-->
+
+				<!--<module>spring-kafka</module>-->
+				<!--<module>spring-katharsis</module>-->
+
+				<!--<module>spring-mobile</module>-->
+				<!--<module>spring-native</module>-->
+				<!--<module>spring-protobuf</module>-->
+				<!--<module>spring-quartz</module>-->
+
+				<!--<module>spring-remoting-modules</module>-->
+				<!--<module>spring-roo</module>-->
+
+				<!--<module>spring-scheduling</module>-->
+				<!--<module>spring-security-modules</module>-->
+				<!--<module>spring-shell</module>-->
+				<!--<module>spring-soap</module>-->
+				<!--<module>spring-spel</module>-->
+				<!--<module>spring-state-machine</module>-->
+				<!--<module>spring-static-resources</module>-->
+				<!--<module>spring-swagger-codegen</module>-->
+
+				<!--<module>spring-threads</module>-->
+
+				<!--<module>spring-vault</module>-->
+
+				<!--<module>spring-web-modules</module>-->
+				<!--<module>spring-websockets</module>-->
+
+				<!--<module>static-analysis</module>-->
+
+				<!--<module>tensorflow-java</module>-->
+				<module>software.test</module>
+
+				<!--<module>vertx-modules</module>-->
+				<!--<module>video-tutorials</module>-->
+
+				<!--<module>webrtc</module>-->
+				<!--<module>xml</module>-->
+				<!--<module>xml-2</module>-->
+				<!--<module>xstream</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>heavy-integration</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+								<include>**/*IntTest.java</include>
+							</includes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>custom-pmd</module>
+				<module>jacoco-aggregate-report</module>
+
+				<!--<module>apache-spark</module>-->
+
+				<!--<module>image-processing</module>-->
+
+				<!--<module>jenkins-modules</module>-->
+				<!--<module>jhipster-modules</module>-->
+				<!--<module>jhipster-5</module>-->
+				<!--<module>jws</module>-->
+
+				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
+				<!--<module>libraries-4</module>-->
+				<!--<module>libraries-5</module>-->
+				<!--<module>libraries-6</module>-->
+
+				<!--<module>spring-boot-modules/spring-boot-react</module>-->
+				<!--<module>spring-ejb-modules/ejb-beans</module>-->
+
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>jdk9-and-above-integration</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*ManualTest.java</exclude>
+								<exclude>**/*LiveTest.java</exclude>
+							</excludes>
+							<includes>
+								<include>**/*IntegrationTest.java</include>
+								<include>**/*IntTest.java</include>
+							</includes>
+							<systemPropertyVariables>
+								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
+								</logback.configurationFile>
+							</systemPropertyVariables>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -1361,9 +1460,9 @@
 				<!--<module>docker-modules</module>-->
 				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
-				<module>maven.modules/compiler-plugin-java-9</module>
-				<module>maven.modules/maven-generate-war</module>
-				<module>maven.modules/multimodulemavenproject</module>
+				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
+				<!--<module>maven.modules/maven-generate-war</module>-->
+				<!--<module>maven.modules/multimodulemavenproject</module>-->
 				<!--<module>optaplanner</module>-->
 				<!--<module>persistence-modules/sirix</module>-->
 				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
@@ -1374,103 +1473,404 @@
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
 				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
-				<module>software.test/testing-assertions</module>
+				<!--<module>software.test/testing-assertions</module>-->
 				<!--<module>persistence-modules/fauna</module>-->
 				<!--<module>lightrun</module>-->
 				<!--<module>spring-core-6</module>-->
 				<!--<module>tablesaw</module>-->
 			</modules>
 		</profile>
+
+		<!-- 同时执行单元测试和集成测试的Profile -->
+		<profile>
+			<id>first-all</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
+
+				<!--<module>akka-modules</module>-->
+
+				<!--<module>algorithms-modules</module>-->
+				<!--<module>annotations</module>-->
+				<!--<module>antlr</module>-->
+
+				<!--<module>apache-cxf-modules</module>-->
+				<!--<module>apache-kafka</module>-->
+				<!--<module>apache-kafka-2</module>-->
+				<!--<module>apache-libraries</module>-->
+				<!--<module>apache-olingo</module>-->
+				<!--<module>apache-poi</module>-->
+				<!--<module>apache-poi-2</module>-->
+				<!--<module>apache-rocketmq</module>-->
+				<!--<module>apache-thrift</module>-->
+				<!--<module>apache-tika</module>-->
+				<!--<module>apache-velocity</module>-->
+
+				<!--<module>asciidoctor</module>-->
+				<!--<module>asm</module>-->
+
+				<!--<module>atomix</module>-->
+
+				<!--<module>aws-modules</module>-->
+
+				<!--<module>axon</module>-->
+
+				<!--<module>azure</module>-->
+
+				<!--<module>bazel</module>-->
+				<!--<module>checker-plugin</module>-->
+				<!-- <module>clojure</module> --> <!-- Not a maven project -->
+				<!--<module>code-generation</module>-->
+
+				<!--<module>groovy.core</module>-->
+
+				<!--<module>java-core-modules</module>-->
+				<!--<module>kotlin-modules</module>-->
+
+				<!--<module>couchbase</module>-->
+				<module>custom-pmd</module>
+
+				<!--<module>data-structures</module>-->
+				<!--<module>ddd</module>-->
+				<!--<module>deeplearning4j</module>-->
+				<!--<module>di-modules</module>-->
+				<!--<module>discord4j</module>-->
+				<!--<module>disruptor</module>-->
+				<!--<module>dozer</module>-->
+				<!--<module>drools</module>-->
+				<!--<module>dubbo</module>-->
+
+				<!-- <module>ethereum</module> --> <!-- JAVA-6001 -->
+
+				<!--<module>feign</module>-->
+
+				<!--<module>geotools</module>-->
+				<!--<module>google-cloud</module>-->
+				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
+				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
+				<!-- <module>grails</module> --> <!-- Not a maven project -->
+				<!--<module>graphql.modules</module>-->
+				<!--<module>grpc</module>-->
+				<!--<module>guava-modules</module>-->
+				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
+
+				<!--<module>hazelcast</module>-->
+				<!--<module>apache-httpclient</module>-->
+				<!--<module>httpclient-simple</module>-->
+				<!--<module>hystrix</module>-->
+
+				<!--<module>jackson-modules</module>-->
+				<!--<module>jackson-simple</module>-->
+				<!--<module>java-blockchain</module>-->
+				<!--<module>javafx</module>-->
+				<!--<module>java-jdi</module>-->
+				<!--<module>java-rmi</module>-->
+				<!--<module>java-spi</module>-->
+				<!--<module>java-websocket</module>-->
+				<!--<module>javax-sound</module>-->
+				<!--<module>javaxval</module>-->
+				<!--<module>javaxval-2</module>-->
+				<!--<module>javax-validation-advanced</module>-->
+				<!--<module>jaxb</module>-->
+				<!--<module>jersey</module>-->
+				<!--<module>jgit</module>-->
+				<!--<module>jhipster-5</module>-->
+				<!--<module>jib</module>-->
+				<!--<module>jmeter</module>-->
+				<!--<module>jmh</module>-->
+				<!--<module>java-native</module>-->
+				<!--<module>jsf</module>-->
+				<!--<module>json-modules</module>-->
+				<!--<module>jsoup</module>-->
+				<!--<module>kubernetes-modules</module>-->
+				<!--<module>ksqldb</module>-->
+				<!-- <module>lagom</module> --> <!-- Not a maven project -->
+				<!--<module>language-interop</module>-->
+				<!--<module>libraries-2</module>-->
+				<!--<module>libraries-3</module>-->
+				<!--<module>libraries-7</module>-->
+
+				<!--<module>libraries-apache-commons</module>-->
+				<!--<module>libraries-apache-commons-collections</module>-->
+				<!--<module>libraries-apache-commons-io</module>-->
+				<!--<module>libraries-data</module>-->
+				<!--<module>libraries-data-2</module>-->
+				<!--<module>libraries-data-db</module>-->
+				<!--<module>libraries-data-io</module>-->
+				<!--<module>libraries-files</module>-->
+				<!--<module>libraries-http</module>-->
+				<!--<module>libraries-http-2</module>-->
+				<!--<module>libraries-io</module>-->
+				<!--<module>libraries-primitive</module>-->
+				<!--<module>libraries-rpc</module>-->
+				<!--<module>libraries-security</module>-->
+				<!--<module>libraries-server</module>-->
+				<!--<module>libraries-server-2</module>-->
+				<!--<module>libraries-testing</module>-->
+				<!--<module>logging-modules</module>-->
+				<!--<module>lombok-modules</module>-->
+				<!--<module>lucene</module>-->
+				<!--<module>mapstruct</module>-->
+
+				<!--<module>maven.modules</module>-->
+
+				<!--<module>mesos-marathon</module>-->
+				<!--<module>messaging-modules</module>-->
+				<!--<module>metrics</module>-->
+				<!--<module>microservices-modules</module>-->
+				<!--<module>muleesb</module>-->
+				<!--<module>mustache</module>-->
+				<!--<module>mybatis</module>-->
+
+				<!--<module>netflix-modules</module>-->
+
+				<!--<module>orika</module>-->
+				<!--<module>osgi</module>-->
+
+				<!--<module>design-patterns-modules</module>-->
+				<!--<module>pdf</module>-->
+				<!--<module>pdf-2</module>-->
+				<!--<module>performance-tests</module>-->
+				<!--<module>spring-data-modules</module>-->
+				<!--<module>protobuffer</module>-->
+
+				<!--<module>quarkus-modules</module>-->
+
+				<!--<module>reactor-core</module>-->
+				<!--<module>rsocket</module>-->
+				<!--<module>rule-engines-modules</module>-->
+				<!--<module>rxjava-modules</module>-->
+				<!--<module>atomikos</module>-->
+				<!--<module>reactive-systems</module>-->
+				<!--<module>security-modules</module>-->
+				<!--<module>slack</module>-->
+				<!--<module>vavr-modules</module>-->
+				<!--<module>web-modules</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>second-all</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>jacoco-aggregate-report</module>
+
+				<module>custom-pmd</module>
+				<module>module1</module>
+				<module>module2</module>
+
+				<!--<module>saas-modules</module>-->
+				<!--<module>server-modules</module>-->
+
+				<!--<module>spf4j</module>-->
+
+				<!--<module>spring-4</module>-->
+
+				<!--<module>spring-5</module>-->
+				<!--<module>spring-reactive-modules</module>-->
+				<!--<module>spring-5-webflux</module>-->
+				<!--<module>spring-5-webflux-2</module>-->
+
+				<!--<module>spring-activiti</module>-->
+				<!--<module>spring-aop</module>-->
+				<!--<module>spring-aop-2</module>-->
+
+				<!--<module>spring-batch</module>-->
+				<!--<module>spring-batch-2</module>-->
+				<!--<module>spring-bom</module>-->
+				<!--<module>spring-boot-modules</module>-->
+				<!--<module>spring-boot-rest</module>-->
+
+				<!--<module>spring-caching</module>-->
+				<!--<module>spring-caching-2</module>-->
+
+				<!--<module>spring-cloud-modules</module>-->
+				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
+
+				<!--<module>spring-core-1</module>-->
+				<!--<module>spring-core-2</module>-->
+				<!--<module>spring-core-3</module>-->
+				<!--<module>spring-core-4</module>-->
+				<!--<module>spring-core-5</module>-->
+				<!--<module>spring-cucumber</module>-->
+
+				<!--<module>spring-di</module>-->
+				<!--<module>spring-di-2</module>-->
+				<!--<module>spring-di-3</module>-->
+				<!--<module>spring-drools</module>-->
+
+				<!--<module>spring-ejb-modules</module>-->
+				<!--<module>spring-exceptions</module>-->
+
+				<!--<module>spring-integration</module>-->
+
+				<!--<module>spring-jenkins-pipeline</module>-->
+				<!--<module>spring-jersey</module>-->
+				<!--<module>spring-jinq</module>-->
+
+				<!--<module>spring-kafka</module>-->
+				<!--<module>spring-katharsis</module>-->
+
+				<!--<module>spring-mobile</module>-->
+				<!--<module>spring-native</module>-->
+				<!--<module>spring-protobuf</module>-->
+				<!--<module>spring-quartz</module>-->
+
+				<!--<module>spring-remoting-modules</module>-->
+				<!--<module>spring-roo</module>-->
+
+				<!--<module>spring-scheduling</module>-->
+				<!--<module>spring-security-modules</module>-->
+				<!--<module>spring-shell</module>-->
+				<!--<module>spring-soap</module>-->
+				<!--<module>spring-spel</module>-->
+				<!--<module>spring-state-machine</module>-->
+				<!--<module>spring-static-resources</module>-->
+				<!--<module>spring-swagger-codegen</module>-->
+
+				<!--<module>spring-threads</module>-->
+
+				<!--<module>spring-vault</module>-->
+
+				<!--<module>spring-web-modules</module>-->
+				<!--<module>spring-websockets</module>-->
+
+				<!--<module>static-analysis</module>-->
+
+				<!--<module>tensorflow-java</module>-->
+				<module>software.test</module>
+
+				<!--<module>vertx-modules</module>-->
+				<!--<module>video-tutorials</module>-->
+
+				<!--<module>webrtc</module>-->
+				<!--<module>xml</module>-->
+				<!--<module>xml-2</module>-->
+				<!--<module>xstream</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>heavy-all</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+
+			<modules>
+				<!--<module>parent-boot-1</module>-->
+				<!--<module>parent-boot-2</module>-->
+				<!--<module>parent-spring-4</module>-->
+				<!--<module>parent-spring-5</module>-->
+				<!--<module>parent-java</module>-->
+				<module>custom-pmd</module>
+				<module>jacoco-aggregate-report</module>
+
+				<!--<module>apache-spark</module>-->
+
+				<!--<module>image-processing</module>-->
+
+				<!--<module>jenkins-modules</module>-->
+				<!--<module>jhipster-modules</module>-->
+				<!--<module>jhipster-5</module>-->
+				<!--<module>jws</module>-->
+
+				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
+				<!--<module>libraries-4</module>-->
+				<!--<module>libraries-5</module>-->
+				<!--<module>libraries-6</module>-->
+
+				<!--<module>spring-boot-modules/spring-boot-react</module>-->
+				<!--<module>spring-ejb-modules/ejb-beans</module>-->
+
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
+			</modules>
+		</profile>
+
+		<profile>
+			<id>jdk9-and-above-all</id>
+			<properties>
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+
+			<modules>
+				<!--<module>core-java-modules/core-java-9</module>-->
+				<!--<module>core-java-modules/core-java-9-improvements</module>-->
+				<!--<module>core-java-modules/core-java-9-jigsaw</module>-->
+				<!-- <module>core-java-modules/core-java-9-new-features</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!--<module>core-java-modules/core-java-9-streams</module>-->
+				<!--<module>core-java-modules/core-java-10</module>-->
+				<!--<module>core-java-modules/core-java-11</module>-->
+				<!--<module>core-java-modules/core-java-11-2</module>-->
+				<!--<module>core-java-modules/core-java-11-3</module>-->
+				<!-- <module>core-java-modules/core-java-12</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>core-java-modules/core-java-13</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>core-java-modules/core-java-14</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>core-java-modules/core-java-15</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>core-java-modules/core-java-16</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!-- <module>core-java-modules/core-java-17</module> --> <!-- uses preview features, to be decided how to handle -->
+				<!--<module>core-java-modules/core-java-collections-set</module>-->
+				<!--<module>core-java-modules/core-java-collections-list-4</module>-->
+				<!--<module>core-java-modules/core-java-collections-maps-4</module>-->
+				<!--<module>core-java-modules/core-java-collections-maps-5</module>-->
+				<!--<module>core-java-modules/core-java-concurrency-simple</module>-->
+				<!--<module>core-java-modules/core-java-date-operations-1</module>-->
+				<!--<module>core-java-modules/core-java-datetime-conversion</module>-->
+				<!--<module>core-java-modules/core-java-datetime-string</module>-->
+				<!--<module>core-java-modules/core-java-io-conversions-2</module>-->
+				<!--<module>core-java-modules/core-java-jpms</module>-->
+				<!--<module>core-java-modules/core-java-os</module>-->
+				<!--<module>core-java-modules/core-java-streams-4</module>-->
+				<!--<module>core-java-modules/core-java-string-algorithms-3</module>-->
+				<!--<module>core-java-modules/core-java-string-operations-3</module>-->
+				<!--<module>core-java-modules/core-java-string-operations-4</module>-->
+				<!--<module>core-java-modules/core-java-time-measurements</module>-->
+				<!--<module>core-java-modules/core-java-networking-3</module>-->
+				<!--<module>core-java-modules/core-java-strings</module>-->
+				<!--<module>core-java-modules/core-java-httpclient</module>-->
+				<!--<module>spring-core-6</module>-->
+				<!--<module>ddd-contexts</module>-->
+				<!--<module>docker-modules</module>-->
+				<!--<module>apache-httpclient-2</module>-->
+				<!--<module>libraries-concurrency</module>-->
+				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
+				<!--<module>maven.modules/maven-generate-war</module>-->
+				<!--<module>maven.modules/multimodulemavenproject</module>-->
+				<!--<module>optaplanner</module>-->
+				<!--<module>persistence-modules/sirix</module>-->
+				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
+				<!--<module>quarkus-modules/quarkus-vs-springboot</module>-->
+				<!--<module>quarkus-modules/quarkus-jandex</module>-->
+				<!--<module>spring-boot-modules/spring-boot-cassandre</module>-->
+				<!--<module>spring-boot-modules/spring-boot-camel</module>-->
+				<!--<module>spring-boot-modules/spring-boot-3</module>-->
+				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
+				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
+				<!--<module>software.test/testing-assertions</module>-->
+				<!--<module>persistence-modules/fauna</module>-->
+				<!--<module>lightrun</module>-->
+				<!--<module>tablesaw</module>-->
+			</modules>
+		</profile>
 	</profiles>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>${maven-jxr-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${checkstyle-maven-plugin.version}</version>
-				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<gib.referenceBranch>refs/remotes/origin/master</gib.referenceBranch>
-		<gib.skipTestsForUpstreamModules>true</gib.skipTestsForUpstreamModules>
-		<gib.buildUpstream>false</gib.buildUpstream>
-		<gib.failOnMissingGitDir>false</gib.failOnMissingGitDir>
-		<gib.failOnError>false</gib.failOnError>
-		<gib.disable>true</gib.disable>
-
-		<!-- 仅用于依赖关系管理以强制此版本，不包括为直接依赖关系 -->
-		<junit.version>4.13.2</junit.version>
-		<assertj.version>3.21.0</assertj.version>
-		<hamcrest.version>2.2</hamcrest.version>
-		<hamcrest-all.version>1.3</hamcrest-all.version>
-		<mockito.version>4.4.0</mockito.version>
-		<byte-buddy.version>1.12.13</byte-buddy.version>
-
-		<!-- logging -->
-		<org.slf4j.version>1.7.32</org.slf4j.version>
-		<logback.version>1.2.7</logback.version>
-
-		<!-- plugins -->
-		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-		<java.version>1.8</java.version>
-		<kotlin.version>1.7.22</kotlin.version>
-		<log4j.version>1.2.17</log4j.version>
-		<esapi.version>2.5.0.0</esapi.version>
-		<jmh-core.version>1.35</jmh-core.version>
-		<jmh-generator.version>1.35</jmh-generator.version>
-		<maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
-		<commons-collections4.version>4.4</commons-collections4.version>
-		<commons-io.version>2.11.0</commons-io.version>
-		<commons-lang.version>2.6</commons-lang.version>
-		<commons-lang3.version>3.12.0</commons-lang3.version>
-		<commons-cli.version>1.5.0</commons-cli.version>
-		<maven-war-plugin.version>3.0.0</maven-war-plugin.version>
-		<javax.servlet-api.version>4.0.1</javax.servlet-api.version>
-		<jstl-api.version>1.2</jstl-api.version>
-		<javax.servlet.jsp-api.version>2.3.3</javax.servlet.jsp-api.version>
-		<jstl.version>1.2</jstl.version>
-		<jackson.version>2.13.3</jackson.version>
-		<commons-fileupload.version>1.4</commons-fileupload.version>
-		<junit-platform.version>1.8.1</junit-platform.version>
-		<junit-jupiter.version>5.8.1</junit-jupiter.version>
-		<junit-platform-surefire-provider.version>1.3.2</junit-platform-surefire-provider.version>
-		<directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
-		<maven-install-plugin.version>2.5.2</maven-install-plugin.version>
-		<custom-pmd.version>1.0.0</custom-pmd.version>
-		<gitflow-incremental-builder.version>3.12.2</gitflow-incremental-builder.version>
-		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
-		<maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
-		<lombok.version>1.18.24</lombok.version>
-		<h2.version>2.1.214</h2.version>
-		<guava.version>31.1-jre</guava.version>
-		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
-		<checkstyle.version>8.8</checkstyle.version>
-		<jacoco.version>0.8.8</jacoco.version>
-		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
-		<!-- SonarCloud -->
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.organization>tuyucheng</sonar.organization>
-		<sonar.projectKey>tu-yucheng_taketoday-tutorial4j</sonar.projectKey>
-		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
-		<sonar.projectName>taketoday-tutorial4j</sonar.projectName>
-		<sonar.coverage.jacoco.xmlReportPaths>
-			${project.basedir}/report-aggregate-module/target/site/jacoco-aggregate/jacoco.xml
-		</sonar.coverage.jacoco.xmlReportPaths>
-	</properties>
 </project>

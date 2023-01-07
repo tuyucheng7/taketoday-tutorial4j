@@ -9,7 +9,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>report-aggregate-module</artifactId>
+	<artifactId>jacoco-aggregate-report</artifactId>
 
 	<dependencies>
 		<!-- Java Core Modules -->
