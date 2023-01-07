@@ -74,7 +74,7 @@
 		<!--<module>java-jvm-1</module>-->
 		<!--<module>java-jvm-2</module>-->
 		<!--<module>java-jvm-3</module>-->
-		<module>java-lambdas</module>
+		<!--<module>java-lambdas</module>-->
 		<!--<module>java-lang-1</module>-->
 		<!--<module>java-lang-2</module>-->
 		<!--<module>java-lang-3</module>-->
@@ -115,7 +115,7 @@
 		<!--<module>java-security-3</module>-->
 		<!--<module>java-serialization</module>-->
 		<!--<module>java-security-algorithms</module>-->
-		<module>java-streams-1</module>
+		<!--<module>java-streams-1</module>-->
 		<!--<module>java-streams-2</module>-->
 		<!--<module>java-streams-3</module>-->
 		<!--<module>java-string-algorithms-1</module>-->

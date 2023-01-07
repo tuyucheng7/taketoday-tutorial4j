@@ -36,10 +36,6 @@
 			<artifactId>jmh-generator-annprocess</artifactId>
 			<version>${jmh-generator.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>custom-jacoco-exclude-annotations</artifactId>
-		</dependency>
 	</dependencies>
 
 	<properties>

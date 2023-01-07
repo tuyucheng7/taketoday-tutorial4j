@@ -104,16 +104,6 @@
 		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>cn.tuyucheng.taketoday</groupId>
-				<artifactId>custom-jacoco-exclude-annotations</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
