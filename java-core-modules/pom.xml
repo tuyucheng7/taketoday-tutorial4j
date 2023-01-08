@@ -110,6 +110,8 @@
         <!--<module>java-perf</module>-->
         <module>java-reflection-1</module>
         <module>java-reflection-2</module>
+		<module>java-regex-1</module>
+		<module>java-regex-2</module>
         <!--<module>java-security-1</module>-->
         <!--<module>java-security-2</module>-->
         <!--<module>java-security-3</module>-->
@@ -128,8 +130,6 @@
         <!--<module>java-string-operations-1</module>-->
         <!--<module>java-string-operations-2</module>-->
         <!--<module>java-sun</module>-->
-        <!--<module>java-regex-1</module>-->
-        <!--<module>java-regex-2</module>-->
         <!--<module>java-uuid</module>-->
         <!--<module>java-pre-jpms</module>-->
     </modules>
