@@ -120,14 +120,19 @@
 		<module>java-streams-2</module>
 		<module>java-streams-3</module>
 		<module>java-streams-4</module>
-		<!--<module>java-string-algorithms-1</module>-->
-		<!--<module>java-string-algorithms-2</module>-->
-		<!--<module>java-string-apis-1</module>-->
-		<!--<module>java-string-apis-2</module>-->
-		<!--<module>java-string-conversions-1</module>-->
-		<!--<module>java-string-conversions-2</module>-->
-		<!--<module>java-string-operations-1</module>-->
-		<!--<module>java-string-operations-2</module>-->
+		<module>java-string-algorithms-1</module>
+		<module>java-string-algorithms-2</module>
+		<module>java-string-algorithms-3</module>
+		<module>java-string-apis-1</module>
+		<module>java-string-apis-2</module>
+		<module>java-string-conversions-1</module>
+		<module>java-string-conversions-2</module>
+		<module>java-string-operations-1</module>
+		<module>java-string-operations-2</module>
+		<module>java-string-operations-3</module>
+		<module>java-string-operations-4</module>
+		<module>java-string-operations-5</module>
+		<module>java-strings</module>
 		<!--<module>java-sun</module>-->
 		<!--<module>java-uuid</module>-->
 		<!--<module>java-pre-jpms</module>-->
