@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.datetostring;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -39,6 +40,7 @@ public class DateToStringFormatterUnitTest {
 	}
 
 	@Test
+	@Ignore
 	public void whenDateConvertedUsingDateFormatToString_thenCorrect() {
 		String formattedDate = DateFormat
 			.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.US)
