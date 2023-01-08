@@ -45,10 +45,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>custom-jacoco-exclude-annotations</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
