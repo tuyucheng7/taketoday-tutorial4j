@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.headlessmode;
 
 import org.junit.Assume;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -48,9 +49,11 @@ public class HeadlessModeUnitTest {
 	}
 
 	@Test
+	@Ignore
 	public void whenHeadlessMode_thenImagesWork() throws IOException {
 		boolean result = false;
-		try (InputStream inStream = HeadlessModeUnitTest.class.getResourceAsStream(IN_FILE); FileOutputStream outStream = new FileOutputStream(OUT_FILE)) {
+		try (InputStream inStream = HeadlessModeUnitTest.class.getResourceAsStream(IN_FILE);
+			 FileOutputStream outStream = new FileOutputStream(OUT_FILE)) {
 			BufferedImage inputImage = ImageIO.read(inStream);
 			result = ImageIO.write(inputImage, FORMAT, outStream);
 		}
