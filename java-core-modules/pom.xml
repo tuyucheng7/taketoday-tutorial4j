@@ -101,11 +101,11 @@
         <module>java-networking-4</module>
         <module>java-nio-1</module>
         <module>java-nio-2</module>
-        <!--<module>java-numbers-1</module>-->
-        <!--<module>java-numbers-2</module>-->
-        <!--<module>java-numbers-3</module>-->
-        <!--<module>java-numbers-4</module>-->
-        <!--<module>java-numbers-5</module>-->
+        <module>java-numbers-1</module>
+        <module>java-numbers-2</module>
+        <module>java-numbers-3</module>
+        <module>java-numbers-4</module>
+        <module>java-numbers-5</module>
         <module>java-optional</module>
         <!--<module>java-perf</module>-->
         <!--<module>java-reflection-1</module>-->
