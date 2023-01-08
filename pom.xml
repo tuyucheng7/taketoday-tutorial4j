@@ -668,7 +668,7 @@
 				<!--<module>maven.modules</module>-->
 
 				<!--<module>mesos-marathon</module>-->
-				<!--<module>messaging-modules</module>-->
+				<module>messaging-modules</module>
 				<!--<module>metrics</module>-->
 				<!--<module>microservices-modules</module>-->
 				<!--<module>muleesb</module>-->
@@ -1163,7 +1163,7 @@
 				<!--<module>maven.modules</module>-->
 
 				<!--<module>mesos-marathon</module>-->
-				<!--<module>messaging-modules</module>-->
+				<module>messaging-modules</module>
 				<!--<module>metrics</module>-->
 				<!--<module>microservices-modules</module>-->
 				<!--<module>muleesb</module>-->
@@ -1615,7 +1615,7 @@
 				<!--<module>maven.modules</module>-->
 
 				<!--<module>mesos-marathon</module>-->
-				<!--<module>messaging-modules</module>-->
+				<module>messaging-modules</module>
 				<!--<module>metrics</module>-->
 				<!--<module>microservices-modules</module>-->
 				<!--<module>muleesb</module>-->
