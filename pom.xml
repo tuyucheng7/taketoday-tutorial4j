@@ -12,18 +12,6 @@
 
 	<repositories>
 		<repository>
-			<id>central</id>
-			<name>aliyun maven</name>
-			<url>https://maven.aliyun.com/repository/public</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
 			<id>central-repos</id>
 			<name>Central Repository</name>
 			<url>https://repo.maven.apache.org/maven2</url>
@@ -624,7 +612,7 @@
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
-				<!--<module>jackson-modules</module>-->
+				<module>jackson-modules</module>
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
 				<!--<module>javafx</module>-->
@@ -1120,7 +1108,6 @@
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
-				<!--<module>jackson-modules</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
 				<!--<module>javafx</module>-->
@@ -1573,7 +1560,6 @@
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
-				<!--<module>jackson-modules</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
 				<!--<module>javafx</module>-->
