@@ -108,8 +108,8 @@
         <module>java-numbers-5</module>
         <module>java-optional</module>
         <!--<module>java-perf</module>-->
-        <!--<module>java-reflection-1</module>-->
-        <!--<module>java-reflection-2</module>-->
+        <module>java-reflection-1</module>
+        <module>java-reflection-2</module>
         <!--<module>java-security-1</module>-->
         <!--<module>java-security-2</module>-->
         <!--<module>java-security-3</module>-->
