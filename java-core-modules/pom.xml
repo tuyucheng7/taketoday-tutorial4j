@@ -60,13 +60,14 @@
         <module>java-function</module>
         <module>java-functional</module>
         <module>java-httpclient</module>
-        <!--<module>java-io-1</module>-->
-        <!--<module>java-io-2</module>-->
-        <!--<module>java-io-3</module>-->
-        <!--<module>java-io-4</module>-->
-        <!--<module>java-io-apis-1</module>-->
-        <!--<module>java-io-apis-2</module>-->
-        <!--<module>java-io-conversions</module>-->
+        <module>java-io-1</module>
+        <module>java-io-2</module>
+        <module>java-io-3</module>
+        <module>java-io-4</module>
+        <module>java-io-apis-1</module>
+        <module>java-io-apis-2</module>
+        <module>java-io-conversions-1</module>
+        <module>java-io-conversions-2</module>
         <!--<module>java-jar</module>-->
         <!--<module>java-jndi</module>-->
         <!--<module>java-jvm-1</module>-->
