@@ -106,7 +106,7 @@
         <!--<module>java-numbers-3</module>-->
         <!--<module>java-numbers-4</module>-->
         <!--<module>java-numbers-5</module>-->
-        <!--<module>java-optional</module>-->
+        <module>java-optional</module>
         <!--<module>java-perf</module>-->
         <!--<module>java-reflection-1</module>-->
         <!--<module>java-reflection-2</module>-->
@@ -116,8 +116,9 @@
         <!--<module>java-serialization</module>-->
         <!--<module>java-security-algorithms</module>-->
         <!--<module>java-streams-1</module>-->
-        <!--<module>java-streams-2</module>-->
-        <!--<module>java-streams-3</module>-->
+        <module>java-streams-2</module>
+        <module>java-streams-3</module>
+        <module>java-streams-4</module>
         <!--<module>java-string-algorithms-1</module>-->
         <!--<module>java-string-algorithms-2</module>-->
         <!--<module>java-string-apis-1</module>-->
