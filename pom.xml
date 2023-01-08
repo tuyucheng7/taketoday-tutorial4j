@@ -23,6 +23,11 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>central-repos</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
 	</repositories>
 
 	<properties>

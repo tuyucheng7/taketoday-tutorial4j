@@ -1,0 +1,5 @@
+Agent-Class: cn.tuyucheng.taketoday.instrumentation.agent.MyInstrumentationAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Premain-Class: cn.tuyucheng.taketoday.instrumentation.agent.MyInstrumentationAgent
+Main-Class: cn.tuyucheng.taketoday.instrumentation.application.Launcher

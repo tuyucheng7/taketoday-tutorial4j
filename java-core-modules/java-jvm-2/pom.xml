@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>java-jvm-2</artifactId>
+	<version>1.0.0</version>
+	<name>java-jvm-2</name>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+		<artifactId>java-core-modules</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openjdk.jol</groupId>
+			<artifactId>jol-core</artifactId>
+			<version>${jol-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflections.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<jol-core.version>0.10</jol-core.version>
+		<reflections.version>0.10.2</reflections.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+</project>
