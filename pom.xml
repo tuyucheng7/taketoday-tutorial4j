@@ -535,7 +535,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -661,7 +661,7 @@
 				<!--<module>libraries-server-2</module>-->
 				<!--<module>libraries-testing</module>-->
 				<!--<module>logging-modules</module>-->
-				<!--<module>lombok-modules</module>-->
+				<module>lombok-modules</module>
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
@@ -739,7 +739,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -875,7 +875,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1031,7 +1031,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1156,7 +1156,7 @@
 				<!--<module>libraries-server-2</module>-->
 				<!--<module>libraries-testing</module>-->
 				<!--<module>logging-modules</module>-->
-				<!--<module>lombok-modules</module>-->
+				<module>lombok-modules</module>
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
@@ -1228,7 +1228,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1358,7 +1358,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1483,7 +1483,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1608,7 +1608,7 @@
 				<!--<module>libraries-server-2</module>-->
 				<!--<module>libraries-testing</module>-->
 				<!--<module>logging-modules</module>-->
-				<!--<module>lombok-modules</module>-->
+				<module>lombok-modules</module>
 				<!--<module>lucene</module>-->
 				<!--<module>mapstruct</module>-->
 
@@ -1658,7 +1658,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
@@ -1766,7 +1766,7 @@
 
 			<modules>
 				<!--<module>parent-boot-1</module>-->
-				<!--<module>parent-boot-2</module>-->
+				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<!--<module>parent-spring-5</module>-->
 				<module>parent-java</module>
