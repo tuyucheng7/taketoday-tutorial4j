@@ -541,7 +541,7 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>akka-modules</module>-->
+				<module>akka-modules</module>
 
 				<!--<module>algorithms-modules</module>-->
 				<!--<module>annotations</module>-->
@@ -1037,7 +1037,7 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>akka-modules</module>-->
+				<module>akka-modules</module>
 
 				<!--<module>algorithms-modules</module>-->
 				<!--<module>annotations</module>-->
@@ -1489,7 +1489,7 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>akka-modules</module>-->
+				<module>akka-modules</module>
 
 				<!--<module>algorithms-modules</module>-->
 				<!--<module>annotations</module>-->
