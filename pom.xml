@@ -687,7 +687,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<!--<module>web-modules</module>-->
+				<module>web-framework</module>
 			</modules>
 		</profile>
 
@@ -891,100 +891,6 @@
 			</modules>
 		</profile>
 
-		<profile>
-			<id>jdk9-and-above-unit</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<forkCount>3</forkCount>
-							<reuseForks>true</reuseForks>
-							<includes>
-								<include>SpringContextTest</include>
-								<include>**/*UnitTest</include>
-							</includes>
-							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<systemPropertyVariables>
-								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
-								</logback.configurationFile>
-							</systemPropertyVariables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>core-java-modules/core-java-9</module>-->
-				<!--<module>core-java-modules/core-java-9-improvements</module>-->
-				<!--<module>core-java-modules/core-java-9-jigsaw</module>-->
-				<!-- <module>core-java-modules/core-java-9-new-features</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!--<module>core-java-modules/core-java-9-streams</module>-->
-				<!--<module>core-java-modules/core-java-10</module>-->
-				<!--<module>core-java-modules/core-java-11</module>-->
-				<!--<module>core-java-modules/core-java-11-2</module>-->
-				<!--<module>core-java-modules/core-java-11-3</module>-->
-				<!-- <module>core-java-modules/core-java-12</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-13</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-14</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-15</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-16</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-17</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!--<module>core-java-modules/core-java-collections-set</module>-->
-				<!--<module>core-java-modules/core-java-collections-list-4</module>-->
-				<!--<module>core-java-modules/core-java-collections-maps-4</module>-->
-				<!--<module>core-java-modules/core-java-collections-maps-5</module>-->
-				<!--<module>core-java-modules/core-java-concurrency-simple</module>-->
-				<!--<module>core-java-modules/core-java-date-operations-1</module>-->
-				<!--<module>core-java-modules/core-java-datetime-conversion</module>-->
-				<!--<module>core-java-modules/core-java-datetime-string</module>-->
-				<!--<module>core-java-modules/core-java-io-conversions-2</module>-->
-				<!--<module>core-java-modules/core-java-jpms</module>-->
-				<!--<module>core-java-modules/core-java-os</module>-->
-				<!--<module>core-java-modules/core-java-streams-4</module>-->
-				<!--<module>core-java-modules/core-java-string-algorithms-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-4</module>-->
-				<!--<module>core-java-modules/core-java-time-measurements</module>-->
-				<!--<module>core-java-modules/core-java-networking-3</module>-->
-				<!--<module>core-java-modules/core-java-strings</module>-->
-				<!--<module>core-java-modules/core-java-httpclient</module>-->
-				<!--<module>spring-core-6</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
-				<!--<module>maven.modules/maven-generate-war</module>-->
-				<!--<module>maven.modules/multimodulemavenproject</module>-->
-				<!--<module>optaplanner</module>-->
-				<!--<module>persistence-modules/sirix</module>-->
-				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
-				<!--<module>quarkus-modules/quarkus-vs-springboot</module>-->
-				<!--<module>quarkus-modules/quarkus-jandex</module>-->
-				<!--<module>spring-boot-modules/spring-boot-cassandre</module>-->
-				<!--<module>spring-boot-modules/spring-boot-camel</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
-				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
-				<!--<module>software.test/testing-assertions</module>-->
-				<!--<module>persistence-modules/fauna</module>-->
-				<!--<module>lightrun</module>-->
-				<!--<module>tablesaw</module>-->
-			</modules>
-		</profile>
-
 		<!-- 仅执行集成测试的Profile -->
 		<profile>
 			<id>first-integration</id>
@@ -1168,7 +1074,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<!--<module>web-modules</module>-->
+				<module>web-framework</module>
 			</modules>
 		</profile>
 
@@ -1360,91 +1266,6 @@
 			</modules>
 		</profile>
 
-		<profile>
-			<id>jdk9-and-above-integration</id>
-			<properties>
-				<skip.integration.tests>false</skip.integration.tests>
-				<skip.unit.tests>true</skip.unit.tests>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
-							</excludes>
-							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
-							</includes>
-							<systemPropertyVariables>
-								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
-								</logback.configurationFile>
-							</systemPropertyVariables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-
-			<modules>
-				<!--<module>core-java-modules/core-java-9</module>-->
-				<!--<module>core-java-modules/core-java-9-improvements</module>-->
-				<!--<module>core-java-modules/core-java-9-jigsaw</module>-->
-				<!-- <module>core-java-modules/core-java-9-new-features</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!--<module>core-java-modules/core-java-9-streams</module>-->
-				<!--<module>core-java-modules/core-java-10</module>-->
-				<!--<module>core-java-modules/core-java-11</module>-->
-				<!--<module>core-java-modules/core-java-11-2</module>-->
-				<!--<module>core-java-modules/core-java-11-3</module>-->
-				<!-- <module>core-java-modules/core-java-12</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-13</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-14</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-15</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-16</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-17</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!--<module>core-java-modules/core-java-collections-set</module>-->
-				<!--<module>core-java-modules/core-java-collections-list-4</module>-->
-				<!--<module>core-java-modules/core-java-collections-maps-4</module>-->
-				<!--<module>core-java-modules/core-java-concurrency-simple</module>-->
-				<!--<module>core-java-modules/core-java-date-operations-1</module>-->
-				<!--<module>core-java-modules/core-java-datetime-conversion</module>-->
-				<!--<module>core-java-modules/core-java-datetime-string</module>-->
-				<!--<module>core-java-modules/core-java-io-conversions-2</module>-->
-				<!--<module>core-java-modules/core-java-jpms</module>-->
-				<!--<module>core-java-modules/core-java-os</module>-->
-				<!--<module>core-java-modules/core-java-string-algorithms-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-4</module>-->
-				<!--<module>core-java-modules/core-java-time-measurements</module>-->
-				<!--<module>core-java-modules/core-java-networking-3</module>-->
-				<!--<module>core-java-modules/core-java-strings</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
-				<!--<module>maven.modules/maven-generate-war</module>-->
-				<!--<module>maven.modules/multimodulemavenproject</module>-->
-				<!--<module>optaplanner</module>-->
-				<!--<module>persistence-modules/sirix</module>-->
-				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
-				<!--<module>quarkus-modules/quarkus-vs-springboot</module>-->
-				<!--<module>quarkus-modules/quarkus-jandex</module>-->
-				<!--<module>spring-boot-modules/spring-boot-cassandre</module>-->
-				<!--<module>spring-boot-modules/spring-boot-camel</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
-				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
-				<!--<module>software.test/testing-assertions</module>-->
-				<!--<module>persistence-modules/fauna</module>-->
-				<!--<module>lightrun</module>-->
-				<!--<module>spring-core-6</module>-->
-				<!--<module>tablesaw</module>-->
-			</modules>
-		</profile>
-
 		<!-- 同时执行单元测试和集成测试的Profile -->
 		<profile>
 			<id>first-all</id>
@@ -1606,7 +1427,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<!--<module>web-modules</module>-->
+				<module>web-framework</module>
 			</modules>
 		</profile>
 
@@ -1751,73 +1572,6 @@
 
 				<!--<module>vaadin</module>-->
 				<!--<module>vavr-modules</module>-->
-			</modules>
-		</profile>
-
-		<profile>
-			<id>jdk9-and-above-all</id>
-			<properties>
-				<skip.integration.tests>false</skip.integration.tests>
-				<skip.unit.tests>false</skip.unit.tests>
-			</properties>
-
-			<modules>
-				<!--<module>core-java-modules/core-java-9</module>-->
-				<!--<module>core-java-modules/core-java-9-improvements</module>-->
-				<!--<module>core-java-modules/core-java-9-jigsaw</module>-->
-				<!-- <module>core-java-modules/core-java-9-new-features</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!--<module>core-java-modules/core-java-9-streams</module>-->
-				<!--<module>core-java-modules/core-java-10</module>-->
-				<!--<module>core-java-modules/core-java-11</module>-->
-				<!--<module>core-java-modules/core-java-11-2</module>-->
-				<!--<module>core-java-modules/core-java-11-3</module>-->
-				<!-- <module>core-java-modules/core-java-12</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-13</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-14</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-15</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-16</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>core-java-modules/core-java-17</module> --> <!-- uses preview features, to be decided how to handle -->
-				<!-- <module>java-core-modules/java19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
-				<!--<module>core-java-modules/core-java-collections-set</module>-->
-				<!--<module>core-java-modules/core-java-collections-list-4</module>-->
-				<!--<module>core-java-modules/core-java-collections-maps-4</module>-->
-				<!--<module>core-java-modules/core-java-collections-maps-5</module>-->
-				<!--<module>core-java-modules/core-java-concurrency-simple</module>-->
-				<!--<module>core-java-modules/core-java-date-operations-1</module>-->
-				<!--<module>core-java-modules/core-java-datetime-conversion</module>-->
-				<!--<module>core-java-modules/core-java-datetime-string</module>-->
-				<!--<module>core-java-modules/core-java-io-conversions-2</module>-->
-				<!--<module>core-java-modules/core-java-jpms</module>-->
-				<!--<module>core-java-modules/core-java-os</module>-->
-				<!--<module>core-java-modules/core-java-streams-4</module>-->
-				<!--<module>core-java-modules/core-java-string-algorithms-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-3</module>-->
-				<!--<module>core-java-modules/core-java-string-operations-4</module>-->
-				<!--<module>core-java-modules/core-java-time-measurements</module>-->
-				<!--<module>core-java-modules/core-java-networking-3</module>-->
-				<!--<module>core-java-modules/core-java-strings</module>-->
-				<!--<module>core-java-modules/core-java-httpclient</module>-->
-				<!--<module>spring-core-6</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>libraries-concurrency</module>-->
-				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
-				<!--<module>maven.modules/maven-generate-war</module>-->
-				<!--<module>maven.modules/multimodulemavenproject</module>-->
-				<!--<module>optaplanner</module>-->
-				<!--<module>persistence-modules/sirix</module>-->
-				<!--<module>persistence-modules/spring-data-cassandra-2</module>-->
-				<!--<module>quarkus-modules/quarkus-vs-springboot</module>-->
-				<!--<module>quarkus-modules/quarkus-jandex</module>-->
-				<!--<module>spring-boot-modules/spring-boot-cassandre</module>-->
-				<!--<module>spring-boot-modules/spring-boot-camel</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3</module>-->
-				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
-				<!--<module>spring-swagger-codegen/custom-validations-opeanpi-codegen</module>-->
-				<!--<module>software.test/testing-assertions</module>-->
-				<!--<module>persistence-modules/fauna</module>-->
-				<!--<module>lightrun</module>-->
-				<!--<module>tablesaw</module>-->
 			</modules>
 		</profile>
 	</profiles>
