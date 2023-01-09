@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>apache-modules</artifactId>
+    <name>apache-modules</name>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>cn.tuyucheng.taketoday</groupId>
+        <artifactId>taketoday-tutorial4j</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <modules>
+        <!--<module>apache-cxf-modules</module>-->
+        <module>apache-httpclient-1</module>
+        <module>apache-httpclient-2</module>
+        <module>apache-kafka-1</module>
+        <module>apache-kafka-2</module>
+        <!--<module>apache-libraries</module>-->
+        <module>apache-olingo</module>
+        <module>apache-poi-1</module>
+        <module>apache-poi-2</module>
+        <module>apache-rocketmq</module>
+        <!--<module>apache-spark</module>-->
+        <module>apache-thrift</module>
+        <module>apache-tika</module>
+        <module>apache-velocity</module>
+    </modules>
+</project>

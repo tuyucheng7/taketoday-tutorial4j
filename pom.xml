@@ -547,17 +547,7 @@
 				<!--<module>annotations</module>-->
 				<!--<module>antlr</module>-->
 
-				<!--<module>apache-cxf-modules</module>-->
-				<!--<module>apache-kafka</module>-->
-				<!--<module>apache-kafka-2</module>-->
-				<!--<module>apache-libraries</module>-->
-				<!--<module>apache-olingo</module>-->
-				<!--<module>apache-poi</module>-->
-				<!--<module>apache-poi-2</module>-->
-				<!--<module>apache-rocketmq</module>-->
-				<!--<module>apache-thrift</module>-->
-				<!--<module>apache-tika</module>-->
-				<!--<module>apache-velocity</module>-->
+				<module>apache-modules</module>
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -608,7 +598,6 @@
 				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
 
 				<!--<module>hazelcast</module>-->
-				<!--<module>apache-httpclient</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
@@ -882,8 +871,6 @@
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>apache-spark</module>-->
-
 				<!--<module>image-processing</module>-->
 
 				<!--<module>jenkins-modules</module>-->
@@ -977,7 +964,6 @@
 				<!--<module>spring-core-6</module>-->
 				<!--<module>ddd-contexts</module>-->
 				<!--<module>docker-modules</module>-->
-				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
 				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
 				<!--<module>maven.modules/maven-generate-war</module>-->
@@ -1043,17 +1029,7 @@
 				<!--<module>annotations</module>-->
 				<!--<module>antlr</module>-->
 
-				<!--<module>apache-cxf-modules</module>-->
-				<!--<module>apache-kafka</module>-->
-				<!--<module>apache-kafka-2</module>-->
-				<!--<module>apache-libraries</module>-->
-				<!--<module>apache-olingo</module>-->
-				<!--<module>apache-poi</module>-->
-				<!--<module>apache-poi-2</module>-->
-				<!--<module>apache-rocketmq</module>-->
-				<!--<module>apache-thrift</module>-->
-				<!--<module>apache-tika</module>-->
-				<!--<module>apache-velocity</module>-->
+				<module>apache-modules</module>
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -1104,7 +1080,6 @@
 				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
 
 				<!--<module>hazelcast</module>-->
-				<!--<module>apache-httpclient</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
@@ -1365,8 +1340,6 @@
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>apache-spark</module>-->
-
 				<!--<module>image-processing</module>-->
 
 				<!--<module>jenkins-modules</module>-->
@@ -1450,7 +1423,6 @@
 				<!--<module>core-java-modules/core-java-strings</module>-->
 				<!--<module>ddd-contexts</module>-->
 				<!--<module>docker-modules</module>-->
-				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
 				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
 				<!--<module>maven.modules/maven-generate-war</module>-->
@@ -1495,17 +1467,7 @@
 				<!--<module>annotations</module>-->
 				<!--<module>antlr</module>-->
 
-				<!--<module>apache-cxf-modules</module>-->
-				<!--<module>apache-kafka</module>-->
-				<!--<module>apache-kafka-2</module>-->
-				<!--<module>apache-libraries</module>-->
-				<!--<module>apache-olingo</module>-->
-				<!--<module>apache-poi</module>-->
-				<!--<module>apache-poi-2</module>-->
-				<!--<module>apache-rocketmq</module>-->
-				<!--<module>apache-thrift</module>-->
-				<!--<module>apache-tika</module>-->
-				<!--<module>apache-velocity</module>-->
+				<module>apache-modules</module>
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -1556,7 +1518,6 @@
 				<!-- <module>guest</module> --> <!-- not to be built as its for guest articles  -->
 
 				<!--<module>hazelcast</module>-->
-				<!--<module>apache-httpclient</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
 
@@ -1773,8 +1734,6 @@
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 
-				<!--<module>apache-spark</module>-->
-
 				<!--<module>image-processing</module>-->
 
 				<!--<module>jenkins-modules</module>-->
@@ -1841,7 +1800,6 @@
 				<!--<module>spring-core-6</module>-->
 				<!--<module>ddd-contexts</module>-->
 				<!--<module>docker-modules</module>-->
-				<!--<module>apache-httpclient-2</module>-->
 				<!--<module>libraries-concurrency</module>-->
 				<!--<module>maven.modules/compiler-plugin-java-9</module>-->
 				<!--<module>maven.modules/maven-generate-war</module>-->
