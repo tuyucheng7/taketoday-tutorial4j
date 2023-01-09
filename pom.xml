@@ -537,7 +537,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -576,7 +576,7 @@
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
 				<!--<module>deeplearning4j</module>-->
-				<!--<module>di-modules</module>-->
+				<module>dependency-injection</module>
 				<!--<module>discord4j</module>-->
 				<!--<module>disruptor</module>-->
 				<!--<module>dozer</module>-->
@@ -730,7 +730,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -866,7 +866,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
@@ -1019,7 +1019,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1058,7 +1058,7 @@
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
 				<!--<module>deeplearning4j</module>-->
-				<!--<module>di-modules</module>-->
+				<module>dependency-injection</module>
 				<!--<module>discord4j</module>-->
 				<!--<module>disruptor</module>-->
 				<!--<module>dozer</module>-->
@@ -1205,7 +1205,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1335,7 +1335,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
@@ -1457,7 +1457,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1496,7 +1496,7 @@
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
 				<!--<module>deeplearning4j</module>-->
-				<!--<module>di-modules</module>-->
+				<module>dependency-injection</module>
 				<!--<module>discord4j</module>-->
 				<!--<module>disruptor</module>-->
 				<!--<module>dozer</module>-->
@@ -1621,7 +1621,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 
@@ -1729,7 +1729,7 @@
 				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
-				<!--<module>parent-spring-5</module>-->
+				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
