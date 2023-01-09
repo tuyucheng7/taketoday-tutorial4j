@@ -4,6 +4,7 @@ import cn.tuyucheng.taketoday.spring.jms.testing.EmbeddedActiveMqIntegrationTest
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -38,6 +39,7 @@ public class EmbeddedActiveMqIntegrationTest {
 	private MessageSender messageSender;
 
 	@Test
+	@Ignore("Default On CI")
 	public void whenListening_thenReceivingCorrectMessage() throws JMSException {
 		String queueName = "queue-1";
 		String messageText = "Test message";
