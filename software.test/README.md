@@ -13,7 +13,7 @@
 * [Mocks](mocks-1/README.md)
 * [Cucumber](cucumber-1/README.md)
 * [Rest Assured](rest-assured/README.md)
-* [Spring Test](spring-1/README.md)
+* [Spring Test](spring-testing-1/README.md)
 * [MockServer](mockserver/README.md)
 * [Rest API](rest-testing/README.md)
 * [Assertion Libraries](assertion-libraries/README.md)
