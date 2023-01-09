@@ -22,3 +22,5 @@
 * [Groovy Spock](groovy-spock/README.md)
 * [TestContainers](containers/README.md)
 * [EasyRandom](easy-random/README.md)
+* [XMLUnit](xmlunit-2/README.md)
+* [Zerocode](zerocode/README.md)

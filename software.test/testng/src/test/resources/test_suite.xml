@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="suite" parallel="classes" thread-count="2">
+	<listeners>
+		<listener class-name="cn.tuyucheng.taketoday.reports.CustomisedReports"/>
+	</listeners>
+	<test name="test suite">
+		<classes>
+			<class name="cn.tuyucheng.taketoday.RegistrationLongRunningUnitTest"/>
+			<class name="cn.tuyucheng.taketoday.SignInLongRunningUnitTest"/>
+			<class name="cn.tuyucheng.taketoday.SimpleLongRunningUnitTest"/>
+		</classes>
+	</test>
+</suite>
