@@ -1,0 +1,11 @@
+package cn.tuyucheng.taketoday.cloud.echo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class SpringContextLiveTest {
+	@Test
+	void contextLoads() {
+	}
+}

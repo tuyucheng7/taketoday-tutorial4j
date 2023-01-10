@@ -534,12 +534,13 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -667,7 +668,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<module>web-framework</module>
+				<!--<module>web-framework</module>-->
 			</modules>
 		</profile>
 
@@ -707,12 +708,13 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<module>custom-pmd</module>
 
@@ -721,15 +723,14 @@
 
 				<!--<module>spf4j</module>-->
 
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
-
 				<!--<module>spring-boot-modules</module>-->
-
-				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-cloud-modules</module>
+				<!--<module>spring-web-modules</module>-->
+				<!--<module>spring-security-modules</module>-->
 				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
 
-				<!--<module>spring-security-modules</module>-->
-				<!--<module>spring-web-modules</module>-->
 
 				<!--<module>static-analysis</module>-->
 
@@ -782,13 +783,14 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>image-processing</module>-->
 
@@ -841,12 +843,13 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -973,7 +976,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<module>web-framework</module>
+				<!--<module>web-framework</module>-->
 			</modules>
 		</profile>
 
@@ -1007,12 +1010,13 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<module>custom-pmd</module>
 
@@ -1021,15 +1025,14 @@
 
 				<!--<module>spf4j</module>-->
 
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
-
 				<!--<module>spring-boot-modules</module>-->
-
-				<!--<module>spring-cloud-modules</module>-->
-				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
-
+				<module>spring-cloud-modules</module>
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
+				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
+
 				<!--<module>static-analysis</module>-->
 
 				<!--<module>tensorflow-java</module>-->
@@ -1075,13 +1078,14 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>image-processing</module>-->
 
@@ -1112,12 +1116,13 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>akka-modules</module>-->
 
@@ -1244,7 +1249,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
-				<module>web-framework</module>
+				<!--<module>web-framework</module>-->
 			</modules>
 		</profile>
 
@@ -1256,12 +1261,13 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<module>custom-pmd</module>
 
@@ -1270,14 +1276,13 @@
 
 				<!--<module>spf4j</module>-->
 
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
-
 				<!--<module>spring-boot-modules</module>-->
-
-				<!--<module>spring-cloud-modules</module>-->
-				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
+				<module>spring-cloud-modules</module>
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
+				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
 
 				<!--<module>static-analysis</module>-->
 
@@ -1302,13 +1307,14 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
+				<module>jacoco-exclude-annotations</module>
 
 				<!--<module>image-processing</module>-->
 

@@ -1,0 +1,14 @@
+{
+	"type": "record",
+	"name": "EmployeeKey",
+	"namespace": "cn.tuyucheng.taketoday.schema",
+	"fields": [
+	 {
+		"name": "id",
+		"type": "int"
+	},
+	{
+		"name": "departmentName",
+		"type": "string"
+	}]
+}
