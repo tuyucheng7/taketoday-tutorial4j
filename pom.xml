@@ -10,14 +10,6 @@
 	<version>1.0.0</version>
 	<name>taketoday-tutorial4j</name>
 
-	<repositories>
-		<repository>
-			<id>central-repos</id>
-			<name>Central Repository</name>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</repository>
-	</repositories>
-
 	<properties>
 		<skip.unit.tests>false</skip.unit.tests>
 		<skip.integration.tests>true</skip.integration.tests>
@@ -539,6 +531,7 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
 
@@ -547,7 +540,6 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>annotations</module>-->
 				<!--<module>antlr</module>-->
-
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -568,11 +560,10 @@
 				<!--<module>groovy.core</module>-->
 
 				<!--<module>java-core-modules</module>-->
-				<module>opensource-libraries</module>
+				<!--<module>opensource-libraries</module>-->
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
-				<module>custom-pmd</module>
 
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
@@ -653,7 +644,6 @@
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
-				<!--<module>spring-data-modules</module>-->
 				<!--<module>protobuffer</module>-->
 
 				<!--<module>quarkus-modules</module>-->
@@ -725,9 +715,10 @@
 				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
-				<module>spring-cloud-modules</module>
+				<module>spring-data-modules</module>
+				<!--<module>spring-cloud-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
-				<module>spring-security-modules</module>
+				<!--<module>spring-security-modules</module>-->
 				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
 
 
@@ -877,7 +868,7 @@
 				<!--<module>groovy.core</module>-->
 
 				<!--<module>java-core-modules</module>-->
-				<module>opensource-libraries</module>
+				<!--<module>opensource-libraries</module>-->
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
@@ -961,7 +952,6 @@
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
-				<!--<module>spring-data-modules</module>-->
 				<!--<module>protobuffer</module>-->
 
 				<!--<module>quarkus-modules</module>-->
@@ -1027,7 +1017,8 @@
 				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
-				<module>spring-cloud-modules</module>
+				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-data-modules</module>
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
 				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
@@ -1150,7 +1141,7 @@
 				<!--<module>groovy.core</module>-->
 
 				<!--<module>java-core-modules</module>-->
-				<module>opensource-libraries</module>
+				<!--<module>opensource-libraries</module>-->
 				<!--<module>kotlin-modules</module>-->
 
 				<!--<module>couchbase</module>-->
@@ -1234,7 +1225,6 @@
 				<!--<module>pdf</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
-				<!--<module>spring-data-modules</module>-->
 				<!--<module>protobuffer</module>-->
 
 				<!--<module>quarkus-modules</module>-->
@@ -1278,7 +1268,8 @@
 				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
-				<module>spring-cloud-modules</module>
+				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-data-modules</module>
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
 				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->

@@ -1,0 +1,14 @@
+[
+    {
+        "_class": "cn.tuyucheng.taketoday.entity.Fruit",
+        "name": "apple",
+        "color": "red",
+        "id": 1
+    },
+    {
+        "_class": "cn.tuyucheng.taketoday.entity.Fruit",
+        "name": "guava",
+        "color": "green",
+        "id": 2
+    }
+]
