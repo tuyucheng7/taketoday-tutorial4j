@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.tuyucheng.taketoday</groupId>
+    <artifactId>spring-security-oauth2-sso</artifactId>
+    <version>1.0.0</version>
+    <name>spring-security-oauth2-sso</name>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>cn.tuyucheng.taketoday</groupId>
+        <artifactId>parent-boot-2</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../../parent-boot-2</relativePath>
+    </parent>
+
+    <dependencies>
+
+    </dependencies>
+
+    <modules>
+        <module>spring-security-sso-auth-server</module>
+        <module>spring-security-sso-ui</module>
+        <module>spring-security-sso-ui-2</module>
+        <module>spring-security-sso-kerberos</module>
+    </modules>
+
+    <properties>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <jaxb-impl.version>2.3.4</jaxb-impl.version>
+        <rest-assured.version>3.1.0</rest-assured.version>
+        <oauth.version>2.4.0.RELEASE</oauth.version>
+        <oauth-auto.version>2.4.0</oauth-auto.version>
+        <spring-security-kerberos.version>1.0.1.RELEASE</spring-security-kerberos.version>
+        <apacheds-jdbm1.version>2.0.0-M2</apacheds-jdbm1.version>
+    </properties>
+</project>

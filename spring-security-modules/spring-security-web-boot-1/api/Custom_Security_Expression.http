@@ -1,0 +1,2 @@
+GET http://localhost:8082/organizations/1
+Authorization: Basic john 123
