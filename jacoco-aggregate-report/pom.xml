@@ -25,31 +25,31 @@
 		<!--</dependency>-->
 
 		<!-- Software Testing -->
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>assertion-libraries</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>junit-5</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>junit-5-basics</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>junit-5-annotations</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>junit-5-advanced</artifactId>
-			<version>1.0.0</version>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
+		<!--	<artifactId>assertion-libraries</artifactId>-->
+		<!--	<version>1.0.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
+		<!--	<artifactId>junit-5</artifactId>-->
+		<!--	<version>1.0.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
+		<!--	<artifactId>junit-5-basics</artifactId>-->
+		<!--	<version>1.0.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
+		<!--	<artifactId>junit-5-annotations</artifactId>-->
+		<!--	<version>1.0.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
+		<!--	<artifactId>junit-5-advanced</artifactId>-->
+		<!--	<version>1.0.0</version>-->
+		<!--</dependency>-->
 		<!--<dependency>-->
 		<!--	<groupId>cn.tuyucheng.taketoday</groupId>-->
 		<!--	<artifactId>testing-assertions</artifactId>-->
