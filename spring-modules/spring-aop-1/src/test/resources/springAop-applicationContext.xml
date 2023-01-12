@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="sampleAdder"
+		  class="cn.tuyucheng.taketoday.logger.SampleAdder"/>
+
+	<bean id="doBeforeAspect" class="cn.tuyucheng.taketoday.logger.AdderBeforeAspect"/>
+	<bean id="doAfterAspect" class="cn.tuyucheng.taketoday.logger.AdderAfterAspect"/>
+	<bean id="doAfterThrowingAspect" class="cn.tuyucheng.taketoday.logger.AdderAfterThrowAspect"/>
+	<bean id="doAfterReturningAspect" class="cn.tuyucheng.taketoday.logger.AdderAfterReturnAspect"/>
+	<bean id="doAroundAspect" class="cn.tuyucheng.taketoday.logger.AdderAroundAspect"/>
+
+	<aop:config>
+		<aop:aspect id="aspects" ref="doBeforeAspect">
+			<aop:pointcut id="pointCutBefore"
+						  expression="execution(* cn.tuyucheng.taketoday.logger.SampleAdder+.*(..))"/>
+			<aop:before method="beforeAdvice" pointcut-ref="pointCutBefore"/>
+		</aop:aspect>
+
+		<aop:aspect id="aspects" ref="doAfterAspect">
+			<aop:pointcut id="pointCutAfter"
+						  expression="execution(* cn.tuyucheng.taketoday.logger.SampleAdder+.*(..))"/>
+			<aop:after method="afterAdvice" pointcut-ref="pointCutAfter"/>
+		</aop:aspect>
+
+		<aop:aspect id="aspects" ref="doAfterReturningAspect">
+			<aop:pointcut id="pointCutAfterReturning"
+						  expression="execution(* cn.tuyucheng.taketoday.logger.SampleAdder+.*(..))"/>
+			<aop:after-returning method="afterReturn"
+								 returning="returnValue" pointcut-ref="pointCutAfterReturning"/>
+		</aop:aspect>
+
+		<aop:aspect id="aspects" ref="doAfterThrowingAspect">
+			<aop:pointcut id="pointCutAfterThrowing"
+						  expression="execution(* cn.tuyucheng.taketoday.logger.SampleAdder+.*(..))"/>
+			<aop:after-throwing method="afterThrow"
+								throwing="exception" pointcut-ref="pointCutAfterThrowing"/>
+		</aop:aspect>
+
+		<aop:aspect id="aspects" ref="doAroundAspect">
+			<aop:pointcut id="pointCutAround"
+						  expression="execution(* cn.tuyucheng.taketoday.logger.SampleAdder+.*(..))"/>
+			<aop:around method="aroundAdvice" pointcut-ref="pointCutAround"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
