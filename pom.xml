@@ -773,7 +773,7 @@
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
 
-				<!--<module>image-processing</module>-->
+				<module>image-processing</module>
 
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
@@ -1058,7 +1058,7 @@
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
 
-				<!--<module>image-processing</module>-->
+				<module>image-processing</module>
 
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
@@ -1279,7 +1279,7 @@
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
 
-				<!--<module>image-processing</module>-->
+				<module>image-processing</module>
 
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
