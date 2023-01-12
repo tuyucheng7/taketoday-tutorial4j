@@ -622,7 +622,7 @@
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
-				<!--<module>metrics</module>-->
+				<module>metrics</module>
 				<!--<module>microservices</module>-->
 				<!--<module>muleesb</module>-->
 				<!--<module>mustache</module>-->
@@ -920,7 +920,7 @@
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
-				<!--<module>metrics</module>-->
+				<module>metrics</module>
 				<!--<module>microservices</module>-->
 				<!--<module>muleesb</module>-->
 				<!--<module>mustache</module>-->
@@ -1183,7 +1183,7 @@
 
 				<!--<module>mesos-marathon</module>-->
 				<!--<module>messaging-modules</module>-->
-				<!--<module>metrics</module>-->
+				<module>metrics</module>
 				<!--<module>microservices</module>-->
 				<!--<module>muleesb</module>-->
 				<!--<module>mustache</module>-->
