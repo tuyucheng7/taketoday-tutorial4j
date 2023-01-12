@@ -623,7 +623,7 @@
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
-				<!--<module>mapstruct</module>-->
+				<module>mapstruct</module>
 
 				<!--<module>maven.modules</module>-->
 
@@ -931,7 +931,7 @@
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
-				<!--<module>mapstruct</module>-->
+				<module>mapstruct</module>
 
 				<!--<module>maven.modules</module>-->
 
@@ -1204,7 +1204,7 @@
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
-				<!--<module>mapstruct</module>-->
+				<module>mapstruct</module>
 
 				<!--<module>maven.modules</module>-->
 
