@@ -647,7 +647,7 @@
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>reactive-systems</module>-->
-				<!--<module>security-modules</module>-->
+				<module>security-modules</module>
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
@@ -945,7 +945,7 @@
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>reactive-systems</module>-->
-				<!--<module>security-modules</module>-->
+				<module>security-modules</module>
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
@@ -1208,7 +1208,7 @@
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>reactive-systems</module>-->
-				<!--<module>security-modules</module>-->
+				<module>security-modules</module>
 				<!--<module>slack</module>-->
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
