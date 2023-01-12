@@ -708,7 +708,7 @@
 				<module>custom-pmd</module>
 
 				<!--<module>saas-modules</module>-->
-				<!--<module>server-modules</module>-->
+				<module>server-modules</module>
 
 				<!--<module>spf4j</module>-->
 
@@ -1010,7 +1010,7 @@
 				<module>custom-pmd</module>
 
 				<!--<module>saas-modules</module>-->
-				<!--<module>server-modules</module>-->
+				<module>server-modules</module>
 
 				<!--<module>spf4j</module>-->
 
@@ -1261,7 +1261,7 @@
 				<module>custom-pmd</module>
 
 				<!--<module>saas-modules</module>-->
-				<!--<module>server-modules</module>-->
+				<module>server-modules</module>
 
 				<!--<module>spf4j</module>-->
 
