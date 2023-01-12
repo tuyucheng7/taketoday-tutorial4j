@@ -531,14 +531,15 @@
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
 				<module>parent-java</module>
+				<module>annotations</module>
+				<!--<module>akka-modules</module>-->
+				<!--<module>apache-modules</module>-->
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
-
-				<!--<module>akka-modules</module>-->
+				<module>javax.modules</module>
 				<!--<module>algorithms-modules</module>-->
-				<!--<module>apache-modules</module>-->
-				<module>annotations</module>
+
 				<!--<module>antlr</module>-->
 
 				<!--<module>asciidoctor</module>-->
@@ -600,12 +601,6 @@
 				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
-				<!--<module>java-websocket</module>-->
-				<!--<module>javax-sound</module>-->
-				<!--<module>javaxval</module>-->
-				<!--<module>javaxval-2</module>-->
-				<!--<module>javax-validation-advanced</module>-->
-				<!--<module>jaxb</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
 				<!--<module>jhipster-5</module>-->
@@ -613,9 +608,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>jsf</module>-->
 				<!--<module>json-modules</module>-->
-				<!--<module>jsoup</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
@@ -697,6 +690,7 @@
 			</build>
 
 			<modules>
+				<module>custom-pmd</module>
 				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
@@ -704,9 +698,6 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
-
-				<module>custom-pmd</module>
-
 				<!--<module>saas-modules</module>-->
 				<module>server-modules</module>
 
@@ -840,7 +831,7 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
-
+				<module>javax.modules</module>
 				<!--<module>akka-modules</module>-->
 
 				<!--<module>algorithms-modules</module>-->
@@ -908,12 +899,6 @@
 				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
-				<!--<module>java-websocket</module>-->
-				<!--<module>javax-sound</module>-->
-				<!--<module>javaxval</module>-->
-				<!--<module>javaxval-2</module>-->
-				<!--<module>javax-validation-advanced</module>-->
-				<!--<module>jaxb</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
 				<!--<module>jhipster-5</module>-->
@@ -921,9 +906,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>jsf</module>-->
 				<!--<module>json-modules</module>-->
-				<!--<module>jsoup</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
@@ -999,6 +982,7 @@
 			</build>
 
 			<modules>
+				<module>custom-pmd</module>
 				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
@@ -1006,9 +990,6 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
-
-				<module>custom-pmd</module>
-
 				<!--<module>saas-modules</module>-->
 				<module>server-modules</module>
 
@@ -1113,7 +1094,7 @@
 				<module>parent-java</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
-
+				<module>javax.modules</module>
 				<!--<module>akka-modules</module>-->
 
 				<!--<module>algorithms-modules</module>-->
@@ -1181,12 +1162,6 @@
 				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
-				<!--<module>java-websocket</module>-->
-				<!--<module>javax-sound</module>-->
-				<!--<module>javaxval</module>-->
-				<!--<module>javaxval-2</module>-->
-				<!--<module>javax-validation-advanced</module>-->
-				<!--<module>jaxb</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
 				<!--<module>jhipster-5</module>-->
@@ -1194,9 +1169,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>jsf</module>-->
 				<!--<module>json-modules</module>-->
-				<!--<module>jsoup</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
