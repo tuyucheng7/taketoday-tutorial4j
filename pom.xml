@@ -649,7 +649,7 @@
 				<!--<module>quarkus-modules</module>-->
 
 				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
+				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>atomikos</module>-->
@@ -957,7 +957,7 @@
 				<!--<module>quarkus-modules</module>-->
 
 				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
+				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>atomikos</module>-->
@@ -1230,7 +1230,7 @@
 				<!--<module>quarkus-modules</module>-->
 
 				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
+				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
 				<!--<module>atomikos</module>-->
