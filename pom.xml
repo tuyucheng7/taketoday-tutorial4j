@@ -534,6 +534,7 @@
 				<module>annotations</module>
 				<!--<module>akka-modules</module>-->
 				<!--<module>apache-modules</module>-->
+				<module>atomikos</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
 				<module>jacoco-exclude-annotations</module>
@@ -645,7 +646,6 @@
 				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
@@ -839,6 +839,7 @@
 				<!--<module>antlr</module>-->
 
 				<!--<module>apache-modules</module>-->
+				<module>atomikos</module>
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -943,7 +944,6 @@
 				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
@@ -1102,6 +1102,7 @@
 				<!--<module>antlr</module>-->
 
 				<!--<module>apache-modules</module>-->
+				<module>atomikos</module>
 
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
@@ -1206,7 +1207,6 @@
 				<module>rsocket</module>
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>atomikos</module>-->
 				<!--<module>reactive-systems</module>-->
 				<!--<module>security-modules</module>-->
 				<!--<module>slack</module>-->
