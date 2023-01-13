@@ -582,7 +582,7 @@
 				<module>feign</module>
 
 				<!--<module>geotools</module>-->
-				<!--<module>google-cloud</module>-->
+				<module>google-cloud</module>
 				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!-- <module>grails</module> --> <!-- Not a maven project -->
@@ -881,7 +881,7 @@
 				<module>feign</module>
 
 				<!--<module>geotools</module>-->
-				<!--<module>google-cloud</module>-->
+				<module>google-cloud</module>
 				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!-- <module>grails</module> --> <!-- Not a maven project -->
@@ -1144,7 +1144,7 @@
 				<module>feign</module>
 
 				<!--<module>geotools</module>-->
-				<!--<module>google-cloud</module>-->
+				<module>google-cloud</module>
 				<!-- <module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!-- <module>grails</module> --> <!-- Not a maven project -->
