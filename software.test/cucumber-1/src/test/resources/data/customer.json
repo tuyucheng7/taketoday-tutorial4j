@@ -1,0 +1,38 @@
+[
+    {
+        "firstName": "Lakshay",
+        "lastName": "Sharma",
+        "age": 35,
+        "emailAddress": "Lakshay@Gmail.com",
+        "address": {
+            "streetAddress": "Shalimar Bagh",
+            "city": "Delhi",
+            "postCode": "110088",
+            "state": "Delhi",
+            "country": "India",
+            "county": "Delhi"
+        },
+        "phoneNumber": {
+            "home": "012345678",
+            "mob": "0987654321"
+        }
+    },
+    {
+        "firstName": "Virender",
+        "lastName": "Singh",
+        "age": 35,
+        "emailAddress": "Virender@Gmail.com",
+        "address": {
+            "streetAddress": "Palam Vihar",
+            "city": "Gurgaon",
+            "postCode": "122345",
+            "state": "Haryana",
+            "country": "India",
+            "county": "Delhi"
+        },
+        "phoneNumber": {
+            "home": "012345678",
+            "mob": "0987654321"
+        }
+    }
+]
