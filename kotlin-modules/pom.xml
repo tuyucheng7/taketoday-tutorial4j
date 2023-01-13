@@ -116,6 +116,7 @@
 		<module>kotlin-libraries-1</module>
 		<module>kotlin-libraries-2</module>
 		<module>kotlin-libraries-http</module>
+		<module>kotlin-logging</module>
 		<!--<module>kotlin-patterns</module>-->
 		<!--<module>kotlin-quasar</module>-->
 		<!--<module>kotlin-testing</module>-->
@@ -127,7 +128,6 @@
 		<!--<module>spring-reactive-kotlin</module>-->
 		<!--<module>spring-security-kotlin-dsl</module>-->
 		<module>kotlin-immutable-collections</module>
-		<!--<module>kotlin-logging</module>-->
 	</modules>
 
 	<properties>
