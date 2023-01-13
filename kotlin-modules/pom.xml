@@ -117,7 +117,7 @@
 		<module>kotlin-libraries-2</module>
 		<module>kotlin-libraries-http</module>
 		<module>kotlin-logging</module>
-		<!--<module>kotlin-patterns</module>-->
+		<module>kotlin-patterns</module>
 		<!--<module>kotlin-quasar</module>-->
 		<!--<module>kotlin-testing</module>-->
 		<!--<module>machine-learning</module>-->
