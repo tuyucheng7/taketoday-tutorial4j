@@ -118,9 +118,9 @@
 		<module>kotlin-libraries-http</module>
 		<module>kotlin-logging</module>
 		<module>kotlin-patterns</module>
+		<module>kotlin-machine-learning</module>
 		<!--<module>kotlin-quasar</module>-->
 		<!--<module>kotlin-testing</module>-->
-		<!--<module>machine-learning</module>-->
 		<!--<module>kotlin-spring-boot-1</module>-->
 		<module>kotlin-spring-boot-2</module>
 		<!--<module>spring-boot-test-kotlin</module>-->
