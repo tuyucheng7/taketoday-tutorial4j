@@ -635,8 +635,8 @@
 				<!--<module>osgi</module>-->
 
 				<!--<module>design-patterns-modules</module>-->
-				<!--<module>pdf</module>-->
-				<!--<module>pdf-2</module>-->
+				<module>pdf-1</module>
+				<module>pdf-2</module>
 				<!--<module>performance-tests</module>-->
 				<module>protobuffer</module>
 
@@ -933,8 +933,8 @@
 				<!--<module>osgi</module>-->
 
 				<!--<module>design-patterns-modules</module>-->
-				<!--<module>pdf</module>-->
-				<!--<module>pdf-2</module>-->
+				<module>pdf-1</module>
+				<module>pdf-2</module>
 				<!--<module>performance-tests</module>-->
 				<module>protobuffer</module>
 
@@ -1196,8 +1196,8 @@
 				<!--<module>osgi</module>-->
 
 				<!--<module>design-patterns-modules</module>-->
-				<!--<module>pdf</module>-->
-				<!--<module>pdf-2</module>-->
+				<module>pdf-1</module>
+				<module>pdf-2</module>
 				<!--<module>performance-tests</module>-->
 				<module>protobuffer</module>
 
