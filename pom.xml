@@ -614,7 +614,7 @@
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
-				<!--<module>logging-modules</module>-->
+				<module>logging-modules</module>
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
 				<module>mapstruct</module>
@@ -912,7 +912,7 @@
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
-				<!--<module>logging-modules</module>-->
+				<module>logging-modules</module>
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
 				<module>mapstruct</module>
@@ -1175,7 +1175,7 @@
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
-				<!--<module>logging-modules</module>-->
+				<module>logging-modules</module>
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
 				<module>mapstruct</module>
