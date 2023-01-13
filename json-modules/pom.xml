@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>json-modules</artifactId>
+	<name>json-modules</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>taketoday-tutorial4j</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<modules>
+		<module>json-1</module>
+		<module>json-2</module>
+		<module>json-path</module>
+		<module>gson</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

@@ -609,7 +609,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>json-modules</module>-->
+				<module>json-modules</module>
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
@@ -907,7 +907,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>json-modules</module>-->
+				<module>json-modules</module>
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
@@ -1170,7 +1170,7 @@
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>java-native</module>-->
-				<!--<module>json-modules</module>-->
+				<module>json-modules</module>
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!-- <module>lagom</module> --> <!-- Not a maven project -->
