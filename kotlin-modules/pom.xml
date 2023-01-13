@@ -108,9 +108,9 @@
 
 		<module>kotlin-core</module>
 		<module>kotlin-core-companion</module>
-		<!--<module>jee-kotlin</module>-->
+		<!--<module>kotlin-jakartaee</module>-->
 		<!-- <module>kotlin-js</module> --> <!-- not a Maven module -->
-		<!--<module>kotlin-json</module>-->
+		<module>kotlin-json</module>
 		<module>kotlin-lambda</module>
 		<!-- <module>kotlin-tornadofx</module>--> <!-- It's a Java 11 module -->
 		<!--<module>kotlin-libraries</module>-->
