@@ -33,10 +33,9 @@ jobs:
 
             -   name: Install Toolchain JDK
                 if: ${{ matrix.java == '17' }}
-                uses: battila7/jdk-via-jabba@v1
+                uses: AdoptOpenJDK/install-jdk@v1.1.1
                 with:
                     java-version: '8'
-                    distribution: 'temurin'
                     targets: 'TOOLCHAIN_JDK'
                     javaHomeEnvironmentVariable: TOOLCHAIN_JDK
 
