@@ -649,6 +649,7 @@
 				<module>reactive-systems</module>
 				<module>security-modules</module>
 				<!--<module>slack</module>-->
+				<module>tablesaw</module>
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
 			</modules>
@@ -715,7 +716,7 @@
 
 				<!--<module>static-analysis</module>-->
 
-				<!--<module>tensorflow-java</module>-->
+				<module>tensorflow-java</module>
 				<!--<module>software.test</module>-->
 
 				<!--<module>vertx-modules</module>-->
@@ -947,6 +948,7 @@
 				<module>reactive-systems</module>
 				<module>security-modules</module>
 				<!--<module>slack</module>-->
+				<module>tablesaw</module>
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
 			</modules>
@@ -1006,7 +1008,7 @@
 
 				<!--<module>static-analysis</module>-->
 
-				<!--<module>tensorflow-java</module>-->
+				<module>tensorflow-java</module>
 				<!--<module>software.test</module>-->
 
 				<!--<module>vertx-modules</module>-->
@@ -1210,6 +1212,7 @@
 				<module>reactive-systems</module>
 				<module>security-modules</module>
 				<!--<module>slack</module>-->
+				<module>tablesaw</module>
 				<!--<module>vavr-modules</module>-->
 				<!--<module>web-framework</module>-->
 			</modules>
@@ -1249,7 +1252,7 @@
 
 				<!--<module>static-analysis</module>-->
 
-				<!--<module>tensorflow-java</module>-->
+				<module>tensorflow-java</module>
 				<!--<module>software.test</module>-->
 
 				<!--<module>vertx-modules</module>-->
