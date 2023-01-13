@@ -600,7 +600,7 @@
 				<module>java-blockchain</module>
 				<!--<module>javafx</module>-->
 				<!--<module>java-jdi</module>-->
-				<!--<module>java-rmi</module>-->
+				<module>java-rmi</module>
 				<!--<module>java-spi</module>-->
 				<module>jersey</module>
 				<!--<module>jgit</module>-->
@@ -899,7 +899,7 @@
 				<module>java-blockchain</module>
 				<!--<module>javafx</module>-->
 				<!--<module>java-jdi</module>-->
-				<!--<module>java-rmi</module>-->
+				<module>java-rmi</module>
 				<!--<module>java-spi</module>-->
 				<module>jersey</module>
 				<!--<module>jgit</module>-->
@@ -1163,7 +1163,7 @@
 				<module>java-blockchain</module>
 				<!--<module>javafx</module>-->
 				<!--<module>java-jdi</module>-->
-				<!--<module>java-rmi</module>-->
+				<module>java-rmi</module>
 				<!--<module>java-spi</module>-->
 				<module>jersey</module>
 				<!--<module>jgit</module>-->
