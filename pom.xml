@@ -789,7 +789,7 @@
 				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 
-				<!--<module>vaadin</module>-->
+				<module>vaadin</module>
 				<!--<module>vavr-modules</module>-->
 			</modules>
 		</profile>
@@ -1075,7 +1075,7 @@
 				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 
-				<!--<module>vaadin</module>-->
+				<module>vaadin</module>
 				<!--<module>vavr-modules</module>-->
 			</modules>
 		</profile>
@@ -1297,7 +1297,7 @@
 				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 
-				<!--<module>vaadin</module>-->
+				<module>vaadin</module>
 				<!--<module>vavr-modules</module>-->
 			</modules>
 		</profile>
