@@ -114,7 +114,7 @@
 		<module>kotlin-lambda</module>
 		<!-- <module>kotlin-tornadofx</module>--> <!-- It's a Java 11 module -->
 		<module>kotlin-libraries-1</module>
-		<!--<module>kotlin-libraries-2</module>-->
+		<module>kotlin-libraries-2</module>
 		<!--<module>kotlin-libraries-http</module>-->
 		<!--<module>kotlin-patterns</module>-->
 		<!--<module>kotlin-quasar</module>-->
