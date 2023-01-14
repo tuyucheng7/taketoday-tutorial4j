@@ -343,6 +343,15 @@
 				<configuration>
 					<excludes>
 						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*App.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
+						<exclude>**/config/*</exclude>
+						<exclude>**/model/*</exclude>
+						<exclude>**/entity/*</exclude>
+						<exclude>**/pojo/*</exclude>
+						<exclude>**/dto/*</exclude>
+						<exclude>**/vo/*</exclude>
+						<exclude>**/domain/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
