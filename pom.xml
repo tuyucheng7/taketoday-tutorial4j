@@ -543,7 +543,7 @@
 
 				<!--<module>antlr</module>-->
 
-				<!--<module>asciidoctor</module>-->
+				<module>asciidoctor</module>
 				<!--<module>asm</module>-->
 
 				<!--<module>atomix</module>-->
@@ -842,7 +842,7 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>atomikos</module>-->
 
-				<!--<module>asciidoctor</module>-->
+				<module>asciidoctor</module>
 				<!--<module>asm</module>-->
 
 				<!--<module>atomix</module>-->
@@ -1106,7 +1106,7 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>atomikos</module>-->
 
-				<!--<module>asciidoctor</module>-->
+				<module>asciidoctor</module>
 				<!--<module>asm</module>-->
 
 				<!--<module>atomix</module>-->
