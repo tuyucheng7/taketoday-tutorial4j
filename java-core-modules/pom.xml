@@ -32,7 +32,7 @@
 		<!--<module>java11-3</module>-->
 		<!--<module>java12</module>-->
 		<!--<module>java13</module>-->
-		<!--<module>java14</module>-->
+		<module>java14</module>
 		<!--<module>java15</module>-->
 		<!--<module>java16</module>-->
 		<!--<module>java17</module>-->
