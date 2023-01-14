@@ -74,8 +74,8 @@
 		<h2.version>2.1.214</h2.version>
 		<guava.version>31.1-jre</guava.version>
 		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-		<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>
-		<checkstyle.version>8.8</checkstyle.version>
+		<checkstyle-maven-plugin.version>3.2.0</checkstyle-maven-plugin.version>
+		<checkstyle.version>10.5.0</checkstyle.version>
 		<jacoco.version>0.8.8</jacoco.version>
 		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
 		<!-- SonarCloud -->
