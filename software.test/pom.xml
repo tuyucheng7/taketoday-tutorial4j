@@ -41,8 +41,8 @@
 		<module>rest-assured-selenium</module>
 		<module>rest-testing</module>
 		<!--<module>selenium-junit-testng</module>-->
-		<!--<module>spring-testing-2</module>-->
-		<!--<module>spring-testing</module>-->
+		<module>spring-testing-1</module>
+		<module>spring-testing-2</module>
 		<!--<module>test-containers</module>-->
 		<!--<module>testing-libraries-2</module>-->
 		<!--<module>testing-libraries</module>-->
