@@ -36,7 +36,7 @@
 		<module>mocks-2</module>
 		<module>mockserver</module>
 		<!--<module>parallel-tests-junit</module>-->
-		<!--<module>powermock</module>-->
+		<module>powermock</module>
 		<!--<module>rest-assured</module>-->
 		<!--<module>rest-testing</module>-->
 		<!--<module>selenium-junit-testng</module>-->
