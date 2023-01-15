@@ -21,11 +21,11 @@
 		<module>java8-2</module>
 		<module>java8-datetime-1</module>
 		<module>java8-datetime-2</module>
-		<!--<module>java9</module>-->
-		<!--<module>java9-improvements</module>-->
-		<!--<module>java9-jigsaw</module>-->
-		<!--<module>java9-new-features</module>-->
-		<!--<module>java9-streams</module>-->
+		<module>java-9</module>
+		<module>java-9-improvements</module>
+		<module>java-9-jigsaw</module>
+		<module>java-9-new-features</module>
+		<module>java-9-streams</module>
 		<!--<module>java10</module>-->
 		<!--<module>java11-1</module>-->
 		<!--<module>java11-2</module>-->

@@ -1,0 +1,3 @@
+Premain-Class: cn.tuyucheng.taketoday.agent.LoadTimeAgent
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true

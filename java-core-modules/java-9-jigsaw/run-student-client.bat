@@ -1,0 +1,1 @@
+java --module-path mods -m cn.tuyucheng.taketoday.student.client/cn.tuyucheng.taketoday.student.client.StudentClient
