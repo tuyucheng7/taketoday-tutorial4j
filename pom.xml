@@ -341,7 +341,7 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco-maven-plugin.version}</version>
 				<configuration>
-					<excludes>
+					<excludes combine.children="append">
 						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*App.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
