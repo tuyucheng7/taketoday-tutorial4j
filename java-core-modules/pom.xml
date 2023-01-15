@@ -35,7 +35,8 @@
 		<module>java14</module>
 		<module>java15</module>
 		<module>java16</module>
-		<!--<module>java17</module>-->
+		<!--<module>java17</module>-->  <!-- uses preview features, to be decided how to handle -->
+		<!--<module>java19</module>-->  <!-- uses preview features, to be decided how to handle -->
 		<!--<module>java-annotations</module>-->
 		<!--<module>java-arrays-sorting</module>-->
 		<!--<module>java-arrays-guides</module>-->
