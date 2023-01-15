@@ -17,8 +17,8 @@
 
 	<modules>
 		<!--<module>java</module>-->
-		<!--<module>java8-1</module>-->
-		<!--<module>java8-2</module>-->
+		<module>java8-1</module>
+		<module>java8-2</module>
 		<module>java8-datetime-1</module>
 		<module>java8-datetime-2</module>
 		<!--<module>java9</module>-->
