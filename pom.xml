@@ -348,6 +348,7 @@
 						<exclude>**/config/*</exclude>
 						<exclude>**/model/*</exclude>
 						<exclude>**/entity/*</exclude>
+						<exclude>**/entities/*</exclude>
 						<exclude>**/pojo/*</exclude>
 						<exclude>**/dto/*</exclude>
 						<exclude>**/vo/*</exclude>
