@@ -27,9 +27,9 @@
 		<module>java-9-new-features</module>
 		<module>java-9-streams</module>
 		<module>java-10</module>
-		<!--<module>java11-1</module>-->
-		<!--<module>java11-2</module>-->
-		<!--<module>java11-3</module>-->
+		<module>java-11-1</module>
+		<module>java-11-2</module>
+		<module>java-11-3</module>
 		<module>java12</module>
 		<module>java13</module>
 		<module>java14</module>
