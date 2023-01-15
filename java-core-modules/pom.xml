@@ -26,7 +26,7 @@
 		<module>java-9-jigsaw</module>
 		<module>java-9-new-features</module>
 		<module>java-9-streams</module>
-		<!--<module>java10</module>-->
+		<module>java-10</module>
 		<!--<module>java11-1</module>-->
 		<!--<module>java11-2</module>-->
 		<!--<module>java11-3</module>-->
