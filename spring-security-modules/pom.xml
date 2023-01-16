@@ -22,6 +22,7 @@
         <module>spring-security-core-2</module>
         <module>spring-security-ldap</module>
         <module>spring-security-legacy-oidc</module>
+		<module>spring-security-login-and-registration</module>
         <module>spring-security-oauth2</module>
         <module>spring-security-oauth2-sso</module>
         <module>spring-security-oidc</module>

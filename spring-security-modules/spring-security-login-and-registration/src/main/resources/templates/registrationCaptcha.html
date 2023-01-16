@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <style>
+        .password-verdict {
+            color: #000;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script th:src="@{/resources/pwstrength.js}"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+    <title th:utext="#{label.form.title}">form</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        <h1 th:utext="#{label.form.title}">form</h1>
+        <br/>
+        <form method="POST" enctype="utf8">
+            <div class="form-group row">
+                <label class="col-sm-3" th:utext="#{label.user.firstName}">first</label>
+                <span class="col-sm-5"><input class="form-control" name="firstName" value=""
+                                              required="required"/></span>
+                <span id="firstNameError" class="alert alert-danger col-sm-4" style="display:none"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3" th:utext="#{label.user.lastName}">last</label>
+                <span class="col-sm-5"><input class="form-control" name="lastName" value="" required="required"/></span>
+                <span id="lastNameError" class="alert alert-danger col-sm-4" style="display:none"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3" th:utext="#{label.user.email}">email</label>
+                <span class="col-sm-5"><input type="email" class="form-control" name="email" value=""
+                                              required="required"/></span>
+                <span id="emailError" class="alert alert-danger col-sm-4" style="display:none"></span>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3" th:utext="#{label.user.password}">password</label>
+                <span class="col-sm-5"><input id="password" class="form-control" name="password" value=""
+                                              type="password" required="required"/></span>
+                <span id="passwordError" class="alert alert-danger col-sm-4" style="display:none"></span>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3" th:utext="#{label.user.confirmPass}">confirm</label>
+                <span class="col-sm-5"><input id="matchPassword" class="form-control" name="matchingPassword" value=""
+                                              type="password" required="required"/></span>
+                <span id="globalError" class="alert alert-danger col-sm-4" style="display:none"></span>
+            </div>
+            <div class="form-group row">
+                <!-- to enable captcha uncomment the keys in application.properties -->
+                <label class="col-sm-3">Captcha</label>
+                <div class="g-recaptcha col-sm-5" th:attr="data-sitekey=${@captchaService.getReCaptchaSite()}"
+                     data-callback="onReCaptchaSuccess" data-expired-callback="onReCaptchaExpired"></div>
+                <span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary" th:utext="#{label.form.submit}">submit</button>
+        </form>
+        <br/>
+        <a th:href="@{/login}" th:utext="#{label.form.loginLink}">login</a>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var serverContext = [[@{/}]];
+
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                register(event);
+            });
+
+            $(":password").keyup(function () {
+                if ($("#password").val() != $("#matchPassword").val()) {
+                    $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+                } else {
+                    $("#globalError").html("").hide();
+                }
+            });
+
+            options = {
+                common: {minChar: 8},
+                ui: {
+                    showVerdictsInsideProgressBar: true,
+                    showErrors: true,
+                    errorMessages: {
+                        wordLength: /*[[#{error.wordLength}]]*/,
+                        wordNotEmail: /*[[#{error.wordNotEmail}]]*/,
+                        wordSequences: /*[[#{error.wordSequences}]]*/,
+                        wordLowercase: /*[[#{error.wordLowercase}]]*/,
+                        wordUppercase: /*[[#{error.wordUppercase}]]*/,
+                        wordOneNumber: /*[[#{error.wordOneNumber}]]*/,
+                        wordOneSpecialChar: /*[[#{error.wordOneSpecialChar}]]*/
+                    }
+                }
+            };
+            $('#password').pwstrength(options);
+        });
+
+    function register(event) {
+        event.preventDefault();
+        $(".alert").html("").hide();
+        $(".error-list").html("");
+        if ($("#password").val() != $("#matchPassword").val()) {
+            $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
+            return;
+        }
+        if (typeof grecaptcha !== 'undefined') {
+            var resp = grecaptcha.getResponse();
+            if (resp.length == 0) {
+                $("#captchaError").show().html("Please verify that you are not a robot.");
+                return;
+            }
+        }
+        var formData = $('form').serialize();
+        $.post(serverContext + "user/registrationCaptcha", formData, function (data) {
+            if (data.message == "success") {
+                window.location.href = serverContext + "successRegister.html";
+            }
+
+        })
+            .fail(function (data) {
+                grecaptcha.reset();
+
+                if (data.responseJSON.error.indexOf("MailError") > -1) {
+                    window.location.href = serverContext + "emailError.html";
+                } else if (data.responseJSON.error == "InvalidReCaptcha") {
+                    $("#captchaError").show().html(data.responseJSON.message);
+                } else if (data.responseJSON.error == "UserAlreadyExist") {
+                    $("#emailError").show().html(data.responseJSON.message);
+                } else if (data.responseJSON.error.indexOf("InternalError") > -1) {
+                    window.location.href = serverContext + "login?message=" + data.responseJSON.message;
+                } else {
+                    var errors = $.parseJSON(data.responseJSON.message);
+                    $.each(errors, function (index, item) {
+                        $("#" + item.field + "Error").show().html(item.defaultMessage);
+                    });
+                    errors = $.parseJSON(data.responseJSON.error);
+                    $.each(errors, function (index, item) {
+                        $("#globalError").show().append(item.defaultMessage + "<br/>");
+                    });
+                }
+            });
+    }
+
+    var onReCaptchaSuccess = function (response) {
+        $("#captchaError").html("").hide();
+    };
+
+    var onReCaptchaExpired = function (response) {
+        $("#captchaError").html("reCaptcha has expired.  Please solve a new reCaptcha").show();
+        grecaptcha.reset();
+    };
+</script>
+</body>
+
+</html>
