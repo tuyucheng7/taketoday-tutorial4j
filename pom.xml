@@ -536,7 +536,7 @@
 			</build>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -593,8 +593,8 @@
 				<!--<module>jackson-modules</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<module>javafx</module>
-				<module>java-jdi</module>
+				<!--<module>javafx</module>-->
+				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
 				<!--<module>jersey</module>-->
@@ -680,7 +680,7 @@
 
 			<modules>
 				<module>custom-pmd</module>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -749,7 +749,7 @@
 			</build>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -804,7 +804,7 @@
 			</build>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -860,8 +860,8 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<module>javafx</module>
-				<module>java-jdi</module>
+				<!--<module>javafx</module>-->
+				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
 				<!--<module>jersey</module>-->
@@ -941,7 +941,7 @@
 
 			<modules>
 				<module>custom-pmd</module>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1004,7 +1004,7 @@
 			</build>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1037,7 +1037,7 @@
 			</properties>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1093,8 +1093,8 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<module>javafx</module>
-				<module>java-jdi</module>
+				<!--<module>javafx</module>-->
+				<!--<module>java-jdi</module>-->
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
 				<!--<module>jersey</module>-->
@@ -1151,7 +1151,7 @@
 			</properties>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1193,7 +1193,7 @@
 			</properties>
 
 			<modules>
-				<module>parent-boot-1</module>
+				<!--<module>parent-boot-1</module>-->
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
