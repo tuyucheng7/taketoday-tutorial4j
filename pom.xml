@@ -568,6 +568,7 @@
 				<!--<module>couchbase</module>-->
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
+				<!--<module>ddd-contexts</module>-->
 				<!--<module>deeplearning4j</module>-->
 				<!--<module>dependency-injection</module>-->
 				<!--<module>discord4j</module>-->
@@ -835,6 +836,7 @@
 				<module>custom-pmd</module>
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
+				<!--<module>ddd-contexts</module>-->
 				<!--<module>deeplearning4j</module>-->
 				<!--<module>dependency-injection</module>-->
 				<!--<module>discord4j</module>-->
@@ -1067,6 +1069,7 @@
 				<!--<module>custom-pmd</module>-->
 				<!--<module>data-structures</module>-->
 				<!--<module>ddd</module>-->
+				<!--<module>ddd-contexts</module>-->
 				<!--<module>deeplearning4j</module>-->
 				<!--<module>dependency-injection</module>-->
 				<!--<module>discord4j</module>-->
