@@ -694,6 +694,7 @@
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
+				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
 				<!--<module>spring-data-modules</module>-->
 				<!--<module>spring-cloud-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
@@ -953,6 +954,7 @@
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
+				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
 				<!--<module>spring-cloud-modules</module>-->
 				<!--<module>spring-data-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
@@ -1162,6 +1164,7 @@
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
+				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
 				<!--<module>spring-cloud-modules</module>-->
 				<!--<module>spring-data-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
