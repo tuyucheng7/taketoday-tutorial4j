@@ -592,7 +592,7 @@
 				<!--<module>jackson-modules</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<!--<module>javafx</module>-->
+				<module>javafx</module>
 				<module>java-jdi</module>
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
@@ -858,7 +858,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<!--<module>javafx</module>-->
+				<module>javafx</module>
 				<module>java-jdi</module>
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
@@ -1090,7 +1090,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-simple</module>-->
 				<!--<module>java-blockchain</module>-->
-				<!--<module>javafx</module>-->
+				<module>javafx</module>
 				<module>java-jdi</module>
 				<!--<module>java-rmi</module>-->
 				<!--<module>java-spi</module>-->
