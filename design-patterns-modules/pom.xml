@@ -25,12 +25,12 @@
 		<module>design-patterns-singleton</module>
 		<module>design-patterns-solid</module>
 		<module>dip</module>
-		<!--<module>cqrs-es</module>-->
-		<!--<module>front-controller</module>-->
-		<!--<module>hexagonal-architecture</module>-->
-		<!--<module>intercepting-filter</module>-->
-		<!--<module>clean-architecture</module>-->
-		<!--<module>enterprise-patterns</module>-->
+		<module>cqrs-es</module>
+		<module>front-controller</module>
+		<module>hexagonal-architecture</module>
+		<module>intercepting-filter</module>
+		<module>clean-architecture</module>
+		<module>enterprise-patterns</module>
 		<module>coupling</module>
 	</modules>
 
@@ -50,13 +50,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>custom-jacoco-exclude-annotations</artifactId>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<pluginManagement>

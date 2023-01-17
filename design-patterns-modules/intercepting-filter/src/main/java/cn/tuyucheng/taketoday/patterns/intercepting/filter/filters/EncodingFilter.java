@@ -1,0 +1,38 @@
+package cn.tuyucheng.taketoday.patterns.intercepting.filter.filters;
+
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
+import java.io.IOException;
+import java.util.Optional;
+
+@WebFilter(
+	servletNames = {"intercepting-filter"},
+	initParams = {@WebInitParam(name = "encoding", value = "UTF-8")}
+)
+public class EncodingFilter extends BaseFilter {
+	private String encoding;
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		super.init(filterConfig);
+		this.encoding = filterConfig.getInitParameter("encoding");
+	}
+
+	@Override
+	public void doFilter(
+		ServletRequest request,
+		ServletResponse response,
+		FilterChain chain
+	) throws IOException, ServletException {
+		String encoding = Optional
+			.ofNullable(request.getParameter("encoding"))
+			.orElse(this.encoding);
+		response.setCharacterEncoding(encoding);
+		chain.doFilter(request, response);
+	}
+}
