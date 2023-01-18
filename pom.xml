@@ -269,12 +269,12 @@
 					<reuseForks>true</reuseForks>
 					<skipTests>${skip.unit.tests}</skipTests>
 					<excludes>
-						<exclude>**/*IntegrationTest.java</exclude>
-						<exclude>**/*IntTest.java</exclude>
-						<exclude>**/*LongRunningUnitTest.java</exclude>
-						<exclude>**/*ManualTest.java</exclude>
-						<exclude>**/JdbcTest.java</exclude>
-						<exclude>**/*LiveTest.java</exclude>
+						<exclude>**/*IntegrationTest</exclude>
+						<exclude>**/*IntTest</exclude>
+						<exclude>**/*LongRunningUnitTest</exclude>
+						<exclude>**/*ManualTest</exclude>
+						<exclude>**/JdbcTest</exclude>
+						<exclude>**/*LiveTest</exclude>
 					</excludes>
 				</configuration>
 				<dependencies>
@@ -305,12 +305,12 @@
 						<configuration>
 							<skipTests>${skip.integration.tests}</skipTests>
 							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
+								<include>**/*IntegrationTest</include>
+								<include>**/*IntTest</include>
 							</includes>
 							<reuseForks>true</reuseForks>
 							<classesDirectory>${project.build.outputDirectory}</classesDirectory>
@@ -519,12 +519,12 @@
 								<include>**/*UnitTest</include>
 							</includes>
 							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*IntegrationTest</exclude>
+								<exclude>**/*IntTest</exclude>
+								<exclude>**/*LongRunningUnitTest</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/JdbcTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
@@ -662,12 +662,12 @@
 								<include>**/*UnitTest</include>
 							</includes>
 							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*IntegrationTest</exclude>
+								<exclude>**/*IntTest</exclude>
+								<exclude>**/*LongRunningUnitTest</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/JdbcTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
@@ -732,12 +732,12 @@
 								<include>**/*UnitTest</include>
 							</includes>
 							<excludes>
-								<exclude>**/*IntegrationTest.java</exclude>
-								<exclude>**/*IntTest.java</exclude>
-								<exclude>**/*LongRunningUnitTest.java</exclude>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/JdbcTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*IntegrationTest</exclude>
+								<exclude>**/*IntTest</exclude>
+								<exclude>**/*LongRunningUnitTest</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/JdbcTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
@@ -787,12 +787,12 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
+								<include>**/*IntegrationTest</include>
+								<include>**/*IntTest</include>
 							</includes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
@@ -923,12 +923,12 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
+								<include>**/*IntegrationTest</include>
+								<include>**/*IntTest</include>
 							</includes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
@@ -987,12 +987,12 @@
 						<artifactId>maven-surefire-plugin</artifactId>
 						<configuration>
 							<excludes>
-								<exclude>**/*ManualTest.java</exclude>
-								<exclude>**/*LiveTest.java</exclude>
+								<exclude>**/*ManualTest</exclude>
+								<exclude>**/*LiveTest</exclude>
 							</excludes>
 							<includes>
-								<include>**/*IntegrationTest.java</include>
-								<include>**/*IntTest.java</include>
+								<include>**/*IntegrationTest</include>
+								<include>**/*IntTest</include>
 							</includes>
 							<systemPropertyVariables>
 								<logback.configurationFile>${tutorialsproject.basedir}/logback-config.xml
