@@ -9,25 +9,25 @@ import javax.persistence.Table;
 @Table(name = "system_message")
 public class NoticeMessage {
 
-    @Id
-    @Column
-    private Integer id;
-    @Column
-    private String content;
+	@Id
+	@Column
+	private Integer id;
+	@Column
+	private String content;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 }

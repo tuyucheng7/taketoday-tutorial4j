@@ -2,14 +2,11 @@
 
 Access Control List(ACL)是附加到对象的权限列表，ACL指定哪些身份被授予对给定对象的哪些操作。
 
-**Spring Security ACL是一个支持域对象安全性的Spring组件**。
-简而言之，Spring ACL有助于在单个域对象上定义特定用户/角色的权限，而不是在每个操作级别上全面定义权限。
+**Spring Security ACL是一个支持域对象安全性的Spring组件**。简而言之，Spring ACL有助于在单个域对象上定义特定用户/角色的权限，而不是在每个操作级别上全面定义权限。
 
-例如，具有Admin角色的用户可以查看(READ)和编辑(WRITE)中央通知框上的所有消息，但普通用户只能查看消息、与其相关联而不能编辑。
-同时，其他具有WRITE角色的用户可以查看和编辑某些特定消息。
+例如，具有Admin角色的用户可以查看(READ)和编辑(WRITE)中央通知框上的所有消息，但普通用户只能查看消息、与其相关联而不能编辑。同时，其他具有WRITE角色的用户可以查看和编辑某些特定消息。
 
-因此，不同的用户/角色对每个特定对象具有不同的权限。在这种情况下，Spring ACL能够实现我们的目的。
-我们将在本文中探讨如何使用Spring ACL设置基本权限检查。
+因此，不同的用户/角色对每个特定对象具有不同的权限。在这种情况下，Spring ACL能够实现我们的目的。我们将在本文中探讨如何使用Spring ACL设置基本权限检查。
 
 ## 2. 配置
 
@@ -51,7 +48,7 @@ Access Control List(ACL)是附加到对象的权限列表，ACL指定哪些身�
 
 为了能够在我们的项目中使用Spring ACL，我们需要添加以下依赖：
 
-```text
+```xml
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-acl</artifactId>
@@ -71,15 +68,13 @@ Access Control List(ACL)是附加到对象的权限列表，ACL指定哪些身�
 </dependency>
 ```
 
-Spring ACL需要一个缓存来存储Object Identity和ACL Entry，所以我们在这里使用Ehcache。
-而且，为了在Spring中支持Ehcache，我们还需要spring-context-support依赖。
+Spring ACL需要一个缓存来存储Object Identity和ACL Entry，所以我们在这里使用Ehcache。而且，为了在Spring中支持Ehcache，我们还需要spring-context-support依赖。
 
 ### 2.3 ACL相关配置
 
 我们需要通过启用全局方法安全来保护所有返回安全域对象或对对象进行更改的方法：
 
 ```java
-
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class AclMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
@@ -94,11 +89,9 @@ public class AclMethodSecurityConfiguration extends GlobalMethodSecurityConfigur
 }
 ```
 
-我们还可以通过将prePostEnabled设置为true来启用基于表达式的访问控制，以使用Spring表达式语言(SpEL)。
-此外，我们需要一个支持ACL的表达式处理程序：
+我们还可以通过将prePostEnabled设置为true来启用基于表达式的访问控制，以使用Spring表达式语言(SpEL)。此外，我们需要一个支持ACL的表达式处理程序：
 
 ```java
-
 @Configuration
 @EnableAutoConfiguration
 public class ACLContext {
@@ -113,8 +106,7 @@ public class ACLContext {
 }
 ```
 
-因此，我们将AclPermissionEvaluator分配给DefaultMethodSecurityExpressionHandler。
-AclPermissionEvaluator需要一个MutableAclService来从数据库加载权限设置和域对象的定义。
+因此，我们将AclPermissionEvaluator分配给DefaultMethodSecurityExpressionHandler。AclPermissionEvaluator需要一个MutableAclService来从数据库加载权限设置和域对象的定义。
 
 为简单起见，我们使用提供的JdbcMutableAclService：
 
@@ -128,9 +120,7 @@ public class ACLContext {
 }
 ```
 
-顾名思义，JdbcMutableAclService使用JdbcTemplate来简化数据库访问。
-它需要一个DataSource(用于JdbcTemplate)、LookupStrategy(在查询数据库时提供优化的查找)
-和一个AclCache(缓存ACL Entry和Object Identity)。
+顾名思义，JdbcMutableAclService使用JdbcTemplate来简化数据库访问。它需要一个DataSource(用于JdbcTemplate)、LookupStrategy(在查询数据库时提供优化的查找)和一个AclCache(缓存ACL Entry和Object Identity)。
 
 同样，为了简单起见，我们使用提供的BasicLookupStrategy和EhCacheBasedAclCache。
 
@@ -201,14 +191,11 @@ public interface NoticeMessageRepository extends JpaRepository<NoticeMessage, Lo
 }
 ```
 
-findAll()方法执行后，会触发@PostFilter。
-指定的规则hasPermission(filterObject, ‘READ’)意味着只返回当前用户具有READ权限的NoticeMessage。
+findAll()方法执行后，会触发@PostFilter。指定的规则hasPermission(filterObject, ‘READ’)意味着只返回当前用户具有READ权限的NoticeMessage。
 
-同样，@PostAuthorize是在findById()方法执行后触发的，确保仅在当前用户拥有NoticeMessage对象的READ权限时才返回该对象。
-否则，系统将抛出AccessDeniedException。
+同样，@PostAuthorize是在findById()方法执行后触发的，确保仅在当前用户拥有NoticeMessage对象的READ权限时才返回该对象。否则，系统将抛出AccessDeniedException。
 
-另一方面，系统在调用save()方法之前触发@PreAuthorize注解。
-它将决定是否允许执行相应的方法，如果没有权限将抛出AccessDeniedException。
+另一方面，系统在调用save()方法之前触发@PreAuthorize注解。它将决定是否允许执行相应的方法，如果没有权限将抛出AccessDeniedException。
 
 ## 4. 实践
 
@@ -216,7 +203,7 @@ findAll()方法执行后，会触发@PostFilter。
 
 下面是所需的依赖：
 
-```text
+```xml
 <dependency>
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
@@ -249,7 +236,6 @@ VALUES (1, 1, 'manager'),
 此外，这3个实例的相应记录必须在acl_object_identity中声明：
 
 ```java
-
 @Entity
 @Table(name = "system_message")
 public class NoticeMessage {
@@ -279,11 +265,9 @@ VALUES (1, 1, 1, NULL, 3, 0),
        (3, 1, 3, NULL, 3, 0);
 ```
 
-最初，我们将第一个对象(id=1)的READ和WRITE权限授予用户manager。
-同时，任何具有ROLE_EDITOR角色的用户都将对所有三个对象具有READ权限，但仅对第三个对象(id=3)具有WRITE权限。此外，用户hr对第二个对象只有READ权限。
+最初，我们将第一个对象(id=1)的READ和WRITE权限授予用户manager。同时，任何具有ROLE_EDITOR角色的用户都将对所有三个对象具有READ权限，但仅对第三个对象(id=3)具有WRITE权限。此外，用户hr对第二个对象只有READ权限。
 
-这里，因为我们使用默认的Spring ACL BasePermission类进行权限检查，所以READ权限的掩码值为1，而WRITE权限的掩码值为2。
-因此acl_entry表中的数据为：
+这里，因为我们使用默认的Spring ACL BasePermission类进行权限检查，所以READ权限的掩码值为1，而WRITE权限的掩码值为2。因此acl_entry表中的数据为：
 
 ```h2
 INSERT INTO acl_entry (id, acl_object_identity, ace_order, sid, mask, granting, audit_success, audit_failure)
@@ -305,7 +289,6 @@ VALUES (1, 1, 1, 1, 1, 1, 1, 1),
 因此，我们希望结果列表仅包含第一条NoticeMessage记录：
 
 ```java
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration
 @TestExecutionListeners(listeners = {ServletTestExecutionListener.class,
@@ -346,7 +329,6 @@ class SpringACLIntegrationTest extends AbstractJUnit4SpringContextTests {
 因此，我们期望结果列表将包含所有三条NoticeMessage记录：
 
 ```java
-
 class SpringACLIntegrationTest extends AbstractJUnit4SpringContextTests {
 
     @Test
@@ -433,7 +415,6 @@ class SpringACLIntegrationTest extends AbstractJUnit4SpringContextTests {
 
 在本文中，我们介绍了Spring ACL的基本配置和使用。
 
-Spring ACL需要特定的表来管理对象、主体/权限和权限设置。
-与这些表的所有交互，尤其是更新操作，都必须通过AclService。在以后的文章中，我们会探讨此服务的基本CRUD操作。
+Spring ACL需要特定的表来管理对象、主体/权限和权限设置。与这些表的所有交互，尤其是更新操作，都必须通过AclService。在以后的文章中，我们会探讨此服务的基本CRUD操作。
 
 默认情况下，我们仅限于BasePermission类中的预定义权限。

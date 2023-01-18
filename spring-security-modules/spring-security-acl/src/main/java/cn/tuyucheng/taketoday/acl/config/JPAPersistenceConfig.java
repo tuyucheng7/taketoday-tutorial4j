@@ -12,5 +12,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:cn.tuyucheng.taketoday.acl.datasource.properties")
 @EntityScan(basePackages = {"cn.tuyucheng.taketoday.acl.persistence.entity"})
 public class JPAPersistenceConfig {
-
 }
