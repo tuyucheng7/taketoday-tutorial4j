@@ -26,33 +26,33 @@ class EqualityUnitTest {
 
 	@Test
 	fun givenUser_whenCheckReference_thenEqualReference() {
-		val user = User("John", 30, listOf("Hiking, Chess"))
+		val user1 = User("John", 30, listOf("Hiking, Chess"))
 		val user2 = User("Sarah", 28, listOf("Shopping, Gymnastics"))
 
-		assertFalse(user === user2)
+		assertFalse(user1 === user2)
 	}
 
 	@Test
 	fun givenUser_whenCheckValue_thenStructurallyEqual() {
-		val user = User("John", 30, listOf("Hiking, Chess"))
+		val user1 = User("John", 30, listOf("Hiking, Chess"))
 		val user2 = User("John", 30, listOf("Hiking, Chess"))
 
-		assertTrue(user == user2)
+		assertTrue(user1 == user2)
 	}
 
 	@Test
 	fun givenArray_whenCheckReference_thenEqualReference() {
-		val hobbies = arrayOf("Riding motorcycle, Video games")
+		val hobbies1 = arrayOf("Riding motorcycle, Video games")
 		val hobbies2 = arrayOf("Riding motorcycle, Video games")
 
-		assertFalse(hobbies === hobbies2)
+		assertFalse(hobbies1 === hobbies2)
 	}
 
 	@Test
 	fun givenArray_whenCheckContent_thenStructurallyEqual() {
-		val hobbies = arrayOf("Hiking, Chess")
+		val hobbies1 = arrayOf("Hiking, Chess")
 		val hobbies2 = arrayOf("Hiking, Chess")
 
-		assertTrue(hobbies contentEquals hobbies2)
+		assertTrue(hobbies1 contentEquals hobbies2)
 	}
 }

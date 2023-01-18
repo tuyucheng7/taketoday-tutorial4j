@@ -2,7 +2,7 @@
 
 在本文中，我们将讨论**Kotlin中“==”和“===”运算符之间的区别**。
 
-在Kotlin中，就像在Java中一样，我们有两个不同的相等概念，Referential equality和Structural equality。
+在Kotlin中，就像在Java中一样，我们有两个不同的相等概念，Referential equality(引用相等)和Structural equality(结构相等)。
 
 ## 2. 引用相等
 
@@ -35,7 +35,7 @@ data class User(val name: String, val age: Int, val hobbies: List<String>)
 
 ## 5. 数组相等
 
-对于数组，从Kotlin 1.1开始，我们可以使用中缀函数[contentEquals](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/content-equals.html)和[contentDeepEquals](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/content-deep-equals.html)检查结构相等性：
+对于数组，从Kotlin 1.1开始，我们可以使用中缀函数[contentEquals](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/content-equals.html)和[contentDeepEquals](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/content-deep-equals.html)检查数组结构相等性：
 
 ```kotlin
 val hobbies = arrayOf("Hiking, Chess")
