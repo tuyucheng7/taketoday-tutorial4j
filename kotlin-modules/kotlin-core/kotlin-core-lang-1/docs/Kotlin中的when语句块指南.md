@@ -1,12 +1,12 @@
 ## 1. 概述
 
-本教程介绍了Kotlin语言中的when{}块，并演示了我们可以使用它的各种方式。
+本教程介绍Kotlin语言中的when{}块，并演示我们可以使用它的各种方式。
 
 ## 2. Kotlin的when{}块
 
 **when{}块本质上是Java中已知的switch-case语句的高级形式**。
 
-在Kotlin中，如果找到匹配的case，则只执行相应case块中的代码，并且执行继续执行when块之后的下一条语句。
+在Kotlin中，如果找到匹配的case，则只执行相应case块中的代码，并且继续执行when块之后的下一条语句。
 
 这实质上意味着我们不需要在每个case块的末尾使用break语句。
 
@@ -47,7 +47,7 @@ sealed class UnixFile {
 
 ### 2.1 when{}作为表达式
 
-与Java的switch语句的一个很大区别是**我们可以在Kotlin中将when{}块用作语句和表达式**。Kotlin遵循其他函数式语言的原则，流控制结构是表达式，它们的计算结果可以返回给调用者。
+与Java的switch语句的一个很大区别是**我们可以在Kotlin中将when{}块用作语句和表达式**。Kotlin遵循其他函数式语言的原则，流程控制结构是表达式，它们的计算结果可以返回给调用者。
 
 如果返回值被赋值给一个变量，编译器会检查返回值的类型是否与客户端期望的类型兼容，如果不兼容会通知我们：
 
@@ -284,7 +284,7 @@ fun testWhenWithIsOperatorWithSmartCase() {
 
 ### 2.10 when表达式和循环
 
-[从Kotlin 1.4开始](https://kotlinlang.org/docs/reference/whatsnew14.html#using-break-and-continue-inside-when-expressions-included-in-loops)，即使在when表达式中也可以break或continue循环：
+从[Kotlin 1.4](https://kotlinlang.org/docs/reference/whatsnew14.html#using-break-and-continue-inside-when-expressions-included-in-loops)开始，即使在when表达式中也可以break或continue循环：
 
 ```kotlin
 val colors = setOf("Red", "Green", "Blue")
