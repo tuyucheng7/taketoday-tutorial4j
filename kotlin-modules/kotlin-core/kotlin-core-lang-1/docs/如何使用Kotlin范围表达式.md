@@ -111,7 +111,7 @@ for (i in 1 until 9) {
 
 ## 6. last、first、step元素
 
-如果我们需要找到范围的第一个、步骤或最后一个值，有一些函数会将它们返回给我们：
+如果我们需要找到范围的第一个、步长或最后一个值，有一些函数可以将它们返回给我们：
 
 ```kotlin
 print((1..9).first) // Print 1
@@ -178,7 +178,7 @@ if (Color.RED in Color.GREEN..Color.YELLOW) println("true") // Print true
 if (Color.RED !in Color.MAGENTA..Color.YELLOW) println("true") // Print true
 ```
 
-但是，由于这不是一个整型，我们不能迭代它。如果我们尝试，我们会得到一个编译错误：
+但是，由于这不是一个整型，我们不能迭代它。如果我们尝试这么做，我们会得到一个编译错误：
 
 ```kotlin
 fun main(args: Array<String>) {

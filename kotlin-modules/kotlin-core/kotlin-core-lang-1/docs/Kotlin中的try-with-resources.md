@@ -33,7 +33,7 @@ try {
 
 为了自动管理资源，一些语言有一个专门的构造：例如，Java 7引入了[try-with-resources](https://www.baeldung.com/java-try-with-resources)，而C#有[using关键字](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-statement)。
 
-有时，他们会为我们提供一种模式，例如[C++中的RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)。在其他一些情况下，它们为我们提供了一种库方法。
+有时，它们为我们提供了一种模式，例如[C++中的RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)。在其他一些情况下，它们为我们提供了一种库方法。
 
 Kotlin属于后一类。根据设计，**它没有类似于Java中的try-with-resources的语言结构**。
 
@@ -54,7 +54,7 @@ writer.use {
 
 我们可以在任何实现AutoCloseable或Closeable的对象上调用use函数，就像Java中的try-with-resources一样。
 
-该方法采用lambda表达式，执行它，并在执行离开块时处理(通过对其调用close())的资源，无论是正常还是异常。
+该方法接收一个lambda表达式，执行它，并在执行离开块时处理释放资源(通过对其调用close())，无论是正常还是异常。
 
 所以，在这种情况下，在使用之后，writer不再可用，因为Kotlin已经自动关闭了它。
 
@@ -88,9 +88,9 @@ public inline fun <T : Closeable?, R> T.use(block: (T) -> R): R
 
 我们可以看到，**在<T : Closeable?, R>部分，use被定义为Java的Closeable接口上的扩展函数**。
 
-可以在[我们的介绍性文章](https://www.baeldung.com/kotlin)中找到有关扩展方法的更多信息。
+可以在我们的[介绍性文章](https://www.baeldung.com/kotlin)中找到有关扩展方法的更多信息。
 
-当然，[use函数被记录](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/use.html)为Kotlin标准库的一部分。
+当然，[use函数](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/use.html)被记录为Kotlin标准库的一部分。
 
 ### 3.4 Closeable与AutoCloseable
 

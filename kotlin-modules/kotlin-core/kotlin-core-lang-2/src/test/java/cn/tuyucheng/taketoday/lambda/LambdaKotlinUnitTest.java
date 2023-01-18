@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class LambdaKotlinUnitTest {
 
 	@Test
-	void givenJava6_whenUsingAnonnymousClass_thenReturnLambdaResult() {
+	void givenJava6_whenUsingAnonymousClass_thenReturnLambdaResult() {
 		assertTrue(LambdaKt.invokeLambda(new Function1<Double, Boolean>() {
 			@Override
 			public Boolean invoke(Double c) {

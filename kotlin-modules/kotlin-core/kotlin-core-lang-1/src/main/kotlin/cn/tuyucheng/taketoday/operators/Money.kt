@@ -7,7 +7,6 @@ enum class Currency {
 }
 
 class Money(val amount: BigDecimal, val currency: Currency) : Comparable<Money> {
-
 	override fun compareTo(other: Money): Int =
 		convert(Currency.DOLLARS).compareTo(other.convert(Currency.DOLLARS))
 

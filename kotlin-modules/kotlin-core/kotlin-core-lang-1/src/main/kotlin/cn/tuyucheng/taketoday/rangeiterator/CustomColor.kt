@@ -19,14 +19,12 @@ class CustomColor(val rgb: Int) : Comparable<CustomColor> {
 	}
 
 	override fun toString(): String {
-		return "CustomColor(rgb=$rgb)"
+		return "CustomColor(rbg=$rgb)"
 	}
 }
 
-class ColorRange(
-	override val start: CustomColor,
-	override val endInclusive: CustomColor
-) : ClosedRange<CustomColor>, Iterable<CustomColor> {
+class ColorRange(override val start: CustomColor, override val endInclusive: CustomColor) : ClosedRange<CustomColor>,
+	Iterable<CustomColor> {
 
 	override fun iterator(): Iterator<CustomColor> {
 		return ColorIterator(start, endInclusive)

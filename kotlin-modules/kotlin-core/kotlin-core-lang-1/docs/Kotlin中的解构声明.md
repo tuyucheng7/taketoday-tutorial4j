@@ -67,7 +67,7 @@ for ((a, b) in collection) { ... }
 
 变量a和b是由component1()和component2()方法返回的赋值，它们返回集合中的前两个元素。
 
-但是，在Map中，变量将分别是键和值：
+但是，在Map中，变量将分别是key和value：
 
 ```kotlin
 var map: HashMap<Int, Person> = HashMap()

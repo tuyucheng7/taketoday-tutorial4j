@@ -15,7 +15,6 @@ fun main(args: Array<String>) {
 	val (idf, namef, agef) = getPersonInfo()
 
 	fun twoValuesReturn(): Pair<Int, String> {
-
 		// needed code
 
 		return Pair(1, "success")

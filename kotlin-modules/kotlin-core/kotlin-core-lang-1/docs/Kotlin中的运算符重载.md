@@ -31,11 +31,11 @@ Point(x=1, y=3)
 
 ## 3. 一元运算的重载
 
-**一元运算是那些只对一个操作数起作用的运算**。例如，-a、a++或!a是一元运算。通常，要重载一元运算符的函数不带参数。
+**一元运算是那些只对一个操作数起作用的运算**。例如，-a、a++或!a是一元运算。通常，要重载一元运算符的函数不带任何参数。
 
 ### 3.1 一元加
 
-如何用几个点构建某种形状：
+如何用几个Point构建某种Shape：
 
 ```kotlin
 val s = shape {
@@ -60,7 +60,7 @@ class Shape {
 }
 ```
 
-**请注意，给我们形状{...}语法的是将Lambda与Receivers一起使用**：
+**请注意，给我们shape{...}语法的是将Lambda与Receivers一起使用**：
 
 ```kotlin
 fun shape(init: Shape.() -> Unit): Shape {
@@ -73,7 +73,7 @@ fun shape(init: Shape.() -> Unit): Shape {
 
 ### 3.2 一元减
 
-假设我们有一个名为“p”的点，我们将使用类似“-p”的东西来反转(符号)它的坐标。然后，我们所要做的就是在Point上定义一个名为unaryMinus的运算符函数：
+假设我们有一个名为“p”的Point，我们将使用类似“-p”的东西来反转它的坐标(符号)。然后，我们所要做的就是在Point上定义一个名为unaryMinus的运算符函数：
 
 ```kotlin
 operator fun Point.unaryMinus() = Point(-x, -y)
@@ -179,10 +179,10 @@ Point(x=3, y=5)
 
 现在，我们大多数人都经历过将两个BigInteger相加的不雅之处：
 
-```kotlin
-BigInteger zero = BigInteger.ZERO
-BigInteger one = BigInteger.ONE
-one = one.add(zero)
+```java
+BigInteger zero = BigInteger.ZERO;
+BigInteger one = BigInteger.ONE;
+one = one.add(zero);
 ```
 
 [事实证明](https://github.com/JetBrains/kotlin/blob/ba6da7c40a6cc502508faf6e04fa105b96bc7777/libraries/stdlib/jvm/src/kotlin/util/BigIntegers.kt#L19)，有一种更好的方法可以在Kotlin中相加两个BigIntegers：
@@ -296,7 +296,7 @@ operator fun <T> MutableCollection<T>.plusAssign(element: T) {
 [red, blue, green]
 ```
 
-所有复合赋值运算符函数都必须返回 Unit。
+所有复合赋值运算符函数都必须返回Unit。
 
 ### 4.5 相等约定
 
@@ -391,7 +391,7 @@ operator fun <T> Page<T>.contains(element: T): Boolean = element in elements()
 
 ### 4.8 获取索引器
 
-**索引器允许对某个类型的实例进行索引，就像数组或集合一样**，假设我们要将一个分页的元素集合建模为Page<T>，无耻地从[Spring Data](https://www.baeldung.com/spring-data-jpa-query)中窃取一个想法：
+**索引器允许对某个类型的实例进行索引，就像数组或集合一样**，假设我们要将一个分页的元素集合建模为Page<T\>，无耻地从[Spring Data](https://www.baeldung.com/spring-data-jpa-query)中窃取一个想法：
 
 ```kotlin
 interface Page<T> {
@@ -441,7 +441,7 @@ operator fun <T> Page<T>.get(start: Int, endExclusive: Int):
 
 ### 4.9 设置索引器
 
-除了使用索引器来实现类似get的语义之外，**我们还可以利用它们来模拟类似集合的操作**，我们所要做的就是定义一个名为set的运算符函数，其中包含至少两个参数：
+除了使用索引器来实现类似get的语义之外，**我们还可以利用它们来模拟类似set的操作**，我们所要做的就是定义一个名为set的运算符函数，其中包含至少两个参数：
 
 ```kotlin
 operator fun <T> Page<T>.set(index: Int, value: T) {
@@ -472,7 +472,7 @@ operator fun <T> Page<T>.invoke(index: Int): T = elements()[index]
 assertEquals(page(1), "Kotlin")
 ```
 
-**在这里，Kotlin将括号转换为对具有适当数量参数的invoke方法的调用**。此外，我们可以使用任意数量的参数声明invode运算符。
+**在这里，Kotlin将括号转换为对具有适当数量参数的invoke方法的调用**。此外，我们可以使用任意数量的参数声明invoke运算符。
 
 ### 4.11 迭代器约定
 

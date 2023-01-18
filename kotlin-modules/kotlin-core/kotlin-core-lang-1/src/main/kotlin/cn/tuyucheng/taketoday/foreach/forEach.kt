@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.foreach
 
-
 class Country(val name: String, val cities: List<City>)
 
 class City(val name: String, val streets: List<String>)
@@ -61,14 +60,12 @@ class World {
 	}
 
 	fun allStreetsFlatMap() {
-
 		countries.flatMap { it.cities }
 			.flatMap { it.streets }
 			.forEach { println(it) }
 	}
 
 	fun allFlatMapTable() {
-
 		countries.flatMap { it.getCitiesWithCountryName() }
 			.forEach { println(it) }
 	}

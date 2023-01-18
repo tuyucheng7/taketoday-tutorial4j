@@ -3,15 +3,14 @@ package cn.tuyucheng.taketoday.inline
 import kotlin.random.Random
 
 /**
- * An extension function on all collections to apply a function to all collection
- * elements.
+ * An extension function on all collections to apply a function to all collection elements.
  */
 fun <T> Collection<T>.each(block: (T) -> Unit) {
 	for (e in this) block(e)
 }
 
 /**
- * In order to see the the JVM bytecode:
+ * In order to see the JVM bytecode:
  *  1. Compile the Kotlin file using `kotlinc Inline.kt`
  *  2. Take a peek at the bytecode using the `javap -c InlineKt`
  */

@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.range
 
 fun main(args: Array<String>) {
-
 	val r = 1..20
 	println(r.minOrNull())
 	println(r.maxOrNull())

@@ -3,11 +3,7 @@ package cn.tuyucheng.taketoday.trywithresource
 import org.junit.jupiter.api.Test
 import java.beans.ExceptionListener
 import java.beans.XMLEncoder
-import java.io.BufferedWriter
-import java.io.ByteArrayOutputStream
-import java.io.IOException
-import java.io.PrintStream
-import java.io.StringWriter
+import java.io.*
 import kotlin.test.assertEquals
 import kotlin.test.fail
 

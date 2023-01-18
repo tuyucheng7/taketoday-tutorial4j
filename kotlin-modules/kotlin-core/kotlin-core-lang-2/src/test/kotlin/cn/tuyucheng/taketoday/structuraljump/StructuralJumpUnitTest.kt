@@ -55,7 +55,7 @@ class StructuralJumpUnitTest {
 
 	@Test
 	fun givenLambda_whenReturn_thenComplete() {
-		var result = returnInLambda();
+		var result = returnInLambda()
 		assertEquals("hello", result)
 	}
 
@@ -67,7 +67,7 @@ class StructuralJumpUnitTest {
 			result += it.toString()
 		}
 		// this line won't be reached
-		return result;
+		return result
 	}
 
 	@Test

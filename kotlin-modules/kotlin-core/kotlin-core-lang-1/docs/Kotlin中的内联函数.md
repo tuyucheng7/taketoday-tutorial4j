@@ -47,7 +47,7 @@ filter(sampleCollection, new Function1<Integer, Boolean>() {
 
 但这还没有结束，正如我们可能猜到的那样，仅仅创建一个类型的实例是不够的。
 
-为了实际执行封装在Kotlinlambda中的操作，高阶函数(在本例中为filter)将需要在新实例上调用名为invoke的特殊方法，**结果是由于额外的调用而导致的开销增加**。
+为了实际执行封装在Kotlin lambda中的操作，高阶函数(在本例中为filter)将需要在新实例上调用名为invoke的特殊方法，**结果是由于额外的调用而导致的开销增加**。
 
 所以，回顾一下，当我们将lambda传递给函数时，底层会发生以下情况：
 
@@ -62,7 +62,7 @@ filter(sampleCollection, new Function1<Integer, Boolean>() {
 
 就像后者一样，**lambda表达式可以访问其闭包，即在外部作用域中声明的变量**。当lambda从其闭包中捕获变量时，Kotlin会将该变量与捕获的lambda代码一起存储。
 
-**当lambda捕获变量时，额外的内存分配会变得更糟：JVM在每次调用时都会创建一个函数类型实例**。对于非捕获lambda，这些函数类型只有一个实例，即单例。
+**当lambda捕获变量时，额外的内存分配会变得更糟：JVM在每次调用时都会创建一个Function类型实例**。对于非捕获lambda，这些Function类型只有一个实例，即单例。
 
 我们怎么这么确定呢？让我们通过声明一个函数来重新发明另一个轮子以在每个集合元素上应用一个函数：
 
@@ -83,10 +83,10 @@ fun main() {
 }
 ```
 
-如果我们使用kotlinp查看字节码：
+如果我们使用javap查看字节码：
 
 ```bash
->> kotlinp -c MainKt
+>> javap -c MainKt
 public final class MainKt {
   public static final void main();
     Code:
@@ -96,15 +96,15 @@ public final class MainKt {
       55: fload_1
       56: invokespecial #33                 // Method MainKt$main$1."<init>":(F)V
       59: checkcast     #35                 // class kotlin/jvm/functions/Function1
-      62: invokestatic  #41                 // Method CollectionsKt.each:(Lkotlin/util/Collection;Lkotlin/jvm/functions/Function1;)V
+      62: invokestatic  #41                 // Method CollectionsKt.each:(Ljava/util/Collection;Lkotlin/jvm/functions/Function1;)V
       65: return
 ```
 
-然后我们可以从索引51中发现JVM为每次调用创建一个新的MainKt$main$1内部类实例。此外，索引56显示了Kotlin如何捕获随机变量，**这意味着每个捕获的变量都将作为构造函数参数传递，从而产生内存开销**。
+然后我们可以从索引51中发现JVM为每次调用创建一个新的MainKt$main$1内部类实例。此外，索引56显示了Kotlin如何捕获random变量，**这意味着每个捕获的变量都将作为构造函数参数传递，从而产生内存开销**。
 
 ### 2.3 类型擦除
 
-当谈到JVM上的泛型时，它从来就不是天堂！无论如何，Kotlin在运行时擦除泛型类型信息。也就是说，**泛型类的实例在运行时不保留其类型参数**。
+当谈到JVM上的泛型时，它从来就不是天堂！无论如何，Kotlin会在运行时擦除泛型类型信息。也就是说，**泛型类的实例在运行时不保留其类型参数**。
 
 例如，当声明一些像List<Int\>或List<String\>这样的集合时，我们在运行时拥有的只是原始List。正如所承诺的那样，这似乎与前面的问题无关，但我们将看到内联函数如何成为这两个问题的通用解决方案。
 
@@ -112,7 +112,7 @@ public final class MainKt {
 
 ### 3.1 消除Lambda的开销
 
-使用lambda时，额外的内存分配和额外的虚拟方法调用会引入一些运行时开销。所以，如果我们直接执行相同的代码，而不是使用lambda，我们的实现会更有效率。
+使用lambda时，额外的内存分配和额外的虚拟方法调用会引入一些运行时开销。因此，如果我们直接执行相同的代码，而不是使用lambda，我们的实现会更有效率。
 
 **我们必须在抽象和效率之间做出选择吗**？
 
@@ -141,11 +141,11 @@ for (number in numbers)
     println(number)
 ```
 
-**使用内联函数时，没有额外的对象分配，也没有额外的虚方法调用**。
+**使用内联函数时，没有额外的对象分配，也没有额外的虚拟方法调用**。
 
 但是，我们不应该过度使用内联函数，尤其是对于长函数，因为内联可能会导致生成的代码增长很多。
 
-### 3.2 无内联
+### 3.2 非内联
 
 默认情况下，传递给内联函数的所有lambda也将是内联的。但是，我们可以使用**noinline**关键字标记一些lambda，以将它们从内联中排除：
 
@@ -163,11 +163,11 @@ inline fun foo(inlined: () -> Unit, noinline notInlined: () -> Unit) { ... }
 inline fun <reified T> Any.isA(): Boolean = this is T
 ```
 
-没有inline和reified，isA函数将无法编译，正如我们在[Kotlin泛型](https://www.baeldung.com/kotlin-generics)文章中详尽解释的那样。
+如果没有inline和reified，isA函数将无法编译，正如我们在[Kotlin泛型](https://www.baeldung.com/kotlin-generics)文章中详尽解释的那样。
 
-### 3.4 非局部返回
+### 3.4 非局部return
 
-在Kotlin中，**我们只能使用return 表达式(也称为非限定的return)从命名函数或匿名函数中退出**：
+在Kotlin中，**我们只能使用return表达式(也称为非限定的return)从命名函数或匿名函数中退出**：
 
 ```kotlin
 fun namedFunction(): Int {
@@ -224,7 +224,7 @@ inline fun <T> List<T>.eachIndexed(f: (Int, T) -> Unit) {
 }
 ```
 
-那么我们就可以实际使用indexOf函数了：
+然后我们就可以实际使用indexOf函数了：
 
 ```kotlin
 val found = numbers.indexOf(5)

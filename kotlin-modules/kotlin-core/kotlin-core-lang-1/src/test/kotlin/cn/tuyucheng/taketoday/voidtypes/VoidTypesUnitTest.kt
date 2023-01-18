@@ -9,14 +9,14 @@ class VoidTypesUnitTest {
 	// Un-commenting below methods will result into compilation error
 	// as the syntax used is incorrect and is used for explanation in tutorial.
 
-	//    fun returnTypeAsVoidAttempt1(): Void {
-	//        println("Trying with Void as return type")
-	//    }
-
-	//    fun returnTypeAsVoidAttempt2(): Void {
-	//        println("Trying with Void as return type")
-	//        return null
-	//    }
+	// fun returnTypeAsVoidAttempt1(): Void {
+	// 	println("Trying with Void as return type")
+	// }
+	//
+	// fun returnTypeAsVoidAttempt2(): Void {
+	// 	println("Trying with Void as return type")
+	// 	return null
+	// }
 
 	fun returnTypeAsVoidSuccess(): Void? {
 		println("Function can have Void as return type")

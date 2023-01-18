@@ -6,7 +6,7 @@
 
 ## 2. 定义Lambda
 
-正如我们将看到的，Kotlin Lambda与Java Lambda非常相似，[你可以在此处](https://www.baeldung.com/java-8-lambda-expressions-tips)找到有关如何使用Java Lambdas和一些最佳实践的更多信息。
+正如我们将看到的，Kotlin Lambda与Java Lambda非常相似，你可以在[此处](https://www.baeldung.com/java-8-lambda-expressions-tips)找到有关如何使用Java Lambdas和一些最佳实践的更多信息。
 
 要定义lambda，我们需要遵循以下语法：
 
@@ -82,7 +82,7 @@ fun extendString(arg: String, num: Int): String {
 
 ### 2.3 从Lambda返回
 
-最终表达式是执行lambda后将返回的值：
+最后一个表达式是执行lambda后将返回的值：
 
 ```kotlin
 val calculateGrade = { grade : Int ->
@@ -129,7 +129,7 @@ val array = arrayOf(1, 2, 3, 4, 5, 6)
 array.forEach { item -> println(item * 4) }
 ```
 
-速记：
+短写：
 
 ```kotlin
 array.forEach { println(it * 4) }
@@ -322,4 +322,4 @@ list.stream()
 
 虽然在语法上相似，但Kotlin和Java lambda是完全不同的特性，当面向Java 6时，Kotlin必须将其lambda转换为可在JVM 1.6中使用的结构。
 
-尽管如此，Java 8 lambda的最佳实践仍然适用。有关lambda最佳实践的更多信息，请单击[此处]((https://www.baeldung.com/java-8-lambda-expressions-tips))。
+尽管如此，Java 8 lambda的最佳实践仍然适用。有关lambda最佳实践的更多信息，请单击[此处](https://www.baeldung.com/java-8-lambda-expressions-tips)。

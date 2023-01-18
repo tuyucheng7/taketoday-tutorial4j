@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.operators
 
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class PageUnitTest {
 
@@ -23,7 +23,6 @@ class PageUnitTest {
 	fun `In convention should work on a page as expected`() {
 		assertTrue("Kotlin" in page)
 	}
-
 }
 
 private class PageImpl<T>(val page: Int, val size: Int, vararg val elements: T) : Page<T> {

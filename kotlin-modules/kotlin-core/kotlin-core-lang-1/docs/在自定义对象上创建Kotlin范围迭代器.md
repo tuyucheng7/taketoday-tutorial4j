@@ -24,7 +24,7 @@ for (cc in a..b) {
 
 ## 3. 快速了解IntRange
 
-简而言之，**我们需要实现Comparable、Iterable和ClosedRange**。从[我们之前的文章中](如何使用Kotlin范围表达式.md)，我们已经知道我们必须实现Comparable。
+简而言之，**我们需要实现Comparable、Iterable和ClosedRange**。从我们[之前的文章](如何使用Kotlin范围表达式.md)中，我们已经知道我们必须实现Comparable。
 
 对于其他两个接口，让我们深入了解IntRange类声明以获得一些提示：
 
@@ -134,7 +134,7 @@ fun assertHas10Colors(){
 }
 ```
 
-在此测试中，我们定义了一个范围变量并用于循环访问CustomColor对象，并将其转换为列表。
+在此测试中，我们定义了一个range变量并用于循环访问CustomColor对象，并将其转换为列表。
 
 让我们看另一个在范围上使用标准contains方法的例子：
 

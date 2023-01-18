@@ -2,7 +2,7 @@
 
 在本教程中，我们将了解Kotlin中的Void类型，以及在Kotlin中表示void或nothing的其他基本方法。
 
-## 2. Void与void-在Java中
+## 2. Void与Java中的void
 
 为了理解Void在Kotlin中的使用，让我们首先回顾一下Java中的Void类型是什么，**以及它与Java原始关键字void有何不同**。
 
@@ -30,7 +30,7 @@ Error: Kotlin: A 'return' expression required in a function with a block body ('
 
 这个错误其实是有道理的，毕竟类似的函数在Java中也会给出类似的错误。
 
-为了解决这个问题，我们将尝试添加一个return语句。但是，**由于Void是Java的不可实例化的最终类，我们只能从这样的函数中返回null**：
+为了解决这个问题，我们将尝试添加一个return语句。但是，**由于Void是Java的一个不可实例化的最终类，我们只能从这样的函数中返回null**：
 
 ```kotlin
 fun returnTypeAsVoidAttempt2(): Void {
@@ -56,7 +56,7 @@ fun returnTypeAsVoidSuccess(): Void? {
 }
 ```
 
-我们终于有了一个可行的解决方案，但正如我们接下来将看到的，有更好的方法可以达到相同的结果。
+现在我们终于有了一个可行的解决方案，但正如我们接下来将看到的，有更好的方法可以达到相同的结果。
 
 ## 4. Kotlin中的Unit
 
@@ -77,7 +77,7 @@ fun givenJavaVoidFunction_thenMappedToKotlinUnit() {
 }
 ```
 
-此外，**Unit是默认返回类型并声明它是可选的**，因此，以下函数也是有效的：
+此外，**Unit是默认返回类型并且声明它是可选的**，因此，以下函数也有效：
 
 ```kotlin
 fun unitReturnTypeIsImplicit() {
