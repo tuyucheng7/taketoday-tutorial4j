@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test-Suite">
+	<test name="TakeToday">
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.suite.FirstTestNGUnitTest"/>
+			<class name="cn.tuyucheng.taketoday.testng.suite.SecondTestNGUnitTest"/>
+		</classes>
+	</test>
+</suite>

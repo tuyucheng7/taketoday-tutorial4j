@@ -1,0 +1,248 @@
+在本教程中，我们将学习***什么是鼠标悬停动作***以及***如何在 Selenium 中执行鼠标悬停动作？***
+
+## 什么是鼠标悬停动作？
+
+鼠标悬停也称为悬停。鼠标悬停动作基本上是用户将鼠标放在指定区域（如超链接）上的动作。它可能会导致某些事件被触发。
+
+***例如**，将鼠标移到网页上的某个元素上会显示一些弹出窗口或描述框。在我们的网站 https://www.toolsqa.com 中，如果您将鼠标悬停在 TUTORIAL 选项卡上，您将看到不同主题的菜单列表显示如下：*
+
+![鼠标样本](https://www.toolsqa.com/gallery/selnium%20webdriver/1.MouseSample.png)
+
+同样在自动化中，很多时候需要对元素执行一些操作，这些操作仅在鼠标悬停在其他元素上时才可见。为此，需要将鼠标光标放在元素上。正如[***Actions 类***](https://www.toolsqa.com/selenium-webdriver/actions-class-in-selenium/)***教程中提到的，Actions 类为鼠标事件和键盘事件***提供了一组丰富的 API 。因此，为了也执行鼠标事件，Actions 类提供了*moveToElement()*方法。
+
+因此，以下是 Actions 类为鼠标悬停操作提供的方法：
+
+1.  *moveToElement（WebElement 目标）*
+2.  *moveToElement（WebElement 目标，int xOffset，int yOffset）*
+
+***注意：**动作类存在于包中：org.openqa.selenium.interactions 包*
+
+## Selenium 中的鼠标悬停操作
+
+让我们开始了解 Actions 类的 moveToElement 方法。
+
+### ***1、如何将鼠标光标移动到网页元素的中间？***
+
+*moveToElement(WebElement target)：将鼠标移动到元素的中间。*
+
+首先，***实例化一个 Actions 类：***
+
+*动作 actions = new Actions(driver);*
+
+如上所示，*moveToElement()*方法具有参数*WebElement*目标。因此，需要将*WebElement*对象传递给该方法。此*WebElement*目标是鼠标需要移动到的任何 Web 元素。要查找目标元素，请使用以下命令：
+
+*WebElement target = driver.findElement(Any By strategy & locator);*
+
+在这里，您可以使用任何***By 策略来定位 WebElement***，例如通过其 id、name 属性等查找元素。
+
+现在，当我们获得动作类对象和元素时，只需调用***perform()***方法来移动到元素：
+
+*actions.moveToElement(target).perform();*
+
+让我们看看调用上面的 perform() 方法时内部发生了什么：
+
+-   ***移动鼠标操作：**鼠标移动到元素的中间。*
+-   *在这里，元素滚动到视图中，并使用 getBoundingClientRect 计算其位置。*
+-   ***Build：** build() 方法用于生成包含所有动作的复合动作。*
+-   *在这种情况下，它只是一个单一的移动鼠标动作。如果您观察到，我们没有在上面的命令中调用它。这是因为构建是在 perform 方法内部执行的。*
+-   ***Perform：** perform() 方法执行我们指定的操作。但在此之前，它首先在内部调用 build() 方法。构建完成后，执行操作。*
+
+#### ***使用 Selenium 中的 Actions 类练习执行鼠标悬停***
+
+让我们考虑一个来自 Toolsqa 上已经可用的演示页面的示例，如[***https://demoqa.com/menu/***](https://demoqa.com/menu/)
+
+![演示示例1](https://www.toolsqa.com/gallery/selnium%20webdriver/2.DemoSample1.png)
+
+在上图中，考虑需要从菜单中选择一个选项的情况。为此，首先需要将鼠标悬停*在“音乐”上，它会显示带有**“摇滚”、“爵士”、“流行”*等选项的菜单列表。将鼠标悬停在*“Rock”*后，最终会显示带有*“Alternative”和“Classic”选项的菜单列表。*然后最后选择“替代”选项。
+
+*音乐*
+
+*==> 摇滚*
+
+*======>另类*
+
+现在是时候编写一个 selenium 自动化脚本来使用*moveToElement()*方法将鼠标悬停在对象上了。
+
+在下面找到要自动化的场景的步骤：
+
+1.  *启动网络浏览器并启动我们的练习页面 https://demoqa.com/menu/*
+2.  *在我们的示例中找到所需的元素，即“音乐”对象*
+3.  *现在将鼠标移到“音乐”选项上，这将显示子菜单列表*
+4.  *在子菜单列表中找到所需的元素，即“Rock”对象*
+5.  *将鼠标移到“摇滚”选项上，将显示一个子菜单列表*
+6.  *在子菜单列表中找到所需的元素，即“替代”对象*
+7.  *点击“替代”*
+8.  *关闭浏览器结束程序*
+
+***练习练习代码***
+
+```java
+package com.toolsqa.tutorials.actions;
+ 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+ 
+public class MouseHover1 {
+ 
+ public static WebDriver driver;
+ 
+ public static void main(String[] args) {
+	 
+	//Set system properties for geckodriver This is required since Selenium 3.0
+	System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\Toolsqa\\lib\\geckodriver.exe");
+
+	 // Launch the URL 
+        driver.get("https://demoqa.com/menu/");
+        System.out.println("demoqa webpage Displayed");
+        
+    	//Maximise browser window
+	 driver.manage().window().maximize();
+	    
+	//Adding wait 
+	driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+                
+        //Instantiate Action Class        
+        Actions actions = new Actions(driver);
+        //Retrieve WebElement 'Music' to perform mouse hover 
+    	WebElement menuOption = driver.findElement(By.xpath(".//div[contains(text(),'Music')]"));
+    	//Mouse hover menuOption 'Music'
+    	actions.moveToElement(menuOption).perform();
+    	System.out.println("Done Mouse hover on 'Music' from Menu");
+    	
+    	//Now Select 'Rock' from sub menu which has got displayed on mouse hover of 'Music'
+    	WebElement subMenuOption = driver.findElement(By.xpath(".//div[contains(text(),'Rock')]")); 
+    	//Mouse hover menuOption 'Rock'
+    	actions.moveToElement(subMenuOption).perform();
+    	System.out.println("Done Mouse hover on 'Rock' from Menu");
+    	
+    	//Now , finally, it displays the desired menu list from which required option needs to be selected
+    	//Now Select 'Alternative' from sub menu which has got displayed on mouse hover of 'Rock'
+    	WebElement selectMenuOption = driver.findElement(By.xpath(".//div[contains(text(),'Alternative')]"));
+    	selectMenuOption.click();
+    	System.out.println("Selected 'Alternative' from Menu");
+    	
+        // Close the main window 
+    	driver.close();
+ }
+ 
+}
+```
+
+现在，让我们转到*moveToElement()*方法的重载版本。
+
+### ***2.如何将鼠标光标移动到一个元素偏移量？***
+
+***moveToElement(WebElement target, int xOffset, int yOffset)：将鼠标移动到元素左上角的偏移量。***
+
+基本上，此方法的目的是将鼠标放在目标元素上的特定点上。
+
+在我们看到的早期方法中，鼠标被移动到元素的中间。通常，我们需要将鼠标移动到网页上的任何元素上以显示工具提示或显示子菜单，如上例所示。在这种常见的情况下，即使鼠标默认移动到元素的中间也没有关系，只要它显示所需的元素，如工具提示或子菜单等。
+
+那么这里出现一个问题，那么***为什么我们需要将鼠标移动到元素上的任何特定点？***这个问题的答案是，在某些情况下，要对元素执行某些操作，必须将鼠标仅移动到元素上的特定位置。
+
+让我们考虑用于选择某个范围的***滑块。***这可以通过移动滑块拇指或单击滑块元素上的特定点来选择。要通过自动化脚本执行此操作，我们可以借助此特定方法，即*moveToElement(WebElement target, int xOffset, int yOffset)*，我们在其中指定要在元素上移动鼠标的确切位置。
+
+[***只需尝试在https://demoqa.com/slider/***](https://demoqa.com/slider/)上手动执行
+
+![鼠标悬停动作 - 滑块](https://www.toolsqa.com/gallery/selnium%20webdriver/3.Mouse%20Hover%20Action%20-%20Slider.png)
+
+让我们看看如何使用重载的*moveToElement*方法来执行鼠标悬停操作。
+
+首先，实例化一个 Actions 类：
+
+*动作 actions = new Actions(driver);*
+
+如上所示，*moveToElement()*方法具有参数*WebElement 目标 xOffset，*要传递的 yOffset。因此，需要将 WebElement 对象传递给该方法。此 WebElement 目标是需要移动光标的任何 Web 元素。
+
+现在，剩下的两个参数值即*xOffset*和*yOffset*是以像素为单位的值。
+
+***例如，**如果将 x-Offset 值设置为 50，则表示鼠标需要移动到距目标元素左上角水平方向偏移 50 像素的位置。同理，如果y-Offset的值设置为50，则表示鼠标需要移动到距离目标元素左上角垂直方向偏移50像素的位置。*
+
+要查找源元素和目标元素，请使用以下命令：
+
+*WebElement target = driver.findElement(Any By strategy & locator);*
+
+在这里，您可以使用任何***By 策略来定位 WebElement*** *，例如通过其id、name 属性等*查找元素。
+
+现在，当我们获得动作类对象和元素、*x 偏移量和 y 偏移量*时，只需为 moveToElement 调用***perform()***方法：
+
+*actions.moveToElement(target, xOffset, yOffset).perform();*
+
+让我们看看调用上面的 perform() 方法时内部发生了什么：
+
+-   ***移动鼠标操作：将鼠标**移动到元素左上角的偏移量。在这里，元素滚动到视图中，并使用 getBoundingClientRect 计算其位置。* *注意：注意区别，在第一种方法中，即 moveToElement(WebElement target)，我们已经看到，鼠标移动到元素的中间*
+-   ***Build：** build() 方法用于生成包含所有动作的复合动作。在这种情况下，它只是一个单一的移动鼠标动作。* *但是如果你观察的话，我们并没有在上面的命令中调用它。这是因为构建是在 perform 方法内部执行的。*
+-   ***Perform：** perform() 方法执行我们指定的操作。但在此之前，它首先在内部调用 build() 方法。构建完成后，执行操作。*
+
+#### ***使用 Selenium 中的 Actions 类练习执行鼠标悬停***
+
+让我们考虑一下我们在本节上面讨论的 Slider 的相同示例。
+
+在上图中，考虑通过单击 Slider 元素上的特定位置来选择范围的情况。
+
+在下面找到要自动化的场景的步骤：
+
+1.  *启动网络浏览器并启动我们的练习页面 https://demoqa.com/slider/*
+2.  *在我们的示例中找到所需的元素，即 Slider 对象*
+3.  *现在指定 x 和 y 偏移量以从滑块元素的左上角沿水平和垂直方向移动鼠标*
+4.  *将鼠标移动到滑块上的指定偏移量*
+5.  *单击滑块*
+6.  *关闭浏览器结束程序*
+
+***练习练习代码***
+
+```
+package com.toolsqa.tutorials.actions;
+ 
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+ 
+public class MouseHover2 {
+ 
+ public static WebDriver driver;
+ 
+ public static void main(String[] args) {
+	 
+	 //Set system properties for geckodriver This is required since Selenium 3.0
+	 System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\Toolsqa\\lib\\geckodriver.exe");
+ 
+        // Launch the URL 
+        driver.get("https://demoqa.com/slider/");
+        System.out.println("demoqa webpage Displayed");
+        
+    	//Maximise browser window
+	driver.manage().window().maximize();
+	    
+	//Adding wait 
+	driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+                
+        //Instantiate Action Class        
+        Actions actions = new Actions(driver);
+        //Retrieve WebElemnt 'slider' to perform mouse hover 
+    	WebElement slider = driver.findElement(By.id("slider"));
+    	//Move mouse to x offset 50 i.e. in horizontal direction
+    	actions.moveToElement(slider,50,0).perform();
+    	slider.click();
+    	System.out.println("Moved slider in horizontal directions");
+    	
+        // Close the main window 
+        driver.close();
+ }
+ 
+}
+```
+
+### ***概括：***
+
+在本教程中，我们介绍了网页中鼠标悬停元素的概念以及如何通过 Actions 类的以下方法执行：
+
+1.  *moveToElement(WebElement target)：在这里，我们学习了如何将鼠标光标移动到元素的中间*
+2.  *moveToElement(WebElement target, int xOffset, int yOffset)：在这里，我们学习了如何将鼠标光标移动到元素的水平和垂直方向的中间指定的偏移量。*

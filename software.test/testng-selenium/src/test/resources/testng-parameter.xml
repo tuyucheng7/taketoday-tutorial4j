@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="TestNG Parameters Suite">
+	<test name="Params">
+		<parameter name="a" value="2"/>
+		<parameter name="b" value="3"/>
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.parameter.SimpleParameterUnitTest"/>
+		</classes>
+	</test>
+	<test name="Multiply">
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.parameter.MultiplyUnitTest"/>
+		</classes>
+	</test>
+
+	<parameter name="a" value="3"/>
+	<parameter name="b" value="1"/>
+</suite>

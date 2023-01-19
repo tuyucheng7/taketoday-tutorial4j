@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestNG XML Dependency Suite">
+	<test name="TakeToday">
+		<groups>
+			<dependencies>
+				<group depends-on="openbrowser" name="login"/>
+				<group depends-on="login" name="viewacc"/>
+				<group depends-on="viewacc" name="logout"/>
+			</dependencies>
+		</groups>
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.dependent.GroupDependencyWithXMLUnitTest"/>
+		</classes>
+	</test>
+</suite>

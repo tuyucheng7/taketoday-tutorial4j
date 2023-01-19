@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="TestNG-Groups">
+	<groups>
+		<run>
+			<include name="UI Test"/>
+		</run>
+	</groups>
+	<test name="Check Login Page">
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.groups.GroupFirstTest"/>
+		</classes>
+	</test>
+	<test name="Response Status">
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.groups.GroupSecondTest"/>
+		</classes>
+	</test>
+</suite>

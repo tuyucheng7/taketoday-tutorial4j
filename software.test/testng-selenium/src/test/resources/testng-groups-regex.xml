@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test-Suite">
+	<test name="TakeToday">
+		<groups>
+			<run>
+				<exclude name="demo.*"/>
+			</run>
+		</groups>
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.groups.GroupsUnitTest"/>
+		</classes>
+	</test>
+</suite>

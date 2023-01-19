@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test-Suite">
+	<test name="TakeToday">
+		<groups>
+			<define name="SuperGroup">
+				<include name="demo"/>
+			</define>
+			<run>
+				<include name="SuperGroup"/>
+			</run>
+		</groups>
+		<classes>
+			<class name="cn.tuyucheng.taketoday.testng.groups.GroupsUnitTest"/>
+		</classes>
+	</test>
+</suite>
