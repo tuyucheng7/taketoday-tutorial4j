@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = "cn.tuyucheng.taketoday"
+version = "1.0.0"
+sourceCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/eugenp/tutorials"
+        credentials {
+            username = project.USERNAME
+            password = project.GITHUB_TOKEN
+        }
+    }
+}
+
+dependencies {
+    implementation('cn.tuyucheng.taketoday.gradle:publish-package:1.0.0')
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

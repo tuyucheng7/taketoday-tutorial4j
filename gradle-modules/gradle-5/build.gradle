@@ -1,0 +1,23 @@
+plugins {
+    // id "nebula.lint" version "16.9.0"
+}
+
+description = "Gradle 5 root project"
+allprojects {
+    apply plugin: "java"
+    // apply plugin: "nebula.lint"
+    // gradleLint {
+    //     rules = ['unused-dependency']
+    //     reportFormat = 'text'
+    // }
+    group = "cn.tuyucheng.taketoday"
+    version = "1.0.0"
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+
+    repositories {
+        maven {
+            url = uri("https://maven.aliyun.com/repository/public/")
+        }
+    }
+}
