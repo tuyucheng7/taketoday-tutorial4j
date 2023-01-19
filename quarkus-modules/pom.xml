@@ -14,8 +14,9 @@
 	</parent>
 
 	<modules>
-		<!--<module>quarkus</module>-->
-		<!--<module>quarkus-extension</module>-->
-		<!--Disabled because requires Java-9 <module>quarkus-jandex</module> <module>quarkus-vs-springboot</module> -->
+		<module>quarkus</module>
+		<module>quarkus-extension</module>
+		<module>quarkus-jandex</module>
+		<module>quarkus-vs-springboot</module>
 	</modules>
 </project>
