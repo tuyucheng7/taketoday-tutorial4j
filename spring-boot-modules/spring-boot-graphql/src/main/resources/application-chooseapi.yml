@@ -1,0 +1,12 @@
+server:
+    port: 8082
+
+spring:
+    graphql:
+        graphiql:
+            enabled: true
+        schema:
+            locations: classpath:chooseapi/
+
+    main:
+        allow-bean-definition-overriding: true

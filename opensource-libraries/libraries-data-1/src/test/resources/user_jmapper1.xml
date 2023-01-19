@@ -1,0 +1,5 @@
+<jmapper>
+	<class name="cn.tuyucheng.taketoday.jmapper.UserDto1">
+		<global/>
+	</class>
+</jmapper>

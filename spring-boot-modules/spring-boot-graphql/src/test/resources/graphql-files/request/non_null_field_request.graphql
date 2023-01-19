@@ -1,0 +1,9 @@
+query {
+    searchAll {
+        vin
+        year
+        make
+        model
+        trim
+    }
+}

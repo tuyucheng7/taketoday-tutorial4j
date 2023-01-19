@@ -1,0 +1,10 @@
+<jmapper>
+	<class name="cn.tuyucheng.taketoday.jmapper.UserDto">
+		<attribute name="id">
+			<value name="id"/>
+		</attribute>
+		<attribute name="username">
+			<value name="email"/>
+		</attribute>
+	</class>
+</jmapper>

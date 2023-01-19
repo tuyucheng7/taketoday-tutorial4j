@@ -1,0 +1,3 @@
+entity-packages: cn.tuyucheng.taketoday.libraries.ebean.model
+transactional-packages: cn.tuyucheng.taketoday.libraries.ebean.app
+querybean-packages: cn.tuyucheng.taketoday.libraries.ebean.app

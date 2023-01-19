@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.tuyucheng.taketoday</groupId>
+	<artifactId>lightrun</artifactId>
+	<version>1.0.0</version>
+	<name>lightrun</name>
+	<description>Services for LightRun Article</description>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>parent-boot-2</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../parent-boot-2</relativePath>
+	</parent>
+
+	<modules>
+		<module>tasks-service</module>
+		<module>users-service</module>
+		<module>api-service</module>
+	</modules>
+</project>

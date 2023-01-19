@@ -1,0 +1,7 @@
+Deadlock Prevention & Detection
+
+ - Lock Reordering
+
+ - Timeout backoff
+
+ - Deadlock detection

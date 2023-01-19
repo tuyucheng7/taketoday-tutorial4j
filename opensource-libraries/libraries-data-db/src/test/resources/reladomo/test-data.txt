@@ -1,0 +1,7 @@
+class cn.tuyucheng.taketoday.libraries.reladomo.Department
+id, name
+1, "Marketing"
+
+class cn.tuyucheng.taketoday.libraries.reladomo.Employee
+id, name
+1, "Paul"

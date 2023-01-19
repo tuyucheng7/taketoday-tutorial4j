@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>kotlin-testing-1</artifactId>
+	<name>kotlin-testing-1</name>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>cn.tuyucheng.taketoday.kotlin-modules</groupId>
+		<artifactId>kotlin-modules</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.nhaarman</groupId>
+			<artifactId>mockito-kotlin</artifactId>
+			<version>${mockito-kotlin.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.spek</groupId>
+			<artifactId>spek-api</artifactId>
+			<version>${spek.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.spek</groupId>
+			<artifactId>spek-subject-extension</artifactId>
+			<version>${spek.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.spek</groupId>
+			<artifactId>spek-junit-platform-engine</artifactId>
+			<version>${spek.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- MockK dependencies-->
+		<dependency>
+			<groupId>io.mockk</groupId>
+			<artifactId>mockk</artifactId>
+			<version>${mockk.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.kotest</groupId>
+			<artifactId>kotest-runner-junit5-jvm</artifactId>
+			<version>${kotest.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.kotest</groupId>
+			<artifactId>kotest-framework-datatest-jvm</artifactId>
+			<version>${kotest.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<mockito-kotlin.version>1.6.0</mockito-kotlin.version>
+		<spek.version>1.1.5</spek.version>
+		<mockk.version>1.13.3</mockk.version>
+		<kotest.version>5.1.0</kotest.version>
+	</properties>
+</project>

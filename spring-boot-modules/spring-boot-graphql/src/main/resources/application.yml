@@ -1,0 +1,7 @@
+spring:
+    graphql:
+        graphiql:
+            enabled: true
+
+    main:
+        allow-bean-definition-overriding: true
