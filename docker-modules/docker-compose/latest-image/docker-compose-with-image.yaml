@@ -1,0 +1,8 @@
+version: '2.4'
+services:
+    db:
+        image: postgres
+    my_app:
+        image: "tuyucheng/test-app:latest"
+        ports:
+            - "8080:8080"

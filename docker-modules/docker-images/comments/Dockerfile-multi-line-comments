@@ -1,0 +1,4 @@
+# This file is a demonstration
+# For a Tuyucheng article
+FROM ubuntu:latest
+RUN echo 'This is a Tuyucheng tutorial'

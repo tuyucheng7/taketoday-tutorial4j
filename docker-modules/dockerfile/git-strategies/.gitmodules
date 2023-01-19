@@ -1,0 +1,4 @@
+[submodule "project"]
+  path = project
+  url = https://github.com/take-today/fullstack-roadmaps.git
+  branch = master
