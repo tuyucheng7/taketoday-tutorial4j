@@ -1,14 +1,14 @@
 ## 1. 概述
 
-在本快速教程中，我们将讨论 Spring 5 中引入的新ResponseStatusException类。此类支持将 HTTP 状态代码应用于 HTTP 响应。
+在本快速教程中，我们将讨论Spring 5中引入的新ResponseStatusException类。此类支持将HTTP状态代码应用于HTTP响应。
 
-RESTful 应用程序可以通过在对客户端的响应中返回正确的状态代码来传达 HTTP 请求的成功或失败。简而言之，适当的状态代码可以帮助客户端识别应用程序在处理请求时可能发生的问题。
+RESTful应用程序可以通过在对客户端的响应中**返回正确的状态代码来传达HTTP请求的成功或失败**。简而言之，适当的状态代码可以帮助客户端识别应用程序在处理请求时可能发生的问题。
 
-## 2.响应状态
+## 2. 响应状态
 
-在我们深入研究ResponseStatusException 之前，让我们快速看一下@ResponseStatus注解。这个注解是在 Spring 3 中引入的，用于将 HTTP 状态代码应用于 HTTP 响应。
+在我们深入研究ResponseStatusException之前，让我们快速看一下@ResponseStatus注解。这个注解是在Spring 3中引入的，用于将HTTP状态代码应用于HTTP响应。
 
-我们可以使用@ResponseStatus注解来设置 HTTP 响应中的状态和原因：
+我们可以使用@ResponseStatus注解来设置HTTP响应中的状态和原因：
 
 ```java
 @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Actor Not Found")
@@ -17,37 +17,37 @@ public class ActorNotFoundException extends Exception {
 }
 ```
 
-如果在处理 HTTP 请求时抛出此异常，则响应将包含此注解中指定的 HTTP 状态。
+如果在处理HTTP请求时抛出此异常，则响应将包含此注解中指定的HTTP状态。
 
 @ResponseStatus方法的一个缺点是它与异常产生了紧密耦合。在我们的示例中，所有类型为ActorNotFoundException的异常都将在响应中生成相同的错误消息和状态代码。
 
-## 3.响应状态异常
+## 3. 响应状态异常
 
-ResponseStatusException是@ResponseStatus的编程替代方案，是用于将状态代码应用于 HTTP 响应的异常的基类。它是一个RuntimeException，因此不需要显式添加到方法签名中。
+ResponseStatusException是@ResponseStatus的编程替代方案，是用于将状态代码应用于HTTP响应的异常的基类。它是一个RuntimeException，因此不需要显式添加到方法签名中。
 
-Spring 提供了 3 个构造函数来生成ResponseStatusException：
+Spring提供了3个构造函数来生成ResponseStatusException：
 
 ```java
 ResponseStatusException(HttpStatus status)
 ResponseStatusException(HttpStatus status, java.lang.String reason)
 ResponseStatusException(
-  HttpStatus status, 
-  java.lang.String reason, 
-  java.lang.Throwable cause
+  	HttpStatus status, 
+  	java.lang.String reason, 
+  	java.lang.Throwable cause
 )
 ```
 
 ResponseStatusException，构造函数参数：
 
--   status – 设置为 HTTP 响应的 HTTP 状态
--   reason – 解释 HTTP 响应异常集的消息
--   原因 – ResponseStatusException的可抛出原因
+-   status：设置为HTTP响应的HTTP状态
+-   reason：解释HTTP响应异常集的消息
+-   cause：ResponseStatusException的可抛出原因
 
-注意：在 Spring 中，HandlerExceptionResolver拦截并处理任何引发但未由 Controller 处理的异常。
+注意：在Spring中，HandlerExceptionResolver拦截并处理任何引发但未由Controller处理的异常。
 
-这些处理程序之一ResponseStatusExceptionResolver查找任何ResponseStatusException或@ResponseStatus注解的未捕获异常，然后提取 HTTP 状态代码和原因并将它们包含在 HTTP 响应中。
+这些处理程序之一ResponseStatusExceptionResolver查找任何ResponseStatusException或@ResponseStatus注解的未捕获异常，然后提取HTTP状态代码和原因并将它们包含在HTTP响应中。
 
-### 3.1. ResponseStatusException的好处
+### 3.1 ResponseStatusException的好处
 
 使用ResponseStatusException有几个好处：
 
@@ -55,9 +55,9 @@ ResponseStatusException，构造函数参数：
 -   其次，它避免了创建不必要的额外异常类
 -   最后，它提供了对异常处理的更多控制，因为可以通过编程方式创建异常
 
-## 4.例子
+## 4. 例子
 
-### 4.1. 生成ResponseStatusException
+### 4.1 生成ResponseStatusException
 
 现在，让我们看一个生成ResponseStatusException的示例：
 
@@ -67,17 +67,16 @@ public String getActorName(@PathVariable("id") int id) {
     try {
         return actorService.getActor(id);
     } catch (ActorNotFoundException ex) {
-        throw new ResponseStatusException(
-          HttpStatus.NOT_FOUND, "Actor Not Found", ex);
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Actor Not Found", ex);
     }
 }
 ```
 
-Spring Boot 提供默认的/error映射，返回带有 HTTP 状态的 JSON 响应。
+Spring Boot提供默认的/error映射，返回带有HTTP状态的JSON响应。
 
 下面是响应的样子：
 
-```javascript
+```http request
 $ curl -i -s -X GET http://localhost:8081/actor/8
 HTTP/1.1 404
 Content-Type: application/json;charset=UTF-8
@@ -93,14 +92,13 @@ Date: Sat, 26 Dec 2020 19:38:09 GMT
 }
 ```
 
-从 2.3 版本开始，Spring Boot 在默认错误页面上不再包含错误消息。原因是为了降低向客户泄露信息的风险
-
+**从2.3版本开始，Spring Boot在默认错误页面上不再包含错误消息**，原因是为了降低向客户泄露信息的风险。
 
 要更改默认行为，我们可以使用server.error.include-message属性。
 
 让我们将它设置为always看看会发生什么：
 
-```javascript
+```http request
 $ curl -i -s -X GET http://localhost:8081/actor/8
 HTTP/1.1 404
 Content-Type: application/json;charset=UTF-8
@@ -116,30 +114,26 @@ Date: Sat, 26 Dec 2020 19:39:11 GMT
 }
 ```
 
-正如我们所见，这一次，响应包含“未找到演员”错误消息。
+正如我们所见，这一次，响应包含“Actor Not Found”错误消息。
 
-### 4.2. 不同的状态代码 - 相同的异常类型
+### 4.2 不同的状态代码-相同的异常类型
 
-现在，让我们看看在引发相同类型的异常时如何为 HTTP 响应设置不同的状态代码：
+现在，让我们看看在引发相同类型的异常时如何为HTTP响应设置不同的状态代码：
 
 ```java
 @PutMapping("/actor/{id}/{name}")
-public String updateActorName(
-  @PathVariable("id") int id, 
-  @PathVariable("name") String name) {
- 
+public String updateActorName(@PathVariable("id") int id, @PathVariable("name") String name) {
     try {
         return actorService.updateActor(id, name);
     } catch (ActorNotFoundException ex) {
-        throw new ResponseStatusException(
-          HttpStatus.BAD_REQUEST, "Provide correct Actor Id", ex);
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct Actor Id", ex);
     }
 }
 ```
 
 下面是响应的样子：
 
-```javascript
+```http request
 $ curl -i -s -X PUT http://localhost:8081/actor/8/BradPitt
 HTTP/1.1 400
 ...
@@ -152,8 +146,8 @@ HTTP/1.1 400
 }
 ```
 
-## 5.总结
+## 5. 总结
 
-在本快速教程中，我们讨论了如何在我们的程序中构造ResponseStatusException 。
+在本快速教程中，我们讨论了如何在我们的程序中构造ResponseStatusException。
 
-我们还强调了在 HTTP Response 中设置 HTTP 状态代码的编程方式比@ResponseStatus注解更好。
+我们还强调了在HTTP响应中设置HTTP状态代码的编程方式比@ResponseStatus注解更好。

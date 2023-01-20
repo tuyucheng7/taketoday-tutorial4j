@@ -1,15 +1,15 @@
 ## 1. 简介
 
-在这篇简短的文章中，我们将了解Spring 5 中可用的新@SpringJUnitConfig和@SpringJUnitWebConfig注解。
+在这篇简短的文章中，我们将了解Spring 5中可用的新@SpringJUnitConfig和@SpringJUnitWebConfig注解。
 
-这些注解是 JUnit 5 和 Spring 5 注解的组合，它们使测试创建更加容易和快速。
+**这些注解是JUnit 5和Spring 5注解的组合**，它们使测试创建更加容易和快速。
 
 ## 2. @SpringJUnitConfig
 
 @SpringJUnitConfig结合了这两个注解：
 
--   来自 JUnit 5的@ExtendWith(SpringExtension.class)使用SpringExtension类运行测试，
--   来自 Spring Testing的@ContextConfiguration用于加载 Spring 上下文
+- **来自JUnit 5的@ExtendWith(SpringExtension.class)**使用SpringExtension类运行测试
+- **来自Spring Testing的@ContextConfiguration**用于加载Spring上下文
 
 让我们创建一个测试并在实践中使用这个注解：
 
@@ -22,9 +22,9 @@ public class SpringJUnitConfigIntegrationTest {
 }
 ```
 
-请注意，与@ContextConfiguration 相比，配置类是使用value属性声明的。但是，应该使用locations属性指定资源位置。
+**请注意，与@ContextConfiguration相比，配置类是使用value属性声明的**。但是，应该使用locations属性指定资源位置。
 
-我们现在可以验证 Spring 上下文是否真的加载了：
+我们现在可以验证Spring上下文是否真的加载了：
 
 ```java
 @Autowired
@@ -36,7 +36,7 @@ void givenAppContext_WhenInjected_ThenItShouldNotBeNull() {
 }
 ```
 
-最后，这里我们有@SpringJUnitConfig(SpringJUnitConfigTest.Config.class) 的等效代码：
+最后，这里我们有@SpringJUnitConfig(SpringJUnitConfigTest.Config.class)的等效代码：
 
 ```java
 @ExtendWith(SpringExtension.class)
@@ -45,7 +45,7 @@ void givenAppContext_WhenInjected_ThenItShouldNotBeNull() {
 
 ## 3. @SpringJUnitWebConfig
 
-@SpringJUnitWebConfig 结合了与@SpringJUnitConfig相同的注解加上Spring 测试中的@WebAppConfiguration——加载WebApplicationContext。
+**@SpringJUnitWebConfig结合了与@SpringJUnitConfig相同的注解加上Spring测试中的@WebAppConfiguration**-加载WebApplicationContext。
 
 让我们看看这个注解是如何工作的：
 
@@ -59,9 +59,9 @@ public class SpringJUnitWebConfigIntegrationTest {
 }
 ```
 
-与@SpringJUnitConfig一样，配置类位于value属性中，任何资源都使用locations属性指定。
+与@SpringJUnitConfig一样，**配置类位于value属性中**，任何资源都使用locations属性指定。
 
-此外，@WebAppConfiguration的value属性现在应该使用resourcePath属性指定。默认情况下，此属性设置为“src/main/webapp”。
+此外，@WebAppConfiguration的value属性现在应该使用resourcePath属性指定。**默认情况下，此属性设置为“src/main/webapp”**。
 
 现在让我们验证WebApplicationContext是否真的加载了：
 
@@ -85,4 +85,4 @@ void givenWebAppContext_WhenInjected_ThenItShouldNotBeNull() {
 
 ## 4. 总结
 
-在这个简短的教程中，我们展示了如何使用 Spring 5 中新引入的@SpringJUnitConfig和@SpringJUnitWebConfig注解。
+在这个简短的教程中，我们展示了如何使用Spring 5中新引入的@SpringJUnitConfig和@SpringJUnitWebConfig注解。

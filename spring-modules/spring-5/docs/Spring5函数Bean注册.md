@@ -2,7 +2,7 @@
 
 Spring 5支持在应用程序上下文中注册函数bean。
 
-简而言之，这可以通过在GenericApplicationContext类中定义的新registerBean()方法的重载版本来完成。
+简而言之，**这可以通过在GenericApplicationContext类中定义的新registerBean()方法的重载版本来完成**。
 
 让我们看一下这个功能的几个例子。
 
@@ -44,10 +44,10 @@ Spring 5支持在应用程序上下文中注册函数bean。
 
 ## 3. 函数Bean注册
 
-registerBean() API可以接收两种类型的函数接口作为参数：
+**registerBean() API可以接收两种类型的函数接口作为参数**：
 
--   用于创建对象的Supplier参数
--   一个BeanDefinitionCustomizer可变参数，可用于提供一个或多个lambda表达式来自定义BeanDefinition；这个接口只有一个customize()方法
+-   用于创建对象的**Supplier参数**
+-   一个**BeanDefinitionCustomizer可变参数**，可用于提供一个或多个lambda表达式来自定义BeanDefinition；这个接口只有一个customize()方法
 
 首先，让我们创建一个非常简单的类定义，我们将使用它来创建bean：
 
@@ -85,7 +85,7 @@ public class BeanRegistrationIntegrationTest {
 
 我们在示例中使用了GenericWebApplicationContext类型，但任何类型的应用程序上下文都可以以相同的方式用于注册bean。
 
-让我们看看如何使用lambda表达式注册一个bean来创建实例：
+让我们看看如何**使用lambda表达式注册一个bean来创建实例**：
 
 ```java
 context.registerBean(MyService.class, () -> new MyService());
@@ -105,7 +105,7 @@ assertTrue(myService.getRandomNumber() < 10);
 context.registerBean("mySecondService", MyService.class, () -> new MyService());
 ```
 
-接下来，让我们看看如何通过添加lambda表达式来自定义bean来注册它：
+接下来，让我们看看如何**通过添加lambda表达式来自定义bean来注册它**：
 
 ```java
 context.registerBean("myCallbackService", MyService.class, 
