@@ -1,7 +1,7 @@
 ## Jenkins plugins
 
-This module contains articles about various Jenkins plugins.
+此模块包含有关各种Jenkins插件的文章。
 
-### Relevant articles:
+## 相关文章
 
-- [Writing a Jenkins Plugin](https://www.baeldung.com/jenkins-custom-plugin)
++ [编写Jenkins插件](docs/编写Jenkins插件.md)

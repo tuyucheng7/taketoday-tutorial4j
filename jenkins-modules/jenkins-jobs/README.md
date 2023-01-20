@@ -1,4 +1,6 @@
-## Relevant Articles
-- [Trigger Another Job from a Jenkins Pipeline](https://www.baeldung.com/ops/jenkins-pipeline-trigger-new-job)
-- [Fixing the “No Such DSL method” Error in Jenkins Pipeline](https://www.baeldung.com/ops/jenkins-pipeline-no-such-dsl-method-error)
-- [Jenkins Pipeline – Change to Another Folder](https://www.baeldung.com/ops/jenkins-pipeline-change-to-another-folder)
+## 相关文章
+
++ [从Jenkins管道触发另一个作业](docs/从Jenkins管道触发另一个作业.md)
++ [Jenkins Pipeline-切换到另一个文件夹](docs/Jenkins-Pipeline-切换到另一个文件夹.md)
++ [修复Jenkins管道中的No Such DSL method错误](docs/修复Jenkins管道中的No-Such-DSL-method错误.md)
++ [如何在不重启服务器的情况下停止Jenkins上的僵尸作业](docs/如何在不重启服务器的情况下停止Jenkins上的僵尸作业.md)
