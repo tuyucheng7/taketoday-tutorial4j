@@ -17,7 +17,7 @@ class Spring5JUnit5IntegrationTest {
 	private Task task;
 
 	@Test
-	void givenAMethodName_whenInjecting_thenApplicationContextInjectedIntoMetho(ApplicationContext applicationContext) {
+	void givenAMethodName_whenInjecting_thenApplicationContextInjectedIntoMethod(ApplicationContext applicationContext) {
 		assertNotNull(applicationContext, "ApplicationContext should have been injected by Spring");
 		assertEquals(this.task, applicationContext.getBean("taskName", Task.class));
 	}

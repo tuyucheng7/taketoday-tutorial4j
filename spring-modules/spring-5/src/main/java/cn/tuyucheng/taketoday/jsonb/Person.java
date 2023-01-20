@@ -84,21 +84,19 @@ public class Person {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Person [id=");
-		builder.append(id);
-		builder.append(", name=");
-		builder.append(name);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", age=");
-		builder.append(age);
-		builder.append(", registeredDate=");
-		builder.append(registeredDate);
-		builder.append(", salary=");
-		builder.append(salary);
-		builder.append("]");
-		return builder.toString();
+		return "Person [id=" +
+			id +
+			", name=" +
+			name +
+			", email=" +
+			email +
+			", age=" +
+			age +
+			", registeredDate=" +
+			registeredDate +
+			", salary=" +
+			salary +
+			"]";
 	}
 
 	@Override
@@ -118,9 +116,6 @@ public class Person {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
-		if (id != other.id)
-			return false;
-		return true;
+		return id == other.id;
 	}
-
 }

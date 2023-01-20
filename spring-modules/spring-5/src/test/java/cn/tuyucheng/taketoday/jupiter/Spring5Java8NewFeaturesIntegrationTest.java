@@ -15,7 +15,7 @@ class Spring5Java8NewFeaturesIntegrationTest {
 		Result reverseString(Input input);
 	}
 
-	public class StringUtils {
+	public static class StringUtils {
 		FunctionalInterfaceExample<String, String> functionLambdaString = s -> Pattern.compile(" +")
 			.splitAsStream(s)
 			.map(word -> new StringBuilder(word).reverse())

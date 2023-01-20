@@ -34,7 +34,7 @@ public class Car {
 		// ...
 	}
 
-	public void сhangeOil(String oil) {
+	public void changeOil(String oil) {
 		Assert.notNull(oil, "oil mustn't be null");
 		// ...
 	}
@@ -44,7 +44,7 @@ public class Car {
 		// ...
 	}
 
-	public void сhangeEngine(Engine engine) {
+	public void changeEngine(Engine engine) {
 		Assert.isInstanceOf(ToyotaEngine.class, engine);
 		// ...
 	}
@@ -98,27 +98,26 @@ public class Car {
 
 		car.fuel();
 
-		car.сhangeOil("oil");
+		car.changeOil("oil");
 
 		CarBattery carBattery = new CarBattery();
 		car.replaceBattery(carBattery);
 
-		car.сhangeEngine(new ToyotaEngine());
+		car.changeEngine(new ToyotaEngine());
 
 		car.startWithHasLength(" ");
 		car.startWithHasText("t");
 		car.startWithNotContain("132");
 
-		List<String> repairPartsCollection = new ArrayList<String>();
+		List<String> repairPartsCollection = new ArrayList<>();
 		repairPartsCollection.add("part");
 		car.repair(repairPartsCollection);
 
-		Map<String, String> repairPartsMap = new HashMap<String, String>();
+		Map<String, String> repairPartsMap = new HashMap<>();
 		repairPartsMap.put("1", "part");
 		car.repair(repairPartsMap);
 
 		String[] repairPartsArray = {"part"};
 		car.repair(repairPartsArray);
-
 	}
 }

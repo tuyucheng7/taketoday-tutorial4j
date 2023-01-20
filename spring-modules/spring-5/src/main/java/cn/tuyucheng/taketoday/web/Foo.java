@@ -20,18 +20,14 @@ public class Foo {
 
 	public Foo(final String name) {
 		super();
-
 		this.name = name;
 	}
 
 	public Foo(final long id, final String name) {
 		super();
-
 		this.id = id;
 		this.name = name;
 	}
-
-	// API
 
 	public long getId() {
 		return id;
@@ -48,8 +44,6 @@ public class Foo {
 	public void setName(final String name) {
 		this.name = name;
 	}
-
-	//
 
 	@Override
 	public int hashCode() {
@@ -69,16 +63,12 @@ public class Foo {
 			return false;
 		Foo other = (Foo) obj;
 		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+			return other.name == null;
+		} else return name.equals(other.name);
 	}
 
 	@Override
 	public String toString() {
 		return "Foo [name=" + name + "]";
 	}
-
 }

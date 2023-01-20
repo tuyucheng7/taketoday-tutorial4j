@@ -19,5 +19,4 @@ class Actor {
 	public String getLastname() {
 		return lastname;
 	}
-
 }

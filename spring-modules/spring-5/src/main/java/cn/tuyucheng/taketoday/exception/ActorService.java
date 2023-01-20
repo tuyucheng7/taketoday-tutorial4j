@@ -13,14 +13,14 @@ public class ActorService {
 
 	public String getActor(int index) throws ActorNotFoundException {
 		if (index >= actors.size()) {
-			throw new ActorNotFoundException("Actor Not Found in Repsoitory");
+			throw new ActorNotFoundException("Actor Not Found in Repository");
 		}
 		return actors.get(index);
 	}
 
 	public String updateActor(int index, String actorName) throws ActorNotFoundException {
 		if (index >= actors.size()) {
-			throw new ActorNotFoundException("Actor Not Found in Repsoitory");
+			throw new ActorNotFoundException("Actor Not Found in Repository");
 		}
 		actors.set(index, actorName);
 		return actorName;
@@ -28,7 +28,7 @@ public class ActorService {
 
 	public String removeActor(int index) {
 		if (index >= actors.size()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Actor Not Found in Repsoitory");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Actor Not Found in Repository");
 		}
 		return actors.remove(index);
 	}

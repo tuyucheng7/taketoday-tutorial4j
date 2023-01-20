@@ -61,5 +61,4 @@ public class CrudInput {
 	public List<URI> getTagUris() {
 		return this.tagUris;
 	}
-
 }

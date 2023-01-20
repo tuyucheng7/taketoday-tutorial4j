@@ -47,12 +47,11 @@ public class CRUDController {
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	void put(@PathVariable("id") long id, @RequestBody CrudInput crudInput) {
-
 	}
 
 	@PatchMapping("/{id}")
 	public List<CrudInput> patch(@PathVariable("id") long id, @RequestBody CrudInput crudInput) {
-		List<CrudInput> returnList = new ArrayList<CrudInput>();
+		List<CrudInput> returnList = new ArrayList<>();
 		crudInput.setId(id);
 		returnList.add(crudInput);
 		return returnList;

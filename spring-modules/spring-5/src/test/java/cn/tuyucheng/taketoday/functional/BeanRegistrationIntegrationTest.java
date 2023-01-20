@@ -1,41 +1,41 @@
 package cn.tuyucheng.taketoday.functional;
 
 import cn.tuyucheng.taketoday.Spring5Application;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import cn.tuyucheng.taketoday.jupiter.SpringExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Spring5Application.class)
-public class BeanRegistrationIntegrationTest {
+class BeanRegistrationIntegrationTest {
 
 	@Autowired
 	private GenericWebApplicationContext context;
 
 	@Test
-	public void whenRegisterBean_thenOk() {
-		context.registerBean(MyService.class, () -> new MyService());
+	void whenRegisterBean_thenOk() {
+		context.registerBean(MyService.class, MyService::new);
 		MyService myService = (MyService) context.getBean("cn.tuyucheng.taketoday.functional.MyService");
 		assertTrue(myService.getRandomNumber() < 10);
 	}
 
 	@Test
-	public void whenRegisterBeanWithName_thenOk() {
-		context.registerBean("mySecondService", MyService.class, () -> new MyService());
+	void whenRegisterBeanWithName_thenOk() {
+		context.registerBean("mySecondService", MyService.class, MyService::new);
 		MyService mySecondService = (MyService) context.getBean("mySecondService");
 		assertTrue(mySecondService.getRandomNumber() < 10);
 	}
 
 	@Test
-	public void whenRegisterBeanWithCallback_thenOk() {
-		context.registerBean("myCallbackService", MyService.class, () -> new MyService(), bd -> bd.setAutowireCandidate(false));
+	void whenRegisterBeanWithCallback_thenOk() {
+		context.registerBean("myCallbackService", MyService.class,
+			MyService::new, bd -> bd.setAutowireCandidate(false));
 		MyService myCallbackService = (MyService) context.getBean("myCallbackService");
 		assertTrue(myCallbackService.getRandomNumber() < 10);
 	}
-
 }

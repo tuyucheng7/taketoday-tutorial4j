@@ -37,5 +37,4 @@ public class ActorController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct Actor Id", ex);
 		}
 	}
-
 }

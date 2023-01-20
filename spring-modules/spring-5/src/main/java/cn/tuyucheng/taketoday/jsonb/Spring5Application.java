@@ -27,5 +27,4 @@ public class Spring5Application {
 		messageConverters.add(jsonbHttpMessageConverter);
 		return new HttpMessageConverters(true, messageConverters);
 	}
-
 }

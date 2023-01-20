@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @SpringJUnitConfig(SpringJUnitConfigTest.Config.class) is equivalent to:
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
  * @ContextConfiguration(classes = SpringJUnitConfigTest.Config.class )
  */
 @SpringJUnitConfig(SpringJUnitConfigIntegrationTest.Config.class)
-public class SpringJUnitConfigIntegrationTest {
+class SpringJUnitConfigIntegrationTest {
 
 	@Configuration
 	static class Config {
@@ -27,5 +27,4 @@ public class SpringJUnitConfigIntegrationTest {
 	void givenAppContext_WhenInjected_ThenItShouldNotBeNull() {
 		assertNotNull(applicationContext);
 	}
-
 }

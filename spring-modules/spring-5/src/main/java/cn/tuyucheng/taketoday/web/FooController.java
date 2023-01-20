@@ -30,8 +30,6 @@ public class FooController {
 	@Autowired
 	private FooRepository repo;
 
-	// API - read
-
 	@GetMapping("/foos/{id}")
 	@ResponseBody
 	@Validated
@@ -54,13 +52,10 @@ public class FooController {
 			.getContent();
 	}
 
-	// API - write
-
 	@PutMapping("/foos/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Foo update(@PathVariable("id") final String id, @RequestBody final Foo foo) {
 		return foo;
 	}
-
 }

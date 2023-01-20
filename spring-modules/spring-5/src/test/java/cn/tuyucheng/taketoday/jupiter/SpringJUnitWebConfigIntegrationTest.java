@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @SpringJUnitWebConfig(SpringJUnitWebConfigTest.Config.class) is equivalent to:
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
  * @ContextConfiguration(classes = SpringJUnitWebConfigTest.Config.class )
  */
 @SpringJUnitWebConfig(SpringJUnitWebConfigIntegrationTest.Config.class)
-public class SpringJUnitWebConfigIntegrationTest {
+class SpringJUnitWebConfigIntegrationTest {
 
 	@Configuration
 	static class Config {
@@ -28,5 +28,4 @@ public class SpringJUnitWebConfigIntegrationTest {
 	void givenWebAppContext_WhenInjected_ThenItShouldNotBeNull() {
 		assertNotNull(webAppContext);
 	}
-
 }

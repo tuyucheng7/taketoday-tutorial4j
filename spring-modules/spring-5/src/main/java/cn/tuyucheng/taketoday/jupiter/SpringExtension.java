@@ -20,7 +20,8 @@ import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-public class SpringExtension implements BeforeAllCallback, AfterAllCallback, TestInstancePostProcessor, BeforeEachCallback, AfterEachCallback, ParameterResolver {
+public class SpringExtension implements BeforeAllCallback, AfterAllCallback,
+	TestInstancePostProcessor, BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
 	private static final ExtensionContext.Namespace namespace = ExtensionContext.Namespace.create(SpringExtension.class);
 

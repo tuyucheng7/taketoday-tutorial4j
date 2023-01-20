@@ -14,5 +14,4 @@ public class Spring5ApplicationIntegrationTest {
 	@Test
 	public void contextLoads() {
 	}
-
 }
