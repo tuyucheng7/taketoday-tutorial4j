@@ -11,16 +11,15 @@ import ninja.NinjaRunner;
 import ninja.Result;
 import services.UserService;
 
-@RunWith(NinjaRunner.class)
-public class ApiControllerMockManualTest {
+public class ApiControllerMockUnitTest extends NinjaTest {
 
-	@Inject
 	private UserService userService;
 
-	ApplicationController applicationController;
+	private ApplicationController applicationController;
 
 	@Before
 	public void setupTest() {
+		userService = this.ninjaTestServer.getInjector().getInstance(UserService.class);
 		applicationController = new ApplicationController();
 		applicationController.userService = userService;
 	}

@@ -8,7 +8,7 @@ import org.doctester.testbrowser.Response;
 import org.junit.Test;
 import ninja.NinjaDocTester;
 
-public class ApiControllerDocTesterManualTest extends NinjaDocTester {
+public class ApiControllerDocTesterUnitTest extends NinjaDocTester {
 
 	String URL_INDEX = "/";
 	String URL_HELLO = "/hello";
@@ -25,4 +25,4 @@ public class ApiControllerDocTesterManualTest extends NinjaDocTester {
 		assertThat(response.payload, containsString("Bonjour, bienvenue dans Ninja Framework!"));
 	}
 
-}
+
