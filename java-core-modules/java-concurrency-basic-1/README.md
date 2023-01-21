@@ -1,4 +1,4 @@
-## CoreJavaConcurrency Basic
+## Core Java Concurrency Basic
 
 本模块包含有关Java并发基础的文章
 
