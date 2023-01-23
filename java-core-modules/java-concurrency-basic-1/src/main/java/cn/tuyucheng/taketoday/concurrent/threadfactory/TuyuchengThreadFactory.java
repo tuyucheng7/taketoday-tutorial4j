@@ -2,12 +2,12 @@ package cn.tuyucheng.taketoday.concurrent.threadfactory;
 
 import java.util.concurrent.ThreadFactory;
 
-public class BaeldungThreadFactory implements ThreadFactory {
+public class TuyuchengThreadFactory implements ThreadFactory {
 
 	private int threadId;
 	private String name;
 
-	public BaeldungThreadFactory(String name) {
+	public TuyuchengThreadFactory(String name) {
 		threadId = 1;
 		this.name = name;
 	}
@@ -19,5 +19,4 @@ public class BaeldungThreadFactory implements ThreadFactory {
 		threadId++;
 		return t;
 	}
-
 }

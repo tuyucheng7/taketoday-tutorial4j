@@ -21,7 +21,6 @@ public class DelayedCallable implements Callable<String> {
 	}
 
 	public String call() {
-
 		try {
 			Thread.sleep(period);
 

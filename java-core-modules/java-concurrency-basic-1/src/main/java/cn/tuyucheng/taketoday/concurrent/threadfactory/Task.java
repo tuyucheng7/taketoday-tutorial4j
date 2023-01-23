@@ -6,5 +6,4 @@ public class Task implements Runnable {
 	public void run() {
 		// task details
 	}
-
 }

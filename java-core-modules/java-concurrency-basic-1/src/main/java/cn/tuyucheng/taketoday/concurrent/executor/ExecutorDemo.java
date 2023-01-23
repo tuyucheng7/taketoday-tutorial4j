@@ -10,5 +10,4 @@ public class ExecutorDemo {
 			// task to be performed
 		});
 	}
-
 }
