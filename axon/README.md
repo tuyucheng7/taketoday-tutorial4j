@@ -20,3 +20,4 @@
 + [Axon中的快照聚合](docs/Axon中的快照聚合.md)
 + [在Axon框架中调度查询](docs/在Axon框架中调度查询.md)
 + [持久化查询模型](docs/持久化查询模型.md)
++ [通过REST使用和测试Axon应用程序](docs/通过REST使用和测试Axon应用程序.md)
