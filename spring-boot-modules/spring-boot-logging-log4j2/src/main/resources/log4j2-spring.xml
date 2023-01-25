@@ -7,6 +7,11 @@
 				pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"/>
 		</Console>
 
+		<Console name="Console-Extensions" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d %p %c{1.} [%t] ${spring:spring.application.name} %m%n"/>
+		</Console>
+
 		<RollingFile name="RollingFile"
 					 fileName="./logs/spring-boot-logger-log4j2.log"
 					 filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
@@ -14,8 +19,7 @@
 				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
 			</PatternLayout>
 			<Policies>
-				<!-- rollover on startup, daily and when the file reaches
-					10 MegaBytes -->
+				<!-- rollover on startup, daily and when the file reaches 10 MegaBytes -->
 				<OnStartupTriggeringPolicy/>
 				<SizeBasedTriggeringPolicy
 					size="10 MB"/>
@@ -37,6 +41,18 @@
 		</Root>
 
 		<!-- LOG "cn.tuyucheng.taketoday*" at TRACE level -->
-		<Logger name="cn.tuyucheng.taketoday" level="trace"></Logger>
+		<SpringProfile name="!development, !production">
+			<Logger name="cn.tuyucheng.taketoday" level="trace"/>
+		</SpringProfile>
+
+		<SpringProfile name="development">
+			<Logger name="cn.tuyucheng.taketoday.extensions" level="debug"/>
+		</SpringProfile>
+
+		<SpringProfile name="production">
+			<Logger name="cn.tuyucheng.taketoday.extensions" level="error">
+				<AppenderRef ref="Console-Extensions"/>
+			</Logger>
+		</SpringProfile>
 	</Loggers>
 </Configuration>
