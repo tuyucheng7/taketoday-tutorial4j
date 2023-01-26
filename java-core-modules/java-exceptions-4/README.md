@@ -10,5 +10,6 @@
 + [Java缺少return语句](docs/Java缺少return语句.md)
 + [在Java中获取当前堆栈跟踪](docs/在Java中获取当前堆栈跟踪.md)
 + [Java中的Errors与Exceptions](docs/Java中的Errors与Exceptions.md)
++ [修复IllegalArgumentException：No enum const class](docs/修复IllegalArgumentException-No-enum-const-class.md)
 
 - 更多文章： [[<-- prev]](../java-exceptions-3/README.md)
