@@ -10,5 +10,6 @@
 + [在Java中切换布尔变量](docs/在Java中切换布尔变量.md)
 + [在Java中处理具有相同名称的类](docs/在Java中处理具有相同名称的类.md)
 + [声明变量实例化与Java构造函数实例化](docs/声明变量实例化与Java构造函数实例化.md)
++ [在Java中将数字从一个基数转换为另一个基数](docs/在Java中将数字从一个基数转换为另一个基数.md)
 
 - 更多文章： [[<-- prev]](../java-lang-4/README.md)
