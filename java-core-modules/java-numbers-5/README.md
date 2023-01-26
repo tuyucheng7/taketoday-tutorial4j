@@ -11,5 +11,6 @@
 + [在Java中检查数字是正数还是负数](docs/在Java中检查数字是正数还是负数.md)
 + [如何使用Java检查某个范围内是否存在整数](docs/如何使用Java检查某个范围内是否存在整数.md)
 + [将两个整数除以浮点数](docs/将两个整数除以浮点数.md)
++ [在Java中将BigDecimal乘以整数](docs/在Java中将BigDecimal乘以整数.md)
 
 - 更多文章： [[<-- prev]](../java-numbers-4/README.md)
