@@ -1,61 +1,60 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.SOAPBinding;
+import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StudentLiveTest {
-    private static QName SERVICE_NAME = new QName("http://introduction.cxf.baeldung.com/", "Baeldung");
-    private static QName PORT_NAME = new QName("http://introduction.cxf.baeldung.com/", "BaeldungPort");
+class StudentLiveTest {
+	private static QName SERVICE_NAME = new QName("http://introduction.cxf.tuyucheng.com/", "Tuyucheng");
+	private static QName PORT_NAME = new QName("http://introduction.cxf.tuyucheng.com/", "TuyuchengPort");
 
-    private Service service;
-    private Baeldung baeldungProxy;
-    private BaeldungImpl baeldungImpl;
+	private Service service;
+	private Tuyucheng tuyuchengProxy;
+	private TuyuchengImpl tuyuchengImpl;
 
-    {
-        service = Service.create(SERVICE_NAME);
-        final String endpointAddress = "http://localhost:8080/baeldung";
-        service.addPort(PORT_NAME, SOAPBinding.SOAP11HTTP_BINDING, endpointAddress);
-    }
+	{
+		service = Service.create(SERVICE_NAME);
+		final String endpointAddress = "http://localhost:8080/tuyucheng";
+		service.addPort(PORT_NAME, SOAPBinding.SOAP11HTTP_BINDING, endpointAddress);
+	}
 
-    @Before
-    public void reinstantiateBaeldungInstances() {
-        baeldungImpl = new BaeldungImpl();
-        baeldungProxy = service.getPort(PORT_NAME, Baeldung.class);
-    }
+	@BeforeEach
+	void reinstantiateTuyuchengInstances() {
+		tuyuchengImpl = new TuyuchengImpl();
+		tuyuchengProxy = service.getPort(PORT_NAME, Tuyucheng.class);
+	}
 
-    @Test
-    public void whenUsingHelloMethod_thenCorrect() {
-        final String endpointResponse = baeldungProxy.hello("Baeldung");
-        final String localResponse = baeldungImpl.hello("Baeldung");
-        assertEquals(localResponse, endpointResponse);
-    }
+	@Test
+	void whenUsingHelloMethod_thenCorrect() {
+		final String endpointResponse = tuyuchengProxy.hello("Tuyucheng");
+		final String localResponse = tuyuchengImpl.hello("Tuyucheng");
+		assertEquals(localResponse, endpointResponse);
+	}
 
-    @Test
-    public void whenUsingHelloStudentMethod_thenCorrect() {
-        final Student student = new StudentImpl("John Doe");
-        final String endpointResponse = baeldungProxy.helloStudent(student);
-        final String localResponse = baeldungImpl.helloStudent(student);
-        assertEquals(localResponse, endpointResponse);
-    }
+	@Test
+	void whenUsingHelloStudentMethod_thenCorrect() {
+		final Student student = new StudentImpl("John Doe");
+		final String endpointResponse = tuyuchengProxy.helloStudent(student);
+		final String localResponse = tuyuchengImpl.helloStudent(student);
+		assertEquals(localResponse, endpointResponse);
+	}
 
-    @Test
-    public void usingGetStudentsMethod_thenCorrect() {
-        final Student student1 = new StudentImpl("Adam");
-        baeldungProxy.helloStudent(student1);
+	@Test
+	void usingGetStudentsMethod_thenCorrect() {
+		final Student student1 = new StudentImpl("Adam");
+		tuyuchengProxy.helloStudent(student1);
 
-        final Student student2 = new StudentImpl("Eve");
-        baeldungProxy.helloStudent(student2);
+		final Student student2 = new StudentImpl("Eve");
+		tuyuchengProxy.helloStudent(student2);
 
-        final Map<Integer, Student> students = baeldungProxy.getStudents();
-        assertEquals("Adam", students.get(1).getName());
-        assertEquals("Eve", students.get(2).getName());
-    }
+		final Map<Integer, Student> students = tuyuchengProxy.getStudents();
+		assertEquals("Adam", students.get(1).getName());
+		assertEquals("Eve", students.get(2).getName());
+	}
 }
