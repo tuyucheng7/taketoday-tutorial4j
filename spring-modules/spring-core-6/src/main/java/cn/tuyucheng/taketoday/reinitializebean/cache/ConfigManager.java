@@ -46,5 +46,4 @@ public class ConfigManager {
 	public void reinitializeConfig() {
 		initConfigs();
 	}
-
 }
