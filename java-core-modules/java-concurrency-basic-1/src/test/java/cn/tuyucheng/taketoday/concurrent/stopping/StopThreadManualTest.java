@@ -1,19 +1,18 @@
 package cn.tuyucheng.taketoday.concurrent.stopping;
 
 import com.jayway.awaitility.Awaitility;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static com.jayway.awaitility.Awaitility.await;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StopThreadManualTest {
+class StopThreadManualTest {
 
 	@Test
-	public void whenStoppedThreadIsStopped() throws InterruptedException {
-
+	void whenStoppedThreadIsStopped() throws InterruptedException {
 		int interval = 5;
 
 		ControlSubThread controlSubThread = new ControlSubThread(interval);
@@ -26,13 +25,11 @@ public class StopThreadManualTest {
 
 		// Stop it and make sure the flags have been reversed
 		controlSubThread.stop();
-		await()
-			.until(() -> assertTrue(controlSubThread.isStopped()));
+		await().until(() -> assertTrue(controlSubThread.isStopped()));
 	}
 
 	@Test
-	public void whenInterruptedThreadIsStopped() throws InterruptedException {
-
+	void whenInterruptedThreadIsStopped() throws InterruptedException {
 		int interval = 50;
 
 		ControlSubThread controlSubThread = new ControlSubThread(interval);

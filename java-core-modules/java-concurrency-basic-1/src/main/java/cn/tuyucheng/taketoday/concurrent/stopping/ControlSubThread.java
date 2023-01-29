@@ -6,8 +6,8 @@ public class ControlSubThread implements Runnable {
 
 	private Thread worker;
 	private int interval = 100;
-	private AtomicBoolean running = new AtomicBoolean(false);
-	private AtomicBoolean stopped = new AtomicBoolean(true);
+	private final AtomicBoolean running = new AtomicBoolean(false);
+	private final AtomicBoolean stopped = new AtomicBoolean(true);
 
 
 	public ControlSubThread(int sleepInterval) {

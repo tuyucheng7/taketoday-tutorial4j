@@ -10,11 +10,10 @@ public class MessageServiceCallable implements Callable<String> {
 
 	public MessageServiceCallable(MessageService messageService) {
 		this.messageService = messageService;
-
 	}
 
 	@Override
 	public String call() {
-		return messageService.getMesssage();
+		return messageService.getMessage();
 	}
 }

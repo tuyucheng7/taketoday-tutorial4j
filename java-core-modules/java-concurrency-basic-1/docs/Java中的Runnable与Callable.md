@@ -1,14 +1,12 @@
 ## 1. 概述
 
-自Java早期以来，多线程一直是Java的一个主要方面。
-Runnable是为表示多线程任务而提供的核心接口，Java 1.5提供了Callable作为Runnable的改进版本。
+自Java早期以来，多线程一直是Java的一个主要方面。Runnable是为表示多线程任务而提供的核心接口，Java 1.5提供了Callable作为Runnable的改进版本。
 
 在本教程中，我们将探讨两个接口的差异和应用。
 
 ## 2. 执行机制
 
-两个接口都被设计为表示可以由多个线程运行的任务。
-Runnable任务可以使用Thread类或ExecutorService运行，而Callable任务只能使用后者运行。
+两个接口都被设计为表示可以由多个线程运行的任务。Runnable任务可以使用Thread类或ExecutorService运行，而Callable任务只能使用后者运行。
 
 ## 3. 返回值
 
@@ -88,7 +86,7 @@ public class FactorialTask implements Callable<Integer> {
             throw new InvalidParameterException("Number must be positive");
 
         for (int count = number; count > 1; count--)
-            fact = fact  count;
+            fact = fact * count;
 
         return fact;
     }
@@ -116,6 +114,7 @@ class FactorialTaskManualTest {
     void whenTaskSubmitted_ThenFutureResultObtained() throws ExecutionException, InterruptedException {
         FactorialTask task = new FactorialTask(5);
         Future<Integer> future = executorService.submit(task);
+		
         assertEquals(120, future.get().intValue());
     }
 
@@ -132,7 +131,7 @@ class FactorialTaskManualTest {
 
 ### 4.1 Runnable
 
-由于方法签名没有指定“throws”子句，因此无法传播进一步受检异常。
+**由于方法签名没有指定“throws”子句，因此无法传播进一步受检异常**。
 
 ### 4.2 Callable
 
@@ -146,41 +145,35 @@ public class FactorialTask implements Callable<Integer> {
         if (number < 0)
             throw new InvalidParamaterException("Number must be positive");
         for (int count = number; count > 1; count--)
-            fact = fact  count;
+            fact = fact * count;
         return fact;
     }
 }
 ```
 
-如果使用ExecutorService运行Callable，则会在Future对象中收集异常，可以通过调用Future.get()方法来检查该对象。
-这将抛出一个ExecutionException，它包装了原始异常：
+如果使用ExecutorService运行Callable，则会在Future对象中收集异常。可以通过调用Future.get()方法来检查该对象，这将抛出一个ExecutionException，它包装了原始异常：
 
 ```java
-class FactorialTaskManualTest {
-
-    @Test
-    void whenException_ThenCallableThrowsIt() throws ExecutionException, InterruptedException {
-        FactorialTask task = new FactorialTask(-5);
-        Future<Integer> future = executorService.submit(task);
-        assertThrows(ExecutionException.class, future::get);
-    }
+@Test
+void whenException_ThenCallableThrowsIt() throws ExecutionException, InterruptedException {
+    FactorialTask task = new FactorialTask(-5);
+    Future<Integer> future = executorService.submit(task);
+	
+    assertThrows(ExecutionException.class, future::get);
 }
 ```
 
-在上面的测试中，当我们传递一个无效的数字时，会抛出ExecutionException。
-我们可以在此异常对象上调用getCause()方法来获取原始的受检异常。
+在上面的测试中，当我们传递一个无效的数字时，会抛出ExecutionException。我们可以在此异常对象上调用getCause()方法来获取原始的受检异常。
 
 如果我们不调用Future类的get()方法，那么call()方法引发的异常将不会被引出，并且任务仍将标记为已完成：
 
 ```java
-class FactorialTaskManualTest {
-
-    @Test
-    void whenException_ThenCallableDoesntThrowsItIfGetIsNotCalled() {
-        FactorialTask task = new FactorialTask(-5);
-        Future<Integer> future = executorService.submit(task);
-        assertFalse(future.isDone());
-    }
+@Test
+void whenException_ThenCallableDoesntThrowsItIfGetIsNotCalled() {
+    FactorialTask task = new FactorialTask(-5);
+    Future<Integer> future = executorService.submit(task);
+	
+    assertFalse(future.isDone());
 }
 ```
 
