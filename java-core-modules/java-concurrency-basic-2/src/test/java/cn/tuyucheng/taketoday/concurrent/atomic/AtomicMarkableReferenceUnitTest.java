@@ -1,20 +1,39 @@
 package cn.tuyucheng.taketoday.concurrent.atomic;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicMarkableReference;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AtomicMarkableReferenceUnitTest {
 
-	@Data
-	@AllArgsConstructor
 	static class Employee {
 		private int id;
 		private String name;
+
+		Employee(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
 	}
 
 	@Test
