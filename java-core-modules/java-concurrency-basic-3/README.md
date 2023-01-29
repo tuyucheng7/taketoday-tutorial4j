@@ -1,9 +1,9 @@
-## CoreJavaConcurrency Basic
+## Core Java Concurrency Basic
 
-This module contains articles about basicJavaconcurrency.
+本模块包含有关Java并发基础的文章
 
-### Relevant Articles:
+## 相关文章
 
-- [How to Handle InterruptedException in Java](docs/Java_Interrupted_Exception.md)
++ [如何在Java中处理InterruptedException](docs/如何在Java中处理InterruptedException.md)
 
-- More articles: [[<-- prev]](../java-concurrency-basic-2/README.md)
+- 更多文章： [[<-- prev]](../java-concurrency-basic-2/README.md)
