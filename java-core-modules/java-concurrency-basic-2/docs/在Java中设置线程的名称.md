@@ -1,15 +1,14 @@
 ## 1. 概述
 
-在本教程中，我们将研究在Java中设置线程名称的不同方法。
-首先，我们将创建一个运行两个线程的示例。一个线程打印偶数，另一个线程打印奇数。然后，我们将为线程指定一个自定义名称并显示它们。
+在本教程中，我们将介绍在Java中设置线程名称的不同方法。首先，我们将创建一个运行两个线程的示例，一个线程打印偶数，另一个线程打印奇数。然后，我们将为线程指定一个自定义名称并显示它们。
 
 ## 2. 设置线程名称的方法
 
-线程是可以并发执行的轻量级进程。Java中的Thread类为线程提供了一个默认名称。
+线程是可以并发执行的轻量级进程，Java中的Thread类为线程提供了一个默认名称。
 
 在某些情况下，我们可能需要知道哪个线程正在运行，因此为线程指定一个自定义名称可以更容易地在其他正在运行的线程中找到它。
 
-让我们先定义一个简单的类来创建两个线程。第一个线程将打印1到N之间的偶数。第二个线程将打印1到N之间的奇数。在我们的示例中，N是5。
+让我们先定义一个简单的类来创建两个线程，第一个线程将打印1到N之间的偶数，第二个线程将打印1到N之间的奇数。在我们的示例中，N是5。
 
 我们还将打印线程的默认名称。
 
@@ -34,39 +33,36 @@ public class CustomThreadName {
 在printEvenNumber()和printOddNumber()方法中，我们检查当前数字是偶数还是奇数，并将数字与线程名称一起打印：
 
 ```java
-public class CustomThreadName {
-
-    public void printEvenNumber() {
-        synchronized (this) {
-            while (currentNumber < N) {
-                while (currentNumber % 2 == 1) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+public void printEvenNumber() {
+    synchronized (this) {
+        while (currentNumber < N) {
+            while (currentNumber % 2 == 1) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
-                currentNumber++;
-                notify();
             }
+            System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
+            currentNumber++;
+            notify();
         }
     }
+}
 
-    public void printOddNumber() {
-        synchronized (this) {
-            while (currentNumber < N) {
-                while (currentNumber % 2 == 0) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+public void printOddNumber() {
+    synchronized (this) {
+        while (currentNumber < N) {
+            while (currentNumber % 2 == 0) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
-                currentNumber++;
-                notify();
             }
+            System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
+            currentNumber++;
+            notify();
         }
     }
 }
@@ -74,7 +70,7 @@ public class CustomThreadName {
 
 运行该代码的输出如下所示：
 
-```text
+```shell
 Thread-0 --> 1
 Thread-1 --> 2
 Thread-0 --> 3
@@ -97,14 +93,14 @@ Thread类提供了一些构造函数，我们可以在线程创建时提供线�
 
 让我们为我们的线程提供一个自定义名称：
 
-```text
+```java
 Thread oddThread = new Thread(test::printOddNumber, "ODD");
 Thread evenThread = new Thread(test::printEvenNumber, "EVEN");
 ```
 
 现在，当我们运行代码时，会显示自定义名称：
 
-```text
+```shell
 ODD --> 1
 EVEN --> 2
 ODD --> 3
@@ -118,7 +114,7 @@ ODD --> 5
 
 让我们通过调用Thread.currentThread().setName()来设置线程名称。
 
-```text
+```java
 Thread oddThread = new Thread(() -> {
     Thread.currentThread().setName("ODD");
     test.printOddNumber();
@@ -132,7 +128,7 @@ Thread evenThread = new Thread(() -> {
 
 或者，通过Thread.setName()：
 
-```text
+```java
 Thread oddThread = new Thread(test::printEvenNumber);
 oddThread.setName("ODD");
 
@@ -142,7 +138,7 @@ evenThread.setName("EVEN");
 
 同样，运行代码会显示线程的自定义名称：
 
-```text
+```shell
 ODD --> 1
 EVEN --> 2
 ODD --> 3
@@ -152,5 +148,4 @@ ODD --> 5
 
 ## 3. 总结
 
-在本文中，我们介绍了如何在Java中设置线程的名称。
-首先，我们使用默认名称创建了一个线程，然后使用Thread构造函数设置了一个自定义名称，然后使用setName()方法设置。
+在本文中，我们介绍了如何在Java中设置线程的名称。首先，我们使用默认名称创建了一个线程，然后使用Thread构造函数设置了一个自定义名称，然后使用setName()方法设置自定义名称。
