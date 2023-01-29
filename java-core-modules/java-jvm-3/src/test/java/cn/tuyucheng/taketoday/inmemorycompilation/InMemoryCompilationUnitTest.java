@@ -40,7 +40,7 @@ public class InMemoryCompilationUnitTest {
 
         boolean result = task.call();
 
-        if (result) {
+        if (!result) {
             diagnostics.getDiagnostics()
               .forEach(d -> LOGGER.error(String.valueOf(d)));
         } else {
