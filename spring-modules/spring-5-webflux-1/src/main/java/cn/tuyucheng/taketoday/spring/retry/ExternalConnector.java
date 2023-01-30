@@ -68,5 +68,4 @@ public class ExternalConnector {
 			.retryWhen(Retry.backoff(3, Duration.ofSeconds(2))
 				.jitter(1));
 	}
-
 }

@@ -18,5 +18,4 @@ public class StockController {
 	public Mono<String> getData(@PathVariable String stockId) {
 		return externalConnector.getData(stockId);
 	}
-
 }

@@ -1,19 +1,19 @@
 package cn.tuyucheng.taketoday.spring.retry;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.BDDMockito.given;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebFluxTest
-public class StockControllerIntegrationTest {
+class StockControllerIntegrationTest {
 
 	@Autowired
 	private WebTestClient webClient;
@@ -22,7 +22,7 @@ public class StockControllerIntegrationTest {
 	private ExternalConnector externalConnector;
 
 	@Test
-	public void shouldReturnStockData() {
+	void shouldReturnStockData() {
 		given(externalConnector.getData("ABC")).willReturn(Mono.just("stock data"));
 
 		webClient.get()

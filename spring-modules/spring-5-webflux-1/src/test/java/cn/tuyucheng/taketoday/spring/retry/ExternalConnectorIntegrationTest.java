@@ -38,7 +38,6 @@ class ExternalConnectorIntegrationTest {
 
 	@Test
 	void givenExternalServiceReturnsError_whenGettingData_thenRetryAndReturnResponse() throws Exception {
-
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
@@ -53,7 +52,6 @@ class ExternalConnectorIntegrationTest {
 
 	@Test
 	void givenExternalServiceReturnsClientError_whenGettingData_thenNoRetry() throws Exception {
-
 		mockExternalService.enqueue(new MockResponse().setResponseCode(UNAUTHORIZED.code()));
 
 		StepVerifier.create(externalConnector.getData("ABC"))
@@ -65,7 +63,6 @@ class ExternalConnectorIntegrationTest {
 
 	@Test
 	void givenExternalServiceRetryAttemptsExhausted_whenGettingData_thenRetryAndReturnError() throws Exception {
-
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
 		mockExternalService.enqueue(new MockResponse().setResponseCode(SERVICE_UNAVAILABLE.code()));
@@ -85,5 +82,4 @@ class ExternalConnectorIntegrationTest {
 			assertThat(recordedRequest.getPath()).isEqualTo("/data/ABC");
 		}
 	}
-
 }
