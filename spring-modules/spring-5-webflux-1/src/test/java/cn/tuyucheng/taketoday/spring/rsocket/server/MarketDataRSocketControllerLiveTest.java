@@ -3,8 +3,8 @@ package cn.tuyucheng.taketoday.spring.rsocket.server;
 import cn.tuyucheng.taketoday.spring.rsocket.model.MarketData;
 import cn.tuyucheng.taketoday.spring.rsocket.model.MarketDataRequest;
 import io.rsocket.RSocket;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.rsocket.RSocketRequester;
 import org.springframework.messaging.rsocket.RSocketStrategies;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.MimeTypeUtils;
 import reactor.util.retry.Retry;
 
@@ -23,10 +23,10 @@ import java.time.Duration;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestPropertySource(properties = {"spring.rsocket.server.port=7000"})
-public class MarketDataRSocketControllerLiveTest {
+class MarketDataRSocketControllerLiveTest {
 
 	@Autowired
 	private RSocketRequester rSocketRequester;
@@ -35,7 +35,7 @@ public class MarketDataRSocketControllerLiveTest {
 	private MarketDataRSocketController rSocketController;
 
 	@Test
-	public void whenGetsFireAndForget_ThenReturnsNoResponse() throws InterruptedException {
+	void whenGetsFireAndForget_ThenReturnsNoResponse() throws InterruptedException {
 		final MarketData marketData = new MarketData("X", 1);
 		rSocketRequester.route("collectMarketData")
 			.data(marketData)
@@ -47,7 +47,7 @@ public class MarketDataRSocketControllerLiveTest {
 	}
 
 	@Test
-	public void whenGetsRequest_ThenReturnsResponse() throws InterruptedException {
+	void whenGetsRequest_ThenReturnsResponse() throws InterruptedException {
 		final MarketDataRequest marketDataRequest = new MarketDataRequest("X");
 		rSocketRequester.route("currentMarketData")
 			.data(marketDataRequest)
@@ -59,7 +59,7 @@ public class MarketDataRSocketControllerLiveTest {
 	}
 
 	@Test
-	public void whenGetsRequest_ThenReturnsStream() throws InterruptedException {
+	void whenGetsRequest_ThenReturnsStream() throws InterruptedException {
 		final MarketDataRequest marketDataRequest = new MarketDataRequest("X");
 		rSocketRequester.route("feedMarketData")
 			.data(marketDataRequest)

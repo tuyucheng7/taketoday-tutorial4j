@@ -1,21 +1,21 @@
 package cn.tuyucheng.taketoday.spring.responsestatus;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ResponseStatusControllerLiveTest {
+class ResponseStatusControllerLiveTest {
 
 	@Autowired
 	private WebTestClient testClient;
 
 	@Test
-	public void whenCallRest_thenStatusIsOk() {
+	void whenCallRest_thenStatusIsOk() {
 		testClient.get()
 			.uri("/statuses/ok")
 			.exchange()
@@ -24,7 +24,7 @@ public class ResponseStatusControllerLiveTest {
 	}
 
 	@Test
-	public void whenCallRest_thenStatusIsNoContent() {
+	void whenCallRest_thenStatusIsNoContent() {
 		testClient.get()
 			.uri("/statuses/no-content")
 			.exchange()
@@ -33,7 +33,7 @@ public class ResponseStatusControllerLiveTest {
 	}
 
 	@Test
-	public void whenCallRest_thenStatusIsAccepted() {
+	void whenCallRest_thenStatusIsAccepted() {
 		testClient.get()
 			.uri("/statuses/accepted")
 			.exchange()
@@ -42,7 +42,7 @@ public class ResponseStatusControllerLiveTest {
 	}
 
 	@Test
-	public void whenCallRest_thenStatusIsBadRequest() {
+	void whenCallRest_thenStatusIsBadRequest() {
 		testClient.get()
 			.uri("/statuses/bad-request")
 			.exchange()
@@ -51,7 +51,7 @@ public class ResponseStatusControllerLiveTest {
 	}
 
 	@Test
-	public void whenCallRest_thenStatusIsUnauthorized() {
+	void whenCallRest_thenStatusIsUnauthorized() {
 		testClient.get()
 			.uri("/statuses/unauthorized")
 			.exchange()
@@ -60,7 +60,7 @@ public class ResponseStatusControllerLiveTest {
 	}
 
 	@Test
-	public void whenCallRest_thenStatusIsNotFound() {
+	void whenCallRest_thenStatusIsNotFound() {
 		testClient.get()
 			.uri("/statuses/not-found")
 			.exchange()

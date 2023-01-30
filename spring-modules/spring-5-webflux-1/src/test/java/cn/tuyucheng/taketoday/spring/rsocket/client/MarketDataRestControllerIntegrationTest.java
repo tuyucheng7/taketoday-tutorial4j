@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.spring.rsocket.client;
 
 import cn.tuyucheng.taketoday.spring.rsocket.model.MarketData;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.messaging.rsocket.RSocketRequester;
 import org.springframework.messaging.rsocket.RSocketRequester.RequestSpec;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
@@ -20,9 +20,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.TEXT_EVENT_STREAM;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebFluxTest(value = MarketDataRestController.class)
-public class MarketDataRestControllerIntegrationTest {
+class MarketDataRestControllerIntegrationTest {
 
 	@Autowired
 	private WebTestClient testClient;
@@ -34,7 +34,7 @@ public class MarketDataRestControllerIntegrationTest {
 	private RequestSpec requestSpec;
 
 	@Test
-	public void whenInitiatesRequest_ThenGetsResponse() throws Exception {
+	void whenInitiatesRequest_ThenGetsResponse() {
 		when(rSocketRequester.route("currentMarketData")).thenReturn(requestSpec);
 		when(requestSpec.data(any())).thenReturn(requestSpec);
 		MarketData marketData = new MarketData("X", 1);
@@ -50,7 +50,7 @@ public class MarketDataRestControllerIntegrationTest {
 	}
 
 	@Test
-	public void whenInitiatesFireAndForget_ThenGetsNoResponse() throws Exception {
+	void whenInitiatesFireAndForget_ThenGetsNoResponse() {
 		when(rSocketRequester.route("collectMarketData")).thenReturn(requestSpec);
 		when(requestSpec.data(any())).thenReturn(requestSpec);
 		when(requestSpec.send()).thenReturn(Mono.empty());
@@ -64,7 +64,7 @@ public class MarketDataRestControllerIntegrationTest {
 	}
 
 	@Test
-	public void whenInitiatesRequest_ThenGetsStream() throws Exception {
+	void whenInitiatesRequest_ThenGetsStream() {
 		when(rSocketRequester.route("feedMarketData")).thenReturn(requestSpec);
 		when(requestSpec.data(any())).thenReturn(requestSpec);
 		MarketData firstMarketData = new MarketData("X", 1);

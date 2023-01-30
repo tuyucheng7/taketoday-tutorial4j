@@ -64,5 +64,4 @@ public class ResponseStatusController {
 			.notFound()
 			.build());
 	}
-
 }

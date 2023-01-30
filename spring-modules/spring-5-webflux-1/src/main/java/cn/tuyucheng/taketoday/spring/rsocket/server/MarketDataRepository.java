@@ -16,7 +16,7 @@ public class MarketDataRepository {
 
 	private static final int BOUND = 100;
 
-	private Random random = new Random();
+	private final Random random = new Random();
 
 	public Flux<MarketData> getAll(String stock) {
 		return Flux.fromStream(Stream.generate(() -> getMarketDataResponse(stock)))
