@@ -63,5 +63,4 @@ class MonoOnSuccessVsOnNexUnitTest {
 
 		verify(paymentService).processPayment(null);
 	}
-
 }

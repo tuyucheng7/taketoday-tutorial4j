@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.webflux.caching;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ActiveProfiles("cache")
-public class MonoFluxResultCachingLiveTest {
+class MonoFluxResultCachingLiveTest {
 
 
 	@Autowired
@@ -30,7 +29,7 @@ public class MonoFluxResultCachingLiveTest {
 	}
 
 	@Test
-	public void givenItem_whenGetItemIsCalled_thenMonoIsCached() {
+	void givenItem_whenGetItemIsCalled_thenMonoIsCached() {
 		Mono<Item> glass = itemService.save(new Item("glass", 1.00));
 
 		String id = glass.block().get_id();
@@ -51,7 +50,7 @@ public class MonoFluxResultCachingLiveTest {
 	}
 
 	@Test
-	public void givenItem_whenGetItemWithCacheIsCalled_thenMonoResultIsCached() {
+	void givenItem_whenGetItemWithCacheIsCalled_thenMonoResultIsCached() {
 		Mono<Item> glass = itemService.save(new Item("glass", 1.00));
 
 		String id = glass.block().get_id();
@@ -72,7 +71,7 @@ public class MonoFluxResultCachingLiveTest {
 	}
 
 	@Test
-	public void givenItem_whenGetItemWithAddonsIsCalled_thenMonoResultIsCached() {
+	void givenItem_whenGetItemWithAddonsIsCalled_thenMonoResultIsCached() {
 		Mono<Item> glass = itemService.save(new Item("glass", 1.00));
 
 		String id = glass.block().get_id();
@@ -91,5 +90,4 @@ public class MonoFluxResultCachingLiveTest {
 		assertThat(item2.getName()).isEqualTo("glass");
 		assertThat(item2.getPrice()).isEqualTo(1.00);
 	}
-
 }

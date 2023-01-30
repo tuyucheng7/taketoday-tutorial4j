@@ -38,5 +38,4 @@ public class ItemService {
 		return CacheMono.lookup(cache.asMap(), id)
 			.onCacheMissResume(() -> repository.findById(id).cast(Object.class)).cast(Item.class);
 	}
-
 }

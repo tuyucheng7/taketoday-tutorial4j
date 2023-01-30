@@ -10,9 +10,9 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FirstElementOfFluxUnitTest {
+class FirstElementOfFluxUnitTest {
 
-	private Payment paymentOf100 = new Payment(100);
+	private final Payment paymentOf100 = new Payment(100);
 
 	private Flux<Payment> fluxOfThreePayments() {
 		return Flux.just(paymentOf100, new Payment(200), new Payment(300));

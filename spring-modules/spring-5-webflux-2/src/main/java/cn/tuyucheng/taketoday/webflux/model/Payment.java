@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.webflux.model;
 
-
 public class Payment {
 	private final int amount;
 
