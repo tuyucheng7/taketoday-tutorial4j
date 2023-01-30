@@ -17,7 +17,7 @@ public class GreetingController {
 	}
 
 	@GetMapping("/{name}")
-	private Mono<String> greet(@PathVariable String name) {
+	Mono<String> greet(@PathVariable String name) {
 		return greetingService.greet(name);
 	}
 }

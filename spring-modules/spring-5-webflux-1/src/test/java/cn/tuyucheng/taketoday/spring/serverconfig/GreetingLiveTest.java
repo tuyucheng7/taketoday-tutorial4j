@@ -3,39 +3,39 @@ package cn.tuyucheng.taketoday.spring.serverconfig;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.reactive.server.WebTestClient.ResponseSpec;
 import reactor.netty.http.client.HttpClient;
 
 import javax.net.ssl.SSLException;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @DirtiesContext
-public class GreetingLiveTest {
+class GreetingLiveTest {
 
 	private static final String BASE_URL = "https://localhost:8443";
 
 	private WebTestClient webTestClient;
 
-	@Before
-	public void setup() throws SSLException {
+	@BeforeEach
+	void setup() throws SSLException {
 		webTestClient = WebTestClient.bindToServer(getConnector())
 			.baseUrl(BASE_URL)
 			.build();
 	}
 
 	@Test
-	public void shouldGreet() {
-		final String name = "Baeldung";
+	void shouldGreet() {
+		final String name = "Tuyucheng";
 
 		ResponseSpec response = webTestClient.get()
 			.uri("/greet/{name}", name)
@@ -44,7 +44,7 @@ public class GreetingLiveTest {
 		response.expectStatus()
 			.isOk()
 			.expectBody(String.class)
-			.isEqualTo("Greeting Baeldung");
+			.isEqualTo("Greeting Tuyucheng");
 	}
 
 	private ReactorClientHttpConnector getConnector() throws SSLException {

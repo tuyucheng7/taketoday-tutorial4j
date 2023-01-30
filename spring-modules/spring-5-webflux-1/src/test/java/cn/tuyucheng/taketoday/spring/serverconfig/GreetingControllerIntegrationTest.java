@@ -1,20 +1,20 @@
 package cn.tuyucheng.taketoday.spring.serverconfig;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebFluxTest
-public class GreetingControllerIntegrationTest {
+class GreetingControllerIntegrationTest {
 
 	@Autowired
 	private WebTestClient webClient;
@@ -22,20 +22,20 @@ public class GreetingControllerIntegrationTest {
 	@MockBean
 	private GreetingService greetingService;
 
-	private final String name = "Baeldung";
+	private final String name = "Tuyucheng";
 
-	@Before
+	@BeforeEach
 	public void setUp() {
-		when(greetingService.greet(name)).thenReturn(Mono.just("Greeting Baeldung"));
+		when(greetingService.greet(name)).thenReturn(Mono.just("Greeting Tuyucheng"));
 	}
 
 	@Test
-	public void shouldGreet() {
+	void shouldGreet() {
 		webClient.get().uri("/greet/{name}", name)
 			.exchange()
 			.expectStatus()
 			.isOk()
 			.expectBody(String.class)
-			.isEqualTo("Greeting Baeldung");
+			.isEqualTo("Greeting Tuyucheng");
 	}
 }

@@ -14,13 +14,7 @@ public class NettyWebServerFactoryPortCustomizer implements WebServerFactoryCust
 		serverFactory.addServerCustomizers(new PortCustomizer(8443));
 	}
 
-	private static class PortCustomizer implements NettyServerCustomizer {
-
-		private final int port;
-
-		private PortCustomizer(int port) {
-			this.port = port;
-		}
+	private record PortCustomizer(int port) implements NettyServerCustomizer {
 
 		@Override
 		public HttpServer apply(HttpServer httpServer) {
