@@ -74,24 +74,29 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		<!--  Already defined in the top-level parent module -->
-		<!--<plugins>-->
-		<!--	<plugin>-->
-		<!--		<groupId>org.apache.maven.plugins</groupId>-->
-		<!--		<artifactId>maven-checkstyle-plugin</artifactId>-->
-		<!--		<version>${checkstyle-maven-plugin.version}</version>-->
-		<!--		<configuration>-->
-		<!--			<configLocation>checkstyle.xml</configLocation>-->
-		<!--		</configuration>-->
-		<!--		<executions>-->
-		<!--			<execution>-->
-		<!--				<goals>-->
-		<!--					<goal>check</goal>-->
-		<!--				</goals>-->
-		<!--			</execution>-->
-		<!--		</executions>-->
-		<!--	</plugin>-->
-		<!--</plugins>-->
+		<plugins>
+			<!--  Already defined in the top-level parent module -->
+			<!--<plugin>-->
+			<!--	<groupId>org.apache.maven.plugins</groupId>-->
+			<!--	<artifactId>maven-checkstyle-plugin</artifactId>-->
+			<!--	<version>${checkstyle-maven-plugin.version}</version>-->
+			<!--	<configuration>-->
+			<!--		<configLocation>checkstyle.xml</configLocation>-->
+			<!--	</configuration>-->
+			<!--	<executions>-->
+			<!--		<execution>-->
+			<!--			<goals>-->
+			<!--				<goal>check</goal>-->
+			<!--			</goals>-->
+			<!--		</execution>-->
+			<!--	</executions>-->
+			<!--</plugin>-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs-plugin.version}</version>
+			</plugin>
+		</plugins>
 	</build>
 
 	<!--<reporting>-->
@@ -112,7 +117,8 @@
 		<cucumber.version>4.8.0</cucumber.version>
 		<!--<checkstyle-maven-plugin.version>3.0.0</checkstyle-maven-plugin.version>-->
 		<system-rules.version>1.19.0</system-rules.version>
-		<system-lambda.version>1.0.0</system-lambda.version>
+		<system-lambda.version>1.2.1</system-lambda.version>
 		<spring-boot.version>2.7.5</spring-boot.version>
+		<findbugs-plugin.version>3.0.5</findbugs-plugin.version>
 	</properties>
 </project>
