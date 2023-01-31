@@ -18,7 +18,7 @@ public class SecuredMethodAspect {
 	@Around("callAt(secured)")
 	public Object around(ProceedingJoinPoint pjp, Secured secured) throws Throwable {
 		if (secured.isLocked()) {
-			logger.info(pjp.getSignature().toLongString() + " is locked");
+			logger.info("{} is locked", pjp.getSignature());
 			return null;
 		} else {
 			return pjp.proceed();

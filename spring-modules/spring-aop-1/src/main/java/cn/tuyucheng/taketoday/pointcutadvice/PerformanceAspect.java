@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 @Component
 public class PerformanceAspect {
 
-	private static Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
+	private static final Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
 
 	@Pointcut("within(cn.tuyucheng.taketoday..*) && execution(* cn.tuyucheng.taketoday.pointcutadvice.dao.FooDao.*(..))")
 	public void repositoryClassMethods() {
@@ -28,5 +28,4 @@ public class PerformanceAspect {
 		logger.info("Execution of " + methodName + " took " + TimeUnit.NANOSECONDS.toMillis(end - start) + " ms");
 		return retval;
 	}
-
 }

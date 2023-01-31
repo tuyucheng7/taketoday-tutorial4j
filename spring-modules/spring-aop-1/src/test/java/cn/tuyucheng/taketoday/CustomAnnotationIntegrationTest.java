@@ -17,5 +17,4 @@ public class CustomAnnotationIntegrationTest {
 	public void shouldApplyCustomAnnotation() throws InterruptedException {
 		service.serve();
 	}
-
 }

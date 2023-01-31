@@ -19,10 +19,8 @@ public class MyTracedServiceConsumerUnitTest {
 
 	@Test
 	public void whenCallingConsumer_thenServiceIsCalled() {
-		doNothing().when(myTracedService)
-			.performSomeLogic();
-		doNothing().when(myTracedService)
-			.performSomeAdditionalLogic();
+		doNothing().when(myTracedService).performSomeLogic();
+		doNothing().when(myTracedService).performSomeAdditionalLogic();
 
 		new MyTracedServiceConsumer(myTracedService);
 

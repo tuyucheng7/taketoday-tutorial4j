@@ -33,5 +33,4 @@ public class JoinPointAroundCacheAspectIntegrationTest {
 		assertEquals(1, JoinPointAroundCacheAspect.CACHE.size());
 		assertEquals(JoinPointAroundCacheAspect.CACHE.values().iterator().next(), articles);
 	}
-
 }

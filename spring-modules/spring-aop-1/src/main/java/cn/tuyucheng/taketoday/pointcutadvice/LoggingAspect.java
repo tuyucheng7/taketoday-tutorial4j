@@ -14,14 +14,9 @@ import java.util.logging.Logger;
 @Aspect
 public class LoggingAspect {
 
-	private static Logger logger = Logger.getLogger(LoggingAspect.class.getName());
+	private static final Logger logger = Logger.getLogger(LoggingAspect.class.getName());
 
-	private ThreadLocal<SimpleDateFormat> sdf = new ThreadLocal<SimpleDateFormat>() {
-		@Override
-		protected SimpleDateFormat initialValue() {
-			return new SimpleDateFormat("[yyyy-mm-dd hh:mm:ss:SSS]");
-		}
-	};
+	private final ThreadLocal<SimpleDateFormat> sdf = ThreadLocal.withInitial(() -> new SimpleDateFormat("[yyyy-MM-dd hh:mm:ss:SSS]"));
 
 	@Pointcut("within(cn.tuyucheng.taketoday..*) && execution(* cn.tuyucheng.taketoday.pointcutadvice.dao.FooDao.*(..))")
 	public void repositoryMethods() {

@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class JoinPointAroundCacheAspect {
 
-	public final static Map<Object, Object> CACHE = new HashMap<>();
+	public static final Map<Object, Object> CACHE = new HashMap<>();
 
 	@Pointcut("execution(* cn.tuyucheng.taketoday.joinpoint.ArticleService.getArticleList(..))")
 	public void articleListPointcut() {

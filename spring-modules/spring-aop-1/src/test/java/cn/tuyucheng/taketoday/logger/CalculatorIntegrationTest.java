@@ -16,7 +16,7 @@ public class CalculatorIntegrationTest {
 	private SampleAdder sampleAdder;
 
 	@Test
-	public void whenAddValidValues_returnsSucessfully() {
+	public void whenAddValidValues_returnsSuccessfully() {
 		final int addedValue = sampleAdder.add(12, 12);
 
 		assertEquals(24, addedValue);
@@ -26,5 +26,4 @@ public class CalculatorIntegrationTest {
 	public void whenAddInValidValues_throwsException() {
 		sampleAdder.add(12, -12);
 	}
-
 }

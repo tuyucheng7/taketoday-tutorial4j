@@ -8,7 +8,7 @@ public aspect TracingAspect {
 
     pointcut traceAnnotatedClasses(): within(@Trace *) && execution(* *(..));
 
-    Object around() : traceAnnotatedClasses() {
+    Object around(): traceAnnotatedClasses() {
         String signature = thisJoinPoint.getSignature().toShortString();
         LOG.trace("Entering " + signature);
         try {
@@ -18,7 +18,7 @@ public aspect TracingAspect {
         }
     }
 
-    after() throwing (Exception e) : traceAnnotatedClasses() {
+    after() throwing (Exception e): traceAnnotatedClasses() {
         LOG.trace("Exception thrown from " + thisJoinPoint.getSignature().toShortString(), e);
     }
 }

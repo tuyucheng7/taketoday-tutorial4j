@@ -35,5 +35,4 @@ public class ArticleServiceIntegrationTest {
 	public void shouldThrowExceptionIfStartsWithFilterIsBlank() {
 		articleService.getArticleList(" ");
 	}
-
 }

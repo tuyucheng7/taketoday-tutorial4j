@@ -21,5 +21,4 @@ public class ExampleAspect {
 
 		return proceed;
 	}
-
 }

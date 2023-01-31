@@ -28,5 +28,4 @@ public class ArticleService {
 			.filter(a -> a.startsWith(startsWithFilter))
 			.collect(toList());
 	}
-
 }

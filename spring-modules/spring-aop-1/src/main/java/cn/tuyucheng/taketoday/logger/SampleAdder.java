@@ -8,5 +8,4 @@ public class SampleAdder {
 		}
 		return a + b;
 	}
-
 }

@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.pointcutadvice;
 
 import cn.tuyucheng.taketoday.Application;
 import cn.tuyucheng.taketoday.pointcutadvice.dao.FooDao;
+import org.hamcrest.core.IsIterableContaining;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,9 +18,8 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.core.IsCollectionContaining.hasItem;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -69,13 +69,13 @@ public class AopLoggingIntegrationTest {
 	@Test
 	public void givenLoggingAspect_whenCallLoggableAnnotatedMethod_thenMethodIsLogged() {
 		dao.create(42L, "baz");
-		assertThat(messages, hasItem("Executing method: create"));
+		assertThat(messages, IsIterableContaining.hasItem("Executing method: create"));
 	}
 
 	@Test
 	public void givenLoggingAspect_whenCallMethodAcceptingAnnotatedArgument_thenArgumentIsLogged() {
 		Foo foo = new Foo(42L, "baz");
 		dao.merge(foo);
-		assertThat(messages, hasItem("Accepting beans with @Entity annotation: " + foo));
+		assertThat(messages, IsIterableContaining.hasItem("Accepting beans with @Entity annotation: " + foo));
 	}
 }
