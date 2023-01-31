@@ -80,11 +80,11 @@
 	</dependencies>
 
 	<properties>
-		<spring.version>5.3.0</spring.version>
+		<spring.version>5.3.23</spring.version>
 		<spring.batch.version>4.3.0</spring.batch.version>
 		<sqlite.version>3.15.1</sqlite.version>
 		<opencsv.version>4.1</opencsv.version>
 		<jaxb.version>2.3.1</jaxb.version>
-		<jackson-datatype.version>2.12.3</jackson-datatype.version>
+		<jackson-datatype.version>2.12.4</jackson-datatype.version>
 	</properties>
 </project>
