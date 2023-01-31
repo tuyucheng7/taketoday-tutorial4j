@@ -25,10 +25,10 @@ import java.net.MalformedURLException;
 public class SpringConfig {
 
 	@Value("org/springframework/batch/core/schema-drop-sqlite.sql")
-	private Resource dropReopsitoryTables;
+	private Resource dropRepositoryTables;
 
 	@Value("org/springframework/batch/core/schema-sqlite.sql")
-	private Resource dataReopsitorySchema;
+	private Resource dataRepositorySchema;
 
 	@Bean
 	public DataSource dataSource() {
@@ -42,8 +42,8 @@ public class SpringConfig {
 	public DataSourceInitializer dataSourceInitializer(DataSource dataSource) throws MalformedURLException {
 		ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
 
-		databasePopulator.addScript(dropReopsitoryTables);
-		databasePopulator.addScript(dataReopsitorySchema);
+		databasePopulator.addScript(dropRepositoryTables);
+		databasePopulator.addScript(dataRepositorySchema);
 		databasePopulator.setIgnoreFailedDrops(true);
 
 		DataSourceInitializer initializer = new DataSourceInitializer();
@@ -57,8 +57,7 @@ public class SpringConfig {
 		JobRepositoryFactoryBean factory = new JobRepositoryFactoryBean();
 		factory.setDataSource(dataSource());
 		factory.setTransactionManager(getTransactionManager());
-		// JobRepositoryFactoryBean's methods Throws Generic Exception,
-		// it would have been better to have a specific one
+		// JobRepositoryFactoryBean's methods Throws Generic Exception, it would have been better to have a specific one
 		factory.afterPropertiesSet();
 		return (JobRepository) factory.getObject();
 	}
@@ -69,11 +68,9 @@ public class SpringConfig {
 
 	public JobLauncher getJobLauncher() throws Exception {
 		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-		// SimpleJobLauncher's methods Throws Generic Exception,
-		// it would have been better to have a specific one
+		// SimpleJobLauncher's methods Throws Generic Exception, it would have been better to have a specific one
 		jobLauncher.setJobRepository(getJobRepository());
 		jobLauncher.afterPropertiesSet();
 		return jobLauncher;
 	}
-
 }

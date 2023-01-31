@@ -71,5 +71,4 @@ public class Transaction {
 	public String toString() {
 		return "Transaction [username=" + username + ", userId=" + userId + ", age=" + age + ", postCode=" + postCode + ", transactionDate=" + transactionDate + ", amount=" + amount + "]";
 	}
-
 }

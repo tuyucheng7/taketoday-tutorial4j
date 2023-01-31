@@ -148,5 +148,4 @@ public class SpringBatchConfig {
 			.start(skipPolicyStep)
 			.build();
 	}
-
 }
