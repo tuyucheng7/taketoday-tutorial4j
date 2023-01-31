@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<name>spring-boot-keycloak-1</name>
 	<packaging>jar</packaging>
-	<description>这是一个简单的应用程序，演示了Keycloak和Spring Boot之间的集成。</description>
+	<description>This is a simple application demonstrating integration between Keycloak and Spring Boot.</description>
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
@@ -17,26 +17,10 @@
 		<relativePath>../../parent-boot-2</relativePath>
 	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.keycloak.bom</groupId>
-				<artifactId>keycloak-adapter-bom</artifactId>
-				<version>${keycloak-adapter-bom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,24 +66,10 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>3.0.1</version>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.7.0</version>
-				<configuration>
-					<target>1.8</target>
-					<source>1.8</source>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -107,7 +77,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>2.5.0</version>
 				<executions>
 					<execution>
 						<id>xjc</id>
@@ -127,6 +97,6 @@
 	</build>
 
 	<properties>
-		<keycloak-adapter-bom.version>15.0.2</keycloak-adapter-bom.version>
+		<start-class>cn.tuyucheng.taketoday.keycloak.SpringBoot</start-class>
 	</properties>
 </project>
