@@ -4,8 +4,8 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;
@@ -20,19 +20,19 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBatchTest
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {SpringBatchRetryConfig.class})
-public class SpringBatchRetryIntegrationTest {
+class SpringBatchRetryIntegrationTest {
 
 	private static final String TEST_OUTPUT = "xml/retryOutput.xml";
 	private static final String EXPECTED_OUTPUT = "src/test/resources/output/batchRetry/retryOutput.xml";
@@ -47,7 +47,7 @@ public class SpringBatchRetryIntegrationTest {
 	private CloseableHttpResponse httpResponse;
 
 	@Test
-	public void whenEndpointAlwaysFail_thenJobFails() throws Exception {
+	void whenEndpointAlwaysFail_thenJobFails() throws Exception {
 		when(closeableHttpClient.execute(any()))
 			.thenThrow(new ConnectTimeoutException("Endpoint is down"));
 
@@ -61,7 +61,7 @@ public class SpringBatchRetryIntegrationTest {
 	}
 
 	@Test
-	public void whenEndpointFailsTwicePasses3rdTime_thenSuccess() throws Exception {
+	void whenEndpointFailsTwicePasses3rdTime_thenSuccess() throws Exception {
 		FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT);
 		FileSystemResource actualResult = new FileSystemResource(TEST_OUTPUT);
 

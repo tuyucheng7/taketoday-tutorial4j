@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.batchtesting;
 
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobInstance;
@@ -20,22 +20,22 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
 import java.util.Collection;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBatchTest
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {SpringBatchConfiguration.class})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class SpringBatchIntegrationTest {
+class SpringBatchIntegrationTest {
 
 	private static final String TEST_OUTPUT = "src/test/resources/output/actual-output.json";
 
@@ -49,8 +49,8 @@ public class SpringBatchIntegrationTest {
 	@Autowired
 	private JobRepositoryTestUtils jobRepositoryTestUtils;
 
-	@After
-	public void cleanUp() {
+	@AfterEach
+	void cleanUp() {
 		jobRepositoryTestUtils.removeJobExecutions();
 	}
 
@@ -62,7 +62,7 @@ public class SpringBatchIntegrationTest {
 	}
 
 	@Test
-	public void givenReferenceOutput_whenJobExecuted_thenSuccess() throws Exception {
+	void givenReferenceOutput_whenJobExecuted_thenSuccess() throws Exception {
 		// given
 		FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT);
 		FileSystemResource actualResult = new FileSystemResource(TEST_OUTPUT);
@@ -79,7 +79,7 @@ public class SpringBatchIntegrationTest {
 	}
 
 	@Test
-	public void givenReferenceOutput_whenStep1Executed_thenSuccess() throws Exception {
+	void givenReferenceOutput_whenStep1Executed_thenSuccess() throws Exception {
 
 		// given
 		FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT);
@@ -97,7 +97,7 @@ public class SpringBatchIntegrationTest {
 	}
 
 	@Test
-	public void whenStep2Executed_thenSuccess() {
+	void whenStep2Executed_thenSuccess() {
 
 		// when
 		JobExecution jobExecution = jobLauncherTestUtils.launchStep("step2", defaultJobParameters());
@@ -111,5 +111,4 @@ public class SpringBatchIntegrationTest {
 			assertThat(stepExecution.getWriteCount(), is(8));
 		});
 	}
-
 }

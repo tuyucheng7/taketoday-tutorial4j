@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.batchtesting;
 
 import cn.tuyucheng.taketoday.batchtesting.model.Book;
 import cn.tuyucheng.taketoday.batchtesting.model.BookRecord;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.StepExecution;
@@ -22,23 +22,22 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 
-import java.util.Arrays;
+import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
-
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBatchTest
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {SpringBatchConfiguration.class})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class SpringBatchStepScopeIntegrationTest {
+class SpringBatchStepScopeIntegrationTest {
 
 	private static final String TEST_OUTPUT = "src/test/resources/output/actual-output.json";
 
@@ -61,14 +60,13 @@ public class SpringBatchStepScopeIntegrationTest {
 		return paramsBuilder.toJobParameters();
 	}
 
-	@After
-	public void cleanUp() {
+	@AfterEach
+	void cleanUp() {
 		jobRepositoryTestUtils.removeJobExecutions();
 	}
 
 	@Test
-	public void givenMockedStep_whenReaderCalled_thenSuccess() throws Exception {
-
+	void givenMockedStep_whenReaderCalled_thenSuccess() throws Exception {
 		// given
 		StepExecution stepExecution = MetaDataInstanceFactory.createStepExecution(defaultJobParameters());
 
@@ -91,8 +89,7 @@ public class SpringBatchStepScopeIntegrationTest {
 	}
 
 	@Test
-	public void givenMockedStep_whenWriterCalled_thenSuccess() throws Exception {
-
+	void givenMockedStep_whenWriterCalled_thenSuccess() throws Exception {
 		// given
 		FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT_ONE);
 		FileSystemResource actualResult = new FileSystemResource(TEST_OUTPUT);
@@ -105,7 +102,7 @@ public class SpringBatchStepScopeIntegrationTest {
 		StepScopeTestUtils.doInStepScope(stepExecution, () -> {
 
 			jsonItemWriter.open(stepExecution.getExecutionContext());
-			jsonItemWriter.write(Arrays.asList(demoBook));
+			jsonItemWriter.write(List.of(demoBook));
 			jsonItemWriter.close();
 			return null;
 		});
