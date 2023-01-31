@@ -9,10 +9,9 @@
 	<packaging>jar</packaging>
 
 	<parent>
-		<artifactId>taketoday-tutorial4j</artifactId>
-		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>java-core-modules</artifactId>
+		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
 		<version>1.0.0</version>
-		<relativePath>../../</relativePath>
 	</parent>
 
 	<build>
@@ -40,8 +39,19 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${surefire.plugin.version}</version>
 				<configuration>
-					<argLine>--enable-preview</argLine>
-					<argLine>--enable-native-access=core.java</argLine>
+					<argLine>${argLine} --enable-preview
+						--add-reads core.java=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.features=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.instantsource=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.randomgenerators=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.sealed.alternative=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.sealed.classes=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.sealed.records=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.switchpatterns=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.hexformat=ALL-UNNAMED
+						--add-modules core.java
+					</argLine>
+					<!--<argLine>&#45;&#45;enable-native-access=core.java</argLine>-->
 					<forkCount>1</forkCount>
 				</configuration>
 				<dependencies>
