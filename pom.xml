@@ -353,6 +353,7 @@
 						<exclude>**/dto/*</exclude>
 						<exclude>**/vo/*</exclude>
 						<exclude>**/domain/*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*Benchmark*.*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
