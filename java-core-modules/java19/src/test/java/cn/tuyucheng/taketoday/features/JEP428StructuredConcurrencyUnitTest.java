@@ -5,17 +5,20 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class JEP428StructuredConcurrencyUnitTest {
+class JEP428StructuredConcurrencyUnitTest {
 
 	private static final String ERROR_MESSAGE = "Failed to get the result";
 
 	@Test
-	public void givenStructuredConcurrency_whenThrowingException_thenCorrect() {
+	void givenStructuredConcurrency_whenThrowingException_thenCorrect() {
 		assertThatThrownBy(() -> {
 			try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 				Future<Shelter> shelter = scope.fork(this::getShelter);
@@ -27,14 +30,14 @@ public class JEP428StructuredConcurrencyUnitTest {
 				assertThat(response).isNotNull();
 				assertThat(response.shelter()).isNotNull();
 				assertThat(response.dogs()).isNotNull();
-				assertThat(response.dogs().size()).isEqualTo(2);
+				assertThat(response.dogs()).hasSize(2);
 			}
 		}).isInstanceOf(RuntimeException.class)
 			.hasMessage(ERROR_MESSAGE);
 	}
 
 	@Test
-	public void givenStructuredConcurrency_whenSlowTasksReachesDeadline_thenCorrect() {
+	void givenStructuredConcurrency_whenSlowTasksReachesDeadline_thenCorrect() {
 		assertThatThrownBy(() -> {
 			try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 				Future<Shelter> shelter = scope.fork(this::getShelter);
@@ -47,8 +50,7 @@ public class JEP428StructuredConcurrencyUnitTest {
 				assertThat(response).isNotNull();
 				assertThat(response.shelter()).isNotNull();
 				assertThat(response.dogs()).isNotNull();
-				assertThat(response.dogs().size()).isEqualTo(2);
-
+				assertThat(response.dogs()).hasSize(2);
 			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
 			}
@@ -56,7 +58,7 @@ public class JEP428StructuredConcurrencyUnitTest {
 	}
 
 	@Test
-	public void givenStructuredConcurrency_whenResultNow_thenCorrect() {
+	void givenStructuredConcurrency_whenResultNow_thenCorrect() {
 		try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
 			Future<Shelter> shelter = scope.fork(this::getShelter);
 			Future<List<Dog>> dogs = scope.fork(this::getDogs);
@@ -67,14 +69,14 @@ public class JEP428StructuredConcurrencyUnitTest {
 			assertThat(response).isNotNull();
 			assertThat(response.shelter()).isNotNull();
 			assertThat(response.dogs()).isNotNull();
-			assertThat(response.dogs().size()).isEqualTo(2);
+			assertThat(response.dogs()).hasSize(2);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	@Test
-	public void givenUnstructuredConcurrency_whenGet_thenCorrect() {
+	void givenUnstructuredConcurrency_whenGet_thenCorrect() {
 		Future<Shelter> shelter;
 		Future<List<Dog>> dogs;
 		try (ExecutorService executorService = Executors.newFixedThreadPool(3)) {
@@ -87,8 +89,7 @@ public class JEP428StructuredConcurrencyUnitTest {
 			assertThat(response).isNotNull();
 			assertThat(response.shelter()).isNotNull();
 			assertThat(response.dogs()).isNotNull();
-			assertThat(response.dogs().size()).isEqualTo(2);
-
+			assertThat(response.dogs()).hasSize(2);
 		} catch (ExecutionException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
