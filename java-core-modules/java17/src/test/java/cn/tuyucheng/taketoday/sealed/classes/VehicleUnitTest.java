@@ -3,7 +3,9 @@ package cn.tuyucheng.taketoday.sealed.classes;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class VehicleUnitTest {
 
@@ -16,21 +18,21 @@ class VehicleUnitTest {
 		truck = new Truck(19000, "VZ600TA");
 	}
 
-	// @Test
-	// void givenCar_whenUsingReflectionAPI_thenSuperClassIsSealed() {
-	// 	assertThat(car.getClass().isSealed()).isEqualTo(false);
-	// 	assertThat(car.getClass().getSuperclass().isSealed()).isEqualTo(true);
-	// 	assertThat(car.getClass().getSuperclass().getPermittedSubclasses())
-	// 			.contains(ClassDesc.of(car.getClass().getCanonicalName()));
-	// }
-	//
-	// @Test
-	// void givenTruck_whenUsingReflectionAPI_thenSuperClassIsSealed() {
-	// 	assertThat(truck.getClass().isSealed()).isEqualTo(false);
-	// 	assertThat(truck.getClass().getSuperclass().isSealed()).isEqualTo(true);
-	// 	assertThat(truck.getClass().getSuperclass().getPermittedSubclasses())
-	// 			.contains(ClassDesc.of(truck.getClass().getCanonicalName()));
-	// }
+	@Test
+	void givenCar_whenUsingReflectionAPI_thenSuperClassIsSealed() throws ClassNotFoundException {
+		assertThat(car.getClass().isSealed()).isFalse();
+		assertThat(car.getClass().getSuperclass().isSealed()).isTrue();
+		assertThat(car.getClass().getSuperclass().getPermittedSubclasses())
+			.contains(Class.forName(car.getClass().getCanonicalName()));
+	}
+
+	@Test
+	void givenTruck_whenUsingReflectionAPI_thenSuperClassIsSealed() {
+		assertThat(truck.getClass().isSealed()).isFalse();
+		assertThat(truck.getClass().getSuperclass().isSealed()).isTrue();
+		assertThat(Arrays.stream(truck.getClass().getSuperclass().getPermittedSubclasses()).map(Class::getName).toList())
+			.contains(truck.getClass().getCanonicalName());
+	}
 
 	@Test
 	void givenCar_whenGettingPropertyTraditionalWay_thenNumberOfSeatsPropertyIsReturned() {

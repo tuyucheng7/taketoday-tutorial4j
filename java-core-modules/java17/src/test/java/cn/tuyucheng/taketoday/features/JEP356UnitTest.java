@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class JEP356UnitTest {
+class JEP356UnitTest {
 
 	@Test
 	void getPseudoInts_whenUsingAlgorithmXoroshiro128PlusPlus_shouldReturnStreamOfRandomInteger() {
@@ -14,6 +14,6 @@ public class JEP356UnitTest {
 		JEP356 jep356 = new JEP356();
 
 		jep356.getPseudoInts(algorithm, streamSize)
-				.forEach(value -> assertThat(value).isLessThanOrEqualTo(99));
+			.forEach(value -> assertThat(value).isLessThanOrEqualTo(99));
 	}
 }

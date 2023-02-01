@@ -15,8 +15,8 @@ public class SplittableGeneratorMultiThread {
 		ExecutorService executorService = Executors.newCachedThreadPool();
 
 		RandomGenerator.SplittableGenerator sourceGenerator = RandomGeneratorFactory
-				.<RandomGenerator.SplittableGenerator>of("L128X256MixRandom")
-				.create();
+			.<RandomGenerator.SplittableGenerator>of("L128X256MixRandom")
+			.create();
 
 		sourceGenerator.splits(20).forEach((splitGenerator) -> {
 			executorService.submit(() -> {

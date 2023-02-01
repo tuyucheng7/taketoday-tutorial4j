@@ -3,7 +3,9 @@ package cn.tuyucheng.taketoday.sealed.records;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class VehicleUnitTest {
 
@@ -16,21 +18,21 @@ class VehicleUnitTest {
 		truck = new Truck(16000, "VZ600TA");
 	}
 
-	// @Test
-	// void givenCar_whenUsingReflectionAPI_thenInterfaceIsSealed() {
-	// 	assertThat(car.getClass().isSealed()).isEqualTo(false);
-	// 	assertThat(car.getClass().getInterfaces()[0].isSealed()).isEqualTo(true);
-	// 	assertThat(car.getClass().getInterfaces()[0].permittedSubclasses())
-	// 			.contains(ClassDesc.of(car.getClass().getCanonicalName()));
-	// }
-	//
-	// @Test
-	// void givenTruck_whenUsingReflectionAPI_thenInterfaceIsSealed() {
-	// 	assertThat(truck.getClass().isSealed()).isEqualTo(false);
-	// 	assertThat(truck.getClass().getInterfaces()[0].isSealed()).isEqualTo(true);
-	// 	assertThat(truck.getClass().getInterfaces()[0].permittedSubclasses())
-	// 			.contains(ClassDesc.of(truck.getClass().getCanonicalName()));
-	// }
+	@Test
+	void givenCar_whenUsingReflectionAPI_thenInterfaceIsSealed() {
+		assertThat(car.getClass().isSealed()).isEqualTo(false);
+		assertThat(car.getClass().getInterfaces()[0].isSealed()).isEqualTo(true);
+		assertThat(Arrays.stream(car.getClass().getInterfaces()[0].getPermittedSubclasses()).map(Class::getName).toList())
+			.contains(car.getClass().getCanonicalName());
+	}
+
+	@Test
+	void givenTruck_whenUsingReflectionAPI_thenInterfaceIsSealed() {
+		assertThat(truck.getClass().isSealed()).isEqualTo(false);
+		assertThat(truck.getClass().getInterfaces()[0].isSealed()).isEqualTo(true);
+		assertThat(Arrays.stream(truck.getClass().getInterfaces()[0].getPermittedSubclasses()).map(Class::getName).toList())
+			.contains(truck.getClass().getCanonicalName());
+	}
 
 	@Test
 	void givenCar_whenGettingPropertyTraditionalWay_thenNumberOfSeatsPropertyIsReturned() {

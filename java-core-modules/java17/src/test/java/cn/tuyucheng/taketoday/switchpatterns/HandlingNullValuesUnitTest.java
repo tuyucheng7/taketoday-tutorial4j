@@ -2,8 +2,9 @@ package cn.tuyucheng.taketoday.switchpatterns;
 
 import org.junit.jupiter.api.Test;
 
+import static cn.tuyucheng.taketoday.switchpatterns.HandlingNullValues.getDoubleUsingSwitchNullCase;
+import static cn.tuyucheng.taketoday.switchpatterns.HandlingNullValues.getDoubleUsingSwitchTotalType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static cn.tuyucheng.taketoday.switchpatterns.HandlingNullValues.*;
 
 class HandlingNullValuesUnitTest {
 

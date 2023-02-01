@@ -9,12 +9,12 @@ public class GeneratorFactory {
 	public static void main(String[] args) {
 		System.out.println("Group\tName\tJumpable?\tSplittable?");
 		RandomGeneratorFactory.all()
-				.sorted(Comparator.comparing(RandomGeneratorFactory::name))
-				.forEach(factory -> System.out.println(String.format("%s\t%s\t%s\t%s",
-						factory.group(),
-						factory.name(),
-						factory.isJumpable(),
-						factory.isSplittable())));
+			.sorted(Comparator.comparing(RandomGeneratorFactory::name))
+			.forEach(factory -> System.out.println(String.format("%s\t%s\t%s\t%s",
+				factory.group(),
+				factory.name(),
+				factory.isJumpable(),
+				factory.isSplittable())));
 	}
 
 	public static int getRandomInt(RandomGenerator generator, int bound) {
@@ -27,9 +27,9 @@ public class GeneratorFactory {
 
 	public static RandomGenerator getJumpableGenerator() {
 		return RandomGeneratorFactory.all()
-				.filter(RandomGeneratorFactory::isJumpable)
-				.findAny()
-				.map(RandomGeneratorFactory::create)
-				.orElseThrow(() -> new RuntimeException("Error creating a generator"));
+			.filter(RandomGeneratorFactory::isJumpable)
+			.findAny()
+			.map(RandomGeneratorFactory::create)
+			.orElseThrow(() -> new RuntimeException("Error creating a generator"));
 	}
 }

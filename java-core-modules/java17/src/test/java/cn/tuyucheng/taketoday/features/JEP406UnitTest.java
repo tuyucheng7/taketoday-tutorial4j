@@ -8,25 +8,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JEP406UnitTest {
 
-    @Test
-    void checkObject_shouldMatchWithHuman() {
-        var jep406 = new JEP406();
+	@Test
+	void checkObject_shouldMatchWithHuman() {
+		var jep406 = new JEP406();
 
-        var human = new Human("John", 31, "Developer");
+		var human = new Human("John", 31, "Developer");
 
-        var checkResult = jep406.checkObject(human);
+		var checkResult = jep406.checkObject(human);
 
-        assertEquals("Name: John, age: 31 and profession: Developer", checkResult);
-    }
+		assertEquals("Name: John, age: 31 and profession: Developer", checkResult);
+	}
 
-    @Test
-    void checkShape_shouldMatchWithShape() {
-        var jep406 = new JEP406();
+	@Test
+	void checkShape_shouldMatchWithShape() {
+		var jep406 = new JEP406();
 
-        var square = new Square();
+		var square = new Square();
 
-        var checkResult = jep406.checkShape(square);
+		var checkResult = jep406.checkShape(square);
 
-        assertEquals("Just a normal shape", checkResult);
-    }
+		assertEquals("Just a normal shape", checkResult);
+	}
 }

@@ -2,8 +2,9 @@ package cn.tuyucheng.taketoday.switchpatterns;
 
 import org.junit.jupiter.api.Test;
 
+import static cn.tuyucheng.taketoday.switchpatterns.ParenthesizedPatterns.getDoubleValueUsingIf;
+import static cn.tuyucheng.taketoday.switchpatterns.ParenthesizedPatterns.getDoubleValueUsingParenthesizedPatterns;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static cn.tuyucheng.taketoday.switchpatterns.ParenthesizedPatterns.*;
 
 class ParenthesizedPatternsUnitTest {
 
