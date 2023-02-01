@@ -1,12 +1,12 @@
 ## 1. 概述
 
-在本教程中，我们将深入探讨Java 17中引入的InstantSource接口，它提供了当前Instant的可插入表示，并避免了对时区的引用。
+在本教程中，我们将深入探讨Java 17中引入的InstantSource接口，该接口**提供了当前Instant的可插拔表示形式**，并避免了对时区的引用。
 
 ## 2. InstantSource接口
 
-正如我们在原始[提案](https://mail.openjdk.java.net/pipermail/core-libs-dev/2021-May/077213.html)和[相关问题](https://github.com/ThreeTen/threeten-extra/issues/150)中所见，该接口的第一个目标是创建对java.time.Clock提供的时区的抽象。它还简化了在测试检索Instant代码部分期间存根的创建。
+正如我们在原始[提案](https://mail.openjdk.java.net/pipermail/core-libs-dev/2021-May/077213.html)和[相关问题](https://github.com/ThreeTen/threeten-extra/issues/150)中看到的那样，该接口的第一个目标是创建对java.time.Clock提供的时区的抽象。它还简化了在测试检索Instant代码部分期间创建存根的过程。
 
-它是在Java 17中添加的，以提供一种安全的方式来访问当前时刻，如我们在以下示例中所见：
+它是在Java 17中添加的，**以提供一种安全的方式来访问当前时刻**，如我们在以下示例中所见：
 
 ```java
 class AQuickTest {
@@ -28,19 +28,21 @@ quickTest.getInstant();
 
 它的实现创建了可以在任何地方用于检索Instant实例的对象，并且它提供了一种有效的方法来创建用于测试目的的stub实现。
 
+让我们更深入地了解使用此接口的好处。
+
 ## 3. 问题与解决方案
 
-为了更好地理解InstantSource接口，让我们深入了解它创建时要解决的问题以及它提供的实际解决方案。
+为了更好地理解InstantSource接口，让我们深入了解它旨在解决的问题以及它提供的实际解决方案。
 
 ### 3.1 测试问题
 
-涉及Instant检索的测试代码通常是一场噩梦，当获取Instant的方式基于当前数据解决方案(例如LocalDateTime.now())时更是如此。
+涉及Instant检索的测试代码通常是一场噩梦，当获取Instant的方式基于当前的数据解决方案(例如LocalDateTime.now())时更是如此。
 
-为了让测试提供特定的日期，我们通常会创建变通方法，例如创建外部日期工厂并在测试中提供stubbed实例。
+**为了让测试提供特定的日期，我们通常会创建变通方法，例如创建外部日期工厂并在测试中提供stubbed实例**。
 
 让我们看看下面的代码，作为解决此问题的解决方法的示例。
 
-InstantExample类使用InstantWrapper来恢复Instant：
+InstantExample类使用InstantWrapper(或解决方法)来恢复Instant：
 
 ```java
 class InstantExample {
@@ -87,7 +89,7 @@ assertEquals(currentInstant, returnedInstant);
 
 ### 3.2 测试问题的解决方案
 
-本质上，我们上面应用的解决方法就是InstantSource所做的。它提供了一个Instants的外部工厂，我们可以在任何需要的地方使用。Java 17提供了默认的系统级实现(在Clock类中)，我们也可以提供自己的：
+从本质上讲，我们上面应用的解决方法就是InstantSource所做的。**它提供了一个Instants的外部工厂，我们可以在任何需要的地方使用**。Java 17提供了一个默认的系统范围实现(在Clock类中)，我们也可以提供我们自己的：
 
 ```java
 class InstantExample {
@@ -99,7 +101,7 @@ class InstantExample {
 }
 ```
 
-InstantSource是可插拔的，也就是说，它可以使用依赖注入框架注入，或者只是作为构造函数参数传递到我们正在测试的对象中。因此，我们可以很容易地创建一个subbted地InstantSource，将其提供给测试对象，并使其返回我们测试所需的Instant：
+InstantSource是可插拔的，也就是说，它可以使用依赖注入框架注入，或者只是作为构造函数参数传递到我们正在测试的对象中。因此，我们可以很容易地创建一个subbted的InstantSource，将其提供给被测试的对象，并使其返回我们测试所需的Instant：
 
 ```java
 // given
@@ -115,7 +117,7 @@ assertEquals(currentInstant, returnedInstant);
 
 ### 3.3 时区问题
 
-当我们需要一个Instant时，我们可以从许多不同的地方获取它，比如Instant.now()、Clock.systemDefaultZone().instant()甚至LocalDateTime.now.toInstant(zoneOffset)。问题是，根据我们选择的方法，它可能会引入时区问题。
+**当我们需要一个Instant时，我们可以从许多不同的地方获取它**，比如Instant.now()、Clock.systemDefaultZone().instant()甚至LocalDateTime.now.toInstant(zoneOffset)。问题是，根据我们选择的方法，**它可能会引入时区问题**。
 
 例如，让我们看看当我们在Clock类上请求Instant时会发生什么：
 
@@ -125,7 +127,7 @@ Clock.systemDefaultZone().instant();
 
 此代码生成以下结果：
 
-```java
+```shell
 2022-11-18T16:47:15.001890204Z
 ```
 
@@ -137,19 +139,19 @@ LocalDateTime.now().toInstant(ZoneOffset.UTC);
 
 这会产生以下输出：
 
-```java
+```shell
 2022-11-18T17:47:15.001890204Z
 ```
 
-我们应该得到相同的Instant，但实际上，两者之间有60分钟的差异。
+我们应该得到相同的Instant，但实际上，两者之间有60分钟的差距。
 
-最糟糕的是，可能有两个或更多开发人员在代码的不同部分使用这两个Instant源来处理同一代码。如果是这样的话，我们就有问题了。
+最糟糕的是，可能有两个或更多开发人员在代码的不同部分使用这两个Instant源来处理同一代码。如果是这样的话，我们就遇到了问题。
 
-此时，我们通常不想处理时区问题。但是，要创建Instant，我们需要一个源，并且该源总是附带一个时区。
+**此时，我们通常不想处理时区问题**。但是，要创建Instant，我们需要一个源，并且该源总是附带一个时区。
 
 ### 3.4 解决时区问题
 
-InstantSource将我们从选择Instant的源中抽象出来，这个选择已经为我们做出了。可能是另一个程序员设置了系统范围的自定义实现，或者我们正在使用Java 17提供的实现，我们将在下一节中看到。
+**InstantSource将我们从选择Instant的源中抽象出来**，这个选择已经为我们做出了。可能是另一个程序员设置了系统范围的自定义实现，或者我们正在使用Java 17提供的实现，我们将在下一节中看到。
 
 正如InstantExample所示，我们插入了一个InstantSource，并且不需要知道任何其他信息，因此可以删除我们的InstantWrapper解决方法，而只使用插入的InstantSource。
 
@@ -159,10 +161,10 @@ InstantSource将我们从选择Instant的源中抽象出来，这个选择已经
 
 以下工厂方法可用于创建InstantSource对象：
 
--   system()：默认的系统级实现
--   tick(InstantSource, Duration)：返回一个InstantSource截断为给定持续时间的最接近表示
--   fixed(Instant)：返回始终生成相同Instant的InstantSource
--   offset(InstantSource, Duration)：返回一个InstantSource，它为Instant提供给定的偏移量
+-   **system()**：默认的系统范围实现
+-   **tick(InstantSource, Duration)**：返回一个InstantSource**截断为给定持续时间的最接近表示**
+-   **fixed(Instant)**：返回一个**始终生成相同Instant的InstantSource**
+-   **offset(InstantSource, Duration)**：返回一个InstantSource，它**为Instant提供给定的偏移量**
 
 让我们看看这些方法的一些基本用法。
 
@@ -183,21 +185,21 @@ Instant i = InstantSource.system().instant();
 System.out.println(i);
 ```
 
-运行此代码后，我们得到以下输出：
+运行此代码后，我们将得到以下输出：
 
-```java
+```shell
 2022-11-18T17:44:44.861040341Z
 ```
 
-但是，如果我们应用2小时的滴答持续时间：
+但是，如果我们应用2小时的刻度持续时间：
 
 ```java
 Instant i = InstantSource.tick(InstantSource.system(), Duration.ofHours(2)).instant();
 ```
 
-然后，我们得到以下结果：
+然后，我们将得到以下结果：
 
-```java
+```shell
 2022-11-18T06:00:00Z
 ```
 
@@ -213,7 +215,7 @@ System.out.println(i);
 
 上面的代码总是返回相同的Instant：
 
-```java
+```shell
 2022-01-01T00:00:00Z
 ```
 
@@ -228,9 +230,9 @@ Instant i = InstantSource.offset(fixedSource, Duration.ofDays(5)).instant();
 System.out.println(i);
 ```
 
-执行此代码后，我们得到以下输出：
+执行此代码后，我们将得到以下输出：
 
-```java
+```shell
 2022-01-06T00:00:00Z
 ```
 
@@ -238,9 +240,9 @@ System.out.println(i);
 
 可用于与InstantSource实例交互的方法有：
 
--   instant()：返回InstantSource提供的当前Instant
--   millis()：返回InstantSource提供的当前Instant的毫秒表示
--   withZone(ZoneId)：接收一个ZoneId并返回一个基于给定InstantSource和指定ZoneId的Clock
+-   **instant()**：返回InstantSource提供的当前Instant
+-   **millis()**：返回InstantSource提供的当前Instant的毫秒表示
+-   **withZone(ZoneId)**：接收一个ZoneId并返回一个**基于给定InstantSource和指定ZoneId的Clock**
 
 ### 5.1 instant()
 
@@ -253,7 +255,7 @@ System.out.println(i);
 
 运行此代码得到以下输出：
 
-```java
+```shell
 2022-11-18T18:29:17.641839778Z
 ```
 
@@ -266,9 +268,9 @@ long m = InstantSource.system().millis();
 System.out.println(m);
 ```
 
-并且，在运行它之后我们得到以下信息：
+并且，在运行它之后我们将得到以下信息：
 
-```java
+```shell
 1641371476655
 ```
 
@@ -283,7 +285,7 @@ System.out.println(c);
 
 这将简单地打印以下内容：
 
-```java
+```shell
 SystemClock[-04:00]
 ```
 
