@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
 public class JEP405RecordPatternsUnitTest {
 
 	Object object = new Location("Home", new GPSPoint(1.0, 2.0));
