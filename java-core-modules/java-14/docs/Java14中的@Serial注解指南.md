@@ -1,14 +1,14 @@
 ## 1. 简介
 
-在本快速教程中，我们介绍Java 14中新引入的@Serial注解。
+在这个快速教程中，我们将看看Java 14中新引入的@Serial注解。
 
-与@Override类似，此注解与serial lint标志结合使用，以对[类的序列化相关成员]()执行编译时检查。
+与@Override类似，此注解与serial lint标志结合使用，以对[类的序列化相关成员](https://www.baeldung.com/java-serialization)执行编译时检查。
 
-尽管注解已根据构建25提供，[但lint检查尚未发布](https://bugs.openjdk.java.net/browse/JDK-8202056)。
+**尽管注解已根据构建25提供，**[但lint检查尚未发布](https://bugs.openjdk.java.net/browse/JDK-8202056)。
 
 ## 2. 用法
 
-首先我们使用@Serial标注七个与序列化相关的方法和字段中的任何一个：
+让我们首先使用@Serial标注七个与序列化相关的方法和字段中的每一个：
 
 ```java
 public class MySerialClass implements Serializable {
@@ -49,13 +49,13 @@ public class MySerialClass implements Serializable {
 }
 ```
 
-之后，我们需要使用serial lint标志编译我们的类：
+之后，**我们需要使用serial lint标志编译我们的类**：
 
 ```shell
 javac -Xlint:serial MySerialClass.java
 ```
 
-然后，编译器会检查方法签名和注解成员的类型，如果它们与预期的不匹配，则发出警告。
+**然后，编译器会检查方法签名和注解成员的类型，如果它们与预期的不匹配，则发出警告**。
 
 此外，如果应用@Serial，编译器也会抛出错误：
 
@@ -78,7 +78,7 @@ public enum MyEnum {
 }
 ```
 
--   无法在[Externalizable]()类中写入writeObject()、readObject()、readObjectNoData()和serialPersistentFields，因为这些类使用不同的序列化方法：
+-   无法在[Externalizable](https://www.baeldung.com/java-externalizable)类中写入writeObject()、readObject()、readObjectNoData()和serialPersistentFields，因为这些类使用不同的序列化方法：
 
 ```java
 public class MyExternalizableClass implements Externalizable {
