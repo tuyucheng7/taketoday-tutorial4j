@@ -89,7 +89,7 @@
 				<configuration>
 					<packageName>cn.tuyucheng.taketoday</packageName>
 					<sources>
-						<source>${project.basedir}/src/main/resources/products.xsd</source>
+						<source>/${project.basedir}/src/main/resources/products.xsd</source>
 					</sources>
 				</configuration>
 			</plugin>
