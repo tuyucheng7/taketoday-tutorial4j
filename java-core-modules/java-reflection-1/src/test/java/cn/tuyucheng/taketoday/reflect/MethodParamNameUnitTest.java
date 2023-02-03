@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.reflect;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
@@ -9,10 +9,10 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MethodParamNameUnitTest {
+class MethodParamNameUnitTest {
 
 	@Test
-	public void whenGetConstructorParams_thenOk() throws NoSuchMethodException, SecurityException {
+	void whenGetConstructorParams_thenOk() throws NoSuchMethodException, SecurityException {
 		List<Parameter> parameters
 			= Arrays.asList(Person.class.getConstructor(String.class).getParameters());
 		Optional<Parameter> parameter
@@ -21,7 +21,7 @@ public class MethodParamNameUnitTest {
 	}
 
 	@Test
-	public void whenGetMethodParams_thenOk() throws NoSuchMethodException, SecurityException {
+	void whenGetMethodParams_thenOk() throws NoSuchMethodException, SecurityException {
 		List<Parameter> parameters
 			= Arrays.asList(
 			Person.class.getMethod("setFullName", String.class).getParameters());

@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.reflection;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -11,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Ignore
-public class PersonAndEmployeeReflectionUnitTest {
+// @Disabled
+class PersonAndEmployeeReflectionUnitTest {
 
 	// Fields names
 	private static final String LAST_NAME_FIELD = "lastName";
@@ -24,7 +23,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	private static final String MONTH_EMPLOYEE_REWARD_FIELD = "reward";
 
 	@Test
-	public void givenPersonClass_whenGetDeclaredFields_thenTwoFields() {
+	void givenPersonClass_whenGetDeclaredFields_thenTwoFields() {
 		// When
 		Field[] allFields = Person.class.getDeclaredFields();
 
@@ -42,7 +41,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	}
 
 	@Test
-	public void givenEmployeeClass_whenGetDeclaredFields_thenOneField() {
+	void givenEmployeeClass_whenGetDeclaredFields_thenOneField() {
 		// When
 		Field[] allFields = Employee.class.getDeclaredFields();
 
@@ -56,7 +55,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	}
 
 	@Test
-	public void givenEmployeeClass_whenSuperClassGetDeclaredFields_thenOneField() {
+	void givenEmployeeClass_whenSuperClassGetDeclaredFields_thenOneField() {
 		// When
 		Field[] allFields = Employee.class.getSuperclass().getDeclaredFields();
 
@@ -74,7 +73,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	}
 
 	@Test
-	public void givenEmployeeClass_whenGetDeclaredFieldsOnBothClasses_thenThreeFields() {
+	void givenEmployeeClass_whenGetDeclaredFieldsOnBothClasses_thenThreeFields() {
 		// When
 		Field[] personFields = Employee.class.getSuperclass().getDeclaredFields();
 		Field[] employeeFields = Employee.class.getDeclaredFields();
@@ -99,7 +98,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	}
 
 	@Test
-	public void givenEmployeeClass_whenGetDeclaredFieldsOnEmployeeSuperclassWithModifiersFilter_thenOneFields() {
+	void givenEmployeeClass_whenGetDeclaredFieldsOnEmployeeSuperclassWithModifiersFilter_thenOneFields() {
 		// When
 		List<Field> personFields = Arrays.stream(Employee.class.getSuperclass().getDeclaredFields())
 			.filter(f -> Modifier.isPublic(f.getModifiers()) || Modifier.isProtected(f.getModifiers()))
@@ -115,7 +114,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 	}
 
 	@Test
-	public void givenMonthEmployeeClass_whenGetAllFields_thenThreeFields() {
+	void givenMonthEmployeeClass_whenGetAllFields_thenThreeFields() {
 		// When
 		List<Field> allFields = getAllFields(MonthEmployee.class);
 
@@ -136,7 +135,7 @@ public class PersonAndEmployeeReflectionUnitTest {
 		);
 	}
 
-	public List<Field> getAllFields(Class clazz) {
+	List<Field> getAllFields(Class clazz) {
 		if (clazz == null) {
 			return Collections.emptyList();
 		}
@@ -148,5 +147,4 @@ public class PersonAndEmployeeReflectionUnitTest {
 		result.addAll(filteredFields);
 		return result;
 	}
-
 }

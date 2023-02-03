@@ -8,11 +8,10 @@ import java.lang.reflect.Method;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class InvocationTargetUnitTest {
+class InvocationTargetUnitTest {
 
 	@Test
-	public void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
-
+	void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
 		InvocationTargetExample targetExample = new InvocationTargetExample();
 		Method method = InvocationTargetExample.class.getMethod("divideByZeroExample");
 

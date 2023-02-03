@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class TimingDynamicInvocationHandler implements InvocationHandler {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(TimingDynamicInvocationHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TimingDynamicInvocationHandler.class);
 	private final Map<String, Method> methods = new HashMap<>();
 
-	private Object target;
+	private final Object target;
 
 	TimingDynamicInvocationHandler(Object target) {
 		this.target = target;

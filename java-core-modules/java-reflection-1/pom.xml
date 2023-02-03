@@ -37,7 +37,7 @@
 	</build>
 
 	<properties>
-		<source.version>1.8</source.version>
-		<target.version>1.8</target.version>
+		<source.version>17</source.version>
+		<target.version>17</target.version>
 	</properties>
 </project>

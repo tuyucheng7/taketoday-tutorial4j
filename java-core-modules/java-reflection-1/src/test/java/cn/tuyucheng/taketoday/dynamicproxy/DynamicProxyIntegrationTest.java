@@ -1,25 +1,25 @@
 package cn.tuyucheng.taketoday.dynamicproxy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class DynamicProxyIntegrationTest {
+class DynamicProxyIntegrationTest {
 
 	@Test
-	public void givenDynamicProxy_thenPutWorks() {
+	void givenDynamicProxy_thenPutWorks() {
 		Map proxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, new DynamicInvocationHandler());
 
 		proxyInstance.put("hello", "world");
 	}
 
 	@Test
-	public void givenInlineDynamicProxy_thenGetWorksOtherMethodsDoNot() {
+	void givenInlineDynamicProxy_thenGetWorksOtherMethodsDoNot() {
 		Map proxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, (proxy, method, methodArgs) -> {
 
 			if (method.getName().equals("get")) {
@@ -42,7 +42,7 @@ public class DynamicProxyIntegrationTest {
 	}
 
 	@Test
-	public void givenTimingDynamicProxy_thenMethodInvokationsProduceTiming() {
+	void givenTimingDynamicProxy_thenMethodInvokationsProduceTiming() {
 		Map mapProxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, new TimingDynamicInvocationHandler(new HashMap<>()));
 
 		mapProxyInstance.put("hello", "world");
@@ -53,5 +53,4 @@ public class DynamicProxyIntegrationTest {
 		assertEquals('l', csProxyInstance.charAt(2));
 		assertEquals(11, csProxyInstance.length());
 	}
-
 }
