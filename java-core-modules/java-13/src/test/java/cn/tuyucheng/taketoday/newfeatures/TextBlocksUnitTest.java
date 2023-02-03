@@ -20,7 +20,7 @@ class TextBlocksUnitTest {
 	void whenTextBlocks_thenStringOperationsWork() {
 		assertThat(TEXT_BLOCK_JSON).contains("Tuyucheng");
 		assertThat(TEXT_BLOCK_JSON.indexOf("www")).isPositive();
-		assertThat(TEXT_BLOCK_JSON.length()).isPositive();
+		assertThat(TEXT_BLOCK_JSON).isNotEmpty();
 	}
 
 	@SuppressWarnings("removal")
