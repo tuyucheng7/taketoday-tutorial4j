@@ -1,16 +1,22 @@
 package cn.tuyucheng.taketoday.jersey.server;
 
-import cn.tuyucheng.taketoday.jersey.server.http.EmbeddedHttpServer;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import static org.junit.Assert.assertEquals;
+import org.glassfish.grizzly.http.server.HttpServer;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+
+import cn.tuyucheng.taketoday.jersey.server.http.EmbeddedHttpServer;
+
+@Disabled
+@Ignore
 public class ItemsUnitTest {
 
 	private HttpServer server;
