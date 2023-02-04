@@ -24,5 +24,4 @@ class InvokePrivateMethodsUnitTest {
 		int indexOfSearchTarget = ReflectionTestUtils.invokeMethod(LongArrayUtil.class, "indexOf", someLongArray, 1L, 1, someLongArray.length);
 		assertEquals(2, indexOfSearchTarget, "The index should be 2.");
 	}
-
 }

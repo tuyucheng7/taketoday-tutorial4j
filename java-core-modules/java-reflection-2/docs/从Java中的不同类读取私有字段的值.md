@@ -1,10 +1,10 @@
 ## 1. 概述
 
-在本快速教程中，我们将讨论如何从Java中的不同类访问[私有字段的值。](https://www.baeldung.com/java-private-keyword)
+在本快速教程中，我们将讨论如何从Java中的不同类访问[私有](https://www.baeldung.com/java-private-keyword)字段的值。
 
-在开始本教程之前，我们需要了解private访问修饰符可以防止意外误用字段。[但是，如果我们希望访问它们，我们可以使用Reflection](https://www.baeldung.com/java-reflection) API来实现。
+在开始本教程之前，我们需要了解private访问修饰符可以防止意外误用字段。但是，如果我们希望访问它们，我们可以使用[反射API](https://www.baeldung.com/java-reflection)来实现。
 
-## 2.例子
+## 2. 例子
 
 让我们定义一个带有一些私有字段的示例类Person：
 
@@ -27,7 +27,7 @@ public class Person {
 
 ## 3. 使私有字段可访问
 
-要使任何私有字段可访问，我们必须调用Field#setAccessible方法：
+要使任何私有字段可访问，**我们必须调用Field#setAccessible方法**：
 
 ```java
 Person person = new Person(); 
@@ -35,20 +35,19 @@ Field nameField = person.getClass().getDeclaredField("name");
 nameField.setAccessible(true);
 ```
 
-在上面的示例中，我们首先使用Class#getDeclaredField方法指定要检索的字段——名称。然后我们使用nameField.setAccessible(true)使该字段可访问。
+在上面的示例中，我们首先使用**Class#getDeclaredField**方法指定要检索的字段name。然后我们使用nameField.setAccessible(true)使该字段可访问。
 
-## 4.访问私有原始字段
+## 4. 访问私有原始类型字段
 
-我们可以使用Field#getXxx方法访问 原始的私有字段。
+**我们可以使用Field#getXxx方法访问原始类型的私有字段**。
 
-### 4.1. 访问整数字段
+### 4.1 访问整数字段
 
-我们可以使用getByte、 getShort、getInt和getLong方法分别访问byte 、 short、int和long字段：
+我们可以使用getByte、getShort、getInt和getLong方法分别访问byte、short、int和long字段：
 
 ```java
 @Test
-public void whenGetIntegerFields_thenSuccess() 
-  throws Exception {
+public void whenGetIntegerFields_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field ageField = person.getClass().getDeclaredField("age");
@@ -77,12 +76,11 @@ public void whenGetIntegerFields_thenSuccess()
 }
 ```
 
-也可以使用原始类型执行[自动装箱：](https://www.baeldung.com/java-wrapper-classes#autoboxing-and-unboxing)
+**也可以使用原始类型执行**[自动装箱](https://www.baeldung.com/java-wrapper-classes#autoboxing-and-unboxing)：
 
 ```java
 @Test
-public void whenDoAutoboxing_thenSuccess() 
-  throws Exception {
+public void whenDoAutoboxing_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field pinCodeField = person.getClass().getDeclaredField("pinCode");
@@ -93,12 +91,11 @@ public void whenDoAutoboxing_thenSuccess()
 }
 ```
 
-原始数据类型的getXxx方法 也支持[扩大](https://www.baeldung.com/java-primitive-conversions#widening-primitive-conversions)：
+**原始数据类型的getXxx方法也支持**[加宽](https://www.baeldung.com/java-primitive-conversions#widening-primitive-conversions)：
 
 ```java
 @Test
-public void whenDoWidening_thenSuccess() 
-  throws Exception {
+public void whenDoWidening_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field pinCodeField = person.getClass().getDeclaredField("pinCode");
@@ -109,14 +106,13 @@ public void whenDoWidening_thenSuccess()
 }
 ```
 
-### 4.2. 访问浮动类型字段
+### 4.2 访问小数类型字段
 
 要访问float和double字段，我们需要分别使用getFloat和getDouble方法：
 
 ```java
 @Test
-public void whenGetFloatingTypeFields_thenSuccess() 
-  throws Exception {
+public void whenGetFloatingTypeFields_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field heightField = person.getClass().getDeclaredField("height");
@@ -133,14 +129,13 @@ public void whenGetFloatingTypeFields_thenSuccess()
 }
 ```
 
-### 4.3. 访问字符字段
+### 4.3 访问字符字段
 
-要访问 char字段，我们可以使用getChar方法：
+要访问char字段，我们可以使用getChar方法：
 
 ```java
 @Test
-public void whenGetCharacterFields_thenSuccess() 
-  throws Exception {
+public void whenGetCharacterFields_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field genderField = person.getClass().getDeclaredField("gender");
@@ -151,14 +146,13 @@ public void whenGetCharacterFields_thenSuccess()
 }
 ```
 
-### 4.4. 访问布尔字段
+### 4.4 访问布尔字段
 
 同样，我们可以使用getBoolean方法来访问布尔字段：
 
 ```java
 @Test
-public void whenGetBooleanFields_thenSuccess() 
-  throws Exception {
+public void whenGetBooleanFields_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field activeField = person.getClass().getDeclaredField("active");
@@ -169,14 +163,13 @@ public void whenGetBooleanFields_thenSuccess()
 }
 ```
 
-## 5.访问作为对象的私有字段
+## 5. 访问作为对象的私有字段
 
-我们可以使用Field#get方法访问 作为对象的私有字段。请注意，通用get方法返回一个Object，因此我们需要将其转换为目标类型以使用该值：
+**我们可以使用Field#get方法访问作为对象的私有字段。请注意，通用get方法返回一个Object，因此我们需要将其转换为目标类型以使用该值：**
 
 ```java
 @Test
-public void whenGetObjectFields_thenSuccess() 
-  throws Exception {
+public void whenGetObjectFields_thenSuccess() throws Exception {
     Person person = new Person();
 
     Field nameField = person.getClass().getDeclaredField("name");
@@ -187,18 +180,17 @@ public void whenGetObjectFields_thenSuccess()
 }
 ```
 
-## 6. 例外情况
+## 6. 异常情况
 
-现在，让我们讨论 JVM 在访问私有字段时可能抛出的异常。
+现在，让我们讨论JVM在访问私有字段时可能抛出的异常。
 
-### 6.1. 非法参数异常
+### 6.1 非法参数异常
 
-如果我们使用与目标字段类型不兼容的getXxx访问器， JVM 将抛出IllegalArgumentException 。在我们的示例中，如果我们编写nameField.getInt(person)，JVM 会抛出此异常，因为该字段的类型是String而不是int或Integer：
+**如果我们使用与目标字段类型不兼容的getXxx访问器，JVM将抛出IllegalArgumentException**。在我们的示例中，如果我们编写nameField.getInt(person)，JVM会抛出此异常，因为该字段的类型是String而不是int或Integer：
 
 ```java
 @Test
-public void givenInt_whenSetStringField_thenIllegalArgumentException() 
-  throws Exception {
+public void givenInt_whenSetStringField_thenIllegalArgumentException() throws Exception {
     Person person = new Person();
     Field nameField = person.getClass().getDeclaredField("name");
     nameField.setAccessible(true);
@@ -207,12 +199,11 @@ public void givenInt_whenSetStringField_thenIllegalArgumentException()
 }
 ```
 
-正如我们已经看到的，getXxx方法支持扩展基本类型。重要的是要注意，我们需要提供正确的加宽目标才能成功。否则，JVM 会抛出IllegalArgumentException：
+正如我们已经看到的，getXxx方法支持扩展基本类型。重要的是要注意，**我们需要提供正确的加宽目标才能成功**。否则，JVM会抛出IllegalArgumentException：
 
 ```java
 @Test
-public void givenInt_whenGetLongField_thenIllegalArgumentException() 
-  throws Exception {
+public void givenInt_whenGetLongField_thenIllegalArgumentException() throws Exception {
     Person person = new Person();
     Field contactNumberField = person.getClass().getDeclaredField("contactNumber");
     contactNumberField.setAccessible(true);
@@ -221,14 +212,13 @@ public void givenInt_whenGetLongField_thenIllegalArgumentException()
 }
 ```
 
-### 6.2. 非法访问异常
+### 6.2 非法访问异常
 
-如果我们试图访问一个没有访问权限的字段， JVM 将抛出IllegalAccessException 。在上面的例子中，如果我们不写语句nameField.setAccessible(true)，那么JVM会抛出异常：
+**如果我们试图访问一个没有访问权限的字段，JVM将抛出IllegalAccessException**。在上面的例子中，如果我们注释语句nameField.setAccessible(true)，那么JVM会抛出异常：
 
 ```java
 @Test
-public void whenFieldNotSetAccessible_thenIllegalAccessException() 
-  throws Exception {
+public void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
     Person person = new Person();
     Field nameField = person.getClass().getDeclaredField("name");
 
@@ -236,24 +226,22 @@ public void whenFieldNotSetAccessible_thenIllegalAccessException()
 }
 ```
 
-### 6.3. NoSuchFieldException异常
+### 6.3 没有这样的字段异常
 
-如果我们尝试访问Person类中不存在的字段，那么 JVM 可能会抛出NoSuchFieldException：
-
-```java
-Assertions.assertThrows(NoSuchFieldException.class,
-  () -> person.getClass().getDeclaredField("firstName"));
-```
-
-### 6.4. 空指针异常
-
-最后，如你所料，如果我们将字段名称作为null传递，JVM 会抛出NullPointerException ：
+**如果我们尝试访问Person类中不存在的字段**，那么JVM可能会抛出NoSuchFieldException：
 
 ```java
-Assertions.assertThrows(NullPointerException.class,
-  () -> person.getClass().getDeclaredField(null));
+Assertions.assertThrows(NoSuchFieldException.class, () -> person.getClass().getDeclaredField("firstName"));
 ```
 
-## 七、总结
+### 6.4 空指针异常
 
-在本教程中，我们了解了如何在另一个类中访问一个类的私有字段。我们还看到了 JVM 可能抛出的异常以及导致它们的原因。
+最后，如你所料，**如果我们将字段名称作为null传递**，JVM会抛出NullPointerException：
+
+```java
+Assertions.assertThrows(NullPointerException.class, () -> person.getClass().getDeclaredField(null));
+```
+
+## 7. 总结
+
+在本教程中，我们了解了如何在另一个类中访问一个类的私有字段。我们还看到了JVM可能抛出的异常以及导致它们的原因。

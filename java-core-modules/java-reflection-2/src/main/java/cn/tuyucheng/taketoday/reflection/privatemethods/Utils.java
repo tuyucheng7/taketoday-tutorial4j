@@ -15,5 +15,4 @@ public class Utils {
 		}
 		return 2 * input;
 	}
-
 }

@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,9 +40,7 @@ public class AccessingAllClassesInPackage {
 
 	public Set<Class> findAllClassesUsingReflectionsLibrary(String packageName) {
 		Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
-		return reflections.getSubTypesOf(Object.class)
-			.stream()
-			.collect(Collectors.toSet());
+		return new HashSet<>(reflections.getSubTypesOf(Object.class));
 	}
 
 	public Set<Class> findAllClassesUsingGoogleGuice(String packageName) throws IOException {
@@ -50,8 +49,7 @@ public class AccessingAllClassesInPackage {
 			.stream()
 			.filter(clazz -> clazz.getPackageName()
 				.equalsIgnoreCase(packageName))
-			.map(clazz -> clazz.load())
+			.map(ClassPath.ClassInfo::load)
 			.collect(Collectors.toSet());
 	}
-
 }

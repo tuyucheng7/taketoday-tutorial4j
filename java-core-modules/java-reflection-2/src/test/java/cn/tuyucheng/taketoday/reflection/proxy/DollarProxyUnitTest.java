@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.reflection.proxy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
 import java.util.function.Consumer;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DollarProxyUnitTest {
+class DollarProxyUnitTest {
 	@Test
-	public void givenProxy_whenInvokingGetProxyClass_thenGeneratingProxyClass() {
+	void givenProxy_whenInvokingGetProxyClass_thenGeneratingProxyClass() {
 		// Java 8: -Dsun.misc.ProxyGenerator.saveGeneratedFiles=true
 		// Java 9 or later: -Djdk.proxy.ProxyGenerator.saveGeneratedFiles=true
 		// Note: System.setProperty() doesn't work here
@@ -25,7 +25,7 @@ public class DollarProxyUnitTest {
 	}
 
 	@Test
-	public void givenReflection_whenReadingAnnotation_thenGeneratingProxyClass() {
+	void givenReflection_whenReadingAnnotation_thenGeneratingProxyClass() {
 		FunctionalInterface instance = Consumer.class.getDeclaredAnnotation(FunctionalInterface.class);
 		Class<?> clazz = instance.getClass();
 

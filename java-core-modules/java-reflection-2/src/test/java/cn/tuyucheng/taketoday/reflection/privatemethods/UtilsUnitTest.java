@@ -7,11 +7,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class UtilsUnitTest {
+class UtilsUnitTest {
 
-	// Let's start with the tests of the public API
+	// Let's start with the tests of the API
 	@Test
 	void givenNull_WhenValidateAndDouble_ThenThrows() {
 		assertThrows(IllegalArgumentException.class, () -> Utils.validateAndDouble(null));
@@ -25,7 +26,7 @@ public class UtilsUnitTest {
 	// Further on, let's test the private method
 	@Test
 	void givenNull_WhenDoubleInteger_ThenNull() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-		assertEquals(null, getDoubleIntegerMethod().invoke(null, new Integer[]{null}));
+		assertNull(getDoubleIntegerMethod().invoke(null, new Integer[]{null}));
 	}
 
 	@Test
@@ -38,5 +39,4 @@ public class UtilsUnitTest {
 		method.setAccessible(true);
 		return method;
 	}
-
 }
