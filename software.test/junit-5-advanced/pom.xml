@@ -32,6 +32,12 @@
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>${assertj.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -60,5 +66,6 @@
 
 	<properties>
 		<jmockit.version>1.49</jmockit.version>
+		<assertj.version>3.24.2</assertj.version>
 	</properties>
 </project>
