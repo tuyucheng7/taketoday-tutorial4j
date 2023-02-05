@@ -13,7 +13,7 @@ class StreamToImmutableJava10UnitTest {
 	void whenUsingCollectorsToUnmodifiableList_thenSuccess() {
 		List<String> givenList = Arrays.asList("a", "b", "c");
 		List<String> result = givenList.stream()
-				.collect(toUnmodifiableList());
+			.collect(toUnmodifiableList());
 
 		System.out.println(result.getClass());
 	}

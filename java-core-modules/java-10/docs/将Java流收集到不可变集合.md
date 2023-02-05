@@ -2,7 +2,7 @@
 
 我们经常想要将Java Stream转换为集合，这通常会产生一个可变集合，但我们可以自定义它。
 
-在这个简短的教程中，我们介绍如何将Java流收集到不可变集合中：首先使用纯Java，然后使用Guava库。
+在这个简短的教程中，我们介绍**如何将Java流收集到不可变集合中**：首先使用纯Java，然后使用Guava库。
 
 ## 2. 使用标准Java
 
@@ -36,11 +36,11 @@ List<String> result = givenList
 System.out.println(result.getClass());
 ```
 
-使用这种方法，由于我们不能直接使用toCollection收集器，所以我们需要将元素收集到一个临时集合中。然后，我们从中构造一个不可变集合。
+使用这种方法，**由于我们不能直接使用toCollection收集器，所以我们需要将元素收集到一个临时集合中**。然后，我们从中构造一个不可变集合。
 
 ### 2.3 Stream.toList()
 
-Java 16在Stream API上引入了一个名为toList()的新方法，这个工具方法返回一个包含流元素的不可修改的集合：
+Java 16在[Stream API](https://www.baeldung.com/java-8-streams)上引入了一个名为toList()的新方法，这个工具方法返回一个**包含流元素的不可修改的集合**：
 
 ```java
 @Test
@@ -53,13 +53,13 @@ void whenUsingStreamToList_thenReturnImmutableList() {
 }
 ```
 
-从上面的单元测试中看到，Stream.toList()返回一个不可变集合。因此，尝试向集合中添加新元素就会导致UnsupportedOperationException。
+从上面的单元测试中看到，Stream.toList()返回一个不可变集合。因此，尝试向集合中添加新元素就会导致[UnsupportedOperationException](https://www.baeldung.com/java-list-unsupported-operation-exception)。
 
-记住一点，新的Stream.toList()方法与现有的Collectors.toList()方法略有不同，因为它返回一个不可修改的集合。
+记住一点，新的Stream.toList()方法与现有的[Collectors.toList()](https://www.baeldung.com/java-8-collectors#1-collectorstolist)方法略有不同，因为它返回一个不可修改的集合。
 
 ## 3. 构建自定义收集器
 
-我们还可以选择实现自定义收集器。
+我们还可以选择[实现自定义收集器](https://www.baeldung.com/java-8-collectors#Custom)。
 
 ### 3.1 一个基本的不可变收集器
 
@@ -68,10 +68,10 @@ void whenUsingStreamToList_thenReturnImmutableList() {
 ```java
 public static <T> Collector<T, List<T>, List<T>> toImmutableList() {
     return Collector.of(ArrayList::new, List::add, 
-                        (left, right) -> {
-                            left.addAll(right);
-                            return left;
-                        }, Collections::unmodifiableList);
+        (left, right) -> {
+            left.addAll(right);
+            return left;
+        }, Collections::unmodifiableList);
 }
 ```
 
@@ -96,7 +96,6 @@ class java.util.Collections$UnmodifiableRandomAccessList
 
 ```java
 public static <T, A extends List<T>> Collector<T, A, List<T>> toImmutableList(Supplier<A> supplier) {
- 
     return Collector.of(
         supplier,
         List::add, (left, right) -> {
@@ -125,7 +124,7 @@ class java.util.Collections$UnmodifiableList
 
 ## 4. 使用Guava的Collectors
 
-首先添加Guava依赖：
+在本节中，我们将使用[Google Guava](https://search.maven.org/search?q=a:guava)库来驱动我们的一些示例：
 
 ```xml
 <dependency>
@@ -151,4 +150,4 @@ class com.google.common.collect.RegularImmutableList
 
 ## 5. 总结
 
-在这篇简短的文章中，我们介绍了将Stream收集到不可变集合的各种方法。
+在这篇简短的文章中，我们了解了将Stream收集到不可变集合的各种方法。

@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Java10FeaturesUnitTest {
 
@@ -47,17 +49,17 @@ class Java10FeaturesUnitTest {
 	@Test
 	void whenModifyToUnmodifiableList_thenThrowsException() {
 		List<Integer> evenList = someIntList.stream()
-				.filter(i -> i % 2 == 0)
-				.collect(Collectors.toUnmodifiableList());
+			.filter(i -> i % 2 == 0)
+			.collect(Collectors.toUnmodifiableList());
 		assertThrows(UnsupportedOperationException.class, () -> evenList.add(4));
 	}
 
 	@Test
 	void whenListContainsInteger_OrElseThrowReturnsInteger() {
 		Integer firstEven = someIntList.stream()
-				.filter(i -> i % 2 == 0)
-				.findFirst()
-				.orElseThrow();
+			.filter(i -> i % 2 == 0)
+			.findFirst()
+			.orElseThrow();
 		is(firstEven).equals(2);
 	}
 }
