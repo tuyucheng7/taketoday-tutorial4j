@@ -1,38 +1,38 @@
 package cn.tuyucheng.taketoday.reactive.filters;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.EntityExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @WithMockUser
-public class UserControllerIntegrationTest {
+class UserControllerIntegrationTest {
 
 	@Autowired
 	private WebTestClient webTestClient;
 
 	@Test
-	public void whenUserNameIsBaeldung_thenWebFilterIsApplied() {
-		EntityExchangeResult<String> result = webTestClient.get().uri("/users/baeldung")
+	void whenUserNameIsTuyucheng_thenWebFilterIsApplied() {
+		EntityExchangeResult<String> result = webTestClient.get().uri("/users/tuyucheng")
 			.exchange()
 			.expectStatus().isOk()
 			.expectBody(String.class)
 			.returnResult();
 
-		assertEquals(result.getResponseBody(), "baeldung");
+		assertEquals(result.getResponseBody(), "tuyucheng");
 		assertEquals(result.getResponseHeaders().getFirst("web-filter"), "web-filter-test");
 	}
 
 	@Test
-	public void whenUserNameIsTest_thenHandlerFilterFunctionIsNotApplied() {
+	void whenUserNameIsTest_thenHandlerFilterFunctionIsNotApplied() {
 		webTestClient.get().uri("/users/test")
 			.exchange()
 			.expectStatus().isOk();

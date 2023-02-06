@@ -17,6 +17,4 @@ public class ExampleHandlerFilterFunction implements HandlerFilterFunction<Serve
 		}
 		return handlerFunction.handle(serverRequest);
 	}
-
 }
-

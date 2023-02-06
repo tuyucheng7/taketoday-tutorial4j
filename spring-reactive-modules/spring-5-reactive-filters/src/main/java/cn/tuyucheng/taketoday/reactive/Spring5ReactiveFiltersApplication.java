@@ -9,5 +9,4 @@ public class Spring5ReactiveFiltersApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Spring5ReactiveFiltersApplication.class, args);
 	}
-
 }
