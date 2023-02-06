@@ -2,29 +2,27 @@
 
 在本教程中，我们将探索Java反射，它允许我们检查和/或修改类、接口、字段和方法的运行时属性。当我们在编译时不知道它们的名字时，这特别有用。
 
-此外，我们可以实例化新对象、调用方法以及使用反射获取或设置字段值。
+此外，我们可以使用反射实例化新对象、调用方法以及获取或设置字段值。
 
 ## 2. 项目设置
 
-要使用Java反射，我们不需要包含任何特殊的 jars、任何特殊的配置或 Maven 依赖项。JDK 附带了一组专门为此目的捆绑在[java.lang.reflect包中的类。](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/package-summary.html)
+**要使用Java反射，我们不需要包含任何特殊的jars、任何特殊的配置或Maven依赖项**。JDK附带了一组专门为此目的捆绑在[java.lang.reflect](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/package-summary.html)包中的类。
 
 因此，我们需要做的就是将以下导入到我们的代码中：
 
 ```java
-import java.lang.reflect.;
+import java.lang.reflect.*;
 ```
 
-我们很高兴。
-
-要访问实例的类、方法和字段信息，我们调用getClass方法，该方法返回对象的运行时类表示。返回的类对象提供了访问类信息的方法。
+为了访问实例的类、方法和字段信息，我们调用getClass方法，该方法返回对象的运行时Class表示形式。返回的Class对象提供了访问类信息的方法。
 
 ## 3. 简单例子
 
-为了让我们的脚湿透，我们将看一个非常基本的示例，该示例在运行时检查一个简单Java对象的字段。
+我们将看一个非常基本的示例，该示例在运行时检查一个简单Java对象的字段。
 
-让我们创建一个简单的Person类，它只有name和age字段，根本没有方法。
+让我们创建一个简单的Person类，它只有name和age字段，没有任何方法。
 
-这是 Person 类：
+这是Person类：
 
 ```java
 public class Person {
@@ -33,9 +31,9 @@ public class Person {
 }
 ```
 
-我们现在将使用Java反射来发现这个类的所有字段的名称。
+现在，我们将使用Java反射来查找这个类的所有字段的名称。
 
-为了体会反射的力量，让我们构造一个Person对象并使用 Object 作为引用类型：
+为了体会反射的力量，让我们构造一个Person对象并使用Object作为引用类型：
 
 ```java
 @Test
@@ -46,15 +44,15 @@ public void givenObject_whenGetsFieldNamesAtRuntime_thenCorrect() {
     List<String> actualFieldNames = getFieldNames(fields);
 
     assertTrue(Arrays.asList("name", "age")
-      .containsAll(actualFieldNames));
+        .containsAll(actualFieldNames));
 }
 ```
 
-这个测试向我们展示了我们能够从我们的person对象中获取一个字段对象数组，即使对对象的引用是该对象的父类型。
+这个测试向我们展示了我们能够从我们的person对象中获取一个Field对象数组，即使对对象的引用是该对象的父类型。
 
 在上面的示例中，我们只对这些字段的名称感兴趣。但是还有很多事情可以做，我们将在下一节中看到这方面的例子。
 
-请注意我们如何使用辅助方法来提取实际的字段名称。
+请注意我们如何使用工具方法来提取实际的字段名称。
 
 这是一个非常基本的代码：
 
@@ -62,32 +60,32 @@ public void givenObject_whenGetsFieldNamesAtRuntime_thenCorrect() {
 private static List<String> getFieldNames(Field[] fields) {
     List<String> fieldNames = new ArrayList<>();
     for (Field field : fields)
-      fieldNames.add(field.getName());
+        fieldNames.add(field.getName());
     return fieldNames;
 }
 ```
 
-## 4.Java反射用例
+## 4. Java反射用例
 
-在我们讨论Java反射的不同特性之前，我们将讨论一些我们可能会发现的常见用途。Java 反射非常强大，可以通过多种方式派上用场。
+在我们继续讨论Java反射的不同特性之前，我们将讨论一些我们可能会发现的常见用途。Java反射非常强大，可以通过多种方式派上用场。
 
 例如，在许多情况下，我们对数据库表有一个命名约定。我们可以选择通过在表名前加上tbl_来增加一致性，这样一个包含学生数据的表就称为tbl_student_data。
 
-在这种情况下，我们可以将保存学生数据的Java对象命名为Student或StudentData。然后使用 CRUD 范例，我们为每个操作都有一个入口点，因此Create操作只接收一个Object参数。
+在这种情况下，我们可以将保存学生数据的Java对象命名为Student或StudentData。然后使用CRUD范例，我们为每个操作提供一个入口点，因此Create操作只接收一个Object参数。
 
-然后我们使用反射来检索对象名称和字段名称。此时，我们可以将此数据映射到 DB 表，并将对象字段值分配给适当的 DB 字段名称。
+然后我们使用反射来检索对象名称和字段名称。此时，我们可以将此数据映射到数据库表，并将对象字段值分配给适当的数据库字段名称。
 
 ## 5. 检查Java类
 
-在本节中，我们将探讨Java反射 API 中最基本的组件。正如我们前面提到的，Java 类对象使我们能够访问任何对象的内部细节。
+在本节中，我们将探讨Java反射API中最基本的组件。正如我们前面提到的，Java类对象使我们能够访问任何对象的内部细节。
 
 我们将检查内部细节，例如对象的类名、修饰符、字段、方法、实现的接口等。
 
-### 5.1。准备
+### 5.1 准备
 
-为了牢牢掌握应用于Java类的反射 API 并提供各种示例，让我们创建一个实现Eating接口的抽象Animal类。该接口定义了我们创建的任何具体Animal对象的进食行为。
+为了牢牢掌握应用于Java类的反射API并提供各种示例，让我们创建一个实现Eating接口的抽象Animal类。该接口定义了我们创建的任何具体Animal对象的进食行为。
 
-首先，这里是吃的界面：
+首先，这里是吃的接口：
 
 ```java
 public interface Eating {
@@ -109,7 +107,7 @@ public abstract class Animal implements Eating {
 }
 ```
 
-让我们还创建另一个名为Locomotion的界面来描述动物如何移动：
+让我们还创建另一个名为Locomotion的接口来描述动物如何移动：
 
 ```java
 public interface Locomotion {
@@ -145,7 +143,7 @@ public class Goat extends Animal implements Locomotion {
 
 从现在开始，我们将使用Java反射来检查出现在上述类和接口中的Java对象的各个方面。
 
-### 5.2. 类名
+### 5.2 类名
 
 让我们首先从Class获取对象的名称：
 
@@ -156,8 +154,8 @@ public void givenObject_whenGetsClassName_thenCorrect() {
     Class<?> clazz = goat.getClass();
 
     assertEquals("Goat", clazz.getSimpleName());
-    assertEquals("com.baeldung.reflection.Goat", clazz.getName());
-    assertEquals("com.baeldung.reflection.Goat", clazz.getCanonicalName());
+    assertEquals("cn.tuyucheng.taketoday.reflection.Goat", clazz.getName());
+    assertEquals("cn.tuyucheng.taketoday.reflection.Goat", clazz.getCanonicalName());
 }
 ```
 
@@ -168,17 +166,17 @@ public void givenObject_whenGetsClassName_thenCorrect() {
 ```java
 @Test
 public void givenClassName_whenCreatesObject_thenCorrect(){
-    Class<?> clazz = Class.forName("com.baeldung.reflection.Goat");
+    Class<?> clazz = Class.forName("cn.tuyucheng.taketoday.reflection.Goat");
 
     assertEquals("Goat", clazz.getSimpleName());
-    assertEquals("com.baeldung.reflection.Goat", clazz.getName());
-    assertEquals("com.baeldung.reflection.Goat", clazz.getCanonicalName()); 
+    assertEquals("cn.tuyucheng.taketoday.reflection.Goat", clazz.getName());
+    assertEquals("cn.tuyucheng.taketoday.reflection.Goat", clazz.getCanonicalName()); 
 }
 ```
 
 请注意，我们传递给静态forName方法的名称应该包含包信息。否则，我们将得到一个ClassNotFoundException。
 
-### 5.3. 类修饰符
+### 5.3 类修饰符
 
 我们可以通过调用getModifiers方法来确定类中使用的修饰符，该方法返回一个Integer。每个修饰符都是一个设置或清除的标志位。
 
@@ -189,8 +187,8 @@ public void givenClassName_whenCreatesObject_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenRecognisesModifiers_thenCorrect() {
-    Class<?> goatClass = Class.forName("com.baeldung.reflection.Goat");
-    Class<?> animalClass = Class.forName("com.baeldung.reflection.Animal");
+    Class<?> goatClass = Class.forName("cn.tuyucheng.taketoday.reflection.Goat");
+    Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
 
     int goatMods = goatClass.getModifiers();
     int animalMods = animalClass.getModifiers();
@@ -201,13 +199,13 @@ public void givenClass_whenRecognisesModifiers_thenCorrect() {
 }
 ```
 
-我们能够检查位于我们正在导入项目的库 jar 中的任何类的修饰符。
+我们能够检查位于我们正在导入项目的库jar中的任何类的修饰符。
 
 在大多数情况下，我们可能需要使用forName方法而不是完整的实例化，因为在内存繁重的类的情况下这将是一个昂贵的过程。
 
-### 5.4. 包装信息
+### 5.4 包信息
 
-通过使用Java反射，我们还能够获取有关任何类或对象的包的信息。此数据捆绑在[Package](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Package.html)类中，该类通过调用类对象的getPackage方法返回。
+通过使用Java反射，我们还能够获取有关任何类或对象的包的信息。此数据捆绑在[Package](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Package.html)类中，该类通过调用Class对象的getPackage方法返回。
 
 让我们运行一个测试来检索包名称：
 
@@ -218,11 +216,11 @@ public void givenClass_whenGetsPackageInfo_thenCorrect() {
     Class<?> goatClass = goat.getClass();
     Package pkg = goatClass.getPackage();
 
-    assertEquals("com.baeldung.reflection", pkg.getName());
+    assertEquals("cn.tuyucheng.taketoday.reflection", pkg.getName());
 }
 ```
 
-### 5.5. 超类
+### 5.5 超类
 
 我们还可以通过使用Java反射来获取任何Java类的超类。
 
@@ -246,17 +244,17 @@ public void givenClass_whenGetsSuperClass_thenCorrect() {
 }
 ```
 
-### 5.6. 实现的接口
+### 5.6 实现的接口
 
 使用Java反射，我们还能够获取给定类实现的接口列表。
 
-让我们检索Goat类和Animal抽象类实现的接口的类类型：
+让我们检索Goat类和Animal抽象类实现的接口的Class类型：
 
 ```java
 @Test
 public void givenClass_whenGetsImplementedInterfaces_thenCorrect(){
-    Class<?> goatClass = Class.forName("com.baeldung.reflection.Goat");
-    Class<?> animalClass = Class.forName("com.baeldung.reflection.Animal");
+    Class<?> goatClass = Class.forName("cn.tuyucheng.taketoday.reflection.Goat");
+    Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
 
     Class<?>[] goatInterfaces = goatClass.getInterfaces();
     Class<?>[] animalInterfaces = animalClass.getInterfaces();
@@ -276,9 +274,9 @@ public void givenClass_whenGetsImplementedInterfaces_thenCorrect(){
 
 因此，即使一个类实现了接口方法，因为它的超类实现了该接口，但子类没有直接使用implements关键字声明该接口，该接口也不会出现在接口数组中。
 
-### 5.7. 构造函数、方法和字段
+### 5.7 构造函数、方法和字段
 
-使用Java反射，我们能够检查任何对象类的构造函数以及方法和字段。
+使用Java反射，我们能够检查**任何对象类的构造函数以及方法和字段**。
 
 稍后，我们将能够对类的每个组件进行更深入的检查。但就目前而言，只需获取它们的名称并将它们与我们的预期进行比较就足够了。
 
@@ -287,12 +285,12 @@ public void givenClass_whenGetsImplementedInterfaces_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenGetsConstructor_thenCorrect(){
-    Class<?> goatClass = Class.forName("com.baeldung.reflection.Goat");
+    Class<?> goatClass = Class.forName("cn.tuyucheng.taketoday.reflection.Goat");
 
     Constructor<?>[] constructors = goatClass.getConstructors();
 
     assertEquals(1, constructors.length);
-    assertEquals("com.baeldung.reflection.Goat", constructors[0].getName());
+    assertEquals("cn.tuyucheng.taketoday.reflection.Goat", constructors[0].getName());
 }
 ```
 
@@ -301,7 +299,7 @@ public void givenClass_whenGetsConstructor_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenGetsFields_thenCorrect(){
-    Class<?> animalClass = Class.forName("com.baeldung.reflection.Animal");
+    Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
     Field[] fields = animalClass.getDeclaredFields();
 
     List<String> actualFields = getFieldNames(fields);
@@ -316,7 +314,7 @@ public void givenClass_whenGetsFields_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenGetsMethods_thenCorrect(){
-    Class<?> animalClass = Class.forName("com.baeldung.reflection.Animal");
+    Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
     Method[] methods = animalClass.getDeclaredMethods();
     List<String> actualMethods = getMethodNames(methods);
 
@@ -332,14 +330,14 @@ public void givenClass_whenGetsMethods_thenCorrect(){
 private static List<String> getMethodNames(Method[] methods) {
     List<String> methodNames = new ArrayList<>();
     for (Method method : methods)
-      methodNames.add(method.getName());
+        methodNames.add(method.getName());
     return methodNames;
 }
 ```
 
 ## 6. 检查构造函数
 
-使用Java反射，我们可以检查任何类的构造函数，甚至可以在运行时创建类对象。[java.lang.reflect.Constructor](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/Constructor.html)类使这成为可能。
+使用Java反射，我们可以检查任何类的构造函数，甚至可以**在运行时创建类对象**。[java.lang.reflect.Constructor](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/Constructor.html)类使这成为可能。
 
 之前，我们只研究了如何获取Constructor对象的数组，我们可以从中获取构造函数的名称。
 
@@ -381,7 +379,7 @@ public class Bird extends Animal {
 ```java
 @Test
 public void givenClass_whenGetsAllConstructors_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Constructor<?>[] constructors = birdClass.getConstructors();
 
     assertEquals(3, constructors.length);
@@ -393,7 +391,7 @@ public void givenClass_whenGetsAllConstructors_thenCorrect() {
 ```java
 @Test
 public void givenClass_whenGetsEachConstructorByParamTypes_thenCorrect(){
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
 
     Constructor<?> cons1 = birdClass.getConstructor();
     Constructor<?> cons2 = birdClass.getConstructor(String.class);
@@ -408,11 +406,10 @@ public void givenClass_whenGetsEachConstructorByParamTypes_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenInstantiatesObjectsAtRuntime_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Constructor<?> cons1 = birdClass.getConstructor();
     Constructor<?> cons2 = birdClass.getConstructor(String.class);
-    Constructor<?> cons3 = birdClass.getConstructor(String.class,
-      boolean.class);
+    Constructor<?> cons3 = birdClass.getConstructor(String.class, boolean.class);
 
     Bird bird1 = (Bird) cons1.newInstance();
     Bird bird2 = (Bird) cons2.newInstance("Weaver bird");
@@ -429,26 +426,26 @@ public void givenClass_whenInstantiatesObjectsAtRuntime_thenCorrect() {
 
 我们通过调用Constructor类的newInstance方法并按照声明的顺序传递所需的参数来实例化类对象。然后我们将结果转换为所需的类型。
 
-也可以使用Class.newInstance()方法调用默认构造函数。但是，这种方法自Java9 以来已被弃用，我们不应该在现代Java项目中使用它。
+也可以使用Class.newInstance()方法调用默认构造函数。但是，这种方法自Java 9以来已被弃用，我们不应该在现代Java项目中使用它。
 
-对于bird1，我们使用默认构造函数自动将名称设置为Bird代码中的 Bird ，并通过测试确认这一点。
+对于bird1，我们使用默认构造函数自动将Bird代码中的名称设置为bird，并通过测试确认这一点。
 
-然后我们只用一个名字实例化bird2并进行测试。请记住，当我们不设置运动行为时，它默认为 false，如最后两个断言所示。
+然后我们只用一个名字实例化bird2并进行测试。请记住，当我们不设置运动行为时，它默认为false，如最后两个断言所示。
 
 ## 7. 检查字段
 
-以前，我们只检查字段的名称。在本节中，我们将展示如何 在运行时获取和设置它们的值。
+以前，我们只检查字段的名称。在本节中，**我们将展示如何在运行时获取和设置它们的值**。
 
 有两种主要方法用于在运行时检查类的字段：getFields()和getField(fieldName)。
 
-getFields()方法返回相关类的所有可访问公共字段。它将返回类和所有超类中的所有公共字段。
+getFields()方法返回相关类的所有可访问公共字段，它将返回类和所有超类中的所有公共字段。
 
 例如，当我们在Bird类上调用此方法时，我们只会获得其超类Animal的CATEGORY字段，因为Bird本身并没有声明任何公共字段：
 
 ```java
 @Test
 public void givenClass_whenGetsPublicFields_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Field[] fields = birdClass.getFields();
 
     assertEquals(1, fields.length);
@@ -461,21 +458,21 @@ public void givenClass_whenGetsPublicFields_thenCorrect() {
 ```java
 @Test
 public void givenClass_whenGetsPublicFieldByName_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Field field = birdClass.getField("CATEGORY");
 
     assertEquals("CATEGORY", field.getName());
 }
 ```
 
-我们无法访问在超类中声明且未在子类中声明的私有字段。这就是我们无法访问名称字段的原因。
+我们无法访问在超类中声明且未在子类中声明的私有字段。这就是我们无法访问name字段的原因。
 
 但是，我们可以通过调用getDeclaredFields方法来检查我们正在处理的类中声明的私有字段：
 
 ```java
 @Test
 public void givenClass_whenGetsDeclaredFields_thenCorrect(){
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Field[] fields = birdClass.getDeclaredFields();
 
     assertEquals(1, fields.length);
@@ -488,7 +485,7 @@ public void givenClass_whenGetsDeclaredFields_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenGetsFieldsByName_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Field field = birdClass.getDeclaredField("walks");
 
     assertEquals("walks", field.getName());
@@ -502,8 +499,8 @@ public void givenClass_whenGetsFieldsByName_thenCorrect() {
 ```java
 @Test
 public void givenClassField_whenGetsType_thenCorrect() {
-    Field field = Class.forName("com.baeldung.reflection.Bird")
-      .getDeclaredField("walks");
+    Field field = Class.forName("cn.tuyucheng.taketoday.reflection.Bird")
+        .getDeclaredField("walks");
     Class<?> fieldClass = field.getType();
 
     assertEquals("boolean", fieldClass.getSimpleName());
@@ -517,7 +514,7 @@ public void givenClassField_whenGetsType_thenCorrect() {
 ```java
 @Test
 public void givenClassField_whenSetsAndGetsValue_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Bird bird = (Bird) birdClass.getConstructor().newInstance();
     Field field = birdClass.getDeclaredField("walks");
     field.setAccessible(true);
@@ -532,7 +529,7 @@ public void givenClassField_whenSetsAndGetsValue_thenCorrect() {
 }
 ```
 
-在上面的测试中，我们确定walks字段的值在设置为 true 之前确实为 false。
+在上面的测试中，我们确定walks字段的值在设置为true之前确实为false。
 
 请注意我们如何使用Field对象来设置和获取值，方法是将我们正在处理的类的实例以及我们希望该字段在该对象中具有的新值传递给它。
 
@@ -543,7 +540,7 @@ public void givenClassField_whenSetsAndGetsValue_thenCorrect() {
 ```java
 @Test
 public void givenClassField_whenGetsAndSetsWithNull_thenCorrect(){
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Field field = birdClass.getField("CATEGORY");
     field.setAccessible(true);
 
@@ -551,26 +548,25 @@ public void givenClassField_whenGetsAndSetsWithNull_thenCorrect(){
 }
 ```
 
-## 八、检验方法
+## 8. 检查方法
 
-在前面的示例中，我们仅使用反射来检查方法名称。但是，Java 反射比这更强大。
+在前面的示例中，我们仅使用反射来检查方法名称。但是，Java反射比这更强大。
 
-使用Java反射，我们可以在运行时调用方法并将其所需的参数传递给它们，就像我们为构造函数所做的那样。同样，我们也可以通过指定每个方法的参数类型来调用重载方法。
+使用Java反射，我们可以**在运行时调用方法**并将其所需的参数传递给它们，就像我们为构造函数所做的那样。同样，我们也可以通过指定每个方法的参数类型来调用重载方法。
 
 就像字段一样，我们使用两种主要方法来检索类方法。getMethods方法返回类和超类的所有公共方法的数组。
 
-这意味着通过这个方法，我们可以获得java.lang.Object类的公共方法，例如toString、hashCode 和notifyAll：
+这意味着通过这个方法，我们可以获得java.lang.Object类的公共方法，例如toString、hashCode和notifyAll：
 
 ```java
 @Test
 public void givenClass_whenGetsAllPublicMethods_thenCorrect(){
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Method[] methods = birdClass.getMethods();
     List<String> methodNames = getMethodNames(methods);
 
     assertTrue(methodNames.containsAll(Arrays
-      .asList("equals", "notifyAll", "hashCode",
-        "walks", "eats", "toString")));
+        .asList("equals", "notifyAll", "hashCode", "walks", "eats", "toString")));
 }
 ```
 
@@ -579,12 +575,11 @@ public void givenClass_whenGetsAllPublicMethods_thenCorrect(){
 ```java
 @Test
 public void givenClass_whenGetsOnlyDeclaredMethods_thenCorrect(){
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
-    List<String> actualMethodNames
-      = getMethodNames(birdClass.getDeclaredMethods());
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
+    List<String> actualMethodNames = getMethodNames(birdClass.getDeclaredMethods());
 
     List<String> expectedMethodNames = Arrays
-      .asList("setWalks", "walks", "getSound", "eats");
+        .asList("setWalks", "walks", "getSound", "eats");
 
     assertEquals(expectedMethodNames.size(), actualMethodNames.size());
     assertTrue(expectedMethodNames.containsAll(actualMethodNames));
@@ -617,7 +612,7 @@ public void givenMethodName_whenGetsMethod_thenCorrect() throws Exception {
 ```java
 @Test
 public void givenMethod_whenInvokes_thenCorrect() {
-    Class<?> birdClass = Class.forName("com.baeldung.reflection.Bird");
+    Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
     Bird bird = (Bird) birdClass.getConstructor().newInstance();
     Method setWalksMethod = birdClass.getDeclaredMethod("setWalks", boolean.class);
     Method walksMethod = birdClass.getDeclaredMethod("walks");
@@ -638,4 +633,4 @@ public void givenMethod_whenInvokes_thenCorrect() {
 
 ## 9. 总结
 
-在本文中，我们介绍了Java反射 API，并研究了如何使用它在运行时检查类、接口、字段和方法，而无需在编译时事先了解它们的内部结构。
+在本文中，我们介绍了Java反射API，并研究了如何使用它在运行时检查类、接口、字段和方法，而无需在编译时事先了解它们的内部结构。

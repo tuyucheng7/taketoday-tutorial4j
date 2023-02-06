@@ -26,7 +26,7 @@ public class OptionalUnitTest {
 
 	@Test
 	public void givenNonNull_whenCreatesNonNullable_thenCorrect() {
-		String name = "baeldung";
+		String name = "tuyucheng";
 		Optional<String> opt = Optional.of(name);
 		assertTrue(opt.isPresent());
 	}
@@ -39,14 +39,14 @@ public class OptionalUnitTest {
 
 	@Test
 	public void givenNonNull_whenCreatesOptional_thenCorrect() {
-		String name = "baeldung";
+		String name = "tuyucheng";
 		Optional<String> opt = Optional.of(name);
 		assertTrue(opt.isPresent());
 	}
 
 	@Test
 	public void givenNonNull_whenCreatesNullable_thenCorrect() {
-		String name = "baeldung";
+		String name = "tuyucheng";
 		Optional<String> opt = Optional.ofNullable(name);
 		assertTrue(opt.isPresent());
 	}
@@ -71,16 +71,16 @@ public class OptionalUnitTest {
 	// Condition Action With ifPresent()
 	@Test
 	public void givenOptional_whenIfPresentWorks_thenCorrect() {
-		Optional<String> opt = Optional.of("baeldung");
+		Optional<String> opt = Optional.of("tuyucheng");
 		opt.ifPresent(name -> LOG.debug("{}", name.length()));
 	}
 
 	// returning Value With get()
 	@Test
 	public void givenOptional_whenGetsValue_thenCorrect() {
-		Optional<String> opt = Optional.of("baeldung");
+		Optional<String> opt = Optional.of("tuyucheng");
 		String name = opt.get();
-		assertEquals("baeldung", name);
+		assertEquals("tuyucheng", name);
 	}
 
 	@Test(expected = NoSuchElementException.class)
@@ -159,12 +159,12 @@ public class OptionalUnitTest {
 
 	@Test
 	public void givenOptional_whenMapWorks_thenCorrect2() {
-		String name = "baeldung";
+		String name = "tuyucheng";
 		Optional<String> nameOptional = Optional.of(name);
 
 		int len = nameOptional.map(String::length)
 			.orElse(0);
-		assertEquals(8, len);
+		assertEquals(9, len);
 	}
 
 	@Test
@@ -278,10 +278,10 @@ public class OptionalUnitTest {
 	// Uncomment code when code base is compatible with Java 11
 	// @Test
 	// public void givenAnEmptyOptional_thenIsEmptyBehavesAsExpected() {
-	//     Optional<String> opt = Optional.of("Baeldung");
-	//     assertFalse(opt.isEmpty());
+	// 	Optional<String> opt = Optional.of("Baeldung");
+	// 	assertFalse(opt.isEmpty());
 	//
-	//     opt = Optional.ofNullable(null);
-	//     assertTrue(opt.isEmpty());
+	// 	opt = Optional.ofNullable(null);
+	// 	assertTrue(opt.isEmpty());
 	// }
 }
