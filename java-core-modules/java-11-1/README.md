@@ -11,7 +11,7 @@
 + [Java中的新HTTP客户端](docs/Java中的新HTTP客户端.md)
 + [JDK集合与Eclipse集合](docs/JDK集合与Eclipse集合.md)
 + [jlink指南](docs/jlink指南.md)
-+ [Lambda参数的Java 11局部变量语法](docs/Lambda参数的Java11局部变量语法.md)
++ [Java 11 Lambda参数的局部变量语法](docs/Java11-lambda参数的局部变量语法.md)
 + [使用Java 11否定谓词方法引用](docs/使用Java11否定谓词方法引用.md)
 + [将正则表达式模式预编译为Pattern对象](docs/将正则表达式模式预编译为Pattern对象.md)
 
