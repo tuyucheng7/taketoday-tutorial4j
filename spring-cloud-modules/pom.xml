@@ -33,6 +33,7 @@
         <module>spring-cloud-netflix-feign</module>
         <module>spring-cloud-netflix-sidecar</module>
         <module>spring-cloud-open-service-broker</module>
+		<module>spring-cloud-open-telemetry</module>
         <module>spring-cloud-openfeign-1</module>
         <module>spring-cloud-openfeign-2</module>
         <module>spring-cloud-ribbon-client</module>
