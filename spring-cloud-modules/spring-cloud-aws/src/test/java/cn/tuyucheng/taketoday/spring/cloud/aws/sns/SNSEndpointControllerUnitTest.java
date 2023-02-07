@@ -9,30 +9,29 @@ import static org.mockito.Mockito.mock;
 
 public class SNSEndpointControllerUnitTest {
 
-    SNSEndpointController snsEndpointController;
+	SNSEndpointController snsEndpointController;
 
-    @Before
-    public void setUp() {
-        snsEndpointController = new SNSEndpointController();
-    }
+	@Before
+	public void setUp() {
+		snsEndpointController = new SNSEndpointController();
+	}
 
-    @Test
-    public void whenReceivedNotificationInvoked_thenSuccess() {
-        snsEndpointController.receiveNotification("Message", "Subject");
-    }
+	@Test
+	public void whenReceivedNotificationInvoked_thenSuccess() {
+		snsEndpointController.receiveNotification("Message", "Subject");
+	}
 
-    @Test
-    public void whenConfirmUnsubscribeReturned_thenSuccess() {
-        NotificationStatus notificationStatus = mock(NotificationStatus.class);
-        doNothing().when(notificationStatus).confirmSubscription();
-        snsEndpointController.confirmUnsubscribeMessage(notificationStatus);
-    }
+	@Test
+	public void whenConfirmUnsubscribeReturned_thenSuccess() {
+		NotificationStatus notificationStatus = mock(NotificationStatus.class);
+		doNothing().when(notificationStatus).confirmSubscription();
+		snsEndpointController.confirmUnsubscribeMessage(notificationStatus);
+	}
 
-    @Test
-    public void whenConfirmSubscriptionReturned_thenSuccess() {
-        NotificationStatus notificationStatus = mock(NotificationStatus.class);
-        doNothing().when(notificationStatus).confirmSubscription();
-        snsEndpointController.confirmSubscriptionMessage(notificationStatus);
-    }
-
+	@Test
+	public void whenConfirmSubscriptionReturned_thenSuccess() {
+		NotificationStatus notificationStatus = mock(NotificationStatus.class);
+		doNothing().when(notificationStatus).confirmSubscription();
+		snsEndpointController.confirmSubscriptionMessage(notificationStatus);
+	}
 }

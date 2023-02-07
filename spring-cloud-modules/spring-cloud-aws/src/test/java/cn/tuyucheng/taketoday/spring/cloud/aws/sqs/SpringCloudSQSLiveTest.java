@@ -35,105 +35,101 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource("classpath:application-test.properties")
 public class SpringCloudSQSLiveTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(SpringCloudSQSLiveTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpringCloudSQSLiveTest.class);
 
-    @Autowired
-    @Lazy
-    private SpringCloudSQS springCloudSQS;
+	@Autowired
+	@Lazy
+	private SpringCloudSQS springCloudSQS;
 
-    private static String receiveQueueName;
-    private static String receiveQueueUrl;
+	private static String receiveQueueName;
+	private static String receiveQueueUrl;
 
-    private static String sendQueueName;
-    private static String sendQueueURl;
+	private static String sendQueueName;
+	private static String sendQueueURl;
 
-    @BeforeClass
-    public static void setupAwsResources() {
+	@BeforeClass
+	public static void setupAwsResources() {
+		sendQueueName = UUID.randomUUID().toString();
+		receiveQueueName = SpringCloudSQS.QUEUE_NAME;
 
-        sendQueueName = UUID.randomUUID().toString();
-        receiveQueueName = SpringCloudSQS.QUEUE_NAME;
+		AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
 
-        AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
+		CreateQueueResult receiveQueue = amazonSQS.createQueue(receiveQueueName);
+		receiveQueueUrl = receiveQueue.getQueueUrl();
 
-        CreateQueueResult receiveQueue = amazonSQS.createQueue(receiveQueueName);
-        receiveQueueUrl = receiveQueue.getQueueUrl();
+		CreateQueueResult sendQueue = amazonSQS.createQueue(sendQueueName);
+		sendQueueURl = sendQueue.getQueueUrl();
+	}
 
-        CreateQueueResult sendQueue = amazonSQS.createQueue(sendQueueName);
-        sendQueueURl = sendQueue.getQueueUrl();
-    }
+	@Test
+	public void whenMessageSentAndVerified_thenSuccess() throws InterruptedException {
+		String message = "Hello World";
+		springCloudSQS.send(sendQueueName, message);
 
-    @Test
-    public void whenMessageSentAndVerified_thenSuccess() throws InterruptedException {
+		AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
 
-        String message = "Hello World";
-        springCloudSQS.send(sendQueueName, message);
+		ReceiveMessageRequest request = new ReceiveMessageRequest(sendQueueURl);
+		request.setMaxNumberOfMessages(1);
 
-        AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
+		ReceiveMessageResult result = null;
+		do {
+			result = amazonSQS.receiveMessage(request);
+			if (result.getMessages().size() == 0) {
+				logger.info("Message not received at first time, waiting for 1 second");
+			}
+		} while (result.getMessages().size() == 0);
+		assertThat(result.getMessages().get(0).getBody()).isEqualTo(message);
 
-        ReceiveMessageRequest request = new ReceiveMessageRequest(sendQueueURl);
-        request.setMaxNumberOfMessages(1);
+		// Delete message so that it doen't interfere with other test
+		amazonSQS.deleteMessage(sendQueueURl, result.getMessages().get(0).getReceiptHandle());
+	}
 
-        ReceiveMessageResult result = null;
-        do {
-            result = amazonSQS.receiveMessage(request);
-            if (result.getMessages().size() == 0) {
-                logger.info("Message not received at first time, waiting for 1 second");
-            }
-        } while (result.getMessages().size() == 0);
-        assertThat(result.getMessages().get(0).getBody()).isEqualTo(message);
+	@Test
+	public void whenConvertedMessageSentAndVerified_thenSuccess() throws InterruptedException, IOException {
+		Greeting message = new Greeting("Hello", "World");
+		springCloudSQS.send(sendQueueName, message);
 
-        // Delete message so that it doen't interfere with other test
-        amazonSQS.deleteMessage(sendQueueURl, result.getMessages().get(0).getReceiptHandle());
+		AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
 
-    }
+		ReceiveMessageRequest request = new ReceiveMessageRequest(sendQueueURl);
+		request.setMaxNumberOfMessages(1);
 
-    @Test
-    public void whenConvertedMessageSentAndVerified_thenSuccess() throws InterruptedException, IOException {
+		ReceiveMessageResult result = null;
+		do {
+			result = amazonSQS.receiveMessage(request);
+			if (result.getMessages().size() == 0) {
+				logger.info("Message not received at first time, waiting for 1 second");
+			}
+		} while (result.getMessages().size() == 0);
+		assertThat(new ObjectMapper().readValue(result.getMessages().get(0).getBody(), Greeting.class)).isEqualTo(message);
 
-        Greeting message = new Greeting("Hello", "World");
-        springCloudSQS.send(sendQueueName, message);
+		// Delete message so that it doesn't interfere with other test
+		amazonSQS.deleteMessage(sendQueueURl, result.getMessages().get(0).getReceiptHandle());
+	}
 
-        AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
+	@Test
+	public void givenMessageSent_whenMessageReceived_thenSuccess() throws InterruptedException {
+		CountDownLatch countDownLatch = new CountDownLatch(5);
+		springCloudSQS.setCountDownLatch(countDownLatch);
 
-        ReceiveMessageRequest request = new ReceiveMessageRequest(sendQueueURl);
-        request.setMaxNumberOfMessages(1);
+		AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
+		for (int i = 0; i < 5; i++) {
+			amazonSQS.sendMessage(receiveQueueUrl, "Hello World " + i);
+			logger.info("Sent message {}, waiting for 1 second", i + 1);
+			Thread.sleep(1000L);
+		}
+		countDownLatch.await();
+	}
 
-        ReceiveMessageResult result = null;
-        do {
-            result = amazonSQS.receiveMessage(request);
-            if (result.getMessages().size() == 0) {
-                logger.info("Message not received at first time, waiting for 1 second");
-            }
-        } while (result.getMessages().size() == 0);
-        assertThat(new ObjectMapper().readValue(result.getMessages().get(0).getBody(), Greeting.class)).isEqualTo(message);
+	@AfterClass
+	public static void cleanupAwsResources() {
+		AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
+		PurgeQueueRequest receiveQueuePurge = new PurgeQueueRequest(receiveQueueUrl);
+		amazonSQS.purgeQueue(receiveQueuePurge);
+		amazonSQS.deleteQueue(receiveQueueUrl);
 
-        // Delete message so that it doen't interfere with other test
-        amazonSQS.deleteMessage(sendQueueURl, result.getMessages().get(0).getReceiptHandle());
-    }
-
-    @Test
-    public void givenMessageSent_whenMessageReceived_thenSuccess() throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(5);
-        springCloudSQS.setCountDownLatch(countDownLatch);
-
-        AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
-        for (int i = 0; i < 5; i++) {
-            amazonSQS.sendMessage(receiveQueueUrl, "Hello World " + i);
-            logger.info("Sent message {}, waiting for 1 second", i + 1);
-            Thread.sleep(1000L);
-        }
-        countDownLatch.await();
-    }
-
-    @AfterClass
-    public static void cleanupAwsResources() {
-        AmazonSQS amazonSQS = SpringCloudAwsTestUtil.amazonSQS();
-        PurgeQueueRequest receiveQueuePurge = new PurgeQueueRequest(receiveQueueUrl);
-        amazonSQS.purgeQueue(receiveQueuePurge);
-        amazonSQS.deleteQueue(receiveQueueUrl);
-
-        PurgeQueueRequest sendQueuePurge = new PurgeQueueRequest(sendQueueURl);
-        amazonSQS.purgeQueue(sendQueuePurge);
-        amazonSQS.deleteQueue(sendQueueURl);
-    }
+		PurgeQueueRequest sendQueuePurge = new PurgeQueueRequest(sendQueueURl);
+		amazonSQS.purgeQueue(sendQueuePurge);
+		amazonSQS.deleteQueue(sendQueueURl);
+	}
 }

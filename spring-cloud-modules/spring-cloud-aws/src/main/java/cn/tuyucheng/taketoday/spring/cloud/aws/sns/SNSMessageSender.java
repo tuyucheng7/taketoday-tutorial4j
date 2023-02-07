@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class SNSMessageSender {
 
-    @Autowired
-    NotificationMessagingTemplate notificationMessagingTemplate;
+	@Autowired
+	NotificationMessagingTemplate notificationMessagingTemplate;
 
-    public void send(String topicName, Object message, String subject) {
-        notificationMessagingTemplate.sendNotification(topicName, message, subject);
-    }
+	public void send(String topicName, Object message, String subject) {
+		notificationMessagingTemplate.sendNotification(topicName, message, subject);
+	}
 }

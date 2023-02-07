@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = SpringCloudAwsApplication.class)
 public class SpringContextLiveTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+	@Test
+	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+	}
 }

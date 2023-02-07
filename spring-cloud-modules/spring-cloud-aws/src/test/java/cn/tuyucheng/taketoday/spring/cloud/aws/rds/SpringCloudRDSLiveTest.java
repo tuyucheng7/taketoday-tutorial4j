@@ -23,29 +23,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 public class SpringCloudRDSLiveTest {
 
-    @Autowired
-    DataSource dataSource;
+	@Autowired
+	DataSource dataSource;
 
-    @Test
-    public void whenDataSourceCreated_thenSuccess() {
-        assertThat(dataSource).isNotNull();
-    }
+	@Test
+	public void whenDataSourceCreated_thenSuccess() {
+		assertThat(dataSource).isNotNull();
+	}
 
-    @Test
-    public void givenDataSource_whenConnectionCreated_thenSuccess() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        assertThat(connection).isNotNull();
-    }
+	@Test
+	public void givenDataSource_whenConnectionCreated_thenSuccess() throws SQLException {
+		Connection connection = dataSource.getConnection();
+		assertThat(connection).isNotNull();
+	}
 
-    @Test
-    public void givenConnection_whenQueryExecuted_thenSuccess() throws SQLException {
-        Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT 1");
-        while (resultSet.next()) {
-            int result = resultSet.getInt(1);
-            assertThat(result).isEqualTo(1);
-        }
-        connection.close();
-    }
+	@Test
+	public void givenConnection_whenQueryExecuted_thenSuccess() throws SQLException {
+		Connection connection = dataSource.getConnection();
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery("SELECT 1");
+		while (resultSet.next()) {
+			int result = resultSet.getInt(1);
+			assertThat(result).isEqualTo(1);
+		}
+		connection.close();
+	}
 }

@@ -15,32 +15,31 @@ import java.util.concurrent.CountDownLatch;
 @Lazy
 public class SpringCloudSQS {
 
-    private static final Logger logger = LoggerFactory.getLogger(SpringCloudSQS.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpringCloudSQS.class);
 
-    static final String QUEUE_NAME = "spring-cloud-test-queue";
+	static final String QUEUE_NAME = "spring-cloud-test-queue";
 
-    /*
-     * CountDownLatch is added to wait for messages
-     * during integration test
-     */
-    CountDownLatch countDownLatch;
+	/*
+	 * CountDownLatch is added to wait for messages during integration test
+	 */
+	CountDownLatch countDownLatch;
 
-    public void setCountDownLatch(CountDownLatch countDownLatch) {
-        this.countDownLatch = countDownLatch;
-    }
+	public void setCountDownLatch(CountDownLatch countDownLatch) {
+		this.countDownLatch = countDownLatch;
+	}
 
-    @Autowired
-    QueueMessagingTemplate queueMessagingTemplate;
+	@Autowired
+	QueueMessagingTemplate queueMessagingTemplate;
 
-    @SqsListener(QUEUE_NAME)
-    public void receiveMessage(String message, @Header("SenderId") String senderId) {
-        logger.info("Received message: {}, having SenderId: {}", message, senderId);
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-        }
-    }
+	@SqsListener(QUEUE_NAME)
+	public void receiveMessage(String message, @Header("SenderId") String senderId) {
+		logger.info("Received message: {}, having SenderId: {}", message, senderId);
+		if (countDownLatch != null) {
+			countDownLatch.countDown();
+		}
+	}
 
-    public void send(String queueName, Object message) {
-        queueMessagingTemplate.convertAndSend(queueName, message);
-    }
+	public void send(String queueName, Object message) {
+		queueMessagingTemplate.convertAndSend(queueName, message);
+	}
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:aws-config.xml")
 public class SpringCloudAwsApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringCloudAwsApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudAwsApplication.class, args);
+	}
 }

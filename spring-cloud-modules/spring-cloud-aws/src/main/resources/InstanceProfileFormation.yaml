@@ -75,4 +75,3 @@ Resources:
                 id: a7348729-a594-4dca-9b0a-e1c8d777dc3b
         DependsOn:
             - InstanceProfileBaeldung
-

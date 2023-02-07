@@ -24,49 +24,49 @@ import java.util.Properties;
  */
 public class SpringCloudAwsTestUtil {
 
-    private static String awsAccessKey;
-    private static String awsSecretKey;
-    private static String defaultRegion;
+	private static String awsAccessKey;
+	private static String awsSecretKey;
+	private static String defaultRegion;
 
-    static {
-        try {
-            InputStream is = SpringCloudAwsTestUtil.class.getResourceAsStream("/application.properties");
-            Properties properties = new Properties();
-            properties.load(is);
-            awsAccessKey = properties.getProperty("cloud.aws.credentials.accessKey");
-            awsSecretKey = properties.getProperty("cloud.aws.credentials.secretKey");
-            defaultRegion = properties.getProperty("cloud.aws.region.static");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	static {
+		try {
+			InputStream is = SpringCloudAwsTestUtil.class.getResourceAsStream("/application.properties");
+			Properties properties = new Properties();
+			properties.load(is);
+			awsAccessKey = properties.getProperty("cloud.aws.credentials.accessKey");
+			awsSecretKey = properties.getProperty("cloud.aws.credentials.secretKey");
+			defaultRegion = properties.getProperty("cloud.aws.region.static");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    public static AWSCredentials awsCredentials() {
-        return new BasicAWSCredentials(awsAccessKey, awsSecretKey);
-    }
+	public static AWSCredentials awsCredentials() {
+		return new BasicAWSCredentials(awsAccessKey, awsSecretKey);
+	}
 
-    public static AWSCredentialsProvider awsCredentialsProvider() {
-        return new AWSStaticCredentialsProvider(awsCredentials());
-    }
+	public static AWSCredentialsProvider awsCredentialsProvider() {
+		return new AWSStaticCredentialsProvider(awsCredentials());
+	}
 
-    public static AmazonS3 amazonS3() {
-        return AmazonS3ClientBuilder.standard()
-              .withCredentials(awsCredentialsProvider())
-              .withRegion(defaultRegion)
-              .build();
-    }
+	public static AmazonS3 amazonS3() {
+		return AmazonS3ClientBuilder.standard()
+			.withCredentials(awsCredentialsProvider())
+			.withRegion(defaultRegion)
+			.build();
+	}
 
-    public static AmazonSNS amazonSNS() {
-        return AmazonSNSClientBuilder.standard()
-              .withCredentials(awsCredentialsProvider())
-              .withRegion(defaultRegion)
-              .build();
-    }
+	public static AmazonSNS amazonSNS() {
+		return AmazonSNSClientBuilder.standard()
+			.withCredentials(awsCredentialsProvider())
+			.withRegion(defaultRegion)
+			.build();
+	}
 
-    public static AmazonSQS amazonSQS() {
-        return AmazonSQSClientBuilder.standard()
-              .withCredentials(awsCredentialsProvider())
-              .withRegion(defaultRegion)
-              .build();
-    }
+	public static AmazonSQS amazonSQS() {
+		return AmazonSQSClientBuilder.standard()
+			.withCredentials(awsCredentialsProvider())
+			.withRegion(defaultRegion)
+			.build();
+	}
 }

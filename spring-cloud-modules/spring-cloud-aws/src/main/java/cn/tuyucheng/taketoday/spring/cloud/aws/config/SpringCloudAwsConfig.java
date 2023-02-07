@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringCloudAwsConfig {
 
-    @Bean
-    public QueueMessagingTemplate queueMessagingTemplate(AmazonSQSAsync amazonSQSAsync) {
-        return new QueueMessagingTemplate(amazonSQSAsync);
-    }
+	@Bean
+	public QueueMessagingTemplate queueMessagingTemplate(AmazonSQSAsync amazonSQSAsync) {
+		return new QueueMessagingTemplate(amazonSQSAsync);
+	}
 
-    @Bean
-    public NotificationMessagingTemplate notificationMessagingTemplate(AmazonSNS amazonSNS) {
-        return new NotificationMessagingTemplate(amazonSNS);
-    }
+	@Bean
+	public NotificationMessagingTemplate notificationMessagingTemplate(AmazonSNS amazonSNS) {
+		return new NotificationMessagingTemplate(amazonSNS);
+	}
 }

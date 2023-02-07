@@ -25,41 +25,40 @@ import java.util.UUID;
 @TestPropertySource("classpath:application-test.properties")
 public class SpringCloudSNSLiveTest {
 
-    @Autowired
-    private SNSMessageSender snsMessageSender;
+	@Autowired
+	private SNSMessageSender snsMessageSender;
 
-    private static String topicName;
-    private static String topicArn;
+	private static String topicName;
+	private static String topicArn;
 
-    @BeforeClass
-    public static void setupAwsResources() {
+	@BeforeClass
+	public static void setupAwsResources() {
 
-        topicName = UUID.randomUUID().toString();
+		topicName = UUID.randomUUID().toString();
 
-        AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
+		AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
 
-        CreateTopicResult result = amazonSNS.createTopic(topicName);
-        topicArn = result.getTopicArn();
-    }
+		CreateTopicResult result = amazonSNS.createTopic(topicName);
+		topicArn = result.getTopicArn();
+	}
 
-    @Test
-    public void whenMessagePublished_thenSuccess() {
-        String subject = "Test Message";
-        String message = "Hello World";
-        snsMessageSender.send(topicName, message, subject);
-    }
+	@Test
+	public void whenMessagePublished_thenSuccess() {
+		String subject = "Test Message";
+		String message = "Hello World";
+		snsMessageSender.send(topicName, message, subject);
+	}
 
-    @Test
-    public void whenConvertedMessagePublished_thenSuccess() {
-        String subject = "Test Message";
-        Greeting message = new Greeting("Helo", "World");
-        snsMessageSender.send(topicName, message, subject);
-    }
+	@Test
+	public void whenConvertedMessagePublished_thenSuccess() {
+		String subject = "Test Message";
+		Greeting message = new Greeting("Hello", "World");
+		snsMessageSender.send(topicName, message, subject);
+	}
 
-    @AfterClass
-    public static void cleanupAwsResources() {
-        AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
-        amazonSNS.deleteTopic(topicArn);
-    }
-
+	@AfterClass
+	public static void cleanupAwsResources() {
+		AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
+		amazonSNS.deleteTopic(topicArn);
+	}
 }
