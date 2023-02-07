@@ -1,21 +1,24 @@
 # Spring Cloud Archaius
 
-This module contains articles about Spring Cloud with Netflix Archaius
+本模块包含有关Spring Cloud与Netflix Archaius的文章
 
-# Relevant Articles
+## 相关文章
 
-- [Introduction to Netflix Archaius with Spring Cloud](https://www.baeldung.com/netflix-archaius-spring-cloud-integration)
-- [Netflix Archaius with Various Database Configurations](https://www.baeldung.com/netflix-archaius-database-configurations)
++ [Spring Cloud与Netflix Archaius简介](docs/SpringCloud与Netflix-Archaius简介.md)
++ [具有各种数据库配置的Netflix Archaius](docs/具有各种数据库配置的Netflix-Archaius.md)
 
-#### Basic Config
-This service has the basic, out-of-the-box Spring Cloud Netflix Archaius configuration.
+## Basic Config
 
-#### Extra Configs
-This service customizes some properties supported by Archaius.
+此服务具有基本的、开箱即用的Spring Cloud Netflix Archaius配置。
 
-These properties are set up on the main method, since Archaius uses System properties, but they could be added as command line arguments when launching the app.
+## Extra Configs
 
-#### Additional Sources
-In this service we create a new AbstractConfiguration bean, setting up a new Configuration Properties source.
+此服务自定义Archaius支持的某些属性。
 
-These properties have precedence over all the other properties in the Archaius Composite Configuration.
+这些属性是在main方法上设置的，因为Archaius使用系统属性，但它们可以添加为启动应用时的命令行参数。
+
+## Additional Sources
+
+在此服务中，我们创建一个新的AbstractConfiguration Bean，设置一个新的配置属性源。
+
+这些属性优先于Archaius复合配置中的所有其他属性。
