@@ -1,7 +1,7 @@
 ## Spring Reactor
 
-This module contains articles about Spring Reactor
+本模块包含有关Spring Reactor的文章
 
-## Relevant articles:
+## 相关文章
 
-- [Introduction to Project Reactor Bus](https://www.baeldung.com/reactor-bus)
++ [Project Reactor Bus简介](docs/Project-Reactor-Bus简介.md)
