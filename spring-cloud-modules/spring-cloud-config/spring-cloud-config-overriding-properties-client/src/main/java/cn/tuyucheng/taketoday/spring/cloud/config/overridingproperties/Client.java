@@ -10,5 +10,3 @@ public class Client {
 		SpringApplication.run(Client.class, args);
 	}
 }
-
-

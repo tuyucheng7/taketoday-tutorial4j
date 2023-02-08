@@ -10,9 +10,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = ConfigServer.class)
 @ActiveProfiles("native")
-public class SpringContextTest {
+class SpringContextTest {
 
 	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+	void whenSpringContextIsBootstrapped_thenNoExceptions() {
 	}
 }
