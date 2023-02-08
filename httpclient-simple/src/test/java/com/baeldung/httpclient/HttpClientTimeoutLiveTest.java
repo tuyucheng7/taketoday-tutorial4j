@@ -3,7 +3,6 @@ package com.baeldung.httpclient;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -33,139 +32,139 @@ import com.baeldung.handler.CustomHttpClientResponseHandler;
 
 class HttpClientTimeoutLiveTest {
 
-    @Test
-    void givenUsingNewApi_whenSettingTimeoutViaHighLevelApi_thenCorrect() throws IOException {
-        final int timeout = 2;
+	@Test
+	void givenUsingNewApi_whenSettingTimeoutViaHighLevelApi_thenCorrect() throws IOException {
+		final int timeout = 2;
 
-        ConnectionConfig connConfig = ConnectionConfig.custom()
-            .setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
-            .setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
-            .build();
+		ConnectionConfig connConfig = ConnectionConfig.custom()
+			.setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
+			.setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
+			.build();
 
-        RequestConfig requestConfig = RequestConfig.custom()
-            .setConnectionRequestTimeout(Timeout.ofMilliseconds(2000L))
-            .build();
+		RequestConfig requestConfig = RequestConfig.custom()
+			.setConnectionRequestTimeout(Timeout.ofMilliseconds(2000L))
+			.build();
 
-        BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
-        cm.setConnectionConfig(connConfig);
-
-
-        final HttpGet request = new HttpGet("http://www.github.com");
-
-        try (CloseableHttpClient client = HttpClientBuilder.create()
-            .setDefaultRequestConfig(requestConfig)
-            .setConnectionManager(cm)
-            .build();
-
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
-
-            final int statusCode = response.getCode();
-            assertThat(statusCode, equalTo(HttpStatus.SC_OK));
-        }
-    }
-
-    @Test
-    void givenUsingNewApi_whenSettingTimeoutViaSocketConfig_thenCorrect() throws IOException {
-        final int timeout = 2000;
-        final SocketConfig config = SocketConfig.custom().setSoTimeout(timeout, TimeUnit.MILLISECONDS).build();
-
-        BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
-        cm.setSocketConfig(config);
-
-        final HttpGet request = new HttpGet("http://www.github.com");
-
-        try (CloseableHttpClient client = HttpClientBuilder.create()
-            .setConnectionManager(cm)
-            .build();
-
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
-
-            final int statusCode = response.getCode();
-            assertThat(statusCode, equalTo(HttpStatus.SC_OK));
-        }
-    }
+		BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
+		cm.setConnectionConfig(connConfig);
 
 
-    /**
-     * This simulates a timeout against a domain with multiple routes/IPs to it (not a single raw IP)
-     */
-    @Disabled
-    void givenTimeoutIsConfigured_whenTimingOut_thenTimeoutException() throws IOException {
-        final int timeout = 3;
+		final HttpGet request = new HttpGet("http://www.github.com");
 
-        ConnectionConfig connConfig = ConnectionConfig.custom()
-            .setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
-            .setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
-            .build();
+		try (CloseableHttpClient client = HttpClientBuilder.create()
+			.setDefaultRequestConfig(requestConfig)
+			.setConnectionManager(cm)
+			.build();
 
-        RequestConfig requestConfig = RequestConfig.custom()
-            .setConnectionRequestTimeout(Timeout.ofMilliseconds(3000L))
-            .build();
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
 
-        BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
-        cm.setConnectionConfig(connConfig);
+			final int statusCode = response.getCode();
+			assertThat(statusCode, equalTo(HttpStatus.SC_OK));
+		}
+	}
 
-        final HttpGet request = new HttpGet("http://www.google.com:81");
+	@Test
+	void givenUsingNewApi_whenSettingTimeoutViaSocketConfig_thenCorrect() throws IOException {
+		final int timeout = 2000;
+		final SocketConfig config = SocketConfig.custom().setSoTimeout(timeout, TimeUnit.MILLISECONDS).build();
 
-        assertThrows(ConnectTimeoutException.class, () -> {
-            try (CloseableHttpClient client = HttpClientBuilder.create()
-                .setDefaultRequestConfig(requestConfig)
-                .setConnectionManager(cm)
-                .build();
+		BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
+		cm.setSocketConfig(config);
 
-                CloseableHttpResponse response = (CloseableHttpResponse) client
-                    .execute(request, new CustomHttpClientResponseHandler())) {
+		final HttpGet request = new HttpGet("http://www.github.com");
 
-                final int statusCode = response.getCode();
-                assertThat(statusCode, equalTo(HttpStatus.SC_OK));
-            }
-        });
-    }
-    
-    @Test
-    void whenSecuredRestApiIsConsumed_then200OK() throws IOException {
-        int timeout = 20000; // milliseconds
+		try (CloseableHttpClient client = HttpClientBuilder.create()
+			.setConnectionManager(cm)
+			.build();
 
-        ConnectionConfig connConfig = ConnectionConfig.custom()
-            .setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
-            .setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
-            .build();
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
 
-        RequestConfig requestConfig = RequestConfig.custom()
-            .setConnectionRequestTimeout(Timeout.ofMilliseconds(20000L))
-            .build();
-
-        HttpGet getMethod = new HttpGet("http://localhost:8082/httpclient-simple/api/bars/1");
-        getMethod.setConfig(requestConfig);
+			final int statusCode = response.getCode();
+			assertThat(statusCode, equalTo(HttpStatus.SC_OK));
+		}
+	}
 
 
-        BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
-        cm.setConnectionConfig(connConfig);
+	/**
+	 * This simulates a timeout against a domain with multiple routes/IPs to it (not a single raw IP)
+	 */
+	@Disabled
+	void givenTimeoutIsConfigured_whenTimingOut_thenTimeoutException() throws IOException {
+		final int timeout = 3;
 
-        int hardTimeout = 5000; // milliseconds
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                getMethod.abort();
-            }
-        };
-        new Timer(true).schedule(task, hardTimeout);
+		ConnectionConfig connConfig = ConnectionConfig.custom()
+			.setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
+			.setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
+			.build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create()
-            .setDefaultRequestConfig(requestConfig)
-            .setConnectionManager(cm)
-            .build();
+		RequestConfig requestConfig = RequestConfig.custom()
+			.setConnectionRequestTimeout(Timeout.ofMilliseconds(3000L))
+			.build();
 
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(getMethod, new CustomHttpClientResponseHandler())) {
+		BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
+		cm.setConnectionConfig(connConfig);
 
-            final int statusCode = response.getCode();
-            System.out.println("HTTP Status of response: " + statusCode);
-            assertThat(statusCode, equalTo(HttpStatus.SC_OK));
-        }
+		final HttpGet request = new HttpGet("http://www.google.com:81");
 
-    }
-    
+		assertThrows(ConnectTimeoutException.class, () -> {
+			try (CloseableHttpClient client = HttpClientBuilder.create()
+				.setDefaultRequestConfig(requestConfig)
+				.setConnectionManager(cm)
+				.build();
+
+				 CloseableHttpResponse response = (CloseableHttpResponse) client
+					 .execute(request, new CustomHttpClientResponseHandler())) {
+
+				final int statusCode = response.getCode();
+				assertThat(statusCode, equalTo(HttpStatus.SC_OK));
+			}
+		});
+	}
+
+	@Test
+	void whenSecuredRestApiIsConsumed_then200OK() throws IOException {
+		int timeout = 20000; // milliseconds
+
+		ConnectionConfig connConfig = ConnectionConfig.custom()
+			.setConnectTimeout(timeout, TimeUnit.MILLISECONDS)
+			.setSocketTimeout(timeout, TimeUnit.MILLISECONDS)
+			.build();
+
+		RequestConfig requestConfig = RequestConfig.custom()
+			.setConnectionRequestTimeout(Timeout.ofMilliseconds(20000L))
+			.build();
+
+		HttpGet getMethod = new HttpGet("http://localhost:8082/httpclient-simple/api/bars/1");
+		getMethod.setConfig(requestConfig);
+
+
+		BasicHttpClientConnectionManager cm = new BasicHttpClientConnectionManager();
+		cm.setConnectionConfig(connConfig);
+
+		int hardTimeout = 5000; // milliseconds
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				getMethod.abort();
+			}
+		};
+		new Timer(true).schedule(task, hardTimeout);
+
+		try (CloseableHttpClient client = HttpClientBuilder.create()
+			.setDefaultRequestConfig(requestConfig)
+			.setConnectionManager(cm)
+			.build();
+
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(getMethod, new CustomHttpClientResponseHandler())) {
+
+			final int statusCode = response.getCode();
+			System.out.println("HTTP Status of response: " + statusCode);
+			assertThat(statusCode, equalTo(HttpStatus.SC_OK));
+		}
+
+	}
+
 }

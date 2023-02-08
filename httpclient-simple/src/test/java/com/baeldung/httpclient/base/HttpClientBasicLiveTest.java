@@ -19,59 +19,59 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 
-public class HttpClientBasicLiveTest {
+class HttpClientBasicLiveTest {
 
-    private static final String SAMPLE_URL = "http://www.github.com";
+	private static final String SAMPLE_URL = "http://www.github.com";
 
-    @Test
-    public final void whenExecutingBasicGetRequest_thenNoExceptions() throws IOException {
-        final HttpGet request = new HttpGet(SAMPLE_URL);
+	@Test
+	void whenExecutingBasicGetRequest_thenNoExceptions() throws IOException {
+		final HttpGet request = new HttpGet(SAMPLE_URL);
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().build();
+		try (CloseableHttpClient client = HttpClientBuilder.create().build();
 
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
-        }
-    }
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
+		}
+	}
 
-    @Test
-    public final void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectStatusCode() throws IOException {
-        final HttpGet request = new HttpGet(SAMPLE_URL);
-        try (CloseableHttpClient client = HttpClientBuilder.create().build();
+	@Test
+	void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectStatusCode() throws IOException {
+		final HttpGet request = new HttpGet(SAMPLE_URL);
+		try (CloseableHttpClient client = HttpClientBuilder.create().build();
 
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
 
-            assertThat(response.getCode(), equalTo(HttpStatus.SC_OK));
-        }
-    }
-
-
-    @Test
-    public final void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectMimeType() throws IOException {
-        final HttpGet request = new HttpGet(SAMPLE_URL);
-
-        try (CloseableHttpClient client = HttpClientBuilder.create().build();
-
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
-
-            final String contentMimeType = ContentType.parse(response.getEntity().getContentType()).getMimeType();
-            assertThat(contentMimeType, equalTo(ContentType.TEXT_HTML.getMimeType()));
-        }
-    }
+			assertThat(response.getCode(), equalTo(HttpStatus.SC_OK));
+		}
+	}
 
 
-    @Test
-    public final void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectBody() throws IOException, ParseException {
-        final HttpGet request = new HttpGet(SAMPLE_URL);
-        try (CloseableHttpClient client = HttpClientBuilder.create().build();
+	@Test
+	void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectMimeType() throws IOException {
+		final HttpGet request = new HttpGet(SAMPLE_URL);
 
-            CloseableHttpResponse response = (CloseableHttpResponse) client
-                .execute(request, new CustomHttpClientResponseHandler())) {
+		try (CloseableHttpClient client = HttpClientBuilder.create().build();
 
-            assertThat(response, notNullValue());
-        }
-    }
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
+
+			final String contentMimeType = ContentType.parse(response.getEntity().getContentType()).getMimeType();
+			assertThat(contentMimeType, equalTo(ContentType.TEXT_HTML.getMimeType()));
+		}
+	}
+
+
+	@Test
+	void givenGetRequestExecuted_whenAnalyzingTheResponse_thenCorrectBody() throws IOException, ParseException {
+		final HttpGet request = new HttpGet(SAMPLE_URL);
+		try (CloseableHttpClient client = HttpClientBuilder.create().build();
+
+			 CloseableHttpResponse response = (CloseableHttpResponse) client
+				 .execute(request, new CustomHttpClientResponseHandler())) {
+
+			assertThat(response, notNullValue());
+		}
+	}
 
 }
