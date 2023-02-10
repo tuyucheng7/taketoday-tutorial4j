@@ -36,16 +36,6 @@
 			<artifactId>ea-async</artifactId>
 			<version>${ea-async.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openjdk.jmh</groupId>
-			<artifactId>jmh-core</artifactId>
-			<version>1.33</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjdk.jmh</groupId>
-			<artifactId>jmh-generator-annprocess</artifactId>
-			<version>1.33</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -53,10 +43,32 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${toolchains.java.version}</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -93,12 +105,16 @@
 	</build>
 
 	<properties>
+		<toolchains.java.version>8</toolchains.java.version>
+		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<jcabi-aspects.version>0.22.6</jcabi-aspects.version>
 		<aspectjrt.version>1.9.5</aspectjrt.version>
 		<cactoos.version>0.43</cactoos.version>
 		<ea-async.version>1.2.3</ea-async.version>
 		<jcabi-maven-plugin.version>0.14.1</jcabi-maven-plugin.version>
-		<aspectjtools.version>1.9.7</aspectjtools.version>
-		<aspectjweaver.version>1.9.7</aspectjweaver.version>
+		<aspectjtools.version>1.9.1</aspectjtools.version>
+		<aspectjweaver.version>1.9.1</aspectjweaver.version>
 	</properties>
 </project>
