@@ -1,12 +1,12 @@
-package com.baeldung.donerunnables;
+package cn.tuyucheng.taketoday.donerunnables;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class RunnableCompletionCheckerWithCompletableFuture {
 
@@ -42,5 +42,4 @@ public class RunnableCompletionCheckerWithCompletableFuture {
 		return CompletableFuture.allOf(completableFutures)
 			.isDone();
 	}
-
 }

@@ -1,4 +1,4 @@
-package com.baeldung.concurrent.mutex;
+package cn.tuyucheng.taketoday.concurrent.mutex;
 
 import java.util.concurrent.Semaphore;
 
@@ -17,5 +17,4 @@ public class SequenceGeneratorUsingSemaphore extends SequenceGenerator {
 			mutex.release();
 		}
 	}
-
 }

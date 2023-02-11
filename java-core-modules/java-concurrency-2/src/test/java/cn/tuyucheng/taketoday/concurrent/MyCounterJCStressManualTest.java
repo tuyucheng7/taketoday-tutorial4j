@@ -1,7 +1,4 @@
-package com.baeldung.concurrent;
-
-import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE;
-import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE_INTERESTING;
+package cn.tuyucheng.taketoday.concurrent;
 
 import org.openjdk.jcstress.annotations.Actor;
 import org.openjdk.jcstress.annotations.Arbiter;
@@ -9,6 +6,9 @@ import org.openjdk.jcstress.annotations.JCStressTest;
 import org.openjdk.jcstress.annotations.Outcome;
 import org.openjdk.jcstress.annotations.State;
 import org.openjdk.jcstress.infra.results.I_Result;
+
+import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE;
+import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE_INTERESTING;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions
@@ -37,5 +37,4 @@ public class MyCounterJCStressManualTest {
 	public void arbiter(I_Result r) {
 		r.r1 = counter.getCount();
 	}
-
 }

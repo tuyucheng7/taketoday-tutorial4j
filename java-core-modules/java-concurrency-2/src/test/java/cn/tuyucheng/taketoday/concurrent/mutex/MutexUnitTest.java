@@ -1,4 +1,7 @@
-package com.baeldung.concurrent.mutex;
+package cn.tuyucheng.taketoday.concurrent.mutex;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -8,9 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class MutexUnitTest {
 
@@ -76,5 +76,4 @@ public class MutexUnitTest {
 
 		return uniqueSequences;
 	}
-
 }

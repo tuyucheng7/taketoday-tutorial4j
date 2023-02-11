@@ -1,15 +1,14 @@
-package com.baeldung.concurrent;
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.AfterClass;
-import org.junit.Rule;
-import org.junit.Test;
+package cn.tuyucheng.taketoday.concurrent;
 
 import com.google.code.tempusfugit.concurrency.ConcurrentRule;
 import com.google.code.tempusfugit.concurrency.RepeatingRule;
 import com.google.code.tempusfugit.concurrency.annotations.Concurrent;
 import com.google.code.tempusfugit.concurrency.annotations.Repeating;
+import org.junit.AfterClass;
+import org.junit.Rule;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions
@@ -36,5 +35,4 @@ public class MyCounterTempusFugitManualTest {
 	public static void annotatedTestRunsMultipleTimes() throws InterruptedException {
 		assertEquals(counter.getCount(), 20);
 	}
-
 }

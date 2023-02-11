@@ -1,4 +1,4 @@
-package com.baeldung.concurrent.mutex;
+package cn.tuyucheng.taketoday.concurrent.mutex;
 
 public class SequenceGeneratorUsingSynchronizedMethod extends SequenceGenerator {
 
@@ -6,5 +6,4 @@ public class SequenceGeneratorUsingSynchronizedMethod extends SequenceGenerator 
 	public synchronized int getNextSequence() {
 		return super.getNextSequence();
 	}
-
 }

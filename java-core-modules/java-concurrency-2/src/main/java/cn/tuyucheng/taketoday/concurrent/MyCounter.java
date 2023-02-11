@@ -1,4 +1,4 @@
-package com.baeldung.concurrent;
+package cn.tuyucheng.taketoday.concurrent;
 
 public class MyCounter {
 
@@ -18,5 +18,4 @@ public class MyCounter {
 	public int getCount() {
 		return count;
 	}
-
 }

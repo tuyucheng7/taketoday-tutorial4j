@@ -1,4 +1,4 @@
-package com.baeldung.concurrent.mutex;
+package cn.tuyucheng.taketoday.concurrent.mutex;
 
 public class SequenceGenerator {
 
@@ -8,5 +8,4 @@ public class SequenceGenerator {
 		currentValue = currentValue + 1;
 		return currentValue;
 	}
-
 }
