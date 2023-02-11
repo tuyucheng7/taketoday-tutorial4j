@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.locks;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,8 +11,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
-@Slf4j
 public class SharedObjectWithLock {
+	private static final Logger log = LoggerFactory.getLogger(SharedObjectWithLock.class);
 	private final ReentrantLock lock = new ReentrantLock(true);
 	private int counter = 0;
 

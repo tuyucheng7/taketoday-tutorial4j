@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.concurrent.prioritytaskexecution;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class Job implements Runnable {
+
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Job.class);
 	private final String jobName;
 	private final JobPriority jobPriority;
 
