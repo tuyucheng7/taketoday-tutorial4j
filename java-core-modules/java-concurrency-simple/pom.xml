@@ -8,8 +8,8 @@
 	<packaging>jar</packaging>
 
 	<parent>
-		<artifactId>java-core</artifactId>
-		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>java-core-modules</artifactId>
+		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
 		<version>1.0.0</version>
 	</parent>
 

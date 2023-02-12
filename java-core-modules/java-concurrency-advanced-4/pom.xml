@@ -9,23 +9,13 @@
 	<packaging>jar</packaging>
 
 	<parent>
-		<artifactId>java-core</artifactId>
-		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>java-core-modules</artifactId>
+		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
 		<version>1.0.0</version>
 	</parent>
 
 	<build>
 		<finalName>java-concurrency-advanced-4</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-		</plugins>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -33,9 +23,4 @@
 			</resource>
 		</resources>
 	</build>
-
-	<properties>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
-	</properties>
 </project>
