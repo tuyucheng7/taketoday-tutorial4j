@@ -19,7 +19,7 @@ public class WaitingState implements Runnable {
 			t2.join();
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
-			log.error("context", e);
+			LOGGER.error("context", e);
 		}
 	}
 
@@ -29,10 +29,10 @@ public class WaitingState implements Runnable {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				log.error("context", e);
+				LOGGER.error("context", e);
 			}
 
-			log.info("state of thread t1: {}", WaitingState.t1.getState());
+			LOGGER.info("state of thread t1: {}", WaitingState.t1.getState());
 		}
 	}
 }

@@ -8,7 +8,7 @@ public class NewState implements Runnable {
 	public static void main(String[] args) {
 		Runnable runnable = new NewState();
 		Thread t = new Thread(runnable);
-		log.info("state of thread t: {}", t.getState());
+		LOGGER.info("state of thread t: {}", t.getState());
 	}
 
 	@Override

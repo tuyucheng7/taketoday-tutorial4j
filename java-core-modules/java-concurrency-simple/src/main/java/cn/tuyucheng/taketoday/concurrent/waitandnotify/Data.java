@@ -15,7 +15,7 @@ public class Data {
 				wait();
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				log.info("Thread interrupted");
+				LOGGER.info("Thread interrupted");
 			}
 		}
 		transfer = true;
@@ -31,7 +31,7 @@ public class Data {
 				wait();
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				log.info("Thread interrupted");
+				LOGGER.info("Thread interrupted");
 			}
 
 			transfer = false;

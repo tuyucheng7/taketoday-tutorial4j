@@ -30,7 +30,7 @@ public class DelayedCallable implements Callable<String> {
 			}
 		} catch (InterruptedException ex) {
 			// handle exception
-			log.error("context", ex);
+			LOGGER.error("context", ex);
 			Thread.currentThread().interrupt();
 		}
 		return name;

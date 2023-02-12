@@ -15,7 +15,7 @@ public class Receiver implements Runnable {
 	@Override
 	public void run() {
 		for (String receivedMessage = data.receive(); !"End".equals(receivedMessage); receivedMessage = data.receive()) {
-			log.info(receivedMessage);
+			LOGGER.info(receivedMessage);
 
 			// Thread.sleep() to mimic heavy server-side processing
 			try {
@@ -23,7 +23,7 @@ public class Receiver implements Runnable {
 				Thread.sleep(random.nextInt(1000, 5000));
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				log.error("context ", e);
+				LOGGER.error("context ", e);
 			}
 		}
 	}

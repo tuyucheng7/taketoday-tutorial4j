@@ -59,7 +59,7 @@ class NetworkIntegrationTest {
 			receiver.join();
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
-			log.error("context ", e);
+			LOGGER.error("context ", e);
 		}
 
 		assertEquals(expected, outContent.toString());

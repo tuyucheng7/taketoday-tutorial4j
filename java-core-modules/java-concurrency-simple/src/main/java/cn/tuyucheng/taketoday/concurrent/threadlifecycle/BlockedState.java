@@ -14,7 +14,7 @@ public class BlockedState {
 
 		Thread.sleep(1000);
 
-		log.info("state of thread t2: {}", t2.getState());
+		LOGGER.info("state of thread t2: {}", t2.getState());
 		System.exit(0);
 	}
 

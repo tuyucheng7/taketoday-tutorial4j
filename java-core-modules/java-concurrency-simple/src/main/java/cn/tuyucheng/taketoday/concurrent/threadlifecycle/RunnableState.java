@@ -8,7 +8,7 @@ public class RunnableState implements Runnable {
 		Runnable runnable = new NewState();
 		Thread t = new Thread(runnable);
 		t.start();
-		log.info("state of thread t: {}", t.getState());
+		LOGGER.info("state of thread t: {}", t.getState());
 	}
 
 	@Override

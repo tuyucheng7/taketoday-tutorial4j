@@ -9,7 +9,7 @@ public class TerminatedState implements Runnable {
 		Thread t1 = new Thread(new TerminatedState());
 		t1.start();
 		Thread.sleep(1000);
-		log.info("state of thread t1: {}", t1.getState());
+		LOGGER.info("state of thread t1: {}", t1.getState());
 	}
 
 	@Override

@@ -31,7 +31,7 @@ public class Sender implements Runnable {
 				Thread.sleep(random.nextInt(1000, 5000));
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt();
-				log.error("context ", e);
+				LOGGER.error("context ", e);
 			}
 		}
 	}
