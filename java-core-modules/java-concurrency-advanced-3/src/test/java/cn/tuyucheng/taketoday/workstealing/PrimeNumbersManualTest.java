@@ -1,7 +1,13 @@
 package cn.tuyucheng.taketoday.workstealing;
 
 import org.junit.jupiter.api.Test;
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
@@ -21,15 +27,15 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Before running the test ensure that the file is present.
  * If not, please run mvn install on the module.
  */
-public class PrimeNumbersManualTest {
+class PrimeNumbersManualTest {
 	private static final Logger logger = Logger.getAnonymousLogger();
 
 	@Test
-	public void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
+	void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
 		Options opt = new OptionsBuilder()
-				.include(Benchmarked.class.getSimpleName())
-				.forks(1)
-				.build();
+			.include(Benchmarked.class.getSimpleName())
+			.forks(1)
+			.build();
 
 		try {
 			new Runner(opt).run();
@@ -39,7 +45,7 @@ public class PrimeNumbersManualTest {
 	}
 
 	@Test
-	public void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
+	void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
 		StringBuilder info = new StringBuilder();
 
 		for (int granularity : PrimeNumbers.GRANULARITIES) {
@@ -52,7 +58,7 @@ public class PrimeNumbersManualTest {
 	}
 
 	@Test
-	public void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
+	void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
 		StringBuilder info = new StringBuilder();
 
 		for (int granularity : PrimeNumbers.GRANULARITIES) {

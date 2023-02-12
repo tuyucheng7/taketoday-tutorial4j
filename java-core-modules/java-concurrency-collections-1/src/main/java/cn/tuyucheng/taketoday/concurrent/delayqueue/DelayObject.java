@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.concurrent.delayqueue;
 
 import com.google.common.primitives.Ints;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +21,7 @@ public class DelayObject implements Delayed {
 	}
 
 	@Override
-	public int compareTo(@NotNull Delayed o) {
+	public int compareTo(Delayed o) {
 		return Ints.saturatedCast(this.startTime - ((DelayObject) o).startTime);
 	}
 

@@ -24,12 +24,12 @@ class ConcurrentSkipListSetIntegrationTest {
 
 		// when
 		Runnable producer = () -> IntStream
-				.rangeClosed(0, 100)
-				.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
-						.now()
-						.minusSeconds(index), UUID
-						.randomUUID()
-						.toString())));
+			.rangeClosed(0, 100)
+			.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
+				.now()
+				.minusSeconds(index), UUID
+				.randomUUID()
+				.toString())));
 
 		for (int i = 0; i < numberOfThreads; i++) {
 			executorService.execute(producer);
@@ -40,25 +40,25 @@ class ConcurrentSkipListSetIntegrationTest {
 		ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsFromLastMinute();
 
 		long eventsOlderThanOneMinute = eventsFromLastMinute
-				.entrySet()
-				.stream()
-				.filter(e -> e
-						.getKey()
-						.isBefore(ZonedDateTime
-								.now()
-								.minusMinutes(1)))
-				.count();
-		assertEquals(eventsOlderThanOneMinute, 0);
+			.entrySet()
+			.stream()
+			.filter(e -> e
+				.getKey()
+				.isBefore(ZonedDateTime
+					.now()
+					.minusMinutes(1)))
+			.count();
+		assertEquals(0, eventsOlderThanOneMinute);
 
 		long eventsYoungerThanOneMinute = eventsFromLastMinute
-				.entrySet()
-				.stream()
-				.filter(e -> e
-						.getKey()
-						.isAfter(ZonedDateTime
-								.now()
-								.minusMinutes(1)))
-				.count();
+			.entrySet()
+			.stream()
+			.filter(e -> e
+				.getKey()
+				.isAfter(ZonedDateTime
+					.now()
+					.minusMinutes(1)))
+			.count();
 
 		// then
 		assertTrue(eventsYoungerThanOneMinute > 0);
@@ -75,12 +75,12 @@ class ConcurrentSkipListSetIntegrationTest {
 		int numberOfThreads = 2;
 		// when
 		Runnable producer = () -> IntStream
-				.rangeClosed(0, 100)
-				.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
-						.now()
-						.minusSeconds(index), UUID
-						.randomUUID()
-						.toString())));
+			.rangeClosed(0, 100)
+			.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
+				.now()
+				.minusSeconds(index), UUID
+				.randomUUID()
+				.toString())));
 
 		for (int i = 0; i < numberOfThreads; i++) {
 			executorService.execute(producer);
@@ -91,28 +91,28 @@ class ConcurrentSkipListSetIntegrationTest {
 		ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsOlderThatOneMinute();
 
 		long eventsOlderThanOneMinute = eventsFromLastMinute
-				.entrySet()
-				.stream()
-				.filter(e -> e
-						.getKey()
-						.isBefore(ZonedDateTime
-								.now()
-								.minusMinutes(1)))
-				.count();
+			.entrySet()
+			.stream()
+			.filter(e -> e
+				.getKey()
+				.isBefore(ZonedDateTime
+					.now()
+					.minusMinutes(1)))
+			.count();
 		assertTrue(eventsOlderThanOneMinute > 0);
 
 		long eventYoungerThanOneMinute = eventsFromLastMinute
-				.entrySet()
-				.stream()
-				.filter(e -> e
-						.getKey()
-						.isAfter(ZonedDateTime
-								.now()
-								.minusMinutes(1)))
-				.count();
+			.entrySet()
+			.stream()
+			.filter(e -> e
+				.getKey()
+				.isAfter(ZonedDateTime
+					.now()
+					.minusMinutes(1)))
+			.count();
 
 		// then
-		assertEquals(eventYoungerThanOneMinute, 0);
+		assertEquals(0, eventYoungerThanOneMinute);
 
 		executorService.awaitTermination(1, TimeUnit.SECONDS);
 		executorService.shutdown();

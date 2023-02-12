@@ -5,7 +5,12 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -44,7 +49,7 @@ public class ConcurrentLinkedQueueUnitTest {
 		Callable<Integer> pollTask = () -> {
 			while (concurrentLinkedQueue.peek() != null) {
 				return concurrentLinkedQueue.poll()
-						.intValue();
+					.intValue();
 			}
 			return null;
 		};
@@ -54,7 +59,7 @@ public class ConcurrentLinkedQueueUnitTest {
 
 		Future<Integer> returnedElement = executorService.submit(pollTask);
 		assertThat(returnedElement.get()
-				.intValue(), is(equalTo(element)));
+			.intValue(), is(equalTo(element)));
 		executorService.awaitTermination(1, TimeUnit.SECONDS);
 		executorService.shutdown();
 	}

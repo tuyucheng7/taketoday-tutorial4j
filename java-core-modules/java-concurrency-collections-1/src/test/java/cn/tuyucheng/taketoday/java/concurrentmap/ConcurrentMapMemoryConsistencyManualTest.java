@@ -2,13 +2,19 @@ package cn.tuyucheng.taketoday.java.concurrentmap;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ConcurrentMapMemoryConsistencyManualTest {
 
@@ -18,12 +24,12 @@ class ConcurrentMapMemoryConsistencyManualTest {
 		List<Integer> sumList = parallelSum100(map, 1000);
 
 		assertEquals(1, sumList.stream()
-				.distinct()
-				.count());
+			.distinct()
+			.count());
 
 		long wrongResultCount = sumList.stream()
-				.filter(num -> num != 100)
-				.count();
+			.filter(num -> num != 100)
+			.count();
 		assertEquals(0, wrongResultCount);
 	}
 
@@ -33,12 +39,12 @@ class ConcurrentMapMemoryConsistencyManualTest {
 		List<Integer> sumList = parallelSum100(map, 1000);
 
 		assertEquals(1, sumList.stream()
-				.distinct()
-				.count());
+			.distinct()
+			.count());
 
 		long wrongResultCount = sumList.stream()
-				.filter(num -> num != 100)
-				.count();
+			.filter(num -> num != 100)
+			.count();
 		assertEquals(0, wrongResultCount);
 	}
 
@@ -48,12 +54,12 @@ class ConcurrentMapMemoryConsistencyManualTest {
 		List<Integer> sumList = parallelSum100(map, 100);
 
 		assertNotEquals(1, sumList.stream()
-				.distinct()
-				.count());
+			.distinct()
+			.count());
 
 		long wrongResultCount = sumList.stream()
-				.filter(num -> num != 100)
-				.count();
+			.filter(num -> num != 100)
+			.count();
 		assertTrue(wrongResultCount > 0);
 	}
 

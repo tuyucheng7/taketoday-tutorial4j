@@ -8,7 +8,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AccountManualTest {
 	private Account account;
@@ -95,7 +97,7 @@ class AccountManualTest {
 
 	private static ExecutorService getSingleThreadExecutorService(String threadName) {
 		return Executors.newSingleThreadExecutor(
-				new ThreadFactoryBuilder().setNameFormat(threadName).build()
+			new ThreadFactoryBuilder().setNameFormat(threadName).build()
 		);
 	}
 }

@@ -4,7 +4,11 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedTransferQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TransferQueue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,8 +35,8 @@ class TransferQueueIntegrationTest {
 		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
 		executor.shutdown();
 
-		assertEquals(producer1.numberOfProducedMessages.intValue(), 3);
-		assertEquals(producer2.numberOfProducedMessages.intValue(), 3);
+		assertEquals(3, producer1.numberOfProducedMessages.intValue());
+		assertEquals(3, producer2.numberOfProducedMessages.intValue());
 	}
 
 	@Test
@@ -51,8 +55,8 @@ class TransferQueueIntegrationTest {
 		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
 		executor.shutdown();
 
-		assertEquals(producer.numberOfProducedMessages.intValue(), 3);
-		assertEquals(consumer.numberOfConsumedMessages.intValue(), 3);
+		assertEquals(3, producer.numberOfProducedMessages.intValue());
+		assertEquals(3, consumer.numberOfConsumedMessages.intValue());
 	}
 
 	@Test
@@ -69,6 +73,6 @@ class TransferQueueIntegrationTest {
 		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
 		executor.shutdown();
 
-		assertEquals(producer.numberOfProducedMessages.intValue(), 0);
+		assertEquals(0, producer.numberOfProducedMessages.intValue());
 	}
 }

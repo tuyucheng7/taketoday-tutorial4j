@@ -1,12 +1,18 @@
 package cn.tuyucheng.taketoday.rejection;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
@@ -28,7 +34,6 @@ class SaturationPolicyUnitTest {
 		}
 	}
 
-	@Disabled
 	@Test
 	void givenAbortPolicy_whenSaturated_thenShouldThrowRejectedExecutionException() {
 		executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new SynchronousQueue<>(), new AbortPolicy());
@@ -37,7 +42,6 @@ class SaturationPolicyUnitTest {
 		assertThatThrownBy(() -> executor.execute(() -> System.out.println("Will be rejected"))).isInstanceOf(RejectedExecutionException.class);
 	}
 
-	@Disabled
 	@Test
 	void givenCallerRunsPolicy_whenSaturated_thenTheCallerThreadRunsTheTask() {
 		executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new SynchronousQueue<>(), new CallerRunsPolicy());
@@ -100,7 +104,7 @@ class SaturationPolicyUnitTest {
 
 		assertThatThrownBy(() -> executor.execute(() -> {
 		}))
-				.isInstanceOf(RejectedExecutionException.class);
+			.isInstanceOf(RejectedExecutionException.class);
 	}
 
 	@Test
@@ -111,7 +115,7 @@ class SaturationPolicyUnitTest {
 
 		assertThatThrownBy(() -> executor.execute(() -> {
 		}))
-				.isInstanceOf(RejectedExecutionException.class);
+			.isInstanceOf(RejectedExecutionException.class);
 	}
 
 	private static class GrowPolicy implements RejectedExecutionHandler {

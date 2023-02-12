@@ -5,7 +5,12 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -65,7 +70,7 @@ public class LinkedBlockingQueueUnitTest {
 		try {
 			TimeUnit.SECONDS.sleep(1);
 			assertThat(returnElement.get()
-					.intValue(), is(equalTo(element)));
+				.intValue(), is(equalTo(element)));
 			executorService.awaitTermination(1, TimeUnit.SECONDS);
 		} catch (Exception e) {
 			e.printStackTrace();

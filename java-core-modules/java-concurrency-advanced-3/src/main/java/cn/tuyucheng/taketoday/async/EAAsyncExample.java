@@ -19,12 +19,12 @@ public class EAAsyncExample {
 
 	public static void usingCompletableFuture() throws Exception {
 		CompletableFuture<Void> completableFuture = hello()
-				.thenComposeAsync(EAAsyncExample::mergeWorld)
-				.thenAcceptAsync(EAAsyncExample::print)
-				.exceptionally(throwable -> {
-					System.out.println(throwable.getCause());
-					return null;
-				});
+			.thenComposeAsync(EAAsyncExample::mergeWorld)
+			.thenAcceptAsync(EAAsyncExample::print)
+			.exceptionally(throwable -> {
+				System.out.println(throwable.getCause());
+				return null;
+			});
 		completableFuture.get();
 	}
 
