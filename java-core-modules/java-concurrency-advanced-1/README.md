@@ -1,17 +1,18 @@
-## CoreJavaConcurrency Advanced Examples - 1
+## Core Java Concurrency Advanced
 
-This module contains articles about advanced topics about multithreading with core Java.
+本模块包含有关使用核心Java进行多线程处理的高级主题的文章。
 
-### Relevant Articles:
+## 相关文章
 
-- [Introduction to Thread Pools in Java](docs/Java_ThreadPools.md)
-- [Guide to CountDownLatch in Java](docs/Java_CountDownLatch.md)
-- [Guide to java.util.concurrent.Locks](docs/Java_Concurrent_Locks.md)
-- [An Introduction to ThreadLocal in Java](docs/Java_ThreadLocal.md)
-- [LongAdder and LongAccumulator in Java](docs/Java_LongAdder_LongAccumulator.md)
-- [The Dining Philosophers Problem in Java](docs/Java_Dining_Philoshophers.md)
-- [Guide to theJavaPhaser](docs/Java_Phaser.md)
-- [An Introduction to Atomic Variables in Java](docs/Java_Atomic_Variables.md)
-- [CyclicBarrier in Java](docs/Java_CyclicBarrier.md)
++ [Java线程池介绍](docs/Java线程池介绍.md)
++ [Java中的CountDownLatch指南](docs/Java中的CountDownLatch指南.md)
++ [java.util.concurrent.Locks指南](docs/java.util.concurrent.Locks指南.md)
++ [Java中的ThreadLocal简介](docs/Java中的ThreadLocal简介.md)
++ [Java中的LongAdder和LongAccumulator](docs/Java中的LongAdder和LongAccumulator.md)
++ [Java中的哲学家就餐问题](docs/Java中的哲学家就餐问题.md)
++ [Java Phaser指南](docs/Java-Phaser指南.md)
++ [Java中的原子变量简介](docs/Java中的原子变量简介.md)
++ [Java中的CyclicBarrier](docs/Java中的CyclicBarrier.md)
 
-- More Articles: [[next -->]](../java-concurrency-advanced-2/README.md)
+- 更多文章： [[<-- prev]](../java-concurrency-basic-3/README.md)
+- 更多文章： [[next -->]](../java-concurrency-advanced-2/README.md)

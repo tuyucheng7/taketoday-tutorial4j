@@ -1,11 +1,11 @@
-## CoreJavaConcurrency Collections - 2
+## Core Java Concurrency Collections
 
-This module contains articles about concurrentJavacollections
+本模块包含有关Java并发集合的文章
 
-## Relevant Articles:
+## 相关文章
 
-- [Introduction to Lock Striping](docs/Java_Lock_Stripping.md)
-- [Guide to theJavaTransferQueue](docs/Java_TransferQueue.md)
-- [Java Concurrent HashSet Equivalent to ConcurrentHashMap](docs/Java_Hashset_ConcurrentHashMap.md)
++ [锁条带简介](docs/锁条带简介.md)
++ [Java TransferQueue指南](docs/Java-TransferQueue指南.md)
++ [Java Concurrent HashSet等同于ConcurrentHashMap](docs/Java-ConcurrentHashSet等同于ConcurrentHashMap.md)
 
-- More articles: [[<-- prev]](../java-concurrency-collections-1/README.md)
+- 更多文章： [[<-- prev]](../java-concurrency-collections-1/README.md)

@@ -1,20 +1,13 @@
-### Mockito Articles that are also part of the e-book
+## 相关文章
 
-This module contains articles aboutJavaConcurrency that are also part of an Ebook.
++ [Java线程的生命周期](docs/Java线程的生命周期.md)
++ [如何在Java中启动一个线程](docs/如何在Java中启动一个线程.md)
++ [Java中的wait和notify方法](docs/Java中的wait和notify方法.md)
++ [Java中的Thread.join()方法](docs/Java中的Thread.join()方法.md)
++ [Java synchronized关键字指南](docs/Java同步关键字指南.md)
++ [Java中的volatile关键字指南](docs/Java中的volatile关键字指南.md)
++ [Java ExecutorService指南](docs/Java-ExecutorService指南.md)
++ [CompletableFuture指南](docs/CompletableFuture指南.md)
 
-## Relevant articles:
-
-- [Life Cycle of a Thread in Java](docs/Java_Thread_LifeCycle.md)
-- [How to Start a Thread in Java](docs/Java_StartThread.md)
-- [Thread's wait and notify() Methods in Java](docs/Java_Wait_Notify.md)
-- [The Thread.join() Method in Java](docs/Java_Thread_Join.md)
-- [Guide to the Synchronized Keyword in Java](docs/Java_Synchronized.md)
-- [Guide to the Volatile Keyword in Java](docs/Java_Volatile.md)
-- [A Guide to theJavaExecutorService](docs/Java_ExecutorService.md)
-- [Guide To CompletableFuture](docs/Java_CompletableFuture.md)
-
-- More Articles: [[next -->]](../java-concurrency-basic-1/README.md)
-
-### NOTE:
-
-Since this is a module tied to an e-book, it should not be moved or used to store the code for any further article.
+- 更多文章： [[<-- prev]](../java-concurrency-2/README.md)
+- 更多文章： [[next -->]](../java-concurrency-basic-1/README.md)
