@@ -63,7 +63,7 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<mainClass>com.baeldung.camel.boot.testing.GreetingsFileSpringApplication</mainClass>
+							<mainClass>cn.tuyucheng.taketoday.camel.boot.testing.GreetingsFileSpringApplication</mainClass>
 						</configuration>
 					</execution>
 				</executions>

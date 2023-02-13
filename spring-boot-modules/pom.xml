@@ -19,14 +19,14 @@
 	<modules>
 		<module>spring-boot-actuator</module>
 		<module>spring-boot-admin</module>
-		<!--<module>spring-boot-angular</module>-->
+		<module>spring-boot-angular</module>
 		<module>spring-boot-annotations-1</module>
 		<module>spring-boot-annotations-2</module>
 		<module>spring-boot-artifacts-1</module>
 		<module>spring-boot-artifacts-2</module>
 		<module>spring-boot-autoconfiguration</module>
-		<!--<module>spring-boot-basic-customization-1</module>-->
-		<!--<module>spring-boot-basic-customization-2</module>-->
+		<module>spring-boot-basic-customization-1</module>
+		<module>spring-boot-basic-customization-2</module>
 		<!--<module>spring-boot-bootstrap</module>-->
 		<module>spring-boot-client</module>
 		<module>spring-boot-config-jpa-error</module>
@@ -36,15 +36,17 @@
 		<module>spring-boot-disable-logging</module>
 		<module>spring-boot-ci-cd</module>
 		<!--<module>spring-boot-cli</module> --> <!-- Not a maven project -->
+		<module>spring-boot-camel</module>
+		<module>spring-boot-cassandre</module>
 		<module>spring-boot-custom-starter</module>
 		<module>spring-boot-crud</module>
-		<!--<module>spring-boot-data-1</module>-->
-		<!--<module>spring-boot-data-2</module>-->
-		<!--<module>spring-boot-data-3</module>-->
+		<module>spring-boot-data-1</module>
+		<module>spring-boot-data-2</module>
+		<module>spring-boot-data-3</module>
 		<module>spring-boot-environment</module>
 		<module>spring-boot-exceptions</module>
 		<module>spring-boot-flowable</module>
-		<!--<module>spring-boot-graphql</module>-->
+		<module>spring-boot-graphql</module>
 		<module>spring-boot-groovy</module>
 		<!--<module>spring-boot-gradle</module> --> <!-- Not a maven project -->
 		<module>spring-boot-jasypt</module>
