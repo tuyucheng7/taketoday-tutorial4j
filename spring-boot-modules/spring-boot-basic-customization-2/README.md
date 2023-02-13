@@ -1,13 +1,15 @@
-## Spring Boot Basic Customization 2
+## Spring Boot Basic Customization
 
-This module contains articles about Spring Boot customization 2
+此模块包含有关Spring Boot自定义的文章
 
-### Relevant Articles:
+## 相关文章
 
- - [DispatcherServlet and web.xml in Spring Boot](https://www.baeldung.com/spring-boot-dispatcherservlet-web-xml)
- - [XML Defined Beans in Spring Boot](https://www.baeldung.com/spring-boot-xml-beans)
- - [What Is OncePerRequestFilter?](https://www.baeldung.com/spring-onceperrequestfilter)
- - [Spring Boot Exit Codes](https://www.baeldung.com/spring-boot-exit-codes)
- - [Guide to Spring Type Conversions](https://www.baeldung.com/spring-type-conversions)
- - [Container Configuration in Spring Boot 2](https://www.baeldung.com/embeddedservletcontainercustomizer-configurableembeddedservletcontainer-spring-boot)
- - [Speed up Spring Boot Startup Time](https://www.baeldung.com/spring-boot-startup-speed)
++ [Spring Boot中的DispatcherServlet和web.xml](docs/SpringBoot中的DispatcherServlet和web.xml.md)
++ [Spring Boot中的XML定义的Bean](docs/SpringBoot中的XML定义的Bean.md)
++ [什么是OncePerRequestFilter](docs/什么是OncePerRequestFilter.md)
++ [Spring Boot退出码](docs/SpringBoot退出码.md)
++ [Spring类型转换指南](docs/Spring类型转换指南.md)
++ [Spring Boot 2中的容器配置](docs/SpringBoot2中的容器配置.md)
++ [加快Spring Boot启动时间](docs/加快SpringBoot启动时间.md)
+
+- 更多文章： [[<-- prev]](../spring-boot-basic-customization-1/README.md)
