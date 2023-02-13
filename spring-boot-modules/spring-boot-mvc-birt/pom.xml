@@ -9,12 +9,11 @@
 	<packaging>jar</packaging>
 	<description>Module For Spring Boot Integration with BIRT</description>
 
-	<!-- this module should use the Boot parent directly to avoid inherit the logback dependency from our other parents -->
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.1.RELEASE</version>
-		<relativePath/>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>parent-boot-2</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../parent-boot-2</relativePath>
 	</parent>
 
 	<dependencies>
@@ -60,22 +59,42 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!--<plugin>-->
-			<!--	<groupId>org.apache.maven.plugins</groupId>-->
-			<!--	<artifactId>maven-compiler-plugin</artifactId>-->
-			<!--	<version>${maven-compiler-plugin.version}</version>-->
-			<!--	<configuration>-->
-			<!--		<compilerArgs>-->
-			<!--			<arg>-->
-			<!--				&#45;&#45;add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED-->
-			<!--			</arg>-->
-			<!--		</compilerArgs>-->
-			<!--	</configuration>-->
-			<!--</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${toolchains.java.version}</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
 	<properties>
+		<toolchains.java.version>8</toolchains.java.version>
+		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
 		<start-class>cn.tuyucheng.taketoday.birt.engine.ReportEngineApplication</start-class>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
