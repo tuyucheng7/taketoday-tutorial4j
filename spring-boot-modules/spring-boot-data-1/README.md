@@ -1,14 +1,15 @@
 ## Spring Boot Data
 
-This module contains articles about Spring Boot with Spring Data
+此模块包含有关Spring Boot与Spring Data的文章
 
-## Relevant Articles:
+## 相关文章
 
-- [Formatting JSON Dates in Spring Boot](https://www.baeldung.com/spring-boot-formatting-json-dates)
-- [Rendering Exceptions in JSON with Spring](https://www.baeldung.com/spring-exceptions-json)
-- [Disable Spring Data Auto Configuration](https://www.baeldung.com/spring-data-disable-auto-config)
-- [Repositories with Multiple Spring Data Modules](https://www.baeldung.com/spring-multiple-data-modules)
-- [Spring Custom Property Editor](https://www.baeldung.com/spring-mvc-custom-property-editor)
-- [Using @JsonComponent in Spring Boot](https://www.baeldung.com/spring-boot-jsoncomponent)
-- [Guide To Running Logic on Startup in Spring](https://www.baeldung.com/running-setup-logic-on-startup-in-spring)
++ [在Spring Boot中格式化JSON日期](docs/在SpringBoot中格式化JSON日期.md)
++ [使用Spring在JSON中呈现异常](docs/使用Spring在JSON中呈现异常.md)
++ [禁用Spring Data自动配置](docs/禁用SpringData自动配置.md)
++ [具有多个Spring Data模块的Repository](docs/具有多个SpringData模块的Repository.md)
++ [Spring自定义属性编辑器](docs/Spring自定义属性编辑器.md)
++ [在Spring Boot中使用@JsonComponent](docs/在SpringBoot中使用@JsonComponent.md)
++ [在Spring启动时运行逻辑的指南](docs/在Spring启动时运行逻辑的指南.md)
 
+- 更多文章： [[next -->]](../spring-boot-data-2/README.md)
