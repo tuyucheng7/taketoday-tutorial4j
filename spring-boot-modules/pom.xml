@@ -27,7 +27,7 @@
 		<module>spring-boot-autoconfiguration</module>
 		<module>spring-boot-basic-customization-1</module>
 		<module>spring-boot-basic-customization-2</module>
-		<!--<module>spring-boot-bootstrap</module>-->
+		<module>spring-boot-bootstrap</module>
 		<module>spring-boot-client</module>
 		<module>spring-boot-config-jpa-error</module>
 		<module>spring-boot-ctx-fluent</module>
@@ -73,6 +73,7 @@
 		<module>spring-boot-properties-3</module>
 		<module>spring-boot-properties-migrator-demo</module>
 		<module>spring-boot-property-exp</module>
+		<module>spring-boot-react</module>
 		<module>spring-boot-request-params</module>
 		<module>spring-boot-runtime-1</module>
 		<module>spring-boot-runtime-2</module>
