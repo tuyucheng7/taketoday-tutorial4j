@@ -45,6 +45,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -162,5 +167,6 @@
 		<git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>
 		<source.version>1.8</source.version>
 		<target.version>1.8</target.version>
+		<javafx.version>17.0.2</javafx.version>
 	</properties>
 </project>
