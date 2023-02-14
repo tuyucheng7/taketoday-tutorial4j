@@ -1,0 +1,27 @@
+### update product name
+POST {{baseUrl}}/stores/1/rebrand
+Content-Type: application/json
+
+{
+    "name": "Product #11"
+}
+
+### get product snapshots
+GET {{baseUrl}}/products/snapshots
+
+### change product price
+POST {{baseUrl}}/stores/1/products/2/price
+Content-Type: application/json
+
+{
+    "price": "300.0"
+}
+
+### query product changes
+GET {{baseUrl}}/products/2/changes
+
+### get shadow for a single store
+GET {{baseUrl}}/stores/1/shadows
+
+### get store snapshots
+GET {{baseUrl}}/stores/snapshots
