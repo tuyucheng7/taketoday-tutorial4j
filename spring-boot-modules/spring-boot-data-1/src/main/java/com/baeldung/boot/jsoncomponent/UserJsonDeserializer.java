@@ -13,10 +13,10 @@ import java.io.IOException;
 
 @JsonComponent
 public class UserJsonDeserializer extends JsonDeserializer<User> {
-    @Override
-    public User deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        TreeNode treeNode = jsonParser.getCodec().readTree(jsonParser);
-        TextNode favoriteColor = (TextNode) treeNode.get("favoriteColor");
-        return new User(Color.web(favoriteColor.asText()));
-    }
+	@Override
+	public User deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+		TreeNode treeNode = jsonParser.getCodec().readTree(jsonParser);
+		TextNode favoriteColor = (TextNode) treeNode.get("favoriteColor");
+		return new User(Color.web(favoriteColor.asText()));
+	}
 }

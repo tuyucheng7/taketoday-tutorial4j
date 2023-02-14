@@ -11,11 +11,11 @@ import static com.baeldung.boot.jackson.config.CoffeeConstants.LOCAL_DATETIME_SE
 @Configuration
 public class CoffeeHttpConverterConfiguration {
 
-    @Bean
-    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
-                .serializers(LOCAL_DATETIME_SERIALIZER)
-                .serializationInclusion(JsonInclude.Include.NON_NULL);
-        return new MappingJackson2HttpMessageConverter(builder.build());
-    }
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+			.serializers(LOCAL_DATETIME_SERIALIZER)
+			.serializationInclusion(JsonInclude.Include.NON_NULL);
+		return new MappingJackson2HttpMessageConverter(builder.build());
+	}
 }

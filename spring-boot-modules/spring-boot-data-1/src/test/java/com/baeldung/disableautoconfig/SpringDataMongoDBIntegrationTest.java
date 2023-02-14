@@ -14,12 +14,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = SpringDataMongoDB.class)
 public class SpringDataMongoDBIntegrationTest {
 
-    @Autowired
-    private ApplicationContext context;
+	@Autowired
+	private ApplicationContext context;
 
-    @Test(expected = NoSuchBeanDefinitionException.class)
-    public void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
-        context.getBean(MongoTemplate.class);
-    }
+	@Test(expected = NoSuchBeanDefinitionException.class)
+	public void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
+		context.getBean(MongoTemplate.class);
+	}
 
 }

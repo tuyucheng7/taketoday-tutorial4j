@@ -13,10 +13,10 @@ import java.util.Arrays;
 @Scope(value = "prototype")
 public class LogicInConstructorExampleBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LogicInConstructorExampleBean.class);
+	private static final Logger LOG = LoggerFactory.getLogger(LogicInConstructorExampleBean.class);
 
-    @Autowired
-    public LogicInConstructorExampleBean(Environment environment) {
-        LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
-    }
+	@Autowired
+	public LogicInConstructorExampleBean(Environment environment) {
+		LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
+	}
 }

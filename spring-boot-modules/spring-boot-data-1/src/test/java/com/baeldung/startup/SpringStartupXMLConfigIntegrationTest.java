@@ -11,16 +11,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("classpath:startupConfig.xml")
 public class SpringStartupXMLConfigIntegrationTest {
 
-    @Autowired
-    private ApplicationContext ctx;
+	@Autowired
+	private ApplicationContext ctx;
 
-    @Test
-    public void whenInitMethod_shouldLogEnv() throws Exception {
-        ctx.getBean(InitMethodExampleBean.class);
-    }
+	@Test
+	public void whenInitMethod_shouldLogEnv() throws Exception {
+		ctx.getBean(InitMethodExampleBean.class);
+	}
 
-    @Test
-    public void whenAllStrategies_shouldLogOrder() throws Exception {
-        ctx.getBean(AllStrategiesExampleBean.class);
-    }
+	@Test
+	public void whenAllStrategies_shouldLogOrder() throws Exception {
+		ctx.getBean(AllStrategiesExampleBean.class);
+	}
 }

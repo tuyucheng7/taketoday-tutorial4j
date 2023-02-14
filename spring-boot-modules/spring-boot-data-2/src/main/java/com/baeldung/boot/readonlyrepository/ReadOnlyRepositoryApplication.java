@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ReadOnlyRepositoryApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ReadOnlyRepositoryApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ReadOnlyRepositoryApplication.class, args);
+	}
 }

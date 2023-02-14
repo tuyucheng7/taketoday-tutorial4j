@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfigur
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class,
-        SpringDataWebAutoConfiguration.class})
+	SpringDataWebAutoConfiguration.class})
 public class SpringDataMongoDB {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringDataMongoDB.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringDataMongoDB.class, args);
+	}
 }

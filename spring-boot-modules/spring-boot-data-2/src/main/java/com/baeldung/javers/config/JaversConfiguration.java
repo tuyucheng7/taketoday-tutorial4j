@@ -6,15 +6,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JaversConfiguration {
-    @Bean
-    public AuthorProvider provideJaversAuthor() {
-        return new SimpleAuthorProvider();
-    }
+	@Bean
+	public AuthorProvider provideJaversAuthor() {
+		return new SimpleAuthorProvider();
+	}
 
-    private static class SimpleAuthorProvider implements AuthorProvider {
-        @Override
-        public String provide() {
-            return "Baeldung Author";
-        }
-    }
+	private static class SimpleAuthorProvider implements AuthorProvider {
+		@Override
+		public String provide() {
+			return "Baeldung Author";
+		}
+	}
 }

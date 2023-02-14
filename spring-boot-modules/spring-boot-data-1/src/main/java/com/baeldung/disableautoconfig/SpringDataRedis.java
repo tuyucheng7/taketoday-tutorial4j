@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoCo
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
 
 @SpringBootApplication(exclude = {RedisAutoConfiguration.class, RedisRepositoriesAutoConfiguration.class,
-        SpringDataWebAutoConfiguration.class})
+	SpringDataWebAutoConfiguration.class})
 public class SpringDataRedis {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringDataRedis.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(SpringDataRedis.class, args);
+	}
 }

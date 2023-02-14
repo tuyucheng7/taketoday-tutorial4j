@@ -4,36 +4,36 @@ import java.time.LocalDateTime;
 
 public class Coffee {
 
-    private String name;
+	private String name;
 
-    private String brand;
+	private String brand;
 
-    private LocalDateTime date;
+	private LocalDateTime date;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Coffee setName(String name) {
-        this.name = name;
-        return this;
-    }
+	public Coffee setName(String name) {
+		this.name = name;
+		return this;
+	}
 
-    public String getBrand() {
-        return brand;
-    }
+	public String getBrand() {
+		return brand;
+	}
 
-    public Coffee setBrand(String brand) {
-        this.brand = brand;
-        return this;
-    }
+	public Coffee setBrand(String brand) {
+		this.brand = brand;
+		return this;
+	}
 
-    public LocalDateTime getDate() {
-        return date;
-    }
+	public LocalDateTime getDate() {
+		return date;
+	}
 
-    public Coffee setDate(LocalDateTime date) {
-        this.date = date;
-        return this;
-    }
+	public Coffee setDate(LocalDateTime date) {
+		this.date = date;
+		return this;
+	}
 }

@@ -14,13 +14,13 @@ import java.util.Arrays;
 @Scope(value = "prototype")
 public class PostConstructExampleBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PostConstructExampleBean.class);
+	private static final Logger LOG = LoggerFactory.getLogger(PostConstructExampleBean.class);
 
-    @Autowired
-    private Environment environment;
+	@Autowired
+	private Environment environment;
 
-    @PostConstruct
-    public void init() {
-        LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
-    }
+	@PostConstruct
+	public void init() {
+		LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
+	}
 }

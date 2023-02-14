@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
-    public static int counter;
+	private static final Logger LOG = LoggerFactory.getLogger(CommandLineAppStartupRunner.class);
+	public static int counter;
 
-    @Override
-    public void run(String... args) throws Exception {
-        LOG.info("Increment counter");
-        counter++;
-    }
+	@Override
+	public void run(String... args) throws Exception {
+		LOG.info("Increment counter");
+		counter++;
+	}
 }

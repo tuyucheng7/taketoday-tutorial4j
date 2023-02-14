@@ -10,12 +10,12 @@ import static com.baeldung.boot.jackson.config.CoffeeConstants.FIXED_DATE;
 @RestController
 public class CoffeeController {
 
-    @GetMapping("/coffee")
-    public Coffee getCoffee(
-            @RequestParam(required = false) String brand,
-            @RequestParam(required = false) String name) {
-        return new Coffee().setBrand(brand)
-                .setDate(FIXED_DATE)
-                .setName(name);
-    }
+	@GetMapping("/coffee")
+	public Coffee getCoffee(
+		@RequestParam(required = false) String brand,
+		@RequestParam(required = false) String name) {
+		return new Coffee().setBrand(brand)
+			.setDate(FIXED_DATE)
+			.setName(name);
+	}
 }

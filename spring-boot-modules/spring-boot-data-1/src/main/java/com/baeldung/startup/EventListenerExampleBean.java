@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EventListenerExampleBean {
-    private static final Logger LOG = LoggerFactory.getLogger(EventListenerExampleBean.class);
+	private static final Logger LOG = LoggerFactory.getLogger(EventListenerExampleBean.class);
 
-    public static int counter;
+	public static int counter;
 
-    @EventListener
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        LOG.info("Increment counter");
-        counter++;
-    }
+	@EventListener
+	public void onApplicationEvent(ContextRefreshedEvent event) {
+		LOG.info("Increment counter");
+		counter++;
+	}
 }
