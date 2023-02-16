@@ -1,0 +1,110 @@
+package cn.tuyucheng.taketoday.boot.csfle.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.bson.BsonBinary;
+import org.bson.BsonInt32;
+import org.bson.BsonString;
+import org.bson.BsonValue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
+
+import cn.tuyucheng.taketoday.boot.csfle.config.EncryptionConfig;
+import cn.tuyucheng.taketoday.boot.csfle.data.Citizen;
+import cn.tuyucheng.taketoday.boot.csfle.data.EncryptedCitizen;
+import com.mongodb.client.model.vault.EncryptOptions;
+import com.mongodb.client.vault.ClientEncryption;
+
+@Service
+public class CitizenService {
+
+    public static final String DETERMINISTIC_ALGORITHM = "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic";
+    public static final String RANDOM_ALGORITHM = "AEAD_AES_256_CBC_HMAC_SHA_512-Random";
+
+    @Autowired
+    private MongoTemplate mongo;
+
+    @Autowired
+    private EncryptionConfig encryptionConfig;
+
+    @Autowired
+    private ClientEncryption clientEncryption;
+
+    public EncryptedCitizen save(Citizen citizen) {
+        EncryptedCitizen encryptedCitizen = new EncryptedCitizen(citizen);
+        encryptedCitizen.setEmail(encrypt(citizen.getEmail(), DETERMINISTIC_ALGORITHM));
+        encryptedCitizen.setBirthYear(encrypt(citizen.getBirthYear(), RANDOM_ALGORITHM));
+
+        return mongo.save(encryptedCitizen);
+    }
+
+    public List<Citizen> findAll() {
+        if (!encryptionConfig.getAutoDecryption()) {
+            List<EncryptedCitizen> allEncrypted = mongo.findAll(EncryptedCitizen.class);
+
+            return allEncrypted.stream()
+                .map(this::decrypt)
+                .collect(Collectors.toList());
+        } else {
+            return mongo.findAll(Citizen.class);
+        }
+    }
+
+    public Citizen findByEmail(String email) {
+        Query byEmail = new Query(Criteria.where("email")
+            .is(encrypt(email, DETERMINISTIC_ALGORITHM)));
+        if (!encryptionConfig.getAutoDecryption()) {
+            EncryptedCitizen encryptedCitizen = mongo.findOne(byEmail, EncryptedCitizen.class);
+            return decrypt(encryptedCitizen);
+        } else {
+            return mongo.findOne(byEmail, Citizen.class);
+        }
+    }
+
+    public BsonBinary encrypt(Object value, String algorithm) {
+        if (value == null)
+            return null;
+
+        BsonValue bsonValue;
+        if (value instanceof Integer) {
+            bsonValue = new BsonInt32((Integer) value);
+        } else if (value instanceof String) {
+            bsonValue = new BsonString((String) value);
+        } else {
+            throw new IllegalArgumentException("unsupported type: " + value.getClass());
+        }
+
+        EncryptOptions options = new EncryptOptions(algorithm);
+        options.keyId(encryptionConfig.getDataKeyId());
+        return clientEncryption.encrypt(bsonValue, options);
+    }
+
+    public BsonValue decryptProperty(BsonBinary value) {
+        if (value == null)
+            return null;
+
+        return clientEncryption.decrypt(value);
+    }
+
+    private Citizen decrypt(EncryptedCitizen encrypted) {
+        Citizen citizen = new Citizen(encrypted);
+
+        BsonValue decryptedBirthYear = decryptProperty(encrypted.getBirthYear());
+        if (decryptedBirthYear != null) {
+            citizen.setBirthYear(decryptedBirthYear.asInt32()
+                .intValue());
+        }
+
+        BsonValue decryptedEmail = decryptProperty(encrypted.getEmail());
+        if (decryptedEmail != null) {
+            citizen.setEmail(decryptedEmail.asString()
+                .getValue());
+        }
+
+        return citizen;
+    }
+}
