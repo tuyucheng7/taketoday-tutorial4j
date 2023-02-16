@@ -97,8 +97,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
 		<asciidoctor-maven-plugin.version>2.2.2</asciidoctor-maven-plugin.version>
-		<asciidoctorj.version>2.5.6</asciidoctorj.version>
-		<asciidoctorj-pdf.version>2.1.6</asciidoctorj-pdf.version>
-		<asciidoctorj-pdf.plugin.version>2.1.6</asciidoctorj-pdf.plugin.version>
+		<asciidoctorj.version>2.5.7</asciidoctorj.version>
+		<asciidoctorj-pdf.version>2.3.4</asciidoctorj-pdf.version>
+		<asciidoctorj-pdf.plugin.version>2.3.4</asciidoctorj-pdf.plugin.version>
 	</properties>
 </project>
