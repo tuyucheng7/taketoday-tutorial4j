@@ -631,7 +631,7 @@
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactor-core</module>-->
+				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
@@ -898,7 +898,7 @@
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactor-core</module>-->
+				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
@@ -1131,7 +1131,7 @@
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactor-core</module>-->
+				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
