@@ -95,6 +95,19 @@ class JEP428StructuredConcurrencyUnitTest {
 		}
 	}
 
+	@Test
+	void givenCustomStructuredConcurrency_whenFirstTaskCompleted_thenOtherTasksCanceled() throws InterruptedException {
+		try (var scope = new CriteriaScope()) {
+			scope.fork(this::getProduct50);
+			scope.fork(this::getProduct200);
+			scope.fork(this::getProduct150);
+
+			scope.join();
+
+			assertThat(scope.getResult().price()).isEqualTo(50);
+		}
+	}
+
 	private Shelter getShelter() {
 		return new Shelter("Shelter");
 	}
@@ -119,5 +132,37 @@ class JEP428StructuredConcurrencyUnitTest {
 	}
 
 	record Response(Shelter shelter, List<Dog> dogs) {
+	}
+
+	private Product getProduct50() {
+		return new Product(50);
+	}
+
+	private Product getProduct150() {
+		return new Product(150);
+	}
+
+	private Product getProduct200() {
+		return new Product(200);
+	}
+
+	record Product(int price) {
+	}
+
+	static class CriteriaScope extends StructuredTaskScope<Product> {
+
+		private volatile Product product;
+
+		@Override
+		protected void handleComplete(Future<Product> future) {
+			if (future.state() == Future.State.SUCCESS && future.resultNow().price() < 100) {
+				this.product = future.resultNow();
+				shutdown();
+			}
+		}
+
+		public Product getResult() {
+			return product;
+		}
 	}
 }
