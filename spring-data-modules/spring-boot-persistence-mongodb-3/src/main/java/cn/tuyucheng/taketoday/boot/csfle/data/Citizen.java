@@ -5,43 +5,45 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("citizens")
 public class Citizen {
 
-    private String name;
-    private String email;
-    private Integer birthYear;
+	private String name;
+	private String email;
+	private Integer birthYear;
 
-    public Citizen() {
-    }
+	public Citizen() {
+	}
 
-    public Citizen(EncryptedCitizen encryptedCitizen) {
-        this.name = encryptedCitizen.getName();
-    }
+	public Citizen(EncryptedCitizen encryptedCitizen) {
+		if (encryptedCitizen != null) {
+			this.name = encryptedCitizen.getName();
+		}
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public Integer getBirthYear() {
-        return birthYear;
-    }
+	public Integer getBirthYear() {
+		return birthYear;
+	}
 
-    public void setBirthYear(Integer birthYear) {
-        this.birthYear = birthYear;
-    }
+	public void setBirthYear(Integer birthYear) {
+		this.birthYear = birthYear;
+	}
 
-    @Override
-    public String toString() {
-        return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
-    }
+	@Override
+	public String toString() {
+		return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
+	}
 }

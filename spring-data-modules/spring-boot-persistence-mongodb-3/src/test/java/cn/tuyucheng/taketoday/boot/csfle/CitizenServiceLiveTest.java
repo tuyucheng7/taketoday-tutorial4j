@@ -1,8 +1,10 @@
 package cn.tuyucheng.taketoday.boot.csfle;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.bson.BsonBinary;
+import org.bson.types.Binary;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,50 +26,50 @@ import cn.tuyucheng.taketoday.boot.csfle.service.CitizenService;
 @SpringBootTest(classes = MongoDbCsfleApplication.class)
 public class CitizenServiceLiveTest {
 
-    @Autowired
-    private MongoTemplate mongo;
+	@Autowired
+	private MongoTemplate mongo;
 
-    @Autowired
-    private CitizenService service;
+	@Autowired
+	private CitizenService service;
 
-    @Test
-    public void givenCitizen_whenEncryptingEmail_thenEncryptedCitizenEmailMatches() {
-        final Citizen citizen = new Citizen();
-        citizen.setName("Foo");
-        citizen.setEmail("foo@citizen.com");
+	@Test
+	public void givenCitizen_whenEncryptingEmail_thenEncryptedCitizenEmailMatches() {
+		final Citizen citizen = new Citizen();
+		citizen.setName("Foo");
+		citizen.setEmail("foo@citizen.com");
 
-        BsonBinary encryptedEmail = service.encrypt(citizen.getEmail(), CitizenService.DETERMINISTIC_ALGORITHM);
+		Binary encryptedEmail = service.encrypt(citizen.getEmail(), CitizenService.DETERMINISTIC_ALGORITHM);
 
-        EncryptedCitizen saved = service.save(citizen);
-        assertEquals(encryptedEmail, saved.getEmail());
-    }
+		EncryptedCitizen saved = service.save(citizen);
+		assertEquals(encryptedEmail, saved.getEmail());
+	}
 
-    @Test
-    public void givenRandomEncryptedField_whenFilteringByField_thenDocumentNotFound() {
-        Citizen john = new Citizen();
-        john.setName("Jane Doe");
-        john.setEmail("jane.doe@citizen.com");
-        john.setBirthYear(1852);
+	@Test
+	public void givenRandomEncryptedField_whenFilteringByField_thenDocumentNotFound() {
+		Citizen john = new Citizen();
+		john.setName("Jane Doe");
+		john.setEmail("jane.doe@citizen.com");
+		john.setBirthYear(1852);
 
-        service.save(john);
+		service.save(john);
 
-        Query byBirthYear = new Query(Criteria.where("birthYear")
-            .is(service.encrypt(john.getBirthYear(), CitizenService.RANDOM_ALGORITHM)));
-        Citizen result = mongo.findOne(byBirthYear, Citizen.class);
+		Query byBirthYear = new Query(Criteria.where("birthYear")
+			.is(service.encrypt(john.getBirthYear(), CitizenService.RANDOM_ALGORITHM)));
+		Citizen result = mongo.findOne(byBirthYear, Citizen.class);
 
-        assertNull(result);
-    }
+		assertNull(result);
+	}
 
-    @Test
-    public void givenDeterministicallyEncryptedField_whenFilteringByField_thenDocumentFound() {
-        Citizen jane = new Citizen();
-        jane.setName("Jane Doe");
-        jane.setEmail("jane.doe@citizen.com");
-        jane.setBirthYear(1952);
+	@Test
+	public void givenDeterministicallyEncryptedField_whenFilteringByField_thenDocumentFound() {
+		Citizen jane = new Citizen();
+		jane.setName("Jane Doe");
+		jane.setEmail("jane.doe@citizen.com");
+		jane.setBirthYear(1952);
 
-        service.save(jane);
-        Citizen result = service.findByEmail(jane.getEmail());
+		service.save(jane);
+		Citizen result = service.findByEmail(jane.getEmail());
 
-        assertNotNull(result);
-    }
+		assertNotNull(result);
+	}
 }

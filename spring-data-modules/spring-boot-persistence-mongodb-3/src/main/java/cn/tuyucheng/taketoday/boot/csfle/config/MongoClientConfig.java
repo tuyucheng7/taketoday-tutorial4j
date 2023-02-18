@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
-import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 
-import cn.tuyucheng.taketoday.boot.csfle.config.converter.BinaryConverter;
 import com.mongodb.AutoEncryptionSettings;
 import com.mongodb.ClientEncryptionSettings;
 import com.mongodb.ConnectionString;
@@ -36,88 +34,83 @@ import com.mongodb.client.vault.ClientEncryptions;
 @Configuration
 public class MongoClientConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${spring.data.mongodb.uri}")
-    private String uri;
+	@Value("${spring.data.mongodb.uri}")
+	private String uri;
 
-    @Value("${spring.data.mongodb.database}")
-    private String db;
+	@Value("${spring.data.mongodb.database}")
+	private String db;
 
-    @Autowired
-    private EncryptionConfig encryptionConfig;
+	@Autowired
+	private EncryptionConfig encryptionConfig;
 
-    @Override
-    protected String getDatabaseName() {
-        return db;
-    }
+	@Override
+	protected String getDatabaseName() {
+		return db;
+	}
 
-    @Override
-    public MongoCustomConversions customConversions() {
-        return new MongoCustomConversions(Arrays.asList(new BinaryConverter()));
-    }
+	@Bean
+	@Override
+	public MongoClient mongoClient() {
+		MongoClient client;
+		try {
+			client = MongoClients.create(clientSettings());
 
-    @Bean
-    @Override
-    public MongoClient mongoClient() {
-        MongoClient client;
-        try {
-            client = MongoClients.create(clientSettings());
+			ClientEncryption encryption = clientEncryption();
+			encryptionConfig.setDataKeyId(createOrRetrieveDataKey(client, encryption));
 
-            ClientEncryption encryption = clientEncryption();
-            encryptionConfig.setDataKeyId(createOrRetrieveDataKey(client, encryption));
+			return client;
+		} catch (IOException e) {
+			throw new IllegalStateException("unable to create client", e);
+		}
+	}
 
-            return client;
-        } catch (IOException e) {
-            throw new IllegalStateException("unable to create client", e);
-        }
-    }
+	@Bean
+	public ClientEncryption clientEncryption() throws FileNotFoundException, IOException {
+		Map<String, Map<String, Object>> kmsProviders = LocalKmsUtils.providersMap(encryptionConfig.getMasterKeyPath());
 
-    @Bean
-    public ClientEncryption clientEncryption() throws FileNotFoundException, IOException {
-        Map<String, Map<String, Object>> kmsProviders = LocalKmsUtils.providersMap(encryptionConfig.getMasterKeyPath());
+		ClientEncryptionSettings encryptionSettings = ClientEncryptionSettings.builder()
+			.keyVaultMongoClientSettings(clientSettings())
+			.keyVaultNamespace(encryptionConfig.getKeyVaultNamespace())
+			.kmsProviders(kmsProviders)
+			.build();
 
-        ClientEncryptionSettings encryptionSettings = ClientEncryptionSettings.builder()
-            .keyVaultMongoClientSettings(clientSettings())
-            .keyVaultNamespace(encryptionConfig.getKeyVaultNamespace())
-            .kmsProviders(kmsProviders)
-            .build();
+		return ClientEncryptions.create(encryptionSettings);
+	}
 
-        return ClientEncryptions.create(encryptionSettings);
-    }
+	private BsonBinary createOrRetrieveDataKey(MongoClient client, ClientEncryption encryption) {
+		MongoNamespace namespace = new MongoNamespace(encryptionConfig.getKeyVaultNamespace());
+		MongoCollection<Document> keyVault = client.getDatabase(namespace.getDatabaseName())
+			.getCollection(namespace.getCollectionName());
 
-    private BsonBinary createOrRetrieveDataKey(MongoClient client, ClientEncryption encryption) {
-        MongoNamespace namespace = new MongoNamespace(encryptionConfig.getKeyVaultNamespace());
-        MongoCollection<Document> keyVault = client.getDatabase(namespace.getDatabaseName())
-            .getCollection(namespace.getCollectionName());
+		Bson query = Filters.in("keyAltNames", encryptionConfig.getKeyVaultAlias());
+		BsonDocument key = keyVault.withDocumentClass(BsonDocument.class)
+			.find(query)
+			.first();
 
-        Bson query = Filters.in("keyAltNames", encryptionConfig.getKeyVaultAlias());
-        BsonDocument key = keyVault.withDocumentClass(BsonDocument.class)
-            .find(query)
-            .first();
+		if (key == null) {
+			keyVault.createIndex(Indexes.ascending("keyAltNames"), new IndexOptions().unique(true)
+				.partialFilterExpression(Filters.exists("keyAltNames")));
 
-        if (key == null) {
-            keyVault.createIndex(Indexes.ascending("keyAltNames"), new IndexOptions().unique(true)
-                .partialFilterExpression(Filters.exists("keyAltNames")));
+			DataKeyOptions options = new DataKeyOptions();
+			options.keyAltNames(Arrays.asList(encryptionConfig.getKeyVaultAlias()));
+			return encryption.createDataKey("local", options);
+		} else {
+			return (BsonBinary) key.get("_id");
+		}
+	}
 
-            DataKeyOptions options = new DataKeyOptions();
-            options.keyAltNames(Arrays.asList(encryptionConfig.getKeyVaultAlias()));
-            return encryption.createDataKey("local", options);
-        } else {
-            return (BsonBinary) key.get("_id");
-        }
-    }
+	private MongoClientSettings clientSettings() throws FileNotFoundException, IOException {
+		Builder settings = MongoClientSettings.builder()
+			.applyConnectionString(new ConnectionString(uri));
 
-    private MongoClientSettings clientSettings() throws FileNotFoundException, IOException {
-        Builder settings = MongoClientSettings.builder()
-            .applyConnectionString(new ConnectionString(uri));
+		if (encryptionConfig.getAutoDecryption()) {
+			settings.autoEncryptionSettings(AutoEncryptionSettings.builder()
+				.keyVaultNamespace(encryptionConfig.getKeyVaultNamespace())
+				.kmsProviders(LocalKmsUtils.providersMap(encryptionConfig.getMasterKeyPath()))
+				.bypassAutoEncryption(true)
+				.build());
+		}
 
-        if (encryptionConfig.getAutoDecryption()) {
-            settings.autoEncryptionSettings(AutoEncryptionSettings.builder()
-                .keyVaultNamespace(encryptionConfig.getKeyVaultNamespace())
-                .kmsProviders(LocalKmsUtils.providersMap(encryptionConfig.getMasterKeyPath()))
-                .bypassAutoEncryption(true)
-                .build());
-        }
-
-        return settings.build();
-    }
+		return settings.build();
+	}
 }
