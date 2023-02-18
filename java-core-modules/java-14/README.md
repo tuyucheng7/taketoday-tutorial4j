@@ -13,6 +13,7 @@
 + [Java 14的新特性](docs/Java14的新特性.md)
 + [Java 14中的Record与Lombok](docs/Java14中的Record与Lombok.md)
 + [Java 14中的jpackage指南](docs/Java14中的jpackage指南.md)
++ [Java中的记录与最终类](docs/Java中的记录与最终类.md)
 
 - 更多文章： [[<-- prev]](../java-13/README.md)
 - 更多文章： [[next -->]](../java-15/README.md)
