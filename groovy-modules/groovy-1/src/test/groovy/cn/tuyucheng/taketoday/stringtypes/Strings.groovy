@@ -1,26 +1,29 @@
 package cn.tuyucheng.taketoday.stringtypes
 
-import org.junit.Assert
-import org.junit.Test
+import spock.lang.Specification
 
-class Strings {
+class Strings extends Specification {
 
-	@Test
-	void 'string interpolation '() {
-		def name = "Kacper"
+    def 'string interpolation '() {
+        given:
+        def name = "Kacper"
 
-		def result = "Hello ${name}!"
+        when:
+        def result = "Hello ${name}!"
 
-		Assert.assertEquals("Hello Kacper!", result.toString())
-	}
+        then:
+        result.toString() == "Hello Kacper!"
+    }
 
-	@Test
-	void 'string concatenation'() {
-		def first = "first"
-		def second = "second"
+    def 'string concatenation'() {
+        given:
+        def first = "first"
+        def second = "second"
 
-		def concatenation = first + second
+        when:
+        def concatenation = first + second
 
-		Assert.assertEquals("firstsecond", concatenation)
-	}
+        then:
+        concatenation == "firstsecond"
+    }
 }

@@ -1,67 +1,76 @@
 package cn.tuyucheng.taketoday.stringtypes
 
-import org.junit.Assert
-import org.junit.Test
+import spock.lang.Specification
 
-class DoubleQuotedString {
+class DoubleQuotedString extends Specification {
 
-	@Test
-	void 'escape double quoted string'() {
-		def example = "Hello \"world\"!"
+    def 'escape double quoted string'() {
+        given:
+        def example = "Hello \"world\"!"
 
-		println(example)
-	}
+        expect:
+        example == 'Hello "world"!'
+    }
 
-	@Test
-	void 'String ang GString'() {
-		def string = "example"
-		def stringWithExpression = "example${2}"
+    def 'String ang GString'() {
+        given:
+        def string = "example"
+        def stringWithExpression = "example${2}"
 
-		Assert.assertTrue(string instanceof String)
-		Assert.assertTrue(stringWithExpression instanceof GString)
-		Assert.assertTrue(stringWithExpression.toString() instanceof String)
-	}
+        expect:
+        string instanceof String
+        stringWithExpression instanceof GString
+        stringWithExpression.toString() instanceof String
+    }
 
-	@Test
-	void 'placeholder with variable'() {
-		def name = "John"
-		def helloName = "Hello $name!".toString()
+    def 'placeholder with variable'() {
+        given:
+        def name = "John"
 
-		Assert.assertEquals("Hello John!", helloName)
-	}
+        when:
+        def helloName = "Hello $name!".toString()
 
-	@Test
-	void 'placeholder with expression'() {
-		def result = "result is ${2 * 2}".toString()
+        then:
+        helloName == "Hello John!"
+    }
 
-		Assert.assertEquals("result is 4", result)
-	}
+    def 'placeholder with expression'() {
+        given:
+        def result = "result is ${2 * 2}".toString()
 
-	@Test
-	void 'placeholder with dotted access'() {
-		def person = [name: 'John']
+        expect:
+        result == "result is 4"
+    }
 
-		def myNameIs = "I'm $person.name, and you?".toString()
+    def 'placeholder with dotted access'() {
+        given:
+        def person = [name: 'John']
 
-		Assert.assertEquals("I'm John, and you?", myNameIs)
-	}
+        when:
+        def myNameIs = "I'm $person.name, and you?".toString()
 
-	@Test
-	void 'placeholder with method call'() {
-		def name = 'John'
+        then:
+        myNameIs == "I'm John, and you?"
+    }
 
-		def result = "Uppercase name: ${name.toUpperCase()}".toString()
+    def 'placeholder with method call'() {
+        given:
+        def name = 'John'
 
-		Assert.assertEquals("Uppercase name: JOHN", result)
-	}
+        when:
+        def result = "Uppercase name: ${name.toUpperCase()}".toString()
+
+        then:
+        result == "Uppercase name: JOHN"
+    }
 
 
-	@Test
-	void 'GString and String hashcode'() {
-		def string = "2+2 is 4"
-		def gstring = "2+2 is ${4}"
+    def 'GString and String hashcode'() {
+        given:
+        def string = "2+2 is 4"
+        def gstring = "2+2 is ${4}"
 
-		Assert.assertTrue(string.hashCode() != gstring.hashCode())
-	}
-
+        expect:
+        string.hashCode() != gstring.hashCode()
+    }
 }

@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.strings;
 
 class Concatenate {
+
 	String first = 'Hello'
 	String last = 'Groovy'
 
@@ -30,14 +31,21 @@ class Concatenate {
 
 	String doConcatUsingArrayInjectMethod() {
 		return [first, ' ', last]
-			.inject(new StringBuffer('My name is '), { initial, name -> initial.append(name); return initial }).toString()
+			.inject(new StringBuffer('My name is '), { initial, name -> initial.append(name) })
+			.toString()
 	}
 
 	String doConcatUsingStringBuilder() {
-		return new StringBuilder().append('My name is ').append(first).append(' ').append(last)
+		return new StringBuilder().append('My name is ')
+			.append(first)
+			.append(' ')
+			.append(last)
 	}
 
 	String doConcatUsingStringBuffer() {
-		return new StringBuffer().append('My name is ').append(first).append(' ').append(last)
+		return new StringBuffer().append('My name is ')
+			.append(first)
+			.append(' ')
+			.append(last)
 	}
 }

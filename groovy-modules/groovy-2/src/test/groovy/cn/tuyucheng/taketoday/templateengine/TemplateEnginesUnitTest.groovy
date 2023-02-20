@@ -1,49 +1,63 @@
 package cn.tuyucheng.taketoday.templateengine
 
+import groovy.text.GStringTemplateEngine
 import groovy.text.SimpleTemplateEngine
 import groovy.text.StreamingTemplateEngine
-import groovy.text.GStringTemplateEngine
-import groovy.text.XmlTemplateEngine
 import groovy.text.XmlTemplateEngine
 import groovy.text.markup.MarkupTemplateEngine
 import groovy.text.markup.TemplateConfiguration
+import spock.lang.Specification
 
-class TemplateEnginesUnitTest extends GroovyTestCase {
+class TemplateEnginesUnitTest extends Specification {
 
-    def bindMap = [user: "Norman", signature: "Baeldung"]
+	final Map BIND_MAP = [user: "Norman", signature: "Baeldung"]
 
-    void testSimpleTemplateEngine() {
-        def smsTemplate = 'Dear <% print user %>, Thanks for reading our Article. ${signature}'
-        def smsText = new SimpleTemplateEngine().createTemplate(smsTemplate).make(bindMap)
+	def "testSimpleTemplateEngine"() {
+		given:
+		def smsTemplate = 'Dear <% print user %>, Thanks for reading our Article. ${signature}'
 
-        assert smsText.toString() == "Dear Norman, Thanks for reading our Article. Baeldung"
-    }
+		when:
+		def smsText = new SimpleTemplateEngine().createTemplate(smsTemplate).make(BIND_MAP)
 
-    void testStreamingTemplateEngine() {
-        def articleEmailTemplate = new File('src/main/resources/articleEmail.template')
-        bindMap.articleText = """1. Overview
-This is a tutorial article on Template Engines""" //can be a string larger than 64k
+		then:
+		smsText.toString() == "Dear Norman, Thanks for reading our Article. Baeldung"
+	}
 
-        def articleEmailText = new StreamingTemplateEngine().createTemplate(articleEmailTemplate).make(bindMap)
+	def "testStreamingTemplateEngine"() {
+		given:
+		def articleEmailTemplate = new File('src/main/resources/articleEmail.template')
+		// can be a string larger than 64k
+		BIND_MAP.articleText = """|1. Overview
+                                  |This is a tutorial article on Template Engines""".stripMargin()
 
-        assert articleEmailText.toString() == """Dear Norman,
-Please read the requested article below.
-1. Overview
-This is a tutorial article on Template Engines
-From,
-Baeldung"""
+		when:
+		def articleEmailText = new StreamingTemplateEngine().createTemplate(articleEmailTemplate).make(BIND_MAP)
 
-    }
+		then:
+		articleEmailText.toString() == """|Dear Norman,
+                                          |Please read the requested article below.
+                                          |1. Overview
+                                          |This is a tutorial article on Template Engines
+                                          |From,
+                                          |Baeldung""".stripMargin()
+	}
 
-    void testGStringTemplateEngine() {
-        def emailTemplate = new File('src/main/resources/email.template')
-        def emailText = new GStringTemplateEngine().createTemplate(emailTemplate).make(bindMap)
+	def "testGStringTemplateEngine"() {
+		given:
+		def emailTemplate = new File('src/main/resources/email.template')
 
-        assert emailText.toString() == "Dear Norman,\nThanks for subscribing our services.\nBaeldung"
-    }
+		when:
+		def emailText = new GStringTemplateEngine().createTemplate(emailTemplate).make(BIND_MAP)
 
-    void testXmlTemplateEngine() {
-        def emailXmlTemplate = '''<xs xmlns:gsp='groovy-server-pages'>
+		then:
+		emailText.toString() == """|Dear Norman,
+                                   |Thanks for subscribing our services.
+                                   |Baeldung""".stripMargin()
+	}
+
+	def "testXmlTemplateEngine"() {
+		given:
+		def emailXmlTemplate = '''<xs xmlns:gsp='groovy-server-pages'>
                                       <gsp:scriptlet>def emailContent = "Thanks for subscribing our services."</gsp:scriptlet>
                                       <email>
                                           <greet>Dear ${user}</greet>
@@ -51,12 +65,17 @@ Baeldung"""
                                           <signature>${signature}</signature>
                                       </email>
                                   </xs>'''
-        def emailXml = new XmlTemplateEngine().createTemplate(emailXmlTemplate).make(bindMap)
-        println emailXml.toString()
-    }
 
-    void testMarkupTemplateEngineHtml() {
-        def emailHtmlTemplate = """html {
+		when:
+		def emailXml = new XmlTemplateEngine().createTemplate(emailXmlTemplate).make(BIND_MAP)
+
+		then:
+		println emailXml.toString()
+	}
+
+	def "testMarkupTemplateEngineHtml"() {
+		given:
+		def emailHtmlTemplate = """html {
                                        head {
                                            title('Service Subscription Email')
                                        }
@@ -67,14 +86,16 @@ Baeldung"""
                                        }
                                    }"""
 
+		when:
+		def emailHtml = new MarkupTemplateEngine().createTemplate(emailHtmlTemplate).make()
 
-        def emailHtml = new MarkupTemplateEngine().createTemplate(emailHtmlTemplate).make()
-        println emailHtml.toString()
+		then:
+		println emailHtml.toString()
+	}
 
-    }
-
-    void testMarkupTemplateEngineXml() {
-        def emailXmlTemplate = """xmlDeclaration()
+	def "testMarkupTemplateEngineXml"() {
+		given:
+		def emailXmlTemplate = """xmlDeclaration()
                                       xs{
                                           email {
                                               greet('Dear Norman')
@@ -83,14 +104,18 @@ Baeldung"""
                                           }
                                       }
                                """
-        TemplateConfiguration config = new TemplateConfiguration()
-        config.autoIndent = true
-        config.autoEscape = true
-        config.autoNewLine = true
+		TemplateConfiguration config = new TemplateConfiguration().with {
+			autoIndent = true
+			autoEscape = true
+			autoNewLine = true
 
-        def emailXml = new MarkupTemplateEngine(config).createTemplate(emailXmlTemplate).make()
+			return it
+		}
 
-        println emailXml.toString()
-    }
+		when:
+		def emailXml = new MarkupTemplateEngine(config).createTemplate(emailXmlTemplate).make()
 
+		then:
+		println emailXml.toString()
+	}
 }
