@@ -49,6 +49,7 @@
 						--add-opens core.java/cn.tuyucheng.taketoday.sealed.records=ALL-UNNAMED
 						--add-opens core.java/cn.tuyucheng.taketoday.switchpatterns=ALL-UNNAMED
 						--add-opens core.java/cn.tuyucheng.taketoday.hexformat=ALL-UNNAMED
+						--add-opens core.java/cn.tuyucheng.taketoday.java17=ALL-UNNAMED
 						--add-modules core.java
 					</argLine>
 					<!--<argLine>&#45;&#45;enable-native-access=core.java</argLine>-->
