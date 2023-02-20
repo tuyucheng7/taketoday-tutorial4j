@@ -8,12 +8,14 @@ import static org.junit.Assert.*
 
 class SqlTest {
 
-	final Map dbConnParams = [url: 'jdbc:hsqldb:mem:testDB', user: 'sa', password: '', driver: 'org.hsqldb.jdbc.JDBCDriver']
+	final Map dbConnParams = [url     : 'jdbc:hsqldb:mem:testDB',
+							  user    : 'sa',
+							  password: '',
+							  driver  : 'org.hsqldb.jdbc.JDBCDriver']
 
 	@Test
 	void whenNewSqlInstance_thenDbIsAccessed() {
 		def sql = Sql.newInstance(dbConnParams)
-		sql.close()
 		sql.close()
 	}
 
@@ -21,7 +23,7 @@ class SqlTest {
 	void whenTableDoesNotExist_thenSelectFails() {
 		try {
 			Sql.withInstance(dbConnParams) { Sql sql ->
-				sql.eachRow('select * from PROJECT') {}
+				sql.eachRow('SELECT * FROM PROJECT') {}
 			}
 
 			fail("An exception should have been thrown")
@@ -33,12 +35,12 @@ class SqlTest {
 	@Test
 	void whenTableCreated_thenSelectIsPossible() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			def result = sql.execute 'create table PROJECT_1 (id integer not null, name varchar(50), url varchar(100))'
+			def result = sql.execute 'CREATE TABLE PROJECT_1 (ID INTEGER NOT NULL, NAME VARCHAR(50), URL VARCHAR(100))'
 
 			assertEquals(0, sql.updateCount)
 			assertFalse(result)
 
-			result = sql.execute('select * from PROJECT_1')
+			result = sql.execute('SELECT * FROM PROJECT_1')
 
 			assertTrue(result)
 		}
@@ -47,7 +49,7 @@ class SqlTest {
 	@Test
 	void whenIdentityColumn_thenInsertReturnsNewId() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_2 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_2 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			def ids = sql.executeInsert("INSERT INTO PROJECT_2 (NAME, URL) VALUES ('tutorials', 'github.com/eugenp/tutorials')")
 
 			assertEquals(0, ids[0][0])
@@ -61,9 +63,10 @@ class SqlTest {
 	@Test
 	void whenUpdate_thenNumberOfAffectedRows() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_3 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_3 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			sql.executeInsert("INSERT INTO PROJECT_3 (NAME, URL) VALUES ('tutorials', 'github.com/eugenp/tutorials')")
 			sql.executeInsert("INSERT INTO PROJECT_3 (NAME, URL) VALUES ('REST with Spring', 'github.com/eugenp/REST-With-Spring')")
+
 			def count = sql.executeUpdate("UPDATE PROJECT_3 SET URL = 'https://' + URL")
 
 			assertEquals(2, count)
@@ -73,7 +76,7 @@ class SqlTest {
 	@Test
 	void whenEachRow_thenResultSetHasProperties() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_4 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_4 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			sql.executeInsert("INSERT INTO PROJECT_4 (NAME, URL) VALUES ('tutorials', 'https://github.com/eugenp/tutorials')")
 			sql.executeInsert("INSERT INTO PROJECT_4 (NAME, URL) VALUES ('REST with Spring', 'https://github.com/eugenp/REST-With-Spring')")
 
@@ -92,7 +95,7 @@ class SqlTest {
 	@Test
 	void whenPagination_thenSubsetIsReturned() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_5 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_5 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			sql.executeInsert("INSERT INTO PROJECT_5 (NAME, URL) VALUES ('tutorials', 'github.com/eugenp/tutorials')")
 			sql.executeInsert("INSERT INTO PROJECT_5 (NAME, URL) VALUES ('REST with Spring', 'github.com/eugenp/REST-With-Spring')")
 			def rows = sql.rows('SELECT * FROM PROJECT_5 ORDER BY NAME', 1, 1)
@@ -105,9 +108,11 @@ class SqlTest {
 	@Test
 	void whenParameters_thenReplacement() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_6 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
-			sql.execute('INSERT INTO PROJECT_6 (NAME, URL) VALUES (?, ?)', 'tutorials', 'github.com/eugenp/tutorials')
-			sql.execute("INSERT INTO PROJECT_6 (NAME, URL) VALUES (:name, :url)", [name: 'REST with Spring', url: 'github.com/eugenp/REST-With-Spring'])
+			sql.execute 'CREATE TABLE PROJECT_6 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute('INSERT INTO PROJECT_6 (NAME, URL) VALUES (?, ?)',
+				'tutorials', 'github.com/eugenp/tutorials')
+			sql.execute("INSERT INTO PROJECT_6 (NAME, URL) VALUES (:name, :url)",
+				[name: 'REST with Spring', url: 'github.com/eugenp/REST-With-Spring'])
 
 			def rows = sql.rows("SELECT * FROM PROJECT_6 WHERE NAME = 'tutorials'")
 
@@ -122,7 +127,7 @@ class SqlTest {
 	@Test
 	void whenParametersInGString_thenReplacement() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_7 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_7 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			sql.execute "INSERT INTO PROJECT_7 (NAME, URL) VALUES (${'tutorials'}, ${'github.com/eugenp/tutorials'})"
 			def name = 'REST with Spring'
 			def url = 'github.com/eugenp/REST-With-Spring'
@@ -142,7 +147,7 @@ class SqlTest {
 	void whenTransactionRollback_thenNoDataInserted() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
 			sql.withTransaction {
-				sql.execute 'create table PROJECT_8 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+				sql.execute 'CREATE TABLE PROJECT_8 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 				sql.executeInsert("INSERT INTO PROJECT_8 (NAME, URL) VALUES ('tutorials', 'https://github.com/eugenp/tutorials')")
 				sql.executeInsert("INSERT INTO PROJECT_8 (NAME, URL) VALUES ('REST with Spring', 'https://github.com/eugenp/REST-With-Spring')")
 				sql.rollback()
@@ -158,7 +163,7 @@ class SqlTest {
 	void whenTransactionRollbackThenCommit_thenOnlyLastInserted() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
 			sql.withTransaction {
-				sql.execute 'create table PROJECT_9 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+				sql.execute 'CREATE TABLE PROJECT_9 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 				sql.executeInsert("INSERT INTO PROJECT_9 (NAME, URL) VALUES ('tutorials', 'https://github.com/eugenp/tutorials')")
 				sql.rollback()
 				sql.executeInsert("INSERT INTO PROJECT_9 (NAME, URL) VALUES ('REST with Spring', 'https://github.com/eugenp/REST-With-Spring')")
@@ -178,7 +183,7 @@ class SqlTest {
 		Sql.withInstance(dbConnParams) { Sql sql ->
 			try {
 				sql.withTransaction {
-					sql.execute 'create table PROJECT_10 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+					sql.execute 'CREATE TABLE PROJECT_10 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 					sql.executeInsert("INSERT INTO PROJECT_10 (NAME, URL) VALUES ('tutorials', 'https://github.com/eugenp/tutorials')")
 					throw new Exception('rollback')
 				}
@@ -196,7 +201,7 @@ class SqlTest {
 		Sql.withInstance(dbConnParams) { Sql sql ->
 			try {
 				sql.cacheConnection {
-					sql.execute 'create table PROJECT_11 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+					sql.execute 'CREATE TABLE PROJECT_11 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 					sql.executeInsert("INSERT INTO PROJECT_11 (NAME, URL) VALUES ('tutorials', 'https://github.com/eugenp/tutorials')")
 					throw new Exception('This does not rollback')
 				}
@@ -212,7 +217,7 @@ class SqlTest {
 	/*@Test
 	void whenModifyResultSet_thenDataIsChanged() {
 		Sql.withInstance(dbConnParams) { Sql sql ->
-			sql.execute 'create table PROJECT_5 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
+			sql.execute 'CREATE TABLE PROJECT_5 (ID IDENTITY, NAME VARCHAR (50), URL VARCHAR (100))'
 			sql.executeInsert("INSERT INTO PROJECT_5 (NAME, URL) VALUES ('tutorials', 'github.com/eugenp/tutorials')")
 			sql.executeInsert("INSERT INTO PROJECT_5 (NAME, URL) VALUES ('REST with Spring', 'github.com/eugenp/REST-With-Spring')")
 
