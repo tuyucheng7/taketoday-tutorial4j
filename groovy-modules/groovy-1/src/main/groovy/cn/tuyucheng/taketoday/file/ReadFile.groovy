@@ -10,12 +10,14 @@ class ReadFile {
 	int readFileLineByLine(String filePath) {
 		File file = new File(filePath)
 		def line, noOfLines = 0;
+
 		file.withReader { reader ->
 			while ((line = reader.readLine()) != null) {
 				println "${line}"
 				noOfLines++
 			}
 		}
+
 		return noOfLines
 	}
 
@@ -25,9 +27,7 @@ class ReadFile {
 	 * @return
 	 */
 	List<String> readFileInList(String filePath) {
-		File file = new File(filePath)
-		def lines = file.readLines()
-		return lines
+		return new File(filePath).readLines()
 	}
 
 	/**
@@ -36,9 +36,7 @@ class ReadFile {
 	 * @return
 	 */
 	String readFileString(String filePath) {
-		File file = new File(filePath)
-		String fileContent = file.text
-		return fileContent
+		return new File(filePath).text
 	}
 
 	/**
@@ -47,9 +45,7 @@ class ReadFile {
 	 * @return
 	 */
 	String readFileStringWithCharset(String filePath) {
-		File file = new File(filePath)
-		String utf8Content = file.getText("UTF-8")
-		return utf8Content
+		return new File(filePath).getText("UTF-8")
 	}
 
 	/**
@@ -58,9 +54,7 @@ class ReadFile {
 	 * @return
 	 */
 	byte[] readBinaryFile(String filePath) {
-		File file = new File(filePath)
-		byte[] binaryContent = file.bytes
-		return binaryContent
+		return new File(filePath).bytes
 	}
 
 	/**
@@ -69,7 +63,7 @@ class ReadFile {
 	 */
 	def moreExamples() {
 
-		// with reader with utf-8
+		//with reader with utf-8
 		new File("src/main/resources/utf8Content.html").withReader('UTF-8') { reader ->
 			def line
 			while ((line = reader.readLine()) != null) {
@@ -84,16 +78,14 @@ class ReadFile {
 		def array = new File("src/main/resources/fileContent.txt") as String[]
 
 		// eachline
-		new File("src/main/resources/fileContent.txt").eachLine { line ->
-			println line
-		}
+		new File("src/main/resources/fileContent.txt").eachLine { println it }
 
-		// newInputStream with eachLine
-		def is = new File("src/main/resources/fileContent.txt").newInputStream()
-		is.eachLine {
-			println it
+		//newInputStream with eachLine
+
+		// try-with-resources automatically closes BufferedInputStream resource
+		try (def inputStream = new File("src/main/resources/fileContent.txt").newInputStream()) {
+			inputStream.eachLine { println it }
 		}
-		is.close()
 
 		// withInputStream
 		new File("src/main/resources/fileContent.txt").withInputStream { stream ->
@@ -102,5 +94,4 @@ class ReadFile {
 			}
 		}
 	}
-
 }
