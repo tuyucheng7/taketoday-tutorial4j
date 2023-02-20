@@ -2,34 +2,34 @@ package cn.tuyucheng.taketoday.traits
 
 trait UserTrait implements Human {
 
-	String sayHello() {
-		return "Hello!"
-	}
+    String email
+    String address
 
-	abstract String name()
+    abstract String name()
 
-	String showName() {
-		return "Hello, ${name()}!"
-	}
+    String sayHello() {
+        return "Hello!"
+    }
 
-	private String greetingMessage() {
-		return 'Hello, from a private method!'
-	}
+    String showName() {
+        return "Hello, ${name()}!"
+    }
 
-	String greet() {
-		def msg = greetingMessage()
-		println msg
-		msg
-	}
+    private String greetingMessage() {
+        return 'Hello, from a private method!'
+    }
 
-	def self() {
-		return this
-	}
+    String greet() {
+        def msg = greetingMessage()
+        println msg
+        msg
+    }
 
-	String showLastName() {
-		return "Hello, ${lastName()}!"
-	}
+    def self() {
+        return this
+    }
 
-	String email
-	String address
+    String showLastName() {
+        return "Hello, ${lastName()}!"
+    }
 }

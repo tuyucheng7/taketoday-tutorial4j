@@ -2,11 +2,13 @@ package cn.tuyucheng.taketoday.traits
 
 class Employee implements UserTrait {
 
-	String name() {
-		return 'Bob'
-	}
+    @Override
+    String name() {
+        return 'Bob'
+    }
 
-	String lastName() {
-		return "Marley"
-	}
+    @Override
+    String lastName() {
+        return "Marley"
+    }
 }
