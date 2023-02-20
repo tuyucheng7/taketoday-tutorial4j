@@ -49,7 +49,7 @@ class TraitsUnitTest extends Specification {
 		then:
 		thrown(MissingMethodException)
 		specificationContext.thrownException.message ==
-			"No signature of method: com.baeldung.traits.Employee.greetingMessage() is applicable for argument types: () values: []"
+			"No signature of method: cn.tuyucheng.taketoday.traits.Employee.greetingMessage() is applicable for argument types: () values: []"
 	}
 
 	def 'Should return employee instance when using Employee.whoAmI method'() {
