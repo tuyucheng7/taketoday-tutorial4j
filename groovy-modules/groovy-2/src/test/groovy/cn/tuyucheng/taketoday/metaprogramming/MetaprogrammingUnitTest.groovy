@@ -1,122 +1,163 @@
 package cn.tuyucheng.taketoday.metaprogramming
 
-import cn.tuyucheng.taketoday.metaprogramming.Employee
+import spock.lang.Specification
 
 import java.time.Year
 
-class MetaprogrammingUnitTest extends GroovyTestCase {
+class MetaprogrammingUnitTest extends Specification {
 
-    Employee emp = new Employee(firstName: "Norman", lastName: "Lewis")
+	Employee emp
 
-    void testPropertyMissing() {
-        assert emp.address == "property 'address' is not available"
-    }
+	void setup() {
+		emp = new Employee(firstName: "Norman", lastName: "Lewis")
+	}
 
-    void testMethodMissing() {
-        Employee emp = new Employee()
-        try {
-            emp.getFullName()
-        } catch(MissingMethodException e) {
-            println "method is not defined"
-        }
-        assert emp.getFullName() == "method 'getFullName' is not defined"
-    }
+	def "testPropertyMissing"() {
+		expect:
+		emp.address == "property 'address' is not available"
+	}
 
-    void testMetaClassProperty() {
-        Employee.metaClass.address = ""
-        emp = new Employee(firstName: "Norman", lastName: "Lewis", address: "US")
-        assert emp.address == "US"
-    }
+	def "testMethodMissing"() {
+		given:
+		Employee emp = new Employee()
 
-    void testMetaClassMethod() {
-        emp.metaClass.getFullName = {
-            "$lastName, $firstName"
-        }
-        assert emp.getFullName() == "Lewis, Norman"
-    }
+		expect:
+		emp.getFullName() == "method 'getFullName' is not defined"
+	}
 
-    void testMetaClassConstructor() {
-        try {
-            Employee emp = new Employee("Norman")
-        } catch(GroovyRuntimeException e) {
-            assert e.message == "Could not find matching constructor for: cn.tuyucheng.taketoday.metaprogramming.Employee(String)"
-        }
+	def "testMetaClassProperty"() {
+		when:
+		Employee.metaClass.address = ""
 
-        Employee.metaClass.constructor = { String firstName ->
-            new Employee(firstName: firstName)
-        }
+		and:
+		emp = new Employee(firstName: "Norman",
+			lastName: "Lewis",
+			address: "US")
 
-        Employee norman = new Employee("Norman")
-        assert norman.firstName == "Norman"
-        assert norman.lastName == null
-    }
+		then:
+		emp.address == "US"
+	}
 
-    void testJavaMetaClass() {
-        String.metaClass.capitalize = { String str ->
-            str.substring(0, 1).toUpperCase() + str.substring(1)
-        }
-        assert "norman".capitalize() == "Norman"
-    }
+	def "testMetaClassMethod"() {
+		when:
+		emp.metaClass.getFullName = {
+			"$lastName, $firstName"
+		}
 
-    void testEmployeeExtension() {
-        def age = 28
-        def expectedYearOfBirth = Year.now() - age
-        Employee emp = new Employee(age: age)
-        assert emp.getYearOfBirth() == expectedYearOfBirth.value
-    }
+		then:
+		emp.getFullName() == "Lewis, Norman"
+	}
 
-    void testJavaClassesExtensions() {
-        5.printCounter()
+	def "testOnlyNameConstructor"() {
+		when:
+		new Employee("Norman")
 
-        assert 40l.square() == 1600l
+		then:
+		thrown(GroovyRuntimeException)
+	}
 
-        assert (2.98).cube() == 26.463592
-    }
+	def "testMetaClassConstructor"() {
+		when:
+		Employee.metaClass.constructor = { String firstName ->
+			new Employee(firstName: firstName)
+		}
 
-    void testStaticEmployeeExtension() {
-        assert Employee.getDefaultObj().firstName == "firstName"
-        assert Employee.getDefaultObj().lastName == "lastName"
-        assert Employee.getDefaultObj().age == 20
-    }
+		and:
+		Employee norman = new Employee("Norman")
 
-    void testToStringAnnotation() {
-        Employee employee = new Employee()
-        employee.id = 1
-        employee.firstName = "norman"
-        employee.lastName = "lewis"
-        employee.age = 28
+		then:
+		norman.firstName == "Norman"
+		norman.lastName == null
+	}
 
-        assert employee.toString() == "Employee(norman, lewis, 28)"
-    }
+	def "testJavaMetaClass"() {
+		when:
+		String.metaClass.capitalize = { String str ->
+			str.substring(0, 1).toUpperCase() + str.substring(1)
+		}
 
-    void testTupleConstructorAnnotation() {
-        Employee norman = new Employee(1, "norman", "lewis", 28)
-        assert norman.toString() == "Employee(norman, lewis, 28)"
+		and:
+		String.metaClass.static.joinWith = { String delimiter, String... args ->
+			String.join(delimiter, args)
+		}
 
-        Employee snape = new Employee(2, "snape")
-        assert snape.toString() == "Employee(snape, null, 0)"
+		then:
+		"norman".capitalize() == "Norman"
+		String.joinWith(" -> ", "a", "b", "c") == "a -> b -> c"
+	}
 
-    }
+	def "testEmployeeExtension"() {
+		given:
+		def age = 28
+		def expectedYearOfBirth = Year.now() - age
+		Employee emp = new Employee(age: age)
 
-    void testEqualsAndHashCodeAnnotation() {
-        Employee norman = new Employee(1, "norman", "lewis", 28)
-        Employee normanCopy = new Employee(1, "norman", "lewis", 28)
-        assert norman.equals(normanCopy)
-        assert norman.hashCode() == normanCopy.hashCode()
-    }
+		expect:
+		emp.getYearOfBirth() == expectedYearOfBirth.value
+	}
 
-    void testAutoCloneAnnotation() {
-        try {
-            Employee norman = new Employee(1, "norman", "lewis", 28)
-            def normanCopy = norman.clone()
-            assert norman == normanCopy
-        } catch(CloneNotSupportedException e) {
-            e.printStackTrace()
-        }
-    }
+	def "testJavaClassesExtensions"() {
+		when:
+		5.printCounter()
 
-    void testLoggingAnnotation() {
-        Employee employee = new Employee(1, "Norman", "Lewis", 28)
-        employee.logEmp()
-    }
+		then:
+		40L.square() == 1600L
+		(2.98).cube() == 26.463592
+	}
+
+	def "testStaticEmployeeExtension"() {
+		assert Employee.getDefaultObj().firstName == "firstName"
+		assert Employee.getDefaultObj().lastName == "lastName"
+		assert Employee.getDefaultObj().age == 20
+	}
+
+	def "testToStringAnnotation"() {
+		when:
+		Employee employee = new Employee().tap {
+			id = 1
+			firstName = "norman"
+			lastName = "lewis"
+			age = 28
+		}
+
+		then:
+		employee.toString() == "Employee(norman, lewis, 28)"
+	}
+
+	def "testTupleConstructorAnnotation"() {
+		when:
+		Employee norman = new Employee(1, "norman", "lewis", 28)
+		Employee snape = new Employee(2, "snape")
+
+		then:
+		norman.toString() == "Employee(norman, lewis, 28)"
+		snape.toString() == "Employee(snape, null, 0)"
+	}
+
+	def "testEqualsAndHashCodeAnnotation"() {
+		when:
+		Employee norman = new Employee(1, "norman", "lewis", 28)
+		Employee normanCopy = new Employee(1, "norman", "lewis", 28)
+
+		then:
+		norman == normanCopy
+		norman.hashCode() == normanCopy.hashCode()
+	}
+
+	def "testAutoCloneAnnotation"() {
+		given:
+		Employee norman = new Employee(1, "norman", "lewis", 28)
+
+		when:
+		def normanCopy = norman.clone()
+
+		then:
+		norman == normanCopy
+	}
+
+	def "testLoggingAnnotation"() {
+		given:
+		Employee employee = new Employee(1, "Norman", "Lewis", 28)
+		employee.logEmp() // INFO: Employee: Lewis, Norman is of 28 years age
+	}
 }
