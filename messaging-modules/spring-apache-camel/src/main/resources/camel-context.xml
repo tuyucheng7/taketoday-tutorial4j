@@ -35,5 +35,5 @@
 
 	</camelContext>
 
-	<bean id="myFileProcessor" class="cn.tuyucheng.taketoday.camel.processor.FileProcessor"/>
+	<bean id="myFileProcessor" class="cn.tuyucheng.taketoday.camel.apache.processor.FileProcessor"/>
 </beans>
