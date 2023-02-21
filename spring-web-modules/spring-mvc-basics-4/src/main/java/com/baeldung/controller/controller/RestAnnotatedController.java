@@ -1,6 +1,6 @@
-package cn.tuyucheng.taketoday.controller.controller;
+package com.baeldung.controller.controller;
 
-import cn.tuyucheng.taketoday.controller.student.Student;
+import com.baeldung.controller.student.Student;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

@@ -4,19 +4,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import cn.tuyucheng.taketoday.controller.config.WebConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = { WebConfig.class })
+import com.baeldung.validation.listvalidation.SpringListValidationApplication;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SpringListValidationApplication.class)
 public class ArticleViewerWithTwoSeparateMethodsIntegrationTest {
 
     @Autowired
@@ -31,24 +30,24 @@ public class ArticleViewerWithTwoSeparateMethodsIntegrationTest {
 
     @Test
     public void givenTwoSeparateMethods_whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
-
+        
         int articleId = 5;
-
+        
         this.mockMvc
             .perform(MockMvcRequestBuilders.get("/seperateMethods/article/{id}", articleId))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(articleId));
-
+               
     }
 
     @Test
     public void givenTwoSeparateMethods_whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
-
+                
         this.mockMvc
             .perform(MockMvcRequestBuilders.get("/seperateMethods/article"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(Article.DEFAULT_ARTICLE.getId()));
-
+               
     }
-
+        
 }

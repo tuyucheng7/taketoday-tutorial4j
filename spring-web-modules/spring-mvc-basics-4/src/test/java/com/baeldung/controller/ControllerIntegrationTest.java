@@ -1,25 +1,24 @@
-package cn.tuyucheng.taketoday.controller;
+package com.baeldung.controller;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.tuyucheng.taketoday.controller.student.Student;
+import com.baeldung.controller.student.Student;
+import com.baeldung.validation.listvalidation.SpringListValidationApplication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration({ "classpath:test-mvc.xml" })
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SpringListValidationApplication.class)
 public class ControllerIntegrationTest {
 
     private MockMvc mockMvc;

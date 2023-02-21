@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.controller.student;
+package com.baeldung.controller.student;
 
 public class Student {
     private String name;
@@ -27,7 +27,14 @@ public class Student {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return this.name.equals(((Student) obj).getName());
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Student)) {
+            return false;
+        }
+        Student student = (Student) o;
+        return getName().equals(student.getName());
     }
 }
