@@ -1,14 +1,14 @@
 ## 1. 简介
 
-RxJava的流行导致创建了多个扩展其功能的第三方库。
+RxJava的普及促进创建了多个扩展其功能的第三方库。
 
-其中许多库都是对开发人员在使用RxJava时遇到的典型问题的答案，[RxRelay](https://github.com/JakeWharton/RxRelay)是这些解决方案之一。
+其中许多库都是对开发人员在使用RxJava时遇到的典型问题的答案，[RxRelay](https://github.com/JakeWharton/RxRelay)就是这些解决方案之一。
 
 ## 2. 处理Subject
 
 简单地说，Subject充当Observable和Observer之间的桥梁。由于它是一个Observer，它可以订阅一个或多个Observables并从它们接收事件。
 
-此外，鉴于它同时是一个Observable，它可以重新发送事件或向其订阅者发送新事件。有关该主题的更多信息，请参见[本文](https://www.baeldung.com/rx-java)。
+此外，鉴于它同时是一个Observable，它可以重新发送事件或向其订阅者发送新事件。有关Subject的更多信息，请参见[本文](https://www.baeldung.com/rx-java)。
 
 Subject的问题之一是在它收到onComplete()或onError()之后-它不再能够移动数据。有时这是期望的行为，但有时不是。
 
@@ -16,9 +16,9 @@ Subject的问题之一是在它收到onComplete()或onError()之后-它不再能
 
 ## 3. Relay
 
-一个Relay基本上是一个Subject，但是没有调用onComplete()和onError()的能力，因此它能够不断地发射数据。
+**一个Relay基本上是一个Subject，但是没有调用onComplete()和onError()的能力，因此它能够不断地发射数据**。
 
-这使我们能够在不同类型的API之间创建桥梁，而不必担心意外触发终端状态。
+这使我们能够在不同类型的API之间创建桥梁，而不必担心意外触发终止状态。
 
 要使用RxRelay，我们需要将以下依赖项添加到我们的项目中：
 
@@ -30,7 +30,7 @@ Subject的问题之一是在它收到onComplete()或onError()之后-它不再能
 </dependency>
 ```
 
-## 4. Relay的种类
+## 4. Relay的类型
 
 库中提供了三种不同类型的Relay，我们将在这里快速探索所有这三个。
 
@@ -60,7 +60,7 @@ public void whenObserverSubscribedToPublishRelay_itReceivesEmittedEvents() {
 }
 ```
 
-在这种情况下没有事件缓冲，所以这种行为类似于冷Observable。
+在这种情况下没有事件缓冲，因此这种行为类似于冷Observable。
 
 ### 4.2 BehaviorRelay
 
@@ -107,7 +107,7 @@ public void whenObserverSubscribedToBehaviorRelayWithoutDefaultValue_itIsEmpty()
 
 ### 4.3 ReplayRelay
 
-这种类型的Relay缓冲它接收到的所有事件，然后将它重新发送给所有订阅它的订阅者：
+这种类型的Relay缓冲它接收到的所有事件，然后将其重新发送给所有订阅它的订阅者：
 
 ```java
 public void whenObserverSubscribedToReplayRelay_itReceivesEmittedEvents() {
@@ -124,7 +124,7 @@ public void whenObserverSubscribedToReplayRelay_itReceivesEmittedEvents() {
 }
 ```
 
-所有元素都被缓冲并且所有订阅者都会收到相同的事件，因此这种行为类似于冷Observable。
+所有元素都被缓冲并且所有订阅者都会收到相同的事件，因此**这种行为类似于冷Observable**。
 
 当我们创建ReplayRelay时，我们可以为事件提供最大缓冲区大小和生存时间。
 
@@ -149,7 +149,7 @@ public void whenObserverSubscribedToReplayRelayWithLimitedSize_itReceivesEmitted
 public void whenObserverSubscribedToReplayRelayWithMaxAge_thenItReceivesEmittedEvents() {
     SingleScheduler scheduler = new SingleScheduler();
     ReplayRelay<Integer> replayRelay =
-      ReplayRelay.createWithTime(2000, TimeUnit.MILLISECONDS, scheduler);
+        ReplayRelay.createWithTime(2000, TimeUnit.MILLISECONDS, scheduler);
     long current =  scheduler.now(TimeUnit.MILLISECONDS);
     TestObserver<Integer> firstObserver = TestObserver.create();
     replayRelay.accept(5);
@@ -172,31 +172,31 @@ public void whenObserverSubscribedToReplayRelayWithMaxAge_thenItReceivesEmittedE
 
 ```java
 public class RandomRelay extends Relay<Integer> {
-	Random random = new Random();
+    Random random = new Random();
 
-	List<Observer<? super Integer>> observers = new ArrayList<>();
+    List<Observer<? super Integer>> observers = new ArrayList<>();
 
-	@Override
-	public void accept(Integer integer) {
-		int observerIndex = random.nextInt() % observers.size();
-		observers.get(observerIndex).onNext(integer);
-	}
+    @Override
+    public void accept(Integer integer) {
+        int observerIndex = random.nextInt() % observers.size();
+        observers.get(observerIndex).onNext(integer);
+    }
 
-	@Override
-	public boolean hasObservers() {
-		return observers.isEmpty();
-	}
+    @Override
+    public boolean hasObservers() {
+        return observers.isEmpty();
+    }
 
-	@Override
-	protected void subscribeActual(Observer<? super Integer> observer) {
-		observers.add(observer);
-		observer.onSubscribe(Disposables.fromRunnable(
-			() -> System.out.println("Disposed")));
-	}
+    @Override
+    protected void subscribeActual(Observer<? super Integer> observer) {
+        observers.add(observer);
+        observer.onSubscribe(Disposables.fromRunnable(
+              () -> System.out.println("Disposed")));
+    }
 }
 ```
 
-我们现在可以测试只有一个订阅者会收到事件：
+现在，我们可以测试只有一个订阅者会收到事件：
 
 ```java
 public void whenTwoObserversSubscribedToRandomRelay_thenOnlyOneReceivesEvent() {

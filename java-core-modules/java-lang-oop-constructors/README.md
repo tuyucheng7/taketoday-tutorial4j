@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [Java构造函数指南](docs/Java构造函数指南.md)
-+ [Java隐式Super构造函数是未定义的错误](docs/Java隐式Super构造函数是未定义的错误.md)
++ [Java ”implicit super constructor is undefined“错误](docs/Java隐式Super构造函数是未定义的错误.md)
 + [Java中的构造函数规范](docs/Java中的构造函数规范.md)
 + [Java中的私有构造函数](docs/Java中的私有构造函数.md)
 + [Java中的静态与实例初始化程序块](docs/Java中的静态与实例初始化程序块.md)

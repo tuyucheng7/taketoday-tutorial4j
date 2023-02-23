@@ -1,8 +1,8 @@
 ## 1. 简介
 
-在[介绍RxJava](https://www.baeldung.com/rx-java)文章之后，我们将看看聚合和数学运算符。
+在[RxJava简介](https://www.baeldung.com/rx-java)文章之后，我们将看看聚合和数学运算符。
 
-这些操作必须等待源Observable发出所有项目。正因为如此，这些运算符在可能代表非常长或无限序列的Observables上使用是危险的。
+**这些操作必须等待源Observable发出所有元素**。正因为如此，这些运算符在可能表示非常长或无限序列的Observables上使用是危险的。
 
 其次，所有示例都使用TestSubscriber的一个实例，这是一种可用于单元测试的特殊订阅者，用于执行断言、检查接收到的事件或包装模拟的订阅者。
 
@@ -10,7 +10,7 @@
 
 ## 2. 设置
 
-要使用其他运算符，我们需要[将额外的依赖项](https://search.maven.org/search?q=a:rxjava-math)添加到pom.xml：
+要使用其他运算符，我们需要将[额外的依赖项](https://search.maven.org/search?q=a:rxjava-math)添加到pom.xml：
 
 ```xml
 <dependency>
@@ -28,7 +28,7 @@ compile 'io.reactivex:rxjava-math:1.0.0'
 
 ## 3. 数学运算符
 
-MathObservable专用于执行数学运算，它的运算符使用另一个Observable，该Observable发出可以作为数字进行评估的项目。
+**MathObservable专用于执行数学运算**，它的运算符使用另一个Observable，该Observable发出可以作为数字进行评估的元素。
 
 ### 3.1 average
 
@@ -45,7 +45,7 @@ MathObservable.averageInteger(sourceObservable).subscribe(subscriber);
 subscriber.assertValue(10);
 ```
 
-有四个类似的运算符用于处理原始值：averageInteger、averageLong、averageFloat和averageDouble。
+有四个类似的运算符用于处理原始类型值：averageInteger、averageLong、averageFloat和averageDouble。
 
 ### 3.2 max
 
@@ -62,7 +62,7 @@ MathObservable.max(sourceObservable).subscribe(subscriber);
 subscriber.assertValue(9);
 ```
 
-重要的是要注意max运算符有一个采用比较函数的重载方法。
+重要的是要注意max运算符有一个接收比较函数的重载方法。
 
 考虑到数学运算符也可以处理可以作为数字进行管理的对象，max重载运算符允许比较自定义类型或对标准类型进行自定义排序。
 
@@ -76,7 +76,7 @@ class Item {
 }
 ```
 
-我们现在可以定义itemObservable，然后使用max运算符发出具有最高id的Item：
+现在我们可以定义itemObservable，然后使用max运算符发出具有最高id的Item：
 
 ```java
 Item five = new Item(5);
@@ -99,7 +99,7 @@ subscriber.assertValue(five);
 
 ### 3.3 min
 
-min运算符发出单个项目，其中包含来自源的最小元素：
+min运算符发出单个元素，其中包含来自源的最小元素：
 
 ```java
 Observable<Integer> sourceObservable = Observable.range(1, 20);
@@ -110,7 +110,7 @@ MathObservable.min(sourceObservable).subscribe(subscriber);
 subscriber.assertValue(1);
 ```
 
-min运算符有一个重载方法，它接受一个比较器实例：
+min运算符有一个重载方法，它接收一个比较器实例：
 
 ```java
 Item one = new Item(1);
@@ -132,7 +132,7 @@ subscriber.assertValue(one);
 
 ### 3.4 sum
 
-sum运算符发出一个值，表示源Observable发出的所有数字的总和：
+sum运算符发出单个值，表示源Observable发出的所有数字的总和：
 
 ```java
 Observable<Integer> sourceObservable = Observable.range(1, 20);
@@ -149,9 +149,9 @@ subscriber.assertValue(210);
 
 ### 4.1 concat
 
-concat运算符将源发出的项目连接在一起。
+concat运算符将源发出的元素连接在一起。
 
-现在让我们定义两个Observables并将它们连接起来：
+现在让我们定义两个Observables并连接它们：
 
 ```java
 List<Integer> listOne = Arrays.asList(1, 2, 3, 4);
@@ -172,13 +172,13 @@ subscriber.assertValues(1, 2, 3, 4, 5, 6, 7, 8);
 
 详细来说，concat运算符等待订阅传递给它的每个额外的Observable，直到前一个Observable完成。
 
-出于这个原因，连接一个立即开始发射项目的“热”Observable，将导致“热”Observable在所有先前的项目完成之前发射的任何项目丢失。
+出于这个原因，连接一个立即开始发射元素的“热”Observable，将导致“热”Observable在所有先前的元素完成之前发射的任何元素丢失。
 
 ### 4.2 count
 
-count运算符发出源发出的所有项目的计数：
+count运算符发出源发出的所有元素的计数：
 
-让我们计算Observable发出的项目数：
+让我们计算一个Observable发出的元素数：
 
 ```java
 List<String> lettersList = Arrays.asList("A", "B", "C", "D", "E", "F", "G");
@@ -191,17 +191,17 @@ sourceObservable.subscribe(subscriber);
 subscriber.assertValue(7);
 ```
 
-如果源Observable因错误而终止，则计数将传递一个通知错误而不会发出任何项目。但是，如果它根本不终止，则计数既不会发出项目也不会终止。
+如果源Observable因错误而终止，则count将传递一个通知错误而不会发出任何元素。但是，如果它根本不终止，则count既不会发出元素也不会终止。
 
-对于计数操作，还有countLong运算符，它最终会为那些可能超过Integer容量的序列发出一个Long值。
+对于count操作，还有countLong运算符，它最终会为那些可能超过Integer容量的序列发出一个Long值。
 
 ### 4.3 reduce
 
-reduce运算符通过应用累加器函数将所有发出的元素减少为单个元素。
+reduce运算符通过应用累加器函数将所有发出的元素归约为单个元素。
 
-这个过程一直持续到所有项目都被发出，然后Observable从reduce发出函数返回的最终值。
+这个过程一直持续到所有元素都被发出，然后Observable从reduce发出函数返回的最终值。
 
-现在，让我们看看如何减少String列表，以相反的顺序连接它们：
+现在，让我们看看如何归约String列表，以相反的顺序拼接它们：
 
 ```java
 List<String> list = Arrays.asList("A", "B", "C", "D", "E", "F", "G");
@@ -221,9 +221,9 @@ collect运算符类似于reduce运算符，但它专用于将元素收集到单�
 它需要两个参数：
 
 -   返回空可变数据结构的函数
--   一个函数，当给定数据结构和发出的项目时，适当地修改数据结构
+-   一个函数，当给定数据结构和发出的元素时，适当地修改数据结构
 
-让我们看看如何从Observable返回一组项目：
+让我们看看如何从Observable返回一组元素：
 
 ```java
 List<String> list = Arrays.asList("A", "B", "C", "B", "B", "A", "D");
@@ -267,7 +267,7 @@ listObservable.subscribe(subscriber);
 subscriber.assertValue(Arrays.asList(10, 11, 12, 13, 14));
 ```
 
-如我们所见，toSortedList使用默认比较，但可以提供自定义比较器函数。我们现在可以看到如何使用自定义排序函数以相反的顺序对整数进行排序：
+如我们所见，toSortedList使用默认比较，但可以提供自定义比较器函数。现在，我们可以看到如何使用自定义排序函数以相反的顺序对整数进行排序：
 
 ```java
 Observable<Integer> sourceObservable = Observable.range(10, 5);
@@ -282,13 +282,13 @@ subscriber.assertValue(Arrays.asList(14, 13, 12, 11, 10));
 
 ### 4.7 toMap
 
-toMap运算符将Observable发出的项目序列转换为由指定键函数键控的映射。
+toMap运算符将Observable发出的元素序列转换为由指定键函数键入的Map。
 
 特别是，toMap运算符具有不同的重载方法，这些方法需要以下一个、两个或三个参数：
 
-1.  从项中生成键的keySelector
-2.  valueSelector从发出的项目中产生将存储在地图中的实际值
-3.  创建将保存项目的集合的mapFactory
+1.  从元素中生成键的keySelector
+2.  valueSelector从发出的元素中产生将存储在Map中的实际值
+3.  创建将保存元素的集合的mapFactory
 
 让我们开始定义一个简单的类Book：
 
@@ -301,7 +301,7 @@ class Book {
 }
 ```
 
-我们现在可以看到如何将一系列发出的Book项目转换为Map，将书名作为键，将年份作为值：
+现在，我们可以看到如何将一系列发出的Book元素转换为Map，将书名作为键，将年份作为值：
 
 ```java
 Observable<Book> bookObservable = Observable.just(
@@ -324,9 +324,9 @@ subscriber.assertValue(new HashMap() {{
 
 ### 4.8 toMultiMap
 
-映射时，许多值共享同一个键是很常见的。将一个键映射到多个值的数据结构称为多重映射。
+映射时，许多值共享同一个键是很常见的。将一个键映射到多个值的数据结构称为Multimap。
 
-这可以通过toMultiMap运算符来实现，该运算符将Observable发出的项目序列转换为一个列表，该列表也是一个由指定键函数键控的映射。
+这可以通过toMultiMap运算符来实现，该运算符将Observable发出的元素序列转换为一个列表，该列表也是一个由指定键函数键入的Map。
 
 该运算符向toMap运算符的参数添加了另一个参数，即collectionFactory。此参数允许指定应将值存储在哪种集合类型中。让我们看看如何做到这一点：
 

@@ -12,7 +12,6 @@
 public class User {
     
     // implementation details
-
 }
 ```
 
@@ -22,7 +21,6 @@ public class User {
 public class Lender extends User {
     
     // implementation details
-
 }
 ```
 
@@ -32,7 +30,6 @@ public class Lender extends User {
 public class Borrower extends User {
     
     // implementation details
-
 }
 ```
 
@@ -53,9 +50,9 @@ public void givenLender_whenGetClass_thenEqualsLenderType() {
 
 当使用isInstance()方法时，我们正在检查一个对象是否属于特定类型，并且根据类型，我们要么在谈论类，要么在谈论接口。
 
-如果作为方法参数发送的对象通过类或接口类型的 IS-A 测试，则此方法将返回true。
+如果作为方法参数发送的对象通过类或接口类型的IS-A测试，则此方法将返回true。
 
-我们可以使用isInstance()方法在运行时检查对象的类。此外，isInstance()还 处理[自动装箱](https://www.baeldung.com/java-wrapper-classes#autoboxing-and-unboxing)。
+我们可以使用isInstance()方法在运行时检查对象的类。此外，isInstance()还处理[自动装箱](https://www.baeldung.com/java-wrapper-classes#autoboxing-and-unboxing)。
 
 如果我们检查以下代码，我们会发现代码无法编译：
 
@@ -73,7 +70,6 @@ public void givenBorrower_whenDoubleOrNotString_thenRequestLoan() {
     if(!(amount instanceof String)) { // Compilation error, incompatible operands
         borrower.requestLoan(amount);
     }
-        
 }
 ```
 
@@ -107,7 +103,7 @@ public void givenBorrower_whenLoanAmountIsNotString_thenRequestLoan() {
 }
 ```
 
-我们还可以使用isInstance() 来验证对象是否可以在转换之前转换为另一个类：
+我们还可以使用isInstance()来验证对象是否可以在转换之前转换为另一个类：
 
 ```java
 @Test
@@ -125,9 +121,9 @@ public void givenUser_whenIsInstanceOfLender_thenDowncast() {
 
 当我们使用isInstance()方法时，我们保护我们的程序免于尝试非法向下转换，尽管在这种情况下使用instanceof运算符会更顺利。我们接下来检查一下。
 
-## 4.使用instanceof操作符
+## 4. 使用instanceof操作符
 
-与isInstance()方法 类似，如果被评估的对象属于给定类型，则instanceof运算符返回true——换句话说，如果我们在运算符左侧引用的对象通过了类的 IS-A 测试或接口类型在右侧。
+与isInstance()方法类似，如果被评估的对象属于给定类型，则instanceof运算符返回true-换句话说，如果我们在运算符左侧引用的对象通过了类的IS-A测试或接口类型在右侧。
 
 我们可以评估Lender对象是否为Lender类型和User类型：
 
@@ -140,8 +136,8 @@ public void givenLender_whenInstanceOf_thenReturnTrue() {
 }
 ```
 
-要深入了解instanceof运算符的工作原理，我们可以在我们的[Java instanceOf 运算符文章](https://www.baeldung.com/java-instanceof)中找到更多信息。
+要深入了解instanceof运算符的工作原理，我们可以在我们的[Java instanceOf运算符](https://www.baeldung.com/java-instanceof)文章中找到更多信息。
 
-## 5.总结
+## 5. 总结
 
 在本文中，我们回顾了在Java中查找对象类的三种不同方法：getClass()方法、isInstance()方法和instanceof运算符。

@@ -1,6 +1,6 @@
 ## 1. 概述
 
-我们几乎在每个应用程序中都会看到枚举。这些包括订单状态代码，如DRAFT和PROCESSING， 以及 Web 错误代码，如 400、404、500、501 等。每当我们在域中看到枚举数据时，我们都会在我们的应用程序中看到它的枚举。我们可以使用传入请求中的数据并找到该枚举。例如，我们可以将 Web 错误400映射到BAD_REQUEST。
+我们几乎在每个应用程序中都会看到枚举。这些包括订单状态代码，如DRAFT和PROCESSING， 以及Web错误代码，如400、404、500、501等。每当我们在域中看到枚举数据时，我们都会在我们的应用程序中看到它的枚举。我们可以使用传入请求中的数据并找到该枚举。例如，我们可以将Web错误400映射到BAD_REQUEST。
 
 因此，我们需要逻辑来按条件搜索枚举。这可能是它的名称或值。或者，它甚至可以是任意整数代码。
 
@@ -31,7 +31,7 @@ public static Direction findByName(String name) {
 }
 ```
 
-在此实现中，如果找不到给定名称的枚举，我们将返回null 。这取决于我们如何处理未找到的情况。一种选择是我们可以返回一个默认的枚举值。相反，我们可以抛出异常。我们很快就会看到更多搜索枚举的例子。现在让我们测试我们的搜索逻辑。首先，积极的情景：
+在此实现中，如果找不到给定名称的枚举，我们将返回null。这取决于我们如何处理未找到的情况。一种选择是我们可以返回一个默认的枚举值。相反，我们可以抛出异常。我们很快就会看到更多搜索枚举的例子。现在让我们测试我们的搜索逻辑。首先，积极的情景：
 
 ```java
 @Test
@@ -49,7 +49,6 @@ public void givenWeekdays_whenValidDirectionNameLowerCaseProvided_directionIsFou
     Direction result = Direction.findByName("east");
     assertThat(result).isEqualTo(Direction.EAST);
 }
-
 ```
 
 我们还可以再添加一个测试来验证搜索方法是否为名称“East”返回相同的结果。以下测试将说明我们对名称“East”得到相同的结果。
@@ -103,7 +102,6 @@ public void givenWeekdays_whenValidWeekdayValueProvided_weekdayIsFound() {
     Weekday result = Weekday.findByValue("Monday");
     assertThat(result).isEqualTo(Weekday.MONDAY);
 }
-
 ```
 
 如果我们不提供有效值，我们将返回null。让我们验证一下：
@@ -114,7 +112,6 @@ public void givenWeekdays_whenInvalidWeekdayValueProvided_nullIsReturned() {
     Weekday result = Weekday.findByValue("mon");
     assertThat(result).isNull();
 }
-
 ```
 
 搜索并不总是需要按字符串值进行。那会很不方便，因为我们必须先将输入转换为字符串，然后再将其传递给搜索方法。现在让我们看看如何按非字符串值(例如整数值)进行搜索。
@@ -141,16 +138,15 @@ public enum Month {
 }
 ```
 
-我们可以看到 month 枚举有两个成员，value 和 code，其中 code 是一个整数值。让我们实现通过代码搜索月份的逻辑：
+我们可以看到month枚举有两个成员，value和code，其中code是一个整数值。让我们实现通过代码搜索月份的逻辑：
 
 ```java
 public static Optional<Month> findByCode(int code) {
     return Arrays.stream(values()).filter(month -> month.getCode() == code).findFirst();
 }
-
 ```
 
-此搜索看起来与之前的搜索略有不同，因为我们使用Java8 功能来演示实现搜索的另一种方法。在这里，我们将返回枚举的Optional值，而不是返回枚举本身。同样，我们将返回一个空的Optional ，而不是null。因此，如果我们在一个月中搜索代码 1，我们应该得到Month.JANUARY。让我们通过测试来验证这一点：
+此搜索看起来与之前的搜索略有不同，因为我们使用Java 8功能来演示实现搜索的另一种方法。在这里，我们将返回枚举的Optional值，而不是返回枚举本身。同样，我们将返回一个空的Optional，而不是null。因此，如果我们在一个月中搜索代码1，我们应该得到Month.JANUARY。让我们通过测试来验证这一点：
 
 ```java
 @Test
@@ -158,7 +154,6 @@ public void givenMonths_whenValidMonthCodeProvided_optionalMonthIsReturned() {
     Optional<Month> result = Month.findByCode(1);
     assertThat(result).isEqualTo(Optional.of(Month.JANUARY));
 }
-
 ```
 
 对于无效的代码值，我们应该得到一个空的Optional。让我们也通过测试来验证这一点：
@@ -169,14 +164,13 @@ public void givenMonths_whenInvalidMonthCodeProvided_optionalEmptyIsReturned() {
     Optional<Month> result = Month.findByCode(0);
     assertThat(result).isEmpty();
 }
-
 ```
 
 在某些情况下，我们可能希望实施更严格的搜索。因此，我们不会容忍无效输入，我们会抛出异常来证明这一点。
 
 ## 5. 搜索方法抛出的异常
 
-我们可能不想返回null或空的Optional值，而是抛出一个异常。抛出哪种异常完全取决于系统的需要。如果找不到枚举，我们将选择抛出IllegalArgumentException 。这是搜索方法的代码：
+我们可能不想返回null或空的Optional值，而是抛出一个异常。抛出哪种异常完全取决于系统的需要。如果找不到枚举，我们将选择抛出IllegalArgumentException。这是搜索方法的代码：
 
 ```java
 public static Month findByValue(String value) {
@@ -184,18 +178,17 @@ public static Month findByValue(String value) {
 }
 ```
 
-我们可以再次看到我们在抛出异常时使用了Java8 风格。让我们通过测试来验证它：
+我们可以再次看到我们在抛出异常时使用了Java 8风格。让我们通过测试来验证它：
 
 ```java
 @Test
 public void givenMonths_whenInvalidMonthValueProvided_illegalArgExIsThrown() {
     assertThatIllegalArgumentException().isThrownBy(() -> Month.findByValue("Jan"));
 }
-
 ```
 
 本文中演示的搜索方法并不是唯一的方法，但它们代表了最常见的选项。我们还可以调整这些实现以满足我们系统的需要。
 
-## 六，总结
+## 6. 总结
 
 在本文中，我们学习了搜索枚举的各种方法。我们还讨论了返回结果的不同方式。最后，我们用可靠的单元测试支持这些实现。

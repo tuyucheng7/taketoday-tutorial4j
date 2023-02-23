@@ -2,17 +2,17 @@
 
 [Java枚举类型](https://www.baeldung.com/a-guide-to-java-enums)提供了一种语言支持的方式来创建和使用常量值。通过定义一组有限的值，枚举比String或int等常量文字变量更类型安全。
 
-但是，枚举值必须是有效的标识符，我们鼓励按照惯例使用 SCREAMING_SNAKE_CASE。
+但是，枚举值必须是有效的标识符，我们鼓励按照惯例使用SCREAMING_SNAKE_CASE。
 
 考虑到这些限制，单独的枚举值不适合人类可读的字符串或非字符串值。
 
-在本教程中，我们将使用枚举 功能作为Java类来附加我们想要的值。
+在本教程中，我们将使用枚举功能作为Java类来附加我们想要的值。
 
-## 延伸阅读：
+##延伸阅读：
 
-## [Java 枚举指南](https://www.baeldung.com/a-guide-to-java-enums)
+## [Java枚举指南](https://www.baeldung.com/a-guide-to-java-enums)
 
-一个快速实用的JavaEnum 实现使用指南，它是什么，它解决了什么问题以及如何使用它来实现常用的设计模式。
+一个快速实用的JavaEnum实现使用指南，它是什么，它解决了什么问题以及如何使用它来实现常用的设计模式。
 
 [阅读更多](https://www.baeldung.com/a-guide-to-java-enums)→
 
@@ -22,13 +22,13 @@
 
 [阅读更多](https://www.baeldung.com/java-enum-iteration)→
 
-## [Java 构造函数指南](https://www.baeldung.com/java-constructors)
+## [Java构造函数指南](https://www.baeldung.com/java-constructors)
 
 了解有关Java构造函数的基础知识以及一些高级技巧
 
 [阅读更多](https://www.baeldung.com/java-constructors)→
 
-## 2. 使用 Java枚举作为类
+## 2. 使用Java枚举作为类
 
 我们经常创建一个枚举作为一个简单的值列表。例如，这里是元素周期表的前两行作为一个简单的枚举：
 
@@ -38,17 +38,17 @@ public enum Element {
 }
 ```
 
-使用上面的语法，我们创建了十个 名为Element的枚举的静态最终实例。虽然这非常有效，但我们只捕获了元素符号。虽然大写形式适用于Java常量，但这不是我们通常编写符号的方式。
+使用上面的语法，我们创建了十个名为Element的枚举的静态最终实例。虽然这非常有效，但我们只捕获了元素符号。虽然大写形式适用于Java常量，但这不是我们通常编写符号的方式。
 
 此外，我们还遗漏了元素周期表元素的其他属性，例如名称和原子量。
 
 虽然枚举类型在Java中有特殊的行为，但我们可以像对其他类一样添加构造函数、字段和方法。因此，我们可以增强我们的枚举以包含我们需要的值。
 
-## 3. 添加构造函数和最终字段
+##3.添加构造函数和最终字段
 
 让我们从添加元素名称开始。
 
-我们将使用构造函数将名称设置为 最终变量：
+我们将使用构造函数将名称设置为最终变量：
 
 ```java
 public enum Element {
@@ -69,7 +69,7 @@ public enum Element {
 
 然后我们声明一个实例变量label。有几点需要注意。
 
-首先，我们选择了标签 标识符而不是 名称。尽管可以使用成员字段名称，但让我们选择 标签以避免与预定义的Enum.name()方法混淆。
+首先，我们选择了标签标识符而不是名称。尽管可以使用成员字段名称，但让我们选择标签以避免与预定义的Enum.name()方法混淆。
 
 其次，我们的标签字段是最终的。虽然枚举的字段不必是最终的，但在大多数情况下我们不希望我们的标签发生变化。本着枚举值不变的精神，这是有道理的。
 
@@ -79,9 +79,9 @@ public enum Element {
 System.out.println(BE.label);
 ```
 
-另一方面，该字段可以是私有的，可以使用getLabel()方法访问。为了简洁起见，本文将继续使用 public 字段样式。
+另一方面，该字段可以是私有的，可以使用getLabel()方法访问。为了简洁起见，本文将继续使用public字段样式。
 
-## 4. 定位 Java枚举值
+## 4. 定位Java枚举值
 
 Java为所有枚举类型提供了valueOf(String)方法。
 
@@ -106,7 +106,7 @@ public static Element valueOfLabel(String label) {
 }
 ```
 
-静态valueOfLabel()方法迭代元素 值，直到找到匹配项。如果未找到匹配项，则返回null 。相反，可以抛出异常而不是返回null。
+静态valueOfLabel()方法迭代元素值，直到找到匹配项。如果未找到匹配项，则返回null。相反，可以抛出异常而不是返回null。
 
 让我们看一个使用我们的valueOfLabel()方法的简单示例：
 
@@ -114,11 +114,11 @@ public static Element valueOfLabel(String label) {
 assertSame(Element.LI, Element.valueOfLabel("Lithium"));
 ```
 
-## 5.缓存查找值
+## 5. 缓存查找值
 
 我们可以通过使用Map缓存标签来避免迭代枚举值。
 
-为此，我们定义了一个静态最终 Map并在类加载时填充它：
+为此，我们定义了一个静态最终Map并在类加载时填充它：
 
 ```java
 public enum Element {
@@ -145,7 +145,7 @@ public enum Element {
 
 作为替代方案，我们可以在valueOfLabel()方法中首次访问缓存时延迟构建缓存。在那种情况下，必须同步地图访问以防止并发问题。
 
-## 6.附加多个值
+## 6. 附加多个值
 
 Enum构造函数可以接受多个值。
 
@@ -198,17 +198,17 @@ public enum Element {
 
 此外，我们可以通过添加执行操作的方法来将计算值添加到我们的枚举中。
 
-## 7.控制界面
+## 7. 控制接口
 
-作为向我们的枚举添加字段和方法的结果，我们更改了它的公共接口。因此，我们使用核心Enum name()和valueOf() 方法的代码将不知道我们的新字段。
+作为向我们的枚举添加字段和方法的结果，我们更改了它的公共接口。因此，我们使用核心Enum name()和valueOf()方法的代码将不知道我们的新字段。
 
-Java 语言已经为我们定义了静态 valueOf()方法，因此我们无法提供自己的valueOf()实现。
+Java语言已经为我们定义了静态valueOf()方法，因此我们无法提供自己的valueOf()实现。
 
 同样，因为Enum.name()方法是最终的，我们也不能覆盖它。
 
-因此，没有实际的方法可以使用标准枚举API 来利用我们的额外字段。相反，让我们看看一些不同的方式来公开我们的领域。
+因此，没有实际的方法可以使用标准枚举API来利用我们的额外字段。相反，让我们看看一些不同的方式来公开我们的领域。
 
-### 7.1. 覆盖toString()
+### 7.1 覆盖toString()
 
 覆盖toString()可能是覆盖name()的替代方法：
 
@@ -219,11 +219,11 @@ public String toString() {
 }
 ```
 
-默认情况下，Enum.toString()返回与 Enum.name() 相同的值。
+默认情况下，Enum.toString()返回与Enum.name()相同的值。
 
-### 7.2. 实现接口
+### 7.2 实现接口
 
-Java中的枚举类型可以实现接口。虽然这种方法不像Enum API 那样通用，但接口确实可以帮助我们进行概括。
+Java中的枚举类型可以实现接口。虽然这种方法不像EnumAPI那样通用，但接口确实可以帮助我们进行概括。
 
 让我们考虑这个接口：
 
@@ -253,8 +253,8 @@ public enum Element implements Labeled {
 }
 ```
 
-这种方法的一个好处是Labeled接口可以应用于任何类，而不仅仅是枚举类型。我们现在不再依赖通用的枚举API，而是拥有一个更特定于上下文的 API。
+这种方法的一个好处是Labeled接口可以应用于任何类，而不仅仅是枚举类型。我们现在不再依赖通用的枚举API，而是拥有一个更特定于上下文的API。
 
-## 八、总结
+## 8. 总结
 
 在本文中，我们探讨了JavaEnum实现的许多特性。通过添加构造函数、字段和方法，我们看到枚举可以做的比文字常量多得多。

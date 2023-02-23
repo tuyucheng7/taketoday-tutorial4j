@@ -1,8 +1,8 @@
 ## 1. 概述
 
-简单地说，rxjava-jdbc是一个用于与关系数据库交互的API，它允许流畅的方法调用。在本快速教程中，我们将了解该库以及如何使用它的一些常用功能。
+简单地说，rxjava-jdbc是一个用于与关系数据库交互的API，它允许流式的方法调用。在这个快速教程中，我们将了解该库以及如何使用它的一些常用功能。
 
-如果你想了解RxJava的基础知识，请查看[这篇文章](https://www.baeldung.com/rx-java)。
+如果你想了解RxJava的基础知识，请查看[这篇](https://www.baeldung.com/rx-java)文章。
 
 ## 2. Maven依赖
 
@@ -20,7 +20,7 @@
 
 ## 3. 主要部件
 
-Database类是运行所有常见类型的数据库交互的主要入口点。要创建数据库对象，我们可以将ConnectionProvider接口的实现实例传递给from()静态方法：
+**Database类是运行所有常见类型的数据库交互的主要入口点**。要创建一个Database对象，我们可以将ConnectionProvider接口的实现实例传递给from()静态方法：
 
 ```java
 public static ConnectionProvider connectionProvider = new ConnectionProviderFromUrl(DB_CONNECTION, DB_USER, DB_PASSWORD);
@@ -36,62 +36,62 @@ ConnectionProvider有几个值得关注的实现-例如ConnectionProviderFromCon
 
 ## 4. 快速开始
 
-在下一个快速示例中，我们将展示如何执行所有基本数据库操作：
+在下一个快速示例中，我们将展示如何执行所有基本的数据库操作：
 
 ```java
 public class BasicQueryTypesTest {
 
-	Observable<Integer> create,
-		insert1,
-		insert2,
-		insert3,
-		update,
-		delete = null;
+    Observable<Integer> create,
+          insert1,
+          insert2,
+          insert3,
+          update,
+          delete = null;
 
-	@Test
-	public void whenCreateTableAndInsertRecords_thenCorrect() {
-		create = db.update("CREATE TABLE IF NOT EXISTS EMPLOYEE(" + "id int primary key, name varchar(255))")
-			.count();
-		insert1 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(1, 'John')")
-			.dependsOn(create)
-			.count();
-		update = db.update("UPDATE EMPLOYEE SET name = 'Alan' WHERE id = 1")
-			.dependsOn(create)
-			.count();
-		insert2 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(2, 'Sarah')")
-			.dependsOn(create)
-			.count();
-		insert3 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(3, 'Mike')")
-			.dependsOn(create)
-			.count();
-		delete = db.update("DELETE FROM EMPLOYEE WHERE id = 2")
-			.dependsOn(create)
-			.count();
-		List<String> names = db.select("select name from EMPLOYEE where id < ?")
-			.parameter(3)
-			.dependsOn(create)
-			.dependsOn(insert1)
-			.dependsOn(insert2)
-			.dependsOn(insert3)
-			.dependsOn(update)
-			.dependsOn(delete)
-			.getAs(String.class)
-			.toList()
-			.toBlocking()
-			.single();
+    @Test
+    public void whenCreateTableAndInsertRecords_thenCorrect() {
+        create = db.update("CREATE TABLE IF NOT EXISTS EMPLOYEE(" + "id int primary key, name varchar(255))")
+              .count();
+        insert1 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(1, 'John')")
+              .dependsOn(create)
+              .count();
+        update = db.update("UPDATE EMPLOYEE SET name = 'Alan' WHERE id = 1")
+              .dependsOn(create)
+              .count();
+        insert2 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(2, 'Sarah')")
+              .dependsOn(create)
+              .count();
+        insert3 = db.update("INSERT INTO EMPLOYEE(id, name) VALUES(3, 'Mike')")
+              .dependsOn(create)
+              .count();
+        delete = db.update("DELETE FROM EMPLOYEE WHERE id = 2")
+              .dependsOn(create)
+              .count();
+        List<String> names = db.select("select name from EMPLOYEE where id < ?")
+              .parameter(3)
+              .dependsOn(create)
+              .dependsOn(insert1)
+              .dependsOn(insert2)
+              .dependsOn(insert3)
+              .dependsOn(update)
+              .dependsOn(delete)
+              .getAs(String.class)
+              .toList()
+              .toBlocking()
+              .single();
 
-		assertEquals(Arrays.asList("Alan"), names);
-	}
+        assertEquals(Arrays.asList("Alan"), names);
+    }
 }
 ```
 
-这里有一个简短的说明，我们正在调用dependsOn()来确定查询的运行顺序。
+这里有一个简短的说明-我们正在调用dependsOn()来确定查询的运行顺序。
 
 否则，代码将失败或产生不可预知的结果，除非我们指定我们希望以何种顺序执行查询。
 
 ## 5. 自动映射
 
-自动映射功能允许我们将选定的数据库记录映射到对象。
+自动映射功能允许我们将选择的数据库记录映射到对象。
 
 让我们看一下自动映射数据库记录的两种方法。
 
@@ -102,11 +102,11 @@ public class BasicQueryTypesTest {
 ```java
 public interface Employee {
 
-	@Column("id")
-	int id();
+    @Column("id")
+    int id();
 
-	@Column("name")
-	String name();
+    @Column("name")
+    String name();
 }
 ```
 
@@ -133,7 +133,7 @@ public void whenSelectFromTableAndAutomap_thenCorrect() {
 
 ### 5.2 使用类自动映射
 
-我们还可以使用具体类将数据库记录自动映射到对象。让我们看看这个类看起来像什么：
+我们还可以使用具体的类将数据库记录自动映射到对象。让我们看看这个类看起来像什么：
 
 ```java
 public class Manager {
@@ -166,7 +166,7 @@ public void whenSelectManagersAndAutomap_thenCorrect() {
 }
 ```
 
-这里有几点说明：
+这里有一些注意事项：
 
 -   create、insert1和insert2是对创建Manager表并向其中插入记录所返回的Observables的引用
 -   我们查询中所选列的数量必须与Manager类构造函数中的参数数量相匹配
@@ -176,7 +176,7 @@ public void whenSelectManagersAndAutomap_thenCorrect() {
 
 ## 6. 处理大对象
 
-API支持使用大对象，如CLOB和BLOBS。在接下来的小节中，我们将了解如何使用此功能。
+该API支持处理大对象，如CLOB和BLOBS。在接下来的小节中，我们将了解如何使用此功能。
 
 ### 6.1 CLOB
 
@@ -186,7 +186,7 @@ API支持使用大对象，如CLOB和BLOBS。在接下来的小节中，我们�
 @Before
 public void setup() throws IOException {
     create = db.update("CREATE TABLE IF NOT EXISTS " + "SERVERLOG (id int primary key, document CLOB)")
-        	.count();
+        .count();
     
     InputStream actualInputStream = new FileInputStream("src/test/resources/actual_clob");
     actualDocument = getStringFromInputStream(actualInputStream);
@@ -197,8 +197,8 @@ public void setup() throws IOException {
     insert = db.update("insert into SERVERLOG(id,document) values(?,?)")
         	.parameter(1)
         	.parameter(Database.toSentinelIfNull(actualDocument))
-      .dependsOn(create)
-      .count();
+        .dependsOn(create)
+        .count();
 }
 
 @Test
@@ -243,13 +243,13 @@ public void setup() throws IOException {
 }
 ```
 
-然后，我们可以重复使用前面示例中的相同测试。
+然后，我们可以重用上一个示例中的相同测试。
 
 ## 7. 事务
 
 接下来，让我们看一下对事务的支持。
 
-事务管理允许我们处理用于将多个数据库操作分组在一个事务中的事务，以便它们可以全部提交-永久保存到数据库，或一起回滚。
+事务管理允许我们处理用于将多个数据库操作分组在单个事务中的事务，以便它们可以全部提交-永久保存到数据库，或一起回滚。
 
 让我们看一个简单的例子：
 
@@ -279,7 +279,7 @@ public void whenCommitTransaction_thenRecordUpdated() {
 
 为了开始事务，我们调用方法beginTransaction()。调用此方法后，每个数据库操作都在同一事务中运行，直到调用任何方法commit()或rollback()为止。
 
-我们可以在捕获异常时使用rollback()方法回滚整个事务，以防代码因任何原因失败。我们可以对所有Exceptions或特定的预期Exceptions这样做。
+我们可以在捕获异常时使用rollback()方法来回滚整个事务，以防代码因任何原因失败。我们可以对所有Exceptions或特定的预期Exceptions执行此操作。
 
 ## 8. 返回生成的ID
 

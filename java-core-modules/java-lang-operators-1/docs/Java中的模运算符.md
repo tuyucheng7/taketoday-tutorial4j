@@ -2,11 +2,11 @@
 
 在本快速教程中，我们将了解模运算符是什么，以及如何在一些常见用例中将其与Java结合使用。
 
-## 2.模运算符
+## 2. 模运算符
 
 先从Java简单除法的缺点说起。
 
-如果除法运算符两边的操作数都是 int类型，则运算结果是另一个 int：
+如果除法运算符两边的操作数都是int类型，则运算结果是另一个int：
 
 ```java
 @Test
@@ -15,7 +15,7 @@ public void whenIntegerDivision_thenLosesRemainder() {
 }
 ```
 
-当至少一个操作数的类型为 float或 double 时，相同的除法会给出不同的结果：
+当至少一个操作数的类型为float或double时，相同的除法会给出不同的结果：
 
 ```java
 @Test
@@ -35,11 +35,11 @@ public void whenModulo_thenReturnsRemainder() {
 }
 ```
 
-余数是 11(被除数)除以 4(除数)后的余数，在本例中为 3。
+余数是11(被除数)除以4(除数)后的余数，在本例中为3。
 
 出于同样的原因，除以零是不可能的，当右侧参数为零时，也不可能使用模运算符。
 
-当我们尝试使用零作为右侧操作数时，除法和模运算都会抛出ArithmeticException ：
+当我们尝试使用零作为右侧操作数时，除法和模运算都会抛出ArithmeticException：
 
 ```java
 @Test(expected = ArithmeticException.class)
@@ -77,9 +77,9 @@ public void whenDivisorIsEvenAndModulusIs2_thenResultIs0() {
 
 模运算的另一个好处是跟踪圆形阵列中下一个空闲点的索引。
 
-在int值循环队列的简单实现中 ，元素保存在固定大小的数组中。
+在int值循环队列的简单实现中，元素保存在固定大小的数组中。
 
-任何时候我们想要将一个元素推送到我们的循环队列中，我们只需通过计算我们已经插入的项目数的模数加上 1 和队列容量来计算下一个空闲位置：
+任何时候我们想要将一个元素推送到我们的循环队列中，我们只需通过计算我们已经插入的项目数的模数加上1和队列容量来计算下一个空闲位置：
 
 ```java
 @Test
@@ -98,7 +98,7 @@ public void whenItemsIsAddedToCircularQueue_thenNoArrayIndexOutOfBounds() {
 
 但是，一旦我们插入超过QUEUE_CAPACITY的项目，下一个项目将覆盖第一个。
 
-## 4。总结
+## 4. 总结
 
 模运算符用于计算否则会丢失的整数除法的余数。
 

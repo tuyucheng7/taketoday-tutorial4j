@@ -20,7 +20,7 @@
 
 ## 3. 自定义运算符
 
-我们可以通过实现[Operator](http://reactivex.io/RxJava/1.x/javadoc/rx/Observable.Operator.html)接口来创建自定义运算符，在下面的示例中，我们实现了一个简单的运算符，用于从String中删除非字母数字字符：
+**我们可以通过实现[Operator](http://reactivex.io/RxJava/1.x/javadoc/rx/Observable.Operator.html)接口来创建自定义运算符**，在下面的示例中，我们实现了一个简单的运算符，用于从String中删除非字母数字字符：
 
 ```java
 public class ToCleanString implements Operator<String, String> {
@@ -64,7 +64,7 @@ public class ToCleanString implements Operator<String, String> {
 
 在上面的示例中，我们需要在应用我们的操作并将项目发送给它之前检查订阅者是否已订阅，因为这是不必要的。
 
-我们还将实例创建限制为静态工厂方法，以便在链接方法和使用静态导入时实现更加用户友好的可读性。
+**我们还将实例创建限制为静态工厂方法，以便在链接方法和使用静态导入时实现更加用户友好的可读性**。
 
 现在，我们可以使用[lift](http://reactivex.io/RxJava/1.x/javadoc/rx/Observable.html#lift(rx.Observable.Operator))运算符轻松地将我们的自定义运算符与其他运算符链接起来：
 

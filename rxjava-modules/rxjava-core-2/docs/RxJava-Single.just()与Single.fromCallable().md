@@ -1,10 +1,10 @@
 ## 1. 概述
 
-在这个简短的教程中，我们将比较两种在RxJava中创建Single对象的流行方法，我们将使用[TestSubscriber](https://www.baeldung.com/rxjava-testing)测试实现。首先，我们将查看Single.just()工厂方法并热切地使用它来创建对象的实例。之后，我们将了解Single.fromCallable()并了解如何使用它来提高性能。
+在这个简短的教程中，我们将比较两种在RxJava中创建Single对象的流行方法，我们将使用[TestSubscriber](https://www.baeldung.com/rxjava-testing)测试实现。首先，我们将查看Single.just()工厂方法并急切地使用它来创建对象的实例。之后，我们将了解Single.fromCallable()并了解如何使用它来提高性能。
 
 ## 2. Single.just()
 
-Single.just()是创建Observable实例的直接方法，它以一个对象作为参数并将其包装在RxJava的Single中：
+Single.just()是创建Observable实例的直接方式，它以一个对象作为参数并将其包装在RxJava的Single中：
 
 ```java
 Single<String> employee = Single.just("John Doe");
@@ -26,7 +26,7 @@ void givenASubscriber_whenUsingJust_thenReturnTheCorrectValue() {
 }
 ```
 
-正如预期的那样，testSubscriber发布的值与Repository返回的值相同。另一方面，即使没有订阅者，数据仍然会被获取。让我们使用Mockito来验证与EmployeeRepository的交互次数：
+正如预期的那样，testSubscriber发布的值与Repository返回的值相同。另一方面，**即使没有订阅者，数据仍然会被获取**。让我们使用Mockito来验证与EmployeeRepository的交互次数：
 
 ```java
 @Test
@@ -41,7 +41,7 @@ void givenNoSubscriber_whenUsingJust_thenDataIsFetched() {
 
 ## 3. Single.fromCallable()
 
-作为替代方案，我们可以使用Single.fromCallable()。在这种情况下，我们需要提供Callable接口或lambda表达式的实现。换句话说，我们可以传递一个函数来获取数据，这个函数只有在有人订阅时才会被调用。因此，如果没有订阅者，则不会与Repository进行交互：
+作为替代方案，我们可以使用Single.fromCallable()。在这种情况下，我们需要提供Callable接口或lambda表达式的实现。换句话说，我们可以传递一个函数来获取数据，这个函数只有在有人订阅时才会被调用。因此，**如果没有订阅者，则不会与Repository进行交互**：
 
 ```java
 @Test

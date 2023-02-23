@@ -20,7 +20,7 @@
 
 ## 3. StringObservable
 
-StringObservable是一个方便的运算符，用于表示可能无限的编码字符串序列。
+**StringObservable是一个方便的运算符，用于表示可能无限的编码字符串序列**。
 
 运算符from读取一个输入流，创建一个Observable，它发出字节数组的字符边界序列：
 
@@ -41,9 +41,9 @@ observableByteStream.subscribe(testSubscriber);
 
 ## 4. 将字节转换为字符串
 
-可以使用解码和编码运算符对来自不同字符集的无限序列进行编码/解码。
+可以使用decode和encode运算符对来自不同字符集的无限序列进行编码/解码。
 
-顾名思义，这些将简单地创建一个Observable，它发出编码或解码的字节数组或字符串序列，因此，如果我们需要处理不同字符集中的字符串，我们可以使用它：
+顾名思义，这些将简单地创建一个Observable，它发出编码或解码的字节数组或字符串序列，因此，**如果我们需要处理不同字符集中的字符串，我们可以使用它**：
 
 解码字节数组Observable：
 
@@ -60,7 +60,7 @@ stringObservable.subscribe(testSubscriber);
 
 ## 5. 拆分字符串
 
-StringObservable也有一些方便的操作符用于拆分字符串序列：split和byLine，它们都创建一个新的Observable，它按照模式对输入数据输出项目进行分块：
+StringObservable也有一些方便的运算符用于拆分字符串序列：split和byLine，它们都创建一个新的Observable，它按照模式对输入数据输出元素进行分块：
 
 <img src="../assets/img_1.png">
 
@@ -75,11 +75,11 @@ Observable<String> splittedObservable = StringObservable.split(sourceObservable,
 splittedObservable.subscribe(testSubscriber);
 ```
 
-## 6. 加入字符串
+## 6. 连接字符串
 
-对上一节运算符的补充是join和stringConcat，它们连接来自String Observable的项目，在给定分隔符的情况下发出单个字符串。
+与上一节的运算符互补的是join和stringConcat，它们连接来自String Observable的元素，在给定分隔符的情况下发出单个字符串。
 
-另请注意，这些将在发出输出之前消耗所有项目。
+另请注意，这些将在发出输出之前消耗所有元素。
 
 <img src="../assets/img_2.png">
 

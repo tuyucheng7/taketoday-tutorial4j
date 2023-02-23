@@ -1,10 +1,10 @@
 ## 1. 概述
 
-在本教程中，我们将看到如何在RxJava中使用延迟重试。使用Observable时，很可能会出现错误而不是成功。在这种情况下，我们可以使用延迟重试来在一段时间后重新尝试。
+在本教程中，**我们将看到如何在RxJava中使用延迟重试**。使用Observable时，很可能会出现错误而不是成功。在这种情况下，我们可以使用延迟重试来在一段时间后重新尝试。
 
 ## 2. 项目设置
 
-首先，让我们创建一个Maven或Gradle项目。在这里，我们使用基于Maven的项目。让我们将rxjava依赖项添加到我们的pom.xml文件中：
+首先，让我们创建一个Maven或Gradle项目。在这里，**我们使用基于Maven的项目**。让我们将rxjava依赖项添加到我们的pom.xml文件中：
 
 ```xml
 <dependency>
@@ -16,9 +16,9 @@
 
 可以在[Maven Central](https://search.maven.org/artifact/io.reactivex.rxjava2/rxjava/2.2.21/jar)上找到依赖项。
 
-## 3. Observable生命周期重试
+## 3. 在Observable生命周期中重试
 
- 当Observable源发出错误时使用重试。这是对源的重新订阅，希望在下一次尝试中没有错误地完成。因此，仅当Observable发出错误时，retry()及其其他变体才会出现。
+当Observable源发出错误时使用重试。这是对源的重新订阅，希望在下一次尝试中没有错误地完成。因此，仅当Observable发出错误时，retry()及其其他变体才会出现。
 
 ### 3.1 retry的重载变体
 
@@ -26,13 +26,13 @@
 
 retry(long)返回一个镜像源Observable的Observable。只要它调用onError指定次数，我们就会重新订阅这个镜像。
 
-retry(Func2)方法接收一个函数，该函数接收一个Throwable作为输入并产生一个布尔值 作为输出。在这里，只有当镜像针对特定异常和重试次数返回true时，我们才重新订阅镜像。
+retry(Func2)方法接收一个函数，该函数接收一个Throwable作为输入并产生一个布尔值作为输出。在这里，只有当镜像针对特定异常和重试次数返回true时，我们才重新订阅镜像。
 
 ### 3.2 retryWhen与retry
 
 retryWhen(Func1)为我们提供了一个选项来包含自定义逻辑，以确定我们是否应该重新订阅原始Observable的镜像。此方法接收一个函数，该函数接收onError处理程序抛出的异常。
 
-如果函数发出一个项目，我们重新订阅镜像，如果它产生一个错误通知，我们就不会这样做。
+如果函数发出一个元素，我们重新订阅镜像，如果它产生一个错误通知，我们就不会这样做。
 
 ## 4. 代码示例
 
@@ -102,4 +102,4 @@ public void givenError_whenRetry_thenCanDelay(){
 
 ## 5. 总结
 
-在本教程中，我们看到了如何使用retryWhen及其一些相关函数。我们了解重试和重试时帮助我们解决问题的情况。
+在本教程中，我们看到了如何使用retryWhen及其一些相关函数。我们了解retry和retryWhen帮助我们解决问题的情况。

@@ -2,7 +2,7 @@
 
 本教程快速而切题地介绍了Java语言中的嵌套类。
 
-简单地说，Java 允许我们在其他类中定义类。嵌套类使我们能够对仅在一个地方使用的类进行逻辑分组，编写更具可读性和可维护性的代码并增加封装性。
+简单地说，Java允许我们在其他类中定义类。嵌套类使我们能够对仅在一个地方使用的类进行逻辑分组，编写更具可读性和可维护性的代码并增加封装性。
 
 在我们开始之前，让我们看一下该语言中可用的几种嵌套类类型：
 
@@ -26,16 +26,16 @@
 
 ```java
 public class Enclosing {
-    
+
     private static int x = 1;
-    
+
     public static class StaticNested {
 
         private void run() {
             // method implementation
         }
     }
-    
+
     @Test
     public void test() {
         Enclosing.StaticNested nested = new Enclosing.StaticNested();
@@ -58,7 +58,7 @@ public class Enclosing {
 
 ```java
 public class Outer {
-    
+
     public class Inner {
         // ...
     }
@@ -78,9 +78,9 @@ Outer.Inner inner = outer.new Inner();
 
 在接下来的小节中，我们将展示一些特殊类型的内部类。
 
-### 3.1. 本地课程
+### 3.1 局部类
 
-本地类是一种特殊类型的内部类——其中类在方法或作用域块内定义。
+局部类是一种特殊类型的内部类-其中类在方法或作用域块内定义。
 
 让我们看看关于这种类型的课程要记住的几点：
 
@@ -92,7 +92,7 @@ Outer.Inner inner = outer.new Inner();
 
 ```java
 public class NewEnclosing {
-    
+
     void run() {
         class Local {
 
@@ -103,7 +103,7 @@ public class NewEnclosing {
         Local local = new Local();
         local.run();
     }
-    
+
     @Test
     public void test() {
         NewEnclosing newEnclosing = new NewEnclosing();
@@ -112,7 +112,7 @@ public class NewEnclosing {
 }
 ```
 
-### 3.2. 匿名类
+### 3.2 匿名类
 
 匿名类可用于定义接口或抽象类的实现，而无需创建可重用的实现。
 
@@ -135,7 +135,7 @@ abstract class SimpleAbstractClass {
 
 ```java
 public class AnonymousInnerUnitTest {
-    
+
     @Test
     public void whenRunAnonymousClass_thenCorrect() {
         SimpleAbstractClass simpleAbstractClass = new SimpleAbstractClass() {
@@ -148,9 +148,9 @@ public class AnonymousInnerUnitTest {
 }
 ```
 
-有关更多详细信息，我们可能会发现我们关于[Java 中的匿名类](https://www.baeldung.com/java-anonymous-classes)的教程很有用。
+有关更多详细信息，我们可能会发现我们关于[Java中的匿名类](https://www.baeldung.com/java-anonymous-classes)的教程很有用。
 
-## 4.阴影
+## 4. 阴影
 
 如果内部类的成员具有相同的名称，则它们的声明会影响封闭类的成员。
 
@@ -187,13 +187,13 @@ public class NewOuter {
 }
 ```
 
-## 5.连载
+## 5. 连载
 
-为了避免在尝试序列化嵌套类时出现java.io.NotSerializableException ，我们应该：
+为了避免在尝试序列化嵌套类时出现java.io.NotSerializableException，我们应该：
 
 -   将嵌套类声明为静态
 -   使嵌套类和封闭类都实现Serializable
 
-## 六，总结
+## 6. 总结
 
 在本文中，我们了解了嵌套类是什么以及它们的不同类型。我们还研究了这些不同类型的字段可见性和访问修饰符有何不同。

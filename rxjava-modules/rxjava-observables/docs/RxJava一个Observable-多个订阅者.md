@@ -35,7 +35,7 @@ s1.unsubscribe();
 s2.unsubscribe();
 ```
 
-想象一下，获取每个元素是一项代价高昂的操作，它可能包括，例如，密集计算或打开URL连接。
+想象一下，获取每个元素是一项成本高昂的操作-例如，它可能包括密集计算或打开URL连接。
 
 为了简单起见，我们只返回一个数字：
 
@@ -62,7 +62,7 @@ Clear resources
 Clear resources
 ```
 
-正如我们所看到的，获取每个元素以及清除资源在默认情况下执行两次-每个Subscriber一次，这不是我们想要的。ConnectableObservable类有助于解决这个问题。
+正如我们所看到的，**获取每个元素以及清除资源在默认情况下执行两次**-每个Subscriber一次，这不是我们想要的。ConnectableObservable类有助于解决这个问题。
 
 ## 3. ConnectableObservable
 
@@ -88,7 +88,7 @@ ConnectableObservable obs = Observable.create(subscriber -> {
 
 ### 3.2 connect()
 
-在ConnectableObservable的connect()方法未被调用之前，即使有一些订阅者，Observable的onSubscribe()回调也不会被触发。
+**在ConnectableObservable的connect()方法未被调用之前，即使有一些订阅者，Observable的onSubscribe()回调也不会被触发**。
 
 让我们证明这一点：
 
@@ -102,7 +102,7 @@ Subscription s = obs.connect();
 s.unsubscribe();
 ```
 
-我们订阅然后在连接之前等待一秒钟，输出是：
+我们订阅然后在连接之前等待一秒钟，输出为：
 
 ```bash
 Subscribing
@@ -120,20 +120,20 @@ Clear resources
 
 +   如我们所愿，获取元素只发生一次
 +   清除资源也只发生一次
-+   获取元素在订阅后一秒开始。
-+   订阅不再触发元素的发射，只有connect()这样做
++   获取元素在订阅后一秒开始
++   订阅不再触发元素的发射，只有connect()才这样做
 
-这种延迟可能是有益的——有时我们需要为所有订阅者提供相同的元素序列，即使其中一个订阅者比另一个订阅者早。
+这种延迟可能是有益的-有时我们需要为所有订阅者提供相同的元素序列，即使其中一个订阅者比另一个订阅者早。
 
-### 3.3 Observables的一致视图-connect() After subscribe()
+### 3.3 Observables的一致视图-subscribe()之后connect()
 
 这个用例无法在我们之前的Observable上演示，因为它冷运行并且两个订阅者无论如何都会获得整个元素序列。
 
-相反，想象一下，元素发射不依赖于订阅的时刻，例如鼠标点击时发射的事件。现在还假设第二个订阅者在第一个订阅者之后订阅了第二个订阅者。
+相反，想象一下，元素发射不依赖于订阅的时刻，例如鼠标单击时发出的事件。现在还假设第二个订阅者在第一个订阅者之后订阅了第二个订阅者。
 
 第一个Subscriber将获得在此示例中发出的所有元素，而第二个Subscriber将仅接收一些元素。
 
-另一方面，在正确的地方使用connect()方法可以让两个订阅者对Observable序列有相同的看法。
+另一方面，在正确的位置使用connect()方法可以为两个订阅者提供关于Observable序列的相同视图。
 
 **热Observable示例**
 
@@ -231,15 +231,15 @@ unsubscribe connected
 clearing resources
 ```
 
-所以重点是等待所有订阅者准备就绪的那一刻，然后调用connect()。
+所以重点是等待所有订阅者都准备就绪的那一刻，然后调用connect()。
 
 例如，在Spring应用程序中，我们可以在应用程序启动期间订阅所有组件，并在onApplicationEvent()中调用connect()。
 
-但是让我们回到我们的例子；请注意，connect()方法之前的所有点击都将丢失。如果我们不想遗漏元素而是相反地处理它们，我们可以将connect()放在代码的前面，并强制Observable在没有任何Subscriber的情况下产生事件。
+但是让我们回到我们的例子；请注意，connect()方法之前的所有点击都将丢失。如果我们不想错误元素而是相反地处理它们，我们可以将connect()放在代码的前面，并强制Observable在没有任何Subscriber的情况下产生事件。
 
-### 3.4 在没有任何订阅者的情况下强制订阅-connect() Before subscribe()
+### 3.4 在没有任何订阅者的情况下强制订阅-connect()先于subscribe()
 
-为了证明这一点，让我们更正我们的例子：
+为了证明这一点，让我们更正我们的示例：
 
 ```java
 public static void connectBeforeSubscribe() throws InterruptedException {
@@ -261,7 +261,7 @@ public static void connectBeforeSubscribe() throws InterruptedException {
 步骤比较简单：
 
 -   首先，我们连接
--   然后我们等待一秒钟并订阅第一个订阅者
+-   然后我们等待一秒钟并订阅第一个Subscriber
 -   最后，我们再等一秒钟并订阅第二个Subscriber
 
 请注意，我们添加了doOnNext()运算符。例如，在这里我们可以将元素存储在数据库中，但在我们的代码中，我们只打印“saving ...”。
@@ -288,7 +288,7 @@ clearing resources
 
 如果没有订阅者，元素仍然会被处理。
 
-因此connect()方法开始发出和处理元素，而不管是否有人订阅，就好像有一个带有空操作的人造订阅者消耗元素一样。
+**因此connect()方法开始发出和处理元素，而不管是否有人订阅**，就好像有一个带有空操作的人工订阅者消费了元素一样。
 
 如果一些真正的Subscriber订阅了，这个人工中介只是将元素传播给他们。
 
@@ -306,14 +306,14 @@ Subscription s = obs.connect();
 
 ### 3.5 autoConnect()
 
-此方法意味着connect()不会在订阅之前或之后调用，而是在第一个订阅者订阅时自动调用。
+**此方法意味着connect()不会在订阅之前或之后调用，而是在第一个订阅者订阅时自动调用**。
 
 使用这个方法，我们不能自己调用connect()，因为返回的对象是一个普通的Observable，它没有这个方法，但使用了一个底层的ConnectableObservable：
 
 ```java
 public static void autoConnectAndSubscribe() throws InterruptedException {
     Observable obs = getObservable()
-    .doOnNext(x -> LOGGER.info("saving " + x)).publish().autoConnect();
+        .doOnNext(x -> LOGGER.info("saving " + x)).publish().autoConnect();
 
     LOGGER.info("autoconnect()");
     Thread.sleep(1000);
@@ -356,11 +356,11 @@ saving 278
 saving 268
 ```
 
-正如我们所见，清除资源不会发生，并且在第二次取消订阅后继续使用doOnNext()保存元素。这意味着人工订阅者不会取消订阅但会继续消费元素。
+正如我们所看到的，清除资源不会发生，并且在第二次取消订阅后继续使用doOnNext()保存元素。这意味着人工订阅者不会取消订阅而是继续消费元素。
 
 ### 3.6 refCount()
 
-refCount()与autoConnect()相似，因为连接也会在第一个订阅者订阅后立即自动发生。
+**refCount()与autoConnect()相似，因为连接也会在第一个订阅者订阅后立即自动发生**。
 
 与autoconnect()不同，断开连接也会在最后一个订阅者取消订阅时自动发生：
 

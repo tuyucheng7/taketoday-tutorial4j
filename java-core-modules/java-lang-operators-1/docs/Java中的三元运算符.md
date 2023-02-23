@@ -4,35 +4,35 @@
 
 在本教程中，我们将学习何时以及如何使用三元结构。我们将从查看其语法开始，然后探索其用法。
 
-## 延伸阅读：
+### 延伸阅读
 
-## [Java 中的控制结构](https://www.baeldung.com/java-control-structures)
+### [Java中的控制结构](https://www.baeldung.com/java-control-structures)
 
 了解你可以在Java中使用的控制结构。
 
 [阅读更多](https://www.baeldung.com/java-control-structures)→
 
-## [Java 中的 If-Else 语句](https://www.baeldung.com/java-if-else)
+### [Java中的If-Else语句](https://www.baeldung.com/java-if-else)
 
-了解如何在Java中使用 if-else 语句。
+了解如何在Java中使用if-else语句。
 
 [阅读更多](https://www.baeldung.com/java-if-else)→
 
-## [如何在Java8 Streams 中使用 if/else 逻辑](https://www.baeldung.com/java-8-streams-if-else-logic)
+### [如何在Java 8 Streams中使用if/else逻辑](https://www.baeldung.com/java-8-streams-if-else-logic)
 
-了解如何将 if/else 逻辑应用于Java8 Streams。
+了解如何将if/else逻辑应用于Java8Streams。
 
 [阅读更多](https://www.baeldung.com/java-8-streams-if-else-logic)→
 
-## 2.语法
+## 2. 语法
 
-Java 中的三元运算符?:是唯一接受三个操作数的运算符：
+Java中的三元运算符?:是唯一接受三个操作数的运算符：
 
 ```java
 booleanExpression ? expression1 : expression2
 ```
 
-第一个操作数必须是布尔表达式，第二个和第三个操作数可以是任何返回值的表达式。如果第一个操作数的计算结果为true，则三元构造返回expression1作为输出，否则返回 expression2。
+第一个操作数必须是布尔表达式，第二个和第三个操作数可以是任何返回值的表达式。如果第一个操作数的计算结果为true，则三元构造返回expression1作为输出，否则返回expression2。
 
 ## 3. 三元运算符示例
 
@@ -59,7 +59,7 @@ final String msg = num > 10
   : "Number is less than or equal to 10";
 ```
 
-## 4. 表达评价
+## 4. 表达式计算
 
 当使用Java三元结构时，在运行时只计算右侧表达式之一，即expression1或expression2。
 
@@ -93,7 +93,7 @@ public void whenConditionIsFalse_thenOnlySecondExpressionIsEvaluated() {
 }
 ```
 
-exp1的值保持不变，exp2的值增加 1。
+exp1的值保持不变，exp2的值增加1。
 
 ## 5. 嵌套三元运算符
 
@@ -106,7 +106,7 @@ String msg = num > 10 ? "Number is greater than 10" :
   num > 5 ? "Number is greater than 5" : "Number is less than equal to 5";
 ```
 
-为了提高上面代码的可读性，我们可以在必要的地方使用大括号() ：
+为了提高上面代码的可读性，我们可以在必要的地方使用大括号()：
 
 ```java
 String msg = num > 10 ? "Number is greater than 10" 
@@ -115,6 +115,6 @@ String msg = num > 10 ? "Number is greater than 10"
 
 但是，请注意，不建议在现实世界中使用这种深度嵌套的三元结构。这是因为它使代码的可读性和维护难度降低。
 
-## 六，总结
+## 6. 总结
 
 在这篇快速文章中，我们了解了Java中的三元运算符。不可能用三元运算符替换每个if-else结构。但它在某些情况下是一个很好的工具，可以使我们的代码更短、更易读。

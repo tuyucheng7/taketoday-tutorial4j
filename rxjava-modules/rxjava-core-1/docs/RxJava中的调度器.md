@@ -1,24 +1,24 @@
 ## 1. 概述
 
-在本文中，我们将重点关注不同类型的调度器，我们将在基于RxJavaObservable的subscribeOn和observeOn方法编写多线程程序时使用它们。
+在本文中，我们将重点关注不同类型的调度器，我们将在编写基于RxJava Observable的subscribeOn和observeOn方法的多线程程序时使用这些调度器。
 
-调度器可以指定在何处以及何时执行与Observable链的操作相关的任务。
+调度器提供了指定在何处以及何时执行与Observable链操作相关的任务的机会。
 
-我们可以从[Schedulers](http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html)类中描述的工厂方法中获取一个Scheduler。
+我们可以从类[Schedulers](http://reactivex.io/RxJava/javadoc/rx/schedulers/Schedulers.html)中描述的工厂方法中获得一个Scheduler。
 
 ## 2. 默认线程行为
 
-默认情况下，Rx是单线程的，这意味着Observable和我们可以应用到它的运算符链将在调用其subscribe()方法的同一线程上通知其观察者。
+**默认情况下，Rx是单线程的**，这意味着Observable和我们可以应用于它的运算符链将在调用其subscribe()方法的同一线程上通知其观察者。
 
 observeOn和subscribeOn方法将Scheduler作为参数，顾名思义，它是我们可以用来调度单个操作的工具。
 
-我们将使用createWorker方法创建调度器的实现，该方法返回一个[Scheduler.Worker](http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html)。worker接受操作并在单个线程上按顺序执行它们。
+我们将使用createWorker方法创建我们的Scheduler实现，该方法返回一个[Scheduler.Worker](http://reactivex.io/RxJava/javadoc/rx/Scheduler.Worker.html)。worker接收操作并在单个线程上按顺序执行它们。
 
-在某种程度上，worker本身就是一个调度器，但我们不会将其称为调度器以避免混淆。
+在某种程度上，worker本身就是一个调度器，但为了避免混淆，我们不会将其称为调度器。
 
 ### 2.1 安排操作
 
-我们可以通过创建一个新的worker并安排一些操作来在任何Scheduler上安排一个作业：
+我们可以通过创建一个新的worker并安排一些操作来在任何Scheduler上安排作业：
 
 ```java
 Scheduler scheduler = Schedulers.immediate();
@@ -52,7 +52,7 @@ Assert.assertTrue(result.equals("First_Action"));
 
 每次通过subscribeOn()或observeOn()请求时，此调度器都会简单地启动一个新线程。
 
-这几乎不是一个好的选择，不仅因为启动线程时涉及延迟，还因为这个线程没有被重用：
+这几乎不是一个好的选择，不仅因为启动线程时涉及延迟，还因为该线程未被重用：
 
 ```java
 Observable.just("Hello")
@@ -69,7 +69,7 @@ Assert.assertTrue(result1.equals("RxNewThreadScheduler-1"));
 Assert.assertTrue(result2.equals("RxNewThreadScheduler-2"));
 ```
 
-当Worker完成时，线程简单地终止。这个调度器只能在任务粗粒度的情况下使用：完成需要很多时间，但数量很少，因此根本不可能重用线程。
+当worker完成后，线程将简单地终止。只有当任务是粗粒度的时候才能使用这个调度器：它需要很多时间才能完成，但是任务数量很少，以至于线程根本不可能被重用。
 
 ```java
 Scheduler scheduler = Schedulers.newThread();
@@ -87,7 +87,7 @@ Assert.assertTrue(result.equals("RxNewThreadScheduler-1_Start_End_worker_"));
 
 ## 4. Schedulers.immediate
 
-Schedulers.immediate是一个特殊的调度器，它以阻塞方式调用客户端线程中的任务，而不是异步调用，并在操作完成时返回：
+Schedulers.immediate是一个特殊的调度器，它以阻塞方式而不是异步方式在客户端线程中调用任务，并在操作完成时返回：
 
 ```java
 Scheduler scheduler = Schedulers.immediate();
@@ -101,7 +101,7 @@ Thread.sleep(500);
 Assert.assertTrue(result.equals("main_Start_worker__End"));
 ```
 
-事实上，通过即时调度器订阅Observable通常与根本不订阅任何特定调度器具有相同的效果：
+事实上，通过immediate调度器订阅Observable通常与根本不订阅任何特定调度器具有相同的效果：
 
 ```java
 Observable.just("Hello")
@@ -117,7 +117,7 @@ Assert.assertTrue(result.equals("main"));
 
 trampoline调度器与immediate非常相似，因为它也在同一个线程中调度任务，有效地阻塞。
 
-但是，当所有先前计划的任务完成时，将执行即将到来的任务：
+但是，即将执行的任务会在所有先前计划的任务完成时执行：
 
 ```java
 Observable.just(2, 4, 6, 8)
@@ -130,7 +130,7 @@ Thread.sleep(500);
 Assert.assertTrue(result.equals("246813579"));
 ```
 
-立即调用一个给定的任务，而trampoline等待当前任务完成。
+immediate立即调用给定任务，而trampoline等待当前任务完成。
 
 trampoline的worker在调度第一个任务的线程上执行每个任务。对schedule的第一次调用是阻塞的，直到队列被清空：
 
@@ -154,9 +154,9 @@ Assert.assertTrue(result.equals("mainStart_mainEnd_middleStart_middleEnd_worker_
 
 ## 6. Schedulers.from
 
-调度器在内部比java.util.concurrent中的执行程序更复杂，因此需要一个单独的抽象。
+调度器在内部比java.util.concurrent中的执行器(Executor)更复杂-因此需要一个单独的抽象。
 
-但是因为它们在概念上非常相似，所以不出所料，有一个包装器可以使用from工厂方法将Executor变成Scheduler：
+但是因为它们在概念上非常相似，所以毫不奇怪有一个包装器可以使用from工厂方法将Executor转换为Scheduler：
 
 ```java
 private ThreadFactory threadFactory(String pattern) {
@@ -191,13 +191,13 @@ public void givenExecutors_whenSchedulerFrom_thenReturnElements() throws Interru
 }
 ```
 
-SchedulerB的使用时间很短，但它几乎不会在schedulerA上安排一个新的操作，它完成了所有的工作。因此，多个subscribeOn方法不仅被忽略，而且还引入了少量开销。
+schedulerB的使用时间很短，但它几乎不会在schedulerA上安排一个新的操作，它会完成所有工作。因此，多个subscribeOn方法不仅会被忽略，而且还会引入少量开销。
 
 ## 7. Schedulers.io
 
 这个调度器类似于newThread，除了已经启动的线程被回收并且可以处理未来的请求。
 
-此实现与java.util.concurrent中的ThreadPoolExecutor类似，具有无限的线程池。每次请求一个新的工作线程时，要么启动一个新线程(然后保持空闲一段时间)，要么重用空闲的线程：
+此实现的工作方式类似于java.util.concurrent中的ThreadPoolExecutor，具有无限线程池。每次请求一个新的worker时，要么启动一个新线程(然后保持空闲一段时间)，要么重用空闲线程：
 
 ```java
 Observable.just("io")
@@ -207,17 +207,17 @@ Observable.just("io")
 Assert.assertTrue(result.equals("RxIoScheduler-2"));
 ```
 
-我们需要小心任何类型的无限资源——在缓慢或无响应的外部依赖(如Web服务)的情况下，io调度器可能会启动大量线程，导致我们自己的应用程序变得无响应。
+我们需要小心处理任何类型的无限资源-在Web服务等缓慢或无响应的外部依赖项的情况下，io调度器可能会启动大量线程，导致我们自己的应用程序变得无响应。
 
-在实践中，关注Schedulers.io几乎总是更好的选择。
+在实践中，遵循Schedulers.io几乎总是更好的选择。
 
 ## 8. Schedulers.computation
 
 默认情况下，Computation调度器将并行运行的线程数限制为availableProcessors()的值，如Runtime.getRuntime()实用程序类中所示。
 
-因此，当任务完全受CPU限制时，我们应该使用计算调度器；也就是说，它们需要计算能力并且没有阻塞代码。
+因此，当任务完全受CPU限制时，我们应该使用computation调度器；也就是说，它们需要计算能力并且没有阻塞代码。
 
-它在每个线程前面使用一个无界队列，因此如果任务被调度，但所有内核都被占用，它将被排队。但是，每个线程之前的队列将继续增长：
+它在每个线程前面使用了一个无界队列，因此如果任务被调度，但是所有的核心都被占用，它就会被排队。但是，每个线程之前的队列将继续增长：
 
 ```java
 Observable.just("computation")
@@ -226,9 +226,9 @@ Observable.just("computation")
 Assert.assertTrue(result.equals("RxComputationScheduler-1"));
 ```
 
-如果由于某种原因，我们需要与默认线程数不同的线程数，我们总是可以使用rx.scheduler.max-computation-threads系统属性。
+如果出于某种原因，我们需要与默认值不同的线程数，我们始终可以使用rx.scheduler.max-computation-threads系统属性。
 
-通过使用更少的线程，我们可以确保始终有一个或多个CPU内核空闲，即使在重负载下，计算线程池也不会使服务器饱和。根本不可能拥有比核心更多的计算线程。
+通过使用更少的线程，我们可以确保始终有一个或多个CPU核心空闲，即使在重负载下，computation线程池也不会使服务器饱和。根本不可能拥有比核心更多的计算线程。
 
 ## 9. Schedulers.test
 
@@ -266,9 +266,9 @@ assertThat(
 
 ## 10. 默认调度器
 
-RxJava中的一些Observable操作符有替代形式，允许我们设置操作符将使用哪个调度器进行操作。其他人不会在任何特定的Scheduler上操作或在特定的默认Scheduler上操作。
+RxJava中的一些Observable运算符具有替代形式，允许我们设置运算符将用于其操作的调度器。其他人不在任何特定的Scheduler上运行或在特定的默认Scheduler上运行。
 
-例如，延迟运算符获取上游事件并在给定时间后将它们推送到下游。显然，它不能在那段时间内持有原始线程，所以它必须使用不同的Scheduler：
+例如，delay运算符获取上游事件并在给定时间后将它们推送到下游。显然，它不能在那段时间保持原来的线程，所以它必须使用不同的Scheduler：
 
 ```java
 ExecutorService poolA = newFixedThreadPool(10, threadFactory("Sched1-"));
@@ -281,14 +281,14 @@ Thread.sleep(2000);
 Assert.assertTrue(result.equals("Sched1-A Sched1-B "));
 ```
 
-在不提供自定义schedulerA的情况下，延迟以下的所有运算符都将使用计算Scheduler。
+在不提供自定义schedulerA的情况下，delay以下的所有运算符都将使用computation调度器。
 
-其他支持自定义调度器的重要操作符是buffer、interval、range、timer、skip、take、timeout等。如果我们不为此类运算符提供调度器，则会使用计算调度器，这在大多数情况下是安全的默认设置。
+其他支持自定义调度器的重要运算符有buffer、interval、range、timer、skip、take、timeout等。如果我们不为此类运算符提供调度器，则会使用computation调度器，这在大多数情况下是安全的默认设置。
 
 ## 11. 总结
 
-在真正的响应式应用程序中，所有长时间运行的操作都是异步的，因此需要很少的线程，因此需要调度器。
+在真正的响应式应用程序中，所有长时间运行的操作都是异步的，因此需要很少的线程和调度器。
 
-掌握调度器对于使用RxJava编写可扩展且安全的代码至关重要。subscribeOn和observeOn之间的区别在高负载下尤其重要，因为每个任务都必须在我们期望的时候精确地执行。
+掌握调度器对于使用RxJava编写可扩展且安全的代码至关重要。subscribeOn和observeOn之间的区别在高负载下尤其重要，因为每个任务都必须在我们期望的时候精确执行。
 
 最后但同样重要的是，我们必须确保下游使用的调度器能够跟上上游调度器产生的负载。有关更多信息，请参阅这篇关于[背压](https://www.baeldung.com/rxjava-backpressure)的文章。

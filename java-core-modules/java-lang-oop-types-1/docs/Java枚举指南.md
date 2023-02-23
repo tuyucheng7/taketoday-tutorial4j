@@ -2,7 +2,7 @@
 
 在本教程中，我们将了解什么是Java枚举、它们解决的问题以及它们的一些设计模式如何在实践中使用。
 
-Java 5 首先引入了enum关键字。它表示一种特殊类型的类，它总是扩展java.lang.Enum类。有关使用的官方文档，我们可以转到[文档](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Enum.html)。
+**Java 5首先引入了enum关键字**。它表示一种特殊类型的类，它总是扩展java.lang.Enum类。有关使用的官方文档，我们可以转到[文档](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Enum.html)。
 
 以这种方式定义的常量使代码更具可读性，允许进行编译时检查，预先记录可接受值的列表，并避免由于传入无效值而导致的意外行为。
 
@@ -11,16 +11,16 @@ Java 5 首先引入了enum关键字。它表示一种特殊类型的类，它总
 ```java
 public enum PizzaStatus {
     ORDERED,
-    READY, 
-    DELIVERED; 
+    READY,
+    DELIVERED;
 }
 ```
 
-此外，枚举带有许多有用的方法，如果我们使用传统的 public static final 常量，我们将需要编写这些方法。
+此外，枚举带有许多有用的方法，如果我们使用传统的public static final常量，我们将需要编写这些方法。
 
-## 2.自定义枚举方法
+## 2. 自定义枚举方法
 
-现在我们对什么是枚举以及如何使用它们有了基本的了解，我们将通过在枚举上定义一些额外的 API 方法来将我们之前的示例提升到一个新的水平：
+现在我们对什么是枚举以及如何使用它们有了基本的了解，我们将通过在枚举上定义一些额外的API方法来将我们之前的示例提升到一个新的水平：
 
 ```java
 public class Pizza {
@@ -37,35 +37,32 @@ public class Pizza {
         }
         return false;
     }
-    
+
     // Methods that set and get the status variable.
 }
-
 ```
 
 ## 3. 使用“==”运算符比较枚举类型
 
-由于枚举类型确保 JVM 中只存在常量的一个实例，因此我们可以安全地使用“==”运算符来比较两个变量，就像我们在上面的示例中所做的那样。此外，“==”运算符提供编译时和运行时安全性。
+由于枚举类型确保JVM中只存在常量的一个实例，因此我们可以安全地使用“==”运算符来比较两个变量，就像我们在上面的示例中所做的那样。此外，“==”运算符提供编译时和运行时安全性。
 
-首先，我们将在以下代码片段中查看运行时安全性，其中我们将使用“==”运算符来比较状态。任何一个值都可以为 null，我们不会得到 NullPointerException。相反，如果我们使用 equals 方法，我们将得到一个NullPointerException：
+首先，我们将在以下代码片段中查看**运行时安全性**，其中我们将使用“==”运算符来比较状态。任何一个值都可以为null，我们不会得到NullPointerException。相反，如果我们使用equals方法，我们将得到一个NullPointerException：
 
 ```java
 if(testPz.getStatus().equals(Pizza.PizzaStatus.DELIVERED)); 
-if(testPz.getStatus() == Pizza.PizzaStatus.DELIVERED); 
-
+if(testPz.getStatus() == Pizza.PizzaStatus.DELIVERED);
 ```
 
-至于编译时安全，让我们看一个例子，我们将通过使用equals方法比较不同类型的枚举来确定它是否相等。这是因为枚举的值和getStatus方法的值恰好是相同的；但是，从逻辑上讲，这种比较应该是错误的。我们通过使用“==”运算符来避免这个问题。
+至于**编译时安全**，让我们看一个例子，我们将通过使用equals方法比较不同类型的枚举来确定它是否相等。这是因为枚举的值和getStatus方法的值恰好是相同的；但是，从逻辑上讲，这种比较应该是错误的。我们通过使用“==”运算符来避免这个问题。
 
 编译器会将比较标记为不兼容错误：
 
 ```java
 if(testPz.getStatus().equals(TestColor.GREEN));
 if(testPz.getStatus() == TestColor.GREEN);
-
 ```
 
-## 4. 在 Switch 语句中使用枚举类型
+## 4. 在Switch语句中使用枚举类型
 
 我们也可以在switch语句中使用枚举类型：
 
@@ -132,13 +129,11 @@ public class Pizza {
     }
 
     public void printTimeToDeliver() {
-        System.out.println("Time to delivery is " + 
-          this.getStatus().getTimeToDelivery());
+        System.out.println("Time to delivery is " + this.getStatus().getTimeToDelivery());
     }
-    
+
     // Methods that set and get the status variable.
 }
-
 ```
 
 下面的测试片段演示了它是如何工作的：
@@ -152,15 +147,15 @@ public void givenPizaOrder_whenReady_thenDeliverable() {
 }
 ```
 
-## 6.枚举集和枚举映射
+## 6. EnumSet和EnumMap
 
-### 6.1. 枚举集
+### 6.1 EnumSet
 
 EnumSet是专门用于Enum类型的Set实现。
 
 与HashSet相比，由于使用了内部位向量表示，它是一组特定枚举常量的非常高效和紧凑的表示。它还为传统的基于int的“位标志”提供了一种类型安全的替代方案，使我们能够编写更易读和可维护的简洁代码。
 
-EnumSet是一个抽象类，它有两个实现，RegularEnumSet和JumboEnumSet ，其中一个是根据实例化时枚举中常量的数量来选择的。
+EnumSet是一个抽象类，它有两个实现，RegularEnumSet和JumboEnumSet，其中一个是根据实例化时枚举中常量的数量来选择的。
 
 因此，在大多数情况下(如子集、添加、删除和批量操作，如containsAll和removeAll)，每当我们想要使用枚举常量集合时，最好使用此集合，如果我们使用Enum.values()只想遍历所有可能的常量。
 
@@ -169,13 +164,12 @@ EnumSet是一个抽象类，它有两个实现，RegularEnumSet和JumboEnumSet �
 ```java
 public class Pizza {
 
-    private static EnumSet<PizzaStatus> undeliveredPizzaStatuses =
-      EnumSet.of(PizzaStatus.ORDERED, PizzaStatus.READY);
+    private static EnumSet<PizzaStatus> undeliveredPizzaStatuses = EnumSet.of(PizzaStatus.ORDERED, PizzaStatus.READY);
 
     private PizzaStatus status;
 
     public enum PizzaStatus {
-        ...
+        // ...
     }
 
     public boolean isDeliverable() {
@@ -183,27 +177,25 @@ public class Pizza {
     }
 
     public void printTimeToDeliver() {
-        System.out.println("Time to delivery is " + 
-          this.getStatus().getTimeToDelivery() + " days");
+        System.out.println("Time to delivery is " + this.getStatus().getTimeToDelivery() + " days");
     }
 
     public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
         return input.stream().filter(
-          (s) -> undeliveredPizzaStatuses.contains(s.getStatus()))
-            .collect(Collectors.toList());
+                    (s) -> undeliveredPizzaStatuses.contains(s.getStatus()))
+              .collect(Collectors.toList());
     }
 
-    public void deliver() { 
-        if (isDeliverable()) { 
+    public void deliver() {
+        if (isDeliverable()) {
             PizzaDeliverySystemConfiguration.getInstance().getDeliveryStrategy()
-              .deliver(this); 
-            this.setStatus(PizzaStatus.DELIVERED); 
-        } 
+                  .deliver(this);
+            this.setStatus(PizzaStatus.DELIVERED);
+        }
     }
-    
+
     // Methods that set and get the status variable.
 }
-
 ```
 
 执行以下测试展示了Set接口的EnumSet实现的强大功能：
@@ -234,7 +226,7 @@ public void givenPizaOrders_whenRetrievingUnDeliveredPzs_thenCorrectlyRetrieved(
 }
 ```
 
-### 6.2. 枚举图
+### 6.2 EnumMap
 
 EnumMap是一种专门的Map实现，旨在与枚举常量一起用作键。与其对应的HashMap 相比，它是一种高效且紧凑的实现，在内部表示为数组：
 
@@ -246,10 +238,8 @@ EnumMap<Pizza.PizzaStatus, Pizza> map;
 让我们看一个如何在实践中使用它的例子：
 
 ```java
-public static EnumMap<PizzaStatus, List<Pizza>> 
-  groupPizzaByStatus(List<Pizza> pizzaList) {
-    EnumMap<PizzaStatus, List<Pizza>> pzByStatus = 
-      new EnumMap<PizzaStatus, List<Pizza>>(PizzaStatus.class);
+public static EnumMap<PizzaStatus, List<Pizza>> groupPizzaByStatus(List<Pizza> pizzaList) {
+    EnumMap<PizzaStatus, List<Pizza>> pzByStatus = new EnumMap<PizzaStatus, List<Pizza>>(PizzaStatus.class);
     
     for (Pizza pz : pizzaList) {
         PizzaStatus status = pz.getStatus();
@@ -263,7 +253,6 @@ public static EnumMap<PizzaStatus, List<Pizza>>
     }
     return pzByStatus;
 }
-
 ```
 
 执行以下测试演示了Map接口的EnumMap实现的强大功能：
@@ -298,17 +287,18 @@ public void givenPizaOrders_whenGroupByStatusCalled_thenCorrectlyGrouped() {
 
 ## 7. 使用枚举实现设计模式
 
-### 7.1. 单例模式
+### 7.1 单例模式
 
 通常，使用单例模式实现一个类是非常重要的。枚举提供了一种实现单例的快速简便的方法。
 
-此外，由于枚举类在底层实现了Serializable接口，因此 JVM 保证该类是单例。这与传统实现不同，在传统实现中，我们必须确保在反序列化期间不创建新实例。
+此外，由于枚举类在底层实现了Serializable接口，因此JVM保证该类是单例。这与传统实现不同，在传统实现中，我们必须确保在反序列化期间不创建新实例。
 
 在下面的代码片段中，我们看到了如何实现单例模式：
 
 ```java
 public enum PizzaDeliverySystemConfiguration {
     INSTANCE;
+
     PizzaDeliverySystemConfiguration() {
         // Initialization configuration which involves
         // overriding defaults like delivery strategy
@@ -326,7 +316,7 @@ public enum PizzaDeliverySystemConfiguration {
 }
 ```
 
-### 7.2. 策略模式
+### 7.2 策略模式
 
 通常，策略模式是通过具有由不同类实现的接口来编写的。
 
@@ -372,30 +362,29 @@ public void givenPizaOrder_whenDelivered_thenPizzaGetsDeliveredAndStatusChanges(
 }
 ```
 
-## 8.Java8 和枚举
+## 8. Java 8和枚举
 
-我们可以在Java8 中重写Pizza类，看看getAllUndeliveredPizzas()和groupPizzaByStatus()方法如何通过使用 lambda 和Stream API 变得如此简洁：
+我们可以在Java 8中重写Pizza类，看看getAllUndeliveredPizzas()和groupPizzaByStatus()方法如何通过使用lambda和Stream API变得如此简洁：
 
 ```java
 public static List<Pizza> getAllUndeliveredPizzas(List<Pizza> input) {
     return input.stream().filter(
-      (s) -> !deliveredPizzaStatuses.contains(s.getStatus()))
-        .collect(Collectors.toList());
+        (s) -> !deliveredPizzaStatuses.contains(s.getStatus()))
+            .collect(Collectors.toList());
 }
 
 
-public static EnumMap<PizzaStatus, List<Pizza>> 
-  groupPizzaByStatus(List<Pizza> pzList) {
+public static EnumMap<PizzaStatus, List<Pizza>> groupPizzaByStatus(List<Pizza> pzList) {
     EnumMap<PizzaStatus, List<Pizza>> map = pzList.stream().collect(
-      Collectors.groupingBy(Pizza::getStatus,
-      () -> new EnumMap<>(PizzaStatus.class), Collectors.toList()));
+        Collectors.groupingBy(Pizza::getStatus,
+        () -> new EnumMap<>(PizzaStatus.class), Collectors.toList()));
     return map;
 }
 ```
 
-## 9. 枚举的 JSON 表示
+## 9. 枚举的JSON表示
 
-使用 Jackson 库，可以使用 JSON 表示枚举类型，就好像它们是 POJO 一样。在下面的代码片段中，我们将看到如何使用 Jackson 注解：
+使用Jackson库，可以使用JSON表示枚举类型，就好像它们是POJO一样。在下面的代码片段中，我们将看到如何使用Jackson注解：
 
 ```java
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -436,34 +425,32 @@ public enum PizzaStatus {
         this.timeToDelivery = timeToDelivery;
     }
 }
-
 ```
 
-我们可以按如下方式使用Pizza和PizzaStatus ：
+我们可以按如下方式使用Pizza和PizzaStatus：
 
 ```java
 Pizza pz = new Pizza();
 pz.setStatus(Pizza.PizzaStatus.READY);
 System.out.println(Pizza.getJsonString(pz));
-
 ```
 
-这将生成Pizza状态的以下 JSON 表示形式：
+这将生成Pizza状态的以下JSON表示形式：
 
-```java
+```json
 {
-  "status" : {
-    "timeToDelivery" : 2,
-    "ready" : true,
-    "ordered" : false,
-    "delivered" : false
-  },
-  "deliverable" : true
+    "status": {
+        "timeToDelivery": 2,
+        "ready": true,
+        "ordered": false,
+        "delivered": false
+    },
+    "deliverable": true
 }
 ```
 
-有关枚举类型的 JSON 序列化/反序列化(包括自定义)的更多信息，我们可以参考[Jackson – 将枚举序列化为 JSON 对象](https://www.baeldung.com/jackson-serialize-enums)。
+有关枚举类型的JSON序列化/反序列化(包括自定义)的更多信息，我们可以参考[Jackson–将枚举序列化为JSON对象](https://www.baeldung.com/jackson-serialize-enums)。
 
-## 10.总结
+## 10. 总结
 
 在本文中，我们探讨了Java枚举，从语言基础知识到更高级、更有趣的实际用例。
