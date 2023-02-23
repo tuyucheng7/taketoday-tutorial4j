@@ -152,7 +152,7 @@
 						<executions>
 							<execution>
 								<goals>
-									<goal>native-image</goal>
+									<goal>build</goal>
 								</goals>
 								<configuration>
 									<enableHttpUrlHandler>true</enableHttpUrlHandler>
