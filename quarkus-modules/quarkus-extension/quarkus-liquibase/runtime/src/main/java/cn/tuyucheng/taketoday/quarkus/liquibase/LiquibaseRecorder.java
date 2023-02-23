@@ -1,4 +1,4 @@
-package com.baeldung.quarkus.liquibase;
+package cn.tuyucheng.taketoday.quarkus.liquibase;
 
 import io.quarkus.arc.runtime.BeanContainer;
 import io.quarkus.arc.runtime.BeanContainerListener;
@@ -21,5 +21,4 @@ public class LiquibaseRecorder {
 		Liquibase liquibase = container.instance(Liquibase.class);
 		liquibase.update(new Contexts());
 	}
-
 }

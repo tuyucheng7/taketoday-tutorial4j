@@ -1,4 +1,4 @@
-package com.baeldung.quarkus.liquibase;
+package cn.tuyucheng.taketoday.quarkus.liquibase;
 
 import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;

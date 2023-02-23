@@ -1,4 +1,4 @@
-package com.baeldung.quarkus.liquibase;
+package cn.tuyucheng.taketoday.quarkus.liquibase;
 
 import io.quarkus.agroal.deployment.DataSourceInitializedBuildItem;
 import io.quarkus.arc.deployment.AdditionalBeanBuildItem;

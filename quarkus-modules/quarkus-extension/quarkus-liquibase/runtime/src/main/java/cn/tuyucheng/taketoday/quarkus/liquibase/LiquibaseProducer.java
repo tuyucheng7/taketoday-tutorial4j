@@ -1,4 +1,4 @@
-package com.baeldung.quarkus.liquibase;
+package cn.tuyucheng.taketoday.quarkus.liquibase;
 
 import io.agroal.api.AgroalDataSource;
 import liquibase.Liquibase;
@@ -22,8 +22,7 @@ public class LiquibaseProducer {
 	public Liquibase produceLiquibase() throws Exception {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		ResourceAccessor classLoaderResourceAccessor = new ClassLoaderResourceAccessor(classLoader);
-		Liquibase liquibase = new Liquibase(liquibaseConfig.changeLog, classLoaderResourceAccessor, new JdbcConnection(dataSource.getConnection()));
-		return liquibase;
+		return new Liquibase(liquibaseConfig.changeLog, classLoaderResourceAccessor, new JdbcConnection(dataSource.getConnection()));
 	}
 
 	public void setLiquibaseConfig(LiquibaseConfig liquibaseConfig) {
