@@ -26,9 +26,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.baeldung.quarkus.liquibase</groupId>
+			<groupId>cn.tuyucheng.taketoday.quarkus.liquibase</groupId>
 			<artifactId>runtime</artifactId>
-			<version>${project.version}</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
