@@ -86,12 +86,6 @@
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-jacoco</artifactId>
-			<version>${quarkus.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-junit5-mockito</artifactId>
 			<version>${quarkus.version}</version>
 			<scope>test</scope>
@@ -116,36 +110,6 @@
 
 	<build>
 		<plugins>
-			<!--<plugin>-->
-			<!--	<groupId>org.apache.maven.plugins</groupId>-->
-			<!--	<artifactId>maven-toolchains-plugin</artifactId>-->
-			<!--	<version>${maven-toolchains-plugin-version}</version>-->
-			<!--	<executions>-->
-			<!--		<execution>-->
-			<!--			<goals>-->
-			<!--				<goal>toolchain</goal>-->
-			<!--			</goals>-->
-			<!--		</execution>-->
-			<!--	</executions>-->
-			<!--	<configuration>-->
-			<!--		<toolchains>-->
-			<!--			<jdk>-->
-			<!--				<version>${toolchains.version}</version>-->
-			<!--			</jdk>-->
-			<!--		</toolchains>-->
-			<!--	</configuration>-->
-			<!--</plugin>-->
-			<!--<plugin>-->
-			<!--	<groupId>org.apache.maven.plugins</groupId>-->
-			<!--	<artifactId>maven-compiler-plugin</artifactId>-->
-			<!--	<version>${maven-compiler-plugin.version}</version>-->
-			<!--	<configuration>-->
-			<!--		<source>${maven.compiler.source}</source>-->
-			<!--		<target>${maven.compiler.target}</target>-->
-			<!--		<showDeprecation>true</showDeprecation>-->
-			<!--		<showWarnings>true</showWarnings>-->
-			<!--	</configuration>-->
-			<!--</plugin>-->
 			<plugin>
 				<groupId>io.quarkus</groupId>
 				<artifactId>quarkus-maven-plugin</artifactId>
