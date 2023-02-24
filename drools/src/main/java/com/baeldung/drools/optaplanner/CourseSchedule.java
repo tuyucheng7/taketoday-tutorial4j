@@ -6,7 +6,7 @@ import java.util.List;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
-import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
+import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class CourseSchedule {
 	private List<Lecture> lectureList;
 	private HardSoftScore score;
 
-	public CourseSchedule() {
+	public CourseSchedule(){
 		roomList = new ArrayList<>();
 		periodList = new ArrayList<>();
 		lectureList = new ArrayList<>();
