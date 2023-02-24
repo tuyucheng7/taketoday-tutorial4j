@@ -12,14 +12,6 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<repositories>
-		<repository>
-			<id>jboss-public-repository-group</id>
-			<name>JBoss Public Repository Group</name>
-			<url>https://repo.maven.apache.org/maven2</url>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.mapdb</groupId>
@@ -123,6 +115,27 @@
 			<version>18.3.12</version>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<argLine>--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+						--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
+						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+						--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+						--add-opens=jdk.compiler/com.sun.tools.javac=ALL-UNNAMED
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+						--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED
+						--add-opens=java.base/java.util=ALL-UNNAMED</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<properties>
 		<mapdb.version>3.0.8</mapdb.version>
