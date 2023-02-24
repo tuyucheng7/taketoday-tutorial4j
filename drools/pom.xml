@@ -7,10 +7,9 @@
 	<name>drools</name>
 
 	<parent>
-		<groupId>com.baeldung</groupId>
-		<artifactId>parent-spring-4</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../parent-spring-4</relativePath>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>taketoday-tutorial4j</artifactId>
+		<version>1.0.0</version>
 	</parent>
 
 	<dependencies>
@@ -62,5 +61,4 @@
 		<apache-poi-version>5.2.3</apache-poi-version>
 		<opta-planner-version>8.32.0.Final</opta-planner-version>
 	</properties>
-
 </project>
