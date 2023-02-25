@@ -10,6 +10,7 @@
 + [接口的默认方法与抽象类](docs/接口的默认方法与抽象类.md)
 + [Java中字节数组和UUID之间的转换](docs/Java中字节数组和UUID之间的转换.md)
 + [用Java实现一个简单的石头剪刀布游戏](docs/用Java创建一个简单的石头剪刀布游戏.md)
++ [Java中的可变参数与数组输入参数](docs/Java中的可变参数与数组输入参数.md)
 
 - 更多文章：[[<-- prev]](../java-8-1/README.md)
 - 更多文章：[[next -->]](../java-9/README.md)

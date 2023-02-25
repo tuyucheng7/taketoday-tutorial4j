@@ -13,5 +13,6 @@
 + [Java抽象类中的构造函数](docs/Java抽象类中的构造函数.md)
 + [在构造函数中抛出异常](docs/在构造函数中抛出异常.md)
 + [在调用超类型构造函数之前无法引用“X”](docs/在调用超类型构造函数之前无法引用X.md)
++ [在Java中访问私有构造函数](docs/在Java中访问私有构造函数.md)
 
 - 更多文章： [[next -->]](../java-lang-oop-generics/README.md)

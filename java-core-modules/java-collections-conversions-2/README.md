@@ -9,5 +9,7 @@
 + [使用自定义Supplier将List转换为Map](docs/使用自定义Supplier将List转换为Map.md)
 + [在Java中迭代一个集合](docs/在Java中迭代一个集合.md)
 + [数组到字符串的转换](docs/数组到字符串的转换.md)
++ [将整数列表转换为字符串列表](docs/将整数列表转换为字符串列表.md)
++ [在Java中将两个列表组合成一个Map](docs/在Java中将两个列表组合成一个Map.md)
 
 - 更多文章： [[<-- prev]](../java-collections-conversions-1/README.md)
