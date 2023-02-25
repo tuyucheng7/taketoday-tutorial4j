@@ -1,8 +1,8 @@
-import com.baeldung.spring.drools.model.TaxiRide;
-import com.baeldung.spring.drools.model.Fare;
+import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
+import cn.tuyucheng.taketoday.spring.drools.model.Fare;
 import java.util.*;
 
-global com.baeldung.spring.drools.model.Fare rideFare;
+global cn.tuyucheng.taketoday.spring.drools.model.Fare rideFare;
 dialect  "mvel"
 
 rule "Calculate Taxi Fare - Scenario 1"

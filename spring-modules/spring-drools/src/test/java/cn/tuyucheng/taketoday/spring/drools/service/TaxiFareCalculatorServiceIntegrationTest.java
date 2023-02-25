@@ -1,17 +1,15 @@
-package com.baeldung.spring.drools.service;
+package cn.tuyucheng.taketoday.spring.drools.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import cn.tuyucheng.taketoday.spring.drools.model.Fare;
+import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.baeldung.spring.drools.model.Fare;
-import com.baeldung.spring.drools.model.TaxiRide;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TaxiFareConfiguration.class)
@@ -91,5 +89,4 @@ public class TaxiFareCalculatorServiceIntegrationTest {
 		assertNotNull(totalCharge);
 		assertEquals(Long.valueOf(350), totalCharge);
 	}
-
 }

@@ -1,12 +1,11 @@
-package com.baeldung.spring.drools.app;
+package cn.tuyucheng.taketoday.spring.drools.app;
 
+import cn.tuyucheng.taketoday.spring.drools.model.Fare;
+import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
+import cn.tuyucheng.taketoday.spring.drools.service.TaxiFareCalculatorService;
+import cn.tuyucheng.taketoday.spring.drools.service.TaxiFareConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.baeldung.spring.drools.model.TaxiRide;
-import com.baeldung.spring.drools.model.Fare;
-import com.baeldung.spring.drools.service.TaxiFareCalculatorService;
-import com.baeldung.spring.drools.service.TaxiFareConfiguration;
 
 public class ApplicationRunner {
 
@@ -19,5 +18,4 @@ public class ApplicationRunner {
 		Fare rideFare = new Fare();
 		taxiFareCalculatorService.calculateFare(taxiRide, rideFare);
 	}
-
 }

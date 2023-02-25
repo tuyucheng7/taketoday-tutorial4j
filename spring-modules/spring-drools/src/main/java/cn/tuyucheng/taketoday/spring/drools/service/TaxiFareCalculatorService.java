@@ -1,12 +1,11 @@
-package com.baeldung.spring.drools.service;
+package cn.tuyucheng.taketoday.spring.drools.service;
 
+import cn.tuyucheng.taketoday.spring.drools.model.Fare;
+import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.baeldung.spring.drools.model.Fare;
-import com.baeldung.spring.drools.model.TaxiRide;
 
 @Service
 public class TaxiFareCalculatorService {

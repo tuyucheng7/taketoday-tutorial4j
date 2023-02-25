@@ -1,4 +1,4 @@
-package com.baeldung.spring.drools.model;
+package cn.tuyucheng.taketoday.spring.drools.model;
 
 public class Fare {
 
@@ -29,5 +29,4 @@ public class Fare {
 	public Long getTotalFare() {
 		return nightSurcharge + rideFare;
 	}
-
 }

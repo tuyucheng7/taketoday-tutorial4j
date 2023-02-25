@@ -1,4 +1,4 @@
-package com.baeldung.spring.drools.service;
+package cn.tuyucheng.taketoday.spring.drools.service;
 
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.baeldung.spring.drools.service")
+@ComponentScan("cn.tuyucheng.taketoday.spring.drools.service")
 public class TaxiFareConfiguration {
 
 	public static final String drlFile = "TAXI_FARE_RULE.drl";
@@ -27,6 +27,5 @@ public class TaxiFareConfiguration {
 		KieModule kieModule = kieBuilder.getKieModule();
 
 		return kieServices.newKieContainer(kieModule.getReleaseId());
-
 	}
 }

@@ -1,4 +1,4 @@
-package com.baeldung.spring.drools.model;
+package cn.tuyucheng.taketoday.spring.drools.model;
 
 public class TaxiRide {
 
@@ -20,5 +20,4 @@ public class TaxiRide {
 	public void setDistanceInMile(Long distanceInMile) {
 		this.distanceInMile = distanceInMile;
 	}
-
 }
