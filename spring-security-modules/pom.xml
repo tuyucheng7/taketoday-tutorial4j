@@ -17,6 +17,7 @@
     <modules>
         <module>spring-security-acl</module>
         <module>spring-security-auth0</module>
+		<module>spring-security-azuread</module>
         <module>spring-security-cognito</module>
         <module>spring-security-core-1</module>
         <module>spring-security-core-2</module>
