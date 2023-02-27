@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.cloud.openfeign;
+package com.baeldung.cloud.openfeign;
 
 import cn.tuyucheng.taketoday.cloud.openfeign.exception.NotFoundException;
 import cn.tuyucheng.taketoday.cloud.openfeign.fileupload.service.UploadService;
