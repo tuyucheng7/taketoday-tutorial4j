@@ -691,7 +691,7 @@
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
 				<!--<module>spf4j</module>-->
-				<!--<module>spring-modules</module>-->
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
@@ -952,7 +952,7 @@
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
 				<!--<module>spf4j</module>-->
-				<!--<module>spring-modules</module>-->
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
@@ -1163,7 +1163,7 @@
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
 				<!--<module>spf4j</module>-->
-				<!--<module>spring-modules</module>-->
+				<module>spring-modules</module>
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->

@@ -37,21 +37,22 @@
 		<module>spring-di-1</module>
 		<module>spring-di-2</module>
 		<module>spring-di-3</module>
-		<!--<module>spring-drools</module>-->
-		<!--<module>spring-ejb-modules</module>-->
+		<module>spring-drools</module>
+		<!--<module>spring-ejb-modules</module>--> <!-- test fail -->
 		<module>spring-exceptions</module>
 		<module>spring-integration</module>
-		<!--<module>spring-jenkins-pipeline</module>-->
+		<module>spring-jenkins-pipeline</module>
 		<module>spring-jersey</module>
 		<module>spring-jinq</module>
 		<module>spring-kafka</module>
+		<module>spring-kafka-2</module>
 		<module>spring-katharsis</module>
 		<module>spring-mobile</module>
 		<module>spring-native</module>
 		<module>spring-protobuf</module>
 		<module>spring-quartz</module>
 		<module>spring-remoting-modules</module>
-		<!--<module>spring-roo</module>-->
+		<!--<module>spring-roo</module>--> <!-- Artifact Repository is not available -->
 		<module>spring-scheduling</module>
 		<module>spring-shell</module>
 		<module>spring-soap</module>
