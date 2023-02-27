@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.jws.WebService;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Map;
+
+import jakarta.jws.WebService;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @WebService
 public interface Tuyucheng {

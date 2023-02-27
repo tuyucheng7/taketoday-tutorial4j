@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.cxf.jaxrs.implementation;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "Student")
 public class Student {

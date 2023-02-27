@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(name = "Student")
 public class StudentImpl implements Student {

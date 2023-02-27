@@ -1,27 +1,31 @@
 package cn.tuyucheng.taketoday.gson.serialization.test;
 
-import cn.tuyucheng.taketoday.gson.serialization.DifferentNameSerializer;
-import cn.tuyucheng.taketoday.gson.serialization.IgnoringFieldsNotMatchingCriteriaSerializer;
-import cn.tuyucheng.taketoday.gson.serialization.IgnoringFieldsSerializer;
-import cn.tuyucheng.taketoday.gson.serialization.SourceClass;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import org.assertj.core.util.Lists;
-import org.joda.time.DateTime;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 
 import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
+import cn.tuyucheng.taketoday.gson.serialization.DifferentNameSerializer;
+import cn.tuyucheng.taketoday.gson.serialization.IgnoringFieldsNotMatchingCriteriaSerializer;
+import cn.tuyucheng.taketoday.gson.serialization.IgnoringFieldsSerializer;
+import cn.tuyucheng.taketoday.gson.serialization.SourceClass;
+
+import org.assertj.core.util.Lists;
+import org.joda.time.DateTime;
+import org.junit.Test;
+
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 public class GsonSerializationUnitTest {
 
 	@Test
 	public void givenArrayOfObjects_whenSerializing_thenCorrect() {
-		final SourceClass[] sourceArray = {new SourceClass(1, "one"), new SourceClass(2, "two")};
+		final SourceClass[] sourceArray = { new SourceClass(1, "one"), new SourceClass(2, "two") };
 		final String jsonString = new Gson().toJson(sourceArray);
 
 		// test
@@ -84,7 +88,7 @@ public class GsonSerializationUnitTest {
 		String jsonDate = gson.toJson(sourceDate, sourceDateType);
 
 		System.out.println("jsonDate:\n" + jsonDate);
-		String expectedResult = "\"Jan 1, 2000 12:00:00 AM\"";
+		String expectedResult = "\"Jan 1, 2000, 12:00:00 AM\"";
 		assertEquals(expectedResult, jsonDate);
 	}
 

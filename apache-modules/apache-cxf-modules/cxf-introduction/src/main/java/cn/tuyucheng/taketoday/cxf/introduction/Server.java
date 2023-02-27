@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.xml.ws.Endpoint;
+import jakarta.xml.ws.Endpoint;
 
 public class Server {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String args[]) throws InterruptedException {
 		TuyuchengImpl implementor = new TuyuchengImpl();
 		String address = "http://localhost:8080/tuyucheng";
 		Endpoint.publish(address, implementor);

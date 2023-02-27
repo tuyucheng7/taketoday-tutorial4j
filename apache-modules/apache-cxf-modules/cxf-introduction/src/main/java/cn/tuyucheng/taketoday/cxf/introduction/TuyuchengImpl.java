@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.jws.WebService;
+import jakarta.jws.WebService;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 

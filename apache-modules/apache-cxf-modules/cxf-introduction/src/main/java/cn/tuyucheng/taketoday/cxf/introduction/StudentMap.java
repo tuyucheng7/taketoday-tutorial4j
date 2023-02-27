@@ -1,13 +1,14 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlType;
+
 @XmlType(name = "StudentMap")
 public class StudentMap {
-	private List<StudentEntry> entries = new ArrayList<>();
+	private List<StudentEntry> entries = new ArrayList<StudentEntry>();
 
 	@XmlElement(nillable = false, name = "entry")
 	public List<StudentEntry> getEntries() {

@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.cxf.introduction;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class StudentMapAdapter extends XmlAdapter<StudentMap, Map<Integer, Student>> {
 	public StudentMap marshal(Map<Integer, Student> boundMap) throws Exception {
@@ -17,7 +18,7 @@ public class StudentMapAdapter extends XmlAdapter<StudentMap, Map<Integer, Stude
 	}
 
 	public Map<Integer, Student> unmarshal(StudentMap valueMap) throws Exception {
-		Map<Integer, Student> boundMap = new LinkedHashMap<>();
+		Map<Integer, Student> boundMap = new LinkedHashMap<Integer, Student>();
 		for (StudentMap.StudentEntry studentEntry : valueMap.getEntries()) {
 			boundMap.put(studentEntry.getId(), studentEntry.getStudent());
 		}

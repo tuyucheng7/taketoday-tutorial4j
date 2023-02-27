@@ -1,15 +1,17 @@
 package cn.tuyucheng.taketoday.crunch;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import org.apache.crunch.FilterFn;
-import org.apache.crunch.PCollection;
-import org.apache.crunch.impl.mem.MemPipeline;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.apache.crunch.FilterFn;
+import org.apache.crunch.PCollection;
+import org.apache.crunch.impl.mem.MemPipeline;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 public class StopWordFilterUnitTest {
 
