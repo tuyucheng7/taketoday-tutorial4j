@@ -14,6 +14,7 @@ import org.junit.Test;
  * Test for {@link TagRepository}.
  *
  * @author Donato Rimenti
+ *
  */
 public class TaggingLiveTest {
 
@@ -99,9 +100,7 @@ public class TaggingLiveTest {
 		results.forEach(System.out::println);
 
 		Assert.assertEquals(1, results.size());
-		results.forEach(post -> {
-			Assert.assertFalse(post.getTags().contains("MongoDB"));
-		});
+		results.forEach(post -> Assert.assertFalse(post.getTags().contains("MongoDB")));
 	}
 
 	/**

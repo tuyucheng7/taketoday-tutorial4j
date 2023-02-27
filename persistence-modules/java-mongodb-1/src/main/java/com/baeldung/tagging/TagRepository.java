@@ -10,8 +10,9 @@ import org.bson.Document;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -22,6 +23,7 @@ import com.mongodb.client.result.UpdateResult;
  * Repository used to manage tags for a blog post.
  *
  * @author Donato Rimenti
+ *
  */
 public class TagRepository implements Closeable {
 
@@ -44,7 +46,7 @@ public class TagRepository implements Closeable {
 	 * Instantiates a new TagRepository by opening the DB connection.
 	 */
 	public TagRepository() {
-		mongoClient = new MongoClient("localhost", 27018);
+		mongoClient = MongoClients.create("mongodb://localhost:27018");
 		MongoDatabase database = mongoClient.getDatabase("blog");
 		collection = database.getCollection("posts");
 	}
@@ -53,9 +55,10 @@ public class TagRepository implements Closeable {
 	 * Returns a list of posts which contains one or more of the tags passed as
 	 * argument.
 	 *
-	 * @param tags a list of tags
+	 * @param tags
+	 *            a list of tags
 	 * @return a list of posts which contains at least one of the tags passed as
-	 * argument
+	 *         argument
 	 */
 	public List<Post> postsWithAtLeastOneTag(String... tags) {
 		FindIterable<Document> results = collection.find(Filters.in(TAGS_FIELD, tags));
@@ -66,7 +69,8 @@ public class TagRepository implements Closeable {
 	/**
 	 * Returns a list of posts which contains all the tags passed as argument.
 	 *
-	 * @param tags a list of tags
+	 * @param tags
+	 *            a list of tags
 	 * @return a list of posts which contains all the tags passed as argument
 	 */
 	public List<Post> postsWithAllTags(String... tags) {
@@ -79,9 +83,10 @@ public class TagRepository implements Closeable {
 	 * Returns a list of posts which contains none of the tags passed as
 	 * argument.
 	 *
-	 * @param tags a list of tags
+	 * @param tags
+	 *            a list of tags
 	 * @return a list of posts which contains none of the tags passed as
-	 * argument
+	 *         argument
 	 */
 	public List<Post> postsWithoutTags(String... tags) {
 		FindIterable<Document> results = collection.find(Filters.nin(TAGS_FIELD, tags));
@@ -92,8 +97,10 @@ public class TagRepository implements Closeable {
 	/**
 	 * Adds a list of tags to the blog post with the given title.
 	 *
-	 * @param title the title of the blog post
-	 * @param tags  a list of tags to add
+	 * @param title
+	 *            the title of the blog post
+	 * @param tags
+	 *            a list of tags to add
 	 * @return the outcome of the operation
 	 */
 	public boolean addTags(String title, List<String> tags) {
@@ -105,8 +112,10 @@ public class TagRepository implements Closeable {
 	/**
 	 * Removes a list of tags to the blog post with the given title.
 	 *
-	 * @param title the title of the blog post
-	 * @param tags  a list of tags to remove
+	 * @param title
+	 *            the title of the blog post
+	 * @param tags
+	 *            a list of tags to remove
 	 * @return the outcome of the operation
 	 */
 	public boolean removeTags(String title, List<String> tags) {
@@ -118,9 +127,10 @@ public class TagRepository implements Closeable {
 	/**
 	 * Utility method used to map a MongoDB document into a {@link Post}.
 	 *
-	 * @param document the document to map
+	 * @param document
+	 *            the document to map
 	 * @return a {@link Post} object equivalent to the document passed as
-	 * argument
+	 *         argument
 	 */
 	@SuppressWarnings("unchecked")
 	private static Post documentToPost(Document document) {

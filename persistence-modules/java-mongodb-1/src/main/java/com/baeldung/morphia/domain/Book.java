@@ -1,6 +1,5 @@
 package com.baeldung.morphia.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +16,7 @@ import dev.morphia.annotations.Reference;
 import dev.morphia.annotations.Validation;
 
 @Entity("Books")
-@Indexes({@Index(fields = @Field("title"), options = @IndexOptions(name = "book_title"))})
+@Indexes({ @Index(fields = @Field("title"), options = @IndexOptions(name = "book_title")) })
 @Validation("{ price : { $gt : 0 } }")
 public class Book {
 	@Id
@@ -25,7 +24,7 @@ public class Book {
 	@Property
 	private String title;
 	private String author;
-	@Embedded
+
 	private Publisher publisher;
 	@Property("price")
 	private double cost;
