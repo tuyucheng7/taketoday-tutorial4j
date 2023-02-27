@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<name>spring-boot-keycloak-2</name>
 	<packaging>jar</packaging>
-	<description>这是一个简单的应用程序，演示了Keycloak和Spring Boot之间的集成。</description>
+	<description>This is a simple application demonstrating integration between Keycloak and Spring Boot.</description>
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
@@ -16,18 +16,6 @@
 		<version>1.0.0</version>
 		<relativePath>../../parent-boot-2</relativePath>
 	</parent>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.keycloak.bom</groupId>
-				<artifactId>keycloak-adapter-bom</artifactId>
-				<version>${keycloak-adapter-bom.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -39,8 +27,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.keycloak</groupId>
-			<artifactId>keycloak-spring-boot-starter</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,8 +49,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<properties>
-		<keycloak-adapter-bom.version>15.0.2</keycloak-adapter-bom.version>
-	</properties>
 </project>
