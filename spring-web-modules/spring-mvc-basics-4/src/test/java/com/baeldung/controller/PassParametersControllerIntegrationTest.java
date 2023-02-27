@@ -24,46 +24,46 @@ import com.baeldung.validation.listvalidation.SpringListValidationApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringListValidationApplication.class)
 public class PassParametersControllerIntegrationTest {
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Autowired
-    private WebApplicationContext wac;
+	@Autowired
+	private WebApplicationContext wac;
 
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
+	@Before
+	public void setUp() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+	}
 
-    @Test
-    public void testPassParametersWithModel() throws Exception {
-        ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/showViewPage")).andReturn().getModelAndView();
+	@Test
+	public void testPassParametersWithModel() throws Exception {
+		ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/showViewPage")).andReturn().getModelAndView();
 
-        //Validate view
-        Assert.assertEquals(mv.getViewName(), "viewPage");
+		//Validate view
+		Assert.assertEquals(mv.getViewName(), "view/viewPage");
 
-        //Validate attribute
-        Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
-    }
+		//Validate attribute
+		Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
+	}
 
-    @Test
-    public void testPassParametersWithModelMap() throws Exception {
-        ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/printViewPage")).andReturn().getModelAndView();
+	@Test
+	public void testPassParametersWithModelMap() throws Exception {
+		ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/printViewPage")).andReturn().getModelAndView();
 
-        //Validate view
-        Assert.assertEquals(mv.getViewName(), "viewPage");
+		//Validate view
+		Assert.assertEquals(mv.getViewName(), "view/viewPage");
 
-        //Validate attribute
-        Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
-    }
+		//Validate attribute
+		Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
+	}
 
-    @Test
-    public void testPassParametersWithModelAndView() throws Exception {
-        ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/goToViewPage")).andReturn().getModelAndView();
+	@Test
+	public void testPassParametersWithModelAndView() throws Exception {
+		ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/goToViewPage")).andReturn().getModelAndView();
 
-        //Validate view
-        Assert.assertEquals(mv.getViewName(), "viewPage");
+		//Validate view
+		Assert.assertEquals(mv.getViewName(), "view/viewPage");
 
-        //Validate attribute
-        Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
-    }
+		//Validate attribute
+		Assert.assertEquals(mv.getModelMap().get("message").toString(), "Baeldung");
+	}
 }

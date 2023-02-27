@@ -16,35 +16,34 @@ import com.baeldung.validation.listvalidation.SpringListValidationApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = { SpringListValidationApplication.class })
+@ContextConfiguration(classes = {SpringListValidationApplication.class})
 public class ArticleViewerControllerWithRequiredAttributeIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+	@Autowired
+	private WebApplicationContext wac;
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-    }
+	@Before
+	public void setup() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+	}
 
-    @Test
-    public void whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
-        int articleId = 5;
-        
-        this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/article/{id}", articleId))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(articleId));
-               
-    }
+	@Test
+	public void whenIdPathVariableIsPassed_thenResponseOK() throws Exception {
+		int articleId = 5;
 
-    @Test
-    public void whenIdPathVariableIsNotPassed_thenResponse500() throws Exception {
-        this.mockMvc
-            .perform(MockMvcRequestBuilders.get("/article"))
-            .andExpect(MockMvcResultMatchers.status().isInternalServerError());
-               
-    }
+		this.mockMvc
+			.perform(MockMvcRequestBuilders.get("/requiredAttribute/article/{id}", articleId))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(articleId));
+	}
+
+	@Test
+	public void whenIdPathVariableIsNotPassed_thenResponseOK() throws Exception {
+		this.mockMvc
+			.perform(MockMvcRequestBuilders.get("/requiredAttribute/article"))
+			.andExpect(MockMvcResultMatchers.status().isOk());
+
+	}
 }
