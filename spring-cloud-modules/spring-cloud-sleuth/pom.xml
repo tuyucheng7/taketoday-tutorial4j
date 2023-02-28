@@ -39,5 +39,6 @@
 
 	<properties>
 		<spring-cloud-sleuth.version>3.1.0</spring-cloud-sleuth.version>
+		<mockito.version>3.11.2</mockito.version>
 	</properties>
 </project>
