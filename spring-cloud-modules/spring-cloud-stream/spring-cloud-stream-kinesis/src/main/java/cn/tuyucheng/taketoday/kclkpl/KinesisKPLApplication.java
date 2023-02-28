@@ -26,8 +26,7 @@ public class KinesisKPLApplication {
 	@Bean
 	public KinesisProducer kinesisProducer() {
 		BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-		KinesisProducerConfiguration producerConfig = new KinesisProducerConfiguration()
-			.setCredentialsProvider(new AWSStaticCredentialsProvider(awsCredentials))
+		KinesisProducerConfiguration producerConfig = new KinesisProducerConfiguration().setCredentialsProvider(new AWSStaticCredentialsProvider(awsCredentials))
 			.setVerifyCertificate(false)
 			.setRegion(Regions.EU_CENTRAL_1.getName());
 
