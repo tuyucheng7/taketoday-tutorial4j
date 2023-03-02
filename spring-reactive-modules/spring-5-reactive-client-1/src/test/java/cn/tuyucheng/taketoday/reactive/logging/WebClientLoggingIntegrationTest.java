@@ -46,7 +46,7 @@ class WebClientLoggingIntegrationTest {
 	private String sampleResponseBody;
 
 	@BeforeEach
-	private void setup() throws Exception {
+	void setup() throws Exception {
 		post = new Post("Learn WebClient logging with Tuyucheng!", "", 1);
 		sampleResponseBody = new ObjectMapper().writeValueAsString(post);
 
