@@ -44,9 +44,49 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${toolchains.java.version}</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<properties>
-		<spring-boot.version>2.6.8</spring-boot.version>
-		<spring-cloud-dependencies.version>2021.0.3</spring-cloud-dependencies.version>
+		<toolchains.java.version>8</toolchains.java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
+		<mockito.version>3.11.2</mockito.version>
+		<spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+		<spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
 		<log4j2.version>2.17.1</log4j2.version>
 	</properties>
 </project>

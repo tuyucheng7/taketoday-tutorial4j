@@ -4,7 +4,6 @@ import cn.tuyucheng.taketoday.spring.cloud.model.Book;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-@Disabled("fails test")
 @ActiveProfiles("ribbon-test")
 @EnableConfigurationProperties
 @ExtendWith(SpringExtension.class)

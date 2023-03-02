@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.spring.cloud.client;
 import cn.tuyucheng.taketoday.spring.cloud.model.Book;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 @ActiveProfiles("test")
 @EnableConfigurationProperties
-@Disabled("fails test")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {WireMockConfig.class})
 class BooksClientIntegrationTest {
