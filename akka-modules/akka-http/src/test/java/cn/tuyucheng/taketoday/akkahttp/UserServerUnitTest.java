@@ -7,7 +7,6 @@ import akka.http.javadsl.model.HttpEntities;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.testkit.JUnitRouteTest;
 import akka.http.javadsl.testkit.TestRoute;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class UserServerUnitTest extends JUnitRouteTest {
@@ -18,7 +17,7 @@ public class UserServerUnitTest extends JUnitRouteTest {
 
     TestRoute appRoute = testRoute(new UserServer(userActorRef).routes());
 
-    @Ignore
+    // @Ignore
     @Test
     public void whenRequest_thenActorResponds() {
 
