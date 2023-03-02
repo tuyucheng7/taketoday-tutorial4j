@@ -20,36 +20,36 @@ import java.util.concurrent.Executors;
 @EnableScheduling
 public class ThreadConfig extends AsyncConfigurerSupport implements SchedulingConfigurer {
 
-    @Autowired
-    private BeanFactory beanFactory;
+	@Autowired
+	private BeanFactory beanFactory;
 
-    @Bean
-    public Executor executor() {
-        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(1);
-        threadPoolTaskExecutor.setMaxPoolSize(1);
-        threadPoolTaskExecutor.initialize();
+	@Bean
+	public Executor executor() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+		threadPoolTaskExecutor.setCorePoolSize(1);
+		threadPoolTaskExecutor.setMaxPoolSize(1);
+		threadPoolTaskExecutor.initialize();
 
-        return new LazyTraceExecutor(beanFactory, threadPoolTaskExecutor);
-    }
+		return new LazyTraceExecutor(beanFactory, threadPoolTaskExecutor);
+	}
 
-    @Override
-    public Executor getAsyncExecutor() {
-        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(1);
-        threadPoolTaskExecutor.setMaxPoolSize(1);
-        threadPoolTaskExecutor.initialize();
+	@Override
+	public Executor getAsyncExecutor() {
+		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+		threadPoolTaskExecutor.setCorePoolSize(1);
+		threadPoolTaskExecutor.setMaxPoolSize(1);
+		threadPoolTaskExecutor.initialize();
 
-        return new LazyTraceExecutor(beanFactory, threadPoolTaskExecutor);
-    }
+		return new LazyTraceExecutor(beanFactory, threadPoolTaskExecutor);
+	}
 
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
-        scheduledTaskRegistrar.setScheduler(schedulingExecutor());
-    }
+	@Override
+	public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
+		scheduledTaskRegistrar.setScheduler(schedulingExecutor());
+	}
 
-    @Bean(destroyMethod = "shutdown")
-    public Executor schedulingExecutor() {
-        return Executors.newScheduledThreadPool(1);
-    }
+	@Bean(destroyMethod = "shutdown")
+	public Executor schedulingExecutor() {
+		return Executors.newScheduledThreadPool(1);
+	}
 }
