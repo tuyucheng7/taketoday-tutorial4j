@@ -48,7 +48,7 @@ The method sort(List<T>) in the type Collections
 
 现在让我们试着理解我们在这里做错了什么。
 
-## 3 、可比性
+##3、可比性
 
 顾名思义，Comparable是一个接口，定义了将一个对象与其他同类对象进行比较的策略。这被称为类的“自然排序”。
 
@@ -68,7 +68,7 @@ public class Player implements Comparable<Player> {
 
 ```
 
-排序顺序由compareTo() 方法的返回值决定。如果x 小于 y ， [Integer.compare(x, y)](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html#compare(int,int)) 返回 -1 ，如果它们相等则返回 0 ，否则返回 1 。
+排序顺序由compareTo()方法的返回值决定。如果x小于y，[Integer.compare(x,y)](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Integer.html#compare(int,int))返回-1，如果它们相等则返回0，否则返回1。
 
 该方法返回一个数字，指示被比较的对象是小于、等于还是大于作为参数传递的对象。
 
@@ -81,15 +81,15 @@ After Sorting : [Steven, John, Roger]
 
 现在我们已经清楚地了解了Comparable的自然排序，让我们看看如何以比直接实现接口更灵活的方式使用其他类型的排序。
 
-## 4.比较器
+##4.比较器
 
-Comparator接口定义了一个compare(arg1, arg2)方法，它有两个参数，代表被比较的对象，其工作方式类似于Comparable.compareTo()方法。
+Comparator接口定义了一个compare(arg1,arg2)方法，它有两个参数，代表被比较的对象，其工作方式类似于Comparable.compareTo()方法。
 
-### 4.1. 创建比较器
+###4.1.创建比较器
 
 要创建一个Comparator，我们必须实现Comparator接口。
 
-对于我们的第一个示例，我们将创建一个Comparator以使用 Player 的ranking属性对玩家进行排序：
+对于我们的第一个示例，我们将创建一个Comparator以使用Player的ranking属性对玩家进行排序：
 
 ```java
 public class PlayerRankingComparator implements Comparator<Player> {
@@ -102,7 +102,7 @@ public class PlayerRankingComparator implements Comparator<Player> {
 }
 ```
 
-同样，我们可以创建一个Comparator来使用 Player 的age属性对玩家进行排序：
+同样，我们可以创建一个Comparator来使用Player的age属性对玩家进行排序：
 
 ```java
 public class PlayerAgeComparator implements Comparator<Player> {
@@ -115,9 +115,9 @@ public class PlayerAgeComparator implements Comparator<Player> {
 }
 ```
 
-### 4.2. 比较器在行动
+###4.2.比较器在行动
 
-为了演示这个概念，让我们通过向Collections.sort方法引入第二个参数来修改我们的PlayerSorter ，这实际上是我们要使用的Comparator的实例。
+为了演示这个概念，让我们通过向Collections.sort方法引入第二个参数来修改我们的PlayerSorter，这实际上是我们要使用的Comparator的实例。
 
 使用这种方法，我们可以覆盖自然顺序：
 
@@ -127,7 +127,7 @@ Collections.sort(footballTeam, playerComparator);
 
 ```
 
-现在让我们运行我们的PlayerRankingSorter 来查看结果：
+现在让我们运行我们的PlayerRankingSorter来查看结果：
 
 ```java
 Before Sorting : [John, Roger, Steven]
@@ -148,11 +148,11 @@ Before Sorting : [John, Roger, Steven]
 After Sorting by age : [Roger, John, Steven]
 ```
 
-### 4.3.Java8比较器
+###4.3.Java8比较器
 
-Java 8 提供了使用 lambda 表达式和comparing()静态工厂方法定义比较器的新方法。
+Java8提供了使用lambda表达式和comparing()静态工厂方法定义比较器的新方法。
 
-让我们看一个如何使用 lambda 表达式创建Comparator的快速示例：
+让我们看一个如何使用lambda表达式创建Comparator的快速示例：
 
 ```java
 Comparator byRanking = 
@@ -168,9 +168,9 @@ Comparator<Player> byAge = Comparator
   .comparing(Player::getAge);
 ```
 
-要深入探索Java8 功能，请查看我们的[Java 8 Comparator.comparing](https://www.baeldung.com/java-8-comparator-comparing)指南。
+要深入探索Java8功能，请查看我们的[Java8Comparator.comparing](https://www.baeldung.com/java-8-comparator-comparing)指南。
 
-## 5.比较器与可比较
+##5.比较器与可比较
 
 Comparable接口是用于定义默认排序的不错选择，或者换句话说，如果它是比较对象的主要方式。
 
@@ -178,11 +178,11 @@ Comparable接口是用于定义默认排序的不错选择，或者换句话说�
 
 有几个原因：
 
--   有时我们无法修改要对其对象进行排序的类的源代码，从而无法使用Comparable
--   使用比较器可以让我们避免向领域类中添加额外的代码
--   我们可以定义多个不同的比较策略，这在使用Comparable时是不可能的
+-有时我们无法修改要对其对象进行排序的类的源代码，从而无法使用Comparable
+-使用比较器可以让我们避免向领域类中添加额外的代码
+-我们可以定义多个不同的比较策略，这在使用Comparable时是不可能的
 
-## 6.避免减法技巧
+##6.避免减法技巧
 
 在本教程中，我们使用了Integer.compare()方法来比较两个整数。然而，有人可能会争辩说我们应该改用这个聪明的单行代码：
 
@@ -200,7 +200,7 @@ List<Player> players = Arrays.asList(player1, player2);
 players.sort(comparator);
 ```
 
-由于 -1 远小于 Integer.MAX_VALUE，“Roger”应该在排序集合中排在“John”之前。但是，由于整数溢出， “Integer.MAX_VALUE – (-1)” 将小于零。所以根据Comparator/Comparable 契约， Integer.MAX_VALUE 小于-1，这显然是不正确的。
+由于-1远小于Integer.MAX_VALUE，“Roger”应该在排序集合中排在“John”之前。但是，由于整数溢出，“Integer.MAX_VALUE–(-1)”将小于零。所以根据Comparator/Comparable契约，Integer.MAX_VALUE小于-1，这显然是不正确的。
 
 因此，尽管如我们所料，“John”在排序集合中排在“Roger”之前：
 
@@ -209,8 +209,8 @@ assertEquals("John", players.get(0).getName());
 assertEquals("Roger", players.get(1).getName());
 ```
 
-## 七、总结
+##七、总结
 
 在本文中，我们探讨了Comparable和Comparator接口，并讨论了它们之间的区别。
 
-要了解更高级的排序主题，请查看我们的其他文章，例如[Java 8 Comparator](https://www.baeldung.com/java-8-comparator-comparing)和[Java 8 Comparison with Lambdas](https://www.baeldung.com/java-8-sort-lambda)。
+要了解更高级的排序主题，请查看我们的其他文章，例如[Java8Comparator](https://www.baeldung.com/java-8-comparator-comparing)和[Java8ComparisonwithLambdas](https://www.baeldung.com/java-8-sort-lambda)。

@@ -1,18 +1,18 @@
 ## 1. 概述
 
-在本文中，我们探索使用 Eclipse IDE生成equals()和hashCode()方法。我们将说明 Eclipse 的代码自动生成是多么强大和方便，并强调仍然需要对代码进行勤奋的测试。
+在本文中，我们探索使用EclipseIDE生成equals()和hashCode()方法。我们将说明Eclipse的代码自动生成是多么强大和方便，并强调仍然需要对代码进行勤奋的测试。
 
-## 2.规则
+## 2. 规则
 
-Java 中的equals()用于检查 2 个对象是否相等。测试这一点的一个好方法是确保对象是对称的、自反的和可传递的。也就是说，对于三个非空对象a、b和c：
+Java中的equals()用于检查2个对象是否相等。测试这一点的一个好方法是确保对象是对称的、自反的和可传递的。也就是说，对于三个非空对象a、b和c：
 
--   对称——a.equals(b) 当且仅当 b.equals(a)
--   自反 - a.equals(a)
--   传递性——如果a.equals(b)和b.equals(c)那么a.equals(c)
+- 对称：a.equals(b)当且仅当b.equals(a)
+- 自反：a.equals(a)
+- 传递性：如果a.equals(b)和b.equals(c)那么a.equals(c)
 
 hashCode()必须遵守一条规则：
 
--   2 个equals()对象必须具有相同的hashCode()值
+- 2个equals()对象必须具有相同的hashCode()值
 
 ## 3. 使用基元类
 
@@ -28,7 +28,7 @@ public class PrimitiveClass {
 }
 ```
 
-我们使用 Eclipse IDE使用“Source->Generate hashCode() and equals() ”来生成equals () 和hashCode () 。Eclipse 提供了这样一个对话框：
+我们使用EclipseIDE使用“Source->Generate hashCode() and equals()”来生成equals()和hashCode()。Eclipse提供了这样一个对话框：
 
 [![eclipse-等于-hascode](https://www.baeldung.com/wp-content/uploads/2016/10/eclipse-equals-hascode.png)](https://www.baeldung.com/wp-content/uploads/2016/10/eclipse-equals-hascode.png)
 
@@ -58,13 +58,13 @@ public boolean equals(Object obj) {
 }
 ```
 
-生成的hashCode()方法以质数 (31) 的声明开始，对原始对象执行各种操作并根据对象的状态返回其结果。
+生成的hashCode()方法以质数(31)的声明开始，对原始对象执行各种操作并根据对象的状态返回其结果。
 
-equals()首先检查两个对象是否是同一个实例 (==)，如果是则返回 true。
+equals()首先检查两个对象是否是同一个实例(==)，如果是则返回true。
 
-接下来，它检查比较对象是否为非 null 以及两个对象是否属于同一类，如果不是则返回 false。
+接下来，它检查比较对象是否为非null以及两个对象是否属于同一类，如果不是则返回false。
 
-最后，equals()检查每个成员变量是否相等，如果其中任何一个不相等则返回 false。
+最后，equals()检查每个成员变量是否相等，如果其中任何一个不相等则返回false。
 
 所以我们可以编写简单的测试：
 
@@ -94,7 +94,7 @@ public class ComplexClass {
 }
 ```
 
-我们再次使用 Eclipse 'Source->Generate hashCode() and equals()'。请注意hashCode()使用instanceOf来比较类对象，因为我们在对话框的 Eclipse 选项中选择了“使用‘instanceof’来比较类型”。我们得到：
+我们再次使用Eclipse 'Source->Generate hashCode() and equals()'。请注意hashCode()使用instanceOf来比较类对象，因为我们在对话框的Eclipse选项中选择了“使用‘instanceof’来比较类型”。我们得到：
 
 ```java
 @Override
@@ -153,7 +153,7 @@ assertFalse(aObject.equals(dObject));
 assertFalse(aObject.hashCode() == dObject.hashCode());
 ```
 
-## 5.继承
+## 5. 继承
 
 让我们考虑一下使用继承的Java类：
 
@@ -170,12 +170,12 @@ public class Rectangle extends Shape {
    
     @Override
     public double area() {
-        return width  length;
+        return width * length;
     }
 
     @Override
     public double perimeter() {
-        return 2  (width + length);
+        return 2 * (width + length);
     }
     // constructor, getters and setters
 }
@@ -186,13 +186,13 @@ public class Square extends Rectangle {
 }
 ```
 
-如果我们尝试在Square类上执行“Source->Generate hashCode() and equals() ” ，Eclipse 会警告我们“超类‘Rectangle’不会重新声明equals()和hashCode()：生成的代码可能无法正常运行'.
+如果我们尝试在Square类上执行“Source->Generate hashCode() and equals()”，Eclipse会警告我们“超类‘Rectangle’不会重新声明equals()和hashCode()：生成的代码可能无法正常运行'。
 
 同样，当我们尝试在Rectangle类上生成hashCode()和equals()时，我们会收到有关超类“Shape”的警告。
 
-Eclipse 将允许我们不顾警告继续前进。对于Rectangle，它扩展了一个抽象的Shape类，该类不能实现hashCode()或equals()，因为它没有具体的成员变量。对于这种情况，我们可以忽略 Eclipse。
+Eclipse将允许我们不顾警告继续前进。对于Rectangle，它扩展了一个抽象的Shape类，该类不能实现hashCode()或equals()，因为它没有具体的成员变量。对于这种情况，我们可以忽略Eclipse。
 
-然而， Square类继承了 Rectangle 的宽度和长度成员变量，以及它自己的颜色变量。在Square中创建hashCode()和equals()而不首先对Rectangle执行相同的操作意味着在equals() / hashCode()中仅使用颜色：
+然而，Square类继承了Rectangle的宽度和长度成员变量，以及它自己的颜色变量。在Square中创建hashCode()和equals()而不首先对Rectangle执行相同的操作意味着在equals()/hashCode()中仅使用颜色：
 
 ```java
 @Override
@@ -217,7 +217,7 @@ public boolean equals(Object obj) {
 }
 ```
 
-快速测试告诉我们，如果只是宽度不同，则Square的equals() / hashCode()是不够的，因为宽度不包括在equals() / hashCode()计算中：
+快速测试告诉我们，如果只是宽度不同，则Square的equals()/hashCode()是不够的，因为宽度不包括在equals()/hashCode()计算中：
 
 ```java
 Square aObject = new Square(10, Color.BLUE);     
@@ -225,10 +225,9 @@ Square dObject = new Square(20, Color.BLUE);
 
 Assert.assertFalse(aObject.equals(dObject));
 Assert.assertFalse(aObject.hashCode() == dObject.hashCode());
-
 ```
 
-让我们通过使用 Eclipse为Rectangle类生成equals() / hashCode()来解决这个问题：
+让我们通过使用Eclipse为Rectangle类生成equals()/hashCode()来解决这个问题：
 
 ```java
 @Override
@@ -257,7 +256,7 @@ public boolean equals(Object obj) {
 }
 ```
 
-我们必须在Square类中重新生成equals() / hashCode() ，因此会调用Rectangle的equals() / hashCode() 。在这一代代码中，我们选择了 Eclipse 对话框中的所有选项，因此我们看到了注解、instanceOf比较和if块：
+我们必须在Square类中重新生成equals()/hashCode()，因此会调用Rectangle的equals()/hashCode()。在这一代代码中，我们选择了Eclipse对话框中的所有选项，因此我们看到了注解、instanceOf比较和if块：
 
 ```java
 @Override
@@ -292,10 +291,10 @@ public boolean equals(Object obj) {
 }
 ```
 
-从上面重新运行我们的测试，我们现在通过了，因为Square的hashCode() / equals()计算正确。
+从上面重新运行我们的测试，我们现在通过了，因为Square的hashCode()/equals()计算正确。
 
-## 六，总结
+## 6. 总结
 
-Eclipse IDE 非常强大，允许自动生成样板代码——getter/setter、各种类型的构造函数、equals()和hashCode()。
+Eclipse IDE非常强大，允许自动生成样板代码-getter/setter、各种类型的构造函数、equals()和hashCode()。
 
-通过了解 Eclipse 正在做什么，我们可以减少花在这些编码任务上的时间。但是，我们仍然必须谨慎使用并通过测试来验证我们的代码，以确保我们已经处理了所有预期的情况。
+通过了解Eclipse正在做什么，我们可以减少花在这些编码任务上的时间。但是，我们仍然必须谨慎使用并通过测试来验证我们的代码，以确保我们已经处理了所有预期的情况。

@@ -1,7 +1,9 @@
-## Spring Kafka 2
+## Spring Kafka
 
-This module contains articles about Spring with Kafka
+本模块包含有关Spring集成Kafka的文章
 
-### Relevant articles
+## 相关文章
 
-- [Implementing Retry In Kafka Consumer](https://www.baeldung.com/spring-retry-kafka-consumer)
++ [在Kafka Consumer中实现重试](docs/在Kafka-Consumer中实现重试.md)
+
+- 更多文章： [[<-- prev]](../spring-kafka/README.md)

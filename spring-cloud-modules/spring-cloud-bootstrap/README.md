@@ -1,24 +1,24 @@
-## Guide to Microservices: with Spring Boot and Spring Cloud Ebook
+## Guide to Microservices
 
-This module contains articles about bootstrapping Spring Cloud applications that are part of the Guide to Microservices: with Spring Boot and Spring Cloud Ebook.
+本模块包含有关引导Spring Cloud应用程序的文章，这些文章是微服务指南：使用Spring Boot和Spring Cloud电子书的一部分。
 
-### Relevant Articles:
+## 相关文章
 
-- [Spring Cloud – Bootstrapping](http://www.baeldung.com/spring-cloud-bootstrapping)
-- [Spring Cloud – Securing Services](http://www.baeldung.com/spring-cloud-securing-services)
-- [Spring Cloud – Tracing Services with Zipkin](http://www.baeldung.com/tracing-services-with-zipkin)
-- [Spring Cloud Series – The Gateway Pattern](http://www.baeldung.com/spring-cloud-gateway-pattern)
-- [Spring Cloud – Adding Angular 4](http://www.baeldung.com/spring-cloud-angular)
-- [How to Share DTO Across Microservices](https://www.baeldung.com/java-microservices-share-dto)
++ [Spring Cloud Bootstrap](docs/SpringCloud-Bootstrap.md)
++ [Spring Cloud-保护服务](docs/SpringCloud-保护服务.md)
++ [Spring Cloud-使用Zipkin跟踪服务](docs/SpringCloud-使用Zipkin跟踪服务.md)
++ [Spring Cloud系列-网关模式](docs/SpringCloud系列-网关模式.md)
++ [Spring Cloud-添加Angular 4](docs/SpringCloud-添加Angular4.md)
++ [如何跨微服务共享DTO](docs/如何跨微服务共享DTO.md)
 
-### Running the Project
+## 运行项目
 
-- First, you need a redis server running on the default port
-- To run the project:
-  - copy the appliction-config folder to c:\Users\{username}\ on Windows or /home/{username}/ on *nix. Then open a git bash terminal in application-config and run:
+- 首先，你需要在默认端口上运行一个redis服务器
+- 运行项目：
+  - 将application-config文件夹复制到Windows上的c:\Users\\{username}\或*nix上的/home/{username}/。然后在application-config中打开一个git bash终端并运行：
     - git init
     - git add .
     - git commit -m "First commit"
-  - start the config server
-  - start the discovery server
-  - start all the other servers in any order (gateway, svc-book, svc-rating, zipkin)
+  - 启动config服务器
+  - 启动discovery服务器
+  - 以任何顺序启动所有其他服务器(gateway，svc-book，svc-rating，zipkin)

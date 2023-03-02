@@ -8,5 +8,3 @@
 + [使用OpenFeign上传文件](docs/使用OpenFeign上传文件.md)
 + [使用OpenFeign和Spring传播异常](docs/使用OpenFeign和Spring传播异常.md)
 + [向Feign客户端提供OAuth2令牌](docs/向Feign客户端提供OAuth2令牌.md)
-
-- 更多文章： [[next -->]](../spring-cloud-openfeign-2/README.md)

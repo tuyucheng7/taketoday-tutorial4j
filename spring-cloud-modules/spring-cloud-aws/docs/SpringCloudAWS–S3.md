@@ -33,7 +33,7 @@ public void uploadFileToS3(File file, String s3Url) throws IOException {
 
 ## 3. S3 URL结构
 
-s3Url使用以下格式表示：
+s3 Url使用以下格式表示：
 
 ```shell
 s3://<bucket>/<object>
@@ -45,15 +45,14 @@ s3://<bucket>/<object>
 s3://my-s3-bucket/foo/bar.zip
 ```
 
-而且，我们还可以使用ResourcePatternResolver和 Ant 风格的模式匹配一次下载多个对象：
+而且，我们还可以使用ResourcePatternResolver和Ant风格的模式匹配一次下载多个对象：
 
 ```java
 private ResourcePatternResolver resourcePatternResolver;
  
 @Autowired
 public void setupResolver(ApplicationContext applicationContext, AmazonS3 amazonS3) {
-    this.resourcePatternResolver = 
-        new PathMatchingSimpleStorageResourcePatternResolver(amazonS3, applicationContext);
+    this.resourcePatternResolver = new PathMatchingSimpleStorageResourcePatternResolver(amazonS3, applicationContext);
  }
 
 public void downloadMultipleS3Objects(String s3Url) throws IOException {
@@ -72,4 +71,4 @@ public void downloadMultipleS3Objects(String s3Url) throws IOException {
 
 ## 4. 总结
 
-我们已经完成了——这是对使用Spring Cloud AWS访问S3的快速而切题的介绍。
+我们已经完成了-这是对使用Spring Cloud AWS访问S3的快速而切题的介绍。

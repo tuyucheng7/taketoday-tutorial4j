@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [使用Netflix Ribbon的Spring Cloud RestClient介绍](docs/带Netflix-Ribbon的SpringCloud-RestClient介绍.md)
++ [使用Netflix Ribbon的Spring Cloud RestClient介绍](docs/使用Netflix-Ribbon的SpringCloud-RestClient介绍.md)
 
 - 更多文章： [[next -->]](../spring-cloud-ribbon-retry/README.md)

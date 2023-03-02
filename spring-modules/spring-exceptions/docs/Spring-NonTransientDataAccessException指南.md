@@ -29,9 +29,9 @@ public void whenSavingNullValue_thenDataIntegrityException() {
 }
 ```
 
-### 3.1. 重复键异常
+### 3.1 重复键异常
 
-DataIntegrityViolationException的子类之一是DuplicateKeyException，当尝试保存具有已存在的主键的记录或已存在于具有唯一约束的列中的值时抛出，例如尝试插入两行在相同id为 1的foo表中：
+DataIntegrityViolationException的子类之一是DuplicateKeyException，当尝试保存具有已存在的主键的记录或已存在于具有唯一约束的列中的值时抛出，例如尝试插入两行在相同id为1的foo表中：
 
 ```java
 @Test(expected = DuplicateKeyException.class)
@@ -42,7 +42,7 @@ public void whenSavingDuplicateKeyValues_thenDuplicateKeyException() {
 }
 ```
 
-## 4.数据检索失败异常
+## 4. 数据检索失败异常
 
 当检索数据过程中出现问题时抛出此异常，例如查找具有数据库中不存在的标识符的对象。
 
@@ -57,7 +57,7 @@ public void whenRetrievingNonExistentValue_thenDataRetrievalException() {
 }
 ```
 
-### 4.1. 不正确的ResultSetColumnCountException
+### 4.1 不正确的ResultSetColumnCountException
 
 在未创建正确的RowMapper的情况下尝试从表中检索多个列时抛出此异常子类：
 
@@ -71,7 +71,7 @@ public void whenRetrievingMultipleColumns_thenIncorrectResultSetColumnCountExcep
 }
 ```
 
-### 4.2. 不正确的结果大小数据访问异常
+### 4.2 不正确的结果大小数据访问异常
 
 当许多检索到的记录与预期记录不同时会抛出此异常，例如，当期望单个Integer值时，但为查询检索了两行：
 
@@ -87,7 +87,7 @@ public void whenRetrievingMultipleValues_thenIncorrectResultSizeException() {
 }
 ```
 
-## 5.数据源查找失败异常
+## 5. 数据源查找失败异常
 
 当无法获取到指定的数据源时抛出该异常。例如，我们将使用JndiDataSourceLookup类来查找不存在的数据源：
 
@@ -100,11 +100,11 @@ public void whenLookupNonExistentDataSource_thenDataSourceLookupFailureException
 }
 ```
 
-## 6.无效的数据访问资源使用异常
+## 6. 无效的数据访问资源使用异常
 
 当资源访问不正确时会抛出此异常，例如当用户缺少SELECT权限时。
 
-为了测试这个异常，我们需要撤销用户的SELECT权限，然后运行 SELECT 查询：
+为了测试这个异常，我们需要撤销用户的SELECT权限，然后运行SELECT查询：
 
 ```java
 @Test(expected = InvalidDataAccessResourceUsageException.class)
@@ -122,9 +122,9 @@ public void whenRetrievingDataUserNoSelectRights_thenInvalidResourceUsageExcepti
 
 请注意，我们正在finally块中恢复对用户的权限。
 
-### 6.1. BadSqlGrammarException
+### 6.1 BadSqlGrammarException
 
-InvalidDataAccessResourceUsageException的一个非常常见的子类型是BadSqlGrammarException，它在尝试使用无效 SQL 运行查询时抛出：
+InvalidDataAccessResourceUsageException的一个非常常见的子类型是BadSqlGrammarException，它在尝试使用无效SQL运行查询时抛出：
 
 ```java
 @Test(expected = BadSqlGrammarException.class)
@@ -136,15 +136,15 @@ public void whenIncorrectSql_thenBadSqlGrammarException() {
 
 当然要注意来回——这是查询的无效方面。
 
-## 7.无法获取JdbcConnectionException
+## 7. 无法获取JdbcConnectionException
 
-当通过JDBC的连接尝试失败时抛出此异常，例如当数据库 url 不正确时。如果我们这样写url：
+当通过JDBC的连接尝试失败时抛出此异常，例如当数据库url不正确时。如果我们这样写url：
 
-```java
+```properties
 jdbc.url=jdbc:mysql:3306://localhost/spring_hibernate4_exceptions?createDatabaseIfNotExist=true
 ```
 
-然后在尝试执行语句时将抛出CannotGetJdbcConnectionException ：
+然后在尝试执行语句时将抛出CannotGetJdbcConnectionException：
 
 ```java
 @Test(expected = CannotGetJdbcConnectionException.class)
@@ -154,8 +154,8 @@ public void whenJdbcUrlIncorrect_thenCannotGetJdbcConnectionException() {
 }
 ```
 
-## 八. 总结
+## 8. 总结
 
 在这个重点教程中，我们了解了NonTransientDataAccessException类的一些最常见的子类型。
 
-所有示例的实现都可以在[GitHub 项目](https://github.com/eugenp/tutorials/tree/master/spring-exceptions)中找到。当然，所有示例都使用内存数据库，因此你无需进行任何设置即可轻松运行它们。
+所有示例的实现都可以在[GitHub项目](https://github.com/eugenp/tutorials/tree/master/spring-exceptions)中找到。当然，所有示例都使用内存数据库，因此你无需进行任何设置即可轻松运行它们。

@@ -28,17 +28,17 @@ curl http://169.254.169.254/latest/meta-data/iam/security-credentials/<InstanceP
 
 ## 3. 配置Spring Cloud
 
-现在，对于我们的示例应用程序。我们需要配置Spring Boot以使用实例配置文件，我们可以在Spring Boot配置文件中执行此操作：
+现在，对于我们的示例应用程序。我们需要配置Spring Boot以使用instance profile，我们可以在Spring Boot配置文件中执行此操作：
 
 ```properties
 cloud.aws.credentials.instanceProfile=true
 ```
 
-而且，就是这样！如果此Spring Boot应用程序部署在EC2实例中，则每个客户端将自动尝试使用实例配置文件凭证连接到AWS资源。
+而且，就是这样！如果此Spring Boot应用程序部署在EC2实例中，则每个客户端将自动尝试使用instance profile凭证连接到AWS资源。
 
-这是因为Spring Cloud使用AWS SDK中的[EC2ContainerCredentialsProviderWrapper](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/EC2ContainerCredentialsProviderWrapper.html)。这将按优先顺序查找凭据，**如果在系统中找不到任何其他凭据，则自动以实例配置文件凭据结束**。
+这是因为Spring Cloud使用AWS SDK中的[EC2ContainerCredentialsProviderWrapper](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/EC2ContainerCredentialsProviderWrapper.html)。这将按优先顺序查找凭据，**如果在系统中找不到任何其他凭据，则自动以instance profile凭据结束**。
 
-如果我们需要指定Spring Cloud只使用实例配置文件，那么我们可以实例化我们自己的AmazonS3实例。
+如果我们需要指定Spring Cloud只使用instance profile，那么我们可以实例化我们自己的AmazonS3实例。
 
 我们可以使用InstanceProfileCredentialsProvider对其进行配置并将其发布为bean：
 

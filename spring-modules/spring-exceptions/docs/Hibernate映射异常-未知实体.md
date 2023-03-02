@@ -1,22 +1,22 @@
 ## 1. 问题
 
-本文将讨论org.hibernate.MappingException：未知实体问题和解决方案，既适用于 Hibernate 也适用于 Spring 和 Hibernate 环境。
+本文将讨论org.hibernate.MappingException：未知实体问题和解决方案，既适用于Hibernate也适用于Spring和Hibernate环境。
 
-## 延伸阅读：
+### 延伸阅读
 
-## [使用 Spring 引导 Hibernate 5](https://www.baeldung.com/hibernate-5-spring)
+### [使用Spring Boot Hibernate 5](https://www.baeldung.com/hibernate-5-spring)
 
-将 Hibernate 5 与 Spring 集成的快速实用指南。
+将Hibernate 5与Spring集成的快速实用指南。
 
 [阅读更多](https://www.baeldung.com/hibernate-5-spring)→
 
-## [Hibernate 中的@Immutable](https://www.baeldung.com/hibernate-immutable)
+### [Hibernate中的@Immutable](https://www.baeldung.com/hibernate-immutable)
 
-Hibernate 中@Immutable 注解的快速实用指南
+Hibernate中@Immutable注解的快速实用指南
 
 [阅读更多](https://www.baeldung.com/hibernate-immutable)→
 
-## [HibernateException：没有 Hibernate 会话绑定到 Hibernate 3 中的线程](https://www.baeldung.com/no-hibernate-session-bound-to-thread-exception)
+### [HibernateException：没有Hibernate会话绑定到Hibernate3中的线程](https://www.baeldung.com/no-hibernate-session-bound-to-thread-exception)
 
 了解何时抛出“No Hibernate Session Bound to Thread”异常以及如何处理它。
 
@@ -40,6 +40,7 @@ public class Foo implements Serializable {
     public long getId() {
         return id;
     }
+    
     public void setId(long id) {
         this.id = id;
     }
@@ -53,34 +54,36 @@ import org.hibernate.annotations.Entity;
 
 @Entity
 public class Foo implements Serializable {
-    ...
+    // ...
+}
 ```
 
-已弃用的org.hibernate.annotations.Entity是错误的实体类型——我们需要的是javax.persistence.Entity：
+已弃用的org.hibernate.annotations.Entity是错误的实体类型-我们需要的是javax.persistence.Entity：
 
 ```java
 import javax.persistence.Entity;
 
 @Entity
 public class Foo implements Serializable {
-    ...
+    // ...
+}
 ```
 
-## 3. Spring的 MappingException
+## 3. Spring的MappingException
 
-[Spring 中 Hibernate](https://www.baeldung.com/hibernate-4-spring)的配置涉及通过LocalSessionFactoryBean从注解扫描引导SessionFactory：
+[Spring中Hibernate](https://www.baeldung.com/hibernate-4-spring)的配置涉及通过LocalSessionFactoryBean从注解扫描引导SessionFactory：
 
 ```java
 @Bean
 public LocalSessionFactoryBean sessionFactory() {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(restDataSource());
-    ...
+    // ...
     return sessionFactory;
 }
 ```
 
-Session Factory Bean 的这个简单配置缺少一个关键成分，尝试使用SessionFactory的测试将失败：
+SessionFactoryBean的这个简单配置缺少一个关键成分，尝试使用SessionFactory的测试将失败：
 
 ```java
 ...
@@ -94,11 +97,11 @@ public void givenEntityIsPersisted_thenException() {
 }
 ```
 
-正如预期的那样，异常是MappingException: Unknown entity：
+正如预期的那样，异常是MappingException:Unknown entity：
 
 ```bash
 org.hibernate.MappingException: Unknown entity: 
-com.baeldung.ex.mappingexception.persistence.model.Foo
+cn.tuyucheng.taketoday.ex.mappingexception.persistence.model.Foo
     at o.h.i.SessionFactoryImpl.getEntityPersister(SessionFactoryImpl.java:1141)
 ```
 
@@ -107,8 +110,7 @@ com.baeldung.ex.mappingexception.persistence.model.Foo
 我们可以指定在类路径中搜索哪些包的实体类：
 
 ```java
-sessionFactory.setPackagesToScan(
-  new String[] { "com.baeldung.ex.mappingexception.persistence.model" });
+sessionFactory.setPackagesToScan(new String[] { "cn.tuyucheng.taketoday.ex.mappingexception.persistence.model" });
 ```
 
 或者我们可以简单地将实体类直接注册到会话工厂中：
@@ -119,9 +121,9 @@ sessionFactory.setAnnotatedClasses(new Class[] { Foo.class });
 
 使用这些额外的配置行中的任何一个，测试现在将正确运行并通过。
 
-## 4. Hibernate的 MappingException
+## 4. Hibernate的MappingException
 
-现在让我们看看仅使用 Hibernate 时的错误：
+现在让我们看看仅使用Hibernate时的错误：
 
 ```java
 public class Cause4MappingExceptionIntegrationTest {
@@ -139,7 +141,7 @@ public class Cause4MappingExceptionIntegrationTest {
     private SessionFactory configureSessionFactory() throws IOException {
         Configuration configuration = new Configuration();
         InputStream inputStream = this.getClass().getClassLoader().
-          getResourceAsStream("hibernate-mysql.properties");
+              getResourceAsStream("hibernate-mysql.properties");
         Properties hibernateProperties = new Properties();
         hibernateProperties.load(inputStream);
         configuration.setProperties(hibernateProperties);
@@ -147,7 +149,7 @@ public class Cause4MappingExceptionIntegrationTest {
         // configuration.addAnnotatedClass(Foo.class);
 
         ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().
-          applySettings(configuration.getProperties()).buildServiceRegistry();
+              applySettings(configuration.getProperties()).buildServiceRegistry();
         SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         return sessionFactory;
     }
@@ -156,7 +158,7 @@ public class Cause4MappingExceptionIntegrationTest {
 
 hibernate-mysql.properties文件包含Hibernate配置属性：
 
-```bash
+```properties
 hibernate.connection.username=tutorialuser
 hibernate.connection.password=tutorialmy5ql
 hibernate.connection.driver_class=com.mysql.jdbc.Driver
@@ -170,20 +172,18 @@ hibernate.hbm2ddl.auto=create
 
 ```bash
 org.hibernate.MappingException: 
-  Unknown entity: com.baeldung.ex.mappingexception.persistence.model.Foo
+  Unknown entity: cn.tuyucheng.taketoday.ex.mappingexception.persistence.model.Foo
     at o.h.i.SessionFactoryImpl.getEntityPersister(SessionFactoryImpl.java:1141)
 ```
 
-从上面的例子中可能已经很清楚了，配置中缺少的是将实体类的元数据——Foo——添加到配置中：
+从上面的例子中可能已经很清楚了，配置中缺少的是将实体类的元数据Foo添加到配置中：
 
 ```java
 configuration.addAnnotatedClass(Foo.class);
 ```
 
-这修复了测试——现在能够持久化 Foo 实体。
+这修复了测试-现在能够持久化Foo实体。
 
-## 5.总结
+## 5. 总结
 
-本文说明了为什么会出现未知实体映射异常，以及当它出现时如何解决问题，首先是在实体级别，然后是 Spring 和 Hibernate，最后是单独使用 Hibernate。
-
-所有异常示例的实现都可以在[github项目](https://github.com/eugenp/tutorials/tree/master/spring-exceptions)中找到——这是一个基于Eclipse的项目，所以应该很容易导入和运行。
+本文说明了为什么会出现未知实体映射异常，以及当它出现时如何解决问题，首先是在实体级别，然后是Spring和Hibernate，最后是单独使用Hibernate。

@@ -12,38 +12,39 @@
 + [监控Apache Kafka中的消费者延迟](docs/监控Apache-Kafka中的消费者延迟.md)
 + [获取Apache Kafka主题中的消息数](docs/获取Apache-Kafka主题中的消息数.md)
 
-## Intro
+- 更多文章： [[next -->]](../spring-kafka-2/README.md)
 
-This is a simple Spring Boot app to demonstrate sending and receiving of messages in Kafka using spring-kafka.
+## 介绍
 
-As Kafka topics are not created automatically by default, this application requires that you create the following topics
-manually.
+这是一个简单的Spring Boot应用程序，用于演示使用spring-kafka在Kafka中发送和接收消息。
+
+由于默认情况下不会自动创建Kafka主题，因此此应用程序要求你手动地创建以下主题。
 
 `$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic baeldung`<br>
 `$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 5 --topic partitioned`<br>
 `$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic filtered`<br>
 `$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic greeting`<br>
 
-When the application runs successfully, following output is logged on to console (along with spring logs):
+应用程序成功运行时，以下输出将记录到控制台(以及spring日志)：
 
-### Message received from the 'baeldung' topic by the basic listeners with groups foo and bar
+### 基本监听器从“tuyucheng”主题收到的消息，带有组foo和bar
 
 > Received Message in group 'foo': Hello, World!<br>
 > Received Message in group 'bar': Hello, World!
 
-### Message received from the 'baeldung' topic, with the partition info
+### 从“tuyucheng”主题收到的消息，其中包含分区信息
 
 > Received Message: Hello, World! from partition: 0
 
-### Message received from the 'partitioned' topic, only from specific partitions
+### 从“partitioned”主题接收的消息，仅来自特定分区
 
 > Received Message: Hello To Partioned Topic! from partition: 0<br>
 > Received Message: Hello To Partioned Topic! from partition: 3
 
-### Message received from the 'filtered' topic after filtering
+### 过滤后从“filtered”主题收到的消息
 
-> Received Message in filtered listener: Hello Baeldung!
+> Received Message in filtered listener: Hello Tuyucheng!
 
-### Message (Serialized Java Object) received from the 'greeting' topic
+### 从“greeting”主题接收的消息(序列化的Java对象)
 
 > Received greeting message: Greetings, World!!

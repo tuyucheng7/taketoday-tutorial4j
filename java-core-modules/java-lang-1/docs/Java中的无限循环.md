@@ -6,7 +6,7 @@
 
 ## 2. 使用while
 
-让我们从 while循环开始。这里我们将使用布尔字面量true 来编写while循环条件：
+让我们从while循环开始。这里我们将使用布尔字面量true来编写while循环条件：
 
 ```java
 public void infiniteLoopUsingWhile() {
@@ -16,7 +16,7 @@ public void infiniteLoopUsingWhile() {
 }
 ```
 
-## 3. 用于
+## 3. for
 
 现在，让我们使用for循环来创建一个无限循环：
 
@@ -28,7 +28,7 @@ public void infiniteLoopUsingFor() {
 }
 ```
 
-## 4.使用do-while
+## 4. 使用do-while
 
 也可以使用Java中不太常见的do-while循环来创建无限循环。这里的循环条件是在第一次执行后评估的：
 
@@ -40,6 +40,6 @@ public void infiniteLoopUsingDoWhile() {
 }
 ```
 
-## 5.总结
+## 5. 总结
 
 尽管在大多数情况下我们会避免创建无限循环，但在某些情况下我们可能需要创建一个。在这种情况下，循环将在应用程序退出时终止。

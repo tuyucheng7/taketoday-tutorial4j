@@ -1,12 +1,12 @@
 ## 1. 概述
 
-在本文中，我们将开始探索JSON [-API](http://jsonapi.org/)规范以及如何将其集成到 Spring 支持的 REST API 中。
+在本文中，我们将开始探索**[JSON-API](http://jsonapi.org/)规范**以及如何将其集成到Spring支持的REST API中。
 
-我们将在Java中使用 JSON-API 的[Katharsis](https://github.com/katharsis-project/katharsis-framework)实现——我们将设置一个 Katharsis 支持的 Spring 应用程序——所以我们只需要一个 Spring 应用程序。
+我们将在Java中使用JSON-API的[Katharsis](https://github.com/katharsis-project/katharsis-framework)实现-我们将设置一个Katharsis支持的Spring应用程序，所以我们只需要一个Spring应用程序。
 
-## 2.专家
+## 2. Maven
 
-首先，让我们看一下我们的 maven 配置——我们需要将以下依赖项添加到我们的pom.xml中：
+首先，让我们看一下我们的Maven配置-我们需要将以下依赖项添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -38,15 +38,16 @@ public class User {
 -   @JsonApiResource注解用来定义我们的资源User
 -   @JsonApiId注解用于定义资源标识
 
-非常简单——这个例子的持久化将是一个 Spring Data 存储库：
+非常简单-这个例子的持久化将是一个Spring Data Repository：
 
 ```java
-public interface UserRepository extends JpaRepository<User, Long> {}
+public interface UserRepository extends JpaRepository<User, Long> {
+}
 ```
 
-## 4.资源库
+## 4. 资源Repository
 
-接下来，让我们讨论一下我们的资源存储库——每个资源都应该有一个ResourceRepositoryV2来发布其上可用的 API 操作：
+接下来，让我们讨论一下我们的资源Repository-每个资源都应该有一个ResourceRepositoryV2来发布其上可用的API操作：
 
 ```java
 @Component
@@ -57,7 +58,7 @@ public class UserResourceRepository implements ResourceRepositoryV2<User, Long> 
 
     @Override
     public User findOne(Long id, QuerySpec querySpec) {
-        Optional<User> user = userRepository.findById(id); 
+        Optional<User> user = userRepository.findById(id);
         return user.isPresent()? user.get() : null;
     }
 
@@ -93,35 +94,35 @@ public class UserResourceRepository implements ResourceRepositoryV2<User, Long> 
 }
 ```
 
-这里有一个简短的说明——这当然与 Spring 控制器非常相似。
+这里有一个简短的说明-这当然**与Spring控制器非常相似**。
 
-## 5. 宣誓配置
+## 5. Katharsis配置
 
-当我们使用katharsis-spring时，我们需要做的就是 在我们的Spring Boot应用程序中导入KatharsisConfigV3 ：
+当我们使用katharsis-spring时，我们需要做的就是在我们的Spring Boot应用程序中导入KatharsisConfigV3：
 
 ```java
 @Import(KatharsisConfigV3.class)
 ```
 
-并在我们的application.properties中配置 Katharsis 参数：
+并在我们的application.properties中配置Katharsis参数：
 
-```bash
+```properties
 katharsis.domainName=http://localhost:8080
 katharsis.pathPrefix=/
 ```
 
-有了它——我们现在可以开始使用 API 了；例如：
+有了它，我们现在可以开始使用API了；例如：
 
--   GET “ http://localhost:8080/users ”：获取所有用户。
--   POST “ http://localhost:8080/users ”：添加新用户等。
+-   GET [http://localhost:8080/users](http://localhost:8080/users)：获取所有用户
+-   POST [http://localhost:8080/users](http://localhost:8080/users)：添加新用户等
 
-## 6.关系
+## 6. 实体关系
 
-接下来，让我们讨论如何在我们的 JSON API 中处理实体关系。
+接下来，让我们讨论如何在我们的JSON API中处理实体关系。
 
-### 6.1. 角色资源
+### 6.1 角色资源
 
-首先，让我们介绍一个新资源——角色：
+首先，让我们介绍一个新资源-角色：
 
 ```java
 @JsonApiResource(type = "roles")
@@ -137,16 +138,16 @@ public class Role {
 }
 ```
 
-然后在User和Role之间建立多对多关系：
+然后在用户和角色之间建立多对多关系：
 
 ```java
 @JsonApiRelation(serialize=SerializeType.EAGER)
 private Set<Role> roles;
 ```
 
-### 6.2. 角色资源库
+### 6.2 RoleResourceRepository
 
-很快——这是我们的角色资源库：
+这是我们的角色资源Repository：
 
 ```java
 @Component
@@ -157,7 +158,7 @@ public class RoleResourceRepository implements ResourceRepositoryV2<Role, Long> 
 
     @Override
     public Role findOne(Long id, QuerySpec querySpec) {
-        Optional<Role> role = roleRepository.findById(id); 
+        Optional<Role> role = roleRepository.findById(id);
         return role.isPresent()? role.get() : null;
     }
 
@@ -193,11 +194,11 @@ public class RoleResourceRepository implements ResourceRepositoryV2<Role, Long> 
 }
 ```
 
-重要的是要明白，这个单一的资源仓库不处理关系方面——它需要一个单独的仓库。
+重要的是要明白，这个单一的资源Repository不处理关系方面-它需要一个单独的Repository。
 
-### 6.3. 关系库
+### 6.3 关系Repository
 
-为了处理用户-角色之间的多对多关系，我们需要创建一种新的存储库样式：
+为了处理用户-角色之间的多对多关系，我们需要创建一个新样式的Repository：
 
 ```java
 @Component
@@ -260,54 +261,54 @@ public class UserToRoleRelationshipRepository implements RelationshipRepositoryV
 }
 ```
 
-我们在这里忽略关系存储库中的单一方法。
+我们在这里忽略关系Repository中的单数方法。
 
-## 7.测试
+## 7. 测试
 
-最后，让我们分析几个请求，真正理解 JSON-API 输出是什么样的。
+最后，让我们分析一些请求，真正理解JSON-API输出是什么样的。
 
 我们将开始检索单个用户资源(id = 2)：
 
-获取 http://localhost:8080/users/2
+GET [http://localhost:8080/users/2](http://localhost:8080/users/2)
 
-```bash
+```json
 {
-    "data":{
-        "type":"users",
-        "id":"2",
-        "attributes":{
-            "email":"tom@test.com",
-            "username":"tom"
+    "data": {
+        "type": "users",
+        "id": "2",
+        "attributes": {
+            "email": "tom@test.com",
+            "username": "tom"
         },
-        "relationships":{
-            "roles":{
-                "links":{
-                    "self":"http://localhost:8080/users/2/relationships/roles",
-                    "related":"http://localhost:8080/users/2/roles"
+        "relationships": {
+            "roles": {
+                "links": {
+                    "self": "http://localhost:8080/users/2/relationships/roles",
+                    "related": "http://localhost:8080/users/2/roles"
                 }
             }
         },
-        "links":{
-            "self":"http://localhost:8080/users/2"
+        "links": {
+            "self": "http://localhost:8080/users/2"
         }
     },
-    "included":[
+    "included": [
         {
-            "type":"roles",
-            "id":"1",
-            "attributes":{
-                "name":"ROLE_USER"
+            "type": "roles",
+            "id": "1",
+            "attributes": {
+                "name": "ROLE_USER"
             },
-            "relationships":{
-                "users":{
-                    "links":{
-                        "self":"http://localhost:8080/roles/1/relationships/users",
-                        "related":"http://localhost:8080/roles/1/users"
+            "relationships": {
+                "users": {
+                    "links": {
+                        "self": "http://localhost:8080/roles/1/relationships/users",
+                        "related": "http://localhost:8080/roles/1/users"
                     }
                 }
             },
-            "links":{
-                "self":"http://localhost:8080/roles/1"
+            "links": {
+                "self": "http://localhost:8080/roles/1"
             }
         }
     ]
@@ -316,64 +317,63 @@ public class UserToRoleRelationshipRepository implements RelationshipRepositoryV
 
 要点：
 
--   资源的主要属性可以在data.attributes中找到
--   资源的主要关系在data.relationships中找到
--   当我们使用@JsonApiRelation(serialize=SerializeType.EAGER) 作为角色关系时，它包含在 JSON 中并在包含的节点中找到
+-   资源的主要属性可以在**data.attributes**中找到
+-   资源的主要关系可以在**data.relationships**中找到
+-   当我们使用@JsonApiRelation(serialize=SerializeType.EAGER)作为角色关系时，它包含在JSON中并在**included**节点中找到
 
-接下来——让我们获取包含角色的集合资源：
+接下来-让我们获取包含角色的集合资源：
 
-获取 http://localhost:8080/角色
+GET [http://localhost:8080/roles](http://localhost:8080/roles)
 
-```bash
+```json
 {
-    "data":[
+    "data": [
         {
-            "type":"roles",
-            "id":"1",
-            "attributes":{
-                "name":"ROLE_USER"
+            "type": "roles",
+            "id": "1",
+            "attributes": {
+                "name": "ROLE_USER"
             },
-            "relationships":{
-                "users":{
-                    "links":{
-                        "self":"http://localhost:8080/roles/1/relationships/users",
-                        "related":"http://localhost:8080/roles/1/users"
+            "relationships": {
+                "users": {
+                    "links": {
+                        "self": "http://localhost:8080/roles/1/relationships/users",
+                        "related": "http://localhost:8080/roles/1/users"
                     }
                 }
             },
-            "links":{
-                "self":"http://localhost:8080/roles/1"
+            "links": {
+                "self": "http://localhost:8080/roles/1"
             }
         },
         {
-            "type":"roles",
-            "id":"2",
-            "attributes":{
-                "name":"ROLE_ADMIN"
+            "type": "roles",
+            "id": "2",
+            "attributes": {
+                "name": "ROLE_ADMIN"
             },
-            "relationships":{
-                "users":{
-                    "links":{
-                        "self":"http://localhost:8080/roles/2/relationships/users",
-                        "related":"http://localhost:8080/roles/2/users"
+            "relationships": {
+                "users": {
+                    "links": {
+                        "self": "http://localhost:8080/roles/2/relationships/users",
+                        "related": "http://localhost:8080/roles/2/users"
                     }
                 }
             },
-            "links":{
-                "self":"http://localhost:8080/roles/2"
+            "links": {
+                "self": "http://localhost:8080/roles/2"
             }
         }
     ],
-    "included":[
-
+    "included": [
     ]
 }
 ```
 
-这里的快速收获是我们获得了系统中的所有角色——作为数据节点中的数组
+这里的快速收获是我们获得了系统中的所有角色-作为**data**节点中的数组。
 
-## 八. 总结
+## 8. 总结
 
-JSON-API 是一个很棒的规范——最终以我们在 API 中使用 JSON 的方式添加了一些结构，并真正为真正的超媒体 API 提供动力。
+JSON-API是一个很棒的规范-最终以我们在API中使用JSON的方式添加了一些结构，并真正为真正的超媒体API提供支持。
 
-这篇文章探索了一种在 Spring 应用程序中设置它的方法。但不管那个实现如何，在我看来，规范本身是非常非常有前途的工作。
+这篇文章探讨了一种在Spring应用程序中设置它的方法。但不管那个实现如何，在我看来，规范本身是非常非常有前途的工作。

@@ -1,15 +1,15 @@
-## Overview
+## 概述
 
-This is an example of a ETL stream pipeline, mixing a starter application with custom transform and sink.
+这是ETL流管道的示例，它将初学者应用程序与自定义转换和接收器混合在一起。
 
-## Applications
+## 应用程序
 
-JDBC Source - Application Starter distributed by default
+JDBC Source：默认分发的应用程序启动器
 
-customer-transform - Custom application to transform the data
+customer-transform：用于转换数据的自定义应用程序
 
-customer-mongodb-sink - Custom application to sink the data
+customer-mongodb-sink：用于接收数据的自定义应用程序
 
 ## 相关文章
 
-+ []()
++ [使用Spring Cloud Data Flow的ETL](../docs/使用SpringCloud数据流的ETL.md)
