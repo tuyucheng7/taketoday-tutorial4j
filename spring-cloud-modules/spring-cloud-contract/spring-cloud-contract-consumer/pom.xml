@@ -35,7 +35,7 @@
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.baeldung.spring.cloud</groupId>
+			<groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
 			<artifactId>spring-cloud-contract-producer</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>

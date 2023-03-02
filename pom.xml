@@ -537,7 +537,7 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -681,7 +681,7 @@
 
 			<modules>
 				<module>custom-pmd</module>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -698,7 +698,7 @@
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
 				<!--<module>spring-data-modules</module>-->
-				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-cloud-modules</module>
 				<!--<module>spring-web-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!-- <module>spring-cloud-cli</module> --> <!-- Not a maven project -->
@@ -750,7 +750,7 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -805,7 +805,7 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -942,7 +942,7 @@
 
 			<modules>
 				<module>custom-pmd</module>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -958,7 +958,7 @@
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
-				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-cloud-modules</module>
 				<!--<module>spring-data-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
@@ -1005,7 +1005,7 @@
 			</build>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1038,7 +1038,7 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1152,7 +1152,7 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>
@@ -1169,7 +1169,7 @@
 				<!--<module>spring-boot-modules/spring-boot-3</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-native</module>-->
 				<!--<module>spring-boot-modules/spring-boot-3-observation</module>-->
-				<!--<module>spring-cloud-modules</module>-->
+				<module>spring-cloud-modules</module>
 				<!--<module>spring-data-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
@@ -1194,7 +1194,7 @@
 			</properties>
 
 			<modules>
-				<!--<module>parent-boot-1</module>-->
+				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<!--<module>parent-spring-4</module>-->
 				<module>parent-spring-5</module>

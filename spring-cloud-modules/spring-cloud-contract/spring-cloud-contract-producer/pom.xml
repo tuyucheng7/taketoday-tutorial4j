@@ -38,10 +38,10 @@
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>${spring-cloud.version}</version>
 				<extensions>true</extensions>
-				<!--<configuration>-->
-				<!--	<baseClassForTests>cn.tuyucheng.taketoday.spring.cloud.springcloudcontractproducer.BaseTestClass-->
-				<!--	</baseClassForTests>-->
-				<!--</configuration>-->
+				<configuration>
+					<baseClassForTests>cn.tuyucheng.taketoday.spring.cloud.springcloudcontractproducer.BaseTestClass
+					</baseClassForTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
