@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.chooseapi.controllers;
 
-import cn.tuyucheng.taketoday.chooseapi.ChooseApiApplication;
+import cn.tuyucheng.taketoday.chooseapi.ChooseApiApp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = ChooseApiApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+	properties = {"grpc.server.port=-1"}, // Disable gRPC external server
+	classes = ChooseApiApp.class)
 @ActiveProfiles("chooseapi")
 class BooksControllerGraphQLIntegrationTest {
 
