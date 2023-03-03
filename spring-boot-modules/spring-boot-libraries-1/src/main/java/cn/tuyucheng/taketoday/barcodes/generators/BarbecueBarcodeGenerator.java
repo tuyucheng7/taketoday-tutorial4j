@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.barcodes.generators;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import net.sourceforge.barbecue.Barcode;
 import net.sourceforge.barbecue.BarcodeFactory;
 import net.sourceforge.barbecue.BarcodeImageHandler;
@@ -8,7 +7,6 @@ import net.sourceforge.barbecue.BarcodeImageHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-@ExcludeFromJacocoGeneratedReport
 public class BarbecueBarcodeGenerator {
 
 	private static final Font BARCODE_TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 14);

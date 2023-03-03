@@ -4,7 +4,6 @@ import cn.tuyucheng.taketoday.barcodes.generators.BarbecueBarcodeGenerator;
 import cn.tuyucheng.taketoday.barcodes.generators.Barcode4jBarcodeGenerator;
 import cn.tuyucheng.taketoday.barcodes.generators.QRGenBarcodeGenerator;
 import cn.tuyucheng.taketoday.barcodes.generators.ZxingBarcodeGenerator;
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ import java.awt.image.BufferedImage;
 
 @RestController
 @RequestMapping("/barcodes")
-@ExcludeFromJacocoGeneratedReport
 public class BarcodesController {
 
 	// Barbecue library

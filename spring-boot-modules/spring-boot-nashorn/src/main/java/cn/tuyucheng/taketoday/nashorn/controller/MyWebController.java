@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.nashorn.controller;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 @Controller
-@ExcludeFromJacocoGeneratedReport
 public class MyWebController {
 
 	@RequestMapping("/")

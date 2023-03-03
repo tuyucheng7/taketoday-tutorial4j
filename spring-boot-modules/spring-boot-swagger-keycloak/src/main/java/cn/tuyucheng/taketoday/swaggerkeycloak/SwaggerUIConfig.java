@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerkeycloak;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -14,7 +13,6 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
 
 @EnableOpenApi
 @Configuration
-@ExcludeFromJacocoGeneratedReport
 class SwaggerUIConfig {
 
 	@Bean

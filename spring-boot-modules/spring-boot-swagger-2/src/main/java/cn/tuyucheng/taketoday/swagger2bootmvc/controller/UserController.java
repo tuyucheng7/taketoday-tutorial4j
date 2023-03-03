@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swagger2bootmvc.controller;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.swagger2bootmvc.model.User;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
-@ExcludeFromJacocoGeneratedReport
 public class UserController {
 
 	public UserController() {

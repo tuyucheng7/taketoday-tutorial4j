@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.springbootmvc.svc;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.springbootmvc.model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -9,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-@ExcludeFromJacocoGeneratedReport
 public class ProductService {
 
 	private final Set<Product> products = new HashSet<>();

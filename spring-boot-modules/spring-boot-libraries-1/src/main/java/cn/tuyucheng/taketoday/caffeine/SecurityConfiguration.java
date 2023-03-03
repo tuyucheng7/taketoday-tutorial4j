@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.caffeine;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@ExcludeFromJacocoGeneratedReport
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override

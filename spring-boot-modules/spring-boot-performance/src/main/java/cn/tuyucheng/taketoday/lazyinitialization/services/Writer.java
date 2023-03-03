@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.lazyinitialization.services;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Writer {
 
 	private final String writerId;

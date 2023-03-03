@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.springbootmvc.ctrl;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.springbootmvc.SpringBootMvcFnApplication;
 import cn.tuyucheng.taketoday.springbootmvc.model.Product;
 import cn.tuyucheng.taketoday.springbootmvc.svc.ProductService;
@@ -17,7 +16,6 @@ import static org.springframework.web.servlet.function.ServerResponse.ok;
 import static org.springframework.web.servlet.function.ServerResponse.status;
 
 @Component
-@ExcludeFromJacocoGeneratedReport
 public class ProductController {
 
 	public RouterFunction<ServerResponse> productListing(ProductService ps) {

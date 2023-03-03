@@ -1,12 +1,10 @@
 package cn.tuyucheng.taketoday.redistestcontainers.hash;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
 @RedisHash("product")
-@ExcludeFromJacocoGeneratedReport
 public class Product implements Serializable {
 	private String id;
 	private String name;

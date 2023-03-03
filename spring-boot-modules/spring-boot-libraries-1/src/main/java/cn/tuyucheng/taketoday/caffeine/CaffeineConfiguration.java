@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.caffeine;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -12,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 @EnableCaching
 @Configuration
-@ExcludeFromJacocoGeneratedReport
 public class CaffeineConfiguration {
 	@Bean
 	public Caffeine caffeineConfig() {

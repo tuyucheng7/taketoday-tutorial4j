@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerjwt.controller;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @RestController(value = "/clients")
 @Api(tags = "Clients")
-@ExcludeFromJacocoGeneratedReport
 public class ClientsRestController {
 
 	@ApiOperation(value = "This method is used to get the clients.")

@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.boot.problem.dto;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Task {
 
 	private Long id;

@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.xmlapplicationcontext.domain;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Employee {
 
 	private String name;

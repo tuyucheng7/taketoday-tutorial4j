@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.mime;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.Version;
 import java.io.Serializable;
 
 @Entity
-@ExcludeFromJacocoGeneratedReport
 public class Foo implements Serializable {
 
 	@Id

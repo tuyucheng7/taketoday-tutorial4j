@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.barcodes.generators;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.krysalis.barcode4j.impl.code128.Code128Bean;
 import org.krysalis.barcode4j.impl.pdf417.PDF417Bean;
 import org.krysalis.barcode4j.impl.upcean.EAN13Bean;
@@ -9,7 +8,6 @@ import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 
 import java.awt.image.BufferedImage;
 
-@ExcludeFromJacocoGeneratedReport
 public class Barcode4jBarcodeGenerator {
 
 	public static BufferedImage generateUPCABarcodeImage(String barcodeText) {

@@ -1,8 +1,6 @@
 package cn.tuyucheng.taketoday.boot.configurationproperties;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 
-@ExcludeFromJacocoGeneratedReport
 public class Credentials {
 
 	private String username;

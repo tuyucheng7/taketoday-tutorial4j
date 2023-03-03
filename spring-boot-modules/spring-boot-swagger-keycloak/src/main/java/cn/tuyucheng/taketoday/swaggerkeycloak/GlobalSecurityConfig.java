@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerkeycloak;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
@@ -16,7 +15,6 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 @KeycloakConfiguration
-@ExcludeFromJacocoGeneratedReport
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class GlobalSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 

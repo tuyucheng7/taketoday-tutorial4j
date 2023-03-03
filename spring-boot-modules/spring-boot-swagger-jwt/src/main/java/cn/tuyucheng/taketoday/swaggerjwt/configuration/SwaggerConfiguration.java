@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerjwt.configuration;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -19,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@ExcludeFromJacocoGeneratedReport
 public class SwaggerConfiguration {
 
 	public static final String AUTHORIZATION_HEADER = "Authorization";

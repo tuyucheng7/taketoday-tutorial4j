@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.propertyexpansion.components;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-@ExcludeFromJacocoGeneratedReport
 public class PropertyLoggerBean {
 
 	private static final Logger log = LoggerFactory.getLogger(PropertyLoggerBean.class);

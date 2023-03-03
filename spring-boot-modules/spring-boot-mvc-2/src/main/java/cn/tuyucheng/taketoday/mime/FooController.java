@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.mime;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@ExcludeFromJacocoGeneratedReport
 @RequestMapping(value = "/foos")
 public class FooController {
 

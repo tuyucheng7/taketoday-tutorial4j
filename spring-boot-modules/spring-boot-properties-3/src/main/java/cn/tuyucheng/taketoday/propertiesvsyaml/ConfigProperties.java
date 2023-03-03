@@ -1,11 +1,9 @@
 package cn.tuyucheng.taketoday.propertiesvsyaml;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 @ConfigurationProperties(prefix = "app")
-@ExcludeFromJacocoGeneratedReport
 public class ConfigProperties {
 
 	String name;

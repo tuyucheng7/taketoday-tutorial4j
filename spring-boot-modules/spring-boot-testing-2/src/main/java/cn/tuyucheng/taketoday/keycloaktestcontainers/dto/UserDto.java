@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.keycloaktestcontainers.dto;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class UserDto {
 	private long id;
 	private String username;

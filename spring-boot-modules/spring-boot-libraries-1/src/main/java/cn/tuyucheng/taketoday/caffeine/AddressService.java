@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.caffeine;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
  * Service that uses caching.
  */
 @Service
-@ExcludeFromJacocoGeneratedReport
 public class AddressService {
 	private final static Logger LOG = LoggerFactory.getLogger(AddressService.class);
 

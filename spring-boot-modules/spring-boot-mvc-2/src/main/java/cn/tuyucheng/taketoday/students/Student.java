@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.students;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Student {
 
 	private long id;

@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spring.servicevalidation.service;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.spring.servicevalidation.dao.UserAccountDao;
 import cn.tuyucheng.taketoday.spring.servicevalidation.domain.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import javax.validation.Validator;
 import java.util.Set;
 
 @Service
-@ExcludeFromJacocoGeneratedReport
 public class UserAccountService {
 
 	@Autowired

@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.boot.testing;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;import javax.persistence.Entity;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@ExcludeFromJacocoGeneratedReport
 @Table(name = "person")
 public class Employee {
 

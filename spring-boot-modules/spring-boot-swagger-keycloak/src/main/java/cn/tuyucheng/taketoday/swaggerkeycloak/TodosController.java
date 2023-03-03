@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerkeycloak;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -17,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@ExcludeFromJacocoGeneratedReport
 @RequestMapping("/api/v1/todos")
 public class TodosController {
 

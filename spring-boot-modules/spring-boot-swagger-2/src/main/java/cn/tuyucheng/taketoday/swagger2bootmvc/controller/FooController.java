@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swagger2bootmvc.controller;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.swagger2bootmvc.model.Foo;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 @Controller
-@ExcludeFromJacocoGeneratedReport
 public class FooController {
 
 	public FooController() {

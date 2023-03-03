@@ -1,10 +1,7 @@
 package cn.tuyucheng.taketoday.spring.servicevalidation.domain;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import javax.validation.constraints.NotBlank;
 
-@ExcludeFromJacocoGeneratedReport
 public class UserAddress {
 
 	@NotBlank

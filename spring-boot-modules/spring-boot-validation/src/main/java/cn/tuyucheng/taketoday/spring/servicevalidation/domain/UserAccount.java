@@ -1,14 +1,11 @@
 package cn.tuyucheng.taketoday.spring.servicevalidation.domain;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@ExcludeFromJacocoGeneratedReport
 public class UserAccount {
 
 	@NotNull(message = "Password must be between 4 to 15 characters")

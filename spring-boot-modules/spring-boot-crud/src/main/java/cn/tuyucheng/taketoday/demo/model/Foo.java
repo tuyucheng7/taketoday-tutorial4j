@@ -1,14 +1,11 @@
 package cn.tuyucheng.taketoday.demo.model;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-@ExcludeFromJacocoGeneratedReport
 public class Foo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

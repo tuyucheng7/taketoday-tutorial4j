@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spring.servicevalidation.dao;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.spring.servicevalidation.domain.UserAccount;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@ExcludeFromJacocoGeneratedReport
 public class UserAccountDao {
 
 	private Map<String, UserAccount> DB = new HashMap<>();

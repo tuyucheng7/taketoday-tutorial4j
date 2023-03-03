@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.beanvalidation.application.entities;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +7,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@ExcludeFromJacocoGeneratedReport
 public class User {
 
 	@Id

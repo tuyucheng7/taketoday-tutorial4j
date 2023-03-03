@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spring.servicevalidation.controller;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.spring.servicevalidation.domain.UserAccount;
 import cn.tuyucheng.taketoday.spring.servicevalidation.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@ExcludeFromJacocoGeneratedReport
 public class UserAccountController {
 
 	@Autowired

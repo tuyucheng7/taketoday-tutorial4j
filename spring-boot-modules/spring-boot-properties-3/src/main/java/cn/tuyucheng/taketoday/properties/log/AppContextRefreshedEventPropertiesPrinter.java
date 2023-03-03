@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.properties.log;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 @Component
-@ExcludeFromJacocoGeneratedReport
 public class AppContextRefreshedEventPropertiesPrinter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AppContextRefreshedEventPropertiesPrinter.class);
 

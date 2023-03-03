@@ -1,11 +1,9 @@
 package cn.tuyucheng.taketoday.swagger2bootmvc.model;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
-@ExcludeFromJacocoGeneratedReport
 public class User {
 
 	@ApiModelProperty(value = "first name of the user", name = "firstName", dataType = "String", example = "Vatsal")

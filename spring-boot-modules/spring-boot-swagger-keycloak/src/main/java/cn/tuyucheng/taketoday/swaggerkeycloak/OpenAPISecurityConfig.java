@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerkeycloak;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@ExcludeFromJacocoGeneratedReport
 public class OpenAPISecurityConfig {
 
 	@Value("${keycloak.auth-server-url}")

@@ -1,10 +1,7 @@
 package cn.tuyucheng.taketoday.swaggerkeycloak;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import java.time.LocalDate;
 
-@ExcludeFromJacocoGeneratedReport
 public class Todo {
 
 	private Long id;

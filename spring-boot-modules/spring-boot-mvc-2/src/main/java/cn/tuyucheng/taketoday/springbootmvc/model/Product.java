@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.springbootmvc.model;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Product {
 	private String name;
 	private double price;

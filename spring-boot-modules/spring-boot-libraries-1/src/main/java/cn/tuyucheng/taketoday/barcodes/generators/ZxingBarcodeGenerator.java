@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.barcodes.generators;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
@@ -12,7 +11,6 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.awt.image.BufferedImage;
 
-@ExcludeFromJacocoGeneratedReport
 public class ZxingBarcodeGenerator {
 
 	public static BufferedImage generateUPCABarcodeImage(String barcodeText) throws Exception {
