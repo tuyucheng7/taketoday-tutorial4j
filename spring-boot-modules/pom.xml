@@ -38,7 +38,6 @@
 		<module>spring-boot-disable-logging</module>
 		<module>spring-boot-ci-cd</module>
 		<!--<module>spring-boot-cli</module> --> <!-- Not a maven project -->
-		<module>spring-boot-camel</module>
 		<module>spring-boot-cassandre</module>
 		<module>spring-boot-custom-starter</module>
 		<module>spring-boot-crud</module>
@@ -75,9 +74,9 @@
 		<module>spring-boot-properties-3</module>
 		<module>spring-boot-properties-migrator-demo</module>
 		<module>spring-boot-property-exp</module>
-		<module>spring-boot-react</module>
+		<!--<module>spring-boot-react</module>-->
 		<module>spring-boot-request-params</module>
-		<module>spring-boot-runtime-1</module>
+		<!--<module>spring-boot-runtime-1</module>-->
 		<module>spring-boot-runtime-2</module>
 		<module>spring-boot-security</module>
 		<module>spring-boot-springdoc</module>
