@@ -39,7 +39,7 @@
 		<dependency>
 			<groupId>org.kie</groupId>
 			<artifactId>kie-spring</artifactId>
-			<version>${drools-version}</version>
+			<version>${kie-spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -74,46 +74,47 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${toolchains.java.version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+	<!--<build>-->
+	<!--	<plugins>-->
+	<!--		<plugin>-->
+	<!--			<groupId>org.apache.maven.plugins</groupId>-->
+	<!--			<artifactId>maven-toolchains-plugin</artifactId>-->
+	<!--			<version>${maven-toolchains-plugin-version}</version>-->
+	<!--			<executions>-->
+	<!--				<execution>-->
+	<!--					<goals>-->
+	<!--						<goal>toolchain</goal>-->
+	<!--					</goals>-->
+	<!--				</execution>-->
+	<!--			</executions>-->
+	<!--			<configuration>-->
+	<!--				<toolchains>-->
+	<!--					<jdk>-->
+	<!--						<version>${toolchains.java.version}</version>-->
+	<!--					</jdk>-->
+	<!--				</toolchains>-->
+	<!--			</configuration>-->
+	<!--		</plugin>-->
+	<!--		<plugin>-->
+	<!--			<groupId>org.apache.maven.plugins</groupId>-->
+	<!--			<artifactId>maven-compiler-plugin</artifactId>-->
+	<!--			<version>${maven-compiler-plugin.version}</version>-->
+	<!--			<configuration>-->
+	<!--				<source>${maven.compiler.source}</source>-->
+	<!--				<target>${maven.compiler.target}</target>-->
+	<!--				<showDeprecation>true</showDeprecation>-->
+	<!--				<showWarnings>true</showWarnings>-->
+	<!--			</configuration>-->
+	<!--		</plugin>-->
+	<!--	</plugins>-->
+	<!--</build>-->
 
 	<properties>
-		<toolchains.java.version>8</toolchains.java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<drools-version>7.0.0.Final</drools-version>
+		<!--<toolchains.java.version>8</toolchains.java.version>-->
+		<!--<maven.compiler.source>1.8</maven.compiler.source>-->
+		<!--<maven.compiler.target>1.8</maven.compiler.target>-->
+		<!--<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>-->
+		<drools-version>8.34.0.Final</drools-version>
+		<kie-spring.version>7.73.0.Final</kie-spring.version>
 	</properties>
 </project>

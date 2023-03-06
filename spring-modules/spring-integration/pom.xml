@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-twitter</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-integration-twitter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
@@ -86,10 +86,45 @@
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb-api.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${toolchains.java.version}</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>${maven-eclipse-plugin.version}</version>
@@ -115,10 +150,16 @@
 	</build>
 
 	<properties>
-		<spring.version>5.0.13.RELEASE</spring.version>
+		<toolchains.java.version>8</toolchains.java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
+		<spring.version>5.1.13.RELEASE</spring.version>
 		<spring-social.version>1.1.4.RELEASE</spring-social.version>
+		<spring-integration-twitter.version>5.0.13.RELEASE</spring-integration-twitter.version>
 		<javax-mail.version>1.4.7</javax-mail.version>
 		<javax-activation.version>1.1.1</javax-activation.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+		<jaxb-api.version>2.3.0</jaxb-api.version>
 	</properties>
 </project>
