@@ -7,12 +7,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.mock.jndi.SimpleNamingContextBuilder;
 
-import javax.naming.;
+import javax.naming.*;
 import javax.sql.DataSource;
 
 import java.util.Enumeration;
 
-import static org.junit.jupiter.api.Assertions.;
+import static org.junit.jupiter.api.Assertions.*;
 
 class JndiUnitTest {
 
