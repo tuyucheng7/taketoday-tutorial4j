@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.httpclient.readresponsebodystring;
+package com.baeldung.httpclient.readresponsebodystring;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
