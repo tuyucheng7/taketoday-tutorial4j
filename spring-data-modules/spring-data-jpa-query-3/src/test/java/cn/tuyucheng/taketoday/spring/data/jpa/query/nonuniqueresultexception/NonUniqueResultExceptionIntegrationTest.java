@@ -18,18 +18,18 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 @DataJpaTest(properties = "spring.sql.init.data-locations=classpath:import_entities.sql", showSql = false)
 public class NonUniqueResultExceptionIntegrationTest {
 
-    @Autowired
-    private ArticleRepository repository;
+	@Autowired
+	private ArticleRepository repository;
 
-    @Test
-    public void givenImportedArticles_whenFindByPublicationTimeBetween_thenIncorrectResultSizeDataAccessExceptionThrown() {
-        assertThatThrownBy(() -> repository.findByPublicationTimeBetween(new SimpleDateFormat("HH:mm").parse("15:15"), new SimpleDateFormat("HH:mm").parse("16:30")))
-              .isInstanceOf(IncorrectResultSizeDataAccessException.class)
-              .hasCauseInstanceOf(NonUniqueResultException.class);
-    }
+	@Test
+	public void givenImportedArticles_whenFindByPublicationTimeBetween_thenIncorrectResultSizeDataAccessExceptionThrown() {
+		assertThatThrownBy(() -> repository.findByPublicationTimeBetween(new SimpleDateFormat("HH:mm").parse("15:15"), new SimpleDateFormat("HH:mm").parse("16:30")))
+			.isInstanceOf(IncorrectResultSizeDataAccessException.class)
+			.hasCauseInstanceOf(NonUniqueResultException.class);
+	}
 
-    @Test
-    public void givenImportedArticles_whenFindAllByPublicationTimeBetween_thenSuccess() throws ParseException {
-        repository.findAllByPublicationTimeBetween(new SimpleDateFormat("HH:mm").parse("15:15"), new SimpleDateFormat("HH:mm").parse("16:30"));
-    }
+	@Test
+	public void givenImportedArticles_whenFindAllByPublicationTimeBetween_thenSuccess() throws ParseException {
+		repository.findAllByPublicationTimeBetween(new SimpleDateFormat("HH:mm").parse("15:15"), new SimpleDateFormat("HH:mm").parse("16:30"));
+	}
 }
