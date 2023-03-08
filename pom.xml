@@ -354,17 +354,19 @@
 						<exclude>cn/tuyucheng/taketoday/**/*App.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Config.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*Dto.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Configuration.*</exclude>
-						<exclude>**/config/*</exclude>
-						<exclude>**/model/*</exclude>
-						<exclude>**/models/*</exclude>
-						<exclude>**/entity/*</exclude>
-						<exclude>**/entities/*</exclude>
-						<exclude>**/pojo/*</exclude>
-						<exclude>**/dto/*</exclude>
-						<exclude>**/vo/*</exclude>
-						<exclude>**/bo/*</exclude>
-						<exclude>**/domain/*</exclude>
+						<exclude>**/config/**/*</exclude>
+						<exclude>**/model/**/*</exclude>
+						<exclude>**/models/**/*</exclude>
+						<exclude>**/entity/**/*</exclude>
+						<exclude>**/entities/**/*</exclude>
+						<exclude>**/pojo/**/*</exclude>
+						<exclude>**/dto/**/*</exclude>
+						<exclude>**/vo/**/*</exclude>
+						<exclude>**/bo/**/*</exclude>
+						<exclude>**/domain/**/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Benchmark*.*</exclude>
 					</excludes>
 				</configuration>
