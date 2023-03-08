@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.datajpadelete;
 
-import cn.tuyucheng.taketoday.SpringDataCrudApplication;
+import cn.tuyucheng.taketoday.Application;
 import cn.tuyucheng.taketoday.datajpadelete.entity.Book;
 import cn.tuyucheng.taketoday.datajpadelete.repository.BookRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -17,7 +17,7 @@ import java.util.Arrays;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {SpringDataCrudApplication.class})
+@SpringBootTest(classes = {Application.class})
 class DeleteFromRepositoryUnitTest {
 
 	@Autowired

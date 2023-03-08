@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.batchinserts;
 
+import cn.tuyucheng.taketoday.boot.Application;
 import cn.tuyucheng.taketoday.batchinserts.model.School;
 import cn.tuyucheng.taketoday.batchinserts.model.Student;
-import cn.tuyucheng.taketoday.boot.JpaInsertApplication;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,7 @@ import static cn.tuyucheng.taketoday.batchinserts.TestObjectHelper.createSchool;
 import static cn.tuyucheng.taketoday.batchinserts.TestObjectHelper.createStudent;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = JpaInsertApplication.class)
+@SpringBootTest(classes = Application.class)
 @Transactional
 @ActiveProfiles("batchinserts")
 class JpaBatchInsertsIntegrationTest {

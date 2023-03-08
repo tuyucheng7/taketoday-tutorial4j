@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.batchinserts;
 
-import cn.tuyucheng.taketoday.boot.JpaInsertApplication;
+import cn.tuyucheng.taketoday.boot.Application;
 import cn.tuyucheng.taketoday.boot.daos.CustomerRepository;
 import cn.tuyucheng.taketoday.boot.web.controllers.CustomerController;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = JpaInsertApplication.class)
+@SpringBootTest(classes = Application.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("stats")
 class BatchInsertIntegrationTest {
@@ -30,13 +30,13 @@ class BatchInsertIntegrationTest {
 	@BeforeEach
 	void setUp() {
 		mockMvc = MockMvcBuilders.standaloneSetup(new CustomerController(customerRepository))
-				.build();
+			.build();
 	}
 
 	@Test
 	void whenInsertingCustomers_thenCustomersAreCreated() throws Exception {
 		this.mockMvc.perform(post("/customers"))
-				.andExpect(status().isOk());
+			.andExpect(status().isOk());
 
 	}
 }

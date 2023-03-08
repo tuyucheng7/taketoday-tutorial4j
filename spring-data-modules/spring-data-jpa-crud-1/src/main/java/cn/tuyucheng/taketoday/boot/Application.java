@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories("cn.tuyucheng.taketoday")
 @EntityScan("cn.tuyucheng.taketoday")
-public class JpaInsertApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JpaInsertApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

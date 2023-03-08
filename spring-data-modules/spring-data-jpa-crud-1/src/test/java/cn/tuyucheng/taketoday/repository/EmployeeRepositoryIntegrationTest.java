@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.repository;
 
-import cn.tuyucheng.taketoday.boot.JpaInsertApplication;
+import cn.tuyucheng.taketoday.boot.Application;
 import cn.tuyucheng.taketoday.entity.Employee;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = JpaInsertApplication.class)
+@SpringBootTest(classes = Application.class)
 class EmployeeRepositoryIntegrationTest {
 	private static final Employee EMPLOYEE1 = new Employee(1L, "John");
 	private static final Employee EMPLOYEE2 = new Employee(2L, "Alice");
