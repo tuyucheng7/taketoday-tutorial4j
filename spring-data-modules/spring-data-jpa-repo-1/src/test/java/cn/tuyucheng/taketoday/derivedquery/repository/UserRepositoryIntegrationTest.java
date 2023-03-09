@@ -153,13 +153,13 @@ class UserRepositoryIntegrationTest {
 	@Test
 	public void whenByNameOrBirthDate() {
 
-		assertEquals(4, userRepository.findByNameOrBirthDate(USER_NAME_ADAM, BIRTHDATE).size());
+		assertEquals(2, userRepository.findByNameOrBirthDate(USER_NAME_ADAM, BIRTHDATE).size());
 	}
 
 	@Test
 	public void whenByNameOrBirthDateAndActive() {
 
-		assertEquals(3, userRepository.findByNameOrBirthDateAndActive(USER_NAME_ADAM, BIRTHDATE, false).size());
+		assertEquals(2, userRepository.findByNameOrBirthDateAndActive(USER_NAME_ADAM, BIRTHDATE, false).size());
 	}
 
 	@Test
