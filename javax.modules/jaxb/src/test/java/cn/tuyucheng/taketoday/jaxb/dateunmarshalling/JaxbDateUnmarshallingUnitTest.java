@@ -1,8 +1,6 @@
 package cn.tuyucheng.taketoday.jaxb.dateunmarshalling;
 
-import org.junit.Test;
-
-import javax.xml.bind.JAXBException;
+import jakarta.xml.bind.JAXBException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
