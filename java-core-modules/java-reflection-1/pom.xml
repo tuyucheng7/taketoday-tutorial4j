@@ -14,6 +14,19 @@
 		<version>1.0.0</version>
 	</parent>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>${reflections.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<finalName>java-reflection-1</finalName>
 		<resources>
@@ -39,5 +52,7 @@
 	<properties>
 		<source.version>17</source.version>
 		<target.version>17</target.version>
+		<reflections.version>0.10.2</reflections.version>
+		<commons-lang3.version>3.12.0</commons-lang3.version>
 	</properties>
 </project>
