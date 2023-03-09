@@ -1,4 +1,4 @@
-package com.baeldung.anonymousclass;
+package cn.tuyucheng.taketoday.anonymousclass;
 
 public class AnonymousClassExample{
 
