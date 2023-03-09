@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.httpclient.expandurl;
+package com.baeldung.httpclient.expandurl;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
