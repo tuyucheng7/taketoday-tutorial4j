@@ -1,14 +1,14 @@
 ## 1. 概述
 
-本教程探讨Spring Data MongoDB的核心功能之一：与GridFS交互。
+本教程将探讨**Spring Data MongoDB的核心功能之一：与GridFS交互**。
 
-GridFS存储规范主要用于处理超过BSON文档大小限制16MB的文件。Spring Data提供了一个GridFsOperations接口及其实现GridFsTemplate，以方便地与该文件系统交互。
+GridFS存储规范主要用于处理超过BSON文档大小限制16MB的文件。Spring Data提供了一个GridFsOperations接口及其实现GridFsTemplate，以轻松地与这个文件系统交互。
 
 ## 2. 配置
 
 ### 2.1 XML配置
 
-下面是GridFsTemplate的简单XML配置：
+让我们从GridFsTemplate的简单XML配置开始：
 
 ```xml
 <bean id="gridFsTemplate" class="org.springframework.data.mongodb.gridfs.GridFsTemplate">
@@ -29,7 +29,7 @@ GridFsTemplate的构造函数参数包括对mongoDbFactory的bean引用(它创�
 
 ### 2.2 Java配置
 
-下面是类似的Java配置：
+让我们创建一个类似的配置，只使用Java：
 
 ```java
 @Configuration
@@ -42,7 +42,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     public GridFsTemplate gridFsTemplate() throws Exception {
         return new GridFsTemplate(mongoDbFactory(), mongoConverter);
     }
-    
+
     // ...
 }
 ```
@@ -53,14 +53,16 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
 ### 3.1 store
 
-store方法将文件保存到MongoDB中，假设我们有一个空数据库并希望在其中存储一个文件：
+store方法将文件保存到MongoDB中。
+
+假设我们有一个空数据库并希望在其中存储一个文件：
 
 ```java
 InputStream inputStream = new FileInputStream("src/main/resources/test.png"); 
 gridFsTemplate.store(inputStream, "test.png", "image/png", metaData).toString();
 ```
 
-请注意，我们可以通过将DBObject传递给store方法来将其他元数据与文件一起保存。对于我们的示例，DBObject可以为如下所示：
+请注意，我们可以通过将DBObject传递给store方法来将其他元数据与文件一起保存。对于我们的示例，DBObject可能看起来像这样：
 
 ```java
 DBObject metaData = new BasicDBObject();
@@ -73,21 +75,21 @@ GridFS使用两个集合来存储文件元数据及其内容。文件的元数�
 
 ```json
 {
-    "_id" : ObjectId("5602de6e5d8bba0d6f2e45e4"),
-    "metadata" : {
-        "user" : "alex"
+    "_id": ObjectId("5602de6e5d8bba0d6f2e45e4"),
+    "metadata": {
+        "user": "alex"
     },
-    "filename" : "test.png",
-    "aliases" : null,
-    "chunkSize" : NumberLong(261120),
-    "uploadDate" : ISODate("2015-09-23T17:16:30.781Z"),
-    "length" : NumberLong(855),
-    "contentType" : "image/png",
-    "md5" : "27c915db9aa031f1b27bb05021b695c6"
+    "filename": "test.png",
+    "aliases": null,
+    "chunkSize": NumberLong(261120),
+    "uploadDate": ISODate("2015-09-23T17:16:30.781Z"),
+    "length": NumberLong(855),
+    "contentType": "image/png",
+    "md5": "27c915db9aa031f1b27bb05021b695c6"
 }
 ```
 
-db\['fs.chunks'\].find()命令检索文件的内容：
+命令db\['fs.chunks'\].find()检索文件的内容：
 
 ```json
 {
@@ -119,7 +121,7 @@ String id = "5602de6e5d8bba0d6f2e45e4";
 GridFSFile gridFsFile = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
 ```
 
-上面的代码将返回在上面的示例中添加的结果记录。如果数据库包含多个与查询匹配的记录，它将只返回一个文档。返回的具体记录将根据自然顺序(文档在数据库中存储的顺序)进行选择。
+上面的代码将返回在上面的示例中添加的结果记录。如果数据库包含多个与查询匹配的记录，则它将只返回一个文档。返回的具体记录将根据自然顺序(文档在数据库中存储的顺序)进行选择。
 
 ### 3.3 find
 
@@ -165,20 +167,22 @@ List<GridFSFile> fileList = new ArrayList<GridFSFile>();
 gridFsTemplate.find(new Query()).into(fileList);
 ```
 
-由于我们没有提供任何条件，因此生成的集合应包含两条记录。
+由于我们没有提供任何条件，因此生成的列表应包含两条记录。
 
-当然，我们可以为find方法提供一些条件。例如，如果我们想要获取其元数据包含名为alex的用户的文件，代码应该是：
+当然，我们可以为find方法提供一些条件。例如，如果我们想要获取其元数据(metadata)包含名为alex的用户的文件，则代码为：
 
 ```java
 List<GridFSFile> gridFSFiles = new ArrayList<GridFSFile>();
 gridFsTemplate.find(new Query(Criteria.where("metadata.user").is("alex"))).into(gridFSFiles);
 ```
 
-结果集合中将只包含一条记录。
+结果列表将只包含一条记录。
 
 ### 3.4 delete
 
-delete从集合中删除文档。使用上一个示例中的数据库，假设我们有以下代码：
+delete从集合中删除文档。
+
+使用上一个示例中的数据库，假设我们有以下代码：
 
 ```java
 String id = "5702deyu6d8bba0d6f2e45e4";
@@ -276,10 +280,10 @@ getResources返回所有具有给定文件名模式的GridFsResource。
 ]
 ```
 
-现在让我们使用文件模式执行getResources ：
+现在让我们使用文件模式执行getResources：
 
 ```java
-GridFsResource[] gridFsResource = gridFsTemplate.getResources("test");
+GridFsResource[] gridFsResource = gridFsTemplate.getResources("test*");
 ```
 
 这将返回文件名以“test”开头的两条记录(在本例中，它们都被命名为test.png)。
@@ -292,7 +296,7 @@ GridFSFile API也非常简单：
 -   getMetaData：获取给定文件的元数据
 -   containsField：确定文档是否包含具有给定名称的字段
 -   get：按名称从对象中获取一个字段
--   getId：获取文件的对象ID
+-   getId：获取文件的ObjectID
 -   keySet：获取对象的字段名称
 
 ## 5. 总结

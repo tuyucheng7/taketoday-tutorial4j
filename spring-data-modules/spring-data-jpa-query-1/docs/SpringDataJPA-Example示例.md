@@ -1,10 +1,12 @@
 ## 1. 概述
 
-在本教程中，我们将学习如何使用Spring Data Example API查询数据。
+在本教程中，我们将学习如何使用Spring Data [Example API](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#query-by-example)查询数据。
 
-首先，我们将定义要查询的数据表。接下来，我们介绍Spring Data中的一些相关类。然后，我们将通过几个例子来演示。
+首先，我们将定义要查询的数据表。接下来，我们将检查Spring Data中的一些相关类。然后，我们将通过几个例子来演示。
 
 ## 2. 测试数据
+
+我们的测试数据是乘客姓名列表以及他们占用的座位。
 
 | First Name  | Last Name  | Seat Number |
 |:-----------:|:----------:|:-----------:|
@@ -16,7 +18,7 @@
 
 ## 3. 实体
 
-让我们创建我们需要的Spring Data Repository并提供我们的实体类和id类型。
+让我们创建我们需要的[Spring Data Repository](https://www.baeldung.com/spring-data-repositories)并提供我们的域类和id类型。
 
 首先，我们将乘客建模为JPA实体：
 
@@ -44,16 +46,18 @@ class Passenger {
 }
 ```
 
+我们可以将其建模为另一个抽象，而不是使用JPA。
+
 ## 4. 通过Example API查询
 
-首先，让我们看一下JpaRepository接口。正如我们所见，它继承了QueryByExampleExecutor接口以支持Example查询：
+首先，让我们看一下JpaRepository接口。正如我们所看到的，它扩展了[QueryByExampleExecutor](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/query/QueryByExampleExecutor.html)接口以支持Example查询：
 
 ```java
 public interface JpaRepository<T, ID> extends PagingAndSortingRepository<T, ID>, QueryByExampleExecutor<T> {
 }
 ```
 
-这个接口引入了更多我们从Spring Data中熟悉的find()方法的变体。但是，每个方法都接收一个Example的实例作为参数：
+这个接口引入了更多我们从Spring Data中熟悉的find()方法的变体。但是，每个方法也接收一个[Example](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Example.html)的实例作为参数：
 
 ```java
 public interface QueryByExampleExecutor<T> {
@@ -71,7 +75,7 @@ public interface QueryByExampleExecutor<T> {
 }
 ```
 
-其次，Example接口公开了访问probe和ExampleMatcher的方法。
+其次，Example接口公开了访问probe和[ExampleMatcher](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/ExampleMatcher.html)的方法。
 
 重要的是要知道probe是我们实体的实例：
 
@@ -100,13 +104,15 @@ public interface Example<T> {
 
 ## 5. 局限性
 
-不管怎样，Example API也有一些限制。例如：
+与所有事物一样，Example API也有一些限制。例如：
 
 + 不支持嵌套和分组语句，例如：(firstName = ?0 and lastName= ?1) or seatNumber=?2
-+ 字符串匹配仅包括精确，不区分大小写，以...开始，以...结束，contains和正则表达式。
-+ 除String以外的所有类型都只能完全匹配。
++ 字符串匹配仅包括精确、不区分大小写、以...开始、以...结束、contains和正则表达式
++ 除String以外的所有类型都只能完全匹配
 
-## 6. 案例
+现在我们对API及其限制有了更多的了解，让我们深入研究一些示例。
+
+## 6. 示例
 
 ### 6.1 区分大小写匹配
 
@@ -140,11 +146,11 @@ class PassengerRepositoryIntegrationTest {
 }
 ```
 
-特别是，静态Example.of()方法使用ExampleMatcher.matching()构建一个Example实例。
+特别是，静态Example.of()方法使用ExampleMatcher.matching()构建一个Example。
 
-**换句话说，将对Passenger的所有非空属性执行精确匹配**。因此，字符串属性的匹配是区分大小写的。
+换句话说，**将对Passenger的所有非空属性执行精确匹配**。因此，匹配对String属性区分大小写。
 
-但是，如果我们所能做的只是对所有非空属性进行精确匹配，那它就不会太有用了。
+但是，如果我们所能做的只是对所有非null属性进行精确匹配，那它就不会太有用了。
 
 这就是ExampleMatcher的用武之地。通过构建我们自己的ExampleMatcher，我们可以自定义行为以满足我们的需求。
 
@@ -157,7 +163,7 @@ class PassengerRepositoryIntegrationTest {
 void givenPassengers_whenFindByExampleCaseInsensitiveMatcher_thenExpectedReturned() {
 	ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
 	Example<Passenger> example = Example.of(Passenger.from("fred", "bloggs", null),
-			caseInsensitiveExampleMatcher);
+	    caseInsensitiveExampleMatcher);
     
 	Optional<Passenger> actual = repository.findOne(example);
     
@@ -166,12 +172,11 @@ void givenPassengers_whenFindByExampleCaseInsensitiveMatcher_thenExpectedReturne
 }
 ```
 
-在这个例子中，请注意我们首先调用了ExampleMatcher.matchingAll()，
-它与我们在前面的例子中使用的ExampleMatcher.matching()具有相同的行为。
+在此示例中，请注意我们首先调用了ExampleMatcher.matchingAll()-它与我们在前面的例子中使用的ExampleMatcher.matching()具有相同的行为。
 
 ### 6.3 自定义匹配
 
-**我们还可以基于每个属性调整匹配器的行为**，并使用ExampleMatcher.matchingAny()匹配任何属性：
+我们还可以**在每个属性的基础上调整匹配器的行为**，并使用ExampleMatcher.matchingAny()匹配任何属性：
 
 ```java
 @Test
@@ -183,11 +188,11 @@ void givenPassengers_whenFindByExampleCustomMatcher_thenExpectedReturned() {
 	Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
     
 	ExampleMatcher customExampleMatcher = ExampleMatcher.matchingAny().withMatcher("firstName",
-			ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("lastName",
-			ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+	    ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("lastName",
+	    ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
     
 	Example<Passenger> example = Example.of(Passenger.from("e", "s", null),
-			customExampleMatcher);
+	    customExampleMatcher);
     
 	List<Passenger> passengers = repository.findAll(example);
     
@@ -212,10 +217,10 @@ void givenPassengers_whenFindByIgnoringMatcher_thenExpectedReturned() {
 	Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
     
 	ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAny().withMatcher("lastName",
-			ExampleMatcher.GenericPropertyMatchers.startsWith().ignoreCase()).withIgnorePaths("firstName", "seatNumber");
+	    ExampleMatcher.GenericPropertyMatchers.startsWith().ignoreCase()).withIgnorePaths("firstName", "seatNumber");
     
 	Example<Passenger> example = Example.of(Passenger.from(null, "b", null),
-			ignoringExampleMatcher);
+	    ignoringExampleMatcher);
     
 	List<Passenger> passengers = repository.findAll(example);
     
@@ -230,4 +235,4 @@ void givenPassengers_whenFindByIgnoringMatcher_thenExpectedReturned() {
 
 在本文中，我们演示了如何使用Example API。
 
-我们演示了如何使用Example和ExampleMatcher以及QueryByExampleExecutor接口来使用示例数据实例查询表。
+我们已经演示了如何使用[Example](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Example.html)和[ExampleMatcher](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/ExampleMatcher.html)以及[QueryByExampleExecutor](https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/query/QueryByExampleExecutor.html)接口来使用示例数据实例查询表。

@@ -1,10 +1,10 @@
 ## 1. 简介
 
-在本教程中，我们介绍配置数据库连接的不同方法。我们将使用[Spring Boot]()和[Spring Data MongoDB]()，演示Spring的灵活配置，并为每种方法创建不同的应用程序。
+在本教程中，我们将看到配置数据库连接的不同方法。**我们将使用[Spring Boot](https://www.baeldung.com/spring-boot)和[Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)**。探索Spring的灵活配置，我们将为每种方法创建不同的应用程序。因此，我们将能够选择最合适的一个。
 
 ## 2. 测试我们的连接
 
-在开始构建我们的应用程序之前，我们创建一个测试类。其中包含一些可重用的常量：
+在开始构建我们的应用程序之前，我们将创建一个测试类。其中包含一些可重用的常量：
 
 ```java
 public class MongoConnectionApplicationLiveTest {
@@ -25,7 +25,7 @@ private void assertInsertSucceeds(ConfigurableApplicationContext context) {
     String name = "A";
 
     MongoTemplate mongo = context.getBean(MongoTemplate.class);
-    Document doc = Document.parse("{"name":"" + name + ""}");
+    Document doc = Document.parse("{\"name\":\"" + name + "\"}");
     Document inserted = mongo.insert(doc, "items");
 
     assertNotNull(inserted.get("_id"));
@@ -33,13 +33,13 @@ private void assertInsertSucceeds(ConfigurableApplicationContext context) {
 }
 ```
 
-我们的方法从我们的应用程序接收Spring上下文，以便我们可以检索[MongoTemplate]()实例。之后，我们使用Document.parse()从字符串构建一个简单的JSON文档。
+我们的方法从我们的应用程序接收Spring上下文，以便我们可以检索[MongoTemplate](https://www.baeldung.com/spring-data-mongodb-tutorial#mongotemplate-and-mongorepository)实例。之后，我们使用Document.parse()从字符串构建一个简单的JSON文档。
 
 **这样，我们就不需要创建Repository或文档类**。然后，在插入之后，我们断言插入文档中的属性是我们所期望的。
 
 ## 3. 通过application.properties进行最小设置
 
-我们的第一个示例是配置连接的最常见方式，**我们只需要在我们的application.properties中提供我们的数据库信息**：
+我们的第一个示例是配置连接的最常见方式。**我们只需要在我们的application.properties中提供我们的数据库信息**：
 
 ```properties
 spring.data.mongodb.host=localhost
@@ -49,7 +49,7 @@ spring.data.mongodb.username=tuyucheng
 spring.data.mongodb.password=tu001118
 ```
 
-所有可用的属性都位于Spring Boot的MongoProperties类中。我们还可以使用此类来检查默认值。**我们可以通过应用程序参数在我们的属性文件中定义任何配置**。
+所有可用的属性都位于Spring Boot的MongoProperties类中。我们还可以使用此类来检查默认值。**我们可以通过应用程序参数在我们的属性文件中定义任何配置**。我们将在下一节中看到它是如何工作的。
 
 在我们的应用程序类中，我们不需要任何特殊的东西来启动和运行：
 
@@ -63,7 +63,7 @@ public class SpringMongoConnectionViaPropertiesApp {
 }
 ```
 
-**此配置是我们连接到数据库实例所需的全部**。@SpringBootApplication注解包括[@EnableAutoConfiguration]()。它会根据我们的类路径发现我们的应用程序是一个MongoDB应用程序。
+**此配置是我们连接到数据库实例所需的全部**。@SpringBootApplication注解包括[@EnableAutoConfiguration](https://www.baeldung.com/spring-boot-custom-auto-configuration)，它会根据我们的类路径发现我们的应用程序是一个MongoDB应用程序。
 
 为了测试它，我们可以使用SpringApplicationBuilder来获取对应用程序上下文的引用。**然后，为了断言我们的连接有效，我们使用之前创建的assertInsertSucceeds方法**：
 
@@ -81,9 +81,9 @@ void whenPropertiesConfig_thenInsertSucceeds() {
 
 ### 3.1 使用命令行参数覆盖属性
 
-在使用[命令行参数]()运行我们的应用程序时，我们可以覆盖我们的属性文件。当使用[java命令]()、[mvn命令]()或IDE配置运行时，这些将传递给应用程序。提供这些的方法将取决于我们使用的命令。
+在使用[命令行参数](https://www.baeldung.com/java-command-line-arguments)运行我们的应用程序时，我们可以覆盖我们的属性文件。当使用[java命令](https://www.baeldung.com/java-run-jar-with-arguments)、[mvn命令](https://www.baeldung.com/spring-boot-run-maven-vs-executable-jar)或IDE配置运行时，这些将传递给应用程序。提供这些的方法将取决于我们使用的命令。
 
-让我们看一个[使用mvn运行我们的Spring Boot应用程序]()的示例：
+**让我们看一个[使用mvn运行我们的Spring Boot应用程序](https://www.baeldung.com/spring-boot-command-line-arguments)的示例**：
 
 ```shell
 mvn spring-boot:run -Dspring-boot.run.arguments='--spring.data.mongodb.port=27017 --spring.data.mongodb.host=localhost'
@@ -106,11 +106,11 @@ public void givenPrecedence_whenSystemConfig_thenInsertSucceeds() {
 
     SpringApplicationBuilder app = new SpringApplicationBuilder(SpringMongoConnectionViaPropertiesApp.class)
         .properties(
-                "spring.data.mongodb.host=oldValue",
-                "spring.data.mongodb.port=oldValue",
-                "spring.data.mongodb.database=oldValue",
-                "spring.data.mongodb.username=oldValue",
-                "spring.data.mongodb.password=oldValue"
+            "spring.data.mongodb.host=oldValue",
+            "spring.data.mongodb.port=oldValue",
+            "spring.data.mongodb.database=oldValue",
+            "spring.data.mongodb.username=oldValue",
+            "spring.data.mongodb.password=oldValue"
         );
     app.run();
 
@@ -134,7 +134,7 @@ spring.data.mongodb.uri="mongodb://admin:password@localhost:27017/tuyucheng"
 mongodb://<username>:<password>@<host>:<port>/<database>
 ```
 
-URI中的数据库部分更具体地说是[默认的auth DB](https://www.mongodb.com/docs/master/reference/connection-string/#std-label-connections-standard-connection-string-format)。**最重要的是，spring.data.mongodb.uri属性不能与主机、端口和凭据的单独属性一起指定**。否则，我们将在运行应用程序时收到以下错误：
+URI中的database部分更具体地说是默认的[auth DB](https://www.mongodb.com/docs/master/reference/connection-string/#std-label-connections-standard-connection-string-format)。**最重要的是，spring.data.mongodb.uri属性不能与主机、端口和凭据的单独属性一起指定**。否则，我们将在运行应用程序时收到以下错误：
 
 ```java
 @Test
@@ -145,10 +145,10 @@ public void givenConnectionUri_whenAlsoIncludingIndividualParameters_thenInvalid
 
     SpringApplicationBuilder app = new SpringApplicationBuilder(SpringMongoConnectionViaPropertiesApp.class)
         .properties(
-                "spring.data.mongodb.host=" + HOST,
-                "spring.data.mongodb.port=" + PORT,
-                "spring.data.mongodb.username=" + USER,
-                "spring.data.mongodb.password=" + PASS
+            "spring.data.mongodb.host=" + HOST,
+            "spring.data.mongodb.port=" + PORT,
+            "spring.data.mongodb.username=" + USER,
+            "spring.data.mongodb.password=" + PASS
         );
 
     BeanCreationException e = assertThrows(BeanCreationException.class, () -> {
@@ -169,7 +169,7 @@ public void givenConnectionUri_whenAlsoIncludingIndividualParameters_thenInvalid
 
 ### 4.1 通过AbstractMongoClientConfiguration连接
 
-在我们的第一个示例中，我们将在我们的应用程序类中从Spring Data MongoDB扩展AbstractMongoClientConfiguration类：
+在我们的第一个示例中，我们将在应用程序类中扩展Spring Data MongoDB的AbstractMongoClientConfiguration类：
 
 ```java
 @SpringBootApplication
@@ -188,7 +188,7 @@ private String uri;
 private String db;
 ```
 
-澄清一下，这些属性可以是硬编码的。此外，他们可以使用与预期的Spring Data变量不同的名称。**最重要的是，这一次，我们使用URI而不是单独的连接属性，后者不能混合使用**。因此，我们不能为这个应用程序重用我们的application.properties，我们应该将它移到别处。
+澄清一下，这些属性可以是硬编码的。此外，他们可以使用与预期的Spring Data变量不同的名称。**最重要的是，这一次，我们使用URI而不是单独的连接属性，后者不能混合使用**。因此，我们不能为这个应用程序重用我们的application.properties，我们应该将其移动到其他地方。
 
 AbstractMongoClientConfiguration要求我们覆盖getDatabaseName()。这是因为URI中不需要数据库名称：
 
@@ -206,15 +206,15 @@ public void whenClientConfig_thenInsertSucceeds() {
     SpringApplicationBuilder app = new SpringApplicationBuilder(SpringMongoConnectionViaClientApp.class);
     app.web(WebApplicationType.NONE)
         .run(
-                "--spring.data.mongodb.uri=mongodb://" + USER + ":" + PASS + "@" + HOST + ":" + PORT + "/" + DB,
-                "--spring.data.mongodb.database=" + DB
+            "--spring.data.mongodb.uri=mongodb://" + USER + ":" + PASS + "@" + HOST + ":" + PORT + "/" + DB,
+            "--spring.data.mongodb.database=" + DB
         );
 
     assertInsertSucceeds(app.context());
 }
 ```
 
-最后，我们可以覆盖mongoClient()以获得优于传统配置的优势。**此方法将使用我们的URI变量来构建MongoDB客户端**。这样，我们就可以直接引用它。例如，这使我们能够列出我们连接中可用的所有数据库：
+最后，我们可以覆盖mongoClient()以获得优于传统配置的优势。**此方法将使用我们的URI变量来构建MongoDB客户端。这样，我们就可以直接引用它**。例如，这使我们能够列出我们连接中可用的所有数据库：
 
 ```java
 @Override
@@ -230,7 +230,7 @@ public MongoClient mongoClient() {
 
 ### 4.2 创建自定义MongoClientFactoryBean
 
-在下一个示例中，我们将创建一个MongoClientFactoryBean。**这一次，我们将创建一个名为custom.uri的属性 来保存我们的连接配置**：
+在下一个示例中，我们将创建一个MongoClientFactoryBean。**这一次，我们将创建一个名为custom.uri的属性来保存我们的连接配置**：
 
 ```java
 @SpringBootApplication
@@ -271,8 +271,8 @@ public class SpringMongoConnectionViaBuilderApp {
 }
 ```
 
-我们使用此类来自定义部分连接，但其余部分仍具有自动配置。**当我们需要以编程方式设置几个属性时很有用**。
+我们使用此类来自定义连接的某些部分，但其余部分仍具有自动配置。**当我们需要以编程方式设置几个属性时很有用**。
 
 ## 5. 总结
 
-在本文中，我们介绍了Spring Data MongoDB带来的不同工具。我们使用它们以不同的方式建立连接。此外，我们构建了测试用例以保证我们的配置按预期工作。同时，我们看到了配置优先级如何影响我们的连接属性。
+在本文中，我们看到了Spring Data MongoDB带来的不同工具。我们使用它们以不同的方式建创建连接。此外，我们构建了测试用例以保证我们的配置按预期工作。同时，我们看到了配置优先级如何影响我们的连接属性。

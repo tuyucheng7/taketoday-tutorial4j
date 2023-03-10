@@ -1,6 +1,6 @@
 ## 1. 概述
 
-在本教程中，我们学习如何在Spring Boot中为MongoDB实现一个顺序的、自动生成的字段。
+在本教程中，我们将学习如何在Spring Boot中为MongoDB实现一个顺序的、自动生成的字段。
 
 **当我们使用MongoDB作为Spring Boot应用程序的数据库时，我们不能在我们的模型中使用@GeneratedValue注解，因为它不可用**。因此，我们需要一种方法来产生与我们使用JPA和SQL数据库时相同的效果。
 
@@ -8,28 +8,28 @@
 
 ## 2. 依赖
 
-我们将以下starter依赖项添加到我们的pom.xml中：
+让我们将以下Spring Boot启动器添加到我们的 pom.xml中：
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
-        <versionId>2.6.1</versionId>
+        <versionId>2.2.2.RELEASE</versionId>
     </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        <versionId>2.6.1</versionId>
+        <versionId>2.2.2.RELEASE</versionId>
     </dependency>
 </dependencies>
 ```
 
-依赖项的最新版本由[spring-boot-starter-parent](https://search.maven.org/classic/#search|ga|1|g%3Aorg.springframework.boot a%3Aspring-boot-starter-parent)管理。
+依赖项的最新版本由[spring-boot-starter-parent](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-parent/3.0.3)管理。
 
 ## 3. Collections
 
-正如概述中所讨论的，我们将创建一个集合database_sequences，用于存储其他集合的自动递增序列。它可以使用mongo shell或MongoDBCompass创建，下面创建一个相应的模型类：
+正如概述中所讨论的，我们将创建一个集合，用于存储其他集合的自动递增序列。我们将这个集合称为database_sequences。它可以使用mongo shell或MongoDB Compass创建。让我们创建一个相应的模型类：
 
 ```java
 @Document(collection = "database_sequences")
@@ -44,7 +44,7 @@ public class DatabaseSequence {
 }
 ```
 
-然后我们创建一个用户集合和一个相应的模型对象，它将存储使用我们系统的人的详细信息：
+然后让我们创建一个users集合和一个相应的模型对象，该对象将存储使用我们系统的人的详细信息：
 
 ```java
 @Document(collection = "users")
@@ -62,13 +62,15 @@ public class User {
 }
 ```
 
-在上面创建的User模型中，我们添加了一个静态字段SEQUENCE_NAME，它是对users集合的自增序列的唯一引用。我们还使用@Transient对其进行标注，以防止它与模型的其他属性一起持久化。
+在上面创建的User模型中，我们添加了一个静态字段SEQUENCE_NAME，它是对users集合的自增序列的唯一引用。
 
-## 4. 添加新纪录
+我们还使用@Transient对其进行标注，以防止它与模型的其他属性一起持久化。
+
+## 4. 创建新记录
 
 到目前为止，我们已经创建了所需的集合和模型。现在，我们创建一个Service，该Service将生成可以用作我们实体id的自动递增值。
 
-下面，我们创建一个包含generateSequence()方法的SequenceGeneratorService：
+让我们创建一个包含generateSequence()方法的SequenceGeneratorService：
 
 ```java
 @Service
@@ -83,15 +85,14 @@ public class SequenceGeneratorService {
 
     public long generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(Query.query(where("_id").is(seqName)),
-                new Update().inc("seq", 1), options().returnNew(true).upsert(true),
-                DatabaseSequence.class);
+              new Update().inc("seq", 1), options().returnNew(true).upsert(true),
+              DatabaseSequence.class);
         return !Objects.isNull(counter) ? counter.getSeq() : 1;
     }
-
 }
 ```
 
-现在，我们可以在添加新记录时使用generateSequence() ：
+现在，我们可以在创建新记录时使用generateSequence()：
 
 ```java
 User user = new User();
@@ -107,7 +108,9 @@ List<User> storedUsers = userRepository.findAll();
 storedUsers.forEach(System.out::println);
 ```
 
-**就像现在一样，我们必须在每次创建模型的新实例时设置id字段。我们可以通过为Spring Data MongoDB生命周期事件创建一个监听器来规避这个过程**。**为此，我们创建一个扩展AbstractMongoEventListener<User\>的UserModelListener类，然后重写onBeforeConvert()方法**：
+**就像现在一样，我们每次创建模型的新实例时都必须设置id字段。我们可以通过为Spring Data MongoDB生命周期事件创建一个监听器来规避这个过程**。
+
+**为此，我们将创建一个扩展AbstractMongoEventListener<User\>的UserModelListener类，然后我们将重写onBeforeConvert()方法**：
 
 ```java
 @Component
@@ -133,4 +136,6 @@ public class UserModelListener extends AbstractMongoEventListener<User> {
 
 ## 5. 总结
 
-我们介绍了如何为id字段生成顺序的、自动递增的值，并模拟了SQL数据库中的相同行为。默认情况下，Hibernate使用类似的方法来生成自动递增的值。
+总之，我们已经了解了如何为id字段生成顺序的、自动递增的值，并模拟了SQL数据库中看到的相同的行为。
+
+默认情况下，Hibernate使用类似的方法来生成自动递增的值。

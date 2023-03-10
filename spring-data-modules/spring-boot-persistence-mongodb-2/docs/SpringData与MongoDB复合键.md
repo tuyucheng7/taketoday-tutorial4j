@@ -1,18 +1,18 @@
 ## 1. 简介
 
-在本教程中，我们介绍如何在[Spring Data MongoDB]()应用程序中创建组合键，了解不同的策略以及如何配置它们。
+在本教程中，我们将在[Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)应用程序中创建组合键。我们将了解不同的策略以及如何配置它们。
 
 ## 2. 什么是复合键以及何时使用它
 
-复合键是文档中唯一标识文档的属性组合。使用复合主键并不比使用单个自动生成的属性更好或更差，我们甚至可以将这些方法与唯一索引结合起来。
+复合键是文档中唯一标识文档的属性组合。**使用复合主键并不比使用单个自动生成的属性更好或更差**。我们甚至可以将这些方法与唯一索引结合起来。
 
-通常，没有单个属性能够唯一标识文档。在这些情况下，我们可以将其保留空，MongoDB将为其“_id”属性[生成一个唯一值]()。或者，我们可以选择多个属性，这些属性组合在一起时可以达到该目的。**在这种情况下，我们必须为我们的ID属性创建一个自定义类来保存所有这些属性**。
+通常，没有单个属性能够唯一标识文档。在这些情况下，我们可以将其保留空，MongoDB将为其“_id”属性[生成一个唯一值](https://www.baeldung.com/spring-boot-mongodb-auto-generated-field)。或者，我们可以选择多个属性，这些属性组合在一起时可以达到该目的。**在这种情况下，我们必须为我们的ID属性创建一个自定义类来保存所有这些属性**。让我们看看这是如何工作的。
 
-## 3. 使用@Id注解创建组合键
+## 3. 使用@Id注解创建复合键
 
-@Id注解可用于标注自定义类型的属性，从而完全控制其生成。**我们的ID类的唯一要求是我们重写equals()和hashCode()并有一个默认的无参数构造函数**。
+@Id注解可用于标注自定义类型的属性，从而完全控制其生成。**我们的ID类的唯一要求是我们[重写equals()和hashCode()](https://www.baeldung.com/java-equals-hashcode-contracts并有一个默认的[无参数构造函数](https://www.baeldung.com/java-constructors#noargs)**。
 
-在我们的第一个示例中，我们为活动门票创建一个文档。它的ID将是venue和date属性的组合。下面是我们的ID类开始：
+在我们的第一个示例中，我们为活动门票创建一个文档。它的ID将是venue和date属性的组合。让我们从我们的ID类开始：
 
 ```java
 public class TicketId {
@@ -25,7 +25,7 @@ public class TicketId {
 }
 ```
 
-由于无参构造函数是隐式的，我们不需要其他构造函数，因此我们不需要显式编写它。此外，我们这里使用字符串日期来简化示例。接下来创建我们的Ticket类，并使用@Id标注我们的TicketId属性：
+由于无参构造函数是隐式的，我们不需要其他构造函数，因此我们不需要显式编写它。此外，我们将使用字符串日期来简化示例。接下来让创建Ticket类，并使用@Id标注我们的TicketId属性：
 
 ```java
 @Document
@@ -39,7 +39,7 @@ public class Ticket {
 }
 ```
 
-**对于我们的MongoRepository，我们可以将TicketId指定为ID类型，这就是所有需要的设置**：
+**对于我们的MongoRepository，我们可以将TicketId指定为ID类型，这就是所需的所有设置**：
 
 ```java
 public interface TicketRepository extends MongoRepository<Ticket, TicketId> {
@@ -104,7 +104,7 @@ void givenCompositeId_whenSearchingByIdObject_thenFound() {
 }
 ```
 
-之后，如果我们更改TicketId中的字段顺序，我们将能够插入相同的值。不会抛出异常：
+之后，如果我们更改TicketId中的字段顺序，我们将能够插入相同的值。**不会引发任何异常**：
 
 ```json
 {
@@ -120,4 +120,4 @@ void givenCompositeId_whenSearchingByIdObject_thenFound() {
 
 ## 5. 总结
 
-在本文中，我们了解了为MongoDB文档创建组合键的优缺点。以及通过简单用例实现它们所需的配置。同时，我们还了解了一个需要注意的重要警告。
+在本文中，我们了解了为MongoDB文档创建复合键的优缺点。以及通过简单用例实现它们所需的配置。同时，我们还了解了一个需要注意的重要警告。

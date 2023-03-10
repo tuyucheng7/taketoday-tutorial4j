@@ -1,10 +1,10 @@
-## 一、概述
+## 1. 概述
 
-在本教程中，我们将了解[GraphQL](https://www.baeldung.com/graphql)中的错误处理选项。我们将看看 GraphQL 规范对错误响应的描述。因此，我们将开发一个使用 Spring Boot 进行 GraphQL 错误处理的示例。
+在本教程中，我们将了解[GraphQL](https://www.baeldung.com/graphql)中的错误处理选项。我们将看看GraphQL规范对错误响应的描述。因此，我们将开发一个使用Spring Boot进行GraphQL错误处理的示例。
 
-## 2. 根据 GraphQL 规范的响应
+## 2. 根据GraphQL规范的响应
 
-根据 GraphQL 规范，收到的每个请求都必须返回格式正确的响应。此格式良好的响应包含来自相应成功或不成功请求操作的数据或错误的映射。此外，响应可能包含部分成功的结果数据和字段错误。
+根据GraphQL规范，收到的每个请求都必须返回格式正确的响应。此格式良好的响应包含来自相应成功或不成功请求操作的数据或错误的映射。此外，响应可能包含部分成功的结果数据和字段错误。
 
 响应映射的关键组件是错误、数据和扩展。
 
@@ -18,18 +18,18 @@
 
 如果数据组件不存在于响应中，则错误组件必须存在并且必须包含至少一个错误。此外，它应该指出失败的原因。
 
-这是 GraphQL 错误的示例：
+这是GraphQL错误的示例：
 
-```json
+```graphql
 mutation {
-  addVehicle(vin: "NDXT155NDFTV59834", year: 2021, make: "Toyota", model: "Camry", trim: "XLE",
+     addVehicle(vin: "NDXT155NDFTV59834", year: 2021, make: "Toyota", model: "Camry", trim: "XLE",
              location: {zipcode: "75024", city: "Dallas", state: "TX"}) {
-    vin
-    year
-    make
-    model
-    trim
-  }
+        vin
+        year
+        make
+        model
+        trim
+    }
 }
 ```
 
@@ -60,7 +60,7 @@ mutation {
 }
 ```
 
-## 3. 根据 GraphQL 规范的错误响应组件
+## 3. 根据GraphQL规范的错误响应组件
 
 响应中的错误部分是一个非空的错误列表，每个错误都是一个映射。
 
@@ -127,7 +127,7 @@ query {
 }
 ```
 
-这一次，我们包含了 vehicle trim字段，根据我们的 GraphQL 架构，该字段应该是不可空的。
+这一次，我们包含了 vehicle trim字段，根据我们的GraphQL架构，该字段应该是不可空的。
 
 然而，其中一辆车的信息有一个空的trim值，所以我们只取回部分数据——trim 值不为空的车辆——以及错误：
 
@@ -172,7 +172,7 @@ query {
 
 正如我们之前看到的，响应中的错误是一个或多个错误的集合。而且，每个错误都必须包含一个描述失败原因的消息 键，以便客户端开发人员可以进行必要的更正以避免错误。
 
-每个错误还可能包含一个名为locations的键，它是指向请求的 GraphQL 文档中与错误关联的行的位置列表。每个位置都是一个带有键的映射：行和列，分别提供关联元素的行号和开始列号。
+每个错误还可能包含一个名为locations的键，它是指向请求的GraphQL文档中与错误关联的行的位置列表。每个位置都是一个带有键的映射：行和列，分别提供关联元素的行号和开始列号。
 
 另一个可能是错误的一部分的键称为path。它提供从根元素跟踪到具有错误的响应的特定元素的值列表。如果字段值是列表，则路径值可以是表示错误元素的字段名称或索引的字符串。如果错误与具有别名的字段相关，则路径中的值应该是别名。
 
@@ -188,18 +188,17 @@ query {
 
 无论出于何种原因，如果在解析过程中针对同一个字段引发了多个错误，那么对于该字段，我们必须只将一个字段错误添加到errors 中。
 
-## 4. Spring Boot GraphQL 库
+## 4. Spring Boot GraphQL库
 
-我们的 Spring Boot 应用程序示例使用[spring-boot-starter-graphql](https://search.maven.org/search?q=g:org.springframework.boot AND a:spring-boot-starter-graphql) 模块，它引入了所需的 GraphQL 依赖项。
+我们的Spring Boot应用程序示例使用[spring-boot-starter-graphql](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-graphql/3.0.3) 模块，它引入了所需的GraphQL依赖项。
 
-我们还使用[spring-graphql-test](https://search.maven.org/search?q=g:org.springframework.graphql AND a:spring-graphql-test)模块进行相关测试：
+我们还使用[spring-graphql-test](https://central.sonatype.com/artifact/org.springframework.graphql/spring-graphql-test/1.1.2)模块进行相关测试：
 
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-graphql</artifactId>
 </dependency>
-
 <dependency>
     <groupId>org.springframework.graphql</groupId>
     <artifactId>spring-graphql-test</artifactId>
@@ -207,17 +206,17 @@ query {
 </dependency>
 ```
 
-## 5. Spring Boot GraphQL 错误处理
+## 5.Spring Boot GraphQL错误处理
 
-在本节中，我们将主要介绍 Spring Boot 应用程序本身中的 GraphQL 错误处理。我们不会涵盖[GraphQL Java](https://www.baeldung.com/java-call-graphql-service)和[GraphQL Spring Boot](https://www.baeldung.com/spring-graphql)应用程序开发。
+在本节中，我们将主要介绍Spring Boot应用程序本身中的GraphQL错误处理。我们不会涵盖[GraphQL Java](https://www.baeldung.com/java-call-graphql-service)和[GraphQL Spring Boot](https://www.baeldung.com/spring-graphql)应用程序开发。
 
-在我们的 Spring Boot 应用程序示例中，我们将根据位置或 VIN(车辆识别码)改变或查询车辆。我们将看到使用此示例实现错误处理的不同方法。
+在我们的Spring Boot应用程序示例中，我们将根据位置或 VIN(车辆识别码)改变或查询车辆。我们将看到使用此示例实现错误处理的不同方法。
 
-在以下小节中，我们将了解 Spring Boot 模块如何处理异常或错误。
+在以下小节中，我们将了解Spring Boot模块如何处理异常或错误。
 
-### 5.1. 具有标准异常的 GraphQL 响应
+### 5.1. 具有标准异常的GraphQL响应
 
-通常，在 REST 应用程序中，我们通过扩展RuntimeException或Throwable来创建自定义运行时异常类：
+通常，在REST应用程序中，我们通过扩展RuntimeException或Throwable来创建自定义运行时异常类：
 
 ```java
 public class InvalidInputException extends RuntimeException {
@@ -227,38 +226,38 @@ public class InvalidInputException extends RuntimeException {
 }
 ```
 
-通过这种方法，我们可以看到 GraphQL 引擎返回以下响应：
+通过这种方法，我们可以看到GraphQL引擎返回以下响应：
 
 ```json
 {
-  "errors": [
-    {
-      "message": "INTERNAL_ERROR for 2c69042a-e7e6-c0c7-03cf-6026b1bbe559",
-      "locations": [
+    "errors": [
         {
-          "line": 2,
-          "column": 5
+            "message": "INTERNAL_ERROR for 2c69042a-e7e6-c0c7-03cf-6026b1bbe559",
+            "locations": [
+                {
+                    "line": 2,
+                    "column": 5
+                }
+            ],
+            "path": [
+                "searchByLocation"
+            ],
+            "extensions": {
+                "classification": "INTERNAL_ERROR"
+            }
         }
-      ],
-      "path": [
-        "searchByLocation"
-      ],
-      "extensions": {
-        "classification": "INTERNAL_ERROR"
-      }
-    }
-  ],
-  "data": null
+    ],
+    "data": null
 }
 ```
 
 在上面的错误响应中，我们可以看到它不包含任何错误的详细信息。
 
-默认情况下，请求处理期间的任何异常都由ExceptionResolversExceptionHandler 类处理，该类从 GraphQL API 实现DataFetcherExceptionHandler接口。它允许应用程序注册一个或多个DataFetcherExceptionResolver组件。
+默认情况下，请求处理期间的任何异常都由ExceptionResolversExceptionHandler 类处理，该类从GraphQL API实现DataFetcherExceptionHandler接口。它允许应用程序注册一个或多个DataFetcherExceptionResolver组件。
 
 这些解析器被顺序调用，直到其中一个能够处理异常并将其解析为GraphQLError。如果没有解析器能够处理异常，则异常被归类为INTERNAL_ERROR。 它还包含执行 ID 和一般错误消息，如上所示。
 
-### 5.2. 具有已处理异常的 GraphQL 响应
+### 5.2. 具有已处理异常的GraphQL响应
 
 现在让我们看看如果我们实现自定义异常处理，响应会是什么样子。
 
@@ -300,26 +299,26 @@ public class CustomExceptionResolver extends DataFetcherExceptionResolverAdapter
 
 ```json
 {
-  "errors": [
-    {
-      "message": "Vehicle with vin: 123 not found.",
-      "locations": [
+    "errors": [
         {
-          "line": 2,
-          "column": 5
+            "message": "Vehicle with vin: 123 not found.",
+            "locations": [
+                {
+                    "line": 2,
+                    "column": 5
+                }
+            ],
+            "path": [
+                "searchByVin"
+            ],
+            "extensions": {
+                "classification": "NOT_FOUND"
+            }
         }
-      ],
-      "path": [
-        "searchByVin"
-      ],
-      "extensions": {
-        "classification": "NOT_FOUND"
-      }
+    ],
+    "data": {
+        "searchByVin": null
     }
-  ],
-  "data": {
-    "searchByVin": null
-  }
 }
 ```
 
@@ -327,4 +326,4 @@ public class CustomExceptionResolver extends DataFetcherExceptionResolverAdapter
 
 ## 六，总结
 
-在本教程中，我们了解了不同类型的 GraphQL 错误。我们还研究了如何根据规范格式化 GraphQL 错误。后来我们在 Spring Boot 应用程序中实现了错误处理。
+在本教程中，我们了解了不同类型的GraphQL错误。我们还研究了如何根据规范格式化GraphQL错误。后来我们在Spring Boot应用程序中实现了错误处理。

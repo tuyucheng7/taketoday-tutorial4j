@@ -1,10 +1,10 @@
 ## 1. 概述
 
-[存储过程]()是一组存储在数据库中的预定义SQL语句，在Java中，有几种访问存储过程的方法。在本教程中，我们学习如何从Spring Data JPA Repositories调用存储过程。
+[存储过程](https://www.baeldung.com/jpa-stored-procedures)是一组存储在数据库中的预定义SQL语句。在Java中，有几种访问存储过程的方法。在本教程中，我们学习如何从Spring Data JPA Repository调用存储过程。
 
 ## 2. 项目构建
 
-**我们将使用[spring-boot-starter-data-jpa]()模块作为数据访问层**，并使用MySQL作为后端数据库。因此，我们的项目pom.xml 文件中需要[Spring Data JPA](https://search.maven.org/search?q=g:org.springframework.boot AND a:spring-boot-starter-data-jpa)、[Spring Data JDBC](https://search.maven.org/search?q=g:org.springframework.boot AND a:spring-boot-starter-data-jdbc)和[MySQL Connector](https://search.maven.org/search?q=g:mysql AND a:mysql-connector-java)依赖项：
+**我们将使用[Spring Boot Starter Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)模块作为数据访问层**。我们还将使用MySQL作为后端数据库。因此，我们的项目pom.xml文件中需要[Spring Data JPA](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa/3.0.3)、[Spring Data JDBC](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-data-jdbs/3.0.3)和[MySQL Connector](https://central.sonatype.com/artifact/mysql/mysql-connector-java/8.0.32)依赖项：
 
 ```xml
 <dependency>
@@ -31,7 +31,7 @@ spring.datasource.password=tuyucheng
 
 ## 3. 实体类
 
-**在Spring Data JPA中，[实体]()表示存储在数据库中的表**。因此，我们可以构造一个实体类来映射汽车数据库表：
+**在Spring Data JPA中，[实体](https://www.baeldung.com/jpa-entities)表示存储在数据库中的表**。因此，我们可以构造一个实体类来映射car数据库表：
 
 ```java
 @Entity
@@ -47,7 +47,7 @@ public class Car {
     @Column
     private Integer year;
 
-   // standard getters and setters
+    // standard getters and setters
 }
 ```
 
@@ -57,8 +57,8 @@ public class Car {
 
 ```sql
 CREATE PROCEDURE FIND_CARS_AFTER_YEAR(IN year_in INT)
-BEGIN 
-    SELECT  FROM car WHERE year >= year_in ORDER BY year;
+BEGIN
+SELECT * FROM car WHERE year >= year_in ORDER BY year;
 END
 ```
 
@@ -67,7 +67,7 @@ END
 ```sql
 CREATE PROCEDURE GET_TOTAL_CARS_BY_MODEL(IN model_in VARCHAR(50), OUT count_out INT)
 BEGIN
-    SELECT COUNT() into count_out from car WHERE model = model_in;
+SELECT COUNT(*) into count_out from car WHERE model = model_in;
 END
 ```
 
@@ -82,11 +82,13 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 }
 ```
 
-接下来，我们可以向Repository添加一些调用存储过程的方法。
+接下来，让我们向我们的Repository添加一些调用存储过程的方法。
 
 ### 5.1 直接映射存储过程名称
 
-**我们可以使用@Procedure注解定义一个存储过程方法，直接映射存储过程名称**，有四种等效的方法可以做到这一点。比如我们可以直接使用存储过程名作为方法名：
+**我们可以使用@Procedure注解定义一个存储过程方法，直接映射存储过程名称**。
+
+有四种等效的方法可以做到这一点。比如我们可以直接使用存储过程名作为方法名：
 
 ```java
 @Procedure
@@ -121,12 +123,12 @@ int getTotalCarsByModelValue(String model);
 ```java
 @Entity
 @NamedStoredProcedureQuery(
-        name = "Car.getTotalCardsbyModelEntity",
-        procedureName = "GET_TOTAL_CARS_BY_MODEL",
-        parameters = {
-                @StoredProcedureParameter(mode = ParameterMode.IN, name = "model_in", type = String.class),
-                @StoredProcedureParameter(mode = ParameterMode.OUT, name = "count_out", type = Integer.class)
-        }
+      name = "Car.getTotalCardsbyModelEntity",
+      procedureName = "GET_TOTAL_CARS_BY_MODEL",
+      parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "model_in", type = String.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "count_out", type = Integer.class)
+      }
 )
 public class Car {
     // class definition
@@ -140,7 +142,7 @@ public class Car {
 int getTotalCarsByModelEntiy(@Param("model_in") String model);
 ```
 
-**这里使用name属性来引用实体类中定义的存储过程**。对于repository方法，我们使用@Param注解来匹配存储过程的入参，并将存储过程的输出参数与Repository方法的返回值相匹配。
+**我们使用name属性来引用实体类中定义的存储过程**。对于Repository方法，我们使用@Param注解来匹配存储过程的入参。我们还将存储过程的输出参数与Repository方法的返回值相匹配。
 
 ### 5.3 使用@Query注解引用存储过程
 
@@ -151,10 +153,10 @@ int getTotalCarsByModelEntiy(@Param("model_in") String model);
 List<Car> findCarsAfterYear(@Param("year_in") Integer year_in);
 ```
 
-在这种方法中，我们使用原生查询来调用存储过程，将查询存储在注解的value属性中。
+在这种方法中，我们使用原生查询来调用存储过程。我们将查询存储在注解的value属性中。
 
-同样，我们使用@Param来匹配存储过程的输入参数，将存储过程输出映射到实体Car对象集合。
+同样，我们使用@Param来匹配存储过程的输入参数，并将存储过程输出映射到实体Car对象列表。
 
 ## 6. 总结
 
-在本文中，我们探讨了如何通过JPA Repository访问存储过程，并介绍了引用JPA Repository中存储过程的两种简单方法。
+在本文中，我们探讨了如何通过JPA Repository访问存储过程。我们还讨论了在JPA Repository中引用存储过程的两种简单方法。

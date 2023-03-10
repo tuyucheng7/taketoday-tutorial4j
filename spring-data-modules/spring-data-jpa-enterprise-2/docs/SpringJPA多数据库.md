@@ -1,10 +1,24 @@
 ## 1. 概述
 
-在本教程中，我们为具有多个数据库的Spring Data JPA系统实现一个简单的Spring配置。
+在本教程中，我们将为**具有多个数据库的Spring Data JPA系统**实现一个简单的Spring配置。
+
+## 延伸阅读
+
+### [Spring Data JPA-派生的删除方法](https://www.baeldung.com/spring-data-jpa-deleteby)
+
+了解如何定义Spring Data deleteBy和removeBy方法
+
+[阅读更多](https://www.baeldung.com/spring-data-jpa-deleteby)→
+
+### [在Spring Boot中以编程方式配置数据源](https://www.baeldung.com/spring-boot-configure-data-source-programmatic)
+
+了解如何以编程方式配置Spring Boot数据源，从而避开Spring Boot的自动数据源配置算法。
+
+[阅读更多](https://www.baeldung.com/spring-boot-configure-data-source-programmatic)→
 
 ## 2. 实体
 
-首先，我们创建两个简单的实体，它们分别存在于一个单独的数据库中。
+首先，让我们创建两个简单的实体，每个都存在于一个单独的数据库中。
 
 这是第一个用户实体：
 
@@ -46,11 +60,11 @@ public class Product {
 }
 ```
 
-我们可以看到**这两个实体也被放在了独立的包中**。当我们进入配置时，这很重要。
+我们可以看到**这两个实体也被放在了独立的包中**。当我们进入配置时，这将很重要。
 
 ## 3. JPA Repository
 
-接下来，定义我们的Repository，首先是UserRepository：
+接下来，让我们看一下我们的两个JPA Repository，UserRepository：
 
 ```java
 package cn.tuyucheng.taketoday.multipledb.dao.user;
@@ -70,9 +84,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 再次注意，这两个Repository也是放在不同的包中。
 
-## 4. 用Java配置JPA
+## 4. 使用Java配置JPA
 
-现在我们开始实际的Spring配置，**我们需要首先设置两个配置类，一个用于User，另一个用于Product**。
+现在我们将进入实际的Spring配置。**我们需要首先设置两个配置类-一个用于User，另一个用于Product**。
 
 在每个配置类中，我们需要为User定义以下接口：
 
@@ -80,15 +94,15 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 -   EntityManagerFactory(userEntityManager)
 -   TransactionManager(userTransactionManager)
 
-下面是关于User的配置类：
+让我们先看一下用户配置：
 
 ```java
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(
-        basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user",
-        entityManagerFactoryRef = "userEntityManager",
-        transactionManagerRef = "userTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user",
+      entityManagerFactoryRef = "userEntityManager",
+      transactionManagerRef = "userTransactionManager"
 )
 @Profile("!tc")
 public class PersistenceUserConfiguration {
@@ -139,17 +153,17 @@ public class PersistenceUserConfiguration {
 }
 ```
 
-注意我们如何通过使用@Primary标注bean定义来使用userTransactionManager作为我们的主要TransactionManager。每当我们要隐式或显式地注入事务管理器而不指定名称时，这都会很有帮助。
+注意我们如何通过使用@Primary标注bean定义来使用userTransactionManager作为我们的**主TransactionManager**。每当我们要隐式或显式地注入事务管理器而不指定名称时，这都会很有帮助。
 
-接下来，下面是PersistenceProductConfiguration，我们在其中定义了类似的bean：
+接下来，让我们讨论PersistenceProductConfiguration，我们在其中定义了类似的bean：
 
 ```java
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(
-        basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product",
-        entityManagerFactoryRef = "productEntityManager",
-        transactionManagerRef = "productTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product",
+      entityManagerFactoryRef = "productEntityManager",
+      transactionManagerRef = "productTransactionManager"
 )
 @Profile("!tc")
 public class PersistenceProductConfiguration {
@@ -198,7 +212,9 @@ public class PersistenceProductConfiguration {
 
 ## 5. 简单测试
 
-最后，让我们测试一下我们的配置。为此，我们将为每个实体创建一个实例并确保它已创建：
+最后，让我们测试一下我们的配置。
+
+为此，我们将为每个实体创建一个实例并确保它已创建：
 
 ```java
 @ExtendWith(SpringExtension.class)
@@ -262,7 +278,9 @@ class JpaMultipleDBIntegrationTest {
 
 ## 6. Spring Boot中的多个数据库
 
-对于Spring Boot来说，可以简化上面的配置。默认情况下，**Spring Boot将使用以spring.datasource.为前缀的配置属性实例化其默认数据源**：
+对于Spring Boot来说，可以简化上面的配置。
+
+默认情况下，**Spring Boot将使用以spring.datasource.\*为前缀的配置属性实例化其默认DataSource**：
 
 ```properties
 spring.datasource.jdbcUrl=[url]
@@ -278,18 +296,18 @@ spring.second-datasource.username=[username]
 spring.second-datasource.password=[password]
 ```
 
-因为我们希望Spring Boot自动配置获取这些不同的属性(并实例化两个不同的DataSources)，所以我们定义两个类似于前面部分的配置类：
+因为我们希望Spring Boot自动配置获取这些不同的属性(并实例化两个不同的DataSources)，所以我们将定义两个类似于前面部分的配置类：
 
 ```java
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db-boot.properties"})
 @EnableJpaRepositories(
-        basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user", 
-        entityManagerFactoryRef = "userEntityManager", 
-        transactionManagerRef = "userTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user",
+      entityManagerFactoryRef = "userEntityManager",
+      transactionManagerRef = "userTransactionManager"
 )
 public class PersistenceUserAutoConfiguration {
-    
+
     @Primary
     @Bean
     @ConfigurationProperties(prefix="spring.datasource")
@@ -306,18 +324,18 @@ public class PersistenceUserAutoConfiguration {
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db-boot.properties"})
 @EnableJpaRepositories(
-        basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product", 
-        entityManagerFactoryRef = "productEntityManager", 
-        transactionManagerRef = "productTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product",
+      entityManagerFactoryRef = "productEntityManager",
+      transactionManagerRef = "productTransactionManager"
 )
 public class PersistenceProductAutoConfiguration {
-   
+
     @Bean
     @ConfigurationProperties(prefix="spring.second-datasource")
     public DataSource productDataSource() {
         return DataSourceBuilder.create().build();
     }
-   
+
     // productEntityManager bean 
 
     // productTransactionManager bean
@@ -326,9 +344,11 @@ public class PersistenceProductAutoConfiguration {
 
 现在我们已经根据Spring Boot自动配置约定在persistence-multiple-db-boot.properties中定义了数据源属性。
 
-有趣的部分是**使用@ConfigurationProperties标注数据源bean创建方法**，我们只需要指定相应的配置前缀即可。在此方法中，我们使用一个DataSourceBuilder，Spring Boot将自动处理其余部分。
+有趣的部分是**使用@ConfigurationProperties标注数据源bean创建方法**，我们只需要指定相应的配置前缀即可。在此方法中，我们使用了DataSourceBuilder，Spring Boot将自动处理其余部分。
 
-但是如何将配置的属性注入到DataSource配置中呢？在DataSourceBuilder上调用build()方法时，它将调用其私有的bind()方法：
+但是如何将配置的属性注入到DataSource配置中呢？
+
+在DataSourceBuilder上调用build()方法时，它将调用其私有的bind()方法：
 
 ```java
 public T build() {

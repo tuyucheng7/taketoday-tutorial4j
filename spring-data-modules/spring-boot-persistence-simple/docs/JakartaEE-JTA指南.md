@@ -8,9 +8,11 @@ JTA的真正强大之处在于它能够在单个事务中管理多个资源(即�
 
 ## 2. 通用API和分布式事务
 
-JTA提供了对业务代码的事务控制(开始、提交和回滚)的抽象。如果没有这种抽象，我们将不得不处理每种资源类型的单独API。
+JTA为业务代码提供了对事务控制(开始、提交和回滚)的抽象。
 
-比如我们需要[这样](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html)处理JDBC资源。同样，JMS资源可能具有[相似但不兼容的模型](https://docs.oracle.com/cd/E19798-01/821-1841/bncgh/index.html)。
+如果没有这种抽象，我们将不得不处理每种资源类型的单独API。
+
+比如我们需要像[这样](https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html)处理JDBC资源。同样，JMS资源可能具有[相似但不兼容的模型](https://docs.oracle.com/cd/E19798-01/821-1841/bncgh/index.html)。
 
 **通过JTA，我们可以对多种不同类型的资源进行一致、协调的管理**。
 
@@ -18,9 +20,9 @@ JTA提供了对业务代码的事务控制(开始、提交和回滚)的抽象。
 
 ## 3. 示例项目设置
 
-示例应用程序是银行应用程序的一个非常简单的后端服务。我们有两个Service，BankAccountService和AuditService使用两个不同的数据库。这些独立的数据库需要在事务开始、提交或回滚时进行协调。
+示例应用程序是银行应用程序的一个非常简单的后端服务。我们有两个Service，BankAccountService和AuditService使用两个不同的数据库。**这些独立的数据库需要在事务开始、提交或回滚时进行协调**。
 
-首先，我们项目使用Spring Boot来简化配置：
+首先，我们的示例项目使用Spring Boot来简化配置：
 
 ```xml
 <parent>
@@ -28,16 +30,15 @@ JTA提供了对业务代码的事务控制(开始、提交和回滚)的抽象。
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.6.6</version>
 </parent>
-
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-jta-atomikos</artifactId>
 </dependency>
 ```
 
-最后，在每个测试方法之前，我们初始化一个空的AUDIT_LOG表，并使用两条记录初始化数据库ACCOUNT：
+最后，在每个测试方法之前，我们用空数据初始化AUDIT_LOG并用2行初始化数据库ACCOUNT：
 
-```java
+```shell
 +-----------+----------------+
 | ID        |  BALANCE       |
 +-----------+----------------+
@@ -48,22 +49,22 @@ JTA提供了对业务代码的事务控制(开始、提交和回滚)的抽象。
 
 ## 4. 声明式事务划分
 
-在JTA中处理事务的第一种方法是使用[@Transactional](https://docs.oracle.com/javaee/7/api/javax/transaction/Transactional.html)注解。有关更详细的解释和配置，请参阅[本文]()。
+在JTA中处理事务的第一种方法是使用[@Transactional](https://docs.oracle.com/javaee/7/api/javax/transaction/Transactional.html)注解。有关更详细的解释和配置，请参阅[本文](https://www.baeldung.com/transaction-configuration-with-jpa-and-spring)。
 
-然后我们使用@Transactional标注Service方法executeTransfer()，这指示事务管理器开始事务：
+让我们用@Transactional标注Service方法executeTransfer()。这指示事务管理器开始事务：
 
 ```java
 @Transactional
 public void executeTransfer(String fromAccontId, String toAccountId, BigDecimal amount) {
     bankAccountService.transfer(fromAccontId, toAccountId, amount);
     auditService.log(fromAccontId, toAccountId, amount);
-    ...
+    // ...
 }
 ```
 
-这里，方法executeTransfer()调用2个不同的服务，AccountService和AuditService。这些服务使用2个不同的数据库。
+在这里，方法executeTransfer()调用2个不同的服务，AccountService和AuditService。这些服务使用2个不同的数据库。
 
-**当executeTransfer()返回时，事务管理器会识别到它是事务的结束并将提交给两个数据库**：
+**当executeTransfer()返回时，事务管理器会识别到这是事务的结束并将提交给两个数据库**：
 
 ```java
 tellerService.executeTransfer("a0000001", "a0000002", BigDecimal.valueOf(500));
@@ -79,7 +80,7 @@ assertThat(lastTransferLog.getAmount()).isEqualByComparingTo(BigDecimal.valueOf(
 
 ### 4.1 在声明性事务中回滚
 
-在方法的最后，executeTransfer()检查账户余额，如果资金不足则抛出RuntimeException ：
+在方法的最后，executeTransfer()检查账户余额，如果资金不足则抛出RuntimeException：
 
 ```java
 @Transactional
@@ -109,7 +110,7 @@ assertThat(auditServie.lastTransferLog()).isNull();
 
 另一种控制JTA事务的方法是以编程方式使用[UserTransaction](https://javaee.github.io/javaee-spec/javadocs/javax/transaction/UserTransaction.html)。
 
-下面我们修改executeTransfer()以手动处理事务：
+现在让我们修改executeTransfer()以手动处理事务：
 
 ```java
 userTransaction.begin();
@@ -125,7 +126,7 @@ if(balance.compareTo(BigDecimal.ZERO) < 0) {
 }
 ```
 
-在我们的示例中，begin()方法启动了一个新事务。如果余额验证失败，我们调用rollback()将回滚两个数据库。否则，调用commit()会将更改提交到两个数据库。
+在我们的示例中，begin()方法启动了一个新事务。如果余额验证失败，我们调用rollback()将回滚两个数据库。否则，**对commit()的调用会将更改提交到两个数据库**。
 
 重要的是要注意commit()和rollback()都会结束当前事务。
 
@@ -133,4 +134,4 @@ if(balance.compareTo(BigDecimal.ZERO) < 0) {
 
 ## 6. 总结
 
-在本文中，我们讨论了JTA试图解决的问题。代码示例说明了使用注解和以编程方式控制事务，涉及需要在单个事务中协调的2个事务资源。
+在本文中，我们讨论了JTA试图解决的问题。**代码示例说明了使用注解和以编程方式控制事务**，涉及需要在单个事务中协调的2个事务资源。

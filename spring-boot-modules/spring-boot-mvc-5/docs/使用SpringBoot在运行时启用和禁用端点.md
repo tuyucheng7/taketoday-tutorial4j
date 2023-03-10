@@ -10,7 +10,7 @@ Spring Boot应用程序中的端点是与之交互的机制。有时，例如在
 
 ### 2.1 Maven依赖项
 
-首先，我们需要Spring Boot应用程序公开/refresh端点，所以让我们在项目的pom.xml文件中添加[spring-boot-starter-actuator](https://search.maven.org/search?q=g: org.springframework.boot AND a:spring-boot-starter-actuator)依赖项：
+首先，我们需要Spring Boot应用程序公开/refresh端点，所以让我们在项目的pom.xml文件中添加[spring-boot-starter-actuator](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-actuator/3.0.3)依赖项：
 
 ```xml
 <dependency>
@@ -30,7 +30,7 @@ Spring Boot应用程序中的端点是与之交互的机制。有时，例如在
 </dependency>
 ```
 
-此外，我们还必须在项目的pom.xml文件的依赖管理部分添加[Spring Cloud的](https://search.maven.org/search?q=g: org.springframework.cloud AND a:spring-cloud-dependencies)[BOM](https://www.baeldung.com/spring-maven-bom#2-what-is-maven-bom)，以便Maven使用兼容版本的spring-cloud-starter：
+此外，我们还必须在项目的pom.xml文件的依赖管理部分添加[Spring Cloud的](https://central.sonatype.com/artifact/org.springframework.cloud/spring-cloud-dependencies/2022.0.1)，以便Maven使用兼容版本的spring-cloud-starter：
 
 ```xml
 <dependencyManagement>
@@ -46,7 +46,7 @@ Spring Boot应用程序中的端点是与之交互的机制。有时，例如在
 </dependencyManagement>
 ```
 
-最后，因为我们需要在运行时重新加载文件的能力，所以我们还要添加[commons-configuration](https://search.maven.org/search?q=g: commons-configuration AND a:commons-configuration)依赖项：
+最后，因为我们需要在运行时重新加载文件的能力，所以我们还要添加[commons-configuration](https://central.sonatype.com/artifact/commons-configuration/commons-configuration/20040121.140929)依赖项：
 
 ```xml
 <dependency>
@@ -146,7 +146,7 @@ protected void doFilterInternal(HttpServletRequest request, HttpServletResponse 
 }
 ```
 
-我们必须注意endpoint.regex属性的初始值是“.”，允许所有请求通过此过滤器。
+我们必须注意endpoint.regex属性的初始值是“.*”，允许所有请求通过此过滤器。
 
 ## 3. 切换使用环境属性
 
@@ -207,7 +207,7 @@ public class EnvironmentConfigBean {
 public FilterRegistrationBean<DynamicEndpointFilter> dynamicEndpointFilterFilterRegistrationBean(EnvironmentConfigBean environmentConfigBean) {
     FilterRegistrationBean<DynamicEndpointFilter> registrationBean = new FilterRegistrationBean<>();
     registrationBean.setFilter(new DynamicEndpointFilter(environmentConfigBean.getEnvironment()));
-    registrationBean.addUrlPatterns("");
+    registrationBean.addUrlPatterns("*");
     return registrationBean;
 }
 ```
@@ -216,7 +216,7 @@ public FilterRegistrationBean<DynamicEndpointFilter> dynamicEndpointFilterFilter
 
 首先，让我们运行应用程序并访问/bar1或/bar2 API：
 
-```bash
+```shell
 $ curl -iXGET http://localhost:9090/bar1
 HTTP/1.1 200 
 Content-Type: text/plain;charset=ISO-8859-1
@@ -231,12 +231,12 @@ bar1
 接下来，让我们通过更改extra.properties文件中的endpoint.regex属性来仅启用/foo端点：
 
 ```properties
-endpoint.regex=./foo
+endpoint.regex=.*/foo
 ```
 
 继续，让我们看看我们是否能够访问/bar1 API端点：
 
-```bash
+```shell
 $ curl -iXGET http://localhost:9090/bar1
 HTTP/1.1 503 
 Content-Type: application/json
@@ -251,7 +251,7 @@ Connection: close
 
 最后，我们还可以检查我们是否能够访问/foo API端点：
 
-```bash
+```shell
 $ curl -iXGET http://localhost:9090/foo
 HTTP/1.1 200 
 Content-Type: text/plain;charset=ISO-8859-1
@@ -291,7 +291,7 @@ public class EndpointRefreshConfigBean {
 
 最后，让我们更新我们的API处理程序以使用EndpointRefreshConfigBean的实例来控制切换流：
 
-```typescript
+```java
 @GetMapping("/foo")
 public ResponseEntity<String> fooHandler() {
     if (endpointRefreshConfigBean.isFoo()) {
@@ -306,7 +306,7 @@ public ResponseEntity<String> fooHandler() {
 
 首先，让我们在endpoint.foo属性的值设置为true时验证/foo端点：
 
-```yaml
+```shell
 $ curl -isXGET http://localhost:9090/foo
 HTTP/1.1 200
 Content-Type: text/plain;charset=ISO-8859-1
@@ -324,7 +324,7 @@ endpoint.foo=false
 
 我们会注意到/foo端点仍处于启用状态。那是因为我们需要通过调用/refresh端点来重新加载属性源。所以，让我们做一次：
 
-```bash
+```shell
 $ curl -Is --request POST 'http://localhost:8081/actuator/refresh'
 HTTP/1.1 200
 Content-Type: application/vnd.spring-boot.actuator.v3+json
@@ -335,7 +335,7 @@ Date: Sat, 12 Nov 2022 15:34:24 GMT
 
 最后，让我们尝试访问/foo端点：
 
-```bash
+```shell
 $ curl -isXGET http://localhost:9090/springbootapp/foo
 HTTP/1.1 503
 Content-Type: text/plain;charset=ISO-8859-1

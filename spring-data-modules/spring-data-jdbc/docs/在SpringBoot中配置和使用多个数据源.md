@@ -1,10 +1,14 @@
 ## 1. 概述
 
-Spring Boot应用程序的典型场景是将数据存储在单个关系数据库中，但是我们有时需要访问多个数据库。在本教程中，我们将学习如何使用Spring Boot配置和使用多个数据源。
+Spring Boot应用程序的典型场景是将数据存储在单个关系数据库中。但是我们有时需要访问多个数据库。
+
+在本教程中，我们将学习如何使用Spring Boot配置和使用多个数据源。
+
+要了解如何处理单个数据源，请查看我们对[Spring Data JPA的介绍](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)。
 
 ## 2. 默认行为
 
-下面是在application.yml中声明数据源的方式：
+让我们记住在application.yml中声明Spring Boot中的数据源是什么样的：
 
 ```yaml
 spring:
@@ -15,7 +19,9 @@ spring:
         driverClassname: ...
 ```
 
-在内部，Spring将这些设置映射到org.springframework.boot.autoconfigure.jdbc.DataSourceProperties的实例：
+在内部，Spring将这些设置映射到org.springframework.boot.autoconfigure.jdbc.DataSourceProperties的实例。
+
+让我们看一下实现：
 
 ```java
 @ConfigurationProperties(prefix = "spring.datasource")
@@ -47,7 +53,7 @@ public class DataSourceProperties implements BeanClassLoaderAware, InitializingB
 }
 ```
 
-我们应该指出将配置属性自动映射到Java对象的@ConfigurationProperties注解。
+我们应该指出自动将配置属性映射到Java对象的@ConfigurationProperties注解。
 
 ## 3. 扩展默认值
 
@@ -73,7 +79,7 @@ public class TodoDatasourceConfiguration {
 }
 ```
 
-因此，数据源的配置必须如下所示：
+数据源的配置必须如下所示：
 
 ```yaml
 spring:
@@ -147,37 +153,41 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackageClasses = Todo.class,
-        entityManagerFactoryRef = "todosEntityManagerFactory",
-        transactionManagerRef = "todosTransactionManager"
+      basePackageClasses = Todo.class,
+      entityManagerFactoryRef = "todosEntityManagerFactory",
+      transactionManagerRef = "todosTransactionManager"
 )
 public class TodoJpaConfiguration {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean todosEntityManagerFactory(
-            Qualifier("todosDataSource") DataSource dataSource,
+          Qualifier("todosDataSource") DataSource dataSource,
     EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(todosDataSource())
-                .packages(Todo.class)
-                .build();
+              .dataSource(todosDataSource())
+              .packages(Todo.class)
+              .build();
     }
 
     @Bean
     public PlatformTransactionManager todosTransactionManager(
-            @Qualifier("todosEntityManagerFactory") LocalContainerEntityManagerFactoryBean todosEntityManagerFactory) {
+          @Qualifier("todosEntityManagerFactory") LocalContainerEntityManagerFactoryBean todosEntityManagerFactory) {
         return new JpaTransactionManager(Objects.requireNonNull(todosEntityManagerFactory.getObject()));
     }
 }
 ```
 
-让我们看一下我们应该注意的一些限制。我们需要对包进行拆分，以便为每个数据源提供一个@EnableJpaRepositories。
+**让我们看一下我们应该注意的一些限制**。
 
-不幸的是，要注入EntityManagerFactoryBuilder，我们需要将其中一个数据源声明为@Primary。这是因为EntityManagerFactoryBuilder是在org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration中声明的，并且这个类需要注入单个数据源。通常，框架的某些部分可能不需要配置多个数据源。
+我们需要对包进行拆分，以便为每个数据源提供一个@EnableJpaRepositories。
+
+不幸的是，要注入EntityManagerFactoryBuilder，我们需要将其中一个数据源声明为@Primary。
+
+这是因为EntityManagerFactoryBuilder是在org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration中声明的，并且这个类需要注入单个数据源。通常，框架的某些部分可能不需要配置多个数据源。
 
 ## 6. 配置Hikari连接池
 
-如果我们想配置[Hikari]()，只需要在数据源定义中添加一个@ConfigurationProperties：
+如果我们想配置[Hikari](https://www.baeldung.com/spring-boot-hikari)，只需要在数据源定义中添加一个@ConfigurationProperties：
 
 ```java
 @Bean
@@ -200,3 +210,5 @@ spring.datasource.todos.hikari.maxLifetime=1800000
 ## 7. 总结
 
 在本文中，我们学习了如何使用Spring Boot配置多个数据源。
+
+我们看到我们需要一些配置，并且在偏离标准时可能存在陷阱，但最终是可能的。

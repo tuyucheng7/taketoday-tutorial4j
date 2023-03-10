@@ -1,16 +1,16 @@
 ## 1. 概述
 
-离[Spring Boot 3的发布](https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)只有很短的时间了，现在似乎是查看新功能的好时机。
+距离[Spring Boot 3的发布](https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0)只有很短的时间了，现在似乎是查看新功能的好时机。
 
 ## 2. Java 17
 
-虽然之前已经支持Java 17，但这个LTS版本现在获得了基准。
+虽然之前已经支持Java 17，但这个LTS版本现在有了基线。
 
-从LTS版本11迁移时，Java开发人员将受益于新的语言特性。由于Java本身不是本文的主题，我们将只列出对Spring Boot开发人员最重要的新功能。我们可以在Java [17](https://www.baeldung.com/java-17-new-features)、[16](https://www.baeldung.com/java-16-new-features)、[15](https://www.baeldung.com/java-15-new)、[14](https://www.baeldung.com/java-14-new-features)、[13](https://www.baeldung.com/java-13-new-features)和[12](https://www.baeldung.com/java-12-new-features)的单独文章中找到更多详细信息。
+从LTS版本11迁移时，Java开发人员将受益于新的语言特性。由于Java本身不是本文的主题，因此我们将只列出对Spring Boot开发人员最重要的新功能。我们可以在Java [17](https://www.baeldung.com/java-17-new-features)、[16](https://www.baeldung.com/java-16-new-features)、[15](https://www.baeldung.com/java-15-new)、[14](https://www.baeldung.com/java-14-new-features)、[13](https://www.baeldung.com/java-13-new-features)和[12](https://www.baeldung.com/java-12-new-features)的单独文章中找到更多详细信息。
 
 ### 2.1 记录
 
-Java记录([JEP 395](https://openjdk.java.net/jeps/395)，请参阅[Java 14 Record关键字](https://www.baeldung.com/java-record-keyword))旨在用作创建数据载体类的快速方法，即其目标是简单地包含数据并在模块之间携带数据的类，也称为POJO(Plain Old Java Object)和DTO(Data Transfer Objects)。
+Java记录([JEP 395](https://openjdk.java.net/jeps/395)，请参阅[Java 14 Record关键字](https://www.baeldung.com/java-record-keyword))旨在用作创建数据载体类的快速方法，即其目标是简单地包含数据并在模块之间传输数据的类，也称为POJO(Plain Old Java Object)和DTO(Data Transfer Objects)。
 
 我们可以轻松创建不可变的DTO：
 
@@ -35,7 +35,7 @@ text block.
 
 ### 2.3 Switch表达式
 
-Java 12引入了switch表达式([JEP 361](https://openjdk.java.net/jeps/361))，它(像所有表达式一样)计算单个值，并且可以在语句中使用。我们现在可以使用switch – case构造，而不是组合嵌套的if – else运算符(?:)：
+Java 12引入了switch表达式([JEP 361](https://openjdk.java.net/jeps/361))，它(像所有表达式一样)计算单个值，并且可以在语句中使用。我们现在可以使用switch–case构造，而不是组合嵌套的if–else运算符(?:)：
 
 ```java
 DayOfWeek day = DayOfWeek.FRIDAY;
@@ -59,7 +59,7 @@ if (obj instanceof String s) {
 }
 ```
 
-我们也可以在switch – case语句中使用它：
+我们也可以在switch–case语句中使用它：
 
 ```java
 static double getDoubleUsingSwitch(Object o) {
@@ -113,19 +113,19 @@ Spring Framework 6和Spring Boot 3需要以下最低版本：
 
 ## 5. 主要关注点
 
-两个首要主题受到了特别关注：原生可执行文件和可观察性。包罗万象的意思是：
+两个首要主题受到了特别关注：本机可执行文件和可观察性。总体意味着：
 
 -   Spring框架引入了核心抽象
 -   投资组合项目始终与他们整合
 -   Spring Boot提供自动配置
 
-### 5.1 原生可执行文件
+### 5.1 本机可执行文件
 
-构建原生可执行文件并将它们部署到GraalVM获得更高的优先级，所以[Spring Native](https://www.baeldung.com/spring-native-intro)倡议[正在进入Spring本身](https://spring.io/blog/2022/03/22/initial-aot-support-in-spring-framework-6-0-0-m3)。
+构建本机可执行文件并将它们部署到GraalVM获得更高的优先级，所以[Spring Native](https://www.baeldung.com/spring-native-intro)倡议[正在进入Spring本身](https://spring.io/blog/2022/03/22/initial-aot-support-in-spring-framework-6-0-0-m3)。
 
 对于AOT生成，不需要包含单独的插件，我们可以使用spring-boot-maven-plugin的[新目标](https://docs.spring.io/spring-boot/docs/3.0.0-M3/maven-plugin/reference/htmlsingle/#aot)：
 
-```bash
+```shell
 mvn spring-boot:aot-generate
 ```
 
@@ -133,15 +133,17 @@ mvn spring-boot:aot-generate
 
 ### 5.2 可观察性
 
-在Spring 6中，有一个可观察性计划，最终以新的[Micrometer](https://micrometer.io/) Observation API结束，并且以前的[Spring Cloud Sleuth](https://spring.io/projects/spring-cloud-sleuth)项目迁移到[Micrometer Tracing](https://github.com/micrometer-metrics/tracing/)。这更多是为了使用Micrometer有效地记录应用程序指标，并通过[OpenZipkin](https://zipkin.io/)或[OpenTelemetry](https://opentelemetry.io/)等提供程序实现跟踪。
+Spring 6引入了[Spring Observability](https://spring.io/blog/2022/10/12/observability-with-spring-boot-3)-一项建立在Micrometer和Micrometer Tracing(以前称为Spring Cloud Sleuth)基础之上的新计划。目标是使用Micrometer有效地记录应用程序指标，并通过[OpenZipkin](https://zipkin.io/)或[OpenTelemetry](https://opentelemetry.io/)等提供程序实施跟踪。
 
-Spring Boot 3中对所有这些都有自动配置，并且Spring项目正在努力使用Observation API对自己进行检测。
+Spring Boot 3中对所有这些进行了自动配置，并且Spring项目正在努力使用新的Observation API进行自我检测。
+
+我们可以在[专门的文章](https://www.baeldung.com/spring-boot-3-observability)中找到有关它的更多详细信息。
 
 ## 6. Spring Web MVC中的小改动
 
 最重要的新功能之一是对[RFC7807](https://github.com/spring-projects/spring-framework/issues/27052)(问题详细信息标准)的支持。现在我们不需要包含单独的库，例如[Zalando Problem](https://github.com/zalando/problem)。
 
-另一个较小的变化是[HttpMethod](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpMethod.html)不再是一个枚举，而是一个允许我们为扩展的HTTP方法创建实例的类，例如那些由WebDAV定义的方法：
+另一个较小的变化是[HttpMethod](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpMethod.html)不再是一个枚举，而是一个允许我们为扩展的HTTP方法创建实例的类，例如那些由WebDAV定义的：
 
 ```java
 HttpMethod lock = HttpMethod.valueOf("LOCK");
@@ -161,4 +163,4 @@ HttpMethod lock = HttpMethod.valueOf("LOCK");
 
 ## 8. 总结
 
-正如我们所知，迁移到Spring Boot 3和Spring 6也将是迁移到Java 17和Jakarta EE 9，如果我们非常重视可观察性和原生可执行文件，我们将从即将发布的主要版本中获益最多。
+正如我们所了解到的，迁移到Spring Boot 3和Spring 6也将是迁移到Java 17和Jakarta EE 9，如果我们非常重视可观察性和本机可执行文件，我们将从即将发布的主要版本中获益很多。

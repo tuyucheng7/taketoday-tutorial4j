@@ -1,36 +1,36 @@
 ## 1. 简介
 
-在本文中，我们将专注于将 Akka 与 Spring 框架集成——以允许将基于 Spring 的服务注入到 Akka actors 中。
+在本文中，我们将重点介绍如何将Akka与Spring框架集成，以允许将基于Spring的服务注入到Akka actors中。
 
-在阅读本文之前，建议先了解 Akka 的基础知识。
+在阅读本文之前，建议先了解Akka的基础知识。
 
-## 延伸阅读：
+### 延伸阅读
 
-## [Java Akka Actor简介](https://www.baeldung.com/akka-actors-java)
+### [Java Akka Actor简介](https://www.baeldung.com/akka-actors-java)
 
-了解如何使用Java中的 Akka Actors 构建并发和分布式应用程序。
+了解如何使用Java中的Akka Actors构建并发和分布式应用程序。
 
 [阅读更多](https://www.baeldung.com/akka-actors-java)→
 
-## [Akka 流指南](https://www.baeldung.com/akka-streams)
+### [Akka Streams指南](https://www.baeldung.com/akka-streams)
 
-使用 Akka Streams 库在Java中进行数据流转换的快速实用指南。
+使用Akka Streams库在Java中进行数据流转换的快速实用指南。
 
 [阅读更多](https://www.baeldung.com/akka-streams)→
 
-## 2. As中的依赖注入
+## 2. Akka中的依赖注入
 
-[Akka](http://akka.io/)是一个强大的基于 Actor 并发模型的应用程序框架。该框架是用 Scala 编写的，这当然使其也可以在基于Java的应用程序中完全使用。因此，我们经常希望将 Akka 与现有的基于 Spring 的应用程序集成，或者简单地使用 Spring 将 bean 连接到 actor 中。
+[Akka](http://akka.io/)是一个强大的基于Actor并发模型的应用程序框架。该框架是用Scala编写的，这当然使其也可以在基于Java的应用程序中完全使用。因此，我们经常希望将Akka与现有的基于Spring的应用程序集成，或者简单地使用Spring将bean连接到actor中。
 
-Spring/Akka 集成的问题在于 Spring 中 bean 的管理与 Akka 中 actor 的管理之间的差异：actor 具有不同于典型的 Spring bean lifecycle 的特定生命周期。
+Spring/Akka 集成的问题在于Spring中bean的管理与Akka中actor的管理之间的差异：actor 具有不同于典型的Springbean lifecycle 的特定生命周期。
 
-此外，actor 被分成一个 actor 本身(这是一个内部实现细节，不能由 Spring 管理)和一个 actor 引用，它可以被客户端代码访问，并且可以在不同的 Akka 运行时之间序列化和移植。
+此外，actor 被分成一个actor本身(这是一个内部实现细节，不能由Spring管理)和一个actor引用，它可以被客户端代码访问，并且可以在不同的Akka运行时之间序列化和移植。
 
 幸运的是，Akka 提供了一种机制，即[Akka 扩展](http://doc.akka.io/docs/akka/current/java/extending-akka.html)，这使得使用外部依赖注入框架成为一项相当容易的任务。
 
 ## 3.Maven依赖
 
-为了在我们的 Spring 项目中演示 Akka 的用法，我们需要一个最低限度的 Spring 依赖项——spring- context库，以及akka-actor库。可以将库版本提取到pom的<properties>部分：
+为了在我们的Spring项目中演示Akka的用法，我们需要一个最低限度的Spring依赖项——spring- context库，以及akka-actor库。可以将库版本提取到pom的<properties>部分：
 
 ```xml
 <properties>
@@ -56,15 +56,15 @@ Spring/Akka 集成的问题在于 Spring 中 bean 的管理与 Akka 中 actor �
 
 确保检查 Maven Central 以获取最新版本的[spring-context](https://search.maven.org/classic/#search|gav|1|g%3A"org.springframework" AND a%3A"spring-context")和[akka-actor](https://search.maven.org/classic/#search|gav|1|g%3A"com.typesafe.akka" AND a%3A"akka-actor_2.11")依赖项。
 
-请注意，akka-actor依赖项的名称中有一个_2.11后缀，这表示此版本的 Akka 框架是针对 Scala 2.11 版构建的。相应版本的 Scala 库将传递包含在你的构建中。
+请注意，akka-actor依赖项的名称中有一个_2.11后缀，这表示此版本的Akka框架是针对 Scala 2.11 版构建的。相应版本的 Scala 库将传递包含在你的构建中。
 
-## 4. 将 Spring Beans 注入 Akka Actor
+## 4. 将SpringBeans 注入AkkaActor
 
-让我们创建一个简单的 Spring/Akka 应用程序，该应用程序由一个 actor 组成，它可以通过向这个人发出问候来回答这个人的名字。问候语的逻辑将被提取到一个单独的服务中。我们希望将此服务自动装配到一个 actor 实例。Spring Integration 将帮助我们完成这项任务。
+让我们创建一个简单的 Spring/Akka 应用程序，该应用程序由一个actor组成，它可以通过向这个人发出问候来回答这个人的名字。问候语的逻辑将被提取到一个单独的服务中。我们希望将此服务自动装配到一个actor实例。Spring Integration 将帮助我们完成这项任务。
 
 ### 4.1. 定义参与者和服务
 
-为了演示将服务注入演员，我们将创建一个简单的类GreetingActor，定义为无类型演员(扩展 Akka 的UntypedActor基类)。每个 Akka actor 的主要方法是onReceive方法，它接收消息并根据一些指定的逻辑处理它。
+为了演示将服务注入演员，我们将创建一个简单的类GreetingActor，定义为无类型演员(扩展Akka的UntypedActor基类)。每个Akkaactor 的主要方法是onReceive方法，它接收消息并根据一些指定的逻辑处理它。
 
 在我们的例子中，GreetingActor实现检查消息是否属于预定义类型Greet，然后从Greet实例中获取此人的姓名，然后使用GreetingService接收此人的问候语并使用收到的问候语字符串回答发件人。如果消息是某种其他未知类型，则将其传递给参与者的预定义未处理方法。
 
@@ -99,15 +99,15 @@ public class GreetingActor extends UntypedActor {
 }
 ```
 
-请注意，Greet消息类型被定义为该 actor 内部的静态内部类，这被认为是一种很好的做法。接受的消息类型应定义为尽可能接近参与者，以避免混淆该参与者可以处理的消息类型。
+请注意，Greet消息类型被定义为该actor内部的静态内部类，这被认为是一种很好的做法。接受的消息类型应定义为尽可能接近参与者，以避免混淆该参与者可以处理的消息类型。
 
-另请注意 Spring 注解@Component和@Scope——它们将类定义为具有原型作用域的 Spring 管理的 bean。
+另请注意Spring注解@Component和@Scope——它们将类定义为具有原型作用域的Spring管理的 bean。
 
-作用域非常重要，因为每个 bean 检索请求都应该产生一个新创建的实例，因为这种行为与 Akka 的 actor 生命周期相匹配。如果你使用其他范围实现此 bean，则 Akka 中重启 actor 的典型情况很可能无法正常运行。
+作用域非常重要，因为每个bean检索请求都应该产生一个新创建的实例，因为这种行为与Akka的actor生命周期相匹配。如果你使用其他范围实现此 bean，则Akka中重启actor的典型情况很可能无法正常运行。
 
-最后，请注意我们不必显式地@Autowire GreetingService实例——这是可能的，因为 Spring 4.3 的新特性称为隐式构造函数注入。
+最后，请注意我们不必显式地@Autowire GreetingService实例——这是可能的，因为Spring4.3 的新特性称为隐式构造函数注入。
 
-GreeterService的实现非常简单，请注意我们通过向其添加@Component注解将其定义为 Spring 管理的 bean(具有默认的单例范围)：
+GreeterService的实现非常简单，请注意我们通过向其添加@Component注解将其定义为Spring管理的 bean(具有默认的单例范围)：
 
 ```java
 @Component
@@ -119,9 +119,9 @@ public class GreetingService {
 }
 ```
 
-### 4.2. 通过 Akka 扩展添加 Spring 支持
+### 4.2. 通过Akka扩展添加Spring支持
 
-将 Spring 与 Akka 集成的最简单方法是通过 Akka 扩展。
+将Spring与Akka集成的最简单方法是通过Akka扩展。
 
 扩展是为每个参与者系统创建的单例实例。它由一个扩展类本身组成，它实现了标记接口Extension和一个通常继承AbstractExtensionId的扩展 id 类。
 
@@ -160,15 +160,15 @@ SpringExtension类还有一个静态字段SPRING_EXTENSION_PROVIDER ，它包含
 
 其次，静态内部类SpringExt本身就是扩展。由于Extension只是一个标记接口，我们可以根据需要定义此类的内容。
 
-在我们的例子中，我们将需要initialize方法来保存 Spring ApplicationContext实例——这个方法在每次扩展的初始化中只会被调用一次。
+在我们的例子中，我们将需要initialize方法来保存SpringApplicationContext实例——这个方法在每次扩展的初始化中只会被调用一次。
 
 我们还需要props方法来创建Props对象。Props实例是演员的蓝图，在我们的例子中，Props.create方法接收一个SpringActorProducer类和该类的构造函数参数。这些是将调用此类的构造函数的参数。
 
-每次我们需要 Spring 管理的 actor 引用时，都会执行props方法。
+每次我们需要Spring管理的actor引用时，都会执行props方法。
 
-第三块也是最后一块拼图是SpringActorProducer类。它实现了 Akka 的IndirectActorProducer接口，该接口允许通过实现produce和actorClass方法来覆盖 actor 的实例化过程。
+第三块也是最后一块拼图是SpringActorProducer类。它实现了Akka的IndirectActorProducer接口，该接口允许通过实现produce和actorClass方法来覆盖actor的实例化过程。
 
-正如你可能已经猜到的那样，它不会直接实例化，而是始终从 Spring 的ApplicationContext中检索一个 actor 实例。由于我们已经将 actor 设为一个prototype作用域的 bean，每次调用produce方法都会返回一个新的 actor 实例：
+正如你可能已经猜到的那样，它不会直接实例化，而是始终从Spring的ApplicationContext中检索一个actor实例。由于我们已经将actor设为一个prototype作用域的 bean，每次调用produce方法都会返回一个新的actor实例：
 
 ```java
 public class SpringActorProducer implements IndirectActorProducer {
@@ -198,9 +198,9 @@ public class SpringActorProducer implements IndirectActorProducer {
 
 ### 4.3. 把它们放在一起
 
-剩下要做的唯一一件事就是创建一个 Spring 配置类(标有@Configuration注解)，它将告诉 Spring 扫描当前包以及所有嵌套包(这由@ComponentScan注解确保)并创建一个 Spring 容器.
+剩下要做的唯一一件事就是创建一个Spring配置类(标有@Configuration注解)，它将告诉Spring扫描当前包以及所有嵌套包(这由@ComponentScan注解确保)并创建一个Spring容器.
 
-我们只需要添加一个额外的 bean—— ActorSystem实例——并在这个ActorSystem上初始化 Spring 扩展：
+我们只需要添加一个额外的 bean—— ActorSystem实例——并在这个ActorSystem上初始化Spring扩展：
 
 ```java
 @Configuration
@@ -222,7 +222,7 @@ public class AppConfiguration {
 
 ### 4.4. 检索 Spring-Wired Actor
 
-为了测试一切正常，我们可以将ActorSystem实例注入我们的代码(一些 Spring 管理的应用程序代码，或基于 Spring 的测试)，使用我们的扩展为 actor 创建一个Props对象，检索对 actor 的引用通过Props对象并尝试向某人打招呼：
+为了测试一切正常，我们可以将ActorSystem实例注入我们的代码(一些Spring管理的应用程序代码，或基于Spring的测试)，使用我们的扩展为actor创建一个Props对象，检索对actor的引用通过Props对象并尝试向某人打招呼：
 
 ```java
 ActorRef greeter = system.actorOf(SPRING_EXTENSION_PROVIDER.get(system)
@@ -242,4 +242,4 @@ Assert.assertEquals("Hello, John", Await.result(result, duration));
 
 ## 5.总结
 
-在本文中，我们展示了如何将 Spring Framework 与 Akka 集成，以及如何将 bean 自动装配到 actor 中。
+在本文中，我们展示了如何将SpringFramework 与Akka集成，以及如何将bean自动装配到actor中。

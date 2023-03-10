@@ -1,39 +1,39 @@
-## 一、概述
+## 1. 概述
 
-我们有多种使用 Java 应用程序连接到数据库的选项。通常，我们指的是不同的层，从[JDBC](https://www.baeldung.com/java-jdbc)开始。然后，我们转向[JPA](https://www.baeldung.com/learn-jpa-hibernate)，使用 Hibernate 等实现。JPA 最终将使用 JDBC，但使用对象-实体管理方法使其对用户更加透明。
+我们有多种使用Java应用程序连接到数据库的选项。通常，我们引用不同的层，从[JDBC](https://www.baeldung.com/java-jdbc)开始。然后，我们转向[JPA](https://www.baeldung.com/learn-jpa-hibernate)，使用Hibernate等实现。JPA最终将使用JDBC，但使用对象-实体管理方法使其对用户更加透明。
 
-最后，我们可以有一个类似框架的集成，例如[Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)，它具有用于访问实体的预定义接口，但仍然在底层使用 JPA 和实体管理器。
+最后，我们可以有一个类似框架的集成，例如[Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)，它具有用于访问实体的预定义接口，但仍然在底层使用JPA和实体管理器。
 
-在本教程中，我们将讨论 Spring Data JPA 和 JPA 之间的区别。我们还将通过一些高级概述和代码片段来解释它们如何工作。让我们首先解释 JDBC 的一些历史以及 JPA 是如何产生的。
+在本教程中，我们将讨论Spring Data JPA和JPA之间的区别。我们还将通过一些高级概述和代码片段来解释它们如何工作。让我们首先解释一下JDBC的一些历史以及JPA是如何产生的。
 
-## 2.从JDBC到JPA
+## 2. 从JDBC到JPA
 
-自 1997 年 JDK（Java 开发工具包）1.1 版以来，我们已经可以使用[JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)访问关系数据库。
+自1997年JDK(Java开发工具包) 1.1版本以来，我们就可以使用[JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)访问关系型数据库。
 
-关于 JDBC 的要点对于理解 JPA 也是必不可少的，包括：
+关于JDBC的要点对于理解JPA也是必不可少的，包括：
 
--   *[DriverManager](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/java/sql/DriverManager.html)*和用于连接和执行查询的接口：这使得通常使用特定驱动程序（例如[MySQL Java 连接器）](https://www.baeldung.com/java-connect-mysql)可以连接到任何 ODBC 可访问的数据源。我们可以连接到数据库并在其上打开/关闭事务。**最重要的是，我们只需更改数据库驱动程序就可以使用任何数据库，如 MySQL、Oracle 或 PostgreSQL**。
--   [数据源](https://docs.oracle.com/javase/tutorial/jdbc/basics/sqldatasources.html)：对于[Java Enterprise](https://www.baeldung.com/java-enterprise-evolution)和像 Spring 这样的框架，了解我们如何在工作上下文中定义和获取数据库连接很重要。
--   连接池，其作用类似于数据库连接对象的缓存：我们可以重用处于主动/被动状态的打开的连接，并减少它们的创建次数。
--   分布式事务：它们由一个或多个语句组成，这些语句在同一事务中更新多个数据库或资源上的数据。
+- [DriverManager](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/java/sql/DriverManager.html)和用于连接和执行查询的接口：这使得通常使用特定驱动程序(例如[MySQL Java连接器)](https://www.baeldung.com/java-connect-mysql)可以连接到任何ODBC可访问的数据源。我们可以连接到数据库并在其上打开/关闭事务。最重要的是，我们只需更改数据库驱动程序就可以使用任何数据库，如MySQL、Oracle或PostgreSQL。
+- [数据源](https://docs.oracle.com/javase/tutorial/jdbc/basics/sqldatasources.html)：对于[Java Enterprise](https://www.baeldung.com/java-enterprise-evolution)和像Spring这样的框架，了解我们如何在工作上下文中定义和获取数据库连接很重要。
+- 连接池，其作用类似于数据库连接对象的缓存：我们可以重用处于主动/被动状态的打开的连接，并减少它们的创建次数。
+- 分布式事务：它们由一个或多个语句组成，这些语句在同一事务中更新多个数据库或资源上的数据。
 
-在 JDBC 创建之后，像[Hibernate](https://en.wikipedia.org/wiki/Hibernate_(framework))这样的持久性框架（或 ORM 工具）开始出现，它将数据库资源映射为[普通的旧 Java 对象。](https://en.wikipedia.org/wiki/Plain_old_Java_object)**我们将 ORM 称为定义模式生成或数据库方言等的层**。
+在JDBC创建之后，像[Hibernate](https://en.wikipedia.org/wiki/Hibernate_(framework))这样的持久性框架(或ORM工具)开始出现，它将数据库资源映射为[普通的旧Java对象。](https://en.wikipedia.org/wiki/Plain_old_Java_object)我们将ORM称为定义模式生成或数据库方言等的层。
 
-此外，Entity Java Bean ( [EJB](https://en.wikipedia.org/wiki/Jakarta_Enterprise_Beans) ) 创建标准来管理封装应用程序业务逻辑的服务器端组件。**事务处理、JNDI 和持久性服务等功能现在都是 Java beans**。此外，[注释](https://en.wikipedia.org/wiki/Java_annotation) 和[依赖注入](https://en.wikipedia.org/wiki/Dependency_injection)现在简化了不同系统的配置和集成。
+此外，EntityJavaBean([EJB](https://en.wikipedia.org/wiki/Jakarta_Enterprise_Beans))创建标准来管理封装应用程序业务逻辑的服务器端组件。事务处理、JNDI和持久性服务等功能现在都是Javabeans。此外，[注解](https://en.wikipedia.org/wiki/Java_annotation)和[依赖注入](https://en.wikipedia.org/wiki/Dependency_injection)现在简化了不同系统的配置和集成。
 
-[随着 EJB 3.0 的发布，持久性框架被合并到 Java Persistence API (JPA) 中，Hibernate 或EclipseLink](https://en.wikipedia.org/wiki/EclipseLink)等项目已成为 JPA 规范的实现。
+[随着EJB3.0的发布，持久性框架被合并到JavaPersistenceAPI(JPA)中，Hibernate或EclipseLink](https://en.wikipedia.org/wiki/EclipseLink)等项目已成为JPA规范的实现。
 
 ## 3.联合行动计划
 
-**使用 JPA，我们可以独立于所使用的数据库，以面向对象的语法编写构建块**。
+使用JPA，我们可以独立于所使用的数据库，以面向对象的语法编写构建块。
 
-为了进行演示，让我们看一个员工表定义的示例。[*我们最终可以使用@Entity*](https://www.baeldung.com/jpa-entities)注解将表定义为 POJO ：
+为了进行演示，让我们看一个员工表定义的示例。[我们最终可以使用@Entity](https://www.baeldung.com/jpa-entities)注解将表定义为POJO：
 
 ```java
 @Entity
 @Table(name = "employee")
 public class Employee implements Serializable {
-    
+
     @Id
     @Generated
     private Long id;
@@ -42,31 +42,30 @@ public class Employee implements Serializable {
     private String firstName;
 
     // other fields, setter and getters
-}复制
+}
 ```
 
-JPA 类可以管理数据库表功能，例如[主键策略](https://www.baeldung.com/jpa-strategies-when-set-primary-key)和[多对多](https://www.baeldung.com/jpa-many-to-many)关系。例如，在使用外键时，这是相关的。**JPA 可以[延迟初始化集合](https://www.baeldung.com/java-jpa-lazy-collections)并仅在我们需要时访问数据**。
+JPA类可以管理数据库表功能，例如[主键策略](https://www.baeldung.com/jpa-strategies-when-set-primary-key)和[多对多](https://www.baeldung.com/jpa-many-to-many)关系。例如，在使用外键时，这是相关的。JPA可以[延迟初始化集合](https://www.baeldung.com/java-jpa-lazy-collections)并仅在我们需要时访问数据。
 
-*[我们可以使用EntityManager](https://www.baeldung.com/hibernate-entitymanager)*对实体执行所有 CRUD 操作（创建、检索、更新、删除）。JPA 正在隐式处理事务。[这可以通过像Spring 事务管理](https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/transaction.html)这样的容器来完成，或者简单地通过[使用*EntityManager*](https://www.baeldung.com/hibernate-entitymanager)的 Hibernate这样的 ORM 工具来完成。
+[我们可以使用EntityManager](https://www.baeldung.com/hibernate-entitymanager)对实体执行所有CRUD操作(创建、检索、更新、删除)。JPA正在隐式处理事务。[这可以通过像Spring事务管理](https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/transaction.html)这样的容器来完成，或者简单地通过[使用EntityManager](https://www.baeldung.com/hibernate-entitymanager)的Hibernate这样的ORM工具来完成。
 
-一旦我们访问了[*EntityManager*](https://jakarta.ee/specifications/persistence/3.0/apidocs/jakarta.persistence/jakarta/persistence/entitymanager)，我们就可以，例如，持久化一个*Employee*：
+一旦我们访问了[EntityManager](https://jakarta.ee/specifications/persistence/3.0/apidocs/jakarta.persistence/jakarta/persistence/entitymanager)，我们就可以，例如，持久化一个Employee：
 
 ```java
 Employee employee = new Employee();
 // set properties
 entityManager.persist(employee);
-复制
 ```
 
-### 3.1. 条件查询和 JPQL
+### 3.1.条件查询和JPQL
 
-例如，我们可以通过 id 找到一个*Employee*：
+例如，我们可以通过id找到一个Employee：
 
 ```java
-Employee response = entityManger.find(Employee.class, id);复制
+Employee response = entityManger.find(Employee.class, id);
 ```
 
-**更有趣的是，我们可以以类型安全的方式使用[Criteria Queries与](https://www.baeldung.com/hibernate-criteria-queries)\*@Entity\***进行交互。比如还是通过id查找，我们可以使用*[CriteriaQuery](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/criteria/criteriaquery)*接口：
+更有趣的是，我们可以以类型安全的方式使用[CriteriaQueries与](https://www.baeldung.com/hibernate-criteria-queries)@Entity进行交互。比如还是通过id查找，我们可以使用[CriteriaQuery](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/criteria/criteriaquery)接口：
 
 ```java
 CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -74,7 +73,7 @@ CriteriaQuery<Employee> cr = cb.createQuery(Employee.class);
 Root<Employee> root = cr.from(Employee.class);
 cr.select(root);
 criteriaQuery.where(criteriaBuilder.equal(root.get(Employee_.ID), employee.getId()));
-Employee employee = entityManager.createQuery(criteriaQuery).getSingleResult();复制
+Employee employee = entityManager.createQuery(criteriaQuery).getSingleResult();
 ```
 
 此外，我们还可以应用[排序](https://www.baeldung.com/jpa-sort)和[分页](https://www.baeldung.com/jpa-pagination)：
@@ -87,10 +86,9 @@ query.setFirstResult(0);
 query.setMaxResults(3);
 
 List<Employee> employeeList = query.getResultList();
-复制
 ```
 
-**我们可以使用条件查询来实现持久化**。例如，我们可以使用[*CriteriaUpdate*](https://jakarta.ee/specifications/persistence/3.0/apidocs/jakarta.persistence/jakarta/persistence/criteria/criteriaupdate)接口进行更新。假设我们要更新员工的电子邮件地址：
+我们可以使用条件查询来实现持久化。例如，我们可以使用[CriteriaUpdate](https://jakarta.ee/specifications/persistence/3.0/apidocs/jakarta.persistence/jakarta/persistence/criteria/criteriaupdate)接口进行更新。假设我们要更新员工的电子邮件地址：
 
 ```java
 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -99,10 +97,10 @@ Root<Employee> root = criteriaQuery.from(Employee.class);
 criteriaQuery.set(Employee_.EMAIL, email);
 criteriaQuery.where(criteriaBuilder.equal(root.get(Employee_.ID), employee));
 
-entityManager.createQuery(criteriaQuery).executeUpdate();复制
+entityManager.createQuery(criteriaQuery).executeUpdate();
 ```
 
-最后，JPA 还提供了[JPQL](https://www.baeldung.com/jpql-hql-criteria-query)（如果我们本机使用 Hibernate，则为 HQL），它允许我们以类似 SQL 的语法创建查询，但仍然引用 @Entity *bean*：
+最后，JPA还提供了[JPQL](https://www.baeldung.com/jpql-hql-criteria-query)(如果我们本机使用Hibernate，则为HQL)，它允许我们以类似SQL的语法创建查询，但仍然引用@Entitybean：
 
 ```java
 public Employee getEmployeeById(Long id) {
@@ -110,20 +108,19 @@ public Employee getEmployeeById(Long id) {
     jpqlQuery.setParameter("id", id);
     return jpqlQuery.getSingleResult();
 }
-复制
 ```
 
-### 3.2. JDBC
+### 3.2.JDBC
 
-JPA 可以适应许多具有通用接口的不同数据库。然而，在实际应用程序中，我们很可能需要 JDBC 支持。这是为了使用特定的数据库查询语法或出于性能原因，例如，在批处理中。
+JPA可以适应许多具有通用接口的不同数据库。然而，在实际应用程序中，我们很可能需要JDBC支持。这是为了使用特定的数据库查询语法或出于性能原因，例如，在批处理中。
 
-即使我们使用 JPA，我们仍然可以使用*createNativeQuery*方法以数据库的本机语言编写。例如，我们可能想使用*rownum* Oracle 关键字：
+即使我们使用JPA，我们仍然可以使用createNativeQuery方法以数据库的本机语言编写。例如，我们可能想使用rownumOracle关键字：
 
 ```java
 Query query = entityManager
-  .createNativeQuery("select * from employee where rownum < :limit", Employee.class);
+    .createNativeQuery("select * from employee where rownum < :limit", Employee.class);
 query.setParameter("limit", limit);
-List<Employee> employeeList = query.getResultList();复制
+List<Employee> employeeList = query.getResultList();
 ```
 
 此外，这适用于仍然与特定于数据库的语言相关的各种函数和过程。例如，我们可以创建并执行一个存储过程：
@@ -132,37 +129,36 @@ List<Employee> employeeList = query.getResultList();复制
 StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("calculate_something");
 // set parameters
 storedProcedure.execute();
-Double result = (Double) storedProcedure.getOutputParameterValue("output");复制
+Double result = (Double) storedProcedure.getOutputParameterValue("output");
 ```
 
-### 3.3. 注释
+### 3.3.注解
 
-JPA 带有一组注释。我们已经看到了*@Table*、*@Entity*、*@Id*和*@Column*。
+JPA带有一组注解。我们已经看到了@Table、@Entity、@Id和@Column。
 
-如果我们经常重用一个查询，我们可以在类级别使用*@Entity将其注释为*[*@NamedQuery*](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/namedquery)，仍然使用 JPQL：
+如果我们经常重用一个查询，我们可以在类级别使用@Entity将其注解为[@NamedQuery](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/namedquery)，仍然使用JPQL：
 
 ```java
-@NamedQuery(name="Employee.findById", query="SELECT e FROM Employee e WHERE e.id = :id") 
-复制
+@NamedQuery(name="Employee.findById", query="SELECT e FROM Employee e WHERE e.id = :id")
 ```
 
-然后，我们可以从模板创建一个*查询：*
+然后，我们可以从模板创建一个查询：
 
 ```java
 Query query = em.createNamedQuery("Employee.findById", Employee.class);
 query.setParameter("id", id);
-Employee result = query.getResultList();复制
+Employee result = query.getResultList();
 ```
 
-与*@NamedQuery*类似，我们可以使用[*@NamedNativeQuery*](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/namednativequery)进行数据库原生查询：
+与@NamedQuery类似，我们可以使用[@NamedNativeQuery](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/namednativequery)进行数据库原生查询：
 
 ```java
-@NamedNativeQuery(name="Employee.findAllWithLimit", query="SELECT * FROM employee WHERE rownum < :limit")复制
+@NamedNativeQuery(name="Employee.findAllWithLimit", query="SELECT * FROM employee WHERE rownum < :limit")
 ```
 
-### 3.4. 元模型
+### 3.4.元模型
 
-我们可能想要生成一个[元模型](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/metamodel/package-summary.html)，允许我们以类型安全的方式静态访问表字段。例如，让我们看看从*Employee*生成的*Employee_*类：
+我们可能想要生成一个[元模型](https://jakarta.ee/specifications/persistence/2.2/apidocs/javax/persistence/metamodel/package-summary.html)，允许我们以类型安全的方式静态访问表字段。例如，让我们看看从Employee生成的Employee_类：
 
 ```java
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
@@ -178,102 +174,98 @@ public abstract class Employee_ {
     public static final String LAST_NAME = "lastName";
     public static final String ID = "id";
     public static final String EMAIL = "email";
-}复制
+}
 ```
 
 我们可以静态访问这些字段。如果我们更改数据模型，该类将重新生成该类。
 
-## 4. 春季数据JPA
+## 4.春季数据JPA
 
-**作为大型[Spring Data](https://www.baeldung.com/spring-data)系列的一部分，Spring Data JPA 是作为 JPA 之上的抽象层构建的。因此，我们拥有 JPA 的所有功能以及易于开发的 Spring。**
+作为大型[Spring Data](https://www.baeldung.com/spring-data)系列的一部分，Spring Data JPA是作为JPA之上的抽象层构建的。因此，我们拥有JPA的所有功能以及易于开发的Spring。
 
-多年来，开发人员编写了样板代码来为基本功能创建[JPA DAO 。](https://www.baeldung.com/spring-dao-jpa)Spring 通过提供最少的接口和实际实现来帮助显着减少代码量。
+多年来，开发人员编写了样板代码来为基本功能创建[JPADAO。](https://www.baeldung.com/spring-dao-jpa)Spring通过提供最少的接口和实际实现来帮助显着减少代码量。
 
-### 4.1. 资料库
+### 4.1.资料库
 
-例如，假设我们要为*Employee*表创建一个 CRUD 存储库。我们可以使用[*JpaRepository*](https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html)：
+例如，假设我们要为Employee表创建一个CRUD存储库。我们可以使用[JpaRepository](https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/repository/JpaRepository.html)：
 
 ```java
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 }
-复制
 ```
 
 这就是我们开始所需要的。所以，如果我们想要持久化或更新，我们可以获取存储库的一个实例并保存一个员工：
 
 ```java
 employeeRepository.save(employee);
-复制
 ```
 
 我们也非常支持编写查询。有趣的是，我们可以通过简单地声明它们的方法签名来定义查询方法：
 
 ```java
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-
     List<Employee> findByFirstName(String firstName);
-}复制
+}
 ```
 
-Spring 将在运行时从存储库接口自动创建存储库实现。
+Spring将在运行时从存储库接口自动创建存储库实现。
 
 因此，我们可以使用这些方法而无需实现它们：
 
 ```java
-List<Employee> employees = employeeRepository.findByFirstName("John");复制
+List<Employee> employees = employeeRepository.findByFirstName("John");
 ```
 
 我们还支持对存储库[进行排序和分页](https://www.baeldung.com/spring-data-jpa-pagination-sorting)：
 
 ```java
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
-}复制
+}
 ```
 
-然后我们可以创建一个具有页面大小、数量和排序标准的*[Pageable对象：](https://docs.spring.io/spring-data/data-commons/docs/current/api/org/springframework/data/domain/Pageable.html)*
+然后我们可以创建一个具有页面大小、数量和排序标准的[Pageable对象：](https://docs.spring.io/spring-data/data-commons/docs/current/api/org/springframework/data/domain/Pageable.html)
 
 ```java
 Pageable pageable = PageRequest.of(5, 10, Sort.by("firstName"));
 Page<Employee> employees = employeeRepositorySortAndPaging.findAll(pageable);
-复制
 ```
 
-### 4.2. 查询
+### 4.2.查询
 
-**[\*另一个很棒的特性是对@Query\*](https://www.baeldung.com/spring-data-jpa-query)注释的广泛支持**。与 JPA 类似，这有助于定义类似 JPQL 或本机查询。让我们看一个示例，说明如何在存储库界面中使用它通过应用排序来获取员工列表：
+[另一个很棒的特性是对@Query](https://www.baeldung.com/spring-data-jpa-query)注解的广泛支持。与JPA类似，这有助于定义类似JPQL或本机查询。让我们看一个示例，说明如何在存储库界面中使用它通过应用排序来获取员工列表：
 
 ```java
 @Query(value = "SELECT e FROM Employee e")
-List<Employee> findAllEmployee(Sort sort);复制
+List<Employee> findAllEmployee(Sort sort);
 ```
 
 同样，我们将使用存储库并获取列表：
 
 ```java
 List<Employee> employees = employeeRepository.findAllEmployee(Sort.by("firstName"));
-复制
+
 ```
 
-### 4.3. 查询Dsl
+### 4.3.查询Dsl
 
-**与 JPA 类似，我们有类似条件的支持，称为[QueryDsl](https://www.baeldung.com/rest-api-search-language-spring-data-querydsl)，它也有一个元模型生成**。例如，假设我们想要一个员工列表，过滤名称：
+与JPA类似，我们有类似条件的支持，称为[QueryDsl](https://www.baeldung.com/rest-api-search-language-spring-data-querydsl)，它也有一个元模型生成。例如，假设我们想要一个员工列表，过滤名称：
 
 ```java
 QEmployee employee = QEmployee.employee;
 List<Employee> employees = queryFactory.selectFrom(employee)
-  .where(
-    employee.firstName.eq("John"),
-    employee.lastName.eq("Doe"))
-  .fetch();复制
+    .where(
+        employee.firstName.eq("John"),
+        employee.lastName.eq("Doe"))
+    .fetch();
 ```
 
-## 5.JPA 测试
+## 5.JPA测试
 
-让我们创建并测试一个简单的 JPA 应用程序。我们可以让 Hibernate 管理事务性。
+让我们创建并测试一个简单的JPA应用程序。我们可以让Hibernate管理事务性。
 
-### 5.1. 依赖关系
+### 5.1.依赖关系
 
-让我们看一下依赖关系。我们需要在*pom.xml中导入*[JPA、](https://search.maven.org/artifact/javax.persistence/javax.persistence-api/2.2/jar) [Hibernate 核心](https://search.maven.org/artifact/org.hibernate/hibernate-core/5.6.11.Final/jar)和[H2](https://search.maven.org/artifact/com.h2database/h2/2.1.214/jar)数据库。
+让我们看一下依赖关系。我们需要在pom.xml中导入[JPA](https://search.maven.org/artifact/javax.persistence/javax.persistence-api/2.2/jar)、[Hibernate核心](https://search.maven.org/artifact/org.hibernate/hibernate-core/5.6.11.Final/jar)和[H2](https://search.maven.org/artifact/com.h2database/h2/2.1.214/jar)数据库。
 
 ```xml
 <dependency>
@@ -290,44 +282,44 @@ List<Employee> employees = queryFactory.selectFrom(employee)
     <groupId>com.h2database</groupId>
     <artifactId>h2</artifactId>
     <version>2.1.214</version>
-</dependency>复制
+</dependency>
 ```
 
 此外，我们需要一个用于元模型生成的插件：
 
 ```xml
 <plugin>
-  <groupId>org.bsc.maven</groupId>
-  <artifactId>maven-processor-plugin</artifactId>
-  <version>3.3.3</version>
-  <executions>
-      <execution>
-          <id>process</id>
-          <goals>
-              <goal>process</goal>
-          </goals>
-          <phase>generate-sources</phase>
-          <configuration>
-              <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
-              <processors>
-                  <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-              </processors>
-          </configuration>
-      </execution>
-  </executions>
-  <dependencies>
-      <dependency>
-          <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-jpamodelgen</artifactId>
-          <version>5.6.11.Final</version>
-      </dependency>
-  </dependencies>
-</plugin>复制
+    <groupId>org.bsc.maven</groupId>
+    <artifactId>maven-processor-plugin</artifactId>
+    <version>3.3.3</version>
+    <executions>
+        <execution>
+            <id>process</id>
+            <goals>
+                <goal>process</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+                <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                <processors>
+                    <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                </processors>
+            </configuration>
+        </execution>
+    </executions>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>5.6.11.Final</version>
+        </dependency>
+    </dependencies>
+</plugin>
 ```
 
-### 5.2. 配置
+### 5.2.配置
 
-为了保持简单的 JPA，我们使用一个*persistence.xml*文件：
+为了保持简单的JPA，我们使用一个persistence.xml文件：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -348,15 +340,14 @@ List<Employee> employees = queryFactory.selectFrom(employee)
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
-
-</persistence>复制
+</persistence>
 ```
 
-我们不需要任何基于 Bean 的配置。
+我们不需要任何基于Bean的配置。
 
-### 5.3. 测试类定义
+### 5.3.测试类定义
 
-为了演示，让我们创建一个测试类。我们将使用*createEntityManagerFactory方法获取**EntityManager*并手动管理事务：
+为了演示，让我们创建一个测试类。我们将使用createEntityManagerFactory方法获取EntityManager并手动管理事务：
 
 ```java
 public class JpaDaoIntegrationTest {
@@ -373,54 +364,54 @@ public class JpaDaoIntegrationTest {
 
     private void deleteAllEmployees() {
         entityManager.getTransaction()
-          .begin();
+              .begin();
         entityManager.createNativeQuery("DELETE from Employee")
-          .executeUpdate();
+              .executeUpdate();
         entityManager.getTransaction()
-          .commit();
+              .commit();
     }
 
     public void save(Employee entity) {
         entityManager.getTransaction()
-          .begin();
+              .begin();
         entityManager.persist(entity);
         entityManager.getTransaction()
-          .commit();
+              .commit();
     }
 
     public void update(Employee entity) {
         entityManager.getTransaction()
-          .begin();
+              .begin();
         entityManager.merge(entity);
         entityManager.getTransaction()
-          .commit();
+              .commit();
     }
 
     public void delete(Long employee) {
         entityManager.getTransaction()
-          .begin();
+              .begin();
         entityManager.remove(entityManager.find(Employee.class, employee));
         entityManager.getTransaction()
-          .commit();
+              .commit();
     }
 
     public int update(CriteriaUpdate<Employee> criteriaUpdate) {
         entityManager.getTransaction()
-          .begin();
+              .begin();
         int result = entityManager.createQuery(criteriaUpdate)
-          .executeUpdate();
+              .executeUpdate();
         entityManager.getTransaction()
-          .commit();
+              .commit();
         entityManager.clear();
 
         return result;
     }
-}复制
+}
 ```
 
-### 5.4. 测试 JPA
+### 5.4.测试JPA
 
-首先，我们要测试是否可以通过 id 找到员工：
+首先，我们要测试是否可以通过id找到员工：
 
 ```java
 @Test
@@ -428,10 +419,9 @@ public void givenPersistedEmployee_whenFindById_thenEmployeeIsFound() {
     // save employee
     assertEquals(employee, entityManager.find(Employee.class, employee.getId()));
 }
-复制
 ```
 
-让我们看看我们可以找到*Employee 的*其他方法。例如，我们可以使用*CriteriaQuey*：
+让我们看看我们可以找到Employee的其他方法。例如，我们可以使用CriteriaQuey：
 
 ```java
 @Test
@@ -445,12 +435,11 @@ public void givenPersistedEmployee_whenFindByIdCriteriaQuery_thenEmployeeIsFound
     criteriaQuery.where(criteriaBuilder.equal(root.get(Employee_.ID), employee.getId()));
 
     assertEquals(employee, entityManager.createQuery(criteriaQuery)
-      .getSingleResult());
+        .getSingleResult());
 }
-复制
 ```
 
-另外，我们可以使用 JPQL：
+另外，我们可以使用JPQL：
 
 ```java
 @Test
@@ -461,10 +450,9 @@ public void givenPersistedEmployee_whenFindByIdJpql_thenEmployeeIsFound() {
 
     assertEquals(employee, jpqlQuery.getSingleResult());
 }
-复制
 ```
 
-让我们看看如何从*@NamedQuery*创建一个*查询*：
+让我们看看如何从@NamedQuery创建一个查询：
 
 ```java
 @Test
@@ -475,7 +463,6 @@ public void givenPersistedEmployee_whenFindByIdNamedQuery_thenEmployeeIsFound() 
 
     assertEquals(employee, query.getSingleResult());
 }
-复制
 ```
 
 我们还可以看一个如何应用排序和分页的示例：
@@ -499,10 +486,9 @@ public void givenPersistedEmployee_whenFindWithPaginationAndSort_thenEmployeesAr
 
     assertEquals(Arrays.asList(bob, frank, james), employeeList);
 }
-复制
 ```
 
-最后，让我们看看如何使用 CriteriaUpdate 更新员工*电子邮件*：
+最后，让我们看看如何使用CriteriaUpdate更新员工电子邮件：
 
 ```java
 @Test
@@ -519,18 +505,17 @@ public void givenPersistedEmployee_whenUpdateEmployeeEmailWithCriteria_thenEmplo
 
     assertEquals(1, update(criteriaUpdate));
     assertEquals(updatedEmail, entityManager.find(Employee.class, employee.getId())
-      .getEmail());
+        .getEmail());
 }
-复制
 ```
 
-## 6. Spring Data JPA 测试
+## 6.Spring Data JPA测试
 
-让我们看看如何通过添加 Spring 存储库和内置查询支持来改进。
+让我们看看如何通过添加Spring存储库和内置查询支持来改进。
 
-### 6.1. 依赖关系
+### 6.1.依赖关系
 
-在这种情况下，我们需要添加[Spring Data](https://search.maven.org/artifact/org.springframework.data/spring-data-jpa/2.7.5/jar)依赖项。我们还需要Fluent 查询 API 的[QueryDsl依赖项。](https://search.maven.org/artifact/com.querydsl/querydsl-jpa/5.0.0/jar)
+在这种情况下，我们需要添加[Spring Data](https://search.maven.org/artifact/org.springframework.data/spring-data-jpa/2.7.5/jar)依赖项。我们还需要Fluent查询API的[QueryDsl](https://search.maven.org/artifact/com.querydsl/querydsl-jpa/5.0.0/jar)依赖项。
 
 ```xml
 <dependency>
@@ -552,10 +537,10 @@ public void givenPersistedEmployee_whenUpdateEmployeeEmailWithCriteria_thenEmplo
     <groupId>com.querydsl</groupId>
     <artifactId>querydsl-jpa</artifactId>
     <version>5.0.0</version>
-</dependency>复制
+</dependency>
 ```
 
-### 6.2. 配置
+### 6.2.配置
 
 首先，让我们创建我们的配置：
 
@@ -605,10 +590,10 @@ public class SpringDataJpaConfig {
         return new JPAQueryFactory((entityManager));
     }
 }
-复制
+
 ```
 
-最后，让我们看看我们的*JpaRepository*：
+最后，让我们看看我们的JpaRepository：
 
 ```java
 @Repository
@@ -618,21 +603,20 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query(value = "SELECT e FROM Employee e")
     List<Employee> findAllEmployee(Sort sort);
-}复制
+}
 ```
 
-另外，我们想使用*PagingAndSortingRepository*：
+另外，我们想使用PagingAndSortingRepository：
 
 ```java
 @Repository
 public interface EmployeeRepositoryPagingAndSort extends PagingAndSortingRepository<Employee, Long> {
-
-}复制
+}
 ```
 
-### 6.3. 测试类定义
+### 6.3.测试类定义
 
-让我们看看我们用于 Spring Data 测试的测试类。我们将回滚以保持每个测试的原子性：
+让我们看看我们用于Spring Data测试的测试类。我们将回滚以保持每个测试的原子性：
 
 ```java
 @ContextConfiguration(classes = SpringDataJpaConfig.class)
@@ -652,12 +636,12 @@ public class SpringDataJpaIntegrationTest {
 
     // tests
 
-}复制
+}
 ```
 
-### 6.4. 测试 Spring Data JPA
+### 6.4.测试Spring Data JPA
 
-让我们从通过 id 查找员工开始：
+让我们从通过id查找员工开始：
 
 ```java
 @Test
@@ -668,7 +652,7 @@ public void givenPersistedEmployee_whenFindById_thenEmployeeIsFound() {
 
     assertEquals(Optional.of(employee), employeeRepository.findById(employee.getId()));
 }
-复制
+
 ```
 
 让我们看看如何通过名字查找员工：
@@ -683,7 +667,7 @@ public void givenPersistedEmployee_whenFindByFirstName_thenEmployeeIsFound() {
     assertEquals(employee, employeeRepository.findByFirstName(employee.getFirstName())
       .get(0));
 }
-复制
+
 ```
 
 我们可以应用排序，例如，在查询所有员工时：
@@ -704,10 +688,10 @@ public void givenPersistedEmployees_whenFindSortedByFirstName_thenEmployeeAreFou
     assertEquals(frank, employees.get(1));
     assertEquals(john, employees.get(2));
 }
-复制
+
 ```
 
-让我们看看如何使用 QueryDsl 构建查询：
+让我们看看如何使用QueryDsl构建查询：
 
 ```java
 @Test
@@ -726,10 +710,10 @@ public void givenPersistedEmployee_whenFindByQueryDsl_thenEmployeeIsFound() {
     assertEquals(1, employees.size());
     assertEquals(john, employees.get(0));
 }
-复制
+
 ```
 
-最后，我们可以检查如何使用*PagingAndSortingRepository*：
+最后，我们可以检查如何使用PagingAndSortingRepository：
 
 ```java
 @Test
@@ -748,19 +732,19 @@ public void givenPersistedEmployee_whenFindBySortAndPagingRepository_thenEmploye
     assertEquals(Arrays.asList(bob, frank), employees.get()
       .collect(Collectors.toList()));
 }
-复制
+
 ```
 
-## 7. JPA 和 Spring Data JPA 有何不同
+## 7.JPA和Spring Data JPA有何不同
 
-JPA 定义了对象关系映射 (ORM) 的标准方法。
+JPA定义了对象关系映射(ORM)的标准方法。
 
-它提供了一个抽象层，使其独立于我们正在使用的数据库。JPA 还可以处理事务性并且构建在 JDBC 之上，因此我们仍然可以使用本机数据库语言。
+它提供了一个抽象层，使其独立于我们正在使用的数据库。JPA还可以处理事务性并且构建在JDBC之上，因此我们仍然可以使用本机数据库语言。
 
-Spring Data JPA 是 JPA 之上的另一层抽象。但是，它比 JPA 更灵活，并为所有 CRUD 操作提供简单的存储库和语法。我们可以从 JPA 应用程序中删除所有样板代码，并使用更简单的接口和注释。此外，我们将拥有 Spring 的开发便利性，例如，透明地处理事务性。
+Spring Data JPA是JPA之上的另一层抽象。但是，它比JPA更灵活，并为所有CRUD操作提供简单的存储库和语法。我们可以从JPA应用程序中删除所有样板代码，并使用更简单的接口和注解。此外，我们将拥有Spring的开发便利性，例如，透明地处理事务性。
 
-此外，没有 JPA 就没有 Spring Data JPA，所以无论如何，如果我们想了解更多有关 Java 数据库访问层的知识，JPA 是一个很好的起点。
+此外，没有JPA就没有Spring Data JPA，所以无论如何，如果我们想了解更多有关Java数据库访问层的知识，JPA是一个很好的起点。
 
 ## 八、结论
 
-在本教程中，我们简要了解了 JDBC 的历史以及 JPA 为何成为关系数据库 API 的标准。我们还看到了用于持久化实体和创建动态查询的 JPA 和 Spring Data JPA 示例。最后，我们提供了一些测试用例来展示普通 JPA 应用程序和 Spring Data JPA 应用程序之间的区别。
+在本教程中，我们简要了解了JDBC的历史以及JPA为何成为关系数据库API的标准。我们还看到了用于持久化实体和创建动态查询的JPA和Spring Data JPA示例。最后，我们提供了一些测试用例来展示普通JPA应用程序和Spring Data JPA应用程序之间的区别。

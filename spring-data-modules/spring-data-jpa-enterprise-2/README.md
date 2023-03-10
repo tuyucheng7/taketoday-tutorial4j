@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-- [Spring Data JPA多数据库](docs/SpringJPA多数据库.md)
-- [使用Spring Data JPA进行分页和排序](docs/使用SpringData-JPA进行分页和排序.md)
++ [Spring Data JPA多数据库](docs/SpringJPA多数据库.md)
++ [使用Spring Data JPA进行分页和排序](docs/使用SpringData-JPA进行分页和排序.md)
 
 - 更多文章： [[<-- prev]](../spring-data-jpa-enterprise-1/README.md)

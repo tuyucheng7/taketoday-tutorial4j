@@ -1,16 +1,14 @@
 ## 1. 概述
 
-简单地说，**实体图是JPA 2.1中描述查询的另一种方式**。我们可以使用它们来制定性能更好的查询。
+**简而言之，[实体图](https://www.baeldung.com/jpa-entity-graph)是在JPA 2.1中描述查询的另一种方式**。我们可以使用它们来制定性能更好的查询。
 
-在本教程中，我们将通过一个简单的示例来学习如何使用Spring Data JPA实现实体图。
+在本教程中，我们将通过一个简单的示例来学习如何使用[Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)实现实体图。
 
 ## 2. 实体
 
-首先，我们创建一个名为Item的模型，它具有多个Characteristic：
+首先，让我们创建一个名为Item的模型，它具有多个Characteristic：
 
 ```java
-@Setter
-@Getter
 @Entity
 public class Item {
 
@@ -20,14 +18,14 @@ public class Item {
 
     @OneToMany(mappedBy = "item")
     private List<Characteristic> characteristics = new ArrayList<>();
+
+    // getters and setters
 }
 ```
 
-下面是Characteristic实体：
+现在让我们定义Characteristic实体：
 
 ```java
-@Getter
-@Setter
 @Entity
 public class Characteristic {
 
@@ -38,6 +36,8 @@ public class Characteristic {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Item item;
+
+    //Getters and Setters
 }
 ```
 
@@ -45,17 +45,19 @@ public class Characteristic {
 
 ## 3. 实体图
 
-在Spring Data JPA中，**我们可以使用@NamedEntityGraph和@EntityGraph注解的组合来定义实体图**。或者，我们也可以仅**使用@EntityGraph注解的attributePaths参数来定义临时实体图**。
+在Spring Data JPA中，我们可以使用**@NamedEntityGraph和@EntityGraph注解的组合**来定义实体图。或者，我们也可以仅使用**@EntityGraph注解的attributePaths参数**来定义临时实体图。
+
+让我们看看如何做到这一点。
 
 ### 3.1 @NamedEntityGraph注解
 
-首先，我们可以直接在我们的Item实体上使用JPA的@NamedEntityGraph注解：
+首先，我们可以直接在Item实体上使用JPA的@NamedEntityGraph注解：
 
 ```java
 @Entity
 @NamedEntityGraph(
-        name = "Item.characteristics",
-        attributeNodes = @NamedAttributeNode("characteristics")
+      name = "Item.characteristics",
+      attributeNodes = @NamedAttributeNode("characteristics")
 )
 public class Item {
     // ...
@@ -72,17 +74,19 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 }
 ```
 
-如代码所示，我们将之前在Item实体上创建的实体图的名称"Item.characteristics"传递给@EntityGraph注解。当我们调用该方法时，这就是Spring Data将使用的查询。
+如代码所示，我们已将之前在Item实体上创建的实体图的名称"Item.characteristics"传递给@EntityGraph注解。当我们调用该方法时，这就是Spring Data将使用的查询。
 
-**@EntityGraph注解的type参数的默认值为EntityGraphType.FETCH**。当我们使用它时，Spring Data将在指定的属性节点上应用FetchType.EAGER策略。对于其他属性，将应用FetchType.LAZY策略。因此，在我们的例子中，即使@OneToMany注解的默认获取策略是惰性的，characteristics属性也会被急切地加载。
+**@EntityGraph注解的type参数的默认值为EntityGraphType.FETCH**。当我们使用它时，Spring Data模块将在指定的属性节点上应用FetchType.EAGER策略。对于其他属性，将应用FetchType.LAZY策略。
 
-这里的一个问题是，如果定义的获取策略是EAGER，那么我们不能将其行为更改为LAZY。这是经过设计的，因为后续操作可能需要在执行过程中稍后的某个时间点急切获取数据。
+因此在我们的例子中，即使@OneToMany注解的默认获取策略是惰性的，characteristics属性也会被急切地加载。
+
+这里的一个问题是，**如果定义的获取策略是EAGER，那么我们不能将其行为更改为LAZY**。这是经过设计的，因为后续操作可能需要在执行过程中稍后时间点急切获取的数据。
 
 ### 3.2 不使用@NamedEntityGraph
 
 或者，**我们也可以使用attributePaths定义一个ad-hoc(临时)实体图**。
 
-下面将一个临时实体图添加到我们的CharacteristicRepository中，它会急切地加载其Item父级：
+让我们将一个临时实体图添加到我们的CharacteristicRepository中，它急切地加载其Item父级：
 
 ```java
 public interface CharacteristicsRepository extends JpaRepository<Characteristic, Long> {
@@ -92,13 +96,13 @@ public interface CharacteristicsRepository extends JpaRepository<Characteristic,
 }
 ```
 
-**这将急切地加载Characteristic实体的item属性，即使我们的实体为此属性声明了延迟加载策略**。
+这将急切地加载Characteristic实体的item属性，**即使我们的实体为此属性声明了延迟加载策略**。
 
-这种方法很方便，因为我们可以内联定义实体图，而不是引用现有的命名实体图。
+这很方便，因为我们可以内联定义实体图，而不是引用现有的命名实体图。
 
 ## 4. 测试用例
 
-现在让我们创建一个测试用例来验证它：
+现在我们已经定义了实体图，让我们创建一个测试用例来验证它：
 
 ```java
 @DataJpaTest(showSql = false)
@@ -144,9 +148,9 @@ INSERT INTO Characteristic(id, item_id, type)
 VALUES (4, 2, 'Small');
 ```
 
-第一个测试使用@NamedEntityGraph注解定义的实体图。
+第一个测试将使用@NamedEntityGraph注解定义的实体图。
 
-让我们看看Hibernate生成的SQL语句：
+让我们看看Hibernate生成的SQL语：
 
 ```sql
 select item0_.id            as id1_4_0_,
@@ -161,7 +165,7 @@ from item item0_
 where item0_.name = ?
 ```
 
-为了进行比较，我们从Repository中删除@EntityGraph注解并检查SQL语句：
+为了进行比较，让我们从Repository中删除@EntityGraph注解并检查SQL：
 
 ```sql
 select item0_.id as id1_4_, item0_.name as name2_4_
@@ -169,7 +173,7 @@ from item item0_
 where item0_.name = ?
 ```
 
-从这些查询中，我们可以清楚地观察到，不带@EntityGraph注解生成的查询**没有加载Characteristic实体的任何属性**。因此，它只加载Item实体。
+从这些查询中，我们可以清楚地观察到不带@EntityGraph注解生成的查询**没有加载Characteristic实体的任何属性**。因此，它只加载Item实体。
 
 最后，让我们将第二个测试的Hibernate查询与@EntityGraph注解进行比较：
 
@@ -184,7 +188,7 @@ from characteristic characteri0_
 where characteri0_.type = ?
 ```
 
-以及不带@EntityGraph注解的查询：
+以及没有@EntityGraph注解的查询：
 
 ```sql
 select characteri0_.id      as id1_1_,

@@ -2,7 +2,7 @@
 
 [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb)模块提高了在Spring项目中与MongoDB数据库交互时的可读性和可用性。
 
-**在本教程中，我们重点介绍在读取和写入MongoDB数据库时如何处理ZonedDateTime Java对象**。
+**在本教程中，我们将重点介绍在读取和写入MongoDB数据库时如何处理ZonedDateTime Java对象**。
 
 ## 2. 项目构建
 
@@ -16,7 +16,9 @@
 </dependency>
 ```
 
-下面我们定义一个名为Action的模型类(具有ZonedDateTime属性)：
+可以在[此处](https://central.sonatype.com/artifact/org.springframework.data/spring-data-mongodb/4.0.3)找到该库的最新版本。
+
+让我们定义一个名为Action的模型类(具有ZonedDateTime属性)：
 
 ```java
 @Document
@@ -26,19 +28,19 @@ public class Action {
 
     private String description;
     private ZonedDateTime time;
-    
+
     // constructor, getters and setters 
 }
 ```
 
-为了与MongoDB交互，我们还需要创建一个扩展MongoRepository的接口：
+为了与MongoDB交互，我们还将创建一个扩展MongoRepository的接口：
 
 ```java
 public interface ActionRepository extends MongoRepository<Action, String> {
 }
 ```
 
-现在我们定义一个测试，将一个Action对象插入MongoDB并断言它以正确的时间存储。在断言语句中，我们将删除纳秒信息，因为MongoDB Date类型的精度为毫秒：
+现在我们将定义一个测试，它将一个Action对象插入MongoDB并断言它以正确的时间存储。在断言语句中，我们将删除纳秒信息，因为MongoDB Date类型的精度为毫秒：
 
 ```java
 @Test
@@ -87,7 +89,7 @@ public class ZonedDateTimeWriteConverter implements Converter<ZonedDateTime, Dat
 }
 ```
 
-由于Date对象不存储时区偏移量，因此我们在示例中使用UTC。将ZonedDateTimeReadConverter和ZonedDateTimeWriteConverter添加到MongoCustomConversions后，我们的测试现在可以通过。
+由于Date对象不存储时区偏移量，因此我们在示例中使用UTC。将ZonedDateTimeReadConverter和ZonedDateTimeWriteConverter添加到MongoCustomConversions后，我们的测试现在将通过。
 
 存储对象的简单打印如下所示：
 
@@ -95,7 +97,7 @@ public class ZonedDateTimeWriteConverter implements Converter<ZonedDateTime, Dat
 Action{id='testId', description='click', time=2018-11-08T08:03:11.257Z}
 ```
 
-要了解有关如何注册MongoDB转换器的更多信息，我们可以参考[本教程]()。
+要了解有关如何注册MongoDB转换器的更多信息，我们可以参考[本教程](https://www.baeldung.com/spring-data-mongodb-index-annotations-converter)。
 
 ## 4. 总结
 

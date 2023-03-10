@@ -7,3 +7,4 @@
 + [Java中的适配器模式](docs/Java中的适配器模式.md)
 + [Java中的代理模式](docs/Java中的代理模式.md)
 + [Java中的桥接模式](docs/Java中的桥接模式.md)
++ [Java中的管道设计模式](docs/Java中的管道设计模式.md)

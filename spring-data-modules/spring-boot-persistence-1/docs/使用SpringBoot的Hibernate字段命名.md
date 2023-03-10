@@ -1,10 +1,10 @@
-## 一、简介
+## 1. 简介
 
-在这个简短的教程中，我们将了解如何在[Spring Boot](https://www.baeldung.com/spring-boot)应用程序中使用[Hibernate 命名策略。](https://www.baeldung.com/hibernate-naming-strategy)
+在这个简短的教程中，我们将了解如何在[Spring Boot](https://www.baeldung.com/spring-boot)应用程序中使用[Hibernate命名策略](https://www.baeldung.com/hibernate-naming-strategy)。
 
-## 2.Maven依赖
+## 2. Maven依赖
 
-如果我们从[基于 Maven 的 Spring Boot 应用程序](https://www.baeldung.com/spring-boot-start)开始，并且乐于接受 Spring Data，那么我们只需要添加 Spring Data JPA 依赖项：
+如果我们从[基于Maven的Spring Boot应用程序](https://www.baeldung.com/spring-boot-start)开始，并且乐于接受Spring Data，那么我们只需要添加Spring Data JPA依赖项：
 
 ```xml
 <dependency>
@@ -13,7 +13,7 @@
 </dependency>
 ```
 
-此外，我们需要一个数据库，因此我们将使用[内存数据库 H2](https://search.maven.org/search?q=g:com.h2database AND a:h2)：
+此外，我们需要一个数据库，因此我们将使用[内存数据库H2](https://central.sonatype.com/artifact/com.h2database/h2/2.1.212)：
 
 ```xml
 <dependency>
@@ -23,67 +23,67 @@
 </dependency>
 ```
 
-Spring Data JPA 依赖项为我们引入了 Hibernate 依赖项。
+Spring Data JPA依赖项为我们引入了Hibernate依赖项。
 
-## 3. Spring Boot 命名策略
+## 3. Spring Boot命名策略
 
-Hibernate 使用物理策略 和 隐式策略映射字段名称。 [我们之前在本教程](https://www.baeldung.com/hibernate-naming-strategy)中讨论了如何使用命名策略。
+**Hibernate使用物理策略和隐式策略映射字段名称**。我们之前在[本教程](https://www.baeldung.com/hibernate-naming-strategy)中讨论了如何使用命名策略。
 
-而且，Spring Boot 为两者提供默认值：
+而且，Spring Boot为两者提供默认值：
 
--   spring.jpa.hibernate.naming.physical-strategy默认为 org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy，和
--   spring.jpa.hibernate.naming.implicit-strategy 默认为 org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+- spring.jpa.hibernate.naming.physical-strategy默认为org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+- spring.jpa.hibernate.naming.implicit-strategy默认为org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 
 我们可以覆盖这些值，但默认情况下，这些将：
 
 -   用下划线替换点
--   将骆驼案例更改为蛇案例，并且
+-   将骆驼大小写更改为蛇形大小写，并且
 -   小写表名
 
-因此，例如，一个 AddressBook 实体将被创建为 address_book 表。
+因此，例如，一个AddressBook实体将被创建为address_book表。
 
-## 4. 行动策略
+## 4. 命名策略实践
 
-如果我们创建一个 Account实体：
+如果我们创建一个Account实体：
 
 ```java
 @Entity
 public class Account {
-    @Id 
+    @Id
     private Long id;
     private String defaultEmail;
 }
 ```
 
-然后在我们的属性文件中打开一些 SQL 调试：
+然后在我们的属性文件中打开一些SQL调试：
 
-```java
+```yaml
 hibernate.show_sql: true
 ```
 
-启动时，我们会在日志中看到以下 创建语句：
+启动时，我们会在日志中看到以下创建语句：
 
-```java
+```sql
 Hibernate: create table account (id bigint not null, default_email varchar(255))
 ```
 
-正如我们所看到的，这些字段使用蛇形大小写并且是小写的，遵循 Spring 约定。
+正如我们所看到的，这些字段使用蛇形大小写并且是小写的，遵循Spring约定。
 
-请记住，在这种情况下，我们不需要指定 物理策略或 隐式策略 属性，因为我们接受默认值。
+**请记住，在这种情况下，我们不需要指定物理策略或隐式策略属性，因为我们接受默认值**。
 
 ## 5. 自定义策略
 
-因此，假设我们想要使用 JPA 1.0 中的策略。
+因此，假设我们想要使用JPA 1.0中的策略。
 
 我们只需要在我们的属性文件中指明它：
 
-```java
+```yaml
 spring:
-  jpa:
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    jpa:
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 ```
 
 或者，将它们公开为@Bean：
@@ -100,16 +100,16 @@ public ImplicitNamingStrategy implicit() {
 }
 ```
 
-无论哪种方式，如果我们运行带有这些更改的示例，我们将看到一个略有不同的 DDL 语句：
+无论哪种方式，如果我们使用这些更改运行我们的示例，我们将看到一个略有不同的DDL语句：
 
-```java
+```sql
 Hibernate: create table Account (id bigint not null, defaultEmail varchar(255), primary key (id))
 ```
 
-正如我们所见，这次这些策略遵循 JPA 1.0 的命名约定。
+正如我们所看到的，这次这些策略遵循JPA 1.0的命名约定。
 
-现在，如果我们想使用 JPA 2.0 命名规则，我们需要将ImplicitNamingStrategyJpaCompliantImpl设置 为我们的隐式策略。
+**现在，如果我们想使用JPA 2.0命名规则，我们需要将ImplicitNamingStrategyJpaCompliantImpl设置为我们的隐式策略**。
 
-## 六，总结
+## 6. 总结
 
-在本教程中，我们看到了 Spring Boot 如何将命名策略应用于 Hibernate 的查询生成器，并且我们还看到了如何自定义这些策略。
+在本教程中，我们了解了Spring Boot如何将命名策略应用于Hibernate的查询生成器，并且我们还看到了如何自定义这些策略。

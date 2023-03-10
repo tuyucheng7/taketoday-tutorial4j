@@ -1,8 +1,8 @@
 ## 1. 概述
 
-标记是一种设计模式，它允许我们对数据执行高级过滤和排序。本文是[使用JPA实现简单标记]()的续篇。
+标签是一种设计模式，它允许我们对数据执行高级过滤和排序。本文是[使用JPA实现简单标记](https://www.baeldung.com/jpa-tagging)的续篇。
 
-因此，我们将从该文章停止的地方开始，介绍标记的高级用例。
+因此，我们将从该文章停止的地方开始，介绍标签的高级用例。
 
 ## 2. 认可标签
 
@@ -35,15 +35,13 @@ private List<SkillTag> skillTags = new ArrayList<>();
 
 在本文的后面，我们将介绍多对多何时有意义的示例。
 
-因为我们已经将 skill 标签嵌入到我们的原始实体中，所以我们可以像查询任何其他属性一样查询它。
+因为我们已经将skill标签嵌入到我们的原始实体中，所以我们可以像查询任何其他属性一样查询它。
 
 下面是一个示例查询，用于查找任何获得超过一定数量认可的学生：
 
 ```java
-@Query(
-  "SELECT s FROM Student s JOIN s.skillTags t WHERE t.name = LOWER(:tagName) AND t.value > :tagValue")
-List<Student> retrieveByNameFilterByMinimumSkillTag(
-  @Param("tagName") String tagName, @Param("tagValue") int tagValue);
+@Query("SELECT s FROM Student s JOIN s.skillTags t WHERE t.name = LOWER(:tagName) AND t.value > :tagValue")
+List<Student> retrieveByNameFilterByMinimumSkillTag(@Param("tagName") String tagName, @Param("tagValue") int tagValue);
 ```
 
 接下来，让我们看一个如何使用它的例子：
@@ -59,8 +57,7 @@ SkillTag skill2 = new SkillTag("java", 1);
 student2.setSkillTags(Arrays.asList(skill2));
 studentRepository.save(student2);
 
-List<Student> students = 
-  studentRepository.retrieveByNameFilterByMinimumSkillTag("java", 3);
+List<Student> students = studentRepository.retrieveByNameFilterByMinimumSkillTag("java", 3);
 assertEquals("size incorrect", 1, students.size());
 ```
 
@@ -70,7 +67,7 @@ assertEquals("size incorrect", 1, students.size());
 
 ## 3. 位置标签
 
-另一种流行的标记实现是位置标记。我们可以通过两种主要方式使用位置标签。
+另一种流行的标签实现是位置标签。我们可以通过两种主要方式使用位置标签。
 
 首先，它可以用来标记地球物理位置。
 
@@ -89,7 +86,7 @@ public class LocationTag {
 }
 ```
 
-Location Tags 最值得注意的方面是仅使用数据库执行 Geolocation Filter 是多么困难。如果我们需要在地理范围内进行搜索，更好的方法是将模型加载到内置支持地理位置的搜索引擎(如 Elasticsearch)中。
+位置标签最值得注意的方面是仅使用数据库执行地理位置过滤器是多么困难。如果我们需要在地理范围内进行搜索，更好的方法是将模型加载到内置支持地理位置的搜索引擎(如Elasticsearch)中。
 
 因此，对于这些位置标签，我们应该重点关注标签名称的过滤。
 
@@ -111,7 +108,7 @@ Student student2 = studentRepository.retrieveByLocationTag("here").get(0);
 assertEquals("name incorrect", "Steve", student2.getName());
 ```
 
-如果 Elasticsearch 是不可能的，我们仍然需要在地理范围内搜索，使用简单的几何形状将使查询条件更具可读性。
+如果Elasticsearch是不可能的，我们仍然需要在地理范围内搜索，使用简单的几何形状将使查询条件更具可读性。
 
 我们将把判断一个点是否在圆形或矩形内作为读者的简单练习。
 
@@ -119,9 +116,9 @@ assertEquals("name incorrect", "Steve", student2.getName());
 
 有时，我们需要存储稍微复杂一点的标签。我们可能想用一小部分关键标签来标记一个实体，但它可以包含各种各样的值。
 
-例如，我们可以用部门标签标记学生并将其值设置为Computer Science。每个学生都有部门密钥，但他们可能都有不同的值与之关联。
+例如，我们可以用department标签标记学生并将其值设置为Computer Science。每个学生都有department键，但他们可能都有不同的值与之关联。
 
-该实现看起来类似于上面的 Endorsed Tags：
+该实现看起来类似于上面的认可标签：
 
 ```java
 @Embeddable
@@ -172,11 +169,11 @@ public void givenStudentWithKVTags_whenSave_thenGetByTagOk(){
 
 大多数用例都可以通过我们今天讨论的高级实现来满足，但也可以根据需要进行复杂化。
 
-## 5. 重新实现标记
+## 5. 重新实现标签
 
-最后，我们将探讨标记的最后一个领域。到目前为止，我们已经了解了如何使用@ElementCollection注释来轻松地向我们的模型添加标签。虽然它使用起来很简单，但它有一个非常重要的权衡。引擎盖下的一对多实现会导致我们的数据存储中出现大量重复数据。
+最后，我们将探讨标记的最后一个领域。到目前为止，我们已经了解了如何使用@ElementCollection注解来轻松地向我们的模型添加标签。虽然它使用起来很简单，但它有一个非常重要的权衡。引擎盖下的一对多实现会导致我们的数据存储中出现大量重复数据。
 
-为了节省空间，我们需要创建另一个表，将我们的Student实体连接到我们的Tag实体。幸运的是，Spring JPA 将为我们完成大部分繁重的工作。
+为了节省空间，我们需要创建另一个表，将我们的Student实体连接到我们的Tag实体。幸运的是，Spring JPA将为我们完成大部分繁重的工作。
 
 我们将重新实现我们的Student和Tag实体，看看这是如何完成的。
 
@@ -195,10 +192,10 @@ public class ManyStudent {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "manystudent_manytags",
-      joinColumns = @JoinColumn(name = "manystudent_id", 
-      referencedColumnName = "id"),
-      inverseJoinColumns = @JoinColumn(name = "manytag_id", 
-      referencedColumnName = "id"))
+          joinColumns = @JoinColumn(name = "manystudent_id",
+                referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "manytag_id",
+                referencedColumnName = "id"))
     private Set<ManyTag> manyTags = new HashSet<>();
 
     // constructors, getters and setters
@@ -207,11 +204,11 @@ public class ManyStudent {
 
 这里有几件事需要注意。
 
-首先，我们正在生成我们的 ID，因此表链接更易于内部管理。
+首先，我们正在生成我们的ID，因此表链接更易于内部管理。
 
-接下来，我们使用@ManyToMany注释告诉 Spring 我们想要两个类之间的链接。
+接下来，我们使用@ManyToMany注解告诉Spring 我们想要两个类之间的链接。
 
-最后，我们使用@JoinTable注释来设置我们实际的连接表。
+最后，我们使用@JoinTable注解来设置我们实际的连接表。
 
 现在我们可以继续我们的新标签模型，我们称之为ManyTag：
 
@@ -233,7 +230,7 @@ public class ManyTag {
 
 因为我们已经在学生模型中设置了连接表，所以我们只需要担心在该模型中设置引用即可。
 
-我们使用mappedBy属性告诉 JPA 我们想要这个链接到我们之前创建的连接表。
+我们使用mappedBy属性告诉JPA我们想要这个链接到我们之前创建的连接表。
 
 ### 5.2 定义Repository
 
@@ -271,7 +268,7 @@ public void givenStudentWithManyTags_whenSave_theyGetByTagOk() {
     manyStudentRepository.save(student);
 
     List<ManyStudent> students = manyStudentRepository
-      .findByManyTags_Name("full time");
+        .findByManyTags_Name("full time");
  
     assertEquals("size incorrect", 1, students.size());
 }
@@ -287,6 +284,6 @@ public void givenStudentWithManyTags_whenSave_theyGetByTagOk() {
 
 这篇文章接上一篇文章结束[的](https://www.baeldung.com/jpa-tagging)地方。
 
-首先，我们介绍了几个在设计标记实现时很有用的高级模型。
+首先，我们介绍了几个在设计标签实现时很有用的高级模型。
 
-最后，我们在多对多映射的上下文中重新检查了上一篇文章中标记的实现。
+最后，我们在多对多映射的上下文中重新检查了上一篇文章中标签的实现。

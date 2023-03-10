@@ -40,4 +40,6 @@ spring.sql.init.data-locations=import_*_users.sql
 
 ## 4. 总结
 
-在这篇简短的文章中，我们介绍了如何配置Spring Boot应用程序以从自定义SQL文件加载初始数据。最后，我们演示了两种方法：Hibernate和Spring JDBC。
+在这篇简短的文章中，我们展示了如何配置Spring Boot应用程序以从自定义SQL文件加载初始数据。
+
+最后，我们展示了两种可能性：Hibernate和Spring JDBC。它们都工作得很好，选择哪一个取决于开发人员。

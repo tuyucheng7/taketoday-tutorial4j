@@ -1,6 +1,6 @@
 ## 1. 概述
 
-在本快速教程中，我们讨论Spring Data中save()和saveAll()方法之间的性能差异。
+在这个快速教程中，我们将了解Spring Data中save()和saveAll()方法之间的性能差异。
 
 ## 2. 应用构建
 
@@ -23,7 +23,7 @@ public class Book {
 }
 ```
 
-此外，我们为它创建一个Repository：
+此外，让我们为它创建一个Repository：
 
 ```java
 public interface BookRepository extends JpaRepository<Book, Long> {
@@ -32,9 +32,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
 ## 3. 性能
 
-为了测试性能，我们使用这两个方法保存10,000本书。
+为了测试性能，我们使用这两种方法保存10000本书。
 
-首先，我们使用save()方法：
+首先，我们将使用save()方法：
 
 ```java
 for(int i = 0; i < bookCount; i++) {
@@ -42,7 +42,7 @@ for(int i = 0; i < bookCount; i++) {
 }
 ```
 
-然后，我们创建一个Book集合并使用saveAll()方法一次性保存所有图书：
+然后，我们将创建一个Book集合并使用saveAll()方法一次性保存所有图书：
 
 ```java
 List<Book> bookList = new ArrayList<>();
@@ -59,14 +59,20 @@ bookRepository.saveAll(bookList);
 
 ## 4. 差异
 
-查看这两个方法的实现，我们可以看到saveAll()对每个元素进行迭代，并在每次迭代中使用save()方法，这意味着它不应该有这么大的性能差异。但如果仔细观察，我们发现这两个方法都带有@Transactional注解。
+查看这两个方法的实现，我们可以看到saveAll()迭代每个元素并在每次迭代中使用save()方法。这意味着它不应该有这么大的性能差异。
 
-此外，默认的事务传播类型是REQUIRED，这意味着**如果没有提供事务，则每次调用方法时都会创建一个新事务**。在我们的例子中，每次我们调用save()方法时，都会创建一个新事务，而当我们调用saveAll()时，只会创建一个事务，并且该事务稍后会被save()重用。这种开销转化为我们之前注意到的性能差异。
+但如果仔细观察，我们发现这两种方法都带有@Transactional注解。
 
-最后，由于批处理是在事务级别完成的，因此启用批处理时开销更大。
+此外，默认事务传播类型是REQUIRED，这意味着**如果未提供事务，则每次调用方法时都会创建一个新事务**。
+
+在我们的例子中，每次我们调用save()方法时，都会创建一个新事务，而当我们调用saveAll()时，只会创建一个事务，并且该事务稍后会被save()重用。
+
+这种开销转化为我们之前注意到的性能差异。
+
+最后，启用批处理时的开销更大，因为它是在事务级别完成的。
 
 ## 5. 总结
 
 在本文中，我们了解了Spring Data中save()和saveAll()方法之间的性能差异。
 
-最终，选择是否使用一种方法而不是另一种方法会对应用程序的性能产生重大影响。因此，我们应该在实际应用程序中进行测试，以确定哪种方法更适合我们的应用程序。
+最终，选择是否使用一种方法而不是另一种方法会对应用程序的性能产生重大影响。

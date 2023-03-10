@@ -8,4 +8,4 @@
 + [测试Repository上的@Cacheable](docs/测试Repository上的@Cacheable.md)
 + [Spring Boot Ehcache示例](docs/SpringBoot-Ehcache示例.md)
 
-- 更多文章： [[next -->]](../spring-caching-2/README.md)
+- 更多文章： [[next -->]](../spring-boot-caching-2/README.md)

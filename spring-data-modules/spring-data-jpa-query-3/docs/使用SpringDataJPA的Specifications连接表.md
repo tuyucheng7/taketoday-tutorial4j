@@ -1,12 +1,14 @@
 ## 1. 概述
 
-在这个简短的教程中，我们介绍[Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa) Specification的一个高级特性，它允许我们在创建查询时连接表。
+在这个简短的教程中，我们将讨论[Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa) Specification的一个高级功能，它允许我们在创建查询时连接表。
 
-首先我们简要回顾一下JPA Specifications及其用法。
+让首先我们简要回顾一下JPA Specifications及其用法。
 
 ## 2. JPA Specification
 
-**Spring Data JPA引入了Specification接口，允许我们使用可重用组件创建动态查询**。对于本文中的代码示例，我们将使用Author和Book类：
+**Spring Data JPA引入了Specification接口，允许我们使用可重用组件创建动态查询**。
+
+对于本文中的代码示例，我们将使用Author和Book类：
 
 ```java
 @Entity
@@ -50,7 +52,7 @@ public interface AuthorsRepository extends JpaRepository<Author, Long>, JpaSpeci
 }
 ```
 
-因此，现在我们可以将这两个Specification链接在一起并使用它们创建查询：
+因此，我们现在可以将这两个Specification链接在一起并使用它们创建查询：
 
 ```java
 @Test
@@ -65,7 +67,7 @@ void whenFindByLastNameAndFirstNameLike_thenOneAuthorIsReturned() {
 
 ## 3. 使用JPA Specification连接表
 
-我们已经通过@OneToMany注解定义了Author实体与Book实体之间的一对多关系：
+我们可以从我们的数据模型中观察到Author实体与Book实体共享一对多关系：
 
 ```java
 @Entity
@@ -80,7 +82,7 @@ public class Book {
 }
 ```
 
-[Criteria Query API]()允许我们在创建Specification时连接两个表。因此，我们能够在我们的查询中包含来自Book实体的字段：
+[Criteria Query API](https://www.baeldung.com/spring-data-criteria-queries)允许我们在创建Specification时连接两个表。因此，我们将能够在我们的查询中包含来自Book实体的字段：
 
 ```java
 public static Specification<Author> hasBookWithTitle(String bookTitle) {
@@ -91,7 +93,7 @@ public static Specification<Author> hasBookWithTitle(String bookTitle) {
 }
 ```
 
-现在我们将这个新的Specification与之前创建的Specification组合起来：
+现在让我们将这个新Specification与之前创建的Specification组合起来：
 
 ```java
 @Test
@@ -119,4 +121,6 @@ where author0_.last_name = ?
 
 ## 4. 总结
 
-在本文中，我们学习了如何使用JPA Specification来查询基于其关联实体之一的表。Spring Data JPA的Specifications为创建查询提供了一种流畅、动态和可重用的方式。
+在本文中，我们学习了如何使用JPA Specifications根据表的关联实体之一查询表。
+
+Spring Data JPA的Specifications为创建查询提供了一种流式、动态和可重用的方式。

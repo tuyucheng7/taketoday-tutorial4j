@@ -1,12 +1,12 @@
 ## 1. 简介
 
-在这篇简短的文章中，我们将通过一个简单示例来介绍Spring JPA Repository填充器。Spring Data JPA Repository填充器是data.sql脚本的一个很好的替代品。
+在这篇简短的文章中，我们将通过一个简单示例来探索**Spring JPA Repository填充器**。Spring Data JPA Repository填充器是data.sql脚本的一个很好的替代品。
 
-Spring Data JPA Repository填充器支持JSON和XML文件格式，在以下部分中，我们将探讨如何使用Spring DataJPA Repository填充器。
+Spring Data JPA Repository填充器支持JSON和XML文件格式。在以下部分中，我们将了解如何使用Spring Data JPA Repository填充器。
 
-## 2. 示例应用
+## 2. 示例应用程序
 
-首先，假设我们有一个Fruit实体类，并想要初始化一些简单数据：
+首先，假设我们有一个Fruit实体类和一个水果清单来填充我们的数据库：
 
 ```java
 @Entity
@@ -15,12 +15,12 @@ public class Fruit {
     private long id;
     private String name;
     private String color;
-    
+
     // getters and setters
 }
 ```
 
-我们扩展JpaRepository以从数据库中读取Fruit数据：
+我们将扩展JpaRepository以从数据库中读取Fruit数据：
 
 ```java
 @Repository
@@ -33,7 +33,7 @@ public interface FruitRepository extends JpaRepository<Fruit, Long> {
 
 ## 3. JSON Repository填充器
 
-首先创建一个包含Fruit数据的JSON文件，我们将该文件并将其命名为fruit-data.json并放在src/main/resources文件夹中：
+让我们创建一个包含Fruit数据的JSON文件。我们将该文件命名为fruit-data.json并放在src/main/resources文件夹中：
 
 ```json
 [
@@ -52,9 +52,9 @@ public interface FruitRepository extends JpaRepository<Fruit, Long> {
 ]
 ```
 
-实体类名称应在每个JSON对象的_class字段中给出，其余的key映射到Fruit实体的列。
+**实体类名称应在每个JSON对象的_class字段中给出**。其余的key映射到Fruit实体的列。
 
-我们还需要在pom.xml中添加[jackson-databind](https://search.maven.org/search?q=g:com.fasterxml.jackson.core a:jackson-databind)依赖项：
+现在，我们将在pom.xml中添加[jackson-databind](https://central.sonatype.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.14.2)依赖项：
 
 ```xml
 <dependency>
@@ -79,7 +79,7 @@ public class JpaPopulators {
 }
 ```
 
-下面是一个简单的单元测试：
+这是一个简单的单元测试：
 
 ```java
 @ExtendWith(SpringExtension.class)
@@ -110,9 +110,11 @@ class FruitPopulatorIntegrationTest {
 
 ## 4. XML Repository填充器
 
-在本节中，我们介绍如何将XML文件与Repository填充器一起使用。首先，我们创建一个包含所需水果详细信息的XML文件。
+在本节中，我们将了解如何将XML文件与Repository填充器一起使用。首先，我们将创建一个包含所需水果详细信息的XML文件。
 
-在这里，一个XML文件代表一个水果的数据。首先是apple-fruit-data.xml
+在这里，一个XML文件代表一个水果的数据。
+
+apple-fruit-data.xml
 
 ```xml
 <fruit>
@@ -122,7 +124,7 @@ class FruitPopulatorIntegrationTest {
 </fruit>
 ```
 
-然后是guava-fruit-data.xml：
+guava-fruit-data.xml：
 
 ```xml
 <fruit>
@@ -134,7 +136,7 @@ class FruitPopulatorIntegrationTest {
 
 同样，我们将这些XML文件保存在src/main/resources文件夹中。
 
-此外，我们需要在pom.xml中添加[spring-oxm](https://search.maven.org/search?q=g:org.springframework a:spring-oxm) maven依赖项：
+此外，我们需要在pom.xml中添加[spring-oxm](https://central.sonatype.com/artifact/org.springframework/spring-oxm/6.0.6) Maven依赖项：
 
 ```xml
 <dependency>
@@ -144,7 +146,7 @@ class FruitPopulatorIntegrationTest {
 </dependency>
 ```
 
-然后需要在我们的实体类中添加@XmlRootElement注解：
+此外，我们需要在实体类中添加@XmlRootElement注解：
 
 ```java
 @XmlRootElement
@@ -154,7 +156,7 @@ public class Fruit {
 }
 ```
 
-最后，我们定义一个Repository填充器bean，这个bean将读取XML文件并填充数据：
+最后，我们将定义一个Repository填充器bean，这个bean将读取XML文件并填充数据：
 
 ```java
 @Bean

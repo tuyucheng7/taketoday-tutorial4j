@@ -2,7 +2,9 @@
 
 Spring Data通过仅定义Repository接口，使处理实体的过程变得更加容易。它们带有一组预定义的方法，并允许在每个接口中添加自定义方法。
 
-但是，如果我们想添加一个在所有Repository中都可用的自定义方法，过程会稍微复杂一些。因此，这就是我们将在本文中介绍的内容。
+但是，如果我们想添加一个在所有Repository中都可用的自定义方法，过程会稍微复杂一些。因此，这就是我们将在本文中探讨的内容。
+
+有关配置和使用Spring Data JPA的更多信息，请查看我们之前的文章：[Hibernate与Spring 4指南](https://www.baeldung.com/the-persistence-layer-with-spring-and-jpa)和[Spring Data JPA简介](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)。
 
 ## 2. 定义基本Repository接口
 
@@ -15,7 +17,7 @@ public interface ExtendedRepository<T, ID extends Serializable> extends JpaRepos
 }
 ```
 
-我们的接口扩展了JpaRepository接口，因此我们能够继承所有标准的CRUD操作方法。
+我们的接口扩展了JpaRepository接口，因此我们能够受益所有标准的CRUD操作方法。
 
 **你还会注意到我们添加了@NoRepositoryBean注解。这是必要的，否则默认的Spring行为是为Repository的所有子接口创建一个实现**。
 
@@ -27,7 +29,7 @@ public interface ExtendedRepository<T, ID extends Serializable> extends JpaRepos
 
 ```java
 public class ExtendedRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements ExtendedRepository<T, ID> {
-    
+
     private EntityManager entityManager;
 
     public ExtendedRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
@@ -41,7 +43,9 @@ public class ExtendedRepositoryImpl<T, ID extends Serializable> extends SimpleJp
 
 **该类扩展了SimpleJpaRepository类，这是Spring用于提供Repository接口实现的默认类**。
 
-这需要我们创建包含JpaEntityInformation和EntityManager参数的构造函数，并调用父类构造函数。我们还需要在自定义方法中使用EntityManager属性。
+这需要我们创建包含JpaEntityInformation和EntityManager参数的构造函数，并调用父类构造函数。
+
+我们还需要在自定义方法中使用EntityManager属性。
 
 此外，我们必须实现从ExtendedRepository接口继承的自定义方法：
 
@@ -66,8 +70,8 @@ public List<T> findByAttributeContainsText(String attributeName, String text) {
 ```java
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "cn.tuyucheng.taketoday.persistence.dao", 
-        repositoryBaseClass = ExtendedRepositoryImpl.class
+      basePackages = "cn.tuyucheng.taketoday.persistence.dao",
+      repositoryBaseClass = ExtendedRepositoryImpl.class
 )
 public class StudentJPAH2Config {
     // additional JPA Configuration
@@ -76,7 +80,9 @@ public class StudentJPAH2Config {
 
 ## 5. 创建实体Repository
 
-接下来，让我们看看如何使用我们的新接口。首先，我们添加一个简单的Student实体：
+接下来，让我们看看如何使用我们的新接口。
+
+首先，让我们添加一个简单的Student实体：
 
 ```java
 @Entity
@@ -85,23 +91,25 @@ public class Student {
     @Id
     private long id;
     private String name;
-    
+
     // standard constructor, getters, setters
 }
 ```
 
-然后，我们可以为扩展ExtendedRepository接口的Student实体创建一个DAO：
+然后，我们可以为Student实体创建一个扩展ExtendedRepository接口的Repository：
 
 ```java
 public interface ExtendedStudentRepository extends ExtendedRepository<Student, Long> {
 }
 ```
 
-就这样，现在我们的实现将具有自定义的findByAttributeContainsText()方法。同样，我们通过扩展ExtendedRepository接口定义的任何接口都将具有相同的方法。
+就是这样！现在我们的实现将具有自定义的findByAttributeContainsText()方法。
+
+同样，我们通过扩展ExtendedRepository接口定义的任何接口都将具有相同的方法。
 
 ## 6. 测试Repository
 
-下面我们创建一个JUnit测试来观察自定义方法的运行情况：
+让我们创建一个JUnit测试来观察自定义方法的运行情况：
 
 ```java
 @ExtendWith(SpringExtension.class)
@@ -129,10 +137,10 @@ class ExtendedStudentRepositoryIntegrationTest {
 }
 ```
 
-该测试首先使用extendedStudentRepository bean创建3个Student记录，然后调用findByAttributeContains()方法来查找名字中包含字符串“john”的所有学生。
+该测试首先使用extendedStudentRepository bean创建3个Student记录。然后，调用findByAttributeContains()方法来查找名字中包含字符串“john”的所有学生。
 
 ExtendedStudentRepository类可以使用标准的Repository方法(如save())和我们添加的自定义方法。
 
 ## 7. 总结
 
-在这篇快速文章中，我们演示了如何将自定义方法添加到Spring Data JPA中的所有Repository。
+在这篇快速文章中，我们展示了如何将自定义方法添加到Spring Data JPA中的所有Repository。

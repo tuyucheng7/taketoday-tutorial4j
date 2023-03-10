@@ -8,3 +8,4 @@
 + [使用Spring Boot将日志记录到Graylog](docs/使用SpringBoot记录到Graylog.md)
 + [Spring Boot 2.1中的日志组](docs/SpringBoot-2.1中的日志组.md)
 + [使用Log4j2将日志数据写入Syslog](docs/使用Log4j2将日志数据写入Syslog.md)
++ [Spring Boot Logback和Log4j2扩展](docs/SpringBoot-Logback和Log4j2扩展.md)

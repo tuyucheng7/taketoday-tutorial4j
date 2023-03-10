@@ -33,7 +33,7 @@ query {
 
 该查询将：
 
--   请求最近的十个帖子
+-   请求最近的10个帖子
 -   对于每个帖子，请求ID、标题和类别
 -   对于每个帖子，请求作者，返回ID、名称和缩略图
 
@@ -41,7 +41,7 @@ query {
 
 ### 2.1 GraphQL模式
 
-GraphQL服务器公开了一个描述API的模式，该模式由类型定义组成。每种类型都有一个或多个字段，每个字段采用零个或多个参数并返回特定类型。
+GraphQL服务器公开了一个描述API的模式，该模式由类型定义组成。每种类型都有一个或多个字段，每个字段接收零个或多个参数并返回特定类型。
 
 该图派生自这些字段相互嵌套的方式。请注意，图不需要是非循环的，且循环是完全可以接受的，但它是有向的。客户端可以从一个字段获取到它的子字段，但它不能自动返回到父字段，除非模式明确定义了这一点。
 
@@ -82,7 +82,7 @@ GraphQL服务还使用一组标准字段公开模式，允许任何客户端提�
 
 ## 3. 介绍GraphQL Spring Boot Starter
 
-**[Spring Boot GraphQL Starter](https://spring.io/projects/spring-graphql)提供了一种让GraphQL服务器在很短的时间内运行的绝妙方法**，使用自动配置和基于注解的编程方法，我们只需要编写服务所需的代码。
+**[Spring Boot GraphQL Starter](https://spring.io/projects/spring-graphql)提供了一种在最少的时间设置GraphQL服务器的绝佳方法**，使用自动配置和基于注解的编程方法，我们只需要编写服务所需的代码。
 
 ### 3.1 设置服务
 
@@ -99,13 +99,13 @@ GraphQL服务还使用一组标准字段公开模式，允许任何客户端提�
 </dependency>
 ```
 
-因为GraphQL与传输无关，所以我们在配置中包含了web starter，这会在默认的/graphql端点上使用Spring MVC通过HTTP公开GraphQL API。其他的starter可以用于其他的底层实现，比如Spring Webflux。
+因为GraphQL与传输无关，所以我们在配置中包含了Web Starter，这会在默认的/graphql端点上使用Spring MVC通过HTTP公开GraphQL API。其他的Starter可以用于其他的底层实现，比如Spring Webflux。
 
 如有必要，我们还可以在application.properties文件中自定义此端点。
 
 ### 3.2 编写模式
 
-GraphQL Boot starter的工作方式是处理GraphQL Schema文件以构建正确的结构，然后将特殊的bean连接到该结构，**Spring Boot GraphQL starter会自动找到这些模式文件**。
+GraphQL Boot Starter的工作方式是处理GraphQL Schema文件以构建正确的结构，然后将特殊的bean连接到该结构，**Spring Boot GraphQL Starter会自动找到这些模式文件**。
 
 我们需要将这些“.graphqls”或“.gqls”模式文件保存在src/main/resources/graphql/**位置下，Spring Boot会自动获取它们。像往常一样，我们可以使用spring.graphql.schema.locations自定义位置，使用spring.graphql.schema.file-extensions配置属性自定义文件扩展名。
 
@@ -113,7 +113,7 @@ GraphQL Boot starter的工作方式是处理GraphQL Schema文件以构建正确�
 
 ### 3.3 根查询解析器
 
-**根查询需要具有特别注解的方法来处理这个根查询中的各个字段**，与模式定义不同，根查询字段没有限制只有一个Spring bean。
+**根查询需要具有特别注解的方法来处理这个根查询中的各个字段**。与模式定义不同，根查询字段没有限制只有一个Spring bean。
 
 **我们需要使用@QueryMapping注解来标注处理程序方法，并将它们放置在我们应用程序的标准@Controller组件中**，这会将带注解的类注册为我们的GraphQL应用程序中的数据获取组件：
 
@@ -130,11 +130,11 @@ public class PostController {
 }
 ```
 
-上面定义了方法recentPosts，我们将使用它来处理前面定义的模式中recentPosts字段的任何GraphQL查询。此外，该方法必须具有用@Argument注解的参数，这些参数与模式中的相应参数相对应。
+上面定义了方法recentPosts，我们将使用它来处理前面定义的模式中recentPosts字段的任何GraphQL查询。此外，该方法必须具有用@Argument标注的参数，这些参数与模式中的相应参数相对应。
 
 它还可以选择使用其他与GraphQL相关的参数，例如GraphQLContext、DataFetchingEnvironment等，用于访问底层上下文和环境。
 
-该方法还必须为GraphQL方案中的类型返回正确的返回类型，正如我们即将看到的那样，我们可以将任何简单类型、String、Int、List等与等效的Java类型一起使用，系统会自动映射它们。
+该方法还必须为GraphQL模式中的类型返回正确的返回类型，正如我们即将看到的那样，我们可以将任何简单类型、String、Int、List等与等效的Java类型一起使用，系统会自动映射它们。
 
 ### 3.4 使用Bean表示类型
 
@@ -166,7 +166,7 @@ public Author author(Post post) {
 }
 ```
 
-重要的是，**如果客户端不请求字段，那么GraphQL服务器将不会执行检索它的工作**。这意味着如果客户端检索到一个Post并且不要求作者字段，则不会执行上面的author()方法，也不会进行DAO调用。
+重要的是，**如果客户端不请求字段，那么GraphQL服务器将不会执行检索它的工作**。这意味着如果客户端检索到一个Post并且不要求author字段，则不会执行上面的author()方法，也不会进行DAO调用。
 
 或者，我们也可以在注解中指定父类型名称和字段名称：
 
@@ -183,7 +183,7 @@ public Author getAuthor(Post post) {
 
 GraphQL Schema的概念是某些类型可以为空，而其他类型则不可为空。
 
-我们通过直接使用空值在Java代码中处理这个问题。相反，我们可以直接对可空类型使用Java 8中的新Optional类型，系统将对这些值执行正确的操作。
+我们通过直接使用null值在Java代码中处理这个问题。相反，我们可以直接对可空类型使用Java 8中的新Optional类型，系统将对这些值执行正确的操作。
 
 这非常有用，因为这意味着我们的Java代码更明显地与方法定义中的GraphQL模式相同。
 
@@ -191,7 +191,7 @@ GraphQL Schema的概念是某些类型可以为空，而其他类型则不可为
 
 到目前为止，我们所做的一切都是关于从服务器检索数据，GraphQL还具有通过突变更新存储在服务器上的数据的能力。
 
-从代码的角度来看，查询没有理由不能更改服务器上的数据。我们可以轻松编写接受参数、保存新数据并返回这些更改的查询解析器。这样做会给API客户端带来意想不到的副作用，被认为是不好的做法。
+从代码的角度来看，查询没有理由不能更改服务器上的数据。我们可以轻松编写接收参数、保存新数据并返回这些更改的查询解析器。这样做会给API客户端带来意想不到的副作用，被认为是不好的做法。
 
 相反，**应该使用突变来通知客户端这将导致正在存储的数据发生变化**。
 
@@ -200,7 +200,6 @@ GraphQL Schema的概念是某些类型可以为空，而其他类型则不可为
 ```java
 @MutationMapping
 public Post createPost(@Argument String title, @Argument String text, @Argument String category, @Argument String authorId) {
-
     Post post = new Post();
     post.setId(UUID.randomUUID().toString());
     post.setTitle(title);
@@ -218,8 +217,10 @@ public Post createPost(@Argument String title, @Argument String text, @Argument 
 
 GraphQL还有一个名为[GraphiQL](https://github.com/graphql/graphiql)的配套工具，这个UI工具可以与任何GraphQL服务器通信，并有助于针对GraphQL API使用和开发。它的可下载版本作为Electron应用程序存在，可以从[此处](https://github.com/skevy/graphiql-app)检索。
 
-Spring GraphQL附带了一个默认的GraphQL页面，该页面在/graphiql端点处公开。默认情况下端点是禁用的，但可以通过启用spring.graphql.graphiql.enabled属性来打开它，这提供了一个非常有用的浏览器内工具来编写和测试查询，特别是在开发和测试期间。
+Spring GraphQL附带了一个默认的GraphQL页面，该页面在/graphiql端点处公开。默认情况下端点处于禁用状态，但可以通过启用spring.graphql.graphiql.enabled属性来打开它，这提供了一个非常有用的浏览器内工具来编写和测试查询，特别是在开发和测试期间。
 
 ## 5. 总结
 
-GraphQL是一项非常令人兴奋的新技术，它有可能会彻底改变我们开发Web API的方式，而Spring Boot GraphQL Starter使得将这项技术添加到任何新的或现有的Spring Boot应用程序变得异常容易。
+GraphQL是一项非常令人兴奋的新技术，它有可能会彻底改变我们开发Web API的方式。
+
+Spring Boot GraphQL Starter使得将这项技术添加到任何新的或现有的Spring Boot应用程序变得异常容易。

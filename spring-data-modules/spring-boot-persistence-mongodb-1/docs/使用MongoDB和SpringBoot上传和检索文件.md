@@ -1,10 +1,12 @@
 ## 1. 概述
 
-在本教程中，我们介绍如何使用MongoDB和Spring Boot上传和检索文件。**对于小文件，我们使用MongoDB的BSON，对于大文件则使用GridFS**。
+在本教程中，我们将讨论如何使用MongoDB和Spring Boot上传和检索文件。
+
+**我们将使用MongoDB BSON处理小文件，使用GridFS处理大文件**。
 
 ## 2. Maven配置
 
-首先，我们将[spring-boot-starter-data-mongodb](https://search.maven.org/search?q=g:org.springframework.boot AND a:spring-boot-starter-data-mongodb)依赖项添加到我们的pom.xml中：
+首先，我们将[spring-boot-starter-data-mongodb](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb/3.0.3)依赖项添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -13,11 +15,15 @@
 </dependency>
 ```
 
-此外，我们需要spring-boot-starter-web和spring-boot-starter-thymeleaf依赖项来显示我们应用程序的用户界面。在本教程中，我们使用Spring Boot版本2.7.5。
+此外，我们需要spring-boot-starter-web和spring-boot-starter-thymeleaf依赖项来显示我们应用程序的用户界面。这些依赖项也显示在我们的[Spring Boot与Thymeleaf指南](https://www.baeldung.com/spring-boot-crud-thymeleaf)中。
+
+在本教程中，我们使用Spring Boot版本2.x。
 
 ## 3. Spring Boot属性
 
-接下来，我们需要配置必要的Spring Boot属性。下面是MongoDB的属性配置：
+接下来，我们将配置必要的Spring Boot属性。
+
+让我们从**MongoDB属性**开始：
 
 ```properties
 spring.data.mongodb.host=localhost
@@ -25,7 +31,7 @@ spring.data.mongodb.port=27017
 spring.data.mongodb.database=springboot-mongo
 ```
 
-**我们还需要设置Servlet Multipart属性以允许上传大文件**：
+**我们还将设置Servlet Multipart属性以允许上传大文件**：
 
 ```properties
 spring.servlet.multipart.max-file-size=256MB
@@ -35,28 +41,30 @@ spring.servlet.multipart.enabled=true
 
 ## 4. 上传小文件
 
-现在，我们将介绍如何使用MongoDB BSON上传和检索小文件(大小<16MB)。在这里，我们有一个简单的文档类Photo，**我们将图像文件存储在BSON二进制文件中**：
+现在，我们将讨论如何使用MongoDB BSON上传和检索小文件(大小 < 16MB)。
+
+在这里，我们有一个简单的文档类Photo，**我们将图像文件存储在BSON二进制文件中**：
 
 ```java
 @Document(collection = "photos")
 public class Photo {
     @Id
     private String id;
-    
+
     private String title;
-        
+
     private Binary image;
 }
 ```
 
-然后是一个简单的PhotoRepository：
+我们将有一个简单的PhotoRepository：
 
 ```java
 public interface PhotoRepository extends MongoRepository<Photo, String> {
 }
 ```
 
-接下来，对于PhotoService，我们只包含两种方法：
+现在，对于PhotoService，我们只有两种方法：
 
 -   addPhoto()：将照片上传到MongoDB
 -   getPhoto()：检索具有给定ID的照片
@@ -68,21 +76,23 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepo;
 
-    public String addPhoto(String title, MultipartFile file) throws IOException { 
-        Photo photo = new Photo(title); 
-        photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes())); 
-        photo = photoRepo.insert(photo); return photo.getId(); 
+    public String addPhoto(String title, MultipartFile file) throws IOException {
+        Photo photo = new Photo(title);
+        photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+        photo = photoRepo.insert(photo); return photo.getId();
     }
 
-    public Photo getPhoto(String id) { 
-        return photoRepo.findById(id).get(); 
+    public Photo getPhoto(String id) {
+        return photoRepo.findById(id).get();
     }
 }
 ```
 
 ## 5. 上传大文件
 
-**现在，我们介绍如何使用GridFS上传和检索大文件**。首先，我们定义一个简单的DTO类Video来表示一个大文件：
+**现在，我们将使用GridFS上传和检索大文件**。
+
+首先，我们将定义一个简单的DTO-Video来表示一个大文件：
 
 ```java
 public class Video {
@@ -91,7 +101,7 @@ public class Video {
 }
 ```
 
-与PhotoService类似，我们也创建一个包含两个方法的VideoService — addVideo()和getVideo()：
+与PhotoService类似，我们将有一个带有两个方法的VideoService-addVideo()和getVideo()：
 
 ```java
 @Service
@@ -103,50 +113,52 @@ public class VideoService {
     @Autowired
     private GridFsOperations operations;
 
-    public String addVideo(String title, MultipartFile file) throws IOException { 
-        DBObject metaData = new BasicDBObject(); 
-        metaData.put("type", "video"); 
-        metaData.put("title", title); 
-        ObjectId id = gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType(), metaData); 
-        return id.toString(); 
+    public String addVideo(String title, MultipartFile file) throws IOException {
+        DBObject metaData = new BasicDBObject();
+        metaData.put("type", "video");
+        metaData.put("title", title);
+        ObjectId id = gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType(), metaData);
+        return id.toString();
     }
 
-    public Video getVideo(String id) throws IllegalStateException, IOException { 
-        GridFSFile file = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id))); 
-        Video video = new Video(); 
-        video.setTitle(file.getMetadata().get("title").toString()); 
+    public Video getVideo(String id) throws IllegalStateException, IOException {
+        GridFSFile file = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+        Video video = new Video();
+        video.setTitle(file.getMetadata().get("title").toString());
         video.setStream(operations.getResource(file).getInputStream());
-        return video; 
+        return video;
     }
 }
 ```
 
-有关将GridFS与Spring结合使用的更多详细信息，请查看我们的[Spring Data MongoDB中的GridFS]()文章。
+有关将GridFS与Spring结合使用的更多详细信息，请查看我们的[Spring Data MongoDB中的GridFS](https://www.baeldung.com/spring-data-mongodb-gridfs)文章。
 
 ## 6. 控制器
 
+现在，让我们看一下控制器-PhotoController和VideoController。
+
 ### 6.1 PhotoController
 
-首先，**我们创建PhotoController，它将使用我们的PhotoService添加/获取照片**。
+首先，**我们有PhotoController，它将使用我们的PhotoService添加/获取照片**。
 
-我们定义addPhoto()方法来上传和创建新照片：
+我们将定义addPhoto()方法来上传和创建新照片：
 
 ```java
 @Controller
 public class PhotoController {
 
-	@Autowired
-	private PhotoService photoService;
+    @Autowired
+    private PhotoService photoService;
 
-	@PostMapping("/photos/add")
-	public String addPhoto(@RequestParam("title") String title, @RequestParam("image") MultipartFile image, Model model) throws IOException {
-		String id = photoService.addPhoto(title, image);
-		return "redirect:/photos/" + id;
-	}
+    @PostMapping("/photos/add")
+    public String addPhoto(@RequestParam("title") String title, @RequestParam("image") MultipartFile image, Model model) throws IOException {
+        String id = photoService.addPhoto(title, image);
+        return "redirect:/photos/" + id;
+    }
 }
 ```
 
-并通过getPhoto()来检索具有给定id的照片：
+我们也有getPhoto()来检索具有给定id的照片：
 
 ```java
 @GetMapping("/photos/{id}")
@@ -158,11 +170,13 @@ public String getPhoto(@PathVariable String id, Model model) {
 }
 ```
 
-**请注意，由于我们将图像数据作为byte[]返回，我们会将其转换为Base64字符串以在前端显示**。
+**请注意，由于我们将图像数据作为byte[]返回，因此我们会将其转换为Base64字符串以在前端显示**。
 
 ### 6.2 VideoController
 
-VideoController有一个类似的方法addVideo()，用于将视频上传到MongoDB：
+接下来，让我们看看我们的VideoController。
+
+这将有一个类似的方法addVideo()，将视频上传到我们的MongoDB：
 
 ```java
 @Controller
@@ -179,7 +193,7 @@ public class VideoController {
 }
 ```
 
-同样，我们通过getVideo()来检索具有给定id的视频：
+在这里我们有getVideo()来检索具有给定id的视频：
 
 ```java
 @GetMapping("/videos/{id}")
@@ -203,9 +217,12 @@ public void streamVideo(@PathVariable String id, HttpServletResponse response) t
 
 ## 7. 前端
 
-最后是我们的前端页面。下面是uploadPhoto.html，它提供了一个简单的表单来上传图片：
+最后，让我们看看我们的前端。
+
+让我们从uploadPhoto.html开始，它提供了一个简单的表单来上传图片：
 
 ```html
+
 <html xmlns:th="https://www.thymeleaf.org">
 <body>
 

@@ -1,16 +1,16 @@
 ## 1. 概述
 
-在本教程中，我们介绍使用[Spring Data MongoDB]()对集合中的文档进行计数的不同方法，我们将使用MongoRepository中提供的所有工具。
+在本教程中，我们将看到使用[Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)对集合中的文档进行计数的不同方法。我们将使用MongoRepository中提供的所有工具。
 
 我们将使用注解、查询方法和CrudRepository中的方法。此外，我们将构建一个简单的服务来聚合我们不同的用例。
 
 ## 2. 用例设置
 
-我们的用例由模型类、Repository和Service类组成。此外，我们创建一个测试类来确保一切都按预期工作。
+我们的用例由模型类、Repository和Service类组成。此外，我们将创建一个测试类来确保一切都按预期工作。
 
 ### 2.1 模型
 
-模型类定义为一个包含name和brand属性的Car实体：
+我们将从创建我们的模型类开始。它将基于汽车的一些属性：
 
 ```java
 @Document
@@ -31,7 +31,7 @@ public class Car {
 
 ### 2.2 Repository
 
-然后定义一个不包含任何方法的Repository：
+让我们定义一个不包含任何方法的Repository：
 
 ```java
 public interface CarRepository extends MongoRepository<Car, String> {
@@ -42,7 +42,7 @@ public interface CarRepository extends MongoRepository<Car, String> {
 
 ### 2.3 Service
 
-Service类将以不同的方式利用Spring Data Repository接口：
+我们的Service类将以不同的方式利用Spring Data Repository接口：
 
 ```java
 @Service
@@ -55,7 +55,7 @@ public class CountCarService {
 
 ### 2.4 准备测试
 
-所有的测试都基于Service，我们只需要一些设置，这样我们就不用编写重复的代码：
+我们所有的测试都将在我们的Service类上运行。我们只需要一些设置，这样我们就不用编写重复的代码：
 
 ```java
 @SpringBootTest(classes = SpringBootCountApplication.class)
@@ -106,11 +106,11 @@ void givenAllDocs_whenCrudRepositoryCount_thenCountEqualsSize() {
 
 因此，我们确保count()输出的数字与我们集合中所有文档列表的大小相同。
 
-**最重要的是，我们必须记住，count操作比列出所有文档更具成本效益**。这既体现在性能方面，也体现在减少代码方面。它不会对小集合产生影响，但对于大集合，我们最终可能会得到一个OutOfMemoryError。**简而言之，通过列出整个集合来统计文档并不是一个好主意**。
+**最重要的是，我们必须记住，count操作比列出所有文档更具成本效益**。这既体现在性能方面，也体现在减少代码方面。它不会对小集合产生影响，但对于大集合，我们最终可能会得到一个[OutOfMemoryError](https://www.baeldung.com/java-gc-overhead-limit-exceeded)。**简而言之，通过列出整个集合来统计文档并不是一个好主意**。
 
 ### 3.2 使用Example对象过滤
 
-如果我们想要计算具有特定属性值的文档，CrudRepository也可以提供帮助。**count()方法有一个重载版本，它接收一个[Example]()对象**：
+如果我们想要计算具有特定属性值的文档，CrudRepository也可以提供帮助。**count()方法有一个重载版本，它接收一个[Example](https://www.baeldung.com/spring-data-query-by-example)对象**：
 
 ```java
 public long getCountWithExample(Car item) {
@@ -118,16 +118,15 @@ public long getCountWithExample(Car item) {
 }
 ```
 
-因此，这简化了任务。**现在我们只需用我们想要过滤的属性填充一个对象，Spring将完成剩下的工作**：
+因此，这简化了任务。**现在我们只需用我们想要过滤的属性填充一个对象，Spring将完成剩下的工作**。让我们在测试中涵盖它：
 
 ```java
 @Test
 void givenFilteredDocs_whenExampleCount_thenCountEqualsSize() {
     long all = service.findCars()
-            .stream()
-            .filter(car -> car.getBrand()
-                    .equals(car1.getBrand()))
-            .count();
+        .stream()
+        .filter(car -> car.getBrand().equals(car1.getBrand()))
+        .count();
     long count = service.getCountWithExample(car1);
     
     assertEquals(count, all);
@@ -136,14 +135,16 @@ void givenFilteredDocs_whenExampleCount_thenCountEqualsSize() {
 
 ## 4. 使用@Query注解
 
-我们的下一个示例基于@Query注解：
+我们的下一个示例将基于@Query注解：
 
 ```java
 @Query(value = "{}", count = true)
 Long countWithAnnotation();
 ```
 
-我们必须指定value属性，否则Spring将尝试从我们的方法名称创建查询。**但是，由于我们想要计算所有文档，我们只需指定一个空查询**。**然后，我们通过将count属性设置为true来指定此查询的结果应该是计数[投影]()**。
+我们必须指定value属性，否则Spring将尝试从我们的方法名称创建查询。**但是，由于我们想要计算所有文档，因此我们只需指定一个空查询**。
+
+**然后，我们通过将count属性设置为true来指定此查询的结果应该是计数[投影](https://www.baeldung.com/java-mongodb-aggregations)**。
 
 下面是对应的测试：
 
@@ -166,15 +167,15 @@ void givenAllDocs_whenQueryAnnotationCount_thenCountEqualsSize() {
 public long countBrand(String brand);
 ```
 
-在value属性中，我们指定了完整的[MongoDB样式查询](https://www.mongodb.com/docs/manual/tutorial/query-documents/)。“?0”占位符代表我们方法的第一个参数，这将是我们的[查询]()参数值。
+在value属性中，我们指定了完整的[MongoDB样式查询](https://www.mongodb.com/docs/manual/tutorial/query-documents/)。“?0”占位符代表我们方法的第一个参数，这将是我们的[查询](https://www.baeldung.com/queries-in-spring-data-mongodb)参数值。
 
-MongoDB查询有一个JSON结构，我们在其中指定字段名称以及我们要过滤的值。因此，当我们调用countBrand("A")时，查询将转换为{brand: "A"}。这意味着我们将按brand属性值为“A”的项目过滤我们的集合。
+MongoDB查询有一个JSON结构，我们在其中指定字段名称以及我们要过滤的值。因此，当我们调用countBrand("A")时，查询将转换为{brand: "A"}。这意味着我们将按brand属性值为“A”的元素过滤我们的集合。
 
 ## 5. 编写派生查询方法
 
-[派生查询方法]()是我们Repository中不包含带有value的@Query注解的任何方法。这些方法由Spring按名称解析，因此我们不必编写查询。
+[派生查询方法](https://courses.baeldung.com/courses/1295711/lectures/30127898)是我们Repository中不包含带有value的@Query注解的任何方法。这些方法由Spring按名称解析，因此我们不必编写查询。
 
-**由于我们的CrudRepository中已经有一个count()方法，因此我们创建一个按特定brand计数的示例**：
+**由于我们的CrudRepository中已经有一个count()方法，因此让我们创建一个按特定brand计数的示例**：
 
 ```java
 Long countByBrand(String brand);
@@ -197,9 +198,9 @@ public long getCountBrandWithQueryMethod(String brand) {
 void givenFilteredDocs_whenQueryMethodCountByBrand_thenCountEqualsSize() {
     String filter = "B-A";
     long all = service.findCars()
-            .stream()
-            .filter(car -> car.getBrand().equals(filter))
-            .count();
+        .stream()
+        .filter(car -> car.getBrand().equals(filter))
+        .count();
     long count = service.getCountBrandWithQueryMethod(filter);
     
     assertEquals(count, all);
@@ -249,6 +250,8 @@ public long getCountWithExampleCriteria(Car item) {
 
 ## 7. 总结
 
-在本文中，我们介绍了在Spring Data MongoDB中使用Repository方法使用计数投影的不同方法。
+在本文中，我们看到了在Spring Data MongoDB中使用Repository方法使用计数投影的不同方法。
 
-我们使用了可用的方法，还使用不同的方法创建了新的方法。此外，我们通过将计数方法与列出集合中的所有对象进行比较来创建测试。同样，我们了解了为什么这样计算文档不是一个好主意。此外，我们更深入地使用了MongoTemplate来创建更多动态计数查询。
+我们使用了可用的方法，还使用不同的方法创建了新的方法。此外，我们通过将计数方法与列出集合中的所有对象进行比较来创建测试。同样，我们了解了为什么这样计算文档不是一个好主意。
+
+此外，我们更深入地使用了MongoTemplate来创建更动态的计数查询。

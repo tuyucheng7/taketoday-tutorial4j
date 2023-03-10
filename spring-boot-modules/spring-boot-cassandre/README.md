@@ -1,11 +1,12 @@
-# Cassandre trading bot example
+## Cassandre trading bot example
 
-This project is an example of a trading bot developed with Cassandre
+该项目是使用Cassandre开发的交易机器人的一个例子
 
-## Running the examples
+## 运行示例
 
-* `mvn test` - Run strategy backtesting
-* `mvn spring-boot:run` - Run the bot
+* `mvn test` - 运行策略回溯测试
+* `mvn spring-boot:run` - 运行机器人
 
-## Relevant Articles
-- [Build a Trading Bot with Cassandre Spring Boot Starter](https://www.baeldung.com/cassandre-spring-boot-trading-bot)
+## 相关文章
+
++ [使用Cassandre Spring Boot Starter构建交易机器人](docs/使用CassandreSpringBootStarter构建交易机器人.md)

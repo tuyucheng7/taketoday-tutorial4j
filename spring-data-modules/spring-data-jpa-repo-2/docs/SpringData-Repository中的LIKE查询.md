@@ -1,12 +1,14 @@
 ## 1. 概述
 
-在本快速教程中，我们介绍在[Spring JPA Repositories]()中创建LIKE查询的不同方法。
+在本快速教程中，我们将介绍在[Spring JPA Repository](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)中创建LIKE查询的不同方法。
 
-我们从创建查询方法时可以使用的各种关键字开始，然后我们介绍使用命名和索引参数的@Query注解。
+我们将首先查看在创建查询方法时可以使用的各种关键字。然后我们将介绍使用命名和索引参数的@Query注解。
 
 ## 2. 项目构建
 
-对于我们的案例，我们查询电影表。首先定义我们的电影实体：
+对于我们的示例，我们将查询movie表。
+
+让我们定义我们的Movie实体：
 
 ```java
 @Entity
@@ -23,23 +25,23 @@ public class Movie {
 }
 ```
 
-定义了Movie实体后，我们添加一些初始数据：
+定义了Movie实体后，让我们添加一些初始数据：
 
 ```sql
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(1, 'Godzilla: King of the Monsters', ' Michael Dougherty', 'PG-13', 132);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(2, 'Avengers: Endgame', 'Anthony Russo', 'PG-13', 181);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(3, 'Captain Marvel', 'Anna Boden', 'PG-13', 123);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(4, 'Dumbo', 'Tim Burton', 'PG', 112);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(5, 'Booksmart', 'Olivia Wilde', 'R', 102);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(6, 'Aladdin', 'Guy Ritchie', 'PG', 128);
-INSERT INTO movie(id, title, director, rating, duration) 
-    VALUES(7, 'The Sun Is Also a Star', 'Ry Russo-Young', 'PG-13', 100);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (1, 'Godzilla: King of the Monsters', ' Michael Dougherty', 'PG-13', 132);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (2, 'Avengers: Endgame', 'Anthony Russo', 'PG-13', 181);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (3, 'Captain Marvel', 'Anna Boden', 'PG-13', 123);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (4, 'Dumbo', 'Tim Burton', 'PG', 112);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (5, 'Booksmart', 'Olivia Wilde', 'R', 102);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (6, 'Aladdin', 'Guy Ritchie', 'PG', 128);
+INSERT INTO movie(id, title, director, rating, duration)
+VALUES (7, 'The Sun Is Also a Star', 'Ry Russo-Young', 'PG-13', 100);
 ```
 
 ## 3. LIKE查询方法
@@ -51,10 +53,10 @@ INSERT INTO movie(id, title, director, rating, duration)
 让我们看看如何使用查询方法执行以下LIKE查询：
 
 ```sql
-SELECT FROM movie WHERE titleLIKE'%in%';
+SELECT * FROM movie WHERE title LIKE '%in%';
 ```
 
-首先，我们使用Containing、Contains和IsContaining定义查询方法：
+首先，让我们使用Containing、Contains和IsContaining定义查询方法：
 
 ```java
 List<Movie> findByTitleContaining(String title);
@@ -62,7 +64,7 @@ List<Movie> findByTitleContains(String title);
 List<Movie> findByTitleIsContaining(String title);
 ```
 
-然后通过传递标题的一部分调用我们的查询方法：
+让我们用部分标题调用我们的查询方法：
 
 ```java
 List<Movie> results = movieRepository.findByTitleContaining("in");
@@ -75,17 +77,17 @@ results = movieRepository.findByTitleContains("in");
 assertEquals(3, results.size());
 ```
 
-我们应该期望这三种方法中的每一种都返回相同的结果。
+我们可以期望这三种方法中的每一种都返回相同的结果。
 
-Spring还为我们提供了一个Like关键字，但它的行为略有不同，因为我们需要为搜索参数提供通配符。
+**Spring还为我们提供了一个Like关键字，但它的行为略有不同，因为我们需要为搜索参数提供通配符**。
 
-下面定义一个LIKE查询方法：
+让我们定义一个LIKE查询方法：
 
 ```java
 List<Movie> findByTitleLike(String title);
 ```
 
-现在我们使用之前传递的相同值调用我们的findByTitleLike方法，这次包括通配符：
+现在我们将使用之前传递的相同值调用我们的findByTitleLike方法，但包括通配符：
 
 ```java
 results = movieRepository.findByTitleLike("%in%");
@@ -94,13 +96,13 @@ assertEquals(3, results.size());
 
 ### 3.2 StartsWith
 
-对于下面的查询语句：
+让我们看看下面的查询：
 
 ```sql
-SELECT FROM Movie WHERE RatingLIKE'PG%';
+SELECT * FROM Movie WHERE Rating LIKE 'PG%';
 ```
 
-我们使用StartsWith关键字来创建查询方法：
+我们将使用StartsWith关键字来创建查询方法：
 
 ```java
 List<Movie> findByRatingStartsWith(String rating);
@@ -117,13 +119,13 @@ assertEquals(6, results.size());
 
 **Spring通过EndsWith关键字为我们提供了相反的功能**。
 
-考虑以下查询语句：
+让我们考虑这个查询：
 
 ```sql
-SELECT FROM Movie WHERE directorLIKE'%Burton';
+SELECT * FROM Movie WHERE director LIKE '%Burton';
 ```
 
-现在我们定义一个EndsWith查询方法：
+现在我们将定义一个EndsWith查询方法：
 
 ```java
 List<Movie> findByDirectorEndsWith(String director);
@@ -138,9 +140,9 @@ assertEquals(1, results.size());
 
 ### 3.4 不区分大小写
 
-我们有时想不区分大小写地找出包含某个字符串的所有记录。在SQL中，我们可以通过强制列为所有大写或小写字母并为我们查询的值提供相同的值来实现这一点。
+我们有时想不区分大小写地找出包含某个字符串的所有记录。在SQL中，我们可以通过强制列为全部大写或小写字母并为我们查询的值提供相同的值来实现这一点。
 
-**使用Spring JPA，我们可以将[IgnoreCase]()关键字与其他关键字之一结合使用**：
+**使用Spring JPA，我们可以将[IgnoreCase](https://www.baeldung.com/spring-data-case-insensitive-queries)关键字与其他关键字之一结合使用**：
 
 ```java
 List<Movie> findByTitleContainingIgnoreCase(String title);
@@ -157,26 +159,26 @@ assertEquals(2, results.size());
 
 有时我们想找到所有不包含特定字符串的记录。**我们可以使用NotContains、NotContaining和NotLike关键字来做到这一点**。
 
-下面使用NotContaining定义一个查询来查找rating不包含PG的电影：
+让我们定义一个查询，使用NotContains来查找分级不包含PG的电影：
 
 ```java
 List<Movie> findByRatingNotContaining(String rating);
 ```
 
-现在调用我们新定义的方法：
+现在让我们调用新定义的方法：
 
 ```java
 List<Movie> results = movieRepository.findByRatingNotContaining("PG");
 assertEquals(1, results.size());
 ```
 
-为了实现查找导演姓名不以特定字符串开头的记录的功能，我们使用NotLike关键字来保留对通配符位置的控制：
+为了实现查找导演姓名不以特定字符串开头的记录的功能，我们将使用NotLike关键字来保留对通配符位置的控制：
 
 ```java
 List<Movie> findByDirectorNotLike(String director);
 ```
 
-最后，我们调用该方法来查找导演姓名不是以An开头的所有电影：
+最后，让我们调用该方法来查找导演姓名不是以An开头的所有电影：
 
 ```java
 List<Movie> results = movieRepository.findByDirectorNotLike("An%");
@@ -187,11 +189,11 @@ assertEquals(5, results.size());
 
 ## 4. 使用@Query
 
-有时我们需要创建对于查询方法来说过于复杂的查询，或者会导致方法名称过长。在这些情况下，我们可以使用[@Query注解]()来查询我们的数据库。
+有时我们需要创建对于查询方法来说过于复杂的查询，或者会导致方法名称过长。在这些情况下，**我们可以使用[@Query注解](https://www.baeldung.com/spring-data-jpa-query)来查询我们的数据库**。
 
 ### 4.1 命名参数
 
-为了进行比较，我们创建一个等效于我们之前定义的findByTitleContaining方法的查询：
+为了进行比较，我们将创建一个等效于我们之前定义的findByTitleContaining方法的查询：
 
 ```java
 @Query("SELECT m FROM Movie m WHERE m.titleLIKE%:title%")
@@ -211,14 +213,16 @@ List<Movie> searchByRatingStartsWith(String rating);
 
 我们可以控制通配符，因此该查询等效于findByRatingStartsWith查询方法。
 
-下面的方法找出所有rating以PG开头的电影：
+让我们找出所有评级以PG开头的电影：
 
 ```java
 List<Movie> results = movieRepository.searchByRatingStartsWith("PG");
 assertEquals(6, results.size());
 ```
 
-当我们在包含不可信数据的LIKE查询中使用索引参数时，我们应该转义传入的搜索值。如果我们使用Spring Boot 2.4.1或更高版本，我们可以使用[SpEL]()转义方法：
+当我们在包含不可信数据的LIKE查询中使用索引参数时，我们应该转义传入的搜索值。
+
+如果我们使用Spring Boot 2.4.1或更高版本，我们可以使用[SpEL](https://www.baeldung.com/spring-expression-language)转义方法：
 
 ```java
 @Query("SELECT m FROM Movie m WHERE m.directorLIKE%?#{escape([0])} escape ?#{escapeCharacter()}")
@@ -236,4 +240,6 @@ assertEquals(1, results.size());
 
 在这篇简短的文章中，我们学习了如何在Spring JPA Repository中创建LIKE查询。
 
-首先，我们学习了如何使用提供的关键字来创建查询方法。然后我们学习了如何使用带有命名和索引参数的@Query参数来实现相同的目的。
+首先，我们学习了如何使用提供的关键字来创建查询方法。
+
+然后我们学习了如何使用带有命名和索引参数的@Query参数来实现相同的目的。

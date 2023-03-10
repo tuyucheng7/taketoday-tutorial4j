@@ -1,38 +1,38 @@
 ## 1. 概述
 
-在本文中，我们将通过动手实践的示例项目探索将 DynamoDB 集成到 Spring Boot 应用程序中的基础知识。
+在本文中，**我们将通过一个动手实践的示例项目来探讨将DynamoDB集成到Spring Boot应用程序中的基础知识**。
 
-我们将演示如何使用 Spring Data 配置应用程序以使用本地 DynamoDB 实例。我们还将创建一个示例数据模型和存储库类，并使用集成测试执行实际的数据库操作。
+我们将演示如何使用Spring Data配置应用程序以使用本地DynamoDB实例。我们还将创建一个示例数据模型和Repository类，并使用集成测试执行实际的数据库操作。
 
-## 2. 动态数据库
+## 2. DynamoDB
 
-DynamoDB 是 AWS 上完全托管的托管 NoSQL 数据库，类似于其他 NoSQL 数据库，例如 Cassandra 或 MongoDB。DynamoDB 提供快速、一致和可预测的性能，并且可大规模扩展。
+DynamoDB是AWS上完全托管的托管NoSQL数据库，类似于其他NoSQL数据库，例如Cassandra或MongoDB。DynamoDB提供快速、一致和可预测的性能，并且可大规模扩展。
 
-[你可以在AWS 文档](https://aws.amazon.com/dynamodb/details/)上了解有关 DynamoDB 的更多信息。
+你可以在[AWS文档](https://aws.amazon.com/dynamodb/details/)上了解有关DynamoDB的更多信息。
 
-让我们安装DynamoDB 的本地实例以避免产生运行实时实例的成本。
+让我们**安装DynamoDB的本地实例**以避免产生运行实时实例的成本。
 
-对于开发，在本地运行 DynamoDB 比在 AWS 上运行更有意义；本地实例将作为可执行 JAR 文件运行。
+对于开发，在本地运行DynamoDB比在AWS上运行更有意义；本地实例将作为可执行JAR文件运行。
 
-你可以在此处找到有关如何在[本地运行 DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html)的说明。
+你可以在此处找到有关如何在[本地运行DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html)的说明。
 
-## 3.Maven依赖
+## 3. Maven依赖
 
-添加以下依赖项以开始使用 Spring Data 使用 DynamoDB：
+添加以下依赖项以开始使用Spring Data使用DynamoDB：
 
--   [春季数据 JPA](https://search.maven.org/classic/#search|ga|1|g%3A"org.springframework.data" AND a%3A"spring-data-releasetrain")
--   [AWS Java 开发工具包 DynamoDB](https://search.maven.org/classic/#search|ga|1|g%3A"com.amazonaws" AND a%3A"aws-java-sdk-dynamodb")
--   [Spring Data DynamoDB 社区模块](https://search.maven.org/classic/#search|ga|1|g%3A"com.github.derjust" AND a%3A"spring-data-dynamodb")
+- [Spring Data JPA](https://central.sonatype.com/artifact/org.springframework.data/spring-data-releasetrain/1.4.6.RELEASE)
+- [AWS Java开发工具包DynamoDB](https://central.sonatype.com/artifact/com.amazonaws/aws-java-sdk-dynamodb/1.12.421)
+- [Spring Data DynamoDB社区模块](https://central.sonatype.com/artifact/com.github.derjust/spring-data-dynamodb/5.1.0)
 
 ```xml
 <dependencyManagement>
     <dependencies>
-    <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-releasetrain</artifactId>
-        <version>Lovelace-SR16</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-releasetrain</artifactId>
+            <version>Lovelace-SR16</version>
+            <type>pom</type>
+            <scope>import</scope>
         </dependency>
     </dependencies>
 </dependencyManagement>
@@ -51,27 +51,26 @@ DynamoDB 是 AWS 上完全托管的托管 NoSQL 数据库，类似于其他 NoSQ
 
 ```
 
-查看 [Spring Data Release Train](https://mvnrepository.com/artifact/org.springframework.data/spring-data-releasetrain)、 [AWS Java SDK For Amazon DynamoDB](https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb)和 [Spring Data DynamoDB](https://mvnrepository.com/artifact/com.github.derjust/spring-data-dynamodb) 以获得上述最新版本。
+查看[Spring Data ReleaseTrain](https://mvnrepository.com/artifact/org.springframework.data/spring-data-releasetrain)、[AWS Java SDK For AmazonDynamoDB](https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb)和[Spring Data DynamoDB](https://mvnrepository.com/artifact/com.github.derjust/spring-data-dynamodb)以获得上述最新版本。
 
-## 4.配置
+## 4. 配置
 
 接下来，让我们在application.properties文件中定义以下属性：
 
-```plaintext
+```properties
 amazon.dynamodb.endpoint=http://localhost:8000/
 amazon.aws.accesskey=key
 amazon.aws.secretkey=key2
-
 ```
 
-上面列出的访问和秘密密钥只是你本地配置的任意值。当访问 DynamoDB 的本地实例时，这些字段需要用一些值填充，但不需要实际进行身份验证。
+上面列出的accesskey和secretkey只是你本地配置的任意值。当访问DynamoDB的本地实例时，这些字段需要用一些值填充，但不需要实际进行身份验证。
 
-这些属性将动态地从Spring 配置中的application.properties文件中提取出来：
+这些属性将动态地从**Spring配置**中的application.properties文件中提取出来：
 
 ```java
 @Configuration
 @EnableDynamoDBRepositories
-  (basePackages = "com.baeldung.spring.data.dynamodb.repositories")
+      (basePackages = "cn.tuyucheng.taketoday.spring.data.dynamodb.repositories")
 public class DynamoDBConfig {
 
     @Value("${amazon.dynamodb.endpoint}")
@@ -85,41 +84,40 @@ public class DynamoDBConfig {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-        AmazonDynamoDB amazonDynamoDB 
-          = new AmazonDynamoDBClient(amazonAWSCredentials());
-        
+        AmazonDynamoDB amazonDynamoDB
+              = new AmazonDynamoDBClient(amazonAWSCredentials());
+
         if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
             amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
         }
-        
+
         return amazonDynamoDB;
     }
 
     @Bean
     public AWSCredentials amazonAWSCredentials() {
-        return new BasicAWSCredentials(
-          amazonAWSAccessKey, amazonAWSSecretKey);
+        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
     }
 }
 ```
 
 ## 5. 数据模型
 
-现在让我们创建一个 POJO 模型来表示存储在 DynamoDB 中的数据。
+现在让我们创建一个POJO模型来表示存储在DynamoDB中的数据。
 
-这个 POJO 将使用类似于 Hibernate 中使用的注解来定义表名、属性、键和表的其他方面。
+这个POJO将使用类似于Hibernate中使用的注解来定义表名、属性、键和表的其他方面。
 
-### 5.1. 数据模型属性
+### 5.1 数据模型属性
 
-以下类ProductInfo表示一个包含 3 个属性的项目的表：
+以下类ProductInfo表示一个包含3个属性元素的表：
 
-1.  ID
-2.  建议零售价
-3.  成本
+1. ID
+2. MSRP
+3. Cost
 
-### 5.2. Java 数据模型类
+### 5.2 Java数据模型类
 
-让我们在数据模型文件夹中创建一个名为ProductInfo.java的文件：
+让我们在model文件夹中创建一个名为ProductInfo.java的文件：
 
 ```java
 @DynamoDBTable(tableName = "ProductInfo")
@@ -146,36 +144,33 @@ public class ProductInfo {
 
     // standard setters/constructors
 }
-
 ```
 
-## 6.CRUD 存储库
+## 6. CRUD Repository
 
-接下来，我们需要创建一个ProductRepository接口来定义我们想要构建的 CRUD 功能。用于从 DynamoDB 读取和保存数据的存储库将实现此接口：
+接下来，我们需要创建一个ProductRepository接口来定义我们想要构建的CRUD功能。用于从DynamoDB读取和保存数据的Repository将实现此接口：
 
 ```java
 @EnableScan
-public interface ProductInfoRepository extends 
-  CrudRepository<ProductInfo, String> {
-    
+public interface ProductInfoRepository extends CrudRepository<ProductInfo, String> {
+
     Optional<ProductInfo> findById(String id);
 }
-
 ```
 
-## 七、集成测试
+## 7. 集成测试
 
-接下来，让我们创建一个集成测试，以确保我们可以成功连接到 DynamoDB 的本地实例：
+接下来，让我们创建一个集成测试，以确保我们可以成功连接到DynamoDB的本地实例：
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 @ActiveProfiles("local")
-@TestPropertySource(properties = { 
-  "amazon.dynamodb.endpoint=http://localhost:8000/", 
-  "amazon.aws.accesskey=test1", 
-  "amazon.aws.secretkey=test231" })
+@TestPropertySource(properties = {
+      "amazon.dynamodb.endpoint=http://localhost:8000/",
+      "amazon.aws.accesskey=test1",
+      "amazon.aws.secretkey=test231" })
 public class ProductInfoRepositoryIntegrationTest {
 
     private DynamoDBMapper dynamoDBMapper;
@@ -192,34 +187,32 @@ public class ProductInfoRepositoryIntegrationTest {
     @Before
     public void setup() throws Exception {
         dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB);
-        
+
         CreateTableRequest tableRequest = dynamoDBMapper
-          .generateCreateTableRequest(ProductInfo.class);
+              .generateCreateTableRequest(ProductInfo.class);
         tableRequest.setProvisionedThroughput(
-          new ProvisionedThroughput(1L, 1L));
+              new ProvisionedThroughput(1L, 1L));
         amazonDynamoDB.createTable(tableRequest);
-        
+
         //...
 
-        dynamoDBMapper.batchDelete(
-          (List<ProductInfo>)repository.findAll());
+        dynamoDBMapper.batchDelete((List<ProductInfo>)repository.findAll());
     }
 
     @Test
-    public void givenItemWithExpectedCost_whenRunFindAll_thenItemIsFound() { 
+    public void givenItemWithExpectedCost_whenRunFindAll_thenItemIsFound() {
         ProductInfo productInfo = new ProductInfo(EXPECTED_COST, EXPECTED_PRICE);
-        repository.save(productInfo); 
+        repository.save(productInfo);
         List<ProductInfo> result = (List<ProductInfo>) repository.findAll();
 
         assertThat(result.size(), is(greaterThan(0)));
-        assertThat(result.get(0).getCost(), is(equalTo(EXPECTED_COST))); 
+        assertThat(result.get(0).getCost(), is(equalTo(EXPECTED_COST)));
     }
 }
-
 ```
 
-## 八、总结
+## 8. 总结
 
-我们完成了——我们现在可以从 Spring Boot 应用程序连接到 DynamoDB。
+我们已经完成了-现在我们可以**从Spring Boot应用程序连接到DynamoDB**。
 
-当然，在本地完成测试后，我们应该能够透明地在 AWS 上使用 DynamoDB 的实时实例，并运行部署的代码，只需进行微小的配置更改。
+当然，在本地完成测试后，我们应该能够透明地在AWS上使用DynamoDB的实时实例，并运行部署的代码，只需进行微小的配置更改。

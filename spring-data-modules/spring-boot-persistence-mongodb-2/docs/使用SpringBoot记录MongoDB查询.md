@@ -1,14 +1,14 @@
 ## 1. 概述
 
-在使用[Spring Data MongoDB]()时，我们可能需要记录到比默认级别更高的级别。通常，我们可能需要查看一些附加信息，例如语句执行或查询参数。
+在使用[Spring Data MongoDB](https://www.baeldung.com/spring-data-mongodb-tutorial)时，我们可能需要记录到比默认级别更高的级别。通常，我们可能需要查看一些附加信息，例如语句执行或查询参数。
 
-在这个简短的教程中，我们介绍如何修改查询的MongoDB日志记录级别。
+在这个简短的教程中，我们将了解如何修改查询的MongoDB日志记录级别。
 
 ## 2. 配置MongoDB查询日志记录
 
 [MongoDB Support](https://docs.spring.io/spring-data/mongodb/docs/3.3.1/reference/html/#introduction)提供了[MongoOperations](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/MongoOperations.html)接口或其主要的[MongoTemplate](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/MongoTemplate.html)实现来访问数据，因此我们只需要为MongoTemplate类配置debug级别。
 
-**与任何Spring或Java应用程序一样，我们可以使用[日志库]()并为MongoTemplate定义日志记录级别**。
+**与任何Spring或Java应用程序一样，我们可以使用[日志库](https://www.baeldung.com/logback)并为MongoTemplate定义日志记录级别**。
 
 通常，我们可以在配置文件中写入如下内容：
 
@@ -16,13 +16,13 @@
 <logger name="org.springframework.data.mongodb.core.MongoTemplate" level="DEBUG" />
 ```
 
-**但是，如果我们运行的是[Spring Boot]()应用程序，那么我们可以在application.properties文件中进行配置**：
+**但是，如果我们运行的是[Spring Boot](https://www.baeldung.com/spring-boot)应用程序，那么我们可以在application.properties文件中进行配置**：
 
 ```properties
 logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG
 ```
 
-同样，我们也可以使用YAML语法：
+同样，我们可以使用YAML语法：
 
 ```yaml
 logging:
@@ -37,7 +37,7 @@ logging:
 
 ## 3. 日志测试类
 
-首先，我们创建一个Book类：
+首先，让我们创建一个Book类：
 
 ```java
 @Document(collection = "book")
@@ -52,7 +52,9 @@ public class Book {
 }
 ```
 
-**我们想创建一个简单的测试类并检查日志。为了演示这一点，我们使用[嵌入式MongoDB]()**：
+我们希望创建一个简单的测试类并检查日志。
+
+**为了演示这一点，我们使用[嵌入式MongoDB](https://www.baeldung.com/spring-boot-embedded-mongodb)**：
 
 ```xml
 <dependency>
@@ -67,7 +69,7 @@ public class Book {
 </dependency>
 ```
 
-最后，我们使用[Spring Boot Test]()定义我们的测试类：
+最后，让我们使用[Spring Boot Test](https://www.baeldung.com/spring-boot-testing)定义我们的测试类：
 
 ```java
 @SpringBootTest
@@ -90,27 +92,27 @@ class LoggingUnitTest {
         int port = 27017;
 
         ImmutableMongodConfig mongodbConfig = MongodConfig.builder()
-                .version(Version.Main.PRODUCTION)
-                .net(new Net(ip, port, Network.localhostIsIPv6()))
-                .build();
+              .version(Version.Main.PRODUCTION)
+              .net(new Net(ip, port, Network.localhostIsIPv6()))
+              .build();
 
         MongodStarter starter = MongodStarter.getDefaultInstance();
         mongodExecutable = starter.prepare(mongodbConfig);
         mongodExecutable.start();
         mongoTemplate = new MongoTemplate(MongoClients.create(String.format(CONNECTION_STRING, ip, port)), "test");
     }
-    
+
     // tests
 }
 ```
 
-## 4. 日志样本
+## 4. 日志示例
 
 在本节中，我们将定义一些简单的测试用例并显示相关日志以测试最常见的场景，例如查找、插入、更新或聚合Document。
 
 ### 4.1 插入
 
-首先，我们介绍插入单个文档：
+首先，让我们从插入单个文档开始：
 
 ```java
 Book book = new Book();
@@ -154,7 +156,7 @@ mongoTemplate.updateFirst(query(where("bookName").is("Book")), update("authorNam
 
 ### 4.3 批量插入
 
-下面是一个批量插入的例子：
+让我们添加一个批量插入的示例：
 
 ```java
 Book book = new Book();
@@ -196,7 +198,7 @@ mongoTemplate.remove(book);
 
 ### 4.5 聚合
 
-下面是一个[聚合]()的例子。在这种情况下，我们需要定义一个结果类。例如，我们将按作者姓名进行聚合：
+让我们看一个[聚合](https://www.baeldung.com/spring-data-mongodb-projections-aggregations)的例子。在这种情况下，我们需要定义一个结果类。例如，我们将按作者姓名进行聚合：
 
 ```java
 public class GroupByAuthor {
@@ -209,7 +211,7 @@ public class GroupByAuthor {
 }
 ```
 
-接下来，我们定义一个用于分组的测试用例：
+接下来，让我们定义一个用于分组的测试用例：
 
 ```java
 Book book = new Book();
@@ -243,4 +245,6 @@ AggregationResults<GroupByAuthor> aggregationResults = mongoTemplate.aggregate(a
 
 ## 5. 总结
 
-在本文中，我们介绍了如何为Spring Data MongoDB启用debug日志记录级别。然后定义了一些常见的查询场景，并通过运行一些实时测试查看了它们的相关日志。
+在本文中，我们研究了如何为Spring Data MongoDB启用debug日志记录级别。
+
+我们定义了一些常见的查询方案，并通过运行一些实时测试查看了它们的相关日志。
