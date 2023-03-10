@@ -25,7 +25,7 @@
         <module>spring-data-arangodb</module>
         <module>spring-data-cassandra-1</module>
         <module>spring-data-cassandra-2</module>
-        <module>spring-data-cassandra-reactive</module>
+        <!--<module>spring-data-cassandra-reactive</module>--> <!-- Long time running -->
         <module>spring-data-cassandra-test</module>
         <module>spring-data-cosmosdb</module>
         <module>spring-data-couchbase</module>

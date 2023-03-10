@@ -84,10 +84,10 @@
     </build>
 
     <properties>
-        <spring-boot-version>2.7.5</spring-boot-version>
+		<spring-boot-version>2.1.9.RELEASE</spring-boot-version>
         <start-class>cn.tuyucheng.taketoday.springdatageode.app.ClientCacheApp</start-class>
-        <spring-geode-starter-version>1.7.5</spring-geode-starter-version>
-        <spring.boot.starter.version>2.7.5</spring.boot.starter.version>
-        <maven-apt-plugin.version>1.0</maven-apt-plugin.version>
+		<spring-geode-starter-version>1.1.1.RELEASE</spring-geode-starter-version>
+		<spring.boot.starter.version>2.1.9.RELEASE</spring.boot.starter.version>
+		<maven-apt-plugin.version>1.0</maven-apt-plugin.version>
     </properties>
 </project>

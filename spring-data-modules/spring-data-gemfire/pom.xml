@@ -49,6 +49,41 @@
         </dependency>
     </dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+				<version>${maven-toolchains-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>toolchain</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<toolchains>
+						<jdk>
+							<version>${toolchains.java.version}</version>
+						</jdk>
+					</toolchains>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<showDeprecation>true</showDeprecation>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
     <repositories>
         <repository>
             <id>gemstone</id>
@@ -57,10 +92,14 @@
     </repositories>
 
     <properties>
+		<toolchains.java.version>8</toolchains.java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
         <spring-data-gemfire-version>1.7.4.RELEASE</spring-data-gemfire-version>
         <gemfire-version>7.0.1</gemfire-version>
         <google-collections-version>1.0</google-collections-version>
-        <spring-context-version>5.3.23</spring-context-version>
-        <spring-test-version>5.3.23</spring-test-version>
+		<spring-context-version>4.3.0.RELEASE</spring-context-version>
+		<spring-test-version>4.3.0.RELEASE</spring-test-version>
     </properties>
 </project>
