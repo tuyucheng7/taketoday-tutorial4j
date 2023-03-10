@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.db.indexing;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -54,7 +53,6 @@ class FileSystemImageIntegrationTest {
 	}
 
 	@Test
-	@Disabled("fails test execution")
 	void givenTuyuchengImage_whenDownloadIt_thenReturnTheImage() throws Exception {
 		given(fileLocationService.find(1L)).willReturn(tuyuchengJpegResource());
 

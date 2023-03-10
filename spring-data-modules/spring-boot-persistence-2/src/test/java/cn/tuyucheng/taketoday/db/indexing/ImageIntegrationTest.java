@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.db.indexing;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -49,7 +48,6 @@ class ImageIntegrationTest {
 	}
 
 	@Test
-	@Disabled("fails test execution")
 	void givenExistingImage_whenDownloadIt_thenReturnHttpStatusOk() throws Exception {
 		given(imageRepository.findById(1L))
 			.willReturn(Optional.of(tuyuchengImage()));

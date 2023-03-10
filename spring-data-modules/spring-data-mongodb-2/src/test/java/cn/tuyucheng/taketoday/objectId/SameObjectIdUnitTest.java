@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.nio.ByteBuffer;
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SameObjectIdUnitTest {
 
 	@Test

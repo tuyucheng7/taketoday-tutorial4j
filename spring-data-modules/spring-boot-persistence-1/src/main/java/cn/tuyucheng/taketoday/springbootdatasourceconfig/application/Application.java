@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.springbootdatasourceconfig.application;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import cn.tuyucheng.taketoday.springbootdatasourceconfig.application.entities.User;
 import cn.tuyucheng.taketoday.springbootdatasourceconfig.application.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -9,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-@ExcludeFromJacocoGeneratedReport
 public class Application {
 
 	public static void main(String[] args) {
