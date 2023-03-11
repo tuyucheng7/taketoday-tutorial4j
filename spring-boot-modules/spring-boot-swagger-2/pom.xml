@@ -83,6 +83,7 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/static/event.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/static/account_api_description.yaml</inputSpec>
 							<language>spring</language>
 							<configOptions>
 								<java8>true</java8>
