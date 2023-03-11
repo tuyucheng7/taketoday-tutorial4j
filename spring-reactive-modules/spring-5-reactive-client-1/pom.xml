@@ -132,7 +132,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.baeldung.Spring5Application</mainClass>
+					<mainClass>cn.tuyucheng.taketoday.Spring5Application</mainClass>
 					<layout>JAR</layout>
 				</configuration>
 			</plugin>
