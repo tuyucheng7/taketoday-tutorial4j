@@ -2,11 +2,12 @@ package cn.tuyucheng.taketoday.reactive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 
-@SpringBootApplication
-public class Spring5ReactiveApplication{
+@SpringBootApplication(exclude = {RedisAutoConfiguration.class})
+public class Spring5ReactiveApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Spring5ReactiveApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Spring5ReactiveApplication.class, args);
+	}
 }
