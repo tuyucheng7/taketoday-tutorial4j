@@ -14,6 +14,7 @@
     </parent>
 
     <modules>
+		<module>spring-boot-mysql</module>
         <module>spring-boot-persistence-1</module>
         <module>spring-boot-persistence-2</module>
         <module>spring-boot-persistence-3</module>
@@ -31,7 +32,7 @@
         <module>spring-data-couchbase</module>
         <module>spring-data-dynamodb</module>
         <module>spring-data-elasticsearch</module>
-        <module>spring-data-gemfire</module>
+        <!--<module>spring-data-gemfire</module>--> <!-- repository is unavailable -->
         <module>spring-data-geode</module>
         <module>spring-data-jdbc</module>
         <module>spring-data-jooq</module>
