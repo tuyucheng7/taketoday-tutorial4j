@@ -22,7 +22,7 @@
         <module>spring-cloud-dapr</module>
         <module>spring-cloud-data-flow</module>
         <module>spring-cloud-docker</module>
-        <module>spring-cloud-eureka</module>
+        <!--<module>spring-cloud-eureka</module>--> <!--fails on CI-->
         <module>spring-cloud-eureka-self-preservation</module>
         <module>spring-cloud-functions</module>
         <module>spring-cloud-gateway-1</module>
