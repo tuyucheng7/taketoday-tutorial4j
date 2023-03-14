@@ -12,7 +12,7 @@
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>parent-java</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../parent-java</relativePath>
+		<relativePath>../../parent-java/pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
@@ -22,7 +22,7 @@
 			<version>${tools.version}</version>
 			<scope>system</scope>
 			<!-- set JAVA_8 env variable on your machine to point to the JDK 8 directory  -->
-			<systemPath>${env.JAVA_8}/lib/tools.jar</systemPath>
+			<systemPath>../../../../../develop-tools/jdk-8/lib/tools.jar</systemPath>
 		</dependency>
 	</dependencies>
 

@@ -598,13 +598,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
-				<!--<module>java-blockchain</module>-->
-				<module>java-core-modules</module>
-				<!--<module>java-jdi</module>-->
-				<!--<module>java-native</module>-->
-				<!--<module>java-rmi</module>-->
-				<!--<module>java-spi</module>-->
+				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
@@ -768,7 +762,6 @@
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
@@ -863,13 +856,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
-				<!--<module>java-blockchain</module>-->
-				<module>java-core-modules</module>
-				<!--<module>java-jdi</module>-->
-				<!--<module>java-native</module>-->
-				<!--<module>java-rmi</module>-->
-				<!--<module>java-spi</module>-->
+				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
@@ -1021,7 +1008,6 @@
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
@@ -1094,13 +1080,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
-				<!--<module>java-blockchain</module>-->
-				<module>java-core-modules</module>
-				<!--<module>java-jdi</module>-->
-				<!--<module>java-native</module>-->
-				<!--<module>java-rmi</module>-->
-				<!--<module>java-spi</module>-->
+				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
@@ -1208,7 +1188,6 @@
 				<module>parent-java</module>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->

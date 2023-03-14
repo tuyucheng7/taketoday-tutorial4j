@@ -13,7 +13,7 @@
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>parent-java</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../parent-java</relativePath>
+		<relativePath>../../parent-java/pom.xml</relativePath>
 	</parent>
 
 	<build>
