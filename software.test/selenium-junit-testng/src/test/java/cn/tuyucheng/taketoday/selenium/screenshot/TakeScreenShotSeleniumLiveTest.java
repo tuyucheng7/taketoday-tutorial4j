@@ -1,14 +1,5 @@
 package cn.tuyucheng.taketoday.selenium.screenshot;
 
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
-import javax.imageio.ImageIO;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -18,11 +9,17 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import ru.yandex.qatools.ashot.AShot;
+import org.openqa.selenium.chrome.ChromeOptions;import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+
+import static org.junit.Assert.assertTrue;
 
 public class TakeScreenShotSeleniumLiveTest {
 
@@ -30,9 +27,11 @@ public class TakeScreenShotSeleniumLiveTest {
 
     @BeforeClass
     public static void setUp() {
-        System.setProperty("webdriver.chrome.driver", resolveResourcePath("chromedriver.mac"));
+        System.setProperty("webdriver.chrome.driver", resolveResourcePath("chromedriver.exe"));
 
-        driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
         driver.manage()
             .timeouts()
             .implicitlyWait(Duration.ofSeconds(5));

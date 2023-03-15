@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * Base class for Selenium Tests. This class handles the WebDriver setup and configuration.
@@ -18,7 +19,10 @@ public class SeleniumTestBase {
 
     private static void setupChromeDriver() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+
+        driver = new ChromeDriver(options);
         options();
         tabHelper = new TabHelper(driver);
     }

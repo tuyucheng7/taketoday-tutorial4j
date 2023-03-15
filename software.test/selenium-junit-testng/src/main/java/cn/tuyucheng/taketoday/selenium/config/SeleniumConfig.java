@@ -1,26 +1,27 @@
 package cn.tuyucheng.taketoday.selenium.config;
 
-import java.io.File;
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.io.File;
+import java.time.Duration;
 
 public class SeleniumConfig {
 
     private WebDriver driver;
 
     public SeleniumConfig() {
-        driver = new FirefoxDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
         driver.manage()
             .timeouts()
             .implicitlyWait(Duration.ofSeconds(5));
     }
 
     static {
-        System.setProperty("webdriver.gecko.driver", findFile("geckodriver.mac"));
+        System.setProperty("webdriver.chrome.driver", findFile("chromedriver.exe"));
     }
 
     private static String findFile(String filename) {
@@ -46,6 +47,6 @@ public class SeleniumConfig {
     }
 
     public WebDriver getDriver() {
-        return driver;
+		return driver;
     }
 }

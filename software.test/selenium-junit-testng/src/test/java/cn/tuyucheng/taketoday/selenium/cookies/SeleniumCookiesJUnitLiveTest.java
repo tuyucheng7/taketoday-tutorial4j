@@ -1,5 +1,16 @@
 package cn.tuyucheng.taketoday.selenium.cookies;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.io.File;
+import java.time.Duration;
+import java.util.Set;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
@@ -8,18 +19,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 
-import java.io.File;
-import java.time.Duration;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
 public class SeleniumCookiesJUnitLiveTest {
 
     private WebDriver driver;
@@ -27,9 +26,11 @@ public class SeleniumCookiesJUnitLiveTest {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", findFile("geckodriver.mac"));
+        System.setProperty("webdriver.chrome.driver", findFile("chromedriver.exe"));
 
-        driver = new FirefoxDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
         navUrl = "https://baeldung.com";
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
