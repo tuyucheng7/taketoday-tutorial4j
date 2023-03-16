@@ -690,7 +690,6 @@
 			<modules>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<module>parent-java</module>
@@ -942,7 +941,6 @@
 			<modules>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<module>parent-java</module>
@@ -1144,7 +1142,6 @@
 			<modules>
 				<module>custom-pmd</module>
 				<module>jacoco-aggregate-report</module>
-				<module>jacoco-exclude-annotations</module>
 				<module>parent-boot-1</module>
 				<module>parent-boot-2</module>
 				<module>parent-java</module>
