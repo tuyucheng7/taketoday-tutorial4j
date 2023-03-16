@@ -1,10 +1,10 @@
 ## 1. 概述
 
-在本文中，我们将使用新的Spring 5 WebSockets API以及Spring WebFlux提供的响应式特性编写一个案例程序。
+在本文中，我们将使用新的Spring 5 WebSockets API以及Spring WebFlux提供的响应式功能创建一个快速示例。
 
-WebSocket是一种可以实现客户端和服务器之间的全双工通信的协议，通常用于客户端和服务器需要以高频率和低延迟交换事件的Web应用程序。
+WebSocket是一种众所周知的协议，可以实现客户端和服务器之间的全双工通信，通常用于客户端和服务器需要以高频率和低延迟交换事件的Web应用程序。
 
-Spring 5对框架中的WebSockets支持进行了现代化改造，为该通信通道添加了响应式功能。
+Spring 5在框架中对WebSockets支持进行了现代化改造，为该通信通道添加了响应式功能。
 
 我们可以在[此处](https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html)找到有关Spring WebFlux的更多信息。
 
@@ -27,7 +27,7 @@ Spring 5对框架中的WebSockets支持进行了现代化改造，为该通信�
 
 ## 3. Spring中的WebSocket配置
 
-我们的配置非常简单：只需要注入WebSocketHandler来处理Spring WebSocket应用程序中的套接字会话。
+我们的配置非常简单：我们将注入WebSocketHandler来处理Spring WebSocket应用程序中的套接字会话。
 
 ```java
 @Configuration
@@ -38,25 +38,22 @@ public class ReactiveWebSocketConfiguration {
 }
 ```
 
-此外，让我们创建一个返回HandlerMapping bean的方法，该方法负责请求和处理程序对象之间的映射：
+此外，让我们创建一个HandlerMapping bean注解方法，该方法负责请求和处理程序对象之间的映射：
 
 ```java
-public class ReactiveWebSocketConfiguration {
+@Bean
+public HandlerMapping webSocketHandlerMapping() {
+    Map<String, WebSocketHandler> map = new HashMap<>();
+    map.put("/event-emitter", webSocketHandler);
 
-    @Bean
-    public HandlerMapping webSocketHandlerMapping() {
-        Map<String, WebSocketHandler> map = new HashMap<>();
-        map.put("/event-emitter", webSocketHandler);
-
-        SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
-        handlerMapping.setOrder(1);
-        handlerMapping.setUrlMap(map);
-        return handlerMapping;
-    }
+    SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
+    handlerMapping.setOrder(1);
+    handlerMapping.setUrlMap(map);
+    return handlerMapping;
 }
 ```
 
-我们可以访问的URL是：ws://localhost:<port\>/event-emitter。
+我们可以连接到的URL是：ws://localhost:<port>/event-emitter。
 
 ## 4. Spring中的WebSocket消息处理
 
@@ -80,12 +77,12 @@ public class ReactiveWebSocketHandler implements WebSocketHandler {
     });
 
     private final Flux<String> intervalFlux = Flux.interval(Duration.ofMillis(1000L))
-            .zipWith(eventFlux, (time, event) -> event);
+          .zipWith(eventFlux, (time, event) -> event);
 
     @Override
     public Mono<Void> handle(WebSocketSession session) {
         return session.send(intervalFlux.map(session::textMessage))
-                .and(session.receive().map(WebSocketMessage::getPayloadAsText).log());
+              .and(session.receive().map(WebSocketMessage::getPayloadAsText).log());
     }
 }
 ```
@@ -118,24 +115,24 @@ public class ReactiveJavaClientWebSocket {
 
         WebSocketClient client = new ReactorNettyWebSocketClient();
         client.execute(URI.create("ws://localhost:8080/event-emitter"),
-                        session -> session.send(
-                                        Mono.just(session.textMessage("event-spring-reactive-client-websocket")))
-                                .thenMany(session.receive()
-                                        .map(WebSocketMessage::getPayloadAsText)
-                                        .log())
-                                .then())
-                .block(Duration.ofSeconds(10L));
+                    session -> session.send(
+                                Mono.just(session.textMessage("event-spring-reactive-client-websocket")))
+                          .thenMany(session.receive()
+                                .map(WebSocketMessage::getPayloadAsText)
+                                .log())
+                          .then())
+              .block(Duration.ofSeconds(10L));
     }
 }
 ```
 
-在上面的代码中，我们可以看到我们使用的是ReactorNettyWebSocketClient，它是与Reactor Netty一起使用的WebSocketClient实现。
+在上面的代码中，我们可以看到我们使用的是ReactorNettyWebSocketClient，这是与Reactor Netty一起使用的WebSocketClient实现。
 
-此外，客户端通过URL ws://localhost:8080/event-emitter连接到WebSocket服务器，并在连接到服务器后立即建立会话。
+此外，客户端通过URL ws://localhost:8080/event-emitter连接到WebSocket服务器，在连接到服务器后立即建立会话。
 
-我们还可以看到，我们向服务器发送一条消息("event-spring-reactive-client-websocket")以及连接请求。
+我们还可以看到，我们正在向服务器发送一条消息("event-spring-reactive-client-websocket")以及连接请求。
 
-此外，调用send方法时，将Publisher<T\>类型的变量作为参数，在我们的例子中，Publisher<T\>是Mono<T\>，T是一个简单的字符串“event-me-from-reactive-java-client-websocket“。
+此外，方法send被调用，期望将Publisher<T\>类型的变量作为参数，在我们的例子中，Publisher<T\>是Mono<T\>，T是一个简单的字符串“event-me-from-reactive-java-client-websocket“。
 
 然后，调用了期望类型为String的Flux的thenMany(...)方法。receive()方法获取传入消息的Flux，然后将其转换为字符串。
 
@@ -143,31 +140,30 @@ public class ReactiveJavaClientWebSocket {
 
 ### 5.3 启动客户端
 
-要运行它，请首先确保响应式WebSocket服务器已启动并正在运行。
-然后，启动ReactiveJavaClientWebSocket类，我们可以在日志中看到正在发出的事件：
+要运行它，请确保响应式WebSocket服务器已启动并正在运行。然后，启动ReactiveJavaClientWebSocket类，我们可以在日志中看到正在发出的事件：
 
-```bash
+```shell
 [reactor-http-nio-4] INFO reactor.Flux.Map.1 - 
 onNext({"eventId":"6042b94f-fd02-47a1-911d-dacf97f12ba6",
 "eventDt":"2022-09-16T21:29:26.900"})
 ```
 
-我们还可以在Reactive WebSocket服务器的日志中看到客户端在连接尝试期间发送的消息：
+我们还可以在响应式WebSocket服务器的日志中看到客户端在连接尝试期间发送的消息：
 
-```bash
+```shell
 [reactor-http-nio-2] reactor.Flux.Map.1: 
 onNext(event-me-from-reactive-java-client)
 ```
 
 此外，我们可以在客户端完成其请求后看到终止连接的消息(在我们的例子中，为10秒之后)：
 
-```bash
+```shell
 [reactor-http-nio-2] reactor.Flux.Map.1: onComplete()
 ```
 
 ## 6. 浏览器WebSocket客户端
 
-让我们创建一个简单的HTML/Javascript客户端WebSocket来消费我们的响应式WebSocket服务器应用程序。
+让我们创建一个简单的HTML/Javascript客户端WebSocket来使用我们的响应式WebSocket服务器应用程序。
 
 ```html
 <!DOCTYPE html>
@@ -207,9 +203,9 @@ onNext(event-me-from-reactive-java-client)
 </html>
 ```
 
-随着WebSocket服务器运行，在浏览器中打开这个HTML文件(例如：Chrome、Internet Explorer、Mozilla Firefox等)，我们应该看到正在屏幕上打印的事件，每个事件延迟1秒。
+在WebSocket服务器运行的情况下，在浏览器(例如：Chrome、Internet Explorer、Mozilla Firefox等)中打开这个HTML文件，我们应该看到屏幕上打印的事件，每个事件延迟1秒，如WebSocket服务器所定义。
 
-```bash
+```shell
 {"eventId":"c25975de-6775-4b0b-b974-b396847878e6","eventDt":"2022-09-16T21:56:09.780"}
 {"eventId":"ac74170b-1f71-49d3-8737-b3f9a8a352f9","eventDt":"2022-09-16T21:56:09.781"}
 {"eventId":"40d8f305-f252-4c14-86d7-ed134d3e10c6","eventDt":"2022-09-16T21:56:09.782"}
@@ -217,4 +213,4 @@ onNext(event-me-from-reactive-java-client)
 
 ## 7. 总结
 
-在本文中，我们编写了一个示例，说明如何使用Spring 5框架在服务器和客户端之间创建WebSocket通信，实现Spring Webflux提供的响应式特性。
+在这里，我们展示了一个示例，说明如何使用Spring 5框架在服务器和客户端之间创建WebSocket通信，实现Spring Webflux提供的新响应式功能。

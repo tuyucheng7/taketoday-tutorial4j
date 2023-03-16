@@ -1,16 +1,18 @@
 ## 1. 概述
 
-在本教程中，我们介绍如何使用[EasyRandom](https://github.com/j-easy/easy-random)库生成Java对象。
+在本教程中，我们将介绍如何使用[EasyRandom](https://github.com/j-easy/easy-random)库生成Java对象。
 
 ## 2. EasyRandom
 
 在某些情况下，我们需要一组用于测试目的的模型对象。或者，我们想用一些我们将要使用的数据来填充我们的测试数据库。然后，也许我们想要收集一些虚拟DTO来返回给我们的客户端。
 
-如果它们不复杂，设置一个、两个或几个这样的对象可能很容易。然而，在某些情况下，我们可能会需要数百个，这就变得很难以管理。这就是[EasyRandom](https://github.com/j-easy/easy-random)的作用。**EasyRandom是一个易于使用的库，几乎不需要任何设置，只需绕过类类型，它将为我们实例化整个对象图**。
+如果它们不复杂，设置一个、两个或几个这样的对象可能很容易。然而，在某些情况下，我们可能会需要数百个，这就变得很难以管理。
+
+这就是[EasyRandom](https://github.com/j-easy/easy-random)的作用。**EasyRandom是一个易于使用的库，几乎不需要任何设置，只需绕过类类型，它将为我们实例化整个对象图**。
 
 ## 3. Maven依赖
 
-首先，我们将[easy-random-core](https://mvnrepository.com/artifact/org.jeasy/easy-random-core/4.0.0) Maven依赖项添加到我们的pom.xml中：
+首先，让我们将[easy-random-core](https://central.sonatype.com/artifact/org.jeasy/easy-random-core/5.0.0) Maven依赖项添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -25,13 +27,13 @@
 该库中最重要的两个类是：
 
 -   用于生成对象的EasyRandom
--   以及允许我们配置生成过程并使其更可预测的EasyRandomParameters。
+-   以及允许我们配置生成过程并使其更可预测的EasyRandomParameters
 
 ### 4.1 单个对象
 
 我们的第一个示例生成一个简单的随机Person对象，该对象没有嵌套对象属性、集合属性，只有一个Integer和两个Strings属性。
 
-**下面我们使用nextObject(Class<T\> t)生成Person对象的一个实例**：
+让我们**使用nextObject(Class<T\> t)生成Person对象的一个实例**：
 
 ```java
 @Test
@@ -51,7 +53,7 @@ void givenDefaultConfiguration_thenGenerateSingleObject() {
 Person[firstName='eOMtThyhVNLWUZNRcBaQKxI', lastName='yedUsFwdkelQbxeTeQOvaScfqIOOmaa', age=-1188957731]
 ```
 
-正如我们所看到的，生成的字符串可能有点太长，而且年龄是负数。我们会在后面的部分演示如何调整这一点。
+正如我们所看到的，生成的字符串可能有点太长，而且年龄是负数。我们将在后续部分中展示如何调整这一点。
 
 ### 4.2 对象集合
 
@@ -59,14 +61,14 @@ Person[firstName='eOMtThyhVNLWUZNRcBaQKxI', lastName='yedUsFwdkelQbxeTeQOvaScfqI
 
 有一个好处是，它返回对象流，因此最终，**我们可以根据需要向其添加中间操作或分组**。
 
-下面是一个生成五个Person实例的例子：
+以下是一个生成五个Person实例的例子：
 
 ```java
 @Test
 void givenDefaultConfiguration_thenGenerateObjectsList() {
     EasyRandom generator = new EasyRandom();
     List<Person> persons = generator.objects(Person.class, 5)
-            .toList();
+        .toList();
     
     assertEquals(5, persons.size());
 }
@@ -74,7 +76,7 @@ void givenDefaultConfiguration_thenGenerateObjectsList() {
 
 ### 4.3 复杂对象生成
 
-下面，看看我们的Employee类：
+让我们来看看我们的Employee类：
 
 ```java
 public class Employee {
@@ -87,15 +89,17 @@ public class Employee {
 }
 ```
 
-这个类比较复杂，它有一个嵌套对象、一个集合和一个Map。
+这个类相对复杂，它有一个嵌套对象、一个集合和一个Map。
 
-现在，默认情况下，**集合生成范围是从1到100**，因此我们的Collection<Employee\>大小将介于两者之间。一个好处是，**对象将被缓存和重用**，因此不一定都是唯一的。不过，我们可能不需要这么多。
+现在，默认情况下，**集合生成范围为1到100**，因此我们的Collection<Employee\>大小将介于两者之间。
 
-我们很快就会介绍如何调整集合的范围，但首先，让我们看看我们可能遇到的另一个问题。
+一个好处是，**对象将被缓存和重用**，因此不一定都是唯一的。不过，我们可能不需要这么多。
+
+我们很快就会了解如何调整集合的范围，但首先，让我们看看我们可能会遇到的另一个问题。
 
 在我们的域类中，我们有一个YearQuarter，它代表一年的四分之一。
 
-将endDate设置为正好指向开始日期后3个月有一些逻辑：
+将endDate设置为正好指向startDate后3个月有一些逻辑：
 
 ```java
 public class YearQuarter {
@@ -114,17 +118,21 @@ public class YearQuarter {
 }
 ```
 
-我们必须注意，**EasyRandom使用反射来构造我们的对象**，因此通过库生成此对象将导致数据很可能对我们没有用处，因为我们的3个月限制根本不会被保留。
+我们必须注意，**EasyRandom使用反射来构建我们的对象**，因此通过库生成此对象将导致数据很可能对我们没有用，因为我们的3个月限制根本不会被保留。
 
-让我们看看如何解决这个问题。
+让我们来看看如何解决这个问题。
 
 ### 4.4 生成配置
 
 在下面的配置中，我们**通过EasyRandomParameters提供我们的自定义配置**。
 
-首先，我们明确说明我们想要的字符串长度和集合大小。接下来，我们从生成中排除一些字段，假设我们有理由只包含空值。在这里，我们使用了方便的FieldPredicates工具类来链接排除谓词。之后，我们通过另一个方便的TypePredicates工具类从“not.existing.pkg” Java包中排除所有内容。
+首先，我们明确说明我们想要的字符串长度和集合大小。接下来，我们从生成中排除一些字段，假设我们有理由只包含空值。
 
-最后，正如所承诺的，**我们通过应用我们的自定义YearQuarterRandomizer来解决YearQuarter类的startDate和endDate生成问题**：
+在这里，我们使用了方便的FieldPredicates工具类来链接排除谓词。
+
+之后，我们通过另一个方便的TypePredicates工具类从“not.existing.pkg” Java包中排除所有内容。
+
+最后，正如承诺的那样，**我们通过应用我们的自定义YearQuarterRandomizer来解决YearQuarter类的startDate和endDate生成问题**：
 
 ```java
 @Test

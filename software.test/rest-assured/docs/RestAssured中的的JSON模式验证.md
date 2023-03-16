@@ -1,12 +1,16 @@
 ## 1. 概述
 
-REST-assured库提供对测试REST API的支持，通常采用JSON格式。有时可能需要在不详细分析响应的情况下首先了解JSON主体是否符合某种JSON格式。
+Rest-Assured库提供对测试REST API的支持，通常采用JSON格式。
 
-在本快速教程中，**我们介绍如何根据预定义的JSON模式验证JSON响应**。
+有时可能需要在不详细分析响应的情况下首先了解JSON主体是否符合某种JSON格式。
+
+在本快速教程中，**我们将了解如何根据预定义的JSON模式验证JSON响应**。
 
 ## 2. 设置
 
-除了rest-assured依赖，另外我们还需要在pom.xml文件中包含json-schema-validator模块：
+初始的Rest-Assured设置与我们[之前的文章](https://www.baeldung.com/rest-assured-tutorial)相同。
+
+另外，我们还需要在pom.xml文件中包含json-schema-validator模块：
 
 ```xml
 <dependency>
@@ -16,6 +20,8 @@ REST-assured库提供对测试REST API的支持，通常采用JSON格式。有�
     <scope>test</scope>
 </dependency>
 ```
+
+为确保你拥有最新版本，请点击[此链接](https://central.sonatype.com/artifact/io.rest-assured/json-schema-validator/5.3.0)。
 
 ## 3. JSON模式验证
 
@@ -48,9 +54,9 @@ REST-assured库提供对测试REST API的支持，通常采用JSON格式。有�
 @Test
 void givenUrl_whenJsonResponseConformsToSchema_thenCorrect() {
 	get("/events?id=390")
-			.then()
-			.assertThat()
-			.body(matchesJsonSchemaInClasspath("event_0.json"));
+	    .then()
+	    .assertThat()
+	    .body(matchesJsonSchemaInClasspath("event_0.json"));
 }
 ```
 
@@ -60,7 +66,7 @@ void givenUrl_whenJsonResponseConformsToSchema_thenCorrect() {
 
 ### 4.1 验证响应
 
-REST-assured的json-schema-validator模块使我们能够通过定义自己的自定义配置规则来执行细粒度验证。
+Rest-Assured的json-schema-validator模块使我们能够通过定义自己的自定义配置规则来执行细粒度验证。
 
 假设我们希望我们的验证始终使用JSON模式版本4：
 
@@ -68,16 +74,16 @@ REST-assured的json-schema-validator模块使我们能够通过定义自己的�
 @Test
 void givenUrl_whenValidatesResponseWithInstanceSettings_thenCorrect() {
 	JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory
-			.newBuilder()
-			.setValidationConfiguration(
-					ValidationConfiguration.newBuilder()
-							.setDefaultVersion(SchemaVersion.DRAFTV4)
-							.freeze()).freeze();
+	    .newBuilder()
+	    .setValidationConfiguration(
+	        ValidationConfiguration.newBuilder()
+	            .setDefaultVersion(SchemaVersion.DRAFTV4)
+	            .freeze()).freeze();
 	get("/events?id=390")
-			.then()
-			.assertThat()
-			.body(matchesJsonSchemaInClasspath("event_0.json")
-					.using(jsonSchemaFactory));
+	    .then()
+	    .assertThat()
+	    .body(matchesJsonSchemaInClasspath("event_0.json")
+	        .using(jsonSchemaFactory));
 }
 ```
 
@@ -85,7 +91,7 @@ void givenUrl_whenValidatesResponseWithInstanceSettings_thenCorrect() {
 
 ### 4.2 检查验证
 
-默认情况下，json-schema-validator对JSON响应字符串运行检查验证。这意味着如果架构将赔率定义为数组，如以下JSON所示：
+默认情况下，json-schema-validator对JSON响应字符串运行检查验证。这意味着如果模式将odds定义为数组，如以下JSON所示：
 
 ```json
 {
@@ -114,18 +120,20 @@ io.restassured.module.jsv.JsonSchemaValidatorSettings.settings;
 @Test
 void givenUrl_whenValidatesResponseWithStaticSettings_thenCorrect() {
 	get("/events?id=390")
-			.then()
-			.assertThat()
-			.body(matchesJsonSchemaInClasspath("event_0.json")
-					.using(settings()
-							.with()
-							.checkedValidation(false)));
+	    .then()
+	    .assertThat()
+	    .body(matchesJsonSchemaInClasspath("event_0.json")
+	        .using(settings()
+	            .with()
+	            .checkedValidation(false)));
 }
 ```
 
 ### 4.3 全局验证配置
 
-这些定制非常灵活，但是对于大量的测试，我们必须为每个测试定义一个验证，这很麻烦而且不太容易维护。为避免这种情况，我们可以自由地只定义一次配置并将其应用于所有测试。
+这些自定义非常灵活，但是对于大量的测试，我们必须为每个测试定义一个验证，这很麻烦而且不太容易维护。
+
+为了避免这种情况，**我们可以自由地只定义一次配置并将其应用于所有测试**。
 
 我们将验证配置为未选中并始终针对JSON模式版本3使用它：
 
@@ -141,7 +149,7 @@ JsonSchemaValidator.settings = settings()
     .with().checkedValidation(false);
 ```
 
-然后删除此配置调用重置方法：
+然后，要删除此配置，请调用reset方法：
 
 ```java
 JsonSchemaValidator.reset();
@@ -149,4 +157,4 @@ JsonSchemaValidator.reset();
 
 ## 5. 总结
 
-在本文中，我们演示了如何在使用REST-assured时根据模式验证JSON响应。
+在本文中，我们展示了如何在使用Rest-Assured时根据模式验证JSON响应。

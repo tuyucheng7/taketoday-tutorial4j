@@ -6,9 +6,9 @@
 
 [WebClient](https://www.baeldung.com/spring-5-webclient)是在Spring 5中引入的，可以在调用RESTful服务时用于异步I/O。
 
-## 2. 用例
+## 2. 案例
 
-当对其他服务进行RESTful调用时，应用程序通常使用返回的[状态代码](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)来触发不同的功能。典型的用例包括优雅的错误处理、触发请求重试和确定用户错误。
+当对其他服务进行RESTful调用时，应用程序通常使用返回的[状态代码](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)来触发不同的功能。典型的用例包括**优雅的错误处理、触发请求重试和确定用户错误**。
 
 因此，在进行REST调用时，仅获取响应代码通常是不够的。有时我们也想要响应主体。
 
@@ -16,7 +16,7 @@
 
 ## 3. 使用onStatus
 
-[onStatus](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/WebClient.ResponseSpec.html#onStatus-java.util.function.Predicate-java.util.function.Function-)是一种内置机制，可用于处理WebClient响应。这使我们能够根据特定响应(例如400、500、503等)或状态类别(例如4XX和5XX等)应用细粒度的功能：
+[onStatus](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/WebClient.ResponseSpec.html#onStatus-java.util.function.Predicate-java.util.function.Function-)是一种内置机制，可用于处理WebClient响应。**这使我们能够根据特定响应(例如400、500、503等)或状态类别(例如4XX和5XX等)应用细粒度的功能**：
 
 ```java
 WebClient
@@ -30,11 +30,11 @@ WebClient
         response -> response.bodyToMono(String.class).map(Exception::new))
 ```
 
-onStatus方法需要两个参数。第一个是接受状态代码的谓词。第二个参数的执行基于第一个参数的输出。第二个是将响应映射到Mono或Exception的函数。
+onStatus方法需要两个参数。第一个是接收状态代码的谓词。第二个参数的执行基于第一个参数的输出。第二个是将响应映射到Mono或Exception的函数。
 
 在这种情况下，如果我们看到一个INTERNAL_SERVER_ERROR(即500)，我们将使用bodyToMono获取正文，然后将其映射到一个新的Exception。
 
-我们可以链接onStatus调用，以便能够为不同的状态条件提供功能：
+**我们可以链接onStatus调用**，以便能够为不同的状态条件提供功能：
 
 ```java
 Mono<String> response = WebClient
@@ -49,7 +49,7 @@ Mono<String> response = WebClient
     .onStatus(
         HttpStatus.BAD_REQUEST::equals,
         response -> response.bodyToMono(String.class).map(CustomBadRequestException::new))
-    ... 
+    // ...
     .bodyToMono(String.class);
 
 // do something with response
@@ -59,9 +59,9 @@ Mono<String> response = WebClient
 
 ## 4. 使用ExchangeFilterFunction
 
-[ExchangeFilterFunction](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/ExchangeFilterFunction.html)是另一种处理特定状态代码和获取响应主体的方法。与onStatus不同，exchange过滤器是灵活的，适用于基于任何布尔表达式的过滤器功能。
+[ExchangeFilterFunction](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/ExchangeFilterFunction.html)是另一种处理特定状态代码和获取响应主体的方法。与onStatus不同，ExchangeFilterFunction是灵活的，适用于基于任何布尔表达式的过滤器功能。
 
-我们可以受益于ExchangeFilterFunction的灵活性，它涵盖与onStatus函数相同的类别。
+我们可以受益于ExchangeFilterFunction的灵活性，**它涵盖与onStatus函数相同的类别**。
 
 首先，我们将定义一个方法来根据给定[ClientResponse](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/reactive/function/client/ClientResponse.html)的状态代码处理返回的逻辑：
 
@@ -87,9 +87,9 @@ ExchangeFilterFunction errorResponseFilter = ExchangeFilterFunction
   	.ofResponseProcessor(WebClientStatusCodeHandler::exchangeFilterResponseProcessor);
 ```
 
-与onStatus调用类似，我们映射到错误时的异常类型。但是，使用Mono.error会将此异常包装在ReactiveException中。[处理错误](https://www.baeldung.com/spring-webflux-errors)时应牢记这种嵌套。
+与onStatus调用类似，我们在出错时映射到异常类型。但是，使用Mono.error会将此异常包装在ReactiveException中。[处理错误](https://www.baeldung.com/spring-webflux-errors)时应牢记这种嵌套。
 
-现在我们将其应用于WebClient的实例以实现与onStatus链接调用相同的效果：
+现在我们**将其应用于WebClient的实例以实现与onStatus链接调用相同的效果**：
 
 ```java
 Mono<String> response = WebClient

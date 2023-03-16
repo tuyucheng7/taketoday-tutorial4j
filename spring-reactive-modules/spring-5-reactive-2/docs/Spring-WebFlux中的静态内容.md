@@ -2,7 +2,7 @@
 
 有时，我们必须在Web应用程序中提供静态资源。它可能是图像、HTML、CSS或JavaScript文件。
 
-在本教程中，我们将展示如何使用[Spring WebFlux](https://www.baeldung.com/spring-webflux)提供静态内容，并假设我们的Web应用程序将使用[Spring Boot](https://www.baeldung.com/spring-boot-start)进行配置。
+在本教程中，我们将展示如何使用[Spring WebFlux](https://www.baeldung.com/spring-webflux)提供静态内容。我们还假设我们的Web应用程序将使用[Spring Boot](https://www.baeldung.com/spring-boot-start)进行配置。
 
 ## 2. 覆盖默认配置
 
@@ -38,7 +38,8 @@ public class StaticContentConfig {
 
     @Bean
     public RouterFunction<ServerResponse> htmlRouter(@Value("classpath:/public/index.html") Resource html) {
-        return route(GET("/"), req -> ok().contentType(MediaType.TEXT_HTML).bodyValue(html));
+        return route(GET("/"), 
+              req -> ok().contentType(MediaType.TEXT_HTML).bodyValue(html));
     }
 }
 ```
@@ -56,7 +57,7 @@ public RouterFunction<ServerResponse> imgRouter() {
 
 ## 4. 自定义Web资源路径示例
 
-另一种提供存储在自定义位置的静态文件的方法，而不是默认的src/main/resources路径，是使用[maven-resources-plugin](https://search.maven.org/search?q=a:maven-resources-plugin)和一个额外的Spring WebFlux属性。
+另一种提供存储在自定义位置的静态资源的方法是使用[maven-resources-plugin](https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-resources-plugin/3.3.0)和一个额外的Spring WebFlux属性，而不是默认的src/main/resources路径。
 
 首先，让我们将插件添加到我们的pom.xml中：
 
@@ -91,7 +92,7 @@ public RouterFunction<ServerResponse> imgRouter() {
 spring.resources.static-locations=classpath:/assets/
 ```
 
-在这些操作之后，index.html将在http://localhost:8080/index.html URL下可用。
+在这些操作之后，index.html将在[http://localhost:8080/index.html](http://localhost:8080/index.html) URL下可用。
 
 ## 5. 总结
 

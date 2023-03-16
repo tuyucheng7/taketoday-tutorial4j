@@ -1,16 +1,18 @@
 ## 1. 概述
 
-在本教程中，我们介绍如何将REST-Assured库与Groovy结合使用。
+在本教程中，我们将介绍如何将REST-Assured库与Groovy结合使用。
 
-由于REST-assured在底层使用Groovy，我们实际上有机会使用原始Groovy语法来创建更强大的测试用例。这就是框架真正发挥作用的地方。
+由于Rest-Assured在底层使用Groovy，我们实际上有机会使用原始Groovy语法来创建更强大的测试用例。这就是框架真正发挥作用的地方。
 
-有关使用REST-assured所需的设置，请查看我们[之前的文章]()。
+有关使用Rest-Assured所需的设置，请查看我们[之前的文章](https://www.baeldung.com/rest-assured-tutorial)。
 
 ## 2. Groovy的集合API
 
+让我们从快速浏览一些基本的Groovy概念开始-通过一些简单的示例来准备我们所需要的东西。
+
 ### 2.1 findAll方法
 
-在这个例子中，我们只关注方法、闭包和it隐式变量。首先我们创建一个Groovy集合words：
+在这个例子中，我们只关注方法、闭包和it隐式变量。让我们首先创建一个Groovy集合words：
 
 ```groovy
 def words = ['ant', 'buffalo', 'cat', 'dinosaur']
@@ -28,7 +30,7 @@ def wordsWithSizeGreaterThanFour = words.findAll { it.length() > 4 }
 
 ### 2.2 it变量
 
-隐式变量它保存循环中的当前单词，新集合wordsWithSizeGreaterThanFour将包含单词buffalo和dinosaur。
+隐式变量it保存循环中的当前单词，新集合wordsWithSizeGreaterThanFour将包含单词buffalo和dinosaur。
 
 ```groovy
 ['buffalo', 'dinosaur']
@@ -38,7 +40,7 @@ def wordsWithSizeGreaterThanFour = words.findAll { it.length() > 4 }
 
 ### 2.3 collect迭代器
 
-最后是collect，它调用集合中每个项目的闭包并返回一个包含每个项目结果的新集合。让我们根据单词集合中每个项目的大小创建一个新集合：
+最后是collect，它调用集合中每个元素的闭包并返回一个包含每个元素结果的新集合。让我们根据words集合中每个元素的大小创建一个新集合：
 
 ```groovy
 def sizes = words.collect{it.length()}
@@ -60,7 +62,7 @@ def charCount = sizes.sum()
 
 ### 2.4 max/min运算符
 
-最大/最小运算符的命名直观地用于查找集合中的最大或最小数：
+max/min运算符被直观地命名以查找集合中的最大值或最小值：
 
 ```groovy
 def maximum = sizes.max()
@@ -76,42 +78,44 @@ def maximum = sizes.max()
 def greaterThanSeven=sizes.find{it>7}
 ```
 
-结果为8，第一次出现满足谓词的集合项。
+结果为8，即满足谓词的集合元素的第一个匹配项。
 
 ## 3. 使用Groovy验证JSON
 
-如果我们在http://localhost:8080/odds有一个服务，它会返回我们最喜欢的足球比赛的赔率列表，如下所示：
+如果我们在[http://localhost:8080/odds](http://localhost:8080/odds)有一个服务，它会返回我们最喜欢的足球比赛的赔率列表，如下所示：
 
 ```json
 {
-    "odds": [{
-        "price": 1.30,
-        "status": 0,
-        "ck": 12.2,
-        "name": "1"
-    },
-    {
-        "price": 5.25,
-        "status": 1,
-        "ck": 13.1,
-        "name": "X"
-    },
-    {
-        "price": 2.70,
-        "status": 0,
-        "ck": 12.2,
-        "name": "0"
-    },
-    {
-        "price": 1.20,
-        "status": 2,
-        "ck": 13.1,
-        "name": "2"
-    }]
+    "odds": [
+        {
+            "price": 1.30,
+            "status": 0,
+            "ck": 12.2,
+            "name": "1"
+        },
+        {
+            "price": 5.25,
+            "status": 1,
+            "ck": 13.1,
+            "name": "X"
+        },
+        {
+            "price": 2.70,
+            "status": 0,
+            "ck": 12.2,
+            "name": "0"
+        },
+        {
+            "price": 1.20,
+            "status": 2,
+            "ck": 13.1,
+            "name": "2"
+        }
+    ]
 }
 ```
 
-如果我们想验证状态大于1的赔率具有价格1.20和5.25，那么我们这样做：
+如果我们想验证status大于1的赔率的价格为1.20和5.25，那么我们这样做：
 
 ```java
 @Test
@@ -121,15 +125,15 @@ void givenUrl_whenVerifiesOddPricesAccuratelyByStatus_thenCorrect() {
 }
 ```
 
-这里发生的事情是这样的；我们使用Groovy语法在键odds下加载JSON数组。由于它有多个项目，我们获得了一个Groovy集合。然后我们对该集合调用findAll方法。
+这里发生的事情是这样的；我们使用Groovy语法在键odds下加载JSON数组。由于它有多个元素，因此我们获得了一个Groovy集合。然后我们对该集合调用findAll方法。
 
-闭包谓词告诉Groovy使用状态大于零的JSON对象创建另一个集合。
+闭包谓词告诉Groovy使用status大于0的JSON对象创建另一个集合。
 
-我们以价格结束我们的路径，它告诉groovy在我们之前的JSON对象列表中创建另一个只有赔率价格的列表。然后我们将hasItems Hamcrest匹配器应用到这个列表。
+我们以price结束我们的路径，它告诉Groovy在我们之前的JSON对象列表中创建另一个只有赔率价格的列表。然后我们将hasItems Hamcrest匹配器应用于这个列表。
 
 ## 4. 使用Groovy验证XML
 
-假设我们在http://localhost:8080/teachers有一个服务，它按id、部门和教授的科目返回教师列表，如下所示：
+假设我们在[http://localhost:8080/teachers](http://localhost:8080/teachers)有一个服务，它按id、系和教授的科目返回教师列表，如下所示：
 
 ```xml
 <teachers>
@@ -154,10 +158,12 @@ void givenUrl_whenVerifiesScienceTeacherFromXml_thenCorrect() {
 }
 ```
 
-我们已经使用XML路径teachers.teacher通过XML属性department获取教师列表。然后，我们在此列表上调用find方法。我们的闭包谓词find确保我们最终只得到科学系的教师。我们的XML路径终止于主题标签。
+我们已经使用XML路径teachers.teacher通过XML属性department获取教师列表。然后，我们在此列表上调用find方法。
+
+我们的闭包谓词find确保我们最终只得到subjects系的教师。我们的XML路径终止于subject标签。
 
 由于有多个主题，我们将获得一个列表，我们使用hasItems Hamcrest匹配器对其进行验证。
 
 ## 5. 总结
 
-在本文中，我们了解了如何通过Groovy语言使用REST-assured库。
+在本文中，我们了解了如何通过Groovy语言使用Rest-Assured库。

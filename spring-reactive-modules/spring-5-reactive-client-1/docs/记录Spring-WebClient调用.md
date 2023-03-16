@@ -4,13 +4,13 @@
 
 ## 2. WebClient
 
-WebClient是基于[Spring WebFlux](https://www.baeldung.com/spring-webflux)的HTTP请求的响应式和非阻塞接口。它有一个函数式的、流式的API，带有用于声明式组合的响应类型。
+WebClient是一个基于[Spring WebFlux](https://www.baeldung.com/spring-webflux)的HTTP请求的响应式和非阻塞接口。它有一个函数式、流式的API，其中包含用于声明式组合的响应类型。
 
 在幕后，WebClient调用HTTP客户端。Reactor Netty是默认的，同时也支持Jetty的响应式HttpClient。此外，可以通过为WebClient设置ClientConnector来插入HTTP客户端的其他实现。
 
 ## 3. 记录请求和响应
 
-WebClient默认使用的HttpClient是Netty实现的，所以当我们将reactor.netty.http.client日志记录级别更改为DEBUG后，我们可以看到一些请求日志记录，但是如果我们需要自定义日志，我们可以通过以下方式配置我们的记录器[WebClient#filters](https://www.baeldung.com/spring-webclient-filters)：
+WebClient默认使用的HttpClient是Netty实现的，所以当我们**将reactor.netty.http.client日志记录级别更改为DEBUG**后，我们可以看到一些请求日志记录，但是如果我们需要自定义日志，我们可以通过[WebClient#filters](https://www.baeldung.com/spring-webclient-filters)配置我们的记录器：
 
 ```java
 WebClient
@@ -42,20 +42,19 @@ ExchangeFilterFunction logRequest() {
 }
 ```
 
-logResponse是相同的，但我们必须改用ExchangeFilterFunction#ofResponseProcessor。
-
+logResponse是相同的，**但我们必须改用ExchangeFilterFunction#ofResponseProcessor**。
 
 现在我们可以将reactor.netty.http.client日志级别更改为INFO或ERROR以获得更清晰的输出。
 
-## 4. 用Body记录请求和响应
+## 4. 记录请求和响应主体
 
-HTTP客户端具有记录请求和响应主体的功能。因此，为了实现这个目标，我们将在我们的WebClient中使用启用日志的HTTP客户端。
+HTTP客户端具有记录请求和响应主体的功能。因此，**为了实现这个目标，我们将在我们的WebClient中使用启用日志的HTTP客户端**。
 
 我们可以通过手动设置WebClient.Builder#clientConnector来做到这一点-让我们看看Jetty和Netty HTTP客户端。
 
 ### 4.1 使用Jetty HttpClient进行日志记录
 
-首先，让我们将[jetty-reactive-httpclient](https://search.maven.org/search?q=a:jetty-reactive-httpclient)的Maven依赖添加到我们的pom中：
+首先，让我们将[jetty-reactive-httpclient](https://central.sonatype.com/artifact/org.eclipse.jetty/jetty-reactive-httpclient/3.0.8)的Maven依赖添加到我们的pom中：
 
 ```xml
 <dependency>
@@ -132,7 +131,7 @@ WebClient
 
 ### 4.2 使用Netty HttpClient进行日志记录
 
-首先，让我们创建一个 Netty HttpClient：
+首先，让我们创建一个Netty HttpClient：
 
 ```java
 HttpClient httpClient = HttpClient
@@ -157,9 +156,9 @@ WebClient
     .build()
 ```
 
-我们的WebClient将详细记录每个请求和响应，但Netty内置记录器的默认格式包含主体的十六进制和文本表示以及大量有关请求和响应事件的数据。
+我们的WebClient将详细记录每个请求和响应，**但Netty内置记录器的默认格式包含主体的十六进制和文本表示以及大量有关请求和响应事件的数据**。
 
-所以，如果我们只需要Netty的文本记录器，我们可以配置HttpClient：
+因此，如果我们只需要Netty的文本记录器，我们可以配置HttpClient：
 
 ```java
 HttpClient httpClient = HttpClient

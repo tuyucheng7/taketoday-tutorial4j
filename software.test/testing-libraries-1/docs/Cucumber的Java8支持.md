@@ -1,6 +1,6 @@
 ## 1. 概述
 
-在这个快速教程中，我们介绍如何在Cucumber中使用Java 8 lambda表达式。
+在这个快速教程中，我们将学习如何在Cucumber中使用Java 8 Lambda表达式。
 
 ## 2. Maven配置
 
@@ -15,9 +15,11 @@
 </dependency>
 ```
 
+cucumber-java8依赖项可以在[Maven Central](https://central.sonatype.com/artifact/io.cucumber/cucumber-java8/7.11.1)上找到。
+
 ## 3. 使用Lambda定义步骤
 
-接下来，我们讨论如何使用Java 8 lambda表达式编写步骤定义：
+接下来，我们将讨论如何使用Java 8 lambda表达式编写步骤定义：
 
 ```java
 public class ShoppingStepsDef implements En {
@@ -29,14 +31,14 @@ public class ShoppingStepsDef implements En {
 
         When("I buy .* with (\\d+)", (Integer price) -> budget -= price);
 
-        Then("I should have (\\d+) in my wallet", (Integer finalBudget) -> assertEquals(budget, finalBudget.intValue()));
+        Then("I should have (\\d+) in my wallet", (Integer finalBudget) -> assertEquals(budget, finalBudget));
     }
 }
 ```
 
 我们以一个简单的购物功能为例：
 
-```gherkin
+```java
 Given("I have (\\d+) in my wallet", (Integer money) -> budget = money);
 ```
 
@@ -47,7 +49,7 @@ Given("I have (\\d+) in my wallet", (Integer money) -> budget = money);
 
 ## 4. 测试场景
 
-最后来看看我们的测试场景：
+最后，让我们看一下我们的测试场景：
 
 ```gherkin
 Feature: Shopping
@@ -63,7 +65,7 @@ Feature: Shopping
         Then I should have 180 in my wallet
 ```
 
-以及测试配置：
+和测试配置：
 
 ```java
 @RunWith(Cucumber.class)
@@ -73,8 +75,8 @@ public class ShoppingIntegrationTest {
 }
 ```
 
-有关Cucumber配置的更多详细信息，请查看[Cucumber和Scenario Outline]()教程。
+有关Cucumber配置的更多详细信息，请查看[Cucumber和Scenario Outline](https://www.baeldung.com/cucumber-scenario-outline)教程。
 
 ## 5. 总结
 
-在本文中我们学习了如何在Cucumber中使用Java 8 lambda表达式定义步骤。
+我们学习了如何在Cucumber中使用Java 8 Lambda表达式。

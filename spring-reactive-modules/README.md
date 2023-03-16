@@ -8,7 +8,7 @@
 
 + [Spring 5 Reactive](spring-5-reactive-1/README.md)
 + [Spring 5 Reactive Client](spring-5-reactive-client-1/README.md)
-+ [Spring 5 Data Reactive](spring-5-data-reactive/README.md)
++ [Spring 5 Reactive Data](spring-5-data-reactive/README.md)
 + [Spring 5 Reactive Filters](spring-5-reactive-filters/README.md)
 + [Spring 5 Reactive Security](spring-5-reactive-security/README.md)
 + [Spring 5 Reactive OAuth](spring-5-reactive-oauth/README.md)

@@ -1,15 +1,17 @@
 ## 1. 简介
 
-在本文中，我们介绍JMockit的一些高级场景，例如：
+在本文中，我们将介绍JMockit的一些高级场景，例如：
 
 -   伪造(或MockUp API)
 -   Deencapsulation工具类
 -   如何仅使用一个mock来mock多个接口
 -   如何重复使用期望和验证
 
-## 2.Maven依赖
+如果你想了解JMockit的基础知识，请查看本系列的其他文章。可以在底部找到相关链接。
 
-首先，我们需要将[jmockit](https://search.maven.org/search?q=a:jmockit AND g:org.jmockit)依赖项添加到我们的项目中：
+## 2. Maven依赖
+
+首先，我们需要将[jmockit](https://central.sonatype.com/artifact/org.jmockit/jmockit/1.49)依赖项添加到我们的项目中：
 
 ```xml
 <dependency> 
@@ -19,7 +21,7 @@
 </dependency>
 ```
 
-## 3.私有方法/内部类Mock
+## 3. 私有方法/内部类Mock
 
 mock和测试私有方法或内部类通常被认为是不好的做法。
 
@@ -27,10 +29,10 @@ mock和测试私有方法或内部类通常被认为是不好的做法。
 
 使用JMockit，你有两种选择来处理这些问题：
 
--   用于更改实际实现的MockUp API(针对第二种情况)
+-   用于更改实际实现的MockUp API(对于第二种情况)
 -   Deencapsulation工具类，用于直接调用任何方法(对于第一种情况)
 
-接下来的所有示例都针对以下类完成，我们假设它们在与第一个配置相同的测试类上运行(以避免重复代码)：
+接下来的所有示例都将针对以下类完成，我们假设它们在与第一个配置相同的测试类上运行(以避免重复代码)：
 
 ```java
 public class AdvancedCollaborator {
@@ -63,7 +65,7 @@ public class AdvancedCollaborator {
 
 ### 3.1 使用MockUp伪造
 
-JMockit的Mockup API支持创建假实现或mock-up。通常，mock-up针对要伪造的类中的一些方法和/或构造函数，而保留大多数其他方法和构造函数不变。这允许对类进行完全重写，因此可以针对任何方法或构造函数(具有任何访问修饰符)。
+JMockit的Mockup API为创建虚假实现或mock-up提供了支持。通常，mock-up针对要伪造的类中的一些方法和/或构造函数，而保留大多数其他方法和构造函数不变。这允许对类进行完全重写，因此可以针对任何方法或构造函数(具有任何访问修饰符)。
 
 让我们看看如何使用Mockup的API重新定义privateMethod()：
 
@@ -88,7 +90,7 @@ public class AdvancedCollaboratorTest {
 }
 ```
 
-在此示例中，我们使用@Mock注解在具有匹配签名的方法上为AdvancedCollaborator类定义一个新的MockUp。在此之后，对该方法的调用将委托给我们mock的方法。
+在此示例中，我们在具有匹配签名的方法上使用@Mock注解为AdvancedCollaborator类定义了一个新的MockUp。在此之后，对该方法的调用将委托给我们mock的方法。
 
 我们还可以使用它来mock需要特定参数或配置的类的构造函数，以简化测试：
 
@@ -132,7 +134,7 @@ public void testToSetPrivateFieldDirectly(){
 }
 ```
 
-获取字段：
+并获取字段：
 
 ```java
 @Test
@@ -142,7 +144,7 @@ public void testToGetPrivateFieldDirectly(){
 }
 ```
 
-创建新的类实例：
+并创建新的类实例：
 
 ```java
 @Test
@@ -164,13 +166,17 @@ public void testToCreateNewInnerClassInstanceDirectly(){
 }
 ```
 
-如你所见，Deencapsulation类在测试气密类时非常有用。例如，设置一个在私有字段上使用@Autowired注解并且没有Setter的类的依赖关系，或者对内部类进行单元测试，而不必依赖其容器类的公共接口。
+如你所见，Deencapsulation类在测试密封类时非常有用。例如，设置一个在私有字段上使用@Autowired注解并且没有setter的类的依赖关系，或者对内部类进行单元测试而不必依赖其容器类的公共接口。
 
 ## 4. 在同一个Mock中mock多个接口
 
-假设你要测试一个类并且尚未实现，但你确定它会实现多个接口。通常，你无法在实现类之前对其进行测试，但是使用JMockit，你可以通过使用一个mock对象mock多个接口来预先准备测试。这可以通过使用泛型和定义扩展多个接口的类型来实现。这种泛型类型既可以为整个测试类定义，也可以只为一个测试方法定义。
+假设你要测试一个尚未实现的类，但你确定它会实现多个接口。
 
-例如，我们通过两种方式为接口List和Comparable创建一个mock：
+通常，你无法在实现类之前对其进行测试，但是使用JMockit，你可以通过使用一个mock对象mock多个接口来预先准备测试。
+
+这可以通过使用泛型和定义扩展多个接口的类型来实现。这种泛型类型既可以为整个测试类定义，也可以只为一个测试方法定义。
+
+例如，我们将通过两种方式为接口List和Comparable创建一个mock：
 
 ```java
 @RunWith(JMockit.class)
@@ -206,13 +212,13 @@ public class AdvancedCollaboratorTest<MultiMock extends List<String> & Comparabl
 
 在第7到18行中，我们可以看到一个使用为整个测试类定义的多类mock的示例。
 
-如果你只需要一个测试的多接口mock，你可以通过在方法签名上定义泛型类型并将该新泛型的新mock作为测试方法参数传递来实现这一点。在第20到32行中，我们可以看到一个示例，该示例针对与之前测试相同的测试行为这样做。
+如果你只需要一个测试的多接口mock，则可以通过在方法签名上定义泛型类型并将该新泛型的新mock作为测试方法参数传递来实现这一点。在第20到32行中，我们可以看到一个示例，该示例针对与上一个测试中相同的测试行为执行此操作。
 
 ## 5. 重用期望和验证
 
 最后，在测试类时，你可能会遇到一遍又一遍地重复相同的期望和/或验证的情况。为了缓解这种情况，你可以轻松地重用两者。
 
-我们通过一个示例来解释它(我们使用[JMockit 101]()文章中的Model、Collaborator和Performer类)：
+我们通过一个示例来解释它(我们使用[JMockit 101](https://www.baeldung.com/jmockit-101)文章中的Model、Collaborator和Performer类)：
 
 ```java
 @RunWith(JMockit.class)
@@ -261,11 +267,11 @@ public class ReusingTest {
 }
 ```
 
-在此示例中，你可以在第15到18行中看到，我们正在为每个测试准备一个期望，以便model.getInfo()始终返回“foo”，而collaborator.collaborate()始终期望“foo”作为参数并返回true。我们放置了minTimes = 0语句，因此在测试中不实际使用它们时不会出现失败。
+在这个例子中，你可以在第15到18行中看到，我们正在为每个测试准备一个期望，以便model.getInfo()始终返回“foo”，而collaborator.collaborate()始终期望“foo”作为参数并返回true。我们放置了minTimes = 0语句，因此在测试中不实际使用它们时不会出现失败。
 
-此外，我们创建了方法verifyTrueCalls(int)以在传递的参数为true时简化对collaborator.receive(boolean)方法的验证。
+此外，我们还创建了方法verifyTrueCalls(int)以在传递的参数为true时简化对collaborator.receive(boolean)方法的验证。
 
-最后，你还可以创建新类型的特定期望和验证，只需扩展任何期望或验证类。然后，如果你需要配置行为并在测试中创建所述类型的新实例，则定义一个构造函数，就像我们在第33到43行中所做的那样。
+最后，你还可以创建新类型的特定期望和验证，只需扩展任何Expectations或Verifications类。然后，如果你需要配置行为并在测试中创建所述类型的新实例，则定义一个构造函数，就像我们在第33到43行中所做的那样。
 
 ## 6. 总结
 
@@ -277,6 +283,6 @@ public class ReusingTest {
 
 该系列的所有文章：
 
--   [JMockit 101]()
--   [JMockit期望指南]()
--   [JMockit高级用法]()
+-   [JMockit 101](https://www.baeldung.com/jmockit-101)
+-   [JMockit期望指南](https://www.baeldung.com/jmockit-expectations)
+-   [JMockit高级用法](https://www.baeldung.com/jmockit-advanced-usage)

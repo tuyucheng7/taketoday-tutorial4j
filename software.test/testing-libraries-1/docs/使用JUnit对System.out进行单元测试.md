@@ -1,10 +1,12 @@
 ## 1. 概述
 
-在进行单元测试时，我们可能偶尔想要测试通过System.out.println()写入标准输出流的消息。虽然我们通常更推荐使用日志框架，而不是与标准输出流直接交互，但有时这是不可能的。
+在进行单元测试时，我们有时可能希望测试通过System.out.println()写入[标准输出流](https://www.baeldung.com/linux/pipes-redirection#standard-io)的消息。
 
-在本快速教程中，我们将介绍使用JUnit对System.out.println()进行单元测试的几种方法。
+虽然我们通常更喜欢使用[日志框架](https://www.baeldung.com/java-logging-intro)而不是与标准输出流直接交互，但有时这是不可能的。
 
-## 2. 一个简单的打印方法
+在这个快速教程中，**我们将了解使用JUnit对System.out.println()进行单元测试的几种方法**。
+
+## 2. 简单的打印方法
 
 在本教程中，我们测试的重点将是一个写入标准输出流的简单方法：
 
@@ -41,9 +43,9 @@ public void givenSystemOutRedirection_whenInvokePrintln_thenOutputCaptorSuccess(
 }
 ```
 
-在我们使用所选文本调用print方法之后，我们可以验证outputStreamCaptor是否包含我们期望的内容。**我们调用trim方法来删除System.out.println()添加的新行**。
+在使用所选文本调用print方法后，我们可以验证outputStreamCaptor是否包含我们期望的内容。**我们调用trim方法来删除System.out.println()添加的新行**。
 
-由于标准输出流是系统其他部分使用的共享静态资源，我们应该注意在测试终止时将其恢复到原始状态：
+由于标准输出流是系统其他部分使用的共享静态资源，因此**我们应该注意在测试终止时将其恢复到原始状态**：
 
 ```java
 @After
@@ -52,13 +54,13 @@ public void tearDown() {
 }
 ```
 
-这确保了我们以后在其他测试中不会出现任何不必要的副作用。
+这确保了我们以后在其他测试中不会得到任何不必要的副作用。
 
 ## 4. 使用System Rules
 
-**在本节中，我们介绍一个名为[System Rules](https://stefanbirkner.github.io/system-rules/)的简洁外部库，它提供了一组JUnit Rule，用于测试使用System类的代码**。
+在本节中，**我们介绍一个名为[System Rules](https://stefanbirkner.github.io/system-rules/)的简洁外部库，它提供了一组JUnit Rule，用于测试使用System类的代码**。
 
-首先我们将[system-rules依赖项](https://search.maven.org/classic/#search|ga|1|a%3A"system-rules")添加到我们的pom.xml中：
+让我们首先将[system-rules](https://central.sonatype.com/artifact/com.github.stefanbirkner/system-rules/1.19.0)依赖项添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -69,7 +71,7 @@ public void tearDown() {
 </dependency>
 ```
 
-现在，我们可以使用这个库提供的SystemOutRule编写测试：
+现在，我们可以继续使用库提供的SystemOutRule编写测试：
 
 ```java
 @Rule
@@ -83,9 +85,9 @@ public void givenSystemOutRule_whenInvokePrintln_thenLogSuccess() {
 }
 ```
 
-**使用SystemOutRule，我们可以拦截对System.out的写入**。首先，我们通过调用SystemOutRule的enableLog方法来开始记录写入System.out的所有内容，然后我们简单地调用getLog来获取写入System.out的文本，因为我们调用了enableLog。
+**使用SystemOutRule，我们可以拦截对System.out的写入**。首先，我们通过调用SystemOutRule上的enableLog方法来开始记录写入System.out的所有内容。然后我们简单地调用getLog来获取写入System.out的文本，因为我们调用了enableLog。
 
-此Rule还包括一个方便的方法，该方法返回始终将行分隔符为\n的日志
+此Rule还包括一个方便的方法，该方法返回始终将行分隔符为\n的日志。
 
 ```java
 Assert.assertEquals("Hello Tuyucheng Readers!!\n", systemOutRule.getLogWithNormalizedLineSeparator());
@@ -93,9 +95,9 @@ Assert.assertEquals("Hello Tuyucheng Readers!!\n", systemOutRule.getLogWithNorma
 
 ## 5. 将System Rules与JUnit 5和Lambda使用
 
-在JUnit 5中，Rule模型被Extension取代。幸运的是，上一节中介绍的system-rules库有一个与JUnit 5一起使用的[变体](https://github.com/stefanbirkner/system-lambda)。
+在[JUnit 5](https://www.baeldung.com/junit-5)中，Rule模型被[Extension](https://www.baeldung.com/junit-5-extensions)取代。幸运的是，上一节中介绍的system-rules库有一个与JUnit 5一起使用的[变体](https://github.com/stefanbirkner/system-lambda)。
 
-System-Lambda可以从[Maven Central](https://search.maven.org/classic/#search|ga|1|a%3A"system-lambda")找到，下面我们将它添加到我们的pom.xml中：
+System-Lambda可以从[Maven Central](https://central.sonatype.com/artifact/com.github.stefanbirkner/system-lambda/1.2.1)找到。所以我们可以继续将它添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -106,7 +108,7 @@ System-Lambda可以从[Maven Central](https://search.maven.org/classic/#search|g
 </dependency>
 ```
 
-然后我们使用这个版本的库来实现我们的测试：
+现在让我们使用这个版本的库来实现我们的测试：
 
 ```java
 @Test
@@ -117,8 +119,10 @@ void givenTapSystemOut_whenInvokePrintln_thenOutputIsReturnedSuccessfully() thro
 }
 ```
 
-**在这个版本中，我们使用了tapSystemOut方法，它执行语句并允许我们捕获传递给System.out的内容**。
+在这个版本中，**我们使用tapSystemOut方法，该方法执行语句并允许我们捕获传递给System.out的内容**。
 
 ## 6. 总结
 
-在本教程中，我们介绍了几种测试System.out.println的方法。在第一种方法中，我们演示了如何使用核心Java重定向我们编写标准输出流的位置。然后我们演示了如何使用一个名为System-Rules的外部库，首先使用JUnit 4 Rule，然后使用 Lambdas。
+在本教程中，我们介绍了几种测试System.out.println的方法。在第一种方法中，我们看到了如何使用核心Java重定向我们写入标准输出流的位置。
+
+然后我们了解了如何使用一个名为System-Rules的外部库，首先使用JUnit 4 Rule，然后使用Lambda。

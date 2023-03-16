@@ -1,40 +1,42 @@
 ## 1. 概述
 
-在这个简短的教程中，我们介绍[Cucumber]()中的Background，这是一个允许我们为Cucumber Feature的每次测试执行一些语句的功能。
+在这个简短的教程中，我们将介绍[Cucumber](https://www.baeldung.com/cucumber-scenario-outline)中的Background，这是一个允许我们为Cucumber Feature的每次测试执行一些语句的功能。
 
 ## 2. Cucumber Background
 
-首先，[Cucumber Background](https://cucumber.io/docs/gherkin/reference/#background)的目的是在每次运行Feature之前执行一个或多个语句。
+首先，让我们解释一下[Cucumber Background](https://cucumber.io/docs/gherkin/reference/#background)是什么。它的目的是在每次运行Feature之前执行一个或多个语句。
 
-但是Background在这里试图解决的问题是什么呢？假设我们有一个想要使用Cucumber进行测试的书店应用程序。首先，我们创建该应用程序，它只是一个Java类：
+但是Background在这里试图解决的问题是什么呢？
+
+假设我们有一个想要使用Cucumber进行测试的书店应用程序。首先，让我们创建该应用程序，它只是一个Java类：
 
 ```java
 public class BookStore {
-	private final List<Book> books = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
 
-	public void addBook(Book book) {
-		books.add(book);
-	}
+    public void addBook(Book book) {
+        books.add(book);
+    }
 
-	public void addAllBooks(Collection<Book> books) {
-		this.books.addAll(books);
-	}
+    public void addAllBooks(Collection<Book> books) {
+        this.books.addAll(books);
+    }
 
-	public List<Book> booksByAuthor(String author) {
-		return books.stream()
-				.filter(book -> Objects.equals(author, book.getAuthor()))
-				.collect(Collectors.toList());
-	}
+    public List<Book> booksByAuthor(String author) {
+        return books.stream()
+              .filter(book -> Objects.equals(author, book.getAuthor()))
+              .collect(Collectors.toList());
+    }
 
-	public Optional<Book> bookByTitle(String title) {
-		return books.stream()
-				.filter(book -> book.getTitle().equals(title))
-				.findFirst();
-	}
+    public Optional<Book> bookByTitle(String title) {
+        return books.stream()
+              .filter(book -> book.getTitle().equals(title))
+              .findFirst();
+    }
 }
 ```
 
-如我们所见，可以在BookStore中添加和搜索Book对象。现在，我们创建几个Cucumber语句来与BookStore交互：
+如我们所见，可以在BookStore中添加和搜索Book对象。现在，让我们创建一些Cucumber语句来与BookStore交互：
 
 ```java
 public class BookStoreRunSteps {
@@ -86,7 +88,7 @@ public class BookStoreRunSteps {
 
 通过这些语句定义，我们可以添加Book对象，按作者姓名或书名搜索Book，并检查Book是否存在。
 
-接下来创建我们的Feature文件，我们可以按作者名搜索书籍，也可以按书名搜索书籍：
+接下来可以创建我们的Feature文件。我们可以按作者名搜索书籍，也可以按书名搜索书籍：
 
 ```gherkin
 Feature: Book Store Without Background
@@ -162,8 +164,8 @@ Scenario: Find book by title, but isn't there
 
 ## 4. 与@Before的区别
 
-[@Before](https://cucumber.io/docs/cucumber/api/#before)钩子还允许我们在场景之前执行代码，**但是这些代码对那些只阅读Feature文件的人是隐藏的**。另一方面，Background由Feature文件中可见的语句组成。
+现在，让我们讨论Cucumber Background和[@Before钩子](https://cucumber.io/docs/cucumber/api/#before)之间的区别。钩子还允许我们在场景之前执行代码，但是**这些代码对那些只阅读Feature文件的人是隐藏的**。另一方面，Background由Feature文件中可见的语句组成。
 
 ## 5. 总结
 
-在这篇简短的文章中，我们学习了如何使用Cucumber的Background功能，它允许我们在功能的每个场景之前执行一些语句；然后讨论了此功能与@Before钩子之间的区别。
+在这篇简短的文章中，我们学习了如何使用Cucumber的Background功能。它允许我们在功能的每个场景之前执行一些语句。我们还讨论了此功能与@Before钩子之间的区别。

@@ -6,7 +6,7 @@
 
 ## 2. Maven依赖
 
-为了使用WireMock库，我们需要在POM中包含这个依赖项：
+为了使用WireMock库，我们需要在POM中包含此依赖项：
 
 ```xml
 <dependency>
@@ -19,7 +19,7 @@
 
 ## 3. 以编程方式管理的服务器
 
-本节介绍如何手动配置WireMock服务器，即不支持JUnit自动配置。我们用一个非常简单的stub来演示用法。
+本节将介绍如何手动配置WireMock服务器，即不支持JUnit自动配置。我们用一个非常简单的stub来演示用法。
 
 ### 3.1 服务器设置
 
@@ -45,7 +45,7 @@ wireMockServer.stop();
 
 ### 3.2 基本用法
 
-首先我们演示WireMock库的基本用法，其中提供了一个用于精确URL的stub，无需任何进一步的配置。
+我们将首先演示WireMock库的基本用法，其中提供了无需任何进一步配置的确切URL的stub。
 
 让我们创建一个服务器实例：
 
@@ -53,7 +53,7 @@ wireMockServer.stop();
 WireMockServer wireMockServer = new WireMockServer();
 ```
 
-WireMock服务器必须在客户端连接到它之前运行：
+在客户端连接到WireMock服务器之前，它必须正在运行：
 
 ```java
 wireMockServer.start();
@@ -79,7 +79,7 @@ HttpGet request = new HttpGet("http://localhost:8080/tuyucheng");
 HttpResponse httpResponse = httpClient.execute(request);
 ```
 
-我们使用工具方法将httpResponse变量转换为字符串：
+我们将使用工具方法将httpResponse变量转换为字符串：
 
 ```java
 String responseString = convertResponseToString(httpResponse);
@@ -97,7 +97,7 @@ private static String convertResponseToString(HttpResponse response) throws IOEx
 }
 ```
 
-以下代码验证服务器是否收到了对预期URL的请求，并且返回客户端的响应是正确发送的内容：
+以下代码验证服务器是否已收到了对预期URL的请求，并且返回客户端的响应是正确发送的内容：
 
 ```java
 verify(getRequestedFor(urlEqualTo("/tuyucheng")));
@@ -112,7 +112,7 @@ wireMockServer.stop();
 
 ## 4. JUnit托管服务器
 
-与第3节相比，本节介绍在JUnit Rule的帮助下使用WireMock服务器。
+与第3节相比，本节说明了在JUnit Rule的帮助下使用WireMock服务器。
 
 ### 4.1 服务器设置
 
@@ -135,13 +135,13 @@ public WireMockRule wireMockRule = new WireMockRule(int port);
 
 ```java
 stubFor(get(urlPathMatching("/tuyucheng/.*"))
-		.willReturn(aResponse()
-				.withStatus(200)
-				.withHeader("Content-Type", APPLICATION_JSON)
-				.withBody("\"testing-library\": \"WireMock\"")));
+    .willReturn(aResponse()
+        .withStatus(200)
+        .withHeader("Content-Type", APPLICATION_JSON)
+        .withBody("\"testing-library\": \"WireMock\"")));
 ```
 
-然后创建HTTP客户端，执行请求并接收响应：
+让我们继续创建HTTP客户端，执行请求并接收响应：
 
 ```java
 CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -150,7 +150,7 @@ HttpResponse httpResponse = httpClient.execute(request);
 String stringResponse = convertHttpResponseToString(httpResponse);
 ```
 
-上面的代码片段使用了一个转换工具方法：
+上面的代码片段使用了转换工具方法：
 
 ```java
 private static String convertHttpResponseToString(HttpResponse httpResponse) throws IOException {
@@ -181,20 +181,20 @@ assertEquals("\"testing-library\": \"WireMock\"", stringResponse);
 
 ### 4.3 请求头匹配
 
-现在我们演示如何使用匹配的标头来stub REST API。
+现在我们将演示如何通过标头匹配对REST API进行stub。
 
-首先从我们的stub配置开始：
+首先我们从stub配置开始：
 
 ```java
 stubFor(get(urlPathEqualTo("/tuyucheng/wiremock"))
-		.withHeader("Accept", matching("text/.*"))
-		.willReturn(aResponse()
-				.withStatus(503)
-				.withHeader("Content-Type", "text/html")
-				.withBody("!!! Service Unavailable !!!")));
+    .withHeader("Accept", matching("text/.*"))
+    .willReturn(aResponse()
+        .withStatus(503)
+        .withHeader("Content-Type", "text/html")
+        .withBody("!!! Service Unavailable !!!")));
 ```
 
-与上一小节类似，我们使用HttpClient API来演示HTTP交互，并借助相同的工具方法：
+与前面的小节类似，我们在相同的工具方法的帮助下使用HttpClient API说明HTTP交互：
 
 ```java
 CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -215,17 +215,17 @@ assertEquals("!!! Service Unavailable !!!", stringResponse);
 
 ### 4.4 请求正文匹配
 
-我们还可以使用WireMock库来stub带有正文匹配的REST API。
+我们还可以使用WireMock库来stub具有正文匹配的REST API。
 
 这是此类stub的配置：
 
 ```java
 stubFor(post(urlEqualTo("/tuyucheng/wiremock"))
-		.withHeader("Content-Type", equalTo(APPLICATION_JSON))
-		.withRequestBody(containing("\"testing-library\": \"WireMock\""))
-		.withRequestBody(containing("\"creator\": \"Tom Akehurst\""))
-		.withRequestBody(containing("\"website\": \"wiremock.org\""))
-		.willReturn(aResponse().withStatus(200)));
+    .withHeader("Content-Type", equalTo(APPLICATION_JSON))
+    .withRequestBody(containing("\"testing-library\": \"WireMock\""))
+    .withRequestBody(containing("\"creator\": \"Tom Akehurst\""))
+    .withRequestBody(containing("\"website\": \"wiremock.org\""))
+    .willReturn(aResponse().withStatus(200)));
 ```
 
 然后创建一个将用作请求主体的StringEntity对象：
@@ -238,13 +238,13 @@ StringEntity entity = new StringEntity(jsonString);
 
 上面的代码使用之前定义的转换工具方法之一convertInputStreamToString。
 
-这是src/test/resources目录中wiremock_intro.json文件的内容：
+以下是src/test/resources目录中wiremock_intro.json文件的内容：
 
 ```json
 {
-	"testing-library": "WireMock",
-	"creator": "Tom Akehurst",
-	"website": "wiremock.org"
+    "testing-library": "WireMock",
+    "creator": "Tom Akehurst",
+    "website": "wiremock.org"
 }
 ```
 
@@ -262,13 +262,17 @@ HttpResponse response = httpClient.execute(request);
 
 ```java
 verify(postRequestedFor(urlEqualTo("/tuyucheng/wiremock"))
-		.withHeader("Content-Type", equalTo(APPLICATION_JSON)));
+    .withHeader("Content-Type", equalTo(APPLICATION_JSON)));
 assertEquals(200, response.getStatusLine().getStatusCode());
 ```
 
 ### 4.5 stub优先级
 
-前面的小节处理HTTP请求仅匹配单个stub的情况。如果请求的匹配项不止一个，则情况会更加复杂。默认情况下，在这种情况下，最近添加的stub将优先。但是，用户可以自定义该行为以更好地控制WireMock stub。
+前面的小节处理HTTP请求仅匹配单个stub的情况。
+
+如果请求的匹配项不止一个，则情况会更加复杂。默认情况下，在这种情况下，最近添加的stub将优先。
+
+但是，用户可以自定义该行为以更好地控制WireMock stub。
 
 我们将演示当传入的请求同时匹配两个不同的stub(同时设置和不设置优先级)时WireMock服务器的操作。
 
@@ -287,10 +291,10 @@ private HttpResponse generateClientAndReceiveResponseForPriorityTests() throws I
 
 ```java
 stubFor(get(urlPathMatching("/tuyucheng/.*"))
-		.willReturn(aResponse().withStatus(200)));
+    .willReturn(aResponse().withStatus(200)));
 stubFor(get(urlPathEqualTo("/tuyucheng/wiremock"))
-		.withHeader("Accept", matching("text/.*"))
-		.willReturn(aResponse().withStatus(503)));
+    .withHeader("Accept", matching("text/.*"))
+    .willReturn(aResponse().withStatus(503)));
 ```
 
 接下来，我们创建一个HTTP客户端并使用工具方法执行请求：
@@ -310,21 +314,21 @@ assertEquals(503, httpResponse.getStatusLine().getStatusCode());
 
 ```java
 stubFor(get(urlPathMatching("/tuyucheng/.*"))
-		.atPriority(1)
-		.willReturn(aResponse().withStatus(200)));
+    .atPriority(1)
+    .willReturn(aResponse().withStatus(200)));
 stubFor(get(urlPathEqualTo("/tuyucheng/wiremock"))
-		.atPriority(2)
-		.withHeader("Accept", matching("text/.*"))
-		.willReturn(aResponse().withStatus(503)));
+    .atPriority(2)
+    .withHeader("Accept", matching("text/.*"))
+    .willReturn(aResponse().withStatus(503)));
 ```
 
-然后我们执行HTTP请求的创建和执行：
+现在我们将执行HTTP请求的创建和执行：
 
 ```java
 HttpResponse httpResponse = generateClientAndReceiveResponseForPriorityTests();
 ```
 
-以下代码验证优先级的影响，其中应用了第一个配置的stub而不是最后一个：
+以下代码验证优先级的影响，其中应用第一个配置的stub而不是最后一个：
 
 ```java
 verify(getRequestedFor(urlEqualTo("/tuyucheng/wiremock")));

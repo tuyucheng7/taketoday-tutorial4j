@@ -1,8 +1,12 @@
 ## 1. 概述
 
-在本快速教程中，我们介绍一些REST-assured的高级场景，例如**如何为我们的请求设置标头、cookie和参数**。
+在本快速教程中，我们将探讨一些Rest-Assured的高级场景。我们之前在教程[Rest-Assured指南](https://www.baeldung.com/rest-assured-tutorial)中探讨了Rest-Assured。
+
+接下来，**我们将介绍如何为我们的请求设置标头、cookie和参数的示例**。
 
 ## 2. 设置参数
+
+现在，让我们讨论如何为我们的请求指定不同的参数-从路径参数开始。
 
 ### 2.1 路径参数
 
@@ -40,7 +44,7 @@ given().pathParams("owner", "tu-yucheng")
     .then().statusCode(200);
 ```
 
-在这种情况下，生成的URL是https://api.github.com/repos/tuyucheng/fullstack-tutorials4j。
+在这种情况下，生成的URL是[https://api.github.com/repos/tuyucheng/fullstack-tutorials4j](https://api.github.com/repos/tuyucheng/fullstack-tutorials4j)。
 
 请注意，未命名参数是基于索引的。
 
@@ -61,7 +65,7 @@ void whenUseQueryParam_thenOK() {
 }
 ```
 
-**param()方法就像queryParam()一样使用GET请求**。
+**param()方法的行为类似于使用GET请求的queryParam()**。
 
 要添加多个查询参数，我们可以链接多个queryParam()方法，或者将参数添加到queryParams()方法：
 
@@ -94,11 +98,11 @@ void whenUseFormParam_thenSuccess() {
 
 **params()方法将为POST请求执行formParams()的生命周期**。
 
-另请注意，formParam()添加了一个值为“application/x-www-form-urlencoded”的Content-Type头。
+另请注意，formParam()添加了一个值为“application/x-www-form-urlencoded”的Content-Type标头。
 
 ## 3. 设置请求头
 
-接下来，我们可以使用header()自定义请求头：
+接下来，**我们可以使用header()自定义请求头**：
 
 ```java
 @Test
@@ -121,9 +125,9 @@ void whenUseMultipleHeaderValues_thenOK() {
 }
 ```
 
-在此示例中，我们有一个包含两个请求头的请求：My-Header:val1和My-Header:val2。
+在此示例中，我们将有一个包含两个标头的请求：My-Header:val1和My-Header:val2。
 
-要添加多个标头，我们可以使用headers()方法：
+**要添加多个标头，我们可以使用headers()方法**：
 
 ```java
 @Test
@@ -146,7 +150,7 @@ void whenUseCookie_thenOK() {
 }
 ```
 
-或者可以使用Cookie.Builder自定义我们的cookie：
+我们还可以使用Cookie.Builder自定义我们的cookie：
 
 ```java
 @Test
@@ -164,4 +168,4 @@ void whenUseCookieBuilder_thenOK() {
 
 ## 5. 总结
 
-在本文中，我们演示了如何在使用REST-assured时指定请求参数、请求头和cookie。
+在本文中，我们演示了如何在使用Rest-Assured时指定请求参数、请求头和cookie。

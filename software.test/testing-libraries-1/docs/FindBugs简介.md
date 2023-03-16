@@ -1,6 +1,10 @@
 ## 1. 概述
 
-FindBugs是一个开源工具，可用于对Java代码执行**静态分析**。在本文中，我们介绍如何在Java项目中设置FindBugs并将其集成到IDE和Maven构建中。
+FindBugs是一个开源工具，可用于对Java代码执行**静态分析**。
+
+在本文中，我们将介绍如何在Java项目中设置FindBugs并将其集成到IDE和Maven构建中。
+
+注意：FindBugs项目已被弃用，[SpotBugs](https://spotbugs.github.io/)现在作为其继任者得到积极维护，它适用于最新版本的Java。
 
 ## 2. FindBugs Maven插件
 
@@ -20,9 +24,15 @@ FindBugs是一个开源工具，可用于对Java代码执行**静态分析**。�
 </reporting>
 ```
 
+你可以在Maven Central查看[最新版本](https://central.sonatype.com/artifact/org.codehaus.mojo/findbugs-maven-plugin/3.0.5)的插件。
+
 ### 2.2 报告生成
 
-指定了插件后，我们可以使用mvn site命令生成项目文档。**该报告在文件夹target/site中生成，文件名称为findbugs.html**。你还可以运行mvn findbugs:gui命令来启动GUI界面来浏览当前项目生成的报告。
+现在我们已经正确配置了Maven插件，让我们使用mvn site命令生成项目文档。
+
+**该报告在文件夹target/site中生成，文件名称为findbugs.html**。
+
+你还可以运行mvn findbugs:gui命令来启动GUI界面来浏览当前项目生成的报告。
 
 FindBugs插件也可以配置为在某些情况下失败，通过将执行目标check添加到我们的配置中：
 

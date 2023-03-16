@@ -1,18 +1,20 @@
 ## 1. 简介
 
-REST-assured旨在简化REST API的测试和验证，并深受动态语言(如Ruby和Groovy)中使用的测试技术的影响。该库对HTTP提供了可靠的支持，当然从动词和标准HTTP操作开始，但也远远超出了这些基础知识。
+Rest-Assured旨在简化REST API的测试和验证，并深受动态语言(如Ruby和Groovy)中使用的测试技术的影响。
 
-在本指南中，我们介绍REST-assured的基本使用，并使用Hamcrest进行断言。如果你还不熟悉Hamcrest，可以阅读这篇文章：[使用Hamcrest进行测试]()。
+该库对HTTP提供了可靠的支持，当然从动词和标准HTTP操作开始，但也远远超出了这些基础知识。
 
-此外，要了解REST-assured的更高级用例，请阅读我们的其他文章：
+在本指南中，我们将**探索Rest-Assured的基本使用**，并使用Hamcrest进行断言。如果你还不熟悉Hamcrest，应该首先阅读这篇文章：[使用Hamcrest进行测试](../../testing-libraries-3/docs/使用Hamcrest进行测试.md)。
 
-- [Groovy与RestAssured](Groovy-RestAssured.md)
-- [RestAssured中的的JSON模式验证](RestAssured中的的JSON模式验证.md)
-- [RestAssured中的参数、Header和Cookie](RestAssured中的参数-Header和Cookie.md)
+此外，要了解Rest-Assured的更高级用例，请查看我们的其他文章：
+
+- [Groovy与Rest-Assured](Groovy-RestAssured.md)
+- [Rest-Assured中的的JSON模式验证](RestAssured中的的JSON模式验证.md)
+- [Rest-Assured中的参数、Header和Cookie](RestAssured中的参数-Header和Cookie.md)
 
 ## 2. 简单测试示例
 
-在开始之前，首先确保我们的测试包含以下静态导入：
+在开始之前，让我们确保我们的测试具有以下静态导入：
 
 ```java
 io.restassured.RestAssured.*
@@ -22,7 +24,7 @@ org.hamcrest.Matchers.*
 
 我们需要它来保持测试简单并轻松访问主要API。
 
-现在，让我们从一个简单的例子开始(一个基本的投注系统，公开了一些游戏数据)：
+现在，让我们从一个简单的例子开始-一个基本的投注系统，公开了一些游戏数据：
 
 ```json
 {
@@ -45,9 +47,9 @@ org.hamcrest.Matchers.*
 }
 ```
 
-假设这是来自命中本地部署的API的JSON响应 – http://localhost:8080/events?id=390:
+假设这是来自命中本地部署的API [http://localhost:8080/events?id=390](http://localhost:8080/events?id=390)的JSON响应。
 
-现在让我们使用REST-assured来验证响应JSON的一些有趣功能：
+现在让我们使用Rest-Assured来验证响应JSON的一些有趣功能：
 
 ```java
 @Test
@@ -60,9 +62,9 @@ public void givenUrl_whenSuccessOnGetsResponseAndJsonHasRequiredKV_thenCorrect()
 }
 ```
 
-因此，我们在这里所做的是-我们验证了对端点/events?id=390的调用是否响应包含JSON字符串的主体，其data对象的leagueId为35。
+因此，我们在这里所做的是-我们验证了对端点/events?id=390的调用响应包含一个JSON字符串，其data对象的leagueId为35。
 
-下面我们看一个更有趣的例子，假设你想验证odds数组是否包含price为1.30和5.25的记录：
+让我们看一个更有趣的例子。假设你想验证odds数组是否包含price为1.30和5.25的记录：
 
 ```java
 @Test
@@ -76,7 +78,7 @@ public void givenUrl_whenJsonResponseHasArrayWithGivenValuesUnderKey_thenCorrect
 
 ## 3. REST-Assured设置
 
-如果你使用的构建工具是Maven，我们在pom.xml文件中添加如下依赖：
+如果你使用的构建工具是Maven，我们将在pom.xml文件中添加如下依赖：
 
 ```xml
 <dependency>
@@ -87,7 +89,9 @@ public void givenUrl_whenJsonResponseHasArrayWithGivenValuesUnderKey_thenCorrect
 </dependency>
 ```
 
-REST-assured利用Hamcrest匹配器的强大功能来执行其断言，因此我们还必须包含该依赖项：
+要获取最新版本，请点击[此链接](https://central.sonatype.com/artifact/io.rest-assured/rest-assured/5.3.0)。
+
+Rest-Assured利用Hamcrest匹配器的强大功能来执行其断言，因此我们还必须包含该依赖项：
 
 ```xml
 <dependency>
@@ -96,6 +100,8 @@ REST-assured利用Hamcrest匹配器的强大功能来执行其断言，因此我
     <version>2.1</version>
 </dependency>
 ```
+
+[此链接](https://central.sonatype.com/artifact/org.hamcrest/hamcrest-all/1.3)始终提供最新版本。
 
 ## 4. 匿名JSON根验证
 
@@ -107,7 +113,7 @@ REST-assured利用Hamcrest匹配器的强大功能来执行其断言，因此我
 
 这称为匿名JSON根，这意味着它没有键值对，但它仍然是有效的JSON数据。
 
-在这种情况下，我们可以使用`$`符号或空字符串(“”)作为路径来运行验证。假设我们通过http://localhost:8080/json公开上述服务，那么我们可以像这样使用REST-assured来验证它：
+在这种情况下，我们可以使用$符号或空字符串(“”)作为路径来运行验证。假设我们通过[http://localhost:8080/json](http://localhost:8080/json)公开上述服务，那么我们可以像这样使用Rest-Assured来验证它：
 
 ```java
 when().get("/json").then().body("$",hasItems(1,2,3));
@@ -121,7 +127,9 @@ when().get("/json").then().body("",hasItems(1,2,3));
 
 ## 5. Floats和Doubles
 
-当我们使用REST-assured来测试我们的REST服务时，我们需要了解JSON响应中的浮点数映射到原始类型float。float类型的使用不能与double互换，Java中的许多场景都是如此。
+当我们开始使用Rest-Assured来测试我们的REST服务时，我们需要了解JSON响应中的浮点数映射到原始类型float。
+
+float类型的使用不能与double互换，Java中的许多场景都是如此。
 
 一个典型的例子是以下这个响应：
 
@@ -151,7 +159,9 @@ get("/odd").then().assertThat().body("odd.ck",equalTo(12.2f));
 
 ## 6. 指定请求方式
 
-通常，我们会通过调用与我们要使用的请求方法相对应的方法(例如get())来执行请求。此外，**我们还可以使用request()方法指定HTTP动词**：
+通常，我们会通过调用与我们要使用的请求方法相对应的方法(例如get())来执行请求。
+
+此外，**我们还可以使用request()方法指定HTTP动词**：
 
 ```java
 @Test
@@ -162,7 +172,9 @@ public void whenRequestGet_thenOK(){
 }
 ```
 
-上面的例子相当于直接使用get()。类似地，我们可以发送HEAD、CONNECT和OPTIONS请求：
+上面的例子相当于直接使用get()。
+
+类似地，我们可以发送HEAD、CONNECT和OPTIONS请求：
 
 ```java
 @Test
@@ -188,7 +200,7 @@ public void whenRequestedPost_thenCreated() {
 }
 ```
 
-作为请求正文发送的Odd对象将自动转换为JSON，我们还可以将要发送的任何字符串作为POST请求正文传递。
+作为请求正文发送的Odd对象将自动转换为JSON。我们还可以将要发送的任何字符串作为POST请求正文传递。
 
 ## 7. 默认值配置
 
@@ -204,7 +216,7 @@ public void setup() {
 
 在这里，我们为我们的请求设置一个基本URI和端口。除此之外，我们还可以配置基本路径、根路径和身份验证。
 
-注意：我们还可以使用以下方法重置为标准的REST-assured默认值：
+注意：我们还可以使用以下方法重置为标准的Rest-Assured默认值：
 
 ```java
 RestAssured.reset();
@@ -212,7 +224,7 @@ RestAssured.reset();
 
 ## 8. 测量响应时间
 
-**让我们看看如何使用Response对象的time()和timeIn()方法测量响应时间**：
+让我们看看如何**使用Response对象的time()和timeIn()方法测量响应时间**：
 
 ```java
 @Test
@@ -256,9 +268,9 @@ public void whenValidateResponseTimeInSeconds_thenSuccess(){
 
 ## 9. XML响应验证
 
-Rest-assured不仅可以验证JSON响应，还可以验证XML。
+Rest-Assured不仅可以验证JSON响应，还可以验证XML。
 
-假设我们向http://localhost:8080/employees发出请求，并得到以下响应：
+假设我们向[http://localhost:8080/employees](http://localhost:8080/employees)发出请求，并得到以下响应：
 
 ```xml
 <employees>
@@ -294,7 +306,7 @@ public void givenUrl_whenMultipleXmlValuesTestEqual_thenCorrect() {
 }
 ```
 
-或者使用带有可变参数的简单版本：
+或者使用带有可变参数的速记版本：
 
 ```java
 @Test
@@ -303,14 +315,14 @@ public void givenUrl_whenMultipleXmlValuesTestEqualInShortHand_thenCorrect() {
         .then()
         .assertThat()
         .body("employees.employee.first-name", equalTo("Jane"),
-              "employees.employee.last-name", equalTo("Daisy"), 
-              "employees.employee.sex", equalTo("f"));
+            "employees.employee.last-name", equalTo("Daisy"), 
+            "employees.employee.sex", equalTo("f"));
 }
 ```
 
 ## 10. XML的XPath
 
-**我们还可以使用XPath验证我们的响应**，考虑以下对first-name执行匹配器的示例：
+**我们还可以使用XPath验证我们的响应**。考虑以下对first-name执行匹配器的示例：
 
 ```java
 @Test
@@ -349,15 +361,15 @@ public void whenLogRequest_thenOK() {
 
 ```shell
 Request method:	GET
-Request URI:	https://api.github.com:443/users/tuyucheng
+Request URI:	https://api.github.com:443/users/eugenp
 Proxy:			<none>
 Request params:	<none>
 Query params:	<none>
 Form params:	<none>
 Path params:	<none>
+Multiparts:		<none>
 Headers:		Accept=*/*
 Cookies:		<none>
-Multiparts:		<none>
 Body:			<none>
 ```
 
@@ -367,7 +379,9 @@ Body:			<none>
 
 ### 11.2 记录响应详细信息
 
-同样，我们可以记录响应详细信息。在以下示例中，我们仅记录响应主体：
+同样，我们可以记录响应详细信息。
+
+在以下示例中，我们仅记录响应正文：
 
 ```java
 @Test
@@ -379,25 +393,23 @@ public void whenLogResponse_thenOK() {
 
 示例输出：
 
-```shell
+```json
 {
-    "id": 541070851,
-    "node_id": "R_kgDOIEAWAw",
-    "name": "fullstack-tutorial4j",
-    "full_name": "tu-yucheng/fullstack-tutorial4j",
+    "id": 9754983,
+    "name": "tutorials",
+    "full_name": "eugenp/tutorials",
     "private": false,
-    "html_url": "https://github.com/tu-yucheng/fullstack-tutorial4j",
-    "description": "Java-related code and notes, mainly including java core、spring series framework、persistence layer framework、reactive programming、testing framework、third-party libraries、data structures and algorithms, etc.",
+    "html_url": "https://github.com/eugenp/tutorials",
+    "description": "The \"REST With Spring\" Course: ",
     "fork": false,
-    "size": 26993,
+    "size": 72371,
     "license": {
         "key": "mit",
         "name": "MIT License",
         "spdx_id": "MIT",
-        "url": "https://api.github.com/licenses/mit",
-        "node_id": "MDc6TGljZW5zZTEz"
-    },
-    ...
+        "url": "https://api.github.com/licenses/mit"
+    }
+    // ...
 }
 ```
 
@@ -437,4 +449,4 @@ public void whenLogOnlyIfValidationFailed_thenSuccess() {
 
 ## 12. 总结
 
-在本教程中，我们介绍了REST-assured框架并演示了它最重要的功能，我们可以使用这些功能来测试我们的Restful服务并验证它们的响应。
+在本教程中，我们探讨了Rest-Assured框架并演示了它最重要的功能，我们可以使用这些功能来测试我们的Restful服务并验证它们的响应。

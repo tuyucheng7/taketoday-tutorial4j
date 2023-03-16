@@ -1,12 +1,12 @@
 ## 1. 概述
 
-[Hamcrest ](http://hamcrest.org/)是 Java 生态系统中用于单元测试的著名框架。它捆绑在 JUnit 中，简单地说，它使用现有的谓词(称为匹配器类)来进行断言。
+[Hamcrest](http://hamcrest.org/)是Java生态系统中用于单元测试的知名框架。它捆绑在JUnit中，简单地说，它使用现有的谓词(称为匹配器类)来进行断言。
 
-在本教程中，我们将探索 Hamcrest API并学习如何利用它为我们的软件编写更简洁、更直观的单元测试。
+在本教程中，我们将**探索Hamcrest API**并学习如何利用它为我们的软件编写更简洁、更直观的单元测试。
 
-## 2. Hamcrest 设置
+## 2. Hamcrest设置
 
-我们可以通过将以下依赖项添加到我们的pom.xml文件中来将Hamcrest与 maven 一起使用：
+我们可以通过将以下依赖项添加到我们的pom.xml文件中来将**Hamcrest**与Maven一起使用：
 
 ```xml
 <dependency>
@@ -16,17 +16,17 @@
 </dependency>
 ```
 
-这个库的最新版本总是可以在[这里](https://search.maven.org/classic/#search|ga|1|a%3A"hamcrest-all")找到。
+这个库的最新版本总是可以在[这里](https://central.sonatype.com/artifact/org.hamcrest/hamcrest-all/1.3)找到。
 
 ## 3. 示例测试
 
-Hamcrest通常与junit和其他测试框架一起使用以进行断言。具体来说，我们不使用junit的众多断言方法，而是仅使用 API 的单个assertThat语句和适当的匹配器。
+Hamcrest通常与JUnit和其他测试框架一起使用以进行断言。具体来说，我们不会使用JUnit的众多断言方法，而是仅使用API的单个assertThat语句和适当的匹配器。
 
-让我们看一个示例，该示例测试两个String的相等性，而不管大小写。这应该让我们清楚地了解Hamcrest如何适应测试方法：
+让我们看一个示例，该示例测试两个String的相等性，而不考虑大小写。这应该让我们清楚地了解Hamcrest如何适应测试方法：
 
 ```java
 public class StringMatcherTest {
-    
+
     @Test
     public void given2Strings_whenEqual_thenCorrect() {
         String a = "foo";
@@ -36,13 +36,13 @@ public class StringMatcherTest {
 }
 ```
 
-在以下部分中，我们将看看Hamcrest提供的其他几个常见匹配器。
+在以下部分中，我们将介绍Hamcrest提供的其他几个常见匹配器。
 
-## 4.对象匹配器
+## 4. 对象匹配器
 
-Hamcrest提供了对任意 Java 对象进行断言的匹配器。
+Hamcrest提供了对任意Java对象进行断言的匹配器。
 
-要断言Object的toString方法返回指定的String：
+断言Object的toString方法返回指定的String：
 
 ```java
 @Test
@@ -58,14 +58,13 @@ public void givenBean_whenToStringReturnsRequiredString_thenCorrect(){
 ```java
 @Test
 public void given2Classes_whenOneInheritsFromOther_thenCorrect(){
-        assertThat(Cat.class,typeCompatibleWith(Animal.class));
-    }
+    assertThat(Cat.class,typeCompatibleWith(Animal.class));
 }
 ```
 
-## 5. Bean Matcher
+## 5. Bean匹配器
 
-我们可以使用Hamcrest的 Bean 匹配器来检查 Java bean 的属性。
+我们可以使用Hamcrest的Bean匹配器来检查Java bean的属性。
 
 假设以下Person bean：
 
@@ -81,39 +80,38 @@ public class Person {
 }
 ```
 
-我们可以检查 bean 是否具有属性，名称如下：
+我们可以检查bean是否具有属性name：
 
 ```java
 @Test
 public void givenBean_whenHasValue_thenCorrect() {
-    Person person = new Person("Baeldung", 25);
+    Person person = new Person("Tuyucheng", 25);
     assertThat(person, hasProperty("name"));
 }
 ```
 
-我们还可以检查Person是否有address属性，初始化为 New York：
+我们还可以检查Person是否有address属性，初始值为New York：
 
 ```java
 @Test
 public void givenBean_whenHasCorrectValue_thenCorrect() {
-    Person person = new Person("Baeldung", "New York");
+    Person person = new Person("Tuyucheng", "New York");
     assertThat(person, hasProperty("address", equalTo("New York")));
 }
 ```
 
-我们也可以检查两个Person对象是否使用相同的值构造：
+我们还可以检查两个Person对象是否使用相同的值构造：
 
 ```java
 @Test
 public void given2Beans_whenHavingSameValues_thenCorrect() {
-    Person person1 = new Person("Baeldung", "New York");
-    Person person2 = new Person("Baeldung", "New York");
+    Person person1 = new Person("Tuyucheng", "New York");
+    Person person2 = new Person("Tuyucheng", "New York");
     assertThat(person1, samePropertyValuesAs(person2));
 }
-
 ```
 
-## 6.集合匹配器
+## 6. 集合匹配器
 
 Hamcrest提供了用于检查Collection的匹配器。
 
@@ -127,13 +125,12 @@ public void givenCollection_whenEmpty_thenCorrect() {
 }
 ```
 
-要检查集合的大小：
+检查集合的大小：
 
 ```java
 @Test
 public void givenAList_whenChecksSize_thenCorrect() {
-    List<String> hamcrestMatchers = Arrays.asList(
-      "collections", "beans", "text", "number");
+    List<String> hamcrestMatchers = Arrays.asList("collections", "beans", "text", "number");
     assertThat(hamcrestMatchers, hasSize(4));
 }
 ```
@@ -148,13 +145,12 @@ public void givenArray_whenChecksSize_thenCorrect() {
 }
 ```
 
-要检查集合是否包含给定成员，无论顺序如何：
+检查集合是否包含给定成员，无论顺序如何：
 
 ```java
 @Test
 public void givenAListAndValues_whenChecksListForGivenValues_thenCorrect() {
-    List<String> hamcrestMatchers = Arrays.asList(
-      "collections", "beans", "text", "number");
+    List<String> hamcrestMatchers = Arrays.asList("collections", "beans", "text", "number");
     assertThat(hamcrestMatchers,
     containsInAnyOrder("beans", "text", "collections", "number"));
 }
@@ -165,14 +161,13 @@ public void givenAListAndValues_whenChecksListForGivenValues_thenCorrect() {
 ```java
 @Test
 public void givenAListAndValues_whenChecksListForGivenValuesWithOrder_thenCorrect() {
-    List<String> hamcrestMatchers = Arrays.asList(
-      "collections", "beans", "text", "number");
+    List<String> hamcrestMatchers = Arrays.asList("collections", "beans", "text", "number");
     assertThat(hamcrestMatchers,
     contains("collections", "beans", "text", "number"));
 }
 ```
 
-要检查数组是否具有单个给定元素：
+检查数组是否具有单个给定元素：
 
 ```java
 @Test
@@ -197,25 +192,22 @@ public void givenValueAndArray_whenValueIsOneOfArrayElements_thenCorrect() {
 ```java
 @Test
 public void givenValueAndArray_whenValueFoundInArray_thenCorrect() {
-    String[] array = new String[] { "collections", "beans", "text",
-      "number" };
+    String[] array = new String[] { "collections", "beans", "text", "number" };
     assertThat("beans", isIn(array));
 }
 ```
 
-我们还可以检查数组是否包含给定元素，而不管顺序如何：
+我们还可以检查数组是否包含给定的元素，无论顺序如何：
 
 ```java
 @Test
 public void givenArrayAndValues_whenValuesFoundInArray_thenCorrect() {
     String[] hamcrestMatchers = { "collections", "beans", "text", "number" };
-      assertThat(hamcrestMatchers,
-    arrayContainingInAnyOrder("beans", "collections", "number",
-      "text"));
+    assertThat(hamcrestMatchers, arrayContainingInAnyOrder("beans", "collections", "number","text"));
 }
 ```
 
-要检查数组是否包含给定元素但按给定顺序：
+检查数组是否包含给定元素，并且遵循给定顺序：
 
 ```java
 @Test
@@ -226,15 +218,15 @@ public void givenArrayAndValues_whenValuesFoundInArrayInOrder_thenCorrect() {
 }
 ```
 
-当我们的Collection是Map 时，我们可以在这些各自的函数中使用以下匹配器：
+当我们的Collection是Map时，我们可以在这些各自的函数中使用以下匹配器：
 
-要检查它是否包含给定的键：
+检查它是否包含给定的键：
 
 ```java
 @Test
 public void givenMapAndKey_whenKeyFoundInMap_thenCorrect() {
     Map<String, String> map = new HashMap<>();
-    map.put("blogname", "baeldung");
+    map.put("blogname", "tuyucheng");
     assertThat(map, hasKey("blogname"));
 }
 ```
@@ -245,27 +237,27 @@ public void givenMapAndKey_whenKeyFoundInMap_thenCorrect() {
 @Test
 public void givenMapAndValue_whenValueFoundInMap_thenCorrect() {
     Map<String, String> map = new HashMap<>();
-    map.put("blogname", "baeldung");
-    assertThat(map, hasValue("baeldung"));
+    map.put("blogname", "tuyucheng");
+    assertThat(map, hasValue("tuyucheng"));
 }
 ```
 
-最后是给定的条目(键，值)：
+给定的Entry(键，值)：
 
 ```java
 @Test
 public void givenMapAndEntry_whenEntryFoundInMap_thenCorrect() {
     Map<String, String> map = new HashMap<>();
-    map.put("blogname", "baeldung");
-    assertThat(map, hasEntry("blogname", "baeldung"));
+    map.put("blogname", "tuyucheng");
+    assertThat(map, hasEntry("blogname", "tuyucheng"));
 }
 ```
 
-## 7.号码匹配器
+## 7. 数字匹配器
 
-Number匹配器用于对Number类的变量执行断言。
+数字匹配器用于对Number类的变量执行断言。
 
-要检查大于条件：
+检查大于条件：
 
 ```java
 @Test
@@ -274,7 +266,7 @@ public void givenAnInteger_whenGreaterThan0_thenCorrect() {
 }
 ```
 
-要检查大于或等于条件：
+检查大于或等于条件：
 
 ```java
 @Test
@@ -310,13 +302,13 @@ public void givenADouble_whenCloseTo_thenCorrect() {
 }
 ```
 
-让我们密切关注最后一个匹配器closeTo。第一个参数，操作数，是与目标进行比较的参数，第二个参数是与操作数的允许偏差。这意味着如果目标是操作数+偏差或操作数-偏差，那么测试将通过。
+让我们密切关注最后一个匹配器closeTo。第一个参数(操作数)是与目标进行比较的参数，第二个参数是与操作数的允许偏差。这意味着如果目标是操作数+偏差或操作数-偏差，那么测试将通过。
 
 ## 8. 文本匹配器
 
-使用Hamcrest的文本匹配器， String的断言变得更容易、更整洁、更直观。我们将在本节中介绍它们。
+使用Hamcrest的文本匹配器，String上的断言变得更加容易、更整洁、更直观。我们将在本节中介绍它们。
 
-检查字符串是否为空：
+检查字符串是否为empty：
 
 ```java
 @Test
@@ -326,7 +318,7 @@ public void givenString_whenEmpty_thenCorrect() {
 }
 ```
 
-要检查String是否为空或null：
+检查String是否为empty或null：
 
 ```java
 @Test
@@ -336,7 +328,7 @@ public void givenString_whenEmptyOrNull_thenCorrect() {
 }
 ```
 
-要在忽略空格的情况下检查两个String的相等性：
+在忽略空格的情况下检查两个String的相等性：
 
 ```java
 @Test
@@ -357,22 +349,22 @@ public void givenString_whenContainsGivenSubstring_thenCorrect() {
 }
 ```
 
-最后，无论大小写，我们都可以检查两个String是否相等：
+最后，我们可以检查两个String是否相等，而不考虑大小写：
 
 ```java
 @Test
- public void given2Strings_whenEqual_thenCorrect() {
+public void given2Strings_whenEqual_thenCorrect() {
     String a = "foo";
     String b = "FOO";
     assertThat(a, equalToIgnoringCase(b));
 }
 ```
 
-## 9. 核心 API
+## 9. 核心API
 
-Hamcrest核心 API 将由第三方框架提供商使用。但是，它为我们提供了一些很棒的结构来使我们的单元测试更具可读性，并且还提供了一些可以轻松使用的核心匹配器。
+Hamcrest核心API将由第三方框架提供商使用。但是，它为我们提供了一些很棒的结构来使我们的单元测试更具可读性，并且还提供了一些可以轻松使用的核心匹配器。
 
-在匹配器上构造 is 的可读性：
+匹配器上is构造的可读性：
 
 ```java
 @Test
@@ -383,7 +375,7 @@ public void given2Strings_whenIsEqualRegardlessWhiteSpace_thenCorrect() {
 }
 ```
 
-is构造在一个简单的数据类型上：
+对简单的数据类型使用is构造：
 
 ```java
 @Test
@@ -394,7 +386,7 @@ public void given2Strings_whenIsEqual_thenCorrect() {
 }
 ```
 
-用匹配器上的not结构求反：
+在匹配器上使用not构造进行否定：
 
 ```java
 @Test
@@ -490,7 +482,7 @@ public void givenString_whenNotNull_thenCorrect() {
 }
 ```
 
-将条件链接在一起，当目标满足任何条件时测试通过，类似于逻辑 OR：
+将条件链接在一起，当目标满足任何条件时测试通过，类似于逻辑或：
 
 ```java
 @Test
@@ -502,7 +494,7 @@ public void givenString_whenMeetsAnyOfGivenConditions_thenCorrect() {
 }
 ```
 
-将条件链在一起，仅当目标满足所有条件时测试通过，类似于逻辑与：
+将条件链在一起，仅当目标满足所有条件时测试才通过，类似于逻辑与：
 
 ```java
 @Test
@@ -516,7 +508,7 @@ public void givenString_whenMeetsAllOfGivenConditions_thenCorrect() {
 
 ## 10. 自定义匹配器
 
-我们可以通过扩展TypeSafeMatcher来定义我们自己的匹配器。在本节中，我们将创建一个自定义匹配器，它仅在目标为正整数时才允许测试通过。
+我们可以通过扩展TypeSafeMatcher来定义我们自己的匹配器。在本节中，我们将创建一个自定义匹配器，该匹配器仅在目标为正整数时才允许测试通过。
 
 ```java
 public class IsPositiveInteger extends TypeSafeMatcher<Integer> {
@@ -534,11 +526,10 @@ public class IsPositiveInteger extends TypeSafeMatcher<Integer> {
     protected boolean matchesSafely(Integer integer) {
         return integer > 0;
     }
-
 }
 ```
 
-我们只需要实现matchSafely方法来检查目标确实是一个正整数和describeTo方法，它会在测试不通过时产生失败消息。
+我们只需要实现matchSafely方法来检查目标确实是一个正整数，以及describeTo方法，它会在测试不通过时生成失败消息。
 
 这是一个使用我们新的自定义匹配器的测试：
 
@@ -552,10 +543,10 @@ public void givenInteger_whenAPositiveValue_thenCorrect() {
 
 这是我们收到的失败消息，因为我们传入了一个非正整数：
 
-```java
+```shell
 java.lang.AssertionError: Expected: a positive integer but: was <-1>
 ```
 
 ## 11. 总结
 
-在本教程中，我们探索了 Hamcrest API并学习了如何使用它编写更好、更易于维护的单元测试。
+在本教程中，我们探索了Hamcrest API并学习了如何使用它编写更好、更易于维护的单元测试。

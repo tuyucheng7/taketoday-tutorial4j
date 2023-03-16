@@ -6,11 +6,11 @@
 
 过滤器可以拦截、检查和修改客户端请求(或响应)。过滤器非常适合为每个请求添加功能，因为逻辑保留在一个地方。用例包括监视、修改、记录和验证客户端请求，仅举几例。
 
-请求具有零个或多个过滤器的有序链。
+请求具有由零个或多个过滤器组成的有序链。
 
-在Spring Reactive中，过滤器是功能接口ExchangeFilterFunction的实例。过滤器函数有两个参数：要修改的ClientRequest和下一个ExchangeFilterFunction。
+在Spring Reactive中，过滤器是函数接口ExchangeFilterFunction的实例。filter函数有两个参数：要修改的ClientRequest和下一个ExchangeFilterFunction。
 
-通常，过滤器函数通过调用过滤器链中的下一个函数返回：
+通常，filter函数通过调用过滤器链中的下一个函数返回：
 
 ```java
 ExchangeFilterFunction filterFunction = (clientRequest, nextFilter) -> {
@@ -43,7 +43,7 @@ WebClient webClient = WebClient.builder()
 
 让我们从计算客户端发送的HTTP GET请求的过滤器开始。
 
-过滤器检查请求方法并在GET请求的情况下增加一个“全局”计数器：
+过滤器检查请求方法并在GET请求的情况下自增“全局”计数器：
 
 ```java
 ExchangeFilterFunction countingFunction = (clientRequest, nextFilter) -> {
@@ -72,7 +72,7 @@ ExchangeFilterFunction urlModifyingFilter = (clientRequest, nextFilter) -> {
 
 接下来，让我们定义一个过滤器来记录发送请求的方法及其URL。这些详细信息在请求对象中可用。
 
-我们所要做的就是打印到一些输出流：
+然后，我们所要做的就是打印输出流：
 
 ```java
 ExchangeFilterFunction loggingFilter = (clientRequest, nextFilter) -> {
@@ -83,9 +83,9 @@ ExchangeFilterFunction loggingFilter = (clientRequest, nextFilter) -> {
 
 ## 5. 标准过滤器
 
-最后，让我们看看基本身份验证，一个非常常见的请求过滤用例。
+**最后，让我们看看基本身份验证**-一个非常常见的请求过滤用例。
 
-助手类ExchangeFilterFunctions提供了basicAuthentication()过滤器函数，它负责将授权标头添加到请求中。
+工具类ExchangeFilterFunctions提供了basicAuthentication()过滤器函数，它负责将authorization标头添加到请求中。
 
 因此，我们不需要为它定义过滤器：
 
@@ -98,4 +98,4 @@ WebClient webClient = WebClient.builder()
 
 ## 6. 总结
 
-在这篇简短的文章中，我们探索了在Spring中过滤WebFlux客户端。
+在这篇简短的文章中，我们探讨了在Spring中过滤WebFlux客户端。

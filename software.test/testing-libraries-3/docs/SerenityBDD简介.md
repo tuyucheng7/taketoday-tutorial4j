@@ -1,38 +1,38 @@
 ## 1. 概述
 
-在本教程中，我们将介绍[Serenity BDD](http://www.thucydides.info/) - 一个用于应用[行为驱动开发 (BDD)](https://www.baeldung.com/cs/bdd-guide)的出色工具。这是一种用于自动验收测试的解决方案，可生成图解说明的测试报告。
+在本教程中，我们将介绍[Serenity BDD](http://www.thucydides.info/)-一个应用[行为驱动开发(BDD)](https://www.baeldung.com/cs/bdd-guide)的出色工具。这是一种用于自动验收测试的解决方案，可生成图文并茂的测试报告。
 
 ## 2. 核心概念
 
-Serenity 背后的概念遵循 BDD 背后的概念。如果你想了解更多相关信息，请查看我们关于[Cucumber](https://www.baeldung.com/cucumber-rest-api-testing)和[JBehave](https://www.baeldung.com/jbehave-rest-testing)的文章。
+Serenity背后的概念遵循BDD背后的概念。如果你想了解更多相关信息，请查看我们关于[Cucumber](https://www.baeldung.com/cucumber-rest-api-testing)和[JBehave](https://www.baeldung.com/jbehave-rest-testing)的文章。
 
-### 2.1。要求
+### 2.1 需求
 
-在 Serenity 中，需求分为三个级别：
+在Serenity中，需求分为三个级别：
 
 1.  能力
-2.  特征
+2.  功能
 3.  故事
 
-通常，项目在电子商务项目中实现高级功能、订单管理和会员管理功能。每个功能都由许多特性组成，用户故事详细解释了特性。
+通常，项目在电子商务项目中实现高级能力、订单管理和会员管理能力。每个能力都由许多功能组成，功能通过用户故事进行详细解释。
 
-### 2.2. 步骤和测试
+### 2.2 步骤和测试
 
-步骤包含一组资源操作操作。它可以是动作、验证或上下文相关的操作。经典的Given_When_Then格式可以体现在步骤中。
+步骤(Step)包含一组资源操作。它可以是动作、验证或上下文相关的操作。经典的Given_When_Then格式可以体现在步骤中。
 
-测试与Steps 齐头并进。每个测试都讲述了一个简单的用户故事，该故事是使用特定的Step执行的。
+测试与步骤齐头并进。**每个测试都讲述了一个简单的用户故事，该故事是使用特定的Step执行的**。
 
-### 2.3. 报告
+### 2.3 报告
 
-Serenity 不仅报告测试结果，还使用它们生成描述需求和应用程序行为的动态文档。
+Serenity不仅报告测试结果，还使用它们生成描述需求和应用程序行为的动态文档。
 
-## 3. 使用 SerenityBDD 进行测试
+## 3. 使用Serenity BDD进行测试
 
-要使用 JUnit 运行我们的 Serenity 测试，我们需要@RunWith the SerenityRunner，测试运行器。SerenityRunner检测步骤库并确保 Serenity 报告器记录和报告测试结果。
+要使用JUnit运行我们的Serenity测试，我们需要@RunWith(SerenityRunner.class)测试运行器。SerenityRunner检测步骤库并确保测试结果将由Serenity报告器记录和报告。
 
-### 3.1。Maven 依赖项
+### 3.1 Maven依赖项
 
-要在 JUnit 中使用 Serenity，我们应该在pom.xml中包含[serenity-core](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd|serenity-core|1.2.5-rc.11|jar)和[serenity-junit ：](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd|serenity-junit|1.2.5-rc.11|jar)
+要在JUnit中使用Serenity，我们应该在pom.xml中包含[serenity-core](https://central.sonatype.com/artifact/net.serenity-bdd/serenity-core/3.6.12)和[serenity-junit](https://central.sonatype.com/artifact/net.serenity-bdd/serenity-junit/3.6.12)：
 
 ```xml
 <dependency>
@@ -47,7 +47,7 @@ Serenity 不仅报告测试结果，还使用它们生成描述需求和应用�
 </dependency>
 ```
 
-我们还需要[serenity-maven-plugin](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd.maven.plugins|serenity-maven-plugin|1.2.5-rc.6|jar)从测试结果汇总报告：
+我们还需要[serenity-maven-plugin](https://central.sonatype.com/artifact/net.serenity-bdd.maven.plugins/serenity-maven-plugin/3.6.12)来从测试结果中汇总报告：
 
 ```xml
 <plugin>
@@ -66,7 +66,7 @@ Serenity 不仅报告测试结果，还使用它们生成描述需求和应用�
 </plugin>
 ```
 
-如果我们希望 Serenity 即使在测试失败的情况下也能生成报告，请将以下内容添加到pom.xml：
+如果我们希望Serenity即使在测试失败的情况下也能生成报告，请将以下内容添加到pom.xml：
 
 ```xml
 <plugin>
@@ -79,19 +79,19 @@ Serenity 不仅报告测试结果，还使用它们生成描述需求和应用�
 </plugin>
 ```
 
-### 3.2. 会员积分示例
+### 3.2 会员积分示例
 
 最初，我们的测试基于电子商务应用程序中的典型会员积分功能。客户可以加入会员计划。随着客户在平台上购买商品，会员积分会增加，客户的会员等级也会相应提升。
 
-现在让我们针对上述场景编写几个测试，看看 Serenity 是如何工作的。
+现在让我们针对上述场景编写几个测试，看看Serenity是如何工作的。
 
-首先，让我们编写成员初始化测试，看看我们需要哪些步骤：
+首先，让我们编写测试成员变量的初始化，看看我们需要哪些步骤：
 
 ```java
 @RunWith(SerenityRunner.class)
 public class MemberStatusIntegrationTest {
 
-    @Steps 
+    @Steps
     private MemberStatusSteps memberSteps;
 
     @Test
@@ -121,47 +121,39 @@ public class MemberStatusSteps {
 }
 ```
 
-现在我们准备好使用mvn clean verify运行集成测试。报告将位于target/site/serenity/index.html：
+现在我们准备使用mvn clean verify运行集成测试。报告将位于target/site/serenity/index.html：
 
-[![宁静报告成员](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-300x256.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member.png)
+<img src="../assets/img.png">
 
- 
+从报告中，我们可以看到我们只有一个验收测试“Members should start with bronze status”有能力并且正在通过。通过单击测试，步骤如下：
 
-从报告中我们可以看出，我们只有一个验收测试“成员应该从青铜状态开始，有能力”并且正在通过。通过单击测试，说明了步骤：
+<img src="../assets/img_1.png">
 
-[![宁静报告会员步骤](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-steps-300x93.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-steps.png)
-
- 
-
-正如我们所看到的，Serenity 的报告让我们彻底了解了我们的应用程序正在做什么以及它是否符合我们的要求。如果我们有一些步骤要实现，我们可以将它们标记为@Pending：
+正如我们所看到的，Serenity的报告可以让我们全面了解我们的应用程序正在做什么以及它是否符合我们的要求。如果我们有一些步骤要实现，我们可以将它们标记为@Pending：
 
 ```java
 @Pending
 @Step("When the member exchange {}")
 public void aMemberExchangeA(Commodity commodity){
-    //TODO
+    // TODO
 }
 ```
 
 该报告将提醒我们下一步需要做什么。如果任何测试失败，也可以在报告中看到：
 
-[![宁静报告成员步骤失败未决](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-steps-fails-pending-300x181.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-steps-fails-pending.png)
-
- 
+<img src="../assets/img_2.png" align="left">
 
 将分别列出每个失败、忽略或跳过的步骤：
 
-[![宁静报告成员未通过未决测试](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-fails-pending-tests-300x70.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-member-fails-pending-tests.png)
+<img src="../assets/img_3.png" align="left">
 
- 
+## 4. 与JBehave集成
 
-## 4. 与 JBehave 集成
+Serenity还可以与现有的BDD框架(例如JBehave)集成。
 
-Serenity 还可以与现有的 BDD 框架(例如 JBehave)集成。
+### 4.1 Maven依赖项
 
-### 4.1。Maven 依赖项
-
-为了与 JBehave 集成，POM 中还需要一个依赖[项 serenity-jbehave](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd|serenity-jbehave|1.24.0|jar)：
+为了与JBehave集成，POM中还需要一个依赖项[serenity-jbehave](https://central.sonatype.com/artifact/net.serenity-bdd/serenity-jbehave/1.46.0)：
 
 ```xml
 <dependency>
@@ -171,13 +163,13 @@ Serenity 还可以与现有的 BDD 框架(例如 JBehave)集成。
 </dependency>
 ```
 
-### 4.2. JBehave Github REST API 测试继续
+### 4.2 JBehave Github REST API
 
-正如我们已经介绍[了如何使用 JBehave 进行 REST API 测试](https://www.baeldung.com/jbehave-rest-testing)，我们可以继续我们的 JBehave REST API 测试，看看它如何适合 Serenity。
+正如我们已经介绍了[如何使用JBehave进行REST API测试](https://www.baeldung.com/jbehave-rest-testing)，我们可以继续我们的JBehave REST API测试，看看它如何适应Serenity。
 
 我们的故事是：
 
-```plaintext
+```gherkin
 Scenario: Github user's profile should have a login payload same as username
  
 Given github user profile api
@@ -208,11 +200,10 @@ public class GithubRestUserAPISteps {
     public void profilePayloadShouldContainLoginValue(String username) {
         assertThat(username, Matchers.is(resource.getLogin()));
     }
-
 }
 ```
 
-为了使 JBehave 的故事到代码的映射按预期工作，我们需要使用@Steps实现 JBehave 的步骤定义：
+为了使JBehave的故事到代码的映射按预期工作，我们需要使用@Steps实现JBehave的步骤定义：
 
 ```java
 public class GithubUserProfilePayloadStepDefinitions {
@@ -237,7 +228,7 @@ public class GithubUserProfilePayloadStepDefinitions {
 }
 ```
 
-使用SerenityStories，我们可以在 IDE 和构建过程中运行 JBehave 测试：
+使用SerenityStory，我们可以在IDE和构建过程中运行JBehave测试：
 
 ```java
 import net.serenitybdd.jbehave.SerenityStory;
@@ -245,19 +236,19 @@ import net.serenitybdd.jbehave.SerenityStory;
 public class GithubUserProfilePayload extends SerenityStory {}
 ```
 
-验证构建完成后，我们可以看到我们的测试报告：
+verify构建完成后，我们可以看到我们的测试报告：
 
-[![宁静报告 jbehave api](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jbehave-api-300x151.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jbehave-api.png)
+<img src="../assets/img_4.png" align="left">
 
-与 JBehave 的纯文本报告相比，Serenity 的丰富报告让我们对我们的故事和测试结果更加直观和生动的概述。
+与JBehave的纯文本报告相比，Serenity的丰富报告让我们更赏心悦目，更能实时了解我们的故事和测试结果。
 
-## 5. 与 REST 保证的集成
+## 5. 与Rest-Assured集成
 
-值得注意的是，Serenity 支持与[REST-assured 的](http://rest-assured.io/)集成。要查看 REST-assured，请查看[REST-assured 指南](https://www.baeldung.com/rest-assured-tutorial)。
+值得注意的是，Serenity支持与[Rest-Assured](http://rest-assured.io/)集成。要学习Rest-Assured，请查看[Rest-Assured指南](https://www.baeldung.com/rest-assured-tutorial)。
 
-### 5.1。Maven 依赖项
+### 5.1 Maven依赖项
 
-要在 Serenity 中使用 REST-assured，应包含[serenity-rest-assured依赖项：](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd|serenity-rest-assured|1.2.5-rc.11|jar)
+要将Rest-Assured与Serenity结合使用，应包含[serenity-rest-assured](https://central.sonatype.com/artifact/net.serenity-bdd/serenity-rest-assured/3.6.12)依赖项：
 
 ```xml
 <dependency>
@@ -267,9 +258,9 @@ public class GithubUserProfilePayload extends SerenityStory {}
 </dependency>
 ```
 
-### 5.2. 在 Github REST API 测试中使用 REST-assured
+### 5.2 在Github REST API测试中使用Rest-Assured
 
-现在我们可以用 REST-assured 实用程序替换我们的 Web 客户端：
+现在我们可以用Rest-Assured实用程序替换我们的Web客户端：
 
 ```java
 import static net.serenitybdd.rest.SerenityRest.rest;
@@ -293,11 +284,10 @@ public class GithubRestAssuredUserAPISteps {
     public void profilePayloadShouldContainLoginValue(String username) {
         then().body("login", Matchers.equalTo(username));
     }
-
 }
 ```
 
-替换StepDefition中userAPISteps的实现后，我们可以重新运行验证构建：
+替换StepDefinition中userAPISteps的实现后，我们可以重新运行verify构建：
 
 ```java
 public class GithubUserProfilePayloadStepDefinitions {
@@ -306,23 +296,22 @@ public class GithubUserProfilePayloadStepDefinitions {
     GithubRestAssuredUserAPISteps userAPISteps;
 
     //...
-
 }
 ```
 
-在报告中，我们可以看到测试过程中调用的实际 API，通过单击REST Query按钮，将显示请求和响应的详细信息：
+在报告中，我们可以看到测试过程中调用的实际API，通过单击REST Query按钮，将显示请求和响应的详细信息：
 
-[![宁静报告 jbehave api 放心](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jbehave-api-rest-assured-300x33.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jbehave-api-rest-assured.png)
+<img src="../assets/img_5.png" align="left">
 
-## 6. 与 JIRA 集成
+## 6. 与JIRA集成
 
-到目前为止，我们已经有了一份很棒的测试报告，描述了我们对 Serenity 框架的需求的详细信息和状态。但对于敏捷团队来说，JIRA 等问题跟踪系统通常用于跟踪需求。如果我们可以无缝地使用它们会更好。
+到目前为止，我们已经有了一份很棒的测试报告，描述了我们对Serenity框架的需求的详细信息和状态。但对于敏捷团队来说，JIRA等问题跟踪系统通常用于跟踪需求。如果我们可以无缝地使用它们就更好了。
 
-幸运的是，Serenity 已经支持与 JIRA 的集成。
+幸运的是，Serenity已经支持与JIRA的集成。
 
-### 6.1。Maven 依赖项
+### 6.1 Maven依赖项
 
-要与 JIRA 集成，我们需要另一个依赖项：[serenity-jira-requirements-provider](https://search.maven.org/classic/#artifactdetails|net.serenity-bdd|serenity-jira-requirements-provider|1.1.3-rc.5|jar)。
+为了与JIRA集成，我们需要另一个依赖项：[serenity-jira-requirements-provider](https://central.sonatype.com/artifact/net.serenity-bdd/serenity-jira-requirements-provider/1.12.0)。
 
 ```xml
 <dependency>
@@ -332,32 +321,32 @@ public class GithubUserProfilePayloadStepDefinitions {
 </dependency>
 ```
 
-### 6.2. 单向集成
+### 6.2 单向集成
 
-要在故事中添加 JIRA 链接，我们可以使用故事的元标记添加 JIRA 问题：
+要在故事中添加JIRA链接，我们可以使用故事的元标记添加JIRA问题：
 
-```plaintext
+```shell
 Meta:
 @issue #BDDTEST-1
 ```
 
-此外，JIRA 帐户和链接应在项目根目录下的文件 serenity.properties 中指定：
+此外，应在项目根目录下的文件serenity.properties中指定JIRA帐户和链接：
 
-```bash
+```properties
 jira.url=<jira-url>
 jira.project=<jira-project>
 jira.username=<jira-username>
 jira.password=<jira-password>
 ```
 
-然后会在报告中附加一个 JIRA 链接：
+然后报告中会附加一个JIRA链接：
 
-[![宁静报告jira](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jira-300x51.png)](https://www.baeldung.com/wp-content/uploads/2017/04/serenity-report-jira.png)
+<img src="../assets/img_6.png" align="left">
 
-Serenity 还支持与 JIRA 的双向集成，更多细节可以参考[官方文档](http://www.thucydides.info/docs/serenity/#_two_way_integration_with_jira)。
+Serenity还支持与JIRA的双向集成，更多细节可以参考[官方文档](http://www.thucydides.info/docs/serenity/#_two_way_integration_with_jira)。
 
-## 七、总结
+## 7. 总结
 
-在本文中，我们介绍了 Serenity BDD 以及与其他测试框架和需求管理系统的多种集成。
+在本文中，我们介绍了Serenity BDD以及与其他测试框架和需求管理系统的多种集成。
 
-虽然我们已经介绍了 Serenity 可以做的大部分事情，但它肯定可以做更多的事情。在我们的下一篇文章中，我们将介绍带有 WebDriver 支持的 Serenity 如何使我们能够使用剧本自动化 Web 应用程序页面。
+虽然我们已经介绍了Serenity可以做的大部分事情，但它当然可以做得更多。在我们的下一篇文章中，我们将介绍带有WebDriver支持的Serenity如何使我们能够使用剧本自动化Web应用程序页面。

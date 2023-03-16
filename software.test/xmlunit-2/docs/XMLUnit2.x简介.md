@@ -1,18 +1,18 @@
-## 一、概述
+## 1. 概述
 
-[XMLUnit 2.x](http://www.xmlunit.org/)是一个强大的库，可以帮助我们测试和验证 XML 内容，当我们确切地知道 XML 应该包含什么时，它会派上用场。
+[XMLUnit 2.x](http://www.xmlunit.org/)是一个功能强大的库，可以帮助我们测试和验证XML内容，当我们确切地知道XML应该包含什么时，它会派上用场。
 
-所以我们将主要在单元测试中使用 XMLUnit来验证我们所拥有的是有效的 XML，它是否包含某些信息或符合某种样式的文档。
+因此我们将主要在单元测试中使用XMLUnit来验证我们所拥有的是有效的XML，它是否包含某些信息或符合某种样式的文档。
 
-此外，使用 XMLUnit，我们可以控制哪种差异对我们很重要，以及样式参考的哪一部分与您比较 XML 的哪一部分进行比较。
+此外，使用XMLUnit，我们可以控制哪种差异对我们很重要，以及样式参考的哪一部分与您比较XML的哪一部分进行比较。
 
-由于我们关注的是 XMLUnit 2.x 而不是 XMLUnit 1.x，所以无论何时我们使用 XMLUnit 这个词，我们都严格指的是 2.x。
+由于我们关注的是XMLUnit2.x而不是XMLUnit1.x，所以无论何时我们使用XMLUnit这个词，我们都严格指的是2.x。
 
-最后，我们还将使用 Hamcrest 匹配器进行断言，因此最好复习一下[Hamcrest](https://www.baeldung.com/java-junit-hamcrest-guide)，以防您不熟悉它。
+最后，我们还将使用Hamcrest匹配器进行断言，因此最好复习一下[Hamcrest](https://www.baeldung.com/java-junit-hamcrest-guide)，以防您不熟悉它。
 
-## 2. XMLUnit Maven 设置
+## 2.XMLUnitMaven设置
 
-要在我们的 maven 项目中使用该库，我们需要在pom.xml中具有以下依赖项：
+要在我们的maven项目中使用该库，我们需要在pom.xml中具有以下依赖项：
 
 ```xml
 <dependency>
@@ -34,11 +34,11 @@
 
 [此链接](https://search.maven.org/classic/#search|ga|1|a%3A"xmlunit-matchers")提供了最新版本的xmlunit-matchers。
 
-## 3. 比较 XML
+## 3.比较XML
 
 ### 3.1。简单差异示例
 
-假设我们有两段 XML。当文档中节点的内容和顺序完全相同时，就认为它们是相同的，所以下面的测试会通过：
+假设我们有两段XML。当文档中节点的内容和顺序完全相同时，就认为它们是相同的，所以下面的测试会通过：
 
 ```java
 @Test
@@ -49,7 +49,7 @@ public void given2XMLS_whenIdentical_thenCorrect() {
 }
 ```
 
-下一个测试失败，因为这两条 XML 相似但不相同，因为它们的节点以不同的顺序出现：
+下一个测试失败，因为这两条XML相似但不相同，因为它们的节点以不同的顺序出现：
 
 ```java
 @Test
@@ -60,13 +60,13 @@ public void given2XMLSWithSimilarNodesButDifferentSequence_whenNotIdentical_then
 }
 ```
 
-### 3.2. 详细差异示例
+### 3.2.详细差异示例
 
-上述两个 XML 文档之间的差异由差异引擎检测。
+上述两个XML文档之间的差异由差异引擎检测。
 
 默认情况下，出于效率原因，一旦发现第一个差异，它就会停止比较过程。
 
-为了获得两段 XML 之间的所有差异，我们使用Diff类的实例，如下所示：
+为了获得两段XML之间的所有差异，我们使用Diff类的实例，如下所示：
 
 ```java
 @Test
@@ -102,9 +102,9 @@ Expected text value 'false' but was '3' -
     to <int ...>3</int> at /struct[1]/int[1]/text()[1] (DIFFERENT)
 ```
 
-每个实例都描述了在控制节点和测试节点之间发现的差异类型以及这些节点的详细信息（包括每个节点的 XPath 位置）。
+每个实例都描述了在控制节点和测试节点之间发现的差异类型以及这些节点的详细信息（包括每个节点的XPath位置）。
 
-如果我们想在找到第一个差异后强制差异引擎停止并且不继续枚举更多差异 - 我们需要提供一个ComparisonController：
+如果我们想在找到第一个差异后强制差异引擎停止并且不继续枚举更多差异-我们需要提供一个ComparisonController：
 
 ```java
 @Test
@@ -138,9 +138,9 @@ Expected element tag name 'int' but was 'boolean' -
 
 ## 4.输入源
 
-使用 XMLUnit ，我们可以从各种可能方便满足应用程序需求的来源中挑选 XML 数据。在这种情况下，我们使用Input类及其静态方法数组。
+使用XMLUnit，我们可以从各种可能方便满足应用程序需求的来源中挑选XML数据。在这种情况下，我们使用Input类及其静态方法数组。
 
-要从位于项目根目录中的 XML 文件中选择输入，我们执行以下操作：
+要从位于项目根目录中的XML文件中选择输入，我们执行以下操作：
 
 ```java
 @Test
@@ -154,7 +154,7 @@ public void givenFileSource_whenAbleToInput_thenCorrect() {
 }
 ```
 
-要从 XML 字符串中选择输入源，如下所示：
+要从XML字符串中选择输入源，如下所示：
 
 ```java
 @Test
@@ -180,7 +180,7 @@ public void givenStreamAsSource_whenAbleToInput_thenCorrect() {
 }
 ```
 
-我们还可以使用Input.from(Object)传入任何由 XMLUnit 解析的有效源。
+我们还可以使用Input.from(Object)传入任何由XMLUnit解析的有效源。
 
 例如，我们可以传入一个文件：
 
@@ -219,9 +219,9 @@ public void givenStreamAsObject_whenAbleToInput_thenCorrect() {
 
 他们都将得到解决。
 
-## 5. 比较特定节点
+## 5.比较特定节点
 
-在上面的第 2 节中，我们只查看了相同的 XML，因为类似的 XML 需要使用xmlunit-core库中的功能进行一些定制：
+在上面的第2节中，我们只查看了相同的XML，因为类似的XML需要使用xmlunit-core库中的功能进行一些定制：
 
 ```java
 @Test
@@ -233,7 +233,7 @@ public void given2XMLS_whenSimilar_thenCorrect() {
 }
 ```
 
-上述测试应该通过，因为 XML 具有相似的节点，但是它失败了。这是因为XMLUnit 在相对于根节点的相同深度比较控制节点和测试节点。
+上述测试应该通过，因为XML具有相似的节点，但是它失败了。这是因为XMLUnit在相对于根节点的相同深度比较控制节点和测试节点。
 
 因此，isSimilarTo条件比isIdenticalTo条件测试起来更有趣。controlXml中的节点<int>3</int>将与testXml中的<boolean>false</boolean>进行比较，自动给出失败消息：
 
@@ -246,13 +246,13 @@ Expected: Expected element tag name 'int' but was 'boolean' -
 <boolean>false</boolean>
 ```
 
-这是 XMLUnit 的DefaultNodeMatcher和ElementSelector类派上用场的地方
+这是XMLUnit的DefaultNodeMatcher和ElementSelector类派上用场的地方
 
-当XMLUnit 在controlXml的节点上循环时，会在比较阶段咨询DefaultNodeMatcher类，以确定testXml中的哪个 XML 节点与它在controlXml中遇到的当前 XML 节点进行比较。
+当XMLUnit在controlXml的节点上循环时，会在比较阶段咨询DefaultNodeMatcher类，以确定testXml中的哪个XML节点与它在controlXml中遇到的当前XML节点进行比较。
 
 在此之前，DefaultNodeMatcher已经咨询过ElementSelector来决定如何匹配节点。
 
-我们的测试失败了，因为在默认状态下，XMLUnit 将使用深度优先的方法来遍历 XML，并根据文档顺序来匹配节点，因此<int>与<boolean>匹配。
+我们的测试失败了，因为在默认状态下，XMLUnit将使用深度优先的方法来遍历XML，并根据文档顺序来匹配节点，因此<int>与<boolean>匹配。
 
 让我们调整我们的测试以使其通过：
 
@@ -268,11 +268,11 @@ public void given2XMLS_whenSimilar_thenCorrect() {
 }
 ```
 
-在这种情况下，我们告诉DefaultNodeMatcher，当 XMLUnit 要求比较节点时，您应该已经按照节点的元素名称对节点进行排序和匹配。
+在这种情况下，我们告诉DefaultNodeMatcher，当XMLUnit要求比较节点时，您应该已经按照节点的元素名称对节点进行排序和匹配。
 
 最初失败的示例类似于将ElementSelectors.Default传递给DefaultNodeMatcher。
 
-或者，我们可以使用 xmlunit-core 的Diff而不是使用xmlunit-matchers：
+或者，我们可以使用xmlunit-core的Diff而不是使用xmlunit-matchers：
 
 ```java
 @Test
@@ -292,9 +292,9 @@ public void given2XMLs_whenSimilarWithDiff_thenCorrect() throws Exception {
 
 DifferenceEvaluator确定比较的结果。它的作用仅限于确定比较结果的严重性。
 
-它是决定两个 XML 片段是否相同、相似或不同的类。
+它是决定两个XML片段是否相同、相似或不同的类。
 
-考虑以下 XML 片段：
+考虑以下XML片段：
 
 ```xml
 <a>
@@ -375,11 +375,11 @@ public void given2XMLsWithDifferences_whenTestsSimilarWithDifferenceEvaluator_th
 
 这次过去了。
 
-## 7. 验证
+## 7.验证
 
-XMLUnit 使用Validator类执行 XML 验证。您使用forLanguage工厂方法创建它的一个实例，同时传入要在验证中使用的模式。
+XMLUnit使用Validator类执行XML验证。您使用forLanguage工厂方法创建它的一个实例，同时传入要在验证中使用的模式。
 
-模式作为通向其位置的 URI 传入，XMLUnit 将其在Languages类中支持的模式位置抽象为常量。
+模式作为通向其位置的URI传入，XMLUnit将其在Languages类中支持的模式位置抽象为常量。
 
 我们通常像这样创建一个Validator类的实例：
 
@@ -387,7 +387,7 @@ XMLUnit 使用Validator类执行 XML 验证。您使用forLanguage工厂方法�
 Validator v = Validator.forLanguage(Languages.W3C_XML_SCHEMA_NS_URI);
 ```
 
-在这一步之后，如果我们有自己的 XSD 文件来验证我们的 XML，我们只需指定它的源，然后使用我们的 XML 文件源调用Validator的validateInstance方法。
+在这一步之后，如果我们有自己的XSD文件来验证我们的XML，我们只需指定它的源，然后使用我们的XML文件源调用Validator的validateInstance方法。
 
 以我们的students.xsd为例：
 
@@ -448,7 +448,7 @@ public void givenXml_whenValidatesAgainstXsd_thenCorrect() {
 
 验证的结果是ValidationResult的一个实例，其中包含一个布尔标志，指示文档是否已成功验证。
 
-ValidationResult还包含一个带有ValidationProblem的Iterable ，以防出现故障。让我们创建一个名为students_with_error.xml的带有错误的新 XML 。而不是<student>，我们的起始标签都是</studet>：
+ValidationResult还包含一个带有ValidationProblem的Iterable，以防出现故障。让我们创建一个名为students_with_error.xml的带有错误的新XML。而不是<student>，我们的起始标签都是</studet>：
 
 ```xml
 <?xml version = "1.0"?>
@@ -496,11 +496,11 @@ ValidationProblem { line=6, column=4, type=ERROR, message='The element type "stu
   must be terminated by the matching end-tag "</studet>".' }
 ```
 
-## 8. XPath
+## 8.XPath
 
-当针对一段 XML 评估 XPath 表达式时，会创建一个包含匹配节点的NodeList 。
+当针对一段XML评估XPath表达式时，会创建一个包含匹配节点的NodeList。
 
-考虑一下保存在名为teacher.xml的文件中的这段 XML ：
+考虑一下保存在名为teacher.xml的文件中的这段XML：
 
 ```xml
 <teachers>
@@ -515,7 +515,7 @@ ValidationProblem { line=6, column=4, type=ERROR, message='The element type "stu
 </teachers>
 ```
 
-XMLUnit 提供了许多与 XPath 相关的断言方法，如下所示。
+XMLUnit提供了许多与XPath相关的断言方法，如下所示。
 
 我们可以检索所有名为teacher的节点并分别对它们执行断言：
 
@@ -563,8 +563,8 @@ public void givenXmlSource_whenFailsToValidateInExistentXPath_thenCorrect() {
 }
 ```
 
-XPath 在文档主要由已知的、不变的内容和系统创建的少量变化内容组成的情况下特别有用。
+XPath在文档主要由已知的、不变的内容和系统创建的少量变化内容组成的情况下特别有用。
 
-## 9. 结论
+## 9.结论
 
-在本教程中，我们介绍了XMLUnit 2.x的大部分基本特性以及如何使用它们在我们的应用程序中验证 XML 文档。
+在本教程中，我们介绍了XMLUnit2.x的大部分基本特性以及如何使用它们在我们的应用程序中验证XML文档。

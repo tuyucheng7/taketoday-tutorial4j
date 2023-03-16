@@ -1,18 +1,18 @@
 ## 1. 概述
 
-在本教程中，我们将介绍如何使用Cucumber标记表达式来操纵测试的执行及其相关设置。
+在本教程中，我们将说明如何使用Cucumber标签表达式来操纵测试的执行及其相关设置。
 
-我们将研究如何分离我们的API和UI测试并控制我们为每个测试运行的配置步骤。
+我们将研究如何分离API和UI测试，并控制我们为每个测试运行的配置步骤。
 
 ## 2. 带有UI和API组件的应用程序
 
-我们的应用程序有一个简单的UI，用于生成给定范围内的随机数：
+我们的示例应用程序有一个简单的UI，用于生成给定范围内的随机数：
 
 <img src="../assets/img.png">
 
-我们还有一个/status Rest端点返回一个HTTP状态代码。我们将使用[Cucumber](https://www.baeldung.com/cucumber-rest-api-testing)和 [Junit 5](https://www.baeldung.com/junit-5)通过验收测试涵盖这两个功能。
+我们还有一个返回HTTP状态代码的/status Rest端点。我们将使用[Cucumber](https://www.baeldung.com/cucumber-rest-api-testing)和[JUnit 5](https://www.baeldung.com/junit-5)通过验收测试涵盖这两个功能。
 
-为了让Cucumber与Junit 5一起工作，我们必须在我们的pom中声明[cucumber–junit-platform-engine](https://search.maven.org/artifact/io.cucumber/cucumber-junit-platform-engine)作为它的依赖项：
+为了让Cucumber与JUnit 5一起工作，我们必须在我们的pom中声明[cucumber–junit-platform-engine](https://central.sonatype.com/artifact/io.cucumber/cucumber-junit-platform-engine/7.11.1)作为它的依赖项：
 
 ```xml
 <dependency>
@@ -24,7 +24,7 @@
 
 ## 3. Cucumber标签和条件钩子
 
-Cucumber标签可以帮助我们将场景分组在一起，假设我们对测试UI和API有不同的要求。例如，我们需要启动一个浏览器来测试UI组件，但这不是调用/status端点所必需的。我们需要的是一种方法来确定运行哪些步骤以及何时运行，Cucumber标签可以帮助我们解决这个问题。
+Cucumber标签可以帮助我们将场景分组在一起。假设我们对测试UI和API有不同的要求。例如，我们需要启动浏览器来测试UI组件，但这不是调用/status端点所必需的。我们需要的是一种确定要运行哪些步骤以及何时运行的方法，Cucumber标签可以帮助我们解决这个问题。
 
 ## 4. UI测试
 
@@ -63,7 +63,7 @@ public void tearDownForUi(Scenario scenario) throws IOException {
 
 ## 5. API测试
 
-与我们的UI测试类似，我们可以使用@api标签标记我们的API功能：
+与我们的UI测试类似，我们可以使用@api标签标记我们的API Feature：
 
 ```gherkin
 @api
@@ -75,14 +75,14 @@ Feature: Health check
         And should receive a non-empty body
 ```
 
-我们也有带有@api标签的@Before和@After方法：
+我们还有带有@api标签的@Before和@After方法：
 
 ```java
 @Before("@api")
 public void setupForApi() {
     RestAssuredMockMvc.mockMvc(mvc);
     RestAssuredMockMvc.config = RestAssuredMockMvc.config()
-      .logConfig(new LogConfig(apiContext.getReport().getRestLogPrintStream(), true));
+        .logConfig(new LogConfig(apiContext.getReport().getRestLogPrintStream(), true));
 }
 
 @After("@api")
@@ -91,8 +91,8 @@ public void tearDownForApi(Scenario scenario) throws IOException {
 }
 ```
 
-当我们运行AcceptanceTestRunnerIT时，我们可以看到我们正在为相关测试执行适当的设置和拆卸步骤。
+当我们运行AcceptanceTestRunnerIT时，我们可以看到正在为相关测试执行适当的设置和拆卸步骤。
 
 ## 6. 总结
 
-在本文中，我们演示了如何使用Cucumber标签和条件Hooks来控制不同测试集及其设置/拆卸指令的执行。
+在本文中，我们展示了如何使用Cucumber标签和条件钩子来控制不同测试集及其设置/拆卸指令的执行。
