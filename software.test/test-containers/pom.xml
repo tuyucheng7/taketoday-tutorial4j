@@ -52,15 +52,6 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<resources>
-			<resource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-	</build>
-
 	<properties>
 		<log4j2.version>2.17.1</log4j2.version>
 		<testcontainers.version>1.11.4</testcontainers.version>

@@ -25,6 +25,12 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.pitest</groupId>
+			<artifactId>pitest-parent</artifactId>
+			<version>1.11.4</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
 			<groupId>com.insightfullogic</groupId>
 			<artifactId>lambda-behave</artifactId>
 			<version>${lambda-behave.version}</version>
@@ -76,41 +82,57 @@
 		</resources>
 		<plugins>
 			<!--  Already defined in the top-level parent module -->
-			<!--<plugin>-->
-			<!--	<groupId>org.apache.maven.plugins</groupId>-->
-			<!--	<artifactId>maven-checkstyle-plugin</artifactId>-->
-			<!--	<version>${checkstyle-maven-plugin.version}</version>-->
-			<!--	<configuration>-->
-			<!--		<configLocation>checkstyle.xml</configLocation>-->
-			<!--	</configuration>-->
-			<!--	<executions>-->
-			<!--		<execution>-->
-			<!--			<goals>-->
-			<!--				<goal>check</goal>-->
-			<!--			</goals>-->
-			<!--		</execution>-->
-			<!--	</executions>-->
-			<!--</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-maven-plugin.version}</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>${findbugs-plugin.version}</version>
 			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.11.4</version>
+				<configuration>
+					<jvmArgs>
+						<value>--add-opens=java.base/java.util=ALL-UNNAMED</value>
+					</jvmArgs>
+					<targetClasses>
+						<param>cn.tuyucheng.taketoday.mutation.*</param>
+					</targetClasses>
+					<targetTests>
+						<param>cn.tuyucheng.taketoday.mutation.*</param>
+					</targetTests>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
-	<!--<reporting>-->
-	<!--	<plugins>-->
-	<!--		<plugin>-->
-	<!--			<groupId>org.apache.maven.plugins</groupId>-->
-	<!--			<artifactId>maven-checkstyle-plugin</artifactId>-->
-	<!--			<version>${checkstyle-maven-plugin.version}</version>-->
-	<!--			<configuration>-->
-	<!--				<configLocation>checkstyle.xml</configLocation>-->
-	<!--			</configuration>-->
-	<!--		</plugin>-->
-	<!--	</plugins>-->
-	<!--</reporting>-->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle-maven-plugin.version}</version>
+				<configuration>
+					<configLocation>checkstyle.xml</configLocation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
 
 	<properties>
 		<lambda-behave.version>0.4</lambda-behave.version>

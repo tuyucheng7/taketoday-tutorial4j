@@ -41,7 +41,7 @@
 
 	<profiles>
 		<profile>
-			<id>default-second</id>
+			<id>first-unit</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -59,7 +59,7 @@
 			</build>
 		</profile>
 		<profile>
-			<id>integration-lite-second</id>
+			<id>first-all</id>
 			<build>
 				<plugins>
 					<plugin>
