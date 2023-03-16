@@ -698,7 +698,7 @@
 				<module>parent-spring-5</module>
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
-				<!--<module>software.test</module>-->
+				<module>software.test</module>
 				<!--<module>spf4j</module>-->
 				<module>spring-boot-modules</module>
 				<module>spring-boot-modules/spring-boot-3</module>
@@ -950,7 +950,7 @@
 				<module>parent-spring-5</module>
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
-				<!--<module>software.test</module>-->
+				<module>software.test</module>
 				<!--<module>spf4j</module>-->
 				<module>spring-boot-modules</module>
 				<module>spring-boot-modules/spring-boot-3</module>
@@ -1152,7 +1152,7 @@
 				<module>parent-spring-5</module>
 				<!--<module>saas-modules</module>-->
 				<!--<module>server-modules</module>-->
-				<!--<module>software.test</module>-->
+				<module>software.test</module>
 				<!--<module>spf4j</module>-->
 				<module>spring-boot-modules</module>
 				<module>spring-boot-modules/spring-boot-3</module>

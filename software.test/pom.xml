@@ -23,13 +23,13 @@
 		<module>gatling</module>
 		<module>groovy-spock</module>
 		<module>hamcrest</module>
-		<module>instancio</module>
+		<!--<module>instancio</module>-->
 		<module>junit-4</module>
-		<module>junit-5-advanced</module>
+		<!--<module>junit-5-advanced</module>-->
 		<module>junit-5-basics</module>
 		<module>junit-5</module>
 		<module>junit-5-annotations</module>
-		<module>junit-5-migration</module>
+		<!--<module>junit-5-migration</module>-->
 		<module>load-testing-comparison</module>
 		<module>mockito-1</module>
 		<module>mockito-2</module>
@@ -41,7 +41,7 @@
 		<module>parallel-tests-junit</module>
 		<module>powermock</module>
 		<module>rest-assured</module>
-		<module>rest-assured-selenium</module>
+		<!--<module>rest-assured-selenium</module>-->
 		<module>rest-testing</module>
 		<module>selenium-junit-testng</module>
 		<module>spring-testing-1</module>
