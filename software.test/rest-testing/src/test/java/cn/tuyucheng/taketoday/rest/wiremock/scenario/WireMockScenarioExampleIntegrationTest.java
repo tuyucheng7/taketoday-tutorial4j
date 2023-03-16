@@ -14,7 +14,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.junit.Assert.assertEquals;
 
 public class WireMockScenarioExampleIntegrationTest {
@@ -45,13 +48,13 @@ public class WireMockScenarioExampleIntegrationTest {
 
 	private void createWireMockStub(String currentState, String nextState, String responseBody) {
 		stubFor(get(urlEqualTo("/java-tip"))
-				.inScenario("java tips")
-				.whenScenarioStateIs(currentState)
-				.willReturn(aResponse()
-						.withStatus(200)
-						.withHeader("Content-Type", TEXT_PLAIN)
-						.withBody(responseBody))
-				.willSetStateTo(nextState)
+			.inScenario("java tips")
+			.whenScenarioStateIs(currentState)
+			.willReturn(aResponse()
+				.withStatus(200)
+				.withHeader("Content-Type", TEXT_PLAIN)
+				.withBody(responseBody))
+			.willSetStateTo(nextState)
 		);
 	}
 

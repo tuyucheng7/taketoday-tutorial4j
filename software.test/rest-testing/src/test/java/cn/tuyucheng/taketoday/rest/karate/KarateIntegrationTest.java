@@ -8,7 +8,14 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.configureFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.containing;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 @RunWith(Karate.class)
 @CucumberOptions(features = "classpath:karate")
@@ -24,17 +31,17 @@ public class KarateIntegrationTest {
 
 		configureFor("localhost", PORT_NUMBER);
 		stubFor(get(urlEqualTo("/user/get"))
-				.willReturn(aResponse()
-						.withStatus(200)
-						.withHeader("Content-Type", "application/json")
-						.withBody("{ \"id\": \"1234\", name: \"John Smith\" }")));
+			.willReturn(aResponse()
+				.withStatus(200)
+				.withHeader("Content-Type", "application/json")
+				.withBody("{ \"id\": \"1234\", name: \"John Smith\" }")));
 		stubFor(post(urlEqualTo("/user/create"))
-				.withHeader("content-type", equalTo("application/json"))
-				.withRequestBody(containing("id"))
-				.willReturn(aResponse()
-						.withStatus(200)
-						.withHeader("Content-Type", "application/json")
-						.withBody("{ \"id\": \"1234\", name: \"John Smith\" }")));
+			.withHeader("content-type", equalTo("application/json"))
+			.withRequestBody(containing("id"))
+			.willReturn(aResponse()
+				.withStatus(200)
+				.withHeader("Content-Type", "application/json")
+				.withBody("{ \"id\": \"1234\", name: \"John Smith\" }")));
 	}
 
 	@AfterClass

@@ -15,7 +15,19 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.util.Scanner;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.containing;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.matching;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
+import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.Assert.assertEquals;
 
 public class JUnitManagedIntegrationTest {
@@ -44,10 +56,10 @@ public class JUnitManagedIntegrationTest {
 	public void givenJUnitManagedServer_whenMatchingURL_thenCorrect() throws IOException {
 
 		stubFor(get(urlPathMatching("/tuyucheng/.*"))
-				.willReturn(aResponse()
-						.withStatus(200)
-						.withHeader("Content-Type", APPLICATION_JSON)
-						.withBody("\"testing-library\": \"WireMock\"")));
+			.willReturn(aResponse()
+				.withStatus(200)
+				.withHeader("Content-Type", APPLICATION_JSON)
+				.withBody("\"testing-library\": \"WireMock\"")));
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(String.format("http://localhost:%s/tuyucheng/wiremock", port));
@@ -63,11 +75,11 @@ public class JUnitManagedIntegrationTest {
 	@Test
 	public void givenJUnitManagedServer_whenMatchingHeaders_thenCorrect() throws IOException {
 		stubFor(get(urlPathEqualTo(TUYUCHENG_WIREMOCK_PATH))
-				.withHeader("Accept", matching("text/.*"))
-				.willReturn(aResponse()
-						.withStatus(503)
-						.withHeader("Content-Type", "text/html")
-						.withBody("!!! Service Unavailable !!!")));
+			.withHeader("Accept", matching("text/.*"))
+			.willReturn(aResponse()
+				.withStatus(503)
+				.withHeader("Content-Type", "text/html")
+				.withBody("!!! Service Unavailable !!!")));
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		HttpGet request = new HttpGet(String.format("http://localhost:%s/tuyucheng/wiremock", port));
@@ -84,11 +96,11 @@ public class JUnitManagedIntegrationTest {
 	@Test
 	public void givenJUnitManagedServer_whenMatchingBody_thenCorrect() throws IOException {
 		stubFor(post(urlEqualTo(TUYUCHENG_WIREMOCK_PATH))
-				.withHeader("Content-Type", equalTo(APPLICATION_JSON))
-				.withRequestBody(containing("\"testing-library\": \"WireMock\""))
-				.withRequestBody(containing("\"creator\": \"Tom Akehurst\""))
-				.withRequestBody(containing("\"website\": \"wiremock.org\""))
-				.willReturn(aResponse().withStatus(200)));
+			.withHeader("Content-Type", equalTo(APPLICATION_JSON))
+			.withRequestBody(containing("\"testing-library\": \"WireMock\""))
+			.withRequestBody(containing("\"creator\": \"Tom Akehurst\""))
+			.withRequestBody(containing("\"website\": \"wiremock.org\""))
+			.willReturn(aResponse().withStatus(200)));
 
 		InputStream jsonInputStream = this.getClass().getClassLoader().getResourceAsStream("wiremock_intro.json");
 		String jsonString = convertInputStreamToString(jsonInputStream);
@@ -101,17 +113,17 @@ public class JUnitManagedIntegrationTest {
 		HttpResponse response = httpClient.execute(request);
 
 		verify(postRequestedFor(urlEqualTo(TUYUCHENG_WIREMOCK_PATH))
-				.withHeader("Content-Type", equalTo(APPLICATION_JSON)));
+			.withHeader("Content-Type", equalTo(APPLICATION_JSON)));
 		assertEquals(200, response.getStatusLine().getStatusCode());
 	}
 
 	@Test
 	public void givenJUnitManagedServer_whenNotUsingPriority_thenCorrect() throws IOException {
 		stubFor(get(urlPathMatching("/tuyucheng/.*"))
-				.willReturn(aResponse().withStatus(200)));
+			.willReturn(aResponse().withStatus(200)));
 		stubFor(get(urlPathEqualTo(TUYUCHENG_WIREMOCK_PATH))
-				.withHeader("Accept", matching("text/.*"))
-				.willReturn(aResponse().withStatus(503)));
+			.withHeader("Accept", matching("text/.*"))
+			.willReturn(aResponse().withStatus(503)));
 
 		HttpResponse httpResponse = generateClientAndReceiveResponseForPriorityTests();
 
@@ -122,12 +134,12 @@ public class JUnitManagedIntegrationTest {
 	@Test
 	public void givenJUnitManagedServer_whenUsingPriority_thenCorrect() throws IOException {
 		stubFor(get(urlPathMatching("/tuyucheng/.*"))
-				.atPriority(1)
-				.willReturn(aResponse().withStatus(200)));
+			.atPriority(1)
+			.willReturn(aResponse().withStatus(200)));
 		stubFor(get(urlPathEqualTo(TUYUCHENG_WIREMOCK_PATH))
-				.atPriority(2)
-				.withHeader("Accept", matching("text/.*"))
-				.willReturn(aResponse().withStatus(503)));
+			.atPriority(2)
+			.withHeader("Accept", matching("text/.*"))
+			.willReturn(aResponse().withStatus(503)));
 
 		HttpResponse httpResponse = generateClientAndReceiveResponseForPriorityTests();
 
