@@ -2,7 +2,6 @@ package cn.tuyucheng.taketoday.springbootredis.config;
 
 import cn.tuyucheng.taketoday.springbootredis.model.Session;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
@@ -52,7 +51,7 @@ public class RedisConfiguration {
 		public void handleRedisKeyExpiredEvent(RedisKeyExpiredEvent<Session> event) {
 			Session expiredSession = (Session) event.getValue();
 			assert expiredSession != null;
-			log.info("Session with key={} has expired", expiredSession.getId());
+			LOGGER.info("Session with key={} has expired", expiredSession.getId());
 		}
 	}
 }

@@ -24,11 +24,14 @@ public class RedisSessionCache implements SessionCache {
 
 	@Override
 	public Session getSession(String id) {
-		return sessionRepository.findById(id).orElseThrow(() -> new SessionNotFoundException(id));
+		return sessionRepository.findById(id)
+			.orElseThrow(() -> new SessionNotFoundException(id));
 	}
 
 	@Override
 	public List<Session> getAllSessions() {
-		return Stream.iterate(sessionRepository.findAll().iterator(), Iterator::hasNext, UnaryOperator.identity()).map(Iterator::next).collect(Collectors.toList());
+		return Stream.iterate(sessionRepository.findAll().iterator(), Iterator::hasNext, UnaryOperator.identity())
+			.map(Iterator::next)
+			.collect(Collectors.toList());
 	}
 }

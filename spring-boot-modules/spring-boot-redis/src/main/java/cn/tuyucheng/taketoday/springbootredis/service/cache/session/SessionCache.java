@@ -10,5 +10,4 @@ public interface SessionCache {
 	Session getSession(String id);
 
 	List<Session> getAllSessions();
-
 }
