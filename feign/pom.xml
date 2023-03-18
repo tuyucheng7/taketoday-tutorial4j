@@ -87,7 +87,7 @@
 				<configuration>
 					<packageName>cn.tuyucheng.taketoday.feign.soap</packageName>
 					<sources>
-						<source>src/main/resources/users.xsd</source>
+						<source>${project.basedir}/src/main/resources/users.xsd</source>
 					</sources>
 				</configuration>
 			</plugin>
