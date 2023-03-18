@@ -44,28 +44,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>launch-web-app</id>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<mainClass>com.baeldung.dashboard.DashboardApplication</mainClass>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration>
-					<profiles>
-						<profile>JMeter-Dashboard</profile>
-					</profiles>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.lazerycode.jmeter</groupId>
 				<artifactId>jmeter-maven-plugin</artifactId>
-				<version>${jmeter.version}</version>
+				<version>3.7.0</version>
 				<executions>
+					<!-- Generate JMeter configuration -->
+					<execution>
+						<id>configuration</id>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
 					<execution>
 						<id>jmeter-tests</id>
 						<goals>
@@ -162,7 +153,6 @@
 			</build>
 
 			<properties>
-				<jmeter.version>5.5</jmeter.version>
 			</properties>
 		</profile>
 	</profiles>
