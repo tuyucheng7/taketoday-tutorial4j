@@ -9,8 +9,8 @@ import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer011;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer011;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 
 import static cn.tuyucheng.taketoday.flink.connector.Consumers.createInputMessageConsumer;
 import static cn.tuyucheng.taketoday.flink.connector.Consumers.createStringConsumerForTopic;
@@ -27,12 +27,12 @@ public class FlinkDataPipeline {
 
 		StreamExecutionEnvironment environment = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		FlinkKafkaConsumer011<String> flinkKafkaConsumer = createStringConsumerForTopic(inputTopic, address, consumerGroup);
+		FlinkKafkaConsumer<String> flinkKafkaConsumer = createStringConsumerForTopic(inputTopic, address, consumerGroup);
 		flinkKafkaConsumer.setStartFromEarliest();
 
 		DataStream<String> stringInputStream = environment.addSource(flinkKafkaConsumer);
 
-		FlinkKafkaProducer011<String> flinkKafkaProducer = createStringProducer(outputTopic, address);
+		FlinkKafkaProducer<String> flinkKafkaProducer = createStringProducer(outputTopic, address);
 
 		stringInputStream.map(new WordsCapitalizer())
 			.addSink(flinkKafkaProducer);
@@ -50,11 +50,11 @@ public class FlinkDataPipeline {
 
 		environment.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
-		FlinkKafkaConsumer011<InputMessage> flinkKafkaConsumer = createInputMessageConsumer(inputTopic, kafkaAddress, consumerGroup);
+		FlinkKafkaConsumer<InputMessage> flinkKafkaConsumer = createInputMessageConsumer(inputTopic, kafkaAddress, consumerGroup);
 		flinkKafkaConsumer.setStartFromEarliest();
 
 		flinkKafkaConsumer.assignTimestampsAndWatermarks(new InputMessageTimestampAssigner());
-		FlinkKafkaProducer011<Backup> flinkKafkaProducer = createBackupProducer(outputTopic, kafkaAddress);
+		FlinkKafkaProducer<Backup> flinkKafkaProducer = createBackupProducer(outputTopic, kafkaAddress);
 
 		DataStream<InputMessage> inputMessagesStream = environment.addSource(flinkKafkaConsumer);
 
