@@ -107,19 +107,19 @@ public class ChangePasswordIntegrationTest {
 		assertTrue(response.body().asString().contains("Password updated successfully"));
 	}
 
-	// @Test
-	// public void givenWrongOldPassword_whenChangingPassword_thenBadRequest() {
-	// 	final RequestSpecification request = RestAssured.given().auth().form("test@test.com", "test", formConfig);
-	//
-	// 	final Map<String, String> params = new HashMap<>();
-	// 	params.put("oldPassword", "abc");
-	// 	params.put("newPassword", "newTest&12");
-	//
-	// 	final Response response = request.with().queryParams(params).post(URL);
-	//
-	// 	assertEquals(400, response.statusCode());
-	// 	assertTrue(response.body().asString().contains("Invalid Old Password"));
-	// }
+	@Test
+	public void givenWrongOldPassword_whenChangingPassword_thenBadRequest() {
+		final RequestSpecification request = RestAssured.given().auth().form("test@test.com", "test", formConfig);
+
+		final Map<String, String> params = new HashMap<>();
+		params.put("oldPassword", "abc");
+		params.put("newPassword", "newTest&12");
+
+		final Response response = request.with().queryParams(params).post(URL);
+
+		assertEquals(400, response.statusCode());
+		assertTrue(response.body().asString().contains("无效的旧密码"));
+	}
 
 	@Test
 	public void givenNotAuthenticatedUser_whenChangingPassword_thenRedirect() {

@@ -10,6 +10,7 @@ import com.maxmind.geoip2.exception.GeoIp2Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -77,6 +78,9 @@ public class SecSecurityConfig {
 		http.csrf()
 			.disable()
 			.authorizeRequests()
+			.expressionHandler(webSecurityExpressionHandler())
+			.antMatchers(HttpMethod.GET, "/roleHierarchy")
+			.hasRole("STAFF")
 			.antMatchers("/login*", "/logout*", "/signin/**", "/signup/**", "/customLogin", "/user/registration*", "/registrationConfirm*", "/expiredAccount*", "/registration*", "/badUser*", "/user/resendRegistrationToken*", "/forgetPassword*",
 				"/user/resetPassword*", "/user/savePassword*", "/updatePassword*", "/user/changePassword*", "/emailError*", "/resources/**", "/old/user/registration*", "/successRegister*", "/qrcode*", "/user/enableNewLoc*")
 			.permitAll()
@@ -144,7 +148,7 @@ public class SecSecurityConfig {
 		return rememberMeServices;
 	}
 
-	@Bean(name = "GeoIPCountry")
+	@Bean(name="GeoIPCountry")
 	public DatabaseReader databaseReader() throws IOException, GeoIp2Exception {
 		final File resource = new File("src/main/resources/maxmind/GeoLite2-Country.mmdb");
 		return new DatabaseReader.Builder(resource).build();

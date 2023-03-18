@@ -23,6 +23,12 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 	@Autowired
 	private LocaleResolver localeResolver;
 
+	@Autowired
+	private HttpServletRequest request;
+
+	@Autowired
+	private LoginAttemptService loginAttemptService;
+
 	@Override
 	public void onAuthenticationFailure(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException exception) throws IOException, ServletException {
 		setDefaultFailureUrl("/login?error=true");
@@ -32,6 +38,10 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 		final Locale locale = localeResolver.resolveLocale(request);
 
 		String errorMessage = messages.getMessage("message.badCredentials", null, locale);
+
+		if (loginAttemptService.isBlocked()) {
+			errorMessage = messages.getMessage("auth.message.blocked", null, locale);
+		}
 
 		if (exception.getMessage()
 			.equalsIgnoreCase("User is disabled")) {
