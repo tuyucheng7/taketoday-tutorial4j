@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.idd;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
