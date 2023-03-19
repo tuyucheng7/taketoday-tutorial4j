@@ -21,6 +21,7 @@
 		<module>easy-random</module>
 		<module>easymock</module>
 		<module>gatling</module>
+		<!--<module>gatling-java</module>-->
 		<module>groovy-spock</module>
 		<module>hamcrest</module>
 		<!--<module>instancio</module>-->
