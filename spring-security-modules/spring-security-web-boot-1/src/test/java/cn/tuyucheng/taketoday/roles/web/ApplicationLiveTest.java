@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // In order to execute these tests, cn.tuyucheng.taketoday.roles.custom.CustomSecurityExpressionApplication needs to be running.
-class CustomSecurityExpressionApplicationLiveTest {
+class ApplicationLiveTest {
 
     @Test
     void givenUserWithReadPrivilegeAndHasPermission_whenGetFooById_thenOK() {
@@ -51,7 +51,6 @@ class CustomSecurityExpressionApplicationLiveTest {
     void givenDisabledSecurityExpression_whenGetFooByName_thenError() {
         final Response response = givenAuth("john", "123").get("http://localhost:8082/foos?name=sample");
         assertEquals(500, response.getStatusCode());
-        // assertTrue(response.asString().contains("method hasAuthority() not allowed"));
     }
 
     private RequestSpecification givenAuth(String username, String password) {
