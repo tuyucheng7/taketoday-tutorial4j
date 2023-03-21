@@ -1,35 +1,31 @@
-package com.baeldung;
+package cn.tuyucheng.taketoday;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.baeldung.ServletResourceServerApplication.GreetingController;
-import com.baeldung.ServletResourceServerApplication.MessageService;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.OpenIdClaims;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockJwtAuth;
 
-@WebMvcTest(controllers = GreetingController.class, properties = { "server.ssl.enabled=false" })
-class SpringSecurityTestGreetingControllerUnitTest {
+import reactor.core.publisher.Mono;
+
+@WebFluxTest(controllers = GreetingController.class, properties = { "server.ssl.enabled=false" })
+class SpringAddonsGreetingControllerUnitTest {
 
     @MockBean
     MessageService messageService;
 
     @Autowired
-    MockMvc api;
+    WebTestClient api;
 
     /*-----------------------------------------------------------------------------*/
     /* /greet                                                                      */
@@ -37,20 +33,28 @@ class SpringSecurityTestGreetingControllerUnitTest {
     /*-----------------------------------------------------------------------------*/
 
     @Test
+    @WithAnonymousUser
     void givenRequestIsAnonymous_whenGetGreet_thenUnauthorized() throws Exception {
-        api.perform(get("/greet").with(anonymous()))
-            .andExpect(status().isUnauthorized());
+        api.get()
+            .uri("/greet")
+            .exchange()
+            .expectStatus()
+            .isUnauthorized();
     }
 
     @Test
+    @WithMockJwtAuth(authorities = { "admin", "ROLE_AUTHORIZED_PERSONNEL" }, claims = @OpenIdClaims(preferredUsername = "ch4mpy"))
     void givenUserIsAuthenticated_whenGetGreet_thenOk() throws Exception {
         final var greeting = "Whatever the service returns";
-        when(messageService.greet()).thenReturn(greeting);
+        when(messageService.greet()).thenReturn(Mono.just(greeting));
 
-        api.perform(get("/greet").with(jwt().authorities(List.of(new SimpleGrantedAuthority("admin"), new SimpleGrantedAuthority("ROLE_AUTHORIZED_PERSONNEL")))
-            .jwt(jwt -> jwt.claim(StandardClaimNames.PREFERRED_USERNAME, "ch4mpy"))))
-            .andExpect(status().isOk())
-            .andExpect(content().string(greeting));
+        api.get()
+            .uri("/greet")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(String.class)
+            .isEqualTo(greeting);
 
         verify(messageService, times(1)).greet();
     }
@@ -61,25 +65,38 @@ class SpringSecurityTestGreetingControllerUnitTest {
     /*---------------------------------------------------------------------------------------------------------------------*/
 
     @Test
+    @WithAnonymousUser
     void givenRequestIsAnonymous_whenGetSecuredRoute_thenUnauthorized() throws Exception {
-        api.perform(get("/secured-route").with(anonymous()))
-            .andExpect(status().isUnauthorized());
+        api.get()
+            .uri("/secured-route")
+            .exchange()
+            .expectStatus()
+            .isUnauthorized();
     }
 
     @Test
+    @WithMockJwtAuth("ROLE_AUTHORIZED_PERSONNEL")
     void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenOk() throws Exception {
         final var secret = "Secret!";
-        when(messageService.getSecret()).thenReturn(secret);
+        when(messageService.getSecret()).thenReturn(Mono.just(secret));
 
-        api.perform(get("/secured-route").with(jwt().authorities(new SimpleGrantedAuthority("ROLE_AUTHORIZED_PERSONNEL"))))
-            .andExpect(status().isOk())
-            .andExpect(content().string(secret));
+        api.get()
+            .uri("/secured-route")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(String.class)
+            .isEqualTo(secret);
     }
 
     @Test
+    @WithMockJwtAuth("admin")
     void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenForbidden() throws Exception {
-        api.perform(get("/secured-route").with(jwt().authorities(new SimpleGrantedAuthority("admin"))))
-            .andExpect(status().isForbidden());
+        api.get()
+            .uri("/secured-route")
+            .exchange()
+            .expectStatus()
+            .isForbidden();
     }
 
     /*---------------------------------------------------------------------------------------------------------*/
@@ -88,25 +105,38 @@ class SpringSecurityTestGreetingControllerUnitTest {
     /*---------------------------------------------------------------------------------------------------------*/
 
     @Test
+    @WithAnonymousUser
     void givenRequestIsAnonymous_whenGetSecuredMethod_thenUnauthorized() throws Exception {
-        api.perform(get("/secured-method").with(anonymous()))
-            .andExpect(status().isUnauthorized());
+        api.get()
+            .uri("/secured-method")
+            .exchange()
+            .expectStatus()
+            .isUnauthorized();
     }
 
     @Test
+    @WithMockJwtAuth("ROLE_AUTHORIZED_PERSONNEL")
     void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenOk() throws Exception {
         final var secret = "Secret!";
-        when(messageService.getSecret()).thenReturn(secret);
+        when(messageService.getSecret()).thenReturn(Mono.just(secret));
 
-        api.perform(get("/secured-method").with(jwt().authorities(new SimpleGrantedAuthority("ROLE_AUTHORIZED_PERSONNEL"))))
-            .andExpect(status().isOk())
-            .andExpect(content().string(secret));
+        api.get()
+            .uri("/secured-method")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(String.class)
+            .isEqualTo(secret);
     }
 
     @Test
+    @WithMockJwtAuth("admin")
     void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenForbidden() throws Exception {
-        api.perform(get("/secured-method").with(jwt().authorities(new SimpleGrantedAuthority("admin"))))
-            .andExpect(status().isForbidden());
+        api.get()
+            .uri("/secured-method")
+            .exchange()
+            .expectStatus()
+            .isForbidden();
     }
 
 }

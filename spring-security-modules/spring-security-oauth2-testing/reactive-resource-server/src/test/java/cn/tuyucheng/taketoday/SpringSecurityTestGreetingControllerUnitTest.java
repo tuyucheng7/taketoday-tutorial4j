@@ -1,4 +1,4 @@
-package com.baeldung;
+package cn.tuyucheng.taketoday;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -18,8 +18,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.baeldung.ReactiveResourceServerApplication.GreetingController;
-import com.baeldung.ReactiveResourceServerApplication.MessageService;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
 
 import reactor.core.publisher.Mono;
 
