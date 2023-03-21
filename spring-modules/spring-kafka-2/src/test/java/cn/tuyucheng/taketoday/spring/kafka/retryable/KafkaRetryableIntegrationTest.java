@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.kafka;
+package cn.tuyucheng.taketoday.spring.kafka.retryable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(classes = RetryableApplicationKafkaApp.class)
-@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092" })
+@EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
 public class KafkaRetryableIntegrationTest {
 	@ClassRule
 	public static EmbeddedKafkaBroker embeddedKafka = new EmbeddedKafkaBroker(1, true, "multitype");

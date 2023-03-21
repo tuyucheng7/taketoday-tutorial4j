@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.kafka;
+package cn.tuyucheng.taketoday.spring.kafka.retryable;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;

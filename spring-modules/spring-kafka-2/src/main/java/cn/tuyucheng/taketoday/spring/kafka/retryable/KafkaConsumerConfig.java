@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.kafka;
+package cn.tuyucheng.taketoday.spring.kafka.retryable;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

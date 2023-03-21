@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.kafka;
+package cn.tuyucheng.taketoday.spring.kafka.retryable;
 
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
