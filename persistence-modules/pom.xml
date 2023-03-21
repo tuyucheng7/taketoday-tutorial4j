@@ -65,6 +65,7 @@
 		<module>spring-jpa-2</module>
 		<module>spring-jdbc</module>
 		<!--<module>spring-jooq</module>-->
+		<module>questdb</module>
 		<module>spring-mybatis</module>
 	</modules>
 
