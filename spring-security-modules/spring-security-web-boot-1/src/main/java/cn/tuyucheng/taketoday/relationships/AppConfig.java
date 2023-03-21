@@ -1,5 +1,9 @@
 package cn.tuyucheng.taketoday.relationships;
 
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +16,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import javax.sql.DataSource;
-import java.util.Objects;
-import java.util.Properties;
 
 @SpringBootApplication
 @PropertySource({"classpath:persistence-h2.properties", "classpath:application-defaults.properties"})
@@ -30,7 +30,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource dataSource() {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("driverClassName")));
+        dataSource.setDriverClassName(env.getProperty("driverClassName"));
         dataSource.setUrl(env.getProperty("url"));
         dataSource.setUsername(env.getProperty("user"));
         dataSource.setPassword(env.getProperty("password"));
@@ -41,7 +41,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("cn.tuyucheng.taketoday.relationships.models");
+        em.setPackagesToScan(new String[] { "cn.tuyucheng.taketoday.relationships.models" });
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         em.setJpaProperties(additionalProperties());
         return em;
@@ -60,4 +60,5 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         }
         return hibernateProperties;
     }
+
 }

@@ -17,22 +17,23 @@ import java.util.Set;
 
 @Component
 public class CustomIpAuthenticationProvider implements AuthenticationProvider {
-    Set<String> whiteList = new HashSet<>();
+
+    Set<String> whitelist = new HashSet<>();
 
     public CustomIpAuthenticationProvider() {
-        whiteList.add("11.11.11.11");
-        whiteList.add("127.0.0.1");
+        whitelist.add("11.11.11.11");
+        whitelist.add("127.0.0.1");
     }
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
+    public Authentication authenticate(Authentication auth) throws AuthenticationException {
+        WebAuthenticationDetails details = (WebAuthenticationDetails) auth.getDetails();
         String userIp = details.getRemoteAddress();
-        if (!whiteList.contains(userIp)) {
+        if (!whitelist.contains(userIp)) {
             throw new BadCredentialsException("Invalid IP Address");
         }
-        final String name = authentication.getName();
-        final String password = authentication.getCredentials().toString();
+        final String name = auth.getName();
+        final String password = auth.getCredentials().toString();
 
         if (name.equals("john") && password.equals("123")) {
             List<GrantedAuthority> authorities = new ArrayList<>();

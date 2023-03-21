@@ -11,4 +11,5 @@ public class HttpFirewallApplication {
         application.setAdditionalProfiles("httpfirewall");
         application.run(args);
     }
+
 }

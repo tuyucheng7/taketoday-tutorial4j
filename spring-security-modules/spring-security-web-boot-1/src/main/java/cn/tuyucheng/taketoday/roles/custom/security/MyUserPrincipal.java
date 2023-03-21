@@ -1,16 +1,17 @@
 package cn.tuyucheng.taketoday.roles.custom.security;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import cn.tuyucheng.taketoday.roles.custom.persistence.model.Privilege;
 import cn.tuyucheng.taketoday.roles.custom.persistence.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serial;
-import java.util.Collection;
-
 public class MyUserPrincipal implements UserDetails {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     private final User user;
@@ -31,9 +32,11 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getPrivileges().stream()
-              .map(privilege -> new SimpleGrantedAuthority(privilege.getName()))
-              .toList();
+        final List<GrantedAuthority> authorities = new ArrayList<>();
+        for (final Privilege privilege : user.getPrivileges()) {
+            authorities.add(new SimpleGrantedAuthority(privilege.getName()));
+        }
+        return authorities;
     }
 
     @Override

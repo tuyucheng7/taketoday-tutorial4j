@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.roles.rolesauthorities.model;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,11 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Collection;
+
 
 @Entity
 @Table(name = "user_account")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -124,12 +127,17 @@ public class User {
             return false;
         }
         User user = (User) obj;
-        return email.equals(user.email);
+        if (!email.equals(user.email)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", firstName=" +
-              firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", enabled=" + enabled + ", roles=" + roles + "]";
+        StringBuilder builder = new StringBuilder();
+        builder.append("User [id=").append(id).append(", firstName=")
+        	.append(firstName).append(", lastName=").append(lastName).append(", email=").append(email).append(", password=").append(password).append(", enabled=").append(enabled).append(", roles=").append(roles).append("]");
+        return builder.toString();
     }
 }

@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.httpfirewall.api;
 
+import cn.tuyucheng.taketoday.httpfirewall.HttpFirewallConfiguration;
 import cn.tuyucheng.taketoday.httpfirewall.model.User;
 import cn.tuyucheng.taketoday.httpfirewall.service.UserServiceImpl;
 import cn.tuyucheng.taketoday.httpfirewall.utility.UserTestUtility;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 @AutoConfigureMockMvc
 @DisplayName("User API Unit Tests")
+@Import(HttpFirewallConfiguration.class)
 class UserApiUnitTest {
 
     @Autowired
@@ -43,55 +46,63 @@ class UserApiUnitTest {
     @Test
     @DisplayName("Test to Check Authentication")
     void whenNoAuthentication_thenThrow401() throws Exception {
+        // @formatter:off
         MvcResult result = mockMvc
-              .perform(post("/api/v1/users")
-                    .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
-                    .contentType("application/json"))
-              .andReturn();
+          .perform(post("/api/v1/users")
+            .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
+            .contentType("application/json"))
+          .andReturn();
         assertEquals(HttpStatus.UNAUTHORIZED.value(), result.getResponse().getStatus());
+        // @formatter:off
     }
 
     @Test
     @WithMockUser
     @DisplayName("Test Malicious URL")
     void givenCredentials_whenMaliciousUrl_thenThrowRequestRejectedException() throws Exception {
+        // @formatter:off
         MvcResult result = mockMvc
-              .perform(post("/api/v1\\users")
-                    .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
-                    .contentType("application/json"))
-              .andDo(print())
-              .andReturn();
+          .perform(post("/api/v1\\users")
+            .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
+            .contentType("application/json"))
+          .andDo(print())
+          .andReturn();
         assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
+        // @formatter:on
     }
 
     @Test
     @WithMockUser
     @DisplayName("Test User Create")
     void givenCredentials_whenHttpPost_thenReturn201() throws Exception {
+        // @formatter:off
         doNothing().when(userService).saveUser(new User());
 
-        MvcResult result = mockMvc
-              .perform(post("/api/v1/users")
-                    .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
-                    .contentType("application/json"))
-              .andDo(print())
-              .andExpect(header().exists("Location")).andReturn();
+        MvcResult result=mockMvc
+          .perform(post("/api/v1/users")
+            .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
+            .contentType("application/json"))
+          .andDo(print())
+          .andExpect(header().exists("Location")).andReturn();
         assertEquals(HttpStatus.CREATED.value(), result.getResponse().getStatus());
+        // @formatter:on
     }
 
     @Test
     @WithMockUser
     @DisplayName("Test User Create Without ID")
     void givenCredentials_whenHttpPostWithId_thenReturn201() throws Exception {
-        doNothing().when(userService).saveUser(new User());
+        // @formatter:off
+       doNothing().when(userService).saveUser(new User());
 
         MvcResult result = mockMvc
-              .perform(post("/api/v1/users")
-                    .content(objectMapper.writeValueAsString(UserTestUtility.createUserWithoutId()))
-                    .contentType("application/json"))
-              .andDo(print())
-              .andExpect(header().exists("Location")).andReturn();
+          .perform(post("/api/v1/users")
+            .content(objectMapper.writeValueAsString(UserTestUtility.createUserWithoutId()))
+            .contentType("application/json"))
+          .andDo(print())
+          .andExpect(header().exists("Location")).andReturn();
         assertEquals(HttpStatus.CREATED.value(), result.getResponse().getStatus());
+        // @formatter:on
     }
 
     @Test
@@ -99,32 +110,37 @@ class UserApiUnitTest {
     @DisplayName("Test Get User")
     void givenCredentials_whenHttpGetWithId_thenReturnUser() throws Exception {
         String userId = "1";
+        // @formatter:off
         when(userService.findById("1")).thenReturn(UserTestUtility.createUserWithId(userId));
 
         MvcResult result = mockMvc
-              .perform(get("/api/v1/users/" + userId)
-                    .accept("application/json"))
-              .andDo(print())
-              .andReturn();
+          .perform(get("/api/v1/users/"+userId)
+            .accept("application/json"))
+          .andDo(print())
+          .andReturn();
         assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         assertNotNull(result.getResponse());
-        assertEquals("jhondoe", objectMapper.readValue(result.getResponse().getContentAsString(), User.class).getUsername());
+        assertEquals("jhondoe",objectMapper.readValue(result.getResponse().getContentAsString(),  User.class).getUsername());
+
+        // @formatter:on
     }
 
     @Test
     @WithMockUser
     @DisplayName("Test Get All Users")
     void givenCredentials_whenHttpGetWithoutId_thenReturnAllUsers() throws Exception {
+        // @formatter:off
         when(userService.findAll()).thenReturn(UserTestUtility.createUsers());
 
         MvcResult result = mockMvc
-              .perform(get("/api/v1/users/")
-                    .accept("application/json"))
-              .andDo(print())
-              .andReturn();
+          .perform(get("/api/v1/users/")
+            .accept("application/json"))
+          .andDo(print())
+          .andReturn();
         assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         assertNotNull(result.getResponse());
         assertTrue(result.getResponse().getContentAsString().contains("jane.doe"));
+        // @formatter:on
     }
 
     @Test
@@ -133,13 +149,16 @@ class UserApiUnitTest {
     void givenCredentials_whenHttpDelete_thenDeleteUser() throws Exception {
         String userId = "1";
         doNothing().when(userService).deleteUser(userId);
+        // @formatter:off
         MvcResult result = mockMvc
-              .perform(delete("/api/v1/users/" + userId)
-                    .accept("application/json"))
-              .andDo(print())
-              .andReturn();
+          .perform(delete("/api/v1/users/"+userId)
+            .accept("application/json"))
+          .andDo(print())
+          .andReturn();
         assertEquals(HttpStatus.OK.value(), result.getResponse().getStatus());
         assertNotNull(result.getResponse());
         assertTrue(result.getResponse().getContentAsString().contains("The user has been deleted successfully"));
+        // @formatter:on
     }
+
 }

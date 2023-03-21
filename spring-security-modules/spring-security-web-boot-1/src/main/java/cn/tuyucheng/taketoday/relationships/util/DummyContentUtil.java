@@ -1,16 +1,17 @@
 package cn.tuyucheng.taketoday.relationships.util;
 
-import cn.tuyucheng.taketoday.relationships.models.AppUser;
-import cn.tuyucheng.taketoday.relationships.models.Tweet;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import cn.tuyucheng.taketoday.relationships.models.AppUser;
+import cn.tuyucheng.taketoday.relationships.models.Tweet;
 
 public class DummyContentUtil {
 
@@ -34,23 +35,27 @@ public class DummyContentUtil {
         List<Tweet> tweets = new ArrayList<>();
         Random random = new Random();
         IntStream.range(0, 9)
-              .sequential()
-              .forEach(i -> {
-                  Tweet twt = new Tweet(String.format("Tweet %d", i), users.get(random.nextInt(users.size()))
-                        .getUsername());
-                  twt.getLikes()
-                        .addAll(users.subList(0, random.nextInt(users.size()))
-                              .stream()
-                              .map(AppUser::getUsername)
-                              .collect(Collectors.toSet()));
-                  tweets.add(twt);
-              });
+            .sequential()
+            .forEach(i -> {
+                Tweet twt = new Tweet(String.format("Tweet %d", i), users.get(random.nextInt(users.size()))
+                    .getUsername());
+                twt.getLikes()
+                    .addAll(users.subList(0, random.nextInt(users.size()))
+                        .stream()
+                        .map(AppUser::getUsername)
+                        .collect(Collectors.toSet()));
+                tweets.add(twt);
+            });
         return tweets;
     }
 
     public static Collection<GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        GrantedAuthority grantedAuthority = () -> "ROLE_USER";
+        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        GrantedAuthority grantedAuthority = new GrantedAuthority() {
+            public String getAuthority() {
+                return "ROLE_USER";
+            }
+        };
         grantedAuthorities.add(grantedAuthority);
         return grantedAuthorities;
     }

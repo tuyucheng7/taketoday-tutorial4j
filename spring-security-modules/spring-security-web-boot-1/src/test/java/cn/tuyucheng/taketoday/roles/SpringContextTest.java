@@ -1,16 +1,16 @@
 package cn.tuyucheng.taketoday.roles;
 
-import cn.tuyucheng.taketoday.roles.custom.CustomSecurityExpressionApplication;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import cn.tuyucheng.taketoday.roles.custom.Application;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = CustomSecurityExpressionApplication.class)
-class SpringContextTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
+public class SpringContextTest {
 
     @Test
-    void whenSpringContextIsBootstrapped_thenNoExceptions() {
+    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
     }
 }

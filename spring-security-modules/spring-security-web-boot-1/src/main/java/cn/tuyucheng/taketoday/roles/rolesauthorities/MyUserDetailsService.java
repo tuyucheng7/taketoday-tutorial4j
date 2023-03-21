@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("userDetailsService")
 @Transactional
@@ -32,25 +33,26 @@ public class MyUserDetailsService implements UserDetailsService {
                 throw new UsernameNotFoundException("No user found with username: " + email);
             }
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                  user.getPassword(),
-                  user.isEnabled(),
-                  true,
-                  true,
-                  true,
-                  getAuthorities(user.getRoles()));
+                user.getPassword(),
+                user.isEnabled(),
+                true,
+                true,
+                true,
+                getAuthorities(user.getRoles()));
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-            authorities.addAll(role.getPrivileges()
-                  .stream()
-                  .map(p -> new SimpleGrantedAuthority(p.getName())).toList());
-        }
+    	List<GrantedAuthority> authorities = new ArrayList<>();
+    	for (Role role: roles) {
+    		authorities.add(new SimpleGrantedAuthority(role.getName()));
+    		authorities.addAll(role.getPrivileges()
+    				.stream()
+    				.map(p -> new SimpleGrantedAuthority(p.getName()))
+    				.collect(Collectors.toList()));
+    	}
         return authorities;
     }
 }

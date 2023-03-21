@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.roles.custom.persistence.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Set;
 
 @Entity
 @Table(name = "user_table")
@@ -27,10 +28,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_privileges",
-          joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id")
-    )
+    @JoinTable(name = "users_privileges", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     private Set<Privilege> privileges;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -79,7 +77,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", username=" + username + ", password=" + password + ", privileges=" + privileges + ", organization=" + organization + "]";
+        final StringBuilder builder = new StringBuilder();
+        builder.append("User [id=").append(id).append(", username=").append(username).append(", password=").append(password).append(", privileges=").append(privileges).append(", organization=").append(organization).append("]");
+        return builder.toString();
     }
 
     @Override
@@ -135,7 +135,12 @@ public class User {
             return false;
         }
         if (username == null) {
-            return other.username == null;
-        } else return username.equals(other.username);
+            if (other.username != null) {
+                return false;
+            }
+        } else if (!username.equals(other.username)) {
+            return false;
+        }
+        return true;
     }
 }

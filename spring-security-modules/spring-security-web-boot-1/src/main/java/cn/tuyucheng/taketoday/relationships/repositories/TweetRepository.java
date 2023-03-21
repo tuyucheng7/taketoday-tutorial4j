@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.relationships.repositories;
 
-import cn.tuyucheng.taketoday.relationships.models.Tweet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import cn.tuyucheng.taketoday.relationships.models.Tweet;
 
 public interface TweetRepository extends PagingAndSortingRepository<Tweet, Long> {
 

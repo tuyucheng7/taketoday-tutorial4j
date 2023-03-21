@@ -4,26 +4,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
     <title>Login</title>
     <script th:inline="javascript">
-        /*<![CDATA[*/
-        function validate() {
-            if (document.f.username.value == "" && document.f.password.value == "") {
-                alert(/*[[#{message.username} + #{message.password}]]*/);
-                document.f.username.focus();
-                return false;
-            }
-            if (document.f.username.value == "") {
-                alert(/*[[#{message.username}]]*/);
-                document.f.username.focus();
-                return false;
-            }
-            if (document.f.password.value == "") {
-                alert(/*[[#{message.password}]]*/);
-                document.f.password.focus();
-                return false;
-            }
+/*<![CDATA[*/
+    function validate() {
+        if (document.f.username.value == "" && document.f.password.value == "") {
+            alert(/*[[#{message.username} + #{message.password}]]*/);
+            document.f.username.focus();
+            return false;
         }
+        if (document.f.username.value == "") {
+            alert(/*[[#{message.username}]]*/);
+            document.f.username.focus();
+            return false;
+        }
+        if (document.f.password.value == "") {
+            alert(/*[[#{message.password}]]*/);
+            document.f.password.focus();
+            return false;
+        }
+    }
+/*]]>*/
 
-        /*]]>*/
     </script>
     <style type="text/css">
         .wrapper {
@@ -38,6 +38,8 @@
     </style>
 </head>
 <body>
+
+
 <div class="container">
     <div class="row wrapper">
         <h1>Login</h1>
@@ -59,4 +61,5 @@
     </div>
 </div>
 </body>
+
 </html>

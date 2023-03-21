@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 
 @Component
@@ -44,7 +43,7 @@ public class SetupData {
         final User user1 = new User();
         user1.setUsername("john");
         user1.setPassword(encoder.encode("123"));
-        user1.setPrivileges(new HashSet<>(Collections.singletonList(privilege1)));
+        user1.setPrivileges(new HashSet<>(Arrays.asList(privilege1)));
         user1.setOrganization(organizationRepository.findByName("FirstOrg"));
         userRepository.save(user1);
 

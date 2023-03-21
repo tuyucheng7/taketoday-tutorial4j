@@ -41,7 +41,9 @@ public class Privilege {
 
     @Override
     public String toString() {
-        return "Privilege [id=" + id + ", name=" + name + "]";
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Privilege [id=").append(id).append(", name=").append(name).append("]");
+        return builder.toString();
     }
 
     @Override
@@ -73,7 +75,13 @@ public class Privilege {
             return false;
         }
         if (name == null) {
-            return other.name == null;
-        } else return name.equals(other.name);
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        return true;
     }
+
 }

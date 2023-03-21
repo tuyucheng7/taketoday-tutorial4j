@@ -1,14 +1,16 @@
 package cn.tuyucheng.taketoday.relationships.security;
 
-import cn.tuyucheng.taketoday.relationships.models.AppUser;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import cn.tuyucheng.taketoday.relationships.models.AppUser;
 
 public class AppUserPrincipal implements UserDetails {
+
     private final AppUser user;
 
     public AppUserPrincipal(AppUser user) {

@@ -1,5 +1,10 @@
 package cn.tuyucheng.taketoday.roles.ip.web;
 
+import java.util.List;
+
+import javax.servlet.Filter;
+import javax.servlet.http.HttpServletRequest;
+
 import cn.tuyucheng.taketoday.roles.custom.persistence.model.Foo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,10 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.Filter;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -26,7 +27,8 @@ public class MainController {
     public void getFilters() {
         FilterChainProxy filterChainProxy = (FilterChainProxy) springSecurityFilterChain;
         List<SecurityFilterChain> list = filterChainProxy.getFilterChains();
-        list.stream().flatMap(chain -> chain.getFilters().stream())
+        list.stream()
+              .flatMap(chain -> chain.getFilters().stream())
               .forEach(filter -> System.out.println(filter.getClass()));
     }
 

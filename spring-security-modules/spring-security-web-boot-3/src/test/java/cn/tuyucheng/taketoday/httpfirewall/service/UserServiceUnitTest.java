@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.httpfirewall.service;
 
 import cn.tuyucheng.taketoday.httpfirewall.dao.InMemoryUserDao;
+
 import cn.tuyucheng.taketoday.httpfirewall.model.User;
 import cn.tuyucheng.taketoday.httpfirewall.utility.UserTestUtility;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -44,6 +48,8 @@ class UserServiceUnitTest {
         userService.saveUser(user);
         verify(userDao, times(1)).save(user);
     }
+
+
 
     @Test
     @DisplayName("Check Get User")
@@ -82,4 +88,5 @@ class UserServiceUnitTest {
         userService.deleteUser(user.getId());
         verify(userDao, times(1)).delete(user.getId());
     }
+
 }

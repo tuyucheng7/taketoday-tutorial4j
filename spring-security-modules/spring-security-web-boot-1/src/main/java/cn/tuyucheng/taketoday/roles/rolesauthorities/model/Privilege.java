@@ -1,11 +1,12 @@
 package cn.tuyucheng.taketoday.roles.rolesauthorities.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.Collection;
 
 @Entity
 public class Privilege {
@@ -68,12 +69,17 @@ public class Privilege {
             return false;
         Privilege other = (Privilege) obj;
         if (name == null) {
-            return other.name == null;
-        } else return name.equals(other.name);
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Privilege [name=" + name + "]" + "[id=" + id + "]";
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Privilege [name=").append(name).append("]").append("[id=").append(id).append("]");
+        return builder.toString();
     }
 }

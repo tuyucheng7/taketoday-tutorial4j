@@ -13,11 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+
 
 @Component
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
+
     private boolean alreadySetup = false;
 
     @Autowired
@@ -55,7 +56,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         user.setLastName("Admin");
         user.setEmail("admin@test.com");
         user.setPassword(passwordEncoder.encode("admin"));
-        user.setRoles(Collections.singletonList(adminRole));
+        user.setRoles(Arrays.asList(adminRole));
         user.setEnabled(true);
         userRepository.save(user);
 
@@ -65,7 +66,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         basicUser.setLastName("User");
         basicUser.setEmail("user@test.com");
         basicUser.setPassword(passwordEncoder.encode("user"));
-        basicUser.setRoles(Collections.singletonList(basicRole));
+        basicUser.setRoles(Arrays.asList(basicRole));
         basicUser.setEnabled(true);
         userRepository.save(basicUser);
 

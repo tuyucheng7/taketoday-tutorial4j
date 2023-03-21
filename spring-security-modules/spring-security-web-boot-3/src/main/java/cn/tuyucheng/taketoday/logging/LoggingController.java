@@ -10,6 +10,7 @@ public class LoggingController {
 
     @GetMapping("/logging")
     public ResponseEntity<String> logging() {
-        return new ResponseEntity<>("logging/tuyucheng", HttpStatus.OK);
+        return new ResponseEntity<>("logging/baeldung", HttpStatus.OK);
     }
+
 }

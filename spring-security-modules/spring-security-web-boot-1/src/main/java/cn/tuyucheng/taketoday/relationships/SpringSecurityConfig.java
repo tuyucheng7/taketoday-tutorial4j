@@ -1,29 +1,34 @@
 package cn.tuyucheng.taketoday.relationships;
 
-import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
-import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
+import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
+import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan("cn.tuyucheng.taketoday.relationships")
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+@ComponentScan("cn.tuyucheng.taketoday.security")
+public class SpringSecurityConfig {
+
     @Autowired
     private WebApplicationContext applicationContext;
 
@@ -40,33 +45,39 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         userDetailsService = applicationContext.getBean(CustomUserDetailsService.class);
     }
 
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-              .passwordEncoder(encoder())
-              .and()
-              .authenticationProvider(authenticationProvider())
-              .jdbcAuthentication()
-              .dataSource(dataSource);
+    @Bean
+    public UserDetailsManager users(HttpSecurity http) throws Exception {
+        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManagerBuilder.class)
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(encoder())
+            .and()
+            .authenticationProvider(authenticationProvider())
+            .build();
+
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+        jdbcUserDetailsManager.setAuthenticationManager(authenticationManager);
+        return jdbcUserDetailsManager;
     }
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/resources/**");
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+            .antMatchers("/resources/**");
     }
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-              .antMatchers("/login")
-              .permitAll()
-              .and()
-              .formLogin()
-              .permitAll()
-              .successHandler(successHandler)
-              .and()
-              .csrf()
-              .disable();
+            .antMatchers("/login")
+            .permitAll()
+            .and()
+            .formLogin()
+            .permitAll()
+            .successHandler(successHandler)
+            .and()
+            .csrf()
+            .disable();
+        return http.build();
     }
 
     @Bean

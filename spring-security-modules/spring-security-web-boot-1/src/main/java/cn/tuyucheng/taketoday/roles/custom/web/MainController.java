@@ -50,7 +50,8 @@ public class MainController {
     @GetMapping("/organizations/{id}")
     @ResponseBody
     public Organization findOrgById(@PathVariable final long id) {
-        return organizationRepository.findById(id).orElse(null);
+        return organizationRepository.findById(id)
+            .orElse(null);
     }
 
     @PreAuthorize("hasPermission(#id, 'Foo', 'read')")

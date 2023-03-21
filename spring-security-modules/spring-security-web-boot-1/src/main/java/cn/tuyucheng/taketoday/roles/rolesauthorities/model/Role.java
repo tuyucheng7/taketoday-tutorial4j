@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.roles.rolesauthorities.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.util.Collection;
 
 @Entity
 public class Role {
@@ -84,11 +85,16 @@ public class Role {
             return false;
         }
         Role role = (Role) obj;
-        return role.equals(role.name);
+        if (!role.equals(role.name)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Role [name=" + name + "]" + "[id=" + id + "]";
+        StringBuilder builder = new StringBuilder();
+        builder.append("Role [name=").append(name).append("]").append("[id=").append(id).append("]");
+        return builder.toString();
     }
 }

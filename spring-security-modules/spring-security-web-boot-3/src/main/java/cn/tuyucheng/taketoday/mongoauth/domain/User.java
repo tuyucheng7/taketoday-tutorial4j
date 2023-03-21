@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.mongoauth.domain;
 
+import java.util.Objects;
+import java.util.Set;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Objects;
-import java.util.Set;
 
 @Document
 public class User implements UserDetails {

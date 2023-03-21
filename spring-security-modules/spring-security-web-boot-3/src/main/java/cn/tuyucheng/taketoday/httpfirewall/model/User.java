@@ -6,7 +6,6 @@ public class User {
     private String email;
 
     public User() {
-
     }
 
     public User(String id, String username, String email) {
@@ -39,12 +38,4 @@ public class User {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-              "id='" + id + '\'' +
-              ", username='" + username + '\'' +
-              ", email='" + email + '\'' +
-              '}';
-    }
 }

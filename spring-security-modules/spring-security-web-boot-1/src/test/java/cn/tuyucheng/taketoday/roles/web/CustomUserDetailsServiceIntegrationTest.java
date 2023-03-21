@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.roles.web;
 
-import cn.tuyucheng.taketoday.roles.custom.CustomSecurityExpressionApplication;
+import cn.tuyucheng.taketoday.roles.custom.Application;
 import cn.tuyucheng.taketoday.roles.custom.persistence.model.Foo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpHeaders;
@@ -19,68 +19,69 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = {CustomSecurityExpressionApplication.class})
+@SpringBootTest(classes = { Application.class })
 @AutoConfigureMockMvc
-class CustomUserDetailsServiceIntegrationTest {
+public class CustomUserDetailsServiceIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
     @WithUserDetails("john")
-    void givenUserWithReadPermissions_whenRequestUserInfo_thenRetrieveUserData() throws Exception {
+    public void givenUserWithReadPermissions_whenRequestUserInfo_thenRetrieveUserData() throws Exception {
         this.mvc.perform(get("/user").with(csrf()))
-              .andExpect(status().isOk())
-              .andExpect(jsonPath("$.user.privileges[0].name").value("FOO_READ_PRIVILEGE"))
-              .andExpect(jsonPath("$.user.organization.name").value("FirstOrg"))
-              .andExpect(jsonPath("$.user.username").value("john"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.user.privileges[0].name").value("FOO_READ_PRIVILEGE"))
+            .andExpect(jsonPath("$.user.organization.name").value("FirstOrg"))
+            .andExpect(jsonPath("$.user.username").value("john"));
     }
 
     @Test
     @WithUserDetails("tom")
-    void givenUserWithWritePermissions_whenRequestUserInfo_thenRetrieveUserData() throws Exception {
+    public void givenUserWithWritePermissions_whenRequestUserInfo_thenRetrieveUserData() throws Exception {
         this.mvc.perform(get("/user").with(csrf()))
-              .andExpect(status().isOk())
-              .andExpect(jsonPath("$.user.privileges").isArray())
-              .andExpect(jsonPath("$.user.organization.name").value("SecondOrg"))
-              .andExpect(jsonPath("$.user.username").value("tom"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.user.privileges").isArray())
+            .andExpect(jsonPath("$.user.organization.name").value("SecondOrg"))
+            .andExpect(jsonPath("$.user.username").value("tom"));
     }
 
     @Test
     @WithUserDetails("john")
-    void givenUserWithReadPermissions_whenRequestFoo_thenRetrieveSampleFoo() throws Exception {
+    public void givenUserWithReadPermissions_whenRequestFoo_thenRetrieveSampleFoo() throws Exception {
         this.mvc.perform(get("/foos/1").with(csrf()))
-              .andExpect(status().isOk())
-              .andExpect(jsonPath("$.name").value("Sample"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.name").value("Sample"));
     }
 
     @Test
     @WithAnonymousUser
-    void givenAnonymous_whenRequestFoo_thenRetrieveUnauthorized() throws Exception {
+    public void givenAnonymous_whenRequestFoo_thenRetrieveUnauthorized() throws Exception {
         this.mvc.perform(get("/foos/1").with(csrf()))
-              .andExpect(status().isFound());
+                .andExpect(status().isFound());
     }
 
     @Test
     @WithUserDetails("john")
-    void givenUserWithReadPermissions_whenCreateNewFoo_thenForbiddenStatusRetrieved() throws Exception {
+    public void givenUserWithReadPermissions_whenCreateNewFoo_thenForbiddenStatusRetrieved() throws Exception {
         this.mvc.perform(post("/foos").with(csrf())
-                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                    .content(asJsonString(new Foo())))
-              .andExpect(status().isForbidden());
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+            .content(asJsonString(new Foo())))
+            .andExpect(status().isForbidden());
     }
 
     @Test
     @WithUserDetails("tom")
-    void givenUserWithWritePermissions_whenCreateNewFoo_thenOkStatusRetrieved() throws Exception {
+    public void givenUserWithWritePermissions_whenCreateNewFoo_thenOkStatusRetrieved() throws Exception {
         this.mvc.perform(post("/foos").with(csrf())
-                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                    .content(asJsonString(new Foo())))
-              .andExpect(status().isCreated());
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+            .content(asJsonString(new Foo())))
+            .andExpect(status().isCreated());
     }
 
     private static String asJsonString(final Object obj) throws Exception {
         final ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(obj);
     }
+
 }

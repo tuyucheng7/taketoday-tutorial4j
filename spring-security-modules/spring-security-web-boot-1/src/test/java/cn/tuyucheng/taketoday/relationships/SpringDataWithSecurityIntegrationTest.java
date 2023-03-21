@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.relationships;
 
-import cn.tuyucheng.taketoday.relationships.models.AppUser;
-import cn.tuyucheng.taketoday.relationships.models.Tweet;
 import cn.tuyucheng.taketoday.relationships.repositories.TweetRepository;
 import cn.tuyucheng.taketoday.relationships.repositories.UserRepository;
+import cn.tuyucheng.taketoday.relationships.models.AppUser;
+import cn.tuyucheng.taketoday.relationships.models.Tweet;
 import cn.tuyucheng.taketoday.relationships.security.AppUserPrincipal;
 import cn.tuyucheng.taketoday.relationships.util.DummyContentUtil;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -28,16 +28,15 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import javax.servlet.ServletContext;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.util.Assert.isTrue;
 
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @WebAppConfiguration
 @ContextConfiguration
 @DirtiesContext
-class SpringDataWithSecurityIntegrationTest {
+public class SpringDataWithSecurityIntegrationTest {
+
     private static UserRepository userRepository;
     private static TweetRepository tweetRepository;
 
@@ -46,8 +45,8 @@ class SpringDataWithSecurityIntegrationTest {
 
     AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 
-    @BeforeEach
-    void testInit() {
+    @Before
+    public void testInit() {
         ctx.register(AppConfig.class);
         ctx.setServletContext(servletContext);
         ctx.refresh();
@@ -69,45 +68,47 @@ class SpringDataWithSecurityIntegrationTest {
      * StackOverflow#59561551
      * </a>
      */
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() {
         JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);
         JdbcTestUtils.dropTables(jdbcTemplate, "Tweet_Likes", "Tweet");
     }
 
     @Test
-    void givenAppUser_whenLoginSuccessful_shouldUpdateLastLogin() {
+    public void givenAppUser_whenLoginSuccessful_shouldUpdateLastLogin() {
         AppUser appUser = userRepository.findByUsername("lionel@messi.com");
         Authentication auth = new UsernamePasswordAuthenticationToken(new AppUserPrincipal(appUser), null, DummyContentUtil.getAuthorities());
         SecurityContextHolder.getContext()
-              .setAuthentication(auth);
+            .setAuthentication(auth);
+        userRepository.updateLastLogin(new Date());
+    }
+
+    @Test(expected = InvalidDataAccessApiUsageException.class)
+    public void givenNoAppUserInSecurityContext_whenUpdateLastLoginAttempted_shouldFail() {
         userRepository.updateLastLogin(new Date());
     }
 
     @Test
-    void givenNoAppUserInSecurityContext_whenUpdateLastLoginAttempted_shouldFail() {
-        assertThrows(InvalidDataAccessApiUsageException.class, () -> userRepository.updateLastLogin(new Date()));
-    }
-
-    @Test
-    void givenAppUser_whenLoginSuccessful_shouldReadMyPagedTweets() {
+    public void givenAppUser_whenLoginSuccessful_shouldReadMyPagedTweets() {
         AppUser appUser = userRepository.findByUsername("lionel@messi.com");
         Authentication auth = new UsernamePasswordAuthenticationToken(new AppUserPrincipal(appUser), null, DummyContentUtil.getAuthorities());
         SecurityContextHolder.getContext()
-              .setAuthentication(auth);
+            .setAuthentication(auth);
         Page<Tweet> page = null;
         do {
             page = tweetRepository.getMyTweetsAndTheOnesILiked(PageRequest.of(page != null ? page.getNumber() + 1 : 0, 5));
             for (Tweet twt : page.getContent()) {
-                isTrue((Objects.equals(twt.getOwner(), appUser.getUsername())) || (twt.getLikes()
-                      .contains(appUser.getUsername())), "I do not have any Tweets");
+                isTrue((twt.getOwner() == appUser.getUsername()) || (twt.getLikes()
+                    .contains(appUser.getUsername())), "I do not have any Tweets");
             }
         } while (page.hasNext());
     }
 
-    @Test
-    void givenNoAppUser_whenPaginatedResultsRetrievalAttempted_shouldFail() {
+    @Test(expected = InvalidDataAccessApiUsageException.class)
+    public void givenNoAppUser_whenPaginatedResultsRetrievalAttempted_shouldFail() {
         Page<Tweet> page = null;
-        assertThrows(InvalidDataAccessApiUsageException.class, () -> tweetRepository.getMyTweetsAndTheOnesILiked(PageRequest.of(0, 5)));
+        do {
+            page = tweetRepository.getMyTweetsAndTheOnesILiked(PageRequest.of(page != null ? page.getNumber() + 1 : 0, 5));
+        } while (page != null && page.hasNext());
     }
 }

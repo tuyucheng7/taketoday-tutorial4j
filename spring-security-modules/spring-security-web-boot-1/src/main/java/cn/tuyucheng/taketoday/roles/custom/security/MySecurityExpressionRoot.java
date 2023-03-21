@@ -1,5 +1,10 @@
 package cn.tuyucheng.taketoday.roles.custom.security;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import cn.tuyucheng.taketoday.roles.custom.persistence.model.User;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
@@ -8,10 +13,6 @@ import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Set;
 
 public class MySecurityExpressionRoot implements MethodSecurityExpressionOperations {
 

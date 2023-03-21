@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.mongoauth.controller;
 
+import javax.annotation.security.RolesAllowed;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.security.RolesAllowed;
 
 @RestController
 public class ResourceController {
@@ -14,9 +14,10 @@ public class ResourceController {
         return "Hello Admin!";
     }
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_USER"})
+    @RolesAllowed({ "ROLE_ADMIN", "ROLE_USER" })
     @GetMapping("/user")
     public String user() {
         return "Hello User!";
     }
+
 }

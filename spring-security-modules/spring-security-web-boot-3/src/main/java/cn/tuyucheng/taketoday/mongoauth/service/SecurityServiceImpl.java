@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
+
     private final AuthenticationManager authenticationManager;
 
     private final UserDetailsService userDetailsService;
@@ -21,14 +22,18 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public boolean login(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            SecurityContextHolder.getContext()
+              .setAuthentication(usernamePasswordAuthenticationToken);
+
             return true;
         }
+
         return false;
     }
 }

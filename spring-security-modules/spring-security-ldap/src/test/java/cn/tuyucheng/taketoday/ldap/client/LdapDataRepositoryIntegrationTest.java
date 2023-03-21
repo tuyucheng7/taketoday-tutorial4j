@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.ldap.client;
 import cn.tuyucheng.taketoday.ldap.data.service.UserService;
 import cn.tuyucheng.taketoday.ldap.javaconfig.TestConfig;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("testlive")
-@Ignore("fails on Java 17")
 @ContextConfiguration(classes = {TestConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class LdapDataRepositoryIntegrationTest {
 

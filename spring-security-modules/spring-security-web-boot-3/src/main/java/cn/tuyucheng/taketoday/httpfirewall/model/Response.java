@@ -6,11 +6,9 @@ public class Response {
     private long timestamp;
 
     public Response() {
-
     }
 
     public Response(int code, String message, long timestamp) {
-        super();
         this.code = code;
         this.message = message;
         this.timestamp = timestamp;
@@ -38,14 +36,5 @@ public class Response {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    @Override
-    public String toString() {
-        return "Response{" +
-              "code=" + code +
-              ", message='" + message + '\'' +
-              ", timestamp=" + timestamp +
-              '}';
     }
 }
