@@ -1,8 +1,8 @@
-## 1. 概述
+## 1.概述
 
-在本教程中，我们将重点介绍使用Spring Security设置OpenID Connect(OIDC)。
+在本教程中，我们将重点介绍如何使用Spring Security设置OpenID Connect(OIDC)。
 
-我们将介绍该规范的不同方面，然后了解Spring Security提供的在OAuth 2.0客户端上实现它的支持。
+我们将介绍此规范的不同方面，然后我们将看到Spring Security提供的在OAuth 2.0客户端上实现它的支持。
 
 ## 2. OpenID Connect介绍
 
@@ -12,28 +12,28 @@
 
 OIDC规范套件非常广泛，它包括核心功能和其他几个可选功能，以不同的组呈现。以下是主要内容：
 
--   Core：认证和使用Claims来传达最终用户信息
+-   Core：身份验证和使用Claims来传达最终用户信息
 -   Discovery：规定客户端如何动态确定有关OpenID提供者的信息
 -   Dynamic Registration：规定客户端如何向提供者注册
 -   Session Management：定义如何管理OIDC会话
 
-最重要的是，文档还区分了为该规范提供支持的OAuth 2.0身份验证服务器，将它们称为OpenID提供者(OP)和使用 OIDC作为依赖方(RP)的OAuth 2.0客户端，我们将在本文中使用这个术语。
+最重要的是，文档还区分了为该规范提供支持的OAuth 2.0身份验证服务器，将它们称为OpenID提供者(OP)和使用OIDC作为依赖方(RP)的OAuth 2.0客户端，我们将在本文中使用该术语。
 
 还值得注意的是，客户端可以通过在其授权请求中添加openid范围来请求使用此扩展。
 
 最后，对于本教程，了解OP将最终用户信息作为称为ID令牌的JWT发出是很有用的。
 
-## 3. 项目设置
+## 3.项目设置
 
 在专注于实际开发之前，我们必须向我们的OpenID Provider注册一个OAuth 2.0客户端。
 
-在这种情况下，我们将使用Google作为OpenID Provider，我们可以按照[这些说明](https://developers.google.com/identity/protocols/OpenIDConnect#appsetup)在他们的平台上注册我们的客户端应用程序。请注意，openid作用域在默认情况下是存在的。
+在这种情况下，我们将使用Google作为OpenID Provider，我们可以按照[这些说明](https://developers.google.com/identity/protocols/OpenID Connect#appsetup)在他们的平台上注册我们的客户端应用程序。请注意，openid作用域在默认情况下是存在的。
 
 我们在这个过程中设置的重定向URI是我们服务中的一个端点：http://localhost:8081/login/oauth2/code/google。
 
 我们应该从这个过程中获得一个客户端ID和一个客户端密钥。
 
-### 3.1 Maven配置
+### 3.1Maven配置
 
 我们首先将这些依赖项添加到项目pom文件中：
 
@@ -45,16 +45,16 @@ OIDC规范套件非常广泛，它包括核心功能和其他几个可选功能�
 </dependency>
 ```
 
-starter工件聚合了所有Spring Security Client相关的依赖，包括
+starter工件聚合了所有Spring SecurityClient相关的依赖，包括
 
--   OAuth 2.0登录和客户端功能的spring-security-oauth2-client依赖项
--   用于JWT支持的JOSE库
+-OAuth 2.0登录和客户端功能的spring-security-oauth2-client依赖项
+-用于JWT支持的JOSE库
 
-## 4. 使用Spring Boot的基本配置
+## 4.使用SpringBoot的基本配置
 
 首先，我们将首先配置我们的应用程序以使用我们刚刚通过Google创建的客户端注册。
 
-使用Spring Boot非常容易，因为我们所要做的就是定义两个应用程序属性：
+使用SpringBoot非常容易，因为我们所要做的就是定义两个应用程序属性：
 
 ```yaml
 spring:
@@ -71,7 +71,7 @@ spring:
 
 它看起来很简单，但这里有很多事情要做。接下来，我们将探讨Spring Security如何实现这一点。
 
-以前，在我们的WebClient和OAuth 2支持文章中，我们分析了Spring Security如何处理OAuth 2.0授权服务器和客户端的内部结构。
+以前，在我们的WebClient和OAuth2支持文章中，我们分析了Spring Security如何处理OAuth 2.0授权服务器和客户端的内部结构。
 
 在这里我们看到，除了客户端ID和客户端密钥之外，我们还必须提供其他数据才能成功配置ClientRegistration实例。
 
@@ -83,20 +83,20 @@ Google是一家知名的提供商，因此该框架提供了一些预定义的�
 
 对于Google，枚举类型定义了如下属性：
 
--   将使用的默认作用域
--   授权端点
--   令牌端点
--   UserInfo端点，它也是OIDC核心规范的一部分
+-将使用的默认作用域
+-授权端点
+-令牌端点
+-UserInfo端点，它也是OIDC核心规范的一部分
 
-### 4.1 访问用户信息
+### 4.1访问用户信息
 
-Spring Security提供了向OIDC Provider注册的用户主体(Principal)的有用表示，即OidcUser实体。
+Spring Security提供了向OIDCProvider注册的用户主体(Principal)的有用表示，即OidcUser实体。
 
 除了基本的OAuth2AuthenticatedPrincipal方法外，该实体还提供了一些有用的功能：
 
--   检索ID Token值及其包含的Claims
--   获取UserInfo端点提供的Claims
--   生成两个集合的聚合
+-检索IDToken值及其包含的Claims
+-获取UserInfo端点提供的Claims
+-生成两个集合的聚合
 
 我们可以在控制器中轻松访问该实体：
 
@@ -107,7 +107,7 @@ public OidcUser getOidcUserPrincipal(@AuthenticationPrincipal OidcUser principal
 }
 ```
 
-或者我们可以在bean中使用SecurityContextHolder ：
+或者我们可以在bean中使用SecurityContextHolder：
 
 ```java
 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -140,7 +140,7 @@ public class MappedAuthorities {
 }
 ```
 
-## 5. OIDC在实践
+## 5.OIDC在实践
 
 到目前为止，我们已经了解了如何使用Spring Security轻松实现OIDC登录解决方案。
 
@@ -150,7 +150,7 @@ public class MappedAuthorities {
 
 因此，让我们看看幕后发生的事情，以更好地了解该规范是如何付诸实现的，并能够最大限度地利用它。
 
-### 5.1 登录过程
+### 5.1登录过程
 
 为了清楚地看到这一点，让我们启用RestTemplate日志来查看服务正在执行的请求：
 
@@ -166,7 +166,7 @@ logging:
 
 首先，根据我们使用的提供者和我们配置的作用域，我们可能会看到服务正在调用我们在开头提到的UserInfo端点。
 
-也就是说，如果授权响应检索到profile、email、address或phone作用域中的至少一个，则框架将调用 UserInfo端点以获取其他信息。
+也就是说，如果授权响应检索到profile、email、address或phone作用域中的至少一个，则框架将调用UserInfo端点以获取其他信息。
 
 尽管一切都表明谷歌应该检索profile和email作用域(因为我们在授权请求中使用它们)，但OP会检索他们的自定义对应项，https://www.googleapis.com/auth/userinfo.email和https://www.googleapis.com/auth/userinfo.profile，所以Spring不会调用端点。
 
@@ -196,44 +196,44 @@ public class OAuth2LoginSecurityConfig {
 }
 ```
 
-我们将观察到的第二个区别是对JWK Set URI的调用。正如我们在[JWS和JWK帖子](https://www.baeldung.com/spring-security-oauth2-jws-jwk)中所解释的，这用于验证JWT格式的ID令牌签名。
+我们将观察到的第二个区别是对JWKSetURI的调用。正如我们在[JWS和JWK帖子](https://www.baeldung.com/spring-security-oauth2-jws-jwk)中所解释的，这用于验证JWT格式的ID令牌签名。
 
-接下来，我们将详细分析ID Token。
+接下来，我们将详细分析IDToken。
 
-### 5.2 ID Token
+### 5.2IDToken
 
 自然地，OIDC规范涵盖并适应了许多不同的场景。在这种情况下，我们使用的是授权代码流，并且协议指示访问令牌和ID令牌都将作为令牌端点响应的一部分进行检索。
 
-正如我们之前所说，OidcUser实体包含ID Token中包含的Claims，以及可以使用[jwt.io](https://jwt.io/)检查的实际JWT格式的令牌。
+正如我们之前所说，OidcUser实体包含IDToken中包含的Claims，以及可以使用[jwt.io](https://jwt.io/)检查的实际JWT格式的令牌。
 
 最重要的是，Spring提供了许多方便的getter来以干净的方式获取规范定义的标准Claims。
 
-我们可以看到ID Token包含一些强制声明：
+我们可以看到IDToken包含一些强制声明：
 
--   格式为URL的颁发者标识符(例如，“ https://accounts.google.com ”)
--   主题id，它是发行者包含的最终用户的引用
--   token的过期时间
--   token发行时间
--   audience，将包含我们配置的OAuth 2.0客户端ID
+-格式为URL的颁发者标识符(例如，“https://accounts.google.com”)
+-主题id，它是发行者包含的最终用户的引用
+-token的过期时间
+-token发行时间
+-audience，将包含我们配置的OAuth 2.0客户端ID
 
 它还包含许多[OIDC标准声明](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)，例如我们之前提到的那些(名称、语言环境、图片、电子邮件)。
 
 由于这些是标准的，我们可以期望许多提供商至少检索其中一些字段，从而促进更简单的解决方案的开发。
 
-### 5.3 Claims和Scopes
+### 5.3Claims和Scopes
 
 正如我们可以想象的那样，OP检索到的声明与我们(或Spring Security)配置的范围相对应。
 
 OIDC定义了一些可用于请求OIDC定义的声明的作用域：
 
--   profile，可用于请求默认配置文件声明(例如name、preferred_username、picture等
--   email，以访问email和email_verified声明
--   地址
--   phone，请求phone_number和phone_number_verified声明
+-profile，可用于请求默认配置文件声明(例如name、preferred_username、picture等
+-email，以访问email和email_verified声明
+-地址
+-phone，请求phone_number和phone_number_verified声明
 
 尽管Spring还不支持它，但该规范允许通过在授权请求中指定它们来请求单个声明。
 
-## 6. Spring对OIDC Discovery的支持
+## 6.Spring对OIDCDiscovery的支持
 
 正如我们在介绍中所解释的，OIDC除了其核心用途外，还包括许多不同的功能。
 
@@ -273,29 +273,29 @@ https://accounts.google.com/.well-known/openid-configuration
 
 这里特别需要注意的是，如果在服务启动时发现端点不可用，我们的应用程序将无法成功完成启动过程。
 
-## 7. OpenID Connect会话管理
+## 7.OpenID Connect会话管理
 
 该规范通过定义以下内容来补充核心功能：
 
--   持续监控最终用户在 OP 的登录状态的不同方法，以便 RP 可以注销已注销 OpenID 提供程序的最终用户
--   作为客户端注册的一部分，向 OP 注册 RP 注销 URI 的可能性，以便在最终用户注销 OP 时得到通知
--   一种通知 OP 最终用户已退出站点并且可能也希望退出 OP 的机制
+-持续监控最终用户在OP的登录状态的不同方法，以便RP可以注销已注销OpenID提供程序的最终用户
+-作为客户端注册的一部分，向OP注册RP注销URI的可能性，以便在最终用户注销OP时得到通知
+-一种通知OP最终用户已退出站点并且可能也希望退出OP的机制
 
-当然，并非所有 OP 都支持所有这些项目，其中一些解决方案只能通过 User-Agent 在前端实现中实现。
+当然，并非所有OP都支持所有这些项目，其中一些解决方案只能通过User-Agent在前端实现中实现。
 
-在本教程中，我们将重点关注 Spring 为列表的最后一项提供的功能，即 RP 发起的注销。
+在本教程中，我们将重点关注Spring为列表的最后一项提供的功能，即RP发起的注销。
 
 此时，如果我们登录到我们的应用程序，我们可以正常访问每个端点。
 
-如果我们注销(调用/logout 端点)并随后向安全资源发出请求，我们将看到无需再次登录即可获得响应。
+如果我们注销(调用/logout端点)并随后向安全资源发出请求，我们将看到无需再次登录即可获得响应。
 
-然而，事实并非如此。如果我们检查浏览器调试控制台中的网络选项卡，我们会看到当我们第二次点击安全端点时，我们会被重定向到 OP 授权端点。而且由于我们仍然在那里登录，因此流程是透明地完成的，几乎立即在安全端点中结束。
+然而，事实并非如此。如果我们检查浏览器调试控制台中的网络选项卡，我们会看到当我们第二次点击安全端点时，我们会被重定向到OP授权端点。而且由于我们仍然在那里登录，因此流程是透明地完成的，几乎立即在安全端点中结束。
 
-当然，在某些情况下，这可能不是所需的行为。让我们看看我们如何实现这个 OIDC 机制来处理这个问题。
+当然，在某些情况下，这可能不是所需的行为。让我们看看我们如何实现这个OIDC机制来处理这个问题。
 
-### 7.1。OpenID 提供者配置
+### 7.1。OpenID提供者配置
 
-在这种情况下，我们将配置和使用 Okta 实例作为我们的 OpenID 提供程序。我们不会详细介绍如何创建实例，但我们可以按照[本指南](https://help.okta.com/en/prod/Content/Topics/Apps/apps-about-oidc.htm)的步骤进行操作，请记住 Spring Security 的默认回调端点将是/login/oauth2/code/okta。
+在这种情况下，我们将配置和使用Okta实例作为我们的OpenID提供程序。我们不会详细介绍如何创建实例，但我们可以按照[本指南](https://help.okta.com/en/prod/Content/Topics/Apps/apps-about-oidc.htm)的步骤进行操作，请记住Spring Security的默认回调端点将是/login/oauth2/code/okta。
 
 在我们的应用程序中，我们可以使用属性定义客户端注册数据：
 
@@ -313,11 +313,11 @@ spring:
                         issuer-uri: https://dev-123.okta.com
 ```
 
-OIDC 表示可以在 Discovery 文档中指定 OP 注销端点，作为 end_session_endpoint 元素。
+OIDC表示可以在Discovery文档中指定OP注销端点，作为end_session_endpoint元素。
 
-### 7.2. LogoutSuccessHandler配置_
+### 7.2.LogoutSuccessHandler配置_
 
-接下来，我们必须通过提供自定义的LogoutSuccessHandler实例来配置HttpSecurity 注销逻辑：
+接下来，我们必须通过提供自定义的LogoutSuccessHandler实例来配置HttpSecurity注销逻辑：
 
 ```java
 @Bean
@@ -333,7 +333,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 }
 ```
 
-现在让我们看看如何使用 Spring Security 提供的特殊类OidcClientInitiatedLogoutSuccessHandler来为此目的创建LogoutSuccessHandler：
+现在让我们看看如何使用Spring Security提供的特殊类OidcClientInitiatedLogoutSuccessHandler来为此目的创建LogoutSuccessHandler：
 
 ```java
 @Autowired
@@ -351,18 +351,18 @@ private LogoutSuccessHandler oidcLogoutSuccessHandler() {
 }
 ```
 
-因此，我们需要在 OP 客户端配置面板中将此 URI 设置为有效的注销重定向 URI。
+因此，我们需要在OP客户端配置面板中将此URI设置为有效的注销重定向URI。
 
-显然，OP 注销配置包含在客户端注册设置中，因为我们用于配置处理程序的只是上下文中存在的ClientRegistrationRepository bean。
+显然，OP注销配置包含在客户端注册设置中，因为我们用于配置处理程序的只是上下文中存在的ClientRegistrationRepositorybean。
 
 那么，现在会发生什么？
 
-在我们登录到我们的应用程序后，我们可以向Spring Security 提供的/logout 端点发送请求。
+在我们登录到我们的应用程序后，我们可以向Spring Security提供的/logout端点发送请求。
 
-如果我们在浏览器调试控制台中检查网络日志，我们将看到我们在最终访问我们配置的重定向 URI 之前被重定向到 OP 注销端点。
+如果我们在浏览器调试控制台中检查网络日志，我们将看到我们在最终访问我们配置的重定向URI之前被重定向到OP注销端点。
 
-下次我们访问应用程序中需要身份验证的端点时，我们将强制需要再次登录我们的 OP 平台以获取权限。
+下次我们访问应用程序中需要身份验证的端点时，我们将强制需要再次登录我们的OP平台以获取权限。
 
-## 8. 总结
+## 8.总结
 
-总而言之，在本文中，我们了解了很多关于 OpenID Connect 提供的解决方案以及我们如何使用 Spring Security 实现其中一些解决方案。
+总而言之，在本文中，我们了解了很多关于OpenID Connect提供的解决方案以及我们如何使用Spring Security实现其中一些解决方案。

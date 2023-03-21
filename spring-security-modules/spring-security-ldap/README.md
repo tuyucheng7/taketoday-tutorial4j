@@ -14,5 +14,5 @@
 - 启动后，打开“http://localhost:8080”
 - 这将显示公开可用的主页
 - 导航到“Secure Page”以触发身份验证
-- 用户名: 'baeldung', 密码: 'password'
+- 用户名: 'tuyucheng', 密码: 'password'
 - 这将对你进行身份验证，并显示你分配的角色(如“users.ldif”文件中定义)

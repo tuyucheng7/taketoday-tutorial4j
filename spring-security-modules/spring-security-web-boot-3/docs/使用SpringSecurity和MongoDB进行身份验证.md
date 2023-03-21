@@ -1,20 +1,18 @@
 ## 1. 概述
 
-Spring Security提供不同的身份验证系统，例如通过数据库和UserDetailService。
+[Spring Security](https://www.baeldung.com/security-spring)提供不同的身份验证系统，例如通过数据库和[UserDetailService](https://www.baeldung.com/spring-security-authentication-with-a-database)。
 
-除了使用JPA持久层，我们还可以使用MongoDB Repository。
-在本教程中，我们将了解如何使用Spring Security和MongoDB对用户进行身份验证。
+除了使用[JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa)持久层，我们还可以使用[MongoDB Repository](https://www.baeldung.com/spring-data-mongodb-tutorial)。在本教程中，我们将了解如何使用Spring Security和MongoDB对用户进行身份验证。
 
 ## 2. 使用MongoDB进行Spring Security认证
 
-与使用JPA Repository类似，我们可以使用MongoDB Repository。但是，我们需要设置不同的配置才能使用它。
+**与使用JPA Repository类似，我们可以使用MongoDB Repository**。但是，我们需要设置不同的配置才能使用它。
 
 ### 2.1 Maven依赖
 
-对于本教程，我们使用嵌入式MongoDB。但是，MongoDB实例和Testcontainer可能是生产环境的最佳选择。
-首先，让我们添加spring-boot-starter-data-mongodb和de.flapdoodle.embed.mongo依赖项：
+**对于本教程，我们将使用[嵌入式MongoDB](https://www.baeldung.com/spring-boot-embedded-mongodb)**。但是，MongoDB实例和[Testcontainer](https://www.baeldung.com/spring-boot-testcontainers-integration-test)可能是生产环境的最佳选择。首先，让我们添加[spring-boot-starter-data-mongodb](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb/3.0.4)和[de.flapdoodle.embed.mongo](https://central.sonatype.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo/4.6.2)依赖项：
 
-```text
+```xml
 <dependency>
    <groupId>org.springframework.boot</groupId>
    <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -22,15 +20,15 @@ Spring Security提供不同的身份验证系统，例如通过数据库和UserD
 <dependency>
     <groupId>de.flapdoodle.embed</groupId>
     <artifactId>de.flapdoodle.embed.mongo</artifactId>
+    <version>3.3.1</version>
 </dependency>
 ```
 
 ### 2.2 配置
 
-添加了依赖后，我们就可以创建配置类：
+添加依赖项后，我们可以创建配置：
 
 ```java
-
 @Configuration
 public class MongoConfig {
     private static final String CONNECTION_STRING = "mongodb://%s:%d";
@@ -38,13 +36,12 @@ public class MongoConfig {
 
     @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-
         int randomPort = SocketUtils.findAvailableTcpPort();
 
         ImmutableMongodConfig mongoDbConfig = MongodConfig.builder()
-                .version(Version.Main.PRODUCTION)
-                .net(new Net(HOST, randomPort, Network.localhostIsIPv6()))
-                .build();
+              .version(Version.Main.PRODUCTION)
+              .net(new Net(HOST, randomPort, Network.localhostIsIPv6()))
+              .build();
 
         MongodStarter starter = MongodStarter.getDefaultInstance();
         MongodExecutable mongodExecutable = starter.prepare(mongoDbConfig);
@@ -54,14 +51,13 @@ public class MongoConfig {
 }
 ```
 
-我们还需要配置我们的AuthenticationManager：
+我们还需要配置我们的[AuthenticationManager](https://spring.io/guides/topicals/spring-security-architecture)，例如，一个HTTP基本认证：
 
 ```java
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
@@ -70,8 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public AuthenticationManager customAuthenticationManager() throws Exception {
-        return authenticationManager();
+    public AuthenticationManager customAuthenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.userDetailsService(userDetailsService)
+              .passwordEncoder(bCryptPasswordEncoder());
+        return authenticationManagerBuilder.build();
     }
 
     @Bean
@@ -79,35 +78,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(@Autowired AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf()
-                .disable()
-                .authorizeRequests()
-                .and()
-                .httpBasic()
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+              .disable()
+              .authorizeRequests()
+              .and()
+              .httpBasic()
+              .and()
+              .authorizeRequests()
+              .anyRequest()
+              .permitAll()
+              .and()
+              .sessionManagement()
+              .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        return http.build();
     }
 }
 ```
 
 ### 2.3 User实体和Repository
 
-首先，让我们定义一个简单的User，其中包含用于身份验证的Role。我们让它实现UserDetails接口以重用Principal对象的公共方法：
+首先，让我们为身份验证定义一个具有角色的简单用户。我们让它实现[UserDetails](https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/user-details.html#page-title)接口以重用Principal对象的公共方法：
 
 ```java
-
 @Document
 public class User implements UserDetails {
     private @MongoId ObjectId id;
@@ -128,12 +122,11 @@ public interface UserRepository extends MongoRepository<User, String> {
 }
 ```
 
-### 2.4 Authentication Service
+### 2.4 认证服务
 
 最后，**让我们实现我们的UserDetailService以检索用户并检查它是否已通过身份验证**：
 
 ```java
-
 @Service
 public class MongoAuthUserDetailService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -149,7 +142,7 @@ public class MongoAuthUserDetailService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
         user.getAuthorities().forEach(role ->
-                grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole().getName())));
+              grantedAuthorities.add(new SimpleGrantedAuthority(role.getRole().getName())));
 
         return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
@@ -161,7 +154,6 @@ public class MongoAuthUserDetailService implements UserDetailsService {
 为了测试我们的应用程序，让我们定义一个简单的控制器。例如，我们定义了两个不同的角色来测试特定端点的身份验证和授权：
 
 ```java
-
 @RestController
 public class ResourceController {
 
@@ -179,11 +171,9 @@ public class ResourceController {
 }
 ```
 
-这里使用Spring Boot Tests编写测试，以检查我们的身份验证是否有效。
-正如我们所看到的，我们期望为提供无效凭据或系统中不存在的用户返回401状态码：
+让我们将其全部包装在[Spring Boot测试](https://www.baeldung.com/spring-boot-testing)中，以检查我们的身份验证是否有效。如我们所见，**我们期望为提供无效凭据或系统中不存在的用户返回401状态码**：
 
 ```java
-
 @SpringBootTest(classes = {MongoAuthApplication.class})
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -207,8 +197,8 @@ class MongoAuthApplicationIntegrationTest {
     void setup() {
         setUp();
         mvc = MockMvcBuilders.webAppContextSetup(context)
-                .apply(springSecurity())
-                .build();
+              .apply(springSecurity())
+              .build();
     }
 
     private void setUp() {
@@ -242,40 +232,40 @@ class MongoAuthApplicationIntegrationTest {
     @Test
     void givenUserCredentials_whenInvokeUserAuthorizedEndPoint_thenReturn200() throws Exception {
         mvc.perform(get("/user").with(httpBasic(USER_NAME, PASSWORD)))
-                .andExpect(status().isOk());
+              .andExpect(status().isOk());
     }
 
     @Test
     void givenUserNotExists_whenInvokeEndPoint_thenReturn401() throws Exception {
         mvc.perform(get("/user").with(httpBasic("not_existing_user", "password")))
-                .andExpect(status().isUnauthorized());
+              .andExpect(status().isUnauthorized());
     }
 
     @Test
     void givenUserExistsAndWrongPassword_whenInvokeEndPoint_thenReturn401() throws Exception {
         mvc.perform(get("/user").with(httpBasic(USER_NAME, "wrong_password")))
-                .andExpect(status().isUnauthorized());
+              .andExpect(status().isUnauthorized());
     }
 
     @Test
     void givenUserCredentials_whenInvokeAdminAuthorizedEndPoint_thenReturn403() throws Exception {
         mvc.perform(get("/admin").with(httpBasic(USER_NAME, PASSWORD)))
-                .andExpect(status().isForbidden());
+              .andExpect(status().isForbidden());
     }
 
     @Test
     void givenAdminCredentials_whenInvokeAdminAuthorizedEndPoint_thenReturn200() throws Exception {
         mvc.perform(get("/admin").with(httpBasic(ADMIN_NAME, PASSWORD)))
-                .andExpect(status().isOk());
+              .andExpect(status().isOk());
 
         mvc.perform(get("/user").with(httpBasic(ADMIN_NAME, PASSWORD)))
-                .andExpect(status().isOk());
+              .andExpect(status().isOk());
     }
 }
 ```
 
 ## 3. 总结
 
-在本文中，我们介绍了如何使用MongoDB与Spring Security进行身份验证。
+在本文中，我们研究了如何使用MongoDB与Spring Security进行身份验证。
 
-我们了解了如何配置并实现我们的自定义UserDetailService。并了解了如何mock MVC上下文并测试身份验证和授权。
+我们了解了如何配置并实现我们的自定义UserDetailService，并了解了如何mock MVC上下文测试身份验证和授权。

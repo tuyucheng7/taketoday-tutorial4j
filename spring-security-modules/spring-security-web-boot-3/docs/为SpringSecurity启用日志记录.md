@@ -1,21 +1,20 @@
 ## 1. 概述
 
-在使用Spring Security时，我们可能需要使用比默认级别(一般为log)更高的日志级别。
-例如，我们可能需要检查用户的角色或端点的安全性。或者，也许我们还需要有关身份验证或授权的更多信息，例如，查看用户无法访问端点的原因。
+在使用[Spring Security](https://www.baeldung.com/security-spring)时，我们可能需要使用比默认级别(一般为log)更高的日志级别。例如，我们可能需要检查用户的角色或端点的安全性。或者，也许我们还需要有关身份验证或授权的更多信息，例如，了解用户无法访问端点的原因。
 
-在这个简短的教程中，我们将介绍如何修改Spring Security的日志级别。
+在这个简短的教程中，我们将了解如何修改Spring Security日志记录级别。
 
 ## 2. 配置Spring Security日志记录
 
-**像任何Spring或Java应用程序一样，我们可以使用日志库并为Spring Security模块定义日志级别**。
+**像任何Spring或Java应用程序一样，我们可以使用[日志库](https://www.baeldung.com/logback)并为Spring Security模块定义日志记录级别**。
 
-通常，我们可以在配置文件中配置如下内容：
+通常，我们可以在配置文件中编写如下内容：
 
-```text
+```xml
 <logger name="org.springframework.security" level="DEBUG" />
 ```
 
-**如果我们使用的是Spring Boot，我们可以在application.properties文件中进行配置**：
+**但是，如果我们使用的是[Spring Boot](https://www.baeldung.com/spring-boot)，我们可以在application.properties文件中进行配置**：
 
 ```properties
 logging.level.org.springframework.security=DEBUG
@@ -31,38 +30,37 @@ logging:
                 security: DEBUG
 ```
 
-**这样，我们可以查看有关身份验证或过滤器链的日志**。此外，我们甚至可以使用DEBUG级别进行更深入的调试。
+**这样，我们可以查看有关[身份验证](https://www.baeldung.com/tag/authentication/)或[过滤器链](https://docs.spring.io/spring-security/reference/servlet/architecture.html#servlet-filterchainproxy)的日志**。此外，我们甚至可以使用DEBUG级别进行更深入的调试。
 
-Spring Security还提供了记录有关请求和应用过滤器的特定信息的可能性：
+此外，**Spring Security还提供了记录有关请求和应用过滤器的特定信息的可能性**：
 
 ```java
-
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     @Value("${spring.websecurity.debug:false}")
     boolean webSecurityDebug;
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.debug(webSecurityDebug);
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.debug(webSecurityDebug);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**")
-                .permitAll();
+              .antMatchers("/**")
+              .permitAll();
+        return http.build();
     }
 }
 ```
 
-## 3. 案例
+## 3. 日志示例
 
 最后，为了测试我们的应用程序，让我们定义一个简单的控制器：
 
 ```java
-
 @Controller
 public class LoggingController {
 
@@ -73,16 +71,16 @@ public class LoggingController {
 }
 ```
 
-如果我们访问/logging 端点，我们可以观察输出的日志：
+如果我们访问/logging端点，我们可以观察输出的日志：
 
-```text
+```shell
 ...... DEBUG 11676 --- [nio-8080-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /logging] with attributes [permitAll]
 ...... DEBUG 11676 --- [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /logging
 ...... DEBUG 11676 --- [nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
 ...... DEBUG 11676 --- [nio-8080-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
 ```
 
-```text
+```shell
 Request received for GET '/logging':
 
 org.apache.catalina.connector.RequestFacade@62b896bb

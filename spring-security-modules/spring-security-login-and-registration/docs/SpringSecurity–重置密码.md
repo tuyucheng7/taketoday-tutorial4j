@@ -1,6 +1,6 @@
 ## 1. 概述
 
-在本教程中——我们将继续进行中的 Spring Security 注册系列，看看基本的“我忘记了我的密码”功能——以便用户可以在需要时安全地重置自己的密码。
+在本教程中-我们将继续进行中的**Spring Security注册系列**，看看**基本的“忘记密码”功能**-以便用户可以在需要时安全地重置自己的密码。
 
 ## 2. 请求重置密码
 
@@ -8,51 +8,51 @@
 
 下图可视化了我们将在本文中实现的流程：
 
-[![请求密码重置电子邮件](https://www.baeldung.com/wp-content/uploads/2015/02/reset1-1024x737-1.png)](https://www.baeldung.com/wp-content/uploads/2015/02/reset1-1024x737-1.png)
+<img src="../assets/img.png">
 
-## 3.密码重置令牌
+## 3. 密码重置令牌
 
-让我们从创建一个PasswordResetToken实体开始，用它来重置用户密码：
+让我们首先创建一个PasswordResetToken实体，用它来重置用户密码：
 
 ```java
 @Entity
 public class PasswordResetToken {
- 
-    private static final int EXPIRATION = 60  24;
- 
+
+    private static final int EXPIRATION = 60 * 24;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
- 
+
     private String token;
- 
+
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
- 
+
     private Date expiryDate;
 }
 ```
 
-当触发密码重置时——将创建一个令牌，并将包含该令牌的特殊链接通过电子邮件发送给用户。
+当触发密码重置时-将创建一个令牌，并将**包含该令牌的特殊链接通过电子邮件发送给用户**。
 
-令牌和链接仅在设定的时间段内有效(在此示例中为 24 小时)。
+令牌和链接仅在设定的时间段内有效(在此示例中为24小时)。
 
-## 4.忘记密码.html
+## 4. forgotPassword.html
 
-该过程的第一页是“我忘记了我的密码”页面——系统会提示用户输入他们的电子邮件地址，以便开始实际的重置过程。
+该过程的**第一步是“忘记密码”页面**-系统会提示用户输入他们的电子邮件地址，以便开始实际的重置过程。
 
-所以 - 让我们制作一个简单的forgotPassword.html要求用户提供电子邮件地址：
+所以，让我们创建一个简单的forgotPassword.html要求用户提供电子邮件地址：
 
 ```html
 <html>
 <body>
-    <h1 th:text="#{message.resetPassword}">reset</h1>
+<h1 th:text="#{message.resetPassword}">reset</h1>
 
-    <label th:text="#{label.user.email}">email</label>
-    <input id="email" name="email" type="email" value="" />
-    <button type="submit" onclick="resetPass()" 
-      th:text="#{message.resetPassword}">reset</button>
+<label th:text="#{label.user.email}">email</label>
+<input id="email" name="email" type="email" value="" />
+<button type="submit" onclick="resetPass()"
+        th:text="#{message.resetPassword}">reset</button>
 
 <a th:href="@{/registration.html}" th:text="#{label.form.loginSignUp}">
     registration
@@ -80,18 +80,16 @@ function resetPass(){
         }
     });
 }
-
 </script>
 </body>
-
 </html>
 ```
 
 我们现在需要从登录页面链接到这个新的“重置密码”页面：
 
 ```html
-<a th:href="@{/forgetPassword.html}" 
-  th:text="#{message.resetPassword}">reset</a>
+<a th:href="@{/forgetPassword.html}"
+   th:text="#{message.resetPassword}">reset</a>
 ```
 
 ## 5. 创建PasswordResetToken
@@ -100,19 +98,17 @@ function resetPass(){
 
 ```java
 @PostMapping("/user/resetPassword")
-public GenericResponse resetPassword(HttpServletRequest request, 
-  @RequestParam("email") String userEmail) {
+public GenericResponse resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) {
     User user = userService.findUserByEmail(userEmail);
     if (user == null) {
         throw new UserNotFoundException();
     }
     String token = UUID.randomUUID().toString();
     userService.createPasswordResetTokenForUser(user, token);
-    mailSender.send(constructResetTokenEmail(getAppUrl(request), 
-      request.getLocale(), token, user));
+    mailSender.send(constructResetTokenEmail(getAppUrl(request), request.getLocale(), token, user));
     return new GenericResponse(
-      messages.getMessage("message.resetPasswordEmail", null, 
-      request.getLocale()));
+        messages.getMessage("message.resetPasswordEmail", null, 
+        request.getLocale()));
 }
 ```
 
@@ -125,19 +121,16 @@ public void createPasswordResetTokenForUser(User user, String token) {
 }
 ```
 
-这是方法constructResetTokenEmail() – 用于发送带有重置令牌的电子邮件：
+这是方法constructResetTokenEmail()–用于发送带有重置令牌的电子邮件：
 
 ```java
-private SimpleMailMessage constructResetTokenEmail(
-  String contextPath, Locale locale, String token, User user) {
+private SimpleMailMessage constructResetTokenEmail(String contextPath, Locale locale, String token, User user) {
     String url = contextPath + "/user/changePassword?token=" + token;
-    String message = messages.getMessage("message.resetPassword", 
-      null, locale);
-    return constructEmail("Reset Password", message + " rn" + url, user);
+    String message = messages.getMessage("message.resetPassword", null, locale);
+    return constructEmail("Reset Password", message + " \r\n" + url, user);
 }
 
-private SimpleMailMessage constructEmail(String subject, String body, 
-  User user) {
+private SimpleMailMessage constructEmail(String subject, String body, User user) {
     SimpleMailMessage email = new SimpleMailMessage();
     email.setSubject(subject);
     email.setText(body);
@@ -153,12 +146,12 @@ private SimpleMailMessage constructEmail(String subject, String body,
 public class GenericResponse {
     private String message;
     private String error;
- 
+
     public GenericResponse(String message) {
         super();
         this.message = message;
     }
- 
+
     public GenericResponse(String message, String error) {
         super();
         this.message = message;
@@ -167,27 +160,26 @@ public class GenericResponse {
 }
 ```
 
-## 6.检查PasswordResetToken
+## 6. 检查PasswordResetToken
 
 一旦用户点击他们电子邮件中的链接，user/changePassword端点：
 
 -   验证令牌是否有效并且
--   向用户显示updatePassword页面，他可以在其中输入新密码
+-   向用户显示updatePassword页面，用户可以在其中输入新密码
 
 然后将新密码和令牌传递给user/savePassword端点：
-[![重设密码](https://www.baeldung.com/wp-content/uploads/2015/02/reset2-1024x425-1.png)](https://www.baeldung.com/wp-content/uploads/2015/02/reset2-1024x425-1.png)
+
+<img src="../assets/img_1.png">
 
 用户收到带有用于重置密码的唯一链接的电子邮件，然后单击该链接：
 
 ```java
 @GetMapping("/user/changePassword")
-public String showChangePasswordPage(Locale locale, Model model, 
-  @RequestParam("token") String token) {
+public String showChangePasswordPage(Locale locale, Model model, @RequestParam("token") String token) {
     String result = securityService.validatePasswordResetToken(token);
     if(result != null) {
         String message = messages.getMessage("auth.message." + result, null, locale);
-        return "redirect:/login.html?lang=" 
-            + locale.getLanguage() + "&message=" + message;
+        return "redirect:/login.html?lang=" + locale.getLanguage() + "&message=" + message;
     } else {
         model.addAttribute("token", token);
         return "redirect:/updatePassword.html?lang=" + locale.getLanguage();
@@ -202,8 +194,8 @@ public String validatePasswordResetToken(String token) {
     final PasswordResetToken passToken = passwordTokenRepository.findByToken(token);
 
     return !isTokenFound(passToken) ? "invalidToken"
-            : isTokenExpired(passToken) ? "expired"
-            : null;
+        : isTokenExpired(passToken) ? "expired"
+        : null;
 }
 
 private boolean isTokenFound(PasswordResetToken passToken) {
@@ -216,11 +208,11 @@ private boolean isTokenExpired(PasswordResetToken passToken) {
 }
 ```
 
-## 7.修改密码
+## 7. 修改密码
 
-此时，用户会看到简单的密码重置页面——唯一可能的选择是提供新密码：
+此时，用户会看到简单的密码重置页面-其中唯一可能的选项是**提供新密码**：
 
-### 7.1. 更新密码.html
+### 7.1 updatePassword.html
 
 ```html
 <html>
@@ -237,13 +229,13 @@ private boolean isTokenExpired(PasswordResetToken passToken) {
         <label th:text="#{token.message}">token</label>
         <input id="token" name="token" value="" />
 
-        <div id="globalError" style="display:none" 
-          th:text="#{PasswordMatches.user}">error</div>
-        <button type="submit" onclick="savePass()" 
-          th:text="#{message.updatePassword}">submit</button>
+        <div id="globalError" style="display:none"
+             th:text="#{PasswordMatches.user}">error</div>
+        <button type="submit" onclick="savePass()"
+                th:text="#{message.updatePassword}">submit</button>
     </form>
-               
-<script th:inline="javascript">
+
+    <script th:inline="javascript">
 var serverContext = [[@{/}]];
 $(document).ready(function () {
     $('form').submit(function(event) {
@@ -252,7 +244,7 @@ $(document).ready(function () {
     
     $(":password").keyup(function(){
         if($("#password").val() != $("#matchPassword").val()){
-            $("#globalError").show().html(/[[#{PasswordMatches.user}]]/);
+            $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
         }else{
             $("#globalError").html("").hide();
         }
@@ -262,7 +254,7 @@ $(document).ready(function () {
 function savePass(event){
     event.preventDefault();
     if($("#password").val() != $("#matchPassword").val()){
-        $("#globalError").show().html(/[[#{PasswordMatches.user}]]/);
+        $("#globalError").show().html(/*[[#{PasswordMatches.user}]]*/);
         return;
     }
     var formData= $('form').serialize();
@@ -285,37 +277,33 @@ function savePass(event){
         }
     });
 }
-</script>    
+</script>
 </div>
 </body>
 </html>
 ```
 
-请注意，我们在以下调用中显示重置令牌并将其作为 POST 参数传递以保存密码。
+请注意，我们在以下调用中显示重置令牌并将其作为POST参数传递以保存密码。
 
-### 7.2. 保存密码
+### 7.2 保存密码
 
-最后，在提交之前的post请求时——保存新的用户密码：
+最后，在提交之前的post请求时-保存新的用户密码：
 
 ```java
 @PostMapping("/user/savePassword")
 public GenericResponse savePassword(final Locale locale, @Valid PasswordDto passwordDto) {
-
     String result = securityUserService.validatePasswordResetToken(passwordDto.getToken());
 
     if(result != null) {
-        return new GenericResponse(messages.getMessage(
-            "auth.message." + result, null, locale));
+        return new GenericResponse(messages.getMessage("auth.message." + result, null, locale));
     }
 
     Optional user = userService.getUserByPasswordResetToken(passwordDto.getToken());
     if(user.isPresent()) {
         userService.changeUserPassword(user.get(), passwordDto.getNewPassword());
-        return new GenericResponse(messages.getMessage(
-            "message.resetPasswordSuc", null, locale));
+        return new GenericResponse(messages.getMessage("message.resetPasswordSuc", null, locale));
     } else {
-        return new GenericResponse(messages.getMessage(
-            "auth.message.invalid", null, locale));
+        return new GenericResponse(messages.getMessage("auth.message.invalid", null, locale));
     }
 }
 ```
@@ -341,9 +329,8 @@ public class PasswordDto {
     @ValidPassword
     private String newPassword;
 }
-
 ```
 
-## 八. 总结
+## 8. 总结
 
-在本文中，我们为成熟的身份验证过程实现了一个简单但非常有用的功能——作为系统用户重置自己的密码的选项。
+在本文中，我们为成熟的身份验证过程实现了一个简单但非常有用的功能-作为系统用户重置你自己的密码的选项。

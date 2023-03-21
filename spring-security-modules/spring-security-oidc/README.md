@@ -5,7 +5,7 @@
 ## 相关文章
 
 + [Spring Security和OIDC](docs/SpringSecurity和OIDC.md)
-+ [SpringSecurity来自JWT的映射权限](docs/SpringSecurity来自JWT的映射权限.md)
++ [Spring Security来自JWT的映射权限](docs/SpringSecurity来自JWT的映射权限.md)
 
 ## 运行项目
 ```

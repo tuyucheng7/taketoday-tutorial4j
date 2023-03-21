@@ -1,293 +1,111 @@
 ## 1. 概述
 
-在本教程中，我们将学习如何使用@ExceptionHandler和@ControllerAdvice全局处理Spring Security异常。
-**ControllerAdvice是一个拦截器，它允许我们在整个应用程序中使用相同的异常处理**。
+在本文中，我们将了解**如何处理由Spring Security[资源服务器](https://www.baeldung.com/spring-security-oauth-resource-server)生成的Spring Security异常**。为此，我们将使用一个实际示例，其中将解释所有必要的配置。首先，让我们对Spring Security做一个简短的介绍。
 
-## 2. Spring Security Exceptions
+## 2. Spring Security
 
-AuthenticationException和AccessDeniedException等Spring Security核心异常是运行时异常。
-由于**这些异常是由DispatcherServlet后面的身份验证过滤器在调用控制器方法之前引发的**，因此@ControllerAdvice将无法捕获这些异常。
+SpringSecurity是Spring项目的一部分。**它尝试对Spring项目中用户访问控制的所有功能进行分组**。访问控制允许限制应用程序上一组给定的用户或角色可以执行的选项。在这个方向上，**Spring Security控制对业务逻辑的调用或限制对某些URL的HTTP请求访问**。考虑到这一点，我们必须通过告诉Spring Security安全层的行为来配置应用程序。
 
-Spring Security异常可以通过添加自定义过滤器和构造响应体来直接处理。
-要通过@ExceptionHandler和@ControllerAdvice在全局级别处理这些异常，我们需要一个自定义的AuthenticationEntryPoint实现。
-**AuthenticationEntryPoint用于发送从客户端请求凭据的HTTP响应**。尽管安全入口点有多种内置实现，但我们需要编写一个自定义实现来发送自定义响应消息。
+在我们的例子中，我们将重点介绍异常处理程序的配置。**Spring Security提供了三种不同的接口来实现此目的并控制生成的事件**：
 
-首先，让我们看看在不使用@ExceptionHandler的情况下如何全局处理安全异常。
++ AuthenticationSuccessHandler
++ AuthenticationFailureHandler
++ AccessDeniedHandler
 
-## 3. 不使用@ExceptionHandler
+首先，让我们仔细看看配置。
 
-Spring Security异常从AuthenticationEntryPoint开始。让我们为AuthenticationEntryPoint编写一个实现来拦截Security异常。
+## 3. 安全配置
 
-### 3.1 配置AuthenticationEntryPoint
+首先，我们的配置类必须创建一个SecurityFilterChain bean。**这将负责管理应用程序的所有安全配置**。所以，在这里我们必须介绍我们的处理程序。
 
-让我们实现AuthenticationEntryPoint并重写begin()方法：
+一方面，我们将定义所需的配置：
 
 ```java
-
-@Component("customAuthenticationEntryPoint")
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed");
-
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        OutputStream responseStream = response.getOutputStream();
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(responseStream, re);
-        responseStream.flush();
-    }
-}
-```
-
-在这里，我们使用ObjectMapper作为响应正文的消息转换器。
-
-### 3.2 配置SecurityConfig
-
-接下来，让我们配置SecurityConfig来拦截用于身份验证的路径。在这里，我们将配置“/login”作为上述实现的路径。
-此外，我们将为“admin”用户配置“ADMIN”角色：
-
-```java
-
-@Configuration
 @EnableWebSecurity
-public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
-    @Autowired
-    @Qualifier("customAuthenticationEntryPoint")
-    AuthenticationEntryPoint authEntryPoint;
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf()
+              .disable()
+              .httpBasic()
+              .disable()
+              .authorizeRequests()
+              .antMatchers("/login")
+              .permitAll()
+              .antMatchers("/customError")
+              .permitAll()
+              .antMatchers("/access-denied")
+              .permitAll()
+              .antMatchers("/secured")
+              .hasRole("ADMIN")
+              .anyRequest()
+              .authenticated()
+              .and()
+              .formLogin()
+              .failureHandler(authenticationFailureHandler())
+              .successHandler(authenticationSuccessHandler())
+              .and()
+              .exceptionHandling()
+              .accessDeniedHandler(accessDeniedHandler())
+              .and()
+              .logout();
+        return http.build();
+    }
+}
+```
+
+有趣的是，重定向URL(如“/login”、“/customError”和“/access-denied”)不需要任何类型的限制即可访问它们。因此，我们将它们定义为permitAll()。
+
+另一方面，我们必须定义我们可以处理的异常类型的bean：
+
+```java
+@Bean
+public AuthenticationFailureHandler authenticationFailureHandler() {
+    return new CustomAuthenticationFailureHandler();
+} 
+
+@Bean
+public AuthenticationSuccessHandler authenticationSuccessHandler() {
+    return new CustomAuthenticationSuccessHandler();
+}
+
+@Bean
+public AccessDeniedHandler accessDeniedHandler() {
+    return new CustomAccessDeniedHandler();
+}
+```
+
+由于[AuthenticationSuccessHandler](https://www.baeldung.com/spring_redirect_after_login)处理快乐路径，我们将为异常情况定义剩余的两个bean。**这两个处理程序是我们现在必须根据需要进行调整和实现的**。因此，让我们继续实现他们中的每一个。
+
+## 4. 身份验证失败处理程序
+
+一方面，我们有AuthenticationFailureHandler接口，它负责**管理用户登录失败时产生的异常**。该接口为我们提供了onAuthenticationFailure()方法来自定义处理程序逻辑。**当登录尝试失败时，Spring Security将调用它**。考虑到这一点，让我们定义我们的异常处理程序，以便在发生登录失败时将我们重定向到错误页面：
+
+```java
+public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/login")
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .hasRole("ADMIN")
-                .and()
-                .httpBasic()
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authEntryPoint);
+    public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
+        httpServletResponse.sendRedirect("/customError");
     }
+}
+```
+
+## 5. 拒绝访问处理程序
+
+另一方面，**当未经授权的用户尝试访问安全或受保护的页面时，Spring Security将抛出AccessDeniedException**。Spring Security提供了一个默认的403拒绝访问页面，我们可以对其进行自定义。这由AccessDeniedHandler接口管理。**此外，它还提供了handle()方法，用于在将用户重定向到403页面之前自定义逻辑**：
+
+```java
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("password")
-                .roles("ADMIN");
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException exc) throws IOException {
+        response.sendRedirect("/access-denied");
     }
 }
 ```
 
-### 3.3 配置RestController
+## 6. 总结
 
-现在，让我们编写一个处理此端点“/login”的RestController：
-
-```java
-
-@RestController
-@RequestMapping
-public class LoginController {
-
-    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponse> login() {
-        return ResponseEntity.ok(new RestResponse("Success"));
-    }
-}
-```
-
-### 3.4 测试
-
-最后，让我们用MockMvc来测试这个端点。
-
-首先，让我们编写一个身份验证成功的测试用例：
-
-```java
-
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(CustomSecurityConfig.class)
-@Import({LoginController.class, CustomAuthenticationEntryPoint.class, DelegatedAuthenticationEntryPoint.class})
-class SecurityConfigUnitTest {
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
-    void whenUserAccessLogin_shouldSucceed() throws Exception {
-        mvc.perform(formLogin("/login").user("username", "admin")
-                        .password("password", "password")
-                        .acceptMediaType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-}
-```
-
-接下来，我们来看一个身份验证失败的场景：
-
-```java
-class SecurityConfigUnitTest {
-
-    @Test
-    void whenUserAccessWithWrongCredentialsWithDelegatedEntryPoint_shouldFail() throws Exception {
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed");
-        mvc.perform(formLogin("/login").user("username", "admin")
-                        .password("password", "wrong")
-                        .acceptMediaType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.errorMessage", is(re.getErrorMessage())));
-    }
-}
-```
-
-现在，让我们看看如何使用@ControllerAdvice和@ExceptionHandler实现相同的效果。
-
-## 4. 使用@ExceptionHandler
-
-这种方法允许我们使用完全相同的异常处理技术，但在ControllerAdvice中以一种更清晰、更好的方式使用带有@ExceptionHandler注解的方法。
-
-### 4.1 配置AuthenticationEntryPoint
-
-与上述方法类似，我们先实现AuthenticationEntryPoint，然后将异常处理程序委托给HandlerExceptionResolver：
-
-```java
-
-@Component("delegatedAuthenticationEntryPoint")
-public class DelegatedAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
-    @Autowired
-    @Qualifier("handlerExceptionResolver")
-    private HandlerExceptionResolver resolver;
-
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        resolver.resolveException(request, response, null, authException);
-    }
-}
-```
-
-在这里，我们注入了DefaultHandlerExceptionResolver，并将处理程序委托给这个解析器。
-现在可以使用带有异常处理程序方法的ControllerAdvice来处理此Security异常。
-
-### 4.2 配置ExceptionHandler
-
-现在，对于异常处理程序的主要配置，我们将继承ResponseEntityExceptionHandler并使用@ControllerAdvice标注这个类：
-
-```java
-
-@ControllerAdvice
-public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
-
-    @ExceptionHandler({AuthenticationException.class})
-    @ResponseBody
-    public ResponseEntity<RestError> handleAuthenticationException(Exception ex) {
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(re);
-    }
-}
-```
-
-### 4.3 配置SecurityConfig
-
-现在，让我们为这个委托的身份验证入口点编写一个安全配置：
-
-```java
-
-@Configuration
-@EnableWebSecurity
-@Order(101)
-public class DelegatedSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    @Qualifier("delegatedAuthenticationEntryPoint")
-    AuthenticationEntryPoint authEntryPoint;
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers("/login-handler")
-                .and()
-                .authorizeRequests()
-                .anyRequest()
-                .hasRole("ADMIN")
-                .and()
-                .httpBasic()
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(authEntryPoint);
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("password")
-                .roles("ADMIN");
-    }
-}
-```
-
-对于“/login-handler”端点，我们使用上面实现的DelegatedAuthenticationEntryPoint配置了异常处理程序。
-
-### 4.4 配置RestController
-
-然后我们添加一个处理”/login-handler“请求的控制器方法：
-
-```java
-
-@RestController
-@RequestMapping
-public class LoginController {
-
-    @PostMapping(value = "/login-handler", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponse> loginWithExceptionHandler() {
-        return ResponseEntity.ok(new RestResponse("Success"));
-    }
-}
-```
-
-### 4.5 测试
-
-现在让我们测试这个端点：
-
-```java
-
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(DelegatedSecurityConfig.class)
-@Import({LoginController.class, CustomAuthenticationEntryPoint.class, DelegatedAuthenticationEntryPoint.class})
-class DelegatedSecurityConfigUnitTest {
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
-    void whenUserAccessLogin_shouldSucceed() throws Exception {
-        mvc.perform(formLogin("/login-handler").user("username", "admin")
-                        .password("password", "password")
-                        .acceptMediaType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void whenUserAccessWithWrongCredentialsWithDelegatedEntryPoint_shouldFail() throws Exception {
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
-        mvc.perform(formLogin("/login-handler").user("username", "admin")
-                        .password("password", "wrong")
-                        .acceptMediaType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.errorMessage", is(re.getErrorMessage())));
-    }
-}
-```
-
-在成功的测试中，我们使用预配置的用户名和密码测试了端点。在失败的测试中，我们验证了响应正文中状态码和错误消息的响应。
-
-## 5. 总结
-
-在本文中，我们学习了如何使用@ExceptionHandler全局处理Spring Security异常。
-此外，我们编写了一个功能齐全的示例，帮助我们理解所涉及的概念。
+在这篇快速文章中，**我们学习了如何处理Spring Security异常以及如何通过创建和自定义类来控制它们**。此外，我们还创建了一个功能齐全的示例，帮助我们理解所解释的概念。
