@@ -708,7 +708,7 @@
 				<module>spring-data-modules</module>
 				<module>spring-modules</module>
 				<module>spring-reactive-modules</module>
-				<!--<module>spring-security-modules</module>-->
+				<module>spring-security-modules</module>
 				<module>spring-web-modules</module>
 				<!--<module>static-analysis</module>-->
 				<!--<module>tensorflow-java</module>-->
@@ -959,7 +959,7 @@
 				<module>spring-data-modules</module>
 				<module>spring-modules</module>
 				<module>spring-reactive-modules</module>
-				<!--<module>spring-security-modules</module>-->
+				<module>spring-security-modules</module>
 				<module>spring-web-modules</module>
 				<!--<module>static-analysis</module>-->
 				<!--<module>tensorflow-java</module>-->
@@ -1160,7 +1160,7 @@
 				<module>spring-data-modules</module>
 				<module>spring-modules</module>
 				<module>spring-reactive-modules</module>
-				<!--<module>spring-security-modules</module>-->
+				<module>spring-security-modules</module>
 				<module>spring-web-modules</module>
 				<!--<module>static-analysis</module>-->
 				<!--<module>tensorflow-java</module>-->

@@ -172,7 +172,7 @@
 
     <properties>
         <!-- Spring -->
-        <org.springframework.security.version>5.7.1</org.springframework.security.version>
+		<org.springframework.security.version>4.2.6.RELEASE</org.springframework.security.version>
         <!-- util -->
         <httpcore.version>4.4.5</httpcore.version>
         <httpclient.version>4.5.2</httpclient.version>
