@@ -13,6 +13,21 @@
 		<version>1.0.0</version>
 	</parent>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.jetbrains.kotlinx</groupId>
+			<artifactId>kotlinx-serialization-json-jvm</artifactId>
+			<version>1.4.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlinx</groupId>
+			<artifactId>kotlinx-serialization-json-jvm</artifactId>
+			<version>1.4.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
 	<modules>
 		<module>kotlin-core-1</module>
 		<module>kotlin-core-2</module>
