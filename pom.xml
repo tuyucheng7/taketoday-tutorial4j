@@ -368,6 +368,7 @@
 						<exclude>**/bo/**/*</exclude>
 						<exclude>**/domain/**/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Benchmark*.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*jmh_generated/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
