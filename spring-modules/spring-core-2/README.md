@@ -8,7 +8,7 @@
 + [Spring Profiles](docs/Spring-Profiles.md)
 + [Spring Bean作用域快速指南](docs/Spring-Bean作用域快速指南.md)
 + [Spring中的@Order注解](docs/Spring中的@Order注解.md)
-+ [Spring @Primary注解](docs/Spring-@Primary注解.md)
++ [Spring @Primary注解](../../spring-boot-modules/spring-boot-annotations-2/docs/Spring-@Primary注解.md)
 + [Spring事件](docs/Spring事件.md)
 + [Spring空安全注解](docs/Spring空安全注解.md)
 
