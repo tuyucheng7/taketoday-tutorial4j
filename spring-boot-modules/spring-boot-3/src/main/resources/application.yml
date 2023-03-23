@@ -14,8 +14,13 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.H2Dialect
+    servlet:
+        multipart:
+            max-file-size: 50MB
+            max-request-size: 50MB
 # Custom Properties
 cors:
     allow:
         origins: ${CORS_ALLOWED_ORIGINS:*}
         credentials: ${CORS_ALLOW_CREDENTIALS:false}
+hostname: localhost
