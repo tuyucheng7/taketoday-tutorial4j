@@ -1,14 +1,15 @@
 package cn.tuyucheng.taketoday.jersey.server.http;
 
-import cn.tuyucheng.taketoday.jersey.server.config.ViewApplicationConfig;
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
-
 import java.io.IOException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+import cn.tuyucheng.taketoday.jersey.server.config.ViewApplicationConfig;
 
 public class EmbeddedHttpServer {
 
@@ -18,10 +19,7 @@ public class EmbeddedHttpServer {
 		try {
 			final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, new ViewApplicationConfig(), false);
 
-			Runtime.getRuntime()
-				.addShutdownHook(new Thread(() -> {
-					server.shutdownNow();
-				}));
+			Runtime.getRuntime().addShutdownHook(new Thread(server::shutdownNow));
 
 			server.start();
 
@@ -33,8 +31,8 @@ public class EmbeddedHttpServer {
 
 	}
 
-	public static HttpServer startServer() {
+	public static HttpServer startServer(URI url) {
 		final ResourceConfig rc = new ResourceConfig().packages("cn.tuyucheng.taketoday.jersey.server");
-		return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI.toString()), rc);
+		return GrizzlyHttpServerFactory.createHttpServer(URI.create(url.toString()), rc);
 	}
 }

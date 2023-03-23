@@ -1,29 +1,30 @@
 package cn.tuyucheng.taketoday.jersey.exceptionhandling.rest;
 
-import cn.tuyucheng.taketoday.jersey.exceptionhandling.ExceptionHandlingConfig;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.HashMap;
+
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import org.glassfish.jersey.test.TestProperties;
+import org.junit.jupiter.api.Test;
+
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.data.Stock;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.data.Wallet;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.rest.exceptions.IllegalArgumentExceptionMapper;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.rest.exceptions.RestErrorResponse;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.rest.exceptions.ServerExceptionMapper;
-import org.glassfish.jersey.test.JerseyTest;
-import org.glassfish.jersey.test.TestProperties;
-import org.junit.Test;
 
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import java.util.HashMap;
-
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.Invocation;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 public class StocksResourceIntegrationTest extends JerseyTest {
 	private static final Entity<String> EMPTY_BODY = Entity.json("");
@@ -34,8 +35,13 @@ public class StocksResourceIntegrationTest extends JerseyTest {
 
 	@Override
 	protected Application configure() {
-		forceSet(TestProperties.CONTAINER_PORT, "0");
-		return new ExceptionHandlingConfig();
+		final ResourceConfig resourceConfig = new ResourceConfig();
+		resourceConfig.register(StocksResource.class);
+		resourceConfig.register(WalletsResource.class);
+		resourceConfig.register(IllegalArgumentExceptionMapper.class);
+		resourceConfig.register(ServerExceptionMapper.class);
+		resourceConfig.packages("cn.tuyucheng.taketoday.jersey.exceptionhandling.rest");
+		return resourceConfig;
 	}
 
 	private Invocation.Builder stocks(String path) {
@@ -54,7 +60,7 @@ public class StocksResourceIntegrationTest extends JerseyTest {
 	public void whenMethodNotAllowed_thenCustomMessage() {
 		Response response = stocks("").get();
 
-		assertEquals(Status.METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
+		assertEquals(Response.Status.METHOD_NOT_ALLOWED.getStatusCode(), response.getStatus());
 
 		String content = response.readEntity(String.class);
 		assertThat(content, containsString(ServerExceptionMapper.HTTP_405_MESSAGE));
@@ -62,9 +68,9 @@ public class StocksResourceIntegrationTest extends JerseyTest {
 
 	@Test
 	public void whenTickerNotExists_thenRestErrorResponse() {
-		Response response = stocks("/UNDEFINED").get();
+		Response response = stocks("/TEST").get();
 
-		assertEquals(Status.EXPECTATION_FAILED.getStatusCode(), response.getStatus());
+		assertEquals(Response.Status.EXPECTATION_FAILED.getStatusCode(), response.getStatus());
 
 		RestErrorResponse content = response.readEntity(RestErrorResponse.class);
 		assertThat(content.getMessage(), startsWith(IllegalArgumentExceptionMapper.DEFAULT_MESSAGE));
@@ -75,7 +81,7 @@ public class StocksResourceIntegrationTest extends JerseyTest {
 		wallets("").post(entity(WALLET));
 		Response response = wallets("/%s/%d", MY_WALLET, INSUFFICIENT_AMOUNT).put(EMPTY_BODY);
 
-		assertEquals(Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
+		assertEquals(Response.Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
 
 		String content = response.readEntity(String.class);
 		assertThat(content, containsString(Wallet.MIN_CHARGE_MSG));
@@ -87,7 +93,7 @@ public class StocksResourceIntegrationTest extends JerseyTest {
 		wallets("").post(entity(WALLET));
 
 		Response response = wallets("/%s/buy/%s", MY_WALLET, STOCK.getId()).post(EMPTY_BODY);
-		assertEquals(Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
+		assertEquals(Response.Status.NOT_ACCEPTABLE.getStatusCode(), response.getStatus());
 
 		RestErrorResponse content = response.readEntity(RestErrorResponse.class);
 		assertNotNull(content.getSubject());

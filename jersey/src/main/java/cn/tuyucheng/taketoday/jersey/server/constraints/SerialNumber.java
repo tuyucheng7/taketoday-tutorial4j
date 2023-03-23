@@ -1,12 +1,13 @@
 package cn.tuyucheng.taketoday.jersey.server.constraints;
 
-import javax.validation.Constraint;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.regex.Pattern;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {SerialNumber.Validator.class})
@@ -20,7 +21,7 @@ public @interface SerialNumber {
 
 	Class<? extends Payload>[] payload() default {};
 
-	public class Validator implements ConstraintValidator<SerialNumber, String> {
+	class Validator implements ConstraintValidator<SerialNumber, String> {
 		@Override
 		public void initialize(final SerialNumber serial) {
 		}

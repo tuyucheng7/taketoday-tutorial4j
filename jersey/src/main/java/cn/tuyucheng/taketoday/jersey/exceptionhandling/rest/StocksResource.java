@@ -1,18 +1,19 @@
 package cn.tuyucheng.taketoday.jersey.exceptionhandling.rest;
 
+import java.util.Optional;
+
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.data.Stock;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.repo.Db;
 import cn.tuyucheng.taketoday.jersey.exceptionhandling.service.Repository;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.Optional;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/stocks")
 public class StocksResource {
