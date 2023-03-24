@@ -12,13 +12,13 @@ public interface MyService {
 	@Retryable
 	void retryService();
 
-	@Retryable(value = SQLException.class)
+	@Retryable(retryFor = SQLException.class)
 	void retryServiceWithRecovery(String sql) throws SQLException;
 
-	@Retryable(value = {SQLException.class}, maxAttempts = 2, backoff = @Backoff(delay = 100))
+	@Retryable(retryFor = SQLException.class, maxAttempts = 2, backoff = @Backoff(delay = 100))
 	void retryServiceWithCustomization(String sql) throws SQLException;
 
-	@Retryable(value = SQLException.class, maxAttemptsExpression = "${retry.maxAttempts}",
+	@Retryable(retryFor = SQLException.class, maxAttemptsExpression = "${retry.maxAttempts}",
 		backoff = @Backoff(delayExpression = "${retry.maxDelay}"))
 	void retryServiceWithExternalConfiguration(String sql) throws SQLException;
 
