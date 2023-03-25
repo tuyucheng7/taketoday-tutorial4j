@@ -639,7 +639,7 @@
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 				<!--<module>reactive-systems</module>-->
 				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
@@ -771,7 +771,6 @@
 				<!--<module>libraries-4</module>-->
 				<!--<module>libraries-5</module>-->
 				<!--<module>libraries-6</module>-->
-				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 				<!--<module>vaadin</module>-->
 				<!--<module>vavr-modules</module>-->
@@ -896,7 +895,7 @@
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 				<!--<module>reactive-systems</module>-->
 				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
@@ -1016,7 +1015,6 @@
 				<!--<module>libraries-4</module>-->
 				<!--<module>libraries-5</module>-->
 				<!--<module>libraries-6</module>-->
-				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 				<!--<module>vaadin</module>-->
 				<!--<module>vavr-modules</module>-->
@@ -1119,7 +1117,7 @@
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
 				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
+				<module>quarkus-modules</module>
 				<!--<module>reactive-systems</module>-->
 				<module>reactor-core</module>
 				<!--<module>rsocket</module>-->
@@ -1195,7 +1193,6 @@
 				<!--<module>libraries-4</module>-->
 				<!--<module>libraries-5</module>-->
 				<!--<module>libraries-6</module>-->
-				<!--<module>spring-boot-modules/spring-boot-react</module>-->
 				<!--<module>spring-ejb-modules/ejb-beans</module>-->
 				<!--<module>vaadin</module>-->
 				<!--<module>vavr-modules</module>-->

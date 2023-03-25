@@ -16,6 +16,7 @@
 	<modules>
 		<module>quarkus</module>
 		<module>quarkus-extension</module>
+		<module>quarkus-funqy</module>
 		<module>quarkus-jandex</module>
 		<module>quarkus-vs-springboot</module>
 	</modules>
