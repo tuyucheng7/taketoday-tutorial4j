@@ -5,8 +5,8 @@
 ## 相关文章
 
 + [Jackson MarshallString到JsonNode](docs/Jackson-MarshallString到JsonNode.md)
-+ [Jackson：决定哪些字段被序列化\反序列化](docs/Jackson-决定哪些字段被序列化-反序列化.md)
-+ [Jackson：解组到集合\数组](docs/Jackson-解组到集合-数组.md)
++ [Jackson：决定哪些字段被序列化反序列化](docs/Jackson-决定哪些字段被序列化-反序列化.md)
++ [Jackson：解组到集合数组](docs/Jackson-解组到集合-数组.md)
 + [Jackson使用Map和空值](docs/Jackson–使用Map和空值.md)
 + [Jackson日期](docs/Jackson日期.md)
 + [使用Jackson反序列化不可变对象](docs/使用Jackson反序列化不可变对象.md)

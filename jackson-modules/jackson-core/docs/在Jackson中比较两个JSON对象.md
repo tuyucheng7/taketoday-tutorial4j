@@ -26,7 +26,7 @@ ObjectMapper mapper = new ObjectMapper();
 
 ### 3.1 比较两个简单的JSON对象
 
-首先我们从[JsonNode.equals](https://static.javadoc.io/com.fasterxml.jackson.core/jackson-databind/2.9.8/com/fasterxml/jackson/databind/JsonNode.html#equals-java.lang.Object-)方法开始，**equals()方法执行完整(深度)比较。**
+首先我们从[JsonNode.equals](https://static.javadoc.io/com.fasterxml.jackson.core/jackson-databind/2.9.8/com/fasterxml/jackson/databind/JsonNode.html#equals-java.lang.Object-)方法开始，equals()方法执行完整(深度)比较。
 
 假设我们有一个定义为s1变量的JSON字符串：
 
@@ -60,7 +60,7 @@ ObjectMapper mapper = new ObjectMapper();
 assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 ```
 
-需要注意的是，**即使输入JSON变量s1和s2中的属性顺序不同，equals()方法也会忽略顺序并将它们视为相等。**
+需要注意的是，即使输入JSON变量s1和s2中的属性顺序不同，equals()方法也会忽略顺序并将它们视为相等。
 
 ### 3.2 比较两个带有嵌套元素的JSON对象
 
@@ -110,7 +110,7 @@ assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 ```
 
-同样，我们应该注意到**equals()还可以将两个输入JSON对象与嵌套元素进行比较。**
+同样，我们应该注意到equals()还可以将两个输入JSON对象与嵌套元素进行比较。
 
 ### 3.3 比较两个包含列表元素的JSON对象
 
@@ -150,7 +150,7 @@ assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 ```
 
-重要的是要知道**两个列表元素只有在它们具有完全相同的顺序的相同值时才会被比较为相等。**
+重要的是要知道两个列表元素只有在它们具有完全相同的顺序的相同值时才会被比较为相等。
 
 ## 4. 使用自定义比较器比较两个 JSON 对象
 
@@ -178,7 +178,7 @@ assertEquals(mapper.readTree(s1), mapper.readTree(s2));
 }
 ```
 
-**我们需要观察输入s1和s2中的属性score的值是不一样的**。让我们将输入JSON读取为JsonNode并进行比较：
+我们需要观察输入s1和s2中的属性score的值是不一样的。让我们将输入JSON读取为JsonNode并进行比较：
 
 ```java
 JsonNode actualObj1 = mapper.readTree(s1);
@@ -187,7 +187,7 @@ JsonNode actualObj2 = mapper.readTree(s2);
 assertNotEquals(actualObj1, actualObj2);
 ```
 
-请注意，这两个对象并不相等；标准的equals()方法会将值5.0和5视为不同。但是，**我们可以使用自定义Comparator来比较值5和5.0并将它们视为相等。**
+请注意，这两个对象并不相等；标准的equals()方法会将值5.0和5视为不同。但是，我们可以使用自定义Comparator来比较值5和5.0并将它们视为相等。
 
 首先我们创建一个Comparator来比较两个NumericNode对象：
 
@@ -219,7 +219,7 @@ assertTrue(actualObj1.equals(cmp, actualObj2));
 
 ### 4.2 自定义比较器比较文本值
 
-**让我们看一下自定义比较器的另一个示例，用于对两个JSON值进行不区分大小写的比较**。
+让我们看一下自定义比较器的另一个示例，用于对两个JSON值进行不区分大小写的比较。
 
 这里使用以下JSON作为输入s1：
 
@@ -274,7 +274,7 @@ assertNotEquals(actualObj1, actualObj2);
 assertTrue(actualObj1.equals(cmp, actualObj2));
 ```
 
-**最后，我们可以看到，当输入的JSON元素值不完全相同但我们仍希望将它们视为相等时**，比较两个JSON对象时使用自定义比较器对象非常有用。
+最后，我们可以看到，当输入的JSON元素值不完全相同但我们仍希望将它们视为相等时，比较两个JSON对象时使用自定义比较器对象非常有用。
 
 ## 5. 总结
 

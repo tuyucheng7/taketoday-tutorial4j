@@ -2,11 +2,11 @@
 
 使用参数从命令行运行应用程序是很常见的。特别是在服务器端。通常，我们不希望应用程序在每次运行时都做同样的事情：我们希望以某种方式配置它的行为。
 
-在这个简短的教程中，我们将探索如何在Java中处理命令行参数。
+在这个简短的教程中，我们将探讨如何在Java中处理命令行参数。
 
 ## 2. 在Java中访问命令行参数
 
-由于main方法是Java应用程序的入口点，因此 JVM 通过其参数传递命令行参数。
+由于main方法是Java应用程序的入口点，因此JVM通过其参数传递命令行参数。
 
 传统的方法是使用String数组：
 
@@ -16,7 +16,7 @@ public static void main(String[] args) {
 }
 ```
 
-然而，Java 5 引入了可变参数，这是披着羊皮的数组。因此，我们可以使用String可变参数定义我们的main ：
+然而，Java 5引入了可变参数，它是披着羊皮的数组。因此，我们可以使用String可变参数定义我们的main方法：
 
 ```java
 public static void main(String... args) {
@@ -26,7 +26,7 @@ public static void main(String... args) {
 
 它们是相同的，因此在它们之间进行选择完全取决于个人品味和偏好。
 
-main方法的方法参数包含命令行参数，其顺序与我们在执行时传递的顺序相同。如果我们想访问我们得到了多少参数，我们只需要检查数组的长度。
+main方法的方法参数包含命令行参数，其顺序与我们在执行时传递的顺序相同。如果我们想知道参数的数量，我们只需要检查数组的长度。
 
 例如，我们可以在标准输出上打印参数的数量和它们的值：
 
@@ -43,16 +43,16 @@ public static void main(String[] args) {
 
 ## 3. 如何传递命令行参数
 
-现在我们有了一个处理命令行参数的应用程序，我们迫不及待地想尝试一下。让我们看看我们有哪些选择。
+现在我们有了一个处理命令行参数的应用程序，让我们看看有哪些传递参数的选择。
 
-### 3.1. 命令行
+### 3.1 命令行
 
-最明显的方法是命令行。假设我们已经用我们的主要方法编译了类com.baeldung.commandlinearguments.CliExample 。
+最明显的方法是命令行。假设我们编译了cn.tuyucheng.taketoday.commandlinearguments.CliExample类，其中包含我们的main方法。
 
 然后我们可以使用以下命令运行它：
 
-```bash
-java commandlinearguments.cn.tuyucheng.taketoday.CliExample
+```shell
+java cn.tuyucheng.taketoday.commandlinearguments.CliExample
 ```
 
 它产生以下输出：
@@ -63,8 +63,8 @@ Argument count: 0
 
 现在，我们可以在类名后传递参数：
 
-```bash
-java commandlinearguments.cn.tuyucheng.taketoday.CliExample Hello World!
+```shell
+java cn.tuyucheng.taketoday.commandlinearguments.CliExample Hello World!
 ```
 
 输出是：
@@ -75,30 +75,30 @@ Argument 0: Hello
 Argument 1: World!
 ```
 
-通常，我们将应用程序发布为 jar 文件，而不是一堆.class文件。比方说，我们将它打包在cli-example.jar中，并将com.baeldung.commandlinearguments.CliExample设置为主类。
+通常，我们将应用程序发布为jar文件，而不是一堆.class文件。比方说，我们将它打包在cli-example.jar中，并将cn.tuyucheng.taketoday.commandlinearguments.CliExample设置为主类。
 
-现在我们可以通过以下方式不带参数地运行它：
+现在我们可以通过以下方式在没有参数的情况下运行它：
 
-```bash
+```shell
 java -jar cli-example.jar
 ```
 
 或者带参数：
 
-```bash
+```shell
 java -jar cli-example.jar Hello World!
 Argument count: 2 
 Argument 0: Hello 
 Argument 1: World!
 ```
 
-请注意，Java 会将我们在类名或 jar 文件名之后传递的每个参数都视为应用程序的参数。因此，我们之前传递的所有内容都是 JVM 本身的参数。
+请注意，Java会将我们在类名或jar文件名之后传递的每个参数都视为应用程序的参数。因此，我们之前传递的所有内容都是JVM本身的参数。
 
-### 3.2. 蚀
+### 3.2 Eclipse
 
-当我们处理我们的应用程序时，我们会想要检查它是否按我们想要的方式工作。
+当我们处理我们的应用程序时，我们需要检查它是否按我们想要的方式工作。
 
-在 Eclipse 中，我们可以借助运行配置来运行应用程序。例如，运行配置定义要使用的 JVM、入口点、类路径等。当然，我们可以指定命令行参数。
+在Eclipse中，我们可以借助运行配置来运行应用程序。例如，运行配置定义要使用的JVM、入口点、类路径等。当然，我们可以指定命令行参数。
 
 创建适当运行配置的最简单方法是右键单击我们的主要方法，然后 从上下文菜单中选择Run As >JavaApplication ：
 
@@ -114,7 +114,7 @@ Argument 1: World!
 
 ### 3.3. IntelliJ
 
-IntelliJ 使用类似的过程来运行应用程序。它将这些选项简单地称为配置。
+IntelliJ使用类似的过程来运行应用程序。它将这些选项简单地称为配置。
 
 首先，我们需要右键单击 main方法，然后选择 Run 'CliExample.main()'：
 
@@ -128,11 +128,11 @@ IntelliJ 使用类似的过程来运行应用程序。它将这些选项简单�
 
 之后，我们应该点击确定并重新运行我们的应用程序，例如使用工具栏中的运行按钮。
 
-### 3.4. 网豆
+### 3.4 NetBeans
 
-NetBeans 也符合其运行和配置过程。
+NetBeans也符合其运行和配置过程。
 
-我们应该首先通过右键单击 main方法并选择 Run File 来运行我们的应用程序：
+我们应该首先通过右键单击 main方法并选择Run File来运行我们的应用程序：
 
 [![netbeans 运行](https://www.baeldung.com/wp-content/uploads/2019/09/netbeans-run.png)](https://www.baeldung.com/wp-content/uploads/2019/09/netbeans-run.png)
 
@@ -150,6 +150,6 @@ NetBeans 也符合其运行和配置过程。
 
 幸运的是，有大量支持大多数用例的库。两个流行的例子是[Picocli](https://www.baeldung.com/java-picocli-create-command-line-program)和[Spring Shell](https://www.baeldung.com/spring-shell-cli)。
 
-## 5.总结
+## 5. 总结
 
 使你的应用程序的行为可配置始终是一个好主意。在本文中，我们看到了如何使用命令行参数来做到这一点。此外，我们介绍了传递这些参数的各种方法。

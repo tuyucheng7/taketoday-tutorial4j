@@ -12,21 +12,21 @@
 
 [QuarkusIO](https://quarkus.io/)，超音速亚原子Java，**承诺提供小工件、极快的启动时间和更短的首次请求时间**。当与[GraalVM](https://www.baeldung.com/graal-java-jit-compiler)结合使用时，Quarkus将提前编译(AOT)。
 
-**而且，由于Quarkus是建立在标准之上的，我们不需要学习任何新东西**。因此，我们可以使用CDI和JAX-RS等。此外，[Quarkus有很多扩展](https://quarkus.io/extensions/)，包括支持Hibernate、Kafka、OpenShift、Kubernetes和Vert.x的扩展。
+**而且，由于Quarkus是建立在标准之上的，我们不需要学习任何新东西**。因此，我们可以使用CDI和JAX-RS等。此外，Quarkus有很多[扩展](https://quarkus.io/extensions/)，包括支持Hibernate、Kafka、OpenShift、Kubernetes和Vert.x的扩展。
 
-## 3. 我们的第一个应用
+## 3. 我们的第一个应用程序
 
 创建新Quarkus项目的最简单方法是打开终端并键入：
 
 ```shell
-mvn io.quarkus:quarkus-maven-plugin:0.13.1:create \
+mvn io.quarkus:quarkus-maven-plugin:2.16.5.Final:create \
     -DprojectGroupId=cn.tuyucheng.taketoday.quarkus \
     -DprojectArtifactId=quarkus-project \
     -DclassName="cn.tuyucheng.taketoday.quarkus.HelloResource" \
     -Dpath="/hello"
 ```
 
-这将生成项目框架、一个带有/hello端点的HelloResource、配置、Maven项目和Dockerfile。
+这将生成项目框架、一个公开/hello端点的HelloResource、配置、Maven项目和Dockerfile。
 
 导入到我们的IDE后，我们将拥有类似于下图所示的结构：
 
@@ -49,10 +49,10 @@ public class HelloResource {
 到目前为止一切看起来都很好。至此，我们有了一个带有单个RESTEasy JAX-RS端点的简单应用程序。让我们继续通过打开终端并运行以下命令来测试它：
 
 ```shell
-./mvnw compile quarkus:dev:
+mvn compile quarkus:dev:
 ```
 
-![mvn 编译 quarkus 开发](https://www.baeldung.com/wp-content/uploads/2019/05/mvn_compile_quarkus_dev.png)
+<img src="../assets/img_1.png">
 
 我们的REST端点应该在localhost:8080/hello公开。让我们使用curl命令测试一下：
 
@@ -63,7 +63,7 @@ hello
 
 ## 4. 热重载
 
-在开发模式(./mvn compile quarkus:dev)下运行时，Quarkus提供热重载功能。换句话说，**对Java文件或配置文件所做的更改将在浏览器刷新后自动编译**。这里最令人印象深刻的特性是我们不需要保存我们的文件。这可能是好是坏，取决于我们的偏好。
+在开发模式(./mvn compile quarkus:dev)下运行时，Quarkus提供了热重载功能。换句话说，**对Java文件或配置文件所做的更改将在浏览器刷新后自动编译**。这里最令人印象深刻的功能是我们不需要保存我们的文件。这可能是好是坏，取决于我们的偏好。
 
 现在，我们将修改示例以演示热重载功能。如果应用程序停止了，我们可以简单地以开发模式重新启动它。我们将使用与之前相同的示例作为起点。
 
@@ -125,47 +125,47 @@ Good morning Tuyucheng
 我们可以通过运行以下命令来打包应用程序：
 
 ```shell
-./mvnw package
+mvn package
 ```
 
 这将在target目录中生成2个jar文件：
 
--   quarkus-project-1.0-SNAPSHOT-runner.jar：一个可执行的jar，其依赖项已复制到target/lib
--   quarkus-project-1.0-SNAPSHOT.jar：包含类和资源文件
+-   quarkus-project-1.0.0-runner.jar：一个可执行的jar，其依赖项已复制到target/lib
+-   quarkus-project-1.0.0.jar：包含类和资源文件
 
 现在，我们可以运行打包的应用程序：
 
 ```shell
-java -jar target/quarkus-project-1.0-SNAPSHOT-runner.jar
+java -jar target/quarkus-project-1.0.0-runner.jar
 ```
 
-## 5. 原生镜像
+## 5. 本机镜像
 
-接下来，我们将生成应用程序的原生镜像。原生镜像将缩短启动时间和首次响应时间。换句话说，**它包含运行所需的一切，包括运行应用程序所需的最小JVM**。
+接下来，我们将生成应用程序的本机镜像。本机镜像将缩短启动时间和首次响应时间。换句话说，**它包含运行所需的一切，包括运行应用程序所需的最小JVM**。
 
 首先，我们需要安装[GraalVM](https://www.graalvm.org/)并配置GRAALVM_HOME环境变量。
 
 我们现在将停止应用程序(Ctrl+C)，并运行以下命令：
 
 ```shell
-./mvnw package -Pnative
+mvn package -Pnative
 ```
 
-这可能需要几秒钟才能完成。因为原生镜像会尝试创建所有代码AOT以加快启动速度，因此，我们将有更长的构建时间。
+这可能需要几分钟才能完成。因为本机镜像会尝试创建所有代码AOT以加快启动速度，因此，我们将有更长的构建时间。
 
-我们可以运行./mvnw verify -Pnative来验证我们的原生工件是否正确构建：
+我们可以运行mvn verify -Pnative来验证我们的原生工件是否正确构建：
 
-![原生验证](https://www.baeldung.com/wp-content/uploads/2019/05/native-verify.png)
+<img src="../assets/img_2.png">
 
 其次，**我们将使用我们的本机可执行文件创建一个容器镜像**。为此，我们必须在我们的机器上运行一个容器运行时(即[Docker](https://www.baeldung.com/docker-test-containers))。让我们打开一个终端窗口并执行：
 
 ```shell
-./mvnw package -Pnative -Dnative-image.docker-build=true
+mvn package -Pnative -Dnative-image.docker-build=true
 ```
 
-这将创建一个Linux 64位可执行文件，因此如果我们使用不同的操作系统，它可能无法再运行。现在没关系。
+这将创建一个Linux 64位可执行文件，因此如果我们使用不同的操作系统，它可能无法再运行。暂时没关系。
 
-项目生成为我们创建了一个Dockerfile.native：
+项目构建为我们创建了一个Dockerfile.native：
 
 ```dockerfile
 FROM registry.fedoraproject.org/fedora-minimal
@@ -188,9 +188,9 @@ docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-project .
 docker run -i --rm -p 8080:8080 quarkus/quarkus-project
 ```
 
-![码头工人原生](https://www.baeldung.com/wp-content/uploads/2019/05/docker-native.png)
+<img src="../assets/img_3.png" align="left">
 
-容器以令人难以置信的0.009秒启动。这是Quarkus的优势之一。
+容器以令人难以置信的0.009秒启动，这是Quarkus的优势之一。
 
 最后，我们应该测试修改后的REST来验证我们的应用程序：
 
@@ -201,7 +201,7 @@ Good morning Tuyucheng
 
 ## 6. 部署到OpenShift
 
-使用Docker在本地完成测试后，我们将容器部署到[OpenShift](https://www.baeldung.com/spring-boot-deploy-openshift)。假设我们的注册表中有Docker镜像，我们可以按照以下步骤部署应用程序：
+使用Docker在本地完成测试后，我们将容器部署到[OpenShift](https://www.baeldung.com/spring-boot-deploy-openshift)。假设我们的注册中心中有Docker镜像，我们可以按照以下步骤部署应用程序：
 
 ```shell
 oc new-build --binary --name=quarkus-project -l app=quarkus-project
