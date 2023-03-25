@@ -1,14 +1,14 @@
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
-  name: baeldung-event
+    name: tuyucheng-event
 spec:
-  broker: baeldung
-  filter:
-    attributes:
-      type: GreetUser
-  subscriber:
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: quarkus-funqy-project
+    broker: tuyucheng
+    filter:
+        attributes:
+            type: GreetUser
+    subscriber:
+        ref:
+            apiVersion: serving.knative.dev/v1
+            kind: Service
+            name: quarkus-funqy-project

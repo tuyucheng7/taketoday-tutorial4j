@@ -7,7 +7,7 @@ services:
             - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: baeldung
+            MYSQL_DATABASE: tuyucheng
         command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
         healthcheck:
             test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
@@ -15,7 +15,7 @@ services:
         image: docker.io/library/spring-project:0.1-SNAPSHOT
         network_mode: "host"
         environment:
-            DB_URL: r2dbc:mysql://localhost:3306/baeldung?useSSL=true&requireSSL=true
+            DB_URL: r2dbc:mysql://localhost:3306/tuyucheng?useSSL=true&requireSSL=true
             HOST_HOSTNAME: ${EXTERNAL_IP}
         depends_on:
             db:
