@@ -88,9 +88,9 @@
 		<!-- sonarcloud -->
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.organization>tuyucheng</sonar.organization>
-		<sonar.projectKey>tu-yucheng_fullstack-tutorials4j</sonar.projectKey>
+		<sonar.projectKey>tu-yucheng_taketoday-tutorial4j</sonar.projectKey>
 		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
-		<sonar.projectName>fullstack-tutorials4j</sonar.projectName>
+		<sonar.projectName>taketoday-tutorial4j</sonar.projectName>
 		<sonar.coverage.jacoco.xmlReportPaths>
 			${project.basedir}/jacoco-aggregate-report/target/site/jacoco-aggregate/jacoco.xml
 		</sonar.coverage.jacoco.xmlReportPaths>
