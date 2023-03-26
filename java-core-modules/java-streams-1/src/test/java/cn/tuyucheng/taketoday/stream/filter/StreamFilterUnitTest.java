@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.stream.filter;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.touk.throwing.ThrowingPredicate;
 import pl.touk.throwing.exception.WrappedException;
@@ -117,6 +118,7 @@ class StreamFilterUnitTest {
 	}
 
 	@Test
+	@Disabled("依赖外部API")
 	void givenListOfCustomers_whenFilterWithTryCatch_thenGetTwo() {
 		Customer john = new Customer("John P.", 15, "https://images.unsplash.com/photo-1543320485-d0d5a49c2b2e");
 		Customer sarah = new Customer("Sarah M.", 200);

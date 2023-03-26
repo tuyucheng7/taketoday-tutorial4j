@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.convertnumberbases;
 
-import static com.baeldung.convertnumberbases.ConvertNumberBases.convertFromDecimalToBaseX;
-import static com.baeldung.convertnumberbases.ConvertNumberBases.convertNumberToNewBase;
-import static com.baeldung.convertnumberbases.ConvertNumberBases.convertNumberToNewBaseCustom;
+import static cn.tuyucheng.taketoday.convertnumberbases.ConvertNumberBases.convertFromDecimalToBaseX;
+import static cn.tuyucheng.taketoday.convertnumberbases.ConvertNumberBases.convertNumberToNewBase;
+import static cn.tuyucheng.taketoday.convertnumberbases.ConvertNumberBases.convertNumberToNewBaseCustom;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;

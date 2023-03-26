@@ -1,10 +1,4 @@
-package com.baeldung.downloadattachments;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+package cn.tuyucheng.taketoday.downloadattachments;
 
 import jakarta.mail.Address;
 import jakarta.mail.Folder;
@@ -16,6 +10,12 @@ import jakarta.mail.Part;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
 import jakarta.mail.internet.MimeBodyPart;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class DownloadEmailAttachments {
 	private String downloadDirectory;
