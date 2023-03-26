@@ -591,7 +591,7 @@
 				<!--<module>grails</module>--> <!-- Not a maven project -->
 				<!--<module>graphql.modules</module>-->
 				<!--<module>groovy-modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>grpc</module>
 				<!--<module>guava-modules</module>-->
 				<!--<module>guest</module>--> <!-- not to be built as its for guest articles  -->
 				<!--<module>hazelcast</module>-->
@@ -847,7 +847,7 @@
 				<!--<module>grails</module>--> <!-- Not a maven project -->
 				<!--<module>graphql.modules</module>-->
 				<!--<module>groovy-modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>grpc</module>
 				<!--<module>guava-modules</module>-->
 				<!--<module>guest</module>--> <!-- not to be built as its for guest articles  -->
 				<!--<module>hazelcast</module>-->
@@ -1069,7 +1069,7 @@
 				<!--<module>grails</module>--> <!-- Not a maven project -->
 				<!--<module>graphql.modules</module>-->
 				<!--<module>groovy-modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>grpc</module>
 				<!--<module>guava-modules</module>-->
 				<!--<module>guest</module>--> <!-- not to be built as its for guest articles  -->
 				<!--<module>hazelcast</module>-->
