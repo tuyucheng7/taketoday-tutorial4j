@@ -599,7 +599,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
@@ -855,7 +855,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
@@ -1077,7 +1077,7 @@
 				<!--<module>hystrix</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
-				<!--<module>java-core-modules</module>-->
+				<module>java-core-modules</module>
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
