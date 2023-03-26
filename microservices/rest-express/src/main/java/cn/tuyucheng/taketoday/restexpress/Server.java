@@ -1,6 +1,6 @@
-package com.baeldung.restexpress;
+package cn.tuyucheng.taketoday.restexpress;
 
-import com.baeldung.restexpress.serialization.SerializationProvider;
+import cn.tuyucheng.taketoday.restexpress.serialization.SerializationProvider;
 import com.codahale.metrics.MetricFilter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.graphite.Graphite;

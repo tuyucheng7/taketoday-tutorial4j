@@ -1,11 +1,6 @@
-package com.baeldung.restexpress;
+package cn.tuyucheng.taketoday.restexpress;
 
-import com.baeldung.restexpress.objectid.SampleOidEntityController;
-import com.baeldung.restexpress.objectid.SampleOidEntityRepository;
-import com.baeldung.restexpress.objectid.SampleOidEntityService;
-import com.baeldung.restexpress.uuid.SampleUuidEntityController;
-import com.baeldung.restexpress.uuid.SampleUuidEntityRepository;
-import com.baeldung.restexpress.uuid.SampleUuidEntityService;
+import cn.tuyucheng.taketoday.restexpress.objectid.SampleOidEntityController;import cn.tuyucheng.taketoday.restexpress.objectid.SampleOidEntityRepository;import cn.tuyucheng.taketoday.restexpress.objectid.SampleOidEntityService;import cn.tuyucheng.taketoday.restexpress.uuid.SampleUuidEntityController;import cn.tuyucheng.taketoday.restexpress.uuid.SampleUuidEntityRepository;import cn.tuyucheng.taketoday.restexpress.uuid.SampleUuidEntityService;
 import com.strategicgains.repoexpress.mongodb.MongoConfig;
 import com.strategicgains.restexpress.plugin.metrics.MetricsConfig;
 import org.restexpress.RestExpress;

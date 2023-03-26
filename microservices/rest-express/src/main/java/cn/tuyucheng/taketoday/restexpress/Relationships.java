@@ -1,7 +1,6 @@
-package com.baeldung.restexpress;
+package cn.tuyucheng.taketoday.restexpress;
 
-import com.baeldung.restexpress.objectid.SampleOidEntity;
-import com.baeldung.restexpress.uuid.SampleUuidEntity;
+import cn.tuyucheng.taketoday.restexpress.objectid.SampleOidEntity;import cn.tuyucheng.taketoday.restexpress.uuid.SampleUuidEntity;
 import com.strategicgains.hyperexpress.HyperExpress;
 import com.strategicgains.hyperexpress.RelTypes;
 import org.restexpress.RestExpress;

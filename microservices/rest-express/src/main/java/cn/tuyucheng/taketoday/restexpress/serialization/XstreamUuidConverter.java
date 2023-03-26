@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.serialization;
+package cn.tuyucheng.taketoday.restexpress.serialization;
 
 import com.strategicgains.repoexpress.util.UuidConverter;
 import com.thoughtworks.xstream.converters.SingleValueConverter;

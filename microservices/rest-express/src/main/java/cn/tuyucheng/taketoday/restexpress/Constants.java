@@ -1,4 +1,4 @@
-package com.baeldung.restexpress;
+package cn.tuyucheng.taketoday.restexpress;
 
 public class Constants {
     /**

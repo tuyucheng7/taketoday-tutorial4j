@@ -1,6 +1,6 @@
-package com.baeldung.restexpress.objectid;
+package cn.tuyucheng.taketoday.restexpress.objectid;
 
-import com.baeldung.restexpress.Constants;
+import cn.tuyucheng.taketoday.restexpress.Constants;
 import com.strategicgains.hyperexpress.builder.DefaultTokenResolver;
 import com.strategicgains.hyperexpress.builder.DefaultUrlBuilder;
 import com.strategicgains.hyperexpress.builder.UrlBuilder;

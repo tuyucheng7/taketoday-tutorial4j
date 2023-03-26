@@ -1,4 +1,4 @@
-package com.baeldung.restexpress;
+package cn.tuyucheng.taketoday.restexpress;
 
 import com.strategicgains.repoexpress.domain.Timestamped;
 import com.strategicgains.util.date.DateAdapter;

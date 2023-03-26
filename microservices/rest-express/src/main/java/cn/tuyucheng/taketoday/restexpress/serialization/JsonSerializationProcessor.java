@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.serialization;
+package cn.tuyucheng.taketoday.restexpress.serialization;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.strategicgains.hyperexpress.domain.hal.HalResource;

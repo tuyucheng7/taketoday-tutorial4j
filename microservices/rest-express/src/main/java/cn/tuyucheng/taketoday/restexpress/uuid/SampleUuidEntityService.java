@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.objectid;
+package cn.tuyucheng.taketoday.restexpress.uuid;
 
 import com.strategicgains.repoexpress.domain.Identifier;
 import com.strategicgains.syntaxe.ValidationEngine;
@@ -12,24 +12,24 @@ import java.util.List;
  * This is the 'service' or 'business logic' layer, where business logic, syntactic and semantic
  * domain validation occurs, along with calls to the persistence layer.
  */
-public class SampleOidEntityService {
-    private SampleOidEntityRepository samples;
+public class SampleUuidEntityService {
+    private SampleUuidEntityRepository samples;
 
-    public SampleOidEntityService(SampleOidEntityRepository samplesRepository) {
+    public SampleUuidEntityService(SampleUuidEntityRepository samplesRepository) {
         super();
         this.samples = samplesRepository;
     }
 
-    public SampleOidEntity create(SampleOidEntity entity) {
+    public SampleUuidEntity create(SampleUuidEntity entity) {
         ValidationEngine.validateAndThrow(entity);
         return samples.create(entity);
     }
 
-    public SampleOidEntity read(Identifier id) {
+    public SampleUuidEntity read(Identifier id) {
         return samples.read(id);
     }
 
-    public void update(SampleOidEntity entity) {
+    public void update(SampleUuidEntity entity) {
         ValidationEngine.validateAndThrow(entity);
         samples.update(entity);
     }
@@ -38,7 +38,7 @@ public class SampleOidEntityService {
         samples.delete(id);
     }
 
-    public List<SampleOidEntity> readAll(QueryFilter filter, QueryRange range, QueryOrder order) {
+    public List<SampleUuidEntity> readAll(QueryFilter filter, QueryRange range, QueryOrder order) {
         return samples.readAll(filter, range, order);
     }
 

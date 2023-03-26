@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.objectid;
+package cn.tuyucheng.taketoday.restexpress.objectid;
 
 import com.mongodb.MongoClient;
 import com.strategicgains.repoexpress.mongodb.MongodbEntityRepository;

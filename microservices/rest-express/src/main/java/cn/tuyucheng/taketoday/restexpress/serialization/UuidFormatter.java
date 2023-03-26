@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.serialization;
+package cn.tuyucheng.taketoday.restexpress.serialization;
 
 import com.strategicgains.hyperexpress.annotation.TokenFormatter;
 import com.strategicgains.repoexpress.util.UuidConverter;

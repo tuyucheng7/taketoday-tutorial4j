@@ -1,6 +1,6 @@
-package com.baeldung.restexpress.objectid;
+package cn.tuyucheng.taketoday.restexpress.objectid;
 
-import com.baeldung.restexpress.Constants;
+import cn.tuyucheng.taketoday.restexpress.Constants;
 import com.strategicgains.hyperexpress.annotation.BindToken;
 import com.strategicgains.hyperexpress.annotation.TokenBindings;
 import com.strategicgains.repoexpress.mongodb.AbstractMongodbEntity;

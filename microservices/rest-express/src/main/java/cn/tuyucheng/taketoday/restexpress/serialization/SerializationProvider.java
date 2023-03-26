@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.serialization;
+package cn.tuyucheng.taketoday.restexpress.serialization;
 
 import org.restexpress.response.ErrorResponseWrapper;
 import org.restexpress.response.ResponseWrapper;

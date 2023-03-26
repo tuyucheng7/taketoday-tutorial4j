@@ -1,4 +1,4 @@
-package com.baeldung.restexpress.uuid;
+package cn.tuyucheng.taketoday.restexpress.uuid;
 
 import com.mongodb.MongoClient;
 import com.strategicgains.repoexpress.mongodb.MongodbUuidEntityRepository;

@@ -1,6 +1,6 @@
-package com.baeldung.restexpress.serialization;
+package cn.tuyucheng.taketoday.restexpress.serialization;
 
-import com.baeldung.restexpress.uuid.SampleUuidEntity;
+import cn.tuyucheng.taketoday.restexpress.uuid.SampleUuidEntity;
 import org.restexpress.serialization.xml.XstreamXmlProcessor;
 
 public class XmlSerializationProcessor

@@ -1,7 +1,7 @@
-package com.baeldung.restexpress.uuid;
+package cn.tuyucheng.taketoday.restexpress.uuid;
 
-import com.baeldung.restexpress.Constants;
-import com.baeldung.restexpress.serialization.UuidFormatter;
+import cn.tuyucheng.taketoday.restexpress.Constants;
+import cn.tuyucheng.taketoday.restexpress.serialization.UuidFormatter;
 import com.strategicgains.hyperexpress.annotation.BindToken;
 import com.strategicgains.hyperexpress.annotation.TokenBindings;
 import com.strategicgains.repoexpress.mongodb.AbstractUuidMongodbEntity;

@@ -17,7 +17,8 @@
 		<module>helidon</module>
 		<module>micronaut</module>
 		<module>microprofile</module>
-		<!--<module>msf4j</module>-->
+		<module>msf4j</module>
 		<module>open-liberty</module>
+		<module>rest-express</module>
 	</modules>
 </project>
