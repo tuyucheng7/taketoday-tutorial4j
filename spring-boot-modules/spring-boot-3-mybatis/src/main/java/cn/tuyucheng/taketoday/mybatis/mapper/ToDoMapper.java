@@ -27,4 +27,7 @@ public interface ToDoMapper {
 
 	@Update("Update TBL_TODO set title=#{title}, " + " body=#{body} where id=#{id}")
 	int update(TODO item);
+
+	@Delete("DELETE FROM TBL_TODO")
+	void deleteAll();
 }
