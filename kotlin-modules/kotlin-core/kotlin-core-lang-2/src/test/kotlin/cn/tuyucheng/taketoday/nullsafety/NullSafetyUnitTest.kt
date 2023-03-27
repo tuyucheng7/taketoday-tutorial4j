@@ -77,7 +77,7 @@ class NullSafetyUnitTest {
 	}
 
 	@Test
-	fun fivenCollectionOfObject_whenUseRunOperator_thenExecuteActionOnNonNullValue() {
+	fun givenCollectionOfObject_whenUseRunOperator_thenExecuteActionOnNonNullValue() {
 		// given
 		val firstName = "Tom"
 		val secondName = "Michael"

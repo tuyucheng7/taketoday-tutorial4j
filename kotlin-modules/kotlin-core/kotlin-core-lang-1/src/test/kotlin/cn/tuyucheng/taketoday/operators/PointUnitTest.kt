@@ -15,7 +15,7 @@ class PointUnitTest {
 	}
 
 	@Test
-	fun `We shoud be able to subtract one point from another using -`() {
+	fun `We should be able to subtract one point from another using -`() {
 		assertEquals(p1 - p2, Point(-1, -1))
 	}
 

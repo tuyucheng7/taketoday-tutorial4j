@@ -17,7 +17,7 @@ class Motorbike : Vehicle {
 class Car() : Vehicle() {
 	init {
 		/*
-		super() //compilation error
-		 */
+		super() // compilation error
+		*/
 	}
 }

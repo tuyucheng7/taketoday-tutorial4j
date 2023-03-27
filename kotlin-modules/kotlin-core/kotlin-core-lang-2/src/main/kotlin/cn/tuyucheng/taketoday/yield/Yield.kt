@@ -58,11 +58,11 @@ fun main() {
 	}
 
 	// Infinite Sequence
-	val fibonacciIterator = client.fibonacci().iterator();
+	val fibonacciIterator = client.fibonacci().iterator()
 	var count = 5
 	while (count > 0) {
 		println(fibonacciIterator.next())
-		count--;
+		count--
 	}
 
 	// Cooperative Multitasking

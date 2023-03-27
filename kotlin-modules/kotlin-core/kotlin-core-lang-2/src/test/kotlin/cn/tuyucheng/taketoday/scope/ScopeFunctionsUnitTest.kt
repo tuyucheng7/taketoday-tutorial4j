@@ -18,8 +18,8 @@ class ScopeFunctionsUnitTest {
 
 	@Test
 	fun shouldTransformWhenLetFunctionUsed() {
-		val stringBuider = StringBuilder()
-		val numberOfCharacters = stringBuider.let {
+		val stringBuilder = StringBuilder()
+		val numberOfCharacters = stringBuilder.let {
 			it.append("This is a transformation function.")
 			it.append("It takes a StringBuilder instance and returns the number of characters in the generated String")
 			it.length
@@ -32,7 +32,6 @@ class ScopeFunctionsUnitTest {
 
 	@Test
 	fun shouldHandleNullabilityWhenLetFunctionUsed() {
-
 		val message: String? = "hello there!"
 		val charactersInMessage = message?.let {
 			"At this point is safe to reference the variable. Let's print the message: $it"
@@ -91,7 +90,6 @@ class ScopeFunctionsUnitTest {
 		assertTrue {
 			logger.wasCalled() && headers.headerInfo.equals("some header info")
 		}
-
 	}
 
 	@Test

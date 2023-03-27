@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.constants
 
-
 import cn.tuyucheng.taketoday.constants.ConstantsBestPractices.Companion.CONSTANT_IN_COMPANION_OBJECT
 import org.assertj.core.api.Assertions
 import org.junit.Test
