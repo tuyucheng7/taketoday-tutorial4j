@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.arguments
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport
-
-@ExcludeFromJacocoGeneratedReport
 fun main() {
 
 	// Skip both the connectTimeout and enableRetry arguments

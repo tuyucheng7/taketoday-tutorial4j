@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.introduction
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport
-
 open class Item(val id: String, val name: String = "unknown_name") {
 	open fun getIdOfItem(): String {
 		return id

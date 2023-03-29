@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.introduction
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport
 import java.util.concurrent.ThreadLocalRandom
 
 class ListExtension {
