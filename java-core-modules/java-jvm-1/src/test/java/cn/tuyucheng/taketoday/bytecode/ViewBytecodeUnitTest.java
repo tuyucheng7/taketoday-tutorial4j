@@ -1,23 +1,21 @@
 package cn.tuyucheng.taketoday.bytecode;
 
-import javassist.ClassPool;
-import javassist.NotFoundException;
-import javassist.bytecode.ClassFile;
-import org.apache.bcel.Repository;
-import org.apache.bcel.classfile.JavaClass;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.util.TraceClassVisitor;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.apache.bcel.Repository;
+import org.apache.bcel.classfile.JavaClass;
+import org.junit.Test;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.util.TraceClassVisitor;
+import javassist.ClassPool;
+import javassist.NotFoundException;
+import javassist.bytecode.ClassFile;
 
-@Ignore
 public class ViewBytecodeUnitTest {
 
 	@Test
@@ -35,7 +33,7 @@ public class ViewBytecodeUnitTest {
 		JavaClass objectClazz = Repository.lookupClass("java.lang.Object");
 
 		assertEquals(objectClazz.getClassName(), "java.lang.Object");
-		assertEquals(objectClazz.getMethods().length, 14);
+		assertEquals(objectClazz.getMethods().length, 12);
 		assertTrue(objectClazz.toString().contains("public class java.lang.Object"));
 	}
 
@@ -45,6 +43,6 @@ public class ViewBytecodeUnitTest {
 		ClassFile cf = cp.get("java.lang.Object").getClassFile();
 
 		assertEquals(cf.getName(), "java.lang.Object");
-		assertEquals(cf.getMethods().size(), 14);
+		assertEquals(cf.getMethods().size(), 12);
 	}
 }

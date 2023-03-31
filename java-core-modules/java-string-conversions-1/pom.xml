@@ -43,5 +43,6 @@
 
 	<properties>
 		<icu4j.version>61.1</icu4j.version>
+		<argLine>-Djava.locale.providers=COMPAT</argLine>
 	</properties>
 </project>

@@ -1,9 +1,10 @@
 package cn.tuyucheng.taketoday.memlayout;
 
-import jdk.internal.vm.annotation.Contended;
 import org.junit.Test;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.vm.VM;
+
+import jdk.internal.vm.annotation.Contended;
 
 public class MemoryLayoutUnitTest {
 
