@@ -2,7 +2,8 @@ package cn.tuyucheng.taketoday.concurrent.prioritytaskexecution;
 
 import org.junit.jupiter.api.Test;
 
-class PriorityJobSchedulerUnitTest {
+// Converted to ManualTest due to thread sleep
+public class PriorityJobSchedulerManualTest {
 	private static final int POOL_SIZE = 1;
 	private static final int QUEUE_SIZE = 10;
 
