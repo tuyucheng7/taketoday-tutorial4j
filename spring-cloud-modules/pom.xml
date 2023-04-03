@@ -12,6 +12,7 @@
     <modules>
         <module>spring-cloud-archaius</module>
         <module>spring-cloud-aws</module>
+        <!--<module>spring-cloud-azure</module>-->
         <module>spring-cloud-bootstrap</module>
         <module>spring-cloud-bus</module>
         <module>spring-cloud-circuit-breaker</module>
