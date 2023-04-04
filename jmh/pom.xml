@@ -19,12 +19,12 @@
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-core</artifactId>
-			<version>${jmh-core.version}</version>
+			<version>1.36</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-generator-annprocess</artifactId>
-			<version>${jmh-generator.version}</version>
+			<version>1.36</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjdk.jol</groupId>
@@ -37,6 +37,15 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerArgs>
+						<arg>--add-exports=java.base/jdk.internal.vm.annotation=ALL-UNNAMED</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>${maven-jar-plugin.version}</version>
 				<configuration>
@@ -45,36 +54,6 @@
 							<mainClass>cn.tuyucheng.taketoday.BenchmarkRunner</mainClass>
 						</manifest>
 					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>8</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -105,8 +84,9 @@
 	</build>
 
 	<properties>
-		<maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
-		<jol-core.version>0.10</jol-core.version>
-		<maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
+		<maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+		<jol-core.version>0.17</jol-core.version>
+		<maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
+		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
 	</properties>
 </project>
