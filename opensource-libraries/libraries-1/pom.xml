@@ -8,7 +8,7 @@
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>opensource-libraries</artifactId>
+		<artifactId>parent-modules</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
@@ -64,7 +64,7 @@
 		<dependency>
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-api-jdo</artifactId>
-			<version>${datanucleus.version}</version>
+			<version>${datanucleus-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.datanucleus</groupId>
@@ -85,17 +85,6 @@
 			<groupId>org.datanucleus</groupId>
 			<artifactId>datanucleus-jdo-query</artifactId>
 			<version>${datanucleus-jdo-query.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.openhft</groupId>
-			<artifactId>chronicle</artifactId>
-			<version>${chronicle.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.sun.java</groupId>
-					<artifactId>tools</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -182,11 +171,19 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
+					<argLine>
+						--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+						--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
+						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
+						--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+						--add-opens=jdk.compiler/com.sun.tools.javac=ALL-UNNAMED
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+						--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED
+						--add-opens=java.base/java.util=ALL-UNNAMED
+					</argLine>
 				</configuration>
 			</plugin>
 			<!-- JDO Plugin -->
@@ -265,8 +262,6 @@
 	</build>
 
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<shade.plugin.version>2.2</shade.plugin.version>
 		<multiverse.version>0.7.0</multiverse.version>
 		<cglib.version>3.2.7</cglib.version>
@@ -284,16 +279,16 @@
 		<protonpack.version>1.15</protonpack.version>
 		<google-api.version>1.23.0</google-api.version>
 		<jets3t-version>0.9.4.0006L</jets3t-version>
-		<javax.jdo.version>3.2.0-m7</javax.jdo.version>
-		<datanucleus.version>5.1.1</datanucleus.version>
+		<javax.jdo.version>3.2.1</javax.jdo.version>
+		<datanucleus.version>6.0.3</datanucleus.version>
+		<datanucleus-api.version>6.0.1</datanucleus-api.version>
 		<datanucleus-maven-plugin.version>6.0.0-release</datanucleus-maven-plugin.version>
 		<datanucleus-xml.version>5.0.0-release</datanucleus-xml.version>
-		<datanucleus-jdo-query.version>5.0.2</datanucleus-jdo-query.version>
-		<chronicle.version>3.6.4</chronicle.version>
+		<datanucleus-jdo-query.version>6.0.1</datanucleus-jdo-query.version>
 		<spring.version>4.3.8.RELEASE</spring.version>
 		<spring-mock-mvc.version>3.0.3</spring-mock-mvc.version>
 		<quartz.version>2.3.0</quartz.version>
-		<javaassist.version>3.29.0-GA</javaassist.version>
+		<javaassist.version>3.29.2-GA</javaassist.version>
 		<jool.version>0.9.12</jool.version>
 		<maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
 		<commons-net.version>3.6</commons-net.version>
