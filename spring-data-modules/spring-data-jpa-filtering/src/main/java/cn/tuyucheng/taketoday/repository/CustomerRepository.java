@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
@@ -15,4 +16,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
 	@Query("SELECT c FROM Customer c WHERE (:name is null or c.name = :name) and (:email is null or c.email = :email)")
 	List<Customer> findCustomerByNameAndEmail(@Param("name") String name, @Param("email") String email);
+
+	List<Customer> findCustomerByUuid(@Param("uuid") UUID uuid);
 }
