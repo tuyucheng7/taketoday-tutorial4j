@@ -1,16 +1,30 @@
 package cn.tuyucheng.taketoday.jackson.annotation;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import org.junit.Test;
+
 import cn.tuyucheng.taketoday.jackson.annotation.bidirection.ItemWithIdentity;
 import cn.tuyucheng.taketoday.jackson.annotation.bidirection.ItemWithRef;
 import cn.tuyucheng.taketoday.jackson.annotation.bidirection.UserWithIdentity;
 import cn.tuyucheng.taketoday.jackson.annotation.bidirection.UserWithRef;
 import cn.tuyucheng.taketoday.jackson.annotation.date.EventWithFormat;
 import cn.tuyucheng.taketoday.jackson.annotation.date.EventWithSerializer;
-import cn.tuyucheng.taketoday.jackson.annotation.dtos.User;
+import cn.tuyucheng.taketoday.jackson.annotation.dtos.withEnum.TypeEnumWithValue;
+import cn.tuyucheng.taketoday.jackson.annotation.ignore.MyMixInForIgnoreType;
 import cn.tuyucheng.taketoday.jackson.annotation.dtos.withEnum.DistanceEnumWithValue;
 import cn.tuyucheng.taketoday.jackson.annotation.exception.UserWithRoot;
 import cn.tuyucheng.taketoday.jackson.annotation.exception.UserWithRootNamespace;
-import cn.tuyucheng.taketoday.jackson.annotation.ignore.MyMixInForIgnoreType;
 import cn.tuyucheng.taketoday.jackson.annotation.jsonview.Item;
 import cn.tuyucheng.taketoday.jackson.annotation.jsonview.Views;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,19 +36,6 @@ import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class JacksonAnnotationUnitTest {
 
@@ -95,6 +96,7 @@ public class JacksonAnnotationUnitTest {
 		assertThat(enumAsString, is("1609.34"));
 	}
 
+
 	@Test
 	public void whenSerializingUsingJsonSerialize_thenCorrect() throws JsonProcessingException, ParseException {
 		final SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
@@ -107,6 +109,19 @@ public class JacksonAnnotationUnitTest {
 		assertThat(result, containsString(toParse));
 	}
 
+	@Test
+	public void whenSerializingUsingJsonValueAnnotatedField_thenCorrect() throws JsonProcessingException {
+		final String enumValue = new ObjectMapper().writeValueAsString(TypeEnumWithValue.TYPE1);
+		assertThat(enumValue, is("\"Type A\""));
+	}
+
+	@Test
+	public void whenSerializingUsingJsonValueAnnotatedFieldInPojo_thenCorrect() throws JsonProcessingException {
+		GeneralBean bean1 = new GeneralBean(1, "Bean 1");
+		final String bean1AsString = new ObjectMapper().writeValueAsString(bean1);
+		assertThat(bean1AsString, is("\"Bean 1\""));
+	}
+
 	// ========================= Deserializing annotations ============================
 
 	@Test
@@ -117,6 +132,7 @@ public class JacksonAnnotationUnitTest {
 			.readValue(json);
 		assertEquals("My bean", bean.name);
 	}
+
 
 	@Test
 	public void whenDeserializingUsingJsonInject_thenCorrect() throws IOException {
@@ -159,6 +175,23 @@ public class JacksonAnnotationUnitTest {
 		final EventWithSerializer event = new ObjectMapper().readerFor(EventWithSerializer.class)
 			.readValue(json);
 		assertEquals("20-12-2014 02:30:00", df.format(event.eventDate));
+	}
+
+	@Test
+	public void whenDeserializingUsingJsonValue_thenCorrect() throws JsonProcessingException {
+		final String str = "\"Type A\"";
+		TypeEnumWithValue te = new ObjectMapper().readerFor(TypeEnumWithValue.class)
+			.readValue(str);
+		assertThat(te, is(TypeEnumWithValue.TYPE1));
+	}
+
+	@Test(expected = Exception.class)
+	public void whenDeserializingUsingJsonValueAnnotatedFieldInPojo_thenGetException() throws JsonProcessingException {
+		GeneralBean bean1 = new GeneralBean(1, "Bean 1");
+		final String bean1AsString = new ObjectMapper().writeValueAsString(bean1);
+		GeneralBean bean = new ObjectMapper().readerFor(GeneralBean.class)
+			.readValue(bean1AsString);
+		assertThat(bean.getName(), is(bean1.getName()));
 	}
 
 	// ========================= Inclusion annotations ============================
@@ -344,7 +377,7 @@ public class JacksonAnnotationUnitTest {
 		assertThat(result, containsString("owner"));
 
 		final ObjectMapper mapper = new ObjectMapper();
-		mapper.addMixIn(User.class, MyMixInForIgnoreType.class);
+		mapper.addMixIn(cn.tuyucheng.taketoday.jackson.annotation.dtos.User.class, MyMixInForIgnoreType.class);
 
 		result = mapper.writeValueAsString(item);
 		assertThat(result, not(containsString("owner")));
@@ -399,6 +432,4 @@ public class JacksonAnnotationUnitTest {
         */
 
 	}
-
-
 }
