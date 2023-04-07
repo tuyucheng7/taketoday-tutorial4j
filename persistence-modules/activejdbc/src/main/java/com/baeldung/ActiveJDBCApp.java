@@ -4,13 +4,13 @@ package com.baeldung;
 import com.baeldung.model.Employee;
 import com.baeldung.model.Role;
 import org.javalite.activejdbc.Base;
+import org.javalite.activejdbc.DB;
 import org.javalite.activejdbc.LazyList;
 import org.javalite.activejdbc.Model;
 
 public class ActiveJDBCApp {
 	public static void main(String[] args) {
-		try {
-			Base.open();
+		try (final DB open = Base.open()) {
 			ActiveJDBCApp app = new ActiveJDBCApp();
 			app.create();
 			app.update();

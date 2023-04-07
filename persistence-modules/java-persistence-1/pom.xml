@@ -52,53 +52,20 @@
 			<artifactId>spring-boot-starter</artifactId>
 			<version>${springframework.boot.spring-boot-starter.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${java.version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 	<properties>
-		<java.version>8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<commons-dbcp2.version>2.4.0</commons-dbcp2.version>
-		<HikariCP.version>3.2.0</HikariCP.version>
-		<c3p0.version>0.9.5.2</c3p0.version>
-		<springframework.boot.spring-boot-starter.version>1.5.8.RELEASE
-		</springframework.boot.spring-boot-starter.version>
-		<springframework.spring-web.version>4.3.4.RELEASE</springframework.spring-web.version>
+		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
+		<HikariCP.version>5.0.1</HikariCP.version>
+		<c3p0.version>0.9.5.5</c3p0.version>
+		<springframework.boot.spring-boot-starter.version>3.0.4</springframework.boot.spring-boot-starter.version>
+		<springframework.spring-web.version>6.0.6</springframework.spring-web.version>
+		<mysql-connector.version>8.0.32</mysql-connector.version>
 	</properties>
 </project>
