@@ -1,0 +1,28 @@
+server:
+    servlet:
+        context-path: /spring-completable-feature
+
+spring:
+    datasource:
+        url: jdbc:h2:mem:customerdb
+        driverClassName: org.h2.Driver
+        username: sa
+        password: password
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+
+# Used for test, it logs queries
+logging:
+    level:
+        org:
+            springframework:
+                orm:
+                    jpa: DEBUG
+                transaction: DEBUG
+            hibernate:
+                SQL: DEBUG
+                type:
+                    descriptor:
+                        sql:
+                            BasicBinder: TRACE

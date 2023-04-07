@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "caac2969-f2ce-4fef-81d0-744b1ebe92cb",
+		"name": "spring-completable-feature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9825253"
+	},
+	"item": [
+		{
+			"name": "/customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Sync] /customers/{customerId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Async] /customers/completable-feature/{customerId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/completable-feature/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"completable-feature",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Async] /customers/completable-feature/all-of/{customerId}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/completable-feature/all-of/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"completable-feature",
+						"all-of",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Sync] /customers/{customerId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phoneNumber\": \"670-553-3479\",\n    \"address\": {\n        \"street\": \"Quigley Port\",\n        \"streetNumber\": \"647\",\n        \"city\": \"West Abram\",\n        \"state\": \"Kansas\",\n        \"zipCode\": \"50265\",\n        \"country\": \"Finland\"\n    },\n    \"financialInfo\": [\n        {\n            \"creditCardNumber\": \"6759-0891-2219-2954-668\",\n            \"iban\": \"HR8574239875540498527\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Async] /customers/completable-feature/{customerId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phoneNumber\": \"670-553-3479\",\n    \"address\": {\n        \"street\": \"Quigley Port\",\n        \"streetNumber\": \"647\",\n        \"city\": \"West Abram\",\n        \"state\": \"Kansas\",\n        \"zipCode\": \"50265\",\n        \"country\": \"Finland\"\n    },\n    \"financialInfo\": [\n        {\n            \"creditCardNumber\": \"6759-0891-2219-2954-668\",\n            \"iban\": \"HR8574239875540498527\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/completable-feature/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"completable-feature",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Sync] /customers/{customerId}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"phoneNumber\": \"\",\n    \"address\": {\n        \"street\": \"Quigley Port\",\n        \"streetNumber\": \"647\",\n        \"city\": \"West Abram\",\n        \"state\": \"Kansas\",\n        \"zipCode\": \"50265\",\n        \"country\": \"Finland\"\n    },\n    \"financialInfo\": [\n        {\n            \"creditCardNumber\": \"6759-0891-2219-2954-668\",\n            \"iban\": \"HR8574239875540498527\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Async] /customers/completable-feature/{customerId}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"address\": {\n        \"street\": \"Quigley Port\",\n        \"streetNumber\": \"647\",\n        \"city\": \"West Abram\",\n        \"state\": \"Kansas\",\n        \"zipCode\": \"50265\",\n        \"country\": \"Finland\"\n    },\n    \"financialInfo\": [\n        {\n            \"creditCardNumber\": \"6759-0891-2219-2954-668\",\n            \"iban\": \"HR8574239875540498527\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring-completable-feature/v1/customers/completable-feature/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring-completable-feature",
+						"v1",
+						"customers",
+						"completable-feature",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
