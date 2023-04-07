@@ -6,7 +6,7 @@
 	<artifactId>spring-boot-autoconfiguration</artifactId>
 	<version>1.0.0</version>
 	<name>spring-boot-autoconfiguration</name>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<description>这是演示自定义自动配置的简单Boot应用程序</description>
 
 	<parent>
@@ -61,6 +61,12 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 
 	<profiles>

@@ -12,4 +12,8 @@
 		<artifactId>kotlin-core</artifactId>
 		<version>1.0.0</version>
 	</parent>
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
 </project>
