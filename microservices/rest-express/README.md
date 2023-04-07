@@ -1,6 +1,7 @@
 ## RestExpress
 
-This module contains articles about RestExpress.
+本模块包含有关RestExpress的文章。
 
-### Relevant articles
-- [RESTful Microservices With RestExpress](https://www.baeldung.com/java-restexpress-guide)
+## 相关文章
+
++ [使用RestExpress的RESTful微服务](docs/使用RestExpress的RESTful微服务.md)

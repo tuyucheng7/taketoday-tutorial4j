@@ -1,22 +1,22 @@
-## 一、概述
+## 1. 概述
 
-随着微服务架构和云原生应用开发的流行，对快速、轻量级应用服务器的需求越来越大。
+随着微服务架构和云原生应用程序开发的流行，对快速、轻量级应用服务器的需求越来越大。
 
-在本介绍性教程中，我们将探索[OpenLiberty框架](https://openliberty.io/)来创建和使用RESTfulWeb服务。我们还将研究它提供的一些基本功能。
+在本介绍性教程中，我们将探索[Open Liberty框架](https://openliberty.io/)来创建和使用RESTful Web服务。我们还将研究它提供的一些基本功能。
 
-## 2.开放自由
+## 2. Open Liberty
 
-OpenLiberty是Java生态系统的开放框架，允许使用[EclipseMicroProfile](https://www.baeldung.com/eclipse-microprofile)和[JakartaEE](https://www.baeldung.com/kotlin/java-ee-kotlin-app)平台的特性开发微服务。
+**Open Liberty是Java生态系统的开放框架，允许使用[Eclipse MicroProfile](https://www.baeldung.com/eclipse-microprofile)和[Jakarta EE](https://www.baeldung.com/kotlin/java-ee-kotlin-app)平台的功能开发微服务**。
 
-它是一种灵活、快速且轻量级的Java运行时，似乎有望用于云原生微服务开发。
+它是一种灵活、快速且轻量级的Java运行时，对于云原生微服务开发似乎很有前途。
 
-该框架允许我们仅配置我们的应用程序需要的功能，从而在启动期间占用更少的内存。此外，它可以部署在任何使用[Docker](https://www.baeldung.com/docker-compose)和[Kubernetes](https://www.baeldung.com/kubernetes)等容器的云平台上。
+**该框架允许我们仅配置我们的应用程序需要的功能，从而在启动期间占用更少的内存**。此外，它可以部署在任何使用[Docker](https://www.baeldung.com/docker-compose)和[Kubernetes](https://www.baeldung.com/kubernetes)等容器的云平台上。
 
 它通过实时重新加载代码以实现快速迭代来支持快速开发。
 
-## 3.构建并运行
+## 3. 构建并运行
 
-首先，我们将创建一个名为open-liberty的简单的基于Maven的项目，然后将最新的[liberty-maven-plugin](https://search.maven.org/search?q=g:io.openliberty.toolsa:liberty-maven-plugin)插件添加到pom.xml中：
+首先，我们将创建一个名为open-liberty的简单的基于Maven的项目，然后将最新的[liberty-maven-plugin](https://central.sonatype.com/artifact/io.openliberty.tools/liberty-maven-plugin/3.7.1)插件添加到pom.xml中：
 
 ```xml
 <plugin>
@@ -26,7 +26,7 @@ OpenLiberty是Java生态系统的开放框架，允许使用[EclipseMicroProfile
 </plugin>
 ```
 
-或者，我们可以添加最新的[openliberty-runtime](https://search.maven.org/search?q=g:io.openlibertya:openliberty-runtime)Maven依赖项作为liberty-maven-plugin的替代方案：
+或者，我们可以添加最新的[openliberty-runtime](https://central.sonatype.com/artifact/io.openliberty/openliberty-runtime/23.0.0.2) Maven依赖项作为liberty-maven-plugin的替代方案：
 
 ```xml
 <dependency>
@@ -45,7 +45,7 @@ dependencies {
 }
 ```
 
-然后，我们将添加最新的[jakarta.jakartaee-web-api](https://search.maven.org/search?q=g:jakarta.platforma:jakarta.jakartaee-web-api)和[microprofile](https://search.maven.org/search?q=g:org.eclipse.microprofilea:microprofile)Maven依赖项：
+然后，我们将添加最新的[jakarta.jakartaee-web-api](https://central.sonatype.com/artifact/jakarta.platform/jakarta.jakartaee-web-api/10.0.0)和[microprofile](https://central.sonatype.com/artifact/org.eclipse.microprofile/microprofile/6.0) Maven依赖项：
 
 ```xml
 <dependency>
@@ -79,15 +79,15 @@ dependencies {
     <featureManager>
         <feature>mpHealth-2.0</feature>
     </featureManager>
-    <webApplication location="open-liberty.war" contextRoot="/" />
-    <httpEndpoint host="" httpPort="${default.http.port}" 
-      httpsPort="${default.https.port}" id="defaultHttpEndpoint" />
+    <webApplication location="open-liberty.war" contextRoot="/"/>
+    <httpEndpoint host="*" httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}" id="defaultHttpEndpoint"/>
 </server>
 ```
 
 在这里，我们添加了mpHealth-2.0功能来检查应用程序的运行状况。
 
-这就是所有基本设置。让我们运行Maven命令来第一次编译文件：
+这就是所有基本设置。让我们运行Maven命令来首次编译文件：
 
 ```shell
 mvn clean package
@@ -99,34 +99,37 @@ mvn clean package
 mvn liberty:dev
 ```
 
-瞧！我们的应用程序已启动，可以在localhost:9080访问：
+现在我们的应用程序已启动，可以在[localhost:9080](http://localhost:9080)访问：
 
-[![img](https://www.baeldung.com/wp-content/uploads/2020/02/Screen-Shot-2020-01-15-at-1.46.17-PM-1024x787.png)](https://www.baeldung.com/wp-content/uploads/2020/02/Screen-Shot-2020-01-15-at-1.46.17-PM.png)
+<img src="../assets/img.png">
 
 此外，我们可以在localhost:9080/health访问应用程序的健康状况：
 
-```javascript
-{"checks":[],"status":"UP"}
+```json
+{
+    "checks": [],
+    "status": "UP"
+}
 ```
 
-liberty:dev命令以开发模式启动OpenLiberty服务器，它会热重载对代码或配置所做的任何更改，而无需重新启动服务器。
+**liberty:dev命令以开发模式启动Open Liberty服务器**，它会热重载对代码或配置所做的任何更改，而无需重新启动服务器。
 
 同样，liberty:run命令可用于在生产模式下启动服务器。
 
-另外，我们可以使用liberty:start-server和liberty:stop-server在后台启动/停止服务器。
+另外，**我们可以使用liberty:start-server和liberty:stop-server在后台启动/停止服务器**。
 
-## 4.服务小程序
+## 4. Servlet
 
-要在应用程序中使用servlet，我们将servlet-4.0功能添加到server.xml：
+要在应用程序中使用Servlet，我们将servlet-4.0功能添加到server.xml：
 
 ```xml
 <featureManager>
-    ...
+    <!--...-->
     <feature>servlet-4.0</feature>
 </featureManager>
 ```
 
-如果在pom.xml中使用openliberty-runtimeMaven依赖项，请添加最新的[servlet-4.0](https://search.maven.org/search?q=g:io.openliberty.featuresa:servlet-4.0)Maven依赖项：
+如果在pom.xml中使用openliberty-runtime Maven依赖项，请添加最新的[servlet-4.0](https://central.sonatype.com/artifact/io.openliberty.features/servlet-4.0/23.0.0.2) Maven依赖项：
 
 ```xml
 <dependency>
@@ -147,8 +150,7 @@ public class AppServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-      throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String htmlOutput = "<html><h2>Hello! Welcome to Open Liberty</h2></html>";
         response.getWriter().append(htmlOutput);
     }
@@ -157,22 +159,22 @@ public class AppServlet extends HttpServlet {
 
 在这里，我们添加了[@WebServlet](https://jakarta.ee/specifications/platform/8/apidocs/javax/servlet/annotation/WebServlet.html)注解，这将使AppServlet在指定的URL模式下可用。
 
-让我们在localhost:9080/app访问servlet：
+让我们在[localhost:9080/app](http://localhost:9080/app)访问Servlet：
 
-[![img](https://www.baeldung.com/wp-content/uploads/2020/02/Screen-Shot-2020-01-18-at-4.21.46-PM-1024x146.png)](https://www.baeldung.com/wp-content/uploads/2020/02/Screen-Shot-2020-01-18-at-4.21.46-PM.png)
+<img src="../assets/img_1.png">
 
-## 5.创建RESTfulWeb服务
+## 5. 创建RESTful Web服务
 
-首先，让我们将[jaxrs-2.1](https://search.maven.org/search?q=g:io.openliberty.featuresa:jaxrs-2.1)特性添加到server.xml中：
+首先，让我们将[jaxrs-2.1](https://search.maven.org/search?q=g:io.openliberty.featuresa:jaxrs-2.1)功能添加到server.xml中：
 
 ```xml
 <featureManager>
-    ...
+    <!--...-->
     <feature>jaxrs-2.1</feature>
 </featureManager>
 ```
 
-然后，我们将创建ApiApplication类，它为RESTfulWeb服务提供端点：
+然后，我们将创建ApiApplication类，它为RESTful Web服务提供端点：
 
 ```java
 @ApplicationPath("/api")
@@ -182,15 +184,14 @@ public class ApiApplication extends Application {
 
 在这里，我们为URL路径使用了[@ApplicationPath](https://jakarta.ee/specifications/platform/8/apidocs/javax/ws/rs/ApplicationPath.html)注解。
 
-然后，让我们创建服务于模型的Person类：
+然后，让我们创建服务模型的Person类：
 
 ```java
 public class Person {
     private String username;
     private String email;
 
-    // getters and setters
-    // constructors
+    // getters, setters and constructors
 }
 ```
 
@@ -200,6 +201,7 @@ public class Person {
 @RequestScoped
 @Path("persons")
 public class PersonResource {
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Person> getAllPersons() {
@@ -208,9 +210,9 @@ public class PersonResource {
 }
 ```
 
-在这里，我们已将GET映射的getAllPersons方法添加到/api/persons端点。因此，我们已准备好使用RESTfulWeb服务，并且liberty:dev命令将即时加载更改。
+在这里，我们添加了getAllPersons方法，用于将GET映射到/api/people端点。因此，我们已准备好使用RESTful Web服务，并且liberty:dev命令将即时加载更改。
 
-让我们使用curlGET请求访问/api/personsRESTfulWeb服务：
+让我们使用curl GET请求访问/api/persons RESTful Web服务：
 
 ```shell
 curl --request GET --url http://localhost:9080/api/persons
@@ -218,8 +220,14 @@ curl --request GET --url http://localhost:9080/api/persons
 
 然后，我们将得到一个JSON数组作为响应：
 
-```shell
-[{"id":1, "username":"normanlewis", "email":"normanlewis@email.com"}]
+```json
+[
+    {
+        "id": 1,
+        "username": "normanlewis",
+        "email": "normanlewis@email.com"
+    }
+]
 ```
 
 同样，我们可以通过创建addPerson方法来添加POST映射：
@@ -233,11 +241,11 @@ public Response addPerson(Person person) {
 }
 ```
 
-现在，我们可以使用curlPOST请求调用端点：
+现在，我们可以使用curl POST请求调用端点：
 
 ```shell
-curl --request POST --url http://localhost:9080/api/persons 
-  --header 'content-type: application/json' 
+curl --request POST --url http://localhost:9080/api/persons \
+  --header 'content-type: application/json' \
   --data '{"username": "normanlewis", "email": "normanlewis@email.com"}'
 ```
 
@@ -247,13 +255,13 @@ curl --request POST --url http://localhost:9080/api/persons
 Person normanlewis received successfully.
 ```
 
-## 6.坚持
+## 6. 持久层
 
-### 6.1.配置
+### 6.1 配置
 
-让我们为RESTfulWeb服务添加持久性支持。
+让我们为RESTful Web服务添加持久性支持。
 
-首先，我们将[derby](https://search.maven.org/search?q=g:org.apache.derbya:derbyANDv:10.14.2.0)Maven依赖项添加到pom.xml中：
+首先，我们将[derby](https://central.sonatype.com/artifact/org.apache.derby/derby/10.15.2.0) Maven依赖项添加到pom.xml中：
 
 ```xml
 <dependency>
@@ -267,42 +275,41 @@ Person normanlewis received successfully.
 
 ```xml
 <featureManager>
-    ...
+    <!--...-->
     <feature>jpa-2.2</feature> 
     <feature>jsonp-1.1</feature>
     <feature>cdi-2.0</feature>
 </featureManager>
-
 ```
 
-在这里，[jsonp-1.1](https://search.maven.org/search?q=g:io.openliberty.featuresa:jsonp-1.1)特性提供了用于JSON处理的JavaAPI，而[cdi-2.0](https://search.maven.org/search?q=g:io.openliberty.featuresa:cdi-2.0)特性处理范围和依赖注入。
+在这里，[jsonp-1.1](https://search.maven.org/search?q=g:io.openliberty.featuresa:jsonp-1.1)功能提供了用于JSON处理的Java API，而[cdi-2.0](https://search.maven.org/search?q=g:io.openliberty.featuresa:cdi-2.0)功能处理作用域和依赖注入。
 
 接下来，我们将在src/main/resources/META-INF目录中创建persistence.xml：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.2"
-    xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
                         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="jpa-unit" transaction-type="JTA">
         <jta-data-source>jdbc/jpadatasource</jta-data-source>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
-            <property name="eclipselink.ddl-generation.output-mode" value="both" />
+            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
         </properties>
     </persistence-unit>
 </persistence>
 ```
 
-在这里，我们使用了[EclipseLinkDDL生成](https://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_ddl_generation.htm)来自动创建我们的数据库模式。我们还可以使用其他替代方案，如Hibernate。
+在这里，我们使用了[EclipseLink ddl-generation](https://www.eclipse.org/eclipselink/documentation/2.5/jpa/extensions/p_ddl_generation.htm)来自动创建我们的数据库模式。我们还可以使用其他替代方案，例如Hibernate。
 
 然后，让我们将dataSource配置添加到server.xml：
 
 ```xml
 <library id="derbyJDBCLib">
-    <fileset dir="${shared.resource.dir}" includes="derby.jar"/> 
+    <fileset dir="${shared.resource.dir}" includes="derby*.jar"/> 
 </library>
 <dataSource id="jpadatasource" jndiName="jdbc/jpadatasource">
     <jdbcDriver libraryRef="derbyJDBCLib" />
@@ -310,11 +317,11 @@ Person normanlewis received successfully.
 </dataSource>
 ```
 
-请注意，jndiName具有对persistence.xml中的jta-data-source标记的相同引用。
+请注意，jndiName具有对persistence.xml中的jta-data-source标签的相同引用。
 
-### 6.2.实体和DAO
+### 6.2 实体和DAO
 
-然后，我们将向Person类添加[@Entity](https://www.baeldung.com/jpa-entities)注解和标识符：
+然后，我们将[@Entity](https://www.baeldung.com/jpa-entities)和相关注解添加到Person类：
 
 ```java
 @Entity
@@ -322,7 +329,7 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
-    
+
     private String username;
     private String email;
 
@@ -349,9 +356,9 @@ public class PersonDao {
 }
 ```
 
-请注意，@PersistenceContext在[persistence.xml](https://jakarta.ee/specifications/platform/8/apidocs/javax/persistence/PersistenceContext.html)中定义了对persistence-unit标记的相同引用。
+请注意，[@PersistenceContext](https://jakarta.ee/specifications/platform/8/apidocs/javax/persistence/PersistenceContext.html)定义了对persistence.xml中persistence-unit标签的相同引用
 
-现在，我们将在PersonResource类中注入PersonDao依赖项：
+现在，我们将在PersonResource类中注入PersonDao依赖：
 
 ```java
 @RequestScoped
@@ -379,19 +386,19 @@ public Response addPerson(Person person) {
 }
 ```
 
-此处，addPerson方法使用[@Transactional](https://jakarta.ee/specifications/platform/8/apidocs/javax/transaction/Transactional.html)注解进行注解，以控制CDI托管bean上的事务。
+此处，addPerson方法使用[@Transactional](https://jakarta.ee/specifications/platform/8/apidocs/javax/transaction/Transactional.html)注解进行标注，以控制CDI托管bean上的事务。
 
-让我们用已经讨论过的curlPOST请求调用端点：
+让我们使用已经讨论过的curl POST请求调用端点：
 
 ```shell
-curl --request POST --url http://localhost:9080/api/persons 
-  --header 'content-type: application/json' 
+curl --request POST --url http://localhost:9080/api/persons \
+  --header 'content-type: application/json' \
   --data '{"username": "normanlewis", "email": "normanlewis@email.com"}'
 ```
 
 然后，我们将收到一条文本回复：
 
-```shell
+```text
 Person #1 created successfully.
 ```
 
@@ -408,7 +415,7 @@ public Person getPerson(@PathParam("id") int id) {
 }
 ```
 
-让我们使用curlGET请求调用端点：
+让我们使用curl GET请求调用端点：
 
 ```shell
 curl --request GET --url http://localhost:9080/api/persons/1
@@ -416,17 +423,21 @@ curl --request GET --url http://localhost:9080/api/persons/1
 
 然后，我们将获取Person对象作为JSON响应：
 
-```shell
-{"email":"normanlewis@email.com","id":1,"username":"normanlewis"}
+```json
+{
+    "email": "normanlewis@email.com",
+    "id": 1,
+    "username": "normanlewis"
+}
 ```
 
-## 7.使用JSON-B使用RESTfulWeb服务
+## 7. 使用JSON-B使用RESTful Web服务
 
 首先，我们将通过向server.xml添加[jsonb-1.0](https://search.maven.org/search?q=g:io.openliberty.featuresa:jsonb-1.0)功能来启用直接序列化和反序列化模型的能力：
 
 ```xml
 <featureManager>
-    ...
+    <!--...-->
     <feature>jsonb-1.0</feature>
 </featureManager>
 ```
@@ -446,9 +457,9 @@ public class RestConsumer {
 }
 ```
 
-在这里，我们使用了[ClientBuilder](https://jakarta.ee/specifications/platform/8/apidocs/javax/ws/rs/client/ClientBuilder.html)类来请求RESTfulWeb服务端点。
+在这里，我们使用了[ClientBuilder](https://jakarta.ee/specifications/platform/8/apidocs/javax/ws/rs/client/ClientBuilder.html)类来请求RESTful Web服务端点。
 
-最后，让我们编写一个单元测试来使用/api/personRESTfulWeb服务并验证响应：
+最后，让我们编写一个单元测试来使用/api/person RESTful Web服务并验证响应：
 
 ```java
 @Test
@@ -465,12 +476,13 @@ public void whenConsumeWithJsonb_thenGetPerson() {
 
 在这里，我们使用[JsonbBuilder](https://jakarta.ee/specifications/platform/8/apidocs/javax/json/bind/JsonbBuilder.html)类将String响应解析为Person对象。
 
-此外，我们可以通过添加[mpRestClient-1.3](https://search.maven.org/search?q=g:io.openliberty.featuresa:mpRestClient-1.3)功能来使用MicroProfileRestClient来使用RESTfulWeb服务。它提供[RestClientBuilder](https://download.eclipse.org/microprofile/microprofile-rest-client-1.3/apidocs/org/eclipse/microprofile/rest/client/RestClientBuilder.html)接口来请求RESTfulWeb服务端点。
+此外，**我们可以通过添加[mpRestClient-1.3](https://search.maven.org/search?q=g:io.openliberty.featuresa:mpRestClient-1.3)功能来使用MicroProfile RestClient来使用RESTful Web服务**。它提供[RestClientBuilder](https://download.eclipse.org/microprofile/microprofile-rest-client-1.3/apidocs/org/eclipse/microprofile/rest/client/RestClientBuilder.html)接口来请求RESTful Web服务端点。
 
-## 八、总结
+## 8. 总结
 
-在本文中，我们探索了OpenLiberty框架——一种快速且轻量级的Java运行时，它提供了EclipseMicroProfile和JakartaEE平台的全部功能。
+在本文中，我们探索了Open Liberty框架-一个快速且轻量级的Java运行时，它提供了Eclipse MicroProfile和Jakarta EE平台的全部功能。
 
-首先，我们使用JAX-RS创建了一个RESTfulWeb服务。然后，我们使用JPA和CDI等功能启用持久性。
+首先，我们使用JAX-RS创建了一个RESTful Web服务。然后，我们使用JPA和CDI等功能启用持久性。
 
-最后，我们使用JSON-B使用RESTfulWeb服务。
+最后，我们使用JSON-B使用RESTful Web服务。
+

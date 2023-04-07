@@ -1,16 +1,16 @@
-## 1. 概述
+## 1.概述
 
 [集合框架](https://docs.oracle.com/javase/8/docs/technotes/guides/collections/overview.html)是Java的一个关键组件。它提供了大量的接口和实现，使我们能够以直接的方式创建和操作不同类型的集合。
 
 虽然使用普通的非同步集合总体上很简单，但在多线程环境(也称为并发编程)中工作时，它也可能成为一个令人生畏且容易出错的过程。
 
-因此，Java 平台通过在[Collections](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collections.html#synchronizedCollection(java.util.Collection))类中实现的不同同步包装器为这种情况提供了强大的支持。
+因此，Java平台通过在[Collections](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collections.html#synchronizedCollection(java.util.Collection))类中实现的不同同步包装器为这种情况提供了强大的支持。
 
 这些包装器使得通过几个静态工厂方法创建提供的集合的同步视图变得容易。
 
 在本教程中，我们将深入研究这些静态同步包装器。此外，我们将强调同步集合和并发集合之间的区别。
 
-## 2. synchronizedCollection()方法
+## 2.synchronizedCollection()方法
 
 我们将在本综述中介绍的第一个同步包装器是synchronizedCollection()方法。顾名思义，它返回由指定[Collection](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Collection.html)支持的线程安全集合。
 
@@ -38,11 +38,11 @@ Collection<Integer> syncCollection = Collections.synchronizedCollection(new Arra
 
 为了证明该方法实际上返回了一个线程安全的集合，我们首先创建了几个线程。
 
-之后，我们以 lambda 表达式的形式将一个[Runnable实例注入到它们的构造函数中。](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html)让我们记住Runnable是一个功能接口，所以我们可以用 lambda 表达式替换它。
+之后，我们以lambda表达式的形式将一个[Runnable实例注入到它们的构造函数中。](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Runnable.html)让我们记住Runnable是一个功能接口，所以我们可以用lambda表达式替换它。
 
 最后，我们只是检查每个线程是否有效地将六个元素添加到同步集合中，所以它的最终大小是十二。
 
-## 3. synchronizedList()方法
+## 3.synchronizedList()方法
 
 同样，类似于synchronizedCollection()方法，我们可以使用synchronizedList()包装器来创建一个同步[列表](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/List.html)。
 
@@ -52,7 +52,7 @@ Collection<Integer> syncCollection = Collections.synchronizedCollection(new Arra
 List<Integer> syncList = Collections.synchronizedList(new ArrayList<>());
 ```
 
-毫不奇怪，synchronizedList()方法的使用看起来与其更高级别的对应方法 synchronizedCollection() 几乎 相同。
+毫不奇怪，synchronizedList()方法的使用看起来与其更高级别的对应方法synchronizedCollection()几乎相同。
 
 因此，正如我们刚刚在之前的单元测试中所做的那样，一旦我们创建了一个同步列表，我们就可以生成多个线程。完成之后，我们将使用它们以线程安全的方式访问/操作目标列表。
 
@@ -76,9 +76,9 @@ Runnable listOperations = () -> {
 
 同步块的使用保证了操作的原子性。
 
-## 4. synchronizedMap()方法
+## 4.synchronizedMap()方法
 
-Collections类实现了另一个简洁的同步包装器，称为 synchronizedMap()。 我们可以用它来轻松创建一个同步的[Map](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html)。
+Collections类实现了另一个简洁的同步包装器，称为synchronizedMap()。我们可以用它来轻松创建一个同步的[Map](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Map.html)。
 
 该方法返回所提供的Map实现的线程安全视图：
 
@@ -87,7 +87,7 @@ Map<Integer, String> syncMap = Collections.synchronizedMap(new HashMap<>());
 
 ```
 
-## 5. synchronizedSortedMap()方法
+## 5.synchronizedSortedMap()方法
 
 还有一个synchronizedMap()方法的对应实现。它称为synchronizedSortedMap()，我们可以使用它来创建同步的[SortedMap](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/SortedMap.html)实例：
 
@@ -96,7 +96,7 @@ Map<Integer, String> syncSortedMap = Collections.synchronizedSortedMap(new TreeM
 
 ```
 
-## 6. synchronizedSet()方法
+## 6.synchronizedSet()方法
 
 接下来，继续本次审查，我们有synchronizedSet()方法。顾名思义，它允许我们以最少的麻烦创建同步[集。](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Set.html)
 
@@ -107,7 +107,7 @@ Set<Integer> syncSet = Collections.synchronizedSet(new HashSet<>());
 
 ```
 
-## 7. synchronizedSortedSet()方法
+## 7.synchronizedSortedSet()方法
 
 最后，我们将在此处展示的最后一个同步包装器是synchronizedSortedSet()。
 
@@ -118,13 +118,13 @@ SortedSet<Integer> syncSortedSet = Collections.synchronizedSortedSet(new TreeSet
 
 ```
 
-## 8. 同步与并发集合
+## 8.同步与并发集合
 
 到目前为止，我们仔细研究了集合框架的同步包装器。
 
-现在，让我们关注 同步集合和并发集合之间的区别，例如[ConcurrentHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html)和[BlockingQueue](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/BlockingQueue.html)实现。
+现在，让我们关注同步集合和并发集合之间的区别，例如[ConcurrentHashMap](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html)和[BlockingQueue](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/BlockingQueue.html)实现。
 
-### 8.1. 同步集合
+### 8.1.同步集合
 
 [同步集合通过内在](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html)[锁定](https://docs.oracle.com/javase/tutorial/essential/concurrency/locksync.html)实现线程安全，整个集合都被锁定。内部锁定是通过包装集合方法中的同步块实现的。
 
@@ -132,9 +132,9 @@ SortedSet<Integer> syncSortedSet = Collections.synchronizedSortedSet(new TreeSet
 
 有关如何使用同步方法和块的详细指南，请查看[我们](https://www.baeldung.com/java-synchronized)关于该主题的文章。
 
-### 8.2. 并发集合
+### 8.2.并发集合
 
-并发集合(例如ConcurrentHashMap)通过将它们的数据分成段来实现线程安全。例如，在 ConcurrentHashMap中，不同的线程可以获得每个段上的锁，因此多个线程可以同时访问Map(也称为并发访问)。
+并发集合(例如ConcurrentHashMap)通过将它们的数据分成段来实现线程安全。例如，在ConcurrentHashMap中，不同的线程可以获得每个段上的锁，因此多个线程可以同时访问Map(也称为并发访问)。
 
 由于并发线程访问的固有优势，并发集合比同步集合性能更高。
 

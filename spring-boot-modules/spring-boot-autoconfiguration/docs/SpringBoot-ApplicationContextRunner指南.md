@@ -1,100 +1,92 @@
 ## 1. 概述
 
-众所周知，自动配置是Spring Boot的关键特性之一，但测试自动配置场景可能会很棘手。
+众所周知，[自动配置](https://www.baeldung.com/spring-boot-custom-auto-configuration)是Spring Boot的关键特性之一，但测试自动配置场景可能会很棘手。
 
-**在本文中，我们介绍ApplicationContextRunner如何简化自动配置测试**。
+在以下部分中，我们将展示**ApplicationContextRunner如何简化自动配置测试**。
 
 ## 2. 测试自动配置场景
 
-**ApplicationContextRunner是一个工具类，它运行ApplicationContext并提供AssertJ风格的断言**。它最好**用作测试类中的一个字段**，用于共享配置，之后我们会在每个测试中进行自定义：
+**ApplicationContextRunner是一个实用程序类，它运行ApplicationContext并提供AssertJ样式的断言**。它最好**用作共享配置的测试类中的字段**，之后我们会在每个测试中进行自定义：
 
 ```java
-private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+class ConditionalOnClassIntegrationTest {
+    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+}
 ```
 
-让我们通过测试几个案例来演示它的用法。
+让我们通过测试几个示例来演示它的用法。
 
 ### 2.1 测试类条件
 
 在本节中，我们将**测试一些使用@ConditionalOnClass和@ConditionalOnMissingClass注解的自动配置类**：
 
 ```java
-class ConditionalOnClassIntegrationTest {
-    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
-
-    @Configuration
-    @ConditionalOnClass(ConditionalOnClassIntegrationTest.class)
-    protected static class ConditionalOnClassConfiguration {
-        @Bean
-        public String created() {
-            return "This is created when ConditionalOnClassIntegrationTest is present on the classpath";
-        }
+@Configuration
+@ConditionalOnClass(ConditionalOnClassIntegrationTest.class)
+protected static class ConditionalOnClassConfiguration {
+    @Bean
+    public String created() {
+        return "This is created when ConditionalOnClassIntegrationTest is present on the classpath";
     }
+}
 
-    @Configuration
-    @ConditionalOnMissingClass("cn.tuyucheng.taketoday.autoconfiguration.ConditionalOnClassIntegrationTest")
-    protected static class ConditionalOnMissingClassConfiguration {
-        @Bean
-        public String missed() {
-            return "This is missed when ConditionalOnClassIntegrationTest is present on the classpath";
-        }
+@Configuration
+@ConditionalOnMissingClass("cn.tuyucheng.taketoday.autoconfiguration.ConditionalOnClassIntegrationTest")
+protected static class ConditionalOnMissingClassConfiguration {
+    @Bean
+    public String missed() {
+        return "This is missed when ConditionalOnClassIntegrationTest is present on the classpath";
     }
 }
 ```
 
-我们想测试自动配置是否正确实例化或跳过给定预期条件的created和missed的bean。
+我们想测试自动配置是否在给定预期条件的情况下正确实例化或跳过created和missed的bean。
 
-ApplicationContextRunner为我们提供了withUserConfiguration方法，我们可以根据需要提供自动配置来为每个测试自定义ApplicationContext。
+ApplicationContextRunner为我们提供了withUserConfiguration方法，我们可以按需提供自动配置，为每个测试自定义ApplicationContext。
 
 run方法将ContextConsumer作为参数，将断言应用于上下文。当测试退出时，ApplicationContext将自动关闭：
 
 ```java
-class ConditionalOnClassIntegrationTest {
+@Test
+void whenDependentClassIsPresent_thenBeanCreated() {
+    this.contextRunner.withUserConfiguration(ConditionalOnClassConfiguration.class)
+          .run(context -> {
+              assertThat(context).hasBean("created");
+              assertThat(context.getBean("created")).isEqualTo("This is created when ConditionalOnClassIntegrationTest is present on the classpath");
+          });
+}
 
-    @Test
-    void whenDependentClassIsPresent_thenBeanCreated() {
-        this.contextRunner.withUserConfiguration(ConditionalOnClassConfiguration.class)
-              .run(context -> {
-                  assertThat(context).hasBean("created");
-                  assertThat(context.getBean("created")).isEqualTo("This is created when ConditionalOnClassIntegrationTest is present on the classpath");
-              });
-    }
-
-    @Test
-    void whenDependentClassIsPresent_thenBeanMissing() {
-        this.contextRunner.withUserConfiguration(ConditionalOnMissingClassConfiguration.class)
-              .run(context -> assertThat(context).doesNotHaveBean("missed"));
-    }
+@Test
+void whenDependentClassIsPresent_thenBeanMissing() {
+    this.contextRunner.withUserConfiguration(ConditionalOnMissingClassConfiguration.class)
+          .run(context -> assertThat(context).doesNotHaveBean("missed"));
 }
 ```
 
-通过前面的示例，我们看到了测试某个类存在于类路径中的场景的简单性。**但是，当类路径中不存在该类时，我们将如何测试相反的情况呢**？
+通过前面的示例，我们看到了测试类路径中存在某个类的场景的简单性。**但是，当类路径中不存在该类时，我们将如何测试相反的情况呢**？
 
 这就是FilteredClassLoader发挥作用的地方，它用于在运行时过滤类路径上的指定类：
 
 ```java
-class ConditionalOnClassIntegrationTest {
+@Test
+void whenDependentClassIsNotPresent_thenBeanMissing() {
+    this.contextRunner.withUserConfiguration(ConditionalOnClassConfiguration.class)
+          .withClassLoader(new FilteredClassLoader(ConditionalOnClassIntegrationTest.class))
+          .run(context -> {
+              assertThat(context).doesNotHaveBean("created");
+              assertThat(context).doesNotHaveBean(ConditionalOnClassIntegrationTest.class);
+          });
+}
 
-    @Test
-    void whenDependentClassIsNotPresent_thenBeanMissing() {
-        this.contextRunner.withUserConfiguration(ConditionalOnClassConfiguration.class)
-              .withClassLoader(new FilteredClassLoader(ConditionalOnClassIntegrationTest.class))
-              .run(context -> {
-                  assertThat(context).doesNotHaveBean("created");
-                  assertThat(context).doesNotHaveBean(ConditionalOnClassIntegrationTest.class);
-              });
-    }
-
-    @Test
-    void whenDependentClassIsNotPresent_thenBeanCreated() {
-        this.contextRunner.withUserConfiguration(ConditionalOnMissingClassConfiguration.class)
-              .withClassLoader(new FilteredClassLoader(ConditionalOnClassIntegrationTest.class))
-              .run(context -> {
-                  assertThat(context).hasBean("missed");
-                  assertThat(context).getBean("missed").isEqualTo("This is missed when ConditionalOnClassIntegrationTest is present on the classpath");
-                  assertThat(context).doesNotHaveBean(ConditionalOnClassIntegrationTest.class);
-              });
-    }
+@Test
+void whenDependentClassIsNotPresent_thenBeanCreated() {
+    this.contextRunner.withUserConfiguration(ConditionalOnMissingClassConfiguration.class)
+          .withClassLoader(new FilteredClassLoader(ConditionalOnClassIntegrationTest.class))
+          .run(context -> {
+              assertThat(context).hasBean("missed");
+              assertThat(context).getBean("missed").isEqualTo("This is missed when ConditionalOnClassIntegrationTest is present on the classpath");
+              assertThat(context).doesNotHaveBean(ConditionalOnClassIntegrationTest.class);
+          });
 }
 ```
 
@@ -132,7 +124,7 @@ protected static class ConditionalOnMissingBeanConfiguration {
 }
 ```
 
-然后，我们可以像上一节一样调用withUserConfiguration方法，并传递我们的自定义配置类来测试自动配置是否在不同条件下适当地实例化或跳过createOnBean或createOnMissingBean bean：
+然后，我们将像上一节一样调用withUserConfiguration方法，并传递我们的自定义配置类来测试自动配置是否在不同条件下适当地实例化或跳过createOnBean或createOnMissingBean bean：
 
 ```java
 class ConditionalOnBeanIntegrationTest {
@@ -178,7 +170,7 @@ class ConditionalOnBeanIntegrationTest {
 
 ### 2.3 测试属性条件
 
-在本节中，我们**测试使用@ConditionalOnProperty注解的自动配置类**。
+在本节中，让我们**测试使用@ConditionalOnProperty注解的自动配置类**。
 
 首先，我们需要一个用于此测试的属性：
 
@@ -210,7 +202,7 @@ protected static class SimpleServiceConfiguration {
 }
 ```
 
-现在，我们调用withPropertyValues方法来重写每个测试中的属性值：
+现在，我们调用withPropertyValues方法来覆盖每个测试中的属性值：
 
 ```java
 public class ConditionalOnPropertyIntegrationTest {
@@ -243,6 +235,8 @@ public class ConditionalOnPropertyIntegrationTest {
 
 ## 3. 总结
 
-总而言之，本文只是展示了如何使用ApplicationContextRunner来运行具有自定义和应用断言的ApplicationContext。我们在这里介绍了最常用的场景，而不是详细列出如何自定义ApplicationContext。
+总而言之，本教程只是展示了**如何使用ApplicationContextRunner来运行具有自定义和应用断言的ApplicationContext**。
+
+我们在这里介绍了最常用的场景，而不是详细列出如何自定义ApplicationContext。
 
 同时，请记住ApplicationContextRunner适用于非Web应用程序，因此还有WebApplicationContextRunner用于基于Servlet的Web应用程序，和ReactiveWebApplicationContextRunner用于响应式Web应用程序。

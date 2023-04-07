@@ -2,9 +2,9 @@
 
 在本文中，我们将了解如何使用[ASM](http://asm.ow2.org/)库通过添加字段、添加方法和更改现有方法的行为来操作现有的Java类。
 
-## 2.依赖关系
+## 2. 依赖
 
-我们需要将 ASM 依赖项添加到我们的pom.xml中：
+我们需要将ASM依赖项添加到我们的pom.xml中：
 
 ```xml
 <dependency>
@@ -17,28 +17,27 @@
     <artifactId>asm-util</artifactId>
     <version>6.0</version>
 </dependency>
-
 ```
 
-我们可以从 Maven Central获取最新版本的[asm](https://search.maven.org/classic/#search|ga|1|g%3A"org.ow2.asm" AND a%3A"asm")和[asm-util 。](https://search.maven.org/classic/#search|ga|1|g%3A"org.ow2.asm" AND a%3A"asm-util")
+我们可以从Maven Central获取最新版本的[asm](https://central.sonatype.com/artifact/org.ow2.asm/asm/9.5)和[asm-util](https://central.sonatype.com/artifact/org.ow2.asm/asm-util/9.5)。
 
-## 3. ASM API 基础
+## 3. ASM API基础
 
-ASM API 提供了两种与Java类进行转换和生成的交互方式：基于事件和基于树。
+ASM API提供了两种与Java类进行转换和生成的交互方式：基于事件和基于树。
 
-### 3.1. 基于事件的 API
+### 3.1 基于事件的API
 
-该 API 很大程度上基于访问者模式，在感觉上类似于处理 XML 文档的 SAX 解析模型。它的核心由以下组件组成：
+该API很大程度上基于访问者模式，在感觉上类似于处理XML文档的SAX解析模型。它的核心由以下组件组成：
 
--   ClassReader——帮助读取class文件，是改造一个class的开始
--   ClassVisitor——提供读取原始类文件后用于转换类的方法
--   ClassWriter——用于输出类转换的最终产物
+-   ClassReader：帮助读取class文件，是改造一个class的开始
+-   ClassVisitor：提供读取原始class文件后用于转换class的方法
+-   ClassWriter：用于输出class转换的最终产物
 
-在ClassVisitor中，我们拥有所有访问者方法，我们将使用这些方法来接触给定Java类的不同组件(字段、方法等)。我们通过提供ClassVisitor 的子类来实现给定类中的任何更改来实现这一点。
+在ClassVisitor中，我们拥有所有访问者方法，我们将使用这些方法来接触给定Java类的不同组件(字段、方法等)。我们通过提供ClassVisitor的子类来实现给定类中的任何更改来实现这一点。
 
 由于需要保持有关Java约定和生成的字节码的输出类的完整性，因此此类需要严格的顺序来调用其方法以生成正确的输出。
 
-基于事件的 API 中的ClassVisitor方法按以下顺序调用：
+基于事件的API中的ClassVisitor方法按以下顺序调用：
 
 ```plaintext
 visit
@@ -49,15 +48,15 @@ visitOuterClass?
 visitEnd
 ```
 
-### 3.2. 基于树的 API
+### 3.2.基于树的API
 
-这个 API 是一个更面向对象的API，类似于处理 XML 文档的 JAXB 模型。
+这个API是一个更面向对象的API，类似于处理XML文档的JAXB模型。
 
-它仍然基于基于事件的 API，但它引入了ClassNode根类。此类用作类结构的入口点。
+它仍然基于基于事件的API，但它引入了ClassNode根类。此类用作类结构的入口点。
 
-## 4. 使用基于事件的 ASM API
+## 4.使用基于事件的ASM API
 
-我们将使用 ASM 修改java.lang.Integer类。此时我们需要掌握一个基本概念：ClassVisitor类包含所有必要的访问者方法来创建或修改类的所有部分。
+我们将使用ASM修改java.lang.Integer类。此时我们需要掌握一个基本概念：ClassVisitor类包含所有必要的访问者方法来创建或修改类的所有部分。
 
 我们只需要覆盖必要的访问者方法来实现我们的更改。让我们从设置先决条件组件开始：
 
@@ -76,9 +75,9 @@ public class CustomClassWriter {
 }
 ```
 
-我们以此为基础，将Cloneable接口添加到 stock Integer类中，同时我们还添加了一个字段和一个方法。
+我们以此为基础，将Cloneable接口添加到stockInteger类中，同时我们还添加了一个字段和一个方法。
 
-### 4.1. 使用字段
+### 4.1.使用字段
 
 让我们创建我们的ClassVisitor，我们将使用它来向Integer类添加一个字段：
 
@@ -118,7 +117,7 @@ public FieldVisitor visitField(
 
 ```
 
-我们首先检查在前面的visitField方法中设置的标志，然后再次调用visitField方法，这次提供名称、访问修饰符和描述。此方法返回FieldVisitor 的一个实例。
+我们首先检查在前面的visitField方法中设置的标志，然后再次调用visitField方法，这次提供名称、访问修饰符和描述。此方法返回FieldVisitor的一个实例。
 
 visitEnd方法是按访问者方法顺序调用的最后一个方法。这是执行字段插入逻辑的推荐位置。
 
@@ -139,7 +138,7 @@ public void visitEnd() {
 
 ```
 
-确保使用的所有 ASM 组件都来自org.objectweb.asm包很重要——许多库在内部使用 ASM 库，IDE 可以自动插入捆绑的 ASM 库。
+确保使用的所有ASM组件都来自org.objectweb.asm包很重要——许多库在内部使用ASM库，IDE可以自动插入捆绑的ASM库。
 
 我们现在在addField方法中使用我们的适配器，使用我们添加的字段获得java.lang.Integer的转换版本：
 
@@ -162,13 +161,13 @@ public class CustomClassWriter {
 
 与字段有关的所有事情都发生在visitField方法中。这意味着我们还可以通过更改传递给visitField方法的所需值来修改现有字段(例如，将私有字段转换为公共字段)。
 
-### 4.2. 使用方法
+### 4.2.使用方法
 
-在 ASM API 中生成整个方法比类中的其他操作更复杂。这涉及大量的低级字节码操作，因此超出了本文的范围。
+在ASM API中生成整个方法比类中的其他操作更复杂。这涉及大量的低级字节码操作，因此超出了本文的范围。
 
 然而，对于大多数实际用途，我们可以修改现有方法以使其更易于访问(也许将其公开以便可以覆盖或重载)或修改类以使其可扩展。
 
-让我们公开 toUnsignedString 方法：
+让我们公开toUnsignedString方法：
 
 ```java
 public class PublicizeMethodAdapter extends ClassVisitor {
@@ -210,7 +209,7 @@ public byte[] publicizeMethod() {
 
 ```
 
-### 4.3. 使用类
+### 4.3.使用类
 
 与修改方法一样，我们通过拦截适当的访问者方法来修改类。在这种情况下，我们拦截visit，这是访问者层次结构中的第一个方法：
 
@@ -245,9 +244,9 @@ public class AddInterfaceAdapter extends ClassVisitor {
 
 除了简单地将writer.toByteArray的输出作为类文件写入磁盘外，还有一些其他方法可以与我们自定义的Integer类进行交互。
 
-### 5.1. 使用TraceClassVisitor
+### 5.1.使用TraceClassVisitor
 
-ASM 库提供了TraceClassVisitor实用程序类，我们将使用它来检查修改后的类。因此我们可以确认我们的更改已经发生。
+ASM库提供了TraceClassVisitor实用程序类，我们将使用它来检查修改后的类。因此我们可以确认我们的更改已经发生。
 
 因为TraceClassVisitor是一个ClassVisitor，我们可以将它用作标准ClassVisitor的替代品：
 
@@ -282,22 +281,22 @@ public void visitEnd(){
 
 ```
 
-我们在这里所做的是使用 TraceClassVisitor 调整我们传递给我们之前的PublicizeMethodAdapter的ClassVisitor。
+我们在这里所做的是使用TraceClassVisitor调整我们传递给我们之前的PublicizeMethodAdapter的ClassVisitor。
 
 所有访问现在都将通过我们的跟踪器完成，然后它可以打印出转换后的类的内容，显示我们对其所做的任何修改。
 
-虽然 ASM 文档指出TraceClassVisitor可以打印到提供给构造函数的PrintWriter，但这在最新版本的 ASM 中似乎无法正常工作。
+虽然ASM文档指出TraceClassVisitor可以打印到提供给构造函数的PrintWriter，但这在最新版本的ASM中似乎无法正常工作。
 
 幸运的是，我们可以访问类中的底层打印机，并且能够在重写的visitEnd方法中手动打印出跟踪器的文本内容。
 
-### 5.2. 使用Java检测
+### 5.2.使用Java检测
 
-这是一个更优雅的解决方案，它允许我们通过[Instrumentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.instrument/java/lang/instrument/package-summary.html)在更近的层次上使用 JVM 。
+这是一个更优雅的解决方案，它允许我们通过[Instrumentation](https://docs.oracle.com/en/java/javase/11/docs/api/java.instrument/java/lang/instrument/package-summary.html)在更近的层次上使用JVM。
 
-为了检测java.lang.Integer类，我们编写了一个代理，该代理将配置为 JVM 的命令行参数。代理需要两个组件：
+为了检测java.lang.Integer类，我们编写了一个代理，该代理将配置为JVM的命令行参数。代理需要两个组件：
 
 -   实现名为premain的方法的类
--   [ClassFileTransformer](https://docs.oracle.com/en/java/javase/11/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html) 的实现，我们将有条件地提供我们类的修改版本
+-   [ClassFileTransformer](https://docs.oracle.com/en/java/javase/11/docs/api/java.instrument/java/lang/instrument/ClassFileTransformer.html)的实现，我们将有条件地提供我们类的修改版本
 
 ```java
 public class Premain {
@@ -322,7 +321,7 @@ public class Premain {
 }
 ```
 
-我们现在使用 Maven jar 插件在 JAR 清单文件中定义我们的premain实现类：
+我们现在使用Mavenjar插件在JAR清单文件中定义我们的premain实现类：
 
 ```xml
 <plugin>
@@ -344,18 +343,18 @@ public class Premain {
 </plugin>
 ```
 
-到目前为止，构建和打包我们的代码会生成我们可以作为代理加载的 jar。在假设的“ YourClass.class ”中使用我们定制的Integer类：
+到目前为止，构建和打包我们的代码会生成我们可以作为代理加载的jar。在假设的“YourClass.class”中使用我们定制的Integer类：
 
 ```bash
 java YourClass -javaagent:"/path/to/theAgentJar.jar"
 ```
 
-## 6. 总结
+## 6.总结
 
-虽然我们在这里单独实现了我们的转换，但 ASM 允许我们将多个适配器链接在一起以实现类的复杂转换。
+虽然我们在这里单独实现了我们的转换，但ASM允许我们将多个适配器链接在一起以实现类的复杂转换。
 
-除了我们在这里检查的基本转换之外，ASM 还支持与注解、泛型和内部类的交互。
+除了我们在这里检查的基本转换之外，ASM还支持与注解、泛型和内部类的交互。
 
-我们已经看到了 ASM 库的一些强大功能 — 它消除了我们在使用第三方库甚至标准 JDK 类时可能会遇到的许多限制。
+我们已经看到了ASM库的一些强大功能—它消除了我们在使用第三方库甚至标准JDK类时可能会遇到的许多限制。
 
-ASM 在一些最流行的库(Spring、AspectJ、JDK 等)的引擎盖下被广泛使用，以在运行中执行许多“魔法”。
+ASM在一些最流行的库(Spring、AspectJ、JDK等)的引擎盖下被广泛使用，以在运行中执行许多“魔法”。

@@ -1,45 +1,49 @@
 ## 1. 概述
 
-简单地说，Spring Boot的自动配置帮助我们根据类路径中存在的依赖项自动配置Spring应用程序。通过消除定义自动配置类中包含的某些bean的需要，这可以使开发更快、更容易。
+简单地说，Spring Boot自动配置帮助我们根据类路径中存在的依赖项自动配置Spring应用程序。
+
+通过消除定义自动配置类中包含的某些bean的需要，这可以使开发更快、更容易。
 
 在下一节中，我们将介绍如何**创建自定义的Spring Boot自动配置**。
 
 ## 2. Maven依赖
 
-本例中演示一个自动配置MySQL数据源的示例，因此我们需要添加以下依赖：
+让我们从依赖项开始：
 
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-jpa</artifactId>
-    <version>2.6.1</version>
+    <version>2.4.0</version>
 </dependency>
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.27</version>
+    <version>8.0.19</version>
 </dependency>
 ```
 
+可以从Maven Central下载最新版本的[spring-boot-starter-data-jpa](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa/3.0.5)和[mysql-connector-java](https://central.sonatype.com/artifact/mysql/mysql-connector-java/8.0.32)。
+
 ## 3. 创建自定义自动配置
 
-**为了创建自定义自动配置，我们需要创建一个@Configuration的类并注册它**。
+**为了创建自定义自动配置，我们需要创建一个标注为@Configuration的类并注册它**。
 
-让我们为MySQL数据源创建一个自定义配置：
+让我们为MySQL数据源创建自定义配置：
 
 ```java
 @Configuration
 public class MySQLAutoconfiguration {
-
+    // ...
 }
 ```
 
 接下来，我们需要将该类注册为自动配置候选者。
 
-我们通过在resources/META-INF/spring.factories文件中添加key为org.springframework.boot.autoconfigure.EnableAutoConfiguration，值为类的名称来做到这一点：
+我们通过在resources/META-INF/spring.factories文件中添加键为org.springframework.boot.autoconfigure.EnableAutoConfiguration，值为类的名称来做到这一点：
 
 ```properties
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   cn.tuyucheng.taketoday.autoconfiguration.MySQLAutoconfiguration
 ```
 
@@ -49,11 +53,11 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=
 
 **请注意，仅当我们未在应用程序中定义自动配置的bean时，自动配置才会有效。如果我们定义我们的bean，它将覆盖默认的bean**。
 
-### 3.1 Class Conditions
+### 3.1 类条件
 
-如果使用@ConditionalOnClass注解指定的类存在，或者如果使用@ConditionalOnMissingClass注解指定的类不存在，Class Conditions允许我们指定要包含配置bean。
+如果使用@ConditionalOnClass注解指定的类存在，或者如果使用@ConditionalOnMissingClass注解指定的类不存在，类条件允许我们指定要包含配置bean。
 
-以下指定我们的MySQLConfiguration仅在存在DataSource类时才加载，在这种情况下，我们可以假设应用程序将使用数据库：
+让我们指定我们的MySQLConfiguration只有在类DataSource存在时才会加载，在这种情况下，我们可以假设应用程序将使用数据库：
 
 ```java
 @Configuration
@@ -63,13 +67,13 @@ public class MySQLAutoconfiguration {
 }
 ```
 
-### 3.2 Bean Conditions
+### 3.2 Bean条件
 
 如果我们只想**在指定的bean存在或不存在时才包含bean**，我们可以使用@ConditionalOnBean和@ConditionalOnMissingBean注解。
 
-为了理解，让我们在我们的配置类中添加一个entityManagerFactory bean。
+为了了解这一点，让我们添加一个entityManagerFactory bean到我们的配置类中。
 
-首先，我们将指定仅在存在名为dataSource的bean并且尚未定义名为entityManagerFactory的bean时才创建此bean：
+首先，我们将指定如果存在名为dataSource的bean并且尚未定义名为entityManagerFactory的bean时，我们才创建此bean：
 
 ```java
 @Bean
@@ -86,7 +90,7 @@ public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 }
 ```
 
-我们还配置一个transactionManager bean，它仅在我们尚未定义JpaTransactionManager类型的bean时才会加载：
+我们还配置一个transactionManager bean，只有当我们还没有定义JpaTransactionManager类型的bean时才会加载：
 
 ```java
 @Bean
@@ -98,11 +102,11 @@ JpaTransactionManager transactionManager(final EntityManagerFactory entityManage
 }
 ```
 
-### 3.3 Property Conditions
+### 3.3 属性条件
 
 我们使用@ConditionalOnProperty注解来**指定是否基于Spring Environment属性的存在和值加载配置**。
 
-首先，让我们为我们的配置类添加一个属性文件源，该文件将确定从何处读取属性：
+首先，让我们为我们的配置类添加一个属性源文件，该文件将确定从何处读取属性：
 
 ```java
 @PropertySource("classpath:mysql.properties")
@@ -111,12 +115,7 @@ public class MySQLAutoconfiguration {
 }
 ```
 
-```properties
-# mysql.properties
-usemysql=local
-```
-
-我们可以配置用于创建与数据库的连接的主DataSource bean，以便仅当存在名为usemysql的属性时才会加载它。
+我们可以配置用于创建与数据库的连接的主DataSource bean，以便仅在存在名为usemysql的属性时才加载它。
 
 我们可以使用@ConditionalOnProperty的属性havingValue来指定必须匹配的usemysql属性的某些值。
 
@@ -138,7 +137,7 @@ public DataSource dataSource() {
 }
 ```
 
-如果我们将usemysql属性设置为custom，我们将使用数据库URL、用户和密码的自定义属性值来配置dataSource bean：
+如果我们将usemysql属性设置为custom，我们将使用数据库URL、用户名和密码的自定义属性值来配置dataSource bean：
 
 ```java
 @Bean(name = "dataSource")
@@ -156,9 +155,16 @@ public DataSource dataSource2() {
 }
 ```
 
-使用MySQLAutoconfiguration的应用程序可能需要覆盖默认属性，在这种情况下，只需为mysql.url、mysql.user和mysql.pass属性以及mysql.properties文件中的usemysql=custom添加不同的值。
+mysql.properties文件将包含usemysql属性：
 
-### 3.4 Resource Conditions
+```properties
+# mysql.properties
+usemysql=local
+```
+
+使用MySQLAutoconfiguration的应用程序可能需要覆盖默认属性。在这种情况下，只需要为mysql.url、mysql.user和mysql.pass属性以及mysql.properties文件中的usemysql=custom添加不同的值。
+
+### 3.4 资源条件
 
 添加@ConditionalOnResource注解意味着**仅当存在指定的资源时，才会加载配置**。
 
@@ -186,17 +192,17 @@ mysql-hibernate.show_sql=true
 mysql-hibernate.hbm2ddl.auto=create-drop
 ```
 
-### 3.5 Custom Conditions
+### 3.5 自定义条件
 
-假设我们不想使用Spring Boot中可用的任何Conditions。
+假设我们不想使用Spring Boot中可用的任何条件。
 
-我们还可以**通过继承SpringBootCondition类并重写getMatchOutcome()方法来自定义Conditions**。
+我们还可以**通过扩展SpringBootCondition类并重写getMatchOutcome()方法来自定义条件**。
 
-让我们为additionalProperties()方法创建一个名为HibernateCondition的Conditions，该Condition将验证HibernateEntityManager类是否存在于类路径中：
+让我们为additionalProperties()方法创建一个名为HibernateCondition的条件，该条件将验证HibernateEntityManager类是否存在于类路径中：
 
 ```java
 static class HibernateCondition extends SpringBootCondition {
-    
+
     private static final String[] CLASS_NAMES = {"org.hibernate.ejb.HibernateEntityManager", "org.hibernate.jpa.HibernateEntityManager"};
 
     @Override
@@ -209,7 +215,7 @@ static class HibernateCondition extends SpringBootCondition {
 }
 ```
 
-然后我们可以将Condition添加到additionalProperties()方法上：
+然后我们可以将条件添加到additionalProperties()方法上：
 
 ```java
 @Conditional(HibernateCondition.class)
@@ -218,9 +224,9 @@ Properties additionalProperties() {
 }
 ```
 
-### 3.6 Application Conditions
+### 3.6 ApplicationContext条件
 
-我们还可以**指定配置只能在Web上下文内部/外部加载**，为此，我们可以添加@ConditionalOnWebApplication或@ConditionalOnNotWebApplication注解。
+我们还可以**指定配置只能在Web上下文内部/外部加载**。为此，我们可以添加@ConditionalOnWebApplication或@ConditionalOnNotWebApplication注解。
 
 ## 4. 测试自动配置
 
@@ -233,7 +239,8 @@ Properties additionalProperties() {
 public class MyUser {
     @Id
     private String email;
-    // constructor, getters, setters ...
+
+    // standard constructor, getters, setters
 }
 ```
 
@@ -254,14 +261,14 @@ public class AutoconfigurationApplication {
 }
 ```
 
-接下来，我们编写一个保存MyUser实体的JUnit测试：
+接下来，让我们编写一个保存MyUser实体的JUnit测试：
 
 ```java
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = AutoconfigurationApplication.class)
 @EnableJpaRepositories(basePackages = {"cn.tuyucheng.taketoday.autoconfiguration.example"})
 class AutoconfigurationLiveTest {
-    
+
     @Autowired
     private MyUserRepository userRepository;
 
@@ -273,23 +280,15 @@ class AutoconfigurationLiveTest {
 }
 ```
 
-由于我们在application.properties中定义了DataSource配置，应用程序将使用我们创建的自动配置连接到名为springboot的MySQL数据库。
+由于我们没有定义DataSource配置，因此应用程序将使用我们创建的自动配置连接到名为myDB的MySQL数据库。
 
-```properties
-mysql.url=jdbc:mysql://192.168.70.128:3306/springboot?createDatabaseIfNotExist=true&&serverTimezone=UTC
-mysql.user=root
-mysql.pass=tu001118
-```
+**连接字符串包含createDatabaseIfNotExist=true属性，因此数据库不需要存在。但是，需要创建用户mysqluser或通过mysql.user属性指定的用户(如果存在)**。
 
-**连接字符串包含createDatabaseIfNotExist=true属性，因此数据库不需要存在。但是，需要创建用户root或通过mysql.user属性指定的用户(如果存在)**。
-
-我们可以检查应用程序日志，看看我们正在使用的是否是MySQL数据源：
+我们可以检查应用程序日志来查看我们正在使用的是否是MySQL数据源：
 
 ```shell
-Hibernate: create table MyUser (email varchar(255) not null, primary key (email)) engine=InnoDB
+web - 2017-04-12 00:01:33,956 [main] INFO  o.s.j.d.DriverManagerDataSource - Loaded JDBC driver: com.mysql.cj.jdbc.Driver
 ```
-
-很明显，使用的是标准的MySQL建表语句。
 
 ## 5. 禁用自动配置类
 
@@ -315,6 +314,6 @@ spring.autoconfigure.exclude=cn.tuyucheng.taketoday.autoconfiguration.MySQLAutoc
 
 在本文中，我们演示了如何创建自定义的Spring Boot自动配置。
 
-该示例的完整源代码可以在[GitHub]()上找到。
+该示例的完整源代码可以在[GitHub](https://github.com/tu-yucheng/spring-boot-examples/tree/master/spring-boot-autoconfiguration)上找到。
 
 JUnit测试可以使用autoconfiguration Profile运行mvn clean install -Pautoconfiguration。
