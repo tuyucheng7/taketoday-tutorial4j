@@ -25,6 +25,7 @@ import cn.tuyucheng.taketoday.jackson.annotation.ignore.MyMixInForIgnoreType;
 import cn.tuyucheng.taketoday.jackson.annotation.dtos.withEnum.DistanceEnumWithValue;
 import cn.tuyucheng.taketoday.jackson.annotation.exception.UserWithRoot;
 import cn.tuyucheng.taketoday.jackson.annotation.exception.UserWithRootNamespace;
+import cn.tuyucheng.taketoday.jackson.annotation.ignore.MyMixInForIgnoreType;
 import cn.tuyucheng.taketoday.jackson.annotation.jsonview.Item;
 import cn.tuyucheng.taketoday.jackson.annotation.jsonview.Views;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -96,6 +97,13 @@ public class JacksonAnnotationUnitTest {
 		assertThat(enumAsString, is("1609.34"));
 	}
 
+
+	@Test
+	public void whenSerializingFieldUsingJsonValue_thenCorrect() throws IOException {
+		final String enumAsString = new ObjectMapper().writeValueAsString(PriorityEnum.HIGH);
+
+		assertEquals("3", enumAsString);
+	}
 
 	@Test
 	public void whenSerializingUsingJsonSerialize_thenCorrect() throws JsonProcessingException, ParseException {
