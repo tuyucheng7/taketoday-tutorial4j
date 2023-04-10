@@ -10,10 +10,6 @@
 		<relativePath>../parent-boot-2</relativePath>
 	</parent>
 
-	<properties>
-		<firebase-admin.version>9.1.1</firebase-admin.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.google.firebase</groupId>
@@ -44,4 +40,8 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<properties>
+		<firebase-admin.version>9.1.1</firebase-admin.version>
+	</properties>
 </project>

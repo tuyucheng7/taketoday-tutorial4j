@@ -4,7 +4,6 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>geotools</artifactId>
-	<version>1.0.0</version>
 	<name>geotools</name>
 	<packaging>jar</packaging>
 
@@ -13,14 +12,6 @@
 		<artifactId>taketoday-tutorial4j</artifactId>
 		<version>1.0.0</version>
 	</parent>
-
-	<repositories>
-		<repository>
-			<id>osgeo-release</id>
-			<name>OSGeo Repository</name>
-			<url>https://repo.osgeo.org/repository/release/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -39,6 +30,14 @@
 			<version>${geotools-swing.version}</version>
 		</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>osgeo-release</id>
+			<name>OSGeo Repository</name>
+			<url>https://repo.osgeo.org/repository/release/</url>
+		</repository>
+	</repositories>
 
 	<properties>
 		<geotools.version>28.1</geotools.version>
