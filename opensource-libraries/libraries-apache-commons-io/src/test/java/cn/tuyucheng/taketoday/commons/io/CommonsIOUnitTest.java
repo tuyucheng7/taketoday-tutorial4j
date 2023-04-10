@@ -22,6 +22,9 @@ import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class CommonsIOUnitTest {
 
 	@Test
@@ -47,9 +50,9 @@ public class CommonsIOUnitTest {
 		String extension = FilenameUtils.getExtension(path);
 		String baseName = FilenameUtils.getBaseName(path);
 
-		System.out.println("full path" + fullPath);
-		System.out.println("Extension" + extension);
-		System.out.println("Base name" + baseName);
+		LOGGER.debug("full path: " + fullPath);
+		LOGGER.debug("Extension: " + extension);
+		LOGGER.debug("Base name: " + baseName);
 	}
 
 	@Test

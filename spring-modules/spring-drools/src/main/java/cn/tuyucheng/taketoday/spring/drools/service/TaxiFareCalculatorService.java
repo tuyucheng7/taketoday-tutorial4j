@@ -1,14 +1,19 @@
 package cn.tuyucheng.taketoday.spring.drools.service;
 
-import cn.tuyucheng.taketoday.spring.drools.model.Fare;
-import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.tuyucheng.taketoday.spring.drools.model.Fare;
+import cn.tuyucheng.taketoday.spring.drools.model.TaxiRide;
+
 @Service
 public class TaxiFareCalculatorService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(TaxiFareCalculatorService.class);
 
 	@Autowired
 	private KieContainer kContainer;
@@ -19,7 +24,7 @@ public class TaxiFareCalculatorService {
 		kieSession.insert(taxiRide);
 		kieSession.fireAllRules();
 		kieSession.dispose();
-		System.out.println("!! RIDE FARE !! " + rideFare.getTotalFare());
+		LOGGER.debug("!! RIDE FARE !! " + rideFare.getTotalFare());
 		return rideFare.getTotalFare();
 	}
 }

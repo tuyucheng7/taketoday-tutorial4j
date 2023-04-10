@@ -1,31 +1,37 @@
 package cn.tuyucheng.taketoday.concurrent.phaser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.Phaser;
 
-public class LongRunningAction implements Runnable {
-	private final String threadName;
-	private final Phaser phaser;
+class LongRunningAction implements Runnable {
 
-	public LongRunningAction(String threadName, Phaser phaser) {
+	private static Logger log = LoggerFactory.getLogger(LongRunningAction.class);
+	private String threadName;
+	private Phaser ph;
+
+	LongRunningAction(String threadName, Phaser ph) {
 		this.threadName = threadName;
-		this.phaser = phaser;
+		this.ph = ph;
+		ph.register();
 	}
 
 	@Override
 	public void run() {
-		System.out.println("This is phase " + phaser.getPhase());
-		System.out.println("Thread " + threadName + " before long running action");
+		log.info("This is phase {}", ph.getPhase());
+		log.info("Thread {} before long running action", threadName);
 
 		try {
 			Thread.sleep(2000);
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("Thread " + threadName + " action completed and waiting for others");
-		phaser.arriveAndAwaitAdvance();
-		System.out.println("Thread " + threadName + " proceeding in phase " + phaser.getPhase());
+		log.debug("Thread {} action completed and waiting for others", threadName);
+		ph.arriveAndAwaitAdvance();
+		log.debug("Thread {} proceeding in phase {}", threadName, ph.getPhase());
 
-		phaser.arriveAndDeregister();
+		ph.arriveAndDeregister();
 	}
 }

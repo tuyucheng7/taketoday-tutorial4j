@@ -1,5 +1,8 @@
 package cn.tuyucheng.taketoday.templatemethod.model;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class HighEndComputerBuilder extends ComputerBuilder {
 
 	@Override
@@ -11,7 +14,7 @@ public class HighEndComputerBuilder extends ComputerBuilder {
 	public void setupMotherboard() {
 		motherboardSetupStatus.add("Screwing the high-end motherboard to the case.");
 		motherboardSetupStatus.add("Pluging in the power supply connectors.");
-		motherboardSetupStatus.forEach(System.out::println);
+		motherboardSetupStatus.forEach(step -> LOGGER.debug(step));
 	}
 
 	@Override
