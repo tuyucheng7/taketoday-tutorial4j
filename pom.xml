@@ -559,8 +559,8 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
-				<!--<module>atomix</module>-->
 				<!--<module>atomikos</module>-->
+				<!--<module>atomix</module>-->
 				<!--<module>aws-modules</module>-->
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
@@ -582,8 +582,9 @@
 				<!--<module>dozer</module>-->
 				<!--<module>drools</module>-->
 				<!--<module>dubbo</module>-->
-				<!--<module>ethereum</module> --> <!-- JAVA-6001 -->
+				<!--<module>ethereum</module> -->
 				<!--<module>feign</module>-->
+				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
@@ -597,22 +598,28 @@
 				<!--<module>hazelcast</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
+				<!--<module>image-processing</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
 				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
+				<!--<module>jetbrains</module>-->
 				<!--<module>jgit</module>-->
+				<!--<module>jhipster-6</module>-->
+				<!--<module>jhipster-modules</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>json-modules</module>-->
+				<!--<module>jws</module>-->
 				<!--<module>kotlin-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>lagom</module>--> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
+				<!--<module>lightrun</module>-->
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
@@ -627,6 +634,7 @@
 				<!--<module>mybatis</module>-->
 				<!--<module>netflix-modules</module>-->
 				<!--<module>opensource-libraries</module>-->
+				<!--<module>optaplanner</module>-->
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 				<!--<module>parent-boot-1</module>-->
@@ -637,6 +645,7 @@
 				<!--<module>pdf-1</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
+				<!--<module>persistence-modules</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
 				<!--<module>reactive-systems</module>-->
@@ -644,14 +653,10 @@
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>security-modules</module>-->
-				<!--<module>slack</module>-->
-				<!--<module>tablesaw</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>web-framework</module>-->
-
 				<!--<module>saas-modules</module>-->
+				<!--<module>security-modules</module>-->
 				<!--<module>server-modules</module>-->
+				<!--<module>slack</module>-->
 				<!--<module>software.test</module>-->
 				<!--<module>spf4j</module>-->
 				<!--<module>spring-boot-modules</module>-->
@@ -662,9 +667,14 @@
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
 				<!--<module>static-analysis</module>-->
+				<!--<module>tablesaw</module>-->
 				<!--<module>tensorflow-java</module>-->
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
 				<!--<module>vertx-modules</module>-->
+				<!--<module>web-framework</module>-->
 				<!--<module>webrtc</module>-->
+				<!--<module>xml-modules</module>-->
 				<!--<module>xstream</module>-->
 			</modules>
 		</profile>
@@ -707,8 +717,8 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
-				<!--<module>atomix</module>-->
 				<!--<module>atomikos</module>-->
+				<!--<module>atomix</module>-->
 				<!--<module>aws-modules</module>-->
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
@@ -730,8 +740,9 @@
 				<!--<module>dozer</module>-->
 				<!--<module>drools</module>-->
 				<!--<module>dubbo</module>-->
-				<!--<module>ethereum</module> --> <!-- JAVA-6001 -->
+				<!--<module>ethereum</module> -->
 				<!--<module>feign</module>-->
+				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
@@ -745,22 +756,28 @@
 				<!--<module>hazelcast</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
+				<!--<module>image-processing</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
 				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
+				<!--<module>jetbrains</module>-->
 				<!--<module>jgit</module>-->
+				<!--<module>jhipster-6</module>-->
+				<!--<module>jhipster-modules</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>json-modules</module>-->
+				<!--<module>jws</module>-->
 				<!--<module>kotlin-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>lagom</module>--> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
+				<!--<module>lightrun</module>-->
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
@@ -775,6 +792,7 @@
 				<!--<module>mybatis</module>-->
 				<!--<module>netflix-modules</module>-->
 				<!--<module>opensource-libraries</module>-->
+				<!--<module>optaplanner</module>-->
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 				<!--<module>parent-boot-1</module>-->
@@ -785,6 +803,7 @@
 				<!--<module>pdf-1</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
+				<!--<module>persistence-modules</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
 				<!--<module>reactive-systems</module>-->
@@ -792,14 +811,10 @@
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>security-modules</module>-->
-				<!--<module>slack</module>-->
-				<!--<module>tablesaw</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>web-framework</module>-->
-
 				<!--<module>saas-modules</module>-->
+				<!--<module>security-modules</module>-->
 				<!--<module>server-modules</module>-->
+				<!--<module>slack</module>-->
 				<!--<module>software.test</module>-->
 				<!--<module>spf4j</module>-->
 				<!--<module>spring-boot-modules</module>-->
@@ -810,9 +825,14 @@
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
 				<!--<module>static-analysis</module>-->
+				<!--<module>tablesaw</module>-->
 				<!--<module>tensorflow-java</module>-->
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
 				<!--<module>vertx-modules</module>-->
+				<!--<module>web-framework</module>-->
 				<!--<module>webrtc</module>-->
+				<!--<module>xml-modules</module>-->
 				<!--<module>xstream</module>-->
 			</modules>
 		</profile>
@@ -833,8 +853,8 @@
 				<!--<module>apache-modules</module>-->
 				<!--<module>asciidoctor</module>-->
 				<!--<module>asm</module>-->
-				<!--<module>atomix</module>-->
 				<!--<module>atomikos</module>-->
+				<!--<module>atomix</module>-->
 				<!--<module>aws-modules</module>-->
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
@@ -856,8 +876,9 @@
 				<!--<module>dozer</module>-->
 				<!--<module>drools</module>-->
 				<!--<module>dubbo</module>-->
-				<!--<module>ethereum</module> --> <!-- JAVA-6001 -->
+				<!--<module>ethereum</module> -->
 				<!--<module>feign</module>-->
+				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
@@ -871,22 +892,28 @@
 				<!--<module>hazelcast</module>-->
 				<!--<module>httpclient-simple</module>-->
 				<!--<module>hystrix</module>-->
+				<!--<module>image-processing</module>-->
 				<!--<module>jackson-modules</module>-->
 				<module>jacoco-aggregate-report</module>
 				<!--<module>java-core-modules</module>-->
 				<!--<module>javafx</module>-->
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
+				<!--<module>jetbrains</module>-->
 				<!--<module>jgit</module>-->
+				<!--<module>jhipster-6</module>-->
+				<!--<module>jhipster-modules</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
 				<!--<module>json-modules</module>-->
+				<!--<module>jws</module>-->
 				<!--<module>kotlin-modules</module>-->
 				<!--<module>ksqldb</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>lagom</module>--> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
+				<!--<module>lightrun</module>-->
 				<!--<module>logging-modules</module>-->
 				<!--<module>lombok-modules</module>-->
 				<!--<module>lucene</module>-->
@@ -901,6 +928,7 @@
 				<!--<module>mybatis</module>-->
 				<!--<module>netflix-modules</module>-->
 				<!--<module>opensource-libraries</module>-->
+				<!--<module>optaplanner</module>-->
 				<!--<module>orika</module>-->
 				<!--<module>osgi</module>-->
 				<!--<module>parent-boot-1</module>-->
@@ -911,6 +939,7 @@
 				<!--<module>pdf-1</module>-->
 				<!--<module>pdf-2</module>-->
 				<!--<module>performance-tests</module>-->
+				<!--<module>persistence-modules</module>-->
 				<!--<module>protobuffer</module>-->
 				<!--<module>quarkus-modules</module>-->
 				<!--<module>reactive-systems</module>-->
@@ -918,14 +947,10 @@
 				<!--<module>rsocket</module>-->
 				<!--<module>rule-engines-modules</module>-->
 				<!--<module>rxjava-modules</module>-->
-				<!--<module>security-modules</module>-->
-				<!--<module>slack</module>-->
-				<!--<module>tablesaw</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>web-framework</module>-->
-
 				<!--<module>saas-modules</module>-->
+				<!--<module>security-modules</module>-->
 				<!--<module>server-modules</module>-->
+				<!--<module>slack</module>-->
 				<!--<module>software.test</module>-->
 				<!--<module>spf4j</module>-->
 				<!--<module>spring-boot-modules</module>-->
@@ -936,9 +961,14 @@
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
 				<!--<module>static-analysis</module>-->
+				<!--<module>tablesaw</module>-->
 				<!--<module>tensorflow-java</module>-->
+				<!--<module>vaadin</module>-->
+				<!--<module>vavr-modules</module>-->
 				<!--<module>vertx-modules</module>-->
+				<!--<module>web-framework</module>-->
 				<!--<module>webrtc</module>-->
+				<!--<module>xml-modules</module>-->
 				<!--<module>xstream</module>-->
 			</modules>
 		</profile>
