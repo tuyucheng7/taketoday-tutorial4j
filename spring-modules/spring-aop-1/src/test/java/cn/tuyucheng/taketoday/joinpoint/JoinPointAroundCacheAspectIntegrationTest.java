@@ -1,20 +1,19 @@
 package cn.tuyucheng.taketoday.joinpoint;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @EnableAspectJAutoProxy
 public class JoinPointAroundCacheAspectIntegrationTest {
@@ -23,7 +22,7 @@ public class JoinPointAroundCacheAspectIntegrationTest {
 	private ArticleService articleService;
 
 	@Test
-	@Ignore("fails test")
+	// @Ignore("fails test")
 	public void shouldPopulateCache() {
 		assertTrue(JoinPointAroundCacheAspect.CACHE.isEmpty());
 

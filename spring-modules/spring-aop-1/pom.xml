@@ -61,42 +61,19 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${java.toolchains.version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<systemPropertyVariables>
 						<logback.configurationFile>${project.basedir}/src/main/resources/logback.xml
 						</logback.configurationFile>
 					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<forkCount>1</forkCount>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -111,12 +88,7 @@
 	</build>
 
 	<properties>
-		<java.toolchains.version>8</java.toolchains.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<java.version>1.8</java.version>
-		<tools.version>1.8</tools.version>
+		<java.version>11</java.version>
 		<aspectj-plugin.version>1.14.0</aspectj-plugin.version>
 		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
 	</properties>
