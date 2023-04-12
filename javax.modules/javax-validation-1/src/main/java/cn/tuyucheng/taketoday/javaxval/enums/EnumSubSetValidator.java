@@ -1,9 +1,10 @@
 package cn.tuyucheng.taketoday.javaxval.enums;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public abstract class EnumSubSetValidator<T extends Annotation, U> implements ConstraintValidator<T, U> {
 	private U[] subset;

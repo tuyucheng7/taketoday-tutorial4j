@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.javaxval.javabeanconstraints.entities;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class UserNotNull {
 

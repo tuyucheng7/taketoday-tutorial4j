@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.javaxval.bigdecimal;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
+
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 
 public class Invoice {
 

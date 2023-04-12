@@ -1,12 +1,13 @@
 package cn.tuyucheng.taketoday.javaxval.enums;
 
-import cn.tuyucheng.taketoday.javaxval.enums.constraints.ValueOfEnum;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+
+import cn.tuyucheng.taketoday.javaxval.enums.constraints.ValueOfEnum;
 
 public class ValueOfEnumValidator implements ConstraintValidator<ValueOfEnum, CharSequence> {
 	private List<String> acceptedValues;

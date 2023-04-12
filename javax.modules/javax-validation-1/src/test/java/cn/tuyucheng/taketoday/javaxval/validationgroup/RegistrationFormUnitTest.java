@@ -1,15 +1,17 @@
 package cn.tuyucheng.taketoday.javaxval.validationgroup;
 
-import cn.tuyucheng.taketoday.javaxval.LocaleAwareUnitTest;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Set;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import cn.tuyucheng.taketoday.javaxval.LocaleAwareUnitTest;
 
 public class RegistrationFormUnitTest extends LocaleAwareUnitTest {
 	private static Validator validator;

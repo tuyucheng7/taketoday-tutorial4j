@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.javaxval.validationgroup;
 
-import javax.validation.GroupSequence;
+import jakarta.validation.GroupSequence;
 
-@GroupSequence({BasicInfo.class, AdvanceInfo.class})
+@GroupSequence({ BasicInfo.class, AdvanceInfo.class })
 public interface CompleteInfo {
 
 }

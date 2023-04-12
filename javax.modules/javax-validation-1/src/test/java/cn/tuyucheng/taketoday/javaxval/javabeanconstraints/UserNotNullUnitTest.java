@@ -1,15 +1,16 @@
 package cn.tuyucheng.taketoday.javaxval.javabeanconstraints;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Set;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
 import cn.tuyucheng.taketoday.javaxval.javabeanconstraints.entities.UserNotNull;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserNotNullUnitTest {
 

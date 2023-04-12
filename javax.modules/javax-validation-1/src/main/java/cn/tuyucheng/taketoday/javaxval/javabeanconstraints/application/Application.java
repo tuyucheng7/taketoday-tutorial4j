@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.javaxval.javabeanconstraints.application;
 
-import cn.tuyucheng.taketoday.javaxval.javabeanconstraints.entities.UserNotBlank;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
+import cn.tuyucheng.taketoday.javaxval.javabeanconstraints.entities.UserNotBlank;
 
 public class Application {
 

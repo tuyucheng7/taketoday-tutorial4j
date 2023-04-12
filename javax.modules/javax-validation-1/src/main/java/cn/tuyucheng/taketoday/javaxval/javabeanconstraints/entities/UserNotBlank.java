@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.javaxval.javabeanconstraints.entities;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class UserNotBlank {
 

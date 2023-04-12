@@ -1,18 +1,20 @@
 package cn.tuyucheng.taketoday.javaxval.enums;
 
-import cn.tuyucheng.taketoday.javaxval.enums.demo.Customer;
-import cn.tuyucheng.taketoday.javaxval.enums.demo.CustomerUnitTest;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import java.util.Set;
-
 import static cn.tuyucheng.taketoday.javaxval.enums.demo.CustomerType.DEFAULT;
 import static cn.tuyucheng.taketoday.javaxval.enums.demo.CustomerType.OLD;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Set;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import cn.tuyucheng.taketoday.javaxval.enums.demo.Customer;
+import cn.tuyucheng.taketoday.javaxval.enums.demo.CustomerUnitTest;
 
 public class EnumNamePatternValidatorUnitTest {
 

@@ -1,17 +1,17 @@
 package cn.tuyucheng.taketoday.javaxval.enums.demo;
 
+import jakarta.validation.constraints.NotNull;
+
 import cn.tuyucheng.taketoday.javaxval.enums.constraints.CustomerTypeSubset;
 import cn.tuyucheng.taketoday.javaxval.enums.constraints.EnumNamePattern;
 import cn.tuyucheng.taketoday.javaxval.enums.constraints.ValueOfEnum;
-
-import javax.validation.constraints.NotNull;
 
 public class Customer {
 	@ValueOfEnum(enumClass = CustomerType.class)
 	private String customerTypeString;
 
 	@NotNull
-	@CustomerTypeSubset(anyOf = {CustomerType.NEW, CustomerType.OLD})
+	@CustomerTypeSubset(anyOf = { CustomerType.NEW, CustomerType.OLD })
 	private CustomerType customerTypeOfSubset;
 
 	@EnumNamePattern(regexp = "NEW|DEFAULT")

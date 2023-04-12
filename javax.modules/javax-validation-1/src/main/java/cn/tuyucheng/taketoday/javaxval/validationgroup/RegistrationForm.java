@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.javaxval.validationgroup;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class RegistrationForm {
 	@NotBlank(groups = BasicInfo.class)
@@ -13,7 +13,7 @@ public class RegistrationForm {
 	@NotBlank(groups = BasicInfo.class)
 	private String phone;
 
-	@NotBlank(groups = {BasicInfo.class, AdvanceInfo.class})
+	@NotBlank(groups = { BasicInfo.class, AdvanceInfo.class })
 	private String captcha;
 
 	@NotBlank(groups = AdvanceInfo.class)

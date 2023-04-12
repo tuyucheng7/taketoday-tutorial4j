@@ -1,18 +1,19 @@
 package cn.tuyucheng.taketoday.javaxval.container.validation;
 
-import cn.tuyucheng.taketoday.javaxval.container.validation.valueextractors.ProfileValueExtractor;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+
+import cn.tuyucheng.taketoday.javaxval.container.validation.valueextractors.ProfileValueExtractor;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ContainerValidationIntegrationTest {
 	private Validator validator;

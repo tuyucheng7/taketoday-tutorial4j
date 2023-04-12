@@ -1,11 +1,12 @@
 package cn.tuyucheng.taketoday.javaxval.enums;
 
+import java.util.Arrays;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+
 import cn.tuyucheng.taketoday.javaxval.enums.constraints.CustomerTypeSubset;
 import cn.tuyucheng.taketoday.javaxval.enums.demo.CustomerType;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import java.util.Arrays;
 
 public class CustomerTypeSubSetValidator implements ConstraintValidator<CustomerTypeSubset, CustomerType> {
 	private CustomerType[] subset;
