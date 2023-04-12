@@ -1,7 +1,11 @@
-tuyucheng:
+bael:
     root-level-property: defaultRootLevelValue
 spring:
     profiles:
+        # Multiple profiles for MultipleYamlApplication first example
+        #    include:
+        #      - teachers
+        #      - students
         group:
             multidocument-integration: multidocument-integration-extension
 ---
@@ -32,7 +36,6 @@ application:
             M: 10
             L: 12
             XL: 14
-
 
     complex-mapping:
         XS:
