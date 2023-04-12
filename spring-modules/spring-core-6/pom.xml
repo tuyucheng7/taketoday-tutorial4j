@@ -11,7 +11,7 @@
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>parent-boot-3</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../parent-boot-3</relativePath>
+		<relativePath>../../parent-boot-3</relativePath>
 	</parent>
 
 	<dependencies>
@@ -89,6 +89,5 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<mockserver.version>5.14.0</mockserver.version>
 	</properties>
 </project>

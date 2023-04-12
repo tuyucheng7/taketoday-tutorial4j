@@ -31,7 +31,7 @@ public class Person {
 Spring null-safety特性使工具能够报告这种危险。例如，如果我们在IntelliJ IDEA中编写代码并使用@NonNull注解标注fullName字段，
 我们将看到一个警告：
 
-<img src="../assets/NonNull-1.png">
+<img src="../../../spring-modules/spring-core-2/assets/NonNull-1.png">
 
 多亏这个提示，我们可以提前知道问题并能够采取适当的措施来避免运行时故障。
 
@@ -69,7 +69,7 @@ public class Person {
 
 这一次，我们没有用@NonNull修饰nickName字段，但仍然看到类似的警告：
 
-<img src="../assets/NonNull-2.png">
+<img src="../../../spring-modules/spring-core-2/assets/NonNull-2.png">
 
 @NonNullFields注解使我们的代码不那么冗长，同时确保与@NonNull提供的安全级别相同。
 
@@ -86,7 +86,7 @@ private String nickName;
 
 我们以前看到的警告现在已经消失了：
 
-<img src="../assets/NonNull-3.png">
+<img src="../../../spring-modules/spring-core-2/assets/NonNull-3.png">
 
 在这种情况下，**我们使用@Nullable注解来覆盖字段上@NonNullFields的语义**。
 
@@ -120,7 +120,7 @@ public class Person {
 
 在@NonNullApi注解生效的情况下，会产生一条警告，提示getNickName()方法可能产生空值：
 
-<img src="../assets/NonNull-4.png">
+<img src="../../../spring-modules/spring-core-2/assets/NonNull-4.png">
 
 请注意，就像@NonNullFields注解一样，我们可以在方法级别使用@Nullable注解覆盖@NonNullApi。
 
