@@ -54,37 +54,12 @@
 			<artifactId>kotlinx-coroutines-core</artifactId>
 			<version>${kotlinx.version}</version>
 		</dependency>
-		<!-- test -->
-		<!--<dependency>-->
-		<!--	<groupId>org.junit.jupiter</groupId>-->
-		<!--	<artifactId>junit-jupiter-api</artifactId>-->
-		<!--	<version>${junit-jupiter.version}</version>-->
-		<!--	<scope>test</scope>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		<!--	<groupId>org.junit.jupiter</groupId>-->
-		<!--	<artifactId>junit-jupiter-engine</artifactId>-->
-		<!--	<version>${junit-jupiter.version}</version>-->
-		<!--	<scope>test</scope>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-runner</artifactId>
 			<version>${junit-platform.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!--<dependency>-->
-		<!--	<groupId>org.assertj</groupId>-->
-		<!--	<artifactId>assertj-core</artifactId>-->
-		<!--	<version>${assertj-core.version}</version>-->
-		<!--	<scope>test</scope>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		<!--	<groupId>org.mockito</groupId>-->
-		<!--	<artifactId>mockito-core</artifactId>-->
-		<!--	<version>${mockito.version}</version>-->
-		<!--	<scope>test</scope>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.jetbrains.kotlin</groupId>
 			<artifactId>kotlin-test</artifactId>
@@ -139,36 +114,6 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${toolchains-java-version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 			</plugin>
@@ -202,26 +147,14 @@
 	</build>
 
 	<properties>
-		<toolchains-java-version>8</toolchains-java-version>
-		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<kotlin.version>1.7.22</kotlin.version>
+		<kotlin.version>1.8.0</kotlin.version>
 		<kotlinx.version>1.6.4</kotlinx.version>
 
-
-		<!-- serialization api-->
-		<kotlin.version>1.7.20</kotlin.version>
+		<java.version>11</java.version>
 		<serialization.version>1.4.1</serialization.version>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<!-- testing -->
-		<!--<junit-jupiter.version>5.9.1</junit-jupiter.version>-->
-		<!--<mockito.version>3.3.3</mockito.version>-->
-		<!--<assertj-core.version>3.11.1</assertj-core.version>-->
-		<!--<junit.platform.version>1.9.1</junit.platform.version>-->
 	</properties>
 </project>

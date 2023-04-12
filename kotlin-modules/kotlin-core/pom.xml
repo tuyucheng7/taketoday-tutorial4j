@@ -29,34 +29,36 @@
 	</dependencies>
 
 	<modules>
-		<module>kotlin-core-1</module>
-		<module>kotlin-core-2</module>
-		<module>kotlin-core-3</module>
-		<module>kotlin-core-4</module>
-		<module>kotlin-core-5</module>
-		<module>kotlin-core-6</module>
-		<module>kotlin-core-advanced-1</module>
-		<module>kotlin-core-advanced-2</module>
-		<module>kotlin-core-annotations</module>
-		<module>kotlin-core-arrays</module>
-		<module>kotlin-core-collections-1</module>
-		<module>kotlin-core-collections-2</module>
-		<module>kotlin-core-collections-3</module>
-		<module>kotlin-core-concurrency-1</module>
-		<module>kotlin-core-concurrency-2</module>
+		<!--<module>kotlin-core-1</module>-->
+		<!--<module>kotlin-core-2</module>-->
+		<!--<module>kotlin-core-3</module>-->
+		<!--<module>kotlin-core-4</module>-->
+		<!--<module>kotlin-core-5</module>-->
+		<!--<module>kotlin-core-6</module>-->
+		<!--<module>kotlin-core-7</module>-->
+		<!--<module>kotlin-core-advanced-1</module>-->
+		<!--<module>kotlin-core-advanced-2</module>-->
+		<!--<module>kotlin-core-annotations</module>-->
+		<!--<module>kotlin-core-arrays</module>-->
+		<!--<module>kotlin-core-collections-1</module>-->
+		<!--<module>kotlin-core-collections-2</module>-->
+		<!--<module>kotlin-core-collections-3</module>-->
+		<!--<module>kotlin-core-concurrency-1</module>-->
+		<!--<module>kotlin-core-concurrency-2</module>-->
 		<!--<module>kotlin-core-date-time</module>-->
 		<!--<module>kotlin-core-design-patterns</module>-->
 		<!--<module>kotlin-core-io</module>-->
-		<module>kotlin-core-lang-1</module>
-		<module>kotlin-core-lang-2</module>
-		<module>kotlin-core-lang-3</module>
+		<!--<module>kotlin-core-lang-1</module>-->
+		<!--<module>kotlin-core-lang-2</module>-->
+		<!--<module>kotlin-core-lang-3</module>-->
 		<module>kotlin-core-lang-oop-1</module>
 		<module>kotlin-core-lang-oop-2</module>
 		<module>kotlin-core-lang-oop-3</module>
-		<module>kotlin-core-lang-scope</module>
-		<module>kotlin-core-strings-1</module>
-		<module>kotlin-core-strings-2</module>
-		<module>kotlin-core-strings-3</module>
+		<!--<module>kotlin-core-lang-scope</module>-->
+		<!--<module>kotlin-core-strings-1</module>-->
+		<!--<module>kotlin-core-strings-2</module>-->
+		<!--<module>kotlin-core-strings-3</module>-->
 		<!--<module>kotlin-core-files</module>-->
+		<!--<module>kotlin-core-operators</module>-->
 	</modules>
 </project>
