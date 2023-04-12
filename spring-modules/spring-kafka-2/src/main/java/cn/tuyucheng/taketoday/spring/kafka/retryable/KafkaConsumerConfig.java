@@ -105,7 +105,7 @@ public class KafkaConsumerConfig {
 		StringJsonMessageConverter converter = new StringJsonMessageConverter();
 		DefaultJackson2JavaTypeMapper typeMapper = new DefaultJackson2JavaTypeMapper();
 		typeMapper.setTypePrecedence(Jackson2JavaTypeMapper.TypePrecedence.TYPE_ID);
-		typeMapper.addTrustedPackages("com.baeldung.spring.kafka");
+		typeMapper.addTrustedPackages("cn.tuyucheng.taketoday.spring.kafka");
 		Map<String, Class<?>> mappings = new HashMap<>();
 		mappings.put("greeting", Greeting.class);
 		mappings.put("farewell", Farewell.class);
