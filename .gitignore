@@ -4,6 +4,8 @@ bin/
 *.class
 
 *banner.txt
+*README-backup.md
+/.fleet/
 
 # Package Files #
 *.jar
