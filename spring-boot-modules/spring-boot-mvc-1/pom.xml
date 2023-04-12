@@ -98,8 +98,9 @@
 			<version>${aspectjweaver.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>${cdi-api.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -114,21 +115,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/webapp</directory>
-				<targetPath>META-INF/resources</targetPath>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
-		</resources>
 	</build>
 
 	<properties>
@@ -136,6 +122,7 @@
 		<!-- ROME for RSS -->
 		<rome.version>1.10.0</rome.version>
 		<javax.faces.version>2.3.7</javax.faces.version>
+		<cdi-api.version>1.2</cdi-api.version>
 		<start-class>cn.tuyucheng.taketoday.springbootmvc.SpringBootMvcApplication</start-class>
 	</properties>
 </project>
