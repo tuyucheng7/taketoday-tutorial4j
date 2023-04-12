@@ -4,8 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "baeldung")
-public class BaeldungProperties {
+@ConfigurationProperties(prefix = "tuyucheng")
+public class TuyuchengProperties {
 
 	private String presentation;
 
@@ -16,5 +16,4 @@ public class BaeldungProperties {
 	public void setPresentation(String presentation) {
 		this.presentation = presentation;
 	}
-
 }

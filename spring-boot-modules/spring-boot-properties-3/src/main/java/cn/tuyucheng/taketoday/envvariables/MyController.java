@@ -18,14 +18,14 @@ public class MyController {
 	@Value("${thispropertydoesnotexist}")
 	private String nonExistentProperty;
 
-	@Value("${baeldung.presentation}")
-	private String baeldungPresentation;
+	@Value("${tuyucheng.presentation}")
+	private String tuyuchengPresentation;
 
 	@Autowired
 	private Environment environment;
 
 	@Autowired
-	private BaeldungProperties baeldungProperties;
+	private TuyuchengProperties tuyuchengProperties;
 
 	@GetMapping("/environment_name")
 	String getEnvironmentName_FromEnvironmentVariables() {
@@ -42,19 +42,18 @@ public class MyController {
 		return nonExistentProperty;
 	}
 
-	@GetMapping("baeldung_presentation_from_value")
-	String getBaeldungPresentation_FromValue() {
-		return baeldungPresentation;
+	@GetMapping("tuyucheng_presentation_from_value")
+	String getTuyuchengPresentation_FromValue() {
+		return tuyuchengPresentation;
 	}
 
-	@GetMapping("baeldung_presentation_from_environment")
-	String getBaeldungPresentation_FromEnvironment() {
-		return environment.getProperty("baeldung.presentation");
+	@GetMapping("tuyucheng_presentation_from_environment")
+	String getTuyuchengPresentation_FromEnvironment() {
+		return environment.getProperty("tuyucheng.presentation");
 	}
 
-	@GetMapping("baeldung_configuration_properties")
-	String getBaeldungPresentation_FromConfigurationProperties() {
-		return baeldungProperties.getPresentation();
+	@GetMapping("tuyucheng_configuration_properties")
+	String getTuyuchengPresentation_FromConfigurationProperties() {
+		return tuyuchengProperties.getPresentation();
 	}
-
 }
