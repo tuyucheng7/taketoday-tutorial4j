@@ -99,20 +99,6 @@
 					<artifactId>wildfly-arquillian-container-managed</artifactId>
 					<version>${wildfly.version}</version>
 					<scope>test</scope>
-					<exclusions>
-						<exclusion>
-							<groupId>sun.jdk</groupId>
-							<artifactId>jconsole</artifactId>
-						</exclusion>
-					</exclusions>
-				</dependency>
-				<dependency>
-					<groupId>sun.jdk</groupId>
-					<artifactId>jconsole</artifactId>
-					<scope>system</scope>
-					<version>1.6.0</version>
-					<!-- set JAVA_8 env variable on your machine to point to the JDK 8 directory  -->
-					<systemPath>${env.JAVA_8}/lib/jconsole.jar</systemPath>
 				</dependency>
 			</dependencies>
 			<build>
