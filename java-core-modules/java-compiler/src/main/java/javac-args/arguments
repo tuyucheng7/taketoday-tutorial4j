@@ -1,0 +1,2 @@
+-d javac-target -verbose
+cn/tuyucheng/taketoday/javac/Data.java
