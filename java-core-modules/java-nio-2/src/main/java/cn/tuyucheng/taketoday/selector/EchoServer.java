@@ -43,18 +43,19 @@ public class EchoServer {
         }
     }
 
-    private static void answerWithEcho(ByteBuffer buffer, SelectionKey key) throws IOException {
-        SocketChannel client = (SocketChannel) key.channel();
-        client.read(buffer);
-        if (new String(buffer.array()).trim().equals(POISON_PILL)) {
-            client.close();
-            System.out.println("Not accepting client messages anymore");
-        } else {
-            buffer.flip();
-            client.write(buffer);
-            buffer.clear();
-        }
-    }
+	private static void answerWithEcho(ByteBuffer buffer, SelectionKey key) throws IOException {
+		SocketChannel client = (SocketChannel) key.channel();
+		int r = client.read(buffer);
+		if (r == -1 || new String(buffer.array()).trim()
+			.equals(POISON_PILL)) {
+			client.close();
+			System.out.println("Not accepting client messages anymore");
+		} else {
+			buffer.flip();
+			client.write(buffer);
+			buffer.clear();
+		}
+	}
 
     private static void register(Selector selector, ServerSocketChannel serverSocket) throws IOException {
         SocketChannel client = serverSocket.accept();
