@@ -604,7 +604,6 @@
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
@@ -765,7 +764,6 @@
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jws</module>-->
 				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
 				<!--<module>libraries-4</module>-->
@@ -860,7 +858,6 @@
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
@@ -1009,7 +1006,6 @@
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jws</module>-->
 				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
 				<!--<module>libraries-4</module>-->
@@ -1082,7 +1078,6 @@
 				<!--<module>javax.modules</module>-->
 				<!--<module>jersey</module>-->
 				<!--<module>jgit</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jib</module>-->
 				<!--<module>jmeter</module>-->
 				<!--<module>jmh</module>-->
@@ -1187,7 +1182,6 @@
 				<!--<module>image-processing</module>-->
 				<!--<module>jenkins-modules</module>-->
 				<!--<module>jhipster-modules</module>-->
-				<!--<module>jhipster-5</module>-->
 				<!--<module>jws</module>-->
 				<!--<module>libraries</module> &lt;!&ndash; very long running &ndash;&gt;-->
 				<!--<module>libraries-4</module>-->
