@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-	<context:component-scan base-package="cn.tuyucheng.taketoday.runtime.sampleapp.web"/>
+	<context:component-scan base-package="cn.tuyucheng.taketoday.sampleapp.web"/>
 
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters register-defaults="true">
@@ -15,12 +15,9 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
-
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
-		<property name="location">
-			<value>/WEB-INF/spring-views.xml</value>
-		</property>
+		<property name="location" value="/WEB-INF/spring-views.xml"/>
 		<property name="order" value="0"/>
 	</bean>
 
@@ -32,7 +29,8 @@
 		<property name="maxInMemorySize" value="1048576"/> <!-- 1MB -->
 	</bean>
 
-	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+	<bean id="contentNegotiationManager"
+		  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="defaultContentType" value="application/json"/>
 	</bean>
 </beans>
