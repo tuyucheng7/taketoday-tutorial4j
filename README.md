@@ -18,43 +18,55 @@ Taketoday Tutorial4j
 
 <img src="assets/img.png" align="left">
 
-然后指定以下内容(务必将每个版本的<jdkHome\>标签指向你本地该JDK版本的位置)：
+然后指定以下内容(务必将每个版本的<jdkHome\>指向你本地该JDK版本的位置，例如D:\\\xxx\\\jdk-17)：
 
 ```xml
-<toolchain>
-    <type>jdk</type>
-    <provides>
-        <version>17</version>
-        <vendor>adopt</vendor>
-    </provides>
-    <configuration>
-        <jdkHome>your jdk 17 path</jdkHome>
-    </configuration>
-</toolchain>
-<toolchain>
-    <type>jdk</type>
-    <provides>
-        <version>8</version>
-        <vendor>adopt</vendor>
-    </provides>
-    <configuration>
-        <jdkHome>your jdk 8 path</jdkHome>
-    </configuration>
-</toolchain>
+<?xml version="1.0" encoding="UTF-8"?>
+<toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/TOOLCHAINS/1.1.0 http://maven.apache.org/xsd/toolchains-1.1.0.xsd">
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>17</version>
+            <vendor>adopt</vendor>
+        </provides>
+        <configuration>
+            <jdkHome>your jdk 17 path</jdkHome>
+        </configuration>
+    </toolchain>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>8</version>
+            <vendor>adopt</vendor>
+        </provides>
+        <configuration>
+            <jdkHome>your jdk 8 path</jdkHome>
+        </configuration>
+    </toolchain>
+    <toolchain>
+        <type>jdk</type>
+        <provides>
+            <version>19</version>
+            <vendor>adopt</vendor>
+        </provides>
+        <configuration>
+            <jdkHome>your jdk 19 path</jdkHome>
+        </configuration>
+    </toolchain>
+</toolchains>
 ```
 
 ## Maven Profiles
 
-我们使用Maven Profile来隔离我们仓库中庞大的项目列表，这些项目大致分为：first、second。接下来，根据我们要执行的测试进一步隔离它们：
+我们使用Maven Profile来隔离各种测试(单元测试、集成测试、实时测试...)的执行：
 
-|      Profile       |     包含      |           启用的测试类型           |
-|:------------------:|:-----------:|:---------------------------:|
-|     first-unit     |    第一批项目    |          *UnitTest          |
-| first-integration  |    第一批项目    |      *IntegrationTest       |
-|     first-all      |    第一批项目    | *IntegrationTest、\*UnitTest |
-|    second-unit     |    第二批项目    |          *UnitTest          |
-| second-integration |    第二批项目    |      *IntegrationTest       |
-|     second-all     |    第二批项目    | *IntegrationTest、\*UnitTest |
+|   Profile   |           启用的测试类型           |
+|:-----------:|:---------------------------:|
+|    unit     |          *UnitTest          |
+| integration |      *IntegrationTest       |
+|     all     | *IntegrationTest、\*UnitTest |
+|    live     |          *LiveTest          |
 
 ## 构建项目
 
@@ -63,13 +75,13 @@ Taketoday Tutorial4j
 但是，如果我们想在仅启用单元测试的情况下构建整个仓库，我们可以从仓库的根目录调用以下命令：
 
 ```shell
-mvn clean install -Pfirst-unit,second-unit
+mvn clean install -Punit
 ```
 
 或者，如果我们想在启用集成测试的情况下构建整个仓库，我们可以执行以下操作：
 
 ```shell
-mvn clean install -Pfirst-integration,second-integration
+mvn clean install -Pintegration
 ```
 
 ## 构建单个模块
@@ -85,7 +97,7 @@ mvn clean install
 要运行Spring Boot模块，请在模块目录中运行命令：
 
 ```shell
-mvn spring-boot：run
+mvn spring-boot:run
 ```
 
 ## 导入到IDE
@@ -103,15 +115,8 @@ mvn spring-boot：run
 要同时运行单元和集成测试，请使用以下命令：
 
 ```shell
-mvn clean install -Pfirst-all
+mvn clean install -Pall
 ```
-或者
-
-```shell
-mvn clean install -Psecond-all
-```
-
-取决于我们的模块所在的列表。
 
 ## 模块列表
 
