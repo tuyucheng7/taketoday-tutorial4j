@@ -43,6 +43,7 @@
 + [Spring Boot Library](spring-boot-libraries-1/README.md)
 + [Spring Boot Log4j2](spring-boot-logging-log4j2/README.md)
 + [Spring Boot Logback](spring-boot-logging-logback/README.md)
++ [Spring Boot Miscellaneous](spring-boot-miscellaneous/README.md)
 + [Spring Boot MVC](spring-boot-mvc-1/README.md)
 + [Spring Boot MVC Birt](spring-boot-mvc-birt/README.md)
 + [Spring Boot MVC Jersey](spring-boot-mvc-jersey/README.md)

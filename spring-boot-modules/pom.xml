@@ -67,6 +67,7 @@
 		<!--<module>spring-boot-libraries-2</module>-->
 		<!--<module>spring-boot-logging-log4j2</module>-->
 		<!--<module>spring-boot-logging-logback</module>-->
+		<!--<module>spring-boot-miscellaneous</module>-->
 		<!--<module>spring-boot-mvc-1</module>-->
 		<!--<module>spring-boot-mvc-2</module>-->
 		<!--<module>spring-boot-mvc-3</module>-->
