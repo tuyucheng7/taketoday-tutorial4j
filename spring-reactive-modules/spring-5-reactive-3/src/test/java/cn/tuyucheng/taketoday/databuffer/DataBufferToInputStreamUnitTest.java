@@ -1,23 +1,31 @@
 package cn.tuyucheng.taketoday.databuffer;
 
+import cn.tuyucheng.taketoday.databuffer.DataBufferToInputStream;
+
 import io.restassured.internal.util.IOUtils;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import org.springframework.web.reactive.function.client.WebClient;
+
 import reactor.core.publisher.Mono;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class DataBufferToInputStreamUnitTest {
+
 	private String getResponseStub() throws IOException {
 		InputStream inputStream = null;
 		BufferedReader reader = null;
@@ -62,8 +70,8 @@ class DataBufferToInputStreamUnitTest {
 	}
 
 	@Test
-	void testResponseAsInputStream() throws IOException, InterruptedException {
-		String mockUrl = Mockito.anyString();
+	public void testResponseAsInputStream() throws IOException, InterruptedException {
+		String mockUrl = "http://mockurl.com";
 		WebClient mockWebClient = getMockWebClient();
 		InputStream inputStream = DataBufferToInputStream.getResponseAsInputStream(mockWebClient, mockUrl);
 		byte[] expectedBytes = IOUtils.toByteArray(getResponseStubAsInputStream());
