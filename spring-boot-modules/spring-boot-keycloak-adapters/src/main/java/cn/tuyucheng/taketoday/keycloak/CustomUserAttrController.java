@@ -17,7 +17,6 @@ public class CustomUserAttrController {
 
 	@GetMapping(path = "/users")
 	public String getUserInfo(Model model) {
-
 		KeycloakAuthenticationToken authentication = (KeycloakAuthenticationToken) SecurityContextHolder.getContext()
 			.getAuthentication();
 
@@ -28,9 +27,9 @@ public class CustomUserAttrController {
 		String userIdByMapper = "";
 
 		if (principal instanceof KeycloakPrincipal) {
-
 			KeycloakPrincipal<KeycloakSecurityContext> kPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
-			IDToken token = kPrincipal.getKeycloakSecurityContext().getIdToken();
+			IDToken token = kPrincipal.getKeycloakSecurityContext()
+				.getIdToken();
 
 			userIdByToken = token.getSubject();
 			userIdByMapper = token.getOtherClaims().get("user_id").toString();

@@ -19,8 +19,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = SpringBootKeycloakApplication.class)
-// requires running Keycloak server and realm setup as shown in Github
+@SpringBootTest(classes = SpringBootApp.class)
+// requires running Keycloak server and realm setup as shown in https://www.tuyucheng.com/spring-boot-keycloak
 public class KeycloakConfigurationLiveTest {
 
 	@Spy

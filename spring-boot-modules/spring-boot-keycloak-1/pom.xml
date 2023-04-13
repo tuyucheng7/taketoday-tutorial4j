@@ -102,7 +102,7 @@
 	</build>
 
 	<properties>
-		<start-class>cn.tuyucheng.taketoday.keycloak.SpringBoot</start-class>
+		<start-class>cn.tuyucheng.taketoday.keycloak.SpringBootApp</start-class>
 		<jaxb-runtime.version>4.0.0</jaxb-runtime.version>
 		<jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
 	</properties>
