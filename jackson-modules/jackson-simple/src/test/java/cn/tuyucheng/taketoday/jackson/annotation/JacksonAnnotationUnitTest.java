@@ -214,6 +214,15 @@ public class JacksonAnnotationUnitTest {
 	}
 
 	@Test
+	public void whenSerializingUsingJsonIncludeProperties_thenCorrect() throws JsonProcessingException {
+		final BeanWithInclude bean = new BeanWithInclude(1, "My bean");
+		final String result = new ObjectMapper().writeValueAsString(bean);
+		assertThat(result, containsString("My bean"));
+		assertThat(result, not(containsString("id")));
+		assertThat(result, containsString("name"));
+	}
+
+	@Test
 	public void whenSerializingUsingJsonIgnore_thenCorrect() throws JsonProcessingException {
 		final BeanWithIgnore bean = new BeanWithIgnore(1, "My bean");
 
@@ -405,7 +414,6 @@ public class JacksonAnnotationUnitTest {
 
 	@Test
 	public void whenDeserializingUsingJsonAlias_thenCorrect() throws IOException {
-
 		// arrange
 		String json = "{\"fName\": \"John\", \"lastName\": \"Green\"}";
 
@@ -418,7 +426,6 @@ public class JacksonAnnotationUnitTest {
 
 	@Test
 	public void whenSerializingUsingXMLRootNameWithNameSpace_thenCorrect() throws JsonProcessingException {
-
 		// arrange
 		UserWithRootNamespace author = new UserWithRootNamespace(1, "John");
 
@@ -438,6 +445,5 @@ public class JacksonAnnotationUnitTest {
               <items xmlns=""/>
             </user>
         */
-
 	}
 }
