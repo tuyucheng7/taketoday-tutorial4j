@@ -17,12 +17,12 @@ public class BuildPropertiesUnitTest {
 	@Test
 	void givenBuildPropertiesBean_WhenFetchDefaultBuildProperties_ThenGetValidValues() {
 		Assertions.assertEquals("spring-boot-properties-1", buildProperties.getArtifact());
-		Assertions.assertEquals("cn.tuyucheng.taketoday.spring-boot-modules", buildProperties.getGroup());
+		Assertions.assertEquals("cn.tuyucheng.taketoday", buildProperties.getGroup());
 		Assertions.assertEquals("1.0.0", buildProperties.getVersion());
 	}
 
 	@Test
-	void givenBuildPropertiesBean_WhenFetchCustomBuildProprties_ThenGetValidValues() {
+	void givenBuildPropertiesBean_WhenFetchCustomBuildProperties_ThenGetValidValues() {
 		Assertions.assertEquals("123", buildProperties.get("custom.value"));
 		Assertions.assertNotNull(buildProperties.get("java.version"));
 		Assertions.assertEquals("Spring Boot Properties Module", buildProperties.get("description"));

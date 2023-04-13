@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.properties.value.defaults;
 
-import org.apache.commons.lang3.ArrayUtils;
+import jakarta.annotation.PostConstruct;
+import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.util.Assert;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ import java.util.List;
  */
 @Configuration
 @PropertySource(name = "myProperties", value = "valueswithdefaults.properties")
-public class ValuesWithDefaultsApplication {
+public class ValuesWithDefaultsApp {
 
 	@Value("${some.key:my default value}")
 	private String stringWithDefaultValue;
@@ -44,7 +43,7 @@ public class ValuesWithDefaultsApplication {
 	private String spelWithDefaultValue;
 
 	public static void main(String[] args) {
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ValuesWithDefaultsApplication.class);
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ValuesWithDefaultsApp.class);
 	}
 
 	@PostConstruct
@@ -59,10 +58,10 @@ public class ValuesWithDefaultsApplication {
 
 		// arrays
 		List<String> stringListValues = Arrays.asList("one", "two", "three");
-		Assert.isTrue(new HashSet<>(Arrays.asList(stringArrayWithDefaults)).containsAll(stringListValues), "unexpected value for stringArrayWithDefaults");
+		Assert.isTrue(Arrays.asList(stringArrayWithDefaults).containsAll(stringListValues), "unexpected value for stringArrayWithDefaults");
 
 		List<Integer> intListValues = Arrays.asList(1, 2, 3);
-		Assert.isTrue(new HashSet<>(Arrays.asList(ArrayUtils.toObject(intArrayWithDefaults))).containsAll(intListValues), "unexpected value for intArrayWithDefaults");
+		Assert.isTrue(Arrays.asList(ArrayUtils.toObject(intArrayWithDefaults)).containsAll(intListValues), "unexpected value for intArrayWithDefaults");
 
 		// SpEL
 		Assert.isTrue(spelWithDefaultValue.equals("my default system property value"), "unexpected value for spelWithDefaultValue");

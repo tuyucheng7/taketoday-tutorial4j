@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.properties.value;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -7,14 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 @Configuration
 @PropertySource(name = "myProperties", value = "values.properties")
-public class ValuesApplication {
+public class ValuesApp {
 
 	@Value("string value")
 	private String stringValue;
@@ -70,7 +70,7 @@ public class ValuesApplication {
 	public static void main(String[] args) {
 		System.setProperty("systemValue", "Some system parameter value");
 		System.setProperty("priority", "System property");
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ValuesApplication.class);
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ValuesApp.class);
 	}
 
 	@Bean

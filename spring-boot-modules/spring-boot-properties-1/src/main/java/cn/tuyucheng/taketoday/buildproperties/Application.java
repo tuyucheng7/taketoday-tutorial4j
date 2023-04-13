@@ -9,9 +9,9 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.buildproperties")
 @PropertySource("classpath:build.properties")
 //@PropertySource("classpath:build.yml")
-public class BuildInfoApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BuildInfoApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

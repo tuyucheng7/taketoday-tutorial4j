@@ -1,31 +1,48 @@
 ## 1. 简介
 
-Spring Boot具有许多有用的特性，包括**外部化配置和对属性文件中定义的属性的轻松访问**，前面的[教程]()描述了完成此操作的各种方法。
+Spring Boot具有许多有用的特性，包括**外部化配置和对属性文件中定义的属性的轻松访问**，前面的[教程](https://www.baeldung.com/properties-with-spring)描述了完成此操作的各种方法。
 
 我们现在将更详细地探讨@ConfigurationProperties注解。
 
+## 延伸阅读
+
+### [Spring @Value快速指南](https://www.baeldung.com/spring-value-annotation)
+
+学习使用Spring @Value注解来配置来自属性文件、系统属性等的字段。
+
+[阅读更多](https://www.baeldung.com/spring-value-annotation)→
+
+### [Spring和Spring Boot的属性](https://www.baeldung.com/properties-with-spring)
+
+有关如何在Spring中使用属性文件和属性值的教程。
+
+[阅读更多](https://www.baeldung.com/properties-with-spring)→
+
 ## 2. 设置
 
-本教程使用相当标准的设置，我们首先在pom.xml中添加[spring-boot-starter-parent](https://search.maven.org/search?q=a:spring-boot-starter-parent AND g:org.springframework.boot)作为父级：
+本教程使用相当标准的设置。我们首先在pom.xml中添加[spring-boot-starter-parent](https://central.sonatype.com/artifact/org.springframework.boot/spring-boot-starter-parent/3.0.5)作为父级：
 
 ```xml
 <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.4</version>
+    <version>3.0.0</version>
     <relativePath/>
 </parent>
 ```
 
-为了能够验证文件中定义的属性，我们还需要一个JSR-303的实现，而[hibernate-validator](https://search.maven.org/search?q=a:hibernate-validator AND g:org.hibernate)就是其中之一，让我们也将它添加到我们的pom.xml中：
+为了能够验证文件中定义的属性，我们还需要JSR-303的实现，而[hibernate-validator](https://central.sonatype.com/artifact/org.hibernate.validator/hibernate-validator/8.0.0.Final)就是其中之一，由spring-boot-starter-validation依赖项提供。
+
+让我们也将它添加到我们的pom.xml中：
 
 ```xml
 <dependency>
-   <groupId>org.hibernate</groupId>
-   <artifactId>hibernate-validator</artifactId>
-   <version>6.0.16.Final</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
 ```
+
+[Hibernate验证器入门](http://hibernate.org/validator/documentation/getting-started/)一文提供了更多详细信息。
 
 ## 3. 简单属性
 
@@ -38,11 +55,11 @@ Spring Boot具有许多有用的特性，包括**外部化配置和对属性文�
 @ConfigurationProperties(prefix = "mail")
 public class ConfigProperties {
 
-	private String hostName;
-	private int port;
-	private String from;
+    private String hostName;
+    private int port;
+    private String from;
 
-	// standard getters and setters
+    // standard getters and setters
 }
 ```
 
@@ -87,7 +104,7 @@ mail.from=mailer@mail.com
 
 ### 3.1 Spring Boot 2.2
 
-**从**[Spring Boot 2.2](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes#configurationproperties-scanning)**开始，Spring通过类路径扫描查找并注册@ConfigurationProperties类**，需要通过添加@ConfigurationPropertiesScan注解来明确选择对@ConfigurationProperties的扫描。因此，**我们不必使用@Component(和其他元注解，如@Configuration)来标注这些类，甚至不必使用@EnableConfigurationProperties**：
+**从[Spring Boot 2.2](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes#configurationproperties-scanning)开始，Spring通过类路径扫描查找并注册@ConfigurationProperties类**。扫描@ConfigurationProperties需要通过添加**@ConfigurationPropertiesScan**注解来明确选择加入。因此，**我们不必使用@Component(和其他元注解，如@Configuration)来标注这些类，甚至不必使用@EnableConfigurationProperties**：
 
 ```java
 @ConfigurationProperties(prefix = "mail")
@@ -102,9 +119,9 @@ public class ConfigProperties {
 }
 ```
 
-@SpringBootApplication启用的类路径扫描程序会找到ConfigProperties类，即使我们没有用@Component注解标注这个类。
+@SpringBootApplication启用的类路径扫描程序会找到ConfigProperties类，即使我们没有用@Component标注这个类。
 
-此外，**我们可以使用**[@ConfigurationPropertiesScan](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/api/org/springframework/boot/context/properties/ConfigurationPropertiesScan.html)**注解来扫描配置属性类的自定义位置**：
+**此外，我们可以使用[@ConfigurationPropertiesScan](https://docs.spring.io/spring-boot/docs/2.2.0.RELEASE/api/org/springframework/boot/context/properties/ConfigurationPropertiesScan.html)注解来扫描配置属性类的自定义位置**：
 
 ```java
 @SpringBootApplication
@@ -175,7 +192,9 @@ mail.credentials.authMethod=SHA1
 
 ## 5. 在@Bean方法上使用@ConfigurationProperties
 
-**我们还可以在@Bean注解的方法上使用@ConfigurationProperties注解，当我们想要将属性绑定到我们无法控制的第三方组件(外部库)时，这种方法可能特别有用**。
+**我们还可以在@Bean标注的方法上使用@ConfigurationProperties注解**。
+
+当我们想要将属性绑定到我们无法控制的第三方组件(外部库)时，这种方法可能特别有用。
 
 让我们创建一个简单的Item类，我们将在下一个示例中使用该类：
 
@@ -215,7 +234,7 @@ public class ConfigProperties {
 private String hostName;
 ```
 
-接下来，我们将authMethod属性的长度限制为1到4个字符：
+接下来，将authMethod属性的长度限制为1到4个字符：
 
 ```java
 @Length(max = 4, min = 1)
@@ -341,18 +360,18 @@ conversion.employee=john,2000
 private Employee employee;
 ```
 
-**我们需要实现Converter接口，然后使用@ConfigurationPropertiesBinding注解来注册我们的自定义Converter**：
+我们需要实现Converter接口，然后**使用@ConfigurationPropertiesBinding注解来注册我们的自定义转换器**：
 
 ```java
 @Component
 @ConfigurationPropertiesBinding
 public class EmployeeConverter implements Converter<String, Employee> {
 
-	@Override
-	public Employee convert(String from) {
-		String[] data = from.split(",");
-		return new Employee(data[0], Double.parseDouble(data[1]));
-	}
+    @Override
+    public Employee convert(String from) {
+        String[] data = from.split(",");
+        return new Employee(data[0], Double.parseDouble(data[1]));
+    }
 }
 ```
 
@@ -360,46 +379,47 @@ public class EmployeeConverter implements Converter<String, Employee> {
 
 **从Spring Boot 2.2开始，我们可以使用@ConstructorBinding注解来绑定我们的配置属性**。
 
-这实质上意味着@ConfigurationProperties注解的类现在可能是[不可变]()的。
+这实质上意味着@ConfigurationProperties标注的类现在可能是[不可变](https://www.baeldung.com/java-immutable-object)的。
+
+但是从Spring Boot 3开始，这个注解就不再需要了：
 
 ```java
 @ConfigurationProperties(prefix = "mail.credentials")
-@ConstructorBinding
 public class ImmutableCredentials {
 
-	private final String authMethod;
-	private final String username;
-	private final String password;
+    private final String authMethod;
+    private final String username;
+    private final String password;
 
-	public ImmutableCredentials(String authMethod, String username, String password) {
-		this.authMethod = authMethod;
-		this.username = username;
-		this.password = password;
-	}
+    public ImmutableCredentials(String authMethod, String username, String password) {
+        this.authMethod = authMethod;
+        this.username = username;
+        this.password = password;
+    }
 
-	public String getAuthMethod() {
-		return authMethod;
-	}
+    public String getAuthMethod() {
+        return authMethod;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 }
 ```
 
 如我们所见，在使用@ConstructorBinding时，我们需要为构造函数提供我们想要绑定的所有参数。
 
-请注意，ImmutableCredentials的所有字段都是最终的，此外类中没有setter方法。
+请注意，ImmutableCredentials的所有字段都是最终的。此外，类中没有setter方法。
 
 此外，需要强调的是，**要使用构造函数绑定，我们需要使用@EnableConfigurationProperties或@ConfigurationPropertiesScan显式启用我们的配置类**。
 
-## 9. Java 16 Record
+## 9. Java 16记录
 
-Java 16引入了Record类型作为[JEP 395](https://openjdk.java.net/jeps/395)的一部分，记录是充当不可变数据的透明载体的类，这使得它们成为配置持有者和DTO的完美候选者。事实上，**我们可以在Spring Boot中将Java记录定义为配置属性**。例如，前面的例子可以重写为：
+Java 16在[JEP 395](https://openjdk.java.net/jeps/395)中引入了记录类型。记录是充当不可变数据的透明载体的类，这使得它们成为配置持有者和DTO的完美候选者。事实上，**我们可以在Spring Boot中将Java记录定义为配置属性**。例如，前面的例子可以重写为：
 
 ```java
 @ConstructorBinding
@@ -410,8 +430,8 @@ public record ImmutableCredentials(String authMethod, String username, String pa
 
 显然，与所有那些嘈杂的getter和setter相比，它更加简洁。
 
-此外，从[Spring Boot 2.6](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6.0-M2-Release-Notes#records-and-configurationproperties)开始，**对于单构造函数记录，我们可以删除@ConstructorBinding注解**，但是，如果我们的记录有多个构造函数，则仍应使用@ConstructorBinding来标识要用于属性绑定的构造函数。
+此外，从[Spring Boot 2.6](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.6.0-M2-Release-Notes#records-and-configurationproperties)开始，**对于单构造函数记录，我们可以删除@ConstructorBinding注解**。但是，如果我们的记录有多个构造函数，则仍应使用@ConstructorBinding来标识要用于属性绑定的构造函数。
 
 ## 10. 总结
 
-在本文中，我们探讨了@ConfigurationProperties注解并强调了它提供的一些有用的特性，例如宽松的绑定和Bean验证。
+在本文中，我们探讨了@ConfigurationProperties注解并重点介绍了它提供的一些有用功能，例如宽松绑定和Bean验证。

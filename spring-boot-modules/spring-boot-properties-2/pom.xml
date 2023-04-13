@@ -10,9 +10,10 @@
 	<description>Spring Boot Properties Module</description>
 
 	<parent>
-		<groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-		<artifactId>spring-boot-modules</artifactId>
+		<groupId>cn.tuyucheng.taketoday</groupId>
+		<artifactId>parent-boot-3</artifactId>
 		<version>1.0.0</version>
+		<relativePath>../../parent-boot-3</relativePath>
 	</parent>
 
 	<dependencies>
@@ -24,5 +25,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 	</dependencies>
+
+	<properties>
+		<start-class>cn.tuyucheng.taketoday.properties.yaml.YamlApplication</start-class>
+	</properties>
 </project>
