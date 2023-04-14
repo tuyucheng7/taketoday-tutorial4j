@@ -6,6 +6,11 @@
 	<artifactId>java-9-jigsaw</artifactId>
 	<version>1.0.0</version>
 	<name>java-9-jigsaw</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>library-core</module>
+	</modules>
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
