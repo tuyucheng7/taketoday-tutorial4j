@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface PostRepository extends JpaRepository<Post, Long>, PagingAndSortingRepository<Post, Long> {
+public interface PostRepository extends JpaRepository<Post, Long> {
 
 	@Query("select u from Post u where u.userName=:userName")
 	Page<Post> findByUser(@Param("userName") String userName, Pageable pageReq);

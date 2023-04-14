@@ -26,7 +26,6 @@
 		<module>spring-batch-1</module>
 		<module>spring-batch-2</module>
 		<module>spring-bom</module>
-		<module>spring-boot-rest</module>
 		<module>spring-core-1</module>
 		<module>spring-core-2</module>
 		<module>spring-core-3</module>
