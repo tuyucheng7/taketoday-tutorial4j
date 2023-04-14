@@ -1,26 +1,26 @@
 ## 1. 概述
 
-在本教程中，我们将处理需要在 Spring 应用程序的内部实体与发布回客户端的外部[DTO (数据传输对象)之间发生的转换。](https://www.baeldung.com/java-dto-pattern)
+在本教程中，我们将处理需要在Spring应用程序的**内部实体与发送回客户端的外部[DTO(数据传输对象)](https://www.baeldung.com/java-dto-pattern)之间进行的转换**。
 
-## 延伸阅读：
+## 延伸阅读
 
-## [Spring 的 RequestBody 和 ResponseBody 注解](https://www.baeldung.com/spring-request-response-body)
+### [Spring的RequestBody和ResponseBody注解](https://www.baeldung.com/spring-request-response-body)
 
-了解 Spring @RequestBody 和 @ResponseBody 注解。
+了解Spring @RequestBody和@ResponseBody注解。
 
 [阅读更多](https://www.baeldung.com/spring-request-response-body)→
 
-## [MapStruct 快速指南](https://www.baeldung.com/mapstruct)
+### [MapStruct快速指南](https://www.baeldung.com/mapstruct)
 
-使用 MapStruct 的快速实用指南
+使用MapStruct的快速实用指南。
 
 [阅读更多](https://www.baeldung.com/mapstruct)→
 
-## 2.模型映射器
+## 2. ModelMapper
 
-让我们首先介绍我们将用于执行此实体-DTO 转换的主要库[ModelMapper](http://modelmapper.org/getting-started/)。
+让我们首先介绍我们将用于执行此实体-DTO转换的主要库[ModelMapper](http://modelmapper.org/getting-started/)。
 
-我们将在pom.xml中需要这种依赖：
+pom.xml中需要的依赖项为：
 
 ```xml
 <dependency>
@@ -30,9 +30,9 @@
 </dependency>
 ```
 
-要检查此库是否有更新版本，[请转到此处](https://search.maven.org/classic/#search|gav|1|g%3A"org.modelmapper" AND a%3A"modelmapper")。
+要检查此库是否有更新版本，请转到[此处](https://central.sonatype.com/artifact/org.modelmapper/modelmapper/3.1.1)。
 
-然后我们将在 Spring 配置中定义ModelMapper bean：
+然后我们将在Spring配置中定义ModelMapper bean：
 
 ```java
 @Bean
@@ -41,14 +41,13 @@ public ModelMapper modelMapper() {
 }
 ```
 
-## 3.DTO
+## 3. DTO
 
-接下来介绍一下这个双面问题的DTO方面，Post DTO：
+接下来是PostDTO：
 
 ```java
 public class PostDto {
-    private static final SimpleDateFormat dateFormat
-      = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private Long id;
 
@@ -72,38 +71,34 @@ public class PostDto {
 
     // standard getters and setters
 }
-
 ```
 
 请注意，两个自定义日期相关方法处理客户端和服务器之间来回的日期转换：
 
--   getSubmissionDateConverted()方法将日期字符串转换为服务器时区中的日期，以便在持久化的Post实体中使用它
--   setSubmissionDate()方法是将 DTO 的日期设置为当前用户时区的Post日期
+-   getSubmissionDateConverted()方法将日期字符串转换为服务器时区中的Data，以便在持久化的Post实体中使用它
+-   setSubmissionDate()方法是将DTO的日期设置为当前用户时区的Post的Date
 
-## 4.服务层
+## 4. 服务层
 
-现在让我们看一下服务级别操作，它显然适用于实体(而不是 DTO)：
+现在让我们看一下Service级别操作，它显然适用于实体(而不是DTO)：
 
 ```java
-public List<Post> getPostsList(
-  int page, int size, String sortDir, String sort) {
- 
-    PageRequest pageReq
-     = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
+public List<Post> getPostsList(int page, int size, String sortDir, String sort) {
+    PageRequest pageReq = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
  
     Page<Post> posts = postRepository
-      .findByUser(userService.getCurrentUser(), pageReq);
+        .findByUser(userService.getCurrentUser(), pageReq);
     return posts.getContent();
 }
 ```
 
-接下来我们将看一下服务之上的层，即控制器层。这是转换实际发生的地方。
+接下来我们将看一下服务层之上的层，即控制器层。这是转换实际发生的地方。
 
-## 5.控制器层
+## 5. 控制器层
 
-接下来让我们检查一个标准的控制器实现，为Post资源公开简单的 REST API。
+接下来让我们检查一个标准的控制器实现，为Post资源公开简单的REST API。
 
-我们将在这里展示几个简单的 CRUD 操作：创建、更新、获取一个和获取所有。鉴于操作非常简单，我们对 Entity-DTO 转换方面特别感兴趣：
+我们将在这里展示一些简单的CRUD操作：创建、更新、获取一个和获取所有。鉴于操作非常简单，**我们将重点放在实体-DTO转换方面**：
 
 ```java
 @Controller
@@ -124,8 +119,8 @@ class PostRestController {
         //...
         List<Post> posts = postService.getPostsList(page, size, sortDir, sort);
         return posts.stream()
-          .map(this::convertToDto)
-          .collect(Collectors.toList());
+              .map(this::convertToDto)
+              .collect(Collectors.toList());
     }
 
     @PostMapping
@@ -133,7 +128,7 @@ class PostRestController {
     @ResponseBody
     public PostDto createPost(@RequestBody PostDto postDto) {
         Post post = convertToEntity(postDto);
-        Post postCreated = postService.createPost(post));
+        Post postCreated = postService.createPost(post);
         return convertToDto(postCreated);
     }
 
@@ -155,7 +150,7 @@ class PostRestController {
 }
 ```
 
-这是我们从Post实体到PostDto的转换：
+这是我们**从Post实体到PostDto的转换**：
 
 ```java
 private PostDto convertToDto(Post post) {
@@ -166,13 +161,12 @@ private PostDto convertToDto(Post post) {
 }
 ```
 
-这是从 DTO 到实体的转换：
+这是**从DTO到实体的转换**：
 
 ```java
 private Post convertToEntity(PostDto postDto) throws ParseException {
     Post post = modelMapper.map(postDto, Post.class);
-    post.setSubmissionDate(postDto.getSubmissionDateConverted(
-      userService.getCurrentUser().getPreference().getTimezone()));
+    post.setSubmissionDate(postDto.getSubmissionDateConverted(userService.getCurrentUser().getPreference().getTimezone()));
  
     if (postDto.getId() != null) {
         Post oldPost = postService.getPostById(postDto.getId());
@@ -183,11 +177,11 @@ private Post convertToEntity(PostDto postDto) throws ParseException {
 }
 ```
 
-正如我们所见，在模型映射器的帮助下，转换逻辑快速而简单。我们正在使用映射器的地图API，并在不编写一行转换逻辑的情况下转换数据。
+正如我们所见，在ModelMapper的帮助下，**转换逻辑快速而简单**。我们使用ModelMapper的map API，并在不编写任何转换逻辑的情况下转换数据。
 
 ## 6. 单元测试
 
-最后，让我们做一个非常简单的测试来确保实体和 DTO 之间的转换工作正常：
+最后，让我们编写一个非常简单的测试来确保实体和DTO之间的转换正常：
 
 ```java
 public class PostDtoUnitTest {
@@ -222,6 +216,6 @@ public class PostDtoUnitTest {
 }
 ```
 
-## 七、总结
+## 7. 总结
 
-在本文中，我们通过使用模型映射器库而不是手动编写这些转换，详细介绍了在 Spring REST API 中简化从实体到 DTO 以及从 DTO 到实体的转换。
+在本文中，我们详细介绍了在Spring REST API中简化从实体到DTO以及从DTO到实体的转换，使用modelmapper库而不是手动编写这些转换。
