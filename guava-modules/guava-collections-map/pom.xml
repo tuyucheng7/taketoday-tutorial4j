@@ -5,7 +5,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.tuyucheng.taketoday.guava</groupId>
 	<artifactId>guava-collections-map</artifactId>
-	<version>1.0.0</version>
 	<name>guava-collections-map</name>
 
 	<parent>
