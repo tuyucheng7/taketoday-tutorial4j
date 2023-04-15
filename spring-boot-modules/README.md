@@ -36,6 +36,7 @@
 + [Spring Boot Gradle](spring-boot-gradle/README.md)
 + [Spring Boot GraphQL](spring-boot-graphql/README.md)
 + [Spring Boot Groovy](spring-boot-groovy/README.md)
++ [Spring Boot gRPC](spring-boot-grpc/README.md)
 + [Spring Boot Jasypt](spring-boot-jasypt/README.md)
 + [Spring Boot JSP](spring-boot-jsp/README.md)
 + [Spring Boot Keycloak Adapters](spring-boot-keycloak-adapters/README.md)
