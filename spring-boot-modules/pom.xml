@@ -61,7 +61,6 @@
 		<module>spring-boot-graphql</module>
 		<module>spring-boot-groovy</module>
 		<module>spring-boot-grpc</module>
-		<module>spring-boot-gradle</module>
 		<module>spring-boot-jasypt</module>
 		<module>spring-boot-jsp</module>
 		<module>spring-boot-keycloak-1</module>
