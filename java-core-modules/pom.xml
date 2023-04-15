@@ -37,7 +37,7 @@
 		<!--<module>java-16</module>-->
 		<!--<module>java-17</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
 		<!--<module>java-19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
-		<module>java-20</module>   <!--uses preview features, to be decided how to handle-->
+		<!--<module>java-20</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
 		<!--<module>java-annotations</module>-->
 		<!--<module>java-arrays-sorting</module>-->
 		<!--<module>java-arrays-guides</module>-->
@@ -85,7 +85,7 @@
 		<!--<module>java-datetime-conversion</module>-->
 		<!--<module>java-datetime-string-1</module>-->
 		<!--<module>java-datetime-string-2</module>-->
-		<!--<module>java-datetime-documentation</module>-->
+		<!--<module>java-documentation</module>-->
 		<!--<module>java-exceptions-1</module>-->
 		<!--<module>java-exceptions-2</module>-->
 		<!--<module>java-exceptions-3</module>-->
