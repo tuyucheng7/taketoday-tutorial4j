@@ -565,9 +565,8 @@
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
 				<!--<module>bazel</module>-->
-				<!--<module>checker-plugin</module>-->
+				<!--<module>checker-framework</module>-->
 				<!--<module>clojure</module>--> <!-- Not a maven project -->
-				<!--<module>code-generation</module>-->
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
 				<!--<module>data-structures-modules</module>-->
@@ -586,6 +585,7 @@
 				<!--<module>feign</module>-->
 				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
+				<!--<module>google-auto-project</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
@@ -723,9 +723,8 @@
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
 				<!--<module>bazel</module>-->
-				<!--<module>checker-plugin</module>-->
+				<!--<module>checker-framework</module>-->
 				<!--<module>clojure</module>--> <!-- Not a maven project -->
-				<!--<module>code-generation</module>-->
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
 				<!--<module>data-structures-modules</module>-->
@@ -744,6 +743,7 @@
 				<!--<module>feign</module>-->
 				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
+				<!--<module>google-auto-project</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
@@ -859,9 +859,8 @@
 				<!--<module>axon</module>-->
 				<!--<module>azure</module>-->
 				<!--<module>bazel</module>-->
-				<!--<module>checker-plugin</module>-->
+				<!--<module>checker-framework</module>-->
 				<!--<module>clojure</module>--> <!-- Not a maven project -->
-				<!--<module>code-generation</module>-->
 				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
 				<!--<module>data-structures-modules</module>-->
@@ -880,6 +879,7 @@
 				<!--<module>feign</module>-->
 				<!--<module>gcp-firebase</module>-->
 				<!--<module>geotools</module>-->
+				<!--<module>google-auto-project</module>-->
 				<!--<module>google-cloud</module>-->
 				<!--<module>gradle-modules</module> --> <!-- Not a maven project -->
 				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
