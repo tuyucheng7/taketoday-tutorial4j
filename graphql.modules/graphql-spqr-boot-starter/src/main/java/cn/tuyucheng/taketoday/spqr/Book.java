@@ -1,10 +1,7 @@
 package cn.tuyucheng.taketoday.spqr;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import java.util.Objects;
 
-@ExcludeFromJacocoGeneratedReport
 public class Book {
 	private Integer id;
 	private String author;

@@ -28,13 +28,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>cn.tuyucheng.taketoday</groupId>
-			<artifactId>custom-jacoco-exclude-annotations</artifactId>
-		</dependency>
-	</dependencies>
-
 	<modules>
 		<module>graphql-dgs</module>
 		<module>graphql-java</module>
