@@ -128,10 +128,9 @@
 						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 						--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
 						--add-opens=jdk.compiler/com.sun.tools.javac=ALL-UNNAMED
-						--add-opens=java.base/java.lang=ALL-UNNAMED
-						--add-opens=java.base/java.lang.reflect=ALL-UNNAMED
-						--add-opens=java.base/java.io=ALL-UNNAMED
-						--add-opens=java.base/java.util=ALL-UNNAMED</argLine>
+						--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED
+					</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -140,9 +139,9 @@
 	<properties>
 		<mapdb.version>3.0.8</mapdb.version>
 		<classgraph.version>4.8.153</classgraph.version>
-		<jbpm.version>7.1.0.Final</jbpm.version>
+		<jbpm.version>7.20.0.Final</jbpm.version>
 		<picocli.version>4.7.0</picocli.version>
-		<chronicle.map.version>3.17.2</chronicle.map.version>
+		<chronicle.map.version>3.24ea1</chronicle.map.version>
 		<crawler4j.version>4.4.0</crawler4j.version>
 		<spring-boot-starter.version>2.7.8</spring-boot-starter.version>
 		<mesos.library.version>1.11.0</mesos.library.version>

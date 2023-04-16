@@ -16,23 +16,23 @@
 	<modules>
 		<module>libraries-1</module>
 		<module>libraries-2</module>
-		<!--<module>libraries-3</module>-->
+		<module>libraries-3</module>
 		<module>libraries-4</module>
 		<module>libraries-5</module>
-		<!--<module>libraries-6</module>-->
-		<!--<module>libraries-7</module>-->
+		<module>libraries-6</module>
 		<module>libraries-apache-commons</module>
 		<module>libraries-apache-commons-collections</module>
 		<module>libraries-apache-commons-io</module>
 		<module>libraries-concurrency</module>
-		<!--<module>libraries-data-1</module>-->
-		<!--<module>libraries-data-2</module>-->
-		<!--<module>libraries-data-db</module>-->
+		<module>libraries-data-1</module>
+		<module>libraries-data-2</module>
+		<module>libraries-data-db</module>
 		<module>libraries-data-io</module>
 		<module>libraries-files</module>
 		<module>libraries-http-1</module>
 		<module>libraries-http-2</module>
 		<module>libraries-io</module>
+		<module>libraries-jdk8</module>
 		<module>libraries-primitive</module>
 		<module>libraries-rpc</module>
 		<module>libraries-security</module>

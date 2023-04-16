@@ -8,7 +8,7 @@
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>parent-modules</artifactId>
+		<artifactId>opensource-libraries</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
@@ -174,7 +174,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>
-						--add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
+						${argLine} --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED
 						--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
 						--add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
 						--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
