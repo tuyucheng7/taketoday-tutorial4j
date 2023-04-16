@@ -563,11 +563,9 @@
 				<module>atomix</module>
 				<!--<module>aws-modules</module>-->
 				<!--<module>axon</module>-->
-				<!--<module>azure</module>-->
 				<!--<module>bazel</module>-->
 				<!--<module>checker-framework</module>-->
 				<!--<module>clojure</module>--> <!-- Not a maven project -->
-				<!--<module>couchbase</module>-->
 				<module>custom-pmd</module>
 				<!--<module>data-structures-modules</module>-->
 				<!--<module>ddd</module>-->
@@ -610,12 +608,9 @@
 				<!--<module>jhipster-6</module>-->
 				<!--<module>jhipster-modules</module>-->
 				<!--<module>jib</module>-->
-				<!--<module>jmeter</module>-->
-				<!--<module>jmh</module>-->
 				<!--<module>json-modules</module>-->
 				<!--<module>jws</module>-->
 				<!--<module>kotlin-modules</module>-->
-				<!--<module>ksqldb</module>-->
 				<!--<module>kubernetes-modules</module>-->
 				<!--<module>lagom</module>--> <!-- Not a maven project -->
 				<!--<module>language-interop</module>-->
@@ -644,7 +639,6 @@
 				<module>parent-spring-5</module>
 				<!--<module>pdf-1</module>-->
 				<!--<module>pdf-2</module>-->
-				<!--<module>performance-tests</module>-->
 				<!--<module>persistence-modules</module>-->
 				<!--<module>protobuffer</module>-->
 				<module>quarkus-modules</module>
