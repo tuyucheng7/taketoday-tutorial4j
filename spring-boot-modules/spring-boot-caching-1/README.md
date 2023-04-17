@@ -7,5 +7,6 @@
 + [在Spring中使用多个缓存管理器](docs/在Spring中使用多个缓存管理器.md)
 + [测试Repository上的@Cacheable](docs/测试Repository上的@Cacheable.md)
 + [Spring Boot Ehcache示例](docs/SpringBoot-Ehcache示例.md)
++ [在Spring Boot中获取所有缓存的Caffeine键](docs/在SpringBoot中获取所有缓存的Caffeine键.md)
 
 - 更多文章： [[next -->]](../spring-boot-caching-2/README.md)
