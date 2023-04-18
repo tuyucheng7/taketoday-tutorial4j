@@ -1,19 +1,13 @@
 package cn.tuyucheng.taketoday.httpinterface;
 
-import org.apache.http.HttpException;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.mockserver.client.MockServerClient;
-import org.mockserver.integration.ClientAndServer;
 import org.mockserver.configuration.Configuration;
-
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.List;
-
+import org.mockserver.integration.ClientAndServer;
 import org.mockserver.model.HttpRequest;
 import org.mockserver.model.MediaType;
 import org.mockserver.verify.VerificationTimes;
@@ -25,13 +19,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.mockserver.matchers.Times.exactly;
 import static org.mockserver.model.HttpRequest.request;
 import static org.mockserver.model.HttpResponse.response;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Disabled("fails test")
 class BooksServiceMockServerUnitTest {

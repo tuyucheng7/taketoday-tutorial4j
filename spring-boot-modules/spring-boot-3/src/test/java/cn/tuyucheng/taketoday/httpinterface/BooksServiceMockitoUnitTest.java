@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.httpinterface;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Answers;
 import org.mockito.InjectMocks;
@@ -14,11 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import static org.mockito.BDDMockito.*;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.any;
+import static org.mockito.BDDMockito.anyMap;
+import static org.mockito.BDDMockito.anyString;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @Disabled("fails test")
