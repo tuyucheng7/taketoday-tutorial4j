@@ -133,8 +133,6 @@
 	</build>
 
 	<properties>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
 		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
 		<node.version>v14.18.0</node.version>
 		<yarn.version>v1.12.1</yarn.version>
