@@ -50,7 +50,6 @@
 		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
 		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
-		<checkstyle-maven-plugin.version>3.2.0</checkstyle-maven-plugin.version>
 
 		<!-- apache commons libraries -->
 		<commons-collections4.version>4.4</commons-collections4.version>
@@ -82,7 +81,6 @@
 		<!-- code analysis -->
 		<custom-pmd.version>1.0.0</custom-pmd.version>
 		<gitflow-incremental-builder.version>3.12.2</gitflow-incremental-builder.version>
-		<checkstyle.version>10.5.0</checkstyle.version>
 		<jacoco.version>0.8.8</jacoco.version>
 
 		<!-- sonarcloud -->
@@ -377,29 +375,6 @@
 						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${checkstyle-maven-plugin.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>com.puppycrawl.tools</groupId>
-						<artifactId>checkstyle</artifactId>
-						<version>${checkstyle.version}</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<excludes>**/module-info.java</excludes>
-					<configLocation>checkstyle.xml</configLocation>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
