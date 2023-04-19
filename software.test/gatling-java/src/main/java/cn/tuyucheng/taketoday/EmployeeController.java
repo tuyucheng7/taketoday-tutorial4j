@@ -1,13 +1,6 @@
 package cn.tuyucheng.taketoday;
 
-import java.net.URI;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import lombok.extern.slf4j.Slf4j;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @RestController
@@ -32,7 +31,7 @@ public class EmployeeController {
 
 	@GetMapping("/{id}")
 	public Employee getEmployeeWithId(@PathVariable("id") Long id) {
-		log.info("Getting employee with ID '{}'", id);
+		LOGGER.info("Getting employee with ID '{}'", id);
 
 		List<Employee> allEmployees = createEmployees();
 		return allEmployees.get(ThreadLocalRandom.current()
@@ -41,7 +40,7 @@ public class EmployeeController {
 
 	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<Void> addEmployee(@RequestBody EmployeeCreationRequest request, UriComponentsBuilder uriComponentsBuilder) {
-		log.info("Creating new employee with employeeName: {}", request.getEmpName());
+		LOGGER.info("Creating new employee with employeeName: {}", request.getEmpName());
 
 		URI location = uriComponentsBuilder.path("/api/employees/{id}")
 			.buildAndExpand("99")
@@ -51,7 +50,7 @@ public class EmployeeController {
 	}
 
 	private List<Employee> createEmployees() {
-		Set<String> projects = new HashSet<String>();
+		Set<String> projects = new HashSet<>();
 		projects.add("proj1");
 		projects.add("proj2");
 

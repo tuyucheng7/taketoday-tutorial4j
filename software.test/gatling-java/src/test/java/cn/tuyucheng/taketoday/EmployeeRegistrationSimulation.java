@@ -1,20 +1,6 @@
 package cn.tuyucheng.taketoday;
 
-import static io.gatling.javaapi.core.CoreDsl.StringBody;
-import static io.gatling.javaapi.core.CoreDsl.global;
-import static io.gatling.javaapi.core.CoreDsl.rampUsersPerSec;
-import static io.gatling.javaapi.http.HttpDsl.header;
-import static io.gatling.javaapi.http.HttpDsl.http;
-import static io.gatling.javaapi.http.HttpDsl.status;
-
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.stream.Stream;
-
 import com.github.javafaker.Faker;
-
 import io.gatling.javaapi.core.CoreDsl;
 import io.gatling.javaapi.core.OpenInjectionStep.RampRate.RampRateOpenInjectionStep;
 import io.gatling.javaapi.core.ScenarioBuilder;
@@ -22,6 +8,19 @@ import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.http.HttpDsl;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import lombok.extern.slf4j.Slf4j;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import static io.gatling.javaapi.core.CoreDsl.StringBody;
+import static io.gatling.javaapi.core.CoreDsl.global;
+import static io.gatling.javaapi.core.CoreDsl.rampUsersPerSec;
+import static io.gatling.javaapi.http.HttpDsl.header;
+import static io.gatling.javaapi.http.HttpDsl.http;
+import static io.gatling.javaapi.http.HttpDsl.status;
 
 @Slf4j
 public class EmployeeRegistrationSimulation extends Simulation {
