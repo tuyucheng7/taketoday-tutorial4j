@@ -19,5 +19,4 @@ public class Phone {
 	public String toString() {
 		return PrettyToString.toPrettyString(this);
 	}
-
 }

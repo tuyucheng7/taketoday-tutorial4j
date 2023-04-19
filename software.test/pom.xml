@@ -21,16 +21,16 @@
 		<module>easy-random</module>
 		<module>easymock</module>
 		<module>gatling</module>
-		<!--<module>gatling-java</module>-->
+		<module>gatling-java</module>
 		<module>groovy-spock</module>
 		<module>hamcrest</module>
-		<!--<module>instancio</module>-->
+		<module>instancio</module>
 		<module>junit-4</module>
-		<!--<module>junit-5-advanced</module>-->
+		<module>junit-5-advanced</module>
 		<module>junit-5-basics</module>
 		<module>junit-5</module>
 		<module>junit-5-annotations</module>
-		<!--<module>junit-5-migration</module>-->
+		<module>junit-5-migration</module>
 		<module>jmeter</module>
 		<module>jmh</module>
 		<module>load-testing-comparison</module>
@@ -45,13 +45,14 @@
 		<module>performance-tests</module>
 		<module>powermock</module>
 		<module>rest-assured</module>
-		<!--<module>rest-assured-selenium</module>-->
+		<module>rest-assured-selenium</module>
 		<module>rest-testing</module>
 		<module>selenium-junit-testng</module>
 		<module>spf4j</module>
 		<module>spring-testing-1</module>
 		<module>spring-testing-2</module>
 		<module>test-containers</module>
+		<module>testing-assertions</module>
 		<module>testing-libraries-1</module>
 		<module>testing-libraries-2</module>
 		<module>testing-libraries-3</module>

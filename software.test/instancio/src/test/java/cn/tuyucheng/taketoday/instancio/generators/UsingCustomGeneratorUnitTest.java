@@ -53,5 +53,4 @@ class UsingCustomGeneratorUnitTest {
 		assertThat(address.getStreet()).isNotNull();
 		assertThat(address.getCity()).isNotNull();
 	}
-
 }

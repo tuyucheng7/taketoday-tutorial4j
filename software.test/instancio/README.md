@@ -4,8 +4,4 @@
 
 ## ## 相关文章
 
-+ [Instanico简介](docs/Instancio简介.md)
-+ [Instanico自定义对象](docs/Instancio自定义对象.md)
-+ [Instancio注解处理器](docs/Instancio注解处理器.md)
-+ [Instancio配置](docs/Instancio配置.md)
-+ [JUnit Jupiter集成](docs/JUnit-Jupiter集成.md)
++ [使用Instancio在Java中生成单元测试数据](docs/使用Instancio在Java中生成单元测试数据.md)

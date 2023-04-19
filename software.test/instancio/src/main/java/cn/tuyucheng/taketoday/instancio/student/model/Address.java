@@ -27,5 +27,4 @@ public class Address {
 	public String toString() {
 		return PrettyToString.toPrettyString(this);
 	}
-
 }

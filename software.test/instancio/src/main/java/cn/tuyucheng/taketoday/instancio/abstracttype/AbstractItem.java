@@ -1,4 +1,4 @@
-package com.baeldung.instancio.abstracttype;
+package cn.tuyucheng.taketoday.instancio.abstracttype;
 
 public interface AbstractItem<T> {
 

@@ -26,5 +26,4 @@ public class EnrollmentService {
 		}
 		return enrollStudent(student, course);
 	}
-
 }
