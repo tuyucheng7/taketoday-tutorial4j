@@ -1,6 +1,6 @@
 ## 相关文章
 
-使用Gatling负载测试Rest端点
++ [使用Gatling负载测试Rest端点](docs/使用Gatling负载测试Rest端点.md)
 
 ## 运行模拟
 
