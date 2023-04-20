@@ -12,14 +12,14 @@ class MockedStaticUnitTest {
 
 	@Test
 	void givenStaticMethodWithNoArgs_whenMocked_thenReturnsMockSuccessfully() {
-		assertThat(StaticUtils.name()).isEqualTo("Baeldung");
+		assertThat(StaticUtils.name()).isEqualTo("Tuyucheng");
 
 		try (MockedStatic<StaticUtils> utilities = mockStatic(StaticUtils.class)) {
-			utilities.when(StaticUtils::name).thenReturn("Eugen");
-			assertThat(StaticUtils.name()).isEqualTo("Eugen");
+			utilities.when(StaticUtils::name).thenReturn("Jack");
+			assertThat(StaticUtils.name()).isEqualTo("Jack");
 		}
 
-		assertThat(StaticUtils.name()).isEqualTo("Baeldung");
+		assertThat(StaticUtils.name()).isEqualTo("Tuyucheng");
 	}
 
 	@Test
@@ -35,5 +35,4 @@ class MockedStaticUnitTest {
 
 		assertThat(StaticUtils.range(2, 6)).containsExactly(2, 3, 4, 5);
 	}
-
 }

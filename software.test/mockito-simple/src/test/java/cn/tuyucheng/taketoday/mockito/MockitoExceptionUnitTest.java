@@ -15,56 +15,46 @@ import static org.mockito.Mockito.when;
 class MockitoExceptionUnitTest {
 
 	@Test
-	void whenConfigNonVoidRetunMethodToThrowEx_thenExIsThrown() {
+	void whenConfigNonVoidReturnMethodToThrowEx_thenExIsThrown() {
 		MyDictionary dictMock = mock(MyDictionary.class);
 		when(dictMock.getMeaning(anyString())).thenThrow(NullPointerException.class);
-		assertThrows(NullPointerException.class, () -> {
-			dictMock.getMeaning("word");
-		});
+		assertThrows(NullPointerException.class, () -> dictMock.getMeaning("word"));
 
 	}
 
 	@Test
-	void whenConfigVoidRetunMethodToThrowEx_thenExIsThrown() {
+	void whenConfigVoidReturnMethodToThrowEx_thenExIsThrown() {
 		MyDictionary dictMock = mock(MyDictionary.class);
 		doThrow(IllegalStateException.class).when(dictMock)
 			.add(anyString(), anyString());
-		assertThrows(IllegalStateException.class, () -> {
-			dictMock.add("word", "meaning");
-		});
+		assertThrows(IllegalStateException.class, () -> dictMock.add("word", "meaning"));
 
 	}
 
 	@Test
-	void whenConfigNonVoidRetunMethodToThrowExWithNewExObj_thenExIsThrown() {
+	void whenConfigNonVoidReturnMethodToThrowExWithNewExObj_thenExIsThrown() {
 		MyDictionary dictMock = mock(MyDictionary.class);
 		when(dictMock.getMeaning(anyString())).thenThrow(new NullPointerException("Error occurred"));
-		assertThrows(NullPointerException.class, () -> {
-			dictMock.getMeaning("word");
-		});
+		assertThrows(NullPointerException.class, () -> dictMock.getMeaning("word"));
 
 	}
 
 	@Test
-	void whenConfigVoidRetunMethodToThrowExWithNewExObj_thenExIsThrown() {
+	void whenConfigVoidReturnMethodToThrowExWithNewExObj_thenExIsThrown() {
 		MyDictionary dictMock = mock(MyDictionary.class);
 		doThrow(new IllegalStateException("Error occurred")).when(dictMock)
 			.add(anyString(), anyString());
-		assertThrows(IllegalStateException.class, () -> {
-			dictMock.add("word", "meaning");
-		});
+		assertThrows(IllegalStateException.class, () -> dictMock.add("word", "meaning"));
 
 	}
 
 	// =====
 
 	@Test
-	void givenSpy_whenConfigNonVoidRetunMethodToThrowEx_thenExIsThrown() {
+	void givenSpy_whenConfigNonVoidReturnMethodToThrowEx_thenExIsThrown() {
 		MyDictionary dict = new MyDictionary();
 		MyDictionary spy = Mockito.spy(dict);
 		when(spy.getMeaning(anyString())).thenThrow(NullPointerException.class);
-		assertThrows(NullPointerException.class, () -> {
-			spy.getMeaning("word");
-		});
+		assertThrows(NullPointerException.class, () -> spy.getMeaning("word"));
 	}
 }

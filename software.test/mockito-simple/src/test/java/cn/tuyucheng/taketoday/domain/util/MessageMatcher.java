@@ -5,7 +5,7 @@ import org.mockito.ArgumentMatcher;
 
 public class MessageMatcher implements ArgumentMatcher<Message> {
 
-	private Message left;
+	private final Message left;
 
 	public MessageMatcher(Message message) {
 		this.left = message;

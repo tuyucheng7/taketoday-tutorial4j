@@ -6,5 +6,4 @@ public final class FinalList extends MyList {
 	public int size() {
 		return 1;
 	}
-
 }

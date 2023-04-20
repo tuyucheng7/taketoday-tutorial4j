@@ -1,20 +1,18 @@
 package cn.tuyucheng.taketoday.mockito;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
-
 
 @ExtendWith(MockitoExtension.class)
 class MockitoAnnotationsInjectIntoSpyUnitTest {
@@ -22,7 +20,7 @@ class MockitoAnnotationsInjectIntoSpyUnitTest {
 	@BeforeEach
 	public void init() {
 		openMocks(this);
-		spyDic = Mockito.spy(new MyDictionary(wordMap));
+		spyDic = spy(new MyDictionary(wordMap));
 	}
 
 	@Mock

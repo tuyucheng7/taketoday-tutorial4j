@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.mockito.voidmethods;
 
-
 import cn.tuyucheng.taketoday.mockito.MyList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,9 +33,7 @@ class MockitoVoidMethodsUnitTest {
 	@Test
 	void givenNull_addThrows() {
 		MyList myList = mock(MyList.class);
-		assertThrows(Exception.class, () -> {
-			doThrow().when(myList).add(isA(Integer.class), isNull());
-		});
+		assertThrows(Exception.class, () -> doThrow().when(myList).add(isA(Integer.class), isNull()));
 
 		myList.add(0, null);
 	}

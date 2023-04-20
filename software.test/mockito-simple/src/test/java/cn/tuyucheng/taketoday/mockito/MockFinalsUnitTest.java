@@ -10,7 +10,6 @@ class MockFinalsUnitTest {
 
 	@Test
 	void whenMockFinalMethodMockWorks() {
-
 		MyList myList = new MyList();
 
 		MyList mock = mock(MyList.class);
@@ -21,7 +20,6 @@ class MockFinalsUnitTest {
 
 	@Test
 	public void whenMockFinalClassMockWorks() {
-
 		FinalList finalList = new FinalList();
 
 		FinalList mock = mock(FinalList.class);

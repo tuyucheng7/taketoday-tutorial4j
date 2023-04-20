@@ -5,5 +5,4 @@ public interface SettingRepository {
 	int getUserMinAge();
 
 	int getUserNameMinLength();
-
 }

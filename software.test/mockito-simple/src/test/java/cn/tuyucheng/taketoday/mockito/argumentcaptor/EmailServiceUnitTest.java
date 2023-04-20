@@ -32,7 +32,7 @@ class EmailServiceUnitTest {
 
 	@Test
 	void whenDoesNotSupportHtml_expectTextOnlyEmailFormat() {
-		String to = "info@baeldung.com";
+		String to = "info@tuyucheng.com";
 		String subject = "Using ArgumentCaptor";
 		String body = "Hey, let'use ArgumentCaptor";
 
@@ -45,7 +45,7 @@ class EmailServiceUnitTest {
 
 	@Test
 	void whenDoesSupportHtml_expectHTMLEmailFormat() {
-		String to = "info@baeldung.com";
+		String to = "info@tuyucheng.com";
 		String subject = "Using ArgumentCaptor";
 		String body = "<html><body>Hey, let'use ArgumentCaptor</body></html>";
 
@@ -76,7 +76,7 @@ class EmailServiceUnitTest {
 
 	@Test
 	void whenUsingArgumentMatcherForValidCredentials_expectTrue() {
-		Credentials credentials = new Credentials("baeldung", "correct_password", "correct_key");
+		Credentials credentials = new Credentials("tuyucheng", "correct_password", "correct_key");
 		when(platform.authenticate(eq(credentials))).thenReturn(AuthenticationStatus.AUTHENTICATED);
 
 		assertTrue(emailService.authenticatedSuccessfully(credentials));
@@ -84,7 +84,7 @@ class EmailServiceUnitTest {
 
 	@Test
 	void whenUsingArgumentCaptorForValidCredentials_expectTrue() {
-		Credentials credentials = new Credentials("baeldung", "correct_password", "correct_key");
+		Credentials credentials = new Credentials("tuyucheng", "correct_password", "correct_key");
 		when(platform.authenticate(credentialsCaptor.capture())).thenReturn(AuthenticationStatus.AUTHENTICATED);
 
 		assertTrue(emailService.authenticatedSuccessfully(credentials));
@@ -93,7 +93,7 @@ class EmailServiceUnitTest {
 
 	@Test
 	void whenNotAuthenticated_expectFalse() {
-		Credentials credentials = new Credentials("baeldung", "incorrect_password", "incorrect_key");
+		Credentials credentials = new Credentials("tuyucheng", "incorrect_password", "incorrect_key");
 		when(platform.authenticate(eq(credentials))).thenReturn(AuthenticationStatus.NOT_AUTHENTICATED);
 
 		assertFalse(emailService.authenticatedSuccessfully(credentials));

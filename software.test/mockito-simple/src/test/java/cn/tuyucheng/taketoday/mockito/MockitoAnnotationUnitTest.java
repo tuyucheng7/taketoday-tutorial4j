@@ -30,14 +30,10 @@ class MockitoAnnotationUnitTest {
 	private List<String> spiedList = new ArrayList<>();
 
 	// Use either @RunWith(MockitoJUnitRunner.class) or manually openMocks in the @Before method
-    /*
-    @Before
-    public void init() {
-        MockitoAnnotations.openMocks(this);
-    }
-    */
-
-	// tests
+	// @Before
+	// public void init() {
+	// 	MockitoAnnotations.openMocks(this);
+	// }
 
 	@Test
 	void whenNotUseMockAnnotation_thenCorrect() {
@@ -62,7 +58,7 @@ class MockitoAnnotationUnitTest {
 
 	@Test
 	void whenNotUseSpyAnnotation_thenCorrect() {
-		final List<String> spyList = spy(new ArrayList<String>());
+		final List<String> spyList = spy(new ArrayList<>());
 		spyList.add("one");
 		spyList.add("two");
 
@@ -123,5 +119,4 @@ class MockitoAnnotationUnitTest {
 
 		assertEquals("aMeaning", dic.getMeaning("aWord"));
 	}
-
 }

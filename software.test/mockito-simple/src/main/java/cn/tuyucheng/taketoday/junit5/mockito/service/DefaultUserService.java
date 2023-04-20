@@ -7,9 +7,9 @@ import cn.tuyucheng.taketoday.junit5.mockito.repository.UserRepository;
 
 public class DefaultUserService implements UserService {
 
-	private UserRepository userRepository;
-	private SettingRepository settingRepository;
-	private MailClient mailClient;
+	private final UserRepository userRepository;
+	private final SettingRepository settingRepository;
+	private final MailClient mailClient;
 
 	public DefaultUserService(UserRepository userRepository, SettingRepository settingRepository, MailClient mailClient) {
 		this.userRepository = userRepository;
@@ -29,18 +29,14 @@ public class DefaultUserService implements UserService {
 		if (user.getName() == null) {
 			throw new RuntimeException(Errors.USER_NAME_REQUIRED);
 		}
-
 		if (user.getName().length() < settingRepository.getUserNameMinLength()) {
 			throw new RuntimeException(Errors.USER_NAME_SHORT);
 		}
-
 		if (user.getAge() < settingRepository.getUserMinAge()) {
 			throw new RuntimeException(Errors.USER_AGE_YOUNG);
 		}
-
 		if (userRepository.isUsernameAlreadyExists(user.getName())) {
 			throw new RuntimeException(Errors.USER_NAME_DUPLICATE);
 		}
 	}
-
 }

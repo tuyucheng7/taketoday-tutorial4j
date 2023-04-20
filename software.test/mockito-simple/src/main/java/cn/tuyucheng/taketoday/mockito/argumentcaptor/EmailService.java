@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.mockito.argumentcaptor;
 
 public class EmailService {
 
-	private DeliveryPlatform platform;
+	private final DeliveryPlatform platform;
 
 	public EmailService(DeliveryPlatform platform) {
 		this.platform = platform;
@@ -27,10 +27,6 @@ public class EmailService {
 	}
 
 	public boolean authenticatedSuccessfully(Credentials credentials) {
-		if (platform.authenticate(credentials).equals(AuthenticationStatus.AUTHENTICATED)) {
-			return true;
-		} else {
-			return false;
-		}
+		return platform.authenticate(credentials).equals(AuthenticationStatus.AUTHENTICATED);
 	}
 }

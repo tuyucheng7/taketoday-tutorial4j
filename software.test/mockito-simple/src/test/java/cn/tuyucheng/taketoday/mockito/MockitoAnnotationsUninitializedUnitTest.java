@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.mockito;
 
-
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -16,8 +15,6 @@ class MockitoAnnotationsUninitializedUnitTest {
 
 	@Test
 	void whenMockitoAnnotationsUninitialized_thenNPEThrown() {
-		assertThrows(NullPointerException.class, () -> {
-			when(mockedList.size()).thenReturn(1);
-		});
+		assertThrows(NullPointerException.class, () -> when(mockedList.size()).thenReturn(1));
 	}
 }

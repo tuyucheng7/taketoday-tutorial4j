@@ -59,7 +59,7 @@ class UserServiceUnitTest {
 
 			@Override
 			public User answer(InvocationOnMock invocation) throws Throwable {
-				User user = (User) invocation.getArgument(0);
+				User user = invocation.getArgument(0);
 				user.setId(sequence++);
 				return user;
 			}
@@ -128,5 +128,4 @@ class UserServiceUnitTest {
 		// Then
 		verify(userRepository, never()).insert(user);
 	}
-
 }

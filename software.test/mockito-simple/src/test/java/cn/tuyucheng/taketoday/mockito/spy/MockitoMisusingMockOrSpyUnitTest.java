@@ -15,7 +15,7 @@ class MockitoMisusingMockOrSpyUnitTest {
 
 	@Test
 	void givenNotASpy_whenDoReturn_thenThrowNotAMock() {
-		List<String> list = new ArrayList<String>();
+		List<String> list = new ArrayList<>();
 
 		assertThatThrownBy(() -> doReturn(100).when(list).size())
 			.isInstanceOf(NotAMockException.class)

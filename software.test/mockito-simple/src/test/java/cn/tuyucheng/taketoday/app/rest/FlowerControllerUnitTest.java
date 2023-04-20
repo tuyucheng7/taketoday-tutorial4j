@@ -47,9 +47,7 @@ class FlowerControllerUnitTest {
 
 	@Test
 	void whenIncorrectMatchers_thenThrowsError() {
-		assertThrows(InvalidUseOfMatchersException.class, () -> {
-			when(flowerService.isABigFlower("poppy", anyInt())).thenReturn(true);
-		});
+		assertThrows(InvalidUseOfMatchersException.class, () -> when(flowerService.isABigFlower("poppy", anyInt())).thenReturn(true));
 
 		Flower flower = new Flower("poppy", 15);
 
@@ -72,9 +70,7 @@ class FlowerControllerUnitTest {
 		flowerController.isAFlower("poppy");
 
 		String orMatcher = or(eq("poppy"), endsWith("y"));
-		assertThrows(InvalidUseOfMatchersException.class, () -> {
-			verify(flowerService).analyze(orMatcher);
-		});
+		assertThrows(InvalidUseOfMatchersException.class, () -> verify(flowerService).analyze(orMatcher));
 	}
 
 	@Test

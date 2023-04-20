@@ -23,8 +23,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 class MockitoVerifyExamplesUnitTest {
 
-	// tests
-
 	@Test
 	final void givenInteractionWithMockOccurred_whenVerifyingInteraction_thenCorrect() {
 		final List<String> mockedList = mock(MyList.class);
@@ -58,10 +56,7 @@ class MockitoVerifyExamplesUnitTest {
 		mockedList.clear();
 
 		verify(mockedList).size();
-		assertThrows(NoInteractionsWanted.class, () -> {
-			verifyNoMoreInteractions(mockedList);
-		});
-
+		assertThrows(NoInteractionsWanted.class, () -> verifyNoMoreInteractions(mockedList));
 	}
 
 	@Test
@@ -125,5 +120,4 @@ class MockitoVerifyExamplesUnitTest {
 		final List<String> capturedArgument = argumentCaptor.getValue();
 		assertThat(capturedArgument).contains("someElement");
 	}
-
 }

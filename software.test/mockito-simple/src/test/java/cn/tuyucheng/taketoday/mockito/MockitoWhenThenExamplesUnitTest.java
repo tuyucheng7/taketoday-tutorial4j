@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.mockito;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,8 +11,8 @@ import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-
 
 class MockitoWhenThenExamplesUnitTest {
 
@@ -40,10 +39,7 @@ class MockitoWhenThenExamplesUnitTest {
 		final MyList listMock = mock(MyList.class);
 		when(listMock.add(anyString())).thenThrow(IllegalStateException.class);
 
-		assertThrows(IllegalStateException.class, () -> {
-			listMock.add(randomAlphabetic(6));
-		});
-
+		assertThrows(IllegalStateException.class, () -> listMock.add(randomAlphabetic(6)));
 	}
 
 	@Test
@@ -59,10 +55,7 @@ class MockitoWhenThenExamplesUnitTest {
 		final MyList listMock = mock(MyList.class);
 		doThrow(NullPointerException.class).when(listMock).clear();
 
-		assertThrows(NullPointerException.class, () -> {
-			listMock.clear();
-		});
-
+		assertThrows(NullPointerException.class, listMock::clear);
 	}
 
 	@Test
@@ -74,19 +67,15 @@ class MockitoWhenThenExamplesUnitTest {
 			listMock.add(randomAlphabetic(6));
 			listMock.add(randomAlphabetic(6));
 		});
-
 	}
 
 	@Test
 	final void givenSpy_whenConfiguringBehaviorOfSpy_thenCorrectlyConfigured() {
 		final MyList instance = new MyList();
-		final MyList spy = Mockito.spy(instance);
+		final MyList spy = spy(instance);
 
 		doThrow(NullPointerException.class).when(spy).size();
-		assertThrows(NullPointerException.class, () -> {
-			spy.size();
-		});
-
+		assertThrows(NullPointerException.class, spy::size);
 	}
 
 	@Test
