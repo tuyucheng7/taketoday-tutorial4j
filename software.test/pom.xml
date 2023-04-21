@@ -31,6 +31,7 @@
 		<module>junit-5</module>
 		<module>junit-5-annotations</module>
 		<module>junit-5-migration</module>
+		<module>junit-5-pioneer</module>
 		<module>jmeter</module>
 		<module>jmh</module>
 		<module>load-testing-comparison</module>
