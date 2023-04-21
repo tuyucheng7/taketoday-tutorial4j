@@ -40,7 +40,6 @@
 			<artifactId>javafaker</artifactId>
 			<version>${faker.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -72,6 +71,6 @@
 		<gatling.version>3.9.0</gatling.version>
 		<gatling-maven-plugin.version>4.2.9</gatling-maven-plugin.version>
 		<faker.version>1.0.2</faker.version>
-		<spring.version>2.7.5</spring.version>
+		<spring.version>2.7.8</spring.version>
 	</properties>
 </project>

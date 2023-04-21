@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>cucumber-2</artifactId>
 	<version>1.0.0</version>
-	<name>cucumber</name>
+	<name>cucumber-2</name>
 
 	<parent>
 		<groupId>cn.tuyucheng.taketoday</groupId>
