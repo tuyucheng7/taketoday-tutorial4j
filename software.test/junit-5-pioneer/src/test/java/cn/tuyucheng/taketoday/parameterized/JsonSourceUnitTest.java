@@ -20,8 +20,8 @@ class JsonSourceUnitTest {
 	@ParameterizedTest
 	@JsonSource("""
 		[
-			{ name: 'Luke', height: 172  },
-			{ name: 'Yoda', height: 66 }
+			{ "name": "Luke", "height": 172  },
+			{ "name": "Yoda", "height": 66 }
 		]
 		""")
 	void givenTestBlockSource_whenInjectToArgs_thenCorrect(@Property("name") String name,
