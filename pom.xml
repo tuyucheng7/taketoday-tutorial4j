@@ -900,7 +900,7 @@
 				<!--<module>security-modules</module>-->
 				<!--<module>server-modules</module>-->
 				<!--<module>slack</module>-->
-				<module>software.test</module>
+				<!--<module>software.test</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-cloud-modules</module>-->
 				<!--<module>spring-data-modules</module>-->
