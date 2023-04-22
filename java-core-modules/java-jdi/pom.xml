@@ -4,27 +4,14 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>java-jdi</artifactId>
-	<version>1.0.0</version>
 	<name>java-jdi</name>
 	<packaging>jar</packaging>
 
 	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>parent-java</artifactId>
+		<groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+		<artifactId>java-core-modules</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../../parent-java/pom.xml</relativePath>
 	</parent>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.sun</groupId>
-			<artifactId>tools</artifactId>
-			<version>${tools.version}</version>
-			<scope>system</scope>
-			<!-- set JAVA_8 env variable on your machine to point to the JDK 8 directory  -->
-			<systemPath>../../../../../develop-tools/jdk-8/lib/tools.jar</systemPath>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<finalName>java-jdi</finalName>
@@ -37,50 +24,20 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${java.version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.0.0</version>
-				<configuration>
-					<mainClass>cn.tuyucheng.taketoday.jdi.JDIExampleDebugger</mainClass>
+					<source>${maven.compiler.source.version}</source>
+					<target>${maven.compiler.target.version}</target>
+					<compilerArgs>
+						<arg>--add-exports=jdk.jdi/com.sun.jdi=ALL-UNNAMED</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
 	<properties>
-		<java.version>8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<tools.version>1.8</tools.version>
+		<maven.compiler.source.version>17</maven.compiler.source.version>
+		<maven.compiler.target.version>17</maven.compiler.target.version>
 	</properties>
 </project>
