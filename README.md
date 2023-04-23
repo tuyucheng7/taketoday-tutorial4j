@@ -16,7 +16,7 @@ Taketoday Tutorial4j
 
 首先，你需要同时下载这些版本的JDK。然后配置Maven ToolChains，在你的用户目录下的.m2文件夹中添加一个toolchains.xml文件：
 
-<img src="assets/img.png" align="left">
+<img src=".mvn/img.png" align="left">
 
 然后指定以下内容(务必将每个版本的<jdkHome\>指向你本地该JDK版本的位置，例如D:\\\xxx\\\jdk-17)：
 
@@ -106,7 +106,7 @@ mvn spring-boot:run
 
 当你将项目导入到Intellij IDEA中时，默认不会加载任何子模块。你需要在IDE中转到Maven -> Profiles，然后选择你想要构建的子模块所属的Profile，最后刷新等待IDE索引构建完成：
 
-<img src="assets/img_1.png">
+<img src=".mvn/img_1.png">
 
 ## 运行测试
 
@@ -130,6 +130,10 @@ mvn clean install -Pall
   + [Spring Security](spring-security-modules/README.md)
   + [Spring Reactive](spring-reactive-modules/README.md)
   + [Spring Cloud](spring-cloud-modules/README.md)
++ [Maven](maven.modules/README.md)
++ [Microservices](microservices/README.md)
++ [Quarkus](quarkus-modules/README.md)
++ [Docker](docker-modules/README.md)
 + Reactive
   + [Akka](akka-modules/README.md)
   + [Reactor](reactor-core/README.md)
