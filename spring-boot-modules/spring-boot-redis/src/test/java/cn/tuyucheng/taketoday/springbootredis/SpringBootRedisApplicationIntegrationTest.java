@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.springbootredis;
 import cn.tuyucheng.taketoday.springbootredis.config.RedisTestConfiguration;
 import cn.tuyucheng.taketoday.springbootredis.dto.SessionCreateRequest;
 import cn.tuyucheng.taketoday.springbootredis.model.Session;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,10 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = RedisTestConfiguration.class)
 class SpringBootRedisApplicationIntegrationTest {
@@ -38,7 +41,10 @@ class SpringBootRedisApplicationIntegrationTest {
 		THEN return a success response.
 		""")
 	void shouldBeAbleToCallGetSessionsEndpoint() {
-		webTestClient.get().uri(V1_SESSIONS_ENDPOINT).exchange().expectStatus().isOk();
+		webTestClient.get()
+			.uri(V1_SESSIONS_ENDPOINT)
+			.exchange()
+			.expectStatus().isOk();
 	}
 
 	@Test
@@ -51,10 +57,16 @@ class SpringBootRedisApplicationIntegrationTest {
 
 		SessionCreateRequest sessionCreateRequest = SessionCreateRequest.builder().expirationInSeconds(expirationInSeconds).build();
 
-		Session session = webTestClient.post().uri(V1_SESSIONS_ENDPOINT).bodyValue(sessionCreateRequest).exchange().expectStatus().isCreated().expectHeader().exists(HttpHeaders.LOCATION).expectBody(Session.class).returnResult().getResponseBody();
+		Session session = webTestClient.post()
+			.uri(V1_SESSIONS_ENDPOINT)
+			.bodyValue(sessionCreateRequest)
+			.exchange()
+			.expectStatus().isCreated()
+			.expectHeader().exists(HttpHeaders.LOCATION)
+			.expectBody(Session.class).returnResult().getResponseBody();
 
-		Assertions.assertNotNull(session);
-		Assertions.assertEquals(expirationInSeconds, session.getExpirationInSeconds());
+		assertNotNull(session);
+		assertEquals(expirationInSeconds, session.getExpirationInSeconds());
 	}
 
 	@Test
@@ -70,13 +82,21 @@ class SpringBootRedisApplicationIntegrationTest {
 		int numberOfSessionsToCreate = random.nextInt(5);
 
 		List<Session> createdSessions = IntStream.range(0, numberOfSessionsToCreate)
-			.mapToObj(i -> webTestClient.post().uri(V1_SESSIONS_ENDPOINT).bodyValue(session).exchange().expectStatus().isCreated().expectBody(Session.class).returnResult().getResponseBody())
+			.mapToObj(i -> webTestClient.post()
+				.uri(V1_SESSIONS_ENDPOINT)
+				.bodyValue(session)
+				.exchange()
+				.expectStatus().isCreated()
+				.expectBody(Session.class).returnResult().getResponseBody())
 			.collect(Collectors.toList());
 
 		// WHEN
-		webTestClient.get().uri(V1_SESSIONS_ENDPOINT).exchange().expectStatus()
+		webTestClient.get()
+			.uri(V1_SESSIONS_ENDPOINT)
+			.exchange()
 			// THEN
-			.isOk().expectBodyList(Session.class).value(sessions -> createdSessions.forEach(createdSession -> Assertions.assertTrue(sessions.contains(createdSession))));
+			.expectStatus().isOk()
+			.expectBodyList(Session.class).value(sessions -> createdSessions.forEach(createdSession -> assertTrue(sessions.contains(createdSession))));
 	}
 
 	@Test
@@ -89,13 +109,21 @@ class SpringBootRedisApplicationIntegrationTest {
 		// GIVEN
 		SessionCreateRequest sessionCreateRequest = SessionCreateRequest.builder().expirationInSeconds(10L).build();
 
-		Session createdSession = webTestClient.post().uri(V1_SESSIONS_ENDPOINT).bodyValue(sessionCreateRequest).exchange().expectStatus().isCreated().expectBody(Session.class).returnResult().getResponseBody();
-		Assertions.assertNotNull(createdSession);
+		Session createdSession = webTestClient.post()
+			.uri(V1_SESSIONS_ENDPOINT)
+			.bodyValue(sessionCreateRequest)
+			.exchange()
+			.expectStatus().isCreated()
+			.expectBody(Session.class).returnResult().getResponseBody();
+		assertNotNull(createdSession);
 
 		// WHEN
-		webTestClient.get().uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId())).exchange()
+		webTestClient.get()
+			.uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId()))
+			.exchange()
 			// THEN
-			.expectStatus().isOk().expectBody(Session.class).isEqualTo(createdSession);
+			.expectStatus().isOk()
+			.expectBody(Session.class).isEqualTo(createdSession);
 	}
 
 	@Test
@@ -109,7 +137,9 @@ class SpringBootRedisApplicationIntegrationTest {
 		String sessionId = UUID.randomUUID().toString();
 
 		// WHEN
-		webTestClient.get().uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, sessionId)).exchange()
+		webTestClient.get()
+			.uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, sessionId))
+			.exchange()
 			// THEN
 			.expectStatus().isNotFound();
 	}
@@ -129,17 +159,27 @@ class SpringBootRedisApplicationIntegrationTest {
 		// GIVEN
 		SessionCreateRequest sessionCreateRequest = SessionCreateRequest.builder().expirationInSeconds(expirationInSeconds).build();
 
-		Session createdSession = webTestClient.post().uri(V1_SESSIONS_ENDPOINT).bodyValue(sessionCreateRequest).exchange().expectStatus().isCreated().expectBody(Session.class).returnResult().getResponseBody();
-		Assertions.assertNotNull(createdSession);
+		Session createdSession = webTestClient.post()
+			.uri(V1_SESSIONS_ENDPOINT)
+			.bodyValue(sessionCreateRequest)
+			.exchange()
+			.expectStatus().isCreated()
+			.expectBody(Session.class).returnResult().getResponseBody();
+		assertNotNull(createdSession);
 
 		// WHEN
-		webTestClient.get().uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId())).exchange()
+		webTestClient.get()
+			.uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId()))
+			.exchange()
 			// THEN
-			.expectStatus().isOk().expectBody(Session.class).isEqualTo(createdSession);
+			.expectStatus().isOk()
+			.expectBody(Session.class).isEqualTo(createdSession);
 
 		// WHEN
 		Thread.sleep(expirationInSeconds * 1000);
-		webTestClient.get().uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId())).exchange()
+		webTestClient.get()
+			.uri(String.format(V1_GET_SESSION_BY_ID_ENDPOINT_TEMPLATE, createdSession.getId()))
+			.exchange()
 			// THEN
 			.expectStatus().isNotFound();
 	}
