@@ -195,7 +195,7 @@
 
 	<properties>
 		<swagger-annotations-version>1.5.15</swagger-annotations-version>
-		<spring-version>5.3.23</spring-version>
+		<spring-version>5.3.25</spring-version>
 		<jodatime-version>2.9.9</jodatime-version>
 		<maven-jar-plugin.version>2.2</maven-jar-plugin.version>
 		<maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>

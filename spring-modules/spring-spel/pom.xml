@@ -29,6 +29,6 @@
 	</dependencies>
 
 	<properties>
-		<springframework.version>5.3.23</springframework.version>
+		<springframework.version>5.3.25</springframework.version>
 	</properties>
 </project>

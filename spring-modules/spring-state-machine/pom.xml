@@ -39,8 +39,8 @@
 
 	<properties>
 		<spring-statemachine-core.version>3.2.0</spring-statemachine-core.version>
-		<spring-context.version>5.3.23</spring-context.version>
-		<spring-test.version>5.3.23</spring-test.version>
+		<spring-context.version>5.3.25</spring-context.version>
+		<spring-test.version>5.3.25</spring-test.version>
 		<jayway.awaitility.version>1.7.0</jayway.awaitility.version>
 	</properties>
 </project>

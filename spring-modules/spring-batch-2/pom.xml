@@ -52,5 +52,6 @@
 	<properties>
 		<spring.batch.version>4.3.0</spring.batch.version>
 		<awaitility.version>3.1.1</awaitility.version>
+		<start-class>cn.tuyucheng.taketoday.batch.SpringBootBatchProcessingApplication</start-class>
 	</properties>
 </project>

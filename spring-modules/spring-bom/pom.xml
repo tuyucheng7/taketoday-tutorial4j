@@ -37,6 +37,6 @@
 	</dependencies>
 
 	<properties>
-		<spring-framework-bom.version>5.3.23</spring-framework-bom.version>
+		<spring-framework-bom.version>5.3.25</spring-framework-bom.version>
 	</properties>
 </project>

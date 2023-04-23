@@ -36,7 +36,7 @@
 		<module>spring-di-3</module>
 		<module>spring-di-4</module>
 		<module>spring-drools</module>
-		<!--<module>spring-ejb-modules</module>--> <!-- test fail -->
+		<module>spring-ejb-modules</module>
 		<module>spring-exceptions</module>
 		<module>spring-integration</module>
 		<module>spring-jenkins-pipeline</module>

@@ -44,6 +44,6 @@
 
 	<properties>
 		<spring-swagger-codegen-api-client.version>1.0.0</spring-swagger-codegen-api-client.version>
-		<spring.version>2.7.5</spring.version>
+		<spring.version>2.7.8</spring.version>
 	</properties>
 </project>

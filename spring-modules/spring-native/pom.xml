@@ -70,7 +70,7 @@
 
 	<properties>
 		<builder>paketobuildpacks/builder:tiny</builder>
-		<spring-boot.version>2.7.1</spring-boot.version>
+		<spring-boot.version>2.7.8</spring-boot.version>
 		<spring-native.version>0.12.1</spring-native.version>
 		<log4j2.version>2.17.1</log4j2.version>
 	</properties>

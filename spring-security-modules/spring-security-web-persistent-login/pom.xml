@@ -173,6 +173,6 @@
         <postgresql.version>9.4.1212</postgresql.version>
         <!-- Maven plugins -->
         <cargo-maven2-plugin.version>1.6.1</cargo-maven2-plugin.version>
-        <spring-boot.version>2.7.5</spring-boot.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
     </properties>
 </project>

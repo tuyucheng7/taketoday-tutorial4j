@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>5.3.23</version>
+			<version>5.3.25</version>
 		</dependency>
 		<!-- JSON processing: jackson -->
 		<dependency>
@@ -266,7 +266,7 @@
 
 	<properties>
 		<swagger-annotations-version>1.5.22</swagger-annotations-version>
-		<spring-web-version>5.3.23</spring-web-version>
+		<spring-web-version>5.3.25</spring-web-version>
 		<jackson-version>2.11.1</jackson-version>
 		<!--<jackson-databind-version>2.10.1</jackson-databind-version>-->
 		<jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>

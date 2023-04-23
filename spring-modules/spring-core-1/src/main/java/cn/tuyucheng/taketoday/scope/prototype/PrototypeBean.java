@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.scope.prototype;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PrototypeBean {
 
-	private final Logger logger = Logger.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(PrototypeBean.class);
 
 	public PrototypeBean() {
 		logger.info("Prototype instance created");
@@ -24,5 +25,4 @@ public class PrototypeBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 }
