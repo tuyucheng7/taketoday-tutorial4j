@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyBean {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+	@Autowired
+	private ApplicationContext applicationContext;
 
-    public ApplicationContext getApplicationContext() {
-        return applicationContext;
-    }
-
+	public ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
 }
