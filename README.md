@@ -121,7 +121,6 @@ mvn clean install -Pall
 ## 模块列表
 
 + [Java Core](java-core-modules/README.md)
-+ [Kotlin Core](kotlin-modules/kotlin-core/README.md)
 + [Design Patterns](design-patterns-modules/README.md)
 + Spring Framework
   + [Spring Core](spring-modules/README.md)

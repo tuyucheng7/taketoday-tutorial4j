@@ -1,6 +1,0 @@
-<MithraRuntime>
-	<ConnectionManager className="cn.tuyucheng.taketoday.libraries.reladomo.ReladomoConnectionManager ">
-		<MithraObjectConfiguration className="cn.tuyucheng.taketoday.libraries.reladomo.Department" cacheType="partial"/>
-		<MithraObjectConfiguration className="cn.tuyucheng.taketoday.libraries.reladomo.Employee " cacheType="partial"/>
-	</ConnectionManager>
-</MithraRuntime>
