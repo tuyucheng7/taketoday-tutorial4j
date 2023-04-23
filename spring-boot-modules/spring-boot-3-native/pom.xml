@@ -50,17 +50,14 @@
 				<!-- We can compile the application in AOT mode but not producing a native image -->
 				<!-- If we active this plugin  -->
 				<!-- and deactive all the pom native component -->
-				<!--     <plugin>
-						 <groupId>org.springframework.boot</groupId>
-						 <artifactId>spring-boot-maven-plugin</artifactId>
-						 <configuration>
-							 <jvmArguments> -agentlib:native-image-agent=config-output-dir=target/native-image
-							 </jvmArguments>
-							 <systemPropertyVariables>
-								 <springAot>true</springAot>
-							 </systemPropertyVariables>
-						 </configuration>
-					 </plugin>  -->
+				<!--<plugin>-->
+				<!--	<groupId>org.springframework.boot</groupId>-->
+				<!--	<artifactId>spring-boot-maven-plugin</artifactId>-->
+				<!--	<configuration>-->
+				<!--		<jvmArguments>-agentlib:native-image-agent=config-output-dir=target/native-image-->
+				<!--		</jvmArguments>-->
+				<!--	</configuration>-->
+				<!--</plugin>-->
 			</plugins>
 		</pluginManagement>
 	</build>
