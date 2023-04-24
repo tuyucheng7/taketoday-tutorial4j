@@ -1,11 +1,8 @@
 package cn.tuyucheng.taketoday.composite;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 /**
  * Created by Tuyucheng
  */
-@ExcludeFromJacocoGeneratedReport
 public class CompositeDemo {
 
 	public static void main(String[] args) {

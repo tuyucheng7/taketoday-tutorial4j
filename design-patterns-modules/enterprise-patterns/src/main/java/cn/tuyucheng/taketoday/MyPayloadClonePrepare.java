@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday;
 
-import java.util.Date;
-
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+
+import java.util.Date;
 
 public class MyPayloadClonePrepare implements Processor {
 

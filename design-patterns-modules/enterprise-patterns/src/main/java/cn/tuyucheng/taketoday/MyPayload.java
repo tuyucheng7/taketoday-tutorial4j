@@ -27,5 +27,4 @@ public class MyPayload implements Serializable {
 		MyPayload myPayload = new MyPayload(value);
 		return myPayload;
 	}
-
 }

@@ -4,12 +4,10 @@ import cn.tuyucheng.taketoday.daopattern.config.JpaEntityManagerFactory;
 import cn.tuyucheng.taketoday.daopattern.daos.Dao;
 import cn.tuyucheng.taketoday.daopattern.daos.JpaUserDao;
 import cn.tuyucheng.taketoday.daopattern.entities.User;
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 
 import java.util.List;
 import java.util.Optional;
 
-@ExcludeFromJacocoGeneratedReport
 public class UserApplication {
 
 	private static JpaUserDao jpaUserDao;

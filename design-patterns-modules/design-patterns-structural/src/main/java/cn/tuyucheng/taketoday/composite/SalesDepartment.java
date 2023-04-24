@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.composite;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,22 +22,18 @@ public class SalesDepartment implements Department {
 		LOGGER.info(getClass().getSimpleName());
 	}
 
-	@ExcludeFromJacocoGeneratedReport
 	public Integer getId() {
 		return id;
 	}
 
-	@ExcludeFromJacocoGeneratedReport
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	@ExcludeFromJacocoGeneratedReport
 	public String getName() {
 		return name;
 	}
 
-	@ExcludeFromJacocoGeneratedReport
 	public void setName(String name) {
 		this.name = name;
 	}

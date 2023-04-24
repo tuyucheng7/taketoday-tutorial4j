@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.o;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Subtraction implements CalculatorOperation {
 	private double left;
 	private double right;

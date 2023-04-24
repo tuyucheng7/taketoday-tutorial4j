@@ -1,10 +1,7 @@
 package cn.tuyucheng.taketoday.decorator;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import static cn.tuyucheng.taketoday.util.LoggerUtil.LOG;
 
-@ExcludeFromJacocoGeneratedReport
 public class DecoratorPatternDriver {
 
 	public static void main(String[] args) {

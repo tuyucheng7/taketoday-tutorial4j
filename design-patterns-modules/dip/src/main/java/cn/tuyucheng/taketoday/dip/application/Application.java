@@ -3,12 +3,10 @@ package cn.tuyucheng.taketoday.dip.application;
 import cn.tuyucheng.taketoday.dip.daoimplementations.SimpleCustomerDao;
 import cn.tuyucheng.taketoday.dip.entities.Customer;
 import cn.tuyucheng.taketoday.dip.services.CustomerService;
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@ExcludeFromJacocoGeneratedReport
 public class Application {
 
 	public static void main(String[] args) {

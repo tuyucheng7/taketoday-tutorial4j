@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.service.locator;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class Main {
 
 	public static void main(String[] args) {

@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.bridge;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
-@ExcludeFromJacocoGeneratedReport
 public class BridgePatternDriver {
 
 	public static void main(String[] args) {

@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.currying;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.function.BiFunction;
@@ -29,7 +27,6 @@ public class Letter {
 	}
 
 	@Override
-	@ExcludeFromJacocoGeneratedReport
 	public boolean equals(Object o) {
 		if (this == o) {
 			return true;
@@ -47,7 +44,6 @@ public class Letter {
 	}
 
 	@Override
-	@ExcludeFromJacocoGeneratedReport
 	public String toString() {
 		return "Letter{" + "returningAddress='" + returningAddress + '\'' + ", insideAddress='" + insideAddress + '\''
 			+ ", dateOfLetter=" + dateOfLetter + ", salutation='" + salutation + '\'' + ", body='" + body + '\''
@@ -59,7 +55,6 @@ public class Letter {
 	}
 
 	@Override
-	@ExcludeFromJacocoGeneratedReport
 	public int hashCode() {
 		return Objects.hash(returningAddress, insideAddress, dateOfLetter, salutation, body, closing);
 	}
