@@ -453,25 +453,25 @@
 				<module>parent-java</module>
 				<module>parent-spring-5</module>
 				<module>parent-boot-2</module>
-				<!--<module>akka-modules</module>-->
-				<!--<module>annotations</module>-->
-				<!--<module>ddd</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>design-patterns-modules</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>graphql.modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>akka-modules</module>
+				<module>annotations</module>
+				<module>ddd</module>
+				<module>ddd-contexts</module>
+				<module>design-patterns-modules</module>
+				<module>docker-modules</module>
+				<module>graphql.modules</module>
+				<module>grpc</module>
 				<!--<module>java-core-modules</module>-->
-				<!--<module>javafx</module>-->
-				<!--<module>maven.modules</module>-->
-				<!--<module>messaging-modules</module>-->
-				<!--<module>microservices</module>-->
-				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactive-systems</module>-->
-				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>javafx</module>
+				<module>maven.modules</module>
+				<module>messaging-modules</module>
+				<module>microservices</module>
+				<module>protobuffer</module>
+				<module>quarkus-modules</module>
+				<module>reactive-systems</module>
+				<module>reactor-core</module>
+				<module>rsocket</module>
+				<module>rxjava-modules</module>
 				<!--<module>software.test</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-cloud-modules</module>-->
@@ -480,8 +480,8 @@
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>vertx-modules</module>-->
+				<module>vavr-modules</module>
+				<module>vertx-modules</module>
 			</modules>
 		</profile>
 
@@ -523,25 +523,25 @@
 				<module>parent-java</module>
 				<module>parent-spring-5</module>
 				<module>parent-boot-2</module>
-				<!--<module>akka-modules</module>-->
-				<!--<module>annotations</module>-->
-				<!--<module>ddd</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>design-patterns-modules</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>graphql.modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>akka-modules</module>
+				<module>annotations</module>
+				<module>ddd</module>
+				<module>ddd-contexts</module>
+				<module>design-patterns-modules</module>
+				<module>docker-modules</module>
+				<module>graphql.modules</module>
+				<module>grpc</module>
 				<!--<module>java-core-modules</module>-->
-				<!--<module>javafx</module>-->
-				<!--<module>maven.modules</module>-->
-				<!--<module>messaging-modules</module>-->
-				<!--<module>microservices</module>-->
-				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactive-systems</module>-->
-				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>javafx</module>
+				<module>maven.modules</module>
+				<module>messaging-modules</module>
+				<module>microservices</module>
+				<module>protobuffer</module>
+				<module>quarkus-modules</module>
+				<module>reactive-systems</module>
+				<module>reactor-core</module>
+				<module>rsocket</module>
+				<module>rxjava-modules</module>
 				<!--<module>software.test</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-cloud-modules</module>-->
@@ -550,8 +550,8 @@
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>vertx-modules</module>-->
+				<module>vavr-modules</module>
+				<module>vertx-modules</module>
 			</modules>
 		</profile>
 
@@ -571,26 +571,25 @@
 				<module>parent-java</module>
 				<module>parent-spring-5</module>
 				<module>parent-boot-2</module>
-				<!--<module>akka-modules</module>-->
-				<!--<module>annotations</module>-->
-				<!--<module>ddd</module>-->
-				<!--<module>ddd-contexts</module>-->
-				<!--<module>design-patterns-modules</module>-->
-				<!--<module>docker-modules</module>-->
-				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
-				<!--<module>graphql.modules</module>-->
-				<!--<module>grpc</module>-->
+				<module>akka-modules</module>
+				<module>annotations</module>
+				<module>ddd</module>
+				<module>ddd-contexts</module>
+				<module>design-patterns-modules</module>
+				<module>docker-modules</module>
+				<module>graphql.modules</module>
+				<module>grpc</module>
 				<!--<module>java-core-modules</module>-->
-				<!--<module>javafx</module>-->
-				<!--<module>maven.modules</module>-->
-				<!--<module>messaging-modules</module>-->
-				<!--<module>microservices</module>-->
-				<!--<module>protobuffer</module>-->
-				<!--<module>quarkus-modules</module>-->
-				<!--<module>reactive-systems</module>-->
-				<!--<module>reactor-core</module>-->
-				<!--<module>rsocket</module>-->
-				<!--<module>rxjava-modules</module>-->
+				<module>javafx</module>
+				<module>maven.modules</module>
+				<module>messaging-modules</module>
+				<module>microservices</module>
+				<module>protobuffer</module>
+				<module>quarkus-modules</module>
+				<module>reactive-systems</module>
+				<module>reactor-core</module>
+				<module>rsocket</module>
+				<module>rxjava-modules</module>
 				<!--<module>software.test</module>-->
 				<!--<module>spring-boot-modules</module>-->
 				<!--<module>spring-cloud-modules</module>-->
@@ -599,8 +598,8 @@
 				<!--<module>spring-reactive-modules</module>-->
 				<!--<module>spring-security-modules</module>-->
 				<!--<module>spring-web-modules</module>-->
-				<!--<module>vavr-modules</module>-->
-				<!--<module>vertx-modules</module>-->
+				<module>vavr-modules</module>
+				<module>vertx-modules</module>
 			</modules>
 		</profile>
 
