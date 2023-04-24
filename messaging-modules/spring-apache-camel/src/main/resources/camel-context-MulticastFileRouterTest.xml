@@ -9,4 +9,5 @@
 	<camelContext xmlns="http://camel.apache.org/schema/spring">
 		<routeBuilder ref="multicastFileRouter"/>
 	</camelContext>
+
 </beans>

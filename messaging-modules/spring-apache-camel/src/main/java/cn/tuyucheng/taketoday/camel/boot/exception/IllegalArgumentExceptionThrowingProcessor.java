@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class IllegalArgumentExceptionThrowingProcessor implements Processor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionLoggingProcessor.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionLoggingProcessor.class);
 
-    @Override
-    public void process(Exchange exchange) throws Exception {
-        LOGGER.error("Exception Thrown");
-        throw new IllegalArgumentException("An exception happened on purpose");
-    }
+	@Override
+	public void process(Exchange exchange) throws Exception {
+		LOGGER.error("Exception Thrown");
+		throw new IllegalArgumentException("An exception happened on purpose");
+	}
 
 }

@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class GreetingsFileRouter extends RouteBuilder {
 
-    @Override
-    public void configure() throws Exception {
+	@Override
+	public void configure() throws Exception {
 
-        from("direct:start")
-            .routeId("greetings-route")
-            .setBody(constant("Hello Baeldung Readers!"))
-            .to("file:output");
+		from("direct:start")
+			.routeId("greetings-route")
+			.setBody(constant("Hello Tuyucheng Readers!"))
+			.to("file:output");
 
-    }
+	}
 
 }

@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExceptionThrowingRoute extends RouteBuilder {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionThrowingRoute.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionThrowingRoute.class);
 
-    @Override
-    public void configure() throws Exception {
+	@Override
+	public void configure() throws Exception {
 
-        from("direct:start-exception")
-            .routeId("exception-throwing-route")
-            .process(new Processor() {
+		from("direct:start-exception")
+			.routeId("exception-throwing-route")
+			.process(new Processor() {
 
-                @Override
-                public void process(Exchange exchange) throws Exception {
-                    LOGGER.error("Exception Thrown");
-                    throw new IllegalArgumentException("An exception happened on purpose");
+				@Override
+				public void process(Exchange exchange) throws Exception {
+					LOGGER.error("Exception Thrown");
+					throw new IllegalArgumentException("An exception happened on purpose");
 
-                }
-            }).to("mock:received");
-    }
+				}
+			}).to("mock:received");
+	}
 }

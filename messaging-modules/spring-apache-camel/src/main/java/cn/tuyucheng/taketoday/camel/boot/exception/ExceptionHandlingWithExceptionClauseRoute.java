@@ -7,18 +7,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExceptionHandlingWithExceptionClauseRoute extends RouteBuilder {
 
-    @Autowired
-    private ExceptionLoggingProcessor exceptionLogger;
+	@Autowired
+	private ExceptionLoggingProcessor exceptionLogger;
 
-    @Override
-    public void configure() throws Exception {
-        onException(IllegalArgumentException.class).process(exceptionLogger)
-            .handled(true)
-            .to("mock:handled");
+	@Override
+	public void configure() throws Exception {
+		onException(IllegalArgumentException.class).process(exceptionLogger)
+			.handled(true)
+			.to("mock:handled");
 
-        from("direct:start-exception-clause")
-            .routeId("exception-clause-route")
-            .process(new IllegalArgumentExceptionThrowingProcessor())
-            .to("mock:received");
-    }
+		from("direct:start-exception-clause")
+			.routeId("exception-clause-route")
+			.process(new IllegalArgumentExceptionThrowingProcessor())
+			.to("mock:received");
+	}
 }

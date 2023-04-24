@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ConditionalRoutingSpringApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ConditionalRoutingSpringApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ConditionalRoutingSpringApplication.class, args);
+	}
 
 }
