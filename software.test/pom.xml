@@ -50,6 +50,7 @@
 		<module>rest-assured-selenium</module>
 		<module>rest-testing</module>
 		<module>selenium-junit-testng</module>
+		<module>serenity</module>
 		<module>spf4j</module>
 		<module>spring-testing-1</module>
 		<module>spring-testing-2</module>
