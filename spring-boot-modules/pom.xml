@@ -23,6 +23,7 @@
 		<!--<module>spring-boot-3-native</module>-->
 		<!--<module>spring-boot-3-observation</module>-->
 		<!--<module>spring-boot-3-test-pitfalls</module>-->
+		<module>spring-boot-3-testcontainer</module>
 		<!--<module>spring-boot-3-url-matching</module>-->
 		<!--<module>spring-boot-3-virtual-thread</module>-->
 		<!--<module>spring-boot-cxf</module>-->
