@@ -14,9 +14,10 @@
 	</parent>
 
 	<modules>
-		<module>docker-containers</module>
-		<module>docker-compose</module>
+		<module>docker-caching</module>
+		<module>docker-compose-1</module>
 		<module>docker-compose-2</module>
+		<module>docker-containers</module>
 		<module>docker-images</module>
 		<module>docker-java-jar</module>
 		<module>docker-spring-boot</module>

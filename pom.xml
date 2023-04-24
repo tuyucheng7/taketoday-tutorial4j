@@ -459,7 +459,6 @@
 				<!--<module>ddd-contexts</module>-->
 				<!--<module>design-patterns-modules</module>-->
 				<!--<module>docker-modules</module>-->
-				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!--<module>graphql.modules</module>-->
 				<!--<module>grpc</module>-->
 				<!--<module>java-core-modules</module>-->
@@ -530,7 +529,6 @@
 				<!--<module>ddd-contexts</module>-->
 				<!--<module>design-patterns-modules</module>-->
 				<!--<module>docker-modules</module>-->
-				<!--<module>gradle-modules/gradle/maven-to-gradle</module>-->
 				<!--<module>graphql.modules</module>-->
 				<!--<module>grpc</module>-->
 				<!--<module>java-core-modules</module>-->
