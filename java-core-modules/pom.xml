@@ -16,7 +16,6 @@
 	</parent>
 
 	<modules>
-		<!--<module>java</module>-->
 		<!--<module>java-8-1</module>-->
 		<!--<module>java-8-2</module>-->
 		<!--<module>java-8-datetime-1</module>-->
