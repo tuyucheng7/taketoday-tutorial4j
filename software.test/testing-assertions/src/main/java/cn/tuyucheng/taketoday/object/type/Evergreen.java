@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.object.type;
 
-import cn.tuyucheng.taketoday.jacoco.exclude.annotations.ExcludeFromJacocoGeneratedReport;
-
 public class Evergreen implements Tree {
 
 	private String name;
@@ -12,7 +10,6 @@ public class Evergreen implements Tree {
 
 
 	@Override
-	@ExcludeFromJacocoGeneratedReport
 	public boolean isEvergreen() {
 		return true;
 	}

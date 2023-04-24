@@ -58,7 +58,6 @@
 		<module>testing-assertions</module>
 		<module>testing-libraries-1</module>
 		<module>testing-libraries-2</module>
-		<module>testing-libraries-3</module>
 		<module>testing-miscellaneous</module>
 		<module>testng</module>
 		<module>testng-command-line</module>

@@ -1,6 +1,8 @@
 package cn.tuyucheng.taketoday.hamcrest;
 
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.core.AllOf;
+import org.hamcrest.core.AnyOf;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -292,7 +294,7 @@ public class HamcrestMatcherUnitTest {
 		String str = "calligraphy";
 		String start = "call";
 		String end = "foo";
-		assertThat(str, anyOf(startsWith(start), containsString(end)));
+		assertThat(str, AnyOf.anyOf(startsWith(start), containsString(end)));
 	}
 
 	@Test
@@ -300,7 +302,7 @@ public class HamcrestMatcherUnitTest {
 		String str = "calligraphy";
 		String start = "call";
 		String end = "phy";
-		assertThat(str, allOf(startsWith(start), endsWith(end)));
+		assertThat(str, AllOf.allOf(startsWith(start), endsWith(end)));
 	}
 
 	@Test

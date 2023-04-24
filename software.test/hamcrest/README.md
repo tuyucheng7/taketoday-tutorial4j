@@ -4,6 +4,7 @@
 
 ## 相关文章
 
+- [使用Hamcrest进行测试](docs/使用Hamcrest进行测试.md)
 - [Hamcrest文本匹配器](docs/Hamcrest文本匹配器.md)
 - [Hamcrest文件匹配器](docs/Hamcrest文件匹配器.md)
 - [Hamcrest对象匹配器](docs/Hamcrest对象匹配器.md)
