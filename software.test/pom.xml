@@ -14,7 +14,7 @@
 	</parent>
 
 	<modules>
-		<module>arquillian</module>
+		<module>arquillian</module> <!--fails on CI-->
 		<module>assertion-libraries</module>
 		<module>cucumber-1</module>
 		<module>cucumber-2</module>
