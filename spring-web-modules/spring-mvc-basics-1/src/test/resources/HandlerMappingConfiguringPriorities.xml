@@ -29,14 +29,14 @@
 		</property>
 		<property name="order" value="0" />
 	</bean>
-	<bean id="test" class="com.baeldung.TestController" />
+	<bean id="test" class="cn.tuyucheng.taketoday.TestController" />
 
 
 	<bean
 		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
-	<bean class="com.baeldung.WelcomeController" />
+	<bean class="cn.tuyucheng.taketoday.WelcomeController" />
 
 
 
