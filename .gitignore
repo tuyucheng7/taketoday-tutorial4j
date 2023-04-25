@@ -67,12 +67,12 @@ java-io-1/hard_link.txt
 java-io-1/target_link.txt
 java-core/src/main/java/cn/tuyucheng/taketoday/manifest/MANIFEST.MF
 ethereum/logs/
-jmeter/src/main/resources/*-JMeter.csv
-jmeter/src/main/resources/*-Basic*.csv
-jmeter/src/main/resources/*-JMeter*.csv
-jmeter/src/main/resources/*ReportsDashboard*.csv
-jmeter/src/main/resources/dashboard/*ReportsDashboard*.csv
-jmeter/src/main/resources/*FileExtractionExample.csv
+/software.test/jmeter/src/main/resources/*-JMeter.csv
+/software.test/jmeter/src/main/resources/*-Basic*.csv
+/software.test/jmeter/src/main/resources/*-JMeter*.csv
+/software.test/jmeter/src/main/resources/*ReportsDashboard*.csv
+/software.test/jmeter/src/main/resources/dashboard/*ReportsDashboard*.csv
+/software.test/jmeter/src/main/resources/*FileExtractionExample.csv
 
 ninja/devDb.mv.db
 
