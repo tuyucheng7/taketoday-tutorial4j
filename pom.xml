@@ -472,14 +472,14 @@
 				<module>reactor-core</module>
 				<module>rsocket</module>
 				<module>rxjava-modules</module>
-				<!--<module>software.test</module>-->
-				<!--<module>spring-boot-modules</module>-->
-				<!--<module>spring-cloud-modules</module>-->
-				<!--<module>spring-data-modules</module>-->
-				<!--<module>spring-modules</module>-->
-				<!--<module>spring-reactive-modules</module>-->
-				<!--<module>spring-security-modules</module>-->
-				<!--<module>spring-web-modules</module>-->
+				<module>software.test</module>
+				<module>spring-boot-modules</module>
+				<module>spring-cloud-modules</module>
+				<module>spring-data-modules</module>
+				<module>spring-modules</module>
+				<module>spring-reactive-modules</module>
+				<module>spring-security-modules</module>
+				<module>spring-web-modules</module>
 				<module>vavr-modules</module>
 				<module>vertx-modules</module>
 			</modules>
@@ -542,14 +542,14 @@
 				<module>reactor-core</module>
 				<module>rsocket</module>
 				<module>rxjava-modules</module>
-				<!--<module>software.test</module>-->
-				<!--<module>spring-boot-modules</module>-->
-				<!--<module>spring-cloud-modules</module>-->
-				<!--<module>spring-data-modules</module>-->
-				<!--<module>spring-modules</module>-->
-				<!--<module>spring-reactive-modules</module>-->
-				<!--<module>spring-security-modules</module>-->
-				<!--<module>spring-web-modules</module>-->
+				<module>software.test</module>
+				<module>spring-boot-modules</module>
+				<module>spring-cloud-modules</module>
+				<module>spring-data-modules</module>
+				<module>spring-modules</module>
+				<module>spring-reactive-modules</module>
+				<module>spring-security-modules</module>
+				<module>spring-web-modules</module>
 				<module>vavr-modules</module>
 				<module>vertx-modules</module>
 			</modules>
@@ -590,14 +590,14 @@
 				<module>reactor-core</module>
 				<module>rsocket</module>
 				<module>rxjava-modules</module>
-				<!--<module>software.test</module>-->
-				<!--<module>spring-boot-modules</module>-->
-				<!--<module>spring-cloud-modules</module>-->
-				<!--<module>spring-data-modules</module>-->
-				<!--<module>spring-modules</module>-->
-				<!--<module>spring-reactive-modules</module>-->
-				<!--<module>spring-security-modules</module>-->
-				<!--<module>spring-web-modules</module>-->
+				<module>software.test</module>
+				<module>spring-boot-modules</module>
+				<module>spring-cloud-modules</module>
+				<module>spring-data-modules</module>
+				<module>spring-modules</module>
+				<module>spring-reactive-modules</module>
+				<module>spring-security-modules</module>
+				<module>spring-web-modules</module>
 				<module>vavr-modules</module>
 				<module>vertx-modules</module>
 			</modules>

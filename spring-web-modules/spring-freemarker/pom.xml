@@ -13,6 +13,7 @@
 		<groupId>cn.tuyucheng.taketoday</groupId>
 		<artifactId>taketoday-tutorial4j</artifactId>
 		<version>1.0.0</version>
+		<relativePath>../../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>

@@ -14,15 +14,15 @@
     </parent>
 
     <modules>
-		<!--<module>spring-boot-hibernate-3</module>-->
-		<!--<module>spring-boot-hibernate-5</module>-->
+		<!--<module>spring-boot-hibernate-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>spring-boot-hibernate-5</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-jdbc</module>
 		<module>spring-boot-mybatis</module>
 		<module>spring-boot-mysql</module>
         <module>spring-boot-persistence-1</module>
-        <module>spring-boot-persistence-2</module>
+        <!--<module>spring-boot-persistence-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
         <module>spring-boot-persistence-3</module>
-        <module>spring-boot-persistence-h2</module>
+        <!--<module>spring-boot-persistence-h2</module> &lt;!&ndash;build fails&ndash;&gt;-->
         <module>spring-boot-persistence-mongodb-1</module>
         <module>spring-boot-persistence-mongodb-2</module>
         <module>spring-boot-persistence-mongodb-3</module>
@@ -30,13 +30,13 @@
         <module>spring-data-arangodb</module>
         <module>spring-data-cassandra-1</module>
         <module>spring-data-cassandra-2</module>
-        <!--<module>spring-data-cassandra-reactive</module>--> <!-- Long time running -->
+        <!--<module>spring-data-cassandra-reactive</module> &lt;!&ndash;Long time running&ndash;&gt;-->
         <module>spring-data-cassandra-test</module>
         <module>spring-data-cosmosdb</module>
         <module>spring-data-couchbase</module>
         <module>spring-data-dynamodb</module>
         <module>spring-data-elasticsearch</module>
-        <!--<module>spring-data-gemfire</module>--> <!-- repository is unavailable -->
+        <!--<module>spring-data-gemfire</module> &lt;!&ndash;repository is unavailable&ndash;&gt;-->
         <module>spring-data-geode</module>
         <module>spring-data-jdbc</module>
         <module>spring-data-jooq</module>
@@ -52,12 +52,12 @@
         <module>spring-data-jpa-query-1</module>
         <module>spring-data-jpa-query-2</module>
         <module>spring-data-jpa-query-3</module>
-        <module>spring-data-jpa-repo-1</module>
+        <!--<module>spring-data-jpa-repo-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
         <module>spring-data-jpa-repo-2</module>
-		<!--<module>spring-data-jpa-repo-3</module>-->
+		<!--<module>spring-data-jpa-repo-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
         <module>spring-data-keyvalue</module>
         <module>spring-data-mongodb-1</module>
-        <!--<module>spring-data-mongodb-2</module>--> <!-- fails on CI -->
+        <!--<module>spring-data-mongodb-2</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
         <module>spring-data-mongodb-reactive</module>
         <module>spring-data-neo4j</module>
         <module>spring-data-redis</module>

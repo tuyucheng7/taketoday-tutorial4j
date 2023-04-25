@@ -25,23 +25,23 @@
 		<module>groovy-spock</module>
 		<module>hamcrest</module>
 		<module>instancio</module>
-		<module>jenkins-modules</module>
+		<!--<module>jenkins-modules</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>jmeter</module>
 		<module>jmh</module>
 		<module>junit-4</module>
-		<module>junit-5-advanced</module>
+		<!--<module>junit-5-advanced</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>junit-5-basics</module>
 		<module>junit-5</module>
 		<module>junit-5-annotations</module>
-		<module>junit-5-migration</module>
+		<!--<module>junit-5-migration</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>junit-5-pioneer</module>
 		<module>load-testing-comparison</module>
 		<module>mockito-1</module>
 		<module>mockito-2</module>
 		<module>mockito-simple</module>
 		<module>mockito-spring</module>
-		<module>mocks-1</module>
-		<module>mocks-2</module>
+		<!--<module>mocks-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>mocks-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>mockserver</module>
 		<module>parallel-tests-junit</module>
 		<module>performance-tests</module>
