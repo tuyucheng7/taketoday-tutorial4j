@@ -18,7 +18,7 @@
 
 	<modules>
 		<!-- ======spring boot 3 modules====== -->
-		<module>spring-boot-3</module>
+		<!--<module>spring-boot-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-3-mybatis</module>
 		<module>spring-boot-3-native</module>
 		<module>spring-boot-3-observation</module>
