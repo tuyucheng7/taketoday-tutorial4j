@@ -45,6 +45,7 @@
 		<!--<module>mocks-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<!--<module>mocks-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>mockserver</module>
+		<module>pact</module>
 		<module>parallel-tests-junit</module>
 		<module>performance-tests</module>
 		<module>powermock</module>
