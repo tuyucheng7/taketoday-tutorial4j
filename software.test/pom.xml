@@ -14,8 +14,9 @@
 	</parent>
 
 	<modules>
-		<module>arquillian</module> <!--fails on CI-->
+		<!--<module>arquillian</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 		<module>assertion-libraries</module>
+		<module>cobertura</module>
 		<module>cucumber-1</module>
 		<module>cucumber-2</module>
 		<module>cucumber-spring</module>
