@@ -1,6 +1,5 @@
-package cn.tuyucheng.taketoday.reflection.privatemethods;
+package cn.tuyucheng.taketoday.privatemethods;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,7 +19,7 @@ class UtilsUnitTest {
 
 	@Test
 	void givenANonNullInteger_WhenValidateAndDouble_ThenDoublesIt() {
-		Assertions.assertEquals(4, Utils.validateAndDouble(2));
+		assertEquals(4, Utils.validateAndDouble(2));
 	}
 
 	// Further on, let's test the private method

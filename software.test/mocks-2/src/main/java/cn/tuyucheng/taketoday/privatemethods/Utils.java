@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.reflection.privatemethods;
+package cn.tuyucheng.taketoday.privatemethods;
 
 public class Utils {
 

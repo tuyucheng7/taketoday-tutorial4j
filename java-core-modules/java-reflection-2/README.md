@@ -1,6 +1,5 @@
 ## 相关文章
 
-+ [Java中的单元测试私有方法](docs/Java中的单元测试私有方法.md)
 + [什么是JDK com.sun.proxy.$Proxy类](docs/什么是JDK-com.sun.proxy.$Proxy类.md)
 + [从Java中的不同类读取私有字段的值](docs/从Java中的不同类读取私有字段的值.md)
 + [使用Java反射API调用静态方法](docs/使用Java反射API调用静态方法.md)
