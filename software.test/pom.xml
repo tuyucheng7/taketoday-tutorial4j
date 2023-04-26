@@ -14,6 +14,7 @@
 	</parent>
 
 	<modules>
+		<module>allure-junit-5</module>
 		<!--<module>arquillian</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 		<module>assertion-libraries</module>
 		<module>cobertura</module>
