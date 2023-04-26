@@ -124,7 +124,7 @@ public class FruitResourceIntegrationTest extends JerseyTest {
 		final Fruit entity = target("fruit/search/strawberry").request()
 			.get(Fruit.class);
 
-		assertEquals("Fruit name: ", "strawberry", entity.getName());
+		assertEquals("strawberry", entity.getName(), "Fruit name: ");
 		assertEquals(Integer.valueOf(20), entity.getWeight(), "Fruit weight: ");
 	}
 
