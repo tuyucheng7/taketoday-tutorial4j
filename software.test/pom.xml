@@ -28,6 +28,7 @@
 		<module>hamcrest</module>
 		<module>instancio</module>
 		<!--<module>jenkins-modules</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<module>jersey-test</module>
 		<module>jmeter</module>
 		<module>jmh</module>
 		<module>junit-4</module>
