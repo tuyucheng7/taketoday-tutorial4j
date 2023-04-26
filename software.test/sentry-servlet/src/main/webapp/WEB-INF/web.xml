@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+		 version="4.0">
+
+	<context-param>
+		<param-name>sentry.dsn</param-name>
+		<param-value>https://fb81e60b8eac4286810c07baea898c95@o4505078833020928.ingest.sentry.io/4505078976217088</param-value>
+	</context-param>
+</web-app>
