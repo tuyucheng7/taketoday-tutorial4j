@@ -62,6 +62,7 @@
 		<module>sentry-servlet</module>
 		<module>serenity</module>
 		<module>spf4j</module>
+		<module>spring-rest-testing</module>
 		<module>spring-testing-1</module>
 		<module>spring-testing-2</module>
 		<module>tdd</module>
