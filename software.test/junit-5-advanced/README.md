@@ -7,6 +7,8 @@
 + [从命令行运行JUnit测试用例](docs/从命令行运行JUnit测试用例.md)
 + [JUnit 5的并行测试执行](docs/JUnit5的并行测试执行.md)
 + [JUnit测试调用System.exit()的方法](docs/JUnit测试调用System.exit()的方法.md)
++ [Java单元测试中多个属性的单个断言调用](docs/Java单元测试中多个属性的单个断言调用.md)
++ [使用JUnit创建测试套件](docs/使用JUnit创建测试套件.md)
 
 - 更多文章： [[<-- prev]](../junit-5-basics/README.md)
 - 更多文章： [[next -->]](../junit-5-annotations/README.md)
