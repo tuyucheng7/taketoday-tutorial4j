@@ -23,22 +23,24 @@ public class ChatController {
 	@Value("${openai.api.url}")
 	private String apiUrl;
 
+	/**
+	 * Creates a chat request and sends it to the OpenAI API Returns the first message from the API response
+	 *
+	 * @param prompt the prompt to send to the API
+	 * @return first message from the API response
+	 */
 	@GetMapping("/chat")
 	public String chat(@RequestParam String prompt) {
-		// create a request
 		ChatRequest request = new ChatRequest(model, prompt);
 
-		// call the API
 		ChatResponse response = restTemplate.postForObject(
 			apiUrl,
 			request,
 			ChatResponse.class);
-
 		if (response == null || response.getChoices() == null || response.getChoices().isEmpty()) {
 			return "No response";
 		}
 
-		// return the first response
 		return response.getChoices().get(0).getMessage().getContent();
 	}
 }
