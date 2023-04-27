@@ -42,6 +42,7 @@
 		<!--<module>junit-5-migration</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>junit-5-pioneer</module>
 		<module>load-testing-comparison</module>
+		<module>microshed</module>
 		<module>mockito-1</module>
 		<module>mockito-2</module>
 		<module>mockito-simple</module>
