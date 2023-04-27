@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.jsonb;
 
-import cn.tuyucheng.taketoday.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

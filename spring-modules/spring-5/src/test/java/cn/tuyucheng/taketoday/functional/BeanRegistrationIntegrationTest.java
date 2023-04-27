@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.functional;
 
 import cn.tuyucheng.taketoday.Spring5Application;
-import cn.tuyucheng.taketoday.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

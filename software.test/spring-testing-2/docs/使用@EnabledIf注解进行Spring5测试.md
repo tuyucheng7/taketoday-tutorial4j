@@ -32,7 +32,7 @@ void givenEnabledIfLiteral_WhenTrue_ThenTestExecuted() {
 
 **但是，如果我们将@EnabledIf注解中提供的字符串替换为“false”，则不会执行**：
 
-<img src="../assets/img.png">
+<img src="../assets/img_4.png">
 
 请记住，如果你想静态禁用测试，则有一个专用的[@Disabled](http://junit.org/junit5/docs/5.0.0/api/org/junit/jupiter/api/Disabled.html)注解。
 

@@ -23,9 +23,9 @@ abstract class ParameterAutowireUtils {
 
 	public static boolean isAutowirable(Parameter parameter) {
 		return ApplicationContext.class.isAssignableFrom(parameter.getType())
-			|| hasAnnotation(parameter, Autowired.class)
-			|| hasAnnotation(parameter, Qualifier.class)
-			|| hasAnnotation(parameter, Value.class);
+			   || hasAnnotation(parameter, Autowired.class)
+			   || hasAnnotation(parameter, Qualifier.class)
+			   || hasAnnotation(parameter, Value.class);
 	}
 
 	public static Object resolveDependency(Parameter parameter, Class<?> containingClass, ApplicationContext applicationContext) {
