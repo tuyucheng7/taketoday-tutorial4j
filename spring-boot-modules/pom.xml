@@ -92,6 +92,7 @@
 		<module>spring-boot-nashorn</module>
 		<module>spring-boot-parent</module>
 		<module>spring-boot-performance</module>
+		<module>spring-boot-primefaces</module>
 		<module>spring-boot-process-automation</module>
 		<module>spring-boot-property-exp</module>
 		<module>spring-boot-react</module>
