@@ -30,7 +30,7 @@ public class QueryService {
 	public BookRecord findBookById(Long id) {
 		TypedQuery<BookRecord> query = entityManager
 			.createQuery("SELECT new cn.tuyucheng.taketoday.recordswithjpa.records.BookRecord(b.id, b.title, b.author, b.isbn) " +
-				"FROM Book b WHERE b.id = :id", BookRecord.class);
+						 "FROM Book b WHERE b.id = :id", BookRecord.class);
 		query.setParameter("id", id);
 		return query.getSingleResult();
 	}

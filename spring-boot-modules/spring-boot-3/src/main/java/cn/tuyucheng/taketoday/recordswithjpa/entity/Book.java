@@ -1,7 +1,14 @@
 package cn.tuyucheng.taketoday.recordswithjpa.entity;
 
 import cn.tuyucheng.taketoday.recordswithjpa.records.BookRecord;
-import jakarta.persistence.*;
+import jakarta.persistence.ColumnResult;
+import jakarta.persistence.ConstructorResult;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SqlResultSetMapping;
+import jakarta.persistence.Table;
 
 @SqlResultSetMapping(
 	name = "BookRecordMapping",
