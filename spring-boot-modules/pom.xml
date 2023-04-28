@@ -112,6 +112,7 @@
 		<module>spring-boot-runtime-2</module>
 		<module>spring-boot-scheduling</module>
 		<module>spring-boot-security</module>
+		<!--<module>spring-boot-sendgrid</module> &lt;!&ndash;pending&ndash;&gt;-->
 		<!--<module>spring-boot-shell</module> &lt;!&ndash;long-running&ndash;&gt;-->
 		<module>spring-boot-soap</module>
 		<module>spring-boot-springdoc</module>
