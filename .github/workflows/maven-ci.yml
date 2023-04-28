@@ -146,9 +146,6 @@ jobs:
             -   name: Install xvfb
                 run: sudo apt-get install -y xvfb
 
-            -   name: Set Heap Size
-                run: export MAVEN_OPTS='-Xmx512m -XX:MaxPermSize=128m'
-
             -   name: Build with Maven and run SonarQube analysis
                 run: xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tu-yucheng_taketoday-tutorial4j -Dsonar.organization=tuyucheng -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} -Pall
                 env:
