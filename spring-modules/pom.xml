@@ -20,7 +20,6 @@
 		<module>spring-5</module>
 		<!--<module>spring-5-webflux-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-5-webflux-2</module>
-		<module>spring-activiti</module>
 		<module>spring-aop-1</module>
 		<module>spring-aop-2</module>
 		<module>spring-batch-1</module>
@@ -30,36 +29,21 @@
 		<module>spring-core-2</module>
 		<module>spring-core-3</module>
 		<module>spring-core-4</module>
-		<module>spring-credhub</module>
 		<module>spring-di-1</module>
 		<module>spring-di-2</module>
 		<module>spring-di-3</module>
 		<module>spring-di-4</module>
-		<module>spring-drools</module>
 		<module>spring-ejb-modules</module>
 		<module>spring-exceptions</module>
 		<module>spring-integration</module>
-		<module>spring-jenkins-pipeline</module>
 		<module>spring-jersey</module>
-		<module>spring-jinq</module>
 		<module>spring-kafka-1</module>
 		<!--<module>spring-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
-		<module>spring-katharsis</module>
-		<module>spring-mobile</module>
 		<module>spring-native</module>
-		<module>spring-protobuf</module>
-		<module>spring-quartz</module>
 		<module>spring-remoting-modules</module>
 		<!--<module>spring-roo</module> &lt;!&ndash;Artifact Repository is not available&ndash;&gt;-->
-		<module>spring-scheduling</module>
-		<module>spring-shell</module>
-		<module>spring-soap</module>
 		<module>spring-spel</module>
-		<module>spring-state-machine</module>
 		<module>spring-static-resources</module>
 		<module>spring-swagger-codegen</module>
-		<module>spring-threads</module>
-		<module>spring-vault</module>
-		<module>spring-websockets</module>
 	</modules>
 </project>
