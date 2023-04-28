@@ -66,6 +66,8 @@
 		<module>spring-boot-deployment</module>
 		<module>spring-boot-di</module>
 		<module>spring-boot-disable-logging</module>
+		<module>spring-boot-docker</module>
+		<module>spring-boot-docker-postgres</module>
 		<module>spring-boot-drools</module>
 		<module>spring-boot-environment</module>
 		<module>spring-boot-exceptions</module>
