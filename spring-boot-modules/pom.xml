@@ -111,6 +111,7 @@
 		<module>spring-boot-protobuf</module>
 		<module>spring-boot-quartz</module>
 		<module>spring-boot-react</module>
+		<module>spring-boot-remoting</module>
 		<module>spring-boot-request-params</module>
 		<!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-rest</module>

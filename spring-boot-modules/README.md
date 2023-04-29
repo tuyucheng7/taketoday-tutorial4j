@@ -69,6 +69,7 @@
 + [Spring Boot Quartz](spring-boot-quartz/README.md)
 + [Spring Boot React](spring-boot-react/README.md)
 + [Spring Boot Redis](spring-boot-redis/README.md)
++ [Spring Boot Remoting](spring-boot-remoting/README.md)
 + [Spring Boot Request Params](spring-boot-request-params/README.md)
 + [Spring Boot Resilience4j](spring-boot-resilience4j/README.md)
 + [Spring Boot Rest](spring-boot-rest/README.md)
