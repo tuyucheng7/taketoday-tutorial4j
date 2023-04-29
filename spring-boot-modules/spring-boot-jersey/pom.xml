@@ -3,9 +3,9 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-jersey</artifactId>
+	<artifactId>spring-boot-jersey</artifactId>
 	<version>1.0.0</version>
-	<name>spring-jersey</name>
+	<name>spring-boot-jersey</name>
 	<packaging>war</packaging>
 
 	<parent>
@@ -186,7 +186,7 @@
 	</profiles>
 
 	<build>
-		<finalName>spring-jersey</finalName>
+		<finalName>spring-boot-jersey</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

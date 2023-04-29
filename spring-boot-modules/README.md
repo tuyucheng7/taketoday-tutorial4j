@@ -46,6 +46,7 @@
 + [Spring Boot Jasypt](spring-boot-jasypt/README.md)
 + [Spring Boot Jenkins Pipeline](spring-boot-jenkins-pipeline/README.md)
 + [Spring Boot Jinq](spring-boot-jinq/README.md)
++ [Spring Boot Jersey](spring-boot-jersey/README.md)
 + [Spring Boot JSP](spring-boot-jsp/README.md)
 + [Spring Boot Kafka](spring-boot-kafka-1/README.md)
 + [Spring Boot Katharsis](spring-boot-katharsis/README.md)
