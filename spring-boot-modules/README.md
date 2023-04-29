@@ -61,6 +61,7 @@
 + [Spring Boot MVC Birt](spring-boot-mvc-birt/README.md)
 + [Spring Boot MVC Jersey](spring-boot-mvc-jersey/README.md)
 + [Spring Boot Nashorn](spring-boot-nashorn/README.md)
++ [Spring Boot Native](spring-boot-native/README.md)
 + [Spring Boot Parent](spring-boot-parent/README.md)
 + [Spring Boot Performance](spring-boot-performance/README.md)
 + [Spring Boot Process Automation](spring-boot-process-automation/README.md)

@@ -14,7 +14,6 @@
 + [Spring Exception](spring-exceptions/README.md)
 + [Spring Integration](spring-integration/README.md)
 + [Spring Jersey](spring-jersey/README.md)
-+ [Spring Native](spring-native/README.md)
 + [Spring Roo](spring-roo/README.md)
 + [Spring Spel](spring-spel/README.md)
 + [Spring Static Resources](spring-static-resources/README.md)
