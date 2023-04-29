@@ -1,7 +1,8 @@
-package cn.tuyucheng.taketoday.caching.allkeys.boot;
+package cn.tuyucheng.taketoday.allkeys;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import cn.tuyucheng.taketoday.allkeys.config.AllKeysConfig;
+import cn.tuyucheng.taketoday.allkeys.service.SlowServiceWithCache;
+import com.github.benmanes.caffeine.cache.Cache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import cn.tuyucheng.taketoday.allkeys.config.AllKeysConfig;
-import cn.tuyucheng.taketoday.allkeys.service.SlowServiceWithCache;
-import com.github.benmanes.caffeine.cache.Cache;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
