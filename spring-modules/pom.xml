@@ -22,8 +22,6 @@
 		<module>spring-5-webflux-2</module>
 		<module>spring-aop-1</module>
 		<module>spring-aop-2</module>
-		<module>spring-batch-1</module>
-		<module>spring-batch-2</module>
 		<module>spring-bom</module>
 		<module>spring-core-1</module>
 		<module>spring-core-2</module>
@@ -37,8 +35,6 @@
 		<module>spring-exceptions</module>
 		<module>spring-integration</module>
 		<module>spring-jersey</module>
-		<module>spring-kafka-1</module>
-		<!--<module>spring-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-native</module>
 		<module>spring-remoting-modules</module>
 		<!--<module>spring-roo</module> &lt;!&ndash;Artifact Repository is not available&ndash;&gt;-->
