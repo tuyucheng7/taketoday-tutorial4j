@@ -34,7 +34,6 @@
 		<module>spring-ejb-modules</module>
 		<module>spring-exceptions</module>
 		<module>spring-integration</module>
-		<module>spring-remoting-modules</module>
 		<!--<module>spring-roo</module> &lt;!&ndash;Artifact Repository is not available&ndash;&gt;-->
 		<module>spring-spel</module>
 		<module>spring-static-resources</module>
