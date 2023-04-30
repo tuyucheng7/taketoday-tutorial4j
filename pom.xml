@@ -270,6 +270,7 @@
 						<exclude>cn/tuyucheng/taketoday/pmd/*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*App.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Application.*</exclude>
+						<exclude>cn/tuyucheng/taketoday/**/*Main.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Config.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*Dto.*</exclude>
 						<exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
