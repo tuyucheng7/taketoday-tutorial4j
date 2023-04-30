@@ -144,6 +144,7 @@
 		<module>spring-boot-validation</module>
 		<module>spring-boot-vault</module>
 		<module>spring-boot-vue</module>
+		<module>spring-boot-webrtc</module>
 		<module>spring-boot-websockets</module>
 	</modules>
 
