@@ -99,6 +99,7 @@
 		<module>spring-boot-lightrun</module>
 		<module>spring-boot-logging-log4j2</module>
 		<module>spring-boot-logging-logback</module>
+		<module>spring-boot-mantis</module>
 		<module>spring-boot-mesos-marathon</module>
 		<module>spring-boot-miscellaneous</module>
 		<module>spring-boot-mobile</module>
