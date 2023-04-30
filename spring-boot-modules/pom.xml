@@ -74,6 +74,7 @@
 		<module>spring-boot-drools</module>
 		<module>spring-boot-environment</module>
 		<module>spring-boot-exceptions</module>
+		<module>spring-boot-feign</module>
 		<module>spring-boot-flowable</module>
 		<module>spring-boot-gradle</module>
 		<module>spring-boot-graphql</module>
