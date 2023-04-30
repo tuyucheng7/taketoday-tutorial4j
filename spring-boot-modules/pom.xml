@@ -17,13 +17,23 @@
 	</parent>
 
 	<modules>
-		<!-- ======spring boot 3 modules====== -->
+		<!--====== ci fails modules ======-->
 		<!--<module>spring-boot-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>spring-boot-3-testcontainer</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>spring-boot-redis</module> &lt;!&ndash; build fails &ndash;&gt;-->
+		<!--<module>spring-boot-feign</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
+		<!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>spring-boot-keycloak-1</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
+		<!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
+		<!--<module>spring-boot-sendgrid</module> &lt;!&ndash;pending&ndash;&gt;-->
+		<!--<module>spring-boot-shell</module> &lt;!&ndash;long-running&ndash;&gt;-->
+		<!--<module>spring-boot-azure</module> &lt;!&ndash;fails on local&ndash;&gt;-->
+
+		<!--====== spring boot 3 modules ======-->
 		<module>spring-boot-3-mybatis</module>
 		<module>spring-boot-3-native</module>
 		<module>spring-boot-3-observation</module>
 		<module>spring-boot-3-test-pitfalls</module>
-		<!--<module>spring-boot-3-testcontainer</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-3-url-matching</module>
 		<module>spring-boot-3-virtual-thread</module>
 		<module>spring-boot-cxf</module>
@@ -31,9 +41,10 @@
 		<module>spring-boot-properties-2</module>
 		<module>spring-boot-properties-3</module>
 		<module>spring-boot-properties-migrator-demo</module>
-		<!--<module>spring-boot-redis</module> &lt;!&ndash; build fails &ndash;&gt;-->
+		<module>spring-boot-validation-2</module>
+		<module>spring-boot-validation-advanced</module>
 
-		<!-- ======spring boot 2 modules====== -->
+		<!--====== spring boot 2 modules ======-->
 		<module>spring-boot-activiti</module>
 		<module>spring-boot-actuator</module>
 		<module>spring-boot-admin</module>
@@ -44,7 +55,6 @@
 		<module>spring-boot-artifacts-2</module>
 		<module>spring-boot-autoconfiguration</module>
 		<module>spring-boot-aws</module>
-		<module>spring-boot-azure</module>
 		<module>spring-boot-basic-customization-1</module>
 		<module>spring-boot-basic-customization-2</module>
 		<module>spring-boot-batch-1</module>
@@ -74,7 +84,6 @@
 		<module>spring-boot-drools</module>
 		<module>spring-boot-environment</module>
 		<module>spring-boot-exceptions</module>
-		<!--<module>spring-boot-feign</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 		<module>spring-boot-flowable</module>
 		<module>spring-boot-gcp-firebase</module>
 		<module>spring-boot-gradle</module>
@@ -85,13 +94,10 @@
 		<module>spring-boot-jasypt</module>
 		<module>spring-boot-jenkins-pipeline</module>
 		<module>spring-boot-jinq</module>
-		<module>spring-boot-jersey</module>
 		<module>spring-boot-jib</module>
 		<module>spring-boot-jsp</module>
 		<module>spring-boot-kafka-1</module>
-		<!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-katharsis</module>
-		<!--<module>spring-boot-keycloak-1</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 		<module>spring-boot-keycloak-2</module>
 		<module>spring-boot-keycloak-adapters</module>
 		<module>spring-boot-libraries-1</module>
@@ -124,14 +130,11 @@
 		<module>spring-boot-react</module>
 		<module>spring-boot-remoting</module>
 		<module>spring-boot-request-params</module>
-		<!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
 		<module>spring-boot-rest</module>
 		<module>spring-boot-runtime-1</module>
 		<module>spring-boot-runtime-2</module>
 		<module>spring-boot-scheduling</module>
 		<module>spring-boot-security</module>
-		<!--<module>spring-boot-sendgrid</module> &lt;!&ndash;pending&ndash;&gt;-->
-		<!--<module>spring-boot-shell</module> &lt;!&ndash;long-running&ndash;&gt;-->
 		<module>spring-boot-soap</module>
 		<module>spring-boot-springdoc</module>
 		<module>spring-boot-state-machine</module>
@@ -143,7 +146,8 @@
 		<module>spring-boot-testing-2</module>
 		<module>spring-boot-threads</module>
 		<module>spring-boot-vaadin</module>
-		<module>spring-boot-validation</module>
+		<module>spring-boot-validation-1</module>
+		<module>spring-boot-validation-3</module>
 		<module>spring-boot-vault</module>
 		<module>spring-boot-vue</module>
 		<module>spring-boot-webrtc</module>

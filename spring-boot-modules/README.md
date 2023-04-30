@@ -50,7 +50,6 @@
 + [Spring Boot Hystrix](spring-boot-hystrix/README.md)
 + [Spring Boot Jasypt](spring-boot-jasypt/README.md)
 + [Spring Boot Jenkins Pipeline](spring-boot-jenkins-pipeline/README.md)
-+ [Spring Boot Jersey](spring-boot-jersey/README.md)
 + [Spring Boot Jib](spring-boot-jib/README.md)
 + [Spring Boot Jinq](spring-boot-jinq/README.md)
 + [Spring Boot JSP](spring-boot-jsp/README.md)
