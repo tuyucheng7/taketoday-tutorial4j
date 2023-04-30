@@ -76,6 +76,7 @@
 		<module>spring-boot-exceptions</module>
 		<module>spring-boot-feign</module>
 		<module>spring-boot-flowable</module>
+		<module>spring-boot-gcp-firebase</module>
 		<module>spring-boot-gradle</module>
 		<module>spring-boot-graphql</module>
 		<module>spring-boot-groovy</module>
