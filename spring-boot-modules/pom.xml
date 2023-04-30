@@ -86,6 +86,7 @@
 		<module>spring-boot-jenkins-pipeline</module>
 		<module>spring-boot-jinq</module>
 		<module>spring-boot-jersey</module>
+		<module>spring-boot-jib</module>
 		<module>spring-boot-jsp</module>
 		<module>spring-boot-kafka-1</module>
 		<!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
