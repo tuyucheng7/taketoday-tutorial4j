@@ -58,7 +58,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 springBoot {
-    mainClassName = 'com.baeldung.DemoApplication'
+    mainClassName = 'cn.tuyucheng.taketoday.DemoApplication'
 }
 ```
 
