@@ -5,3 +5,4 @@
 + [将应用程序从Spring Boot 2迁移到Spring Boot 3](docs/将应用程序从SpringBoot2迁移到SpringBoot3.md)
 + [将Java记录与JPA结合使用](docs/将Java记录与JPA结合使用.md)
 + [Spring 6中的HTTP接口](docs/Spring6中的HTTP接口.md)
++ [Spring ProblemDetail和ErrorResponse](docs/Spring-ProblemDetail和ErrorResponse.md)

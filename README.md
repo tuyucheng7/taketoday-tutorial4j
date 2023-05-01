@@ -24,7 +24,6 @@ Taketoday Tutorial4j
   + [Spring Security](spring-security-modules/README.md)
   + [Spring Reactive](spring-reactive-modules/README.md)
   + [Spring Cloud](spring-cloud-modules/README.md)
-+ [Maven](maven.modules/README.md)
 + [Microservices](microservices/README.md)
 + [Quarkus](quarkus-modules/README.md)
 + [Docker](docker-modules/README.md)
