@@ -10,5 +10,6 @@
 + [在运行时扫描Java注解](docs/在运行时扫描Java注解.md)
 + [使用Spring Boot的Resilience4j指南](docs/使用SpringBoot的Resilience4j指南.md)
 + [在Spring Boot中使用OpenAI ChatGPT API](docs/在SpringBoot中使用OpenAI-ChatGPT-API.md)
++ [Spring Modulith简介](docs/Spring-Modulith简介.md)
 
 - 更多文章： [[<-- prev]](../spring-boot-libraries-1/README.md)
