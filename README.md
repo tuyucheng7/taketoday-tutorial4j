@@ -1,8 +1,8 @@
 Taketoday Tutorial4j
 ==============
 
+![Language](https://img.shields.io/badge/language-java-brightgreen)
 [![Java 17](https://img.shields.io/badge/java-17-blue)](https://img.shields.io/badge/java-17-blue)
-[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/tu-yucheng/java-development-practice/master/LICENSE.md)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=ncloc)](https://sonarcloud.io/project/overview?id=tu-yucheng_taketoday-tutorial4j)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=coverage)](https://sonarcloud.io/dashboard?id=tu-yucheng_taketoday-tutorial4j)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tu-yucheng_taketoday-tutorial4j)
@@ -121,7 +121,7 @@ Taketoday Tutorial4j
 
 要从仓库的根目录构建特定模块，请在根目录中运行命令：`mvn clean install --pl ddd,annotations -Pall`。
 
-这里的ddd和annotations是我们要构建的模块，unit是这些模块所在的Maven profile。
+这里的ddd和annotations是我们要构建的模块，unit是要执行的测试类型的Maven profile。
 
 ## 运行Spring Boot模块
 
