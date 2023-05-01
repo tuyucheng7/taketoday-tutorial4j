@@ -1,7 +1,7 @@
 ## 相关文章
 
 + [Java Bean Validation基础](docs/Java-Bean验证基础.md)
-+ [使用Bean Validation 2.0验证容器元素](docs/使用Bean-Validation2.0验证容器元素.md)
++ [使用Jakarta Bean Validation 3.0验证容器元素](docs/使用Jakarta-BeanValidation3验证容器元素.md)
 + [Bean验证的约束组合](docs/Bean验证的约束组合.md)
 + [Javax BigDecimal验证](docs/Javax-BigDecimal验证.md)
 + [在方法参数上使用@NotNull](docs/在方法参数上使用@NotNull.md)
