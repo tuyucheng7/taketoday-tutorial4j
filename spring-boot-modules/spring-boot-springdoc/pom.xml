@@ -169,6 +169,7 @@
 					<include>schema.sql</include>
 					<include>app.key</include>
 					<include>app.pub</include>
+					<include>logback.xml</include>
 				</includes>
 			</resource>
 		</resources>
