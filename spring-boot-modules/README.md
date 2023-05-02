@@ -96,6 +96,7 @@
 + [Spring Boot SpringDoc](spring-boot-springdoc/README.md)
 + [Spring Boot State Machine](spring-boot-state-machine/README.md)
 + [Spring Boot Swagger](spring-boot-swagger-1/README.md)
++ [Spring Boot Swagger Codegen](spring-boot-swagger-codegen/README.md)
 + [Spring Boot Testing](spring-boot-testing-1/README.md)
 + [Spring Boot Threads](spring-boot-threads/README.md)
 + [Spring Boot Vaadin](spring-boot-vaadin/README.md)

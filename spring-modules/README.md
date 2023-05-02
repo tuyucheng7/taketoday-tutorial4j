@@ -16,4 +16,3 @@
 + [Spring Roo](spring-roo/README.md)
 + [Spring Spel](spring-spel/README.md)
 + [Spring Static Resources](spring-static-resources/README.md)
-+ [Spring Swagger Codegen](spring-swagger-codegen/README.md)
