@@ -10,6 +10,7 @@
 + [使用Selenium处理浏览器选项卡](docs/使用Selenium处理浏览器选项卡.md)
 + [Selenium Webdriver中的隐式等待与显式等待](docs/Selenium-Webdriver中的隐式等待与显式等待.md)
 + [Selenium中的StaleElementReferenceException](docs/Selenium中的StaleElementReferenceException.md)
++ [在Selenium WebDriver中检索HTML输入的值](docs/在Selenium-WebDriver中检索HTML输入的值.md)
 
 ## 注意
 
