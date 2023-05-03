@@ -25,6 +25,7 @@
 + [Spring Boot Bootstrap](spring-boot-bootstrap/README.md)
 + [Spring Boot Customization](spring-boot-basic-customization-1/README.md)
 + [Spring Boot Caching](spring-boot-caching-1/README.md)
++ [Spring Boot Camel](spring-boot-camel/README.md)
 + [Spring Boot Cassandre](spring-boot-cassandre/README.md)
 + [Spring Boot CI/CD](spring-boot-ci-cd/README.md)
 + [Spring Boot CLI](spring-boot-cli/README.md)

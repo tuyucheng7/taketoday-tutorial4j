@@ -8,4 +8,3 @@
 * [Spring JMS](spring-jms/README.md)
 * [JGroups](jgroups/README.md)
 * [Spring AMQP](spring-amqp/README.md)
-* [Spring Apache Camel](spring-apache-camel/README.md)
