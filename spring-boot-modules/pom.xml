@@ -42,6 +42,7 @@
       <module>spring-boot-properties-2</module>
       <module>spring-boot-properties-3</module>
       <module>spring-boot-properties-migrator-demo</module>
+      <module>spring-boot-swagger-keycloak</module>
       <module>spring-boot-validation-2</module>
       <module>spring-boot-validation-advanced</module>
 
@@ -143,7 +144,6 @@
       <module>spring-boot-swagger-2</module>
       <module>spring-boot-swagger-codegen</module>
       <module>spring-boot-swagger-jwt</module>
-      <module>spring-boot-swagger-keycloak</module>
       <module>spring-boot-testing-1</module>
       <module>spring-boot-testing-2</module>
       <module>spring-boot-threads</module>
