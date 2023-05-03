@@ -61,6 +61,7 @@
 		<module>rest-assured-selenium</module>
 		<module>rest-testing</module>
 		<module>selenium-junit-testng</module>
+      <module>selenium-webdriver</module>
 		<module>sentry-servlet</module>
 		<module>serenity</module>
 		<module>spf4j</module>
