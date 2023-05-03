@@ -9,7 +9,7 @@
 + [Spring Boot 3 Observation](spring-boot-3-observation/README.md)
 + [Spring Boot 3 RSocket Exchange](spring-boot-3-rsocket-exchange/README.md)
 + [Spring Boot 3 Test Pitfalls](spring-boot-3-test-pitfalls/README.md)
-+ [Spring Boot 3 Testcontainer](spring-boot-3-testcontainer/README.md)
++ [Spring Boot 3 Container](spring-boot-3-testcontainer/README.md)
 + [Spring Boot 3 URL Matching](spring-boot-3-url-matching/README.md)
 + [Spring Boot 3 Virtual Thread](spring-boot-3-virtual-thread/README.md)
 + [Spring Boot Activiti](spring-boot-activiti/README.md)
