@@ -38,6 +38,7 @@
       <module>spring-boot-3-url-matching</module>
       <module>spring-boot-3-virtual-thread</module>
       <module>spring-boot-cxf</module>
+      <module>spring-boot-libraries-3</module>
       <module>spring-boot-properties-1</module>
       <module>spring-boot-properties-2</module>
       <module>spring-boot-properties-3</module>
