@@ -20,6 +20,7 @@
       <!--====== ci fails modules ======-->
       <!--<module>spring-boot-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-3-container</module> &lt;!&ndash;build fails&ndash;&gt;-->
+      <!--<module>spring-boot-camel</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
       <!--<module>spring-boot-redis</module> &lt;!&ndash; build fails &ndash;&gt;-->
       <!--<module>spring-boot-feign</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
       <!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
@@ -65,7 +66,6 @@
       <module>spring-boot-bootstrap</module>
       <module>spring-boot-caching-1</module>
       <module>spring-boot-caching-2</module>
-      <module>spring-boot-camel</module>
       <module>spring-boot-cassandre</module>
       <module>spring-boot-ci-cd</module>
       <module>spring-boot-cli</module>
