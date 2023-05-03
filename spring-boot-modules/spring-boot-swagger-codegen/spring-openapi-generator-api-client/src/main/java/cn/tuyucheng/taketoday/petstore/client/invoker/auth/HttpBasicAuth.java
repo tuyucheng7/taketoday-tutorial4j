@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.petstore.client.invoker.auth;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.util.Base64Utils;
 import org.springframework.util.MultiValueMap;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T06:14:01.568992-05:00[America/Chicago]")
 public class HttpBasicAuth implements Authentication {
@@ -33,6 +33,6 @@ public class HttpBasicAuth implements Authentication {
          return;
       }
       String str = (username == null ? "" : username) + ":" + (password == null ? "" : password);
-      headerParams.add(HttpHeaders.AUTHORIZATION, "Basic " + Base64Utils.encodeToString(str.getBytes(StandardCharsets.UTF_8)));
+      headerParams.add(HttpHeaders.AUTHORIZATION, "Basic " + Base64.getEncoder().encodeToString(str.getBytes(StandardCharsets.UTF_8)));
    }
 }
