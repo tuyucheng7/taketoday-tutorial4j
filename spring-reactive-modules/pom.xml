@@ -1,67 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.tuyucheng.taketoday.spring.reactive</groupId>
-	<artifactId>spring-reactive-modules</artifactId>
-	<version>1.0.0</version>
-	<name>spring-reactive-modules</name>
-	<packaging>pom</packaging>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>cn.tuyucheng.taketoday.spring.reactive</groupId>
+   <artifactId>spring-reactive-modules</artifactId>
+   <version>1.0.0</version>
+   <name>spring-reactive-modules</name>
+   <packaging>pom</packaging>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>parent-boot-2</artifactId>
-		<version>1.0.0</version>
-		<relativePath>../parent-boot-2</relativePath>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-2</artifactId>
+      <version>1.0.0</version>
+      <relativePath>../parent-boot-2</relativePath>
+   </parent>
 
-	<modules>
-		<module>spring-5-data-reactive</module>
-		<module>spring-5-reactive-1</module>
-		<module>spring-5-reactive-2</module>
-		<!--<module>spring-5-reactive-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
-		<!--<module>spring-5-reactive-client-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
-		<module>spring-5-reactive-client-2</module>
-		<module>spring-5-reactive-filters</module>
-		<!--<module>spring-5-reactive-oauth</module> &lt;!&ndash;build fails&ndash;&gt;-->
-		<module>spring-5-reactive-security</module>
-		<module>spring-reactive</module>
-		<module>spring-reactive-exceptions</module>
-		<module>spring-reactor</module>
-		<module>spring-webflux-amqp</module>
-	</modules>
+   <modules>
+      <!-- failed modules -->
+      <!--<module>spring-5-reactive-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
+      <!--<module>spring-5-reactive-client-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
+      <!--<module>spring-5-reactive-oauth</module> &lt;!&ndash;build fails&ndash;&gt;-->
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+      <module>spring-5-data-reactive</module>
+      <module>spring-5-reactive-1</module>
+      <module>spring-5-reactive-2</module>
+      <module>spring-5-reactive-client-2</module>
+      <module>spring-5-reactive-filters</module>
+      <module>spring-5-reactive-security</module>
+      <module>spring-reactive</module>
+      <module>spring-reactive-exceptions</module>
+      <module>spring-reactor</module>
+      <module>spring-webflux-amqp</module>
+   </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.junit</groupId>
-				<artifactId>junit-bom</artifactId>
-				<version>${junit-jupiter.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring-boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+   <build>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+   </build>
 
-	<properties>
-	</properties>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.junit</groupId>
+            <artifactId>junit-bom</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <properties>
+   </properties>
 </project>
