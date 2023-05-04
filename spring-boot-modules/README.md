@@ -18,6 +18,7 @@
 + [Spring Boot Angular](spring-boot-angular/README.md)
 + [Spring Boot Annotations](spring-boot-annotations-1/README.md)
 + [Spring Boot Artifacts](spring-boot-artifacts-1/README.md)
++ [Spring Boot Astra DB](spring-boot-astra-db/README.md)
 + [Spring Boot AutoConfiguration](spring-boot-autoconfiguration/README.md)
 + [Spring Boot AWS](spring-boot-aws/README.md)
 + [Spring Boot Azure](spring-boot-azure/README.md)

@@ -57,6 +57,7 @@
       <module>spring-boot-annotations-2</module>
       <module>spring-boot-artifacts-1</module>
       <module>spring-boot-artifacts-2</module>
+      <module>spring-boot-astra-db</module>
       <module>spring-boot-autoconfiguration</module>
       <module>spring-boot-aws</module>
       <module>spring-boot-basic-customization-1</module>
