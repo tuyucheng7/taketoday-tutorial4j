@@ -1,8 +1,8 @@
 ## 1. 概述
 
-多年来，Java 生态系统已经发展壮大。在此期间，Enterprise Java Beans 和 Spring 是两种既相互竞争又相互学习共生的技术。
+多年来，Java 生态系统已经发展壮大。在此期间，Enterprise Java Beans 和Spring是两种既相互竞争又相互学习共生的技术。
 
-在本教程中，我们将了解它们的历史和差异。当然，我们会在 Spring 世界中看到一些 EJB 代码示例和它们的等价物。
+在本教程中，我们将了解它们的历史和差异。当然，我们会在Spring世界中看到一些 EJB 代码示例和它们的等价物。
 
 ## 2. 技术简史
 
@@ -14,7 +14,7 @@ EJB 规范是 Java EE(或[J2EE，现在称为 Jakarta EE](https://www.baeldung.c
 
 它肩负着 Java 开发人员在并发性、安全性、持久性、事务处理等方面的重担。该规范将这些和其他常见的企业问题移交给了实施应用程序服务器的容器，这些容器可以无缝地处理它们。然而，由于需要大量的配置，按原样使用 EJB 有点麻烦。此外，它被证明是一个性能瓶颈。
 
-但是现在，随着注解的发明以及来自 Spring 的激烈竞争，最新 3.2 版本中的 EJB 比最初的版本更易于使用。今天的 Enterprise Java Bean 大量借鉴了 Spring 的依赖注入和 POJO 的使用。
+但是现在，随着注解的发明以及来自Spring的激烈竞争，最新 3.2 版本中的 EJB 比最初的版本更易于使用。今天的 Enterprise Java Bean 大量借鉴了Spring的依赖注入和 POJO 的使用。
 
 ### 2.2. 春天
 
@@ -30,7 +30,7 @@ EJB 规范是 Java EE(或[J2EE，现在称为 Jakarta EE](https://www.baeldung.c
 
 ### 3.1. 两者的基本区别
 
-首先，根本的和明显的区别是EJB 是一个规范，而 Spring 是一个完整的框架。
+首先，根本的和明显的区别是EJB 是一个规范，而Spring是一个完整的框架。
 
 该规范由许多应用程序服务器实现，例如 GlassFish、IBM WebSphere 和 JBoss/WildFly。这意味着我们选择使用 EJB 模型进行应用程序的后端开发是不够的。我们还需要选择要使用的应用程序服务器。
 
@@ -40,11 +40,11 @@ EJB 规范是 Java EE(或[J2EE，现在称为 Jakarta EE](https://www.baeldung.c
 
 ### 3.2. 有用的信息
 
-在接下来的部分中，我们将通过一些实际示例来比较这两种技术。由于 EJB 特性是更大的 Spring 生态系统的一个子集，我们将按照它们的类型来查看它们对应的 Spring 等价物。
+在接下来的部分中，我们将通过一些实际示例来比较这两种技术。由于 EJB 特性是更大的Spring生态系统的一个子集，我们将按照它们的类型来查看它们对应的Spring等价物。
 
 为了更好地理解这些示例，请考虑先阅读[Java EE 会话 Bean](https://www.baeldung.com/ejb-session-beans)、[消息驱动 Bean](https://www.baeldung.com/ejb-message-driven-beans)、[Spring Bean](https://www.baeldung.com/spring-bean)和[Spring Bean 注解](https://www.baeldung.com/spring-bean-annotations)。
 
-我们将使用[OpenJB](https://www.baeldung.com/java-ee-singleton-session-bean#maven)作为我们的嵌入式容器来运行 EJB 示例。对于运行大多数 Spring 示例，它的 IOC 容器就足够了；对于 Spring JMS，我们需要一个嵌入式 ApacheMQ 代理。
+我们将使用[OpenJB](https://www.baeldung.com/java-ee-singleton-session-bean#maven)作为我们的嵌入式容器来运行 EJB 示例。对于运行大多数Spring示例，它的 IOC 容器就足够了；对于SpringJMS，我们需要一个嵌入式 ApacheMQ 代理。
 
 为了测试我们所有的示例，我们将使用 JUnit。
 
@@ -134,9 +134,9 @@ public void givenSingletonBean_whenCounterInvoked_thenCountIsIncremented() throw
 
 最后两点证明了单例的重要性。由于每次查找时都使用同一个 bean 实例，因此总计数为 20，并且为一个实例设置的值对另一个实例保持不变。
 
-### 4.2. 单例 Spring Bean 示例
+### 4.2. 单例SpringBean 示例
 
-使用 Spring 组件可以获得相同的功能。
+使用Spring组件可以获得相同的功能。
 
 我们不需要在这里实现任何接口。相反，我们将添加@Component注解：
 
@@ -147,9 +147,9 @@ public class CounterBean {
 }
 ```
 
-事实上，组件在 Spring 中默认是单例的。
+事实上，组件在Spring中默认是单例的。
 
-我们还需要[配置 Spring 来扫描组件](https://www.baeldung.com/spring-component-scanning#1-using-componentscan-in-aspring-application)：
+我们还需要[配置Spring来扫描组件](https://www.baeldung.com/spring-component-scanning#1-using-componentscan-in-aspring-application)：
 
 ```java
 @Configuration
@@ -158,7 +158,7 @@ public class ApplicationConfig {}
 
 ```
 
-与我们初始化 EJB 上下文的方式类似，我们现在将设置 Spring 上下文：
+与我们初始化 EJB 上下文的方式类似，我们现在将设置Spring上下文：
 
 ```java
 @BeforeClass
@@ -195,9 +195,9 @@ public void whenCounterInvoked_thenCountIsIncremented() throws NamingException {
 
 ```
 
-如我们所见，与 EJB 的唯一区别是我们如何从 Spring 容器的上下文中获取 bean，而不是 JNDI 查找。
+如我们所见，与 EJB 的唯一区别是我们如何从Spring容器的上下文中获取 bean，而不是 JNDI 查找。
 
-## 5. Stateful EJB == Spring Component with prototype Scope
+## 5. Stateful EJB ==SpringComponent with prototype Scope
 
 有时，比如说当我们构建一个购物车时，我们需要我们的 bean 在方法调用之间来回移动时记住它的状态。
 
@@ -256,9 +256,9 @@ assertNull(fruitCart.getName());
 
 这里我们没有设置名称，因此它的值为空。回想一下单例测试，在一个实例中设置的名称在另一个实例中保留。这表明我们从具有不同实例状态的 bean 池中获得了单独的ShoppingCartEJB实例。
 
-### 5.2. 有状态的 Spring Bean 示例
+### 5.2. 有状态的SpringBean 示例
 
-为了使用 Spring 获得相同的效果，我们需要一个具有[原型作用域的](https://www.baeldung.com/spring-bean-scopes#prototype)组件：
+为了使用Spring获得相同的效果，我们需要一个具有[原型作用域的](https://www.baeldung.com/spring-bean-scopes#prototype)组件：
 
 ```java
 @Component
@@ -278,7 +278,7 @@ ShoppingCartBean bathingCart = context.getBean(ShoppingCartBean.class);
 
 ```
 
-## 6. 无状态 EJB != Spring 中的任何东西
+## 6. 无状态 EJB !=Spring中的任何东西
 
 有时，例如在搜索 API 中，我们既不关心 bean 的实例状态，也不关心它是否是单例。我们只需要我们的搜索结果，这些结果可能来自我们所关心的任何 bean 实例。
 
@@ -329,7 +329,7 @@ private FinderEJBRemote alphabetFinder;
 
 然而，Spring 并不认同这种理念，它只提供无状态的单例。
 
-## 7. 消息驱动的 Bean == Spring JMS
+## 7. 消息驱动的 Bean ==SpringJMS
 
 到目前为止讨论的所有 EJB 都是会话 bean。另一种是消息驱动的。顾名思义，它们通常用于两个系统之间的异步通信。
 
@@ -393,9 +393,9 @@ public void givenMDB_whenMessageSent_thenAcknowledgementReceived()
 
 在这里，我们向myQueue发送了一条消息，该消息由我们的@MessageDriven注解的 POJO接收。这个 POJO 然后发送了一个确认，我们的测试收到了作为MessageConsumer的响应。
 
-### 7.2. Spring JMS 示例
+### 7.2.SpringJMS 示例
 
-那么，现在是时候使用 Spring 做同样的事情了！
+那么，现在是时候使用Spring做同样的事情了！
 
 首先，我们需要为此添加一些配置。我们需要用@EnableJms注解之前的ApplicationConfig类，并添加一些 bean 来设置JmsListenerContainerFactory和JmsTemplate：
 
@@ -490,4 +490,4 @@ public void givenJMSBean_whenMessageSent_thenAcknowledgementReceived() throws Na
 
 然后我们用简单的例子来演示Spring Beans和EJBs的比较。不用说，这只是触及技术能力的皮毛，还有更多的东西有待进一步探索。
 
-此外，这些可能是相互竞争的技术，但这并不意味着它们不能共存。我们可以轻松地[将 EJB 集成到 Spring 框架](https://www.baeldung.com/spring-ejb)中。
+此外，这些可能是相互竞争的技术，但这并不意味着它们不能共存。我们可以轻松地[将 EJB 集成到Spring框架](https://www.baeldung.com/spring-ejb)中。

@@ -43,6 +43,7 @@
 + [Spring Boot Discord4j](spring-boot-discord4j/README.md)
 + [Spring Boot Docker](spring-boot-docker/README.md)
 + [Spring Boot Drools](spring-boot-drools/README.md)
++ [Spring Boot EJB](spring-boot-ejb/README.md)
 + [Spring Boot Environment](spring-boot-environment/README.md)
 + [Spring Boot Exception](spring-boot-exceptions/README.md)
 + [Spring Boot Feign](spring-boot-feign/README.md)
