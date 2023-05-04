@@ -1,0 +1,9 @@
+{
+   "properties": [
+      {
+         "name": "r2dbc",
+         "type": "cn.tuyucheng.taketoday.examples.r2dbc.R2DBCConfigurationProperties",
+         "description": "R2DBC Connection properties"
+      }
+   ]
+}
