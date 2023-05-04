@@ -2,7 +2,7 @@
 
 Spring Boot是一个出色的框架，可用于为各种用例快速创建新的Java应用程序。最流行的用途之一是用作Web服务器，使用许多受支持的嵌入式Servlet容器和模板引擎之一。
 
-然而，**Spring Boot有许多不需要Web服务器的用途**：[控制台应用程序](https://www.baeldung.com/spring-boot-console-app)、作业调度、[批处理](https://www.baeldung.com/introduction-to-spring-batch)或流处理、[Serverless](https://www.baeldung.com/spring-cloud-function)应用程序等等。
+但是，**Spring Boot有许多不需要Web服务器的用途**：[控制台应用程序](https://www.baeldung.com/spring-boot-console-app)、作业调度、[批处理](https://www.baeldung.com/introduction-to-spring-batch)或流处理、[Serverless](https://www.baeldung.com/spring-cloud-function)应用程序等等。
 
 在本教程中，我们将介绍几种在没有Web服务器的情况下使用Spring Boot的不同方法。
 
@@ -32,7 +32,7 @@ application.setWebApplicationType(WebApplicationType.NONE);
 application.run(args);
 ```
 
-在任何一种情况下，**我们都可以在类路径上保持Servlet和容器API可用**。这意味着我们仍然可以在不启动Web服务器的情况下使用Web服务器库。这可能很有用，例如，如果我们想使用它们来编写测试或在我们自己的代码中使用它们的API。
+**在任何一种情况下，我们都可以在类路径上保持Servlet和容器API可用**。这意味着我们仍然可以在不启动Web服务器的情况下使用Web服务器库。这可能很有用，例如，如果我们想使用它们来编写测试或在我们自己的代码中使用它们的API。
 
 ## 4. 使用应用程序属性
 
@@ -52,7 +52,7 @@ spring:
         web-application-type: none
 ```
 
-**这种方法的好处是我们可以有条件地启用Web服务器**。使用[Spring Profile](https://www.baeldung.com/spring-profiles)或[@ConditionalOnProperty](https://www.baeldung.com/spring-conditionalonproperty)，我们可以控制不同部署中的Web服务器行为。
+**这种方法的好处是我们可以有条件地启用Web服务器**。使用[Spring Profile](https://www.baeldung.com/spring-profiles)或[Condition](https://www.baeldung.com/spring-conditionalonproperty)，我们可以控制不同部署中的Web服务器行为。
 
 例如，我们可以让Web服务器仅在开发中运行以公开指标或其他Spring端点，同时出于安全原因在生产中将其禁用。
 
@@ -60,4 +60,4 @@ spring:
 
 ## 5. 总结
 
-在不使用Web服务器的情况下创建Spring Boot应用程序的原因有很多。在本教程中，我们了解了执行此操作的多种方法。每个都有自己的优点和缺点，所以我们应该选择最能满足我们需求的方法。
+在不使用Web服务器的情况下创建Spring Boot应用程序的原因有很多。在本教程中，我们看到了执行此操作的多种方法。每个都有自己的优点和缺点，因此我们应该选择最能满足我们需求的方法。
