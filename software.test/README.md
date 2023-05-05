@@ -32,6 +32,7 @@
 * [Arquillian](arquillian/README.md)
 * [Jersey Test](jersey-test/README.md)
 * [MicroShed](microshed/README.md)
+* [CassandraUnit](cassandra-unit/README.md)
 * [TestContainers](test-containers/README.md)
 * [EasyRandom](easy-random/README.md)
 * [Allure](allure-junit-5/README.md)
