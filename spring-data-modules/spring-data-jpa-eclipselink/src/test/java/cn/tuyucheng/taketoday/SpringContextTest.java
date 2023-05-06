@@ -8,11 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@Disabled("fails test")
+// @Disabled("fails test")
 @SpringBootTest(classes = EclipselinkSpringDataApplication.class)
 class SpringContextTest {
 
-    @Test
-    void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

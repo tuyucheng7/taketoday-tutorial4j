@@ -1,48 +1,49 @@
 package cn.tuyucheng.taketoday.eclipselink.springdata.pessimisticlocking;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.util.List;
 
 @Entity
 public class Student {
 
-    @Id
-    private Long id;
-    private String name;
-    @OneToMany(mappedBy = "student")
-    private List<Course> courses;
+   @Id
+   private Long id;
+   private String name;
+   @OneToMany(mappedBy = "student")
+   private List<Course> courses;
 
-    public Student(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+   public Student(Long id, String name) {
+      this.id = id;
+      this.name = name;
+   }
 
-    public Student() {
-    }
+   public Student() {
+   }
 
-    public Long getId() {
-        return id;
-    }
+   public Long getId() {
+      return id;
+   }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public List<Course> getCourses() {
-        return courses;
-    }
+   public List<Course> getCourses() {
+      return courses;
+   }
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
+   public void setCourses(List<Course> courses) {
+      this.courses = courses;
+   }
 }

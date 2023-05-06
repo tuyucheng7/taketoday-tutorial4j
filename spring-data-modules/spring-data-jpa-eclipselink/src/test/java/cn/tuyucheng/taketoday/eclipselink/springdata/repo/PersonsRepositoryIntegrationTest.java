@@ -15,33 +15,33 @@ import static org.hamcrest.core.IsNull.notNullValue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-@Disabled("fails test")
+// @Disabled("fails test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class PersonsRepositoryIntegrationTest {
 
-    @Autowired
-    private PersonsRepository personsRepository;
+   @Autowired
+   private PersonsRepository personsRepository;
 
-    @Test
-    void givenPerson_whenSave_thenAddOnePersonToDB() {
-        personsRepository.save(new Person());
-        assertThat(personsRepository.findAll().spliterator().getExactSizeIfKnown(), equalTo(1l));
-    }
+   @Test
+   void givenPerson_whenSave_thenAddOnePersonToDB() {
+      personsRepository.save(new Person());
+      assertThat(personsRepository.findAll().spliterator().getExactSizeIfKnown(), equalTo(1l));
+   }
 
-    @Test
-    void givenPersons_whenSearch_thenFindOk() {
-        Person person1 = new Person();
-        person1.setFirstName("Adam");
+   @Test
+   void givenPersons_whenSearch_thenFindOk() {
+      Person person1 = new Person();
+      person1.setFirstName("Adam");
 
-        Person person2 = new Person();
-        person2.setFirstName("Dave");
+      Person person2 = new Person();
+      person2.setFirstName("Dave");
 
-        personsRepository.save(person1);
-        personsRepository.save(person2);
+      personsRepository.save(person1);
+      personsRepository.save(person2);
 
-        Person foundPerson = personsRepository.findByFirstName("Adam");
+      Person foundPerson = personsRepository.findByFirstName("Adam");
 
-        assertThat(foundPerson.getFirstName(), equalTo("Adam"));
-        assertThat(foundPerson.getId(), notNullValue());
-    }
+      assertThat(foundPerson.getFirstName(), equalTo("Adam"));
+      assertThat(foundPerson.getId(), notNullValue());
+   }
 }

@@ -18,24 +18,24 @@ import java.util.Map;
 @Configuration
 public class JpaConfiguration extends JpaBaseConfiguration {
 
-    protected JpaConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
-        super(dataSource, properties, jtaTransactionManager/*, transactionManagerCustomizers*/);
-    }
+   protected JpaConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager) {
+      super(dataSource, properties, jtaTransactionManager);
+   }
 
-    @Override
-    protected AbstractJpaVendorAdapter createJpaVendorAdapter() {
-        return new EclipseLinkJpaVendorAdapter();
-    }
+   @Override
+   protected AbstractJpaVendorAdapter createJpaVendorAdapter() {
+      return new EclipseLinkJpaVendorAdapter();
+   }
 
-    @Override
-    protected Map<String, Object> getVendorProperties() {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(PersistenceUnitProperties.WEAVING, detectWeavingMode());
-        map.put(PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables");
-        return map;
-    }
+   @Override
+   protected Map<String, Object> getVendorProperties() {
+      HashMap<String, Object> map = new HashMap<>();
+      map.put(PersistenceUnitProperties.WEAVING, detectWeavingMode());
+      map.put(PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables");
+      return map;
+   }
 
-    private String detectWeavingMode() {
-        return InstrumentationLoadTimeWeaver.isInstrumentationAvailable() ? "true" : "static";
-    }
+   private String detectWeavingMode() {
+      return InstrumentationLoadTimeWeaver.isInstrumentationAvailable() ? "true" : "static";
+   }
 }
