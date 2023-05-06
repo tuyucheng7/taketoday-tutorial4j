@@ -16,27 +16,27 @@
 	</parent>
 
 	<modules>
-		<!--<module>java-8-1</module>-->
-		<!--<module>java-8-2</module>-->
-		<!--<module>java-8-datetime-1</module>-->
-		<!--<module>java-8-datetime-2</module>-->
-		<!--<module>java-9</module>-->
-		<!--<module>java-9-improvements</module>-->
-		<!--<module>java-9-jigsaw</module>-->
-		<!--<module>java-9-new-features</module>-->
-		<!--<module>java-9-streams</module>-->
-		<!--<module>java-10</module>-->
-		<!--<module>java-11-1</module>-->
-		<!--<module>java-11-2</module>-->
-		<!--<module>java-11-3</module>-->
-		<!--<module>java-12</module>-->
-		<!--<module>java-13</module>-->
-		<!--<module>java-14</module>-->
-		<!--<module>java-15</module>-->
-		<!--<module>java-16</module>-->
-		<!--<module>java-17</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
-		<!--<module>java-19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
-		<!--<module>java-20</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt;-->
+      <module>java-8-1</module>
+      <module>java-8-2</module>
+      <module>java-8-datetime-1</module>
+      <module>java-8-datetime-2</module>
+      <module>java-9</module>
+      <module>java-9-improvements</module>
+      <module>java-9-jigsaw</module>
+      <module>java-9-new-features</module>
+      <module>java-9-streams</module>
+      <module>java-10</module>
+      <module>java-11-1</module>
+      <module>java-11-2</module>
+      <module>java-11-3</module>
+      <module>java-12</module>
+      <module>java-13</module>
+      <module>java-14</module>
+      <module>java-15</module>
+      <module>java-16</module>
+      <module>java-17</module>
+      <!-- <module>java-19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
+      <!-- <module>java-20</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
 		<!--<module>java-annotations</module>-->
 		<!--<module>java-arrays-sorting</module>-->
 		<!--<module>java-arrays-guides</module>-->
