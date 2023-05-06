@@ -13,29 +13,30 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Request processor")
 public class RequestProcessorUnitTest {
 
-    RequestProcessor requestProcessor = new RequestProcessor();
+   RequestProcessor requestProcessor = new RequestProcessor();
 
-    @Test
-    @DisplayName("Wait for completion using Thread.sleep")
-    void whenWaitingWithThreadSleep_thenStatusIsDone() throws InterruptedException {
-        String requestId = requestProcessor.processRequest();
+   @Test
+   @DisplayName("Wait for completion using Thread.sleep")
+   void whenWaitingWithThreadSleep_thenStatusIsDone() throws InterruptedException {
+      String requestId = requestProcessor.processRequest();
 
-        Thread.sleep(2000);
+      // The sleep value should be greater than the maximum time the request takes to complete
+      Thread.sleep(2010);
 
-        assertEquals("DONE", requestProcessor.getStatus(requestId));
-    }
+      assertEquals("DONE", requestProcessor.getStatus(requestId));
+   }
 
-    @Test
-    @DisplayName("Wait for completion using Awaitility")
-    void whenWaitingWithAwaitility_thenStatusIsDone() {
-        String requestId = requestProcessor.processRequest();
+   @Test
+   @DisplayName("Wait for completion using Awaitility")
+   void whenWaitingWithAwaitility_thenStatusIsDone() {
+      String requestId = requestProcessor.processRequest();
 
-        Awaitility.await()
-          .atMost(2, TimeUnit.SECONDS)
-          .pollDelay(500, TimeUnit.MILLISECONDS)
-          .until(() -> requestProcessor.getStatus(requestId), not(equalTo("PROCESSING")));
+      Awaitility.await()
+            // The timeout value should be greater than the maximum time the request takes to complete
+            .atMost(2010, TimeUnit.MILLISECONDS)
+            .pollDelay(500, TimeUnit.MILLISECONDS)
+            .until(() -> requestProcessor.getStatus(requestId), not(equalTo("PROCESSING")));
 
-        assertEquals("DONE", requestProcessor.getStatus(requestId));
-    }
-
+      assertEquals("DONE", requestProcessor.getStatus(requestId));
+   }
 }
