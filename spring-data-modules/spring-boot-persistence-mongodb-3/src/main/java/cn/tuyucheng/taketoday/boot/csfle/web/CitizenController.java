@@ -11,28 +11,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.tuyucheng.taketoday.boot.csfle.data.Citizen;
-import cn.tuyucheng.taketoday.boot.csfle.data.EncryptedCitizen;
 import cn.tuyucheng.taketoday.boot.csfle.service.CitizenService;
 
 @RestController
 @RequestMapping("/citizen")
 public class CitizenController {
 
-    @Autowired
-    private CitizenService service;
+   @Autowired
+   private CitizenService service;
 
-    @GetMapping
-    public List<Citizen> get() {
-        return service.findAll();
-    }
+   @GetMapping
+   public List<Citizen> get() {
+      return service.findAll();
+   }
 
-    @GetMapping("by")
-    public Citizen getBy(@RequestParam String email) {
-        return service.findByEmail(email);
-    }
+   @GetMapping("by")
+   public Citizen getBy(@RequestParam String email) {
+      return service.findByEmail(email);
+   }
 
-    @PostMapping
-    public EncryptedCitizen post(@RequestBody Citizen citizen) {
-        return service.save(citizen);
-    }
+   @PostMapping
+   public Object post(@RequestBody Citizen citizen) {
+      return service.save(citizen);
+   }
 }
