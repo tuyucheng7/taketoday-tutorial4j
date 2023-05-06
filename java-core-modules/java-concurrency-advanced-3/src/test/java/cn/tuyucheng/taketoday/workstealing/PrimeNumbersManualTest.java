@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Before running the test ensure that the file is present.
  * If not, please run mvn install on the module.
  */
-class PrimeNumbersManualTest {
+public class PrimeNumbersManualTest {
 	private static final Logger logger = Logger.getAnonymousLogger();
 
 	@Test
