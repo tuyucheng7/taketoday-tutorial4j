@@ -76,7 +76,7 @@
 		<module>java-concurrency-basic-3</module>
 		<module>java-concurrency-collections-1</module>
 		<module>java-concurrency-collections-2</module>
-		<module>java-concurrency-simple</module> <!-- unlimited running -->
+		<!-- <module>java-concurrency-simple</module> &lt;!&ndash; unlimited running &ndash;&gt; -->
 		<!--<module>java-console</module>-->
 		<!--<module>java-date-operations-1</module>-->
 		<!--<module>java-date-operations-2</module>-->
