@@ -6,6 +6,7 @@
 
 + [如何在Java中处理InterruptedException](docs/如何在Java中处理InterruptedException.md)
 + [Thread.sleep()与Awaitility.await()](docs/Thread.sleep()与Awaitility.await().md)
++ [CompletableFuture是非阻塞的吗](docs/CompletableFuture是非阻塞的吗.md)
 
 - 更多文章： [[<-- prev]](../java-concurrency-basic-2/README.md)
 - 更多文章： [[next -->]](../java-concurrency-advanced-1/README.md)
