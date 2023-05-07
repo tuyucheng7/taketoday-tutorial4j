@@ -109,6 +109,6 @@
 
 	<properties>
 		<subethasmtp.version>3.1.7</subethasmtp.version>
-		<springcloud.version>3.1.3</springcloud.version>
+		<springcloud.version>3.1.5</springcloud.version>
 	</properties>
 </project>
