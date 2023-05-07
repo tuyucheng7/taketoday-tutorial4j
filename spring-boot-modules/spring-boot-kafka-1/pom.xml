@@ -90,6 +90,6 @@
 	</build>
 
 	<properties>
-		<testcontainers-kafka.version>1.16.2</testcontainers-kafka.version>
+		<testcontainers-kafka.version>1.17.2</testcontainers-kafka.version>
 	</properties>
 </project>

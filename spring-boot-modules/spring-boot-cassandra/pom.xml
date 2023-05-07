@@ -59,6 +59,6 @@
 
    <properties>
       <!--<org.springframework.data.version>3.2.2</org.springframework.data.version>-->
-      <testcontainers.version>1.15.3</testcontainers.version>
+      <testcontainers.version>1.17.2</testcontainers.version>
    </properties>
 </project>
