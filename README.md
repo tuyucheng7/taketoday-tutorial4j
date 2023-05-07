@@ -1,16 +1,17 @@
 Taketoday Tutorial4j
 ==============
 
-![Language](https://img.shields.io/badge/language-java-brightgreen)
-[![Java 17](https://img.shields.io/badge/java-17-blue)](https://img.shields.io/badge/java-17-blue)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=ncloc)](https://sonarcloud.io/project/overview?id=tu-yucheng_taketoday-tutorial4j)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=coverage)](https://sonarcloud.io/dashboard?id=tu-yucheng_taketoday-tutorial4j)
+[![Java 17](https://img.shields.io/badge/java-17-green)](https://img.shields.io/badge/java-17-blue)
+![example workflow](https://github.com/tu-yucheng/taketoday-tutorial4j/actions/workflows/maven-ci.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tu-yucheng_taketoday-tutorial4j)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=coverage)](https://sonarcloud.io/dashboard?id=tu-yucheng_taketoday-tutorial4j)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=ncloc)](https://sonarcloud.io/project/overview?id=tu-yucheng_taketoday-tutorial4j)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=bugs)](https://sonarcloud.io/summary/new_code?id=tu-yucheng_taketoday-tutorial4j)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 这个项目是**一个小型和重点教程的集合**，每个教程都涵盖了Java生态系统中一个明确定义的开发领域。当然，其中一个重点在于Spring框架、Spring Data、Spring Boot、Spring Cloud和Spring Security。除了Spring之外，这里的模块还涵盖了Java的许多方面。
 
-## 模块列表
+## 内容列表
 
 + [Java Core](java-core-modules/README.md)
 + [Design Patterns](design-patterns-modules/README.md)
@@ -34,10 +35,12 @@ Taketoday Tutorial4j
   + [Vert.x](vertx-modules/README.md)
   + [RSocket](rsocket/README.md)
 + [Message Queue](messaging-modules/README.md)
++ [JavaFX](javafx/README.md)
 + [Software Testing](software.test/README.md)
 + [DDD](ddd/README.md)
 + [GraphQL](graphql.modules/README.md)
 + [gRPC](grpc/README.md)
++ [Vavr](vavr-modules/README.md)
 
 ## 多版本JDK构建
 
@@ -60,7 +63,7 @@ Taketoday Tutorial4j
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>your jdk 17 path</jdkHome>
+            <jdkHome>D:\\xxx\\jdk-17.0.5</jdkHome>
         </configuration>
     </toolchain>
     <toolchain>
@@ -70,7 +73,7 @@ Taketoday Tutorial4j
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>your jdk 8 path</jdkHome>
+            <jdkHome>D:\\develop-tools\\jdk-8</jdkHome>
         </configuration>
     </toolchain>
     <toolchain>
@@ -80,7 +83,7 @@ Taketoday Tutorial4j
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>your jdk 19 path</jdkHome>
+            <jdkHome>D:\\develop-tools\\jdk-19.0.1</jdkHome>
         </configuration>
     </toolchain>
 </toolchains>
@@ -88,7 +91,7 @@ Taketoday Tutorial4j
 
 ## Maven Profile
 
-我们使用Maven profile来隔离各种测试(单元测试、集成测试、实时测试...)的执行：
+我们使用Maven profile来隔离各种测试(单元测试(Unit)、集成测试(Integration)、实时测试(Live)...)的执行，不同类型的测试类名必须以指定后缀结尾：
 
 | Profile     | 启用的测试类型                     |
 |-------------|-----------------------------|
@@ -114,7 +117,7 @@ Taketoday Tutorial4j
 
 要构建特定模块，请在模块目录中运行命令：`mvn clean install`。
 
-你的模块可能是父模块的一部分，例如`parent-boot-2`，`parent-spring-5`等，然后你需要先构建父模块，这样你才能构建你的模块。我们创建了一个`parents` profile，你可以使用它来构建父模块，只需按以下方式运行profile：`mvn clean install -Pparents`
+你的模块可能是父模块的一部分，例如`parent-boot-2`，`parent-spring-5`等，然后你需要先构建父模块，这样才能构建你的模块。我们创建了一个`parents` profile，你可以使用它来构建父模块，只需按以下方式运行profile：`mvn clean install -Pparents`
 
 ## 从仓库的根目录构建模块
 
