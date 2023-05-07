@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday;
+package cn.tuyucheng.taketoday.wiremock;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.service.annotation.GetExchange;

@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday;
+package cn.tuyucheng.taketoday.wiremock;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

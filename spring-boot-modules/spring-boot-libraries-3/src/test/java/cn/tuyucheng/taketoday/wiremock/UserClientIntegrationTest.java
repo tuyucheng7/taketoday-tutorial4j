@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday;
+package cn.tuyucheng.taketoday.wiremock;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.maciejwalkowiak.wiremock.spring.ConfigureWireMock;

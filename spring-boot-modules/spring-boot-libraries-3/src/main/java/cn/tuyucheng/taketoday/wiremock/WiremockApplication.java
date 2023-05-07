@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday;
+package cn.tuyucheng.taketoday.wiremock;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

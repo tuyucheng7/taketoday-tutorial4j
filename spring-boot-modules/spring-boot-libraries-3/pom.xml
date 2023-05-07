@@ -32,5 +32,31 @@
          <artifactId>wiremock-spring-boot</artifactId>
          <version>1.0.1</version>
       </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-data-jpa</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>net.sf.jasperreports</groupId>
+         <artifactId>jasperreports</artifactId>
+         <version>${jasperreports.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <scope>test</scope>
+      </dependency>
    </dependencies>
+
+   <repositories>
+      <repository>
+         <id>jaspersoft-third-party</id>
+         <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+      </repository>
+   </repositories>
+
+   <properties>
+      <start-class>cn.tuyucheng.taketoday.wiremock.WiremockApplication</start-class>
+      <jasperreports.version>6.20.4</jasperreports.version>
+   </properties>
 </project>
