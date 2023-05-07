@@ -10,4 +10,5 @@
 + [在Java中计算百分比](docs/在Java中计算百分比.md)
 + [如何将Double分为整数和小数部分](docs/如何将Double分为整数和小数部分.md)
 
+- 更多文章： [[<-- prev]](../java-lang-5/README.md)
 - 更多文章： [[next -->]](../java-lang-math-2/README.md)

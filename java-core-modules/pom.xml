@@ -106,28 +106,28 @@
 		<!--<module>java-jvm-1</module>-->
 		<!--<module>java-jvm-2</module>-->
 		<!--<module>java-jvm-3</module>-->
-		<!--<module>java-lambdas</module>-->
-		<!--<module>java-lang-1</module>-->
-		<!--<module>java-lang-2</module>-->
-		<!--<module>java-lang-3</module>-->
-		<!--<module>java-lang-4</module>-->
-		<!--<module>java-lang-5</module>-->
-		<!--<module>java-lang-math-1</module>-->
-		<!--<module>java-lang-math-2</module>-->
-		<!--<module>java-lang-math-3</module>-->
-		<!--<module>java-lang-oop-constructors</module>-->
-		<!--<module>java-lang-oop-patterns</module>-->
-		<!--<module>java-lang-oop-generics</module>-->
-		<!--<module>java-lang-oop-modifiers</module>-->
-		<!--<module>java-lang-oop-types-1</module>-->
-		<!--<module>java-lang-oop-types-2</module>-->
-		<!--<module>java-lang-oop-inheritance</module>-->
-		<!--<module>java-lang-oop-methods</module>-->
-		<!--<module>java-lang-oop-others</module>-->
-		<!--<module>java-lang-operators-1</module>-->
-		<!--<module>java-lang-operators-2</module>-->
-		<!--<module>java-lang-syntax-1</module>-->
-		<!--<module>java-lang-syntax-2</module>-->
+		<module>java-lambdas</module>
+		<module>java-lang-1</module>
+		<module>java-lang-2</module>
+		<module>java-lang-3</module>
+		<module>java-lang-4</module>
+		<module>java-lang-5</module>
+		<module>java-lang-math-1</module>
+		<module>java-lang-math-2</module>
+		<module>java-lang-math-3</module>
+		<module>java-lang-oop-constructors</module>
+		<module>java-lang-oop-patterns</module>
+		<module>java-lang-oop-generics</module>
+		<module>java-lang-oop-modifiers</module>
+		<module>java-lang-oop-types-1</module>
+		<module>java-lang-oop-types-2</module>
+		<module>java-lang-oop-inheritance</module>
+		<module>java-lang-oop-methods</module>
+		<module>java-lang-oop-others</module>
+		<module>java-lang-operators-1</module>
+		<module>java-lang-operators-2</module>
+		<module>java-lang-syntax-1</module>
+		<module>java-lang-syntax-2</module>
 		<!--<module>java-networking-1</module>-->
 		<!--<module>java-networking-2</module>-->
 		<!--<module>java-networking-3</module>-->
@@ -143,8 +143,8 @@
 		<!--<module>java-optional</module>-->
 		<!--<module>java-os</module>-->
 		<!--<module>java-perf</module>-->
-		<!--<module>java-reflection-1</module>-->
-		<!--<module>java-reflection-2</module>-->
+		<module>java-reflection-1</module>
+		<module>java-reflection-2</module>
 		<!--<module>java-regex-1</module>-->
 		<!--<module>java-regex-2</module>-->
 		<!--<module>java-security-1</module>-->

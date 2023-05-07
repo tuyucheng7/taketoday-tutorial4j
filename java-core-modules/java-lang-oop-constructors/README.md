@@ -16,4 +16,5 @@
 + [在Java中访问私有构造函数](docs/在Java中访问私有构造函数.md)
 + [在Java中创建对象的不同方法](docs/在Java中创建对象的不同方法.md)
 
+- 更多文章： [[<-- prev]](../java-lang-math-3/README.md)
 - 更多文章： [[next -->]](../java-lang-oop-generics/README.md)

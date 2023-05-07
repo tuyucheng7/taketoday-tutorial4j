@@ -15,4 +15,5 @@
 + [将值附加到Java枚举](docs/将值附加到Java枚举.md)
 + [确定对象是否为原始类型](docs/确定对象是否为原始类型.md)
 
+- 更多文章： [[<-- prev]](../java-lang-oop-patterns/README.md)
 - 更多文章： [[next -->]](../java-lang-oop-types-2/README.md)

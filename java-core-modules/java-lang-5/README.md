@@ -14,3 +14,4 @@
 + [检查Java中的命令行参数是否为空](docs/检查Java中的命令行参数是否为空.md)
 
 - 更多文章： [[<-- prev]](../java-lang-4/README.md)
+- 更多文章： [[next -->]](../java-lang-math-1/README.md)
