@@ -3,15 +3,8 @@ package cn.tuyucheng.taketoday.error.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * <h2>This class is for Configuration.</h2>
- * <p>
- *
- * @author Tu yucheng
- * @version 4/1/2023
- */
 @Configuration
-@ConfigurationProperties(prefix = "profile.application-properties")
+@ConfigurationProperties(prefix = "profile.profileProperties")
 public class MainConfiguration {
    private String name;
 
