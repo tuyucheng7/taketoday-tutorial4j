@@ -1,6 +1,6 @@
 ## 相关文章
 
-+ [GreenMail快速入门](docs/GreenMail快速入门.md)
++ [GreenMail快速入门](http://tu-yucheng.github.io/test-lib/2023/05/09/java-greenmail.html)
 
 ## 运行项目
 

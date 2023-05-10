@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [JsonPath简介](docs/JsonPath简介.md)
-+ [使用JsonPath计数](docs/使用JsonPath计数.md)
++ [JsonPath简介](http://tu-yucheng.github.io/test-lib/2023/05/09/guide-to-jayway-jsonpath.html)
++ [使用JsonPath计数](http://tu-yucheng.github.io/test-lib/2023/05/09/jsonpath-count.html)

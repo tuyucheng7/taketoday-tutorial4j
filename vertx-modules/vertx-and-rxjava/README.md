@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Vertx和RxJava集成示例](docs/Vertx和RxJava集成示例.md)
++ [Vertx和RxJava集成示例](http://tu-yucheng.github.io/vertx/2023/05/10/vertx-rx-java.html)

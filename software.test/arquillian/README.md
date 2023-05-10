@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Arquillian测试简介](docs/Arquillian测试简介.md)
++ [Arquillian测试简介](http://tu-yucheng.github.io/test-lib/2023/05/09/arquillian.html)

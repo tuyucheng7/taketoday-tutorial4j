@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring集成Cucumber](docs/Spring集成Cucumber.md)
++ [Spring集成Cucumber](http://tu-yucheng.github.io/bdd/2023/05/09/cucumber-spring-integration.html)

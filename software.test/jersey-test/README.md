@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [探讨Jersey测试框架](docs/探讨Jersey测试框架.md)
++ [探讨Jersey测试框架](http://tu-yucheng.github.io/test-lib/2023/05/09/jersey-test.html)

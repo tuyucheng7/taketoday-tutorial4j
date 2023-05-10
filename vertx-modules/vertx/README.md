@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Vert.x简介](docs/Vert.x简介.md)
++ [Vert.x简介](http://tu-yucheng.github.io/vertx/2023/05/10/vertx.html)

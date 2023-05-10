@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [SPF4J简介](docs/SPF4J简介.md)
++ [SPF4J简介](http://tu-yucheng.github.io/test-lib/2023/05/09/spf4j.html)

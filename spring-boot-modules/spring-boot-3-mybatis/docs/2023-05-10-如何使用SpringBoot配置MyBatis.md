@@ -1,3 +1,11 @@
+---
+layout: post
+title:  使用Selenium处理浏览器选项卡
+category: springboot
+copyright: springboot
+excerpt: Spring Boot
+---
+
 ## 1. 概述
 
 **MyBatis是一个SQL映射器框架，支持将自定义SQL语句和存储过程映射到Java对象**，从而有助于在面向对象的应用程序中使用关系型数据库。
@@ -214,3 +222,5 @@ Deleted item should be null : null
 ## 7. 总结
 
 在这个简短的教程中，我们学习了使用Spring Boot配置MyBatis。我们还了解了映射器扫描选项和数据源配置。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/spring-boot-modules/spring-boot-3-mybatis)上获得。

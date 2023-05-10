@@ -11,36 +11,7 @@ Taketoday Tutorial4j
 
 这个项目是**一个小型和重点教程的集合**，每个教程都涵盖了Java生态系统中一个明确定义的开发领域。当然，其中一个重点在于Spring框架、Spring Data、Spring Boot、Spring Cloud和Spring Security。除了Spring之外，这里的模块还涵盖了Java的许多方面。
 
-## 内容列表
-
-+ [Java Core](java-core-modules/README.md)
-+ [Design Patterns](design-patterns-modules/README.md)
-+ [Maven](maven.modules/README.md)
-+ [Gradle](gradle-modules/README.md)
-+ Spring Framework
-  + [Spring Core](spring-modules/README.md)
-  + [Spring Web](spring-web-modules/README.md)
-  + [Spring Data](spring-data-modules/README.md)
-  + [Spring Boot](spring-boot-modules/README.md)
-  + [Spring Security](spring-security-modules/README.md)
-  + [Spring Reactive](spring-reactive-modules/README.md)
-  + [Spring Cloud](spring-cloud-modules/README.md)
-+ [Microservices](microservices/README.md)
-+ [Quarkus](quarkus-modules/README.md)
-+ [Docker](docker-modules/README.md)
-+ Reactive
-  + [Akka](akka-modules/README.md)
-  + [Reactor](reactor-core/README.md)
-  + [RxJava](rxjava-modules/README.md)
-  + [Vert.x](vertx-modules/README.md)
-  + [RSocket](rsocket/README.md)
-+ [Message Queue](messaging-modules/README.md)
-+ [JavaFX](javafx/README.md)
-+ [Software Testing](software.test/README.md)
-+ [DDD](ddd/README.md)
-+ [GraphQL](graphql.modules/README.md)
-+ [gRPC](grpc/README.md)
-+ [Vavr](vavr-modules/README.md)
+**项目博客**：[tu-yucheng.github.io](https://tu-yucheng.github.io/)。
 
 ## 多版本JDK构建
 

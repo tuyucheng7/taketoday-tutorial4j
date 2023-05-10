@@ -1,3 +1,11 @@
+---
+layout: post
+title:  使用Selenium处理浏览器选项卡
+category: springboot
+copyright: springboot
+excerpt: Spring Boot
+---
+
 ## 1. 简介
 
 从[Spring 6和Spring boot 3](https://www.baeldung.com/spring-boot-3-spring-6-new)开始，我们可以使用新的[PartEvent](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/codec/multipart/PartEvent.html) API将**多部分事件流式传输**到[Spring WebFlux控制器](https://howtodoinjava.com/spring-webflux/spring-webflux-tutorial/)。PartEvent API有助于以流方式按顺序处理多部分数据。
@@ -105,3 +113,5 @@ c.t.t.upload.web.FileUploadController : upload file name:spring.png
 ## 4. 总结
 
 在这个简短的教程中，我们学习了如何使用Spring 6中新引入的PartEvent API将多部分请求发送到Webflux控制器并处理上传的表单参数和文件内容。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/spring-boot-modules/spring-boot-3-mybatis)上获得。

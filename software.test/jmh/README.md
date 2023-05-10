@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [使用Java进行微基准测试](docs/使用Java进行微基准测试.md)
-+ [虚假分享和@Contended指南](docs/虚假分享和@Contended指南.md)
-+ [boolean数组与BitSet的性能比较](docs/boolean数组与BitSet的性能比较.md)
++ [使用Java进行微基准测试](http://tu-yucheng.github.io/test-lib/2023/05/09/java-microbenchmark-harness.html)
++ [虚假分享和@Contended指南](http://tu-yucheng.github.io/test-lib/2023/05/09/java-false-sharing-contended.html)
++ [boolean数组与BitSet的性能比较](http://tu-yucheng.github.io/test-lib/2023/05/09/java-boolean-array-bitset-performance.html)

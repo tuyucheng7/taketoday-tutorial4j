@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Vertx与Spring集成](docs/Vertx与Spring集成.md)
++ [Vertx与Spring集成](http://tu-yucheng.github.io/vertx/2023/05/10/spring-vertx.html)

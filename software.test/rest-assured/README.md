@@ -1,11 +1,11 @@
 ## 相关文章
 
-+ [Rest Assured指南](docs/RestAssured指南.md)
-+ [Rest Assured对MockMvc的支持](docs/RestAssured对MockMvc的支持.md)
-+ [使用Rest Assured获取和验证响应数据](docs/使用RestAssured获取和验证响应数据.md)
-+ [Rest Assured中的身份验证](docs/RestAssured中的身份验证.md)
-+ [Groovy中使用Rest Assured](docs/Groovy-RestAssured.md)
-+ [Rest Assured中的参数、Header和Cookie](docs/RestAssured中的参数-Header和Cookie.md)
-+ [Rest Assured中的的JSON模式验证](docs/RestAssured中的的JSON模式验证.md)
++ [Rest Assured指南](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-tutorial.html)
++ [Rest Assured对MockMvc的支持](http://tu-yucheng.github.io/test-lib/2023/05/09/spring-mock-mvc-rest-assured.html)
++ [使用Rest Assured获取和验证响应数据](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-response.html)
++ [Rest Assured中的身份验证](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-authentication.html)
++ [Groovy中使用Rest Assured](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-groovy.html)
++ [Rest Assured中的参数、Header和Cookie](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-header-cookie-parameter.html)
++ [Rest Assured中的的JSON模式验证](http://tu-yucheng.github.io/test-lib/2023/05/09/rest-assured-json-schema.html)
 
 - 更多文章： [[next -->]](../rest-assured-selenium/README.md)

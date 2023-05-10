@@ -1,8 +1,8 @@
 ## 相关文章
 
-+ [Datafaker简介](docs/Datafaker简介.md)
-+ [如何Mock HttpServletRequest](docs/如何Mock-HttpServletRequest.md)
-+ [Mock Java InputStream对象](docs/Mock-Java-InputStream对象.md)
-+ [Java中的单元测试私有方法](docs/Java中的单元测试私有方法.md)
++ [Datafaker简介](http://tu-yucheng.github.io/mock/2023/05/09/java-faker.html)
++ [如何Mock HttpServletRequest](http://tu-yucheng.github.io/mock/2023/05/09/java-httpservletrequest-mock.html)
++ [Mock Java InputStream对象](http://tu-yucheng.github.io/mock/2023/05/09/java-mock-inputstream.html)
++ [Java中的单元测试私有方法](http://tu-yucheng.github.io/mock/2023/05/09/java-unit-test-private-methods.html)
 
 - 更多文章： [[<-- prev]](../mocks-1/README.md)
