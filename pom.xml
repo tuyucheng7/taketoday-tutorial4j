@@ -274,6 +274,7 @@
                   <exclude>cn/tuyucheng/taketoday/**/*Config.*</exclude>
                   <exclude>cn/tuyucheng/taketoday/**/*Dto.*</exclude>
                   <exclude>cn/tuyucheng/taketoday/**/*DTO.*</exclude>
+                  <exclude>cn/tuyucheng/taketoday/**/*Exception.*</exclude>
                   <exclude>cn/tuyucheng/taketoday/**/*Configuration.*</exclude>
                   <exclude>**/config/**/*</exclude>
                   <exclude>**/model/**/*</exclude>
@@ -285,6 +286,7 @@
                   <exclude>**/vo/**/*</exclude>
                   <exclude>**/bo/**/*</exclude>
                   <exclude>**/domain/**/*</exclude>
+                  <exclude>**/exception/**/*</exclude>
                   <exclude>cn/tuyucheng/taketoday/**/*Benchmark*.*</exclude>
                   <exclude>cn/tuyucheng/taketoday/**/*jmh_generated/*</exclude>
                </excludes>
