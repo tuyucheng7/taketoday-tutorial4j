@@ -17,22 +17,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class DataProducerControllerIntegrationTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Test
-    void givenJpgTrue_whenGetImageDynamicType_ThenContentTypeIsJpg() throws Exception {
-        mockMvc.perform(get("/get-image-dynamic-type?jpg=true"))
-              .andExpect(status().isOk())
-              .andExpect(content().contentType(MediaType.IMAGE_JPEG))
-              .andExpect(header().stringValues(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE));
-    }
+   @Test
+   void givenJpgTrue_whenGetImageDynamicType_ThenContentTypeIsJpg() throws Exception {
+      mockMvc.perform(get("/get-image-dynamic-type?jpg=true"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.IMAGE_JPEG))
+            .andExpect(header().stringValues(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE));
+   }
 
-    @Test
-    void givenJpgFalse_whenGetImageDynamicType_ThenContentTypeIsFalse() throws Exception {
-        mockMvc.perform(get("/get-image-dynamic-type?jpg=false"))
-              .andExpect(status().isOk())
-              .andExpect(content().contentType(MediaType.IMAGE_PNG))
-              .andExpect(header().stringValues(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_PNG_VALUE));
-    }
+   @Test
+   void givenJpgFalse_whenGetImageDynamicType_ThenContentTypeIsPng() throws Exception {
+      mockMvc.perform(get("/get-image-dynamic-type?jpg=false"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.IMAGE_PNG))
+            .andExpect(header().stringValues(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_PNG_VALUE));
+   }
+
+   @Test
+   void whenGetFileViaByteArrayResource_ThenContentIsExpectedFile() throws Exception {
+      mockMvc.perform(get("/get-file-via-byte-array-resource"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_OCTET_STREAM_VALUE))
+            .andExpect(content().string("Hello Tuyucheng!"));
+   }
 }
