@@ -147,6 +147,7 @@
       <module>spring-boot-state-machine</module>
       <module>spring-boot-swagger-1</module>
       <module>spring-boot-swagger-2</module>
+      <module>spring-boot-swagger-3</module>
       <module>spring-boot-swagger-codegen</module>
       <module>spring-boot-swagger-jwt</module>
       <module>spring-boot-testing-1</module>
