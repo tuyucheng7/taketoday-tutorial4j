@@ -11,15 +11,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
 
 @SpringBootTest(classes = Application.class)
-public class KeyVaultAutoconfiguredClientUnitTest {
+public class KeyVaultAutoconfiguredClientIntegrationTest {
 
-	@Autowired
-	@Qualifier(value = "KeyVaultAutoconfiguredClient")
-	private KeyVaultAutoconfiguredClient keyVaultAutoconfiguredClient;
+   @Autowired
+   @Qualifier(value = "KeyVaultAutoconfiguredClient")
+   private KeyVaultAutoconfiguredClient keyVaultAutoconfiguredClient;
 
-	@Test
-	void whenANotExistingKeyIsProvided_thenShouldReturnAnError() {
-		String secretKey = "mySecret";
-		Assertions.assertThrows(NoSuchElementException.class, () -> keyVaultAutoconfiguredClient.getSecret(secretKey));
-	}
+   @Test
+   void whenANotExistingKeyIsProvided_thenShouldReturnAnError() {
+      String secretKey = "mySecret";
+      Assertions.assertThrows(NoSuchElementException.class, () -> keyVaultAutoconfiguredClient.getSecret(secretKey));
+   }
 }
