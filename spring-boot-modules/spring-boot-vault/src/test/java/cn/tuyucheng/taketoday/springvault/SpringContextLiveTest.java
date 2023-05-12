@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.springvault;
 
-import cn.tuyucheng.taketoday.springvault.SpringVaultApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +19,7 @@ import org.springframework.vault.repository.configuration.EnableVaultRepositorie
 @EnableVaultRepositories
 public class SpringContextLiveTest {
 
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }
