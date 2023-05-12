@@ -72,6 +72,8 @@ Taketoday Tutorial4j
 | live        | *LiveTest                   |
 | parents     |         None                    |
 
+> 实时(live)测试是指需要与外部系统进行交互的测试，例如数据库、消息代理、文件系统等。
+
 ## 构建项目
 
 不需要经常一次构建整个仓库，因为我们通常关注特定的模块。
