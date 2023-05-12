@@ -4,9 +4,9 @@
 
 ## 相关文章
 
-+ [Java异常对性能的影响](docs/Java异常对性能的影响.md)
-+ [Java映射框架的性能](docs/Java映射框架的性能.md)
-+ [Java是编译语言还是解释语言](docs/Java是编译语言还是解释语言.md)
++ [Java异常对性能的影响](http://tu-yucheng.github.io/load/2023/05/12/java-exceptions-performance.html)
++ [Java映射框架的性能](http://tu-yucheng.github.io/load/2023/05/12/java-performance-mapping-frameworks.html)
++ [Java是编译语言还是解释语言](http://tu-yucheng.github.io/load/2023/05/12/java-compiled-interpreted.html)
 
 ## 运行
 

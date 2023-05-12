@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [编写Jenkins插件](docs/编写Jenkins插件.md)
++ [编写Jenkins插件](http://tu-yucheng.github.io/load/2023/05/12/jenkins-custom-plugin.html)

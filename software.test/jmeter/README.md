@@ -48,10 +48,13 @@ Now with default configurations it will be available at: [http://localhost:8080]
 
 Enjoy it :)
 
-### Relevant Articles:
+## 相关文章
 
-- [Intro to Performance Testing using JMeter](https://www.baeldung.com/jmeter)
-- [Configure Jenkins to Run and Show JMeter Tests](https://www.baeldung.com/ops/jenkins-and-jmeter)
-- [Write Extracted Data to a File Using JMeter](https://www.baeldung.com/jmeter-write-to-file)
-- [Basic Authentication in JMeter](https://www.baeldung.com/jmeter-basic-auth)
-- [JMeter: Latency vs. Load Time](https://www.baeldung.com/java-jmeter-latency-vs-load-time/)
++ [使用JMeter进行性能测试简介](http://tu-yucheng.github.io/load/2023/05/12/jmeter.html)
++ [配置Jenkins以运行和显示JMeter测试](http://tu-yucheng.github.io/load/2023/05/12/jenkins-and-jmeter.html)
++ [使用JMeter将提取的数据写入文件](http://tu-yucheng.github.io/load/2023/05/12/jmeter-write-to-file.html)
++ [JMeter中的基本身份验证](http://tu-yucheng.github.io/load/2023/05/12/jmeter-basic-auth.html)
++ [JMeter延迟与加载时间](http://tu-yucheng.github.io/load/2023/05/12/java-jmeter-latency-vs-load-time.html)
++ [如何在JMeter中生成仪表板报告](http://tu-yucheng.github.io/load/2023/05/12/jmeter-dashboard-report.html)
++ [在Apache JMeter中的请求之间插入延迟](http://tu-yucheng.github.io/load/2023/05/12/jmeter-delays-between-requests.html)
++ [使用JMeter进行分布式性能测试](http://tu-yucheng.github.io/load/2023/05/12/jmeter-distributed-testing.html)

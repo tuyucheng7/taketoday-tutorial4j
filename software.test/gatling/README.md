@@ -1,7 +1,7 @@
 ## 相关文章
 
-+ [Gatling简介](docs/Gatling简介.md)
-+ [从Jenkins运行Gatling测试](docs/从Jenkins运行Gatling测试.md)
++ [Gatling简介](http://tu-yucheng.github.io/load/2023/05/12/introduction-to-gatling.html)
++ [从Jenkins运行Gatling测试](http://tu-yucheng.github.io/load/2023/05/12/jenkins-run-gatling-tests.html)
 
 ## 运行模拟
 
