@@ -1,8 +1,8 @@
 --
 -- Insert
 --
-insert into car_model(maker_fk, name, sku, year)
+insert into car_model(maker_fk, name, sku, yearDate)
 values (:makerId,
-		:name,
-		:sku,
-		:year);
+        :name,
+        :sku,
+        :yearDate);

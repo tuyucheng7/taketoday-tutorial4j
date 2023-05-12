@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 @AllArgsConstructor
@@ -15,13 +15,13 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 public class UserEntity {
-	@Id
-	private String name;
+   @Id
+   private String name;
 
-	@ManyToOne
-	private UserEntity manager;
+   @ManyToOne
+   private UserEntity manager;
 
-	public UserEntity(String name) {
-		this.name = name;
-	}
+   public UserEntity(String name) {
+      this.name = name;
+   }
 }

@@ -1,65 +1,65 @@
 package cn.tuyucheng.taketoday.db.indexing;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 class Image {
 
-	@Id
-	@GeneratedValue
-	Long id;
+   @Id
+   @GeneratedValue
+   Long id;
 
-	String name;
+   String name;
 
-	String location;
+   String location;
 
-	@Lob
-	byte[] content;
+   @Lob
+   byte[] content;
 
-	public Image() {
-	}
+   public Image() {
+   }
 
-	public Image(Long id) {
-		this.id = id;
-	}
+   public Image(Long id) {
+      this.id = id;
+   }
 
-	public Image(String name, String location) {
-		this.name = name;
-		this.location = location;
-	}
+   public Image(String name, String location) {
+      this.name = name;
+      this.location = location;
+   }
 
-	public byte[] getContent() {
-		return content;
-	}
+   public byte[] getContent() {
+      return content;
+   }
 
-	public void setContent(byte[] content) {
-		this.content = content;
-	}
+   public void setContent(byte[] content) {
+      this.content = content;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public String getLocation() {
-		return location;
-	}
+   public String getLocation() {
+      return location;
+   }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+   public void setLocation(String location) {
+      this.location = location;
+   }
 
-	public long getId() {
-		return id;
-	}
+   public long getId() {
+      return id;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public void setId(long id) {
+      this.id = id;
+   }
 }

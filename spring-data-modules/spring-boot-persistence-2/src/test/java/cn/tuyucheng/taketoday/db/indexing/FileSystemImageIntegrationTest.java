@@ -1,5 +1,14 @@
 package cn.tuyucheng.taketoday.db.indexing;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,58 +22,57 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.io.InputStream;
-import java.nio.file.Paths;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 @SpringBootTest(classes = ImageArchiveApplication.class)
 @AutoConfigureMockMvc
 class FileSystemImageIntegrationTest {
 
-	@Autowired
-	MockMvc mockMvc;
+   @Autowired
+   MockMvc mockMvc;
 
-	@MockBean
-	FileLocationService fileLocationService;
+   @MockBean
+   FileLocationService fileLocationService;
 
-	@Test
-	void givenJpegImage_whenUploadIt_thenReturnItsId() throws Exception {
-		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-		InputStream image = classLoader.getResourceAsStream("taketoday.jpeg");
+   @Test
+   void givenJpegImage_whenUploadIt_thenReturnItsId() throws Exception {
+      ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+      InputStream image = classLoader.getResourceAsStream("taketoday.jpeg");
 
-		MockMultipartFile jpegImage = new MockMultipartFile("image", "taketoday", MediaType.TEXT_PLAIN_VALUE, image);
-		MockMultipartHttpServletRequestBuilder multipartRequest = MockMvcRequestBuilders.multipart("/file-system/image")
-			.file(jpegImage);
+      MockMultipartFile jpegImage = new MockMultipartFile("image", "taketoday", MediaType.TEXT_PLAIN_VALUE, image);
+      MockMultipartHttpServletRequestBuilder multipartRequest = MockMvcRequestBuilders.multipart("/file-system/image")
+            .file(jpegImage);
 
-		given(fileLocationService.save(jpegImage.getBytes(), "taketoday"))
-			.willReturn(1L);
+      given(fileLocationService.save(jpegImage.getBytes(), "taketoday"))
+            .willReturn(1L);
 
-		MvcResult result = mockMvc.perform(multipartRequest)
-			.andExpect(status().isOk())
-			.andReturn();
+      MvcResult result = mockMvc.perform(multipartRequest)
+            .andExpect(status().isOk())
+            .andReturn();
 
-		assertThat(result.getResponse()
-			.getContentAsString())
-			.isEqualTo("1");
-	}
+      assertThat(result.getResponse()
+            .getContentAsString())
+            .isEqualTo("1");
+   }
 
-	@Test
-	void givenTuyuchengImage_whenDownloadIt_thenReturnTheImage() throws Exception {
-		given(fileLocationService.find(1L)).willReturn(tuyuchengJpegResource());
+   @Test
+   void givenBaeldungImage_whenDownloadIt_thenReturnTheImage() throws Exception {
+      given(fileLocationService.find(1L))
+            .willReturn(baeldungJpegResource());
 
-		mockMvc.perform(get("/file-system/image/1")
-				.contentType(MediaType.IMAGE_JPEG_VALUE))
-			.andExpect(status().isOk());
-	}
+      mockMvc.perform(MockMvcRequestBuilders
+                  .get("/file-system/image/1")
+                  .contentType(MediaType.IMAGE_JPEG_VALUE))
+            .andExpect(status().isOk());
+   }
 
-	private FileSystemResource tuyuchengJpegResource() {
-		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-		String imagePath = classLoader.getResource("taketoday.jpeg").getFile();
-
-		return new FileSystemResource(Paths.get(imagePath));
-	}
+   private FileSystemResource baeldungJpegResource() {
+      ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+      try {
+         final URL resource = classLoader.getResource("taketoday.jpeg");
+         if (resource != null) {
+            return new FileSystemResource(new File(resource.toURI()).getAbsolutePath());
+         }
+      } catch (URISyntaxException ignore) {
+      }
+      return null;
+   }
 }
