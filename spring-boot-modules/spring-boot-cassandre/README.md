@@ -9,4 +9,4 @@
 
 ## 相关文章
 
-+ [使用Cassandre Spring Boot Starter构建交易机器人](docs/使用CassandreSpringBootStarter构建交易机器人.md)
++ [使用Cassandre Spring Boot Starter构建交易机器人](http://tu-yucheng.github.io/springboot/2023/05/11/cassandre-spring-boot-trading-bot.html)

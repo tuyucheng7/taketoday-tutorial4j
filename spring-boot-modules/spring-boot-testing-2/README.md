@@ -4,10 +4,10 @@
 
 ## 相关文章
 
-+ [测试时在Spring Boot中设置日志级别](docs/测试时在SpringBoot中设置日志级别.md)
-+ [无法为Spring Controller的JUnit测试加载ApplicationContext](docs/无法为Spring-Controller的JUnit测试加载ApplicationContext.md)
-+ [使用@WebServiceServerTest运行Web Services集成测试](docs/使用@WebServiceServerTest运行WebServices集成测试.md)
-+ [Spring Boot使用测试容器测试Redis](docs/SpringBoot使用测试容器测试Redis.md)
-+ [SpringBoot：Keycloak与测试容器的集成测试](docs/SpringBoot-Keycloak与测试容器的集成测试.md)
++ [测试时在Spring Boot中设置日志级别](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-testing-log-level.html)
++ [无法为Spring Controller的JUnit测试加载ApplicationContext](http://tu-yucheng.github.io/springboot/2023/05/12/spring-junit-failed-to-load-applicationcontext.html)
++ [使用@WebServiceServerTest运行Web Services集成测试]()
++ [Spring Boot使用测试容器测试Redis](http://tu-yucheng.github.io/springboot/2023/05/12/spring-webserviceservertest.html)
++ [SpringBoot：Keycloak与测试容器的集成测试](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-keycloak-integration-testing.html)
 
 - 更多文章： [[<-- prev]](../spring-boot-testing-1/README.md)

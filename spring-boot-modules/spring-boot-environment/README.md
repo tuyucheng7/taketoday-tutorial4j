@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [Spring Boot中的EnvironmentPostProcessor](docs/SpringBoot中的EnvironmentPostProcessor.md)
-+ [jar包外的Spring属性文件](docs/jar包外的Spring属性文件.md)
-+ [获取Spring Boot中的运行端口](docs/获取SpringBoot中的运行端口.md)
-+ [Spring Boot 2.5中的环境变量前缀](docs/SpringBoot-2.5中的环境变量前缀.md)
-+ [Spring Profiles](docs/Spring-Profiles.md)
++ [Spring Boot中的EnvironmentPostProcessor](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-environmentpostprocessor.html)
++ [jar包外的Spring属性文件](http://tu-yucheng.github.io/springboot/2023/05/11/spring-properties-file-outside-jar.html)
++ [获取Spring Boot中的运行端口](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-running-port.html)
++ [Spring Boot 2.5中的环境变量前缀](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-env-variable-prefixes.html)
++ [Spring Profiles](http://tu-yucheng.github.io/springboot/2023/05/11/spring-profiles.html)

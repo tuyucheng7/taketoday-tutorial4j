@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Vault](docs/Spring-Vault.md)
++ [Spring Vault](http://tu-yucheng.github.io/springboot/2023/05/12/spring-vault.html)

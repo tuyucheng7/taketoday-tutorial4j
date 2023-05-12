@@ -21,5 +21,5 @@
 
 ## 相关文章
 
-+ [Spring Boot Admin指南](docs/SpringBoot-Admin指南.md)
-+ [在运行时更改Spring Boot应用程序的日志记录级别](docs/在运行时更改SpringBoot应用程序的日志记录级别.md)
++ [Spring Boot Admin指南](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-admin.html)
++ [在运行时更改Spring Boot应用程序的日志记录级别](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-changing-log-level-at-runtime.html)

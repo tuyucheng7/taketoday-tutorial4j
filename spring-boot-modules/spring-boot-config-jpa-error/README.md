@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [无法找到使用@DataJpaTest的@SpringBootConfiguration](docs/无法找到使用@DataJpaTest的@SpringBootConfiguration.md)
++ [无法找到使用@DataJpaTest的@SpringBootConfiguration](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-unable-to-find-springbootconfiguration-with-datajpatest.html)

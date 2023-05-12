@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [使用Quartz在Spring中进行调度](docs/使用Quartz在Spring中进行调度.md)
++ [使用Quartz在Spring中进行调度](http://tu-yucheng.github.io/springboot/2023/05/12/spring-quartz-schedule.html)
 
 ## #Scheduling in Spring with Quartz Example Project
 

@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [使用Spring Boot自动扩展属性](docs/使用SpringBoot自动扩展属性.md)
++ [使用Spring Boot自动扩展属性](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-auto-property-expansion.html)
 
 ## 子模块
 

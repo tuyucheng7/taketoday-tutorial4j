@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Boot Starter Parent项目介绍](docs/SpringBoot-Starter-Parent.md)
++ [Spring Boot Starter Parent项目介绍](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-starter-parent.html)

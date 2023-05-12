@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [使用Spring Boot在运行时启用和禁用端点](docs/使用SpringBoot在运行时启用和禁用端点.md)
-+ [从请求中提取自定义标头](docs/从请求中提取自定义标头.md)
++ [使用Spring Boot在运行时启用和禁用端点](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-enable-disable-endpoints-at-runtime.html)
++ [从请求中提取自定义标头](http://tu-yucheng.github.io/springboot/2023/05/12/spring-extract-custom-header-request.html)
 
 - 更多文章： [[<-- prev]](../spring-boot-mvc-4/README.md)

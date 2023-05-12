@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Boot的后端和使用Vue.js的前端](docs/使用SpringBoot的后端和使用Vue的前端.md)
++ [使用Spring Boot的后端和使用Vue.js的前端](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-vue-js.html)

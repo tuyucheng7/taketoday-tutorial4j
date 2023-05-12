@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Netflix Mantis简介](docs/Netflix-Mantis简介.md)
++ [Netflix Mantis简介](http://tu-yucheng.github.io/springboot/2023/05/12/java-netflix-mantis.html)

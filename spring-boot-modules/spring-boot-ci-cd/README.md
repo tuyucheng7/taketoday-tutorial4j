@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Boot应用CI/CD](docs/使用SpringBoot应用CI-CD.md)
++ [使用Spring Boot应用CI/CD](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-ci-cd.html)

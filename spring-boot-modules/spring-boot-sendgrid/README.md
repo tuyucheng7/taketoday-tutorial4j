@@ -1,6 +1,6 @@
 ## 相关文章
 
-+ [使用SendGrid和Spring Boot发送电子邮件](docs/使用SendGrid和SpringBoot发送电子邮件.md)
++ [使用SendGrid和Spring Boot发送电子邮件](http://tu-yucheng.github.io/springboot/2023/05/12/sendgrid-and-spring-boot.html)
 
 ## 运行项目
 

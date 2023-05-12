@@ -4,9 +4,9 @@
 
 ## 相关文章
 
-+ [Spring Boot中的Liveness和Readiness探针](docs/SpringBoot中的Liveness和Readiness探针.md)
-+ [Spring Boot Info端点中的自定义信息](docs/SpringBoot信息端点中的自定义信息.md)
-+ [Spring Boot中的健康指标](docs/SpringBoot中的健康指标.md)
-+ [如何在Spring Boot Actuator中启用所有端点](docs/如何在SpringBoot-Actuator中启用所有端点.md)
-+ [Spring Boot Actuator Startup端点](docs/SpringBoot启动执行器端点.md)
-+ [Spring Rest API的指标](docs/Spring-RestAPI的指标.md)
++ [Spring Boot中的Liveness和Readiness探针](http://tu-yucheng.github.io/springboot/2023/05/11/spring-liveness-readiness-probes.html)
++ [Spring Boot Info端点中的自定义信息](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-info-actuator-custom.html)
++ [Spring Boot中的健康指标](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-health-indicators.html)
++ [如何在Spring Boot Actuator中启用所有端点](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-actuator-enable-endpoints.html)
++ [Spring Boot Actuator Startup端点](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-actuator-startup.html)
++ [Spring Rest API的指标](http://tu-yucheng.github.io/springboot/2023/05/11/spring-rest-api-metrics.html)

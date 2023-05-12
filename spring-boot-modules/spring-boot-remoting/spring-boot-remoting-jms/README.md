@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用JMS和ActiveMQ进行Spring远程处理](../docs/使用JMS和ActiveMQ进行SpringRemoting.md)
++ [使用JMS和ActiveMQ进行Spring远程处理](http://tu-yucheng.github.io/springboot/2023/05/12/spring-remoting-jms.html)

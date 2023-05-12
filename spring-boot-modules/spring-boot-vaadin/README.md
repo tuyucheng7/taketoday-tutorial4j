@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Vaadin简介](docs/Vaadin简介.md)
-+ [使用Spring Boot和Vaadin的示例应用程序](docs/使用SpringBoot和Vaadin的示例应用程序.md)
++ [Vaadin简介](http://tu-yucheng.github.io/springboot/2023/05/12/vaadin.html)
++ [使用Spring Boot和Vaadin的示例应用程序](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-vaadin.html)

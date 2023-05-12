@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [Apache Camel的集成模式](docs/Apache-Camel的集成模式.md)
-+ [将Apache Camel与Spring结合使用](docs/将Apache-Camel与Spring结合使用.md)
-+ [使用Spring Boot的Apache Camel](docs/使用SpringBoot的ApacheCamel.md)
-+ [Spring Boot中的Apache Camel路由测试](docs/SpringBoot中的ApacheCamel路由测试.md)
-+ [Apache Camel条件路由](docs/ApacheCamel条件路由.md)
-+ [Apache Camel异常处理](docs/ApacheCamel异常处理.md)
++ [Apache Camel的集成模式](http://tu-yucheng.github.io/springboot/2023/05/11/camel-integration-patterns.html)
++ [将Apache Camel与Spring结合使用](http://tu-yucheng.github.io/springboot/2023/05/11/spring-apache-camel-tutorial.html)
++ [使用Spring Boot的Apache Camel](http://tu-yucheng.github.io/springboot/2023/05/11/apache-camel-spring-boot.html)
++ [Spring Boot中的Apache Camel路由测试](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-apache-camel-routes-testing.html)
++ [Apache Camel条件路由](http://tu-yucheng.github.io/springboot/2023/05/11/spring-apache-camel-conditional-routing.html)
++ [Apache Camel异常处理](http://tu-yucheng.github.io/springboot/2023/05/11/java-apache-camel-exception-handling.html)
 
 ## 框架版本
 

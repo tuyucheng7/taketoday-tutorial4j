@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用HTTP调用程序的Spring远程处理简介](../docs/使用HTTP调用程序的Spring-Remoting简介.md)
++ [使用HTTP调用程序的Spring远程处理简介](http://tu-yucheng.github.io/springboot/2023/05/12/spring-remoting-http-invoker.html)

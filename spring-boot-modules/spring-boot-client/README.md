@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Spring Boot中@RestClientTest快速指南](docs/SpringBoot中@RestClientTest快速指南.md)
-+ [WebSockets API的Java客户端](docs/WebSockets-API的Java客户端.md)
++ [Spring Boot中@RestClientTest快速指南](http://tu-yucheng.github.io/springboot/2023/05/11/restclienttest-in-spring-boot.html)
++ [WebSockets API的Java客户端](http://tu-yucheng.github.io/springboot/2023/05/11/websockets-api-java-spring-client.html)

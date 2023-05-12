@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Boot中的枚举映射](docs/SpringBoot中的枚举映射.md)
++ [Spring Boot中的枚举映射](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-enum-mapping.html)

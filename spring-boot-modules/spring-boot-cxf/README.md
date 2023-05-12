@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Boot集成Apache-CXF简介](docs/SpringBoot集成Apache-CXF简介)
++ [Spring Boot集成Apache-CXF简介](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-cxf.html)

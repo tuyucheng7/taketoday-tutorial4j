@@ -4,11 +4,11 @@
 
 ## 相关文章
 
-+ [使用Spring的ShedLock指南](docs/使用Spring的ShedLock指南.md)
-+ [Spring Web库Problem指南](docs/SpringWeb库Problem指南.md)
-+ [在Java中生成条形码和二维码](docs/在Java中生成条形码和二维码.md)
-+ [使用Bucket4j对Spring API进行速率限制](docs/使用Bucket4j对SpringAPI进行速率限制.md)
-+ [Spring Boot和Caffeine缓存](docs/SpringBoot和Caffeine缓存.md)
-+ [Spring Boot和Togglz切面](docs/SpringBoot和Togglz切面.md)
++ [使用Spring的ShedLock指南](http://tu-yucheng.github.io/springboot/2023/05/12/hedlock-spring.html)
++ [Spring Web库Problem指南](http://tu-yucheng.github.io/springboot/2023/05/12/problem-spring-web.html)
++ [在Java中生成条形码和二维码](http://tu-yucheng.github.io/springboot/2023/05/12/java-generating-barcodes-qr-codes.html)
++ [使用Bucket4j对Spring API进行速率限制](http://tu-yucheng.github.io/springboot/2023/05/12/spring-bucket4j.html)
++ [Spring Boot和Caffeine缓存](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-caffeine-cache.html)
++ [Spring Boot和Togglz切面](http://tu-yucheng.github.io/springboot/2023/05/12/spring-togglz.html)
 
 - 更多文章： [[next -->]](../spring-boot-libraries-2/README.md)

@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Hystrix简介](docs/Hystrix简介.md)
-+ [Hystrix与现有Spring应用程序的集成](docs/Hystrix与现有Spring应用程序的集成.md)
++ [Hystrix简介](http://tu-yucheng.github.io/springboot/2023/05/12/introduction-to-hystrix.html)
++ [Hystrix与现有Spring应用程序的集成](http://tu-yucheng.github.io/springboot/2023/05/12/hystrix-integration-with-spring-aop.html)

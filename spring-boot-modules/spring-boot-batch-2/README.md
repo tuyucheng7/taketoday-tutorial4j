@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [如何触发和停止计划的Spring Batch作业](docs/如何触发和停止计划的SpringBatch作业.md)
-+ [使用Spring Boot的Spring Batch](docs/使用SpringBoot的SpringBatch.md)
++ [如何触发和停止计划的Spring Batch作业](http://tu-yucheng.github.io/springboot/2023/05/11/spring-batch-start-stop-job.html)
++ [使用Spring Boot的Spring Batch](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-spring-batch.html)
 
 - 更多文章： [[<-- prev]](../spring-batch-1/README.md)

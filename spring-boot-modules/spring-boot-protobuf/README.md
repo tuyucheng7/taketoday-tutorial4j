@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [使用Protocol Buffer的Spring Rest API](docs/使用Protocol-Buffers的Spring-RestAPI.md)
-+ [在JSON和Protobuf之间转换](docs/在JSON和Protobuf之间转换.md)
++ [使用Protocol Buffer的Spring Rest API](http://tu-yucheng.github.io/springboot/2023/05/12/spring-rest-api-with-protocol-buffers.html)
++ [在JSON和Protobuf之间转换](http://tu-yucheng.github.io/springboot/2023/05/12/java-convert-json-protobuf.html)

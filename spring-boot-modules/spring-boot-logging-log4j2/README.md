@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [Spring Boot中的日志记录](docs/SpringBoot中的日志记录.md)
-+ [使用Spring Boot将日志记录到Graylog](docs/使用SpringBoot记录到Graylog.md)
-+ [Spring Boot 2.1中的日志组](docs/SpringBoot-2.1中的日志组.md)
-+ [使用Log4j2将日志数据写入Syslog](docs/使用Log4j2将日志数据写入Syslog.md)
-+ [Spring Boot Logback和Log4j2扩展](docs/SpringBoot-Logback和Log4j2扩展.md)
++ [Spring Boot中的日志记录](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-logging.html)
++ [使用Spring Boot将日志记录到Graylog](http://tu-yucheng.github.io/springboot/2023/05/12/graylog-with-spring-boot.html)
++ [Spring Boot 2.1中的日志组](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-log-groups.html)
++ [使用Log4j2将日志数据写入Syslog](http://tu-yucheng.github.io/springboot/2023/05/12/log4j-to-syslog.html)
++ [Spring Boot Logback和Log4j2扩展](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-logback-log4j2.html)

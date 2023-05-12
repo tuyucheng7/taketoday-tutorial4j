@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [如何在Spring Boot中更改默认端口](docs/如何在SpringBoot中更改默认端口.md)
-+ [在Spring Boot中使用自定义Banner](docs/在SpringBoot中使用自定义Banner.md)
-+ [使用Spring Boot创建自定义FailureAnalyzer](docs/使用SpringBoot创建自定义FailureAnalyzer.md)
-+ [Spring Boot自定义白标错误页面](docs/SpringBoot自定义白标错误页面.md)
-+ [Spring Boot配置主类](docs/SpringBoot配置主类.md)
-+ [如何定义Spring Boot过滤器](docs/如何定义SpringBoot过滤器.md)
-+ [Spring Boot中的图标指南](docs/SpringBoot中的图标指南.md)
++ [如何在Spring Boot中更改默认端口](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-change-port.html)
++ [在Spring Boot中使用自定义Banner](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-custom-banners.html)
++ [使用Spring Boot创建自定义FailureAnalyzer](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-failure-analyzer.html)
++ [Spring Boot自定义白标错误页面](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-custom-error-page.html)
++ [Spring Boot配置主类](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-main-class.html)
++ [如何定义Spring Boot过滤器](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-add-filter.html)
++ [Spring Boot中的图标指南](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-favicon.html)
 
 - 更多文章： [[next -->]](../spring-boot-basic-customization-2/README.md)

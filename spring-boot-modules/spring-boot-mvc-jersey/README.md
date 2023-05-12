@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Rest API：JAX-RS与Spring](docs/RestAPI-JAX-RS与Spring.md)
++ [Rest API：JAX-RS与Spring](http://tu-yucheng.github.io/springboot/2023/05/12/rest-api-jax-rs-vs-spring.html)

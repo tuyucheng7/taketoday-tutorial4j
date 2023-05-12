@@ -4,13 +4,13 @@
 
 ## 相关文章
 
-+ [Spring与Apache Kafka的使用介绍](docs/Spring与Apache-Kafka的使用介绍.md)
-+ [Kafka Streams使用Spring Boot](docs/Kafka-Streams使用SpringBoot.md)
-+ [使用Kafka发送大消息](docs/使用Kafka发送大消息.md)
-+ [使用Spring Boot配置Kafka SSL](docs/使用SpringBoot配置Kafka-SSL.md)
-+ [测试Kafka和Spring Boot](docs/测试Kafka和SpringBoot.md)
-+ [监控Apache Kafka中的消费者延迟](docs/监控Apache-Kafka中的消费者延迟.md)
-+ [获取Apache Kafka主题中的消息数](docs/获取Apache-Kafka主题中的消息数.md)
++ [Spring与Apache Kafka的使用介绍](http://tu-yucheng.github.io/springboot/2023/05/12/spring-kafka.html)
++ [Kafka Streams使用Spring Boot](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-kafka-streams.html)
++ [使用Kafka发送大消息](http://tu-yucheng.github.io/springboot/2023/05/12/java-kafka-send-large-message.html)
++ [使用Spring Boot配置Kafka SSL](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-kafka-ssl.html)
++ [测试Kafka和Spring Boot](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-kafka-testing.html)
++ [监控Apache Kafka中的消费者延迟](http://tu-yucheng.github.io/springboot/2023/05/12/java-kafka-consumer-lag.html)
++ [获取Apache Kafka主题中的消息数](http://tu-yucheng.github.io/springboot/2023/05/12/java-kafka-count-topic-messages.html)
 
 - 更多文章： [[next -->]](../spring-kafka-2/README.md)
 

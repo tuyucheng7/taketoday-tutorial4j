@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Spring Boot CLI介绍](docs/SpringBoot-CLI介绍.md)
-+ [使用Spring Boot CLI对密码进行编码](docs/使用SpringBoot-CLI对密码进行编码.md)
++ [Spring Boot CLI介绍](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-cli.html)
++ [使用Spring Boot CLI对密码进行编码](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-cli-encode-passwords.html)

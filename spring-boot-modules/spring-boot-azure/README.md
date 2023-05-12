@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [将Spring Boot应用程序部署到Azure](docs/将SpringBoot应用程序部署到Azure.md)
++ [将Spring Boot应用程序部署到Azure](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-azure.html)

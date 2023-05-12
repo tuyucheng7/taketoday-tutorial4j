@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [Jenkins 2简介和管道的力量](docs/Jenkins2简介和管道的力量.md)
++ [Jenkins 2简介和管道的力量](http://tu-yucheng.github.io/springboot/2023/05/12/jenkins-pipelines.html)
 
 ## 使用Spring Boot的基本CRUD API
 

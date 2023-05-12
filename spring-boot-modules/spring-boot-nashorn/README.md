@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [React和Nashorn的同构应用](docs/React和Nashorn的同构应用.md)
++ [React和Nashorn的同构应用](http://tu-yucheng.github.io/springboot/2023/05/12/react-nashorn-isomorphic-app.html)

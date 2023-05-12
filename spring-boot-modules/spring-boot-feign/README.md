@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [Feign简介](docs/Feign简介.md)
-+ [重试Feign调用](docs/重试Feign调用.md)
-+ [使用Feign设置请求标头](docs/使用Feign设置请求标头.md)
++ [Feign简介](http://tu-yucheng.github.io/springboot/2023/05/11/intro-to-feign.html)
++ [重试Feign调用](http://tu-yucheng.github.io/springboot/2023/05/11/feign-retry.html)
++ [使用Feign设置请求标头](http://tu-yucheng.github.io/springboot/2023/05/11/java-feign-request-headers.html)

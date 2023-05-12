@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [如何在Spring Boot中禁用控制台日志记录](docs/如何在SpringBoot中禁用控制台日志记录.md)
++ [如何在Spring Boot中禁用控制台日志记录](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-disable-console-logging.html)

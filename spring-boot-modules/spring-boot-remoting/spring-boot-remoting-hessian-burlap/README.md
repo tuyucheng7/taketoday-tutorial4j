@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [使用Hessian和Burlap进行远程处理](../docs/使用Hessian和Burlap进行远程处理.md)
++ [使用Hessian和Burlap进行远程处理](http://tu-yucheng.github.io/springboot/2023/05/12/spring-remoting-hessian-burlap.html)
 
 ## 概述
 

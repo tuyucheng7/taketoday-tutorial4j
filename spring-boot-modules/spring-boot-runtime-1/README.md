@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [关闭Spring Boot应用程序](docs/关闭SpringBoot应用程序.md)
-+ [以编程方式重新启动Spring Boot应用程序](docs/以编程方式重新启动SpringBoot应用程序.md)
-+ [使用Spring Boot Actuator HTTP跟踪记录HTTP请求](docs/使用SpringBoot-Actuator-HTTP跟踪记录HTTP请求.md)
-+ [Spring Boot嵌入式Tomcat日志](docs/SpringBoot嵌入式Tomcat日志.md)
-+ [使用Spring进行项目配置](docs/使用Spring进行项目配置.md)
-+ [Spring记录传入请求](docs/Spring记录传入请求.md)
-+ [如何配置Spring Boot Tomcat](docs/如何配置SpringBoot-Tomcat.md)
++ [关闭Spring Boot应用程序](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-shutdown.html)
++ [以编程方式重新启动Spring Boot应用程序](http://tu-yucheng.github.io/springboot/2023/05/12/java-restart-spring-boot-app.html)
++ [使用Spring Boot Actuator HTTP跟踪记录HTTP请求](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-actuator-http.html)
++ [Spring Boot嵌入式Tomcat日志](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-embedded-tomcat-logs.html)
++ [使用Spring进行项目配置](http://tu-yucheng.github.io/springboot/2023/05/12/project-configuration-with-spring.html)
++ [Spring记录传入请求](http://tu-yucheng.github.io/springboot/2023/05/12/spring-http-logging.html)
++ [如何配置Spring Boot Tomcat](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-configure-tomcat.html)
 
 - 更多文章： [[next -->]](../spring-boot-runtime-2/README.md)

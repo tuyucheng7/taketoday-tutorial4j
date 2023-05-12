@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Mobile指南](docs/Spring-Mobile指南.md)
++ [Spring Mobile指南](http://tu-yucheng.github.io/springboot/2023/05/12/spring-mobile.html)

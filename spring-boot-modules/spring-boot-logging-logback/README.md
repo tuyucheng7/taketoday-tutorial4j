@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Boot Logback和Log4j2扩展](docs/SpringBoot-Logback和Log4j2扩展.md)
++ [Spring Boot Logback和Log4j2扩展](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-logback-log4j2.html)

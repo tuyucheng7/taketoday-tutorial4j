@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Boot进行BIRT报告](docs/使用SpringBoot进行BIRT报告.md)
++ [使用Spring Boot进行BIRT报告](http://tu-yucheng.github.io/springboot/2023/05/12/birt-reports-spring-boot.html)

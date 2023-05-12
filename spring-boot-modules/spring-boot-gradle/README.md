@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Spring Boot配置主类](docs/SpringBoot配置主类.md)
-+ [Spring Boot与瘦JAR](docs/SpringBoot与瘦JAR.md)
++ [Spring Boot配置主类](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-main-class.html)
++ [Spring Boot与瘦JAR](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-thin-jar.html)

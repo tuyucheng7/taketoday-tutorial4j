@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Boot配置Jasypt](docs/SpringBoot配置Jasypt.md)
++ [Spring Boot配置Jasypt](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-jasypt.html)

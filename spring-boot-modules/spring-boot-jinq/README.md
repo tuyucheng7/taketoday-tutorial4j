@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring与Jinq简介](docs/Spring与Jinq简介.md)
++ [Spring与Jinq简介](http://tu-yucheng.github.io/springboot/2023/05/12/spring-jinq.html)

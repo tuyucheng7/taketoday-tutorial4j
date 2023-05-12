@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Spring Boot 2中的延迟初始化](docs/SpringBoot2中的延迟初始化.md)
-+ [Chaos Monkey简介](docs/ChaosMonkey简介.md)
++ [Spring Boot 2中的延迟初始化](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-lazy-initialization.html)
++ [Chaos Monkey简介](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-chaos-monkey.html)

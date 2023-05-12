@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [使用Spring的WebSockets简介](docs/使用Spring的WebSockets简介.md)
-+ [使用Spring Boot安排的WebSocket推送](docs/使用SpringBoot调度的WebSocket推送.md)
-+ [Spring Websockets的@SendToUser注解的快速示例](docs/Spring-Websockets的@SendToUser注解的快速示例.md)
-+ [使用Postman测试WebSocket API](docs/使用Postman测试WebSocket-API.md)
-+ [调试WebSocket](docs/调试WebSocket.md)
++ [使用Spring的WebSockets简介](http://tu-yucheng.github.io/springboot/2023/05/12/websockets-spring.html)
++ [使用Spring Boot调度的WebSocket推送](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-scheduled-websocket.html)
++ [Spring Websockets的@SendToUser注解的快速示例](http://tu-yucheng.github.io/springboot/2023/05/12/spring-websockets-sendtouser.html)
++ [使用Postman测试WebSocket API](http://tu-yucheng.github.io/springboot/2023/05/12/postman-websocket-apis.html)
++ [调试WebSocket](http://tu-yucheng.github.io/springboot/2023/05/12/debug-websockets.html)

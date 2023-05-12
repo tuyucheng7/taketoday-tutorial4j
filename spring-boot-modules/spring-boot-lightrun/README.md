@@ -34,4 +34,4 @@ $ java -jar ./target/spring-boot-lightrun-tasks-service-1.0.0.jar
 
 ## 相关文章
 
-+ [使用Java的Lightrun简介](docs/使用Java的Lightrun简介.md)
++ [使用Java的Lightrun简介](http://tu-yucheng.github.io/springboot/2023/05/12/java-lightrun.html)

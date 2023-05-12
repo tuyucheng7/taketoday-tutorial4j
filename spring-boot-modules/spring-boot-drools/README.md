@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Drools集成](docs/Spring-Drools集成.md)
++ [Spring Drools集成](http://tu-yucheng.github.io/springboot/2023/05/11/drools-spring-integration.html)

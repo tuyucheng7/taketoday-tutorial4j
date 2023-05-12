@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring State Machine项目指南](docs/Spring状态机项目指南.md)
++ [Spring State Machine项目指南](http://tu-yucheng.github.io/springboot/2023/05/12/spring-state-machine.html)

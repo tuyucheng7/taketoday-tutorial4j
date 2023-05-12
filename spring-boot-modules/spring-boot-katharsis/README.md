@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring应用程序中的JSON API](docs/Spring应用程序中的JSON-API.md)
++ [Spring应用程序中的JSON API](http://tu-yucheng.github.io/springboot/2023/05/12/json-api-java-spring-web-app.html)

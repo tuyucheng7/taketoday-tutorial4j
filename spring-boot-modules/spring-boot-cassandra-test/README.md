@@ -19,4 +19,4 @@ mvn test
 
 ## 相关文章
 
-+ [使用Spring Boot和@DataCassandraTest测试NoSQL查询](docs/使用SpringBoot和@DataCassandraTest测试NoSQL查询.md)
++ [使用Spring Boot和@DataCassandraTest测试NoSQL查询](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-datacassandratest.html)

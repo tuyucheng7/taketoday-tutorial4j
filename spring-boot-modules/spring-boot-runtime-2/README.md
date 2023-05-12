@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [启动Spring Boot应用程序时配置堆大小](docs/启动SpringBoot应用程序时配置堆大小.md)
-+ [CORS与Spring](docs/CORS与Spring.md)
-+ [Spring Boot 2中的Max HTTP Header Size](docs/SpringBoot2中的Max-HTTP-Header-Size.md)
++ [启动Spring Boot应用程序时配置堆大小](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-heap-size.html)
++ [CORS与Spring](http://tu-yucheng.github.io/springboot/2023/05/12/spring-cors.html)
++ [Spring Boot 2中的Max HTTP Header Size](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-max-http-header-size.html)
 
 - 更多文章： [[<-- prev]](../spring-boot-runtime-1/README.md)

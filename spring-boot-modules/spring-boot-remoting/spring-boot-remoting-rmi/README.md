@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用RMI进行Spring远程处理](../docs/使用RMI进行Spring远程处理.md)
++ [使用RMI进行Spring远程处理](http://tu-yucheng.github.io/springboot/2023/05/12/spring-remoting-rmi.html)

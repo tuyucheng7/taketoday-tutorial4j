@@ -2,4 +2,4 @@
 
 ## 相关文章
 
-+ [使用Swagger Codegen进行自定义验证](../docs/使用Swagger-Codegen进行自定义验证.md)
++ [使用Swagger Codegen进行自定义验证](http://tu-yucheng.github.io/springboot/2023/05/12/java-swagger-custom-validation.html)
