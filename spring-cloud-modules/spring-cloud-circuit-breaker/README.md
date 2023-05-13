@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Cloud Circuit Breaker快速入门](docs/SpringCloud-Circuit-Breaker快速入门.md)
++ [Spring Cloud Circuit Breaker快速入门](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-circuit-breaker.html)

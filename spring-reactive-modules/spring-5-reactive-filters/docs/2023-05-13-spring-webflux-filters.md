@@ -1,3 +1,11 @@
+---
+layout: post
+title:  Spring WebFlux过滤器
+category: spring-reactive
+copyright: spring-reactive
+excerpt: Spring WebFlux
+---
+
 ## 1. 概述
 
 过滤器的使用在Web应用程序中很普遍，因为它们为我们提供了一种无需更改端点即可修改请求或响应的方法。
@@ -152,3 +160,5 @@ public void whenPlayerNameIsTest_thenHandlerFilterFunctionIsApplied() {
 我们在本教程中介绍了这两种类型的WebFlux过滤器，并查看了一些代码示例。
 
 有关WebFlux框架的更多信息，请查看[文档](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/spring-reactive-modules/spring-5-reactive-filters)上获得。

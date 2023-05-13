@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [Spring-@Component注解](docs/Spring-@Component注解.md)
-+ [在抽象类上使用Spring的@Autowired注解](docs/在抽象类上使用Spring的@Autowired注解.md)
++ [Spring-@Component注解](http://tu-yucheng.github.io/spring/2023/05/13/spring-component-annotation.html)
++ [在抽象类上使用Spring的@Autowired注解](http://tu-yucheng.github.io/spring/2023/05/13/spring-autowired-abstract-class.html)
 
 - 更多文章： [[<-- prev]](../spring-di-3/README.md)

@@ -12,4 +12,4 @@ customer-mongodb-sink：用于接收数据的自定义应用程序
 
 ## 相关文章
 
-+ [使用Spring Cloud Data Flow的ETL](../docs/使用SpringCloud数据流的ETL.md)
++ [使用Spring Cloud Data Flow的ETL](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-data-flow-etl.html)

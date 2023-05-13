@@ -4,11 +4,11 @@
 
 ## 相关文章
 
-+ [Spring Integration简介](docs/Spring-Integration简介.md)
-+ [Spring集成中的安全性](docs/Spring集成中的安全性.md)
-+ [Spring Integration Java DSL](docs/Spring-Integration-Java-DSL.md)
-+ [Spring Integration中的事务支持](docs/Spring-Integration中的事务支持.md)
-+ [在Spring Integration中使用子流](docs/在Spring-Integration中使用子流.md)
++ [Spring Integration简介](http://tu-yucheng.github.io/spring/2023/05/13/spring-integration.html)
++ [Spring集成中的安全性](http://tu-yucheng.github.io/spring/2023/05/13/spring-integration-security.html)
++ [Spring Integration Java DSL](http://tu-yucheng.github.io/spring/2023/05/13/spring-integration-java-dsl.html)
++ [Spring Integration中的事务支持](http://tu-yucheng.github.io/spring/2023/05/13/spring-integration-transaction.html)
++ [在Spring Integration中使用子流](http://tu-yucheng.github.io/spring/2023/05/13/spring-integration-subflows.html)
 
 ## 运行示例
 

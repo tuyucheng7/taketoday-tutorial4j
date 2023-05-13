@@ -2,11 +2,11 @@
 
 ## 相关文章
 
-+ [Spring Cloud AWS S3](docs/SpringCloudAWS–S3.md)
-+ [Spring Cloud AWS EC2](docs/SpringCloudAWS-EC2.md)
-+ [Spring Cloud AWS RDS](docs/SpringCloudAWS–RDS.md)
-+ [Spring Cloud AWS 消息支持](docs/SpringCloudAWS–消息支持.md)
-+ [使用Spring Cloud的实例配置文件凭证](docs/使用SpringCloud的实例配置文件凭证.md)
++ [Spring Cloud AWS S3](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-aws-s3.html)
++ [Spring Cloud AWS EC2](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-aws-ec2.html)
++ [Spring Cloud AWS RDS](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-aws-rds.html)
++ [Spring Cloud AWS 消息支持](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-aws-messaging.html)
++ [使用Spring Cloud的实例配置文件凭证](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-instance-profiles.html)
 
 ## 运行集成测试
 

@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [响应式应用程序中的Spring AMQP](docs/响应式应用程序中的SpringAMQP.md)
++ [响应式应用程序中的Spring AMQP](http://tu-yucheng.github.io/springreactive/2023/05/13/spring-amqp-reactive.html)

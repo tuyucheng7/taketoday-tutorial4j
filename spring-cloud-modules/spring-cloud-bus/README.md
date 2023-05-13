@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Cloud Bus](docs/SpringCloud-Bus.md)
++ [Spring Cloud Bus](http://tu-yucheng.github.io/springcloud/2023/05/13/spring-cloud-bus.html)

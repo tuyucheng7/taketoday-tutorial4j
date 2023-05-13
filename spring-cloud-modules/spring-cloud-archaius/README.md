@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [Spring Cloud与Netflix Archaius简介](docs/SpringCloud与Netflix-Archaius简介.md)
-+ [具有各种数据库配置的Netflix Archaius](docs/具有各种数据库配置的Netflix-Archaius.md)
++ [Spring Cloud与Netflix Archaius简介](http://tu-yucheng.github.io/springcloud/2023/05/13/netflix-archaius-spring-cloud-integration.html)
++ [具有各种数据库配置的Netflix Archaius](http://tu-yucheng.github.io/springcloud/2023/05/13/netflix-archaius-database-configurations.html)
 
 ## Basic Config
 

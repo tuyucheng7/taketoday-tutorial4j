@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [Spring Boot Actuator](docs/SpringBoot-Actuator.md)
-+ [Spring Security中的AuthenticationManagerResolver指南](docs/SpringSecurity中的AuthenticationManagerResolver指南.md)
-+ [Spring Webflux和CORS](docs/Spring-Webflux和CORS.md)
++ [Spring Boot Actuator](http://tu-yucheng.github.io/springreactive/2023/05/13/spring-boot-actuators.html)
++ [Spring Security中的AuthenticationManagerResolver指南](http://tu-yucheng.github.io/springreactive/2023/05/13/spring-security-authenticationmanagerresolver.html)
++ [Spring Webflux和CORS](http://tu-yucheng.github.io/springreactive/2023/05/13/spring-webflux-cors.html)

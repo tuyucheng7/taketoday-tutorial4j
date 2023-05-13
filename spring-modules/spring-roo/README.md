@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Roo快速指南](docs/Spring-Roo快速指南.md)
++ [Spring Roo快速指南](http://tu-yucheng.github.io/spring/2023/05/13/spring-roo.html)
