@@ -23,6 +23,7 @@
 
       <module>spring-5</module>
       <module>spring-5-webflux-2</module>
+      <module>spring-actuator</module>
       <module>spring-aop-1</module>
       <module>spring-aop-2</module>
       <module>spring-bom</module>
