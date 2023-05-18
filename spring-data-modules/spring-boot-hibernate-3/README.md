@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [Hibernate 3与Spring](docs/Hibernate3与Spring.md)
-+ [HibernateException：没有Hibernate会话绑定到Hibernate 3中的线程](docs/HibernateException-没有Hibernate会话绑定到Hibernate3中的线程.md)
++ [Hibernate 3与Spring](http://tu-yucheng.github.io/springdata/2023/05/18/hibernate3-spring.html)
++ [HibernateException：没有Hibernate会话绑定到Hibernate 3中的线程](http://tu-yucheng.github.io/springdata/2023/05/18/no-hibernate-session-bound-to-thread-exception.html)
 
 ## 快速开始
 

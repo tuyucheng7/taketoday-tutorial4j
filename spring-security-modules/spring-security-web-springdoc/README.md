@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [springdoc-openapi中的表单登录和基本身份验证](docs/springdoc-openapi中的表单登录和基本身份验证.md)
++ [springdoc-openapi中的表单登录和基本身份验证](http://tu-yucheng.github.io/springsecurity/2023/05/17/springdoc-openapi-form-login-and-basic-authentication.html)
 
 ## 运行项目
 

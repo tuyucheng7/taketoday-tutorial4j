@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [Spring Security中的X509身份验证](docs/SpringSecurity中的X509身份验证.md)
++ [Spring Security中的X509身份验证](http://tu-yucheng.github.io/springsecurity/2023/05/17/x-509-authentication-in-spring-security.html)
 
 ## 注意
 

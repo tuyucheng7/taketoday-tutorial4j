@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Security通过Amazon Cognito进行身份验证](docs/使用SpringSecurity通过AmazonCognito进行身份验证.md)
++ [使用Spring Security通过Amazon Cognito进行身份验证](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-oauth-cognito.html)

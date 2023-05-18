@@ -4,9 +4,9 @@
 
 ## 相关文章
 
-+ [Spring Security LDAP简介](docs/SpringSecurity-LDAP简介.md)
-+ [Spring LDAP概述](docs/SpringLDAP概述.md)
-+ [Spring Data LDAP指南](docs/SpringData-LDAP指南.md)
++ [Spring Security LDAP简介](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-ldap.html)
++ [Spring LDAP概述](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-ldap.html)
++ [Spring Data LDAP指南](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-data-ldap.html)
 
 ## 注意
 

@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [Spring Security和OIDC(旧版)](docs/SpringSecurity和OIDC(旧版).md)
++ [Spring Security和OIDC(旧版)](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-openid-connect-legacy.html)
 
 ## 运行项目
 

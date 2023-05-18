@@ -4,9 +4,9 @@
 
 ## 相关文章
 
-+ [REST与WebSockets](docs/REST与WebSockets.md)
-+ [Security和WebSocket简介](docs/Security和WebSocket简介.md)
-+ [Spring WebSockets向特定用户发送消息](docs/SpringWebSockets向特定用户发送消息.md)
++ [REST与WebSockets](http://tu-yucheng.github.io/springsecurity/2023/05/17/rest-vs-websockets.html)
++ [Security和WebSocket简介](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-websockets.html)
++ [Spring WebSockets向特定用户发送消息](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-websockets-send-message-to-user.html)
 
 ## 运行项目
 

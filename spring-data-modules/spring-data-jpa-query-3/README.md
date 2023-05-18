@@ -4,10 +4,10 @@
 
 ## 相关文章
 
-+ [使用Spring Data JPA按日期和时间查询实体](docs/使用SpringDataJPA按日期和时间查询实体.md)
-+ [JPA和Hibernate：Criteria、JPQL、HQL查询](docs/JPA和Hibernate-Criteria-JPQL-HQLQuery.md)
-+ [使用Spring Data JPA的Specifications连接表](docs/使用SpringDataJPA的Specifications连接表.md)
-+ [Spring Data JPA中的NonUniqueResultException](docs/SpringDataJPA中的NonUniqueResultException.md)
-+ [Spring Data Repositories-集合与流](docs/SpringDataRepositories-集合与流.md)
++ [使用Spring Data JPA按日期和时间查询实体](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-query-by-date.html)
++ [JPA和Hibernate：Criteria、JPQL、HQL查询](http://tu-yucheng.github.io/springdata/2023/05/18/jpql-hql-criteria-query.html)
++ [使用Spring Data JPA的Specifications连接表](http://tu-yucheng.github.io/springdata/2023/05/18/spring-jpa-joining-tables.html)
++ [Spring Data JPA中的NonUniqueResultException](http://tu-yucheng.github.io/springdata/2023/05/18/spring-jpa-non-unique-result-exception.html)
++ [Spring Data Repositories-集合与流](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-collections-vs-stream.html)
 
 - 更多文章: [[<-- prev]](../spring-data-jpa-query-2/README.md)

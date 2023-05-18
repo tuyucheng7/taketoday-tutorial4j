@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-- [如何在Spring Security中使用Thymeleaf](docs/SpringSecurity中使用Thymeleaf.md)
-- [使用Thymeleaf显示登录用户的信息](docs/在Thymeleaf中显示登录用户的信息.md)
+- [Thymeleaf中使用Spring Security](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-thymeleaf.html)
+- [在Thymeleaf中显示登录用户的信息](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-thymeleaf-user-info.html)

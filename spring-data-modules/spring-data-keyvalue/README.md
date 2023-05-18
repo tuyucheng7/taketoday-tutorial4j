@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Data Key-Value指南](docs/SpringData-Key-Value指南.md)
++ [Spring Data Key-Value指南](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-key-value.html)

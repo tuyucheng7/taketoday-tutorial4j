@@ -4,4 +4,4 @@ Spring Security与Auth0集成
 
 ## 相关文章
 
-+ [使用Auth0的Spring Security](docs/使用Auth0的SpringSecurity.md)
++ [使用Auth0的Spring Security](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-auth0.html)

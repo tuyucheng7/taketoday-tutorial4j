@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring Data Solr简介](docs/SpringData-Solr简介.md)
++ [Spring Data Solr简介](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-solr.html)

@@ -4,13 +4,13 @@
 
 ## 相关文章
 
-+ [Spring Data REST简介](docs/SpringData-REST简介.md)
-+ [在Spring Data REST中处理关系映射](docs/在SpringData-REST中处理关系.md)
-+ [AngularJS CRUD应用程序与Spring Data REST](docs/AngularJS-CRUD应用程序与SpringData-REST.md)
-+ [Spring Data REST中的投影和摘录](docs/SpringData-REST中的投影和摘录.md)
-+ [@RepositoryEventHandler与Spring Data REST事件](docs/带有@RepositoryEventHandler的SpringData-REST事件.md)
-+ [在Spring Data REST中自定义HTTP端点](docs/在SpringData-REST中自定义HTTP端点.md)
-+ [在Spring Boot中使用SQLite](docs/在SpringBoot中使用SQLite.md)
++ [Spring Data REST简介](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-rest-intro.html)
++ [在Spring Data REST中处理关系映射](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-rest-relationships.html)
++ [AngularJS CRUD应用程序与Spring Data REST](http://tu-yucheng.github.io/springdata/2023/05/18/angularjs-crud-with-spring-data-rest.html)
++ [Spring Data REST中的投影和摘录](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-rest-projections-excerpts.html)
++ [@RepositoryEventHandler与Spring Data REST事件](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-rest-events.html)
++ [在Spring Data REST中自定义HTTP端点](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-rest-customize-http-endpoints.html)
++ [在Spring Boot中使用SQLite](http://tu-yucheng.github.io/springdata/2023/05/18/spring-boot-sqlite.html)
 
 - 更多文章： [[next -->]](../spring-data-rest-2/README.md)
 

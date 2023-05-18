@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Spring Security摘要认证](docs/SpringSecurity摘要认证.md)
-+ [带有摘要式身份验证的RestTemplate](docs/带有摘要式身份验证的RestTemplate.md)
++ [Spring Security摘要认证](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-digest-authentication.html)
++ [带有摘要式身份验证的RestTemplate](http://tu-yucheng.github.io/springsecurity/2023/05/17/resttemplate-digest-authentication.html)

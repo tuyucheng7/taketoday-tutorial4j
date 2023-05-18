@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Data的Spring Boot应用程序中的DynamoDB](docs/使用SpringData的SpringBoot应用程序中的DynamoDB.md)
++ [使用Spring Data的Spring Boot应用程序中的DynamoDB](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-dynamodb.html)

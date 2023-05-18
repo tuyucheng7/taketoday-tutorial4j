@@ -1,8 +1,8 @@
 ## 相关文章
 
-+ [Spring Data Couchbase简介](docs/SpringData-Couchbase简介.md)
-+ [Spring Data Couchbase中的实体验证、乐观锁定和查询一致性](docs/SpringData-Couchbase中的实体验证-乐观锁定和查询一致性.md)
-+ [Spring Data Couchbase中的多桶和空间视图查询](docs/SpringData-Couchbase中的多桶和空间视图查询.md)
++ [Spring Data Couchbase简介](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-couchbase.html)
++ [Spring Data Couchbase中的实体验证、乐观锁定和查询一致性](http://tu-yucheng.github.io/springdata/2023/05/18/entity-validation-locking-and-query-consistency-in-spring-data-couchbase.html)
++ [Spring Data Couchbase中的多桶和空间视图查询](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-couchbase-buckets-and-spatial-view-queries.html)
 
 ## 概述
 

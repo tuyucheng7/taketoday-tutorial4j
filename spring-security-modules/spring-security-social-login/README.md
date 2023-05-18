@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用Spring Social进行二次Facebook登录](docs/使用SpringSocial进行二次Facebook登录.md)
++ [使用Spring Social进行二次Facebook登录](http://tu-yucheng.github.io/springsecurity/2023/05/17/facebook-authentication-with-spring-security-and-social.html)

@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [Spring Security和OIDC](docs/SpringSecurity和OIDC.md)
-+ [Spring Security来自JWT的映射权限](docs/SpringSecurity来自JWT的映射权限.md)
++ [Spring Security和OIDC](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-openid-connect-legacy.html)
++ [Spring Security来自JWT的映射权限](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-map-authorities-jwt.html)
 
 ## 运行项目
 ```

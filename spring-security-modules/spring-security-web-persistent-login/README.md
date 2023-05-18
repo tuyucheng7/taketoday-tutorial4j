@@ -4,7 +4,7 @@
 
 ## 相关文章
 
-+ [Spring Security使用持久层的RememberMe](docs/SpringSecurity使用持久层的RememberMe.md)
++ [Spring Security使用持久层的RememberMe](http://tu-yucheng.github.io/springsecurity/2023/05/17/spring-security-persistent-remember-me.html)
 
 ## 构建项目
 

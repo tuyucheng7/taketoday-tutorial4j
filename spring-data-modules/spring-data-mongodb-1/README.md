@@ -1,12 +1,12 @@
 ## 相关文章
 
-+ [Spring Data MongoDB简介](docs/SpringData-MongoDB简介.md)
-+ [Spring Data MongoDB查询指南](docs/SpringData-MongoDB查询指南.md)
-+ [Spring Data MongoDB索引、注解和转换器](docs/SpringData-MongoDB索引-注解和转换器.md)
-+ [Spring Data MongoDB中的自定义级联](docs/SpringData-MongoDB中的自定义级联.md)
-+ [Spring Data MongoDB：Projection和Aggregations](docs/SpringData-MongoDB投影和聚合.md)
-+ [Spring Data注解](docs/SpringData注解.md)
-+ [Spring Data MongoDB事务](docs/SpringData-MongoDB事务.md)
++ [Spring Data MongoDB简介](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-mongodb-tutorial.html)
++ [Spring Data MongoDB查询指南](http://tu-yucheng.github.io/springdata/2023/05/18/queries-in-spring-data-mongodb.html)
++ [Spring Data MongoDB索引、注解和转换器](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-mongodb-index-annotations-converter.html)
++ [Spring Data MongoDB中的自定义级联](http://tu-yucheng.github.io/springdata/2023/05/18/cascading-with-dbref-and-lifecycle-events-in-spring-data-mongodb.html)
++ [Spring Data MongoDB：Projection和Aggregations](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-mongodb-projections-aggregations.html)
++ [Spring Data注解](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-annotations.html)
++ [Spring Data MongoDB事务](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-mongodb-transactions.html)
 
 - 更多文章： [[next -->]](../spring-data-mongodb-2/README.md)
 
