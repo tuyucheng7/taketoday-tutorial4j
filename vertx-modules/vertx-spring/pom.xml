@@ -48,6 +48,6 @@
 	</dependencies>
 
 	<properties>
-		<vertx.version>3.4.1</vertx.version>
+		<vertx.version>3.9.15</vertx.version>
 	</properties>
 </project>
