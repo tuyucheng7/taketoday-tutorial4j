@@ -15,7 +15,7 @@ Taketoday Tutorial4j
 
 ## 多版本JDK构建
 
-就目前而言，大多数模块都是基于JDK 17(JAVA_HOME)才能正确构建和运行。此外，还有一些项目基于JDK 8/19，我们通过Maven工具链来保证这些模块能够使用单独的JDK构建。
+就目前而言，大多数模块都是基于JDK 17(JAVA_HOME)才能正确构建和运行。此外，还有一些模块基于JDK 8/19，我们通过Maven工具链来保证这些模块能够使用单独的JDK构建。
 
 首先，你需要同时下载这些版本的JDK。然后配置Maven工具链，在你用户目录下的.m2文件夹中创建一个toolchains.xml文件：
 
@@ -44,7 +44,7 @@ Taketoday Tutorial4j
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>D:\\develop-tools\\jdk-8</jdkHome>
+            <jdkHome>D:\\xxx\\jdk-8</jdkHome>
         </configuration>
     </toolchain>
     <toolchain>
@@ -54,7 +54,7 @@ Taketoday Tutorial4j
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>D:\\develop-tools\\jdk-19.0.1</jdkHome>
+            <jdkHome>D:\\xxx\\jdk-19.0.1</jdkHome>
         </configuration>
     </toolchain>
 </toolchains>
@@ -72,7 +72,7 @@ Taketoday Tutorial4j
 | live        | *LiveTest                   |
 | parents     |         None                    |
 
-> 实时(live)测试是指需要与外部系统进行交互的测试，例如数据库、消息代理、文件系统等。
+> **实时(live)测试是指需要与外部系统进行交互的测试，例如数据库、消息代理、文件系统等**。
 
 ## 构建项目
 
@@ -90,11 +90,11 @@ Taketoday Tutorial4j
 
 要构建特定模块，请在模块目录中运行命令：`mvn clean install`。
 
-你的模块可能是父模块的一部分，例如`parent-boot-2`，`parent-spring-5`等，然后你需要先构建父模块，这样才能构建你的模块。我们创建了一个`parents` profile，你可以使用它来构建父模块，只需按以下方式运行profile：`mvn clean install -Pparents`
+你的模块可能是父模块的一部分，例如`parent-boot-2`，`parent-spring-5`等，然后你需要先构建父模块，这样才能构建你的模块。我们创建了一个`parents` profile，你可以使用它来构建父模块，只需按以下方式运行profile：`mvn clean install -Pparents`。
 
 ## 从仓库的根目录构建模块
 
-要从仓库的根目录构建特定模块，请在根目录中运行命令：`mvn clean install --pl ddd,annotations -Pall`。
+要从仓库的根目录构建特定模块，请在根目录中运行命令：`mvn clean install --pl ddd,annotations -Punit`。
 
 这里的ddd和annotations是我们要构建的模块，unit是要执行的测试类型的Maven profile。
 
@@ -106,9 +106,9 @@ Taketoday Tutorial4j
 
 ## 导入到IDE
 
-该仓库包含大量模块，当你使用单个模块时，无需导入所有模块(或构建所有模块)-你只需在Eclipse或IntelliJ中导入该特定模块即可。
+该仓库包含大量模块，当你使用单个模块时，无需导入所有模块(或构建所有模块) - 你只需在Eclipse或IntelliJ中导入该特定模块即可。
 
-当你将项目导入到Intellij IDEA中时，默认不会加载任何子模块。你需要在IDE中转到Maven -> Profiles，然后选择你想要构建的子模块所属的Profile，最后刷新等待IDE索引构建完成：
+当你将项目导入到Intellij IDEA中时，默认不会加载任何子模块。你需要在IDE中转到Maven -> Profiles，然后选择你想要构建的子模块所属的profile，最后刷新等待IDE索引构建完成：
 
 <img src=".mvn/img_1.png">
 
