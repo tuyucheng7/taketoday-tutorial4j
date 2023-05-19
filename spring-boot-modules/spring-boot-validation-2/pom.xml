@@ -57,6 +57,6 @@
 
 	<properties>
 		<hibernate-validator.ap.version>6.2.0.Final</hibernate-validator.ap.version>
-		<spring.boot.version>3.0.0</spring.boot.version>
+		<spring.boot.version>3.1.0</spring.boot.version>
 	</properties>
 </project>
