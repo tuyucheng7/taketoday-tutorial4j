@@ -4,10 +4,10 @@
 
 ## 相关文章
 
-+ [Spring中的集成测试](docs/Spring中的集成测试.md)
-+ [使用Spring MVC上传文件](docs/使用SpringMVC上传文件.md)
-+ [HtmlUnit简介](docs/HtmlUnit简介.md)
-+ [使用Spring MVC上传和显示Excel文件](docs/使用SpringMVC上传和显示Excel文件.md)
-+ [web.xml与Spring的初始化程序](docs/web.xml与Spring的初始化程序.md)
-+ [没有web.xml的Java Web应用程序](docs/没有web.xml的JavaWeb应用程序.md)
-+ [在JavaScript中访问Spring MVC模型对象](docs/在JavaScript中访问SpringMVC模型对象.md)
++ [Spring中的集成测试](http://tu-yucheng.github.io/springweb/2023/05/19/integration-testing-in-spring.html)
++ [使用Spring MVC上传文件](http://tu-yucheng.github.io/springweb/2023/05/19/spring-file-upload.html)
++ [HtmlUnit简介](http://tu-yucheng.github.io/springweb/2023/05/19/htmlunit.html)
++ [使用Spring MVC上传和显示Excel文件](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-excel-files.html)
++ [web.xml与Spring的初始化程序](http://tu-yucheng.github.io/springweb/2023/05/19/spring-xml-vs-java-config.html)
++ [没有web.xml的Java Web应用程序](http://tu-yucheng.github.io/springweb/2023/05/19/java-web-app-without-web-xml.html)
++ [在JavaScript中访问Spring MVC模型对象](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-model-objects-js.html)

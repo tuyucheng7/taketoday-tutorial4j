@@ -4,10 +4,10 @@
 
 ## 相关文章
 
-+ [使用Spring MVC和Thymeleaf进行CSRF保护](docs/使用SpringMVC和Thymeleaf进行CSRF保护.md)
-+ [Thymeleaf中的条件语句](docs/Thymeleaf中的条件语句.md)
-+ [Thymeleaf中的迭代](docs/Thymeleaf中的迭代.md)
-+ [Spring和Thymeleaf对列表进行分页](docs/带有Thymeleaf分页的Spring列表.md)
++ [使用Spring MVC和Thymeleaf进行CSRF保护](http://tu-yucheng.github.io/springweb/2023/05/19/csrf-thymeleaf-with-spring-security.html)
++ [Thymeleaf中的条件语句](http://tu-yucheng.github.io/springweb/2023/05/19/spring-thymeleaf-conditionals.html)
++ [Thymeleaf中的迭代](http://tu-yucheng.github.io/springweb/2023/05/19/thymeleaf-iteration.html)
++ [带有Thymeleaf分页的Spring列表](http://tu-yucheng.github.io/springweb/2023/05/19/spring-thymeleaf-pagination.html)
 
 - 更多文章： [[<-- prev]](../spring-thymeleaf-3/README.md)
 - 更多文章： [[next -->]](../spring-thymeleaf-5/README.md)

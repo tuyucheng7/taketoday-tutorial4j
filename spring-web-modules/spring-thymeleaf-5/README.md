@@ -4,11 +4,11 @@
 
 ## 相关文章
 
-+ [在Spring Boot中更改Thymeleaf模板目录](docs/在SpringBoot中更改Thymeleaf模板目录.md)
-+ [如何使用Maven创建可执行JAR](docs/如何使用Maven创建可执行JAR.md)
-+ [Spring MVC Data和Thymeleaf](docs/SpringMVC-Data和Thymeleaf.md)
-+ [使用Spring Boot和Thymeleaf上传图像](docs/使用SpringBoot和Thymeleaf上传图像.md)
-+ [在Thymeleaf中获取URL属性值](docs/在Thymeleaf中获取URL属性值.md)
-+ [Thymeleaf中的表达式类型](docs/Thymeleaf中的表达式类型.md)
++ [在Spring Boot中更改Thymeleaf模板目录](http://tu-yucheng.github.io/springweb/2023/05/19/spring-thymeleaf-template-directory.html)
++ [如何使用Maven创建可执行JAR](http://tu-yucheng.github.io/springweb/2023/05/19/executable-jar-with-maven.html)
++ [Spring MVC Data和Thymeleaf](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-thymeleaf-data.html)
++ [使用Spring Boot和Thymeleaf上传图像](http://tu-yucheng.github.io/springweb/2023/05/19/spring-boot-thymeleaf-image-upload.html)
++ [在Thymeleaf中获取URL属性值](http://tu-yucheng.github.io/springweb/2023/05/19/thymeleaf-url-attribute-value.html)
++ [Thymeleaf中的表达式类型](http://tu-yucheng.github.io/springweb/2023/05/19/java-thymeleaf-expression-types.html)
 
 - 更多文章： [[<-- prev]](../spring-thymeleaf-4/README.md)

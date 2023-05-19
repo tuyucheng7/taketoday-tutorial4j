@@ -1,17 +1,15 @@
 ## Spring MVC Basics
 
-This module contains articles about the basics of Spring MVC. Articles about more specific areas of Spring MVC have
-their own module. 
+本模块包含有关Spring MVC基础知识的文章。
 
-### The Course
-The "REST With Spring" Classes: https://bit.ly/restwithspring
+## 相关文章
 
-### Relevant Articles: 
-- [Spring MVC Tutorial](https://www.baeldung.com/spring-mvc-tutorial)
-- [An Intro to the Spring DispatcherServlet](https://www.baeldung.com/spring-dispatcherservlet)
-- [The Spring @Controller and @RestController Annotations](https://www.baeldung.com/spring-controller-vs-restcontroller)
-- [A Guide to the ViewResolver in Spring MVC](https://www.baeldung.com/spring-mvc-view-resolver-tutorial)
-- [Guide to Spring Handler Mappings](https://www.baeldung.com/spring-handler-mappings)
-- [Spring MVC Content Negotiation](https://www.baeldung.com/spring-mvc-content-negotiation-json-xml)
-- [Spring @RequestMapping New Shortcut Annotations](https://www.baeldung.com/spring-new-requestmapping-shortcuts)
-- More articles: [[more -->]](../spring-mvc-basics-2)
++ [Spring MVC教程](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-tutorial.html)
++ [Spring DispatcherServlet简介](http://tu-yucheng.github.io/springweb/2023/05/19/spring-dispatcherservlet.html)
++ [Spring @Controller和@RestController注解](http://tu-yucheng.github.io/springweb/2023/05/19/spring-controller-vs-restcontroller.html)
++ [Spring MVC中的ViewResolver指南](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-view-resolver-tutorial.html)
++ [Spring HandlerMapping指南](http://tu-yucheng.github.io/springweb/2023/05/19/spring-handler-mappings.html)
++ [Spring MVC内容协商](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-content-negotiation-json-xml.html)
++ [Spring @RequestMapping新的快捷注解](http://tu-yucheng.github.io/springweb/2023/05/19/spring-new-requestmapping-shortcuts.html)
+
+- 更多文章： [[next -->]](../spring-mvc-basics-2/README.md)

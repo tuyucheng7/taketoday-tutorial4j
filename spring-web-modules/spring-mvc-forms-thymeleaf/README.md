@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [Spring MVC中的会话属性](docs/SpringMVC中的会话属性.md)
-+ [在Thymeleaf中绑定列表](docs/在Thymeleaf中绑定列表.md)
-+ [Spring中的Multipart请求处理](docs/Spring中的Multipart请求处理.md)
++ [Spring MVC中的会话属性](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-session-attributes.html)
++ [在Thymeleaf中绑定列表](http://tu-yucheng.github.io/springweb/2023/05/19/thymeleaf-list.html)
++ [Spring中的Multipart请求处理](http://tu-yucheng.github.io/springweb/2023/05/19/sprint-boot-multipart-requests.html)
