@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [Spring MVC Streaming和SSE请求处理](docs/SpringMVC-Streaming和SSE请求处理.md)
-+ [Spring中的接口驱动控制器](docs/Spring中的接口驱动控制器.md)
-+ [从Spring MVC控制器返回纯HTML](docs/从SpringMVC控制器返回纯HTML.md)
++ [Spring MVC Streaming和SSE请求处理](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-sse-streams.html)
++ [Spring中的接口驱动控制器](http://tu-yucheng.github.io/springweb/2023/05/19/spring-interface-driven-controllers.html)
++ [从Spring MVC控制器返回纯HTML](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-return-html.html)

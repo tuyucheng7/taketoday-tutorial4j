@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [开始使用Crash](docs/开始使用Crash.md)
++ [CRaSH使用入门](http://tu-yucheng.github.io/springweb/2023/05/19/jvm-crash-shell.html)
 
-## Spring MVC with XML Configuration Example Project
+## 带有XML配置的Spring MVC示例项目
 
 访问示例JSP页面: `http://localhost:8080/spring-mvc-crash/welcome.htm

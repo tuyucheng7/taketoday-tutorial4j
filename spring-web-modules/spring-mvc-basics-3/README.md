@@ -1,13 +1,16 @@
-## Spring MVC Basics 3
+## Spring MVC Basics
 
-This module contains articles about Spring MVC
+本模块包含有关Spring MVC基础知识的文章。
 
-## Relevant articles:
-- [How to Read HTTP Headers in Spring REST Controllers](https://www.baeldung.com/spring-rest-http-headers)
-- [A Custom Data Binder in Spring MVC](https://www.baeldung.com/spring-mvc-custom-data-binder)
-- [Spring Validation Message Interpolation](https://www.baeldung.com/spring-validation-message-interpolation)
-- [Spring MVC Custom Validation](https://www.baeldung.com/spring-mvc-custom-validator)
-- [Using Enums as Request Parameters in Spring](https://www.baeldung.com/spring-enum-request-param)
-- [Guide to Flash Attributes in a Spring Web Application](https://www.baeldung.com/spring-web-flash-attributes)
-- [Reading HttpServletRequest Multiple Times in Spring](https://www.baeldung.com/spring-reading-httpservletrequest-multiple-times)
-- More articles: [[<-- prev]](../spring-mvc-basics-2)[[more -->]](../spring-mvc-basics-4)
+## 相关文章
+
++ [如何在Spring REST控制器中读取HTTP标头](http://tu-yucheng.github.io/springweb/2023/05/19/spring-rest-http-headers.html)
++ [Spring MVC中的自定义数据绑定器](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-custom-data-binder.html)
++ [Spring验证消息插值](http://tu-yucheng.github.io/springweb/2023/05/19/spring-validation-message-interpolation.html)
++ [Spring MVC自定义验证](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-custom-validator.html)
++ [在Spring中使用枚举作为请求参数](http://tu-yucheng.github.io/springweb/2023/05/19/spring-enum-request-param.html)
++ [Spring Web应用程序中的Flash属性指南](http://tu-yucheng.github.io/springweb/2023/05/19/spring-web-flash-attributes.html)
++ [Spring中多次读取HttpServletRequest](http://tu-yucheng.github.io/springweb/2023/05/19/spring-reading-httpservletrequest-multiple-times.html)
+
+- 更多文章： [[<-- prev]](../spring-mvc-basics-2/README.md)
+- 更多文章： [[next -->]](../spring-mvc-basics-3/README.md)

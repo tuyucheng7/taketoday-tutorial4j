@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [使用Spring和JPA Criteria的REST查询语言](docs/使用Spring和JPA-Criteria的REST查询语言.md)
-+ [使用Spring Data JPA Criteria的REST查询语言](docs/使用SpringDataJPA-Criteria的REST查询语言.md)
-+ [使用Spring Data JPA和Querydsl的REST查询语言](docs/使用SpringDataJPA和Querydsl的REST查询语言.md)
-+ [REST查询语言-高级搜索操作](docs/REST查询语言-高级搜索操作.md)
-+ [使用RSQL的REST查询语言](docs/使用RSQL的REST查询语言.md)
-+ [REST查询语言-实现OR运算](docs/REST查询语言-实现或运算.md)
++ [使用Spring和JPA Criteria的REST查询语言](http://tu-yucheng.github.io/springweb/2023/05/19/rest-search-language-spring-jpa-criteria.html)
++ [使用Spring Data JPA Criteria的REST查询语言](http://tu-yucheng.github.io/springweb/2023/05/19/rest-api-search-language-spring-data-specifications.html)
++ [使用Spring Data JPA和Querydsl的REST查询语言](http://tu-yucheng.github.io/springweb/2023/05/19/rest-api-search-language-spring-data-querydsl.html)
++ [REST查询语言-高级搜索操作](http://tu-yucheng.github.io/springweb/2023/05/19/rest-api-query-search-language-more-operations.html)
++ [使用RSQL的REST查询语言](http://tu-yucheng.github.io/springweb/2023/05/19/rest-api-search-language-rsql-fiql.html)
++ [REST查询语言-实现OR运算](http://tu-yucheng.github.io/springweb/2023/05/19/rest-api-query-search-or-operation.html)
 
 ## 构建项目
 

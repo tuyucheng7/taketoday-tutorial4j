@@ -1,7 +1,7 @@
 ## Spring REST Angular
 
-This module contains articles about REST APIs with Spring and Angular
+本模块包含有关使用Spring和Angular的REST API的文章
 
-### Relevant Articles:
+## 相关文章
 
-- [Pagination with Spring REST and AngularJS table](https://www.baeldung.com/pagination-with-a-spring-rest-api-and-an-angularjs-table)
++ [使用Spring REST和AngularJS表进行分页](http://tu-yucheng.github.io/springweb/2023/05/19/pagination-with-a-spring-rest-api-and-an-angularjs-table.html)

@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Spring REST Shell介绍](docs/SpringREST-Shell介绍.md)
++ [Spring REST Shell介绍](http://tu-yucheng.github.io/springweb/2023/05/19/spring-rest-shell.html)
