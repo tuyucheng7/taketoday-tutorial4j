@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = OrderApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class OrderRestEndpointIntegrationTest {
+class OrderRestEndpointManualTest {
 
 	@LocalServerPort
 	private int port;
