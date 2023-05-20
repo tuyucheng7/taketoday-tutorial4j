@@ -4,5 +4,5 @@
 
 ## 相关文章
 
-+ [Micronaut框架简介](docs/Micronaut框架简介.md)
-+ [Micronaut与Spring Boot](docs/Micronaut与SpringBoot.md)
++ [Micronaut框架简介](http://tu-yucheng.github.io/microservice/2023/05/20/micronaut.html)
++ [Micronaut与Spring Boot](http://tu-yucheng.github.io/microservice/2023/05/20/micronaut-vs-spring-boot.html)

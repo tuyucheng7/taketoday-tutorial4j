@@ -15,7 +15,7 @@
 
 ## 相关文章
 
-+ [Axon框架指南](docs/Axon框架指南.md)
++ [Axon框架指南](../helidon/docs/Axon框架指南.md)
 + [Axon中的多实体聚合](docs/Axon中的多实体聚合.md)
 + [Axon中的快照聚合](docs/Axon中的快照聚合.md)
 + [在Axon框架中调度查询](docs/在Axon框架中调度查询.md)

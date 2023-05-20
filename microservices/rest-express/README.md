@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用RestExpress的RESTful微服务](docs/使用RestExpress的RESTful微服务.md)
++ [使用RestExpress的RESTful微服务](http://tu-yucheng.github.io/microservice/2023/05/20/java-restexpress-guide.html)

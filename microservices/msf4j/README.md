@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [使用MSF4J的Java微服务简介](docs/使用MSF4J的Java微服务简介.md)
++ [使用MSF4J的Java微服务简介](http://tu-yucheng.github.io/microservice/2023/05/20/msf4j.html)
