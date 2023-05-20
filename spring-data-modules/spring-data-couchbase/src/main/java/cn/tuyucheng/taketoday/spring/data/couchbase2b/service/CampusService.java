@@ -4,17 +4,18 @@ import cn.tuyucheng.taketoday.spring.data.couchbase.model.Campus;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
 
+import java.util.Optional;
 import java.util.Set;
 
 public interface CampusService {
 
-    Campus find(String id);
+   Optional<Campus> find(String id);
 
-    Set<Campus> findByName(String name);
+   Set<Campus> findByName(String name);
 
-    Set<Campus> findByLocationNear(Point point, Distance distance);
+   Set<Campus> findByLocationNear(Point point, Distance distance);
 
-    Set<Campus> findAll();
+   Set<Campus> findAll();
 
-    void save(Campus campus);
+   void save(Campus campus);
 }

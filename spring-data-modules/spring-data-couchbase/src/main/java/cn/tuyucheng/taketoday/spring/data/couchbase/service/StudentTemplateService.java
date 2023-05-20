@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.spring.data.couchbase.service;
 
 import cn.tuyucheng.taketoday.spring.data.couchbase.model.Student;
-import com.couchbase.client.java.view.ViewQuery;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,47 +8,50 @@ import org.springframework.data.couchbase.core.CouchbaseTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.data.couchbase.core.query.QueryCriteria.where;
 
 @Service
 @Qualifier("StudentTemplateService")
 public class StudentTemplateService implements StudentService {
 
-    private static final String DESIGN_DOC = "student";
+   private static final String DESIGN_DOC = "student";
 
-    private CouchbaseTemplate template;
+   private CouchbaseTemplate template;
 
-    @Autowired
-    public void setCouchbaseTemplate(CouchbaseTemplate template) {
-        this.template = template;
-    }
+   @Autowired
+   public void setCouchbaseTemplate(CouchbaseTemplate template) {
+      this.template = template;
+   }
 
-    public Student findOne(String id) {
-        return template.findById(id, Student.class);
-    }
+   public Optional<Student> findOne(String id) {
+      return Optional.of(template.findById(Student.class).one(id));
+   }
 
-    public List<Student> findAll() {
-        return template.findByView(ViewQuery.from(DESIGN_DOC, "all"), Student.class);
-    }
+   public List<Student> findAll() {
+      return template.findByQuery(Student.class).all();
+   }
 
-    public List<Student> findByFirstName(String firstName) {
-        return template.findByView(ViewQuery.from(DESIGN_DOC, "byFirstName"), Student.class);
-    }
+   public List<Student> findByFirstName(String firstName) {
+      return template.findByQuery(Student.class).matching(where("firstName").is(firstName)).all();
+   }
 
-    public List<Student> findByLastName(String lastName) {
-        return template.findByView(ViewQuery.from(DESIGN_DOC, "byLastName"), Student.class);
-    }
+   public List<Student> findByLastName(String lastName) {
+      return template.findByQuery(Student.class).matching(where("lastName").is(lastName)).all();
+   }
 
-    public void create(Student student) {
-        student.setCreated(DateTime.now());
-        template.insert(student);
-    }
+   public void create(Student student) {
+      student.setCreated(DateTime.now());
+      template.insertById(Student.class).one(student);
+   }
 
-    public void update(Student student) {
-        student.setUpdated(DateTime.now());
-        template.update(student);
-    }
+   public void update(Student student) {
+      student.setUpdated(DateTime.now());
+      template.upsertById(Student.class).one(student);
+   }
 
-    public void delete(Student student) {
-        template.remove(student);
-    }
+   public void delete(Student student) {
+      template.removeById(Student.class).oneEntity(student);
+   }
 }

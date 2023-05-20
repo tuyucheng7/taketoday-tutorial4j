@@ -9,45 +9,46 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class CampusServiceImpl implements CampusService {
 
-    private CampusRepository repo;
+   private CampusRepository repo;
 
-    @Autowired
-    public void setCampusRepository(CampusRepository repo) {
-        this.repo = repo;
-    }
+   @Autowired
+   public void setCampusRepository(CampusRepository repo) {
+      this.repo = repo;
+   }
 
-    @Override
-    public Campus find(String id) {
-        return repo.findOne(id);
-    }
+   @Override
+   public Optional<Campus> find(String id) {
+      return repo.findById(id);
+   }
 
-    @Override
-    public Set<Campus> findByName(String name) {
-        return repo.findByName(name);
-    }
+   @Override
+   public Set<Campus> findByName(String name) {
+      return repo.findByName(name);
+   }
 
-    @Override
-    public Set<Campus> findByLocationNear(Point point, Distance distance) {
-        return repo.findByLocationNear(point, distance);
-    }
+   @Override
+   public Set<Campus> findByLocationNear(Point point, Distance distance) {
+      return repo.findByLocationNear(point, distance);
+   }
 
-    @Override
-    public Set<Campus> findAll() {
-        Set<Campus> campuses = new HashSet<>();
-        Iterator<Campus> it = repo.findAll().iterator();
-        while (it.hasNext()) {
-            campuses.add(it.next());
-        }
-        return campuses;
-    }
+   @Override
+   public Set<Campus> findAll() {
+      Set<Campus> campuses = new HashSet<>();
+      Iterator<Campus> it = repo.findAll().iterator();
+      while (it.hasNext()) {
+         campuses.add(it.next());
+      }
+      return campuses;
+   }
 
-    @Override
-    public void save(Campus campus) {
-        repo.save(campus);
-    }
+   @Override
+   public void save(Campus campus) {
+      repo.save(campus);
+   }
 }

@@ -3,20 +3,21 @@ package cn.tuyucheng.taketoday.spring.data.couchbase2b.service;
 import cn.tuyucheng.taketoday.spring.data.couchbase.model.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentService {
 
-    Student findOne(String id);
+   Optional<Student> findOne(String id);
 
-    List<Student> findAll();
+   List<Student> findAll();
 
-    List<Student> findByFirstName(String firstName);
+   List<Student> findByFirstName(String firstName);
 
-    List<Student> findByLastName(String lastName);
+   List<Student> findByLastName(String lastName);
 
-    void create(Student student);
+   void create(Student student);
 
-    void update(Student student);
+   void update(Student student);
 
-    void delete(Student student);
+   void delete(Student student);
 }
