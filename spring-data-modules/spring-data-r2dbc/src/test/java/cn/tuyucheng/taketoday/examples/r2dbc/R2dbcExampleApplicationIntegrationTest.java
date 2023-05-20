@@ -1,10 +1,6 @@
 package cn.tuyucheng.taketoday.examples.r2dbc;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import java.util.List;
-
+import io.r2dbc.spi.ConnectionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import io.r2dbc.spi.ConnectionFactory;
 import reactor.core.publisher.Flux;
+
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -52,9 +53,7 @@ public class R2dbcExampleApplicationIntegrationTest {
             .expectStatus()
             .isOk()
             .expectBody(Account.class)
-            .value((acc) -> {
-               assertThat(acc.getId(), is(1l));
-            });
+            .value((acc) -> assertThat(acc.getId(), is(1L)));
    }
 
    @Test
@@ -67,9 +66,7 @@ public class R2dbcExampleApplicationIntegrationTest {
             .expectStatus()
             .isOk()
             .expectBody(List.class)
-            .value((accounts) -> {
-               assertThat(accounts.size(), not(is(0)));
-            });
+            .value((accounts) -> assertThat(accounts.size(), not(is(0))));
    }
 
 
@@ -84,8 +81,6 @@ public class R2dbcExampleApplicationIntegrationTest {
             .expectStatus()
             .is2xxSuccessful()
             .expectBody(Account.class)
-            .value((acc) -> {
-               assertThat(acc.getId(), is(notNullValue()));
-            });
+            .value((acc) -> assertThat(acc.getId(), is(notNullValue())));
    }
 }

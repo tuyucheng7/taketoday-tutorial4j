@@ -1,17 +1,17 @@
 package cn.tuyucheng.taketoday.examples.r2dbc;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 import io.netty.util.internal.StringUtil;
 import io.r2dbc.spi.ConnectionFactories;
 import io.r2dbc.spi.ConnectionFactory;
 import io.r2dbc.spi.ConnectionFactoryOptions;
 import io.r2dbc.spi.ConnectionFactoryOptions.Builder;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
 
-import static io.r2dbc.spi.ConnectionFactoryOptions.*;
+import static io.r2dbc.spi.ConnectionFactoryOptions.PASSWORD;
+import static io.r2dbc.spi.ConnectionFactoryOptions.USER;
 
 @Configuration
 public class DatasourceConfig {
@@ -28,8 +28,7 @@ public class DatasourceConfig {
          ob = ob.option(PASSWORD, properties.getPassword());
       }
 
-      ConnectionFactory cf = ConnectionFactories.get(ob.build());
-      return cf;
+      return ConnectionFactories.get(ob.build());
    }
 
 
@@ -41,13 +40,13 @@ public class DatasourceConfig {
                         Flux.from(c.createBatch()
                                     .add("drop table if exists Account")
                                     .add("create table Account(" +
-                                         "id IDENTITY(1,1)," +
-                                         "iban varchar(80) not null," +
-                                         "balance DECIMAL(18,2) not null)")
+                                          "id IDENTITY(1,1)," +
+                                          "iban varchar(80) not null," +
+                                          "balance DECIMAL(18,2) not null)")
                                     .add("insert into Account(iban,balance)" +
-                                         "values('BR430120980198201982',100.00)")
+                                          "values('BR430120980198201982',100.00)")
                                     .add("insert into Account(iban,balance)" +
-                                         "values('BR430120998729871000',250.00)")
+                                          "values('BR430120998729871000',250.00)")
                                     .execute())
                               .doFinally((st) -> c.close())
                   )
