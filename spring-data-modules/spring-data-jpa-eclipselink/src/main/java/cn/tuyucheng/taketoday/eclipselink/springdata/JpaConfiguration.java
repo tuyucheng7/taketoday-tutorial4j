@@ -4,7 +4,6 @@ import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
