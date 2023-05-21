@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-boot-dubbo</artifactId>
+   <version>1.0.0</version>
+   <packaging>pom</packaging>
+   <name>spring-boot-dubbo</name>
+   <description>Dubbo Samples Spring Boot</description>
+
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-2</artifactId>
+      <version>1.0.0</version>
+      <relativePath>../../parent-boot-2</relativePath>
+   </parent>
+
+   <modules>
+      <module>spring-boot-dubbo-interface</module>
+      <module>spring-boot-dubbo-provider</module>
+      <module>spring-boot-dubbo-consumer</module>
+   </modules>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-bom</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-context</artifactId>
+      </dependency>
+   </dependencies>
+
+   <properties>
+      <dubbo.version>3.2.0</dubbo.version>
+   </properties>
+</project>

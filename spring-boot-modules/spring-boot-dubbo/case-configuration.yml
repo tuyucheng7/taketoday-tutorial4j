@@ -1,0 +1,28 @@
+services:
+   zookeeper:
+      image: zookeeper:latest
+
+   provider:
+      type: app
+      basedir: spring-boot-dubbo-provider
+      mainClass: cn.tuyucheng.taketoday.dubbo.demo.provider.ProviderApplication
+      systemProps:
+         - zookeeper.address=zookeeper
+      waitPortsBeforeRun:
+         - zookeeper:2181
+      checkPorts:
+         - 20880
+      checkLog: "Current Spring Boot Application is await..."
+
+   test:
+      type: test
+      basedir: spring-boot-dubbo-consumer
+      tests:
+         - "**/*IT.class"
+      systemProps:
+         - zookeeper.address=zookeeper
+      waitPortsBeforeRun:
+         - zookeeper:2181
+         - provider:20880
+      depends_on:
+         - provider

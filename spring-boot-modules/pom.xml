@@ -89,6 +89,7 @@
       <module>spring-boot-docker</module>
       <module>spring-boot-docker-postgres</module>
       <module>spring-boot-drools</module>
+      <module>spring-boot-dubbo</module>
       <module>spring-boot-ejb</module>
       <module>spring-boot-environment</module>
       <module>spring-boot-exceptions</module>

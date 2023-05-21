@@ -1,0 +1,59 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-boot-dubbo-consumer</artifactId>
+
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>spring-boot-dubbo</artifactId>
+      <version>1.0.0</version>
+   </parent>
+
+   <dependencies>
+      <dependency>
+         <groupId>cn.tuyucheng.taketoday</groupId>
+         <artifactId>spring-boot-dubbo-interface</artifactId>
+         <version>${project.parent.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.dubbo</groupId>
+         <artifactId>dubbo-spring-boot-starter</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.dubbo</groupId>
+         <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
+         <type>pom</type>
+         <exclusions>
+            <exclusion>
+               <artifactId>slf4j-reload4j</artifactId>
+               <groupId>org.slf4j</groupId>
+            </exclusion>
+         </exclusions>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>repackage</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>
