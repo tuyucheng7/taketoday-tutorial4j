@@ -7,6 +7,5 @@
 + [在Spring中使用多个缓存管理器](http://tu-yucheng.github.io/springboot/2023/05/11/spring-multiple-cache-managers.html)
 + [测试Repository上的@Cacheable](http://tu-yucheng.github.io/springboot/2023/05/11/spring-data-testing-cacheable.html)
 + [Spring Boot Ehcache示例](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-ehcache.html)
-+ [在Spring Boot中获取所有缓存的Caffeine键](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-caffeine-spring-get-all-keys.html)
 
 - 更多文章： [[next -->]](../spring-boot-caching-2/README.md)
