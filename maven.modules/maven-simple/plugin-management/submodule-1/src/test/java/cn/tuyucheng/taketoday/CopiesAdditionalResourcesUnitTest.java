@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CopiesAdditionalResourcesUnitTest {
 
-	@Test
-	void givenAdditionalResource_whenCopyingFromSourceToDestination_thenShouldBeInDestination() {
-		URL resource = getClass().getClassLoader().getResource("json/include.json");
-		File destinationFile = new File(resource.getFile());
+   @Test
+   void givenAdditionalResource_whenCopyingFromSourceToDestination_thenShouldBeInDestination() {
+      URL resource = getClass().getClassLoader().getResource("json/include.json");
+      File destinationFile = new File(resource.getFile());
 
-		assertTrue(destinationFile.exists());
-	}
+      assertTrue(destinationFile.exists());
+   }
 }

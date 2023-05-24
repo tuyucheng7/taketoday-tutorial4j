@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Animal Sniffer Maven插件介绍](docs/Animal-Sniffer-Maven插件介绍.md)
++ [Animal Sniffer Maven插件介绍](http://tu-yucheng.github.io/maven/2023/05/24/maven-animal-sniffer.html)

@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [核心Maven插件指南](docs/核心Maven插件指南.md)
-+ [Maven Resources插件](docs/Maven-Resources插件.md)
-+ [Maven Verifier插件](docs/Maven-Verifier插件.md)
-+ [Maven Clean插件](docs/Maven-Clean插件.md)
-+ [Maven Enforcer插件](docs/Maven-Enforcer插件.md)
++ [核心Maven插件指南](http://tu-yucheng.github.io/maven/2023/05/24/core-maven-plugins.html)
++ [Maven Resources插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-resources-plugin.html)
++ [Maven Verifier插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-verifier-plugin.html)
++ [Maven Clean插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-clean-plugin.html)
++ [Maven Enforcer插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-enforcer-plugin.html)

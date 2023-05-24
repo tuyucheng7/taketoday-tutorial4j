@@ -4,8 +4,8 @@
 
 ## 相关文章
 
-+ [使用Maven进行集成测试](docs/使用Maven进行集成测试.md)
-+ [使用Maven构建一个Jar并忽略测试结果](docs/使用Maven构建一个Jar并忽略测试结果.md)
-+ [Maven Surefire插件快速指南](docs/Maven-Surefire插件快速指南.md)
-+ [Maven Failsafe插件](docs/Maven-Failsafe插件.md)
-+ [Maven Surefire和Failsafe插件之间的区别](docs/Maven-Surefire和Failsafe插件之间的区别.md)
++ [使用Maven进行集成测试](http://tu-yucheng.github.io/maven/2023/05/24/maven-integration-test.html)
++ [使用Maven构建一个Jar并忽略测试结果](http://tu-yucheng.github.io/maven/2023/05/24/maven-ignore-test-results.html)
++ [Maven Surefire插件快速指南](http://tu-yucheng.github.io/maven/2023/05/24/maven-surefire-plugin.html)
++ [Maven Failsafe插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-failsafe-plugin.html)
++ [Maven Surefire和Failsafe插件之间的区别](http://tu-yucheng.github.io/maven/2023/05/24/maven-surefire-vs-failsafe.html)

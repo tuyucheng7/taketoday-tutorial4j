@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [如何在Maven中显示消息](docs/如何在Maven中显示消息.md)
++ [如何在Maven中显示消息](http://tu-yucheng.github.io/maven/2023/05/24/maven-print-message-during-execution.html)

@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [在Maven中运行Java Main方法](docs/在Maven中运行Java-Main方法.md)
++ [在Maven中运行Java Main方法](http://tu-yucheng.github.io/maven/2023/05/24/maven-java-main-method.html)

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @SpringBootApplication
 public class MavenPolyglotApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(MavenPolyglotApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MavenPolyglotApplication.class, args);
+   }
 
-	@GetMapping("/")
-	public String home() {
-		return "Hello JSON Maven Model !";
-	}
+   @GetMapping("/")
+   public String home() {
+      return "Hello JSON Maven Model !";
+   }
 }

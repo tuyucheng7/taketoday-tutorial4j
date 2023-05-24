@@ -5,10 +5,10 @@ import cn.tuyucheng.taketoday.maven.dependency.classifier.provider.model.Car.Typ
 
 public class CarFactory {
 
-	public static Car manufacture(Type carType) {
-		Car car = new Car();
-		car.setType(carType);
+   public static Car manufacture(Type carType) {
+      Car car = new Car();
+      car.setType(carType);
 
-		return car;
-	}
+      return car;
+   }
 }

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MavenGenerateWarApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MavenGenerateWarApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MavenGenerateWarApplication.class, args);
+   }
 }

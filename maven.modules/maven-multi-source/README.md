@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [具有多个源目录的Maven项目](docs/具有多个源目录的Maven项目.md)
++ [具有多个源目录的Maven项目](http://tu-yucheng.github.io/maven/2023/05/24/maven-project-multiple-src-directories.html)

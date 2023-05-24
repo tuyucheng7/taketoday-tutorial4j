@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FuelStationUnitTest {
 
-	@Test
-	@DisplayName("Given fuel type battery When request for refill Then Return Battery Zone")
-	void givenFuelTypeBattery_whenRequestToRefill_thenReturnBatteryZone() {
-		FuelStation fuelStation = new FuelStation();
-		Car electricCar = CarStub.ELECTRIC_CAR;
+   @Test
+   @DisplayName("Given fuel type battery When request for refill Then Return Battery Zone")
+   void givenFuelTypeBattery_whenRequestToRefill_thenReturnBatteryZone() {
+      FuelStation fuelStation = new FuelStation();
+      Car electricCar = CarStub.ELECTRIC_CAR;
 
-		assertEquals(Zone.BATTERY, fuelStation.refill(electricCar));
-	}
+      assertEquals(Zone.BATTERY, fuelStation.refill(electricCar));
+   }
 }

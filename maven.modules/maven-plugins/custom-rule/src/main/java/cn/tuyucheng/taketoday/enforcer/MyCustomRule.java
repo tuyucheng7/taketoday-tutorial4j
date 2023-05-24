@@ -7,30 +7,30 @@ import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluatio
 
 public class MyCustomRule implements EnforcerRule {
 
-	public void execute(EnforcerRuleHelper enforcerRuleHelper) throws EnforcerRuleException {
+   public void execute(EnforcerRuleHelper enforcerRuleHelper) throws EnforcerRuleException {
 
-		try {
+      try {
 
-			String groupId = (String) enforcerRuleHelper.evaluate("${project.groupId}");
+         String groupId = (String) enforcerRuleHelper.evaluate("${project.groupId}");
 
-			if (groupId == null || !groupId.startsWith("cn.tuyucheng.taketoday")) {
-				throw new EnforcerRuleException("Project group id does not start with cn.tuyucheng.taketoday");
-			}
+         if (groupId == null || !groupId.startsWith("cn.tuyucheng.taketoday")) {
+            throw new EnforcerRuleException("Project group id does not start with cn.tuyucheng.taketoday");
+         }
 
-		} catch (ExpressionEvaluationException ex) {
-			throw new EnforcerRuleException("Unable to lookup an expression " + ex.getLocalizedMessage(), ex);
-		}
-	}
+      } catch (ExpressionEvaluationException ex) {
+         throw new EnforcerRuleException("Unable to lookup an expression " + ex.getLocalizedMessage(), ex);
+      }
+   }
 
-	public boolean isCacheable() {
-		return false;
-	}
+   public boolean isCacheable() {
+      return false;
+   }
 
-	public boolean isResultValid(EnforcerRule enforcerRule) {
-		return false;
-	}
+   public boolean isResultValid(EnforcerRule enforcerRule) {
+      return false;
+   }
 
-	public String getCacheId() {
-		return null;
-	}
+   public String getCacheId() {
+      return null;
+   }
 }

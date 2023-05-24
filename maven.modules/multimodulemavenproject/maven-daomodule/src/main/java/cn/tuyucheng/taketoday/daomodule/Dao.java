@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface Dao<T> {
 
-	Optional<T> findById(int id);
+   Optional<T> findById(int id);
 
-	List<T> findAll();
+   List<T> findAll();
 }

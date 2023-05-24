@@ -8,4 +8,4 @@
 
 ## 相关文章
 
-+ [Apache Maven教程](docs/Apache-Maven教程.md)
++ [Apache Maven教程](http://tu-yucheng.github.io/maven/2023/05/24/maven.html)

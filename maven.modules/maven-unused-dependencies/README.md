@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [查找未使用的Maven依赖项](docs/查找未使用的Maven依赖项.md)
++ [查找未使用的Maven依赖项](http://tu-yucheng.github.io/maven/2023/05/24/maven-unused-dependencies.html)

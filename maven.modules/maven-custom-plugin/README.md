@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [如何创建Maven插件](docs/如何创建Maven插件.md)
++ [如何创建Maven插件](http://tu-yucheng.github.io/maven/2023/05/24/maven-plugin.html)

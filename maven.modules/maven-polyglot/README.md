@@ -6,4 +6,4 @@
 
 ## 相关文章
 
-+ [Maven Polyglot(多语言扩展)](docs/Maven-Polyglot.md)
++ [Maven Polyglot(多语言扩展)](http://tu-yucheng.github.io/maven/2023/05/24/maven-polyglot.html)

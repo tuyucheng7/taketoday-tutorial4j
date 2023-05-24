@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FailsafeBuildPhaseIntegrationTest {
 
-	@Test
-	void whenTestExecutes_thenPreAndPostIntegrationBuildPhasesAreExecuted() {
-		assertTrue(true);
-	}
+   @Test
+   void whenTestExecutes_thenPreAndPostIntegrationBuildPhasesAreExecuted() {
+      assertTrue(true);
+   }
 }

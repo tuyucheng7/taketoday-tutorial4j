@@ -8,8 +8,8 @@ import static org.junit.Assert.assertThat;
 
 public class VersionCollisionUnitTest {
 
-	@Test
-	public void whenVersionCollisionDoesNotExist_thenShouldCompile() {
-		assertThat(Futures.immediateVoidFuture(), notNullValue());
-	}
+   @Test
+   public void whenVersionCollisionDoesNotExist_thenShouldCompile() {
+      assertThat(Futures.immediateVoidFuture(), notNullValue());
+   }
 }

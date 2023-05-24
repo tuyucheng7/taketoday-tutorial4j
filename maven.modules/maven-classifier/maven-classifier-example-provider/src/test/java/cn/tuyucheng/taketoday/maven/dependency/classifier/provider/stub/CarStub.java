@@ -8,10 +8,10 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
 public class CarStub {
-	public static Car ELECTRIC_CAR = Mockito.mock(Car.class);
+   public static Car ELECTRIC_CAR = Mockito.mock(Car.class);
 
-	static {
-		when(ELECTRIC_CAR.getType()).thenReturn(Type.ELECTRIC);
-		when(ELECTRIC_CAR.getPowerSource()).thenReturn(PowerSource.BATTERY);
-	}
+   static {
+      when(ELECTRIC_CAR.getType()).thenReturn(Type.ELECTRIC);
+      when(ELECTRIC_CAR.getPowerSource()).thenReturn(PowerSource.BATTERY);
+   }
 }

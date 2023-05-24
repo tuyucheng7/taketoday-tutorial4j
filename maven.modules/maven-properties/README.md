@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [在Java中访问Maven属性](docs/在Java中访问Maven属性.md)
-+ [Maven属性的默认值](docs/Maven属性的默认值.md)
-+ [Maven编码指南](docs/Maven编码指南.md)
++ [在Java中访问Maven属性](http://tu-yucheng.github.io/maven/2023/05/24/java-accessing-maven-properties.html)
++ [Maven属性的默认值](http://tu-yucheng.github.io/maven/2023/05/24/maven-properties-defaults.html)
++ [Maven编码指南](http://tu-yucheng.github.io/maven/2023/05/24/maven-encoding.html)

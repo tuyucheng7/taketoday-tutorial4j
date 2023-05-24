@@ -11,23 +11,23 @@ import java.util.Optional;
 
 public class UserDao implements Dao<User> {
 
-	private final Map<Integer, User> users;
+   private final Map<Integer, User> users;
 
-	public UserDao() {
-		users = new HashMap<>();
-	}
+   public UserDao() {
+      users = new HashMap<>();
+   }
 
-	public UserDao(Map<Integer, User> users) {
-		this.users = users;
-	}
+   public UserDao(Map<Integer, User> users) {
+      this.users = users;
+   }
 
-	@Override
-	public List<User> findAll() {
-		return new ArrayList<>(users.values());
-	}
+   @Override
+   public List<User> findAll() {
+      return new ArrayList<>(users.values());
+   }
 
-	@Override
-	public Optional<User> findById(int id) {
-		return Optional.ofNullable(users.get(id));
-	}
+   @Override
+   public Optional<User> findById(int id) {
+      return Optional.ofNullable(users.get(id));
+   }
 }

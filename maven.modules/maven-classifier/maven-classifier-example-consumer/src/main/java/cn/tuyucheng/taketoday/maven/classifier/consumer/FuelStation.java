@@ -5,11 +5,11 @@ import cn.tuyucheng.taketoday.maven.dependency.classifier.provider.model.PowerSo
 
 public class FuelStation {
 
-	public FuelStation.Zone refill(Car car) {
-		return PowerSource.BATTERY.equals(car.getPowerSource()) ? FuelStation.Zone.BATTERY : FuelStation.Zone.UNKNOWN;
-	}
+   public FuelStation.Zone refill(Car car) {
+      return PowerSource.BATTERY.equals(car.getPowerSource()) ? FuelStation.Zone.BATTERY : FuelStation.Zone.UNKNOWN;
+   }
 
-	public enum Zone {
-		BATTERY, UNKNOWN
-	}
+   public enum Zone {
+      BATTERY, UNKNOWN
+   }
 }

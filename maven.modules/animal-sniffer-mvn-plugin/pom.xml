@@ -24,8 +24,8 @@
             <configuration>
                <signature>
                   <groupId>org.codehaus.mojo.signature</groupId>
-                  <artifactId>java17</artifactId>
-                  <version>${org.codehaus.mojo.signature.java17.version}</version>
+                  <artifactId>java16</artifactId>
+                  <version>${org.codehaus.mojo.signature.java16.version}</version>
                </signature>
             </configuration>
             <executions>
@@ -43,6 +43,6 @@
 
    <properties>
       <animal-sniffer-maven-plugin.version>1.22</animal-sniffer-maven-plugin.version>
-      <org.codehaus.mojo.signature.java17.version>1.0</org.codehaus.mojo.signature.java17.version>
+      <org.codehaus.mojo.signature.java16.version>1.0</org.codehaus.mojo.signature.java16.version>
    </properties>
 </project>

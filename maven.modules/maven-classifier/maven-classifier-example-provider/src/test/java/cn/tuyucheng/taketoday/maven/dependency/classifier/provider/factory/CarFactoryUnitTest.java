@@ -12,20 +12,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CarFactoryUnitTest {
 
-	@Test
-	@DisplayName("Given Car type When CarFactory manufacture is called Then create a Car of the given type")
-	void givenCarType_whenCarFactoryManufactureCalled_thenCreateCarOfGivenType() {
-		Car car = CarFactory.manufacture(Type.ELECTRIC);
+   @Test
+   @DisplayName("Given Car type When CarFactory manufacture is called Then create a Car of the given type")
+   void givenCarType_whenCarFactoryManufactureCalled_thenCreateCarOfGivenType() {
+      Car car = CarFactory.manufacture(Type.ELECTRIC);
 
-		assertNotNull(car, "CarFactory didn't manufacture a car. Car is null");
-		assertEquals(Type.ELECTRIC, car.getType());
-	}
+      assertNotNull(car, "CarFactory didn't manufacture a car. Car is null");
+      assertEquals(Type.ELECTRIC, car.getType());
+   }
 
-	@Test
-	@DisplayName("Given an electric car When asked for fuel type Then return Battery")
-	void givenElectricCar_whenAskedForFuelType_thenReturnBattery() {
-		Car car = CarStub.ELECTRIC_CAR;
+   @Test
+   @DisplayName("Given an electric car When asked for fuel type Then return Battery")
+   void givenElectricCar_whenAskedForFuelType_thenReturnBattery() {
+      Car car = CarStub.ELECTRIC_CAR;
 
-		assertEquals(PowerSource.BATTERY, car.getPowerSource());
-	}
+      assertEquals(PowerSource.BATTERY, car.getPowerSource());
+   }
 }

@@ -8,13 +8,13 @@ import org.slf4j.LoggerFactory;
  */
 public class NonAsciiString {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(NonAsciiString.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(NonAsciiString.class);
 
-	public static String getNonAsciiString() {
+   public static String getNonAsciiString() {
 
-		String nonAsciiStr = "ÜÝÞßàæç";
-		LOGGER.info(nonAsciiStr);
-		return nonAsciiStr;
+      String nonAsciiStr = "ÜÝÞßàæç";
+      LOGGER.info(nonAsciiStr);
+      return nonAsciiStr;
 
         /*We can even use non-ASCII characters as Java variables names.
         The below will run fine when built using Maven UTF-8 encoding,
@@ -22,5 +22,5 @@ public class NonAsciiString {
         /*String nonAsciiŞŧř = "ÜÝÞßàæç";
         LOGGER.info(nonAsciiŞŧř);
         return nonAsciiŞŧř;*/
-	}
+   }
 }

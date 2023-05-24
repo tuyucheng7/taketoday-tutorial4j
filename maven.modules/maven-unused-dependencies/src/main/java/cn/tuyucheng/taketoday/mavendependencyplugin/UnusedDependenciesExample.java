@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 
 public class UnusedDependenciesExample {
 
-	/**
-	 * When the Maven dependency analyzer analyzes the code, it will see that the slf4j dependency is being used in this method.
-	 *
-	 * @return the slf4j {@link Logger}.
-	 */
-	public Logger getLogger() {
-		return LoggerFactory.getLogger(UnusedDependenciesExample.class);
-	}
+   /**
+    * When the Maven dependency analyzer analyzes the code, it will see that the slf4j dependency is being used in this method.
+    *
+    * @return the slf4j {@link Logger}.
+    */
+   public Logger getLogger() {
+      return LoggerFactory.getLogger(UnusedDependenciesExample.class);
+   }
 }

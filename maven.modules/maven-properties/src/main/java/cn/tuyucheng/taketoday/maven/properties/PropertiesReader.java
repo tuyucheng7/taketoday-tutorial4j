@@ -6,31 +6,31 @@ import java.util.Properties;
 
 public class PropertiesReader {
 
-	/**
-	 * Properties managed by this reader.
-	 */
-	private Properties properties;
+   /**
+    * Properties managed by this reader.
+    */
+   private Properties properties;
 
-	/**
-	 * Reads the property file with the given name.
-	 *
-	 * @param propertyFileName the name of the property file to read
-	 * @throws IOException if the file is not found or there's a problem reading it
-	 */
-	public PropertiesReader(String propertyFileName) throws IOException {
-		InputStream is = getClass().getClassLoader()
-			.getResourceAsStream(propertyFileName);
-		this.properties = new Properties();
-		this.properties.load(is);
-	}
+   /**
+    * Reads the property file with the given name.
+    *
+    * @param propertyFileName the name of the property file to read
+    * @throws IOException if the file is not found or there's a problem reading it
+    */
+   public PropertiesReader(String propertyFileName) throws IOException {
+      InputStream is = getClass().getClassLoader()
+            .getResourceAsStream(propertyFileName);
+      this.properties = new Properties();
+      this.properties.load(is);
+   }
 
-	/**
-	 * Gets the property with the given name from the property file.
-	 *
-	 * @param propertyName the name of the property to read
-	 * @return the property with the given name
-	 */
-	public String getProperty(String propertyName) {
-		return this.properties.getProperty(propertyName);
-	}
+   /**
+    * Gets the property with the given name from the property file.
+    *
+    * @param propertyName the name of the property to read
+    * @return the property with the given name
+    */
+   public String getProperty(String propertyName) {
+      return this.properties.getProperty(propertyName);
+   }
 }
