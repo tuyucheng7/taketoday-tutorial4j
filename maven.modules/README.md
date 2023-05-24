@@ -73,3 +73,4 @@
 + [Version Collision](version-collision/README.md)
 + [Version Overriding Plugins](version-overriding-plugins/README.md)
 + [Versions Maven Plugin](versions-maven-plugin/README.md)
++ [Spring BOM](spring-bom/README.md)

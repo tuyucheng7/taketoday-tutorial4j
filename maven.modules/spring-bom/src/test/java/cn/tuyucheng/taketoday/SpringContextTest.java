@@ -5,8 +5,8 @@ import org.junit.Test;
 
 public class SpringContextTest {
 
-	@Test
-	public final void testMain() throws Exception {
-		HelloWorldApp.main(null);
-	}
+   @Test
+   public final void testMain() throws Exception {
+      HelloWorldApp.main(null);
+   }
 }

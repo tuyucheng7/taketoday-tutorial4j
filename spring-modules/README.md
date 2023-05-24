@@ -7,7 +7,6 @@
 + [Spring 5](spring-5/README.md)
 + [Spring 5 WebFlux](spring-5-webflux-1/README.md)
 + [Spring AOP](spring-aop-1/README.md)
-+ [Spring BOM](spring-bom/README.md)
 + [Spring Core](spring-core-1/README.md)
 + [Spring DI](spring-di-1/README.md)
 + [Spring Exception](spring-exceptions/README.md)
