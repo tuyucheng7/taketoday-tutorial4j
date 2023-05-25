@@ -21,11 +21,10 @@ public class UserUtility {
 
         List<Event> events = store.getEvents(userId);
         for (Event event : events) {
-            if (event instanceof UserCreatedEvent) {
-                UserCreatedEvent e = (UserCreatedEvent) event;
-                user = new User(UUID.randomUUID()
-                    .toString(), e.getFirstName(), e.getLastName());
-            }
+           if (event instanceof UserCreatedEvent) {
+              UserCreatedEvent e = (UserCreatedEvent) event;
+              user = new User(e.getUserId(), e.getFirstName(), e.getLastName());
+           }
             if (event instanceof UserAddressAddedEvent) {
                 UserAddressAddedEvent e = (UserAddressAddedEvent) event;
                 Address address = new Address(e.getCity(), e.getState(), e.getPostCode());
