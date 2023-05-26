@@ -37,6 +37,7 @@
       <module>kotlin-core-collections-2</module>
       <module>kotlin-core-collections-3</module>
       <module>kotlin-core-collections-4</module>
+      <module>kotlin-core-companion</module>
       <module>kotlin-core-concurrency-1</module>
       <module>kotlin-core-concurrency-2</module>
       <module>kotlin-core-constructors</module>
@@ -54,6 +55,7 @@
       <module>kotlin-core-strings-1</module>
       <module>kotlin-core-strings-2</module>
       <module>kotlin-core-strings-3</module>
+      <module>kotlin-immutable-collections</module>
       <module>kotlin-json</module>
       <module>kotlin-lambda</module>
       <module>kotlin-libraries-1</module>
@@ -62,6 +64,7 @@
       <module>kotlin-parent-boot-2</module>
       <module>kotlin-patterns</module>
       <module>kotlin-testing-2</module>
+      <module>machine-learning</module>
       <module>spring-boot-kotlin-1</module>
       <module>spring-boot-kotlin-2</module>
       <module>spring-boot-kotlin-test</module>
