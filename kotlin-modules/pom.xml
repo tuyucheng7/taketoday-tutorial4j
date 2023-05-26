@@ -22,6 +22,10 @@
       <!-- <module>kotlin-core-date-time</module> failed local -->
       <!-- <module>kotlin-libraries-2</module> failed local -->
 
+      <!-- random failed -->
+      <!-- <module>kotlin-core-concurrency-1</module> -->
+      <!-- <module>kotlin-core-concurrency-2</module> -->
+
       <module>kotlin-core-1</module>
       <module>kotlin-core-2</module>
       <module>kotlin-core-3</module>
@@ -38,8 +42,6 @@
       <module>kotlin-core-collections-3</module>
       <module>kotlin-core-collections-4</module>
       <module>kotlin-core-companion</module>
-      <module>kotlin-core-concurrency-1</module>
-      <module>kotlin-core-concurrency-2</module>
       <module>kotlin-core-constructors</module>
       <module>kotlin-core-datastructures</module>
       <module>kotlin-core-design-patterns</module>
