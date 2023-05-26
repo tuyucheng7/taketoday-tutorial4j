@@ -21,12 +21,10 @@
       <!--<module>spring-boot-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-3-container</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-camel</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
-      <!--<module>spring-boot-redis</module> &lt;!&ndash; build fails &ndash;&gt;-->
       <!--<module>spring-boot-feign</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
       <!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-keycloak-1</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
       <!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-sendgrid</module> &lt;!&ndash;pending&ndash;&gt;-->
       <!--<module>spring-boot-shell</module> &lt;!&ndash;long-running&ndash;&gt;-->
       <!--<module>spring-boot-azure</module> &lt;!&ndash;fails on local&ndash;&gt;-->
 
@@ -137,6 +135,7 @@
       <module>spring-boot-protobuf</module>
       <module>spring-boot-quartz</module>
       <module>spring-boot-react</module>
+      <module>spring-boot-redis</module>
       <module>spring-boot-remoting</module>
       <module>spring-boot-request-params</module>
       <module>spring-boot-rest</module>
@@ -144,6 +143,7 @@
       <module>spring-boot-runtime-2</module>
       <module>spring-boot-scheduling</module>
       <module>spring-boot-security</module>
+      <module>spring-boot-sendgrid</module>
       <module>spring-boot-soap</module>
       <module>spring-boot-springdoc</module>
       <module>spring-boot-state-machine</module>

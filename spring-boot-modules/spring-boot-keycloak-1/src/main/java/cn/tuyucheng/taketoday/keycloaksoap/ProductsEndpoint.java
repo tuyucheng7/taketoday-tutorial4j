@@ -23,7 +23,7 @@ public class ProductsEndpoint {
 	}
 
 	@RolesAllowed("user")
-	@PayloadRoot(namespace = "http://www.baeldung.com/springbootsoap/keycloak", localPart = "getProductDetailsRequest")
+	@PayloadRoot(namespace = "http://www.tuyucheng.com/springbootsoap/keycloak", localPart = "getProductDetailsRequest")
 	@ResponsePayload
 	public GetProductDetailsResponse getProductDetails(@RequestPayload GetProductDetailsRequest request) {
 		GetProductDetailsResponse response = new GetProductDetailsResponse();
@@ -32,7 +32,7 @@ public class ProductsEndpoint {
 	}
 
 	@RolesAllowed("admin")
-	@PayloadRoot(namespace = "http://www.baeldung.com/springbootsoap/keycloak", localPart = "deleteProductRequest")
+	@PayloadRoot(namespace = "http://www.tuyucheng.com/springbootsoap/keycloak", localPart = "deleteProductRequest")
 	@ResponsePayload
 	public DeleteProductResponse deleteProduct(@RequestPayload DeleteProductRequest request) {
 		DeleteProductResponse response = new DeleteProductResponse();
