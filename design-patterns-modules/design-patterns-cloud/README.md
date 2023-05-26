@@ -1,3 +1,3 @@
 ## 相关文章
 
-+ [通过指数退避和抖动实现更好的重试](docs/通过指数退避和抖动实现更好的重试.md)
++ [使用指数退避和抖动进行更好的重试](http://tu-yucheng.github.io/designpattern/2023/05/26/resilience4j-backoff-jitter.html)

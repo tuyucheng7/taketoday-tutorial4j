@@ -29,5 +29,5 @@ For more details, check out the AmqApplicationUnitTest.class.
 
 ### Relevant Articles:
 
-- [Wire Tap Enterprise Integration Pattern](https://www.baeldung.com/wiretap-pattern)
+- [Wire Tap企业集成模式](http://tu-yucheng.github.io/designpattern/2023/05/26/wiretap-pattern.html)
 

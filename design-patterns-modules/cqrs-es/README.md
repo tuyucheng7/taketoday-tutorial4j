@@ -2,4 +2,4 @@
 
 ## 相关文章
 
-+ [Java中的CQRS和事件溯源](docs/Java中的CQRS和事件溯源.md)
++ [Java中的CQRS和事件溯源](http://tu-yucheng.github.io/designpattern/2023/05/26/cqrs-event-sourcing-java.html)
