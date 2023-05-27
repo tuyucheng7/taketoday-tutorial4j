@@ -1,0 +1,47 @@
+dn: dc=tuyucheng,dc=com
+objectclass: top
+objectclass: dcObject
+objectclass: organization
+dc: tuyucheng
+o: tuyucheng
+
+dn: ou=caller,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: caller
+
+dn: ou=group,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: group
+
+dn: uid=admin,ou=caller,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: admin
+cn: Administrator
+sn: Admin
+userPassword: passadmin
+
+dn: uid=user,ou=caller,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: user
+cn: User
+sn: User
+userPassword: passuser
+
+dn: cn=admin_role,ou=group,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: admin_role
+member: uid=admin,ou=caller,dc=tuyucheng,dc=com
+
+dn: cn=user_role,ou=group,dc=tuyucheng,dc=com
+objectclass: top
+objectclass: groupOfNames
+cn: user_role
+member: uid=admin,ou=caller,dc=tuyucheng,dc=com
+member: uid=user,ou=caller,dc=tuyucheng,dc=com

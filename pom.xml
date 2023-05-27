@@ -477,6 +477,7 @@
             <module>reactor-core</module>
             <module>rsocket</module>
             <module>rxjava-modules</module>
+            <module>security-modules</module>
             <module>software.test</module>
             <module>spring-boot-modules</module>
             <module>spring-cloud-modules</module>
@@ -549,6 +550,7 @@
             <module>reactor-core</module>
             <module>rsocket</module>
             <module>rxjava-modules</module>
+            <module>security-modules</module>
             <module>software.test</module>
             <module>spring-boot-modules</module>
             <module>spring-cloud-modules</module>
@@ -599,6 +601,7 @@
             <module>reactor-core</module>
             <module>rsocket</module>
             <module>rxjava-modules</module>
+            <module>security-modules</module>
             <module>software.test</module>
             <module>spring-boot-modules</module>
             <module>spring-cloud-modules</module>
