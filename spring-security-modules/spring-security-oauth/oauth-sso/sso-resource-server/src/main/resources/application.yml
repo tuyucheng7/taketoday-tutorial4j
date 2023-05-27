@@ -1,0 +1,15 @@
+server:
+    port: 8081
+    servlet:
+        context-path: /sso-resource-server
+
+####### resource server configuration properties
+spring:
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8083/auth/realms/tuyucheng
+                    jwk-set-uri: http://localhost:8083/auth/realms/tuyucheng/protocol/openid-connect/certs
+    jpa:
+        defer-datasource-initialization: true

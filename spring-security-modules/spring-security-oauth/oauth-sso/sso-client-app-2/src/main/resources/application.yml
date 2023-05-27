@@ -1,0 +1,34 @@
+spring:
+   security:
+      oauth2:
+         client:
+            registration:
+               custom:
+                  client-id: ssoClient-2
+                  client-secret: ssoClientSecret-2
+                  scope: read,write
+                  authorization-grant-type: authorization_code
+                  redirect-uri: http://localhost:8084/ui-two/login/oauth2/code/custom
+            provider:
+               custom:
+                  authorization-uri: http://localhost:8083/auth/realms/tuyucheng/protocol/openid-connect/auth
+                  token-uri: http://localhost:8083/auth/realms/tuyucheng/protocol/openid-connect/token
+                  user-info-uri: http://localhost:8083/auth/realms/tuyucheng/protocol/openid-connect/userinfo
+                  user-name-attribute: preferred_username
+   thymeleaf:
+      cache: false
+   cache:
+      type: NONE
+
+server:
+   port: 8084
+   servlet:
+      context-path: /ui-two
+
+logging:
+   level:
+      org.springframework: INFO
+
+resourceserver:
+   api:
+      url: http://localhost:8081/sso-resource-server/api/foos/
