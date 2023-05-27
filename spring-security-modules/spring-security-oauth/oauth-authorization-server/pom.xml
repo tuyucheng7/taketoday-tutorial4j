@@ -1,0 +1,19 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <description>Spring Security OAuth Authorization Server</description>
+   <groupId>cn.tuyucheng.taketoday</groupId>
+   <artifactId>oauth-authorization-server</artifactId>
+   <version>1.0.0</version>
+   <packaging>pom</packaging>
+
+   <modules>
+      <module>spring-authorization-server</module>
+      <module>resource-server</module>
+      <module>client-server</module>
+   </modules>
+
+   <properties>
+      <java.version>11</java.version>
+   </properties>
+</project>

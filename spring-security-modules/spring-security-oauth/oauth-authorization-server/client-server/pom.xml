@@ -1,0 +1,46 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>cn.tuyucheng.taketoday</groupId>
+   <artifactId>client-server</artifactId>
+   <version>1.0.0</version>
+   <packaging>jar</packaging>
+
+   <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.5.4</version>
+      <relativePath/>
+   </parent>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-security</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-oauth2-client</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-webflux</artifactId>
+         <version>${spring-webflux.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>io.projectreactor.netty</groupId>
+         <artifactId>reactor-netty</artifactId>
+         <version>${reactor-netty.version}</version>
+      </dependency>
+   </dependencies>
+
+   <properties>
+      <spring-webflux.version>5.3.9</spring-webflux.version>
+      <reactor-netty.version>1.0.9</reactor-netty.version>
+   </properties>
+</project>

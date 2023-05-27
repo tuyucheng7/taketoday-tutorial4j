@@ -15,6 +15,10 @@
    </parent>
 
    <modules>
+      <module>oauth-authorization-server/resource-server</module>
+      <module>oauth-authorization-server/spring-authorization-server</module>
+      <module>oauth-authorization-server/client-server</module>
+
       <module>oauth-sso/sso-resource-server</module>
       <module>oauth-sso/sso-authorization-server</module>
       <module>oauth-sso/sso-client-app-1</module>
