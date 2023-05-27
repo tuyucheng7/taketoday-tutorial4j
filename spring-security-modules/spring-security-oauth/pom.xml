@@ -19,6 +19,10 @@
       <module>oauth-authorization-server/spring-authorization-server</module>
       <module>oauth-authorization-server/client-server</module>
 
+      <module>oauth-resource-server/resource-server-jwt</module>
+      <module>oauth-resource-server/resource-server-opaque</module>
+      <module>oauth-resource-server/authorization-server</module>
+
       <module>oauth-sso/sso-resource-server</module>
       <module>oauth-sso/sso-authorization-server</module>
       <module>oauth-sso/sso-client-app-1</module>
