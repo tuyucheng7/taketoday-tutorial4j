@@ -21,7 +21,6 @@
       <!--<module>spring-boot-persistence-h2</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-data-cassandra-reactive</module> &lt;!&ndash;Long time running&ndash;&gt;-->
       <!--<module>spring-data-gemfire</module> &lt;!&ndash;repository is unavailable&ndash;&gt;-->
-      <!--<module>spring-data-jpa-repo-1</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-data-jpa-repo-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-data-mongodb-2</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 
@@ -57,6 +56,7 @@
       <module>spring-data-jpa-query-1</module>
       <module>spring-data-jpa-query-2</module>
       <module>spring-data-jpa-query-3</module>
+      <module>spring-data-jpa-repo-1</module>
       <module>spring-data-jpa-repo-2</module>
       <module>spring-data-keyvalue</module>
       <module>spring-data-mongodb-1</module>
