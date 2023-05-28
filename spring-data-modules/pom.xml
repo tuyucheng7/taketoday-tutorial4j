@@ -17,8 +17,6 @@
       <!-- failed modules -->
       <!--<module>spring-boot-hibernate-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-hibernate-5</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-persistence-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-persistence-h2</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-data-cassandra-reactive</module> &lt;!&ndash;Long time running&ndash;&gt;-->
       <!--<module>spring-data-gemfire</module> &lt;!&ndash;repository is unavailable&ndash;&gt;-->
       <!--<module>spring-data-jpa-repo-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
@@ -28,7 +26,9 @@
       <module>spring-boot-mybatis</module>
       <module>spring-boot-mysql</module>
       <module>spring-boot-persistence-1</module>
+      <module>spring-boot-persistence-2</module>
       <module>spring-boot-persistence-3</module>
+      <module>spring-boot-persistence-h2</module>
       <module>spring-boot-persistence-mongodb-1</module>
       <module>spring-boot-persistence-mongodb-2</module>
       <module>spring-boot-persistence-mongodb-3</module>
