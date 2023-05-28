@@ -30,4 +30,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+   <properties>
+      <start-class>cn.tuyucheng.taketoday.spring.data.jpa.listrepositories.Application</start-class>
+   </properties>
 </project>
