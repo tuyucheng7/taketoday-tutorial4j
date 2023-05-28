@@ -488,6 +488,7 @@
             <module>spring-web-modules</module>
             <module>vavr-modules</module>
             <module>vertx-modules</module>
+            <module>web-framework</module>
          </modules>
       </profile>
 
@@ -561,6 +562,7 @@
             <module>spring-web-modules</module>
             <module>vavr-modules</module>
             <module>vertx-modules</module>
+            <module>web-framework</module>
          </modules>
       </profile>
 
@@ -612,6 +614,7 @@
             <module>spring-web-modules</module>
             <module>vavr-modules</module>
             <module>vertx-modules</module>
+            <module>web-framework</module>
          </modules>
       </profile>
 

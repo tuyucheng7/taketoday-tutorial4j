@@ -1,0 +1,12 @@
+<#import "../layout/defaultLayout.ftl.html" as layout>
+<@layout.myLayout "Create User">
+
+<form action="users" method="post">
+
+    First Name : <input name="firstName" type="text"/>
+    <br/>
+    Email : <input name="email" type="text"/>
+    <br/>
+    <input type="submit" value="Create"/>
+
+</@layout.myLayout>
