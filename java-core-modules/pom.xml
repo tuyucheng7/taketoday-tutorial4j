@@ -85,10 +85,10 @@
 		<!--<module>java-datetime-string-1</module>-->
 		<!--<module>java-datetime-string-2</module>-->
 		<!--<module>java-documentation</module>-->
-		<!--<module>java-exceptions-1</module>-->
-		<!--<module>java-exceptions-2</module>-->
-		<!--<module>java-exceptions-3</module>-->
-		<!--<module>java-exceptions-4</module>-->
+		<module>java-exceptions-1</module>
+		<module>java-exceptions-2</module>
+		<module>java-exceptions-3</module>
+		<module>java-exceptions-4</module>
 		<!--<module>java-function</module>-->
 		<!--<module>java-functional</module>-->
 		<!--<module>java-hex</module>-->
@@ -152,12 +152,13 @@
 		<!--<module>java-security-3</module>-->
 		<!--<module>java-security-algorithms</module>-->
 		<!--<module>java-serialization</module>-->
-		<!--<module>java-streams-1</module>-->
-		<!--<module>java-streams-2</module>-->
-		<!--<module>java-streams-3</module>-->
-		<!--<module>java-streams-4</module>-->
-		<!--<module>java-streams-collect</module>-->
-		<!--<module>java-streams-maps</module>-->
+		<module>java-streams-1</module>
+		<module>java-streams-2</module>
+		<module>java-streams-3</module>
+		<module>java-streams-4</module>
+		<module>java-streams-5</module>
+		<module>java-streams-collect</module>
+		<module>java-streams-maps</module>
 		<!--<module>java-string-algorithms-1</module>-->
 		<!--<module>java-string-algorithms-2</module>-->
 		<!--<module>java-string-algorithms-3</module>-->
