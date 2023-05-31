@@ -12,61 +12,61 @@ public class FileNameDelExtensionUnitTest {
 	@Test
 	public void givenDotFileWithoutExt_whenCallGuavaMethod_thenCannotGetDesiredResult() {
 		// negative assertion
-		assertNotEquals(".baeldung", Files.getNameWithoutExtension(".baeldung"));
+		assertNotEquals(".tuyucheng", Files.getNameWithoutExtension(".tuyucheng"));
 	}
 
 	@Test
 	public void givenFileWithoutMultipleExt_whenCallGuavaMethod_thenCannotRemoveAllExtensions() {
 		// negative assertion
-		assertNotEquals("baeldung", Files.getNameWithoutExtension("baeldung.tar.gz"));
+		assertNotEquals("tuyucheng", Files.getNameWithoutExtension("tuyucheng.tar.gz"));
 	}
 
 	@Test
 	public void givenDotFileWithoutExt_whenCallApacheCommonsMethod_thenCannotGetDesiredResult() {
 		// negative assertion
-		assertNotEquals(".baeldung", FilenameUtils.removeExtension(".baeldung"));
+		assertNotEquals(".tuyucheng", FilenameUtils.removeExtension(".tuyucheng"));
 	}
 
 	@Test
 	public void givenFileWithoutMultipleExt_whenCallApacheCommonsMethod_thenCannotRemoveAllExtensions() {
 		// negative assertion
-		assertNotEquals("baeldung", FilenameUtils.removeExtension("baeldung.tar.gz"));
+		assertNotEquals("tuyucheng", FilenameUtils.removeExtension("tuyucheng.tar.gz"));
 	}
 
 	@Test
 	public void givenFilenameNoExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals("baeldung", MyFilenameUtil.removeFileExtension("baeldung", true));
-		assertEquals("baeldung", MyFilenameUtil.removeFileExtension("baeldung", false));
+		assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng", true));
+		assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng", false));
 	}
 
 	@Test
 	public void givenSingleExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals("baeldung", MyFilenameUtil.removeFileExtension("baeldung.txt", true));
-		assertEquals("baeldung", MyFilenameUtil.removeFileExtension("baeldung.txt", false));
+		assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng.txt", true));
+		assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng.txt", false));
 	}
 
 
 	@Test
 	public void givenDotFile_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals(".baeldung", MyFilenameUtil.removeFileExtension(".baeldung", true));
-		assertEquals(".baeldung", MyFilenameUtil.removeFileExtension(".baeldung", false));
+		assertEquals(".tuyucheng", MyFilenameUtil.removeFileExtension(".tuyucheng", true));
+		assertEquals(".tuyucheng", MyFilenameUtil.removeFileExtension(".tuyucheng", false));
 	}
 
 	@Test
 	public void givenDotFileWithExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals(".baeldung", MyFilenameUtil.removeFileExtension(".baeldung.conf", true));
-		assertEquals(".baeldung", MyFilenameUtil.removeFileExtension(".baeldung.conf", false));
+		assertEquals(".tuyucheng", MyFilenameUtil.removeFileExtension(".tuyucheng.conf", true));
+		assertEquals(".tuyucheng", MyFilenameUtil.removeFileExtension(".tuyucheng.conf", false));
 	}
 
 	@Test
 	public void givenDoubleExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals("baeldung", MyFilenameUtil.removeFileExtension("baeldung.tar.gz", true));
-		assertEquals("baeldung.tar", MyFilenameUtil.removeFileExtension("baeldung.tar.gz", false));
+		assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng.tar.gz", true));
+		assertEquals("tuyucheng.tar", MyFilenameUtil.removeFileExtension("tuyucheng.tar.gz", false));
 	}
 
 	@Test
 	public void givenDotFileWithDoubleExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-		assertEquals(".baeldung", MyFilenameUtil.removeFileExtension(".baeldung.conf.bak", true));
-		assertEquals(".baeldung.conf", MyFilenameUtil.removeFileExtension(".baeldung.conf.bak", false));
+		assertEquals(".tuyucheng", MyFilenameUtil.removeFileExtension(".tuyucheng.conf.bak", true));
+		assertEquals(".tuyucheng.conf", MyFilenameUtil.removeFileExtension(".tuyucheng.conf.bak", false));
 	}
 }

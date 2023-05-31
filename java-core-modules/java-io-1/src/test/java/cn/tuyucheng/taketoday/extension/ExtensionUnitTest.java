@@ -25,7 +25,7 @@ public class ExtensionUnitTest {
 	@Test
 	public void getExtension_whenGuava_thenExtensionIsTrue() {
 		String expectedExtension = "class";
-		String actualExtension = extension.getExtensionByGuava("baeldung/Demo.class");
+		String actualExtension = extension.getExtensionByGuava("tuyucheng/Demo.class");
 		Assert.assertEquals(expectedExtension, actualExtension);
 	}
 }

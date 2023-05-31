@@ -34,7 +34,7 @@ public class DirectoryEmptinessUnitTest {
 
 	@Test
 	public void givenPath_whenIsEmpty_thenReturnsTrue() throws Exception {
-		Path path = Files.createTempDirectory("baeldung-empty");
+		Path path = Files.createTempDirectory("tuyucheng-empty");
 		assertThat(isEmpty(path)).isTrue();
 	}
 

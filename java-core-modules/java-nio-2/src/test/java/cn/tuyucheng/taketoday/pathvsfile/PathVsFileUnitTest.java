@@ -18,8 +18,8 @@ public class PathVsFileUnitTest {
 
     @Test
     public void whenCreateFileAndPath_thenShouldPointTheSame() {
-        File file = new File("baeldung/tutorial.txt");
-        Path path = Paths.get("baeldung/tutorial.txt");
+        File file = new File("tuyucheng/tutorial.txt");
+        Path path = Paths.get("tuyucheng/tutorial.txt");
 
         assertThat(file.toString())
               .isEqualTo(path.toString());
@@ -28,10 +28,10 @@ public class PathVsFileUnitTest {
         assertThat(path.toFile())
               .isEqualTo(file);
         assertThat(file)
-              .isEqualTo(new File("baeldung", "tutorial.txt"));
+              .isEqualTo(new File("tuyucheng", "tutorial.txt"));
         assertThat(path)
-              .isEqualTo(Paths.get("baeldung", "tutorial.txt"))
-              .isEqualTo(Paths.get("baeldung").resolve("tutorial.txt"));
+              .isEqualTo(Paths.get("tuyucheng", "tutorial.txt"))
+              .isEqualTo(Paths.get("tuyucheng").resolve("tutorial.txt"));
     }
 
     @Test

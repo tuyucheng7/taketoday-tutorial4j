@@ -26,11 +26,11 @@ public class ExistenceUnitTest {
 
 	@Test
 	public void givenFile_whenExists_thenFilesShouldReturnTrue() throws IOException {
-		Path tempFile = Files.createTempFile("baeldung", "exist-nio");
+		Path tempFile = Files.createTempFile("tuyucheng", "exist-nio");
 		assertTrue(Files.exists(tempFile));
 		assertFalse(Files.notExists(tempFile));
 
-		Path tempDirectory = Files.createTempDirectory("baeldung-exists");
+		Path tempDirectory = Files.createTempDirectory("tuyucheng-exists");
 		assertTrue(Files.exists(tempDirectory));
 		assertFalse(Files.notExists(tempDirectory));
 
@@ -46,7 +46,7 @@ public class ExistenceUnitTest {
 
 	@Test
 	public void givenSymbolicLink_whenTargetDoesNotExists_thenFollowOrNotBasedOnTheOptions() throws IOException {
-		Path target = Files.createTempFile("baeldung", "target");
+		Path target = Files.createTempFile("tuyucheng", "target");
 		Path symbol = Paths.get("test-link-" + ThreadLocalRandom.current().nextInt());
 		Path symbolicLink = null;
 
@@ -79,8 +79,8 @@ public class ExistenceUnitTest {
 
 	@Test
 	public void givenFile_whenExist_thenShouldReturnTrue() throws IOException {
-		Path tempFilePath = Files.createTempFile("baeldung", "exist-io");
-		Path tempDirectoryPath = Files.createTempDirectory("baeldung-exists-io");
+		Path tempFilePath = Files.createTempFile("tuyucheng", "exist-io");
+		Path tempDirectoryPath = Files.createTempDirectory("tuyucheng-exists-io");
 
 		File tempFile = new File(tempFilePath.toString());
 		File tempDirectory = new File(tempDirectoryPath.toString());
