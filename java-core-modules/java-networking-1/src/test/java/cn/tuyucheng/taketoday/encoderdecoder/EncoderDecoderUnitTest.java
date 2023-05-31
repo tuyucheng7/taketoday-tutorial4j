@@ -76,7 +76,7 @@ public class EncoderDecoderUnitTest {
         Assert.assertEquals("http://www.baeldung.com?key1=value 1&key2=value@!$2&key3=value%3", url.getProtocol() + "://" + url.getHost() + "?" + decodedQuery);
     }
 
-    private String encodePath(String path) {
+    private String encodePath(String path) throws UnsupportedEncodingException {
         path = UriUtils.encodePath(path, "UTF-8");
         return path;
     }
