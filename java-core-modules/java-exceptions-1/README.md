@@ -4,15 +4,15 @@
 
 ## 相关文章
 
-+ [ClassNotFoundException与NoClassDefFoundError](docs/ClassNotFoundException与NoClassDefFoundError.md)
-+ [Java中Final、Finally和Finalize的区别](docs/Java中Final-Finally和Finalize的区别.md)
-+ [Java中throw和throws的区别](docs/Java中throw和throws的区别.md)
-+ [Java中的Catch块会捕获错误吗？](docs/Java中的Catch块会捕获错误吗.md)
-+ [Java中的StackOverflowError](docs/Java中的StackOverflowError.md)
-+ [Java中的受检和非受检异常](docs/Java中的受检和非受检异常.md)
-+ [Java中的异常处理](docs/Java中的异常处理.md)
-+ [Java中的链式异常](docs/Java中的链式异常.md)
-+ [在Java中创建自定义异常](docs/在Java中创建自定义异常.md)
-+ [常见的Java异常](docs/常见的Java异常.md)
++ [ClassNotFoundException与NoClassDefFoundError](http://tu-yucheng.github.io/java-ex/2023/05/30/java-classnotfoundexception-and-noclassdeffounderror.html)
++ [Java中Final、Finally和Finalize的区别](http://tu-yucheng.github.io/java-ex/2023/05/30/java-final-finally-finalize.html)
++ [Java中throw和throws的区别](http://tu-yucheng.github.io/java-ex/2023/05/30/java-throw-throws.html)
++ [Java中的Catch块会捕获错误吗？](http://tu-yucheng.github.io/java-ex/2023/05/30/java-error-catch.html)
++ [Java中的StackOverflowError](http://tu-yucheng.github.io/java-ex/2023/05/30/java-stack-overflow-error.html)
++ [Java中的受检和非受检异常](http://tu-yucheng.github.io/java-ex/2023/05/30/java-checked-unchecked-exceptions.html)
++ [Java中的异常处理](http://tu-yucheng.github.io/java-ex/2023/05/30/java-exceptions.html)
++ [Java中的链式异常](http://tu-yucheng.github.io/java-ex/2023/05/30/java-chained-exceptions.html)
++ [在Java中创建自定义异常](http://tu-yucheng.github.io/java-ex/2023/05/30/java-new-custom-exception.html)
++ [常见的Java异常](http://tu-yucheng.github.io/java-ex/2023/05/30/java-common-exceptions.html)
 
 - 更多文章： [[next -->]](../java-exceptions-2/README.md)
