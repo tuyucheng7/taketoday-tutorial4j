@@ -128,10 +128,10 @@
 		<module>java-lang-operators-2</module>
 		<module>java-lang-syntax-1</module>
 		<module>java-lang-syntax-2</module>
-		<!--<module>java-networking-1</module>-->
-		<!--<module>java-networking-2</module>-->
-		<!--<module>java-networking-3</module>-->
-		<!--<module>java-networking-4</module>-->
+		<module>java-networking-1</module>
+		<module>java-networking-2</module>
+		<module>java-networking-3</module>
+		<module>java-networking-4</module>
 		<module>java-nio-1</module>
 		<module>java-nio-2</module>
 		<!--<module>java-numbers-1</module>-->
