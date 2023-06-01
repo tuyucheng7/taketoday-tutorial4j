@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.backoff.jitter;
 
-import io.github.resilience4j.retry.IntervalFunction;
+import io.github.resilience4j.core.IntervalFunction;
 import io.github.resilience4j.retry.Retry;
 import io.github.resilience4j.retry.RetryConfig;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,92 +14,90 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
 
-import static cn.tuyucheng.taketoday.backoff.jitter.BackoffWithJitterUnitTest.RetryProperties.INITIAL_INTERVAL;
-import static cn.tuyucheng.taketoday.backoff.jitter.BackoffWithJitterUnitTest.RetryProperties.MAX_RETRIES;
-import static cn.tuyucheng.taketoday.backoff.jitter.BackoffWithJitterUnitTest.RetryProperties.MULTIPLIER;
-import static cn.tuyucheng.taketoday.backoff.jitter.BackoffWithJitterUnitTest.RetryProperties.RANDOMIZATION_FACTOR;
+import static cn.tuyucheng.taketoday.backoff.jitter.BackoffWithJitterUnitTest.RetryProperties.*;
+import static io.github.resilience4j.core.IntervalFunction.ofExponentialBackoff;
+import static io.github.resilience4j.core.IntervalFunction.ofExponentialRandomBackoff;
 import static java.util.Collections.nCopies;
 import static java.util.concurrent.Executors.newFixedThreadPool;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-class BackoffWithJitterUnitTest {
+public class BackoffWithJitterUnitTest {
 
-	static Logger log = LoggerFactory.getLogger(BackoffWithJitterUnitTest.class);
+   static Logger log = LoggerFactory.getLogger(BackoffWithJitterUnitTest.class);
 
-	interface PingPongService {
-		String call(String ping) throws PingPongServiceException;
-	}
+   interface PingPongService {
 
-	class PingPongServiceException extends RuntimeException {
-		PingPongServiceException(String reason) {
-			super(reason);
-		}
-	}
+      String call(String ping) throws PingPongServiceException;
+   }
 
-	private PingPongService service;
-	private static final int NUM_CONCURRENT_CLIENTS = 8;
+   class PingPongServiceException extends RuntimeException {
 
-	@BeforeEach
-	void setUp() {
-		service = mock(PingPongService.class);
-	}
+      public PingPongServiceException(String reason) {
+         super(reason);
+      }
+   }
 
-	@Test
-	void whenRetryExponentialBackoff_thenRetriedConfiguredNoOfTimes() {
-		IntervalFunction intervalFn = IntervalFunction.ofExponentialBackoff(INITIAL_INTERVAL, MULTIPLIER);
-		Function<String, String> pingPongFn = getRetryablePingPongFn(intervalFn);
+   private PingPongService service;
+   private static final int NUM_CONCURRENT_CLIENTS = 8;
 
-		when(service.call(anyString())).thenThrow(PingPongServiceException.class);
-		try {
-			pingPongFn.apply("Hello");
-		} catch (PingPongServiceException e) {
-			verify(service, times(MAX_RETRIES)).call(anyString());
-		}
-	}
+   @Before
+   public void setUp() {
+      service = mock(PingPongService.class);
+   }
 
-	@Test
-	void whenRetryExponentialBackoffWithoutJitter_thenThunderingHerdProblemOccurs() throws InterruptedException {
-		IntervalFunction intervalFn = IntervalFunction.ofExponentialBackoff(INITIAL_INTERVAL, MULTIPLIER);
-		test(intervalFn);
-	}
+   @Test
+   public void whenRetryExponentialBackoff_thenRetriedConfiguredNoOfTimes() {
+      IntervalFunction intervalFn = ofExponentialBackoff(INITIAL_INTERVAL, MULTIPLIER);
+      Function<String, String> pingPongFn = getRetryablePingPongFn(intervalFn);
 
-	@Test
-	void whenRetryExponentialBackoffWithJitter_thenRetriesAreSpread() throws InterruptedException {
-		IntervalFunction intervalFn = IntervalFunction.ofExponentialRandomBackoff(INITIAL_INTERVAL, MULTIPLIER, RANDOMIZATION_FACTOR);
-		test(intervalFn);
-	}
+      when(service.call(anyString())).thenThrow(PingPongServiceException.class);
+      try {
+         pingPongFn.apply("Hello");
+      } catch (PingPongServiceException e) {
+         verify(service, times(MAX_RETRIES)).call(anyString());
+      }
+   }
 
-	private void test(IntervalFunction intervalFn) throws InterruptedException {
-		Function<String, String> pingPongFn = getRetryablePingPongFn(intervalFn);
-		ExecutorService executors = newFixedThreadPool(NUM_CONCURRENT_CLIENTS);
-		List<Callable<String>> tasks = nCopies(NUM_CONCURRENT_CLIENTS, () -> pingPongFn.apply("Hello"));
+   @Test
+   public void whenRetryExponentialBackoffWithoutJitter_thenThunderingHerdProblemOccurs() throws InterruptedException {
+      IntervalFunction intervalFn = ofExponentialBackoff(INITIAL_INTERVAL, MULTIPLIER);
+      test(intervalFn);
+   }
 
-		when(service.call(anyString())).thenThrow(PingPongServiceException.class);
+   @Test
+   public void whenRetryExponentialBackoffWithJitter_thenRetriesAreSpread() throws InterruptedException {
+      IntervalFunction intervalFn = ofExponentialRandomBackoff(INITIAL_INTERVAL, MULTIPLIER, RANDOMIZATION_FACTOR);
+      test(intervalFn);
+   }
 
-		executors.invokeAll(tasks);
-	}
+   private void test(IntervalFunction intervalFn) throws InterruptedException {
+      Function<String, String> pingPongFn = getRetryablePingPongFn(intervalFn);
+      ExecutorService executors = newFixedThreadPool(NUM_CONCURRENT_CLIENTS);
+      List<Callable<String>> tasks = nCopies(NUM_CONCURRENT_CLIENTS, () -> pingPongFn.apply("Hello"));
 
-	private Function<String, String> getRetryablePingPongFn(IntervalFunction intervalFn) {
-		RetryConfig retryConfig = RetryConfig.custom()
-			.maxAttempts(MAX_RETRIES)
-			.intervalFunction(intervalFn)
-			.retryExceptions(PingPongServiceException.class)
-			.build();
-		Retry retry = Retry.of("pingpong", retryConfig);
-		return Retry.decorateFunction(retry, ping -> {
-			log.info("Invoked at {}", LocalDateTime.now());
-			return service.call(ping);
-		});
-	}
+      when(service.call(anyString())).thenThrow(PingPongServiceException.class);
 
-	static class RetryProperties {
-		static final Long INITIAL_INTERVAL = 1000L;
-		static final Double MULTIPLIER = 2.0D;
-		static final Double RANDOMIZATION_FACTOR = 0.6D;
-		static final Integer MAX_RETRIES = 4;
-	}
+      executors.invokeAll(tasks);
+   }
+
+   private Function<String, String> getRetryablePingPongFn(IntervalFunction intervalFn) {
+      RetryConfig retryConfig = RetryConfig.custom()
+            .maxAttempts(MAX_RETRIES)
+            .intervalFunction(intervalFn)
+            .retryExceptions(PingPongServiceException.class)
+            .build();
+      Retry retry = Retry.of("pingpong", retryConfig);
+      return Retry.decorateFunction(retry, ping -> {
+         log.info("Invoked at {}", LocalDateTime.now());
+         return service.call(ping);
+      });
+   }
+
+   static class RetryProperties {
+      static final Long INITIAL_INTERVAL = 1000L;
+      static final Double MULTIPLIER = 2.0D;
+      static final Double RANDOMIZATION_FACTOR = 0.6D;
+      static final Integer MAX_RETRIES = 4;
+   }
 }
