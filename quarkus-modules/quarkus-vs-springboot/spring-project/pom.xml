@@ -13,17 +13,17 @@
 		<relativePath>../../../parent-boot-2</relativePath>
 	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.testcontainers</groupId>
-				<artifactId>testcontainers-bom</artifactId>
-				<version>1.17.2</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers-bom</artifactId>
+            <version>${testcontainers-bom.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
 	<dependencies>
 		<dependency>
@@ -39,11 +39,11 @@
 			<artifactId>spring-native</artifactId>
 			<version>${spring-native.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.github.jasync-sql</groupId>
-			<artifactId>jasync-r2dbc-mysql</artifactId>
-			<version>2.0.8</version>
-		</dependency>
+      <dependency>
+         <groupId>com.github.jasync-sql</groupId>
+         <artifactId>jasync-r2dbc-mysql</artifactId>
+         <version>${jasync-r2dbc-mysql.version}</version>
+      </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -103,7 +103,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${maven.compiler.source.version}</source>
 					<target>${maven.compiler.target.version}</target>
@@ -179,10 +178,10 @@
 		</profile>
 		<profile>
 			<id>local-native</id>
-			<properties>
-				<repackage.classifier>exec</repackage.classifier>
-				<native-buildtools.version>0.9.11</native-buildtools.version>
-			</properties>
+         <properties>
+            <repackage.classifier>exec</repackage.classifier>
+            <native-buildtools.version>${native-buildtools.version}</native-buildtools.version>
+         </properties>
 			<dependencies>
 				<dependency>
 					<groupId>org.junit.platform</groupId>
@@ -237,26 +236,30 @@
 							</execution>
 						</executions>
 					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M6</version>
-						<configuration>
-							<argLine>-DspringAot=true
-								-agentlib:native-image-agent=access-filter-file=src/test/resources/access-filter.json,config-merge-dir=target/classes/META-INF/native-image
-							</argLine>
-						</configuration>
-					</plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefire-plugin.version}</version>
+                  <configuration>
+                     <argLine>-DspringAot=true
+                        -agentlib:native-image-agent=access-filter-file=src/test/resources/access-filter.json,config-merge-dir=target/classes/META-INF/native-image
+                     </argLine>
+                  </configuration>
+               </plugin>
 				</plugins>
 			</build>
 		</profile>
 	</profiles>
 
-	<properties>
-		<java.version>11</java.version>
-		<spring-native.version>0.12.1</spring-native.version>
-		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-		<maven.compiler.source.version>11</maven.compiler.source.version>
-		<maven.compiler.target.version>11</maven.compiler.target.version>
-	</properties>
+   <properties>
+      <testcontainers-bom.version>1.17.2</testcontainers-bom.version>
+      <java.version>11</java.version>
+      <spring-native.version>0.12.1</spring-native.version>
+      <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+      <maven.compiler.source.version>11</maven.compiler.source.version>
+      <maven.compiler.target.version>11</maven.compiler.target.version>
+      <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
+      <native-buildtools.version>0.9.11</native-buildtools.version>
+      <jasync-r2dbc-mysql.version>2.0.8</jasync-r2dbc-mysql.version>
+   </properties>
 </project>
