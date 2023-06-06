@@ -21,5 +21,6 @@
 		<module>rabbitmq</module>
 		<module>spring-amqp</module>
 		<module>spring-jms</module>
+      <module>postgres-notify</module>
 	</modules>
 </project>
