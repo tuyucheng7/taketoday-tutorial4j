@@ -4,16 +4,16 @@
 
 ## 相关文章
 
-+ [java.util.concurrent.BlockingQueue指南](docs/java.util.concurrent.BlockingQueue指南.md)
-+ [ConcurrentMap指南](docs/ConcurrentMap指南.md)
-+ [Java中的PriorityBlockingQueue指南](docs/Java中的PriorityBlockingQueue指南.md)
-+ [避免Java中的ConcurrentModificationException](docs/避免Java中的ConcurrentModificationException.md)
-+ [Java 8并行流中的自定义线程池](docs/Java8并行流中的自定义线程池.md)
-+ [DelayQueue指南](docs/DelayQueue指南.md)
-+ [Java SynchronousQueue指南](docs/Java-SynchronousQueue指南.md)
-+ [ConcurrentSkipListMap指南](docs/ConcurrentSkipListMap指南.md)
-+ [LinkedBlockingQueue与ConcurrentLinkedQueue](docs/LinkedBlockingQueue与ConcurrentLinkedQueue.md)
-+ [CopyOnWriteArrayList指南](docs/CopyOnWriteArrayList指南.md)
++ [java.util.concurrent.BlockingQueue指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-blocking-queue.html)
++ [ConcurrentMap指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-concurrent-map.html)
++ [Java中的PriorityBlockingQueue指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-priority-blocking-queue.html)
++ [避免Java中的ConcurrentModificationException](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-concurrentmodificationexception.html)
++ [Java 8并行流中的自定义线程池](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-8-parallel-streams-custom-threadpool.html)
++ [DelayQueue指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-delay-queue.html)
++ [Java SynchronousQueue指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-synchronous-queue.html)
++ [ConcurrentSkipListMap指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-concurrent-skip-list-map.html)
++ [LinkedBlockingQueue与ConcurrentLinkedQueue](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-queue-linkedblocking-concurrentlinked.html)
++ [CopyOnWriteArrayList指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-copy-on-write-arraylist.html)
 
 - 更多文章： [[<-- prev]](../java-concurrency-advanced-4/README.md)
 - 更多文章： [[next -->]](../java-concurrency-collections-2/README.md)

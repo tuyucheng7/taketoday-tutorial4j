@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [Collections.synchronizedMap与ConcurrentHashMap](docs/Collections.synchronizedMap与ConcurrentHashMap.md)
-+ [Java HashMap负载因子](docs/Java-HashMap负载因子.md)
-+ [Java TreeMap与HashMap](docs/Java-TreeMap与HashMap.md)
-+ [Map.computeIfAbsent()方法](docs/Map.computeIfAbsent()方法.md)
-+ [将Java Properties转换为HashMap](docs/将Java属性转换为HashMap.md)
-+ [比较Java中的两个HashMap](docs/比较Java中的两个HashMap.md)
++ [Collections.synchronizedMap与ConcurrentHashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-synchronizedmap-vs-concurrenthashmap.html)
++ [Java HashMap负载因子](http://tu-yucheng.github.io/java-collection/2023/06/07/java-hashmap-load-factor.html)
++ [Java TreeMap与HashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-treemap-vs-hashmap.html)
++ [Map.computeIfAbsent()方法](http://tu-yucheng.github.io/java-collection/2023/06/07/java-map-computeifabsent.html)
++ [将Java Properties转换为HashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-convert-properties-to-hashmap.html)
++ [比较Java中的两个HashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-compare-hashmaps.html)
 
 - 更多文章： [[<-- prev]](../java-collections-maps-2/README.md)
 - 更多文章： [[next -->]](../java-collections-maps-4/README.md)

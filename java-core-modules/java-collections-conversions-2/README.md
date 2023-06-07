@@ -4,12 +4,12 @@
 
 ## 相关文章
 
-+ [Arrays.asList与new ArrayList(Arrays.asList())](docs/Arrays.asList与newArrayList.md)
-+ [使用ModelMapper映射List](docs/使用ModelMapper映射List.md)
-+ [使用自定义Supplier将List转换为Map](docs/使用自定义Supplier将List转换为Map.md)
-+ [在Java中迭代一个集合](docs/在Java中迭代一个集合.md)
-+ [数组到字符串的转换](docs/数组到字符串的转换.md)
-+ [将整数列表转换为字符串列表](docs/将整数列表转换为字符串列表.md)
-+ [在Java中将两个列表组合成一个Map](docs/在Java中将两个列表组合成一个Map.md)
++ [Arrays.asList与new ArrayList(Arrays.asList())](http://tu-yucheng.github.io/java-collection/2023/06/07/java-arrays-aslist-vs-new-arraylist.html)
++ [使用ModelMapper映射List](http://tu-yucheng.github.io/java-collection/2023/06/07/java-modelmapper-lists.html)
++ [使用自定义Supplier将List转换为Map](http://tu-yucheng.github.io/java-collection/2023/06/07/list-to-map-supplier.html)
++ [在Java中迭代一个Set](http://tu-yucheng.github.io/java-collection/2023/06/07/java-iterate-set.html)
++ [数组到字符串的转换](http://tu-yucheng.github.io/java-collection/2023/06/07/java-array-to-string.html)
++ [将整数列表转换为字符串列表](http://tu-yucheng.github.io/java-collection/2023/06/07/java-convert-list-integers-to-list-strings.html)
++ [在Java中将两个List组合成一个Map](http://tu-yucheng.github.io/java-collection/2023/06/07/java-combine-two-lists-into-map.html)
 
 - 更多文章： [[<-- prev]](../java-collections-conversions-1/README.md)

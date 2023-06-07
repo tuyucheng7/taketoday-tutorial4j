@@ -4,16 +4,16 @@
 
 ## 相关文章
 
-+ [Java HashMap指南](docs/Java-HashMap指南.md)
-+ [Java中的WeakHashMap指南](docs/Java中的WeakHashMap指南.md)
-+ [Java原始类型Map](docs/Java原始类型Map.md)
-+ [使用Java 8合并两个Map](docs/使用Java8合并两个Map.md)
-+ [在Java中初始化一个HashMap](docs/在Java中初始化一个HashMap.md)
-+ [在Java中复制HashMap](docs/在Java中复制HashMap.md)
-+ [在Java中对HashMap进行排序](docs/在Java中对HashMap进行排序.md)
-+ [在Java中遍历Map](docs/在Java中遍历Map.md)
-+ [Map到Java中的字符串转换](docs/Map到Java中的字符串转换.md)
-+ [查找Java Map中的最大值](docs/查找Java-Map中的最大值.md)
++ [Java HashMap指南](http://tu-yucheng.github.io/java-collection/2023/06/07/java-hashmap.html)
++ [Java中的WeakHashMap指南](http://tu-yucheng.github.io/java-collection/2023/06/07/java-weakhashmap.html)
++ [Java原始类型Map](http://tu-yucheng.github.io/java-collection/2023/06/07/java-map-primitives.html)
++ [使用Java 8合并两个Map](http://tu-yucheng.github.io/java-collection/2023/06/07/java-merge-maps.html)
++ [在Java中初始化一个HashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-initialize-hashmap.html)
++ [在Java中复制HashMap](http://tu-yucheng.github.io/java-collection/2023/06/07/java-copy-hashmap.html)
++ [在Java中对HashMap进行排序](http://tu-yucheng.github.io/java-collection/2023/06/07/java-hashmap-sort.html)
++ [在Java中遍历Map](http://tu-yucheng.github.io/java-collection/2023/06/07/java-iterate-map.html)
++ [Java中Map到字符串的转换](http://tu-yucheng.github.io/java-collection/2023/06/07/java-map-to-string-conversion.html)
++ [查找Java Map中的最大值](http://tu-yucheng.github.io/java-collection/2023/06/07/java-find-map-max.html)
 
 - 更多文章： [[<-- prev]](../java-collections-maps-1)
 - 更多文章： [[next -->]](../java-collections-maps-3)

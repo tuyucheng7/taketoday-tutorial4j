@@ -4,8 +4,10 @@
 
 ## 相关文章
 
-+ [锁条带简介](docs/锁条带简介.md)
-+ [Java TransferQueue指南](docs/Java-TransferQueue指南.md)
-+ [Java Concurrent HashSet等同于ConcurrentHashMap](docs/Java-ConcurrentHashSet等同于ConcurrentHashMap.md)
++ [锁条带简介](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-lock-stripping.html)
++ [Java TransferQueue指南](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-transfer-queue.html)
++ [Java Concurrent HashSet等同于ConcurrentHashMap](http://tu-yucheng.github.io/java-concurrency/2023/06/07/java-concurrent-hashset-concurrenthashmap.html)
++ [使用ConcurrentHashMap读写](http://tu-yucheng.github.io/java-concurrency/2023/06/07/concurrenthashmap-reading-and-writing.html)
++ [ArrayBlockingQueue vs LinkedBlockingQueue](https://tu-yucheng.github.io/java-concurrency/2023/06/07/java-arrayblockingqueue-vs-linkedblockingqueue.html)
 
 - 更多文章： [[<-- prev]](../java-concurrency-collections-1/README.md)
