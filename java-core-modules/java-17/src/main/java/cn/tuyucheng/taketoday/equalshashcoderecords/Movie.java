@@ -12,6 +12,10 @@ record Movie(String name, Integer yearOfRelease, String distributor) {
       if (other == null) {
          return false;
       }
+      if (!(other instanceof Movie)) {
+         return false;
+      }
+
       Movie movie = (Movie) other;
       return movie.name.equals(this.name) && movie.yearOfRelease.equals(this.yearOfRelease);
    }
