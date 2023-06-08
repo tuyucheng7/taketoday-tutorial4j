@@ -38,12 +38,12 @@
       <!-- <module>java-19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
       <!-- <module>java-20</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
 		<!--<module>java-annotations</module>-->
-		<!--<module>java-arrays-sorting</module>-->
-		<!--<module>java-arrays-guides</module>-->
-		<!--<module>java-arrays-multidimensional</module>-->
-		<!--<module>java-arrays-convert</module>-->
-		<!--<module>java-arrays-operations-basic</module>-->
-		<!--<module>java-arrays-operations-advanced</module>-->
+		<module>java-arrays-sorting</module>
+		<module>java-arrays-guides</module>
+		<module>java-arrays-multidimensional</module>
+		<module>java-arrays-convert</module>
+		<module>java-arrays-operations-basic</module>
+		<module>java-arrays-operations-advanced</module>
 		<!--<module>java-char</module>-->
 		<module>java-collections-1</module>
 		<module>java-collections-2</module>
