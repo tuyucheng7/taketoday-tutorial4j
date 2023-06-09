@@ -22,7 +22,9 @@
       <module>jakarta-ee</module>
       <module>javax-servlets-1</module>
       <module>javax-servlets-2</module>
-      <module>jee-7</module>
+      <!-- <module>jee-7</module> --> <!-- failed on CI Could not transfer artifact org.jboss.osgi.metadata:jbosgi-metadata:jar:3.0.1.Final
+      from/to maven-default-http-blocker (http://0.0.0.0/): Blocked mirror for repositories:
+      [sonatype-snapshots (http://oss.sonatype.org/content/groups/jetty, default, releases+snapshots)]-->
       <module>jooby</module>
       <module>linkrest</module>
       <module>ninja</module>
