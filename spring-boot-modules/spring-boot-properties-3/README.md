@@ -11,6 +11,8 @@
 + [在Spring Boot应用程序中记录属性](http://tu-yucheng.github.io/springboot/2023/05/12/pring-boot-log-properties.html)
 + [在Spring Boot的application.properties中使用环境变量](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-properties-env-variables.html)
 + [Spring Boot加载多个YAML配置文件](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-load-multiple-yaml-configuration-files.html)
++ [在Spring Boot的application.properties中使用环境变量](https://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-properties-env-variables.html)
++ [Spring Boot属性前缀必须是规范形式](http://tu-yucheng.github.io/springboot/2023/06/01/spring-boot-properties-canonical-form.html)
 
 - 更多文章： [[<-- prev]](../spring-boot-properties-2/README.md)
 - 更多文章： [[next -->]](../spring-boot-properties-migrator-demo/README.md)
