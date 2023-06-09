@@ -13,19 +13,19 @@ import static org.mockito.Mockito.spy;
 
 class MockitoMisusingMockOrSpyUnitTest {
 
-	@Test
-	void givenNotASpy_whenDoReturn_thenThrowNotAMock() {
-		List<String> list = new ArrayList<>();
+   @Test
+   void givenNotASpy_whenDoReturn_thenThrowNotAMock() {
+      List<String> list = new ArrayList<String>();
 
-		assertThatThrownBy(() -> doReturn(100).when(list).size())
-			.isInstanceOf(NotAMockException.class)
-			.hasMessageContaining("Argument passed to when() is not a mock!");
-	}
+      assertThatThrownBy(() -> doReturn(100).when(list).size())
+            .isInstanceOf(NotAMockException.class)
+            .hasMessageContaining("Argument passed to when() is not a mock!");
+   }
 
-	@Test
-	void givenASpy_whenDoReturn_thenNoError() {
-		final List<String> spyList = spy(new ArrayList<>());
+   @Test
+   void givenASpy_whenDoReturn_thenNoError() {
+      final List<String> spyList = spy(new ArrayList<>());
 
-		assertThatNoException().isThrownBy(() -> doReturn(100).when(spyList).size());
-	}
+      assertThatNoException().isThrownBy(() -> doReturn(100).when(spyList).size());
+   }
 }

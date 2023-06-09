@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.mockito.argumentcaptor;
 
 public interface DeliveryPlatform {
 
-	void deliver(Email email);
+   void deliver(Email email);
 
-	String getServiceStatus();
+   String getServiceStatus();
 
-	AuthenticationStatus authenticate(Credentials credentials);
+   AuthenticationStatus authenticate(Credentials credentials);
 }

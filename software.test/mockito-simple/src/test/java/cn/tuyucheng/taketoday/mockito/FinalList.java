@@ -2,8 +2,9 @@ package cn.tuyucheng.taketoday.mockito;
 
 public final class FinalList extends MyList {
 
-	@Override
-	public int size() {
-		return 1;
-	}
+   @Override
+   public int size() {
+      return 1;
+   }
+
 }

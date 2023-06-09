@@ -20,7 +20,6 @@
 		<!--<module>jenkins-modules</module> &lt;!&ndash;build failed&ndash;&gt;-->
 		<!--<module>mocks-1</module> &lt;!&ndash;build failed&ndash;&gt;-->
 		<!--<module>mocks-2</module> &lt;!&ndash;build failed&ndash;&gt;-->
-      <!-- <module>mockito-simple</module> &lt;!&ndash; failed on CI &ndash;&gt; -->
 		<!--<module>mockwebserver</module> &lt;!&ndash;External APIs are required->-->
 
 		<module>allure-junit-5</module>
@@ -52,6 +51,7 @@
 		<module>microshed</module>
 		<module>mockito-1</module>
 		<module>mockito-2</module>
+      <module>mockito-simple</module>
 		<module>mockito-spring</module>
 		<module>mockserver</module>
 		<module>pact</module>

@@ -8,8 +8,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>software.test</artifactId>
+      <artifactId>parent-java</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-java</relativePath>
    </parent>
 
    <dependencies>
@@ -38,11 +39,6 @@
          <artifactId>mockito-junit-jupiter</artifactId>
          <version>${mockito.version}</version>
          <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
       </dependency>
    </dependencies>
 
