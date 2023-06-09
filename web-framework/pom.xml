@@ -22,6 +22,7 @@
       <module>jakarta-ee</module>
       <module>javax-servlets-1</module>
       <module>javax-servlets-2</module>
+      <module>jee-7</module>
       <module>jooby</module>
       <module>linkrest</module>
       <module>ninja</module>
@@ -33,7 +34,6 @@
       <module>wicket</module>
 
       <!-- failed modules -->
-      <!-- <module>jee-7</module> failed because module java.xml does not export com.sun.org.apache.xerces.internal.jaxp to unnamed module @762efe5d -->
       <!-- <module>restx</module> Not upgradable to java 17 -->
       <!-- <module>java-lite</module> Not upgradable to java-17 -->
 

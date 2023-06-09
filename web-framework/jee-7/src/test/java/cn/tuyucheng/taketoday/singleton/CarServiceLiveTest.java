@@ -24,9 +24,9 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CarServiceIntegrationTest {
+public class CarServiceLiveTest {
 
-   public static final Logger LOG = LoggerFactory.getLogger(CarServiceIntegrationTest.class);
+   public static final Logger LOG = LoggerFactory.getLogger(CarServiceLiveTest.class);
    @Inject
    private CarServiceBean carServiceBean;
    @Inject
