@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spliteratorAPI;
+package cn.tuyucheng.taketoday.spliterator;
 
 import java.util.List;
 
