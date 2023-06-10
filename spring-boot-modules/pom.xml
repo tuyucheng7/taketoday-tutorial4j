@@ -86,6 +86,7 @@
       <module>spring-boot-discord4j</module>
       <module>spring-boot-docker</module>
       <module>spring-boot-docker-postgres</module>
+      <module>spring-boot-documentation</module>
       <module>spring-boot-drools</module>
       <module>spring-boot-dubbo</module>
       <module>spring-boot-ejb</module>
