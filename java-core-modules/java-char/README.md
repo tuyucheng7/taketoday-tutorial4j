@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Character.isAlphabetic与Character.isLetter](docs/Character.isAlphabetic与Character.isLetter.md)
++ [Character.isAlphabetic与Character.isLetter](https://tu-yucheng.github.io/java/2023/06/10/java-character-isletter-isalphabetic.html)

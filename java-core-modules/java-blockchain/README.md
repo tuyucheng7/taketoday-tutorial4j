@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [用Java实现一个简单的区块链](docs/用Java实现一个简单的区块链.md)
++ [用Java实现一个简单的区块链](https://tu-yucheng.github.io/java/2023/06/10/java-blockchain.html)
