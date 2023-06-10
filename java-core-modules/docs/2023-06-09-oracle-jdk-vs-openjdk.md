@@ -1,3 +1,11 @@
+---
+layout: post
+title:  Oracle JDK和OpenJDK之间的区别
+category: java-new
+copyright: java-new
+excerpt: Java 17
+---
+
 ## 1. 概述
 
 在本教程中，我们将探讨[Oracle JDK(Java Development Kit)](https://www.oracle.com/technetwork/java/index.html)和[OpenJDK](https://openjdk.java.net/)之间的区别。首先，我们将仔细研究它们中的每一个，然后我们将对它们进行比较。最后，我们将列出其他JDK实现。
@@ -189,3 +197,5 @@ OpenJDK和Amazon Corretto JDK之间的另一个主要区别是Amazon Corretto包
 在本文中，我们重点介绍了当今最流行的两种Java开发工具包。
 
 首先，我们描述了它们中的每一个，然后我们强调了它们之间的区别。我们还特别关注了自Java 11以来的变化和差异。最后，我们列出了目前可用的其他活跃实现。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/java-core-modules/java-17)上获得。

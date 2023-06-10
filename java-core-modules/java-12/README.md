@@ -4,9 +4,9 @@
 
 ## 相关文章
 
-- [Java 12中的字符串API更新](docs/Java12中的字符串API更新.md)
-- [Java 12的新特性](docs/Java12的新特性.md)
-- [Java中比较两个文件的内容](docs/Java中比较两个文件的内容.md)
+- [Java 12中的String API更新](http://tu-yucheng.github.io/java-new/2023/06/09/java12-string-api.html)
+- [Java 12中的新特性](http://tu-yucheng.github.io/java-new/2023/06/09/java-12-new-features.html)
+- [Java中比较两个文件的内容](http://tu-yucheng.github.io/java-new/2023/06/09/java-compare-files.html)
 
 - 更多文章： [[<-- prev]](../java-11-3/README.md)
 - 更多文章： [[next -->]](../java-13/README.md)

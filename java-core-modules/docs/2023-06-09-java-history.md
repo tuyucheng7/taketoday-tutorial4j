@@ -1,3 +1,11 @@
+---
+layout: post
+title:  Java编程语言简史
+category: java-new
+copyright: java-new
+excerpt: Java 17
+---
+
 ## 1. 概述
 
 Java 是全球最流行的编程语言之一。它由 Sun Microsystems 的员工 James Gosling 和 Patrick Naughton 在 Sun Microsystems 的联合创始人 Bill Joy 的支持下创建。
@@ -125,3 +133,5 @@ Java 包括几个有用的特性，可以帮助我们编写健壮和安全的应
 通过其所有特性，Java 语言综合了其他现有语言的大部分可能性，同时消除了它们的一些主要缺点。
 
 因此，它是一种公认的相对现代的语言，其潜力已得到充分证实。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/java-core-modules/java-17)上获得。

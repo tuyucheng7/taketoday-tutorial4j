@@ -4,16 +4,16 @@
 
 ## 相关文章
 
-+ [EpsilonGC简介：无操作实验性垃圾收集器](docs/EpsilonGC简介-无操作实验性垃圾收集器.md)
-+ [Java 11中对String的加强](docs/Java11中对String的加强.md)
-+ [Java 11单文件源代码](docs/Java11单文件源代码.md)
-+ [Java 11基于嵌套的访问控制](docs/Java11基于嵌套的访问控制.md)
-+ [Java中的新HTTP客户端](docs/Java中的新HTTP客户端.md)
-+ [JDK集合与Eclipse集合](docs/JDK集合与Eclipse集合.md)
-+ [jlink指南](docs/jlink指南.md)
-+ [Java 11 Lambda参数的局部变量语法](docs/Java11-lambda参数的局部变量语法.md)
-+ [使用Java 11否定谓词方法引用](docs/使用Java11否定谓词方法引用.md)
-+ [将正则表达式模式预编译为Pattern对象](docs/将正则表达式模式预编译为Pattern对象.md)
++ [Epsilon GC简介：无操作实验性垃圾收集器](http://tu-yucheng.github.io/java-new/2023/06/09/jvm-epsilon-gc-garbage-collector.html)
++ [Java 11 String API的增强](http://tu-yucheng.github.io/java-new/2023/06/09/java-11-string-api.html)
++ [Java 11单文件源代码](http://tu-yucheng.github.io/java-new/2023/06/09/java-single-file-source-code.html)
++ [Java 11基于嵌套的访问控制](http://tu-yucheng.github.io/java-new/2023/06/09/java-nest-based-access-control.html)
++ [探索Java中的新HTTP客户端](http://tu-yucheng.github.io/java-new/2023/06/09/java-9-http-client.html)
++ [JDK Collection与Eclipse Collection基准测试](http://tu-yucheng.github.io/java-new/2023/06/09/jdk-collections-vs-eclipse-collections.html)
++ [jlink指南](http://tu-yucheng.github.io/java-new/2023/06/09/jlink.html)
++ [Lambda参数的Java 11局部变量语法](http://tu-yucheng.github.io/java-new/2023/06/09/java-var-lambda-params.html)
++ [使用Java 11否定谓词方法引用](http://tu-yucheng.github.io/java-new/2023/06/09/java-negate-predicate-method-reference.html)
++ [将正则表达式模式预编译为Pattern对象](http://tu-yucheng.github.io/java-new/2023/06/09/java-regex-pre-compile.html)
 
 - 更多文章： [[<-- prev]](../java-10/README.md)
 - 更多文章： [[next -->]](../java-11-2/README.md)

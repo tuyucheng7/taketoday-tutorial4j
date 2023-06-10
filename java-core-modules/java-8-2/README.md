@@ -4,13 +4,13 @@
 
 ## 相关文章:
 
-+ [从命令行运行Java应用程序](docs/从命令行运行Java应用程序.md)
-+ [Java 8中流的skip和limit](docs/Java8中流的skip和limit.md)
-+ [Java中的BiFunction接口](docs/Java中的BiFunction接口.md)
-+ [接口的默认方法与抽象类](docs/接口的默认方法与抽象类.md)
-+ [Java中字节数组和UUID之间的转换](docs/Java中字节数组和UUID之间的转换.md)
-+ [用Java实现一个简单的石头剪刀布游戏](docs/用Java创建一个简单的石头剪刀布游戏.md)
-+ [Java中的可变参数与数组输入参数](docs/Java中的可变参数与数组输入参数.md)
++ [从命令行运行Java应用程序](http://tu-yucheng.github.io/java-new/2023/06/09/java-run-jar-with-arguments.html)
++ [Java 8 Stream skip()与limit()](http://tu-yucheng.github.io/java-new/2023/06/09/java-stream-skip-vs-limit.html)
++ [Java BiFunction接口指南](http://tu-yucheng.github.io/java-new/2023/06/09/java-bifunction-interface.html)
++ [使用默认方法的接口与抽象类](http://tu-yucheng.github.io/java-new/2023/06/09/java-interface-default-method-vs-abstract-class.html)
++ [Java中字节数组和UUID之间的转换](http://tu-yucheng.github.io/java-new/2023/06/09/java-byte-array-to-uuid.html)
++ [用Java创建一个简单的“石头剪刀布”游戏](http://tu-yucheng.github.io/java-new/2023/06/09/java-rock-paper-scissors.html)
++ [Java中的可变参数与数组输入参数](http://tu-yucheng.github.io/java-new/2023/06/09/varargs-vs-array.html)
 
 - 更多文章：[[<-- prev]](../java-8-1/README.md)
 - 更多文章：[[next -->]](../java-9/README.md)

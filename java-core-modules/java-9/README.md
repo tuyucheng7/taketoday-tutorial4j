@@ -4,15 +4,15 @@
 
 ## 相关文章:
 
-- [Java中的MethodHandles](docs/Java中的MethodHandles.md)
-- [ChronicleQueue介绍](docs/ChronicleQueue介绍.md)
-- [Iterate Through a Range of Dates in Java](docs/在Java中遍历一系列日期.md)
-- [在Java中初始化一个HashMap](docs/在Java中初始化一个HashMap.md)
-- [Java中创建不可变的ArrayList](docs/Java中的不可变ArrayList.md)
-- [将InputStream写入OutputStream的简单方法](docs/将InputStream写入OutputStream的简单方法.md)
-- [Java接口中定义私有方法](docs/Java接口中的私有方法.md)
-- [Scanner中useDelimiter方法示例](docs/Scanner中useDelimiter的示例.md)
-- [Java中有析构函数吗?](docs/Java中有析构函数吗.md)
+- [Java中的MethodHandles](http://tu-yucheng.github.io/java-new/2023/06/09/java-method-handles.html)
+- [ChronicleQueue简介](http://tu-yucheng.github.io/java-new/2023/06/09/java-chronicle-queue.html)
+- [在Java中遍历一系列日期](http://tu-yucheng.github.io/java-new/2023/06/09/java-iterate-date-range.html)
+- [在Java中初始化一个HashMap](http://tu-yucheng.github.io/java-new/2023/06/09/java-initialize-hashmap.html)
+- [Java中的不可变ArrayList](http://tu-yucheng.github.io/java-new/2023/06/09/java-immutable-list.html)
+- [将Java InputStream写入OutputStream的简单方法](http://tu-yucheng.github.io/java-new/2023/06/09/java-inputstream-to-outputstream.html)
+- [Java接口中的私有方法](http://tu-yucheng.github.io/java-new/2023/06/09/java-interface-private-methods.html)
+- [Java Scanner useDelimiter示例](http://tu-yucheng.github.io/java-new/2023/06/09/java-scanner-usedelimiter.html)
+- [Java中有析构函数吗?](http://tu-yucheng.github.io/java-new/2023/06/09/java-destructor.html)
 
-- 更多文章：[[<-- prev]](../java8-2/README.md)
+- 更多文章：[[<-- prev]](../java-8-2/README.md)
 - 更多文章：[[next -->]](../java-9-streams/README.md)

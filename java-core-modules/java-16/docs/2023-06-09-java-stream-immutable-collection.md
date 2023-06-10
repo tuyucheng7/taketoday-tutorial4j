@@ -1,14 +1,22 @@
+---
+layout: post
+title:  将Java流收集到不可变集合
+category: java-new
+copyright: java-new
+excerpt: Java 16
+---
+
 ## 1. 概述
 
-我们经常想要将Java Stream转换为集合，这通常会产生一个可变集合，但我们可以自定义它。
+我们经常会将Java Stream转换为集合，这通常会产生一个可变集合，但我们可以自定义它。
 
-在这个简短的教程中，我们介绍**如何将Java流收集到不可变集合中**：首先使用纯Java，然后使用Guava库。
+在这个简短的教程中，我们将仔细研究**如何将Java流收集到不可变集合中**：首先使用纯Java，然后使用Guava库。
 
 ## 2. 使用标准Java
 
 ### 2.1 toUnmodifiableList
 
-从Java 10开始，我们可以使用Java Collectors类中的toUnmodifiableList方法：
+从Java 10开始，我们可以使用Java的Collectors类中的toUnmodifiableList方法：
 
 ```java
 List<String> givenList = Arrays.asList("a", "b", "c");
@@ -25,7 +33,7 @@ class java.util.ImmutableCollections$ListN
 
 ### 2.2 collectAndThen
 
-Collectors类中的collectAndThen方法接收一个Collector和一个finisher函数(Function)，此完成器应用于从收集器返回的结果：
+Java的Collectors类中的collectAndThen方法接收一个Collector和一个finisher函数(Function)，此完成器应用于从收集器返回的结果：
 
 ```java
 List<String> givenList = Arrays.asList("a", "b", "c");
@@ -53,21 +61,21 @@ void whenUsingStreamToList_thenReturnImmutableList() {
 }
 ```
 
-从上面的单元测试中看到，Stream.toList()返回一个不可变集合。因此，尝试向集合中添加新元素就会导致[UnsupportedOperationException](https://www.baeldung.com/java-list-unsupported-operation-exception)。
+正如我们在单元测试中看到的，Stream.toList()返回一个不可变集合。因此，尝试向集合中添加新元素就会导致[UnsupportedOperationException](https://www.baeldung.com/java-list-unsupported-operation-exception)。
 
-记住一点，新的Stream.toList()方法与现有的[Collectors.toList()](https://www.baeldung.com/java-8-collectors#1-collectorstolist)方法略有不同，因为它返回一个不可修改的集合。
+请记住，新的Stream.toList()方法与现有的[Collectors.toList()](https://www.baeldung.com/java-8-collectors#1-collectorstolist)方法略有不同，因为它返回一个不可修改的集合。
 
 ## 3. 构建自定义收集器
 
-我们还可以选择[实现自定义收集器](https://www.baeldung.com/java-8-collectors#Custom)。
+我们还可以选择实现[自定义收集器](https://www.baeldung.com/java-8-collectors#Custom)。
 
-### 3.1 一个基本的不可变收集器
+### 3.1 基本的不可变收集器
 
-为此，我们可以使用静态Collector.of方法：
+为了实现这一点，我们可以使用静态Collector.of方法：
 
 ```java
 public static <T> Collector<T, List<T>, List<T>> toImmutableList() {
-    return Collector.of(ArrayList::new, List::add, 
+    return Collector.of(ArrayList::new, List::add,
         (left, right) -> {
             left.addAll(right);
             return left;
@@ -75,7 +83,7 @@ public static <T> Collector<T, List<T>, List<T>> toImmutableList() {
 }
 ```
 
-我们可以像使用任何内置的Collector一样使用此函数：
+我们可以像使用任何内置的收集器一样使用此函数：
 
 ```java
 List<String> givenList = Arrays.asList("a", "b", "c", "d");
@@ -84,7 +92,7 @@ List<String> result = givenList
     .collect(MyImmutableListCollector.toImmutableList());
 ```
 
-最后，我们观察一下输出类型：
+最后，下面是返回的结果输出类型：
 
 ```java
 class java.util.Collections$UnmodifiableRandomAccessList
@@ -92,20 +100,20 @@ class java.util.Collections$UnmodifiableRandomAccessList
 
 ### 3.2 使MyImmutableListCollector泛型
 
-我们的实现有一个限制，它总是返回一个由ArrayList支持的不可变实例，但只要稍微改进一下，我们可以让这个收集器返回一个用户指定的类型：
+我们的实现有一个限制，它总是返回一个由ArrayList支持的不可变实例。但只要稍微改进一下，我们可以让这个收集器返回一个用户指定的类型：
 
 ```java
 public static <T, A extends List<T>> Collector<T, A, List<T>> toImmutableList(Supplier<A> supplier) {
     return Collector.of(
         supplier,
-        List::add, (left, right) -> {
+            List::add, (left, right) -> {
             left.addAll(right);
             return left;
         }, Collections::unmodifiableList);
 }
 ```
 
-因此，我们不是在方法实现中确定Supplier，而是向用户请求Supplier：
+所以现在，我们不是在方法实现中确定Supplier，而是向用户请求Supplier：
 
 ```java
 List<String> givenList = Arrays.asList("a", "b", "c", "d");
@@ -130,7 +138,7 @@ class java.util.Collections$UnmodifiableList
 <dependency>
     <groupId>com.google.guava</groupId>
     <artifactId>guava</artifactId>
-    <version>31.0.1-jre</version>
+    <version>31.1-JRE</version>
 </dependency>
 ```
 
@@ -142,7 +150,7 @@ List<Integer> list = IntStream.range(0, 9)
     .collect(ImmutableList.toImmutableList());
 ```
 
-返回的result实例是RegularImmutableList：
+返回的实例是RegularImmutableList：
 
 ```java
 class com.google.common.collect.RegularImmutableList
@@ -150,4 +158,8 @@ class com.google.common.collect.RegularImmutableList
 
 ## 5. 总结
 
-在这篇简短的文章中，我们了解了将Stream收集到不可变集合的各种方法。
+在这篇简短的文章中，我们介绍了将Stream收集到不可变集合的各种方法。
+
+与往常一样，本文的完整源代码已在GitHub上结束。它们按Java版本分为[第3-4节](https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-streams-2)、[第2.2节](https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-10/)和[第2.3节](https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-16/)的示例。
+
+与往常一样，本教程的完整源代码可在[GitHub](https://github.com/tu-yucheng/taketoday-tutorial4j/tree/master/java-core-modules/java-16)上获得。
