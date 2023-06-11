@@ -7,7 +7,7 @@
 	<springProfile name="development">
 		<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
 			<layout class="ch.qos.logback.classic.PatternLayout">
-				<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+				<Pattern>%highlight(%date{HH:mm:ss.SSS}) %blue([%thread]) %yellow(%-5level) %green(%logger{36}).%green(%M)[%green(%line)] - %green(%msg%n)</Pattern>
 			</layout>
 		</appender>
 		<root level="info">
@@ -19,7 +19,7 @@
 		<appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
 			<file>${LOGS}/${application.name}.log</file>
 			<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-				<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+				<Pattern>%highlight(%date{HH:mm:ss.SSS}) %blue([%thread]) %yellow(%-5level) %green(%logger{36}).%green(%M)[%green(%line)] - %green(%msg%n)</Pattern>
 			</encoder>
 			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 				<fileNamePattern>${LOGS}/archived/${application.name}-%d{yyyy-MM-dd}.log</fileNamePattern>
