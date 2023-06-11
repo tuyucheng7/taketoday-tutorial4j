@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.spliterator;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Spliterator;
@@ -10,47 +10,66 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Before;
+import org.junit.Test;
 
-class ExecutorUnitTest {
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class ExecutorUnitTest {
    Article article;
    Stream<Author> stream;
    Spliterator<Author> spliterator;
-   Spliterator<Article> split1;
-   Spliterator<Article> split2;
 
-   @BeforeEach
-   void init() {
-      article = new Article(Arrays.asList(new Author("Ahmad", 0), new Author("Eugen", 0), new Author("Alice", 1),
-            new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0),
-            new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0),
-            new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1),
-            new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1),
+   @Before
+   public void init() {
+      article = new Article(Arrays.asList(new Author("Ahmad", 0), new Author("Eugen", 0), new Author("Alice", 1), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0),
+            new Author("Alice", 1), new Author("Mike", 0), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1),
             new Author("Mike", 0), new Author("Michał", 0), new Author("Loredana", 1)), 0);
-      stream = article.getListOfAuthors().stream();
-      split1 = Executor.generateElements().spliterator();
-      split2 = split1.trySplit();
+
       spliterator = new RelatedAuthorSpliterator(article.getListOfAuthors());
    }
 
    @Test
-   void givenAStreamOfAuthors_whenProcessedInParallelWithCustomSpliterator_coubtProducesRightOutput() {
+   public void givenAstreamOfAuthors_whenProcessedInParallelWithCustomSpliterator_coubtProducessRightOutput() {
       Stream<Author> stream2 = StreamSupport.stream(spliterator, true);
-      assertThat(Executor.countAuthors(stream2.parallel())).isEqualTo(9);
+      assertThat(Executor.countAutors(stream2.parallel())).isEqualTo(9);
    }
 
    @Test
-   void givenSpliterator_whenAppliedToAListOfArticle_thenSplitInHalf() {
-      assertThat(new Task(split1).call()).containsSequence(Executor.generateElements().size() / 2 + "");
-      assertThat(new Task(split2).call()).containsSequence(Executor.generateElements().size() / 2 + "");
-   }
+   public void givenAStreamOfArticles_whenProcessedSequentiallyWithSpliterator_ProducessRightOutput() {
+      List<Article> articles = Stream.generate(() -> new Article("Java"))
+            .limit(35000)
+            .collect(Collectors.toList());
 
-   @Test
-   public void givenAstreamOfArticles_whenProcessedInSequentiallyWithSpliterator_ProducesRightOutput() {
-      List<Article> articles = Stream.generate(() -> new Article("Java")).limit(35000).collect(Collectors.toList());
       Spliterator<Article> spliterator = articles.spliterator();
-      while (spliterator.tryAdvance(article -> article.setName(article.getName().concat("- published by Tuyucheng")))) ;
+      while (spliterator.tryAdvance(article -> article.setName(article.getName()
+            .concat("- published by Tuyucheng")))) ;
 
       articles.forEach(article -> assertThat(article.getName()).isEqualTo("Java- published by Tuyucheng"));
+   }
+
+   @Test
+   public void givenAStreamOfArticle_whenProcessedUsingTrySplit_thenSplitIntoEqualHalf() {
+      List<Article> articles = Stream.generate(() -> new Article("Java"))
+            .limit(35000)
+            .collect(Collectors.toList());
+
+      Spliterator<Article> split1 = articles.spliterator();
+      Spliterator<Article> split2 = split1.trySplit();
+
+      LOGGER.info("Size: " + split1.estimateSize());
+      LOGGER.info("Characteristics: " + split1.characteristics());
+
+      List<Article> articlesListOne = new ArrayList<>();
+      List<Article> articlesListTwo = new ArrayList<>();
+
+      split1.forEachRemaining(articlesListOne::add);
+      split2.forEachRemaining(articlesListTwo::add);
+
+      assertThat(articlesListOne.size()).isEqualTo(17500);
+      assertThat(articlesListTwo.size()).isEqualTo(17500);
+
+      assertThat(articlesListOne).doesNotContainAnyElementsOf(articlesListTwo);
    }
 }
