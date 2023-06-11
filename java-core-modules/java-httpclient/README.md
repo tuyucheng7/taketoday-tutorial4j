@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [使用Java HttpClient POST](docs/使用Java-HttpClient发布.md)
-+ [使用Java HttpClient自定义HTTP标头](docs/使用Java-HttpClient自定义HTTP标头.md)
-+ [Java HttpClient连接管理](docs/Java-HttpClient连接管理.md)
++ [使用Java HttpClient发送POST请求](https://tu-yucheng.github.io/java/2023/06/11/java-httpclient-post.html)
++ [使用Java HttpClient自定义HTTP标头](https://tu-yucheng.github.io/java/2023/06/11/java-http-client-custom-header.html)
++ [Java HttpClient连接管理](https://tu-yucheng.github.io/java/2023/06/11/java-httpclient-connection-management.html)
