@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RegularRestController {
 
-	@GetMapping("home")
-	public String getSession() {
-		return "Hello";
-	}
+   @GetMapping("home")
+   public String getSession() {
+      return "Hello";
+   }
 }
