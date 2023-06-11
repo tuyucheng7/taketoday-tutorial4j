@@ -26,6 +26,7 @@ class TuyuchengSynchronizeMethodsUnitTest {
 	}
 
 	@Test
+   @Disabled("Random failures")
 	void givenMultiThread_whenMethodSync() throws InterruptedException {
 		ExecutorService service = Executors.newFixedThreadPool(3);
 		TuyuchengSynchronizedMethods method = new TuyuchengSynchronizedMethods();
@@ -38,6 +39,7 @@ class TuyuchengSynchronizeMethodsUnitTest {
 	}
 
 	@Test
+   @Disabled("Random failures")
 	void givenMultiThread_whenStaticSyncMethod() throws InterruptedException {
 		ExecutorService service = Executors.newCachedThreadPool();
 

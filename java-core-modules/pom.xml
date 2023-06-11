@@ -69,6 +69,7 @@
 		<module>java-collections-maps-5</module>
 		<module>java-collections-maps-6</module>
       <module>java-compiler</module>
+		<module>java-concurrency-1</module>
 		<module>java-concurrency-2</module>
 		<module>java-concurrency-advanced-1</module>
 		<module>java-concurrency-advanced-2</module>
@@ -79,7 +80,7 @@
 		<module>java-concurrency-basic-3</module>
 		<module>java-concurrency-collections-1</module>
 		<module>java-concurrency-collections-2</module>
-		<!-- <module>java-concurrency-simple</module> &lt;!&ndash; unlimited running &ndash;&gt; -->
+		<module>java-concurrency-simple</module>
 		<module>java-console</module>
 		<!--<module>java-date-operations-1</module>-->
 		<!--<module>java-date-operations-2</module>-->
