@@ -107,9 +107,10 @@
 		<!--<module>java-io-conversions-2</module>-->
 		<!--<module>java-jar</module>-->
 		<!--<module>java-jndi</module>-->
-		<!--<module>java-jvm-1</module>-->
-		<!--<module>java-jvm-2</module>-->
-		<!--<module>java-jvm-3</module>-->
+		<module>java-jvm-1</module>
+		<module>java-jvm-2</module>
+		<module>java-jvm-3</module>
+		<module>java-jvm-theory</module>
 		<module>java-lambdas</module>
 		<module>java-lang-1</module>
 		<module>java-lang-2</module>
