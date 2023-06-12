@@ -9,3 +9,4 @@
 + [Spring中的@PathVariable注解](http://tu-yucheng.github.io/springweb/2023/05/19/spring-pathvariable.html)
 
 - 更多文章： [[<-- prev]](../spring-mvc-java-1/README.md)
+- 更多文章： [[next -->]](../spring-mvc-java-3/README.md)
