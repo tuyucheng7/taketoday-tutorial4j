@@ -474,6 +474,7 @@
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
+            <module>opensource-libraries</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -548,6 +549,7 @@
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
+            <module>opensource-libraries</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -600,6 +602,7 @@
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
+            <module>opensource-libraries</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
