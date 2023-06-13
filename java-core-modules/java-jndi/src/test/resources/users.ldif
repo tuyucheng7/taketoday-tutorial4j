@@ -1,15 +1,15 @@
 version: 1
-dn: dc=baeldung,dc=com
+dn: dc=tuyucheng,dc=com
 objectClass: domain
 objectClass: top
-dc: baeldung
+dc: tuyucheng
 
-dn: ou=Users,dc=baeldung,dc=com
+dn: ou=Users,dc=tuyucheng,dc=com
 objectClass: organizationalUnit
 objectClass: top
 ou: Users
 
-dn: cn=Joe Simms,ou=Users,dc=baeldung,dc=com
+dn: cn=Joe Simms,ou=Users,dc=tuyucheng,dc=com
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
