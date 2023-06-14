@@ -13,9 +13,9 @@ public class EncryptedCitizen {
 	public EncryptedCitizen() {
 	}
 
-	public EncryptedCitizen(Citizen citizen) {
-		this.name = citizen.getName();
-	}
+   public EncryptedCitizen(String name) {
+      this.name = name;
+   }
 
 	public String getName() {
 		return name;

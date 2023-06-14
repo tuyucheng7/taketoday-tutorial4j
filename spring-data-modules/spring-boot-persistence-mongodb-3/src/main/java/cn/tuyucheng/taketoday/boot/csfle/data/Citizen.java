@@ -12,11 +12,9 @@ public class Citizen {
 	public Citizen() {
 	}
 
-	public Citizen(EncryptedCitizen encryptedCitizen) {
-		if (encryptedCitizen != null) {
-			this.name = encryptedCitizen.getName();
-		}
-	}
+   public Citizen(String name) {
+      this.name = name;
+   }
 
 	public String getName() {
 		return name;
