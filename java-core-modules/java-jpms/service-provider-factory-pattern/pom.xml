@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <artifactId>java-jpms</artifactId>
+   <groupId>cn.tuyucheng.taketoday.service-provider-factory-pattern</groupId>
+   <artifactId>service-provider-factory-pattern</artifactId>
    <version>1.0.0</version>
-   <name>java-jpms</name>
    <packaging>pom</packaging>
 
    <parent>
       <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
-      <artifactId>java-core-modules</artifactId>
+      <artifactId>java-jpms</artifactId>
       <version>1.0.0</version>
    </parent>
 
    <modules>
-      <module>service-provider-factory-pattern</module>
-      <module>service-loader-api-pattern</module>
+      <module>servicemodule1</module>
+      <module>consumermodule1</module>
    </modules>
 
    <build>
@@ -25,7 +25,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-compiler-plugin</artifactId>
-               <version>${maven-compiler-plugin.version}</version>
+               <version>${compiler.plugin.version}</version>
                <configuration>
                   <source>${source.version}</source>
                   <target>${target.version}</target>
@@ -36,6 +36,8 @@
    </build>
 
    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <compiler.plugin.version>3.8.0</compiler.plugin.version>
       <source.version>11</source.version>
       <target.version>11</target.version>
    </properties>

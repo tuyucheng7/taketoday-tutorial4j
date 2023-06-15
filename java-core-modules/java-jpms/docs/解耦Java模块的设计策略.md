@@ -273,7 +273,7 @@ module com.baeldung.servicemodule {
 ```java
 module com.baeldung.providermodule {
     requires com.baeldung.servicemodule;
-    provides com.baeldung.servicemodule.TextService with com.baeldung.providermodule.LowercaseTextService;
+    provides cn.tuyucheng.taketoday.servicemodule.TextService with cn.tuyucheng.taketoday.providermodule.LowercaseTextService;
 }
 
 ```
@@ -299,7 +299,7 @@ public static void main(String[] args) {
 ```java
 module com.baeldung.consumermodule {
     requires com.baeldung.servicemodule;
-    uses com.baeldung.servicemodule.TextService;
+    uses cn.tuyucheng.taketoday.servicemodule.TextService;
 }
 
 ```
