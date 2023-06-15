@@ -105,8 +105,10 @@
 		<!--<module>java-io-apis-2</module>-->
 		<!--<module>java-io-conversions-1</module>-->
 		<!--<module>java-io-conversions-2</module>-->
-		<!--<module>java-jar</module>-->
-		<!--<module>java-jndi</module>-->
+		<!-- <module>java-jar</module> -->
+      <module>java-jdi</module>
+		<module>java-jndi</module>
+      <module>java-jpms</module>
 		<module>java-jvm-1</module>
 		<module>java-jvm-2</module>
 		<module>java-jvm-3</module>

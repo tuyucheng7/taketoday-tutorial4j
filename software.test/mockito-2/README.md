@@ -8,6 +8,7 @@
 + [警告-不推荐使用MockitoJUnitRunner类型](http://tu-yucheng.github.io/mock/2023/05/12/mockito-deprecated-mockitojunitrunner.html)
 + [mockito-core和mockito-all的区别](http://tu-yucheng.github.io/mock/2023/05/12/mockito-core-vs-mockito-all.html)
 + [避免服务层的脆弱测试](http://tu-yucheng.github.io/mock/2023/05/12/testing-the-java-service-layer.html)
++ [解决Mockito异常：需要但未调用](http://tu-yucheng.github.io/mock/2023/06/15/mockito-exception-wanted-but-not-invoked.html)
 
 - 更多文章： [[<-- prev]](../mockito-1/README.md)
 - 更多文章： [[next -->]](../mockito-simple/README.md)

@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Java调试接口(JDI)简介](docs/Java调试接口(JDI)简介.md)
++ [Java调试接口(JDI)简介](https://tu-yucheng.github.io/java/2023/06/15/java-debug-interface.html)

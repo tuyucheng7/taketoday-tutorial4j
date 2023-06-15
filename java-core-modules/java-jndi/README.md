@@ -1,6 +1,5 @@
+## 相关文章
 
-### Relevant Articles:
-
-- [Java Naming and Directory Interface Overview](https://www.baeldung.com/jndi)
-- [LDAP Authentication Using Pure Java](https://www.baeldung.com/java-ldap-auth)
-- [Testing LDAP Connections With Java](https://www.baeldung.com/java-test-ldap-connections)
++ [Java命名和目录接口概述](https://tu-yucheng.github.io/java/2023/06/15/jndi.html)
++ [使用纯Java的LDAP身份验证](https://tu-yucheng.github.io/java/2023/06/15/java-ldap-auth.html)
++ [使用Java测试LDAP连接](https://tu-yucheng.github.io/java/2023/06/15/java-test-ldap-connections.html)
