@@ -44,7 +44,6 @@
 + [Spring Boot DI](spring-boot-di/README.md)
 + [Spring Boot Disable Logging](spring-boot-disable-logging/README.md)
 + [Spring Boot Discord4j](spring-boot-discord4j/README.md)
-+ [Spring Boot Docker](spring-boot-docker/README.md)
 + [Spring Boot Drools](spring-boot-drools/README.md)
 + [Spring Boot EJB](spring-boot-ejb/README.md)
 + [Spring Boot Environment](spring-boot-environment/README.md)

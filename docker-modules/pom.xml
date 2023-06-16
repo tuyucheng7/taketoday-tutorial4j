@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>docker-modules</artifactId>
-	<name>docker-modules</name>
-	<packaging>pom</packaging>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>docker-modules</artifactId>
+   <name>docker-modules</name>
+   <packaging>pom</packaging>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>taketoday-tutorial4j</artifactId>
-		<version>1.0.0</version>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>taketoday-tutorial4j</artifactId>
+      <version>1.0.0</version>
+   </parent>
 
-	<modules>
-		<module>docker-caching</module>
-		<module>docker-compose-1</module>
-		<module>docker-compose-2</module>
-		<module>docker-containers</module>
-		<module>docker-images</module>
-		<module>docker-java-jar</module>
-	</modules>
+   <modules>
+      <module>docker-caching</module>
+      <module>docker-compose-1</module>
+      <module>docker-compose-2</module>
+      <module>docker-containers</module>
+      <module>docker-images</module>
+      <module>docker-java-jar</module>
+      <module>docker-spring-boot</module>
+      <module>docker-spring-boot-postgres</module>
+   </modules>
 
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+   <properties>
+      <java.version>17</java.version>
+   </properties>
 </project>

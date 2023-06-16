@@ -84,8 +84,6 @@
       <module>spring-boot-di</module>
       <module>spring-boot-disable-logging</module>
       <module>spring-boot-discord4j</module>
-      <module>spring-boot-docker</module>
-      <module>spring-boot-docker-postgres</module>
       <module>spring-boot-documentation</module>
       <module>spring-boot-drools</module>
       <module>spring-boot-dubbo</module>
