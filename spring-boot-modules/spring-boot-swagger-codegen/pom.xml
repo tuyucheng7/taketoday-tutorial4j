@@ -10,9 +10,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>taketoday-tutorial4j</artifactId>
+      <artifactId>parent-boot-2</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../</relativePath>
+      <relativePath>../../parent-boot-2</relativePath>
    </parent>
 
    <modules>
