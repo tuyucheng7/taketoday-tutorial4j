@@ -10,6 +10,7 @@
 * [Java Concurrency](java-concurrency-1/README.md)
 * [Java Exception](java-exceptions-1/README.md)
 * [Java IO](java-io-1/README.md)
+* [Java JVM](java-jvm-1/README.md)
 * [Java Lambda](java-lambdas/README.md)
 * [Java Lang](java-lang-1/README.md)
 * [Java Networking](java-networking-1/README.md)
