@@ -19,6 +19,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.ok;
 import static com.github.tomakehurst.wiremock.client.WireMock.serverError;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.serviceUnavailable;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,100 +31,109 @@ import static org.springframework.http.HttpStatus.TOO_MANY_REQUESTS;
 // test marked as manual because there are multiple test methods calling the same API and the order is not guaranteed
 class ResilientApplicationControllerManualTest {
 
-	@RegisterExtension
-	static WireMockExtension EXTERNAL_SERVICE = WireMockExtension.newInstance()
-		.options(WireMockConfiguration.wireMockConfig()
-			.port(9090))
-		.build();
+   @RegisterExtension
+   static WireMockExtension EXTERNAL_SERVICE = WireMockExtension.newInstance()
+         .options(WireMockConfiguration.wireMockConfig()
+               .port(9090))
+         .build();
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Test
-	void testCircuitBreaker() {
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(serverError()));
+   @Test
+   void testCircuitBreaker() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(serverError()));
 
-		IntStream.rangeClosed(1, 5)
-			.forEach(i -> {
-				ResponseEntity<String> response = restTemplate.getForEntity("/api/circuit-breaker", String.class);
-				assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-			});
+      IntStream.rangeClosed(1, 5)
+            .forEach(i -> {
+               ResponseEntity<String> response = restTemplate.getForEntity("/api/circuit-breaker", String.class);
+               assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
+            });
 
-		IntStream.rangeClosed(1, 5)
-			.forEach(i -> {
-				ResponseEntity<String> response = restTemplate.getForEntity("/api/circuit-breaker", String.class);
-				assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
-			});
+      IntStream.rangeClosed(1, 5)
+            .forEach(i -> {
+               ResponseEntity<String> response = restTemplate.getForEntity("/api/circuit-breaker", String.class);
+               assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
+            });
 
-		EXTERNAL_SERVICE.verify(5, getRequestedFor(urlEqualTo("/api/external")));
-	}
+      EXTERNAL_SERVICE.verify(5, getRequestedFor(urlEqualTo("/api/external")));
+   }
 
-	@Test
-	void testRetry() {
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(ok()));
-		ResponseEntity<String> response1 = restTemplate.getForEntity("/api/retry", String.class);
-		EXTERNAL_SERVICE.verify(1, getRequestedFor(urlEqualTo("/api/external")));
+   @Test
+   void testRetry() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(ok()));
+      ResponseEntity<String> response1 = restTemplate.getForEntity("/api/retry", String.class);
+      EXTERNAL_SERVICE.verify(1, getRequestedFor(urlEqualTo("/api/external")));
 
-		EXTERNAL_SERVICE.resetRequests();
+      EXTERNAL_SERVICE.resetRequests();
 
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(serverError()));
-		ResponseEntity<String> response2 = restTemplate.getForEntity("/api/retry", String.class);
-		assertEquals(response2.getBody(), "all retries have exhausted");
-		EXTERNAL_SERVICE.verify(3, getRequestedFor(urlEqualTo("/api/external")));
-	}
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(serverError()));
+      ResponseEntity<String> response2 = restTemplate.getForEntity("/api/retry", String.class);
+      assertEquals(response2.getBody(), "all retries have exhausted");
+      EXTERNAL_SERVICE.verify(3, getRequestedFor(urlEqualTo("/api/external")));
+   }
 
-	@Test
-	void testBulkhead() {
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(ok()));
-		Map<Integer, Integer> responseStatusCount = new ConcurrentHashMap<>();
+   @Test
+   public void testRetryForServiceUnAvailable() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(serviceUnavailable()));
+      ResponseEntity responseEntity = restTemplate.getForEntity("/api/retryServiceUnAvailable", String.class);
+      EXTERNAL_SERVICE.verify(5, getRequestedFor(urlEqualTo("/api/external")));
+      assertEquals("all retries have exhausted", responseEntity.getBody());
+   }
 
-		IntStream.rangeClosed(1, 5)
-			.parallel()
-			.forEach(i -> {
-				ResponseEntity<String> response = restTemplate.getForEntity("/api/bulkhead", String.class);
-				int statusCode = response.getStatusCodeValue();
-				responseStatusCount.put(statusCode, responseStatusCount.getOrDefault(statusCode, 0) + 1);
-			});
+   @Test
+   void testBulkhead() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(ok()));
+      Map<Integer, Integer> responseStatusCount = new ConcurrentHashMap<>();
 
-		assertEquals(2, responseStatusCount.keySet()
-			.size());
-		assertTrue(responseStatusCount.containsKey(BANDWIDTH_LIMIT_EXCEEDED.value()));
-		assertTrue(responseStatusCount.containsKey(OK.value()));
-		EXTERNAL_SERVICE.verify(3, getRequestedFor(urlEqualTo("/api/external")));
-	}
+      IntStream.rangeClosed(1, 5)
+            .parallel()
+            .forEach(i -> {
+               ResponseEntity<String> response = restTemplate.getForEntity("/api/bulkhead", String.class);
+               int statusCode = response.getStatusCodeValue();
+               responseStatusCount.put(statusCode, responseStatusCount.getOrDefault(statusCode, 0) + 1);
+            });
 
-	@Test
-	void testTimeLimiter() {
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(ok()));
-		ResponseEntity<String> response = restTemplate.getForEntity("/api/time-limiter", String.class);
+      assertEquals(2, responseStatusCount.keySet()
+            .size());
+      assertTrue(responseStatusCount.containsKey(BANDWIDTH_LIMIT_EXCEEDED.value()));
+      assertTrue(responseStatusCount.containsKey(OK.value()));
+      EXTERNAL_SERVICE.verify(3, getRequestedFor(urlEqualTo("/api/external")));
+   }
 
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.REQUEST_TIMEOUT);
-		EXTERNAL_SERVICE.verify(1, getRequestedFor(urlEqualTo("/api/external")));
-	}
+   @Test
+   void testTimeLimiter() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(ok()));
+      ResponseEntity<String> response = restTemplate.getForEntity("/api/time-limiter", String.class);
 
-	@Test
-	void testRatelimiter() {
-		EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
-			.willReturn(ok()));
-		Map<Integer, Integer> responseStatusCount = new ConcurrentHashMap<>();
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.REQUEST_TIMEOUT);
+      EXTERNAL_SERVICE.verify(1, getRequestedFor(urlEqualTo("/api/external")));
+   }
 
-		IntStream.rangeClosed(1, 50)
-			.parallel()
-			.forEach(i -> {
-				ResponseEntity<String> response = restTemplate.getForEntity("/api/rate-limiter", String.class);
-				int statusCode = response.getStatusCodeValue();
-				responseStatusCount.put(statusCode, responseStatusCount.getOrDefault(statusCode, 0) + 1);
-			});
+   @Test
+   void testRatelimiter() {
+      EXTERNAL_SERVICE.stubFor(WireMock.get("/api/external")
+            .willReturn(ok()));
+      Map<Integer, Integer> responseStatusCount = new ConcurrentHashMap<>();
 
-		assertEquals(2, responseStatusCount.keySet()
-			.size());
-		assertTrue(responseStatusCount.containsKey(TOO_MANY_REQUESTS.value()));
-		assertTrue(responseStatusCount.containsKey(OK.value()));
-		EXTERNAL_SERVICE.verify(5, getRequestedFor(urlEqualTo("/api/external")));
-	}
+      IntStream.rangeClosed(1, 50)
+            .parallel()
+            .forEach(i -> {
+               ResponseEntity<String> response = restTemplate.getForEntity("/api/rate-limiter", String.class);
+               int statusCode = response.getStatusCodeValue();
+               responseStatusCount.put(statusCode, responseStatusCount.getOrDefault(statusCode, 0) + 1);
+            });
+
+      assertEquals(2, responseStatusCount.keySet()
+            .size());
+      assertTrue(responseStatusCount.containsKey(TOO_MANY_REQUESTS.value()));
+      assertTrue(responseStatusCount.containsKey(OK.value()));
+      EXTERNAL_SERVICE.verify(5, getRequestedFor(urlEqualTo("/api/external")));
+   }
 }
