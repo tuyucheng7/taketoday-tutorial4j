@@ -2,10 +2,12 @@ package cn.tuyucheng.taketoday.changeport;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Collections;
 
-@SpringBootApplication
+@Profile("customapplication")
+@SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.changeport")
 public class CustomApplication {
 
 	public static void main(String[] args) {

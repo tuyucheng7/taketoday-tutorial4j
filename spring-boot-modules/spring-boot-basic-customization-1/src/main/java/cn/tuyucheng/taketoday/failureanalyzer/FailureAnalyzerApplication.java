@@ -2,10 +2,12 @@ package cn.tuyucheng.taketoday.failureanalyzer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 import javax.annotation.security.RolesAllowed;
 
-@SpringBootApplication
+@Profile("failureanalyzer")
+@SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.failureanalyzer")
 public class FailureAnalyzerApplication {
 
 	@RolesAllowed("*")
