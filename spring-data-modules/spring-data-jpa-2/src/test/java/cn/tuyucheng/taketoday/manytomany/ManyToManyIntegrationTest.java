@@ -4,15 +4,14 @@ import cn.tuyucheng.taketoday.manytomany.model.Course;
 import cn.tuyucheng.taketoday.manytomany.model.CourseRating;
 import cn.tuyucheng.taketoday.manytomany.model.CourseRatingKey;
 import cn.tuyucheng.taketoday.manytomany.model.Student;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -24,32 +23,32 @@ import static org.junit.Assert.assertThat;
 @Transactional
 public class ManyToManyIntegrationTest {
 
-	@PersistenceContext
-	EntityManager entityManager;
+   @PersistenceContext
+   EntityManager entityManager;
 
-	@Test
-	public void contextStarted() {
-	}
+   @Test
+   public void contextStarted() {
+   }
 
-	@Test
-	public void whenCourseRatingPersisted_thenCorrect() {
-		Student student = new Student(101L);
-		entityManager.persist(student);
+   @Test
+   public void whenCourseRatingPersisted_thenCorrect() {
+      Student student = new Student(101L);
+      entityManager.persist(student);
 
-		Course course = new Course(201L);
-		entityManager.persist(course);
+      Course course = new Course(201L);
+      entityManager.persist(course);
 
-		CourseRating courseRating = new CourseRating();
-		courseRating.setId(new CourseRatingKey());
-		courseRating.setStudent(student);
-		courseRating.setCourse(course);
-		courseRating.setRating(100);
-		entityManager.persist(courseRating);
+      CourseRating courseRating = new CourseRating();
+      courseRating.setId(new CourseRatingKey());
+      courseRating.setStudent(student);
+      courseRating.setCourse(course);
+      courseRating.setRating(100);
+      entityManager.persist(courseRating);
 
-		CourseRating persistedCourseRating = entityManager.find(CourseRating.class, new CourseRatingKey(101L, 201L));
+      CourseRating persistedCourseRating = entityManager.find(CourseRating.class, new CourseRatingKey(101L, 201L));
 
-		assertThat(persistedCourseRating, notNullValue());
-		assertThat(persistedCourseRating.getStudent().getId(), is(101L));
-		assertThat(persistedCourseRating.getCourse().getId(), is(201L));
-	}
+      assertThat(persistedCourseRating, notNullValue());
+      assertThat(persistedCourseRating.getStudent().getId(), is(101L));
+      assertThat(persistedCourseRating.getCourse().getId(), is(201L));
+   }
 }

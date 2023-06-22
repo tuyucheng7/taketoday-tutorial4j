@@ -21,161 +21,161 @@ import static junit.framework.TestCase.assertTrue;
 @Transactional
 public class HibernateBootstrapIntegrationTest {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+   @Autowired
+   private SessionFactory sessionFactory;
 
-	@Test
-	public void whenBootstrapHibernateSession_thenNoException() {
-		Session session = sessionFactory.getCurrentSession();
+   @Test
+   public void whenBootstrapHibernateSession_thenNoException() {
+      Session session = sessionFactory.getCurrentSession();
 
-		TestEntity newEntity = new TestEntity();
-		newEntity.setId(1);
-		session.save(newEntity);
+      TestEntity newEntity = new TestEntity();
+      newEntity.setId(1);
+      session.persist(newEntity);
 
-		TestEntity searchEntity = session.find(TestEntity.class, 1);
+      TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
-	}
+      Assert.assertNotNull(searchEntity);
+   }
 
-	@Test
-	public void whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
-		assertTrue(TestTransaction.isActive());
+   @Test
+   public void whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
+      assertTrue(TestTransaction.isActive());
 
-		// Save an entity and commit.
-		Session session = sessionFactory.getCurrentSession();
+      // Save an entity and commit.
+      Session session = sessionFactory.getCurrentSession();
 
-		TestEntity newEntity = new TestEntity();
-		newEntity.setId(1);
-		session.save(newEntity);
+      TestEntity newEntity = new TestEntity();
+      newEntity.setId(1);
+      session.persist(newEntity);
 
-		TestEntity searchEntity = session.find(TestEntity.class, 1);
+      TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
-		assertTrue(TestTransaction.isFlaggedForRollback());
+      Assert.assertNotNull(searchEntity);
+      assertTrue(TestTransaction.isFlaggedForRollback());
 
-		TestTransaction.flagForCommit();
-		TestTransaction.end();
+      TestTransaction.flagForCommit();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isFlaggedForRollback());
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isFlaggedForRollback());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is still there in a new transaction,
-		// then delete it, but don't commit.
-		TestTransaction.start();
+      // Check that the entity is still there in a new transaction,
+      // then delete it, but don't commit.
+      TestTransaction.start();
 
-		assertTrue(TestTransaction.isFlaggedForRollback());
-		assertTrue(TestTransaction.isActive());
+      assertTrue(TestTransaction.isFlaggedForRollback());
+      assertTrue(TestTransaction.isActive());
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
+      Assert.assertNotNull(searchEntity);
 
-		session.delete(searchEntity);
-		session.flush();
+      session.remove(searchEntity);
+      session.flush();
 
-		TestTransaction.end();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is still there in a new transaction,
-		// then delete it and commit.
-		TestTransaction.start();
+      // Check that the entity is still there in a new transaction,
+      // then delete it and commit.
+      TestTransaction.start();
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
+      Assert.assertNotNull(searchEntity);
 
-		session.delete(searchEntity);
-		session.flush();
+      session.remove(searchEntity);
+      session.flush();
 
-		assertTrue(TestTransaction.isActive());
+      assertTrue(TestTransaction.isActive());
 
-		TestTransaction.flagForCommit();
-		TestTransaction.end();
+      TestTransaction.flagForCommit();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is no longer there in a new transaction.
-		TestTransaction.start();
+      // Check that the entity is no longer there in a new transaction.
+      TestTransaction.start();
 
-		assertTrue(TestTransaction.isActive());
+      assertTrue(TestTransaction.isActive());
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNull(searchEntity);
-	}
+      Assert.assertNull(searchEntity);
+   }
 
-	@Test
-	@Commit
-	public void givenTransactionCommitDefault_whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
-		assertTrue(TestTransaction.isActive());
+   @Test
+   @Commit
+   public void givenTransactionCommitDefault_whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
+      assertTrue(TestTransaction.isActive());
 
-		// Save an entity and commit.
-		Session session = sessionFactory.getCurrentSession();
+      // Save an entity and commit.
+      Session session = sessionFactory.getCurrentSession();
 
-		TestEntity newEntity = new TestEntity();
-		newEntity.setId(1);
-		session.save(newEntity);
+      TestEntity newEntity = new TestEntity();
+      newEntity.setId(1);
+      session.persist(newEntity);
 
-		TestEntity searchEntity = session.find(TestEntity.class, 1);
+      TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
-		assertFalse(TestTransaction.isFlaggedForRollback());
+      Assert.assertNotNull(searchEntity);
+      assertFalse(TestTransaction.isFlaggedForRollback());
 
-		TestTransaction.end();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isFlaggedForRollback());
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isFlaggedForRollback());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is still there in a new transaction,
-		// then delete it, but don't commit.
-		TestTransaction.start();
+      // Check that the entity is still there in a new transaction,
+      // then delete it, but don't commit.
+      TestTransaction.start();
 
-		assertFalse(TestTransaction.isFlaggedForRollback());
-		assertTrue(TestTransaction.isActive());
+      assertFalse(TestTransaction.isFlaggedForRollback());
+      assertTrue(TestTransaction.isActive());
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
+      Assert.assertNotNull(searchEntity);
 
-		session.delete(searchEntity);
-		session.flush();
+      session.remove(searchEntity);
+      session.flush();
 
-		TestTransaction.flagForRollback();
-		TestTransaction.end();
+      TestTransaction.flagForRollback();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is still there in a new transaction,
-		// then delete it and commit.
-		TestTransaction.start();
+      // Check that the entity is still there in a new transaction,
+      // then delete it and commit.
+      TestTransaction.start();
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
+      Assert.assertNotNull(searchEntity);
 
-		session.delete(searchEntity);
-		session.flush();
+      session.remove(searchEntity);
+      session.flush();
 
-		assertTrue(TestTransaction.isActive());
+      assertTrue(TestTransaction.isActive());
 
-		TestTransaction.end();
+      TestTransaction.end();
 
-		assertFalse(TestTransaction.isActive());
+      assertFalse(TestTransaction.isActive());
 
-		// Check that the entity is no longer there in a new transaction.
-		TestTransaction.start();
+      // Check that the entity is no longer there in a new transaction.
+      TestTransaction.start();
 
-		assertTrue(TestTransaction.isActive());
+      assertTrue(TestTransaction.isActive());
 
-		session = sessionFactory.getCurrentSession();
-		searchEntity = session.find(TestEntity.class, 1);
+      session = sessionFactory.getCurrentSession();
+      searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNull(searchEntity);
-	}
+      Assert.assertNull(searchEntity);
+   }
 }

@@ -1,73 +1,73 @@
 package cn.tuyucheng.taketoday.manytomanyremoval;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "book")
 public class Book {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
+   private Long id;
 
-	@Column(name = "title")
-	private String title;
+   @Column(name = "title")
+   private String title;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "book_author",
-		joinColumns = @JoinColumn(name = "book_id"),
-		inverseJoinColumns = @JoinColumn(name = "author_id")
-	)
-	private Set<Author> authors = new HashSet<>();
+   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   @JoinTable(name = "book_author",
+         joinColumns = @JoinColumn(name = "book_id"),
+         inverseJoinColumns = @JoinColumn(name = "author_id")
+   )
+   private Set<Author> authors = new HashSet<>();
 
-	// standard getters and setters
+   // standard getters and setters
 
-	public Book() {
-	}
+   public Book() {
+   }
 
-	public Book(String title) {
-		this.title = title;
-	}
+   public Book(String title) {
+      this.title = title;
+   }
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public String getTitle() {
-		return title;
-	}
+   public String getTitle() {
+      return title;
+   }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+   public void setTitle(String title) {
+      this.title = title;
+   }
 
-	public Set<Author> getAuthors() {
-		return authors;
-	}
+   public Set<Author> getAuthors() {
+      return authors;
+   }
 
-	public void removeAuthor(Author author) {
-		this.authors.remove(author);
-		author.getBooks().remove(this);
-	}
+   public void removeAuthor(Author author) {
+      this.authors.remove(author);
+      author.getBooks().remove(this);
+   }
 
-	public void addAuthor(Author author) {
-		authors.add(author);
-		author.getBooks().add(this);
-	}
+   public void addAuthor(Author author) {
+      authors.add(author);
+      author.getBooks().add(this);
+   }
 }

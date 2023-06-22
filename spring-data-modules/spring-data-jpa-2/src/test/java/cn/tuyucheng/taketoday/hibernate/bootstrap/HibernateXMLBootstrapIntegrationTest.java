@@ -16,19 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class HibernateXMLBootstrapIntegrationTest {
 
-	@Autowired
-	private SessionFactory sessionFactory;
+   @Autowired
+   private SessionFactory sessionFactory;
 
-	@Test
-	public void whenBootstrapHibernateSession_thenNoException() {
-		Session session = sessionFactory.getCurrentSession();
+   @Test
+   public void whenBootstrapHibernateSession_thenNoException() {
+      Session session = sessionFactory.getCurrentSession();
 
-		TestEntity newEntity = new TestEntity();
-		newEntity.setId(1);
-		session.save(newEntity);
+      TestEntity newEntity = new TestEntity();
+      newEntity.setId(1);
+      session.persist(newEntity);
 
-		TestEntity searchEntity = session.find(TestEntity.class, 1);
+      TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-		Assert.assertNotNull(searchEntity);
-	}
+      Assert.assertNotNull(searchEntity);
+   }
 }
