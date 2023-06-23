@@ -15,22 +15,22 @@ import java.util.Optional;
 @RequestMapping("/hello")
 public class WebController {
 
-	private String name;
+   private String name;
 
-	@GetMapping
-	public String salutation() {
-		return "Hello " + Optional.ofNullable(name).orElse("world") + '!';
-	}
+   @GetMapping
+   public String salutation() {
+      return "Hello " + Optional.ofNullable(name).orElse("world") + '!';
+   }
 
-	@PutMapping
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void setName(@RequestBody final String name) {
-		this.name = name;
-	}
+   @PutMapping
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void setName(@RequestBody final String name) {
+      this.name = name;
+   }
 
-	@DeleteMapping
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void resetToDefault() {
-		this.name = null;
-	}
+   @DeleteMapping
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void resetToDefault() {
+      this.name = null;
+   }
 }

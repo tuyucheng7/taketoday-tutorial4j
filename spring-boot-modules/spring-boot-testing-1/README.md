@@ -4,7 +4,6 @@
 
 ## 相关文章
 
-+ [使用Spring和Spock进行测试](http://tu-yucheng.github.io/springboot/2023/05/12/spring-spock-testing.html)
 + [在Spring Boot测试中排除自动配置类](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-exclude-auto-configuration-test.html)
 + [使用嵌入式Redis服务器进行Spring Boot测试](http://tu-yucheng.github.io/springboot/2023/05/12/spring-embedded-redis.html)
 + [测试Spring Boot中的@ConfigurationProperties](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-testing-configurationproperties.html)
