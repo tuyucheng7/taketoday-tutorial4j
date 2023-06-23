@@ -477,6 +477,8 @@
             <module>messaging-modules</module>
             <module>microservices</module>
             <module>opensource-libraries</module>
+            <module>pdf-1</module>
+            <module>pdf-2</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -554,6 +556,8 @@
             <module>messaging-modules</module>
             <module>microservices</module>
             <module>opensource-libraries</module>
+            <module>pdf-1</module>
+            <module>pdf-2</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -609,6 +613,8 @@
             <module>messaging-modules</module>
             <module>microservices</module>
             <module>opensource-libraries</module>
+            <module>pdf-1</module>
+            <module>pdf-2</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
