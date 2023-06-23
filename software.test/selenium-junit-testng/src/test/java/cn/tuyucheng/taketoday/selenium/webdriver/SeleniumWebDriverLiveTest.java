@@ -15,32 +15,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SeleniumWebDriverLiveTest {
 
-	private WebDriver driver;
+   private WebDriver driver;
 
-	private static final String URL = "https://duckduckgo.com/";
-	private static final String INPUT_ID = "search_form_input_homepage";
+   private static final String URL = "https://duckduckgo.com/";
+   private static final String INPUT_ID = "searchbox_input__bEGm3";
 
-	@BeforeEach
-	void setUp() {
-		WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
-	}
+   @BeforeEach
+   void setUp() {
+      WebDriverManager.chromedriver().setup();
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
+      driver = new ChromeDriver(options);
+   }
 
-	@AfterEach
-	void tearDown() {
-		driver.quit();
-	}
+   @AfterEach
+   void tearDown() {
+      driver.quit();
+   }
 
-	@Test
-	void givenDuckDuckGoHomePage_whenInputHelloWorld_thenInputValueIsHelloWorld() {
-		driver.get(URL);
-		WebElement inputElement = driver.findElement(By.id(INPUT_ID));
-		inputElement.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
-		inputElement.sendKeys("Hello World!");
+   @Test
+   void givenDuckDuckGoHomePage_whenInputHelloWorld_thenInputValueIsHelloWorld() {
+      driver.get(URL);
+      WebElement inputElement = driver.findElement(By.className(INPUT_ID));
+      inputElement.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+      inputElement.sendKeys("Hello World!");
 
-		String inputValue = inputElement.getAttribute("value");
-		assertEquals("Hello World!", inputValue);
-	}
+      String inputValue = inputElement.getAttribute("value");
+      assertEquals("Hello World!", inputValue);
+   }
 }

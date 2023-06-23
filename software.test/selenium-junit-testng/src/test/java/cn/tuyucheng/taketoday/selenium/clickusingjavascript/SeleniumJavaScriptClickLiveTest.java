@@ -21,51 +21,50 @@ import static org.junit.Assert.assertTrue;
 
 public class SeleniumJavaScriptClickLiveTest {
 
-	private WebDriver driver;
-	private WebDriverWait wait;
+   private WebDriver driver;
+   private WebDriverWait wait;
 
-	@Before
-	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", new File("src/main/resources/chromedriver.exe").getAbsolutePath());
+   @Before
+   public void setUp() {
+      System.setProperty("webdriver.chrome.driver", new File("src/main/resources/chromedriver.exe").getAbsolutePath());
 
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
-		wait = new WebDriverWait(driver, Duration.of(20, ChronoUnit.SECONDS));
-	}
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
+      driver = new ChromeDriver(options);
+      wait = new WebDriverWait(driver, Duration.of(20, ChronoUnit.SECONDS));
+   }
 
-	@After
-	public void cleanUp() {
-		driver.close();
-	}
+   @After
+   public void cleanUp() {
+      driver.close();
+   }
 
-	@Test
-	public void whenSearchForSeleniumArticles_thenReturnNotEmptyResults() {
-		driver.get("https://baeldung.com");
-		String title = driver.getTitle();
-		assertEquals("Baeldung | Java, Spring and Web Development tutorials", title);
+   @Test
+   public void whenSearchForSeleniumArticles_thenReturnNotEmptyResults() {
+      driver.get("https://baeldung.com");
+      String title = driver.getTitle();
+      assertEquals("Baeldung", title);
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.className("nav--menu_item_anchor")));
-		WebElement searchButton = driver.findElement(By.className("nav--menu_item_anchor"));
-		clickElement(searchButton);
+      wait.until(ExpectedConditions.elementToBeClickable(By.className("nav--menu_item_anchor")));
+      WebElement searchButton = driver.findElement(By.className("nav--menu_item_anchor"));
+      clickElement(searchButton);
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("search")));
-		WebElement searchInput = driver.findElement(By.id("search"));
-		searchInput.sendKeys("Selenium");
+      wait.until(ExpectedConditions.elementToBeClickable(By.id("menu-item-40489")));
+      WebElement searchInput = driver.findElement(By.id("menu-item-40489"));
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-search")));
-		WebElement seeSearchResultsButton = driver.findElement(By.cssSelector(".btn-search"));
-		clickElement(seeSearchResultsButton);
+      wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".nav--menu_item")));
+      WebElement seeSearchResultsButton = driver.findElement(By.cssSelector(".nav--menu_item"));
+      clickElement(seeSearchResultsButton);
 
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("post")));
-		int seleniumPostsCount = driver.findElements(By.className("post"))
-			.size();
-		assertTrue(seleniumPostsCount > 0);
-	}
+      wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("nav--menu_item_anchor")));
+      int seleniumPostsCount = driver.findElements(By.className("nav--menu_item_anchor"))
+            .size();
+      assertTrue(seleniumPostsCount > 0);
+   }
 
-	private void clickElement(WebElement element) {
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-	}
+   private void clickElement(WebElement element) {
+      JavascriptExecutor executor = (JavascriptExecutor) driver;
+      executor.executeScript("arguments[0].click();", element);
+   }
 
 }

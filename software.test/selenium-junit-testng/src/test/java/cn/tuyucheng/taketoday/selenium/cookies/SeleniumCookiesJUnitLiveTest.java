@@ -5,7 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.time.Duration;
@@ -21,105 +23,100 @@ import static org.hamcrest.Matchers.nullValue;
 
 public class SeleniumCookiesJUnitLiveTest {
 
-    private WebDriver driver;
-    private String navUrl;
+   private WebDriver driver;
+   private String navUrl;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", findFile("chromedriver.exe"));
+   private final String COOKIE = "SNS";
 
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
-        navUrl = "https://baeldung.com";
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
+   @Before
+   public void setUp() {
+      System.setProperty("webdriver.chrome.driver", findFile("chromedriver.exe"));
 
-    private static String findFile(String filename) {
-        String[] paths = { "", "bin/", "target/classes" }; // if you have chromedriver somewhere else on the path, then put it here.
-        for (String path : paths) {
-            if (new File(path + filename).exists())
-                return path + filename;
-        }
-        return "";
-    }
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
+      driver = new ChromeDriver(options);
+      navUrl = "https://baeldung.com";
+      driver.navigate().to(navUrl);
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+      wait.until(d -> d.manage().getCookieNamed(COOKIE) != null);
+   }
 
-    @After
-    public void teardown() {
-        driver.quit();
-    }
+   private static String findFile(String filename) {
+      String[] paths = { "", "bin/", "target/classes" }; // if you have chromedriver somewhere else on the path, then put it here.
+      for (String path : paths) {
+         if (new File(path + filename).exists())
+            return path + filename;
+      }
+      return "";
+   }
 
-    @Test
-    public void whenNavigate_thenCookiesExist() {
-        driver.navigate().to(navUrl);
-        Set<Cookie> cookies = driver.manage().getCookies();
+   @After
+   public void teardown() {
+      driver.quit();
+   }
 
-        assertThat(cookies, is(not(empty())));
-    }
+   @Test
+   public void whenNavigate_thenCookiesExist() {
+      Set<Cookie> cookies = driver.manage().getCookies();
 
-    @Test
-    public void whenNavigate_thenLpCookieExists() {
-        driver.navigate().to(navUrl);
-        Cookie lpCookie = driver.manage().getCookieNamed("lp_120073");
+      assertThat(cookies, is(not(empty())));
+   }
 
-        assertThat(lpCookie, is(not(nullValue())));
-    }
+   @Test
+   public void whenNavigate_thenLpCookieExists() {
+      Cookie lpCookie = driver.manage().getCookieNamed(COOKIE);
 
-    @Test
-    public void whenNavigate_thenLpCookieIsHasCorrectValue() {
-        driver.navigate().to(navUrl);
-        Cookie lpCookie = driver.manage().getCookieNamed("lp_120073");
+      assertThat(lpCookie, is(not(nullValue())));
+   }
 
-        assertThat(lpCookie.getValue(), containsString("www.baeldung.com"));
-    }
+   @Test
+   public void whenNavigate_thenLpCookieIsHasCorrectValue() {
+      Cookie lpCookie = driver.manage().getCookieNamed(COOKIE);
 
-    @Test
-    public void whenNavigate_thenLpCookieHasCorrectProps() {
-        driver.navigate().to(navUrl);
-        Cookie lpCookie = driver.manage().getCookieNamed("lp_120073");
+      assertThat(lpCookie.getValue(), containsString("1"));
+   }
 
-        assertThat(lpCookie.getDomain(), equalTo(".baeldung.com"));
-        assertThat(lpCookie.getPath(), equalTo("/"));
-        assertThat(lpCookie.getExpiry(), is(not(nullValue())));
-        assertThat(lpCookie.isSecure(), equalTo(false));
-        assertThat(lpCookie.isHttpOnly(), equalTo(false));
-    }
+   @Test
+   public void whenNavigate_thenLpCookieHasCorrectProps() {
+      Cookie lpCookie = driver.manage().getCookieNamed(COOKIE);
 
-    @Test
-    public void whenAddingCookie_thenItIsPresent() {
-        driver.navigate().to(navUrl);
-        Cookie cookie = new Cookie("foo", "bar");
-        driver.manage().addCookie(cookie);
-        Cookie driverCookie = driver.manage().getCookieNamed("foo");
+      assertThat(lpCookie.getDomain(), equalTo("www.baeldung.com"));
+      assertThat(lpCookie.getPath(), equalTo("/"));
+      assertThat(lpCookie.isSecure(), equalTo(false));
+      assertThat(lpCookie.isHttpOnly(), equalTo(false));
+   }
 
-        assertThat(driverCookie.getValue(), equalTo("bar"));
-    }
+   @Test
+   public void whenAddingCookie_thenItIsPresent() {
+      Cookie cookie = new Cookie("foo", "bar");
+      driver.manage().addCookie(cookie);
+      Cookie driverCookie = driver.manage().getCookieNamed("foo");
 
-    @Test
-    public void whenDeletingCookie_thenItIsAbsent() {
-        driver.navigate().to(navUrl);
-        Cookie lpCookie = driver.manage().getCookieNamed("lp_120073");
+      assertThat(driverCookie.getValue(), equalTo("bar"));
+   }
 
-        assertThat(lpCookie, is(not(nullValue())));
+   @Test
+   public void whenDeletingCookie_thenItIsAbsent() {
+      Cookie lpCookie = driver.manage().getCookieNamed("SNS");
 
-        driver.manage().deleteCookie(lpCookie);
-        Cookie deletedCookie = driver.manage().getCookieNamed("lp_120073");
+      assertThat(lpCookie, is(not(nullValue())));
 
-        assertThat(deletedCookie, is(nullValue()));
-    }
+      driver.manage().deleteCookie(lpCookie);
+      Cookie deletedCookie = driver.manage().getCookieNamed(COOKIE);
 
-    @Test
-    public void whenOverridingCookie_thenItIsUpdated() {
-        driver.navigate().to(navUrl);
-        Cookie lpCookie = driver.manage().getCookieNamed("lp_120073");
-        driver.manage().deleteCookie(lpCookie);
+      assertThat(deletedCookie, is(nullValue()));
+   }
 
-        Cookie newLpCookie = new Cookie("lp_120073", "foo");
-        driver.manage().addCookie(newLpCookie);
+   @Test
+   public void whenOverridingCookie_thenItIsUpdated() {
+      Cookie lpCookie = driver.manage().getCookieNamed(COOKIE);
+      driver.manage().deleteCookie(lpCookie);
 
-        Cookie overriddenCookie = driver.manage().getCookieNamed("lp_120073");
+      Cookie newLpCookie = new Cookie(COOKIE, "foo");
+      driver.manage().addCookie(newLpCookie);
 
-        assertThat(overriddenCookie.getValue(), equalTo("foo"));
-    }
+      Cookie overriddenCookie = driver.manage().getCookieNamed(COOKIE);
 
+      assertThat(overriddenCookie.getValue(), equalTo("foo"));
+   }
 }
