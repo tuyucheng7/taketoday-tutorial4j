@@ -65,6 +65,11 @@
          <artifactId>jaxb-runtime</artifactId>
          <version>${jaxb.version}</version>
       </dependency>
+      <dependency>
+         <groupId>com.github.piomin</groupId>
+         <artifactId>logstash-logging-spring-boot-starter</artifactId>
+         <version>${logstash-logging-spring-boot-starter.version}</version>
+      </dependency>
    </dependencies>
 
    <repositories>
@@ -79,5 +84,6 @@
       <jasperreports.version>6.20.4</jasperreports.version>
       <dozer.version>6.5.2</dozer.version>
       <jaxb.version>2.3.1</jaxb.version>
+      <logstash-logging-spring-boot-starter.version>1.4.1</logstash-logging-spring-boot-starter.version>
    </properties>
 </project>
