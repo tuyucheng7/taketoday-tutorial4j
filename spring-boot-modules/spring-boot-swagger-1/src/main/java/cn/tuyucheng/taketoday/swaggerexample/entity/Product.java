@@ -1,45 +1,46 @@
 package cn.tuyucheng.taketoday.swaggerexample.entity;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
 
 public class Product implements Serializable {
-	@ApiModelProperty(notes = "Product ID", example = "1", required = true)
-	private Long id;
-	@ApiModelProperty(notes = "Product name", example = "Product 1", required = false)
-	private String name;
-	@ApiModelProperty(notes = "Product price", example = "$100.00", required = true)
-	private String price;
 
-	// constructor and getter/setters
-	public Product(long id, String name, String price) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-	}
+   @Schema(name = "Product ID", example = "1", required = true)
+   private Long id;
+   @Schema(name = "Product name", example = "Product 1", required = false)
+   private String name;
+   @Schema(name = "Product price", example = "$100.00", required = true)
+   private String price;
 
-	public long getId() {
-		return id;
-	}
+   // constructor and getter/setters
+   public Product(long id, String name, String price) {
+      this.id = id;
+      this.name = name;
+      this.price = price;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public long getId() {
+      return id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public void setId(long id) {
+      this.id = id;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public String getPrice() {
-		return price;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
+   public String getPrice() {
+      return price;
+   }
+
+   public void setPrice(String price) {
+      this.price = price;
+   }
 }
