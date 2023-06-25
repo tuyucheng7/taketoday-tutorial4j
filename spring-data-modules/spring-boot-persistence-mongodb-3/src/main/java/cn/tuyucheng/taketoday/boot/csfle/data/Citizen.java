@@ -5,43 +5,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("citizens")
 public class Citizen {
 
-	private String name;
-	private String email;
-	private Integer birthYear;
+   private String name;
+   private String email;
+   private Integer birthYear;
 
-	public Citizen() {
-	}
+   public String getName() {
+      return name;
+   }
 
-   public Citizen(String name) {
+   public void setName(String name) {
       this.name = name;
    }
 
-	public String getName() {
-		return name;
-	}
+   public String getEmail() {
+      return email;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
-	public String getEmail() {
-		return email;
-	}
+   public Integer getBirthYear() {
+      return birthYear;
+   }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+   public void setBirthYear(Integer birthYear) {
+      this.birthYear = birthYear;
+   }
 
-	public Integer getBirthYear() {
-		return birthYear;
-	}
-
-	public void setBirthYear(Integer birthYear) {
-		this.birthYear = birthYear;
-	}
-
-	@Override
-	public String toString() {
-		return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
-	}
+   @Override
+   public String toString() {
+      return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
+   }
 }

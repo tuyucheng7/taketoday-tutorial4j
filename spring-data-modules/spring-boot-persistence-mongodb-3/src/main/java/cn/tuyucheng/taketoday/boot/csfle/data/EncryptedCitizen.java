@@ -6,43 +6,36 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("citizens")
 public class EncryptedCitizen {
 
-	private String name;
-	private Binary email;
-	private Binary birthYear;
+   private String name;
+   private Binary email;
+   private Binary birthYear;
 
-	public EncryptedCitizen() {
-	}
+   public String getName() {
+      return name;
+   }
 
-   public EncryptedCitizen(String name) {
+   public void setName(String name) {
       this.name = name;
    }
 
-	public String getName() {
-		return name;
-	}
+   public Binary getEmail() {
+      return email;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setEmail(Binary email) {
+      this.email = email;
+   }
 
-	public Binary getEmail() {
-		return email;
-	}
+   public Binary getBirthYear() {
+      return birthYear;
+   }
 
-	public void setEmail(Binary email) {
-		this.email = email;
-	}
+   public void setBirthYear(Binary birthYear) {
+      this.birthYear = birthYear;
+   }
 
-	public Binary getBirthYear() {
-		return birthYear;
-	}
-
-	public void setBirthYear(Binary birthYear) {
-		this.birthYear = birthYear;
-	}
-
-	@Override
-	public String toString() {
-		return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
-	}
+   @Override
+   public String toString() {
+      return "Citizen [name=" + name + ", email=" + email + ", birthYear=" + birthYear + "]";
+   }
 }
