@@ -1,14 +1,15 @@
 package cn.tuyucheng.taketoday.javaxval.methodvalidation.constraints;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 @Constraint(validatedBy = ConsistentDateParameterValidator.class)
 @Target({METHOD, CONSTRUCTOR})
@@ -16,9 +17,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ConsistentDateParameters {
 
-	String message() default "End date must be after begin date and both must be in the future";
+   String message() default "End date must be after begin date and both must be in the future";
 
-	Class<?>[] groups() default {};
+   Class<?>[] groups() default {};
 
-	Class<? extends Payload>[] payload() default {};
+   Class<? extends Payload>[] payload() default {};
 }

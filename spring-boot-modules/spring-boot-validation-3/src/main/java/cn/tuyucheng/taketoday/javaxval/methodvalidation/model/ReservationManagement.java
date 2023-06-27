@@ -1,52 +1,49 @@
 package cn.tuyucheng.taketoday.javaxval.methodvalidation.model;
 
-import cn.tuyucheng.taketoday.javaxval.methodvalidation.constraints.ConsistentDateParameters;
+import java.time.LocalDate;
+import java.util.List;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
-import java.util.List;
+import cn.tuyucheng.taketoday.javaxval.methodvalidation.constraints.ConsistentDateParameters;
 
 @Controller
 @Validated
 public class ReservationManagement {
 
-	@Autowired
-	private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-	@ConsistentDateParameters
-	public void createReservation(LocalDate begin, LocalDate end, @NotNull Customer customer) {
+   @ConsistentDateParameters
+   public void createReservation(LocalDate begin, LocalDate end, @NotNull Customer customer) {
+      // ...
+   }
 
-		// ...
-	}
+   public void createReservation(@NotNull @Future LocalDate begin, @Min(1) int duration, @NotNull Customer customer) {
+      // ...
+   }
 
-	public void createReservation(@NotNull @Future LocalDate begin, @Min(1) int duration, @NotNull Customer customer) {
+   public void createReservation(@Valid Reservation reservation) {
+      // ...
+   }
 
-		// ...
-	}
+   @NotNull
+   @Size(min = 1)
+   public List<@NotNull Customer> getAllCustomers() {
+      return null;
+   }
 
-	public void createReservation(@Valid Reservation reservation) {
-
-		// ...
-	}
-
-	@NotNull
-	@Size(min = 1)
-	public List<@NotNull Customer> getAllCustomers() {
-
-		return null;
-	}
-
-	@Valid
-	public Reservation getReservationById(int id) {
-
-		return null;
-	}
+   @Valid
+   public Reservation getReservationById(int id) {
+      return null;
+   }
 }
