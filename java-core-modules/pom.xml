@@ -35,7 +35,7 @@
       <module>java-15</module>
       <module>java-16</module>
       <module>java-17</module>
-      <!-- <module>java-19</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
+      <module>java-19</module>
       <!-- <module>java-20</module>   &lt;!&ndash;uses preview features, to be decided how to handle&ndash;&gt; -->
 		<module>java-annotations</module>
 		<module>java-arrays-sorting</module>
