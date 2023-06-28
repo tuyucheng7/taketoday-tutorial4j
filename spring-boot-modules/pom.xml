@@ -141,7 +141,7 @@
       <module>spring-boot-sendgrid</module>
       <module>spring-boot-shell</module> <!--long-running-->
       <module>spring-boot-soap</module>
-      <module>spring-boot-springdoc</module>
+      <module>spring-boot-springdoc-1</module>
       <module>spring-boot-springdoc-2</module>
       <module>spring-boot-state-machine</module>
       <module>spring-boot-swagger-1</module>
