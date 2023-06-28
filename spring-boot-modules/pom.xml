@@ -17,17 +17,9 @@
    </parent>
 
    <modules>
-      <!--====== ci fails modules ======-->
-      <!--<module>spring-boot-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-3-container</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-camel</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
-      <!--<module>spring-boot-feign</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
-      <!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-keycloak-1</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
-      <!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-azure</module> &lt;!&ndash;fails on local&ndash;&gt;-->
-
       <!--====== spring boot 3 modules ======-->
+      <!-- <module>spring-boot-3</module> -->
+      <!-- <module>spring-boot-3-container</module> -->
       <module>spring-boot-3-mybatis</module>
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
@@ -55,9 +47,9 @@
       <module>spring-boot-annotations-2</module>
       <module>spring-boot-artifacts-1</module>
       <module>spring-boot-artifacts-2</module>
-      <module>spring-boot-astra-db</module>
       <module>spring-boot-autoconfiguration</module>
       <module>spring-boot-aws</module>
+      <!--<module>spring-boot-azure</module>-->
       <module>spring-boot-basic-customization-1</module>
       <module>spring-boot-basic-customization-2</module>
       <module>spring-boot-batch-1</module>
@@ -65,8 +57,7 @@
       <module>spring-boot-bootstrap</module>
       <module>spring-boot-caching-1</module>
       <module>spring-boot-caching-2</module>
-      <module>spring-boot-cassandra</module>
-      <module>spring-boot-cassandra-test</module>
+      <!-- <module>spring-boot-camel</module> -->
       <module>spring-boot-cassandre</module>
       <module>spring-boot-ci-cd</module>
       <module>spring-boot-cli</module>
@@ -90,6 +81,7 @@
       <module>spring-boot-ejb</module>
       <module>spring-boot-environment</module>
       <module>spring-boot-exceptions</module>
+      <!--<module>spring-boot-feign</module>-->
       <module>spring-boot-flowable</module>
       <module>spring-boot-gcp-firebase</module>
       <module>spring-boot-gradle-1</module>
@@ -104,7 +96,9 @@
       <module>spring-boot-jib</module>
       <module>spring-boot-jsp</module>
       <module>spring-boot-kafka-1</module>
+      <!--<module>spring-boot-kafka-2</module>-->
       <module>spring-boot-katharsis</module>
+      <!--<module>spring-boot-keycloak-1</module>-->
       <module>spring-boot-keycloak-2</module>
       <module>spring-boot-keycloak-adapters</module>
       <module>spring-boot-libraries-1</module>
@@ -138,6 +132,7 @@
       <module>spring-boot-redis</module>
       <module>spring-boot-remoting</module>
       <module>spring-boot-request-params</module>
+      <!--<module>spring-boot-resilience4j</module>-->
       <module>spring-boot-rest</module>
       <module>spring-boot-runtime-1</module>
       <module>spring-boot-runtime-2</module>
