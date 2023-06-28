@@ -17,22 +17,21 @@ public class Consumer implements Runnable {
 
    public void consume() {
       while (dataQueue.runFlag) {
-         synchronized (dataQueue) {
-            while (dataQueue.isEmpty() && dataQueue.runFlag) {
-               try {
-                  dataQueue.waitOnEmpty();
-               } catch (InterruptedException e) {
-                  e.printStackTrace();
-                  break;
-               }
-            }
-            if (!dataQueue.runFlag) {
+         while (dataQueue.isEmpty() && dataQueue.runFlag) {
+            try {
+               dataQueue.waitOnEmpty();
+            } catch (InterruptedException e) {
+               e.printStackTrace();
                break;
             }
-            Message message = dataQueue.remove();
-            dataQueue.notifyAllForFull();
-            useMessage(message);
          }
+         if (!dataQueue.runFlag) {
+            break;
+         }
+         Message message = dataQueue.remove();
+         dataQueue.notifyAllForFull();
+         useMessage(message);
+
       }
       log.info("Consumer Stopped");
    }

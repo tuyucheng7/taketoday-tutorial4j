@@ -19,22 +19,21 @@ public class Producer implements Runnable {
 
    public void produce() {
       while (dataQueue.runFlag) {
-         synchronized (dataQueue) {
-            while (dataQueue.isFull() && dataQueue.runFlag) {
-               try {
-                  dataQueue.waitOnFull();
-               } catch (InterruptedException e) {
-                  e.printStackTrace();
-                  break;
-               }
-            }
-            if (!dataQueue.runFlag) {
+         while (dataQueue.isFull() && dataQueue.runFlag) {
+            try {
+               dataQueue.waitOnFull();
+            } catch (InterruptedException e) {
+               e.printStackTrace();
                break;
             }
-            Message message = generateMessage();
-            dataQueue.add(message);
-            dataQueue.notifyAllForEmpty();
          }
+         if (!dataQueue.runFlag) {
+            break;
+         }
+         Message message = generateMessage();
+         dataQueue.add(message);
+         dataQueue.notifyAllForEmpty();
+
       }
       log.info("Producer Stopped");
    }
