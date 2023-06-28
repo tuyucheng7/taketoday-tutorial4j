@@ -39,7 +39,7 @@
 
 	<properties>
 		<opencsv.version>4.1</opencsv.version>
-		<spring-core.version>5.3.23</spring-core.version>
+		<spring-core.version>5.3.25</spring-core.version>
 		<apache-commons-lang3.version>3.12.0</apache-commons-lang3.version>
 	</properties>
 </project>

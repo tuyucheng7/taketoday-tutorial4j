@@ -68,7 +68,7 @@
 	<properties>
 		<maven.compiler.source.version>17</maven.compiler.source.version>
 		<maven.compiler.target.version>17</maven.compiler.target.version>
-		<mockserver.version>5.11.1</mockserver.version>
+		<mockserver.version>5.11.2</mockserver.version>
 		<jakarta.ws-api.version>3.0.1</jakarta.ws-api.version>
 		<jaxws-maven-plugin.version>3.0.2</jaxws-maven-plugin.version>
 	</properties>

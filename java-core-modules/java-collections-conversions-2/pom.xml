@@ -43,6 +43,6 @@
     </build>
 
     <properties>
-        <vavr.version>0.10.3</vavr.version>
+        <vavr.version>0.10.4</vavr.version>
     </properties>
 </project>

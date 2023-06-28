@@ -56,6 +56,6 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<joda-time.version>2.10</joda-time.version>
+		<joda-time.version>2.10.5</joda-time.version>
 	</properties>
 </project>

@@ -65,7 +65,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>2.7.5</version>
+            <version>2.7.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -92,6 +92,6 @@
         <assertj.version>3.22.0</assertj.version>
         <maven.compiler.source.version>17</maven.compiler.source.version>
         <maven.compiler.target.version>17</maven.compiler.target.version>
-        <spring.version>5.3.23</spring.version>
+        <spring.version>5.3.25</spring.version>
     </properties>
 </project>
