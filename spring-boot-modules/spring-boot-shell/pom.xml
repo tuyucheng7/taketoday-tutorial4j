@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-boot-shell</artifactId>
-	<version>1.0.0</version>
-	<name>spring-boot-shell</name>
-	<packaging>war</packaging>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-boot-shell</artifactId>
+   <version>1.0.0</version>
+   <name>spring-boot-shell</name>
+   <packaging>war</packaging>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>parent-boot-2</artifactId>
-		<version>1.0.0</version>
-		<relativePath>../../parent-boot-2</relativePath>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-2</artifactId>
+      <version>1.0.0</version>
+      <relativePath>../../parent-boot-2</relativePath>
+   </parent>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.shell</groupId>
-			<artifactId>spring-shell</artifactId>
-			<version>${org.springframework.shell.version}</version>
-		</dependency>
-	</dependencies>
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.shell</groupId>
+         <artifactId>spring-shell</artifactId>
+         <version>${org.springframework.shell.version}</version>
+      </dependency>
+   </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${maven-war-plugin.version}</version>
-				<configuration>
-					<warSourceDirectory>src/main/webapp</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>${maven-war-plugin.version}</version>
+            <configuration>
+               <warSourceDirectory>src/main/webapp</warSourceDirectory>
+               <failOnMissingWebXml>false</failOnMissingWebXml>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
 
-	<properties>
-		<org.springframework.shell.version>1.2.0.RELEASE</org.springframework.shell.version>
-		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-	</properties>
+   <properties>
+      <org.springframework.shell.version>1.2.0.RELEASE</org.springframework.shell.version>
+      <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+   </properties>
 </project>

@@ -25,7 +25,6 @@
       <!--<module>spring-boot-kafka-2</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-boot-keycloak-1</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
       <!--<module>spring-boot-resilience4j</module> &lt;!&ndash;build fails&ndash;&gt;-->
-      <!--<module>spring-boot-shell</module> &lt;!&ndash;long-running&ndash;&gt;-->
       <!--<module>spring-boot-azure</module> &lt;!&ndash;fails on local&ndash;&gt;-->
 
       <!--====== spring boot 3 modules ======-->
@@ -145,6 +144,7 @@
       <module>spring-boot-scheduling</module>
       <module>spring-boot-security</module>
       <module>spring-boot-sendgrid</module>
+      <module>spring-boot-shell</module> <!--long-running-->
       <module>spring-boot-soap</module>
       <module>spring-boot-springdoc</module>
       <module>spring-boot-springdoc-2</module>

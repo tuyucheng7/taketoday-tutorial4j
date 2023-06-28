@@ -10,25 +10,25 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleBannerProvider extends DefaultBannerProvider {
 
-	public String getBanner() {
-		StringBuffer buf = new StringBuffer();
-		buf.append("=======================================").append(OsUtils.LINE_SEPARATOR);
-		buf.append("*          Baeldung Shell             *").append(OsUtils.LINE_SEPARATOR);
-		buf.append("=======================================").append(OsUtils.LINE_SEPARATOR);
-		buf.append("Version:").append(this.getVersion());
-		return buf.toString();
-	}
+   public String getBanner() {
+      StringBuffer buf = new StringBuffer();
+      buf.append("=======================================").append(OsUtils.LINE_SEPARATOR);
+      buf.append("*          Tuyucheng Shell             *").append(OsUtils.LINE_SEPARATOR);
+      buf.append("=======================================").append(OsUtils.LINE_SEPARATOR);
+      buf.append("Version:").append(this.getVersion());
+      return buf.toString();
+   }
 
-	public String getVersion() {
-		return "1.0.1";
-	}
+   public String getVersion() {
+      return "1.0.1";
+   }
 
-	public String getWelcomeMessage() {
-		return "Welcome to Baeldung CLI";
-	}
+   public String getWelcomeMessage() {
+      return "Welcome to Tuyucheng CLI";
+   }
 
-	@Override
-	public String getProviderName() {
-		return "Baeldung Banner";
-	}
+   @Override
+   public String getProviderName() {
+      return "Tuyucheng Banner";
+   }
 }

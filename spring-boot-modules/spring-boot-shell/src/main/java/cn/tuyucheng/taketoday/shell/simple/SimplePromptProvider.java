@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimplePromptProvider extends DefaultPromptProvider {
 
-	@Override
-	public String getPrompt() {
-		return "baeldung-shell>";
-	}
+   @Override
+   public String getPrompt() {
+      return "tuyucheng-shell>";
+   }
 
-	@Override
-	public String getProviderName() {
-		return "Baeldung Prompt";
-	}
+   @Override
+   public String getProviderName() {
+      return "Tuyucheng Prompt";
+   }
 }

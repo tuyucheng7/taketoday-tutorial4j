@@ -12,24 +12,23 @@ import java.util.List;
 @Component
 public class SimpleURLConverter implements Converter<URL> {
 
-	@Override
-	public URL convertFromText(String value, Class<?> requiredType, String optionContext) {
-		try {
-			return new URL(value);
-		} catch (MalformedURLException ex) {
-			// Ignore
-		}
-		return null;
-	}
+   @Override
+   public URL convertFromText(String value, Class<?> requiredType, String optionContext) {
+      try {
+         return new URL(value);
+      } catch (MalformedURLException ex) {
+         // Ignore
+      }
+      return null;
+   }
 
-	@Override
-	public boolean getAllPossibleValues(List<Completion> completions, Class<?> requiredType, String existingData, String optionContext, MethodTarget target) {
-		return false;
-	}
+   @Override
+   public boolean getAllPossibleValues(List<Completion> completions, Class<?> requiredType, String existingData, String optionContext, MethodTarget target) {
+      return false;
+   }
 
-	@Override
-	public boolean supports(Class<?> requiredType, String optionContext) {
-		return URL.class.isAssignableFrom(requiredType);
-	}
-
+   @Override
+   public boolean supports(Class<?> requiredType, String optionContext) {
+      return URL.class.isAssignableFrom(requiredType);
+   }
 }
