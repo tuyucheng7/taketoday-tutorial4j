@@ -1,23 +1,22 @@
 package cn.tuyucheng.taketoday.javaxval.messageinterpolator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Set;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParameterMessageInterpolaterIntegrationTest {
 
    private static Validator validator;
 
-   @BeforeClass
+   @BeforeAll
    public static void beforeClass() {
       ValidatorFactory validatorFactory = Validation.byDefaultProvider()
             .configure()
@@ -28,7 +27,7 @@ public class ParameterMessageInterpolaterIntegrationTest {
    }
 
    @Test
-   public void givenNameLengthLessThanMin_whenValidate_thenValidationFails() {
+   void givenNameLengthLessThanMin_whenValidate_thenValidationFails() {
       Person person = new Person();
       person.setName("John Doe");
       person.setAge(18);
@@ -41,7 +40,7 @@ public class ParameterMessageInterpolaterIntegrationTest {
    }
 
    @Test
-   public void givenAgeIsLessThanMin_whenValidate_thenValidationFails() {
+   void givenAgeIsLessThanMin_whenValidate_thenValidationFails() {
       Person person = new Person();
       person.setName("John Stephaner Doe");
       person.setAge(16);
@@ -54,7 +53,7 @@ public class ParameterMessageInterpolaterIntegrationTest {
    }
 
    @Test
-   public void givenEmailIsMalformed_whenValidate_thenValidationFails() {
+   void givenEmailIsMalformed_whenValidate_thenValidationFails() {
       Person person = new Person();
       person.setName("John Stephaner Doe");
       person.setAge(18);

@@ -1,37 +1,30 @@
 package cn.tuyucheng.taketoday.javaxval.methodvalidation;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import jakarta.validation.ConstraintViolationException;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-
 import cn.tuyucheng.taketoday.javaxval.methodvalidation.model.Customer;
 import cn.tuyucheng.taketoday.javaxval.methodvalidation.model.Reservation;
 import cn.tuyucheng.taketoday.javaxval.methodvalidation.model.ReservationManagement;
+import jakarta.validation.ConstraintViolationException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {MethodValidationConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class ContainerValidationIntegrationTest {
 
    @Autowired
    ReservationManagement reservationManagement;
 
-   @Rule
-   public final ExpectedException exception = ExpectedException.none();
-
    @Test
    public void whenValidationWithInvalidMethodParameters_thenConstraintViolationException() {
-      exception.expect(ConstraintViolationException.class);
-      reservationManagement.createReservation(LocalDate.now(), 0, null);
+      assertThrows(ConstraintViolationException.class, () -> reservationManagement.createReservation(LocalDate.now(), 0, null));
    }
 
    @Test
@@ -42,8 +35,7 @@ public class ContainerValidationIntegrationTest {
 
    @Test
    public void whenCrossParameterValidationWithInvalidParameters_thenConstraintViolationException() {
-      exception.expect(ConstraintViolationException.class);
-      reservationManagement.createReservation(LocalDate.now(), LocalDate.now(), null);
+      assertThrows(ConstraintViolationException.class, () -> reservationManagement.createReservation(LocalDate.now(), LocalDate.now(), null));
    }
 
    @Test
@@ -57,8 +49,7 @@ public class ContainerValidationIntegrationTest {
 
    @Test
    public void whenValidationWithInvalidReturnValue_thenConstraintViolationException() {
-      exception.expect(ConstraintViolationException.class);
-      List<Customer> list = reservationManagement.getAllCustomers();
+      assertThrows(ConstraintViolationException.class, () -> reservationManagement.getAllCustomers());
    }
 
    @Test
@@ -72,8 +63,7 @@ public class ContainerValidationIntegrationTest {
                   .plusDays(2),
             customer, 1);
 
-      exception.expect(ConstraintViolationException.class);
-      reservationManagement.createReservation(reservation);
+      assertThrows(ConstraintViolationException.class, () -> reservationManagement.createReservation(reservation));
    }
 
    @Test
