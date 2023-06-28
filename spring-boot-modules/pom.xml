@@ -157,6 +157,7 @@
       <module>spring-boot-swagger-springfox</module>
       <module>spring-boot-testing-1</module>
       <module>spring-boot-testing-2</module>
+      <module>spring-boot-testing-spock</module>
       <module>spring-boot-threads</module>
       <module>spring-boot-vaadin</module>
       <module>spring-boot-validation-1</module>
