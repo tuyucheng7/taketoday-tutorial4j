@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CompletableFutureLongRunningUnitTest {
@@ -60,11 +62,11 @@ public class CompletableFutureLongRunningUnitTest {
 		return completableFuture;
 	}
 
-	// @Test(expected = CancellationException.class)
-	// public void whenCancelingTheFuture_thenThrowsCancellationException() throws ExecutionException, InterruptedException {
-	//     Future<String> future = calculateAsyncWithCancellation();
-	//     future.get();
-	// }
+	@Test
+	public void whenCancelingTheFuture_thenThrowsCancellationException() throws ExecutionException, InterruptedException {
+	    Future<String> future = calculateAsyncWithCancellation();
+       assertThrows(CancellationException.class, future::get);
+	}
 
 	@Test
 	void whenCreatingCompletableFutureWithSupplyAsync_thenFutureReturnsValue() throws ExecutionException, InterruptedException {
@@ -160,19 +162,19 @@ public class CompletableFutureLongRunningUnitTest {
 
 		assertEquals("Hello, Stranger!", completableFuture.get());
 	}
-	//
-	// @Test(expected = ExecutionException.class)
-	// public void whenCompletingFutureExceptionally_thenGetMethodThrows() throws ExecutionException, InterruptedException {
-	//     CompletableFuture<String> completableFuture = new CompletableFuture<>();
-	//
-	//     // ...
-	//
-	//     completableFuture.completeExceptionally(new RuntimeException("Calculation failed!"));
-	//
-	//     // ...
-	//
-	//     completableFuture.get();
-	// }
+
+	@Test
+	public void whenCompletingFutureExceptionally_thenGetMethodThrows() throws ExecutionException, InterruptedException {
+	    CompletableFuture<String> completableFuture = new CompletableFuture<>();
+
+	    // ...
+
+	    completableFuture.completeExceptionally(new RuntimeException("Calculation failed!"));
+
+	    // ...
+
+       assertThrows(ExecutionException.class, completableFuture::get);
+	}
 
 	@Test
 	void whenAddingThenApplyAsyncToFuture_thenFunctionExecutesAfterComputationIsFinished() throws ExecutionException, InterruptedException {
