@@ -479,6 +479,7 @@
             <module>opensource-libraries</module>
             <module>pdf-1</module>
             <module>pdf-2</module>
+            <module>persistence-modules</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -558,6 +559,7 @@
             <module>opensource-libraries</module>
             <module>pdf-1</module>
             <module>pdf-2</module>
+            <module>persistence-modules</module>
             <module>protobuffer</module>
             <module>quarkus-modules</module>
             <module>reactive-systems</module>
@@ -615,6 +617,7 @@
             <!-- <module>opensource-libraries</module> -->
             <!-- <module>pdf-1</module> -->
             <!-- <module>pdf-2</module> -->
+            <module>persistence-modules</module>
             <!-- <module>protobuffer</module> -->
             <!-- <module>quarkus-modules</module> -->
             <!-- <module>reactive-systems</module> -->
