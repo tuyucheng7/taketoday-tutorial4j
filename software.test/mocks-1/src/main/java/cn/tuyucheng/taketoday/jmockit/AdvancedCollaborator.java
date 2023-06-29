@@ -1,28 +1,28 @@
 package cn.tuyucheng.taketoday.jmockit;
 
 public class AdvancedCollaborator {
-	int i;
-	private int privateField = 5;
+   int i;
+   private int privateField = 5;
 
-	public AdvancedCollaborator() {
-	}
+   public AdvancedCollaborator() {
+   }
 
-	public AdvancedCollaborator(String string) throws Exception {
-		i = string.length();
-	}
+   public AdvancedCollaborator(String string) throws Exception {
+      i = string.length();
+   }
 
-	public String methodThatCallsPrivateMethod(int i) {
-		return privateMethod() + i;
-	}
+   public String methodThatCallsPrivateMethod(int i) {
+      return protectedMethod() + i;
+   }
 
-	public int methodThatReturnsThePrivateField() {
-		return privateField;
-	}
+   public int methodThatReturnsThePrivateField() {
+      return privateField;
+   }
 
-	private String privateMethod() {
-		return "default:";
-	}
+   protected String protectedMethod() {
+      return "default:";
+   }
 
-	class InnerAdvancedCollaborator {
-	}
+   class InnerAdvancedCollaborator {
+   }
 }

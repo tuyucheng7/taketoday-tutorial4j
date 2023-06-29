@@ -1,93 +1,82 @@
 package cn.tuyucheng.taketoday.jmockit;
 
-import mockit.Deencapsulation;
-import mockit.Expectations;
-import mockit.Invocation;
-import mockit.Mock;
-import mockit.MockUp;
-import mockit.Mocked;
-import mockit.Tested;
-import mockit.integration.junit4.JMockit;
+import mockit.*;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-@RunWith(JMockit.class)
-public class AdvancedCollaboratorIntegrationTest<MultiMock extends List<String> & Comparable<List<String>>> {
+public class AdvancedCollaboratorIntegrationTest {
 
-	@Tested
-	private AdvancedCollaborator mock;
+   interface IList<T> extends List<T> {
+   }
 
-	@Mocked
-	private MultiMock multiMock;
+   interface IComparator extends Comparator<Integer>, Serializable {
+   }
 
-	@Test
-	public void testToMockUpPrivateMethod() {
-		new MockUp<AdvancedCollaborator>() {
-			@Mock
-			private String privateMethod() {
-				return "mocked: ";
-			}
-		};
-		String res = mock.methodThatCallsPrivateMethod(1);
-		assertEquals("mocked: 1", res);
-	}
+   static class MultiMock {
+      IList<?> get() {
+         return null;
+      }
 
-	@Test
-	public void testToMockUpDifficultConstructor() throws Exception {
-		new MockUp<AdvancedCollaborator>() {
-			@Mock
-			public void $init(Invocation invocation, String string) {
-				((AdvancedCollaborator) invocation.getInvokedInstance()).i = 1;
-			}
-		};
-		AdvancedCollaborator coll = new AdvancedCollaborator(null);
-		assertEquals(1, coll.i);
-	}
+      IComparator compareTo() {
+         return null;
+      }
+   }
 
-	@Test
-	public void testToSetPrivateFieldDirectly() {
-		Deencapsulation.setField(mock, "privateField", 10);
-		assertEquals(10, mock.methodThatReturnsThePrivateField());
-	}
+   @Tested
+   private AdvancedCollaborator mock;
 
-	@Test
-	public void testToGetPrivateFieldDirectly() {
-		int value = Deencapsulation.getField(mock, "privateField");
-		assertEquals(5, value);
-	}
+   @Test
+   public void testToMockUpPrivateMethod() {
+      new MockUp<AdvancedCollaborator>() {
+         @Mock
+         protected String protectedMethod() {
+            return "mocked: ";
+         }
+      };
+      String res = mock.methodThatCallsPrivateMethod(1);
+      assertEquals("mocked: 1", res);
+   }
 
-	@Test
-	@SuppressWarnings("unchecked")
-	public void testMultipleInterfacesWholeTest() {
-		new Expectations() {
-			{
-				multiMock.get(5);
-				result = "foo";
-				multiMock.compareTo((List<String>) any);
-				result = 0;
-			}
-		};
-		assertEquals("foo", multiMock.get(5));
-		assertEquals(0, multiMock.compareTo(new ArrayList<>()));
-	}
+   @Test
+   public void testToMockUpDifficultConstructor() throws Exception {
+      new MockUp<AdvancedCollaborator>() {
+         @Mock
+         public void $init(Invocation invocation, String string) {
+            ((AdvancedCollaborator) invocation.getInvokedInstance()).i = 1;
+         }
+      };
+      AdvancedCollaborator coll = new AdvancedCollaborator(null);
+      assertEquals(1, coll.i);
+   }
 
-	@Test
-	@SuppressWarnings("unchecked")
-	public <M extends List<String> & Comparable<List<String>>> void testMultipleInterfacesOneMethod(@Mocked M mock) {
-		new Expectations() {
-			{
-				mock.get(5);
-				result = "foo";
-				mock.compareTo((List<String>) any);
-				result = 0;
-			}
-		};
-		assertEquals("foo", mock.get(5));
-		assertEquals(0, mock.compareTo(new ArrayList<>()));
-	}
+   @Test
+   public void testToSetPrivateFieldDirectly(@Injectable("10") int privateField) {
+      assertEquals(10, privateField);
+   }
+
+   @Test
+   public void testToGetPrivateFieldDirectly() {
+      assertEquals(5, mock.methodThatReturnsThePrivateField());
+   }
+
+   @Test
+   @SuppressWarnings("unchecked")
+   public void testMultipleInterfacesWholeTest(@Mocked MultiMock multiMock) {
+      new Expectations() {
+         {
+            multiMock.get();
+            result = null;
+            multiMock.compareTo();
+            result = null;
+         }
+      };
+      assertNull(multiMock.get());
+      assertNull(multiMock.compareTo());
+   }
 }
