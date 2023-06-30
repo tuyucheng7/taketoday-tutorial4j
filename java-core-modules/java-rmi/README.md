@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Java RMI入门](docs/Java-RMI入门.md)
++ [Java RMI入门](../../cs/docs/java-rmi/Java-RMI入门.md)

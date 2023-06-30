@@ -11,9 +11,9 @@
 + [package-info.java文件](docs/package-info.java文件.md)
 + [POJO、Java Beans、DTO和VO之间的区别](docs/POJO-JavaBeans-DTO和VO之间的区别.md)
 + [什么是Java中的编译时常量](docs/什么是Java中的编译时常量.md)
-+ [修复“Declared package does not match the expected package”错误](docs/修复声明的包与预期的包不匹配错误.md)
-+ [在Javadoc注释中引用方法](docs/在Javadoc注释中引用方法.md)
-+ [Java中的实现与扩展](docs/Java中的实现与扩展.md)
++ [修复“Declared package does not match the expected package”错误](../../cs/docs/java-lang/修复声明的包与预期的包不匹配错误.md)
++ [在Javadoc注释中引用方法](../../cs/docs/java-lang/在Javadoc注释中引用方法.md)
++ [Java中的实现与扩展](../../cs/docs/java-lang/Java中的实现与扩展.md)
 
 - 更多文章： [[<-- prev]](../java-lang-3/README.md)
 - 更多文章： [[next -->]](../java-lang-5/README.md)

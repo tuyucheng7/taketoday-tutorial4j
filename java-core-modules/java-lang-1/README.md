@@ -12,7 +12,7 @@
 + [Java中的递归](docs/Java中的递归.md)
 + [Java的continue和break关键字](docs/Java的continue和break关键字.md)
 + [使用Eclipse生成equals()和hashCode()](docs/使用Eclipse生成equals()和hashCode().md)
-+ [使用Java断言](docs/使用Java断言.md)
-+ [在Java中检索类名](docs/在Java中检索类名.md)
++ [使用Java断言](../../cs/docs/java-lang/使用Java断言.md)
++ [在Java中检索类名](../../cs/docs/java-lang/在Java中检索类名.md)
 
 - 更多文章： [[next -->]](../java-lang-2/README.md)

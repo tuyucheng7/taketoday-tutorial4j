@@ -8,7 +8,7 @@
 + [Java中的组合、聚合和关联](docs/Java中的组合-聚合和关联.md)
 + [Java中的继承和组合(Is-a与Has-a关系)](docs/Java中的继承和组合(Is-a与Has-a关系).md)
 + [在Java中使用接口与抽象类](docs/在Java中使用接口与抽象类.md)
-+ [如何在Java中制作对象的深拷贝](docs/如何在Java中制作对象的深拷贝.md)
++ [如何在Java中制作对象的深拷贝](../../cs/docs/java-lang/如何在Java中制作对象的深拷贝.md)
 
 - 更多文章： [[<-- prev]](../java-lang-oop-others/README.md)
 - 更多文章： [[next -->]](../java-lang-oop-types-1/README.md)

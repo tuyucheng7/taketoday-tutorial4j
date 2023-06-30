@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Java服务提供程序接口](docs/Java服务提供程序接口.md)
++ [Java服务提供程序接口](../../cs/docs/java-spi/Java服务提供程序接口.md)

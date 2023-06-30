@@ -13,7 +13,7 @@
 + [在Java中将int转换为Enum](docs/在Java中将int转换为Enum.md)
 + [在Java中比较对象](docs/在Java中比较对象.md)
 + [在Java中比较Long值](docs/在Java中比较Long值.md)
-+ [如何从Java方法返回多个值](docs/如何从Java方法返回多个值.md)
++ [如何从Java方法返回多个值](../../cs/docs/java-lang/如何从Java方法返回多个值.md)
 
 - 更多文章： [[<-- prev]](../java-lang-1/README.md)
 - 更多文章： [[next -->]](../java-lang-3/README.md)

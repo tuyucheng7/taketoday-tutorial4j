@@ -8,7 +8,7 @@
 + [从整数值获取某个位置的位](docs/从整数值获取某个位置的位.md)
 + [使用位运算符在Java中进行位掩码](docs/使用位运算符在Java中进行位掩码.md)
 + [在Java中检查三个布尔值中是否至少有两个为真](docs/在Java中检查三个布尔值中是否至少有两个为真.md)
-+ [逻辑与按位或运算符](docs/逻辑与按位或运算符.md)
++ [逻辑与按位或运算符](../../cs/docs/java-lang/逻辑与按位或运算符.md)
 
 - 更多文章： [[<-- prev]](../java-lang-operators-1/README.md)
 - 更多文章： [[next -->]](../java-lang-syntax-1/README.md)

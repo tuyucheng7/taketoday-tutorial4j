@@ -4,6 +4,6 @@
 
 ## 相关文章
 
-+ [将字符串转换为Instant](docs/将字符串转换为Instant.md)
++ [将字符串转换为Instant](../../cs/docs/java-date/将字符串转换为Instant.md)
 
 - 更多文章： [[<-- prev]](../java-datetime-string-1/README.md)
