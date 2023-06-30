@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SpringOraclePoolingApplication.class})
 @ActiveProfiles({"oracle-pooling-basic"})
-@TestPropertySource(properties = "spring.datasource.type=oracle.ucp.jdbc.UCPDataSource")
+@TestPropertySource(properties = "spring.datasource.type=oracle.ucp.jdbc.PoolDataSource")
 public class SpringOraclePoolingApplicationOracleUCPLiveTest {
 
-	@Autowired
-	private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-	@Test
-	public void givenOracleUCPConfiguration_thenBuildsOraclePoolDataSource() {
-		assertTrue(dataSource instanceof oracle.ucp.jdbc.UCPDataSource);
-	}
+   @Test
+   public void givenOracleUCPConfiguration_thenBuildsOraclePoolDataSource() {
+      assertTrue(dataSource instanceof oracle.ucp.jdbc.PoolDataSource);
+   }
 }
