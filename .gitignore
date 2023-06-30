@@ -73,6 +73,8 @@ ethereum/logs/
 /software.test/jmeter/src/main/resources/*ReportsDashboard*.csv
 /software.test/jmeter/src/main/resources/dashboard/*ReportsDashboard*.csv
 /software.test/jmeter/src/main/resources/*FileExtractionExample.csv
+/software.test/jmeter/src/main/resources/*_Summary-Report.csv
+
 
 ninja/devDb.mv.db
 
