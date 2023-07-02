@@ -4,15 +4,15 @@
 
 ## 相关文章
 
-+ [Java GSS API指南](docs/Java-GSS-API指南.md)
-+ [Java SASL简介](docs/Java-SASL简介.md)
-+ [Java SecureRandom类](docs/Java-SecureRandom类.md)
-+ [Java SecurityManager简介](docs/Java-SecurityManager简介.md)
-+ [Java中的SSL简介](docs/Java中的SSL简介.md)
-+ [Java KeyStore API](../../cs/docs/java-security/Java密钥库API.md)
-+ [SSL握手失败](../../cs/docs/java-security/SSL握手失败.md)
-+ [在Java 7中启用TLSv1.2](../../cs/docs/java-security/在Java7中启用TLSv1.2.md)
-+ [在Java中加密和解密文件](../../cs/docs/java-security/在Java中加密和解密文件.md)
-+ [Cipher类指南](../../cs/docs/java-security/Cipher类指南.md)
++ [Java GSS API指南](https://tu-yucheng.github.io/java-security/2023/07/02/java-gss.html)
++ [Java SASL简介](https://tu-yucheng.github.io/java-security/2023/07/02/java-sasl.html)
++ [Java SecureRandom类](https://tu-yucheng.github.io/java-security/2023/07/02/java-secure-random.html)
++ [Java SecurityManager简介](https://tu-yucheng.github.io/java-security/2023/07/02/java-security-manager.html)
++ [Java中的SSL简介](https://tu-yucheng.github.io/java-security/2023/07/02/java-ssl.html)
++ [Java KeyStore API](https://tu-yucheng.github.io/java-security/2023/07/02/java-keystore.html)
++ [SSL握手失败](https://tu-yucheng.github.io/java-security/2023/07/02/java-ssl-handshake-failures.html)
++ [在Java 7中启用TLSv1.2](https://tu-yucheng.github.io/java-security/2023/07/02/java-7-tls-v12.html)
++ [在Java中加密和解密文件](https://tu-yucheng.github.io/java-security/2023/07/02/java-cipher-input-output-stream.html)
++ [Cipher类指南](https://tu-yucheng.github.io/java-security/2023/07/02/java-cipher-class.html)
 
 - 更多文章： [[next -->]](../java-security-2/README.md)
