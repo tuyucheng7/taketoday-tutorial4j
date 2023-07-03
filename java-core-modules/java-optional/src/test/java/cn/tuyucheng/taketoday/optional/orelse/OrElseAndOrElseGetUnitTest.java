@@ -16,8 +16,8 @@ public class OrElseAndOrElseGetUnitTest {
 	@Test
 	public void givenNonEmptyOptional_whenOrElseUsed_thenGivenStringReturned() {
 		LOG.info("In givenNonEmptyOptional_whenOrElseUsed_thenGivenStringReturned()");
-		String name = orElsevsOrElseGet.getNameUsingOrElse("baeldung");
-		assertEquals(name, "baeldung");
+		String name = orElsevsOrElseGet.getNameUsingOrElse("tuyucheng");
+		assertEquals(name, "tuyucheng");
 	}
 
 	@Test
@@ -30,8 +30,8 @@ public class OrElseAndOrElseGetUnitTest {
 	@Test
 	public void givenNonEmptyOptional_whenOrElseGetUsed_thenGivenStringReturned() {
 		LOG.info("In givenNonEmptyOptional_whenOrElseGetUsed_thenGivenStringReturned()");
-		String name = orElsevsOrElseGet.getNameUsingOrElseGet("baeldung");
-		assertEquals(name, "baeldung");
+		String name = orElsevsOrElseGet.getNameUsingOrElseGet("tuyucheng");
+		assertEquals(name, "tuyucheng");
 	}
 
 	@Test

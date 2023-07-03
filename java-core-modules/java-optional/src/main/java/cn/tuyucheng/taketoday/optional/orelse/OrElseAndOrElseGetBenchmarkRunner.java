@@ -26,12 +26,12 @@ public class OrElseAndOrElseGetBenchmarkRunner {
 
 	@Benchmark
 	public String orElseBenchmark() {
-		return orElsevsOrElseGet.getNameUsingOrElse("baeldung");
+		return orElsevsOrElseGet.getNameUsingOrElse("tuyucheng");
 	}
 
 	@Benchmark
 	public String orElseGetBenchmark() {
-		return orElsevsOrElseGet.getNameUsingOrElseGet("baeldung");
+		return orElsevsOrElseGet.getNameUsingOrElseGet("tuyucheng");
 	}
 
 }
