@@ -11,6 +11,7 @@
 + [Selenium Webdriver中的隐式等待与显式等待](http://tu-yucheng.github.io/selenium/2023/05/10/selenium-implicit-explicit-wait.html)
 + [Selenium中的StaleElementReferenceException](http://tu-yucheng.github.io/selenium/2023/05/10/selenium-staleelementreferenceexception.html)
 + [在Selenium WebDriver中检索HTML输入的值](http://tu-yucheng.github.io/selenium/2023/05/10/java-selenium-html-input-value.html)
++ [在Java中使用Selenium WebDriver打开一个新选项卡](http://tu-yucheng.github.io/selenium/2023/05/25/java-selenium-open-new-tab.html)
 
 ## 注意
 
