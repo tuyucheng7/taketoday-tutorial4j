@@ -4,11 +4,11 @@
 
 ## 相关文章
 
-+ [在Java中使用Optional](docs/在Java中使用Optional.md)
-+ [Java 9 Optional新增的API](docs/Java9-Optional-API添加.md)
-+ [Java Optional：orElse()与orElseGet()](docs/Java-Optional-orElse()与orElseGet().md)
-+ [Java Optional作为返回类型](../../cs/docs/java-optional/Java-Optional作为返回类型.md)
-+ [Optional orElse Optional](../../cs/docs/java-optional/Optional-orElse-Optional.md)
-+ [在Java 8的Optional中抛出异常](../../cs/docs/java-optional/在Java8的Optional中抛出异常.md)
-+ [在Java中过滤Optional流](../../cs/docs/java-optional/在Java中过滤Optional流.md)
-+ [将空字符串转换为空Optional](../../cs/docs/java-optional/将空字符串转换为空Optional.md)
++ [Java中Optional的用途](https://tu-yucheng.github.io/java/2023/07/03/java-optional-uses.html)
++ [Java 9对Optional API的增强](https://tu-yucheng.github.io/java/2023/07/03/java-9-optional.html)
++ [Java Optional：orElse()与orElseGet()](https://tu-yucheng.github.io/java/2023/07/03/java-optional-or-else-vs-or-else-get.html)
++ [Java Optional作为返回类型](https://tu-yucheng.github.io/java/2023/07/03/java-optional-return.html)
++ [Optional orElse Optional](https://tu-yucheng.github.io/java/2023/07/03/java-optional-or-else-optional.html)
++ [在Java 8的Optional中抛出异常](https://tu-yucheng.github.io/java/2023/07/03/java-optional-throw-exception.html)
++ [在Java中过滤Optional流](https://tu-yucheng.github.io/java/2023/07/03/java-filter-stream-of-optional.html)
++ [将空字符串转换为空Optional](https://tu-yucheng.github.io/java/2023/07/03/java-empty-string-to-empty-optional.html)

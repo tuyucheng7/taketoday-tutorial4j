@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Java服务提供程序接口](../../cs/docs/java-spi/Java服务提供程序接口.md)
++ [Java服务提供者接口](https://tu-yucheng.github.io/java/2023/07/02/java-spi.html)

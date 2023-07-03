@@ -1,9 +1,8 @@
-## Core Java Serialization
-
 ## 相关文章
 
-+ [Java序列化简介](../../cs/docs/java-serialization/Java序列化简介.md)
-+ [serialVersionUID是什么](../../cs/docs/java-serialization/serialVersionUID是什么.md)
-+ [Java中的Externalizable接口指南](../../cs/docs/java-serialization/Java中的Externalizable接口指南.md)
-+ [Java中的序列化验证](../../cs/docs/java-serialization/Java中的序列化验证.md)
-+ [Java反序列化漏洞](../../cs/docs/java-serialization/Java反序列化漏洞.md)
++ [Java序列化简介](http://tu-yucheng.github.io/java/2023/07/02/java-serialization.html)
++ [什么是serialVersionUID？](http://tu-yucheng.github.io/java/2023/07/02/java-serial-version-uid.html)
++ [Java中的Externalizable接口指南](http://tu-yucheng.github.io/java/2023/07/02/java-externalizable.html)
++ [Java中的序列化验证](http://tu-yucheng.github.io/java/2023/07/02/java-validate-serializable.html)
++ [Java反序列化漏洞](http://tu-yucheng.github.io/java/2023/07/02/java-deserialization-vulnerabilities.html)
++ [Java序列化:readObject()与readResolve()](http://tu-yucheng.github.io/java/2023/07/02/java-serialization-readobject-vs-readresolve.html)

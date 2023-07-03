@@ -147,18 +147,20 @@
 		<!--<module>java-numbers-4</module>-->
 		<!--<module>java-numbers-5</module>-->
 		<!--<module>java-numbers-conversions</module>-->
-		<!--<module>java-optional</module>-->
-		<!--<module>java-os</module>-->
+		<module>java-optional</module>
+		<module>java-os</module>
 		<!--<module>java-perf</module>-->
 		<module>java-reflection-1</module>
 		<module>java-reflection-2</module>
 		<!--<module>java-regex-1</module>-->
 		<!--<module>java-regex-2</module>-->
+      <module>java-rmi</module>
 		<module>java-security-1</module>
 		<module>java-security-2</module>
 		<module>java-security-3</module>
 		<module>java-security-algorithms</module>
-		<!--<module>java-serialization</module>-->
+		<module>java-serialization</module>
+      <module>java-spi</module>
 		<module>java-streams-1</module>
 		<module>java-streams-2</module>
 		<module>java-streams-3</module>

@@ -4,4 +4,4 @@
 
 ## 相关文章
 
-+ [Java RMI入门](../../cs/docs/java-rmi/Java-RMI入门.md)
++ [Java RMI入门](http://tu-yucheng.github.io/java/2023/07/03/java-rmi.html)
