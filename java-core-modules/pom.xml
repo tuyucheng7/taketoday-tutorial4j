@@ -149,7 +149,9 @@
 		<!--<module>java-numbers-conversions</module>-->
 		<module>java-optional</module>
 		<module>java-os</module>
-		<!--<module>java-perf</module>-->
+      <module>java-panama</module>
+		<module>java-perf-1</module>
+		<module>java-perf-2</module>
 		<module>java-reflection-1</module>
 		<module>java-reflection-2</module>
 		<!--<module>java-regex-1</module>-->
