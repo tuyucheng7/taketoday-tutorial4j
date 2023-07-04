@@ -152,6 +152,7 @@
       <module>java-panama</module>
 		<module>java-perf-1</module>
 		<module>java-perf-2</module>
+      <module>java-pre-jpms</module>
 		<module>java-reflection-1</module>
 		<module>java-reflection-2</module>
 		<!--<module>java-regex-1</module>-->
