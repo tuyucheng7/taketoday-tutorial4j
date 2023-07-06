@@ -1,8 +1,7 @@
-## CoreJavaSun
+## Java Sun
 
-This module contains articles about the sun package
+此模块包含有关sun包的文章
 
-### Relevant Articles: 
+## 相关文章
 
-- [Creating aJavaCompiler Plugin](http://www.baeldung.com/java-build-compiler-plugin)
-- [Guide to sun.misc.Unsafe](http://www.baeldung.com/java-unsafe)
++ []()
