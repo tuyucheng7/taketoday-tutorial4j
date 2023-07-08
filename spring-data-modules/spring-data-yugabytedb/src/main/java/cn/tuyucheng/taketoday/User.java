@@ -18,27 +18,24 @@ public class User {
    @Column
    private String name;
 
-   Long getId() {
+   public Long getId() {
       return id;
    }
 
-   void setId(Long id) {
+   public void setId(Long id) {
       this.id = id;
    }
 
-   String getName() {
+   public String getName() {
       return name;
    }
 
-   void setName(String name) {
+   public void setName(String name) {
       this.name = name;
    }
 
    @Override
    public String toString() {
-      return "User{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            '}';
+      return "User{" + "id=" + id + ", name='" + name + '\'' + '}';
    }
 }
