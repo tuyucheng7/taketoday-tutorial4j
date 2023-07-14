@@ -14,7 +14,7 @@
 ## 框架版本
 
 - Spring 5.3.25
-- Apache Camel 3.14.7
+- Apache Camel 3.21.0
 
 ## 构建和运行应用程序
 
