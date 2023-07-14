@@ -1,10 +1,11 @@
 {
-   "asyncapi": "2.0.0",
+   "asyncapi": "2.6.0",
    "info": {
       "title": "Tuyucheng Tutorial Springwolf Application",
       "version": "1.0.0",
       "description": "Tuyucheng Tutorial Application to Demonstrate AsyncAPI Documentation using Springwolf"
    },
+   "defaultContentType": "application/json",
    "servers": {
       "kafka": {
          "url": "localhost:9092",
@@ -15,7 +16,7 @@
       "incoming-topic": {
          "publish": {
             "operationId": "incoming-topic_publish",
-            "description": "Auto-generated description",
+            "description": "More details for the incoming topic",
             "bindings": {
                "kafka": {}
             },
@@ -23,7 +24,7 @@
                "schemaFormat": "application/vnd.oai.openapi+json;version=3.0.0",
                "name": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.IncomingPayloadDto",
                "title": "IncomingPayloadDto",
-               "description": "More details for the incoming topic",
+               "description": "Incoming payload model",
                "payload": {
                   "$ref": "#/components/schemas/IncomingPayloadDto"
                },
@@ -39,7 +40,7 @@
       "outgoing-topic": {
          "subscribe": {
             "operationId": "outgoing-topic_subscribe",
-            "description": "Auto-generated description",
+            "description": "More details for the outgoing topic",
             "bindings": {
                "kafka": {}
             },
@@ -47,7 +48,7 @@
                "schemaFormat": "application/vnd.oai.openapi+json;version=3.0.0",
                "name": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.OutgoingPayloadDto",
                "title": "OutgoingPayloadDto",
-               "description": "More details for the outgoing topic",
+               "description": "Outgoing payload model",
                "payload": {
                   "$ref": "#/components/schemas/OutgoingPayloadDto"
                },
@@ -66,11 +67,7 @@
          "HeadersNotDocumented": {
             "type": "object",
             "properties": {},
-            "example": {},
-            "exampleSetFlag": true,
-            "types": [
-               "object"
-            ]
+            "example": {}
          },
          "IncomingPayloadDto": {
             "required": [
@@ -83,10 +80,6 @@
                   "type": "string",
                   "description": "Some enum field",
                   "example": "FOO2",
-                  "exampleSetFlag": true,
-                  "types": [
-                     "string"
-                  ],
                   "enum": [
                      "FOO1",
                      "FOO2",
@@ -97,20 +90,12 @@
                   "type": "integer",
                   "description": "Some long field",
                   "format": "int64",
-                  "example": 5,
-                  "exampleSetFlag": true,
-                  "types": [
-                     "integer"
-                  ]
+                  "example": 5
                },
                "someString": {
                   "type": "string",
                   "description": "Some string field",
-                  "example": "some string value",
-                  "exampleSetFlag": true,
-                  "types": [
-                     "string"
-                  ]
+                  "example": "some string value"
                }
             },
             "description": "Incoming payload model",
@@ -118,8 +103,7 @@
                "someEnum": "FOO2",
                "someLong": 5,
                "someString": "some string value"
-            },
-            "exampleSetFlag": true
+            }
          },
          "OutgoingPayloadDto": {
             "required": [
@@ -127,30 +111,24 @@
             ],
             "type": "object",
             "properties": {
-               "incomingWrapped": {
-                  "$ref": "#/components/schemas/IncomingPayloadDto",
-                  "exampleSetFlag": false
-               },
                "foo": {
                   "type": "string",
                   "description": "Foo field",
-                  "example": "bar",
-                  "exampleSetFlag": true,
-                  "types": [
-                     "string"
-                  ]
+                  "example": "bar"
+               },
+               "incomingWrapped": {
+                  "$ref": "#/components/schemas/IncomingPayloadDto"
                }
             },
             "description": "Outgoing payload model",
             "example": {
+               "foo": "bar",
                "incomingWrapped": {
                   "someEnum": "FOO2",
                   "someLong": 5,
                   "someString": "some string value"
-               },
-               "foo": "bar"
-            },
-            "exampleSetFlag": true
+               }
+            }
          },
          "SpringKafkaDefaultHeadersIncomingPayloadDto": {
             "type": "object",
@@ -159,10 +137,6 @@
                   "type": "string",
                   "description": "Spring Type Id Header",
                   "example": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.IncomingPayloadDto",
-                  "exampleSetFlag": true,
-                  "types": [
-                     "string"
-                  ],
                   "enum": [
                      "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.IncomingPayloadDto"
                   ]
@@ -170,11 +144,7 @@
             },
             "example": {
                "__TypeId__": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.IncomingPayloadDto"
-            },
-            "exampleSetFlag": true,
-            "types": [
-               "object"
-            ]
+            }
          },
          "SpringKafkaDefaultHeadersOutgoingPayloadDto": {
             "type": "object",
@@ -183,10 +153,6 @@
                   "type": "string",
                   "description": "Spring Type Id Header",
                   "example": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.OutgoingPayloadDto",
-                  "exampleSetFlag": true,
-                  "types": [
-                     "string"
-                  ],
                   "enum": [
                      "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.OutgoingPayloadDto"
                   ]
@@ -194,11 +160,7 @@
             },
             "example": {
                "__TypeId__": "cn.tuyucheng.taketoday.boot.documentation.springwolf.dto.OutgoingPayloadDto"
-            },
-            "exampleSetFlag": true,
-            "types": [
-               "object"
-            ]
+            }
          }
       }
    },
