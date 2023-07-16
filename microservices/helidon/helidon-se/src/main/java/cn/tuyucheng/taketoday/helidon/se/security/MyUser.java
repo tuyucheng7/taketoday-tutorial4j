@@ -1,33 +1,34 @@
 package cn.tuyucheng.taketoday.helidon.se.security;
 
-import io.helidon.security.provider.httpauth.UserStore;
+import io.helidon.security.providers.httpauth.SecureUserStore;
 
+import java.util.Arrays;
 import java.util.Collection;
 
-public class MyUser implements UserStore.User {
+public class MyUser implements SecureUserStore.User {
 
-    private String login;
-    private char[] password;
-    private Collection<String> roles;
+   private String login;
+   private char[] password;
+   private Collection<String> roles;
 
-    public MyUser(String login, char[] password, Collection<String> roles) {
-        this.login = login;
-        this.password = password;
-        this.roles = roles;
-    }
+   public MyUser(String login, char[] password, Collection<String> roles) {
+      this.login = login;
+      this.password = password;
+      this.roles = roles;
+   }
 
-    @Override
-    public String getLogin() {
-        return login;
-    }
+   @Override
+   public String login() {
+      return login;
+   }
 
-    @Override
-    public char[] getPassword() {
-        return password;
-    }
+   @Override
+   public boolean isPasswordValid(char[] chars) {
+      return Arrays.equals(chars, password);
+   }
 
-    @Override
-    public Collection<String> getRoles() {
-        return roles;
-    }
+   @Override
+   public Collection<String> roles() {
+      return roles;
+   }
 }
