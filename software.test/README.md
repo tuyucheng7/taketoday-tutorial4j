@@ -10,6 +10,8 @@
 * [TestNG](testng/README.md)
 * [Spock](groovy-spock/README.md)
 * [TDD](tdd/README.md)
+* [Selenium](selenium-1/README.md)
+* [Selenide](selenide/README.md)
 * [Spring](spring-testing-1/README.md)
 * [Hamcrest](hamcrest/README.md)
 * [Mockito](mockito-1/README.md)

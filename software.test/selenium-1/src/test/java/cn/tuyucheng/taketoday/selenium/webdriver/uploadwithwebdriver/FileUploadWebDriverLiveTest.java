@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.uploadwithwebdriver;
+package cn.tuyucheng.taketoday.webdriver.uploadwithwebdriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
