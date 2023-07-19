@@ -11,7 +11,7 @@ public class AdvancedCollaborator {
       i = string.length();
    }
 
-   public String methodThatCallsPrivateMethod(int i) {
+   public String methodThatCallsProtectedMethod(int i) {
       return protectedMethod() + i;
    }
 

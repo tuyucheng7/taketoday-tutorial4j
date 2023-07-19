@@ -19,8 +19,4 @@ public class AppManager {
 	private static int randomNumber() {
 		return new Random().nextInt(7);
 	}
-
-	private static Integer stringToInteger(String num) {
-		return Integer.parseInt(num);
-	}
 }
