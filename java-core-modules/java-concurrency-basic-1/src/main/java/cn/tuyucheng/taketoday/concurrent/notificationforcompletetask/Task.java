@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.concurrent.notificationForCompleteTask;
+package cn.tuyucheng.taketoday.concurrent.notificationforcompletetask;
 
 public class Task implements Runnable {
    @Override

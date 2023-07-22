@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.concurrent.notificationForCompleteTask;
+package cn.tuyucheng.taketoday.concurrent.notificationforcompletetask;
 
 import org.junit.jupiter.api.Test;
 
