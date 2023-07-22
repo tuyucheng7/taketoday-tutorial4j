@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.concurrent.threadreturnvalue.callable;
+package cn.tuyucheng.taketoday.concurrent.threadreturnvalue.completableFuture;
 
 import org.junit.jupiter.api.Test;
 
