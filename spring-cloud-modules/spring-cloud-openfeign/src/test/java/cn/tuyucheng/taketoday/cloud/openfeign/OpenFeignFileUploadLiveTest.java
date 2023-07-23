@@ -20,41 +20,41 @@ import java.io.IOException;
 @SpringBootTest
 public class OpenFeignFileUploadLiveTest {
 
-	@Autowired
-	private UploadService uploadService;
+   @Autowired
+   private UploadService uploadService;
 
-	private static String FILE_NAME = "fileupload.txt";
+   private static String FILE_NAME = "fileupload.txt";
 
-	@Test(expected = NotFoundException.class)
-	public void whenFileUploadClientFallbackFactory_thenFileUploadError() throws IOException {
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		File file = new File(classloader.getResource(FILE_NAME).getFile());
-		Assert.assertTrue(file.exists());
-		FileInputStream input = new FileInputStream(file);
-		MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
-			IOUtils.toByteArray(input));
-		uploadService.uploadFileWithFallbackFactory(multipartFile);
-	}
+   @Test(expected = NotFoundException.class)
+   public void whenFileUploadClientFallbackFactory_thenFileUploadError() throws IOException {
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      File file = new File(classloader.getResource(FILE_NAME).getFile());
+      Assert.assertTrue(file.exists());
+      FileInputStream input = new FileInputStream(file);
+      MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
+            IOUtils.toByteArray(input));
+      uploadService.uploadFileWithFallbackFactory(multipartFile);
+   }
 
-	@Test(expected = NotFoundException.class)
-	public void whenFileUploadClientFallback_thenFileUploadError() throws IOException {
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		File file = new File(classloader.getResource(FILE_NAME).getFile());
-		Assert.assertTrue(file.exists());
-		FileInputStream input = new FileInputStream(file);
-		MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
-			IOUtils.toByteArray(input));
-		uploadService.uploadFileWithFallback(multipartFile);
-	}
+   @Test(expected = NotFoundException.class)
+   public void whenFileUploadClientFallback_thenFileUploadError() throws IOException {
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      File file = new File(classloader.getResource(FILE_NAME).getFile());
+      Assert.assertTrue(file.exists());
+      FileInputStream input = new FileInputStream(file);
+      MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
+            IOUtils.toByteArray(input));
+      uploadService.uploadFileWithFallback(multipartFile);
+   }
 
-	@Test(expected = NotFoundException.class)
-	public void whenFileUploadWithMannualClient_thenFileUploadError() throws IOException {
-		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		File file = new File(classloader.getResource(FILE_NAME).getFile());
-		Assert.assertTrue(file.exists());
-		FileInputStream input = new FileInputStream(file);
-		MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
-			IOUtils.toByteArray(input));
-		uploadService.uploadFileWithManualClient(multipartFile);
-	}
+   @Test(expected = NotFoundException.class)
+   public void whenFileUploadWithMannualClient_thenFileUploadError() throws IOException {
+      ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+      File file = new File(classloader.getResource(FILE_NAME).getFile());
+      Assert.assertTrue(file.exists());
+      FileInputStream input = new FileInputStream(file);
+      MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
+            IOUtils.toByteArray(input));
+      uploadService.uploadFileWithManualClient(multipartFile);
+   }
 }

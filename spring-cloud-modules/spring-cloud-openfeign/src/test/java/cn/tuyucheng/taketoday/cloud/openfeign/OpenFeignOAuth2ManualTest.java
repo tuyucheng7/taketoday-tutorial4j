@@ -29,13 +29,13 @@ import static org.junit.Assert.assertFalse;
 @SpringBootTest
 public class OpenFeignOAuth2ManualTest {
 
-	@Autowired
-	private PaymentClient paymentClient;
+   @Autowired
+   private PaymentClient paymentClient;
 
-	@Test
-	public void whenGetPayment_thenListPayments() {
-		List<Payment> payments = paymentClient.getPayments();
+   @Test
+   public void whenGetPayment_thenListPayments() {
+      List<Payment> payments = paymentClient.getPayments();
 
-		assertFalse(payments.isEmpty());
-	}
+      assertFalse(payments.isEmpty());
+   }
 }
