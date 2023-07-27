@@ -37,6 +37,7 @@
 		<module>instancio</module>
 		<module>jmeter</module>
 		<module>jmh</module>
+      <module>jqwik</module>
 		<module>json-path</module>
 		<module>junit-4</module>
       <module>junit-5</module>
