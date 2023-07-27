@@ -24,6 +24,7 @@
       <!-- <module>spring-reactive-exceptions</module> &lt;!&ndash; failed on CI &ndash;&gt; -->
 
       <module>spring-5-data-reactive</module>
+      <module>spring-5-data-reactive-2</module>
       <module>spring-5-reactive-1</module>
       <module>spring-5-reactive-2</module>
       <module>spring-5-reactive-client-2</module>
