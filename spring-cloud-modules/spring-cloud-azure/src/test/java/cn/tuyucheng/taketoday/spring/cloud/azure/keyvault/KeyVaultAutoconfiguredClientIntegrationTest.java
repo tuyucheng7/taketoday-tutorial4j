@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
 
 @SpringBootTest(classes = Application.class)
-public class KeyVaultAutoconfiguredClientIntegrationTest {
+class KeyVaultAutoconfiguredClientIntegrationTest {
 
    @Autowired
    @Qualifier(value = "KeyVaultAutoconfiguredClient")
