@@ -15,28 +15,28 @@ import java.util.List;
 
 @Service
 public class QueryService {
-	@PersistenceContext
-	private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-	public List<BookRecord> findAllBooks() {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<BookRecord> query = cb.createQuery(BookRecord.class);
-		Root<Book> root = query.from(Book.class);
-		query.select(cb
-			.construct(BookRecord.class, root.get("id"), root.get("title"), root.get("author"), root.get("isbn")));
-		return entityManager.createQuery(query).getResultList();
-	}
+   public List<BookRecord> findAllBooks() {
+      CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+      CriteriaQuery<BookRecord> query = cb.createQuery(BookRecord.class);
+      Root<Book> root = query.from(Book.class);
+      query.select(cb
+            .construct(BookRecord.class, root.get("id"), root.get("title"), root.get("author"), root.get("isbn")));
+      return entityManager.createQuery(query).getResultList();
+   }
 
-	public BookRecord findBookById(Long id) {
-		TypedQuery<BookRecord> query = entityManager
-			.createQuery("SELECT new cn.tuyucheng.taketoday.recordswithjpa.records.BookRecord(b.id, b.title, b.author, b.isbn) " +
-						 "FROM Book b WHERE b.id = :id", BookRecord.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
-	}
+   public BookRecord findBookByTitle(String title) {
+      TypedQuery<BookRecord> query = entityManager
+            .createQuery("SELECT new cn.tuyucheng.taketoday.recordswithjpa.records.BookRecord(b.id, b.title, b.author, b.isbn) " +
+                  "FROM Book b WHERE b.title = :title", BookRecord.class);
+      query.setParameter("title", title);
+      return query.getSingleResult();
+   }
 
-	public List<BookRecord> findAllBooksUsingMapping() {
-		Query query = entityManager.createNativeQuery("SELECT * FROM book", "BookRecordMapping");
-		return query.getResultList();
-	}
+   public List<BookRecord> findAllBooksUsingMapping() {
+      Query query = entityManager.createNativeQuery("SELECT * FROM book", "BookRecordMapping");
+      return query.getResultList();
+   }
 }
