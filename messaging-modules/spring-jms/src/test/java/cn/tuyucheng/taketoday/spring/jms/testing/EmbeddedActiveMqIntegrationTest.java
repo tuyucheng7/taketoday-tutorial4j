@@ -1,8 +1,15 @@
 package cn.tuyucheng.taketoday.spring.jms.testing;
 
-import cn.tuyucheng.taketoday.spring.jms.testing.EmbeddedActiveMqIntegrationTest.TestConfiguration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.TextMessage;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,74 +26,78 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.TextMessage;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfiguration.class})
+@ContextConfiguration(classes = {EmbeddedActiveMqIntegrationTest.TestConfiguration.class})
 public class EmbeddedActiveMqIntegrationTest {
 
-	@ClassRule
-	public static EmbeddedActiveMQBroker embeddedBroker = new EmbeddedActiveMQBroker();
+   @ClassRule
+   public static EmbeddedActiveMQBroker embeddedBroker = new EmbeddedActiveMQBroker();
 
-	@SpyBean
-	private MessageListener messageListener;
+   @SpyBean
+   private MessageListener messageListener;
 
-	@SpyBean
-	private MessageSender messageSender;
+   @SpyBean
+   private MessageSender messageSender;
 
-	@Test
-	@Ignore("Default On CI")
-	public void whenListening_thenReceivingCorrectMessage() throws JMSException {
-		String queueName = "queue-1";
-		String messageText = "Test message";
+   @BeforeClass
+   public static void start() {
+      embeddedBroker.start();
+   }
 
-		embeddedBroker.pushMessage(queueName, messageText);
-		assertEquals(1, embeddedBroker.getMessageCount(queueName));
+   @AfterClass
+   public static void stop() {
+      embeddedBroker.stop();
+   }
 
-		ArgumentCaptor<TextMessage> messageCaptor = ArgumentCaptor.forClass(TextMessage.class);
+   @Test
+   @Ignore
+   public void whenListening_thenReceivingCorrectMessage() throws JMSException, InterruptedException {
+      String queueName = "queue-1";
+      String messageText = "Test message";
 
-		Mockito.verify(messageListener, Mockito.timeout(100))
-			.sampleJmsListenerMethod(messageCaptor.capture());
+      embeddedBroker.pushMessage(queueName, messageText);
+      Thread.sleep(1000L);
+      assertEquals(1, embeddedBroker.getMessageCount(queueName));
 
-		TextMessage receivedMessage = messageCaptor.getValue();
-		assertEquals(messageText, receivedMessage.getText());
-	}
+      ArgumentCaptor<TextMessage> messageCaptor = ArgumentCaptor.forClass(TextMessage.class);
 
-	@Test
-	public void whenSendingMessage_thenCorrectQueueAndMessageText() throws JMSException {
-		String queueName = "queue-2";
-		String messageText = "Test message";
+      Mockito.verify(messageListener, Mockito.timeout(100))
+            .sampleJmsListenerMethod(messageCaptor.capture());
 
-		messageSender.sendTextMessage(queueName, messageText);
+      TextMessage receivedMessage = messageCaptor.getValue();
+      assertEquals(messageText, receivedMessage.getText());
+   }
 
-		assertEquals(1, embeddedBroker.getMessageCount(queueName));
-		TextMessage sentMessage = embeddedBroker.peekTextMessage(queueName);
-		assertEquals(messageText, sentMessage.getText());
-	}
+   @Test
+   public void whenSendingMessage_thenCorrectQueueAndMessageText() throws JMSException, InterruptedException {
+      String queueName = "queue-2";
+      String messageText = "Test message";
 
-	@Configuration
-	@EnableJms
-	static class TestConfiguration {
-		@Bean
-		public JmsListenerContainerFactory<?> jmsListenerContainerFactory() {
-			DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-			factory.setConnectionFactory(connectionFactory());
-			return factory;
-		}
+      messageSender.sendTextMessage(queueName, messageText);
+      Thread.sleep(1000L);
+      assertEquals(1, embeddedBroker.getMessageCount(queueName));
+      TextMessage sentMessage = embeddedBroker.peekTextMessage(queueName);
+      assertEquals(messageText, sentMessage.getText());
+   }
 
-		@Bean
-		public ConnectionFactory connectionFactory() {
-			return new ActiveMQConnectionFactory(embeddedBroker.getVmURL());
-		}
+   @Configuration
+   @EnableJms
+   static class TestConfiguration {
+      @Bean
+      public JmsListenerContainerFactory<?> jmsListenerContainerFactory() {
+         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+         factory.setConnectionFactory(connectionFactory());
+         return factory;
+      }
 
-		@Bean
-		public JmsTemplate jmsTemplate() {
-			return new JmsTemplate(connectionFactory());
-		}
-	}
+      @Bean
+      public ConnectionFactory connectionFactory() {
+         return new ActiveMQConnectionFactory(embeddedBroker.getVmURL());
+      }
 
+      @Bean
+      public JmsTemplate jmsTemplate() {
+         return new JmsTemplate(connectionFactory());
+      }
+   }
 }
