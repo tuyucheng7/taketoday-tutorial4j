@@ -16,7 +16,6 @@
 	<modules>
 		<!-- ci fails modules -->
 		<!--<module>arquillian</module> &lt;!&ndash;failed on CI&ndash;&gt;-->
-		<!--<module>jenkins-modules</module> &lt;!&ndash;build failed&ndash;&gt;-->
 		<!--<module>mocks-1</module> &lt;!&ndash;build failed&ndash;&gt;-->
 		<!--<module>mocks-2</module> &lt;!&ndash;build failed&ndash;&gt;-->
 		<!--<module>mockwebserver</module> &lt;!&ndash;External APIs are required->-->
@@ -65,7 +64,6 @@
       <module>selenium-2</module>
 		<module>sentry-servlet</module>
 		<module>serenity</module>
-		<module>spf4j</module>
 		<module>spring-rest-testing</module>
 		<module>spring-testing-1</module>
 		<module>spring-testing-2</module>
