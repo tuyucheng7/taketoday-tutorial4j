@@ -32,7 +32,7 @@
       <module>spring-mvc-java-1</module>
       <module>spring-mvc-java-2</module>
       <module>spring-mvc-java-3</module>
-      <module>spring-mvc-velocity</module>
+      <!-- <module>spring-mvc-velocity</module> --> <!-- using spring 4 -->
       <module>spring-mvc-views</module>
       <module>spring-mvc-webflow</module>
       <module>spring-mvc-xml-1</module>

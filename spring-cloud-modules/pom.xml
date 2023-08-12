@@ -33,7 +33,7 @@
       <module>spring-cloud-hystrix</module>
       <module>spring-cloud-kubernetes</module>
       <module>spring-cloud-loadbalancer</module>
-      <module>spring-cloud-netflix-feign</module>
+      <!-- <module>spring-cloud-netflix-feign</module> --> <!-- using spring boot 1 -->
       <module>spring-cloud-netflix-sidecar</module>
       <module>spring-cloud-open-service-broker</module>
       <module>spring-cloud-open-telemetry</module>

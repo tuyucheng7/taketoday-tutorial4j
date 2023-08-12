@@ -31,7 +31,7 @@
       <module>ratpack</module>
       <module>resteasy</module>
       <module>spark-java</module>
-      <module>struts-2</module>
+      <!-- <module>struts-2</module> --> <!-- using spring 4 -->
       <module>vraptor</module>
       <module>wicket</module>
 
