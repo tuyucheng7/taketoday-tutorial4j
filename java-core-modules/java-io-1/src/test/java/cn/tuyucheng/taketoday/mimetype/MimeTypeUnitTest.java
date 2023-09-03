@@ -8,7 +8,7 @@ import net.sf.jmimemagic.MagicParseException;
 import org.apache.tika.Tika;
 import org.junit.Test;
 
-import javax.activation.MimetypesFileTypeMap;
+import jakarta.activation.MimetypesFileTypeMap;
 import java.io.File;
 import java.io.IOException;
 import java.net.FileNameMap;
