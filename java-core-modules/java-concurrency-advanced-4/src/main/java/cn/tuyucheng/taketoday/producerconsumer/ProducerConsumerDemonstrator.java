@@ -3,65 +3,69 @@ package cn.tuyucheng.taketoday.producerconsumer;
 import java.util.ArrayList;
 import java.util.List;
 
+import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.sleep;
+import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.waitForAllThreadsToComplete;
+
 public class ProducerConsumerDemonstrator {
-	private static final int MAX_QUEUE_CAPACITY = 5;
+   private static final int MAX_QUEUE_CAPACITY = 5;
 
-	public static void demoSingleProducerAndSingleConsumer() {
-		DataQueue dataQueue = new DataQueue(MAX_QUEUE_CAPACITY);
+   public static void demoSingleProducerAndSingleConsumer() {
+      DataQueue dataQueue = new DataQueue(MAX_QUEUE_CAPACITY);
 
-		Producer producer = new Producer(dataQueue);
-		Thread producerThread = new Thread(producer);
+      Producer producer = new Producer(dataQueue);
+      Thread producerThread = new Thread(producer);
 
-		Consumer consumer = new Consumer(dataQueue);
-		Thread consumerThread = new Thread(consumer);
+      Consumer consumer = new Consumer(dataQueue);
+      Thread consumerThread = new Thread(consumer);
 
-		producerThread.start();
-		consumerThread.start();
+      producerThread.start();
+      consumerThread.start();
 
-		List<Thread> threads = new ArrayList<>();
-		threads.add(producerThread);
-		threads.add(consumerThread);
+      List<Thread> threads = new ArrayList<>();
+      threads.add(producerThread);
+      threads.add(consumerThread);
 
-		// let threads run for two seconds
-		ThreadUtil.sleep(2000);
+      // let threads run for two seconds
+      sleep(2000);
 
-		// Stop threads
-		producer.stop();
-		consumer.stop();
+      // Stop threads
+      producer.stop();
+      consumer.stop();
 
-		ThreadUtil.waitForAllThreadsToComplete(threads);
-	}
+      waitForAllThreadsToComplete(threads);
+   }
 
-	public static void demoMultipleProducersAndMultipleConsumers() {
-		DataQueue dataQueue = new DataQueue(MAX_QUEUE_CAPACITY);
-		int producerCount = 3;
-		int consumerCount = 3;
-		List<Thread> threads = new ArrayList<>();
-		Producer producer = new Producer(dataQueue);
-		for (int i = 0; i < producerCount; i++) {
-			Thread producerThread = new Thread(producer);
-			producerThread.start();
-			threads.add(producerThread);
-		}
-		Consumer consumer = new Consumer(dataQueue);
-		for (int i = 0; i < consumerCount; i++) {
-			Thread consumerThread = new Thread(consumer);
-			consumerThread.start();
-			threads.add(consumerThread);
-		}
+   public static void demoMultipleProducersAndMultipleConsumers() {
+      DataQueue dataQueue = new DataQueue(MAX_QUEUE_CAPACITY);
+      int producerCount = 5;
+      int consumerCount = 5;
+      List<Thread> threads = new ArrayList<>();
+      Producer producer = new Producer(dataQueue);
+      for (int i = 0; i < producerCount; i++) {
+         Thread producerThread = new Thread(producer);
+         producerThread.start();
+         threads.add(producerThread);
+      }
 
-		// let threads run for two seconds
-		ThreadUtil.sleep(2000);
+      Consumer consumer = new Consumer(dataQueue);
+      for (int i = 0; i < consumerCount; i++) {
+         Thread consumerThread = new Thread(consumer);
+         consumerThread.start();
+         threads.add(consumerThread);
+      }
 
-		// Stop threads
-		producer.stop();
-		consumer.stop();
+      // let threads run for ten seconds
+      sleep(10000);
 
-		ThreadUtil.waitForAllThreadsToComplete(threads);
-	}
+      // Stop threads
+      producer.stop();
+      consumer.stop();
 
-	public static void main(String[] args) {
-		demoSingleProducerAndSingleConsumer();
-		demoMultipleProducersAndMultipleConsumers();
-	}
+      waitForAllThreadsToComplete(threads);
+   }
+
+   public static void main(String[] args) {
+      demoSingleProducerAndSingleConsumer();
+      demoMultipleProducersAndMultipleConsumers();
+   }
 }
