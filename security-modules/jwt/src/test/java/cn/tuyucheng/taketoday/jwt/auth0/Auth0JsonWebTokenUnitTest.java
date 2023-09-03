@@ -8,7 +8,6 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -97,14 +96,13 @@ public class Auth0JsonWebTokenUnitTest {
       assertEquals(DATA, claim.asString());
    }
 
-   // Need to fix with JAVA-24552
-   @Ignore
+   @Test
    public void givenJWT_whenCreatedWithNotBefore_thenThrowException() {
 
       jwtToken = JWT.create()
             .withIssuer(ISSUER)
             .withClaim(DATA_CLAIM, DATA)
-            .withNotBefore(new Date(System.currentTimeMillis() + 1000L))
+            .withNotBefore(new Date(System.currentTimeMillis() + 10000L))
             .sign(algorithm);
 
       assertThrows(IncorrectClaimException.class, () -> {
