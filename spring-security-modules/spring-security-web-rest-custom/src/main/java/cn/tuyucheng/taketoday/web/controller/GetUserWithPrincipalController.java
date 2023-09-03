@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 
 @Controller
-public class SecurityController {
+public class GetUserWithPrincipalController {
 
-    public SecurityController() {
-        super();
-    }
+   public GetUserWithPrincipalController() {
+      super();
+   }
 
-    // API
+   // API
 
-    @RequestMapping(value = "/username2", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(final Principal principal) {
-        return principal.getName();
-    }
-
+   @RequestMapping(value = "/username2", method = RequestMethod.GET)
+   @ResponseBody
+   public String currentUserName(final Principal principal) {
+      return principal.getName();
+   }
 }
