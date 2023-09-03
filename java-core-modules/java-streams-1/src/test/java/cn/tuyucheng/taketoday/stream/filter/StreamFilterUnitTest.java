@@ -2,8 +2,8 @@ package cn.tuyucheng.taketoday.stream.filter;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import pl.touk.throwing.ThrowingPredicate;
-import pl.touk.throwing.exception.WrappedException;
+import com.pivovarit.function.ThrowingPredicate;
+import com.pivovarit.function.exception.WrappedException;
 
 import java.io.IOException;
 import java.util.Arrays;
