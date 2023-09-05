@@ -62,7 +62,6 @@
       <module>selenide</module>
 		<module>selenium-1</module>
       <module>selenium-2</module>
-		<module>sentry-servlet</module>
 		<module>serenity</module>
 		<module>spring-rest-testing</module>
 		<module>spring-testing-1</module>
