@@ -13,7 +13,7 @@ import reactor.netty.http.server.HttpServer;
 
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.reactive.security"})
 @EnableWebFlux
-public class SpringSecurity5Application {
+public class SpringSecurity6Application {
 
 	public static void main(String[] args) {
 		try (AnnotationConfigApplicationContext context =
