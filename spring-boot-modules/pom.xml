@@ -43,7 +43,6 @@
       <module>spring-boot-bootstrap</module>
       <module>spring-boot-caching-1</module>
       <module>spring-boot-caching-2</module>
-      <!-- <module>spring-boot-camel</module> -->
       <module>spring-boot-cassandre</module>
       <module>spring-boot-ci-cd</module>
       <module>spring-boot-cli</module>
