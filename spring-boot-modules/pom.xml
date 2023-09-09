@@ -19,7 +19,6 @@
    <modules>
       <!-- <module>spring-boot-3</module> -->
       <!-- <module>spring-boot-3-container</module> -->
-      <module>spring-boot-3-mybatis</module>
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
       <module>spring-boot-3-rsocket-exchange</module>
@@ -81,8 +80,8 @@
       <module>spring-boot-jib</module>
       <module>spring-boot-jsp</module>
       <module>spring-boot-kafka-1</module>
-      <!--<module>spring-boot-kafka-2</module>-->
-      <!--<module>spring-boot-keycloak-1</module>-->
+      <!-- <module>spring-boot-kafka-2</module> -->
+      <module>spring-boot-keycloak-1</module>
       <module>spring-boot-keycloak-2</module>
       <module>spring-boot-keycloak-adapters</module>
       <module>spring-boot-libraries-1</module>
