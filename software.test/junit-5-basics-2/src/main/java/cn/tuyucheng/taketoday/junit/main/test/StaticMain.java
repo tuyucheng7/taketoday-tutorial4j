@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.junit.main.test;
 
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Scanner;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class StaticMain {
 
@@ -103,13 +103,9 @@ public class StaticMain {
    }
 
    public static String read(InputType inputType, String fileName) {
-      switch (inputType) {
-         case FILE:
-            return readFromFile(fileName);
-         case CONSOLE:
-            return readFromConsole();
-         default:
-            return null;
-      }
+      return switch (inputType) {
+         case FILE -> readFromFile(fileName);
+         case CONSOLE -> readFromConsole();
+      };
    }
 }

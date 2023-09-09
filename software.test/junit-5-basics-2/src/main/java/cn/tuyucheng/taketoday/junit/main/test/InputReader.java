@@ -9,14 +9,10 @@ import java.util.Scanner;
 public class InputReader {
 
    public String read(InputType inputType, String fileName) {
-      switch (inputType) {
-         case FILE:
-            return readFromFile(fileName);
-         case CONSOLE:
-            return readFromConsole();
-         default:
-            return null;
-      }
+      return switch (inputType) {
+         case FILE -> readFromFile(fileName);
+         case CONSOLE -> readFromConsole();
+      };
    }
 
    private String readFromConsole() {
