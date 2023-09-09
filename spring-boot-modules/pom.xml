@@ -66,7 +66,6 @@
       <module>spring-boot-dubbo</module>
       <module>spring-boot-environment</module>
       <module>spring-boot-exceptions</module>
-      <!--<module>spring-boot-feign</module>-->
       <module>spring-boot-flowable</module>
       <module>spring-boot-gradle-1</module>
       <module>spring-boot-gradle-2</module>
@@ -137,10 +136,7 @@
       <module>spring-boot-testing-spock</module>
       <module>spring-boot-threads</module>
       <module>spring-boot-vaadin</module>
-      <module>spring-boot-validation-1</module>
-      <module>spring-boot-validation-2</module>
-      <module>spring-boot-validation-3</module>
-      <module>spring-boot-validation-advanced</module>
+      <module>spring-boot-validation</module>
       <module>spring-boot-vue</module>
       <module>spring-boot-wavefront</module>
       <module>spring-boot-web3j</module>
