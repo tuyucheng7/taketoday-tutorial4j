@@ -43,6 +43,7 @@
       <module>junit-5-advanced</module>
 		<module>junit-5-annotations</module>
       <module>junit-5-basics</module>
+      <module>junit-5-basics-2</module>
       <module>junit-5-migration</module>
       <module>junit-5-pioneer</module>
 		<module>load-testing-comparison</module>
