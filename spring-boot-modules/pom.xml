@@ -72,9 +72,6 @@
       <module>spring-boot-groovy</module>
       <module>spring-boot-grpc</module>
       <module>spring-boot-jasypt</module>
-      <module>spring-boot-jenkins-pipeline</module>
-      <module>spring-boot-jinq</module>
-      <module>spring-boot-jib</module>
       <module>spring-boot-jsp</module>
       <module>spring-boot-kafka-1</module>
       <!-- <module>spring-boot-kafka-2</module> -->
@@ -86,8 +83,6 @@
       <module>spring-boot-libraries-3</module>
       <module>spring-boot-logging-log4j2</module>
       <module>spring-boot-logging-logback</module>
-      <module>spring-boot-mantis</module>
-      <module>spring-boot-mesos-marathon</module>
       <module>spring-boot-miscellaneous</module>
       <module>spring-boot-mustache</module>
       <module>spring-boot-mvc-1</module>
