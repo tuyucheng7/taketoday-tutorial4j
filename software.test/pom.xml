@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>software.test</artifactId>
-	<name>software.test</name>
-	<packaging>pom</packaging>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>software.test</artifactId>
+   <name>software.test</name>
+   <packaging>pom</packaging>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>taketoday-tutorial4j</artifactId>
-		<version>1.0.0</version>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>taketoday-tutorial4j</artifactId>
+      <version>1.0.0</version>
+   </parent>
 
-	<modules>
-		<!-- ci fails modules -->
-		<!--<module>arquillian</module> &lt;!&ndash;failed on CI&ndash;&gt;-->
-		<!--<module>mocks-1</module> &lt;!&ndash;build failed&ndash;&gt;-->
-		<!--<module>mocks-2</module> &lt;!&ndash;build failed&ndash;&gt;-->
-		<!--<module>mockwebserver</module> &lt;!&ndash;External APIs are required->-->
+   <modules>
+      <!-- ci fails modules -->
+      <!--<module>arquillian</module> &lt;!&ndash;failed on CI&ndash;&gt;-->
+      <!--<module>mocks-1</module> &lt;!&ndash;build failed&ndash;&gt;-->
+      <!--<module>mocks-2</module> &lt;!&ndash;build failed&ndash;&gt;-->
+      <!--<module>mockwebserver</module> &lt;!&ndash;External APIs are required->-->
 
-		<module>allure-junit-5</module>
-		<module>assertion-libraries</module>
-		<module>cobertura</module>
-		<module>cucumber-1</module>
-		<module>cucumber-2</module>
-		<module>cucumber-spring</module>
-		<module>easy-random</module>
-		<module>easymock</module>
-		<module>gatling</module>
-		<module>gatling-java</module>
-		<module>greenmail</module>
-		<module>groovy-spock</module>
-		<module>hamcrest</module>
-		<module>instancio</module>
-		<module>jmeter</module>
-		<module>jmh</module>
+      <module>allure-junit-5</module>
+      <module>assertion-libraries</module>
+      <module>cobertura</module>
+      <module>cucumber-1</module>
+      <module>cucumber-2</module>
+      <module>cucumber-spring</module>
+      <module>easy-random</module>
+      <module>easymock</module>
+      <module>gatling</module>
+      <module>gatling-java</module>
+      <module>greenmail</module>
+      <module>groovy-spock</module>
+      <module>hamcrest</module>
+      <module>instancio</module>
+      <module>jmeter</module>
+      <module>jmh</module>
       <module>jqwik</module>
-		<module>json-path</module>
-		<module>junit-4</module>
+      <module>json-path</module>
+      <module>junit-4</module>
       <module>junit-5</module>
       <module>junit-5-advanced</module>
-		<module>junit-5-annotations</module>
-      <module>junit-5-basics</module>
+      <module>junit-5-annotations</module>
+      <module>junit-5-basics-1</module>
       <module>junit-5-basics-2</module>
       <module>junit-5-migration</module>
       <module>junit-5-pioneer</module>
-		<module>load-testing-comparison</module>
-		<module>microshed</module>
-		<module>mockito-1</module>
-		<module>mockito-2</module>
+      <module>load-testing-comparison</module>
+      <module>microshed</module>
+      <module>mockito-1</module>
+      <module>mockito-2</module>
       <module>mockito-simple</module>
-		<module>mockito-spring</module>
-		<module>mockserver</module>
-		<module>pact</module>
-		<module>parallel-tests-junit</module>
-		<module>performance-tests</module>
-		<module>powermock</module>
-		<module>rest-assured</module>
-		<module>rest-assured-selenium</module>
-		<module>rest-testing</module>
+      <module>mockito-spring</module>
+      <module>mockserver</module>
+      <module>pact</module>
+      <module>parallel-tests-junit</module>
+      <module>performance-tests</module>
+      <module>powermock</module>
+      <module>rest-assured</module>
+      <module>rest-assured-selenium</module>
+      <module>rest-testing</module>
       <module>selenide</module>
-		<module>selenium-1</module>
+      <module>selenium-1</module>
       <module>selenium-2</module>
-		<module>serenity</module>
-		<module>spring-rest-testing</module>
-		<module>spring-testing-1</module>
-		<module>spring-testing-2</module>
-		<module>tdd</module>
-		<module>test-containers</module>
-		<module>testing-assertions</module>
-		<module>testing-libraries-1</module>
-		<module>testing-libraries-2</module>
+      <module>serenity</module>
+      <module>spring-rest-testing</module>
+      <module>spring-testing-1</module>
+      <module>spring-testing-2</module>
+      <module>tdd</module>
+      <module>test-containers</module>
+      <module>testing-assertions</module>
+      <module>testing-libraries-1</module>
+      <module>testing-libraries-2</module>
       <module>testing-techniques</module>
-		<module>testing-miscellaneous</module>
-		<module>testng</module>
-		<module>testng-command-line</module>
-		<module>xmlunit-2</module>
-		<module>zerocode</module>
-	</modules>
+      <module>testing-miscellaneous</module>
+      <module>testng</module>
+      <module>testng-command-line</module>
+      <module>xmlunit-2</module>
+      <module>zerocode</module>
+   </modules>
 </project>
