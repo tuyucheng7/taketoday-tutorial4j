@@ -84,7 +84,6 @@
       <module>spring-boot-libraries-1</module>
       <module>spring-boot-libraries-2</module>
       <module>spring-boot-libraries-3</module>
-      <module>spring-boot-lightrun</module>
       <module>spring-boot-logging-log4j2</module>
       <module>spring-boot-logging-logback</module>
       <module>spring-boot-mantis</module>
