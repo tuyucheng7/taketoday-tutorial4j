@@ -17,14 +17,14 @@ import static org.junit.Assert.assertEquals;
 @PrepareForTest(AbstractPrivateMethods.class)
 public class AbstractPrivateMethodsUnitTest {
 
-	@Test
-	public void givenNonAbstractMethodAndCallPrivateMethod_whenMockPrivateMethod_thenVerifyBehaviour() throws Exception {
-		AbstractPrivateMethods mockClass = PowerMockito.mock(AbstractPrivateMethods.class);
+   @Test
+   public void givenNonAbstractMethodAndCallPrivateMethod_whenMockPrivateMethod_thenVerifyBehaviour() throws Exception {
+      AbstractPrivateMethods mockClass = PowerMockito.mock(AbstractPrivateMethods.class);
 
-		String dateTime = LocalDateTime.now().toString();
-		PowerMockito.doCallRealMethod().when(mockClass).defaultImpl();
-		PowerMockito.doReturn(dateTime).when(mockClass, "getCurrentDateTime");// .thenReturn(dateTime);
-		String actual = mockClass.defaultImpl();
-		assertEquals(dateTime + "DEFAULT-1", actual);
-	}
+      String dateTime = LocalDateTime.now().toString();
+      PowerMockito.doCallRealMethod().when(mockClass).defaultImpl();
+      PowerMockito.doReturn(dateTime).when(mockClass, "getCurrentDateTime");// .thenReturn(dateTime);
+      String actual = mockClass.defaultImpl();
+      assertEquals(dateTime + "DEFAULT-1", actual);
+   }
 }

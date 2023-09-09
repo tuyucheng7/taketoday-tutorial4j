@@ -15,43 +15,43 @@ import static org.junit.platform.engine.discovery.DiscoverySelectors.selectClass
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;
 
 public class RunJUnit5TestsFromJava {
-	SummaryGeneratingListener listener = new SummaryGeneratingListener();
+   SummaryGeneratingListener listener = new SummaryGeneratingListener();
 
-	public void runOne() {
-		LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
-			.request()
-			.selectors(selectClass(FirstUnitTest.class))
-			.build();
-		Launcher launcher = LauncherFactory.create();
-		TestPlan testPlan = launcher.discover(request);
+   public void runOne() {
+      LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
+            .request()
+            .selectors(selectClass(FirstUnitTest.class))
+            .build();
+      Launcher launcher = LauncherFactory.create();
+      TestPlan testPlan = launcher.discover(request);
 
-		launcher.registerTestExecutionListeners(listener);
-		launcher.execute(request);
-	}
+      launcher.registerTestExecutionListeners(listener);
+      launcher.execute(request);
+   }
 
-	public void runAll() {
-		LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
-			.request()
-			.selectors(selectPackage("cn.tuyucheng.taketoday.runfromjava"))
-			.filters(includeClassNamePatterns(".*Test"))
-			.build();
-		Launcher launcher = LauncherFactory.create();
-		TestPlan testPlan = launcher.discover(request);
+   public void runAll() {
+      LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder
+            .request()
+            .selectors(selectPackage("cn.tuyucheng.taketoday.runfromjava"))
+            .filters(includeClassNamePatterns(".*Test"))
+            .build();
+      Launcher launcher = LauncherFactory.create();
+      TestPlan testPlan = launcher.discover(request);
 
-		launcher.registerTestExecutionListeners(listener);
-		launcher.execute(request);
-	}
+      launcher.registerTestExecutionListeners(listener);
+      launcher.execute(request);
+   }
 
-	public static void main(String[] args) {
-		RunJUnit5TestsFromJava runner = new RunJUnit5TestsFromJava();
-		runner.runAll();
+   public static void main(String[] args) {
+      RunJUnit5TestsFromJava runner = new RunJUnit5TestsFromJava();
+      runner.runAll();
 
-		TestExecutionSummary summary = runner.listener.getSummary();
-		summary.printTo(new PrintWriter(System.out));
+      TestExecutionSummary summary = runner.listener.getSummary();
+      summary.printTo(new PrintWriter(System.out));
 
-		runner.runOne();
+      runner.runOne();
 
-		summary = runner.listener.getSummary();
-		summary.printTo(new PrintWriter(System.out));
-	}
+      summary = runner.listener.getSummary();
+      summary.printTo(new PrintWriter(System.out));
+   }
 }

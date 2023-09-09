@@ -6,29 +6,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SampleExecutionTimeUnitTest {
 
-	@Test
-	void someUnitTest() {
+   @Test
+   void someUnitTest() {
 
-		assertTrue(doSomething());
-	}
+      assertTrue(doSomething());
+   }
 
-	@Test
-	void someIntegrationTest() throws Exception {
-		// simulate an operation that may take 5 seconds
-		Thread.sleep(5000);
+   @Test
+   void someIntegrationTest() throws Exception {
+      // simulate an operation that may take 5 seconds
+      Thread.sleep(5000);
 
-		assertTrue(doSomething());
-	}
+      assertTrue(doSomething());
+   }
 
-	@Test
-	void someEndToEndTest() throws Exception {
-		// simulate an operation that may take 10 seconds
-		Thread.sleep(10000);
+   @Test
+   void someEndToEndTest() throws Exception {
+      // simulate an operation that may take 10 seconds
+      Thread.sleep(10000);
 
-		assertTrue(doSomething());
-	}
+      assertTrue(doSomething());
+   }
 
-	private boolean doSomething() {
-		return true;
-	}
+   private boolean doSomething() {
+      return true;
+   }
 }

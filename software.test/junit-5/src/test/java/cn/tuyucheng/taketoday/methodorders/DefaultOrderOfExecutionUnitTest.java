@@ -9,25 +9,25 @@ import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.DEFAULT)
 public class DefaultOrderOfExecutionUnitTest {
-	private static final StringBuilder output = new StringBuilder("");
+   private static final StringBuilder output = new StringBuilder("");
 
-	@Test
-	public void secondTest() {
-		output.append("b");
-	}
+   @Test
+   public void secondTest() {
+      output.append("b");
+   }
 
-	@Test
-	public void thirdTest() {
-		output.append("c");
-	}
+   @Test
+   public void thirdTest() {
+      output.append("c");
+   }
 
-	@Test
-	public void firstTest() {
-		output.append("a");
-	}
+   @Test
+   public void firstTest() {
+      output.append("a");
+   }
 
-	@AfterClass
-	public static void assertOutput() {
-		assertEquals(output.toString(), "cab");
-	}
+   @AfterClass
+   public static void assertOutput() {
+      assertEquals(output.toString(), "cab");
+   }
 }

@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Tag("Test case")
 public class TaggedUnitTest {
 
-	@Test
-	@Tag("Method")
-	void testMethod() {
-		assertEquals(2 + 2, 4);
-	}
+   @Test
+   @Tag("Method")
+   void testMethod() {
+      assertEquals(2 + 2, 4);
+   }
 }

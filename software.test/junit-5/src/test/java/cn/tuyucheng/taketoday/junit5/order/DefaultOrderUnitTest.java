@@ -8,28 +8,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DefaultOrderUnitTest {
 
-	private static final StringBuilder output = new StringBuilder();
+   private static final StringBuilder output = new StringBuilder();
 
-	@Test
-	@DisplayName("Test A")
-	void myATest() {
-		output.append("A");
-	}
+   @Test
+   @DisplayName("Test A")
+   void myATest() {
+      output.append("A");
+   }
 
-	@Test
-	@DisplayName("Test B")
-	void myBTest() {
-		output.append("B");
-	}
+   @Test
+   @DisplayName("Test B")
+   void myBTest() {
+      output.append("B");
+   }
 
-	@Test
-	@DisplayName("Test C")
-	void myCTest() {
-		output.append("C");
-	}
+   @Test
+   @DisplayName("Test C")
+   void myCTest() {
+      output.append("C");
+   }
 
-	@AfterAll
-	static void assertOutput() {
-		assertEquals("ABC", output.toString());
-	}
+   @AfterAll
+   static void assertOutput() {
+      assertEquals("ABC", output.toString());
+   }
 }

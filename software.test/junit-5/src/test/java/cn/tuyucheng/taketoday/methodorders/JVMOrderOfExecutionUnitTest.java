@@ -7,20 +7,20 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.JVM)
 public class JVMOrderOfExecutionUnitTest {
 
-	private static final StringBuilder output = new StringBuilder("");
+   private static final StringBuilder output = new StringBuilder("");
 
-	@Test
-	public void secondTest() {
-		output.append("b");
-	}
+   @Test
+   public void secondTest() {
+      output.append("b");
+   }
 
-	@Test
-	public void thirdTest() {
-		output.append("c");
-	}
+   @Test
+   public void thirdTest() {
+      output.append("c");
+   }
 
-	@Test
-	public void firstTest() {
-		output.append("a");
-	}
+   @Test
+   public void firstTest() {
+      output.append("a");
+   }
 }
