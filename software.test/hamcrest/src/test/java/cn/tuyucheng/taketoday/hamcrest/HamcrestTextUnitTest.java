@@ -20,77 +20,77 @@ import static org.hamcrest.text.StringContainsInOrder.stringContainsInOrder;
 
 class HamcrestTextUnitTest {
 
-	@Test
-	final void whenTwoStringsAreEqual_thenCorrect() {
-		String first = "hello";
-		String second = "Hello";
+   @Test
+   final void whenTwoStringsAreEqual_thenCorrect() {
+      String first = "hello";
+      String second = "Hello";
 
-		assertThat(first, equalToIgnoringCase(second));
-	}
+      assertThat(first, equalToIgnoringCase(second));
+   }
 
-	@Test
-	final void whenTwoStringsAreEqualWithWhiteSpace_thenCorrect() {
-		String first = "hello";
-		String second = "   Hello   ";
+   @Test
+   final void whenTwoStringsAreEqualWithWhiteSpace_thenCorrect() {
+      String first = "hello";
+      String second = "   Hello   ";
 
-		assertThat(first, equalToIgnoringWhiteSpace(second));
-	}
+      assertThat(first, equalToIgnoringWhiteSpace(second));
+   }
 
-	@Test
-	final void whenStringIsBlank_thenCorrect() {
-		String first = "  ";
-		String second = null;
+   @Test
+   final void whenStringIsBlank_thenCorrect() {
+      String first = "  ";
+      String second = null;
 
-		assertThat(first, blankString());
-		assertThat(first, blankOrNullString());
-		assertThat(second, blankOrNullString());
-	}
+      assertThat(first, blankString());
+      assertThat(first, blankOrNullString());
+      assertThat(second, blankOrNullString());
+   }
 
-	@Test
-	final void whenStringIsEmpty_thenCorrect() {
-		String first = "";
-		String second = null;
+   @Test
+   final void whenStringIsEmpty_thenCorrect() {
+      String first = "";
+      String second = null;
 
-		assertThat(first, emptyString());
-		assertThat(first, emptyOrNullString());
-		assertThat(second, emptyOrNullString());
-	}
+      assertThat(first, emptyString());
+      assertThat(first, emptyOrNullString());
+      assertThat(second, emptyOrNullString());
+   }
 
-	@Test
-	final void whenStringMatchPattern_thenCorrect() {
-		String first = "hello";
+   @Test
+   final void whenStringMatchPattern_thenCorrect() {
+      String first = "hello";
 
-		assertThat(first, matchesPattern("[a-z]+"));
-	}
+      assertThat(first, matchesPattern("[a-z]+"));
+   }
 
-	@Test
-	final void whenVerifyStringContains_thenCorrect() {
-		String first = "hello";
+   @Test
+   final void whenVerifyStringContains_thenCorrect() {
+      String first = "hello";
 
-		assertThat(first, containsString("lo"));
-		assertThat(first, containsStringIgnoringCase("EL"));
-	}
+      assertThat(first, containsString("lo"));
+      assertThat(first, containsStringIgnoringCase("EL"));
+   }
 
-	@Test
-	final void whenVerifyStringContainsInOrder_thenCorrect() {
-		String first = "hello";
+   @Test
+   final void whenVerifyStringContainsInOrder_thenCorrect() {
+      String first = "hello";
 
-		assertThat(first, stringContainsInOrder("e", "l", "o"));
-	}
+      assertThat(first, stringContainsInOrder("e", "l", "o"));
+   }
 
-	@Test
-	final void whenVerifyStringStartsWith_thenCorrect() {
-		String first = "hello";
+   @Test
+   final void whenVerifyStringStartsWith_thenCorrect() {
+      String first = "hello";
 
-		assertThat(first, startsWith("he"));
-		assertThat(first, startsWithIgnoringCase("HEL"));
-	}
+      assertThat(first, startsWith("he"));
+      assertThat(first, startsWithIgnoringCase("HEL"));
+   }
 
-	@Test
-	final void whenVerifyStringEndsWith_thenCorrect() {
-		String first = "hello";
+   @Test
+   final void whenVerifyStringEndsWith_thenCorrect() {
+      String first = "hello";
 
-		assertThat(first, endsWith("lo"));
-		assertThat(first, endsWithIgnoringCase("LO"));
-	}
+      assertThat(first, endsWith("lo"));
+      assertThat(first, endsWithIgnoringCase("LO"));
+   }
 }

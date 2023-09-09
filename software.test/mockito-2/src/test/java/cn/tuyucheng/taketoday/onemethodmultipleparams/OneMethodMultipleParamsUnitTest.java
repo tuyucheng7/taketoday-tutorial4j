@@ -1,22 +1,22 @@
 package cn.tuyucheng.taketoday.onemethodmultipleparams;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class OneMethodMultipleParamsUnitTest {
+@ExtendWith(MockitoExtension.class)
+class OneMethodMultipleParamsUnitTest {
 
    @Mock
    ExampleService exampleService;
 
    @Test
-   public void givenAMethod_whenStubbingForMultipleArguments_thenExpectDifferentResults() {
+   void givenAMethod_whenStubbingForMultipleArguments_thenExpectDifferentResults() {
       when(exampleService.getValue(10)).thenReturn(100);
       when(exampleService.getValue(20)).thenReturn(200);
       when(exampleService.getValue(30)).thenReturn(300);
@@ -27,7 +27,7 @@ public class OneMethodMultipleParamsUnitTest {
    }
 
    @Test
-   public void givenAMethod_whenUsingThenAnswer_thenExpectDifferentReults() {
+   void givenAMethod_whenUsingThenAnswer_thenExpectDifferentReults() {
       when(exampleService.getValue(anyInt())).thenAnswer(invocation -> {
          int argument = (int) invocation.getArguments()[0];
          return switch (argument) {
@@ -43,7 +43,7 @@ public class OneMethodMultipleParamsUnitTest {
    }
 
    @Test
-   public void givenAMethod_whenUsingConsecutiveStubbing_thenExpectResultsInOrder() {
+   void givenAMethod_whenUsingConsecutiveStubbing_thenExpectResultsInOrder() {
       when(exampleService.getValue(anyInt())).thenReturn(9, 18, 27);
       assertEquals(9, exampleService.getValue(1));
       assertEquals(18, exampleService.getValue(1));

@@ -5,49 +5,54 @@ import cn.tuyucheng.taketoday.hamcrest.objectmatchers.Location;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.hasToString;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.typeCompatibleWith;
 
 class HamcrestObjectUnitTest {
 
-	@Test
-	void givenACity_whenHasToString_thenCorrect() {
-		City city = new City("San Francisco", "CA");
+   @Test
+   void givenACity_whenHasToString_thenCorrect() {
+      City city = new City("San Francisco", "CA");
 
-		assertThat(city, hasToString("[Name: San Francisco, State: CA]"));
-	}
+      assertThat(city, hasToString("[Name: San Francisco, State: CA]"));
+   }
 
-	@Test
-	void givenACity_whenHasToStringEqualToIgnoringCase_thenCorrect() {
-		City city = new City("San Francisco", "CA");
+   @Test
+   void givenACity_whenHasToStringEqualToIgnoringCase_thenCorrect() {
+      City city = new City("San Francisco", "CA");
 
-		assertThat(city, hasToString(equalToIgnoringCase("[NAME: SAN FRANCISCO, STATE: CA]")));
-	}
+      assertThat(city, hasToString(equalToIgnoringCase("[NAME: SAN FRANCISCO, STATE: CA]")));
+   }
 
-	@Test
-	void givenACity_whenHasToStringEmptyOrNullString_thenCorrect() {
-		City city = new City(null, null);
+   @Test
+   void givenACity_whenHasToStringEmptyOrNullString_thenCorrect() {
+      City city = new City(null, null);
 
-		assertThat(city, hasToString(emptyOrNullString()));
-	}
+      assertThat(city, hasToString(emptyOrNullString()));
+   }
 
-	@Test
-	void givenACity_whenTypeCompatibleWithLocation_thenCorrect() {
-		City city = new City("San Francisco", "CA");
+   @Test
+   void givenACity_whenTypeCompatibleWithLocation_thenCorrect() {
+      City city = new City("San Francisco", "CA");
 
-		assertThat(city.getClass(), is(typeCompatibleWith(Location.class)));
-	}
+      assertThat(city.getClass(), is(typeCompatibleWith(Location.class)));
+   }
 
-	@Test
-	void givenACity_whenTypeNotCompatibleWithString_thenCorrect() {
-		City city = new City("San Francisco", "CA");
+   @Test
+   void givenACity_whenTypeNotCompatibleWithString_thenCorrect() {
+      City city = new City("San Francisco", "CA");
 
-		assertThat(city.getClass(), is(not(typeCompatibleWith(String.class))));
-	}
+      assertThat(city.getClass(), is(not(typeCompatibleWith(String.class))));
+   }
 
-	@Test
-	void givenACity_whenTypeCompatibleWithObject_thenCorrect() {
-		City city = new City("San Francisco", "CA");
+   @Test
+   void givenACity_whenTypeCompatibleWithObject_thenCorrect() {
+      City city = new City("San Francisco", "CA");
 
-		assertThat(city.getClass(), is(typeCompatibleWith(Object.class)));
-	}
+      assertThat(city.getClass(), is(typeCompatibleWith(Object.class)));
+   }
 }

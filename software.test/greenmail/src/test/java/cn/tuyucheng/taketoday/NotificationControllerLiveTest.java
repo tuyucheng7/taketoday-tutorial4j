@@ -22,35 +22,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class NotificationControllerLiveTest {
 
-	@Container
-	static GenericContainer greenMailContainer = new GenericContainer<>(DockerImageName.parse("greenmail/standalone:1.6.1"))
-		.waitingFor(Wait.forLogMessage(".*Starting GreenMail standalone.*", 1))
-		.withEnv("GREENMAIL_OPTS", "-Dgreenmail.setup.test.smtp -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.users=duke:springboot")
-		.withExposedPorts(3025);
+   @Container
+   static GenericContainer greenMailContainer = new GenericContainer<>(DockerImageName.parse("greenmail/standalone:1.6.1"))
+         .waitingFor(Wait.forLogMessage(".*Starting GreenMail standalone.*", 1))
+         .withEnv("GREENMAIL_OPTS", "-Dgreenmail.setup.test.smtp -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.users=duke:springboot")
+         .withExposedPorts(3025);
 
-	@DynamicPropertySource
-	static void configureMailHost(DynamicPropertyRegistry registry) {
-		registry.add("spring.mail.host", greenMailContainer::getHost);
-		registry.add("spring.mail.port", greenMailContainer::getFirstMappedPort);
-	}
+   @DynamicPropertySource
+   static void configureMailHost(DynamicPropertyRegistry registry) {
+      registry.add("spring.mail.host", greenMailContainer::getHost);
+      registry.add("spring.mail.port", greenMailContainer::getFirstMappedPort);
+   }
 
-	@Autowired
-	private TestRestTemplate testRestTemplate;
+   @Autowired
+   private TestRestTemplate testRestTemplate;
 
-	@Test
-	void shouldSendEmailWithCorrectPayloadToUser() throws Exception {
-		String payload = """
-			{
-				"email": "duke@spring.io",
-				"content": "Hello World!"
-			}
-			""";
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> request = new HttpEntity<>(payload, headers);
+   @Test
+   void shouldSendEmailWithCorrectPayloadToUser() throws Exception {
+      String payload = """
+            {
+            	"email": "duke@spring.io",
+            	"content": "Hello World!"
+            }
+            """;
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      HttpEntity<String> request = new HttpEntity<>(payload, headers);
 
-		ResponseEntity<Void> response = this.testRestTemplate.postForEntity("/notifications", request, Void.class);
+      ResponseEntity<Void> response = this.testRestTemplate.postForEntity("/notifications", request, Void.class);
 
-		assertEquals(200, response.getStatusCodeValue());
-	}
+      assertEquals(200, response.getStatusCodeValue());
+   }
 }

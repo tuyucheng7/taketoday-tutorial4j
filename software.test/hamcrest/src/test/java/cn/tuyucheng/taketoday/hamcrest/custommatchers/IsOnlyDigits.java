@@ -6,22 +6,22 @@ import org.hamcrest.TypeSafeMatcher;
 
 public class IsOnlyDigits extends TypeSafeMatcher<String> {
 
-	@Override
-	protected boolean matchesSafely(String s) {
-		try {
-			Integer.parseInt(s);
-			return true;
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-	}
+   @Override
+   protected boolean matchesSafely(String s) {
+      try {
+         Integer.parseInt(s);
+         return true;
+      } catch (NumberFormatException nfe) {
+         return false;
+      }
+   }
 
-	@Override
-	public void describeTo(Description description) {
-		description.appendText("only digits");
-	}
+   @Override
+   public void describeTo(Description description) {
+      description.appendText("only digits");
+   }
 
-	public static Matcher<String> onlyDigits() {
-		return new IsOnlyDigits();
-	}
+   public static Matcher<String> onlyDigits() {
+      return new IsOnlyDigits();
+   }
 }

@@ -11,14 +11,14 @@ import javax.validation.Valid;
 @RequestMapping("/notifications")
 public class NotificationController {
 
-	private final NotificationService notificationService;
+   private final NotificationService notificationService;
 
-	public NotificationController(NotificationService notificationService) {
-		this.notificationService = notificationService;
-	}
+   public NotificationController(NotificationService notificationService) {
+      this.notificationService = notificationService;
+   }
 
-	@PostMapping
-	public void createNotification(@Valid @RequestBody NotificationRequest request) {
-		this.notificationService.notifyUser(request.getEmail(), request.getContent());
-	}
+   @PostMapping
+   public void createNotification(@Valid @RequestBody NotificationRequest request) {
+      this.notificationService.notifyUser(request.getEmail(), request.getContent());
+   }
 }

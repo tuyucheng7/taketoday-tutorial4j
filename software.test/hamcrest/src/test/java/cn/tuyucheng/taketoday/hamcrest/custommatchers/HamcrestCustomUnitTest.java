@@ -11,40 +11,40 @@ import static org.hamcrest.Matchers.not;
 
 class HamcrestCustomUnitTest {
 
-	@Test
-	final void givenAString_whenIsOnlyDigits_thenCorrect() {
-		String digits = "123";
+   @Test
+   final void givenAString_whenIsOnlyDigits_thenCorrect() {
+      String digits = "123";
 
-		assertThat(digits, is(onlyDigits()));
-	}
+      assertThat(digits, is(onlyDigits()));
+   }
 
-	@Test
-	final void givenAString_whenIsNotOnlyDigits_thenCorrect() {
-		String aphanumeric = "123ABC";
+   @Test
+   final void givenAString_whenIsNotOnlyDigits_thenCorrect() {
+      String aphanumeric = "123ABC";
 
-		assertThat(aphanumeric, is(not(onlyDigits())));
-	}
+      assertThat(aphanumeric, is(not(onlyDigits())));
+   }
 
-	@Test
-	final void givenAString_whenIsUppercase_thenCorrect() {
-		String uppercaseWord = "HELLO";
+   @Test
+   final void givenAString_whenIsUppercase_thenCorrect() {
+      String uppercaseWord = "HELLO";
 
-		assertThat(uppercaseWord, is(uppercase()));
-	}
+      assertThat(uppercaseWord, is(uppercase()));
+   }
 
-	@Test
-	final void givenAnEvenInteger_whenDivisibleByTwo_thenCorrect() {
-		Integer ten = 10;
-		Integer two = 2;
+   @Test
+   final void givenAnEvenInteger_whenDivisibleByTwo_thenCorrect() {
+      Integer ten = 10;
+      Integer two = 2;
 
-		assertThat(ten, is(divisibleBy(two)));
-	}
+      assertThat(ten, is(divisibleBy(two)));
+   }
 
-	@Test
-	final void givenAnOddInteger_whenNotDivisibleByTwo_thenCorrect() {
-		Integer eleven = 11;
-		Integer two = 2;
+   @Test
+   final void givenAnOddInteger_whenNotDivisibleByTwo_thenCorrect() {
+      Integer eleven = 11;
+      Integer two = 2;
 
-		assertThat(eleven, is(not(divisibleBy(two))));
-	}
+      assertThat(eleven, is(not(divisibleBy(two))));
+   }
 }

@@ -4,8 +4,7 @@ import java.time.DayOfWeek;
 
 public interface Employee {
 
-	String greet();
+   String greet();
 
-	void work(DayOfWeek day);
-
+   void work(DayOfWeek day);
 }

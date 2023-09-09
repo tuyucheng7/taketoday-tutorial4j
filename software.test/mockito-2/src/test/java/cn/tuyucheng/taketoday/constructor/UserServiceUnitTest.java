@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.constructor;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 class UserServiceUnitTest {
@@ -13,8 +14,8 @@ class UserServiceUnitTest {
    void whenConstructorInvokedWithInitializer_ThenMockObjectShouldBeCreated() {
       try (MockedConstruction<UserService> mockUserService = Mockito.mockConstruction(UserService.class, (mock, context) -> when(mock.getUserName()).thenReturn("John Doe"))) {
          User user = new User();
-         Assertions.assertEquals(1, mockUserService.constructed().size());
-         Assertions.assertEquals("John Doe", user.getUserName());
+         assertEquals(1, mockUserService.constructed().size());
+         assertEquals("John Doe", user.getUserName());
       }
    }
 
@@ -22,8 +23,8 @@ class UserServiceUnitTest {
    void whenConstructorInvokedWithoutInitializer_ThenMockObjectShouldBeCreatedWithNullFields() {
       try (MockedConstruction<UserService> mockUserService = Mockito.mockConstruction(UserService.class)) {
          User user = new User();
-         Assertions.assertEquals(1, mockUserService.constructed().size());
-         Assertions.assertNull(user.getUserName());
+         assertEquals(1, mockUserService.constructed().size());
+         assertNull(user.getUserName());
       }
    }
 
@@ -31,8 +32,8 @@ class UserServiceUnitTest {
    void whenConstructorInvokedWithParameters_ThenMockObjectShouldBeCreated() {
       try (MockedConstruction<UserService> mockUserService = Mockito.mockConstruction(UserService.class, (mock, context) -> when(mock.getUserName()).thenReturn("John Doe"))) {
          User user = new User("Mike");
-         Assertions.assertEquals(1, mockUserService.constructed().size());
-         Assertions.assertEquals("John Doe", user.getUserName());
+         assertEquals(1, mockUserService.constructed().size());
+         assertEquals("John Doe", user.getUserName());
       }
    }
 
@@ -46,10 +47,10 @@ class UserServiceUnitTest {
          when(mockUserService.constructed().get(0).getUserName()).thenReturn("John Doe");
          when(mockUserService.constructed().get(1).getUserName()).thenReturn("Steve Smith");
 
-         Assertions.assertEquals(3, mockUserService.constructed().size());
-         Assertions.assertEquals("John Doe", user.getUserName());
-         Assertions.assertEquals("Steve Smith", secondUser.getUserName());
-         Assertions.assertNull(thirdUser.getUserName());
+         assertEquals(3, mockUserService.constructed().size());
+         assertEquals("John Doe", user.getUserName());
+         assertEquals("Steve Smith", secondUser.getUserName());
+         assertNull(thirdUser.getUserName());
       }
    }
 }

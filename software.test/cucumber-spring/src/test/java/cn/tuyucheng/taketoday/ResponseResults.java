@@ -8,22 +8,22 @@ import java.io.InputStream;
 import java.io.StringWriter;
 
 public class ResponseResults {
-	private final ClientHttpResponse theResponse;
-	private final String body;
+   private final ClientHttpResponse theResponse;
+   private final String body;
 
-	ResponseResults(final ClientHttpResponse response) throws IOException {
-		this.theResponse = response;
-		final InputStream bodyInputStream = response.getBody();
-		final StringWriter stringWriter = new StringWriter();
-		IOUtils.copy(bodyInputStream, stringWriter);
-		this.body = stringWriter.toString();
-	}
+   ResponseResults(final ClientHttpResponse response) throws IOException {
+      this.theResponse = response;
+      final InputStream bodyInputStream = response.getBody();
+      final StringWriter stringWriter = new StringWriter();
+      IOUtils.copy(bodyInputStream, stringWriter);
+      this.body = stringWriter.toString();
+   }
 
-	ClientHttpResponse getTheResponse() {
-		return theResponse;
-	}
+   ClientHttpResponse getTheResponse() {
+      return theResponse;
+   }
 
-	String getBody() {
-		return body;
-	}
+   String getBody() {
+      return body;
+   }
 }

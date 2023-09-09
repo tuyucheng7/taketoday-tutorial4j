@@ -20,33 +20,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class JavaMailSenderIntegrationTest {
 
-	@RegisterExtension
-	static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP)
-		.withConfiguration(GreenMailConfiguration.aConfig().withUser("duke", "springboot"))
-		.withPerMethodLifecycle(false);
+   @RegisterExtension
+   static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP)
+         .withConfiguration(GreenMailConfiguration.aConfig().withUser("duke", "springboot"))
+         .withPerMethodLifecycle(false);
 
-	@Autowired
-	private JavaMailSender javaMailSender;
+   @Autowired
+   private JavaMailSender javaMailSender;
 
-	@Test
-	void shouldUseGreenMail() {
-		SimpleMailMessage mail = new SimpleMailMessage();
-		mail.setFrom("admin@spring.io");
-		mail.setSubject("A new message for you");
-		mail.setText("Hello GreenMail!");
-		mail.setTo("test@greenmail.io");
+   @Test
+   void shouldUseGreenMail() {
+      SimpleMailMessage mail = new SimpleMailMessage();
+      mail.setFrom("admin@spring.io");
+      mail.setSubject("A new message for you");
+      mail.setText("Hello GreenMail!");
+      mail.setTo("test@greenmail.io");
 
-		javaMailSender.send(mail);
+      javaMailSender.send(mail);
 
-		// awaitility
-		await().atMost(2, SECONDS).untilAsserted(() -> {
-			MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
-			assertEquals(1, receivedMessages.length);
+      // awaitility
+      await().atMost(2, SECONDS).untilAsserted(() -> {
+         MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
+         assertEquals(1, receivedMessages.length);
 
-			MimeMessage receivedMessage = receivedMessages[0];
-			assertEquals("Hello GreenMail!", GreenMailUtil.getBody(receivedMessage));
-			assertEquals(1, receivedMessage.getAllRecipients().length);
-			assertEquals("test@greenmail.io", receivedMessage.getAllRecipients()[0].toString());
-		});
-	}
+         MimeMessage receivedMessage = receivedMessages[0];
+         assertEquals("Hello GreenMail!", GreenMailUtil.getBody(receivedMessage));
+         assertEquals(1, receivedMessage.getAllRecipients().length);
+         assertEquals("test@greenmail.io", receivedMessage.getAllRecipients()[0].toString());
+      });
+   }
 }
