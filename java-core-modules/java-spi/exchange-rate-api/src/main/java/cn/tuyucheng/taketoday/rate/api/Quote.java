@@ -4,40 +4,46 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Quote {
-	private String currency;
-	private BigDecimal ask;
-	private BigDecimal bid;
-	private LocalDate date;
-	//...
-	public String getCurrency() {
-		return currency;
-	}
+   private String currency;
+   private BigDecimal ask;
+   private BigDecimal bid;
+   private LocalDate date;
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
+   public Quote(String currency, BigDecimal ask, BigDecimal bid) {
+      this.currency = currency;
+      this.ask = ask;
+      this.bid = bid;
+   }
 
-	public BigDecimal getAsk() {
-		return ask;
-	}
+   public String getCurrency() {
+      return currency;
+   }
 
-	public void setAsk(BigDecimal ask) {
-		this.ask = ask;
-	}
+   public void setCurrency(String currency) {
+      this.currency = currency;
+   }
 
-	public BigDecimal getBid() {
-		return bid;
-	}
+   public BigDecimal getAsk() {
+      return ask;
+   }
 
-	public void setBid(BigDecimal bid) {
-		this.bid = bid;
-	}
+   public void setAsk(BigDecimal ask) {
+      this.ask = ask;
+   }
 
-	public LocalDate getDate() {
-		return date;
-	}
+   public BigDecimal getBid() {
+      return bid;
+   }
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+   public void setBid(BigDecimal bid) {
+      this.bid = bid;
+   }
+
+   public LocalDate getDate() {
+      return date;
+   }
+
+   public void setDate(LocalDate date) {
+      this.date = date;
+   }
 }
