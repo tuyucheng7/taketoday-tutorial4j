@@ -17,8 +17,8 @@
    </parent>
 
    <modules>
-      <!-- <module>spring-boot-3</module> -->
-      <!-- <module>spring-boot-3-container</module> -->
+      <module>spring-boot-3</module>
+      <module>spring-boot-3-container</module>
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
       <module>spring-boot-3-test-pitfalls</module>
@@ -35,7 +35,7 @@
       <module>spring-boot-artifacts-2</module>
       <module>spring-boot-autoconfiguration</module>
       <module>spring-boot-aws</module>
-      <!--<module>spring-boot-azure</module>-->
+      <module>spring-boot-azure</module>
       <module>spring-boot-basic-customization-1</module>
       <module>spring-boot-basic-customization-2</module>
       <module>spring-boot-batch-1</module>

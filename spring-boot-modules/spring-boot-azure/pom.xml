@@ -78,13 +78,13 @@
 					<appName>tuyucheng-webapp</appName>
 					<appServicePlanName>tuyucheng-plan</appServicePlanName>
 					<javaVersion>{java.version}</javaVersion>
-					<!--<javaWebContainer>tomcat 8.5</javaWebContainer>-->
-					<!--<region>japanwest</region>-->
-					<!--<containerSettings>-->
-					<!--	<imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-					<!--	<registryUrl>https://${docker.image.prefix}</registryUrl>-->
-					<!--	<serverId>${azure.containerRegistry}</serverId>-->
-					<!--</containerSettings>-->
+               <!-- <javaWebContainer>tomcat 8.5</javaWebContainer> -->
+               <!-- <region>japanwest</region> -->
+               <!-- <containerSettings> -->
+               <!--    <imageName>${docker.image.prefix}/${project.artifactId}</imageName> -->
+               <!--    <registryUrl>https://${docker.image.prefix}</registryUrl> -->
+               <!--    <serverId>${azure.containerRegistry}</serverId> -->
+               <!-- </containerSettings> -->
 					<appSettings>
 						<property>
 							<name>spring.datasource.url</name>
@@ -102,16 +102,16 @@
 							<!--<value>replace-with-your-password</value> -->
 						</property>
 					</appSettings>
-					<!--<deploymentType>ftp</deploymentType>-->
-					<!--<resources>-->
-					<!--	<resource>-->
-					<!--		<directory>${project.basedir}/target</directory>-->
-					<!--		<targetPath>webapps</targetPath>-->
-					<!--		<includes>-->
-					<!--			<include>*.war</include>-->
-					<!--		</includes>-->
-					<!--	</resource>-->
-					<!--</resources>-->
+               <!-- <deploymentType>ftp</deploymentType> -->
+               <!-- <resources> -->
+               <!--    <resource> -->
+               <!--       <directory>${project.basedir}/target</directory> -->
+               <!--       <targetPath>webapps</targetPath> -->
+               <!--       <includes> -->
+               <!--          <include>*.war</include> -->
+               <!--       </includes> -->
+               <!--    </resource> -->
+               <!-- </resources> -->
 				</configuration>
 			</plugin>
 		</plugins>
