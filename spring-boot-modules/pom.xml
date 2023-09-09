@@ -117,7 +117,7 @@
       <module>spring-boot-react</module>
       <module>spring-boot-redis</module>
       <module>spring-boot-request-params</module>
-      <!--<module>spring-boot-resilience4j</module>-->
+      <module>spring-boot-resilience4j</module>
       <module>spring-boot-rest</module>
       <module>spring-boot-runtime-1</module>
       <module>spring-boot-runtime-2</module>

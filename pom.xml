@@ -36,7 +36,7 @@
       <logback.version>1.2.7</logback.version>
 
       <!-- plugins -->
-      <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+      <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
       <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
       <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
       <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
@@ -619,7 +619,7 @@
             <!-- <module>rxjava-modules</module> -->
             <!-- <module>security-modules</module> -->
             <!-- <module>software.test</module> -->
-            <!-- <module>spring-boot-modules</module> -->
+            <module>spring-boot-modules</module>
             <!-- <module>spring-cloud-modules</module> -->
             <!-- <module>spring-data-modules</module> -->
             <!-- <module>spring-modules</module> -->
