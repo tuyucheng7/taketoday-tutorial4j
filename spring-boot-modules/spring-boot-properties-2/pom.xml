@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-boot-properties-2</artifactId>
-	<version>1.0.0</version>
-	<name>spring-boot-properties-2</name>
-	<packaging>jar</packaging>
-	<description>Spring Boot Properties Module</description>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-boot-properties-2</artifactId>
+   <version>1.0.0</version>
+   <name>spring-boot-properties-2</name>
+   <packaging>jar</packaging>
+   <description>Spring Boot Properties Module</description>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday</groupId>
-		<artifactId>parent-boot-3</artifactId>
-		<version>1.0.0</version>
-		<relativePath>../../parent-boot-3</relativePath>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
+      <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
+   </parent>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.6</version>
-		</dependency>
-	</dependencies>
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>commons-lang</groupId>
+         <artifactId>commons-lang</artifactId>
+         <version>${commons-lang.version}</version>
+      </dependency>
+   </dependencies>
 
-	<properties>
-		<start-class>cn.tuyucheng.taketoday.properties.yaml.YamlApplication</start-class>
-	</properties>
+   <properties>
+      <start-class>cn.tuyucheng.taketoday.properties.yaml.YamlApplication</start-class>
+   </properties>
 </project>
