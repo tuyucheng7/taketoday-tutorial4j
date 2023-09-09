@@ -21,7 +21,6 @@
       <!-- <module>spring-boot-3-container</module> -->
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
-      <module>spring-boot-3-rsocket-exchange</module>
       <module>spring-boot-3-test-pitfalls</module>
       <module>spring-boot-3-testcontainers</module>
       <module>spring-boot-3-url-matching</module>
