@@ -3,8 +3,7 @@ package cn.tuyucheng.taketoday.producerconsumer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.sleep;
-import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.waitForAllThreadsToComplete;
+import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.*;
 
 public class ProducerConsumerDemonstrator {
    private static final int MAX_QUEUE_CAPACITY = 5;
@@ -28,7 +27,7 @@ public class ProducerConsumerDemonstrator {
       // let threads run for two seconds
       sleep(2000);
 
-      // Stop threads
+      // stop threads
       producer.stop();
       consumer.stop();
 
@@ -40,26 +39,31 @@ public class ProducerConsumerDemonstrator {
       int producerCount = 5;
       int consumerCount = 5;
       List<Thread> threads = new ArrayList<>();
-      Producer producer = new Producer(dataQueue);
+      List<Producer> producers = new ArrayList<>();
+      List<Consumer> consumers = new ArrayList<>();
+
       for (int i = 0; i < producerCount; i++) {
+         Producer producer = new Producer(dataQueue);
          Thread producerThread = new Thread(producer);
          producerThread.start();
          threads.add(producerThread);
+         producers.add(producer);
       }
 
-      Consumer consumer = new Consumer(dataQueue);
       for (int i = 0; i < consumerCount; i++) {
+         Consumer consumer = new Consumer(dataQueue);
          Thread consumerThread = new Thread(consumer);
          consumerThread.start();
          threads.add(consumerThread);
+         consumers.add(consumer);
       }
 
       // let threads run for ten seconds
       sleep(10000);
 
-      // Stop threads
-      producer.stop();
-      consumer.stop();
+      // stop threads
+      consumers.forEach(Consumer::stop);
+      producers.forEach(Producer::stop);
 
       waitForAllThreadsToComplete(threads);
    }
