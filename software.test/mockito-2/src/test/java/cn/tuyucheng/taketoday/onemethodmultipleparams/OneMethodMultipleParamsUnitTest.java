@@ -27,7 +27,7 @@ class OneMethodMultipleParamsUnitTest {
    }
 
    @Test
-   void givenAMethod_whenUsingThenAnswer_thenExpectDifferentReults() {
+   void givenAMethod_whenUsingThenAnswer_thenExpectDifferentResults() {
       when(exampleService.getValue(anyInt())).thenAnswer(invocation -> {
          int argument = (int) invocation.getArguments()[0];
          return switch (argument) {
