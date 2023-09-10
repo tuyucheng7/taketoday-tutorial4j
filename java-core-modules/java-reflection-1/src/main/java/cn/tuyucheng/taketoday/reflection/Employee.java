@@ -2,5 +2,6 @@ package cn.tuyucheng.taketoday.reflection;
 
 public class Employee extends Person {
 
-	public int employeeId;
+   public static final String LABEL = "employee";
+   public int employeeId;
 }
