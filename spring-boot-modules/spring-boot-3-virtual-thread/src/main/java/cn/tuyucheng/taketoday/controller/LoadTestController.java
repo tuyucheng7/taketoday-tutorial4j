@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/load")
 public class LoadTestController {
 
-	private static final Logger LOG = LoggerFactory.getLogger(LoadTestController.class);
+   private static final Logger LOG = LoggerFactory.getLogger(LoadTestController.class);
 
-	@GetMapping
-	public void doSomething() throws InterruptedException {
-		LOG.info("hey, I'm doing something");
-		Thread.sleep(1000);
-	}
+   @GetMapping
+   public void doSomething() throws InterruptedException {
+      LOG.info("hey, I'm doing something");
+      LOG.info("current thread: {}", Thread.currentThread().isVirtual());
+      Thread.sleep(1000);
+   }
 }

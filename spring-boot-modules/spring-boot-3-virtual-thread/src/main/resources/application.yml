@@ -1,2 +1,4 @@
 spring:
-    thread-executor: standard
+   threads:
+      virtual:
+         enabled: true

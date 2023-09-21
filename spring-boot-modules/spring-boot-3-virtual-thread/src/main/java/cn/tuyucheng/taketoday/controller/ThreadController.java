@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/thread")
 public class ThreadController {
 
-	@GetMapping("/name")
-	public String getThreadName() {
-		return Thread.currentThread().toString();
-	}
+   @GetMapping("/name")
+   public String getThreadName() {
+      return Thread.currentThread().toString();
+   }
 }
