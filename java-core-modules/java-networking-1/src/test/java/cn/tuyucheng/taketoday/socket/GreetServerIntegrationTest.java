@@ -15,38 +15,38 @@ import static org.junit.Assert.assertEquals;
 @Ignore("failed on local")
 public class GreetServerIntegrationTest {
 
-    private GreetClient client;
+   private GreetClient client;
 
-    private static int port;
+   private static int port;
 
-    @BeforeClass
-    public static void start() throws InterruptedException, IOException {
+   @BeforeClass
+   public static void start() throws InterruptedException, IOException {
 
-        // Take an available port
-        ServerSocket s = new ServerSocket(0);
-        port = s.getLocalPort();
-        s.close();
+      // Take an available port
+      ServerSocket s = new ServerSocket(0);
+      port = s.getLocalPort();
+      s.close();
 
-        Executors.newSingleThreadExecutor()
-              .submit(() -> new GreetServer().start(port));
-        Thread.sleep(500);
-    }
+      Executors.newSingleThreadExecutor()
+            .submit(() -> new GreetServer().start(port));
+      Thread.sleep(2000);
+   }
 
-    @Before
-    public void init() {
-        client = new GreetClient();
-        client.startConnection("127.0.0.1", port);
+   @Before
+   public void init() {
+      client = new GreetClient();
+      client.startConnection("127.0.0.1", port);
 
-    }
+   }
 
-    @Test
-    public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() {
-        String response = client.sendMessage("hello server");
-        assertEquals("hello client", response);
-    }
+   @Test
+   public void givenGreetingClient_whenServerRespondsWhenStarted_thenCorrect() {
+      String response = client.sendMessage("hello server");
+      assertEquals("hello client", response);
+   }
 
-    @After
-    public void finish() {
-        client.stopConnection();
-    }
+   @After
+   public void finish() {
+      client.stopConnection();
+   }
 }
