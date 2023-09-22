@@ -1,6 +1,12 @@
 package cn.tuyucheng.taketoday.autoconfiguration;
 
+import java.util.Arrays;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.boot.autoconfigure.condition.ConditionMessage.Style;
@@ -14,7 +20,6 @@ import org.springframework.boot.autoconfigure.condition.SpringBootCondition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
@@ -25,95 +30,89 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.util.ClassUtils;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.Properties;
+import jakarta.persistence.EntityManagerFactory;
 
-@Configuration
+@AutoConfiguration
 @ConditionalOnClass(DataSource.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 @PropertySource("classpath:mysql.properties")
 public class MySQLAutoconfiguration {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Bean
-	@ConditionalOnProperty(name = "usemysql", havingValue = "local")
-	@ConditionalOnMissingBean
-	public DataSource dataSource() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+   @Bean
+   @ConditionalOnProperty(name = "usemysql", havingValue = "local")
+   @ConditionalOnMissingBean
+   public DataSource dataSource() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/myDb?createDatabaseIfNotExist=true&&serverTimezone=UTC");
-		dataSource.setUsername("mysqluser");
-		dataSource.setPassword("mysqlpass");
+      dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+      dataSource.setUrl("jdbc:mysql://localhost:3306/myDb?createDatabaseIfNotExist=true&&serverTimezone=UTC");
+      dataSource.setUsername("mysqluser");
+      dataSource.setPassword("mysqlpass");
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean(name = "dataSource")
-	@ConditionalOnProperty(name = "usemysql", havingValue = "custom")
-	@ConditionalOnMissingBean
-	public DataSource dataSource2() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+   @Bean(name = "dataSource")
+   @ConditionalOnProperty(name = "usemysql", havingValue = "custom")
+   @ConditionalOnMissingBean
+   public DataSource dataSource2() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl(env.getProperty("mysql.url"));
-		dataSource.setUsername(env.getProperty("mysql.user") != null ? env.getProperty("mysql.user") : "");
-		dataSource.setPassword(env.getProperty("mysql.pass") != null ? env.getProperty("mysql.pass") : "");
+      dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+      dataSource.setUrl(env.getProperty("mysql.url"));
+      dataSource.setUsername(env.getProperty("mysql.user") != null ? env.getProperty("mysql.user") : "");
+      dataSource.setPassword(env.getProperty("mysql.pass") != null ? env.getProperty("mysql.pass") : "");
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean
-	@ConditionalOnBean(name = "dataSource")
-	@ConditionalOnMissingBean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource());
-		em.setPackagesToScan("cn.tuyucheng.taketoday.autoconfiguration.example");
-		em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		if (additionalProperties() != null) {
-			em.setJpaProperties(additionalProperties());
-		}
-		return em;
-	}
+   @Bean
+   @ConditionalOnBean(name = "dataSource")
+   @ConditionalOnMissingBean
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource());
+      em.setPackagesToScan("cn.tuyucheng.taketoday.autoconfiguration.example");
+      em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+      if (additionalProperties() != null) {
+         em.setJpaProperties(additionalProperties());
+      }
+      return em;
+   }
 
-	@Bean
-	@ConditionalOnMissingBean(type = "JpaTransactionManager")
-	JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {
-		final JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory);
-		return transactionManager;
-	}
+   @Bean
+   @ConditionalOnMissingBean(type = "JpaTransactionManager")
+   JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {
+      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(entityManagerFactory);
+      return transactionManager;
+   }
 
-	@ConditionalOnResource(resources = "classpath:mysql.properties")
-	@Conditional(HibernateCondition.class)
-	final Properties additionalProperties() {
-		final Properties hibernateProperties = new Properties();
+   @ConditionalOnResource(resources = "classpath:mysql.properties")
+   @Conditional(HibernateCondition.class)
+   final Properties additionalProperties() {
+      final Properties hibernateProperties = new Properties();
 
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("mysql-hibernate.hbm2ddl.auto"));
-		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("mysql-hibernate.dialect"));
-		hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("mysql-hibernate.show_sql") != null ? env.getProperty("mysql-hibernate.show_sql") : "false");
+      hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("mysql-hibernate.hbm2ddl.auto"));
+      hibernateProperties.setProperty("hibernate.dialect", env.getProperty("mysql-hibernate.dialect"));
+      hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("mysql-hibernate.show_sql") != null ? env.getProperty("mysql-hibernate.show_sql") : "false");
 
-		return hibernateProperties;
-	}
+      return hibernateProperties;
+   }
 
-	static class HibernateCondition extends SpringBootCondition {
+   static class HibernateCondition extends SpringBootCondition {
 
-		private static final String[] CLASS_NAMES = {"org.hibernate.ejb.HibernateEntityManager", "org.hibernate.jpa.HibernateEntityManager"};
+      private static final String[] CLASS_NAMES = {"org.hibernate.ejb.HibernateEntityManager", "org.hibernate.jpa.HibernateEntityManager"};
 
-		@Override
-		public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
-			ConditionMessage.Builder message = ConditionMessage.forCondition("Hibernate");
+      @Override
+      public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
+         ConditionMessage.Builder message = ConditionMessage.forCondition("Hibernate");
 
-			return Arrays.stream(CLASS_NAMES)
-				.filter(className -> ClassUtils.isPresent(className, context.getClassLoader()))
-				.map(className -> ConditionOutcome.match(message.found("class").items(Style.NORMAL, className)))
-				.findAny()
-				.orElseGet(() -> ConditionOutcome.noMatch(message.didNotFind("class", "classes").items(Style.NORMAL, Arrays.asList(CLASS_NAMES))));
-		}
-	}
+         return Arrays.stream(CLASS_NAMES).filter(className -> ClassUtils.isPresent(className, context.getClassLoader())).map(className -> ConditionOutcome.match(message.found("class").items(Style.NORMAL, className))).findAny()
+               .orElseGet(() -> ConditionOutcome.noMatch(message.didNotFind("class", "classes").items(Style.NORMAL, Arrays.asList(CLASS_NAMES))));
+      }
+   }
 }

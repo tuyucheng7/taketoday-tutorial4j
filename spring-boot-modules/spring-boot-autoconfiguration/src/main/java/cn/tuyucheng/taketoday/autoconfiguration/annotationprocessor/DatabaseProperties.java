@@ -3,8 +3,8 @@ package cn.tuyucheng.taketoday.autoconfiguration.annotationprocessor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 @Configuration
 @ConfigurationProperties(prefix = "database")
