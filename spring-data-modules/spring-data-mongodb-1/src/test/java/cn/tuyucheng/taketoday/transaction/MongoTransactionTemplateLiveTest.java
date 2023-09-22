@@ -25,49 +25,47 @@ import static org.junit.Assert.assertThat;
 
 /**
  * This test requires:
- * * mongodb instance running on the environment
+ * mongodb instance running on the environment
+ * Run the src/live-test/resources/live-test-setup.sh
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MongoConfig.class)
 public class MongoTransactionTemplateLiveTest {
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+   @Autowired
+   private MongoTemplate mongoTemplate;
 
-	@Autowired
-	private MongoTransactionManager mongoTransactionManager;
+   @Autowired
+   private MongoTransactionManager mongoTransactionManager;
 
-	@Before
-	public void testSetup() {
-		if (!mongoTemplate.collectionExists(User.class)) {
-			mongoTemplate.createCollection(User.class);
-		}
-	}
+   @Before
+   public void testSetup() {
+      if (!mongoTemplate.collectionExists(User.class)) {
+         mongoTemplate.createCollection(User.class);
+      }
+   }
 
-	@After
-	public void tearDown() {
-		mongoTemplate.dropCollection(User.class);
-	}
+   @After
+   public void tearDown() {
+      mongoTemplate.dropCollection(User.class);
+   }
 
-	@Test
-	public void givenTransactionTemplate_whenPerformTransaction_thenSuccess() {
-		mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS);
-		TransactionTemplate transactionTemplate = new TransactionTemplate(mongoTransactionManager);
-		transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				mongoTemplate.insert(new User("Kim", 20));
-				mongoTemplate.insert(new User("Jack", 45));
-			}
+   @Test
+   public void givenTransactionTemplate_whenPerformTransaction_thenSuccess() {
+      mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS);
+      TransactionTemplate transactionTemplate = new TransactionTemplate(mongoTransactionManager);
+      transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+         @Override
+         protected void doInTransactionWithoutResult(TransactionStatus status) {
+            mongoTemplate.insert(new User("Kim", 20));
+            mongoTemplate.insert(new User("Jack", 45));
+         };
+      });
 
-			;
-		});
+      Query query = new Query().addCriteria(Criteria.where("name")
+            .is("Jack"));
+      List<User> users = mongoTemplate.find(query, User.class);
 
-		Query query = new Query().addCriteria(Criteria.where("name")
-			.is("Jack"));
-		List<User> users = mongoTemplate.find(query, User.class);
-
-		assertThat(users.size(), is(1));
-	}
-
+      assertThat(users.size(), is(1));
+   }
 }

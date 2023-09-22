@@ -1,8 +1,10 @@
 package cn.tuyucheng.taketoday.transaction;
 
-import cn.tuyucheng.taketoday.config.MongoConfig;
-import cn.tuyucheng.taketoday.model.User;
-import cn.tuyucheng.taketoday.repository.UserRepository;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import java.util.List;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,58 +18,58 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import cn.tuyucheng.taketoday.config.MongoConfig;
+import cn.tuyucheng.taketoday.model.User;
+import cn.tuyucheng.taketoday.repository.UserRepository;
 
 /**
  * This test requires:
  * * mongodb instance running on the environment
+ * Run the src/live-test/resources/live-test-setup.sh
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MongoConfig.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MongoTransactionalLiveTest {
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+   @Autowired
+   private MongoTemplate mongoTemplate;
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Test
-	@Transactional
-	public void whenPerformMongoTransaction_thenSuccess() {
-		userRepository.save(new User("John", 30));
-		userRepository.save(new User("Ringo", 35));
-		Query query = new Query().addCriteria(Criteria.where("name")
-			.is("John"));
-		List<User> users = mongoTemplate.find(query, User.class);
+   @Test
+   @Transactional
+   public void whenPerformMongoTransaction_thenSuccess() {
+      userRepository.save(new User("John", 30));
+      userRepository.save(new User("Ringo", 35));
+      Query query = new Query().addCriteria(Criteria.where("name")
+            .is("John"));
+      List<User> users = mongoTemplate.find(query, User.class);
 
-		assertThat(users.size(), is(1));
-	}
+      assertThat(users.size(), is(1));
+   }
 
-	@Test(expected = MongoTransactionException.class)
-	@Transactional
-	public void whenListCollectionDuringMongoTransaction_thenException() {
-		if (mongoTemplate.collectionExists(User.class)) {
-			mongoTemplate.save(new User("John", 30));
-			mongoTemplate.save(new User("Ringo", 35));
-		}
-	}
+   @Test(expected = MongoTransactionException.class)
+   @Transactional
+   public void whenListCollectionDuringMongoTransaction_thenException() {
+      if (mongoTemplate.collectionExists(User.class)) {
+         mongoTemplate.save(new User("John", 30));
+         mongoTemplate.save(new User("Ringo", 35));
+      }
+   }
 
-	// ==== Using test instead of before and after due to @transactional doesn't allow list collection
+   // ==== Using test instead of before and after due to @transactional doesn't allow list collection
 
-	@Test
-	public void setup() {
-		if (!mongoTemplate.collectionExists(User.class)) {
-			mongoTemplate.createCollection(User.class);
-		}
-	}
+   @Test
+   public void setup() {
+      if (!mongoTemplate.collectionExists(User.class)) {
+         mongoTemplate.createCollection(User.class);
+      }
+   }
 
-	@Test
-	public void ztearDown() {
-		mongoTemplate.dropCollection(User.class);
-	}
+   @Test
+   public void ztearDown() {
+      mongoTemplate.dropCollection(User.class);
+   }
 }
