@@ -11,10 +11,9 @@
    <description>This is a simple application demonstrating integration between Keycloak and Spring Boot.</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-boot-2</artifactId>
+      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
+      <artifactId>spring-boot-modules</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../parent-boot-2</relativePath>
    </parent>
 
    <dependencies>
