@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>java-21</artifactId>
+
+   <parent>
+      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <artifactId>java-core-modules</artifactId>
+      <version>1.0.0</version>
+   </parent>
+
+   <dependencies>
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <version>2.1.214</version>
+      </dependency>
+      <dependency>
+         <groupId>com.google.code.gson</groupId>
+         <artifactId>gson</artifactId>
+         <version>2.10.1</version>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-toolchains-plugin</artifactId>
+            <version>${maven-toolchains-plugin-version}</version>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>toolchain</goal>
+                  </goals>
+               </execution>
+            </executions>
+            <configuration>
+               <toolchains>
+                  <jdk>
+                     <version>${java.toolchains.version}</version>
+                  </jdk>
+               </toolchains>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven-compiler-plugin.version}</version>
+            <configuration>
+               <compilerArgs>
+                  <arg>--enable-preview</arg>
+                  <arg>--add-exports=java.base/jdk.internal.vm=ALL-UNNAMED</arg>
+               </compilerArgs>
+               <source>${maven.compiler.source}</source>
+               <target>${maven.compiler.target}</target>
+               <showDeprecation>true</showDeprecation>
+               <showWarnings>true</showWarnings>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.1.2</version>
+            <configuration>
+               <argLine>@{argLine} --enable-preview
+                  --add-exports=java.base/jdk.internal.vm=ALL-UNNAMED
+               </argLine>
+               <forkCount>1</forkCount>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+
+   <properties>
+      <java.toolchains.version>21</java.toolchains.version>
+      <maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
+      <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+</project>
