@@ -66,6 +66,7 @@
       <module>spring-boot-environment</module>
       <module>spring-boot-exceptions</module>
       <module>spring-boot-flowable</module>
+      <module>spring-boot-graalvm-docker</module>
       <module>spring-boot-gradle-1</module>
       <module>spring-boot-gradle-2</module>
       <module>spring-boot-graphql</module>
