@@ -1,35 +1,26 @@
 package cn.tuyucheng.taketoday.micronaut.helloworld.client;
 
-import io.micronaut.context.ApplicationContext;
-import io.micronaut.runtime.server.EmbeddedServer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import io.micronaut.runtime.EmbeddedApplication;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import jakarta.inject.Inject;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@MicronautTest
 public class ConcreteGreetingClientUnitTest {
-    private EmbeddedServer server;
-    private ConcreteGreetingClient client;
+   @Inject
+   private EmbeddedApplication<?> application;
+   @Inject
+   private ConcreteGreetingClient client;
 
-    @Before
-    public void setup() {
-        server = ApplicationContext.run(EmbeddedServer.class);
-        client = server.getApplicationContext().getBean(ConcreteGreetingClient.class);
-    }
+   @Test
+   public void testGreeting() {
+      assertEquals(client.greet("Mike"), "Hello Mike");
+   }
 
-    @After
-    public void cleanup() {
-        server.stop();
-    }
-
-    @Test
-    public void testGreeting() {
-        assertEquals(client.greet("Mike"), "Hello Mike");
-    }
-
-    @Test
-    public void testGreetingAsync() {
-        assertEquals(client.greetAsync("Mike").blockingGet(), "Hello Mike");
-    }
+   @Test
+   public void testGreetingAsync() {
+      assertEquals(client.greetAsync("Mike").blockingGet(), "Hello Mike");
+   }
 }

@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.micronaut.helloworld.server.service;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 
 @Singleton
 public class SpanishGreetingService implements GreetingService {
-    @Override
-    public String getGreeting() {
-        return "Hola ";
-    }
+   @Override
+   public String getGreeting() {
+      return "Hola ";
+   }
 }

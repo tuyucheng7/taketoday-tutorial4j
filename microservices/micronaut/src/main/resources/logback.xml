@@ -1,14 +1,18 @@
 <configuration>
+   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <!-- encoders are assigned the type
+           ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+      <encoder>
+         <pattern>%boldMagenta(%d{HH:mm:ss.SSS}) %boldYellow([%thread]) %highlight(%-5level) %boldGreen([%logger{36}]) >>> %boldCyan(%msg) %n</pattern>
+      </encoder>
+   </appender>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type
-             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
-        <encoder>
-            <pattern>%boldMagenta(%d{HH:mm:ss.SSS}) %boldYellow([%thread]) %highlight(%-5level) %boldGreen([%logger{36}]) >>> %boldCyan(%msg) %n</pattern>
-        </encoder>
-    </appender>
-
-    <root level="info">
-        <appender-ref ref="STDOUT"/>
-    </root>
+   <!-- Uncomment these lines to see the request logs  -->
+   <!--
+   <logger name="io.micronaut.http.client" level="TRACE" />
+   <logger name="io.micronaut.http.server" level="DEBUG" />
+   -->
+   <root level="info">
+      <appender-ref ref="STDOUT"/>
+   </root>
 </configuration>
