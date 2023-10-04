@@ -45,6 +45,14 @@ jobs:
          -  name: Setup Java 20 (2/2)
             run: echo "JAVA_20=$JAVA_HOME" >> $GITHUB_ENV
 
+         -  name: Setup Java 21 (1/2)
+            uses: actions/setup-java@v3
+            with:
+               distribution: 'adopt'
+               java-version: 21
+         -  name: Setup Java 21 (2/2)
+            run: echo "JAVA_21=$JAVA_HOME" >> $GITHUB_ENV
+
          # The LAST Java in the list becomes the default (because each overwrites the settings)!
          -  name: Setup Java 17 (1/2)
             uses: actions/setup-java@v3
@@ -97,6 +105,15 @@ jobs:
                            <jdkHome>${{ env.JAVA_20 }}</jdkHome>
                        </configuration>
                    </toolchain>
+                   <toolchain>
+                       <type>jdk</type>
+                       <provides>
+                           <version>21</version>
+                       </provides>
+                       <configuration>
+                           <jdkHome>${{ env.JAVA_21 }}</jdkHome>
+                       </configuration>
+                   </toolchain>
                </toolchains>
                EOF
 
@@ -125,6 +142,10 @@ jobs:
                echo "Java 20"; \
                ${{ env.JAVA_20 }}/bin/java -version ; \
                ${{ env.JAVA_20 }}/bin/javac -version ; \
+               echo "======================================";\
+               echo "Java 21"; \
+               ${{ env.JAVA_21 }}/bin/java -version ; \
+               ${{ env.JAVA_21 }}/bin/javac -version ; \
                echo "======================================";\
                cat $HOME/.m2/toolchains.xml; \
                echo "======================================";
