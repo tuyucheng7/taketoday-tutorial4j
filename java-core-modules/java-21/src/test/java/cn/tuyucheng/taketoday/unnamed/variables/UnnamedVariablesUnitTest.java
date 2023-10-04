@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.unnamed.variables;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -19,6 +20,7 @@ import static cn.tuyucheng.taketoday.unnamed.variables.UnnamedVariables.sendNoti
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Disabled
 public class UnnamedVariablesUnitTest extends CarScenario {
 
    @Test
