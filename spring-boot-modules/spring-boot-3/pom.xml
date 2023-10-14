@@ -63,6 +63,11 @@
          <scope>test</scope>
       </dependency>
       <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-commons</artifactId>
+         <version>1.10.0</version>
+      </dependency>
+      <dependency>
          <groupId>org.mock-server</groupId>
          <artifactId>mockserver-client-java</artifactId>
          <version>${mockserver.version}</version>
@@ -203,7 +208,7 @@
 
    <properties>
       <mapstruct.version>1.5.2.Final</mapstruct.version>
-      <springdoc.version>2.0.0</springdoc.version>
+      <springdoc.version>2.2.0</springdoc.version>
       <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
       <start-class>cn.tuyucheng.taketoday.sample.TodoApplication</start-class>
       <mockserver.version>5.14.0</mockserver.version>

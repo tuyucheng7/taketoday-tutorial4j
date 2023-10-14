@@ -6,6 +6,9 @@ public class Article {
    Integer id;
    String title;
 
+   public Article() {
+   }
+
    public Article(Integer id, String title) {
       this.id = id;
       this.title = title;
@@ -17,6 +20,14 @@ public class Article {
 
    public String getTitle() {
       return title;
+   }
+
+   public void setId(Integer id) {
+      this.id = id;
+   }
+
+   public void setTitle(String title) {
+      this.title = title;
    }
 
    @Override
