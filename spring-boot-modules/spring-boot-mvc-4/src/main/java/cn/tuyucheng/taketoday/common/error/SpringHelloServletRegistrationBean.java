@@ -2,14 +2,14 @@ package cn.tuyucheng.taketoday.common.error;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 
-import javax.servlet.Servlet;
+import jakarta.servlet.Servlet;
 
 public class SpringHelloServletRegistrationBean extends ServletRegistrationBean {
 
-    public SpringHelloServletRegistrationBean() {
-    }
+   public SpringHelloServletRegistrationBean() {
+   }
 
-    public SpringHelloServletRegistrationBean(Servlet servlet, String... urlMappings) {
-        super(servlet, urlMappings);
-    }
+   public SpringHelloServletRegistrationBean(Servlet servlet, String... urlMappings) {
+      super(servlet, urlMappings);
+   }
 }
