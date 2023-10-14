@@ -7,14 +7,14 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 
-public class SpringBootApp {
+public class SpringBootKeycloakApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootApp.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootKeycloakApp.class, args);
+   }
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+   @Bean
+   public RestTemplate restTemplate() {
+      return new RestTemplate();
+   }
 }

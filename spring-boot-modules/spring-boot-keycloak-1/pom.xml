@@ -101,7 +101,7 @@
    </build>
 
    <properties>
-      <start-class>cn.tuyucheng.taketoday.keycloak.SpringBootApp</start-class>
+      <start-class>cn.tuyucheng.taketoday.keycloak.SpringBootKeycloakApp</start-class>
       <jaxb-runtime.version>4.0.0</jaxb-runtime.version>
       <wsdl4j.version>1.6.3</wsdl4j.version>
       <jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
