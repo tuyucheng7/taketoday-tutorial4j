@@ -113,7 +113,8 @@
       <module>spring-boot-runtime-1</module>
       <module>spring-boot-runtime-2</module>
       <module>spring-boot-scheduling</module>
-      <module>spring-boot-security</module>
+      <module>spring-boot-security-1</module>
+      <module>spring-boot-security-2</module>
       <module>spring-boot-sendgrid</module>
       <module>spring-boot-soap</module>
       <module>spring-boot-springdoc-1</module>
