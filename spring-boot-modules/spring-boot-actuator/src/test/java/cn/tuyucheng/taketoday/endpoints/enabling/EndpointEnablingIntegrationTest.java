@@ -14,23 +14,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class EndpointEnablingIntegrationTest {
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	@WithMockUser(username = "user", password = "password", roles = "USER")
-	void givenWrongAuthentication_whenCallingActuator_thenReturns401() throws Exception {
-		mockMvc.perform(get("/actuator"))
-			.andExpect(status().isForbidden());
-	}
+   @Test
+   @WithMockUser(username = "user", password = "password", roles = "USER")
+   void givenWrongAuthentication_whenCallingActuator_thenReturns401() throws Exception {
+      mockMvc.perform(get("/actuator"))
+            .andExpect(status().isForbidden());
+   }
 
-	@Test
-	@WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
-	void givenProperAuthentication_whenCallingActuator_thenReturnsExpectedEndpoints() throws Exception {
-		mockMvc.perform(get("/actuator"))
-			.andExpect(jsonPath("$._links").exists())
-			.andExpect(jsonPath("$._links.beans").exists())
-			.andExpect(jsonPath("$._links.env").exists())
-			.andExpect(jsonPath("$._links.shutdown").exists());
-	}
+   @Test
+   @WithMockUser(username = "admin", password = "admin", roles = "ADMIN")
+   void givenProperAuthentication_whenCallingActuator_thenReturnsExpectedEndpoints() throws Exception {
+      mockMvc.perform(get("/actuator"))
+            .andExpect(jsonPath("$._links").exists())
+            .andExpect(jsonPath("$._links.beans").exists())
+            .andExpect(jsonPath("$._links.env").exists())
+            .andExpect(jsonPath("$._links.shutdown").exists());
+   }
 }
