@@ -6,42 +6,43 @@ import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.support.PeriodicTrigger;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
+
 import java.util.Date;
 
 @Component
 public class ThreadPoolTaskSchedulerExamples {
-	@Autowired
-	private ThreadPoolTaskScheduler taskScheduler;
+   @Autowired
+   private ThreadPoolTaskScheduler taskScheduler;
 
-	@Autowired
-	private CronTrigger cronTrigger;
+   @Autowired
+   private CronTrigger cronTrigger;
 
-	@Autowired
-	private PeriodicTrigger periodicTrigger;
+   @Autowired
+   private PeriodicTrigger periodicTrigger;
 
-	@PostConstruct
-	public void scheduleRunnableWithCronTrigger() {
-		taskScheduler.schedule(new RunnableTask("Current Date"), new Date());
-		taskScheduler.scheduleWithFixedDelay(new RunnableTask("Fixed 1 second Delay"), 1000);
-		taskScheduler.scheduleWithFixedDelay(new RunnableTask("Current Date Fixed 1 second Delay"), new Date(), 1000);
-		taskScheduler.scheduleAtFixedRate(new RunnableTask("Fixed Rate of 2 seconds"), new Date(), 2000);
-		taskScheduler.scheduleAtFixedRate(new RunnableTask("Fixed Rate of 2 seconds"), 2000);
-		taskScheduler.schedule(new RunnableTask("Cron Trigger"), cronTrigger);
-		taskScheduler.schedule(new RunnableTask("Periodic Trigger"), periodicTrigger);
-	}
+   @PostConstruct
+   public void scheduleRunnableWithCronTrigger() {
+      taskScheduler.schedule(new RunnableTask("Current Date"), new Date());
+      taskScheduler.scheduleWithFixedDelay(new RunnableTask("Fixed 1 second Delay"), 1000);
+      taskScheduler.scheduleWithFixedDelay(new RunnableTask("Current Date Fixed 1 second Delay"), new Date(), 1000);
+      taskScheduler.scheduleAtFixedRate(new RunnableTask("Fixed Rate of 2 seconds"), new Date(), 2000);
+      taskScheduler.scheduleAtFixedRate(new RunnableTask("Fixed Rate of 2 seconds"), 2000);
+      taskScheduler.schedule(new RunnableTask("Cron Trigger"), cronTrigger);
+      taskScheduler.schedule(new RunnableTask("Periodic Trigger"), periodicTrigger);
+   }
 
-	class RunnableTask implements Runnable {
+   class RunnableTask implements Runnable {
 
-		private String message;
+      private String message;
 
-		public RunnableTask(String message) {
-			this.message = message;
-		}
+      public RunnableTask(String message) {
+         this.message = message;
+      }
 
-		@Override
-		public void run() {
-			System.out.println("Runnable Task with " + message + " on thread " + Thread.currentThread().getName());
-		}
-	}
+      @Override
+      public void run() {
+         System.out.println("Runnable Task with " + message + " on thread " + Thread.currentThread().getName());
+      }
+   }
 }

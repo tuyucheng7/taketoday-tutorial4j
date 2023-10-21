@@ -19,28 +19,27 @@ import java.util.concurrent.Executors;
 @EnableScheduling
 public class DynamicSchedulingConfig implements SchedulingConfigurer {
 
-	@Autowired
-	private TickService tickService;
+   @Autowired
+   private TickService tickService;
 
-	@Bean
-	public Executor taskExecutor() {
-		return Executors.newSingleThreadScheduledExecutor();
-	}
+   @Bean
+   public Executor taskExecutor() {
+      return Executors.newSingleThreadScheduledExecutor();
+   }
 
-	@Override
-	public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-		taskRegistrar.setScheduler(taskExecutor());
-		taskRegistrar.addTriggerTask(
-			() -> tickService.tick(),
-			context -> {
-				Optional<Date> lastCompletionTime =
-					Optional.ofNullable(context.lastCompletionTime());
-				Instant nextExecutionTime =
-					lastCompletionTime.orElseGet(Date::new).toInstant()
-						.plusMillis(tickService.getDelay());
-				return Date.from(nextExecutionTime);
-			}
-		);
-	}
-
+   @Override
+   public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+      taskRegistrar.setScheduler(taskExecutor());
+      taskRegistrar.addTriggerTask(
+            () -> tickService.tick(),
+            context -> {
+               Optional<Date> lastCompletionTime =
+                     Optional.ofNullable(context.lastCompletionTime());
+               Instant nextExecutionTime =
+                     lastCompletionTime.orElseGet(Date::new).toInstant()
+                           .plusMillis(tickService.getDelay());
+               return Date.from(nextExecutionTime).toInstant();
+            }
+      );
+   }
 }
