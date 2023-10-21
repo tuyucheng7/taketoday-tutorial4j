@@ -15,7 +15,7 @@ import static org.mockito.Mockito.mockConstruction;
 class FruitUnitTest {
 
    @Test
-   void givenMockedContructor_whenFruitCreated_thenMockIsReturned() {
+   void givenMockedConstructor_whenFruitCreated_thenMockIsReturned() {
       assertEquals("Apple", new Fruit().getName());
       assertEquals("Red", new Fruit().getColour());
 
@@ -34,7 +34,7 @@ class FruitUnitTest {
    }
 
    @Test
-   void givenMockedContructorWithNewDefaultAnswer_whenFruitCreated_thenRealMethodInvoked() {
+   void givenMockedConstructorWithNewDefaultAnswer_whenFruitCreated_thenRealMethodInvoked() {
       try (MockedConstruction<Fruit> mock = mockConstruction(Fruit.class, withSettings().defaultAnswer(Answers.CALLS_REAL_METHODS))) {
 
          Fruit fruit = new Fruit();

@@ -16,7 +16,7 @@ class CoffeeMachineUnitTest {
    }
 
    @Test
-   void givenMockedContructor_whenCoffeeMade_thenMockDependencyReturned() {
+   void givenMockedConstructor_whenCoffeeMade_thenMockDependencyReturned() {
       try (MockedConstruction<WaterTank> mockTank = mockConstruction(WaterTank.class); MockedConstruction<Grinder> mockGrinder = mockConstruction(Grinder.class)) {
 
          CoffeeMachine machine = new CoffeeMachine();
@@ -34,7 +34,7 @@ class CoffeeMachineUnitTest {
    }
 
    @Test
-   void givenMockedContructorWithArgument_whenCoffeeMade_thenMockDependencyReturned() {
+   void givenMockedConstructorWithArgument_whenCoffeeMade_thenMockDependencyReturned() {
       try (MockedConstruction<WaterTank> mockTank = mockConstruction(WaterTank.class, (mock, context) -> {
          int mils = (int) context.arguments().get(0);
          when(mock.getMils()).thenReturn(mils);
