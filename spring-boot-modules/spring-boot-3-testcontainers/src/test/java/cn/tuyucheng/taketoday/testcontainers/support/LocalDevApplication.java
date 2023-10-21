@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.testcontainers;
+package cn.tuyucheng.taketoday.testcontainers.support;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.devtools.restart.RestartScope;

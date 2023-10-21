@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.testcontainers;
+package cn.tuyucheng.taketoday.testcontainers.support;
 
 import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharacter;
 import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharactersRepository;
@@ -6,9 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -26,14 +25,11 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 @DirtiesContext(classMode = AFTER_CLASS)
 // Testcontainers require a valid docker installation.
 // When running the tests, ensure you have a valid Docker environment
-class DynamicPropertiesLiveTest {
-   @Container
-   static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
+class ServiceConnectionLiveTest {
 
-   @DynamicPropertySource
-   static void setProperties(DynamicPropertyRegistry registry) {
-      registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
-   }
+   @Container
+   @ServiceConnection
+   static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
 
    @Autowired
    private MiddleEarthCharactersRepository repository;
