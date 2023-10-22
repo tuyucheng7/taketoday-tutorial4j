@@ -45,9 +45,9 @@
    </build>
 
    <properties>
-      <maven.compiler.source.version>18</maven.compiler.source.version>
-      <maven.compiler.target.version>18</maven.compiler.target.version>
-      <maven.compiler.release>18</maven.compiler.release>
-      <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
+      <maven.compiler.source.version>21</maven.compiler.source.version>
+      <maven.compiler.target.version>21</maven.compiler.target.version>
+      <maven.compiler.release>21</maven.compiler.release>
+      <surefire.plugin.version>3.0.0-M7</surefire.plugin.version>
    </properties>
 </project>
