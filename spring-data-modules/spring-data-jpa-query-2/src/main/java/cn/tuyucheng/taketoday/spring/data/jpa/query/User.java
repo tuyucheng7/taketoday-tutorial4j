@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.spring.data.jpa.query;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 

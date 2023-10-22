@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.persistence.model;
 
 import org.hibernate.envers.Audited;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @NamedNativeQueries({

@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.hibernate.fetching.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
