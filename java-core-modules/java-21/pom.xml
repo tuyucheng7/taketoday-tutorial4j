@@ -28,25 +28,6 @@
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-toolchains-plugin</artifactId>
-            <version>${maven-toolchains-plugin-version}</version>
-            <executions>
-               <execution>
-                  <goals>
-                     <goal>toolchain</goal>
-                  </goals>
-               </execution>
-            </executions>
-            <configuration>
-               <toolchains>
-                  <jdk>
-                     <version>${java.toolchains.version}</version>
-                  </jdk>
-               </toolchains>
-            </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>${maven-compiler-plugin.version}</version>
             <configuration>
@@ -76,8 +57,6 @@
 
 
    <properties>
-      <java.toolchains.version>21</java.toolchains.version>
-      <maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
       <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
       <maven.compiler.source>21</maven.compiler.source>
       <maven.compiler.target>21</maven.compiler.target>
