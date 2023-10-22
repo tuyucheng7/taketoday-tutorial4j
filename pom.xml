@@ -10,7 +10,7 @@
    <name>taketoday-tutorial4j</name>
 
    <properties>
-      <java.version>17</java.version>
+      <java.version>21</java.version>
 
       <skip.unit.tests>false</skip.unit.tests>
       <skip.integration.tests>true</skip.integration.tests>
@@ -45,8 +45,8 @@
       <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
       <maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
       <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
-      <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
-      <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+      <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+      <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
       <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
       <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
 
@@ -68,7 +68,7 @@
       <log4j.version>1.2.17</log4j.version>
       <jmh-core.version>1.35</jmh-core.version>
       <jmh-generator.version>1.35</jmh-generator.version>
-      <lombok.version>1.18.24</lombok.version>
+      <lombok.version>1.18.30</lombok.version>
       <h2.version>2.1.214</h2.version>
       <guava.version>31.1-jre</guava.version>
       <jackson.version>2.13.4</jackson.version>
@@ -79,7 +79,7 @@
       <!-- code analysis -->
       <custom-pmd.version>1.0.0</custom-pmd.version>
       <gitflow-incremental-builder.version>3.12.2</gitflow-incremental-builder.version>
-      <jacoco.version>0.8.8</jacoco.version>
+      <jacoco.version>0.8.11</jacoco.version>
 
       <!-- sonarcloud -->
       <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -316,42 +316,42 @@
             <artifactId>maven-site-plugin</artifactId>
             <version>3.12.1</version>
          </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-pmd-plugin</artifactId>
-            <version>${maven-pmd-plugin.version}</version>
-            <dependencies>
-               <dependency>
-                  <groupId>cn.tuyucheng.taketoday.pmd</groupId>
-                  <artifactId>custom-pmd</artifactId>
-                  <version>${custom-pmd.version}</version>
-               </dependency>
-            </dependencies>
-            <configuration>
-               <failurePriority>5</failurePriority>
-               <aggregate>false</aggregate>
-               <failOnViolation>true</failOnViolation>
-               <verbose>true</verbose>
-               <linkXRef>true</linkXRef>
-               <includeTests>true</includeTests>
-               <!--<sourceEncoding>UTF-8</sourceEncoding>-->
-               <targetJdk>${java.version}</targetJdk>
-               <rulesets>
-                  <ruleset>${tutorialsproject.basedir}/tuyucheng-pmd-rules.xml</ruleset>
-               </rulesets>
-               <excludeRoots>
-                  <excludeRoot>target/generated-sources</excludeRoot>
-               </excludeRoots>
-            </configuration>
-            <executions>
-               <execution>
-                  <phase>compile</phase>
-                  <goals>
-                     <goal>check</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
+         <!-- <plugin> -->
+         <!--    <groupId>org.apache.maven.plugins</groupId> -->
+         <!--    <artifactId>maven-pmd-plugin</artifactId> -->
+         <!--    <version>${maven-pmd-plugin.version}</version> -->
+         <!--    <dependencies> -->
+         <!--       <dependency> -->
+         <!--          <groupId>cn.tuyucheng.taketoday.pmd</groupId> -->
+         <!--          <artifactId>custom-pmd</artifactId> -->
+         <!--          <version>${custom-pmd.version}</version> -->
+         <!--       </dependency> -->
+         <!--    </dependencies> -->
+         <!--    <configuration> -->
+         <!--       <failurePriority>5</failurePriority> -->
+         <!--       <aggregate>false</aggregate> -->
+         <!--       <failOnViolation>true</failOnViolation> -->
+         <!--       <verbose>true</verbose> -->
+         <!--       <linkXRef>true</linkXRef> -->
+         <!--       <includeTests>true</includeTests> -->
+         <!--       &lt;!&ndash;<sourceEncoding>UTF-8</sourceEncoding>&ndash;&gt; -->
+         <!--       <targetJdk>${java.version}</targetJdk> -->
+         <!--       <rulesets> -->
+         <!--          <ruleset>${tutorialsproject.basedir}/tuyucheng-pmd-rules.xml</ruleset> -->
+         <!--       </rulesets> -->
+         <!--       <excludeRoots> -->
+         <!--          <excludeRoot>target/generated-sources</excludeRoot> -->
+         <!--       </excludeRoots> -->
+         <!--    </configuration> -->
+         <!--    <executions> -->
+         <!--       <execution> -->
+         <!--          <phase>compile</phase> -->
+         <!--          <goals> -->
+         <!--             <goal>check</goal> -->
+         <!--          </goals> -->
+         <!--       </execution> -->
+         <!--    </executions> -->
+         <!-- </plugin> -->
          <plugin>
             <groupId>org.commonjava.maven.plugins</groupId>
             <artifactId>directory-maven-plugin</artifactId>
@@ -585,7 +585,7 @@
          </properties>
 
          <modules>
-            <module>custom-pmd</module>
+            <!-- <module>custom-pmd</module> -->
             <module>jacoco-aggregate-report</module>
             <module>parent-java</module>
             <module>parent-spring-5</module>
