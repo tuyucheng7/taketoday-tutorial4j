@@ -18,6 +18,7 @@
 
    <modules>
       <module>spring-boot-3</module>
+      <module>spring-boot-3-2</module>
       <module>spring-boot-3-container</module>
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
