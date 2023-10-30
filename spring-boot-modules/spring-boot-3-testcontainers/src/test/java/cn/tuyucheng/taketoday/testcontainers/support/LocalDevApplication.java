@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.testcontainers.support;
 
+import cn.tuyucheng.taketoday.testcontainers.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.devtools.restart.RestartScope;
 import org.springframework.boot.test.context.TestConfiguration;
