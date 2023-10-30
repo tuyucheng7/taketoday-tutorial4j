@@ -10,9 +10,9 @@ import static cn.tuyucheng.taketoday.boot.jackson.config.CoffeeConstants.LOCAL_D
 @Configuration
 public class CoffeeCustomizerConfig {
 
-	@Bean
-	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
-		return builder -> builder.serializationInclusion(JsonInclude.Include.NON_NULL)
-			.serializers(LOCAL_DATETIME_SERIALIZER);
-	}
+   @Bean
+   public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+      return builder -> builder.serializationInclusion(JsonInclude.Include.NON_NULL)
+            .serializers(LOCAL_DATETIME_SERIALIZER);
+   }
 }

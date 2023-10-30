@@ -14,20 +14,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class AbstractCoffeeIntegrationTest {
 
-    @Autowired
-    protected TestRestTemplate restTemplate;
+   @Autowired
+   protected TestRestTemplate restTemplate;
 
-    @Test
-    public void whenGetCoffee_thenSerializedWithDateAndNonNull() {
-        String formattedDate = DateTimeFormatter.ofPattern(CoffeeConstants.DATETIME_FORMAT)
-                .format(FIXED_DATE);
+   @Test
+   public void whenGetCoffee_thenSerializedWithDateAndNonNull() {
+      String formattedDate = DateTimeFormatter.ofPattern(CoffeeConstants.DATETIME_FORMAT)
+            .format(FIXED_DATE);
 
-        String brand = "Lavazza";
-        String url = "/coffee?brand=" + brand;
+      String brand = "Lavazza";
+      String url = "/coffee?brand=" + brand;
 
-        String response = restTemplate.getForObject(url, String.class);
+      String response = restTemplate.getForObject(url, String.class);
 
-        assertThat(response).isEqualTo(
-                "{\"brand\":\"" + brand + "\",\"date\":\"" + formattedDate + "\"}");
-    }
+      assertThat(response).isEqualTo(
+            "{\"brand\":\"" + brand + "\",\"date\":\"" + formattedDate + "\"}");
+   }
 }

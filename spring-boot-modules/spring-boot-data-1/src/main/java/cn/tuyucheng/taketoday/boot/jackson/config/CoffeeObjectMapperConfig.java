@@ -12,12 +12,12 @@ import static cn.tuyucheng.taketoday.boot.jackson.config.CoffeeConstants.LOCAL_D
 @Configuration
 public class CoffeeObjectMapperConfig {
 
-	@Bean
-	@Primary
-	public ObjectMapper objectMapper() {
-		JavaTimeModule module = new JavaTimeModule();
-		module.addSerializer(LOCAL_DATETIME_SERIALIZER);
-		return new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
-			.registerModule(module);
-	}
+   @Bean
+   @Primary
+   public ObjectMapper objectMapper() {
+      JavaTimeModule module = new JavaTimeModule();
+      module.addSerializer(LOCAL_DATETIME_SERIALIZER);
+      return new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            .registerModule(module);
+   }
 }

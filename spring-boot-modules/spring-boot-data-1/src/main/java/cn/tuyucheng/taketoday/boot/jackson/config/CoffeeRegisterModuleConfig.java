@@ -12,10 +12,10 @@ import static cn.tuyucheng.taketoday.boot.jackson.config.CoffeeConstants.LOCAL_D
 @PropertySource("classpath:coffee.properties")
 public class CoffeeRegisterModuleConfig {
 
-	@Bean
-	public Module javaTimeModule() {
-		JavaTimeModule module = new JavaTimeModule();
-		module.addSerializer(LOCAL_DATETIME_SERIALIZER);
-		return module;
-	}
+   @Bean
+   public Module javaTimeModule() {
+      JavaTimeModule module = new JavaTimeModule();
+      module.addSerializer(LOCAL_DATETIME_SERIALIZER);
+      return module;
+   }
 }

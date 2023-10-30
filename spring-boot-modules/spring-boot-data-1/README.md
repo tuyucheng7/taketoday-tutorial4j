@@ -11,5 +11,6 @@
 + [Spring自定义属性编辑器](http://tu-yucheng.github.io/springboot/2023/05/11/spring-mvc-custom-property-editor.html)
 + [在Spring Boot中使用@JsonComponent](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-jsoncomponent.html)
 + [在Spring启动时运行逻辑的指南](http://tu-yucheng.github.io/springboot/2023/05/11/running-setup-logic-on-startup-in-spring.html)
++ [Spring Boot自定义Jackson ObjectMapper](http://tu-yucheng.github.io/springboot/2023/05/11/spring-boot-customize-jackson-objectmapper.html)
 
 - 更多文章： [[next -->]](../spring-boot-data-2/README.md)
