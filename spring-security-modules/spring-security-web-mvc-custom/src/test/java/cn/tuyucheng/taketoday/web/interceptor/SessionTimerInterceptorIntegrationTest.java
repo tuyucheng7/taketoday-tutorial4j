@@ -27,31 +27,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
 public class SessionTimerInterceptorIntegrationTest {
 
-    @Autowired
-    WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+   @Before
+   public void setup() {
+      MockitoAnnotations.initMocks(this);
+      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+   }
 
-    /**
-     * After execution of HTTP GET logs from interceptor will be displayed in
-     * the console
-     */
-    @Test
-    public void testInterceptors() throws Exception {
-        HttpSession session = mockMvc.perform(get("/auth/foos"))
-              .andExpect(status().is2xxSuccessful())
-              .andReturn()
-              .getRequest()
-              .getSession();
-        Thread.sleep(51000);
-        mockMvc.perform(get("/auth/foos").session((MockHttpSession) session))
-              .andExpect(status().is2xxSuccessful());
-    }
-
+   /**
+    * After execution of HTTP GET logs from interceptor will be displayed in
+    * the console
+    */
+   @Test
+   public void testInterceptors() throws Exception {
+      HttpSession session = mockMvc.perform(get("/auth/foos"))
+            .andExpect(status().is2xxSuccessful())
+            .andReturn()
+            .getRequest()
+            .getSession();
+      Thread.sleep(5000);
+      mockMvc.perform(get("/auth/foos").session((MockHttpSession) session))
+            .andExpect(status().is2xxSuccessful());
+   }
 }
