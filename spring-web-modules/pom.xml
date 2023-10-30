@@ -10,8 +10,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>taketoday-tutorial4j</artifactId>
+      <artifactId>parent-spring-5</artifactId>
       <version>1.0.0</version>
+      <relativePath>../parent-spring-5</relativePath>
    </parent>
 
    <modules>
