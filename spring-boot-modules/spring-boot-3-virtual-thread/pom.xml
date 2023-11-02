@@ -57,25 +57,6 @@
 
       <plugins>
          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-toolchains-plugin</artifactId>
-            <version>${maven-toolchains-plugin-version}</version>
-            <executions>
-               <execution>
-                  <goals>
-                     <goal>toolchain</goal>
-                  </goals>
-               </execution>
-            </executions>
-            <configuration>
-               <toolchains>
-                  <jdk>
-                     <version>${java.version}</version>
-                  </jdk>
-               </toolchains>
-            </configuration>
-         </plugin>
-         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
          </plugin>
@@ -131,7 +112,6 @@
       <java.version>21</java.version>
       <maven.compiler.source>21</maven.compiler.source>
       <maven.compiler.target>21</maven.compiler.target>
-      <maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
       <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
       <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
