@@ -45,6 +45,6 @@
 
 	<properties>
 		<json.version>20200518</json.version>
-		<opencsv.version>4.1</opencsv.version>
+		<opencsv.version>5.8</opencsv.version>
 	</properties>
 </project>
