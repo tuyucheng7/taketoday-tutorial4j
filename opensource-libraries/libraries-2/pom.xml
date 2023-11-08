@@ -142,7 +142,7 @@
       <picocli.version>4.7.0</picocli.version>
       <chronicle.map.version>3.24ea1</chronicle.map.version>
       <crawler4j.version>4.4.0</crawler4j.version>
-      <spring-boot-starter.version>2.7.8</spring-boot-starter.version>
+      <spring-boot-starter.version>2.7.17</spring-boot-starter.version>
       <mesos.library.version>1.11.0</mesos.library.version>
       <parallel-collectors.version>1.1.0</parallel-collectors.version>
       <handlebars.version>4.3.1</handlebars.version>

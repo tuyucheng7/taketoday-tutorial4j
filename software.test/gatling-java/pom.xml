@@ -76,6 +76,6 @@
       <gatling.version>3.9.5</gatling.version>
       <gatling-maven-plugin.version>4.3.0</gatling-maven-plugin.version>
 		<faker.version>1.0.2</faker.version>
-		<spring.version>2.7.8</spring.version>
+		<spring.version>2.7.17</spring.version>
 	</properties>
 </project>
