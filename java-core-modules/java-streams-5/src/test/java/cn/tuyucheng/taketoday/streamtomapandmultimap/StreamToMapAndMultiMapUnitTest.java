@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.streamtomapandmultimap;
 
-import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 import org.junit.Test;
 
 import java.util.*;
@@ -10,7 +11,6 @@ import java.util.stream.Stream;
 import static org.junit.Assert.assertEquals;
 
 public class StreamToMapAndMultiMapUnitTest {
-
    @Test
    public void givenStringStream_whenConvertingToMapWithMerge_thenExpectedMapIsGenerated() {
       Stream<String> stringStream = Stream.of("one", "two", "three", "two");
@@ -33,15 +33,15 @@ public class StreamToMapAndMultiMapUnitTest {
    public void givenStringStream_whenConvertingToMultimap_thenExpectedMultimapIsGenerated() {
       Stream<String> stringStream = Stream.of("one", "two", "three", "two");
 
-      LinkedHashMultimap<Object, Object> multimap = LinkedHashMultimap.create();
+      ListMultimap<String, String> multimap = stringStream.collect(
+            ArrayListMultimap::create,
+            (map, element) -> map.put(element, element),
+            ArrayListMultimap::putAll
+      );
 
-      stringStream.collect(Collectors.groupingBy(
-            s -> s,
-            Collectors.mapping(s -> s, Collectors.toList())
-      )).forEach((key, value) -> multimap.putAll(key, value));
-
-      LinkedHashMultimap<Object, Object> expectedMultimap = LinkedHashMultimap.create();
+      ListMultimap<String, String> expectedMultimap = ArrayListMultimap.create();
       expectedMultimap.put("one", "one");
+      expectedMultimap.put("two", "two");
       expectedMultimap.put("two", "two");
       expectedMultimap.put("three", "three");
 
