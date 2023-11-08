@@ -589,7 +589,7 @@
             <module>jacoco-aggregate-report</module>
             <module>parent-java</module>
             <module>parent-spring-5</module>
-            <module>parent-spring-6</module>
+            <!-- <module>parent-spring-6</module> -->
             <module>parent-boot-2</module>
             <!-- <module>akka-modules</module> -->
             <!-- <module>algorithms-modules</module> -->
@@ -614,7 +614,7 @@
             <!-- <module>protobuffer</module> -->
             <!-- <module>quarkus-modules</module> -->
             <!-- <module>reactive-systems</module> -->
-            <!-- <module>reactor-core</module> -->
+            <module>reactor-core</module>
             <!-- <module>rsocket</module> -->
             <!-- <module>rxjava-modules</module> -->
             <!-- <module>security-modules</module> -->
