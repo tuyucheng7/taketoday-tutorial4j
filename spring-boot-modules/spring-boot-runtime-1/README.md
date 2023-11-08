@@ -11,5 +11,6 @@
 + [使用Spring进行项目配置](http://tu-yucheng.github.io/springboot/2023/05/12/project-configuration-with-spring.html)
 + [Spring记录传入请求](http://tu-yucheng.github.io/springboot/2023/05/12/spring-http-logging.html)
 + [如何配置Spring Boot Tomcat](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-configure-tomcat.html)
++ [CORS与Spring](http://tu-yucheng.github.io/springboot/2023/05/12/spring-cors.html)
 
 - 更多文章： [[next -->]](../spring-boot-runtime-2/README.md)
