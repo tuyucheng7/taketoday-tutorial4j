@@ -105,6 +105,7 @@
       <module>spring-boot-properties-4</module>
       <module>spring-boot-properties-migrator-demo</module>
       <module>spring-boot-property-exp</module>
+      <module>spring-boot-pulsar</module>
       <module>spring-boot-quartz</module>
       <module>spring-boot-react</module>
       <module>spring-boot-redis</module>
