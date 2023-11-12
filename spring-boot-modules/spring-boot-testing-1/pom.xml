@@ -9,9 +9,10 @@
    <description>这是用于演示测试功能的简单Boot应用程序</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-      <artifactId>spring-boot-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencyManagement>
@@ -65,6 +66,11 @@
          <groupId>it.ozimov</groupId>
          <artifactId>embedded-redis</artifactId>
          <version>${embedded-redis.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.rest-assured</groupId>
+         <artifactId>rest-assured</artifactId>
          <scope>test</scope>
       </dependency>
    </dependencies>

@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
