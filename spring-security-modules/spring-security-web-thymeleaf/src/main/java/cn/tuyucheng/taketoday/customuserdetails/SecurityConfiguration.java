@@ -12,28 +12,28 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    private final UserDetailsService userDetailsService;
+   private final UserDetailsService userDetailsService;
 
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+   public SecurityConfiguration(UserDetailsService userDetailsService) {
+      this.userDetailsService = userDetailsService;
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.userDetailsService(userDetailsService)
-              .authorizeRequests()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .loginPage("/login")
-              .permitAll()
-              .successForwardUrl("/index")
-              .and()
-              .logout()
-              .permitAll()
-              .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-              .logoutSuccessUrl("/login");
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.userDetailsService(userDetailsService)
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .defaultSuccessUrl("/index")
+            .and()
+            .logout()
+            .permitAll()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login");
+      return http.build();
+   }
 }
