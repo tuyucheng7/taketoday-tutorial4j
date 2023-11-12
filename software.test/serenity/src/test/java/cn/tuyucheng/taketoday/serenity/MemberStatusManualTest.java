@@ -14,7 +14,7 @@ import static cn.tuyucheng.taketoday.serenity.membership.MemberGrade.Gold;
 import static cn.tuyucheng.taketoday.serenity.membership.MemberGrade.Silver;
 
 @RunWith(SerenityRunner.class)
-public class MemberStatusIntegrationTest {
+public class MemberStatusManualTest {
 
 	@Steps
 	private MemberStatusSteps memberSteps;

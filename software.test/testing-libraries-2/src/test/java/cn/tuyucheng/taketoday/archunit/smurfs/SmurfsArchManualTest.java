@@ -12,7 +12,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SmurfsArchUnitTest {
+public class SmurfsArchManualTest {
 
 	@Test
 	public void givenPresentationLayerClasses_thenWrongCheckFails() {
