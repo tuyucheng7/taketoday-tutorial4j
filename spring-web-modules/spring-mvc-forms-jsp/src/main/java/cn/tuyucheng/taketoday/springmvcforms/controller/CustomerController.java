@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @Controller
 public class CustomerController {
 
-	@Autowired
-	CustomerValidator validator;
+   @Autowired
+   CustomerValidator validator;
 
-	@RequestMapping(value = "/customer", method = RequestMethod.GET)
-	public ModelAndView showForm() {
-		return new ModelAndView("customerHome", "customer", new Customer());
-	}
+   @RequestMapping(value = "/customer", method = RequestMethod.GET)
+   public ModelAndView showForm() {
+      return new ModelAndView("customerHome", "customer", new Customer());
+   }
 
-	@PostMapping("/addCustomer")
-	public String submit(@Valid @ModelAttribute("customer") final Customer customer, final BindingResult result, final ModelMap model) {
-		validator.validate(customer, result);
-		if (result.hasErrors()) {
-			return "customerHome";
-		}
-		model.addAttribute("customerId", customer.getCustomerId());
-		model.addAttribute("customerName", customer.getCustomerName());
-		model.addAttribute("customerContact", customer.getCustomerContact());
-		model.addAttribute("customerEmail", customer.getCustomerEmail());
-		return "customerView";
-	}
+   @PostMapping("/addCustomer")
+   public String submit(@Valid @ModelAttribute("customer") final Customer customer, final BindingResult result, final ModelMap model) {
+      validator.validate(customer, result);
+      if (result.hasErrors()) {
+         return "customerHome";
+      }
+      model.addAttribute("customerId", customer.getCustomerId());
+      model.addAttribute("customerName", customer.getCustomerName());
+      model.addAttribute("customerContact", customer.getCustomerContact());
+      model.addAttribute("customerEmail", customer.getCustomerEmail());
+      return "customerView";
+   }
 }
