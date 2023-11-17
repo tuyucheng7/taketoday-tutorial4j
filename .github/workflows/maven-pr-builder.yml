@@ -12,7 +12,7 @@ jobs:
    build-and-analyze:
       runs-on: ubuntu-latest
 
-      name: Build and Run Sonar analysis on JDK 17
+      name: Build and Run Sonar analysis on JDK 21
       steps:
          -  name: Checkout sourcecode
             uses: actions/checkout@v3
@@ -51,15 +51,6 @@ jobs:
          -  name: Setup Java 20 (2/2)
             run: echo "JAVA_20=$JAVA_HOME" >> $GITHUB_ENV
 
-         -  name: Setup Java 21 (1/2)
-            uses: actions/setup-java@v3
-            with:
-               distribution: 'adopt'
-               java-version: 21
-         -  name: Setup Java 21 (2/2)
-            run: echo "JAVA_21=$JAVA_HOME" >> $GITHUB_ENV
-
-         # The LAST Java in the list becomes the default (because each overwrites the settings)!
          -  name: Setup Java 17 (1/2)
             uses: actions/setup-java@v3
             with:
@@ -67,6 +58,15 @@ jobs:
                java-version: 17
          -  name: Setup Java 17 (2/2)
             run: echo "JAVA_17=$JAVA_HOME" >> $GITHUB_ENV
+
+         # The LAST Java in the list becomes the default (because each overwrites the settings)!
+         -  name: Setup Java 21 (1/2)
+            uses: actions/setup-java@v3
+            with:
+               distribution: 'adopt'
+               java-version: 21
+         -  name: Setup Java 21 (2/2)
+            run: echo "JAVA_21=$JAVA_HOME" >> $GITHUB_ENV
 
          -  name: Create toolchains.xml
             shell: bash
