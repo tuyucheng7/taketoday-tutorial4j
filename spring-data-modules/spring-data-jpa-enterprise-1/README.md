@@ -11,5 +11,7 @@
 + [使用Spring Data JPA自定义命名约定](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-custom-naming.html)
 + [使用Spring Data进行部分数据更新](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-partial-update.html)
 + [Spring Data JPA中的@Modifying注解](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-modifying-annotation.html)
++ [Spring Data JPA多数据库](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-multiple-databases.html)
++ [使用Spring Data JPA进行分页和排序](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-pagination-sorting.html)
 
 - 更多文章： [[next -->]](../spring-boot-persistence-2/README.md)
