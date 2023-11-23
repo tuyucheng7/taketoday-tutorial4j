@@ -11,3 +11,5 @@
 + [web.xml与Spring的初始化程序](http://tu-yucheng.github.io/springweb/2023/05/19/spring-xml-vs-java-config.html)
 + [没有web.xml的Java Web应用程序](http://tu-yucheng.github.io/springweb/2023/05/19/java-web-app-without-web-xml.html)
 + [在JavaScript中访问Spring MVC模型对象](http://tu-yucheng.github.io/springweb/2023/05/19/spring-mvc-model-objects-js.html)
++ [在Spring中使用日期参数](http://tu-yucheng.github.io/springweb/2023/05/19/spring-date-parameters.html)
++ [Spring中的@PathVariable注解](http://tu-yucheng.github.io/springweb/2023/05/19/spring-pathvariable.html)
