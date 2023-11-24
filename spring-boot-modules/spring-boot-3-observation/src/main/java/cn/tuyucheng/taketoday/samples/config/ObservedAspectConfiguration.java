@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnClass(ObservedAspect.class)
 public class ObservedAspectConfiguration {
 
-	@Bean
-	@ConditionalOnMissingBean
-	public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
-		return new ObservedAspect(observationRegistry);
-	}
+   @Bean
+   @ConditionalOnMissingBean
+   public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
+      return new ObservedAspect(observationRegistry);
+   }
 }

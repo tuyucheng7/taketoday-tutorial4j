@@ -12,21 +12,21 @@ import cn.tuyucheng.taketoday.sample.filters.TrailingSlashRedirectFilter;
 @Configuration
 public class WebConfig {
 
-	@Bean
-	public WebFilter trailingSlashRedirectReactiveFilter() {
-		return new TrailingSlashRedirectFilterReactive();
-	}
+   @Bean
+   public WebFilter trailingSlashRedirectReactiveFilter() {
+      return new TrailingSlashRedirectFilterReactive();
+   }
 
-	@Bean
-	public Filter trailingSlashRedirectFilter() {
-		return new TrailingSlashRedirectFilter();
-	}
+   @Bean
+   public Filter trailingSlashRedirectFilter() {
+      return new TrailingSlashRedirectFilter();
+   }
 
-	@Bean
-	public FilterRegistrationBean<Filter> trailingSlashFilter() {
-		FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
-		registrationBean.setFilter(trailingSlashRedirectFilter());
-		registrationBean.addUrlPatterns("/*");
-		return registrationBean;
-	}
+   @Bean
+   public FilterRegistrationBean<Filter> trailingSlashFilter() {
+      FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+      registrationBean.setFilter(trailingSlashRedirectFilter());
+      registrationBean.addUrlPatterns("/*");
+      return registrationBean;
+   }
 }

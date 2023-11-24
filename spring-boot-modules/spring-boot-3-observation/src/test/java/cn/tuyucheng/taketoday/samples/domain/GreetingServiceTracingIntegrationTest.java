@@ -19,25 +19,25 @@ import static io.micrometer.tracing.test.simple.TracerAssert.assertThat;
 @EnableTestObservation
 class GreetingServiceTracingIntegrationTest {
 
-	@Autowired
-	GreetingService service;
-	@Value("${management.tracing.enabled:true}")
-	boolean tracingEnabled;
-	@Autowired
-	SimpleTracer tracer;
+   @Autowired
+   GreetingService service;
+   @Value("${management.tracing.enabled:true}")
+   boolean tracingEnabled;
+   @Autowired
+   SimpleTracer tracer;
 
-	@Test
-	void testEnabledTracing() {
-		Assertions.assertThat(tracingEnabled).isTrue();
-	}
+   @Test
+   void testEnabledTracing() {
+      Assertions.assertThat(tracingEnabled).isTrue();
+   }
 
-	@Test
-	@Disabled("fails test")
-	void testTracingForGreeting() {
-		service.sayHello();
-		assertThat(tracer)
-			.onlySpan()
-			.hasNameEqualTo("greeting-service#say-hello")
-			.isEnded();
-	}
+   @Test
+   @Disabled("fails test")
+   void testTracingForGreeting() {
+      service.sayHello();
+      assertThat(tracer)
+            .onlySpan()
+            .hasNameEqualTo("greeting-service#say-hello")
+            .isEnded();
+   }
 }

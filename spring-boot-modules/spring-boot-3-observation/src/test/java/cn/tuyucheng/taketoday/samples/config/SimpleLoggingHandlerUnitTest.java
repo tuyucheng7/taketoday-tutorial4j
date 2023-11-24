@@ -5,12 +5,12 @@ import io.micrometer.observation.ObservationHandler;
 import io.micrometer.observation.tck.AnyContextObservationHandlerCompatibilityKit;
 
 class SimpleLoggingHandlerUnitTest
-	extends AnyContextObservationHandlerCompatibilityKit {
+      extends AnyContextObservationHandlerCompatibilityKit {
 
-	SimpleLoggingHandler handler = new SimpleLoggingHandler();
+   SimpleLoggingHandler handler = new SimpleLoggingHandler();
 
-	@Override
-	public ObservationHandler<Observation.Context> handler() {
-		return handler;
-	}
+   @Override
+   public ObservationHandler<Observation.Context> handler() {
+      return handler;
+   }
 }

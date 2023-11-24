@@ -14,31 +14,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = GreetingsController.class)
 class GreetingsControllerApiIntegrationTest {
 
-	private static final String BASEURL = "/some";
-	private static final String DEFAULT_MEDIA_TYPE = MediaType.APPLICATION_JSON_VALUE;
+   private static final String BASEURL = "/some";
+   private static final String DEFAULT_MEDIA_TYPE = MediaType.APPLICATION_JSON_VALUE;
 
-	@Autowired
-	MockMvc mvc;
+   @Autowired
+   MockMvc mvc;
 
-	@Test
-	public void testGreeting() throws Exception {
-		mvc.perform(get(BASEURL + "/greeting").accept(DEFAULT_MEDIA_TYPE))
-			.andExpect(status().isOk())
-			.andExpect(content().string("Hello"));
-	}
+   @Test
+   public void testGreeting() throws Exception {
+      mvc.perform(get(STR."\{BASEURL}/greeting").accept(DEFAULT_MEDIA_TYPE))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello"));
+   }
 
-	@Test
-	@Disabled("Disabled while TrailingSlashRedirectFilter is in use.")
-	public void testGreetingTrailingSlash() throws Exception {
-		mvc.perform(get(BASEURL + "/greeting/").accept(DEFAULT_MEDIA_TYPE))
-			.andExpect(status().isOk())
-			.andExpect(content().string("Hello with slash"));
-	}
+   @Test
+   @Disabled("Disabled while TrailingSlashRedirectFilter is in use.")
+   public void testGreetingTrailingSlash() throws Exception {
+      mvc.perform(get(STR."\{BASEURL}/greeting/").accept(DEFAULT_MEDIA_TYPE))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello with slash"));
+   }
 
-	@Test
-	public void testGreetingTrailingSlashWithFilter() throws Exception {
-		mvc.perform(get(BASEURL + "/greeting/").accept(DEFAULT_MEDIA_TYPE))
-			.andExpect(status().isOk())
-			.andExpect(content().string("Hello"));
-	}
+   @Test
+   public void testGreetingTrailingSlashWithFilter() throws Exception {
+      mvc.perform(get(STR."\{BASEURL}/greeting/").accept(DEFAULT_MEDIA_TYPE))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello"));
+   }
 }

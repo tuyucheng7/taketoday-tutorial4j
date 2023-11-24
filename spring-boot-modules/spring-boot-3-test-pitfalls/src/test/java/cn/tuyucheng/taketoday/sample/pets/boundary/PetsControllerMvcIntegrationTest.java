@@ -17,20 +17,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @PetsBoundaryTest
 class PetsControllerMvcIntegrationTest {
 
-    @Autowired
-    MockMvc mvc;
-    @Autowired
-    PetService service;
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   PetService service;
 
-    @Test
-    void shouldReturnEmptyArrayWhenGetPets() throws Exception {
-        when(service.getPets()).thenReturn(Collections.emptyList());
-        mvc.perform(
-            get("/pets")
-              .accept(MediaType.APPLICATION_JSON)
-          )
-          .andExpect(status().isOk())
-          .andExpect(content().string("[]"));
-    }
-
+   @Test
+   void shouldReturnEmptyArrayWhenGetPets() throws Exception {
+      when(service.getPets()).thenReturn(Collections.emptyList());
+      mvc.perform(
+                  get("/pets")
+                        .accept(MediaType.APPLICATION_JSON)
+            )
+            .andExpect(status().isOk())
+            .andExpect(content().string("[]"));
+   }
 }

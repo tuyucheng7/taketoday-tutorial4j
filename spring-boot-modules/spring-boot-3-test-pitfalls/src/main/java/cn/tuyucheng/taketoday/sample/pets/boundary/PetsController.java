@@ -15,14 +15,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PetsController {
 
-    private final PetService service;
-    private final PetDtoMapper mapper;
+   private final PetService service;
+   private final PetDtoMapper mapper;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Collection<PetDto> readAll() {
-        return service.getPets().stream()
-          .map(mapper::map)
-          .collect(Collectors.toList());
-    }
-
+   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+   public Collection<PetDto> readAll() {
+      return service.getPets().stream()
+            .map(mapper::map)
+            .collect(Collectors.toList());
+   }
 }

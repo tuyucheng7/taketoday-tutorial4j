@@ -19,16 +19,16 @@ class JDBCControllerUnitTest {
 
    @Test
    void select() {
-      restTemplate.getForEntity(localhost + "/commit", String.class);
+      restTemplate.getForEntity(STR."\{localhost}/commit", String.class);
    }
 
    @Test
    void rollback() {
-      restTemplate.getForEntity(localhost + "/rollback", String.class);
+      restTemplate.getForEntity(STR."\{localhost}/rollback", String.class);
    }
 
    @Test
    void error() {
-      restTemplate.getForEntity(localhost + "/query-error", String.class);
+      restTemplate.getForEntity(STR."\{localhost}/query-error", String.class);
    }
 }

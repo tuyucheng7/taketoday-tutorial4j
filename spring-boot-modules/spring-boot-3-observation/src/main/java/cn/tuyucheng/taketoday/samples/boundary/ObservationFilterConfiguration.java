@@ -10,12 +10,12 @@ import org.springframework.web.filter.ServerHttpObservationFilter;
 @Configuration
 public class ObservationFilterConfiguration {
 
-	// if an ObservationRegistry is already configured
-	@ConditionalOnBean(ObservationRegistry.class)
-	// if we do not use Actuator
-	@ConditionalOnMissingBean(ServerHttpObservationFilter.class)
-	@Bean
-	public ServerHttpObservationFilter observationFilter(ObservationRegistry registry) {
-		return new ServerHttpObservationFilter(registry);
-	}
+   // if an ObservationRegistry is already configured
+   @ConditionalOnBean(ObservationRegistry.class)
+   // if we do not use Actuator
+   @ConditionalOnMissingBean(ServerHttpObservationFilter.class)
+   @Bean
+   public ServerHttpObservationFilter observationFilter(ObservationRegistry registry) {
+      return new ServerHttpObservationFilter(registry);
+   }
 }

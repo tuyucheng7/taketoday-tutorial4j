@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GreetingApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GreetingApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(GreetingApplication.class, args);
+   }
 }

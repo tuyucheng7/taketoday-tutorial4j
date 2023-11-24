@@ -10,16 +10,16 @@ import static org.mockito.Mockito.when;
 @PetsDomainTest
 class PetServiceIntegrationTest {
 
-	@Autowired
-	PetService service;
-	@Autowired // Mock
-	PetServiceRepository repository;
+   @Autowired
+   PetService service;
+   @Autowired // Mock
+   PetServiceRepository repository;
 
-	@Test
-	void shouldAddPetWhenNotAlreadyExisting() {
-		var pet = new Pet("Dog");
-		when(repository.add(pet)).thenReturn(true);
-		var result = service.add(pet);
-		assertThat(result).isTrue();
-	}
+   @Test
+   void shouldAddPetWhenNotAlreadyExisting() {
+      var pet = new Pet("Dog");
+      when(repository.add(pet)).thenReturn(true);
+      var result = service.add(pet);
+      assertThat(result).isTrue();
+   }
 }

@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class JacksonAutoConfigurationIntegrationTest {
 
-	@Autowired
-	ObjectMapper mapper;
+   @Autowired
+   ObjectMapper mapper;
 
-	@Test
-	void shouldUseSnakeCasePropertyNamingStrategy() {
-		assertThat(mapper.getPropertyNamingStrategy())
-			.isSameAs(PropertyNamingStrategies.SNAKE_CASE);
-	}
+   @Test
+   void shouldUseSnakeCasePropertyNamingStrategy() {
+      assertThat(mapper.getPropertyNamingStrategy())
+            .isSameAs(PropertyNamingStrategies.SNAKE_CASE);
+   }
 }

@@ -9,17 +9,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class JacksonRuntimeHintsUnitTest {
 
-	@Test
-	void shouldRegisterSnakeCasePropertyNamingStrategy() {
-		// arrange
-		final var hints = new RuntimeHints();
-		final var expectSnakeCaseHint = RuntimeHintsPredicates
-			.reflection()
-			.onField(PropertyNamingStrategies.class, "SNAKE_CASE");
-		// act
-		new JacksonRuntimeHints.PropertyNamingStrategyRegistrar()
-			.registerHints(hints, getClass().getClassLoader());
-		// assert
-		assertThat(expectSnakeCaseHint).accepts(hints);
-	}
+   @Test
+   void shouldRegisterSnakeCasePropertyNamingStrategy() {
+      // arrange
+      final var hints = new RuntimeHints();
+      final var expectSnakeCaseHint = RuntimeHintsPredicates
+            .reflection()
+            .onField(PropertyNamingStrategies.class, "SNAKE_CASE");
+      // act
+      new JacksonRuntimeHints.PropertyNamingStrategyRegistrar()
+            .registerHints(hints, getClass().getClassLoader());
+      // assert
+      assertThat(expectSnakeCaseHint).accepts(hints);
+   }
 }

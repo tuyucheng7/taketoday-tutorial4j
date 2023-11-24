@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PetService {
 
-    @Delegate
-    private final PetServiceRepository repo;
-
+   @Delegate
+   private final PetServiceRepository repo;
 }

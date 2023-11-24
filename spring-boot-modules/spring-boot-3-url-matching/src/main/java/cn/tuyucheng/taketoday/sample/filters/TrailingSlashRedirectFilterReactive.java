@@ -11,17 +11,17 @@ import reactor.core.publisher.Mono;
 @Component
 public class TrailingSlashRedirectFilterReactive implements WebFilter {
 
-	@Override
-	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-		ServerHttpRequest request = exchange.getRequest();
-		String path = request.getPath().value();
+   @Override
+   public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+      ServerHttpRequest request = exchange.getRequest();
+      String path = request.getPath().value();
 
-		if (path.endsWith("/")) {
-			String newPath = path.substring(0, path.length() - 1);
-			ServerHttpRequest newRequest = request.mutate().path(newPath).build();
-			return chain.filter(exchange.mutate().request(newRequest).build());
-		}
+      if (path.endsWith("/")) {
+         String newPath = path.substring(0, path.length() - 1);
+         ServerHttpRequest newRequest = request.mutate().path(newPath).build();
+         return chain.filter(exchange.mutate().request(newRequest).build());
+      }
 
-		return chain.filter(exchange);
-	}
+      return chain.filter(exchange);
+   }
 }

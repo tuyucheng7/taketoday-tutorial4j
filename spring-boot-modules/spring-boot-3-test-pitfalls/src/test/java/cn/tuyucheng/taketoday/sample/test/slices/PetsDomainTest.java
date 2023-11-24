@@ -35,18 +35,16 @@ import static org.mockito.Mockito.mock;
 @Tag("domain-test")
 public @interface PetsDomainTest {
 
-    @TestConfiguration
-    class PetServiceTestConfiguration {
+   @TestConfiguration
+   class PetServiceTestConfiguration {
 
-        @Primary
-        @Bean
-        PetServiceRepository createPetsRepositoryMock() {
-            return mock(
-              PetServiceRepository.class,
-              MockReset.withSettings(MockReset.AFTER)
-            );
-        }
-
-    }
-
+      @Primary
+      @Bean
+      PetServiceRepository createPetsRepositoryMock() {
+         return mock(
+               PetServiceRepository.class,
+               MockReset.withSettings(MockReset.AFTER)
+         );
+      }
+   }
 }

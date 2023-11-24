@@ -6,8 +6,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PetDtoMapper {
 
-    PetDto map(Pet source);
+   PetDto map(Pet source);
 
-    Pet map(PetDto source);
-
+   Pet map(PetDto source);
 }

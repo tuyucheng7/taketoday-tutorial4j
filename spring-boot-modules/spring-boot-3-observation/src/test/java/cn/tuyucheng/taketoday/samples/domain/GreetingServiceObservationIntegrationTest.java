@@ -16,19 +16,19 @@ import static io.micrometer.observation.tck.TestObservationRegistryAssert.assert
 @EnableTestObservation
 class GreetingServiceObservationIntegrationTest {
 
-	@Autowired
-	GreetingService service;
-	@Autowired
-	TestObservationRegistry registry;
+   @Autowired
+   GreetingService service;
+   @Autowired
+   TestObservationRegistry registry;
 
-	@Test
-	void testObservation() {
-		// invoke service
-		service.sayHello();
-		assertThat(registry)
-			.hasObservationWithNameEqualTo("greetingService")
-			.that()
-			.hasBeenStarted()
-			.hasBeenStopped();
-	}
+   @Test
+   void testObservation() {
+      // invoke service
+      service.sayHello();
+      assertThat(registry)
+            .hasObservationWithNameEqualTo("greetingService")
+            .that()
+            .hasBeenStarted()
+            .hasBeenStopped();
+   }
 }

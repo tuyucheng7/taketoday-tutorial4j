@@ -10,18 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ObservationHandlerLogger {
 
-	private static final Logger log = LoggerFactory.getLogger(ObservationHandlerLogger.class);
+   private static final Logger log = LoggerFactory.getLogger(ObservationHandlerLogger.class);
 
-	private static String toString(ObservationHandler<?> handler) {
-		return handler.getClass().getName() + " [ " + handler + "]";
-	}
+   private static String toString(ObservationHandler<?> handler) {
+      return STR."\{handler.getClass().getName()} [ \{handler}]";
+   }
 
-	@EventListener(ContextRefreshedEvent.class)
-	public void logObservationHandlers(ContextRefreshedEvent evt) {
-		evt.getApplicationContext().getBeansOfType(ObservationHandler.class)
-			.values()
-			.stream()
-			.map(ObservationHandlerLogger::toString)
-			.forEach(log::info);
-	}
+   @EventListener(ContextRefreshedEvent.class)
+   public void logObservationHandlers(ContextRefreshedEvent evt) {
+      evt.getApplicationContext().getBeansOfType(ObservationHandler.class)
+            .values()
+            .stream()
+            .map(ObservationHandlerLogger::toString)
+            .forEach(log::info);
+   }
 }

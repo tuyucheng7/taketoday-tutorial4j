@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/greet")
 public class GreetingController {
 
-	private final GreetingService service;
+   private final GreetingService service;
 
-	public GreetingController(GreetingService service) {
-		this.service = service;
-	}
+   public GreetingController(GreetingService service) {
+      this.service = service;
+   }
 
-	@GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
-	@ResponseBody
-	public String sayHello() {
-		return this.service.sayHello();
-	}
+   @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
+   @ResponseBody
+   public String sayHello() {
+      return this.service.sayHello();
+   }
 }

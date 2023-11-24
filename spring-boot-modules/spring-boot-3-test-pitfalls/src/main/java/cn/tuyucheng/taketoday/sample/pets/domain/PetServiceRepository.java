@@ -4,10 +4,9 @@ import java.util.Collection;
 
 public interface PetServiceRepository {
 
-    boolean add(Pet pet);
+   boolean add(Pet pet);
 
-    void clear();
+   void clear();
 
-    Collection<Pet> getPets();
-
+   Collection<Pet> getPets();
 }

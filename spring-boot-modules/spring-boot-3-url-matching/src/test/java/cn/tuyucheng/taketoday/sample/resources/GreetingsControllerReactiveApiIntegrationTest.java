@@ -10,42 +10,42 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @WebFluxTest
 public class GreetingsControllerReactiveApiIntegrationTest {
-	private static final String BASEURL = "/some/reactive";
+   private static final String BASEURL = "/some/reactive";
 
-	@Autowired
-	private WebTestClient webClient;
+   @Autowired
+   private WebTestClient webClient;
 
-	@Test
-	public void testGreeting() {
-		webClient.get().uri(BASEURL + "/greeting")
-			.exchange()
-			.expectStatus().isOk()
-			.expectBody().consumeWith(result -> {
-				String responseBody = new String(result.getResponseBody());
-				assertTrue(responseBody.contains("Hello reactive"));
-			});
-	}
+   @Test
+   public void testGreeting() {
+      webClient.get().uri(STR."\{BASEURL}/greeting")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody().consumeWith(result -> {
+               String responseBody = new String(result.getResponseBody());
+               assertTrue(responseBody.contains("Hello reactive"));
+            });
+   }
 
-	@Test
-	@Disabled("Disabled while TrailingSlashRedirectFilter is in use.")
-	public void testGreetingTrailingSlash() {
-		webClient.get().uri(BASEURL + "/greeting/")
-			.exchange()
-			.expectStatus().isOk()
-			.expectBody().consumeWith(result -> {
-				String responseBody = new String(result.getResponseBody());
-				assertTrue(responseBody.contains("Hello with slash reactive"));
-			});
-	}
+   @Test
+   @Disabled("Disabled while TrailingSlashRedirectFilter is in use.")
+   public void testGreetingTrailingSlash() {
+      webClient.get().uri(STR."\{BASEURL}/greeting/")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody().consumeWith(result -> {
+               String responseBody = new String(result.getResponseBody());
+               assertTrue(responseBody.contains("Hello with slash reactive"));
+            });
+   }
 
-	@Test
-	public void testGreetingTrailingSlashWithFilter() {
-		webClient.get().uri(BASEURL + "/greeting/")
-			.exchange()
-			.expectStatus().isOk()
-			.expectBody().consumeWith(result -> {
-				String responseBody = new String(result.getResponseBody());
-				assertTrue(responseBody.contains("Hello reactive"));
-			});
-	}
+   @Test
+   public void testGreetingTrailingSlashWithFilter() {
+      webClient.get().uri(STR."\{BASEURL}/greeting/")
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody().consumeWith(result -> {
+               String responseBody = new String(result.getResponseBody());
+               assertTrue(responseBody.contains("Hello reactive"));
+            });
+   }
 }

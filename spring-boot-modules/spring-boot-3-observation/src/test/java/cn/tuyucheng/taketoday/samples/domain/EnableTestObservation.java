@@ -21,22 +21,22 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @AutoConfigureObservability
 @Import({
-	ObservedAspectConfiguration.class,
-	EnableTestObservation.ObservationTestConfiguration.class
+      ObservedAspectConfiguration.class,
+      EnableTestObservation.ObservationTestConfiguration.class
 })
 public @interface EnableTestObservation {
 
-	@TestConfiguration
-	class ObservationTestConfiguration {
+   @TestConfiguration
+   class ObservationTestConfiguration {
 
-		@Bean
-		TestObservationRegistry observationRegistry() {
-			return TestObservationRegistry.create();
-		}
+      @Bean
+      TestObservationRegistry observationRegistry() {
+         return TestObservationRegistry.create();
+      }
 
-		@Bean
-		SimpleTracer simpleTracer() {
-			return new SimpleTracer();
-		}
-	}
+      @Bean
+      SimpleTracer simpleTracer() {
+         return new SimpleTracer();
+      }
+   }
 }

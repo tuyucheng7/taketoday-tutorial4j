@@ -9,13 +9,13 @@ import org.springframework.context.annotation.ImportRuntimeHints;
 @Configuration
 public class GraphQlRuntimeHints {
 
-	static class GraphQlResourcesRegistrar implements RuntimeHintsRegistrar {
+   static class GraphQlResourcesRegistrar implements RuntimeHintsRegistrar {
 
-		@Override
-		public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
-			hints.resources()
-				.registerPattern("graphql/**/")
-				.registerPattern("graphiql/index.html");
-		}
-	}
+      @Override
+      public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
+         hints.resources()
+               .registerPattern("graphql/**/")
+               .registerPattern("graphiql/index.html");
+      }
+   }
 }

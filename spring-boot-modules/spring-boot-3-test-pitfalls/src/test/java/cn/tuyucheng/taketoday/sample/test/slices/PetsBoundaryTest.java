@@ -30,23 +30,21 @@ import static org.mockito.Mockito.mock;
 @ComponentScan(basePackageClasses = PetsBoundaryLayer.class)
 @Import(PetsBoundaryTest.PetBoundaryTestConfiguration.class)
 // further features that can help to configure and execute tests
-@ActiveProfiles({ "test", "boundary-test" })
+@ActiveProfiles({"test", "boundary-test"})
 @Tag("integration-test")
 @Tag("boundary-test")
 public @interface PetsBoundaryTest {
 
-    @TestConfiguration
-    class PetBoundaryTestConfiguration {
+   @TestConfiguration
+   class PetBoundaryTestConfiguration {
 
-        @Primary
-        @Bean
-        PetService createPetServiceMock() {
-            return mock(
-              PetService.class,
-              MockReset.withSettings(MockReset.AFTER)
-            );
-        }
-
-    }
-
+      @Primary
+      @Bean
+      PetService createPetServiceMock() {
+         return mock(
+               PetService.class,
+               MockReset.withSettings(MockReset.AFTER)
+         );
+      }
+   }
 }

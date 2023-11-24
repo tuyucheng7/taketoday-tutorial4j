@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class URLMatchingApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(URLMatchingApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(URLMatchingApplication.class, args);
+   }
 }

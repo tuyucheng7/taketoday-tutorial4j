@@ -8,15 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class BoundaryConfiguration {
 
-	@Bean
-	public WebMvcConfigurer webMvcConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addViewControllers(ViewControllerRegistry registry) {
-				registry
-					.addViewController("/")
-					.setViewName("redirect:/index.html");
-			}
-		};
-	}
+   @Bean
+   public WebMvcConfigurer webMvcConfigurer() {
+      return new WebMvcConfigurer() {
+         @Override
+         public void addViewControllers(ViewControllerRegistry registry) {
+            registry
+                  .addViewController("/")
+                  .setViewName("redirect:/index.html");
+         }
+      };
+   }
 }
