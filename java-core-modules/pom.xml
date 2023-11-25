@@ -191,6 +191,7 @@
       <module>java-string-operations-5</module>
       <module>java-strings</module>
       <!-- <module>java-sun</module> -->
+      <!-- <module>java-swing</module> -->
       <!-- <module>java-uuid</module> -->
       <!-- <module>java-pre-jpms</module> -->
    </modules>
