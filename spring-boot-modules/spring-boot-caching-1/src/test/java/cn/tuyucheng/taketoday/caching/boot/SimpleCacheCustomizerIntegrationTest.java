@@ -13,12 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest("spring.cache.type=simple")
 public class SimpleCacheCustomizerIntegrationTest {
 
-	@Autowired
-	private CacheManager cacheManager;
+   @Autowired
+   private CacheManager cacheManager;
 
-	@Test
-	public void givenCacheManagerCustomizerWhenBootstrappedThenCacheManagerCustomized() {
-		assertThat(cacheManager.getCacheNames())
-			.containsOnly(SimpleCacheCustomizer.USERS_CACHE, SimpleCacheCustomizer.TRANSACTIONS_CACHE);
-	}
+   @Test
+   public void givenCacheManagerCustomizerWhenBootstrappedThenCacheManagerCustomized() {
+      assertThat(cacheManager.getCacheNames())
+            .containsOnly(SimpleCacheCustomizer.USERS_CACHE, SimpleCacheCustomizer.TRANSACTIONS_CACHE);
+   }
 }

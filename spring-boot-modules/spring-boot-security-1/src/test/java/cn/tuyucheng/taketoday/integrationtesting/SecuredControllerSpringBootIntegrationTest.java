@@ -21,31 +21,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class SecuredControllerSpringBootIntegrationTest {
 
-	@Autowired
-	private WebApplicationContext context;
+   @Autowired
+   private WebApplicationContext context;
 
-	private MockMvc mvc;
+   private MockMvc mvc;
 
-	@BeforeEach
-	void setup() {
-		mvc = MockMvcBuilders
-			.webAppContextSetup(context)
-			.apply(springSecurity())
-			.build();
-	}
+   @BeforeEach
+   void setup() {
+      mvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+   }
 
-	@Test
-	void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
-		mvc.perform(get("/private/hello")
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isUnauthorized());
-	}
+   @Test
+   void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
+      mvc.perform(get("/private/hello")
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isUnauthorized());
+   }
 
-	@WithMockUser("spring")
-	@Test
-	void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
-		mvc.perform(get("/private/hello")
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk());
-	}
+   @WithMockUser("spring")
+   @Test
+   void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+      mvc.perform(get("/private/hello")
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+   }
 }

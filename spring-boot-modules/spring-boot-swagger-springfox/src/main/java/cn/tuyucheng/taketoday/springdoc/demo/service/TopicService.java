@@ -1,11 +1,10 @@
 package cn.tuyucheng.taketoday.springdoc.demo.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import cn.tuyucheng.taketoday.springdoc.demo.model.Topic;
 import org.springframework.stereotype.Service;
 
-import cn.tuyucheng.taketoday.springdoc.demo.model.Topic;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TopicService {

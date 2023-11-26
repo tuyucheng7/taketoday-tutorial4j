@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration({"/webSecurityConfig.xml"})
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

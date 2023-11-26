@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 @Conditional({IsDevEnvCondition.class, IsWindowsCondition.class, Java8Condition.class})
 @ConditionalOnProperty(
-	value = "logging.enabled",
-	havingValue = "true",
-	matchIfMissing = true)
+      value = "logging.enabled",
+      havingValue = "true",
+      matchIfMissing = true)
 @ConditionalOnExpression("${logging.enabled:true} and '${logging.level}'.equals('DEBUG')")
 @ConditionalOnJava(JavaVersion.EIGHT)
 public class LoggingService {

@@ -8,25 +8,25 @@ import javax.persistence.Id;
 @Entity
 public class Preference {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   private Long id;
 
-	private String timezone;
+   private String timezone;
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public String getTimezone() {
-		return timezone;
-	}
+   public String getTimezone() {
+      return timezone;
+   }
 
-	public void setTimezone(String timezone) {
-		this.timezone = timezone;
-	}
+   public void setTimezone(String timezone) {
+      this.timezone = timezone;
+   }
 }

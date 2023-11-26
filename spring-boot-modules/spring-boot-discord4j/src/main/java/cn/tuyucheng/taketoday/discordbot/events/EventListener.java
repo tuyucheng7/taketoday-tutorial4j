@@ -7,14 +7,14 @@ import reactor.core.publisher.Mono;
 
 public interface EventListener<T extends Event> {
 
-	Logger LOG = LoggerFactory.getLogger(EventListener.class);
+   Logger LOG = LoggerFactory.getLogger(EventListener.class);
 
-	Class<T> getEventType();
+   Class<T> getEventType();
 
-	Mono<Void> execute(T event);
+   Mono<Void> execute(T event);
 
-	default Mono<Void> handleError(Throwable error) {
-		LOG.error("Unable to process " + getEventType().getSimpleName(), error);
-		return Mono.empty();
-	}
+   default Mono<Void> handleError(Throwable error) {
+      LOG.error("Unable to process " + getEventType().getSimpleName(), error);
+      return Mono.empty();
+   }
 }

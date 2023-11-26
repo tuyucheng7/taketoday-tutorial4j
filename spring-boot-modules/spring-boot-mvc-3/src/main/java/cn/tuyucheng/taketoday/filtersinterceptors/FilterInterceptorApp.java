@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.filtersinterceptors")
 public class FilterInterceptorApp {
-    public static void main(String[] args) {
-        SpringApplication.run(FilterInterceptorApp.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(FilterInterceptorApp.class, args);
+   }
 }

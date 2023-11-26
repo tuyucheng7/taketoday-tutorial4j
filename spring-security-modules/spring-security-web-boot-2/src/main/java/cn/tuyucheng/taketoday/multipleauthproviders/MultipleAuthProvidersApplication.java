@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-defaults.properties")
 // @ImportResource({ "classpath*:spring-security-multiple-auth-providers.xml" })
 public class MultipleAuthProvidersApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MultipleAuthProvidersApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(MultipleAuthProvidersApplication.class, args);
+   }
 }

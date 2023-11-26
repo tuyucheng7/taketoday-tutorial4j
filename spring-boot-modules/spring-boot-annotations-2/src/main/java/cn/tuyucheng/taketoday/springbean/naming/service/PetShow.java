@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class PetShow {
 
-	@Autowired
-	@Qualifier("dog")
-	private Animal dog;
+   @Autowired
+   @Qualifier("dog")
+   private Animal dog;
 
-	@Autowired
-	@Qualifier("cat")
-	private Animal cat;
+   @Autowired
+   @Qualifier("cat")
+   private Animal cat;
 
-	public Animal getDog() {
-		return dog;
-	}
+   public Animal getDog() {
+      return dog;
+   }
 
-	public Animal getCat() {
-		return cat;
-	}
+   public Animal getCat() {
+      return cat;
+   }
 }

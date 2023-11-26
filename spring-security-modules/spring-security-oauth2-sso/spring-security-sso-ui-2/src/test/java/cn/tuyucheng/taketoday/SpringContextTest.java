@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = UiApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SpringContextTest {
 
-    @Test
-    public void whenLoadApplication_thenSuccess() {
+   @Test
+   public void whenLoadApplication_thenSuccess() {
 
-    }
+   }
 }

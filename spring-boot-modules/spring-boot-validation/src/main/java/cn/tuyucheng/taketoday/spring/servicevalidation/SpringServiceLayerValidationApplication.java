@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringServiceLayerValidationApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringServiceLayerValidationApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringServiceLayerValidationApplication.class, args);
+   }
 }

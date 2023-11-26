@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/")
 public class Controller {
 
-	@GetMapping
-	public String getRequest() {
-		return "Tuyucheng DispatcherServlet";
-	}
+   @GetMapping
+   public String getRequest() {
+      return "Tuyucheng DispatcherServlet";
+   }
 }

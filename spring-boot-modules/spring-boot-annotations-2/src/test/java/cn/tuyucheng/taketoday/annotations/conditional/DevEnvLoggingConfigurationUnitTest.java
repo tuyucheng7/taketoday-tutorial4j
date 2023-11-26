@@ -9,45 +9,45 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DevEnvLoggingConfigurationUnitTest {
 
-	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+   private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
 
-	@Test
-	void whenDevEnvEnabled_thenDevEnvLoggingConfigurationAndLoggingServiceShouldBeCreated() {
-		System.setProperty("env", "dev");
+   @Test
+   void whenDevEnvEnabled_thenDevEnvLoggingConfigurationAndLoggingServiceShouldBeCreated() {
+      System.setProperty("env", "dev");
 
-		contextRunner
-			.withUserConfiguration(ConditionalTestConfiguration.class)
-			.run(context ->
-				assertNotNull(
-					context.getBean(DevEnvLoggingConfiguration.class)
-				)
-			);
-		contextRunner
-			.withUserConfiguration(ConditionalTestConfiguration.class)
-			.run(context ->
-				assertNotNull(
-					context.getBean(LoggingService.class)
-				)
-			);
-	}
+      contextRunner
+            .withUserConfiguration(ConditionalTestConfiguration.class)
+            .run(context ->
+                  assertNotNull(
+                        context.getBean(DevEnvLoggingConfiguration.class)
+                  )
+            );
+      contextRunner
+            .withUserConfiguration(ConditionalTestConfiguration.class)
+            .run(context ->
+                  assertNotNull(
+                        context.getBean(LoggingService.class)
+                  )
+            );
+   }
 
-	@Test
-	void whenDevEnvNotEnabled_thenDevEnvLoggingConfigurationAndLoggingServiceShouldNotBeCreated() {
-		System.setProperty("env", "not-dev");
+   @Test
+   void whenDevEnvNotEnabled_thenDevEnvLoggingConfigurationAndLoggingServiceShouldNotBeCreated() {
+      System.setProperty("env", "not-dev");
 
-		contextRunner
-			.withUserConfiguration(ConditionalTestConfiguration.class)
-			.run(context ->
-				assertThrows(NoSuchBeanDefinitionException.class, () ->
-					context.getBean(DevEnvLoggingConfiguration.class)
-				)
-			);
-		contextRunner
-			.withUserConfiguration(ConditionalTestConfiguration.class)
-			.run(context ->
-				assertThrows(NoSuchBeanDefinitionException.class, () ->
-					context.getBean(LoggingService.class)
-				)
-			);
-	}
+      contextRunner
+            .withUserConfiguration(ConditionalTestConfiguration.class)
+            .run(context ->
+                  assertThrows(NoSuchBeanDefinitionException.class, () ->
+                        context.getBean(DevEnvLoggingConfiguration.class)
+                  )
+            );
+      contextRunner
+            .withUserConfiguration(ConditionalTestConfiguration.class)
+            .run(context ->
+                  assertThrows(NoSuchBeanDefinitionException.class, () ->
+                        context.getBean(LoggingService.class)
+                  )
+            );
+   }
 }

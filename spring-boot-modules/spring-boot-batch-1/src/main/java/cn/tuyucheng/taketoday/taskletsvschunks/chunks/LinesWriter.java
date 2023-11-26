@@ -12,27 +12,27 @@ import org.springframework.batch.item.ItemWriter;
 
 public class LinesWriter implements ItemWriter<Line>, StepExecutionListener {
 
-	private final Logger logger = LoggerFactory.getLogger(LinesWriter.class);
-	private FileUtils fu;
+   private final Logger logger = LoggerFactory.getLogger(LinesWriter.class);
+   private FileUtils fu;
 
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		fu = new FileUtils("output.csv");
-		logger.debug("Line Writer initialized.");
-	}
+   @Override
+   public void beforeStep(StepExecution stepExecution) {
+      fu = new FileUtils("output.csv");
+      logger.debug("Line Writer initialized.");
+   }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		fu.closeWriter();
-		logger.debug("Line Writer ended.");
-		return ExitStatus.COMPLETED;
-	}
+   @Override
+   public ExitStatus afterStep(StepExecution stepExecution) {
+      fu.closeWriter();
+      logger.debug("Line Writer ended.");
+      return ExitStatus.COMPLETED;
+   }
 
-	@Override
-	public void write(Chunk<? extends Line> lines) {
-		for (Line line : lines) {
-			fu.writeLine(line);
-			logger.debug("Wrote line " + line.toString());
-		}
-	}
+   @Override
+   public void write(Chunk<? extends Line> lines) {
+      for (Line line : lines) {
+         fu.writeLine(line);
+         logger.debug("Wrote line " + line.toString());
+      }
+   }
 }

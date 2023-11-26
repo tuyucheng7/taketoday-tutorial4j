@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {ClientWebConfig.class, SecurityJavaConfig.class, WebConfig.class})
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

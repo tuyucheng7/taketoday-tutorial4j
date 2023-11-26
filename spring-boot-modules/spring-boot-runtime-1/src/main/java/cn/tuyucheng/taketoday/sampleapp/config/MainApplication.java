@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan("cn.tuyucheng.taketoday.sampleapp")
 public class MainApplication implements WebMvcConfigurer {
 
-	public static void main(final String[] args) {
-		SpringApplication.run(MainApplication.class, args);
-	}
+   public static void main(final String[] args) {
+      SpringApplication.run(MainApplication.class, args);
+   }
 }

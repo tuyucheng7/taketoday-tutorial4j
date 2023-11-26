@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class FooService {
 
-    @Autowired
-    private FooRepository fooRepository;
+   @Autowired
+   private FooRepository fooRepository;
 
-    public Foo getFooWithId(Integer id) throws Exception {
-        return fooRepository.findById(id).orElse(null);
-    }
+   public Foo getFooWithId(Integer id) throws Exception {
+      return fooRepository.findById(id).orElse(null);
+   }
 
-    public Foo getFooWithName(String name) {
-        return fooRepository.findByName(name);
-    }
+   public Foo getFooWithName(String name) {
+      return fooRepository.findByName(name);
+   }
 }

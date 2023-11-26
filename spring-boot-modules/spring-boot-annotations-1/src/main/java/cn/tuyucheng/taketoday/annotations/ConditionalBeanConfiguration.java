@@ -8,9 +8,9 @@ import java.util.Properties;
 @Configuration
 public class ConditionalBeanConfiguration {
 
-	@Conditional(HibernateCondition.class)
-	Properties additionalProperties() {
-		// application specific properties
-		return new Properties();
-	}
+   @Conditional(HibernateCondition.class)
+   Properties additionalProperties() {
+      // application specific properties
+      return new Properties();
+   }
 }

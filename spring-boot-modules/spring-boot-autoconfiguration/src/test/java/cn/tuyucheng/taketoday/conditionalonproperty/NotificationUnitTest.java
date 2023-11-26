@@ -10,17 +10,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class NotificationUnitTest {
 
-	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+   private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
 
-	@Test
-	void whenValueSetToEmail_thenCreateEmailNotification() {
-		this.contextRunner.withPropertyValues("notification.service=email")
-			.withUserConfiguration(NotificationConfig.class)
-			.run(context -> {
-				assertThat(context).hasBean("emailNotification");
-				NotificationSender notificationSender = context.getBean(EmailNotification.class);
-				assertThat(notificationSender.send("Hello From Tuyucheng!")).isEqualTo("Email Notification: Hello From Tuyucheng!");
-				assertThat(context).doesNotHaveBean("smsNotification");
-			});
-	}
+   @Test
+   void whenValueSetToEmail_thenCreateEmailNotification() {
+      this.contextRunner.withPropertyValues("notification.service=email")
+            .withUserConfiguration(NotificationConfig.class)
+            .run(context -> {
+               assertThat(context).hasBean("emailNotification");
+               NotificationSender notificationSender = context.getBean(EmailNotification.class);
+               assertThat(notificationSender.send("Hello From Tuyucheng!")).isEqualTo("Email Notification: Hello From Tuyucheng!");
+               assertThat(context).doesNotHaveBean("smsNotification");
+            });
+   }
 }

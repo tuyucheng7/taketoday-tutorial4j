@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PrefixController {
 
-    @Autowired
-    private Environment environment;
+   @Autowired
+   private Environment environment;
 
-    @GetMapping("/prefix")
-    public String getServerPortInfo(final Model model) {
-        model.addAttribute("serverPort", environment.getProperty("server.port"));
-        return "prefix";
-    }
+   @GetMapping("/prefix")
+   public String getServerPortInfo(final Model model) {
+      model.addAttribute("serverPort", environment.getProperty("server.port"));
+      return "prefix";
+   }
 }

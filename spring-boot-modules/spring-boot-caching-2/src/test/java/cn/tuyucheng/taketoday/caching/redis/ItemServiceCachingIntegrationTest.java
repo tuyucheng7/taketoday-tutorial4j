@@ -29,56 +29,56 @@ import static org.mockito.Mockito.verify;
 @EnableCaching
 class ItemServiceCachingIntegrationTest {
 
-	private static final String AN_ID = "id-1";
-	private static final String A_DESCRIPTION = "an item";
+   private static final String AN_ID = "id-1";
+   private static final String A_DESCRIPTION = "an item";
 
-	@MockBean
-	private ItemRepository mockItemRepository;
+   @MockBean
+   private ItemRepository mockItemRepository;
 
-	@Autowired
-	private ItemService itemService;
+   @Autowired
+   private ItemService itemService;
 
-	@Autowired
-	private CacheManager cacheManager;
+   @Autowired
+   private CacheManager cacheManager;
 
-	@Test
-	void givenRedisCaching_whenFindItemById_thenItemReturnedFromCache() {
-		Item anItem = new Item(AN_ID, A_DESCRIPTION);
-		given(mockItemRepository.findById(AN_ID))
-			.willReturn(Optional.of(anItem));
+   @Test
+   void givenRedisCaching_whenFindItemById_thenItemReturnedFromCache() {
+      Item anItem = new Item(AN_ID, A_DESCRIPTION);
+      given(mockItemRepository.findById(AN_ID))
+            .willReturn(Optional.of(anItem));
 
-		Item itemCacheMiss = itemService.getItemForId(AN_ID);
-		Item itemCacheHit = itemService.getItemForId(AN_ID);
+      Item itemCacheMiss = itemService.getItemForId(AN_ID);
+      Item itemCacheHit = itemService.getItemForId(AN_ID);
 
-		assertThat(itemCacheMiss).isEqualTo(anItem);
-		assertThat(itemCacheHit).isEqualTo(anItem);
+      assertThat(itemCacheMiss).isEqualTo(anItem);
+      assertThat(itemCacheHit).isEqualTo(anItem);
 
-		verify(mockItemRepository, times(1)).findById(AN_ID);
-		assertThat(itemFromCache()).isEqualTo(anItem);
-	}
+      verify(mockItemRepository, times(1)).findById(AN_ID);
+      assertThat(itemFromCache()).isEqualTo(anItem);
+   }
 
-	private Object itemFromCache() {
-		return cacheManager.getCache("itemCache").get(AN_ID).get();
-	}
+   private Object itemFromCache() {
+      return cacheManager.getCache("itemCache").get(AN_ID).get();
+   }
 
-	@TestConfiguration
-	static class EmbeddedRedisConfiguration {
+   @TestConfiguration
+   static class EmbeddedRedisConfiguration {
 
-		private final RedisServer redisServer;
+      private final RedisServer redisServer;
 
-		public EmbeddedRedisConfiguration() {
-			this.redisServer = new RedisServer();
-		}
+      public EmbeddedRedisConfiguration() {
+         this.redisServer = new RedisServer();
+      }
 
-		@PostConstruct
-		public void startRedis() {
-			redisServer.start();
-		}
+      @PostConstruct
+      public void startRedis() {
+         redisServer.start();
+      }
 
-		@PreDestroy
-		public void stopRedis() {
-			this.redisServer.stop();
-		}
-	}
+      @PreDestroy
+      public void stopRedis() {
+         this.redisServer.stop();
+      }
+   }
 
 }

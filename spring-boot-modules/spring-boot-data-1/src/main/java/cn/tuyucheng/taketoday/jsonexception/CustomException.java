@@ -2,10 +2,10 @@ package cn.tuyucheng.taketoday.jsonexception;
 
 public class CustomException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	public CustomException() {
-		super("Custom exception message.");
-	}
+   public CustomException() {
+      super("Custom exception message.");
+   }
 
 }

@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateAddressRequest {
 
-	private String street;
+   private String street;
 
-	private String streetNumber;
+   private String streetNumber;
 
-	private String city;
+   private String city;
 
-	private String state;
+   private String state;
 
-	private String zipCode;
+   private String zipCode;
 
-	private String country;
+   private String country;
 }

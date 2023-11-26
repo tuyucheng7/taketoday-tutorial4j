@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class SpringBootTomcatApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootTomcatApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootTomcatApplication.class, args);
+   }
 }

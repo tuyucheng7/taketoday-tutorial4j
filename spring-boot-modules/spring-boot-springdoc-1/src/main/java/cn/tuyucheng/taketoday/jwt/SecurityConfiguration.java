@@ -33,86 +33,86 @@ import java.security.interfaces.RSAPublicKey;
 @Configuration
 public class SecurityConfiguration {
 
-	@Value("${jwt.public.key}")
-	RSAPublicKey publicKey;
+   @Value("${jwt.public.key}")
+   RSAPublicKey publicKey;
 
-	@Value("${jwt.private.key}")
-	RSAPrivateKey privateKey;
+   @Value("${jwt.private.key}")
+   RSAPrivateKey privateKey;
 
-	/**
-	 * This bean is used to configure the JWT token. Configure the URLs that should not be protected by the JWT token.
-	 *
-	 * @param http the HttpSecurity object
-	 * @return the HttpSecurity object
-	 * @throws Exception if an error occurs
-	 */
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http
-			.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-				.antMatchers("/api/auth/**", "/swagger-ui-custom.html", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**",
-					"/swagger-ui/index.html", "/api-docs/**")
-				.permitAll()
-				.anyRequest()
-				.authenticated())
-			.cors().disable()
-			.csrf().disable()
-			.formLogin().disable()
-			.httpBasic().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-			.exceptionHandling(exceptions -> exceptions
-				.authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
-				.accessDeniedHandler(new BearerTokenAccessDeniedHandler())
-				.and())
-			.build();
-	}
+   /**
+    * This bean is used to configure the JWT token. Configure the URLs that should not be protected by the JWT token.
+    *
+    * @param http the HttpSecurity object
+    * @return the HttpSecurity object
+    * @throws Exception if an error occurs
+    */
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      return http
+            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                  .antMatchers("/api/auth/**", "/swagger-ui-custom.html", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**",
+                        "/swagger-ui/index.html", "/api-docs/**")
+                  .permitAll()
+                  .anyRequest()
+                  .authenticated())
+            .cors().disable()
+            .csrf().disable()
+            .formLogin().disable()
+            .httpBasic().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+            .exceptionHandling(exceptions -> exceptions
+                  .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+                  .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+                  .and())
+            .build();
+   }
 
-	/**
-	 * For demonstration/example, we use the InMemoryUserDetailsManager.
-	 *
-	 * @return Returns the UserDetailsService with pre-configure credentials.
-	 * @see InMemoryUserDetailsManager
-	 */
-	@Bean
-	UserDetailsService allUsers() {
-		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-		manager
-			.createUser(User.builder()
-				.passwordEncoder(password -> password)
-				.username("john")
-				.password("password")
-				.authorities("USER")
-				.roles("USER").build());
-		manager
-			.createUser(User.builder()
-				.passwordEncoder(password -> password)
-				.username("jane")
-				.password("password")
-				.authorities("USER")
-				.roles("USER").build());
-		return manager;
-	}
+   /**
+    * For demonstration/example, we use the InMemoryUserDetailsManager.
+    *
+    * @return Returns the UserDetailsService with pre-configure credentials.
+    * @see InMemoryUserDetailsManager
+    */
+   @Bean
+   UserDetailsService allUsers() {
+      InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+      manager
+            .createUser(User.builder()
+                  .passwordEncoder(password -> password)
+                  .username("john")
+                  .password("password")
+                  .authorities("USER")
+                  .roles("USER").build());
+      manager
+            .createUser(User.builder()
+                  .passwordEncoder(password -> password)
+                  .username("jane")
+                  .password("password")
+                  .authorities("USER")
+                  .roles("USER").build());
+      return manager;
+   }
 
-	/**
-	 * This bean is used to decode the JWT token.
-	 *
-	 * @return Returns the JwtDecoder bean to decode JWT tokens.
-	 */
-	@Bean
-	JwtDecoder jwtDecoder() {
-		return NimbusJwtDecoder.withPublicKey(this.publicKey).build();
-	}
+   /**
+    * This bean is used to decode the JWT token.
+    *
+    * @return Returns the JwtDecoder bean to decode JWT tokens.
+    */
+   @Bean
+   JwtDecoder jwtDecoder() {
+      return NimbusJwtDecoder.withPublicKey(this.publicKey).build();
+   }
 
-	/**
-	 * This bean is used to encode the JWT token.
-	 *
-	 * @return Returns the JwtEncoder bean to encode JWT tokens.
-	 */
-	@Bean
-	JwtEncoder jwtEncoder() {
-		JWK jwk = new RSAKey.Builder(this.publicKey).privateKey(this.privateKey).build();
-		return new NimbusJwtEncoder(new ImmutableJWKSet<>(new JWKSet(jwk)));
-	}
+   /**
+    * This bean is used to encode the JWT token.
+    *
+    * @return Returns the JwtEncoder bean to encode JWT tokens.
+    */
+   @Bean
+   JwtEncoder jwtEncoder() {
+      JWK jwk = new RSAKey.Builder(this.publicKey).privateKey(this.privateKey).build();
+      return new NimbusJwtEncoder(new ImmutableJWKSet<>(new JWKSet(jwk)));
+   }
 }

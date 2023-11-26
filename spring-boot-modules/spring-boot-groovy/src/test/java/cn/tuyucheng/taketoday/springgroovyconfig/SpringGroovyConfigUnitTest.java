@@ -19,122 +19,122 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SpringGroovyConfigUnitTest {
 
-	private static final String FILE_NAME = "GroovyBeanBuilder.groovy";
-	private static final String FILE_PATH = "src/main/groovy/cn/tuyucheng/taketoday/springgroovyconfig/";
+   private static final String FILE_NAME = "GroovyBeanBuilder.groovy";
+   private static final String FILE_PATH = "src/main/groovy/cn/tuyucheng/taketoday/springgroovyconfig/";
 
-	@Test
-	void givenGroovyConfigFile_whenCalledWithBeanName_thenReturnCompanyBean() {
-		try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
-			ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
-			ctx.refresh();
+   @Test
+   void givenGroovyConfigFile_whenCalledWithBeanName_thenReturnCompanyBean() {
+      try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
+         ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
+         ctx.refresh();
 
-			Company company = (Company) ctx.getBean("companyBean");
+         Company company = (Company) ctx.getBean("companyBean");
 
-			assertEquals("ABC Inc", company.getName());
-		} catch (BeansException | IllegalStateException e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("ABC Inc", company.getName());
+      } catch (BeansException | IllegalStateException e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@Test
-	void givenGroovyConfigFile_whenCalledWithRefBean_thenReturnEmployeeBean() {
-		try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
-			ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
-			ctx.refresh();
+   @Test
+   void givenGroovyConfigFile_whenCalledWithRefBean_thenReturnEmployeeBean() {
+      try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
+         ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
+         ctx.refresh();
 
-			Employee employee = ctx.getBean(Employee.class);
+         Employee employee = ctx.getBean(Employee.class);
 
-			assertEquals("Lakshmi", employee.getFirstName());
-			assertEquals("Priya", employee.getLastName());
-			assertEquals("XYZ Inc", employee.getCompany().getName());
-		} catch (BeansException | IllegalStateException e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("Lakshmi", employee.getFirstName());
+         assertEquals("Priya", employee.getLastName());
+         assertEquals("XYZ Inc", employee.getCompany().getName());
+      } catch (BeansException | IllegalStateException e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	void givenGroovyFileWithSpringAnnotations_whenCalledWithBeanName_thenReturnValidBean() {
+   @SuppressWarnings("unchecked")
+   @Test
+   void givenGroovyFileWithSpringAnnotations_whenCalledWithBeanName_thenReturnValidBean() {
 
-		try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();) {
-			ctx.register(SpringGroovyConfiguration.class);
-			ctx.refresh();
+      try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();) {
+         ctx.register(SpringGroovyConfiguration.class);
+         ctx.refresh();
 
-			List<String> fruits = (List<String>) ctx.getBean("fruits");
+         List<String> fruits = (List<String>) ctx.getBean("fruits");
 
-			assertNotNull(fruits);
-			assertEquals(4, fruits.size());
-			assertEquals("Apple", fruits.get(0));
-		} catch (BeansException | IllegalStateException e) {
-			fail(e.getMessage());
-		}
-	}
+         assertNotNull(fruits);
+         assertEquals(4, fruits.size());
+         assertEquals("Apple", fruits.get(0));
+      } catch (BeansException | IllegalStateException e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@Test
-	void givenGroovyBeanConfiguredInXml_whenCalledWithBeanName_thenReturnValidBean() {
-		try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("groovy-xml-config.xml")) {
-			ctx.refresh();
+   @Test
+   void givenGroovyBeanConfiguredInXml_whenCalledWithBeanName_thenReturnValidBean() {
+      try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("groovy-xml-config.xml")) {
+         ctx.refresh();
 
-			NotificationService notifier = (NotificationService) ctx.getBean("notification");
+         NotificationService notifier = (NotificationService) ctx.getBean("notification");
 
-			assertEquals("Hello", notifier.getMessage());
-		} catch (BeansException | IllegalStateException e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("Hello", notifier.getMessage());
+      } catch (BeansException | IllegalStateException e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@Test
-	void givenGroovyBeanConfiguredAsInlineScript_whenCalledWithBeanName_thenReturnValidBean() {
-		try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("groovy-xml-config.xml")) {
-			ctx.refresh();
+   @Test
+   void givenGroovyBeanConfiguredAsInlineScript_whenCalledWithBeanName_thenReturnValidBean() {
+      try (ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("groovy-xml-config.xml")) {
+         ctx.refresh();
 
-			NotificationService notifier = (NotificationService) ctx.getBean("notifier");
+         NotificationService notifier = (NotificationService) ctx.getBean("notifier");
 
-			assertEquals("Have a nice day!", notifier.getMessage());
-		} catch (BeansException | IllegalStateException e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("Have a nice day!", notifier.getMessage());
+      } catch (BeansException | IllegalStateException e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@SuppressWarnings("unchecked")
-	@Test
-	void givenGroovyScript_whenCalledWithScriptEngine_thenReturnsResult() {
-		try {
-			GroovyScriptEngine engine = new GroovyScriptEngine(ResourceUtils.getFile("file:src/main/resources/")
-				.getAbsolutePath(), this.getClass().getClassLoader());
-			Class<GroovyObject> joinerClass = engine.loadScriptByName("StringJoiner.groovy");
-			GroovyObject joiner = joinerClass.getDeclaredConstructor()
-				.newInstance();
-			Object result = joiner.invokeMethod("join", new Object[]{"Mr.", "Bob"});
+   @SuppressWarnings("unchecked")
+   @Test
+   void givenGroovyScript_whenCalledWithScriptEngine_thenReturnsResult() {
+      try {
+         GroovyScriptEngine engine = new GroovyScriptEngine(ResourceUtils.getFile("file:src/main/resources/")
+               .getAbsolutePath(), this.getClass().getClassLoader());
+         Class<GroovyObject> joinerClass = engine.loadScriptByName("StringJoiner.groovy");
+         GroovyObject joiner = joinerClass.getDeclaredConstructor()
+               .newInstance();
+         Object result = joiner.invokeMethod("join", new Object[]{"Mr.", "Bob"});
 
-			assertEquals("Mr.Bob", result.toString());
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("Mr.Bob", result.toString());
+      } catch (Exception e) {
+         fail(e.getMessage());
+      }
+   }
 
-	@Test
-	void givenGroovyScript_whenCalledWithBindingObject_thenReturnsResult() {
-		try {
-			GroovyScriptEngine engine = new GroovyScriptEngine(ResourceUtils.getFile("file:src/main/resources/")
-				.getAbsolutePath(), this.getClass().getClassLoader());
-			Binding binding = new Binding();
-			binding.setVariable("arg1", "Mr.");
-			binding.setVariable("arg2", "Bob");
-			Object result = engine.run("StringJoinerScript.groovy", binding);
+   @Test
+   void givenGroovyScript_whenCalledWithBindingObject_thenReturnsResult() {
+      try {
+         GroovyScriptEngine engine = new GroovyScriptEngine(ResourceUtils.getFile("file:src/main/resources/")
+               .getAbsolutePath(), this.getClass().getClassLoader());
+         Binding binding = new Binding();
+         binding.setVariable("arg1", "Mr.");
+         binding.setVariable("arg2", "Bob");
+         Object result = engine.run("StringJoinerScript.groovy", binding);
 
-			assertEquals("Mr.Bob", result.toString());
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
-	}
+         assertEquals("Mr.Bob", result.toString());
+      } catch (Exception e) {
+         fail(e.getMessage());
+      }
+   }
 
-	private String getPath(String filePath) {
-		String pathPart = new File(".").getAbsolutePath();
-		pathPart = pathPart.replace(".", "");
-		pathPart = pathPart.replace("\\", "/");
-		pathPart = pathPart + filePath;
+   private String getPath(String filePath) {
+      String pathPart = new File(".").getAbsolutePath();
+      pathPart = pathPart.replace(".", "");
+      pathPart = pathPart.replace("\\", "/");
+      pathPart = pathPart + filePath;
 
-		return pathPart;
-	}
+      return pathPart;
+   }
 }

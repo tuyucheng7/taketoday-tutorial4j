@@ -5,17 +5,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ChildValueHolder {
-	@Value("${parent.name:-}")
-	private String parentName;
+   @Value("${parent.name:-}")
+   private String parentName;
 
-	@Value("${child.name:-}")
-	private String childName;
+   @Value("${child.name:-}")
+   private String childName;
 
-	public String getParentName() {
-		return parentName;
-	}
+   public String getParentName() {
+      return parentName;
+   }
 
-	public String getChildName() {
-		return childName;
-	}
+   public String getChildName() {
+      return childName;
+   }
 }

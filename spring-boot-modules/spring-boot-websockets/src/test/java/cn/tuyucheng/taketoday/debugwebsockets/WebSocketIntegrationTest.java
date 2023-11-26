@@ -7,11 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.simp.stomp.StompCommand;
-import org.springframework.messaging.simp.stomp.StompFrameHandler;
-import org.springframework.messaging.simp.stomp.StompHeaders;
-import org.springframework.messaging.simp.stomp.StompSession;
-import org.springframework.messaging.simp.stomp.StompSessionHandler;
+import org.springframework.messaging.simp.stomp.*;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
@@ -33,82 +29,82 @@ import static org.assertj.core.api.Assertions.fail;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WebSocketIntegrationTest {
-	WebSocketClient client;
-	WebSocketStompClient stompClient;
-	@LocalServerPort
-	private int port;
-	private static final Logger logger = LoggerFactory.getLogger(WebSocketIntegrationTest.class);
+   WebSocketClient client;
+   WebSocketStompClient stompClient;
+   @LocalServerPort
+   private int port;
+   private static final Logger logger = LoggerFactory.getLogger(WebSocketIntegrationTest.class);
 
-	@BeforeEach
-	public void setup() {
-		logger.info("Setting up the tests ...");
-		client = new StandardWebSocketClient();
-		stompClient = new WebSocketStompClient(client);
-		stompClient.setMessageConverter(new MappingJackson2MessageConverter());
-	}
+   @BeforeEach
+   public void setup() {
+      logger.info("Setting up the tests ...");
+      client = new StandardWebSocketClient();
+      stompClient = new WebSocketStompClient(client);
+      stompClient.setMessageConverter(new MappingJackson2MessageConverter());
+   }
 
-	@Test
-	void givenWebSocket_whenMessage_thenVerifyMessage() throws Exception {
-		final CountDownLatch latch = new CountDownLatch(1);
-		final AtomicReference<Throwable> failure = new AtomicReference<>();
-		StompSessionHandler sessionHandler = new StompSessionHandler() {
-			@Override
-			public Type getPayloadType(StompHeaders headers) {
-				return null;
-			}
+   @Test
+   void givenWebSocket_whenMessage_thenVerifyMessage() throws Exception {
+      final CountDownLatch latch = new CountDownLatch(1);
+      final AtomicReference<Throwable> failure = new AtomicReference<>();
+      StompSessionHandler sessionHandler = new StompSessionHandler() {
+         @Override
+         public Type getPayloadType(StompHeaders headers) {
+            return null;
+         }
 
-			@Override
-			public void handleFrame(StompHeaders headers, Object payload) {
-			}
+         @Override
+         public void handleFrame(StompHeaders headers, Object payload) {
+         }
 
-			@Override
-			public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
-				logger.info("Connected to the WebSocket ...");
-				session.subscribe("/topic/ticks", new StompFrameHandler() {
-					@Override
-					public Type getPayloadType(StompHeaders headers) {
-						return Map.class;
-					}
+         @Override
+         public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
+            logger.info("Connected to the WebSocket ...");
+            session.subscribe("/topic/ticks", new StompFrameHandler() {
+               @Override
+               public Type getPayloadType(StompHeaders headers) {
+                  return Map.class;
+               }
 
-					@Override
-					public void handleFrame(StompHeaders headers, Object payload) {
-						try {
+               @Override
+               public void handleFrame(StompHeaders headers, Object payload) {
+                  try {
 
-							assertThat(payload).isNotNull();
-							assertThat(payload).isInstanceOf(Map.class);
+                     assertThat(payload).isNotNull();
+                     assertThat(payload).isInstanceOf(Map.class);
 
-							@SuppressWarnings("unchecked")
-							Map<String, Integer> map = (Map<String, Integer>) payload;
+                     @SuppressWarnings("unchecked")
+                     Map<String, Integer> map = (Map<String, Integer>) payload;
 
-							assertThat(map).containsKey("HPE");
-							assertThat(map.get("HPE")).isInstanceOf(Integer.class);
-						} catch (Throwable t) {
-							failure.set(t);
-							logger.error("There is an exception ", t);
-						} finally {
-							session.disconnect();
-							latch.countDown();
-						}
+                     assertThat(map).containsKey("HPE");
+                     assertThat(map.get("HPE")).isInstanceOf(Integer.class);
+                  } catch (Throwable t) {
+                     failure.set(t);
+                     logger.error("There is an exception ", t);
+                  } finally {
+                     session.disconnect();
+                     latch.countDown();
+                  }
 
-					}
-				});
-			}
+               }
+            });
+         }
 
-			@Override
-			public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
-			}
+         @Override
+         public void handleException(StompSession session, StompCommand command, StompHeaders headers, byte[] payload, Throwable exception) {
+         }
 
-			@Override
-			public void handleTransportError(StompSession session, Throwable exception) {
-			}
-		};
-		stompClient.connect("ws://localhost:{port}/stock-ticks/websocket", sessionHandler, this.port);
-		if (latch.await(20, TimeUnit.SECONDS)) {
-			if (failure.get() != null) {
-				fail("Assertion Failed", failure.get());
-			}
-		} else {
-			fail("Could not receive the message on time");
-		}
-	}
+         @Override
+         public void handleTransportError(StompSession session, Throwable exception) {
+         }
+      };
+      stompClient.connect("ws://localhost:{port}/stock-ticks/websocket", sessionHandler, this.port);
+      if (latch.await(20, TimeUnit.SECONDS)) {
+         if (failure.get() != null) {
+            fail("Assertion Failed", failure.get());
+         }
+      } else {
+         fail("Could not receive the message on time");
+      }
+   }
 }

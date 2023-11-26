@@ -18,25 +18,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PostmanUploadDemoApplication.class)
 @AutoConfigureMockMvc
 class PostmanUploadControllerUnitTest {
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Test
-    void givenJson_whenUploaded_thenSuccessReturned() throws Exception {
-        JsonRequest request = new JsonRequest(1, "John Doe");
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/uploadJson")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(new ObjectMapper().writeValueAsString(request)))
-              .andExpect(status().isOk())
-              .andExpect(content().string("1John Doe"));
-    }
+   @Test
+   void givenJson_whenUploaded_thenSuccessReturned() throws Exception {
+      JsonRequest request = new JsonRequest(1, "John Doe");
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/uploadJson")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .content(new ObjectMapper().writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(content().string("1John Doe"));
+   }
 
-    @Test
-    void givenFile_whenUploaded_thenSuccessReturned() throws Exception {
-        MockMultipartFile request = new MockMultipartFile("dummy", "{\"key\": \"value\"}".getBytes());
-        this.mockMvc.perform(MockMvcRequestBuilders.multipart("/uploadFile")
-                    .file("file", request.getBytes()))
-              .andExpect(status().isOk())
-              .andExpect(content().string("file received successfully"));
-    }
+   @Test
+   void givenFile_whenUploaded_thenSuccessReturned() throws Exception {
+      MockMultipartFile request = new MockMultipartFile("dummy", "{\"key\": \"value\"}".getBytes());
+      this.mockMvc.perform(MockMvcRequestBuilders.multipart("/uploadFile")
+                  .file("file", request.getBytes()))
+            .andExpect(status().isOk())
+            .andExpect(content().string("file received successfully"));
+   }
 }

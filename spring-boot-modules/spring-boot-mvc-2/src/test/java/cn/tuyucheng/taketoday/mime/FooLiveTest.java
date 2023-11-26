@@ -23,50 +23,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles("test")
 class FooLiveTest {
 
-	@LocalServerPort
-	private int port;
+   @LocalServerPort
+   private int port;
 
-	@Autowired
-	protected IMarshaller marshaller;
+   @Autowired
+   protected IMarshaller marshaller;
 
-	final void create() {
-		create(new Foo(randomAlphabetic(6)));
-	}
+   final void create() {
+      create(new Foo(randomAlphabetic(6)));
+   }
 
-	final String createAsUri() {
-		return createAsUri(new Foo(randomAlphabetic(6)));
-	}
+   final String createAsUri() {
+      return createAsUri(new Foo(randomAlphabetic(6)));
+   }
 
-	protected final void create(final Foo resource) {
-		createAsUri(resource);
-	}
+   protected final void create(final Foo resource) {
+      createAsUri(resource);
+   }
 
-	private String createAsUri(final Foo resource) {
-		final Response response = createAsResponse(resource);
-		return getURL() + "/" + response.getBody().as(Foo.class).getId();
-	}
+   private String createAsUri(final Foo resource) {
+      final Response response = createAsResponse(resource);
+      return getURL() + "/" + response.getBody().as(Foo.class).getId();
+   }
 
-	private Response createAsResponse(final Foo resource) {
-		final String resourceAsString = marshaller.encode(resource);
-		return RestAssured.given()
-			.contentType(marshaller.getMime())
-			.body(resourceAsString)
-			.post(getURL());
-	}
+   private Response createAsResponse(final Foo resource) {
+      final String resourceAsString = marshaller.encode(resource);
+      return RestAssured.given()
+            .contentType(marshaller.getMime())
+            .body(resourceAsString)
+            .post(getURL());
+   }
 
-	protected String getURL() {
-		return "http://localhost:" + port + "/foos";
-	}
+   protected String getURL() {
+      return "http://localhost:" + port + "/foos";
+   }
 
-	@Test
-	void givenResourceExists_whenRetrievingResource_thenEtagIsAlsoReturned() {
-		// Given
-		final String uriOfResource = createAsUri();
+   @Test
+   void givenResourceExists_whenRetrievingResource_thenEtagIsAlsoReturned() {
+      // Given
+      final String uriOfResource = createAsUri();
 
-		// When
-		final Response findOneResponse = RestAssured.given().header("Accept", "application/json").get(uriOfResource);
+      // When
+      final Response findOneResponse = RestAssured.given().header("Accept", "application/json").get(uriOfResource);
 
-		// Then
-		assertEquals(200, findOneResponse.getStatusCode());
-	}
+      // Then
+      assertEquals(200, findOneResponse.getStatusCode());
+   }
 }

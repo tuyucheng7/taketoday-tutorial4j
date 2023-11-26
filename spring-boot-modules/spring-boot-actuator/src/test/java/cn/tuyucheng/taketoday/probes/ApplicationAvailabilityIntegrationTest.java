@@ -24,50 +24,50 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = AFTER_CLASS)
 class ApplicationAvailabilityIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
-	@Autowired
-	private ApplicationContext context;
-	@Autowired
-	private ApplicationAvailability applicationAvailability;
+   @Autowired
+   private MockMvc mockMvc;
+   @Autowired
+   private ApplicationContext context;
+   @Autowired
+   private ApplicationAvailability applicationAvailability;
 
-	@Test
-	void givenApplication_whenStarted_thenShouldBeAbleToRetrieveReadinessAndLiveness() {
-		assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.CORRECT);
-		assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
+   @Test
+   void givenApplication_whenStarted_thenShouldBeAbleToRetrieveReadinessAndLiveness() {
+      assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.CORRECT);
+      assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
 
-		assertThat(applicationAvailability.getState(ReadinessState.class)).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
-	}
+      assertThat(applicationAvailability.getState(ReadinessState.class)).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
+   }
 
-	@Test
-	@DirtiesContext(methodMode = AFTER_METHOD)
-	void givenCorrectState_whenPublishingTheEvent_thenShouldTransitToBrokenState() throws Exception {
-		assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.CORRECT);
-		mockMvc.perform(get("/actuator/health/liveness"))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.status").value("UP"));
+   @Test
+   @DirtiesContext(methodMode = AFTER_METHOD)
+   void givenCorrectState_whenPublishingTheEvent_thenShouldTransitToBrokenState() throws Exception {
+      assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.CORRECT);
+      mockMvc.perform(get("/actuator/health/liveness"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.status").value("UP"));
 
-		AvailabilityChangeEvent.publish(context, LivenessState.BROKEN);
+      AvailabilityChangeEvent.publish(context, LivenessState.BROKEN);
 
-		assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.BROKEN);
-		mockMvc.perform(get("/actuator/health/liveness"))
-			.andExpect(status().isServiceUnavailable())
-			.andExpect(jsonPath("$.status").value("DOWN"));
-	}
+      assertThat(applicationAvailability.getLivenessState()).isEqualTo(LivenessState.BROKEN);
+      mockMvc.perform(get("/actuator/health/liveness"))
+            .andExpect(status().isServiceUnavailable())
+            .andExpect(jsonPath("$.status").value("DOWN"));
+   }
 
-	@Test
-	@DirtiesContext(methodMode = AFTER_METHOD)
-	void givenAcceptingState_whenPublishingTheEvent_thenShouldTransitToRefusingState() throws Exception {
-		assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
-		mockMvc.perform(get("/actuator/health/readiness"))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.status").value("UP"));
+   @Test
+   @DirtiesContext(methodMode = AFTER_METHOD)
+   void givenAcceptingState_whenPublishingTheEvent_thenShouldTransitToRefusingState() throws Exception {
+      assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.ACCEPTING_TRAFFIC);
+      mockMvc.perform(get("/actuator/health/readiness"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.status").value("UP"));
 
-		AvailabilityChangeEvent.publish(context, ReadinessState.REFUSING_TRAFFIC);
+      AvailabilityChangeEvent.publish(context, ReadinessState.REFUSING_TRAFFIC);
 
-		assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.REFUSING_TRAFFIC);
-		mockMvc.perform(get("/actuator/health/readiness"))
-			.andExpect(status().isServiceUnavailable())
-			.andExpect(jsonPath("$.status").value("OUT_OF_SERVICE"));
-	}
+      assertThat(applicationAvailability.getReadinessState()).isEqualTo(ReadinessState.REFUSING_TRAFFIC);
+      mockMvc.perform(get("/actuator/health/readiness"))
+            .andExpect(status().isServiceUnavailable())
+            .andExpect(jsonPath("$.status").value("OUT_OF_SERVICE"));
+   }
 }

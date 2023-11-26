@@ -8,17 +8,17 @@ import org.springframework.batch.item.ItemProcessor;
 
 public class BookDetailsItemProcessor implements ItemProcessor<BookRecord, BookDetails> {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(BookDetailsItemProcessor.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(BookDetailsItemProcessor.class);
 
-	@Override
-	public BookDetails process(BookRecord item) {
-		BookDetails bookDetails = new BookDetails();
-		bookDetails.setBookFormat(item.getBookFormat());
-		bookDetails.setBookISBN(item.getBookISBN());
-		bookDetails.setPublishingYear(item.getPublishingYear());
-		bookDetails.setBookName(item.getBookName());
-		LOGGER.info("Processing bookdetails {}", bookDetails);
-		return bookDetails;
-	}
+   @Override
+   public BookDetails process(BookRecord item) {
+      BookDetails bookDetails = new BookDetails();
+      bookDetails.setBookFormat(item.getBookFormat());
+      bookDetails.setBookISBN(item.getBookISBN());
+      bookDetails.setPublishingYear(item.getPublishingYear());
+      bookDetails.setBookName(item.getBookName());
+      LOGGER.info("Processing bookdetails {}", bookDetails);
+      return bookDetails;
+   }
 
 }

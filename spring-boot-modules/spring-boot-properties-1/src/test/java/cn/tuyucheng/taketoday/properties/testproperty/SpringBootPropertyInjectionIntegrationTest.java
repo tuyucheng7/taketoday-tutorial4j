@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(properties = {"foo=bar"}, classes = SpringBootPropertiesTestApplication.class)
 class SpringBootPropertyInjectionIntegrationTest {
 
-	@Value("${foo}")
-	private String foo;
+   @Value("${foo}")
+   private String foo;
 
-	@Test
-	void whenSpringBootPropertyProvided_thenProperlyInjected() {
-		assertThat(foo).isEqualTo("bar");
-	}
+   @Test
+   void whenSpringBootPropertyProvided_thenProperlyInjected() {
+      assertThat(foo).isEqualTo("bar");
+   }
 }

@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ActiveProfiles("disablingkeycloak")
 class DisablingKeycloakIntegrationTest {
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Test
-	void givenUnauthenticated_whenGettingUser_shouldReturnUser() {
-		ResponseEntity<User> responseEntity = restTemplate.getForEntity("/users/1", User.class);
+   @Test
+   void givenUnauthenticated_whenGettingUser_shouldReturnUser() {
+      ResponseEntity<User> responseEntity = restTemplate.getForEntity("/users/1", User.class);
 
-		assertEquals(HttpStatus.SC_OK, responseEntity.getStatusCodeValue());
-		assertNotNull(responseEntity.getBody().getFirstname());
-	}
+      assertEquals(HttpStatus.SC_OK, responseEntity.getStatusCodeValue());
+      assertNotNull(responseEntity.getBody().getFirstname());
+   }
 }

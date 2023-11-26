@@ -21,77 +21,77 @@ import java.util.Collections;
 @Configuration
 public class CustomWebSecurityConfigurer {
 
-    public AuthenticationConverter authenticationConverter() {
-        return new BasicAuthenticationConverter();
-    }
+   public AuthenticationConverter authenticationConverter() {
+      return new BasicAuthenticationConverter();
+   }
 
-    public AuthenticationManagerResolver<HttpServletRequest> resolver() {
-        return request -> {
-            if (request
-                  .getPathInfo()
-                  .startsWith("/employee")) {
-                return employeesAuthenticationManager();
-            }
-            return customersAuthenticationManager();
-        };
-    }
+   public AuthenticationManagerResolver<HttpServletRequest> resolver() {
+      return request -> {
+         if (request
+               .getPathInfo()
+               .startsWith("/employee")) {
+            return employeesAuthenticationManager();
+         }
+         return customersAuthenticationManager();
+      };
+   }
 
-    public AuthenticationManager customersAuthenticationManager() {
-        return authentication -> {
-            if (isCustomer(authentication)) {
-                return new UsernamePasswordAuthenticationToken(
-                      authentication.getPrincipal(),
-                      authentication.getCredentials(),
-                      Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                );
-            }
-            throw new UsernameNotFoundException(authentication
-                  .getPrincipal()
-                  .toString());
-        };
-    }
+   public AuthenticationManager customersAuthenticationManager() {
+      return authentication -> {
+         if (isCustomer(authentication)) {
+            return new UsernamePasswordAuthenticationToken(
+                  authentication.getPrincipal(),
+                  authentication.getCredentials(),
+                  Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
+            );
+         }
+         throw new UsernameNotFoundException(authentication
+               .getPrincipal()
+               .toString());
+      };
+   }
 
-    private boolean isCustomer(Authentication authentication) {
-        return (authentication
-              .getPrincipal()
-              .toString()
-              .startsWith("customer"));
-    }
+   private boolean isCustomer(Authentication authentication) {
+      return (authentication
+            .getPrincipal()
+            .toString()
+            .startsWith("customer"));
+   }
 
-    private boolean isEmployee(Authentication authentication) {
-        return (authentication
-              .getPrincipal()
-              .toString()
-              .startsWith("employee"));
-    }
+   private boolean isEmployee(Authentication authentication) {
+      return (authentication
+            .getPrincipal()
+            .toString()
+            .startsWith("employee"));
+   }
 
-    private AuthenticationFilter authenticationFilter() {
-        AuthenticationFilter filter = new AuthenticationFilter(
-              resolver(), authenticationConverter());
-        filter.setSuccessHandler((request, response, auth) -> {
-        });
-        return filter;
-    }
+   private AuthenticationFilter authenticationFilter() {
+      AuthenticationFilter filter = new AuthenticationFilter(
+            resolver(), authenticationConverter());
+      filter.setSuccessHandler((request, response, auth) -> {
+      });
+      return filter;
+   }
 
-    private AuthenticationManager employeesAuthenticationManager() {
-        return authentication -> {
-            if (isEmployee(authentication)) {
-                return new UsernamePasswordAuthenticationToken(
-                      authentication.getPrincipal(),
-                      authentication.getCredentials(),
-                      Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                );
-            }
-            throw new UsernameNotFoundException(authentication
-                  .getPrincipal()
-                  .toString());
-        };
-    }
+   private AuthenticationManager employeesAuthenticationManager() {
+      return authentication -> {
+         if (isEmployee(authentication)) {
+            return new UsernamePasswordAuthenticationToken(
+                  authentication.getPrincipal(),
+                  authentication.getCredentials(),
+                  Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
+            );
+         }
+         throw new UsernameNotFoundException(authentication
+               .getPrincipal()
+               .toString());
+      };
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterBefore(authenticationFilter(), BasicAuthenticationFilter.class);
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.addFilterBefore(authenticationFilter(), BasicAuthenticationFilter.class);
+      return http.build();
+   }
 
 }

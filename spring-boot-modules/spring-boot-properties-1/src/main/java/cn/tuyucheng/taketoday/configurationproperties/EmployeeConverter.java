@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationPropertiesBinding
 public class EmployeeConverter implements Converter<String, Employee> {
 
-	@Override
-	public Employee convert(String from) {
-		String[] data = from.split(",");
-		return new Employee(data[0], Double.parseDouble(data[1]));
-	}
+   @Override
+   public Employee convert(String from) {
+      String[] data = from.split(",");
+      return new Employee(data[0], Double.parseDouble(data[1]));
+   }
 }

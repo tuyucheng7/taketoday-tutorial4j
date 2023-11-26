@@ -14,16 +14,16 @@ import java.lang.annotation.Target;
 @RequestMapping
 public @interface MyMapping {
 
-	@AliasFor(annotation = RequestMapping.class, attribute = "method")
-	RequestMethod[] action() default {};
+   @AliasFor(annotation = RequestMapping.class, attribute = "method")
+   RequestMethod[] action() default {};
 
-	@AliasFor(annotation = RequestMapping.class, attribute = "path")
-	String[] value() default {};
+   @AliasFor(annotation = RequestMapping.class, attribute = "path")
+   String[] value() default {};
 
-	@AliasFor(annotation = RequestMapping.class, attribute = "path")
-	String[] mapping() default {};
+   @AliasFor(annotation = RequestMapping.class, attribute = "path")
+   String[] mapping() default {};
 
-	@AliasFor(annotation = RequestMapping.class, attribute = "path")
-	String[] route() default {};
+   @AliasFor(annotation = RequestMapping.class, attribute = "path")
+   String[] route() default {};
 
 }

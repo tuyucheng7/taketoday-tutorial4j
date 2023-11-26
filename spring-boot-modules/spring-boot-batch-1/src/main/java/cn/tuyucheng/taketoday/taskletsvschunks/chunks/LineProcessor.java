@@ -13,24 +13,24 @@ import java.time.temporal.ChronoUnit;
 
 public class LineProcessor implements ItemProcessor<Line, Line>, StepExecutionListener {
 
-	private final Logger logger = LoggerFactory.getLogger(LineProcessor.class);
+   private final Logger logger = LoggerFactory.getLogger(LineProcessor.class);
 
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		logger.debug("Line Processor initialized.");
-	}
+   @Override
+   public void beforeStep(StepExecution stepExecution) {
+      logger.debug("Line Processor initialized.");
+   }
 
-	@Override
-	public Line process(Line line) throws Exception {
-		long age = ChronoUnit.YEARS.between(line.getDob(), LocalDate.now());
-		logger.debug("Calculated age " + age + " for line " + line.toString());
-		line.setAge(age);
-		return line;
-	}
+   @Override
+   public Line process(Line line) throws Exception {
+      long age = ChronoUnit.YEARS.between(line.getDob(), LocalDate.now());
+      logger.debug("Calculated age " + age + " for line " + line.toString());
+      line.setAge(age);
+      return line;
+   }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		logger.debug("Line Processor ended.");
-		return ExitStatus.COMPLETED;
-	}
+   @Override
+   public ExitStatus afterStep(StepExecution stepExecution) {
+      logger.debug("Line Processor ended.");
+      return ExitStatus.COMPLETED;
+   }
 }

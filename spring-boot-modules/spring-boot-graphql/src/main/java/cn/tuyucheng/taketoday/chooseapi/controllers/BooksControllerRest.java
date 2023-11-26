@@ -10,14 +10,14 @@ import java.util.List;
 @RestController
 public class BooksControllerRest {
 
-	private final BooksService booksService;
+   private final BooksService booksService;
 
-	public BooksControllerRest(BooksService booksService) {
-		this.booksService = booksService;
-	}
+   public BooksControllerRest(BooksService booksService) {
+      this.booksService = booksService;
+   }
 
-	@GetMapping("/rest/books")
-	public List<Book> books() {
-		return booksService.getBooks();
-	}
+   @GetMapping("/rest/books")
+   public List<Book> books() {
+      return booksService.getBooks();
+   }
 }

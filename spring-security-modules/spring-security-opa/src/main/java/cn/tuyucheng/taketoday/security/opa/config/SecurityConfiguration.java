@@ -27,52 +27,52 @@ import java.util.stream.Collectors;
 public class SecurityConfiguration {
 
 
-    @Bean
-    public SecurityWebFilterChain accountAuthorization(ServerHttpSecurity http, @Qualifier("opaWebClient") WebClient opaWebClient) {
+   @Bean
+   public SecurityWebFilterChain accountAuthorization(ServerHttpSecurity http, @Qualifier("opaWebClient") WebClient opaWebClient) {
 
-        // @formatter:on
-        return http
-              .httpBasic()
-              .and()
-              .authorizeExchange(exchanges -> {
-                  exchanges
-                        .pathMatchers("/account/*")
-                        .access(opaAuthManager(opaWebClient));
-              })
-              .build();
-        // @formatter:on
+      // @formatter:on
+      return http
+            .httpBasic()
+            .and()
+            .authorizeExchange(exchanges -> {
+               exchanges
+                     .pathMatchers("/account/*")
+                     .access(opaAuthManager(opaWebClient));
+            })
+            .build();
+      // @formatter:on
 
-    }
+   }
 
-    @Bean
-    public ReactiveAuthorizationManager<AuthorizationContext> opaAuthManager(WebClient opaWebClient) {
+   @Bean
+   public ReactiveAuthorizationManager<AuthorizationContext> opaAuthManager(WebClient opaWebClient) {
 
-        return (auth, context) -> {
-            return opaWebClient.post()
-                  .accept(MediaType.APPLICATION_JSON)
-                  .contentType(MediaType.APPLICATION_JSON)
-                  .body(toAuthorizationPayload(auth, context), Map.class)
-                  .exchangeToMono(this::toDecision);
-        };
-    }
+      return (auth, context) -> {
+         return opaWebClient.post()
+               .accept(MediaType.APPLICATION_JSON)
+               .contentType(MediaType.APPLICATION_JSON)
+               .body(toAuthorizationPayload(auth, context), Map.class)
+               .exchangeToMono(this::toDecision);
+      };
+   }
 
-    private Mono<AuthorizationDecision> toDecision(ClientResponse response) {
+   private Mono<AuthorizationDecision> toDecision(ClientResponse response) {
 
-        if (!response.statusCode().is2xxSuccessful()) {
-            return Mono.just(new AuthorizationDecision(false));
-        }
+      if (!response.statusCode().is2xxSuccessful()) {
+         return Mono.just(new AuthorizationDecision(false));
+      }
 
-        return response
-              .bodyToMono(ObjectNode.class)
-              .map(node -> {
-                  boolean authorized = node.path("result").path("authorized").asBoolean(false);
-                  return new AuthorizationDecision(authorized);
-              });
+      return response
+            .bodyToMono(ObjectNode.class)
+            .map(node -> {
+               boolean authorized = node.path("result").path("authorized").asBoolean(false);
+               return new AuthorizationDecision(authorized);
+            });
 
-    }
+   }
 
-    private Publisher<Map<String, Object>> toAuthorizationPayload(Mono<Authentication> auth, AuthorizationContext context) {
-        // @formatter:off
+   private Publisher<Map<String, Object>> toAuthorizationPayload(Mono<Authentication> auth, AuthorizationContext context) {
+      // @formatter:off
         return auth
               .defaultIfEmpty(new AnonymousAuthenticationToken("**ANONYMOUS**", new Object(), Arrays.asList(new SimpleGrantedAuthority("ANONYMOUS"))))
               .map(a -> {
@@ -99,5 +99,5 @@ public class SecurityConfiguration {
                   return input;
               });
         // @formatter:on
-    }
+   }
 }

@@ -19,18 +19,18 @@ import org.springframework.context.annotation.Configuration;
 // @ComponentScan (excludeFilters = @ComponentScan.Filter(type=FilterType.REGEX,pattern="cn\\.tuyucheng\\.taketoday\\.componentscan\\.springapp\\.flowers\\..*"))
 public class SpringComponentScanApp {
 
-    private static ApplicationContext applicationContext;
+   private static ApplicationContext applicationContext;
 
-    @Bean
-    public ExampleBean exampleBean() {
-        return new ExampleBean();
-    }
+   @Bean
+   public ExampleBean exampleBean() {
+      return new ExampleBean();
+   }
 
-    public static void main(String[] args) {
-        applicationContext = new AnnotationConfigApplicationContext(SpringComponentScanApp.class);
+   public static void main(String[] args) {
+      applicationContext = new AnnotationConfigApplicationContext(SpringComponentScanApp.class);
 
-        for (String beanName : applicationContext.getBeanDefinitionNames()) {
-            System.out.println(beanName);
-        }
-    }
+      for (String beanName : applicationContext.getBeanDefinitionNames()) {
+         System.out.println(beanName);
+      }
+   }
 }

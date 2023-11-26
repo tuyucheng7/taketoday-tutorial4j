@@ -13,19 +13,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PurchaseTransactionResponse {
-	private String id;
+   private String id;
 
-	private String paymentType;
+   private String paymentType;
 
-	private BigDecimal amount;
+   private BigDecimal amount;
 
-	private LocalDate createdAt;
+   private LocalDate createdAt;
 
-	public static PurchaseTransactionResponse valueOf(PurchaseTransaction purchaseTransaction) {
-		return builder()
-			.id(purchaseTransaction.getId())
-			.paymentType(purchaseTransaction.getPaymentType())
-			.amount(purchaseTransaction.getAmount())
-			.createdAt(purchaseTransaction.getCreatedAt()).build();
-	}
+   public static PurchaseTransactionResponse valueOf(PurchaseTransaction purchaseTransaction) {
+      return builder()
+            .id(purchaseTransaction.getId())
+            .paymentType(purchaseTransaction.getPaymentType())
+            .amount(purchaseTransaction.getAmount())
+            .createdAt(purchaseTransaction.getCreatedAt()).build();
+   }
 }

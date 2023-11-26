@@ -13,28 +13,28 @@ import java.util.concurrent.Executors;
 @Controller
 public class HelloController implements AutoCloseable {
 
-	private final ExecutorService executorService = Executors.newCachedThreadPool();
+   private final ExecutorService executorService = Executors.newCachedThreadPool();
 
-	private Logger logger = LoggerFactory.getLogger(HelloController.class);
+   private Logger logger = LoggerFactory.getLogger(HelloController.class);
 
-	@GetMapping(path = "/greeting")
-	public DeferredResult<String> hello(HttpServletResponse response) throws Exception {
-		DeferredResult<String> deferredResult = new DeferredResult<>();
-		executorService.submit(() -> perform(deferredResult));
-		return deferredResult;
-	}
+   @GetMapping(path = "/greeting")
+   public DeferredResult<String> hello(HttpServletResponse response) throws Exception {
+      DeferredResult<String> deferredResult = new DeferredResult<>();
+      executorService.submit(() -> perform(deferredResult));
+      return deferredResult;
+   }
 
-	private void perform(DeferredResult<String> dr) {
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		dr.setResult("OK");
-	}
+   private void perform(DeferredResult<String> dr) {
+      try {
+         Thread.sleep(10);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+      dr.setResult("OK");
+   }
 
-	@Override
-	public void close() throws Exception {
-		executorService.shutdownNow();
-	}
+   @Override
+   public void close() throws Exception {
+      executorService.shutdownNow();
+   }
 }

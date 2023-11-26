@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SpringSecurityPkceApplicationLiveTest {
 
-    @Test
-    void whenContextLoads_thenSuccess() {
-    }
+   @Test
+   void whenContextLoads_thenSuccess() {
+   }
 
 }

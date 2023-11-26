@@ -18,12 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {AntMatchersExampleApplication.class, SecurityConfiguration.class})
 class ProductControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void getProducts() throws Exception {
-		mockMvc.perform(get("/products"))
-			.andExpect(status().isOk());
-	}
+   @Test
+   void getProducts() throws Exception {
+      mockMvc.perform(get("/products"))
+            .andExpect(status().isOk());
+   }
 }

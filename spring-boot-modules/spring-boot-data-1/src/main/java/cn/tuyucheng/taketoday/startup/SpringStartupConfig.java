@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("cn.tuyucheng.taketoday.startup")
 public class SpringStartupConfig {
 
-	@Bean(initMethod = "init")
-	public InitMethodExampleBean initMethodExampleBean() {
-		return new InitMethodExampleBean();
-	}
+   @Bean(initMethod = "init")
+   public InitMethodExampleBean initMethodExampleBean() {
+      return new InitMethodExampleBean();
+   }
 }

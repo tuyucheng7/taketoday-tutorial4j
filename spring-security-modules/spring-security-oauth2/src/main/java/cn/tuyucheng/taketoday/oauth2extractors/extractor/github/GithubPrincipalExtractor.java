@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class GithubPrincipalExtractor implements PrincipalExtractor {
 
-    @Override
-    public Object extractPrincipal(Map<String, Object> map) {
-        return map.get("login");
-    }
+   @Override
+   public Object extractPrincipal(Map<String, Object> map) {
+      return map.get("login");
+   }
 }

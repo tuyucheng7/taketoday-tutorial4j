@@ -13,17 +13,17 @@ import java.util.UUID;
 @AllArgsConstructor
 public class FinancialInfo {
 
-	private String id;
+   private String id;
 
-	private String creditCardNumber;
+   private String creditCardNumber;
 
-	private String iban;
+   private String iban;
 
-	public static FinancialInfo valueOf(FinancialRequest financialInfo) {
-		return builder()
-			.id(UUID.randomUUID().toString())
-			.creditCardNumber(financialInfo.getCreditCardNumber())
-			.iban(financialInfo.getIban())
-			.build();
-	}
+   public static FinancialInfo valueOf(FinancialRequest financialInfo) {
+      return builder()
+            .id(UUID.randomUUID().toString())
+            .creditCardNumber(financialInfo.getCreditCardNumber())
+            .iban(financialInfo.getIban())
+            .build();
+   }
 }

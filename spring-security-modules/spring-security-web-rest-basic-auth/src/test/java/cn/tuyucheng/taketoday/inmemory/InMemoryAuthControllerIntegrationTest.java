@@ -16,33 +16,33 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest(classes = InMemoryAuthApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class InMemoryAuthControllerIntegrationTest {
 
-    @Autowired
-    private TestRestTemplate template;
+   @Autowired
+   private TestRestTemplate template;
 
-    @Test
-    public void givenRequestOnPublicService_shouldSucceedWith200() throws Exception {
-        ResponseEntity<String> result = template.getForEntity("/public/hello", String.class);
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-    }
+   @Test
+   public void givenRequestOnPublicService_shouldSucceedWith200() throws Exception {
+      ResponseEntity<String> result = template.getForEntity("/public/hello", String.class);
+      assertEquals(HttpStatus.OK, result.getStatusCode());
+   }
 
-    @Test
-    public void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
-        ResponseEntity<String> result = template.getForEntity("/private/hello", String.class);
-        assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
-    }
+   @Test
+   public void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
+      ResponseEntity<String> result = template.getForEntity("/private/hello", String.class);
+      assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
+   }
 
-    @Test
-    public void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
-        ResponseEntity<String> result = template.withBasicAuth("spring", "secret")
-              .getForEntity("/private/hello", String.class);
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-    }
+   @Test
+   public void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+      ResponseEntity<String> result = template.withBasicAuth("spring", "secret")
+            .getForEntity("/private/hello", String.class);
+      assertEquals(HttpStatus.OK, result.getStatusCode());
+   }
 
-    @Test
-    public void givenInvalidAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
-        ResponseEntity<String> result = template.withBasicAuth("spring", "wrong")
-              .getForEntity("/private/hello", String.class);
-        assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
-    }
+   @Test
+   public void givenInvalidAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+      ResponseEntity<String> result = template.withBasicAuth("spring", "wrong")
+            .getForEntity("/private/hello", String.class);
+      assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
+   }
 
 }

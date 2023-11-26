@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = DemoApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class DemoApplicationIntegrationTest {
 
-    @Test
-    public void contextLoads() {
-    }
+   @Test
+   public void contextLoads() {
+   }
 }

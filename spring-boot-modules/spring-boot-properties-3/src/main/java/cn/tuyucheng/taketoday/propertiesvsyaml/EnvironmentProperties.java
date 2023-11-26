@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnvironmentProperties {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	public String getSomeKey() {
-		return env.getProperty("key.something");
-	}
+   public String getSomeKey() {
+      return env.getProperty("key.something");
+   }
 }

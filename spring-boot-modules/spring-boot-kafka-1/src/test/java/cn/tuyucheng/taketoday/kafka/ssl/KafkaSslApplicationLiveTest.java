@@ -23,31 +23,31 @@ import static org.awaitility.Awaitility.await;
 @SpringBootTest(classes = KafkaSslApplication.class)
 class KafkaSslApplicationLiveTest {
 
-	private static final File KAFKA_COMPOSE_FILE = new File("src/test/resources/docker/docker-compose.yml");
-	private static final String KAFKA_SERVICE = "kafka";
-	private static final int SSL_PORT = 9093;
+   private static final File KAFKA_COMPOSE_FILE = new File("src/test/resources/docker/docker-compose.yml");
+   private static final String KAFKA_SERVICE = "kafka";
+   private static final int SSL_PORT = 9093;
 
-	@Container
-	public DockerComposeContainer<?> container =
-		new DockerComposeContainer<>(KAFKA_COMPOSE_FILE)
-			.withExposedService(KAFKA_SERVICE, SSL_PORT, Wait.forListeningPort());
+   @Container
+   public DockerComposeContainer<?> container =
+         new DockerComposeContainer<>(KAFKA_COMPOSE_FILE)
+               .withExposedService(KAFKA_SERVICE, SSL_PORT, Wait.forListeningPort());
 
-	@Autowired
-	private KafkaProducer kafkaProducer;
+   @Autowired
+   private KafkaProducer kafkaProducer;
 
-	@Autowired
-	private KafkaConsumer kafkaConsumer;
+   @Autowired
+   private KafkaConsumer kafkaConsumer;
 
-	@Test
-	void givenSslIsConfigured_whenProducerSendsMessageOverSsl_thenConsumerReceivesOverSsl() {
-		String message = generateSampleMessage();
-		kafkaProducer.sendMessage(message, KafkaConsumer.TOPIC);
+   @Test
+   void givenSslIsConfigured_whenProducerSendsMessageOverSsl_thenConsumerReceivesOverSsl() {
+      String message = generateSampleMessage();
+      kafkaProducer.sendMessage(message, KafkaConsumer.TOPIC);
 
-		await().atMost(Duration.ofMinutes(2))
-			.untilAsserted(() -> assertThat(kafkaConsumer.messages).containsExactly(message));
-	}
+      await().atMost(Duration.ofMinutes(2))
+            .untilAsserted(() -> assertThat(kafkaConsumer.messages).containsExactly(message));
+   }
 
-	private static String generateSampleMessage() {
-		return UUID.randomUUID().toString();
-	}
+   private static String generateSampleMessage() {
+      return UUID.randomUUID().toString();
+   }
 }

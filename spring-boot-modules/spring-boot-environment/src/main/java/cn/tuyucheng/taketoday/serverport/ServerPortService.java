@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServerPortService {
-    private int port;
+   private int port;
 
-    public int getPort() {
-        return port;
-    }
+   public int getPort() {
+      return port;
+   }
 
-    @EventListener
-    public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
-        port = event.getWebServer().getPort();
-    }
+   @EventListener
+   public void onApplicationEvent(final ServletWebServerInitializedEvent event) {
+      port = event.getWebServer().getPort();
+   }
 }

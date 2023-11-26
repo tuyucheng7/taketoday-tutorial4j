@@ -20,61 +20,61 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @PropertySource("classpath:/application-extrafields.properties")
 public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpSecurity> {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+   @Autowired
+   private UserDetailsService userDetailsService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+   @Autowired
+   private PasswordEncoder passwordEncoder;
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
-        http.addFilterBefore(authenticationFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
-    }
+   @Override
+   public void configure(HttpSecurity http) throws Exception {
+      AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
+      http.addFilterBefore(authenticationFilter(authenticationManager), UsernamePasswordAuthenticationFilter.class);
+   }
 
-    public static SecurityConfig securityConfig() {
-        return new SecurityConfig();
-    }
+   public static SecurityConfig securityConfig() {
+      return new SecurityConfig();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/css/**", "/index")
-              .permitAll()
-              .antMatchers("/user/**")
-              .authenticated()
-              .and()
-              .formLogin()
-              .loginPage("/login")
-              .and()
-              .logout()
-              .logoutUrl("/logout")
-              .and()
-              .apply(securityConfig());
-        return http.getOrBuild();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/css/**", "/index")
+            .permitAll()
+            .antMatchers("/user/**")
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .and()
+            .logout()
+            .logoutUrl("/logout")
+            .and()
+            .apply(securityConfig());
+      return http.getOrBuild();
+   }
 
-    public SimpleAuthenticationFilter authenticationFilter(AuthenticationManager authenticationManager) throws Exception {
-        SimpleAuthenticationFilter filter = new SimpleAuthenticationFilter();
-        filter.setAuthenticationManager(authenticationManager);
-        filter.setAuthenticationFailureHandler(failureHandler());
-        return filter;
-    }
+   public SimpleAuthenticationFilter authenticationFilter(AuthenticationManager authenticationManager) throws Exception {
+      SimpleAuthenticationFilter filter = new SimpleAuthenticationFilter();
+      filter.setAuthenticationManager(authenticationManager);
+      filter.setAuthenticationFailureHandler(failureHandler());
+      return filter;
+   }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider());
-    }
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth.authenticationProvider(authProvider());
+   }
 
-    public AuthenticationProvider authProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder);
-        return provider;
-    }
+   public AuthenticationProvider authProvider() {
+      DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+      provider.setUserDetailsService(userDetailsService);
+      provider.setPasswordEncoder(passwordEncoder);
+      return provider;
+   }
 
-    public SimpleUrlAuthenticationFailureHandler failureHandler() {
-        return new SimpleUrlAuthenticationFailureHandler("/login?error=true");
-    }
+   public SimpleUrlAuthenticationFailureHandler failureHandler() {
+      return new SimpleUrlAuthenticationFailureHandler("/login?error=true");
+   }
 
 }

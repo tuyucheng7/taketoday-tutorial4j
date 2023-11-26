@@ -14,16 +14,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/hotel")
 public class HotelController {
-	private final HotelService hotelService;
+   private final HotelService hotelService;
 
-	@Autowired
-	public HotelController(HotelService hotelService) {
-		this.hotelService = hotelService;
-	}
+   @Autowired
+   public HotelController(HotelService hotelService) {
+      this.hotelService = hotelService;
+   }
 
-	@GetMapping
-	@ResponseStatus(HttpStatus.OK)
-	public List<Hotel> getAllHotels() {
-		return hotelService.getAllHotels();
-	}
+   @GetMapping
+   @ResponseStatus(HttpStatus.OK)
+   public List<Hotel> getAllHotels() {
+      return hotelService.getAllHotels();
+   }
 }

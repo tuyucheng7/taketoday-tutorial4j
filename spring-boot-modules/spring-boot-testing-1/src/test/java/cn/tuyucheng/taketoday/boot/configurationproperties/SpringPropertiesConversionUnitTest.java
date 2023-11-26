@@ -19,24 +19,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource("classpath:spring-conversion-test.properties")
 class SpringPropertiesConversionUnitTest {
 
-	@Autowired
-	private PropertyConversion propertyConversion;
+   @Autowired
+   private PropertyConversion propertyConversion;
 
-	@Test
-	void whenUsingSpringDefaultSizeConversion_thenDataSizeObjectIsSet() {
-		assertEquals(DataSize.ofMegabytes(500), propertyConversion.getUploadSpeed());
-		assertEquals(DataSize.ofGigabytes(10), propertyConversion.getDownloadSpeed());
-	}
+   @Test
+   void whenUsingSpringDefaultSizeConversion_thenDataSizeObjectIsSet() {
+      assertEquals(DataSize.ofMegabytes(500), propertyConversion.getUploadSpeed());
+      assertEquals(DataSize.ofGigabytes(10), propertyConversion.getDownloadSpeed());
+   }
 
-	@Test
-	void whenUsingSpringDefaultDurationConversion_thenDurationObjectIsSet() {
-		assertEquals(Duration.ofDays(1), propertyConversion.getBackupDay());
-		assertEquals(Duration.ofHours(8), propertyConversion.getBackupHour());
-	}
+   @Test
+   void whenUsingSpringDefaultDurationConversion_thenDurationObjectIsSet() {
+      assertEquals(Duration.ofDays(1), propertyConversion.getBackupDay());
+      assertEquals(Duration.ofHours(8), propertyConversion.getBackupHour());
+   }
 
-	@Test
-	void whenRegisteringCustomCredentialsConverter_thenCredentialsAreParsed() {
-		assertEquals("user", propertyConversion.getCredentials().getUsername());
-		assertEquals("123", propertyConversion.getCredentials().getPassword());
-	}
+   @Test
+   void whenRegisteringCustomCredentialsConverter_thenCredentialsAreParsed() {
+      assertEquals("user", propertyConversion.getCredentials().getUsername());
+      assertEquals("123", propertyConversion.getCredentials().getPassword());
+   }
 }

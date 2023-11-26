@@ -25,134 +25,134 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = SpringBootPropertiesTestApplication.class)
 public class PropertiesReloadManualTest {
 
-	protected MockMvc mvc;
+   protected MockMvc mvc;
 
-	protected long refreshDelay = 3000;
+   protected long refreshDelay = 3000;
 
-	@Autowired
-	WebApplicationContext webApplicationContext;
+   @Autowired
+   WebApplicationContext webApplicationContext;
 
-	@Autowired
-	ValueRefreshConfigBean valueRefreshConfigBean;
+   @Autowired
+   ValueRefreshConfigBean valueRefreshConfigBean;
 
-	@Autowired
-	ConfigurationPropertiesRefreshConfigBean configurationPropertiesRefreshConfigBean;
+   @Autowired
+   ConfigurationPropertiesRefreshConfigBean configurationPropertiesRefreshConfigBean;
 
-	@Autowired
-	EnvironmentConfigBean environmentConfigBean;
+   @Autowired
+   EnvironmentConfigBean environmentConfigBean;
 
-	@Autowired
-	PropertiesConfigBean propertiesConfigBean;
+   @Autowired
+   PropertiesConfigBean propertiesConfigBean;
 
-	@Autowired
-	@Qualifier("singletonValueRefreshConfigBean")
-	ValueRefreshConfigBean singletonValueRefreshConfigBean;
+   @Autowired
+   @Qualifier("singletonValueRefreshConfigBean")
+   ValueRefreshConfigBean singletonValueRefreshConfigBean;
 
 
-	@BeforeEach
-	public void setUp() throws Exception {
-		mvc = MockMvcBuilders
-			.webAppContextSetup(webApplicationContext)
-			.build();
-		createConfig("extra.properties", "application.theme.color", "blue");
-		createConfig("extra2.properties", "application.theme.background", "red");
-		Thread.sleep(refreshDelay);
-		callRefresh();
-	}
+   @BeforeEach
+   public void setUp() throws Exception {
+      mvc = MockMvcBuilders
+            .webAppContextSetup(webApplicationContext)
+            .build();
+      createConfig("extra.properties", "application.theme.color", "blue");
+      createConfig("extra2.properties", "application.theme.background", "red");
+      Thread.sleep(refreshDelay);
+      callRefresh();
+   }
 
-	@AfterEach
-	public void tearDown() throws Exception {
-		createConfig("extra.properties", "application.theme.color", "blue");
-		createConfig("extra2.properties", "application.theme.background", "red");
-	}
+   @AfterEach
+   public void tearDown() throws Exception {
+      createConfig("extra.properties", "application.theme.color", "blue");
+      createConfig("extra2.properties", "application.theme.background", "red");
+   }
 
-	@Test
-	public void givenEnvironmentReader_whenColorChanged_thenExpectChangeValue() throws Exception {
-		assertEquals("blue", environmentConfigBean.getColor());
+   @Test
+   public void givenEnvironmentReader_whenColorChanged_thenExpectChangeValue() throws Exception {
+      assertEquals("blue", environmentConfigBean.getColor());
 
-		createConfig("extra.properties", "application.theme.color", "red");
-		Thread.sleep(refreshDelay);
+      createConfig("extra.properties", "application.theme.color", "red");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("red", environmentConfigBean.getColor());
-	}
+      assertEquals("red", environmentConfigBean.getColor());
+   }
 
-	@Test
-	public void givenEnvironmentReader_whenBackgroundChanged_thenExpectChangeValue() throws Exception {
-		assertEquals("red", environmentConfigBean.getBackgroundColor());
+   @Test
+   public void givenEnvironmentReader_whenBackgroundChanged_thenExpectChangeValue() throws Exception {
+      assertEquals("red", environmentConfigBean.getBackgroundColor());
 
-		createConfig("extra2.properties", "application.theme.background", "blue");
-		Thread.sleep(refreshDelay);
+      createConfig("extra2.properties", "application.theme.background", "blue");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("blue", environmentConfigBean.getBackgroundColor());
-	}
+      assertEquals("blue", environmentConfigBean.getBackgroundColor());
+   }
 
-	@Test
-	public void givenPropertiesReader_whenColorChanged_thenExpectChangeValue() throws Exception {
-		assertEquals("blue", propertiesConfigBean.getColor());
+   @Test
+   public void givenPropertiesReader_whenColorChanged_thenExpectChangeValue() throws Exception {
+      assertEquals("blue", propertiesConfigBean.getColor());
 
-		createConfig("extra.properties", "application.theme.color", "red");
-		Thread.sleep(refreshDelay);
+      createConfig("extra.properties", "application.theme.color", "red");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("red", propertiesConfigBean.getColor());
-	}
+      assertEquals("red", propertiesConfigBean.getColor());
+   }
 
-	@Test
-	public void givenRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
-		assertEquals("blue", valueRefreshConfigBean.getColor());
+   @Test
+   public void givenRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
+      assertEquals("blue", valueRefreshConfigBean.getColor());
 
-		createConfig("extra.properties", "application.theme.color", "red");
-		Thread.sleep(refreshDelay);
+      createConfig("extra.properties", "application.theme.color", "red");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("blue", valueRefreshConfigBean.getColor());
+      assertEquals("blue", valueRefreshConfigBean.getColor());
 
-		callRefresh();
+      callRefresh();
 
-		assertEquals("red", valueRefreshConfigBean.getColor());
-	}
+      assertEquals("red", valueRefreshConfigBean.getColor());
+   }
 
-	@Test
-	public void givenSingletonRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectOldValue() throws Exception {
-		assertEquals("blue", singletonValueRefreshConfigBean.getColor());
+   @Test
+   public void givenSingletonRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectOldValue() throws Exception {
+      assertEquals("blue", singletonValueRefreshConfigBean.getColor());
 
-		createConfig("extra.properties", "application.theme.color", "red");
-		Thread.sleep(refreshDelay);
+      createConfig("extra.properties", "application.theme.color", "red");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("blue", singletonValueRefreshConfigBean.getColor());
+      assertEquals("blue", singletonValueRefreshConfigBean.getColor());
 
-		callRefresh();
+      callRefresh();
 
-		assertEquals("blue", singletonValueRefreshConfigBean.getColor());
-	}
+      assertEquals("blue", singletonValueRefreshConfigBean.getColor());
+   }
 
-	@Test
-	public void givenRefreshScopedConfigurationPropertiesReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
-		assertEquals("blue", configurationPropertiesRefreshConfigBean.getColor());
+   @Test
+   public void givenRefreshScopedConfigurationPropertiesReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
+      assertEquals("blue", configurationPropertiesRefreshConfigBean.getColor());
 
-		createConfig("extra.properties", "application.theme.color", "red");
-		Thread.sleep(refreshDelay);
+      createConfig("extra.properties", "application.theme.color", "red");
+      Thread.sleep(refreshDelay);
 
-		assertEquals("blue", configurationPropertiesRefreshConfigBean.getColor());
+      assertEquals("blue", configurationPropertiesRefreshConfigBean.getColor());
 
-		callRefresh();
+      callRefresh();
 
-		assertEquals("red", configurationPropertiesRefreshConfigBean.getColor());
-	}
+      assertEquals("red", configurationPropertiesRefreshConfigBean.getColor());
+   }
 
-	public void callRefresh() throws Exception {
-		MvcResult mvcResult = mvc
-			.perform(MockMvcRequestBuilders
-				.post("/actuator/refresh")
-				.accept(MediaType.APPLICATION_JSON_VALUE))
-			.andReturn();
-		MockHttpServletResponse response = mvcResult.getResponse();
-		assertEquals(200, response.getStatus());
-	}
+   public void callRefresh() throws Exception {
+      MvcResult mvcResult = mvc
+            .perform(MockMvcRequestBuilders
+                  .post("/actuator/refresh")
+                  .accept(MediaType.APPLICATION_JSON_VALUE))
+            .andReturn();
+      MockHttpServletResponse response = mvcResult.getResponse();
+      assertEquals(200, response.getStatus());
+   }
 
-	public void createConfig(String file, String key, String value) throws Exception {
-		FileOutputStream fo = new FileOutputStream(file);
-		fo.write(String
-			.format("%s=%s", key, value)
-			.getBytes());
-		fo.close();
-	}
+   public void createConfig(String file, String key, String value) throws Exception {
+      FileOutputStream fo = new FileOutputStream(file);
+      fo.write(String
+            .format("%s=%s", key, value)
+            .getBytes());
+      fo.close();
+   }
 }

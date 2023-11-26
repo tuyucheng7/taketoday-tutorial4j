@@ -19,30 +19,30 @@ import java.util.stream.Collectors;
 @RequestMapping("/user")
 public class UserRestController {
 
-    @GetMapping("/authorities")
-    @PreAuthorize("hasAuthority(@jwtGrantedAuthoritiesPrefix + 'profile.read')")
-    public Map<String, Object> getPrincipalInfo(JwtAuthenticationToken principal) {
+   @GetMapping("/authorities")
+   @PreAuthorize("hasAuthority(@jwtGrantedAuthoritiesPrefix + 'profile.read')")
+   public Map<String, Object> getPrincipalInfo(JwtAuthenticationToken principal) {
 
-        Collection<String> authorities = principal.getAuthorities()
-              .stream()
-              .map(GrantedAuthority::getAuthority)
-              .collect(Collectors.toList());
+      Collection<String> authorities = principal.getAuthorities()
+            .stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.toList());
 
-        Map<String, Object> info = new HashMap<>();
-        info.put("name", principal.getName());
-        info.put("authorities", authorities);
-        info.put("tokenAttributes", principal.getTokenAttributes());
+      Map<String, Object> info = new HashMap<>();
+      info.put("name", principal.getName());
+      info.put("authorities", authorities);
+      info.put("tokenAttributes", principal.getTokenAttributes());
 
-        if (principal instanceof AccountToken) {
-            info.put("account", ((AccountToken) principal).getAccount());
-        }
+      if (principal instanceof AccountToken) {
+         info.put("account", ((AccountToken) principal).getAccount());
+      }
 
-        return info;
-    }
+      return info;
+   }
 
-    @GetMapping("/account/{accountNumber}")
-    @PreAuthorize("authentication.account.accountNumber == #accountNumber")
-    public Account getAccountById(@PathVariable("accountNumber") String accountNumber, AccountToken authentication) {
-        return authentication.getAccount();
-    }
+   @GetMapping("/account/{accountNumber}")
+   @PreAuthorize("authentication.account.accountNumber == #accountNumber")
+   public Account getAccountById(@PathVariable("accountNumber") String accountNumber, AccountToken authentication) {
+      return authentication.getAccount();
+   }
 }

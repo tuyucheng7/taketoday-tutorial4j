@@ -20,30 +20,30 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 @ContextHierarchy({@ContextConfiguration(classes = ParentConfig.class), @ContextConfiguration(classes = ChildConfig.class)})
 class ParentChildPropertySourcePropertiesIntegrationTest {
 
-	@Autowired
-	private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-	@Test
-	void givenPropertySource_whenGetPropertyUsingEnv_thenCorrect() {
-		final Environment childEnv = wac.getEnvironment();
-		final Environment parentEnv = wac.getParent().getEnvironment();
+   @Test
+   void givenPropertySource_whenGetPropertyUsingEnv_thenCorrect() {
+      final Environment childEnv = wac.getEnvironment();
+      final Environment parentEnv = wac.getParent().getEnvironment();
 
-		assertEquals("parent", parentEnv.getProperty("parent.name"));
-		assertNull(parentEnv.getProperty("child.name"));
+      assertEquals("parent", parentEnv.getProperty("parent.name"));
+      assertNull(parentEnv.getProperty("child.name"));
 
-		assertEquals("parent", childEnv.getProperty("parent.name"));
-		assertEquals("child", childEnv.getProperty("child.name"));
-	}
+      assertEquals("parent", childEnv.getProperty("parent.name"));
+      assertEquals("child", childEnv.getProperty("child.name"));
+   }
 
-	@Test
-	void givenPropertySource_whenGetPropertyUsingValueAnnotation_thenCorrect() {
-		final ChildValueHolder childValueHolder = wac.getBean(ChildValueHolder.class);
-		final ParentValueHolder parentValueHolder = wac.getParent().getBean(ParentValueHolder.class);
+   @Test
+   void givenPropertySource_whenGetPropertyUsingValueAnnotation_thenCorrect() {
+      final ChildValueHolder childValueHolder = wac.getBean(ChildValueHolder.class);
+      final ParentValueHolder parentValueHolder = wac.getParent().getBean(ParentValueHolder.class);
 
-		assertEquals("parent", parentValueHolder.getParentName());
-		assertEquals("-", parentValueHolder.getChildName());
+      assertEquals("parent", parentValueHolder.getParentName());
+      assertEquals("-", parentValueHolder.getChildName());
 
-		assertEquals("parent", childValueHolder.getParentName());
-		assertEquals("child", childValueHolder.getChildName());
-	}
+      assertEquals("parent", childValueHolder.getParentName());
+      assertEquals("child", childValueHolder.getChildName());
+   }
 }

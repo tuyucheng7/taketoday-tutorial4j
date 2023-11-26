@@ -8,12 +8,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class NashornApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(NashornApplication.class);
-	}
+   @Override
+   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+      return application.sources(NashornApplication.class);
+   }
 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(NashornApplication.class, args);
-	}
+   public static void main(String[] args) throws Exception {
+      SpringApplication.run(NashornApplication.class, args);
+   }
 }

@@ -16,26 +16,26 @@ import static org.hamcrest.Matchers.notNullValue;
 @Transactional
 class FooRepositoryIntegrationTest extends DemoApplicationIntegrationTest {
 
-    @Autowired
-    private FooRepository fooRepository;
+   @Autowired
+   private FooRepository fooRepository;
 
-    @BeforeEach
-    void setUp() {
-        fooRepository.save(new Foo("Foo"));
-        fooRepository.save(new Foo("Bar"));
-    }
+   @BeforeEach
+   void setUp() {
+      fooRepository.save(new Foo("Foo"));
+      fooRepository.save(new Foo("Bar"));
+   }
 
-    @Test
-    void testFindByName() {
-        Foo foo = fooRepository.findByName("Bar");
+   @Test
+   void testFindByName() {
+      Foo foo = fooRepository.findByName("Bar");
 
-        assertThat(foo, notNullValue());
-        assertThat(foo.getId(), notNullValue());
-        assertThat(foo.getName(), is("Bar"));
-    }
+      assertThat(foo, notNullValue());
+      assertThat(foo.getId(), notNullValue());
+      assertThat(foo.getName(), is("Bar"));
+   }
 
-    @AfterEach
-    void tearDown() {
-        fooRepository.deleteAll();
-    }
+   @AfterEach
+   void tearDown() {
+      fooRepository.deleteAll();
+   }
 }

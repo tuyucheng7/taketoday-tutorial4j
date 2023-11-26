@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Bean;
 // @ComponentScan ( excludeFilters = @ComponentScan.Filter(type=FilterType.REGEX,pattern="cn\\.tuyucheng\\.taketoday\\.componentscan\\.springbootapp\\.flowers\\..*"))
 // @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = Rose.class))
 public class SpringBootComponentScanApp {
-    private static ApplicationContext applicationContext;
+   private static ApplicationContext applicationContext;
 
-    @Bean
-    public ExampleBean exampleBean() {
-        return new ExampleBean();
-    }
+   @Bean
+   public ExampleBean exampleBean() {
+      return new ExampleBean();
+   }
 
-    public static void main(String[] args) {
-        applicationContext = SpringApplication.run(SpringBootComponentScanApp.class, args);
-        checkBeansPresence("cat", "dog", "rose", "exampleBean", "springBootApp");
+   public static void main(String[] args) {
+      applicationContext = SpringApplication.run(SpringBootComponentScanApp.class, args);
+      checkBeansPresence("cat", "dog", "rose", "exampleBean", "springBootApp");
 
-    }
+   }
 
-    private static void checkBeansPresence(String... beans) {
-        for (String beanName : beans) {
-            System.out.println("Is " + beanName + " in ApplicationContext: " + applicationContext.containsBean(beanName));
-        }
-    }
+   private static void checkBeansPresence(String... beans) {
+      for (String beanName : beans) {
+         System.out.println("Is " + beanName + " in ApplicationContext: " + applicationContext.containsBean(beanName));
+      }
+   }
 }

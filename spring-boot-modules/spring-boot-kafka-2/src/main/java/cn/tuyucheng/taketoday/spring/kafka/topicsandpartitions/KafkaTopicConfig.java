@@ -13,18 +13,18 @@ import java.util.Map;
 @Configuration
 public class KafkaTopicConfig {
 
-    @Value(value = "${spring.kafka.bootstrap-servers}")
-    private String bootstrapAddress;
+   @Value(value = "${spring.kafka.bootstrap-servers}")
+   private String bootstrapAddress;
 
-    public KafkaAdmin kafkaAdmin() {
-        Map<String, Object> configs = new HashMap<>();
-        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        return new KafkaAdmin(configs);
-    }
+   public KafkaAdmin kafkaAdmin() {
+      Map<String, Object> configs = new HashMap<>();
+      configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+      return new KafkaAdmin(configs);
+   }
 
-    public NewTopic celciusTopic() {
-        return TopicBuilder.name("celcius-scale-topic")
-                .partitions(2)
-                .build();
-    }
+   public NewTopic celciusTopic() {
+      return TopicBuilder.name("celcius-scale-topic")
+            .partitions(2)
+            .build();
+   }
 }

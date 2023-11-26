@@ -15,30 +15,30 @@ import java.util.List;
 @Getter
 @ToString
 public class ChatRequest {
-	/**
-	 * A constant string value representing the user role.
-	 * This string is used to indicate the role of a user in the for the chat.
-	 */
-	private static final String USER_ROLE = "user";
+   /**
+    * A constant string value representing the user role.
+    * This string is used to indicate the role of a user in the for the chat.
+    */
+   private static final String USER_ROLE = "user";
 
-	/**
-	 * The name of the model to use for the chat conversation.
-	 */
-	private String model;
-	/**
-	 * The list of messages in the chat conversation.
-	 */
-	private List<Message> messages;
+   /**
+    * The name of the model to use for the chat conversation.
+    */
+   private String model;
+   /**
+    * The list of messages in the chat conversation.
+    */
+   private List<Message> messages;
 
-	/**
-	 * Creates a new ChatRequest instance with the specified model name and prompt message.
-	 *
-	 * @param model  the name of the model to use for the chat conversation
-	 * @param prompt the prompt message for the conversation
-	 */
-	public ChatRequest(String model, String prompt) {
-		this.model = model;
-		this.messages = new ArrayList<>();
-		this.messages.add(new Message(USER_ROLE, prompt));
-	}
+   /**
+    * Creates a new ChatRequest instance with the specified model name and prompt message.
+    *
+    * @param model  the name of the model to use for the chat conversation
+    * @param prompt the prompt message for the conversation
+    */
+   public ChatRequest(String model, String prompt) {
+      this.model = model;
+      this.messages = new ArrayList<>();
+      this.messages.add(new Message(USER_ROLE, prompt));
+   }
 }

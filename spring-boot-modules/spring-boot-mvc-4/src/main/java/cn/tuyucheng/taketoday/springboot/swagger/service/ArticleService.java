@@ -9,14 +9,14 @@ import java.util.List;
 @Service
 public class ArticleService {
 
-    private List<Article> articles = new ArrayList<>();
+   private List<Article> articles = new ArrayList<>();
 
-    public List<Article> getAllArticles() {
-        return articles;
-    }
+   public List<Article> getAllArticles() {
+      return articles;
+   }
 
-    public void addArticle(Article article) {
-        article.setId(articles.size() + 1);
-        articles.add(article);
-    }
+   public void addArticle(Article article) {
+      article.setId(articles.size() + 1);
+      articles.add(article);
+   }
 }

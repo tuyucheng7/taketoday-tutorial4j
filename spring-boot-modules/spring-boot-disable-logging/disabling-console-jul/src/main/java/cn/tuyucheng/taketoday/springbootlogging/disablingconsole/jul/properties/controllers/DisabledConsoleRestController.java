@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 @RestController
 public class DisabledConsoleRestController {
 
-    private static final Logger LOG = Logger.getLogger(DisabledConsoleRestController.class.getName());
+   private static final Logger LOG = Logger.getLogger(DisabledConsoleRestController.class.getName());
 
-    @GetMapping("/disabled-console-jul-properties")
-    public String logTime() {
-        LOG.info("Current time: " + LocalTime.now());
-        return "finished!";
-    }
+   @GetMapping("/disabled-console-jul-properties")
+   public String logTime() {
+      LOG.info("Current time: " + LocalTime.now());
+      return "finished!";
+   }
 }

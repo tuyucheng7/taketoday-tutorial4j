@@ -12,19 +12,19 @@ import javax.ws.rs.core.SecurityContext;
 
 @Path("/")
 public class JerseyResource {
-    @GET
-    @Path("login")
-    @Produces(MediaType.TEXT_HTML)
-    public String login() {
-        return "Log in with <a href=\"/oauth2/authorization/github\">GitHub</a>";
-    }
+   @GET
+   @Path("login")
+   @Produces(MediaType.TEXT_HTML)
+   public String login() {
+      return "Log in with <a href=\"/oauth2/authorization/github\">GitHub</a>";
+   }
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String home(@Context SecurityContext securityContext) {
-        OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken) securityContext.getUserPrincipal();
-        OAuth2AuthenticatedPrincipal authenticatedPrincipal = authenticationToken.getPrincipal();
-        String userName = authenticatedPrincipal.getAttribute("login");
-        return "Hello " + userName;
-    }
+   @GET
+   @Produces(MediaType.TEXT_PLAIN)
+   public String home(@Context SecurityContext securityContext) {
+      OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken) securityContext.getUserPrincipal();
+      OAuth2AuthenticatedPrincipal authenticatedPrincipal = authenticationToken.getPrincipal();
+      String userName = authenticatedPrincipal.getAttribute("login");
+      return "Hello " + userName;
+   }
 }

@@ -15,34 +15,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = GreeterSampleApplication.class)
 class GreeterSampleApplicationIntegrationTest {
 
-    @Autowired
-    private Greeter greeter;
+   @Autowired
+   private Greeter greeter;
 
-    @Test
-    void givenMorningTime_ifMorningMessage_thenSuccess() {
-        String expected = "Hello Tuyucheng, Good Morning";
-        String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 6, 0));
-        assertEquals(expected, actual);
-    }
+   @Test
+   void givenMorningTime_ifMorningMessage_thenSuccess() {
+      String expected = "Hello Tuyucheng, Good Morning";
+      String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 6, 0));
+      assertEquals(expected, actual);
+   }
 
-    @Test
-    void givenAfternoonTime_ifAfternoonMessage_thenSuccess() {
-        String expected = "Hello Tuyucheng, Woha Afternoon";
-        String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 13, 0));
-        assertEquals(expected, actual);
-    }
+   @Test
+   void givenAfternoonTime_ifAfternoonMessage_thenSuccess() {
+      String expected = "Hello Tuyucheng, Woha Afternoon";
+      String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 13, 0));
+      assertEquals(expected, actual);
+   }
 
-    @Test
-    void givenEveningTime_ifEveningMessage_thenSuccess() {
-        String expected = "Hello Tuyucheng, Good Evening";
-        String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 19, 0));
-        assertEquals(expected, actual);
-    }
+   @Test
+   void givenEveningTime_ifEveningMessage_thenSuccess() {
+      String expected = "Hello Tuyucheng, Good Evening";
+      String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 19, 0));
+      assertEquals(expected, actual);
+   }
 
-    @Test
-    void givenNightTime_ifNightMessage_thenSuccess() {
-        String expected = "Hello Tuyucheng, Good Night";
-        String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 21, 0));
-        assertEquals(expected, actual);
-    }
+   @Test
+   void givenNightTime_ifNightMessage_thenSuccess() {
+      String expected = "Hello Tuyucheng, Good Night";
+      String actual = greeter.greet(LocalDateTime.of(2017, 3, 1, 21, 0));
+      assertEquals(expected, actual);
+   }
 }

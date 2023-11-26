@@ -14,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/application-context.xml")
 public class EmployeeServiceAppContextIntegrationTest {
 
-	@Autowired
-	private EmployeeService service;
+   @Autowired
+   private EmployeeService service;
 
-	@Test
-	public void whenContextLoads_thenServiceISNotNull() {
-		assertThat(service).isNotNull();
-	}
+   @Test
+   public void whenContextLoads_thenServiceISNotNull() {
+      assertThat(service).isNotNull();
+   }
 }

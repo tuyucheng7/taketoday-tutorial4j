@@ -9,12 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.controller.circularviewpath")
 public class CircularViewPathApplication {
 
-    /**
-     * Launches a Spring Boot application
-     *
-     * @param args null
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(CircularViewPathApplication.class, args);
-    }
+   /**
+    * Launches a Spring Boot application
+    *
+    * @param args null
+    */
+   public static void main(String[] args) {
+      SpringApplication.run(CircularViewPathApplication.class, args);
+   }
 }

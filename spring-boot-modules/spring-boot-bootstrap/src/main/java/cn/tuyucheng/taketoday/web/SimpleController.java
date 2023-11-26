@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SimpleController {
 
-    @Value("${spring.application.name}")
-    String appName;
+   @Value("${spring.application.name}")
+   String appName;
 
-    @RequestMapping("/")
-    public String homePage(Model model) {
-        model.addAttribute("appName", appName);
-        return "home";
-    }
+   @RequestMapping("/")
+   public String homePage(Model model) {
+      model.addAttribute("appName", appName);
+      return "home";
+   }
 }

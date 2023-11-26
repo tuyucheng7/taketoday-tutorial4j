@@ -14,13 +14,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class PurchaseTransaction {
 
-	private String id;
+   private String id;
 
-	private String customerId;
+   private String customerId;
 
-	private String paymentType;
+   private String paymentType;
 
-	private BigDecimal amount;
+   private BigDecimal amount;
 
-	private LocalDate createdAt;
+   private LocalDate createdAt;
 }

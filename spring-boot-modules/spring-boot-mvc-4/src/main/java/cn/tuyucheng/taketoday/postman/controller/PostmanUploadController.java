@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.postman.controller;
 
+import cn.tuyucheng.taketoday.postman.model.JsonRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-
-import cn.tuyucheng.taketoday.postman.model.JsonRequest;
 
 @Controller
 public class PostmanUploadController {

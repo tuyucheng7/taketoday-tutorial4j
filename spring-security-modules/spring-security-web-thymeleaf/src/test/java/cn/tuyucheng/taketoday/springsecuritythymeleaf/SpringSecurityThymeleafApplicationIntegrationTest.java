@@ -13,15 +13,15 @@ import static org.junit.Assert.assertNotNull;
 @SpringBootTest
 public class SpringSecurityThymeleafApplicationIntegrationTest {
 
-    @Autowired
-    ViewController viewController;
-    @Autowired
-    WebApplicationContext wac;
+   @Autowired
+   ViewController viewController;
+   @Autowired
+   WebApplicationContext wac;
 
-    @Test
-    public void whenConfigured_thenLoadsContext() {
-        assertNotNull(viewController);
-        assertNotNull(wac);
-    }
+   @Test
+   public void whenConfigured_thenLoadsContext() {
+      assertNotNull(viewController);
+      assertNotNull(wac);
+   }
 
 }

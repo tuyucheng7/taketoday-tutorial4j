@@ -15,33 +15,33 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class CustomAuthorizationManager<T> implements AuthorizationManager<MethodInvocation> {
-    private final AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
+   private final AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
 
-    @Override
-    public AuthorizationDecision check(Supplier<Authentication> authentication, MethodInvocation methodInvocation) {
+   @Override
+   public AuthorizationDecision check(Supplier<Authentication> authentication, MethodInvocation methodInvocation) {
 
-        if (hasAuthentication(authentication.get())) {
+      if (hasAuthentication(authentication.get())) {
 
-            Policy policyAnnotation = AnnotationUtils.findAnnotation(methodInvocation.getMethod(), Policy.class);
+         Policy policyAnnotation = AnnotationUtils.findAnnotation(methodInvocation.getMethod(), Policy.class);
 
-            SecurityUser user = (SecurityUser) authentication.get()
-                  .getPrincipal();
+         SecurityUser user = (SecurityUser) authentication.get()
+               .getPrincipal();
 
-            return new AuthorizationDecision(Optional.ofNullable(policyAnnotation)
-                  .map(Policy::value)
-                  .filter(policy -> policy == PolicyEnum.OPEN || (policy == PolicyEnum.RESTRICTED && user.hasAccessToRestrictedPolicy()))
-                  .isPresent());
+         return new AuthorizationDecision(Optional.ofNullable(policyAnnotation)
+               .map(Policy::value)
+               .filter(policy -> policy == PolicyEnum.OPEN || (policy == PolicyEnum.RESTRICTED && user.hasAccessToRestrictedPolicy()))
+               .isPresent());
 
-        }
+      }
 
-        return new AuthorizationDecision(false);
-    }
+      return new AuthorizationDecision(false);
+   }
 
-    private boolean hasAuthentication(Authentication authentication) {
-        return authentication != null && isNotAnonymous(authentication) && authentication.isAuthenticated();
-    }
+   private boolean hasAuthentication(Authentication authentication) {
+      return authentication != null && isNotAnonymous(authentication) && authentication.isAuthenticated();
+   }
 
-    private boolean isNotAnonymous(Authentication authentication) {
-        return !this.trustResolver.isAnonymous(authentication);
-    }
+   private boolean isNotAnonymous(Authentication authentication) {
+      return !this.trustResolver.isAnonymous(authentication);
+   }
 }

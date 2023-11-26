@@ -23,30 +23,30 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 @WebAppConfiguration
 public abstract class CsrfAbstractIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext context;
+   @Autowired
+   private WebApplicationContext context;
 
-    @Autowired
-    private Filter springSecurityFilterChain;
+   @Autowired
+   private Filter springSecurityFilterChain;
 
-    MockMvc mvc;
+   MockMvc mvc;
 
-    //
+   //
 
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders.webAppContextSetup(context).addFilters(springSecurityFilterChain).build();
-    }
+   @Before
+   public void setup() {
+      mvc = MockMvcBuilders.webAppContextSetup(context).addFilters(springSecurityFilterChain).build();
+   }
 
-    RequestPostProcessor testUser() {
-        return user("user1").password("user1Pass").roles("USER");
-    }
+   RequestPostProcessor testUser() {
+      return user("user1").password("user1Pass").roles("USER");
+   }
 
-    RequestPostProcessor testAdmin() {
-        return user("admin").password("adminPass").roles("USER", "ADMIN");
-    }
+   RequestPostProcessor testAdmin() {
+      return user("admin").password("adminPass").roles("USER", "ADMIN");
+   }
 
-    String createFoo() throws JsonProcessingException {
-        return new ObjectMapper().writeValueAsString(new Foo(randomAlphabetic(6)));
-    }
+   String createFoo() throws JsonProcessingException {
+      return new ObjectMapper().writeValueAsString(new Foo(randomAlphabetic(6)));
+   }
 }

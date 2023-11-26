@@ -11,12 +11,12 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @PropertySource("classpath:foo.properties")
 public class ExternalPropertiesWithJavaConfig {
 
-	public ExternalPropertiesWithJavaConfig() {
-		super();
-	}
+   public ExternalPropertiesWithJavaConfig() {
+      super();
+   }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+      return new PropertySourcesPlaceholderConfigurer();
+   }
 }

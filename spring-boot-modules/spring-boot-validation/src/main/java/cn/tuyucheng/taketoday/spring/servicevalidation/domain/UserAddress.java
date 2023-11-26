@@ -4,14 +4,14 @@ import javax.validation.constraints.NotBlank;
 
 public class UserAddress {
 
-	@NotBlank
-	private String countryCode;
+   @NotBlank
+   private String countryCode;
 
-	public String getCountryCode() {
-		return countryCode;
-	}
+   public String getCountryCode() {
+      return countryCode;
+   }
 
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
-	}
+   public void setCountryCode(String countryCode) {
+      this.countryCode = countryCode;
+   }
 }

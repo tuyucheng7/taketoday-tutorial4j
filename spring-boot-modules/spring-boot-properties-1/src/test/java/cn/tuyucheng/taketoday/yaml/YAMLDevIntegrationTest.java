@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestPropertySource(properties = {"spring.profiles.active = dev"})
 class YAMLDevIntegrationTest {
 
-	@Autowired
-	private YAMLConfig config;
+   @Autowired
+   private YAMLConfig config;
 
-	@Test
-	void whenProfileTest_thenNameTesting() {
-		assertTrue("development".equalsIgnoreCase(config.getEnvironment()));
-		assertTrue("dev-YAML".equalsIgnoreCase(config.getName()));
-		assertTrue(config.isEnabled());
-	}
+   @Test
+   void whenProfileTest_thenNameTesting() {
+      assertTrue("development".equalsIgnoreCase(config.getEnvironment()));
+      assertTrue("dev-YAML".equalsIgnoreCase(config.getName()));
+      assertTrue(config.isEnabled());
+   }
 }

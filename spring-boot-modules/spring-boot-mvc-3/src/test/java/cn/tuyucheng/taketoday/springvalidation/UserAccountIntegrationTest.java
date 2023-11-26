@@ -9,46 +9,44 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class UserAccountIntegrationTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Test
-    void givenSaveBasicInfo_whenCorrectInput_thenSuccess() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfo")
-                    .accept(MediaType.TEXT_HTML)
-                    .param("name", "test123")
-                    .param("password", "pass"))
-              .andExpect(view().name("success"))
-              .andExpect(status().isOk())
-              .andDo(print());
-    }
+   @Test
+   void givenSaveBasicInfo_whenCorrectInput_thenSuccess() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfo")
+                  .accept(MediaType.TEXT_HTML)
+                  .param("name", "test123")
+                  .param("password", "pass"))
+            .andExpect(view().name("success"))
+            .andExpect(status().isOk())
+            .andDo(print());
+   }
 
-    @Test
-    void givenSaveBasicInfoStep1_whenCorrectInput_thenSuccess() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfoStep1")
-                    .accept(MediaType.TEXT_HTML)
-                    .param("name", "test123")
-                    .param("password", "pass"))
-              .andExpect(view().name("success"))
-              .andExpect(status().isOk())
-              .andDo(print());
-    }
+   @Test
+   void givenSaveBasicInfoStep1_whenCorrectInput_thenSuccess() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfoStep1")
+                  .accept(MediaType.TEXT_HTML)
+                  .param("name", "test123")
+                  .param("password", "pass"))
+            .andExpect(view().name("success"))
+            .andExpect(status().isOk())
+            .andDo(print());
+   }
 
-    @Test
-    void givenSaveBasicInfoStep1_whenIncorrectInput_thenError() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfoStep1")
-                    .accept(MediaType.TEXT_HTML))
-              .andExpect(model().errorCount(2))
-              .andExpect(view().name("error"))
-              .andExpect(status().isOk())
-              .andDo(print());
-    }
+   @Test
+   void givenSaveBasicInfoStep1_whenIncorrectInput_thenError() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/saveBasicInfoStep1")
+                  .accept(MediaType.TEXT_HTML))
+            .andExpect(model().errorCount(2))
+            .andExpect(view().name("error"))
+            .andExpect(status().isOk())
+            .andDo(print());
+   }
 }

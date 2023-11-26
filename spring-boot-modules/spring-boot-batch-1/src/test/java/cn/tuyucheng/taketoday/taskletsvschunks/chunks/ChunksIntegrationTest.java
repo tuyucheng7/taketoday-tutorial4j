@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = ChunksConfig.class)
 public class ChunksIntegrationTest {
 
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+   @Autowired
+   private JobLauncherTestUtils jobLauncherTestUtils;
 
-	@Test
-	public void givenChunksJob_WhenJobEnds_ThenStatusCompleted() throws Exception {
-		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
-	}
+   @Test
+   public void givenChunksJob_WhenJobEnds_ThenStatusCompleted() throws Exception {
+      JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+      assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+   }
 }

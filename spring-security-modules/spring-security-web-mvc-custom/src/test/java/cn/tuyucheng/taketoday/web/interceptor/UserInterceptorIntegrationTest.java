@@ -24,27 +24,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
 public class UserInterceptorIntegrationTest {
 
-    @Autowired
-    WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-    @Autowired
-    MockHttpSession session;
+   @Autowired
+   MockHttpSession session;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+   @Before
+   public void setup() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+   }
 
-    /**
-     * After execution of HTTP GET logs from interceptor will be displayed in
-     * the console
-     */
-    @Test
-    public void testInterceptors() throws Exception {
-        mockMvc.perform(get("/auth/foos"))
-              .andExpect(status().is2xxSuccessful());
-    }
+   /**
+    * After execution of HTTP GET logs from interceptor will be displayed in
+    * the console
+    */
+   @Test
+   public void testInterceptors() throws Exception {
+      mockMvc.perform(get("/auth/foos"))
+            .andExpect(status().is2xxSuccessful());
+   }
 
 }

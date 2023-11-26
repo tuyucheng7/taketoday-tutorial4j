@@ -13,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {MvcConfig.class, SecSecurityConfig.class})
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

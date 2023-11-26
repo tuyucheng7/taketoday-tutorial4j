@@ -18,12 +18,12 @@ import java.time.LocalDate;
 @Table(name = "customer")
 public class CustomerEntity {
 
-	@Id
-	private Integer id;
+   @Id
+   private Integer id;
 
-	private String fullName;
+   private String fullName;
 
-	private String phoneNumber;
+   private String phoneNumber;
 
-	private LocalDate createdAt;
+   private LocalDate createdAt;
 }

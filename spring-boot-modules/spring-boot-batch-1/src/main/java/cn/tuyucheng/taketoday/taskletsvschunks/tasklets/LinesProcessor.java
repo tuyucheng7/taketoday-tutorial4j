@@ -18,32 +18,32 @@ import java.util.List;
 
 public class LinesProcessor implements Tasklet, StepExecutionListener {
 
-	private final Logger logger = LoggerFactory.getLogger(LinesProcessor.class);
+   private final Logger logger = LoggerFactory.getLogger(LinesProcessor.class);
 
-	private List<Line> lines;
+   private List<Line> lines;
 
-	@Override
-	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-		for (Line line : lines) {
-			long age = ChronoUnit.YEARS.between(line.getDob(), LocalDate.now());
-			logger.debug("Calculated age " + age + " for line " + line.toString());
-			line.setAge(age);
-		}
-		return RepeatStatus.FINISHED;
-	}
+   @Override
+   public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+      for (Line line : lines) {
+         long age = ChronoUnit.YEARS.between(line.getDob(), LocalDate.now());
+         logger.debug("Calculated age " + age + " for line " + line.toString());
+         line.setAge(age);
+      }
+      return RepeatStatus.FINISHED;
+   }
 
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		ExecutionContext executionContext = stepExecution
-			.getJobExecution()
-			.getExecutionContext();
-		this.lines = (List<Line>) executionContext.get("lines");
-		logger.debug("Lines Processor initialized.");
-	}
+   @Override
+   public void beforeStep(StepExecution stepExecution) {
+      ExecutionContext executionContext = stepExecution
+            .getJobExecution()
+            .getExecutionContext();
+      this.lines = (List<Line>) executionContext.get("lines");
+      logger.debug("Lines Processor initialized.");
+   }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		logger.debug("Lines Processor ended.");
-		return ExitStatus.COMPLETED;
-	}
+   @Override
+   public ExitStatus afterStep(StepExecution stepExecution) {
+      logger.debug("Lines Processor ended.");
+      return ExitStatus.COMPLETED;
+   }
 }

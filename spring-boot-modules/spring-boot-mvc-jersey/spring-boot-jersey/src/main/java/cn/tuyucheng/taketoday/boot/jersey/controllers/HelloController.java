@@ -10,10 +10,10 @@ import javax.ws.rs.core.Response;
 @Path("/hello")
 public class HelloController {
 
-	@GET
-	@Path("/{name}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public Response hello(@PathParam("name") String name) {
-		return Response.ok("Hello, " + name).build();
-	}
+   @GET
+   @Path("/{name}")
+   @Produces(MediaType.TEXT_PLAIN)
+   public Response hello(@PathParam("name") String name) {
+      return Response.ok("Hello, " + name).build();
+   }
 }

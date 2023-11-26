@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class InvalidInitExampleBean {
 
-	@Autowired
-	private Environment environment;
+   @Autowired
+   private Environment environment;
 
-	public InvalidInitExampleBean() {
-		environment.getActiveProfiles();
-	}
+   public InvalidInitExampleBean() {
+      environment.getActiveProfiles();
+   }
 }

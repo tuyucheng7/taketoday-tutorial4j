@@ -13,25 +13,25 @@ import java.util.List;
 @RestController
 public class ProcessController {
 
-	@Autowired
-	private RuntimeService runtimeService;
+   @Autowired
+   private RuntimeService runtimeService;
 
-	@Autowired
-	private TaskService taskService;
+   @Autowired
+   private TaskService taskService;
 
-	@GetMapping("/protected-process")
-	public String startProcess() {
-		ProcessInstance pi = runtimeService.startProcessInstanceByKey("protected-process");
+   @GetMapping("/protected-process")
+   public String startProcess() {
+      ProcessInstance pi = runtimeService.startProcessInstanceByKey("protected-process");
 
-		List<Task> usertasks = taskService.createTaskQuery()
-			.processInstanceId(pi.getId())
-			.list();
+      List<Task> usertasks = taskService.createTaskQuery()
+            .processInstanceId(pi.getId())
+            .list();
 
-		taskService.complete(usertasks.iterator()
-			.next()
-			.getId());
+      taskService.complete(usertasks.iterator()
+            .next()
+            .getId());
 
-		return "Process started. Number of currently running process instances = " + runtimeService.createProcessInstanceQuery()
-			.count();
-	}
+      return "Process started. Number of currently running process instances = " + runtimeService.createProcessInstanceQuery()
+            .count();
+   }
 }

@@ -10,11 +10,11 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class AclMethodSecurityConfiguration extends GlobalMethodSecurityConfiguration {
 
-	@Autowired
-	MethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler;
+   @Autowired
+   MethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler;
 
-	@Override
-	protected MethodSecurityExpressionHandler createExpressionHandler() {
-		return defaultMethodSecurityExpressionHandler;
-	}
+   @Override
+   protected MethodSecurityExpressionHandler createExpressionHandler() {
+      return defaultMethodSecurityExpressionHandler;
+   }
 }

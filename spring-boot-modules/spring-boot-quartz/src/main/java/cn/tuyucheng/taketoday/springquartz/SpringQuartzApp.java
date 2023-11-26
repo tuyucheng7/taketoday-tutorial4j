@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class SpringQuartzApp {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(SpringQuartzApp.class).bannerMode(Mode.OFF).run(args);
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(SpringQuartzApp.class).bannerMode(Mode.OFF).run(args);
+   }
 }

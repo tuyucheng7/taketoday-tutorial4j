@@ -14,21 +14,21 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 @Import(SecurityProblemSupport.class)
 public class SecurityConfiguration {
 
-	@Autowired
-	private SecurityProblemSupport problemSupport;
+   @Autowired
+   private SecurityProblemSupport problemSupport;
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf()
-			.disable();
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable();
 
-		http.authorizeRequests()
-			.antMatchers("/")
-			.permitAll();
+      http.authorizeRequests()
+            .antMatchers("/")
+            .permitAll();
 
-		http.exceptionHandling()
-			.authenticationEntryPoint(problemSupport)
-			.accessDeniedHandler(problemSupport);
-		return http.build();
-	}
+      http.exceptionHandling()
+            .authenticationEntryPoint(problemSupport)
+            .accessDeniedHandler(problemSupport);
+      return http.build();
+   }
 }

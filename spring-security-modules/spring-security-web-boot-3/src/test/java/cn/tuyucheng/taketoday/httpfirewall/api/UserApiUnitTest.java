@@ -34,19 +34,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(HttpFirewallConfiguration.class)
 class UserApiUnitTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @MockBean
-    private UserServiceImpl userService;
+   @MockBean
+   private UserServiceImpl userService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-    @Test
-    @DisplayName("Test to Check Authentication")
-    void whenNoAuthentication_thenThrow401() throws Exception {
-        // @formatter:off
+   @Test
+   @DisplayName("Test to Check Authentication")
+   void whenNoAuthentication_thenThrow401() throws Exception {
+      // @formatter:off
         MvcResult result = mockMvc
           .perform(post("/api/v1/users")
             .content(objectMapper.writeValueAsString(UserTestUtility.createUser()))
@@ -71,11 +71,11 @@ class UserApiUnitTest {
         // @formatter:on
     }
 
-    @Test
-    @WithMockUser
-    @DisplayName("Test User Create")
-    void givenCredentials_whenHttpPost_thenReturn201() throws Exception {
-        // @formatter:off
+   @Test
+   @WithMockUser
+   @DisplayName("Test User Create")
+   void givenCredentials_whenHttpPost_thenReturn201() throws Exception {
+      // @formatter:off
         doNothing().when(userService).saveUser(new User());
 
         MvcResult result=mockMvc
@@ -86,13 +86,13 @@ class UserApiUnitTest {
           .andExpect(header().exists("Location")).andReturn();
         assertEquals(HttpStatus.CREATED.value(), result.getResponse().getStatus());
         // @formatter:on
-    }
+   }
 
-    @Test
-    @WithMockUser
-    @DisplayName("Test User Create Without ID")
-    void givenCredentials_whenHttpPostWithId_thenReturn201() throws Exception {
-        // @formatter:off
+   @Test
+   @WithMockUser
+   @DisplayName("Test User Create Without ID")
+   void givenCredentials_whenHttpPostWithId_thenReturn201() throws Exception {
+      // @formatter:off
        doNothing().when(userService).saveUser(new User());
 
         MvcResult result = mockMvc
@@ -103,14 +103,14 @@ class UserApiUnitTest {
           .andExpect(header().exists("Location")).andReturn();
         assertEquals(HttpStatus.CREATED.value(), result.getResponse().getStatus());
         // @formatter:on
-    }
+   }
 
-    @Test
-    @WithMockUser
-    @DisplayName("Test Get User")
-    void givenCredentials_whenHttpGetWithId_thenReturnUser() throws Exception {
-        String userId = "1";
-        // @formatter:off
+   @Test
+   @WithMockUser
+   @DisplayName("Test Get User")
+   void givenCredentials_whenHttpGetWithId_thenReturnUser() throws Exception {
+      String userId = "1";
+      // @formatter:off
         when(userService.findById("1")).thenReturn(UserTestUtility.createUserWithId(userId));
 
         MvcResult result = mockMvc
@@ -123,13 +123,13 @@ class UserApiUnitTest {
         assertEquals("jhondoe",objectMapper.readValue(result.getResponse().getContentAsString(),  User.class).getUsername());
 
         // @formatter:on
-    }
+   }
 
-    @Test
-    @WithMockUser
-    @DisplayName("Test Get All Users")
-    void givenCredentials_whenHttpGetWithoutId_thenReturnAllUsers() throws Exception {
-        // @formatter:off
+   @Test
+   @WithMockUser
+   @DisplayName("Test Get All Users")
+   void givenCredentials_whenHttpGetWithoutId_thenReturnAllUsers() throws Exception {
+      // @formatter:off
         when(userService.findAll()).thenReturn(UserTestUtility.createUsers());
 
         MvcResult result = mockMvc
@@ -141,15 +141,15 @@ class UserApiUnitTest {
         assertNotNull(result.getResponse());
         assertTrue(result.getResponse().getContentAsString().contains("jane.doe"));
         // @formatter:on
-    }
+   }
 
-    @Test
-    @WithMockUser
-    @DisplayName("Test Delete a User")
-    void givenCredentials_whenHttpDelete_thenDeleteUser() throws Exception {
-        String userId = "1";
-        doNothing().when(userService).deleteUser(userId);
-        // @formatter:off
+   @Test
+   @WithMockUser
+   @DisplayName("Test Delete a User")
+   void givenCredentials_whenHttpDelete_thenDeleteUser() throws Exception {
+      String userId = "1";
+      doNothing().when(userService).deleteUser(userId);
+      // @formatter:off
         MvcResult result = mockMvc
           .perform(delete("/api/v1/users/"+userId)
             .accept("application/json"))
@@ -159,6 +159,6 @@ class UserApiUnitTest {
         assertNotNull(result.getResponse());
         assertTrue(result.getResponse().getContentAsString().contains("The user has been deleted successfully"));
         // @formatter:on
-    }
+   }
 
 }

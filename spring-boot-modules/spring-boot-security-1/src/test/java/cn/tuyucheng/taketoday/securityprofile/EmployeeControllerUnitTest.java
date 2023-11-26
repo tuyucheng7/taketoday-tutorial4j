@@ -18,12 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {Application.class, ApplicationSecurity.class})
 class EmployeeControllerUnitTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void whenSecurityEnabled_shouldBeForbidden() throws Exception {
-		this.mockMvc.perform(get("/employees"))
-			.andExpect(status().isForbidden());
-	}
+   @Test
+   void whenSecurityEnabled_shouldBeForbidden() throws Exception {
+      this.mockMvc.perform(get("/employees"))
+            .andExpect(status().isForbidden());
+   }
 }

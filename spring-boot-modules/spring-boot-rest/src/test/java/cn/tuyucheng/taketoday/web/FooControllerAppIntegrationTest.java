@@ -23,25 +23,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class FooControllerAppIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Autowired
-	private IFooDao fooDao;
+   @Autowired
+   private IFooDao fooDao;
 
-	@Before
-	public void setup() {
-		this.fooDao.deleteAll();
-	}
+   @Before
+   public void setup() {
+      this.fooDao.deleteAll();
+   }
 
-	@Test
-	public void whenFindPaginatedRequest_thenEmptyResponse() throws Exception {
-		this.mockMvc.perform(get("/foos")
-				.param("page", "0")
-				.param("size", "2")
-				.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(content().json("[]"));
-	}
+   @Test
+   public void whenFindPaginatedRequest_thenEmptyResponse() throws Exception {
+      this.mockMvc.perform(get("/foos")
+                  .param("page", "0")
+                  .param("size", "2")
+                  .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().json("[]"));
+   }
 
 }

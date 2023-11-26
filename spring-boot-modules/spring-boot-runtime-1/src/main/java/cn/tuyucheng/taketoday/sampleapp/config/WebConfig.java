@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan({"cn.tuyucheng.taketoday.sampleapp.web"})
 public class WebConfig implements WebMvcConfigurer {
 
-	public WebConfig() {
-		super();
-	}
+   public WebConfig() {
+      super();
+   }
 
 /*	@Override
 	public void configureMessageConverters(final List<HttpMessageConverter<?>> messageConverters) {

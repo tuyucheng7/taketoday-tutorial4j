@@ -7,28 +7,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ResourceController {
-    @GetMapping("/login")
-    public String loginEndpoint() {
-        return "Login!";
-    }
+   @GetMapping("/login")
+   public String loginEndpoint() {
+      return "Login!";
+   }
 
-    @GetMapping("/admin")
-    public String adminEndpoint() {
-        return "Admin!";
-    }
+   @GetMapping("/admin")
+   public String adminEndpoint() {
+      return "Admin!";
+   }
 
-    @GetMapping("/user")
-    public String userEndpoint() {
-        return "User!";
-    }
+   @GetMapping("/user")
+   public String userEndpoint() {
+      return "User!";
+   }
 
-    @GetMapping("/all")
-    public String allRolesEndpoint() {
-        return "All Roles!";
-    }
+   @GetMapping("/all")
+   public String allRolesEndpoint() {
+      return "All Roles!";
+   }
 
-    @DeleteMapping("/delete")
-    public String deleteEndpoint(@RequestBody String s) {
-        return "I am deleting " + s;
-    }
+   @DeleteMapping("/delete")
+   public String deleteEndpoint(@RequestBody String s) {
+      return "I am deleting " + s;
+   }
 }

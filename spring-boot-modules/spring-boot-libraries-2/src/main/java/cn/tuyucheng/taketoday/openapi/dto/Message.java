@@ -1,10 +1,6 @@
 package cn.tuyucheng.taketoday.openapi.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 /**
  * A data transfer object representing a message in a chat conversation.
@@ -16,13 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Message {
-	/**
-	 * The role associated with the message.
-	 */
-	private String role;
+   /**
+    * The role associated with the message.
+    */
+   private String role;
 
-	/**
-	 * The content of the message.
-	 */
-	private String content;
+   /**
+    * The content of the message.
+    */
+   private String content;
 }

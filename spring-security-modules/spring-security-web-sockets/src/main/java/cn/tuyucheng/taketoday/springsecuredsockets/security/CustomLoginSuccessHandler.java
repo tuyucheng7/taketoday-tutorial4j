@@ -13,13 +13,13 @@ import java.io.IOException;
 
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    @Autowired
-    UserRepository userRepository;
+   @Autowired
+   UserRepository userRepository;
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        User user = userRepository.findByUsername(authentication.getName());
-        response.setStatus(HttpStatus.OK.value());
-        response.sendRedirect(request.getContextPath() + "/secured/success");
-    }
+   @Override
+   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
+      User user = userRepository.findByUsername(authentication.getName());
+      response.setStatus(HttpStatus.OK.value());
+      response.sendRedirect(request.getContextPath() + "/secured/success");
+   }
 }

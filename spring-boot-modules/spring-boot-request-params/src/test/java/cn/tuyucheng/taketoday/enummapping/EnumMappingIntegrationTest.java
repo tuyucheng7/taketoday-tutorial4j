@@ -17,34 +17,34 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(EnumMappingController.class)
 class EnumMappingIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void whenPassingLowerCaseEnumConstant_thenConvert() throws Exception {
-		mockMvc.perform(get("/enummapping/get?level=medium"))
-			.andExpect(status().isOk())
-			.andExpect(content().string(Level.MEDIUM.name()));
-	}
+   @Test
+   void whenPassingLowerCaseEnumConstant_thenConvert() throws Exception {
+      mockMvc.perform(get("/enummapping/get?level=medium"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(Level.MEDIUM.name()));
+   }
 
-	@Test
-	void whenPassingUnknownEnumConstant_thenReturnUndefined() throws Exception {
-		mockMvc.perform(get("/enummapping/get?level=unknown"))
-			.andExpect(status().isOk())
-			.andExpect(content().string("undefined"));
-	}
+   @Test
+   void whenPassingUnknownEnumConstant_thenReturnUndefined() throws Exception {
+      mockMvc.perform(get("/enummapping/get?level=unknown"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("undefined"));
+   }
 
-	@Test
-	void whenPassingEmptyParameter_thenReturnUndefined() throws Exception {
-		mockMvc.perform(get("/enummapping/get?level="))
-			.andExpect(status().isOk())
-			.andExpect(content().string("undefined"));
-	}
+   @Test
+   void whenPassingEmptyParameter_thenReturnUndefined() throws Exception {
+      mockMvc.perform(get("/enummapping/get?level="))
+            .andExpect(status().isOk())
+            .andExpect(content().string("undefined"));
+   }
 
-	@Test
-	void whenPassingNoParameter_thenReturnUndefined() throws Exception {
-		mockMvc.perform(get("/enummapping/get"))
-			.andExpect(status().isOk())
-			.andExpect(content().string("undefined"));
-	}
+   @Test
+   void whenPassingNoParameter_thenReturnUndefined() throws Exception {
+      mockMvc.perform(get("/enummapping/get"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("undefined"));
+   }
 }

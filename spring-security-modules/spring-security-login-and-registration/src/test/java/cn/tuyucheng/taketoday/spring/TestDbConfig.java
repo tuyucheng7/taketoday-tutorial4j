@@ -14,8 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableAutoConfiguration
 public class TestDbConfig {
 
-	@Bean
-	public PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder(11);
-	}
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder(11);
+   }
 }

@@ -16,44 +16,44 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/api/")
 public class ResilientAppController {
 
-	private final ExternalAPICaller externalAPICaller;
+   private final ExternalAPICaller externalAPICaller;
 
-	@Autowired
-	public ResilientAppController(ExternalAPICaller externalApi) {
-		this.externalAPICaller = externalApi;
-	}
+   @Autowired
+   public ResilientAppController(ExternalAPICaller externalApi) {
+      this.externalAPICaller = externalApi;
+   }
 
-	@GetMapping("/circuit-breaker")
-	@CircuitBreaker(name = "externalService")
-	public String circuitBreakerApi() {
-		return externalAPICaller.callApi();
-	}
+   @GetMapping("/circuit-breaker")
+   @CircuitBreaker(name = "externalService")
+   public String circuitBreakerApi() {
+      return externalAPICaller.callApi();
+   }
 
-	@GetMapping("/retry")
-	@Retry(name = "externalService", fallbackMethod = "fallbackAfterRetry")
-	public String retryApi() {
-		return externalAPICaller.callApi();
-	}
+   @GetMapping("/retry")
+   @Retry(name = "externalService", fallbackMethod = "fallbackAfterRetry")
+   public String retryApi() {
+      return externalAPICaller.callApi();
+   }
 
-	@GetMapping("/bulkhead")
-	@Bulkhead(name = "externalService")
-	public String bulkheadApi() {
-		return externalAPICaller.callApi();
-	}
+   @GetMapping("/bulkhead")
+   @Bulkhead(name = "externalService")
+   public String bulkheadApi() {
+      return externalAPICaller.callApi();
+   }
 
-	@GetMapping("/rate-limiter")
-	@RateLimiter(name = "externalService")
-	public String rateLimitApi() {
-		return externalAPICaller.callApi();
-	}
+   @GetMapping("/rate-limiter")
+   @RateLimiter(name = "externalService")
+   public String rateLimitApi() {
+      return externalAPICaller.callApi();
+   }
 
-	@GetMapping("/time-limiter")
-	@TimeLimiter(name = "externalService")
-	public CompletableFuture<String> timeLimiterApi() {
-		return CompletableFuture.supplyAsync(externalAPICaller::callApiWithDelay);
-	}
+   @GetMapping("/time-limiter")
+   @TimeLimiter(name = "externalService")
+   public CompletableFuture<String> timeLimiterApi() {
+      return CompletableFuture.supplyAsync(externalAPICaller::callApiWithDelay);
+   }
 
-	public String fallbackAfterRetry(Exception ex) {
-		return "all retries have exhausted";
-	}
+   public String fallbackAfterRetry(Exception ex) {
+      return "all retries have exhausted";
+   }
 }

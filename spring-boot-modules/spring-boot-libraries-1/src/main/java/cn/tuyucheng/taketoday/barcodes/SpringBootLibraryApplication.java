@@ -12,12 +12,12 @@ import java.awt.image.BufferedImage;
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class SpringBootLibraryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootLibraryApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootLibraryApplication.class, args);
+   }
 
-	@Bean
-	public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
-		return new BufferedImageHttpMessageConverter();
-	}
+   @Bean
+   public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
+      return new BufferedImageHttpMessageConverter();
+   }
 }

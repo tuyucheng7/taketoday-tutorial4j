@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration(exclude = {JobRunrAutoConfiguration.class})
 public class StockApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StockApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(StockApplication.class, args);
+   }
 }

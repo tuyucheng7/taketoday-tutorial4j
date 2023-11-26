@@ -13,18 +13,18 @@ import java.util.concurrent.ThreadLocalRandom;
 @ConditionalOnEnabledHealthIndicator("random")
 public class RandomHealthIndicator implements HealthIndicator {
 
-	@Override
-	public Health health() {
-		double chance = ThreadLocalRandom.current().nextDouble();
-		Health.Builder status = Health.up();
-		if (chance > 0.9) {
-			status = Health.down(new RuntimeException("Bad Luck"));
-		}
+   @Override
+   public Health health() {
+      double chance = ThreadLocalRandom.current().nextDouble();
+      Health.Builder status = Health.up();
+      if (chance > 0.9) {
+         status = Health.down(new RuntimeException("Bad Luck"));
+      }
 
-		Map<String, Object> details = new HashMap<>();
-		details.put("chance", chance);
-		details.put("strategy", "thread-local");
+      Map<String, Object> details = new HashMap<>();
+      details.put("chance", chance);
+      details.put("strategy", "thread-local");
 
-		return status.withDetails(details).build();
-	}
+      return status.withDetails(details).build();
+   }
 }

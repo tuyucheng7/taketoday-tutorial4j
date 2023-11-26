@@ -7,8 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("cn.tuyucheng.taketoday.security")
 public class SecurityXmlConfig {
 
-    public SecurityXmlConfig() {
-        super();
-    }
+   public SecurityXmlConfig() {
+      super();
+   }
 
 }

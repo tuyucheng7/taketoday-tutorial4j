@@ -14,18 +14,18 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class FinancialClient {
 
-	private final DataLoader dataLoader;
+   private final DataLoader dataLoader;
 
-	public Set<FinancialInfo> getFinancialInfoByCustomerId(Integer customerId) {
-		LOGGER.info("Getting financial info by customerId {}", customerId);
-		SleepUtils.loadingSimulator(2);
-		return dataLoader.getFinancialResponses().get(customerId);
+   public Set<FinancialInfo> getFinancialInfoByCustomerId(Integer customerId) {
+      LOGGER.info("Getting financial info by customerId {}", customerId);
+      SleepUtils.loadingSimulator(2);
+      return dataLoader.getFinancialResponses().get(customerId);
 
-	}
+   }
 
-	public void updateFinancialInfo(Integer customerId, Set<FinancialInfo> response) {
-		LOGGER.info("Updating financial info by customerId {}", customerId);
-		SleepUtils.loadingSimulator(2);
-		dataLoader.getFinancialResponses().put(customerId, response);
-	}
+   public void updateFinancialInfo(Integer customerId, Set<FinancialInfo> response) {
+      LOGGER.info("Updating financial info by customerId {}", customerId);
+      SleepUtils.loadingSimulator(2);
+      dataLoader.getFinancialResponses().put(customerId, response);
+   }
 }

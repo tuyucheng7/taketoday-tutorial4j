@@ -15,16 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class JasyptWithStarterIntegrationTest {
 
-	@Autowired
-	ApplicationContext appCtx;
+   @Autowired
+   ApplicationContext appCtx;
 
-	@Test
-	void whenDecryptedPasswordNeeded_GetFromService() {
-		System.setProperty("jasypt.encryptor.password", "password");
-		PropertyServiceForJasyptStarter service = appCtx.getBean(PropertyServiceForJasyptStarter.class);
-		assertEquals("Password@1", service.getProperty());
+   @Test
+   void whenDecryptedPasswordNeeded_GetFromService() {
+      System.setProperty("jasypt.encryptor.password", "password");
+      PropertyServiceForJasyptStarter service = appCtx.getBean(PropertyServiceForJasyptStarter.class);
+      assertEquals("Password@1", service.getProperty());
 
-		Environment environment = appCtx.getBean(Environment.class);
-		assertEquals("Password@1", service.getPasswordUsingEnvironment(environment));
-	}
+      Environment environment = appCtx.getBean(Environment.class);
+      assertEquals("Password@1", service.getPasswordUsingEnvironment(environment));
+   }
 }

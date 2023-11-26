@@ -26,26 +26,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import({LoginController.class, CustomAuthenticationEntryPoint.class, DelegatedAuthenticationEntryPoint.class})
 public class DelegatedSecurityConfigUnitTest {
 
-    @Autowired
-    private MockMvc mvc;
+   @Autowired
+   private MockMvc mvc;
 
-    @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
-    public void whenUserAccessLogin_shouldSucceed() throws Exception {
-        mvc.perform(formLogin("/login-handler").user("username", "admin")
-                    .password("password", "password")
-                    .acceptMediaType(MediaType.APPLICATION_JSON))
-              .andExpect(status().isOk());
-    }
+   @Test
+   @WithMockUser(username = "admin", roles = {"ADMIN"})
+   public void whenUserAccessLogin_shouldSucceed() throws Exception {
+      mvc.perform(formLogin("/login-handler").user("username", "admin")
+                  .password("password", "password")
+                  .acceptMediaType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+   }
 
-    @Test
-    public void whenUserAccessWithWrongCredentialsWithDelegatedEntryPoint_shouldFail() throws Exception {
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
-        mvc.perform(formLogin("/login-handler").user("username", "admin")
-                    .password("password", "wrong")
-                    .acceptMediaType(MediaType.APPLICATION_JSON))
-              .andExpect(status().isUnauthorized())
-              .andExpect(jsonPath("$.errorMessage", is(re.getErrorMessage())));
-    }
+   @Test
+   public void whenUserAccessWithWrongCredentialsWithDelegatedEntryPoint_shouldFail() throws Exception {
+      RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
+      mvc.perform(formLogin("/login-handler").user("username", "admin")
+                  .password("password", "wrong")
+                  .acceptMediaType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isUnauthorized())
+            .andExpect(jsonPath("$.errorMessage", is(re.getErrorMessage())));
+   }
 
 }

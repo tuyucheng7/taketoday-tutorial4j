@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "tuyucheng")
 public class TuyuchengProperties {
 
-	private String presentation;
+   private String presentation;
 
-	public String getPresentation() {
-		return presentation;
-	}
+   public String getPresentation() {
+      return presentation;
+   }
 
-	public void setPresentation(String presentation) {
-		this.presentation = presentation;
-	}
+   public void setPresentation(String presentation) {
+      this.presentation = presentation;
+   }
 }

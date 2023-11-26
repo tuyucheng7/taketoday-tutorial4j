@@ -30,50 +30,50 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(value = EmployeeRestController.class, excludeAutoConfiguration = SecurityAutoConfiguration.class)
 class EmployeeControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mvc;
+   @Autowired
+   private MockMvc mvc;
 
-	@MockBean
-	private EmployeeService service;
+   @MockBean
+   private EmployeeService service;
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
+   @BeforeEach
+   void setUp() throws Exception {
+   }
 
-	@Test
-	void whenPostEmployee_thenCreateEmployee() throws Exception {
-		Employee alex = new Employee("alex");
-		given(service.save(Mockito.any())).willReturn(alex);
+   @Test
+   void whenPostEmployee_thenCreateEmployee() throws Exception {
+      Employee alex = new Employee("alex");
+      given(service.save(Mockito.any())).willReturn(alex);
 
-		mvc.perform(post("/api/employees")
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(JsonUtil.toJson(alex)))
-			.andExpect(status().isCreated())
-			.andExpect(jsonPath("$.name", is("alex")));
+      mvc.perform(post("/api/employees")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .content(JsonUtil.toJson(alex)))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.name", is("alex")));
 
-		verify(service, VerificationModeFactory.times(1)).save(Mockito.any());
-		reset(service);
-	}
+      verify(service, VerificationModeFactory.times(1)).save(Mockito.any());
+      reset(service);
+   }
 
-	@Test
-	void givenEmployees_whenGetEmployees_thenReturnJsonArray() throws Exception {
-		Employee alex = new Employee("alex");
-		Employee john = new Employee("john");
-		Employee bob = new Employee("bob");
+   @Test
+   void givenEmployees_whenGetEmployees_thenReturnJsonArray() throws Exception {
+      Employee alex = new Employee("alex");
+      Employee john = new Employee("john");
+      Employee bob = new Employee("bob");
 
-		List<Employee> allEmployees = Arrays.asList(alex, john, bob);
+      List<Employee> allEmployees = Arrays.asList(alex, john, bob);
 
-		given(service.getAllEmployees()).willReturn(allEmployees);
+      given(service.getAllEmployees()).willReturn(allEmployees);
 
-		mvc.perform(get("/api/employees")
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$", hasSize(3)))
-			.andExpect(jsonPath("$[0].name", is(alex.getName())))
-			.andExpect(jsonPath("$[1].name", is(john.getName())))
-			.andExpect(jsonPath("$[2].name", is(bob.getName())));
+      mvc.perform(get("/api/employees")
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(3)))
+            .andExpect(jsonPath("$[0].name", is(alex.getName())))
+            .andExpect(jsonPath("$[1].name", is(john.getName())))
+            .andExpect(jsonPath("$[2].name", is(bob.getName())));
 
-		verify(service, VerificationModeFactory.times(1)).getAllEmployees();
-		reset(service);
-	}
+      verify(service, VerificationModeFactory.times(1)).getAllEmployees();
+      reset(service);
+   }
 }

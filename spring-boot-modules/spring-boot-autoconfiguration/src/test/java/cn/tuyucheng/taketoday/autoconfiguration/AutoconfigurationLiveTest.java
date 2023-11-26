@@ -15,12 +15,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @EnableJpaRepositories(basePackages = {"cn.tuyucheng.taketoday.autoconfiguration.example"})
 class AutoconfigurationLiveTest {
 
-	@Autowired
-	private MyUserRepository userRepository;
+   @Autowired
+   private MyUserRepository userRepository;
 
-	@Test
-	void whenSaveUser_thenOk() {
-		MyUser user = new MyUser("user@email.com");
-		userRepository.save(user);
-	}
+   @Test
+   void whenSaveUser_thenOk() {
+      MyUser user = new MyUser("user@email.com");
+      userRepository.save(user);
+   }
 }

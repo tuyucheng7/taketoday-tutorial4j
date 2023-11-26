@@ -14,15 +14,15 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(classes = {PropertiesWithJavaConfig.class}, loader = AnnotationConfigContextLoader.class)
 class PropertiesWithJavaIntegrationTest {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Value("${key.something}")
-	private String injectedProperty;
+   @Value("${key.something}")
+   private String injectedProperty;
 
-	@Test
-	final void givenContextIsInitialized_thenNoException() {
-		System.out.println("in test via @Value: " + injectedProperty);
-		System.out.println("in test Environment: " + env.getProperty("key.something"));
-	}
+   @Test
+   final void givenContextIsInitialized_thenNoException() {
+      System.out.println("in test via @Value: " + injectedProperty);
+      System.out.println("in test Environment: " + env.getProperty("key.something"));
+   }
 }

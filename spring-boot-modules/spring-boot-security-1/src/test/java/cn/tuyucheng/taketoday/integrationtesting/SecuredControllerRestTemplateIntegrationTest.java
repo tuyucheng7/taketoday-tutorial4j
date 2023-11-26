@@ -16,19 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class SecuredControllerRestTemplateIntegrationTest {
 
-	@Autowired
-	private TestRestTemplate template;
+   @Autowired
+   private TestRestTemplate template;
 
-	@Test
-	void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
-		ResponseEntity<String> result = template.getForEntity("/private/hello", String.class);
-		assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
-	}
+   @Test
+   void givenRequestOnPrivateService_shouldFailWith401() throws Exception {
+      ResponseEntity<String> result = template.getForEntity("/private/hello", String.class);
+      assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
+   }
 
-	@Test
-	void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
-		ResponseEntity<String> result = template.withBasicAuth("spring", "secret")
-			.getForEntity("/private/hello", String.class);
-		assertEquals(HttpStatus.OK, result.getStatusCode());
-	}
+   @Test
+   void givenAuthRequestOnPrivateService_shouldSucceedWith200() throws Exception {
+      ResponseEntity<String> result = template.withBasicAuth("spring", "secret")
+            .getForEntity("/private/hello", String.class);
+      assertEquals(HttpStatus.OK, result.getStatusCode());
+   }
 }

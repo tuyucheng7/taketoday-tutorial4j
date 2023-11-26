@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class SecuredResourceController {
 
-    @RequestMapping("/secured")
-    public void secureResource(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("accessing secured resource");
-    }
+   @RequestMapping("/secured")
+   public void secureResource(HttpServletRequest request, HttpServletResponse response) {
+      System.out.println("accessing secured resource");
+   }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration({"/RedirectionWebSecurityConfig.xml"})
 @WebAppConfiguration
 public class SpringContextTest {
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

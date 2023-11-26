@@ -13,22 +13,22 @@ import org.springframework.web.context.request.RequestContextListener;
 @Configuration
 public class TestIntegrationConfig {
 
-	@Bean
-	@ConditionalOnMissingBean(RequestContextListener.class)
-	public RequestContextListener requestContextListener() {
+   @Bean
+   @ConditionalOnMissingBean(RequestContextListener.class)
+   public RequestContextListener requestContextListener() {
 
-		return new RequestContextListener();
-	}
+      return new RequestContextListener();
+   }
 
-	@Bean
-	public SessionRegistry sessionRegistry() {
-		return new SessionRegistryImpl();
-	}
+   @Bean
+   public SessionRegistry sessionRegistry() {
+      return new SessionRegistryImpl();
+   }
 
-	@MockBean
-	private JavaMailSender javaMailSender;
+   @MockBean
+   private JavaMailSender javaMailSender;
 
-	@MockBean(name = "GeoIPCountry")
-	private DatabaseReader databaseReader;
+   @MockBean(name = "GeoIPCountry")
+   private DatabaseReader databaseReader;
 
 }

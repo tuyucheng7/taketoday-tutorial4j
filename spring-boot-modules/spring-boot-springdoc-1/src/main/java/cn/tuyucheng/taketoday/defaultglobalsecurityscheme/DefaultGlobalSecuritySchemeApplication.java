@@ -16,16 +16,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @OpenAPIDefinition(info = @Info(title = "Apply Default Global SecurityScheme in springdoc-openapi", version = "1.0.0"), security = {@SecurityRequirement(name = "api_key")})
 @SecurityScheme(type = SecuritySchemeType.APIKEY, name = "api_key", in = SecuritySchemeIn.HEADER)
 public class DefaultGlobalSecuritySchemeApplication {
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.antMatchers("/api/auth/**", "/swagger-ui-custom.html", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**", "/swagger-ui/index.html", "/api-docs/**")
-				.permitAll()
-				.anyRequest()
-				.authenticated())
-			.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      return http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.antMatchers("/api/auth/**", "/swagger-ui-custom.html", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**", "/swagger-ui/index.html", "/api-docs/**")
+                  .permitAll()
+                  .anyRequest()
+                  .authenticated())
+            .build();
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(DefaultGlobalSecuritySchemeApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(DefaultGlobalSecuritySchemeApplication.class, args);
+   }
 }

@@ -12,40 +12,40 @@ import java.util.Optional;
 @Controller
 public class WebController {
 
-    @RequestMapping("/")
-    public String root() {
-        return "redirect:/index";
-    }
+   @RequestMapping("/")
+   public String root() {
+      return "redirect:/index";
+   }
 
-    @RequestMapping("/index")
-    public String index(Model model) {
-        getDomain().ifPresent(d -> {
-            model.addAttribute("domain", d);
-        });
-        return "index";
-    }
+   @RequestMapping("/index")
+   public String index(Model model) {
+      getDomain().ifPresent(d -> {
+         model.addAttribute("domain", d);
+      });
+      return "index";
+   }
 
-    @RequestMapping("/user/index")
-    public String userIndex(Model model) {
-        getDomain().ifPresent(d -> {
-            model.addAttribute("domain", d);
-        });
-        return "user/index";
-    }
+   @RequestMapping("/user/index")
+   public String userIndex(Model model) {
+      getDomain().ifPresent(d -> {
+         model.addAttribute("domain", d);
+      });
+      return "user/index";
+   }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
+   @RequestMapping("/login")
+   public String login() {
+      return "login";
+   }
 
-    private Optional<String> getDomain() {
-        Authentication auth = SecurityContextHolder.getContext()
-              .getAuthentication();
-        String domain = null;
-        if (auth != null && !auth.getClass().equals(AnonymousAuthenticationToken.class)) {
-            User user = (User) auth.getPrincipal();
-            domain = user.getDomain();
-        }
-        return Optional.ofNullable(domain);
-    }
+   private Optional<String> getDomain() {
+      Authentication auth = SecurityContextHolder.getContext()
+            .getAuthentication();
+      String domain = null;
+      if (auth != null && !auth.getClass().equals(AnonymousAuthenticationToken.class)) {
+         User user = (User) auth.getPrincipal();
+         domain = user.getDomain();
+      }
+      return Optional.ofNullable(domain);
+   }
 }

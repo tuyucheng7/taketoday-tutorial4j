@@ -9,58 +9,58 @@ import java.util.Objects;
 
 @Entity
 public class City implements Serializable {
-	private static final long serialVersionUID = 3252591505029724236L;
+   private static final long serialVersionUID = 3252591505029724236L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
 
-	private String name;
+   private String name;
 
-	private double cityCentreLattitude;
-	private double cityCentreLongitude;
+   private double cityCentreLattitude;
+   private double cityCentreLongitude;
 
-	public City() {
-	}
+   public City() {
+   }
 
-	public City(Long id, String name, double cityCentreLatitude, double cityCentreLongitude) {
-		this.id = id;
-		this.name = name;
-		this.cityCentreLattitude = cityCentreLatitude;
-		this.cityCentreLongitude = cityCentreLongitude;
-	}
+   public City(Long id, String name, double cityCentreLatitude, double cityCentreLongitude) {
+      this.id = id;
+      this.name = name;
+      this.cityCentreLattitude = cityCentreLatitude;
+      this.cityCentreLongitude = cityCentreLongitude;
+   }
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public double getCityCentreLatitude() {
-		return cityCentreLattitude;
-	}
+   public double getCityCentreLatitude() {
+      return cityCentreLattitude;
+   }
 
-	public double getCityCentreLongitude() {
-		return cityCentreLongitude;
-	}
+   public double getCityCentreLongitude() {
+      return cityCentreLongitude;
+   }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
 
-		City city = (City) o;
+      City city = (City) o;
 
-		if (Double.compare(city.cityCentreLattitude, cityCentreLattitude) != 0) return false;
-		if (Double.compare(city.cityCentreLongitude, cityCentreLongitude) != 0) return false;
-		if (!Objects.equals(id, city.id)) return false;
-		return Objects.equals(name, city.name);
-	}
+      if (Double.compare(city.cityCentreLattitude, cityCentreLattitude) != 0) return false;
+      if (Double.compare(city.cityCentreLongitude, cityCentreLongitude) != 0) return false;
+      if (!Objects.equals(id, city.id)) return false;
+      return Objects.equals(name, city.name);
+   }
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class PermissionsService {
 
-	public List<String> getAllPermissions() {
-		return Arrays.asList("CREATE", "READ", "UPDATE", "DELETE");
-	}
+   public List<String> getAllPermissions() {
+      return Arrays.asList("CREATE", "READ", "UPDATE", "DELETE");
+   }
 }

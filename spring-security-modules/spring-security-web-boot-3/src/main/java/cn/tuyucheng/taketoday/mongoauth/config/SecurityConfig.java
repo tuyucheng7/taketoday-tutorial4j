@@ -17,28 +17,28 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
+   private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+   public SecurityConfig(UserDetailsService userDetailsService) {
+      this.userDetailsService = userDetailsService;
+   }
 
-    @Bean
-    public AuthenticationManager customAuthenticationManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService)
+   @Bean
+   public AuthenticationManager customAuthenticationManager(HttpSecurity http) throws Exception {
+      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.userDetailsService(userDetailsService)
             .passwordEncoder(bCryptPasswordEncoder());
-        return authenticationManagerBuilder.build();
-    }
+      return authenticationManagerBuilder.build();
+   }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public BCryptPasswordEncoder bCryptPasswordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
             .disable()
             .authorizeRequests()
             .and()
@@ -50,7 +50,7 @@ public class SecurityConfig {
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        return http.build();
-    }
+      return http.build();
+   }
 
 }

@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DenyOnMissingController {
-    @GetMapping(path = "hello")
-    @PreAuthorize("hasRole('USER')")
-    public String hello() {
-        return "Hello world!";
-    }
+   @GetMapping(path = "hello")
+   @PreAuthorize("hasRole('USER')")
+   public String hello() {
+      return "Hello world!";
+   }
 
-    @GetMapping(path = "bye")
-    public String bye() {
-        return "Bye bye world!";
-    }
+   @GetMapping(path = "bye")
+   public String bye() {
+      return "Bye bye world!";
+   }
 }

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class ShutdownHookApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ShutdownHookApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(ShutdownHookApplication.class, args);
+   }
 }

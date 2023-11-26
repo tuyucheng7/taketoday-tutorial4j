@@ -4,7 +4,7 @@ import cn.tuyucheng.taketoday.demo.model.Foo;
 
 public interface FooRepository {
 
-    void save(Foo foo);
+   void save(Foo foo);
 
-    Foo get(Integer id);
+   Foo get(Integer id);
 }

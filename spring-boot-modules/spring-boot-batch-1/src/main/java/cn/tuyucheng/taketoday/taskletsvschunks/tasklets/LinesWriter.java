@@ -17,34 +17,34 @@ import java.util.List;
 
 public class LinesWriter implements Tasklet, StepExecutionListener {
 
-	private final Logger logger = LoggerFactory.getLogger(LinesWriter.class);
+   private final Logger logger = LoggerFactory.getLogger(LinesWriter.class);
 
-	private List<Line> lines;
-	private FileUtils fu;
+   private List<Line> lines;
+   private FileUtils fu;
 
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		ExecutionContext executionContext = stepExecution
-			.getJobExecution()
-			.getExecutionContext();
-		this.lines = (List<Line>) executionContext.get("lines");
-		fu = new FileUtils("output.csv");
-		logger.debug("Lines Writer initialized.");
-	}
+   @Override
+   public void beforeStep(StepExecution stepExecution) {
+      ExecutionContext executionContext = stepExecution
+            .getJobExecution()
+            .getExecutionContext();
+      this.lines = (List<Line>) executionContext.get("lines");
+      fu = new FileUtils("output.csv");
+      logger.debug("Lines Writer initialized.");
+   }
 
-	@Override
-	public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
-		for (Line line : lines) {
-			fu.writeLine(line);
-			logger.debug("Wrote line " + line.toString());
-		}
-		return RepeatStatus.FINISHED;
-	}
+   @Override
+   public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+      for (Line line : lines) {
+         fu.writeLine(line);
+         logger.debug("Wrote line " + line.toString());
+      }
+      return RepeatStatus.FINISHED;
+   }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		fu.closeWriter();
-		logger.debug("Lines Writer ended.");
-		return ExitStatus.COMPLETED;
-	}
+   @Override
+   public ExitStatus afterStep(StepExecution stepExecution) {
+      fu.closeWriter();
+      logger.debug("Lines Writer ended.");
+      return ExitStatus.COMPLETED;
+   }
 }

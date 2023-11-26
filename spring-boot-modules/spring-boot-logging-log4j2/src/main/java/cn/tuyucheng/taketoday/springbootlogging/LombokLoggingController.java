@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 // work directly with Log4j2)
 public class LombokLoggingController {
 
-	@GetMapping("/lombok")
-	public String index() {
-		LOGGER.trace("A TRACE Message");
-		LOGGER.debug("A DEBUG Message");
-		LOGGER.info("An INFO Message");
-		LOGGER.warn("A WARN Message");
-		LOGGER.error("An ERROR Message");
-		return "Howdy! Check out the Logs to see the output...";
-	}
+   @GetMapping("/lombok")
+   public String index() {
+      LOGGER.trace("A TRACE Message");
+      LOGGER.debug("A DEBUG Message");
+      LOGGER.info("An INFO Message");
+      LOGGER.warn("A WARN Message");
+      LOGGER.error("An ERROR Message");
+      return "Howdy! Check out the Logs to see the output...";
+   }
 }

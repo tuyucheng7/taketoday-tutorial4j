@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.common.error;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-
 import jakarta.servlet.Servlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 
 public class SpringHelloServletRegistrationBean extends ServletRegistrationBean {
 

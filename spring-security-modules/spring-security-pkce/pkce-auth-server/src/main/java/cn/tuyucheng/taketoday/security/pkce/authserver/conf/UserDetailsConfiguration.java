@@ -10,9 +10,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class UserDetailsConfiguration {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        // @formatter:off
+   @Bean
+   public UserDetailsService userDetailsService() {
+      // @formatter:off
         UserDetails userDetails = User.withDefaultPasswordEncoder()
               .username("user")
               .password("password")
@@ -21,6 +21,6 @@ public class UserDetailsConfiguration {
 
         return new InMemoryUserDetailsManager(userDetails);
         // @formatter:on
-    }
+   }
 
 }

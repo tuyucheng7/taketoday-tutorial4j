@@ -12,14 +12,14 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("/api/products")
 public class ProductController {
 
-	private ProductService productService;
+   private ProductService productService;
 
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+   public ProductController(ProductService productService) {
+      this.productService = productService;
+   }
 
-	@GetMapping(value = {"", "/"})
-	public @NotNull Iterable<Product> getProducts() {
-		return productService.getAllProducts();
-	}
+   @GetMapping(value = {"", "/"})
+   public @NotNull Iterable<Product> getProducts() {
+      return productService.getAllProducts();
+   }
 }

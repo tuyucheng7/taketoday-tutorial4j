@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AzureApplicationIntegrationTest {
 
-	@Test
-	public void contextLoads() {
-	}
+   @Test
+   public void contextLoads() {
+   }
 }

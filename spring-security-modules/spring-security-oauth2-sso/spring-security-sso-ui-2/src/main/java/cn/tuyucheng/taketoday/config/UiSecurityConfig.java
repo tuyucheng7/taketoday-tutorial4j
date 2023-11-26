@@ -10,14 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class UiSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
-              .authorizeRequests()
-              .antMatchers("/", "/login**")
-              .permitAll()
-              .anyRequest()
-              .authenticated();
-    }
+   @Override
+   public void configure(HttpSecurity http) throws Exception {
+      http.antMatcher("/**")
+            .authorizeRequests()
+            .antMatchers("/", "/login**")
+            .permitAll()
+            .anyRequest()
+            .authenticated();
+   }
 
 }

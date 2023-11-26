@@ -26,34 +26,34 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {MvcConfig.class, ManualSecurityConfig.class})
 public class ManualSecurityIntegrationTest {
 
-    @Autowired
-    WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).apply(SecurityMockMvcConfigurers.springSecurity()).build();
-    }
+   @Before
+   public void setup() {
+      MockitoAnnotations.initMocks(this);
+      mockMvc = MockMvcBuilders.webAppContextSetup(wac).apply(SecurityMockMvcConfigurers.springSecurity()).build();
+   }
 
-    /**
-     * Execute custom login and access the endpoint
-     */
-    @Test
-    public void whenLoginIsSuccessFulThenEndpointCanBeAccessedAndCurrentUserPrinted() throws Exception {
+   /**
+    * Execute custom login and access the endpoint
+    */
+   @Test
+   public void whenLoginIsSuccessFulThenEndpointCanBeAccessedAndCurrentUserPrinted() throws Exception {
 
-        mockMvc.perform(get("/custom/print"))
-              .andExpect(status().isUnauthorized());
+      mockMvc.perform(get("/custom/print"))
+            .andExpect(status().isUnauthorized());
 
-        HttpSession session = mockMvc.perform(post("/custom/login").param("username", "user1").param("password", "user1Pass"))
-              .andExpect(status().isOk())
-              .andReturn()
-              .getRequest()
-              .getSession();
+      HttpSession session = mockMvc.perform(post("/custom/login").param("username", "user1").param("password", "user1Pass"))
+            .andExpect(status().isOk())
+            .andReturn()
+            .getRequest()
+            .getSession();
 
-        mockMvc.perform(get("/custom/print").session((MockHttpSession) session))
-              .andExpect(status().is2xxSuccessful());
-    }
+      mockMvc.perform(get("/custom/print").session((MockHttpSession) session))
+            .andExpect(status().is2xxSuccessful());
+   }
 
 }

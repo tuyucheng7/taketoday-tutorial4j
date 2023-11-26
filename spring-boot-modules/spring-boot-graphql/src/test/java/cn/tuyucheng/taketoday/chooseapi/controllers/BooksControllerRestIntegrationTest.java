@@ -21,17 +21,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class BooksControllerRestIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void givenBooksServiceThatReturnThreeBooks_whenCallingRestEndpoint_thenThreeBooksAreReturned() throws Exception {
-		Path expectedResponse = Paths.get("src/test/resources/graphql-test/books_expected_response.json");
-		String expectedJson = new String(Files.readAllBytes(expectedResponse));
+   @Test
+   void givenBooksServiceThatReturnThreeBooks_whenCallingRestEndpoint_thenThreeBooksAreReturned() throws Exception {
+      Path expectedResponse = Paths.get("src/test/resources/graphql-test/books_expected_response.json");
+      String expectedJson = new String(Files.readAllBytes(expectedResponse));
 
-		this.mockMvc.perform(get("/rest/books"))
-			.andDo(print())
-			.andExpect(status().isOk())
-			.andExpect(content().json(expectedJson));
-	}
+      this.mockMvc.perform(get("/rest/books"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().json(expectedJson));
+   }
 }

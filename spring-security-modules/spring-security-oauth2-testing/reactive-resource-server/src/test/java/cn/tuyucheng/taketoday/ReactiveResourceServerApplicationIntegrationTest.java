@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday;
 
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -7,9 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
 
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureWebTestClient

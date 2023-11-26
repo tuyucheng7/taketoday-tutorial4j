@@ -9,8 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
 
-	}
+   }
 }

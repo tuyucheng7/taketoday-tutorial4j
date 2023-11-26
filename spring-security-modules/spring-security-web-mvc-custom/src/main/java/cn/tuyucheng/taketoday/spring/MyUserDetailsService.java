@@ -16,20 +16,20 @@ import java.util.Map;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private Map<String, User> roles = new HashMap<>();
+   private Map<String, User> roles = new HashMap<>();
 
-    @PostConstruct
-    public void init() {
-        roles.put("admin", new User("admin", "{noop}admin1", getAuthority("ROLE_ADMIN")));
-        roles.put("user", new User("user", "{noop}user1", getAuthority("ROLE_USER")));
-    }
+   @PostConstruct
+   public void init() {
+      roles.put("admin", new User("admin", "{noop}admin1", getAuthority("ROLE_ADMIN")));
+      roles.put("user", new User("user", "{noop}user1", getAuthority("ROLE_USER")));
+   }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        return roles.get(username);
-    }
+   @Override
+   public UserDetails loadUserByUsername(String username) {
+      return roles.get(username);
+   }
 
-    private List<GrantedAuthority> getAuthority(String role) {
-        return Collections.singletonList(new SimpleGrantedAuthority(role));
-    }
+   private List<GrantedAuthority> getAuthority(String role) {
+      return Collections.singletonList(new SimpleGrantedAuthority(role));
+   }
 }

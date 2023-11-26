@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-mysql.properties")
 public class MySqlJdbcAuthenticationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MySqlJdbcAuthenticationApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(MySqlJdbcAuthenticationApplication.class, args);
+   }
 
 }

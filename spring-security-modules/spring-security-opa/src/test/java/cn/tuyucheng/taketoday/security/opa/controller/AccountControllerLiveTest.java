@@ -17,51 +17,51 @@ import static org.springframework.security.test.web.reactive.server.SecurityMock
 @ActiveProfiles("test")
 class AccountControllerLiveTest {
 
-    @Autowired
-    ApplicationContext context;
-    WebTestClient rest;
+   @Autowired
+   ApplicationContext context;
+   WebTestClient rest;
 
-    @BeforeEach
-    public void setup() {
-        this.rest = WebTestClient.bindToApplicationContext(this.context)
-              .apply(springSecurity())
-              .configureClient()
-              .build();
-    }
+   @BeforeEach
+   public void setup() {
+      this.rest = WebTestClient.bindToApplicationContext(this.context)
+            .apply(springSecurity())
+            .configureClient()
+            .build();
+   }
 
 
-    @Test
-    @WithMockUser(username = "user1", roles = {"account:read:0001"})
-    void testGivenValidUser_thenSuccess() {
-        rest.get()
-              .uri("/account/0001")
-              .accept(MediaType.APPLICATION_JSON)
-              .exchange()
-              .expectStatus()
-              .is2xxSuccessful();
-    }
+   @Test
+   @WithMockUser(username = "user1", roles = {"account:read:0001"})
+   void testGivenValidUser_thenSuccess() {
+      rest.get()
+            .uri("/account/0001")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus()
+            .is2xxSuccessful();
+   }
 
-    @Test
-    @WithMockUser(username = "user1", roles = {"account:read:0002"})
-    void testGivenValidUser_thenUnauthorized() {
-        rest.get()
-              .uri("/account/0001")
-              .accept(MediaType.APPLICATION_JSON)
-              .exchange()
-              .expectStatus()
-              .isForbidden();
-    }
+   @Test
+   @WithMockUser(username = "user1", roles = {"account:read:0002"})
+   void testGivenValidUser_thenUnauthorized() {
+      rest.get()
+            .uri("/account/0001")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus()
+            .isForbidden();
+   }
 
-    @Test
-    @WithMockUser(username = "user1", roles = {})
-    void testGivenNoAuthorities_thenForbidden() {
-        rest.get()
-              .uri("/account/0001")
-              .accept(MediaType.APPLICATION_JSON)
-              .exchange()
-              .expectStatus()
-              .isForbidden();
-    }
+   @Test
+   @WithMockUser(username = "user1", roles = {})
+   void testGivenNoAuthorities_thenForbidden() {
+      rest.get()
+            .uri("/account/0001")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus()
+            .isForbidden();
+   }
 
 
 }

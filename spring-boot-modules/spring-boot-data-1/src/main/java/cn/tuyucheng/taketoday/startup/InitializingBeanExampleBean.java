@@ -14,13 +14,13 @@ import java.util.Arrays;
 @Scope(value = "prototype")
 public class InitializingBeanExampleBean implements InitializingBean {
 
-	private static final Logger LOG = LoggerFactory.getLogger(InitializingBeanExampleBean.class);
+   private static final Logger LOG = LoggerFactory.getLogger(InitializingBeanExampleBean.class);
 
-	@Autowired
-	private Environment environment;
+   @Autowired
+   private Environment environment;
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
-	}
+   @Override
+   public void afterPropertiesSet() throws Exception {
+      LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
+   }
 }

@@ -11,29 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class IsWindowsConditionUnitTest {
 
-	@Test
-	void whenOnWindows_thenIsWindowsConditionShouldPass() {
-		try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
-			theMock.when(ConditionalUtils::isWindows)
-				.thenReturn(true);
-			assertTrue(
-				new IsWindowsCondition().matches(
-					Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-				)
-			);
-		}
-	}
+   @Test
+   void whenOnWindows_thenIsWindowsConditionShouldPass() {
+      try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
+         theMock.when(ConditionalUtils::isWindows)
+               .thenReturn(true);
+         assertTrue(
+               new IsWindowsCondition().matches(
+                     Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+               )
+         );
+      }
+   }
 
-	@Test
-	void whenNotOnWindows_thenIsWindowsConditionShouldNotPass() {
-		try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
-			theMock.when(ConditionalUtils::isWindows)
-				.thenReturn(false);
-			assertFalse(
-				new IsWindowsCondition().matches(
-					Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-				)
-			);
-		}
-	}
+   @Test
+   void whenNotOnWindows_thenIsWindowsConditionShouldNotPass() {
+      try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
+         theMock.when(ConditionalUtils::isWindows)
+               .thenReturn(false);
+         assertFalse(
+               new IsWindowsCondition().matches(
+                     Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+               )
+         );
+      }
+   }
 }

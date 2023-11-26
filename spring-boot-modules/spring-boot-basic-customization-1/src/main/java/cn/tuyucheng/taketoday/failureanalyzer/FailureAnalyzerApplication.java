@@ -10,8 +10,8 @@ import javax.annotation.security.RolesAllowed;
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.failureanalyzer")
 public class FailureAnalyzerApplication {
 
-	@RolesAllowed("*")
-	public static void main(String[] args) {
-		SpringApplication.run(FailureAnalyzerApplication.class, args);
-	}
+   @RolesAllowed("*")
+   public static void main(String[] args) {
+      SpringApplication.run(FailureAnalyzerApplication.class, args);
+   }
 }

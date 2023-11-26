@@ -1,11 +1,10 @@
 package cn.tuyucheng.taketoday.web;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class SwaggerLiveTest {
    private static final String URL_PREFIX = "http://localhost:8080/spring-security-rest/api";

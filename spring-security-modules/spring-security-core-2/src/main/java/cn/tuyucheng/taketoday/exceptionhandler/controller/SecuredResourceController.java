@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/secured")
 public class SecuredResourceController {
 
-    @GetMapping
-    public String secureResource() {
-        return "/admin.html";
-    }
+   @GetMapping
+   public String secureResource() {
+      return "/admin.html";
+   }
 }

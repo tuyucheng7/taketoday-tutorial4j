@@ -11,16 +11,16 @@ import javax.persistence.EntityManagerFactory;
 @Profile("exception")
 @Repository
 public class FooRepositoryImpl implements FooRepository {
-    @Autowired
-    private EntityManagerFactory emf;
+   @Autowired
+   private EntityManagerFactory emf;
 
-    @Override
-    public void save(Foo foo) {
-        emf.unwrap(SessionFactory.class).getCurrentSession().saveOrUpdate(foo);
-    }
+   @Override
+   public void save(Foo foo) {
+      emf.unwrap(SessionFactory.class).getCurrentSession().saveOrUpdate(foo);
+   }
 
-    @Override
-    public Foo get(Integer id) {
-        return emf.unwrap(SessionFactory.class).getCurrentSession().get(Foo.class, id);
-    }
+   @Override
+   public Foo get(Integer id) {
+      return emf.unwrap(SessionFactory.class).getCurrentSession().get(Foo.class, id);
+   }
 }

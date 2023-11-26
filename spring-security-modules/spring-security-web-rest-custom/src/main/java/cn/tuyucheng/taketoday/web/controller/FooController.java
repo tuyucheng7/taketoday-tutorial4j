@@ -16,29 +16,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/foos")
 public class FooController implements InitializingBean {
 
-    @Value("${foo1}")
-    private String foo1;
+   @Value("${foo1}")
+   private String foo1;
 
-    @Autowired
-    private Environment env;
+   @Autowired
+   private Environment env;
 
-    @Autowired
-    private IFooService service;
+   @Autowired
+   private IFooService service;
 
-    public FooController() {
-        super();
-    }
+   public FooController() {
+      super();
+   }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Foo findOne(@PathVariable("id") final Long id) {
-        return service.findOne(id);
-    }
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+   @ResponseBody
+   public Foo findOne(@PathVariable("id") final Long id) {
+      return service.findOne(id);
+   }
 
-    @Override
-    public final void afterPropertiesSet() {
-        System.out.println("In Child Context, property via @Value = " + foo1);
-        System.out.println("In Child Context, property via env = " + env.getProperty("foo2"));
-    }
+   @Override
+   public final void afterPropertiesSet() {
+      System.out.println("In Child Context, property via @Value = " + foo1);
+      System.out.println("In Child Context, property via env = " + env.getProperty("foo2"));
+   }
 
 }

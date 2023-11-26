@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/foos")
 public class FooController {
 
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
+   @Autowired
+   private ApplicationEventPublisher eventPublisher;
 
-    public FooController() {
-        super();
-    }
+   public FooController() {
+      super();
+   }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    @PreAuthorize("hasRole('ROLE_USER')")
-    public Foo findOne(@PathVariable("id") final Long id) {
-        return new Foo();
-    }
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+   @ResponseBody
+   @PreAuthorize("hasRole('ROLE_USER')")
+   public Foo findOne(@PathVariable("id") final Long id) {
+      return new Foo();
+   }
 
 }

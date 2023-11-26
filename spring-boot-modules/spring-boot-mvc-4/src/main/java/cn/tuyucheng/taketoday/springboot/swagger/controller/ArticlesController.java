@@ -3,11 +3,7 @@ package cn.tuyucheng.taketoday.springboot.swagger.controller;
 import cn.tuyucheng.taketoday.springboot.swagger.model.Article;
 import cn.tuyucheng.taketoday.springboot.swagger.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,16 +11,16 @@ import java.util.List;
 @RequestMapping("/articles")
 public class ArticlesController {
 
-    @Autowired
-    private ArticleService articleService;
+   @Autowired
+   private ArticleService articleService;
 
-    @GetMapping("")
-    public List<Article> getAllArticles() {
-        return articleService.getAllArticles();
-    }
+   @GetMapping("")
+   public List<Article> getAllArticles() {
+      return articleService.getAllArticles();
+   }
 
-    @PostMapping("")
-    public void addArticle(@RequestBody Article article) {
-        articleService.addArticle(article);
-    }
+   @PostMapping("")
+   public void addArticle(@RequestBody Article article) {
+      articleService.addArticle(article);
+   }
 }

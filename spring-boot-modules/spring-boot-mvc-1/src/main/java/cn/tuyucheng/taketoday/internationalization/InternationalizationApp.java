@@ -7,8 +7,8 @@ import javax.annotation.security.RolesAllowed;
 
 @SpringBootApplication
 public class InternationalizationApp {
-	@RolesAllowed("*")
-	public static void main(String[] args) {
-		SpringApplication.run(InternationalizationApp.class, args);
-	}
+   @RolesAllowed("*")
+   public static void main(String[] args) {
+      SpringApplication.run(InternationalizationApp.class, args);
+   }
 }

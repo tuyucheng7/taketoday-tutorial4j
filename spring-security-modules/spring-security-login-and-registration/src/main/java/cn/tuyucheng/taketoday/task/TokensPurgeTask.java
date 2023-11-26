@@ -14,18 +14,18 @@ import java.util.Date;
 @Transactional
 public class TokensPurgeTask {
 
-	@Autowired
-	VerificationTokenRepository tokenRepository;
+   @Autowired
+   VerificationTokenRepository tokenRepository;
 
-	@Autowired
-	PasswordResetTokenRepository passwordTokenRepository;
+   @Autowired
+   PasswordResetTokenRepository passwordTokenRepository;
 
-	@Scheduled(cron = "${purge.cron.expression}")
-	public void purgeExpired() {
+   @Scheduled(cron = "${purge.cron.expression}")
+   public void purgeExpired() {
 
-		Date now = Date.from(Instant.now());
+      Date now = Date.from(Instant.now());
 
-		passwordTokenRepository.deleteAllExpiredSince(now);
-		tokenRepository.deleteAllExpiredSince(now);
-	}
+      passwordTokenRepository.deleteAllExpiredSince(now);
+      tokenRepository.deleteAllExpiredSince(now);
+   }
 }

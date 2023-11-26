@@ -20,11 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class StringToEmployeeConverterControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	public void getStringToEmployeeTest() throws Exception {
-		mockMvc.perform(get("/string-to-employee?employee=1,2000")).andDo(print()).andExpect(jsonPath("$.id", is(1))).andExpect(jsonPath("$.salary", is(2000.0))).andExpect(status().isOk());
-	}
+   @Test
+   public void getStringToEmployeeTest() throws Exception {
+      mockMvc.perform(get("/string-to-employee?employee=1,2000")).andDo(print()).andExpect(jsonPath("$.id", is(1))).andExpect(jsonPath("$.salary", is(2000.0))).andExpect(status().isOk());
+   }
 }

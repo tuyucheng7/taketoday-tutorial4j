@@ -11,23 +11,23 @@ import java.util.Collection;
 @Repository("userRepository")
 public class CustomUserRepository implements UserRepository {
 
-    private PasswordEncoder passwordEncoder;
+   private PasswordEncoder passwordEncoder;
 
-    public CustomUserRepository(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
+   public CustomUserRepository(PasswordEncoder passwordEncoder) {
+      this.passwordEncoder = passwordEncoder;
+   }
 
-    @Override
-    public User findUser(String username, String domain) {
-        if (StringUtils.isAnyBlank(username, domain)) {
-            return null;
-        } else {
-            Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
-            User user = new User(username, domain,
-                  passwordEncoder.encode("secret"), true,
-                  true, true, true, authorities);
-            return user;
-        }
-    }
+   @Override
+   public User findUser(String username, String domain) {
+      if (StringUtils.isAnyBlank(username, domain)) {
+         return null;
+      } else {
+         Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
+         User user = new User(username, domain,
+               passwordEncoder.encode("secret"), true,
+               true, true, true, authorities);
+         return user;
+      }
+   }
 
 }

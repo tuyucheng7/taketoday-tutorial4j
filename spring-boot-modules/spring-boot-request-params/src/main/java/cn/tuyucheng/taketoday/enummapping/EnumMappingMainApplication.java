@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EnumMappingMainApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EnumMappingMainApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(EnumMappingMainApplication.class, args);
+   }
 }

@@ -13,51 +13,51 @@ import static cn.tuyucheng.taketoday.Consts.APPLICATION_PORT;
 
 public abstract class AbstractLiveTest<T extends Serializable> {
 
-	protected final Class<T> clazz;
+   protected final Class<T> clazz;
 
-	@Autowired
-	protected IMarshaller marshaller;
+   @Autowired
+   protected IMarshaller marshaller;
 
-	public AbstractLiveTest(final Class<T> clazzToSet) {
-		super();
+   public AbstractLiveTest(final Class<T> clazzToSet) {
+      super();
 
-		Preconditions.checkNotNull(clazzToSet);
-		clazz = clazzToSet;
-	}
+      Preconditions.checkNotNull(clazzToSet);
+      clazz = clazzToSet;
+   }
 
-	// template method
+   // template method
 
-	public abstract void create();
+   public abstract void create();
 
-	public abstract String createAsUri();
+   public abstract String createAsUri();
 
-	protected final void create(final T resource) {
-		createAsUri(resource);
-	}
+   protected final void create(final T resource) {
+      createAsUri(resource);
+   }
 
-	protected final String createAsUri(final T resource) {
-		final Response response = createAsResponse(resource);
-		Preconditions.checkState(response.getStatusCode() == 201, "create operation: " + response.getStatusCode());
+   protected final String createAsUri(final T resource) {
+      final Response response = createAsResponse(resource);
+      Preconditions.checkState(response.getStatusCode() == 201, "create operation: " + response.getStatusCode());
 
-		final String locationOfCreatedResource = response.getHeader(HttpHeaders.LOCATION);
-		Preconditions.checkNotNull(locationOfCreatedResource);
-		return locationOfCreatedResource;
-	}
+      final String locationOfCreatedResource = response.getHeader(HttpHeaders.LOCATION);
+      Preconditions.checkNotNull(locationOfCreatedResource);
+      return locationOfCreatedResource;
+   }
 
-	final Response createAsResponse(final T resource) {
-		Preconditions.checkNotNull(resource);
+   final Response createAsResponse(final T resource) {
+      Preconditions.checkNotNull(resource);
 
-		final String resourceAsString = marshaller.encode(resource);
-		return RestAssured.given()
-			.contentType(marshaller.getMime())
-			.body(resourceAsString)
-			.post(getURL());
-	}
+      final String resourceAsString = marshaller.encode(resource);
+      return RestAssured.given()
+            .contentType(marshaller.getMime())
+            .body(resourceAsString)
+            .post(getURL());
+   }
 
-	//
+   //
 
-	protected String getURL() {
-		return "http://localhost:" + APPLICATION_PORT + "/spring-boot-rest/foos";
-	}
+   protected String getURL() {
+      return "http://localhost:" + APPLICATION_PORT + "/spring-boot-rest/foos";
+   }
 
 }

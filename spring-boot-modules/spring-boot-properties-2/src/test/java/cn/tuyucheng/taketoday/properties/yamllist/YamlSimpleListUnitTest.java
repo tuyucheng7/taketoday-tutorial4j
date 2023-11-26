@@ -16,16 +16,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @EnableConfigurationProperties(value = ApplicationProps.class)
 class YamlSimpleListUnitTest {
 
-	@Autowired
-	private ApplicationProps applicationProps;
+   @Autowired
+   private ApplicationProps applicationProps;
 
-	@Test
-	void whenYamlList_thenLoadSimpleList() {
-		assertThat(applicationProps.getProfiles()
-			.get(0)).isEqualTo("dev");
-		assertThat(applicationProps.getProfiles()
-			.get(4)
-			.getClass()).isEqualTo(Integer.class);
-		assertThat(applicationProps.getProfiles()).hasSize(5);
-	}
+   @Test
+   void whenYamlList_thenLoadSimpleList() {
+      assertThat(applicationProps.getProfiles()
+            .get(0)).isEqualTo("dev");
+      assertThat(applicationProps.getProfiles()
+            .get(4)
+            .getClass()).isEqualTo(Integer.class);
+      assertThat(applicationProps.getProfiles()).hasSize(5);
+   }
 }

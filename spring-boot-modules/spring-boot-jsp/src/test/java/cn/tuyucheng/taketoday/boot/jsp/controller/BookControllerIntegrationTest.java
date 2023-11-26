@@ -39,53 +39,53 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BookControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Autowired
-	private BookRepository bookRepository;
+   @Autowired
+   private BookRepository bookRepository;
 
-	@Test
-	@Order(1)
-	void whenAddBook_thenBookSaved() throws Exception {
-		MockHttpServletRequestBuilder addBookRequest = MockMvcRequestBuilders.post("/book/addBook")
-			.contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-			.param("isbn", "isbn1")
-			.param("name", "name1")
-			.param("author", "author1");
-		mockMvc.perform(addBookRequest)
-			.andReturn();
+   @Test
+   @Order(1)
+   void whenAddBook_thenBookSaved() throws Exception {
+      MockHttpServletRequestBuilder addBookRequest = MockMvcRequestBuilders.post("/book/addBook")
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+            .param("isbn", "isbn1")
+            .param("name", "name1")
+            .param("author", "author1");
+      mockMvc.perform(addBookRequest)
+            .andReturn();
 
-		Optional<BookData> storedBookOpt = bookRepository.findById("isbn1");
-		assertTrue(storedBookOpt.isPresent());
-		assertEquals("name1", storedBookOpt.get().getName());
-		assertEquals("author1", storedBookOpt.get().getAuthor());
-	}
+      Optional<BookData> storedBookOpt = bookRepository.findById("isbn1");
+      assertTrue(storedBookOpt.isPresent());
+      assertEquals("name1", storedBookOpt.get().getName());
+      assertEquals("author1", storedBookOpt.get().getAuthor());
+   }
 
-	@Test
-	@Order(2)
-	void givenAlreadyExistingBook_whenAddBook_thenShowErrorPage() throws Exception {
-		MockHttpServletRequestBuilder addBookRequest = MockMvcRequestBuilders.post("/book/addBook")
-			.contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-			.param("isbn", "isbn1")
-			.param("name", "name1")
-			.param("author", "author1");
-		ResultActions addBookResult = mockMvc.perform(addBookRequest);
+   @Test
+   @Order(2)
+   void givenAlreadyExistingBook_whenAddBook_thenShowErrorPage() throws Exception {
+      MockHttpServletRequestBuilder addBookRequest = MockMvcRequestBuilders.post("/book/addBook")
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+            .param("isbn", "isbn1")
+            .param("name", "name1")
+            .param("author", "author1");
+      ResultActions addBookResult = mockMvc.perform(addBookRequest);
 
-		addBookResult
-			.andExpect(view().name("error-book"))
-			.andExpect(model().attribute("ref", "isbn1"))
-			.andExpect(model().attribute("object", hasProperty("isbn", equalTo("isbn1"))))
-			.andExpect(model().attribute("message", "Cannot add an already existing book"));
-	}
+      addBookResult
+            .andExpect(view().name("error-book"))
+            .andExpect(model().attribute("ref", "isbn1"))
+            .andExpect(model().attribute("object", hasProperty("isbn", equalTo("isbn1"))))
+            .andExpect(model().attribute("message", "Cannot add an already existing book"));
+   }
 
-	@Configuration
-	@ComponentScan("cn.tuyucheng.taketoday.boot.jsp")
-	static class ContextConfiguration {
+   @Configuration
+   @ComponentScan("cn.tuyucheng.taketoday.boot.jsp")
+   static class ContextConfiguration {
 
-		@Bean
-		BookRepository provideBookRepository() {
-			return new InMemoryBookRepository(Collections.emptyMap());
-		}
-	}
+      @Bean
+      BookRepository provideBookRepository() {
+         return new InMemoryBookRepository(Collections.emptyMap());
+      }
+   }
 }

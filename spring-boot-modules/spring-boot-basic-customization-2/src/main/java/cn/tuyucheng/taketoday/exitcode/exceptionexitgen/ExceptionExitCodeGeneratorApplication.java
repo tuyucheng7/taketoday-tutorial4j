@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ExceptionExitCodeGeneratorApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ExceptionExitCodeGeneratorApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ExceptionExitCodeGeneratorApplication.class, args);
+   }
 
-	@Bean
-	CommandLineRunner failApplication() {
-		return args -> {
-			throw new FailedToStartException();
-		};
-	}
+   @Bean
+   CommandLineRunner failApplication() {
+      return args -> {
+         throw new FailedToStartException();
+      };
+   }
 }

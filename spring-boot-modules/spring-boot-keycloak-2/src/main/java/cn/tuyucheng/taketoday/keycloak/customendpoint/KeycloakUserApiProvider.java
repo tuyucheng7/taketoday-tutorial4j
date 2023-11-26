@@ -18,34 +18,34 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 public class KeycloakUserApiProvider implements RealmResourceProvider {
-	private final KeycloakSession session;
+   private final KeycloakSession session;
 
-	public KeycloakUserApiProvider(KeycloakSession session) {
-		this.session = session;
-	}
+   public KeycloakUserApiProvider(KeycloakSession session) {
+      this.session = session;
+   }
 
-	public void close() {
-	}
+   public void close() {
+   }
 
-	public Object getResource() {
-		return this;
-	}
+   public Object getResource() {
+      return this;
+   }
 
-	@GET
-	@Produces({MediaType.APPLICATION_JSON})
-	public Stream<UserRepresentation> searchUsersByGroupAndRoleName(@QueryParam("groupName") @NotNull String groupName, @QueryParam("roleName") @NotBlank String roleName) {
-		RealmModel realm = session.getContext().getRealm();
+   @GET
+   @Produces({MediaType.APPLICATION_JSON})
+   public Stream<UserRepresentation> searchUsersByGroupAndRoleName(@QueryParam("groupName") @NotNull String groupName, @QueryParam("roleName") @NotBlank String roleName) {
+      RealmModel realm = session.getContext().getRealm();
 
-		Optional<GroupModel> groupByName = session.groups()
-			.getGroupsStream(realm)
-			.filter(group -> group.getName().equals(groupName))
-			.findAny();
+      Optional<GroupModel> groupByName = session.groups()
+            .getGroupsStream(realm)
+            .filter(group -> group.getName().equals(groupName))
+            .findAny();
 
-		GroupModel group = groupByName.orElseThrow(() -> new NotFoundException("Group not found with name " + groupName));
+      GroupModel group = groupByName.orElseThrow(() -> new NotFoundException("Group not found with name " + groupName));
 
-		return session.users()
-			.getGroupMembersStream(realm, group)
-			.filter(user -> user.getRealmRoleMappingsStream().anyMatch(role -> role.getName().equals(roleName)))
-			.map(user -> ModelToRepresentation.toBriefRepresentation(user));
-	}
+      return session.users()
+            .getGroupMembersStream(realm, group)
+            .filter(user -> user.getRealmRoleMappingsStream().anyMatch(role -> role.getName().equals(roleName)))
+            .map(user -> ModelToRepresentation.toBriefRepresentation(user));
+   }
 }

@@ -18,17 +18,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class SpringBootMvcApplicationIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	/**
-	 * If this test passes, we got a page with the thymeleaf provided variable
-	 * value for eventName
-	 */
-	@Test
-	void shouldLoadCorrectIndexPage() throws Exception {
-		mockMvc.perform(get("/"))
-			.andExpect(status().isOk())
-			.andExpect(MockMvcResultMatchers.content().string(containsString("FIFA 2018")));
-	}
+   /**
+    * If this test passes, we got a page with the thymeleaf provided variable
+    * value for eventName
+    */
+   @Test
+   void shouldLoadCorrectIndexPage() throws Exception {
+      mockMvc.perform(get("/"))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.content().string(containsString("FIFA 2018")));
+   }
 }

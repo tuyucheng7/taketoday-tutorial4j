@@ -21,20 +21,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(PasswordEncoderConfiguration.class)
 public class ViewControllerIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext context;
-    MockMvc mvc;
+   @Autowired
+   private WebApplicationContext context;
+   MockMvc mvc;
 
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders
-              .webAppContextSetup(context)
-              .build();
-    }
+   @Before
+   public void setup() {
+      mvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .build();
+   }
 
-    @Test
-    public void givenUser_whenPerformingGet_thenReturnsIndex() throws Exception {
-        mvc.perform(get("/index").with(user("user").password("password"))).andExpect(status().isOk()).andExpect(view().name("userdetails"));
-    }
+   @Test
+   public void givenUser_whenPerformingGet_thenReturnsIndex() throws Exception {
+      mvc.perform(get("/index").with(user("user").password("password"))).andExpect(status().isOk()).andExpect(view().name("userdetails"));
+   }
 
 }

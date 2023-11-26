@@ -7,6 +7,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface IFooService extends IOperations<Foo> {
 
-	Page<Foo> findPaginated(Pageable pageable);
+   Page<Foo> findPaginated(Pageable pageable);
 
 }

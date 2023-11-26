@@ -13,29 +13,29 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Address {
 
-	private String id;
+   private String id;
 
-	private String street;
+   private String street;
 
-	private String streetNumber;
+   private String streetNumber;
 
-	private String city;
+   private String city;
 
-	private String state;
+   private String state;
 
-	private String zipCode;
+   private String zipCode;
 
-	private String country;
+   private String country;
 
-	public static Address valueOf(UpdateAddressRequest request) {
-		return builder()
-			.id(UUID.randomUUID().toString())
-			.street(request.getStreet())
-			.streetNumber(request.getStreetNumber())
-			.city(request.getCity())
-			.state(request.getState())
-			.zipCode(request.getZipCode())
-			.country(request.getCountry())
-			.build();
-	}
+   public static Address valueOf(UpdateAddressRequest request) {
+      return builder()
+            .id(UUID.randomUUID().toString())
+            .street(request.getStreet())
+            .streetNumber(request.getStreetNumber())
+            .city(request.getCity())
+            .state(request.getState())
+            .zipCode(request.getZipCode())
+            .country(request.getCountry())
+            .build();
+   }
 }

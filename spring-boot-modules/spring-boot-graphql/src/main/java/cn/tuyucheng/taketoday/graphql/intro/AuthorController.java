@@ -8,14 +8,14 @@ import java.util.List;
 @Controller
 public class AuthorController {
 
-	private final PostDao postDao;
+   private final PostDao postDao;
 
-	public AuthorController(PostDao postDao) {
-		this.postDao = postDao;
-	}
+   public AuthorController(PostDao postDao) {
+      this.postDao = postDao;
+   }
 
-	@SchemaMapping
-	public List<Post> posts(Author author) {
-		return postDao.getAuthorPosts(author.getId());
-	}
+   @SchemaMapping
+   public List<Post> posts(Author author) {
+      return postDao.getAuthorPosts(author.getId());
+   }
 }

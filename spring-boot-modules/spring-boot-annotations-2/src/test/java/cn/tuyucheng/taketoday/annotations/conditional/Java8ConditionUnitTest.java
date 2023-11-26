@@ -11,29 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Java8ConditionUnitTest {
 
-	@Test
-	void whenOnJava8_thenJava8ConditionShouldPass() {
-		try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
-			theMock.when(ConditionalUtils::isJava8)
-				.thenReturn(true);
-			assertTrue(
-				new Java8Condition().matches(
-					Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-				)
-			);
-		}
-	}
+   @Test
+   void whenOnJava8_thenJava8ConditionShouldPass() {
+      try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
+         theMock.when(ConditionalUtils::isJava8)
+               .thenReturn(true);
+         assertTrue(
+               new Java8Condition().matches(
+                     Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+               )
+         );
+      }
+   }
 
-	@Test
-	void whenNotOnJava8_thenJava8ConditionShouldNotPass() {
-		try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
-			theMock.when(ConditionalUtils::isJava8)
-				.thenReturn(false);
-			assertFalse(
-				new Java8Condition().matches(
-					Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-				)
-			);
-		}
-	}
+   @Test
+   void whenNotOnJava8_thenJava8ConditionShouldNotPass() {
+      try (MockedStatic<ConditionalUtils> theMock = Mockito.mockStatic(ConditionalUtils.class)) {
+         theMock.when(ConditionalUtils::isJava8)
+               .thenReturn(false);
+         assertFalse(
+               new Java8Condition().matches(
+                     Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+               )
+         );
+      }
+   }
 }

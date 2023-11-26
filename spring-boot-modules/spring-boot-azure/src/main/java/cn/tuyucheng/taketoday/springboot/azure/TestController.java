@@ -14,22 +14,22 @@ import static cn.tuyucheng.taketoday.springboot.azure.User.userNamed;
 @RestController
 public class TestController {
 
-	@GetMapping("/hello")
-	public String hello() {
-		return "hello azure!";
-	}
+   @GetMapping("/hello")
+   public String hello() {
+      return "hello azure!";
+   }
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@PostMapping("/user")
-	public String register(@RequestParam String name) {
-		userRepository.save(userNamed(name));
-		return "registered";
-	}
+   @PostMapping("/user")
+   public String register(@RequestParam String name) {
+      userRepository.save(userNamed(name));
+      return "registered";
+   }
 
-	@GetMapping("/user")
-	public Iterable<User> userlist() {
-		return userRepository.findAll();
-	}
+   @GetMapping("/user")
+   public Iterable<User> userlist() {
+      return userRepository.findAll();
+   }
 }

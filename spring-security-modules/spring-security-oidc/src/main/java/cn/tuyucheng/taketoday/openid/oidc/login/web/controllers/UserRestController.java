@@ -13,19 +13,19 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserRestController {
 
-    private UserService service;
+   private UserService service;
 
-    public UserRestController(UserService service) {
-        this.service = service;
-    }
+   public UserRestController(UserService service) {
+      this.service = service;
+   }
 
-    @GetMapping("/oidc-principal")
-    public OidcUser getOidcUserPrincipal(@AuthenticationPrincipal OidcUser principal) {
-        return principal;
-    }
+   @GetMapping("/oidc-principal")
+   public OidcUser getOidcUserPrincipal(@AuthenticationPrincipal OidcUser principal) {
+      return principal;
+   }
 
-    @GetMapping("/oidc-claims")
-    public Map<String, Object> getClaimsFromBean() {
-        return service.getUserClaims();
-    }
+   @GetMapping("/oidc-claims")
+   public Map<String, Object> getClaimsFromBean() {
+      return service.getUserClaims();
+   }
 }

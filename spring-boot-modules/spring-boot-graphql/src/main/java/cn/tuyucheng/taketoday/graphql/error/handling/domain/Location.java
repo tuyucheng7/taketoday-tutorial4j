@@ -18,12 +18,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Location {
-	@Id
-	private String zipcode;
+   @Id
+   private String zipcode;
 
-	private String city;
-	private String state;
+   private String city;
+   private String state;
 
-	@OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
-	private List<Vehicle> vehicles = new ArrayList<>();
+   @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+   private List<Vehicle> vehicles = new ArrayList<>();
 }

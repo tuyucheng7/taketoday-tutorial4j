@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/post")
 public class ExamplePostController {
 
-	private static Logger log = LoggerFactory.getLogger(ExamplePostController.class);
+   private static Logger log = LoggerFactory.getLogger(ExamplePostController.class);
 
-	@Autowired
-	ExampleService exampleService;
+   @Autowired
+   ExampleService exampleService;
 
-	@PostMapping("/request")
-	public ResponseEntity postController(@RequestBody LoginForm loginForm) {
-		log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
-		exampleService.fakeAuthenticate(loginForm);
-		return ResponseEntity.ok(HttpStatus.OK);
-	}
+   @PostMapping("/request")
+   public ResponseEntity postController(@RequestBody LoginForm loginForm) {
+      log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
+      exampleService.fakeAuthenticate(loginForm);
+      return ResponseEntity.ok(HttpStatus.OK);
+   }
 
-	@PostMapping("/response")
-	@ResponseBody
-	public ResponseTransfer postResponseController(@RequestBody LoginForm loginForm) {
-		log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
-		return new ResponseTransfer("Thanks For Posting!!!");
-	}
+   @PostMapping("/response")
+   @ResponseBody
+   public ResponseTransfer postResponseController(@RequestBody LoginForm loginForm) {
+      log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
+      return new ResponseTransfer("Thanks For Posting!!!");
+   }
 
-	@PostMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseTransfer postResponseJsonContent(@RequestBody LoginForm loginForm) {
-		log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
-		return new ResponseTransfer("JSON Content!");
-	}
+   @PostMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
+   @ResponseBody
+   public ResponseTransfer postResponseJsonContent(@RequestBody LoginForm loginForm) {
+      log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
+      return new ResponseTransfer("JSON Content!");
+   }
 
-	@PostMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
-	@ResponseBody
-	public ResponseTransfer postResponseXmlContent(@RequestBody LoginForm loginForm) {
-		log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
-		return new ResponseTransfer("XML Content!");
-	}
+   @PostMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
+   @ResponseBody
+   public ResponseTransfer postResponseXmlContent(@RequestBody LoginForm loginForm) {
+      log.debug("POST received - serializing LoginForm: " + loginForm.getPassword() + " " + loginForm.getUsername());
+      return new ResponseTransfer("XML Content!");
+   }
 }

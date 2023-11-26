@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ActiveProfiles("test")
 @SpringBootTest
 class RunApplicationWithTestProfileIntegrationTest {
-	@Autowired
-	private ApplicationContext context;
+   @Autowired
+   private ApplicationContext context;
 
-	@Test
-	void whenContextLoads_thenRunnersAreNotLoaded() {
-		assertNotNull(context.getBean(TaskService.class));
-		assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(CommandLineTaskExecutor.class),
-			"CommandLineRunner should not be loaded during this integration test");
-		assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(ApplicationRunnerTaskExecutor.class),
-			"ApplicationRunner should not be loaded during this integration test");
-	}
+   @Test
+   void whenContextLoads_thenRunnersAreNotLoaded() {
+      assertNotNull(context.getBean(TaskService.class));
+      assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(CommandLineTaskExecutor.class),
+            "CommandLineRunner should not be loaded during this integration test");
+      assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(ApplicationRunnerTaskExecutor.class),
+            "ApplicationRunner should not be loaded during this integration test");
+   }
 }

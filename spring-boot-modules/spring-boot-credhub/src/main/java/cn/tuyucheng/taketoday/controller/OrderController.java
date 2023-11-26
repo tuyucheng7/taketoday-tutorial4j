@@ -19,38 +19,38 @@ import static java.time.LocalDate.now;
 @RequestMapping("/orders")
 public class OrderController {
 
-	@Autowired
-	CredentialService credentialService;
+   @Autowired
+   CredentialService credentialService;
 
-	public OrderController(CredentialService credentialService) {
-		this.credentialService = credentialService;
-	}
+   public OrderController(CredentialService credentialService) {
+      this.credentialService = credentialService;
+   }
 
-	@GetMapping
-	public ResponseEntity<Collection<Order>> getAllOrders() {
-		try {
-			String apiKey = credentialService.getPassword("api_key");
-			return new ResponseEntity<>(getOrderList(apiKey), HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
-	}
+   @GetMapping
+   public ResponseEntity<Collection<Order>> getAllOrders() {
+      try {
+         String apiKey = credentialService.getPassword("api_key");
+         return new ResponseEntity<>(getOrderList(apiKey), HttpStatus.OK);
+      } catch (Exception e) {
+         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      }
+   }
 
-	private List<Order> getOrderList(String apiKey) throws Exception {
-		if (!credentialMatch(apiKey))
-			throw new Exception();
-		Order order = new Order();
-		order.setId(123L);
-		order.setCustomerName("Craig");
-		order.setOrderDate(now());
-		List<Order> orderList = new ArrayList<>();
-		orderList.add(order);
-		return orderList;
-	}
+   private List<Order> getOrderList(String apiKey) throws Exception {
+      if (!credentialMatch(apiKey))
+         throw new Exception();
+      Order order = new Order();
+      order.setId(123L);
+      order.setCustomerName("Craig");
+      order.setOrderDate(now());
+      List<Order> orderList = new ArrayList<>();
+      orderList.add(order);
+      return orderList;
+   }
 
-	private boolean credentialMatch(String credValue) {
-		// logic to check credValue
-		return true;
-	}
+   private boolean credentialMatch(String credValue) {
+      // logic to check credValue
+      return true;
+   }
 }
 

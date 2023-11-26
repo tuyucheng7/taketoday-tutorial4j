@@ -3,11 +3,11 @@ package cn.tuyucheng.taketoday.annotation.scanner;
 import java.util.List;
 
 public interface SampleAnnotationScanner {
-	List<String> scanAnnotatedMethods();
+   List<String> scanAnnotatedMethods();
 
-	List<String> scanAnnotatedClasses();
+   List<String> scanAnnotatedClasses();
 
-	boolean supportsMethodScan();
+   boolean supportsMethodScan();
 
-	boolean supportsClassScan();
+   boolean supportsClassScan();
 }

@@ -10,39 +10,39 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
+   public static void main(String[] args) {
 
-		SpringApplication.run(Application.class, args);
-		// closeApplication();
-		// exitApplication();
-		// writePID();
-	}
+      SpringApplication.run(Application.class, args);
+      // closeApplication();
+      // exitApplication();
+      // writePID();
+   }
 
-	private static void closeApplication() {
+   private static void closeApplication() {
 
-		ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE).run();
-		System.out.println("Spring Boot application started");
-		ctx.getBean(TerminateBean.class);
-		ctx.close();
-	}
+      ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE).run();
+      System.out.println("Spring Boot application started");
+      ctx.getBean(TerminateBean.class);
+      ctx.close();
+   }
 
-	private static void exitApplication() {
+   private static void exitApplication() {
 
-		ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE).run();
+      ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE).run();
 
-		int exitCode = SpringApplication.exit(ctx, () -> {
-			// return the error code
-			return 0;
-		});
+      int exitCode = SpringApplication.exit(ctx, () -> {
+         // return the error code
+         return 0;
+      });
 
-		System.out.println("Exit Spring Boot");
+      System.out.println("Exit Spring Boot");
 
-		System.exit(exitCode);
-	}
+      System.exit(exitCode);
+   }
 
-	private static void writePID() {
-		SpringApplicationBuilder app = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE);
-		app.build().addListeners(new ApplicationPidFileWriter("./bin/shutdown.pid"));
-		app.run();
-	}
+   private static void writePID() {
+      SpringApplicationBuilder app = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE);
+      app.build().addListeners(new ApplicationPidFileWriter("./bin/shutdown.pid"));
+      app.run();
+   }
 }

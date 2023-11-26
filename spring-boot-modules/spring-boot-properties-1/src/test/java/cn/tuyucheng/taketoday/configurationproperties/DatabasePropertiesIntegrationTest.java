@@ -17,15 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @TestPropertySource("classpath:database-test.properties")
 class DatabasePropertiesIntegrationTest {
 
-	@Autowired
-	@Qualifier("dataSource")
-	private Database database;
+   @Autowired
+   @Qualifier("dataSource")
+   private Database database;
 
-	@Test
-	void testDatabaseProperties() {
-		assertNotNull(database);
-		assertEquals("jdbc:postgresql:/localhost:5432", database.getUrl());
-		assertEquals("foo", database.getUsername());
-		assertEquals("bar", database.getPassword());
-	}
+   @Test
+   void testDatabaseProperties() {
+      assertNotNull(database);
+      assertEquals("jdbc:postgresql:/localhost:5432", database.getUrl());
+      assertEquals("foo", database.getUsername());
+      assertEquals("bar", database.getPassword());
+   }
 }

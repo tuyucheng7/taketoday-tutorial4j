@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class StartupApplicationListenerExample implements ApplicationListener<ContextRefreshedEvent> {
 
-	private static final Logger LOG = LoggerFactory.getLogger(StartupApplicationListenerExample.class);
+   private static final Logger LOG = LoggerFactory.getLogger(StartupApplicationListenerExample.class);
 
-	public static int counter;
+   public static int counter;
 
-	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
-		LOG.info("Increment counter");
-		counter++;
-	}
+   @Override
+   public void onApplicationEvent(ContextRefreshedEvent event) {
+      LOG.info("Increment counter");
+      counter++;
+   }
 }

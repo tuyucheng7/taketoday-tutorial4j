@@ -14,16 +14,16 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource("classpath:beans.xml")
 public class SpringBootXmlApplication implements CommandLineRunner {
 
-	private static final Logger logger = LoggerFactory.getLogger(SpringBootXmlApplication.class);
+   private static final Logger logger = LoggerFactory.getLogger(SpringBootXmlApplication.class);
 
-	@Autowired
-	private Pojo pojo;
+   @Autowired
+   private Pojo pojo;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootXmlApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootXmlApplication.class, args);
+   }
 
-	public void run(String... args) {
-		logger.info(pojo.getField());
-	}
+   public void run(String... args) {
+      logger.info(pojo.getField());
+   }
 }

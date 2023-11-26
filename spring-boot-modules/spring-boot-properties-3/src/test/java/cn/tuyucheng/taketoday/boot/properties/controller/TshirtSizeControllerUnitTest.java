@@ -13,24 +13,24 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class TshirtSizeControllerUnitTest {
 
-	@Mock
-	private SizeConverterService service;
+   @Mock
+   private SizeConverterService service;
 
-	@InjectMocks
-	private TshirtSizeController tested;
+   @InjectMocks
+   private TshirtSizeController tested;
 
-	@Test
-	void whenConvertSize_thenOK() {
-		// Given
-		String label = "S";
-		String countryCode = "fr";
-		int result = 36;
+   @Test
+   void whenConvertSize_thenOK() {
+      // Given
+      String label = "S";
+      String countryCode = "fr";
+      int result = 36;
 
-		// When
-		when(service.convertSize(label, countryCode)).thenReturn(result);
-		int actual = tested.convertSize(label, countryCode);
+      // When
+      when(service.convertSize(label, countryCode)).thenReturn(result);
+      int actual = tested.convertSize(label, countryCode);
 
-		// Then
-		assertEquals(actual, result);
-	}
+      // Then
+      assertEquals(actual, result);
+   }
 }

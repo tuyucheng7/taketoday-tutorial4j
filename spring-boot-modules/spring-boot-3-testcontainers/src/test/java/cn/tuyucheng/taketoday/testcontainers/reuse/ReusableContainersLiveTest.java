@@ -1,9 +1,7 @@
 package cn.tuyucheng.taketoday.testcontainers.reuse;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
+import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharacter;
+import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharactersRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,9 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.utility.DockerImageName;
 
-import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharacter;
-import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharactersRepository;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class ReusableContainersLiveTest {

@@ -14,19 +14,19 @@ import java.net.URI;
 @Controller
 public class RootController {
 
-	// API
+   // API
 
-	// discover
+   // discover
 
-	@GetMapping("/")
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void adminRoot(final HttpServletRequest request, final HttpServletResponse response) {
-		final String rootUri = request.getRequestURL()
-			.toString();
+   @GetMapping("/")
+   @ResponseStatus(value = HttpStatus.NO_CONTENT)
+   public void adminRoot(final HttpServletRequest request, final HttpServletResponse response) {
+      final String rootUri = request.getRequestURL()
+            .toString();
 
-		final URI fooUri = new UriTemplate("{rootUri}{resource}").expand(rootUri, "foos");
-		final String linkToFoos = LinkUtil.createLinkHeader(fooUri.toASCIIString(), "collection");
-		response.addHeader("Link", linkToFoos);
-	}
+      final URI fooUri = new UriTemplate("{rootUri}{resource}").expand(rootUri, "foos");
+      final String linkToFoos = LinkUtil.createLinkHeader(fooUri.toASCIIString(), "collection");
+      response.addHeader("Link", linkToFoos);
+   }
 
 }

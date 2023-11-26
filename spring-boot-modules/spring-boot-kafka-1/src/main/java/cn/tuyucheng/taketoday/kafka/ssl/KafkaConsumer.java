@@ -12,13 +12,13 @@ import java.util.List;
 @Slf4j
 public class KafkaConsumer {
 
-	public static final String TOPIC = "test-topic";
+   public static final String TOPIC = "test-topic";
 
-	public final List<String> messages = new ArrayList<>();
+   public final List<String> messages = new ArrayList<>();
 
-	@KafkaListener(topics = TOPIC)
-	public void receive(ConsumerRecord<String, String> consumerRecord) {
-		LOGGER.info("Received payload: '{}'", consumerRecord.toString());
-		messages.add(consumerRecord.value());
-	}
+   @KafkaListener(topics = TOPIC)
+   public void receive(ConsumerRecord<String, String> consumerRecord) {
+      LOGGER.info("Received payload: '{}'", consumerRecord.toString());
+      messages.add(consumerRecord.value());
+   }
 }

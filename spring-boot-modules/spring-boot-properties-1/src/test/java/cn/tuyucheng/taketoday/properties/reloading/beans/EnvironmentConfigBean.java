@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 @PropertySource(value = "file:extra2.properties", factory = ReloadablePropertySourceFactory.class)
 public class EnvironmentConfigBean {
 
-	private Environment environment;
+   private Environment environment;
 
-	public EnvironmentConfigBean(@Autowired Environment environment) {
-		this.environment = environment;
-	}
+   public EnvironmentConfigBean(@Autowired Environment environment) {
+      this.environment = environment;
+   }
 
-	public String getColor() {
-		return environment.getProperty("application.theme.color");
-	}
+   public String getColor() {
+      return environment.getProperty("application.theme.color");
+   }
 
-	public String getBackgroundColor() {
-		return environment.getProperty("application.theme.background");
-	}
+   public String getBackgroundColor() {
+      return environment.getProperty("application.theme.background");
+   }
 }

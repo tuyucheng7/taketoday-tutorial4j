@@ -12,12 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class YamlFooPropertiesIntegrationTest {
 
-	@Autowired
-	private YamlFooProperties yamlFooProperties;
+   @Autowired
+   private YamlFooProperties yamlFooProperties;
 
-	@Test
-	void whenFactoryProvidedThenYamlPropertiesInjected() {
-		assertThat(yamlFooProperties.getName()).isEqualTo("foo");
-		assertThat(yamlFooProperties.getAliases()).containsExactly("abc", "xyz");
-	}
+   @Test
+   void whenFactoryProvidedThenYamlPropertiesInjected() {
+      assertThat(yamlFooProperties.getName()).isEqualTo("foo");
+      assertThat(yamlFooProperties.getAliases()).containsExactly("abc", "xyz");
+   }
 }

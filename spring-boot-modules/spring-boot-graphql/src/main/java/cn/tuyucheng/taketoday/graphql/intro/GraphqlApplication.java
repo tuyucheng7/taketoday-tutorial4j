@@ -8,12 +8,12 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {
-	SecurityAutoConfiguration.class,
-	HibernateJpaAutoConfiguration.class
+      SecurityAutoConfiguration.class,
+      HibernateJpaAutoConfiguration.class
 })
 public class GraphqlApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GraphqlApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(GraphqlApplication.class, args);
+   }
 }

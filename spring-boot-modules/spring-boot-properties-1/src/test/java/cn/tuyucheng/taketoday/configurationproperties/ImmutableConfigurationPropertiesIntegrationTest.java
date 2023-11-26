@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource("classpath:configprops-test.properties")
 class ImmutableConfigurationPropertiesIntegrationTest {
 
-	@Autowired
-	private ImmutableCredentials immutableCredentials;
+   @Autowired
+   private ImmutableCredentials immutableCredentials;
 
-	@Test
-	void whenConstructorBindingUsed_thenPropertiesCorrectlyBound() {
-		assertThat(immutableCredentials.getAuthMethod()).isEqualTo("SHA1");
-		assertThat(immutableCredentials.getUsername()).isEqualTo("john");
-		assertThat(immutableCredentials.getPassword()).isEqualTo("password");
-	}
+   @Test
+   void whenConstructorBindingUsed_thenPropertiesCorrectlyBound() {
+      assertThat(immutableCredentials.getAuthMethod()).isEqualTo("SHA1");
+      assertThat(immutableCredentials.getUsername()).isEqualTo("john");
+      assertThat(immutableCredentials.getPassword()).isEqualTo("password");
+   }
 }

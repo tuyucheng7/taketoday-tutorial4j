@@ -12,24 +12,24 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfiguration {
 
-    @Autowired
-    private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth.jdbcAuthentication()
             .dataSource(dataSource)
             .usersByUsernameQuery("select email,password,enabled "
-                + "from bael_users "
-                + "where email = ?")
+                  + "from bael_users "
+                  + "where email = ?")
             .authoritiesByUsernameQuery("select email,authority "
-                + "from authorities "
-                + "where email = ?");
-    }
+                  + "from authorities "
+                  + "where email = ?");
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 
 }

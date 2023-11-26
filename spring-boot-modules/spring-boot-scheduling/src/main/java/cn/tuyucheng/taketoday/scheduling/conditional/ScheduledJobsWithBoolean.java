@@ -9,20 +9,20 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 public class ScheduledJobsWithBoolean {
 
-	private final static Logger LOG = LoggerFactory.getLogger(ScheduledJobsWithBoolean.class);
+   private final static Logger LOG = LoggerFactory.getLogger(ScheduledJobsWithBoolean.class);
 
-	@Value("${jobs.enabled:true}")
-	private boolean isEnabled;
+   @Value("${jobs.enabled:true}")
+   private boolean isEnabled;
 
-	/**
-	 * A scheduled job controlled via application property. The job always
-	 * executes, but the logic inside is protected by a configurable boolean
-	 * flag.
-	 */
-	@Scheduled(fixedDelay = 60000)
-	public void cleanTempDirectory() {
-		if (isEnabled) {
-			LOG.info("Cleaning temp directory via boolean flag");
-		}
-	}
+   /**
+    * A scheduled job controlled via application property. The job always
+    * executes, but the logic inside is protected by a configurable boolean
+    * flag.
+    */
+   @Scheduled(fixedDelay = 60000)
+   public void cleanTempDirectory() {
+      if (isEnabled) {
+         LOG.info("Cleaning temp directory via boolean flag");
+      }
+   }
 }

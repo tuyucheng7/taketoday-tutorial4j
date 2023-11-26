@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @TestPropertySource("classpath:exception.properties")
 public class ApplicationIntegrationTest {
 
-    @Test
-    void contextLoads() {
-    }
+   @Test
+   void contextLoads() {
+   }
 }

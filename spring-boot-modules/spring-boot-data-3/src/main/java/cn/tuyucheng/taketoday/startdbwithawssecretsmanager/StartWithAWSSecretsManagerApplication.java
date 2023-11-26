@@ -10,19 +10,19 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 @Profile("aws")
 public class StartWithAWSSecretsManagerApplication {
-	@Value("${api-key1}")
-	private String apiKeyValue1;
+   @Value("${api-key1}")
+   private String apiKeyValue1;
 
-	@Value("${api-key2}")
-	private String apiKeyValue2;
+   @Value("${api-key2}")
+   private String apiKeyValue2;
 
-	@PostConstruct
-	private void postConstruct() {
-		System.out.println(apiKeyValue1);
-		System.out.println(apiKeyValue2);
-	}
+   @PostConstruct
+   private void postConstruct() {
+      System.out.println(apiKeyValue1);
+      System.out.println(apiKeyValue2);
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(StartWithAWSSecretsManagerApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(StartWithAWSSecretsManagerApplication.class, args);
+   }
 }

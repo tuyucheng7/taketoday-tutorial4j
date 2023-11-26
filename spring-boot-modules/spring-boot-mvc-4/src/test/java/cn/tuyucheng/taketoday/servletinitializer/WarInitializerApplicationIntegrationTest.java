@@ -16,18 +16,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = WarInitializerApplication.WarInitializerController.class)
 class WarInitializerApplicationIntegrationTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @Test
-    void whenContextRootUrlIsAccessed_thenStatusIsOk() throws Exception {
-        mockMvc.perform(get("/"))
-              .andExpect(status().is(200));
-    }
+   @Test
+   void whenContextRootUrlIsAccessed_thenStatusIsOk() throws Exception {
+      mockMvc.perform(get("/"))
+            .andExpect(status().is(200));
+   }
 
-    @Test
-    void whenContextRootUrlIsAccesed_thenCorrectStringIsReturned() throws Exception {
-        mockMvc.perform(get("/"))
-              .andExpect(content().string(containsString("WarInitializerApplication is up and running!")));
-    }
+   @Test
+   void whenContextRootUrlIsAccesed_thenCorrectStringIsReturned() throws Exception {
+      mockMvc.perform(get("/"))
+            .andExpect(content().string(containsString("WarInitializerApplication is up and running!")));
+   }
 }

@@ -27,59 +27,59 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class SpringSecurityJsonViewIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext context;
+   @Autowired
+   private WebApplicationContext context;
 
-    private MockMvc mvc;
+   private MockMvc mvc;
 
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+   @Rule
+   public ExpectedException expectedException = ExpectedException.none();
 
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders
-              .webAppContextSetup(context)
-              .build();
-    }
+   @Before
+   public void setup() {
+      mvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .build();
+   }
 
-    @Test
-    @WithMockUser(username = "admin", password = "adminPass", roles = "ADMIN")
-    public void whenAdminRequests_thenOwnerNameIsPresent() throws Exception {
-        mvc.perform(get("/items"))
-              .andExpect(status().isOk())
-              .andExpect(jsonPath("$[0].id").value(1))
-              .andExpect(jsonPath("$[0].name").value("Item 1"))
-              .andExpect(jsonPath("$[0].ownerName").exists());
-    }
+   @Test
+   @WithMockUser(username = "admin", password = "adminPass", roles = "ADMIN")
+   public void whenAdminRequests_thenOwnerNameIsPresent() throws Exception {
+      mvc.perform(get("/items"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].id").value(1))
+            .andExpect(jsonPath("$[0].name").value("Item 1"))
+            .andExpect(jsonPath("$[0].ownerName").exists());
+   }
 
-    @Test
-    @WithMockUser(username = "user", password = "userPass", roles = "USER")
-    public void whenUserRequests_thenOwnerNameIsAbsent() throws Exception {
-        mvc.perform(get("/items"))
-              .andExpect(status().isOk())
-              .andExpect(jsonPath("$[0].id").value(1))
-              .andExpect(jsonPath("$[0].name").value("Item 1"))
-              .andExpect(jsonPath("$[0].ownerName").doesNotExist());
-    }
+   @Test
+   @WithMockUser(username = "user", password = "userPass", roles = "USER")
+   public void whenUserRequests_thenOwnerNameIsAbsent() throws Exception {
+      mvc.perform(get("/items"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].id").value(1))
+            .andExpect(jsonPath("$[0].name").value("Item 1"))
+            .andExpect(jsonPath("$[0].ownerName").doesNotExist());
+   }
 
-    @Test
-    @WithMockUser(username = "user", password = "userPass", roles = {"ADMIN", "USER"})
-    public void whenMultipleRoles_thenExceptionIsThrown() throws Exception {
-        expectedException.expect(new BaseMatcher<NestedServletException>() {
-            @Override
-            public boolean matches(Object o) {
-                NestedServletException exception = (NestedServletException) o;
-                return exception.getCause() instanceof IllegalArgumentException && exception.getCause().getMessage().equals("Ambiguous @JsonView declaration for roles ROLE_ADMIN,ROLE_USER");
-            }
+   @Test
+   @WithMockUser(username = "user", password = "userPass", roles = {"ADMIN", "USER"})
+   public void whenMultipleRoles_thenExceptionIsThrown() throws Exception {
+      expectedException.expect(new BaseMatcher<NestedServletException>() {
+         @Override
+         public boolean matches(Object o) {
+            NestedServletException exception = (NestedServletException) o;
+            return exception.getCause() instanceof IllegalArgumentException && exception.getCause().getMessage().equals("Ambiguous @JsonView declaration for roles ROLE_ADMIN,ROLE_USER");
+         }
 
-            @Override
-            public void describeTo(Description description) {
+         @Override
+         public void describeTo(Description description) {
 
-            }
-        });
+         }
+      });
 
-        mvc.perform(get("/items"))
-              .andExpect(status().isOk());
+      mvc.perform(get("/items"))
+            .andExpect(status().isOk());
 
-    }
+   }
 }

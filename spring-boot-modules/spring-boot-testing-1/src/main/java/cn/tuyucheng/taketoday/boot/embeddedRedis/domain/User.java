@@ -7,20 +7,20 @@ import java.util.UUID;
 
 @RedisHash("user")
 public class User {
-	@Id
-	private UUID id;
-	private String name;
+   @Id
+   private UUID id;
+   private String name;
 
-	public User(UUID id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+   public User(UUID id, String name) {
+      this.id = id;
+      this.name = name;
+   }
 
-	public UUID getId() {
-		return id;
-	}
+   public UUID getId() {
+      return id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 }

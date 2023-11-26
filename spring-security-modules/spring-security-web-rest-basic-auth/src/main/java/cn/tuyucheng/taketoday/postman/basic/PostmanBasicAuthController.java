@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PostmanBasicAuthController {
 
-    @GetMapping("postman-test")
-    public String test() {
-        return "request was authorized!";
-    }
+   @GetMapping("postman-test")
+   public String test() {
+      return "request was authorized!";
+   }
 
 }

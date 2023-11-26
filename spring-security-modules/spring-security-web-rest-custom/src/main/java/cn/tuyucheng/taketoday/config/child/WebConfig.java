@@ -28,49 +28,49 @@ import java.util.List;
 //@PropertySource("classpath:foo.properties")
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-    public WebConfig() {
-        super();
-    }
+   public WebConfig() {
+      super();
+   }
 
-    @Override
-    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
-    }
+   @Override
+   public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
+      converters.add(new MappingJackson2HttpMessageConverter());
+   }
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        final PropertySourcesPlaceholderConfigurer ppc = new PropertySourcesPlaceholderConfigurer();
-        ppc.setIgnoreUnresolvablePlaceholders(true);
-        return ppc;
-    }
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+      final PropertySourcesPlaceholderConfigurer ppc = new PropertySourcesPlaceholderConfigurer();
+      ppc.setIgnoreUnresolvablePlaceholders(true);
+      return ppc;
+   }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(templateEngine());
-        resolver.setCharacterEncoding("UTF-8");
-        return resolver;
-    }
+   @Bean
+   public ViewResolver viewResolver() {
+      ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+      resolver.setTemplateEngine(templateEngine());
+      resolver.setCharacterEncoding("UTF-8");
+      return resolver;
+   }
 
-    @Bean
-    public ISpringTemplateEngine templateEngine() {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setEnableSpringELCompiler(true);
-        engine.setTemplateResolver(templateResolver());
-        engine.addDialect(new SpringSecurityDialect());
-        return engine;
-    }
+   @Bean
+   public ISpringTemplateEngine templateEngine() {
+      SpringTemplateEngine engine = new SpringTemplateEngine();
+      engine.setEnableSpringELCompiler(true);
+      engine.setTemplateResolver(templateResolver());
+      engine.addDialect(new SpringSecurityDialect());
+      return engine;
+   }
 
-    private ITemplateResolver templateResolver() {
-        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-        resolver.setApplicationContext(applicationContext);
-        resolver.setPrefix("/WEB-INF/templates/");
-        resolver.setSuffix(".html");
-        resolver.setTemplateMode(TemplateMode.HTML);
-        return resolver;
-    }
+   private ITemplateResolver templateResolver() {
+      SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+      resolver.setApplicationContext(applicationContext);
+      resolver.setPrefix("/WEB-INF/templates/");
+      resolver.setSuffix(".html");
+      resolver.setTemplateMode(TemplateMode.HTML);
+      return resolver;
+   }
 
 }

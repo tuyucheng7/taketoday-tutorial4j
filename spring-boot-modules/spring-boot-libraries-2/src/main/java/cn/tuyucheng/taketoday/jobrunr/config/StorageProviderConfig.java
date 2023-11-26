@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StorageProviderConfig {
 
-	@Bean
-	public StorageProvider storageProvider(JobMapper jobMapper) {
-		InMemoryStorageProvider storageProvider = new InMemoryStorageProvider();
-		storageProvider.setJobMapper(jobMapper);
-		return storageProvider;
-	}
+   @Bean
+   public StorageProvider storageProvider(JobMapper jobMapper) {
+      InMemoryStorageProvider storageProvider = new InMemoryStorageProvider();
+      storageProvider.setJobMapper(jobMapper);
+      return storageProvider;
+   }
 }

@@ -7,11 +7,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class ExternalPropertyFileLoader {
 
-    @Autowired
-    ConfProperties prop;
+   @Autowired
+   ConfProperties prop;
 
-    public static void main(String[] args) {
-        new SpringApplicationBuilder(ExternalPropertyFileLoader.class).build()
-              .run(args);
-    }
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(ExternalPropertyFileLoader.class).build()
+            .run(args);
+   }
 }

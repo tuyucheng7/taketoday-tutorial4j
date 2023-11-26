@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 public class SpringSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests(authz -> authz.mvcMatchers("/login")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated())
-              .logout(logout -> logout.permitAll()
-                    .logoutSuccessHandler((request, response, authentication) -> {
-                        response.setStatus(HttpServletResponse.SC_OK);
-                    }));
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests(authz -> authz.mvcMatchers("/login")
+                  .permitAll()
+                  .anyRequest()
+                  .authenticated())
+            .logout(logout -> logout.permitAll()
+                  .logoutSuccessHandler((request, response, authentication) -> {
+                     response.setStatus(HttpServletResponse.SC_OK);
+                  }));
+      return http.build();
+   }
 
 }

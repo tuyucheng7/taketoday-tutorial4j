@@ -17,49 +17,49 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Profile("!https")
 public class SecSecurityConfig {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() throws Exception {
-        UserDetails user1 = User.withUsername("user1")
-              .password("{noop}user1Pass")
-              .roles("USER")
-              .build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() throws Exception {
+      UserDetails user1 = User.withUsername("user1")
+            .password("{noop}user1Pass")
+            .roles("USER")
+            .build();
 
-        UserDetails user2 = User.withUsername("user2")
-              .password("{noop}user2Pass")
-              .roles("USER")
-              .build();
+      UserDetails user2 = User.withUsername("user2")
+            .password("{noop}user2Pass")
+            .roles("USER")
+            .build();
 
-        UserDetails admin = User.withUsername("admin")
-              .password("{noop}admin0Pass")
-              .roles("ADMIN")
-              .build();
-        return new InMemoryUserDetailsManager(user1, user2, admin);
-    }
+      UserDetails admin = User.withUsername("admin")
+            .password("{noop}admin0Pass")
+            .roles("ADMIN")
+            .build();
+      return new InMemoryUserDetailsManager(user1, user2, admin);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-              .and()
-              .authorizeRequests()
-              .antMatchers("/admin/**")
-              .hasRole("ADMIN")
-              .antMatchers("/anonymous*")
-              .anonymous()
-              .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico", "/rest")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .loginPage("/index.html")
-              .loginProcessingUrl("/perform_login")
-              .defaultSuccessUrl("/homepage.html", true)
-              .failureUrl("/index.html?error=true")
-              .and()
-              .logout()
-              .logoutUrl("/perform_logout")
-              .deleteCookies("JSESSIONID");
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            .and()
+            .authorizeRequests()
+            .antMatchers("/admin/**")
+            .hasRole("ADMIN")
+            .antMatchers("/anonymous*")
+            .anonymous()
+            .antMatchers(HttpMethod.GET, "/index*", "/static/**", "/*.js", "/*.json", "/*.ico", "/rest")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/index.html")
+            .loginProcessingUrl("/perform_login")
+            .defaultSuccessUrl("/homepage.html", true)
+            .failureUrl("/index.html?error=true")
+            .and()
+            .logout()
+            .logoutUrl("/perform_logout")
+            .deleteCookies("JSESSIONID");
+      return http.build();
+   }
 }

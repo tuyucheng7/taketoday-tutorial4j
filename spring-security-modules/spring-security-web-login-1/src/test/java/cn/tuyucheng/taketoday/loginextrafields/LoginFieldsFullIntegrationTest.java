@@ -30,42 +30,42 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ExtraLoginFieldsApplication.class)
 public class LoginFieldsFullIntegrationTest extends AbstractExtraLoginFieldsIntegrationTest {
 
-    @Test
-    public void givenAccessSecuredResource_whenAuthenticated_thenAuthHasExtraFields() throws Exception {
-        MockHttpServletRequestBuilder securedResourceAccess = get("/user/index");
-        MvcResult unauthenticatedResult = mockMvc.perform(securedResourceAccess)
-              .andExpect(status().is3xxRedirection())
-              .andReturn();
+   @Test
+   public void givenAccessSecuredResource_whenAuthenticated_thenAuthHasExtraFields() throws Exception {
+      MockHttpServletRequestBuilder securedResourceAccess = get("/user/index");
+      MvcResult unauthenticatedResult = mockMvc.perform(securedResourceAccess)
+            .andExpect(status().is3xxRedirection())
+            .andReturn();
 
-        MockHttpSession session = (MockHttpSession) unauthenticatedResult.getRequest()
-              .getSession();
-        String loginUrl = unauthenticatedResult.getResponse()
-              .getRedirectedUrl();
+      MockHttpSession session = (MockHttpSession) unauthenticatedResult.getRequest()
+            .getSession();
+      String loginUrl = unauthenticatedResult.getResponse()
+            .getRedirectedUrl();
 
-        User user = getUser();
+      User user = getUser();
 
-        mockMvc.perform(post(loginUrl)
-                    .param("username", user.getUsername())
-                    .param("password", user.getPassword())
-                    .param("domain", user.getDomain())
-                    .session(session)
-                    .with(csrf()))
-              .andExpect(status().is3xxRedirection())
-              .andExpect(redirectedUrlPattern("**/user/index"))
-              .andReturn();
+      mockMvc.perform(post(loginUrl)
+                  .param("username", user.getUsername())
+                  .param("password", user.getPassword())
+                  .param("domain", user.getDomain())
+                  .session(session)
+                  .with(csrf()))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrlPattern("**/user/index"))
+            .andReturn();
 
-        mockMvc.perform(securedResourceAccess.session(session))
-              .andExpect(status().isOk());
+      mockMvc.perform(securedResourceAccess.session(session))
+            .andExpect(status().isOk());
 
-        SecurityContext securityContext
-              = (SecurityContext) session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
-        Authentication auth = securityContext.getAuthentication();
-        assertEquals(((User) auth.getPrincipal()).getDomain(), user.getDomain());
-    }
+      SecurityContext securityContext
+            = (SecurityContext) session.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+      Authentication auth = securityContext.getAuthentication();
+      assertEquals(((User) auth.getPrincipal()).getDomain(), user.getDomain());
+   }
 
-    private User getUser() {
-        Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
-        return new User("myusername", "mydomain", "secret", true, true, true, true, authorities);
-    }
+   private User getUser() {
+      Collection<? extends GrantedAuthority> authorities = new ArrayList<>();
+      return new User("myusername", "mydomain", "secret", true, true, true, true, authorities);
+   }
 
 }

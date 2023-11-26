@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.batch;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -20,55 +18,57 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class BatchConfiguration {
 
-	@Value("${file.input}")
-	private String fileInput;
+   @Value("${file.input}")
+   private String fileInput;
 
-	@Bean
-	public FlatFileItemReader<Coffee> reader() {
-		return new FlatFileItemReaderBuilder<Coffee>().name("coffeeItemReader")
-			.resource(new ClassPathResource(fileInput))
-			.delimited()
-			.names(new String[]{"brand", "origin", "characteristics"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<Coffee>() {{
-				setTargetType(Coffee.class);
-			}})
-			.build();
-	}
+   @Bean
+   public FlatFileItemReader<Coffee> reader() {
+      return new FlatFileItemReaderBuilder<Coffee>().name("coffeeItemReader")
+            .resource(new ClassPathResource(fileInput))
+            .delimited()
+            .names(new String[]{"brand", "origin", "characteristics"})
+            .fieldSetMapper(new BeanWrapperFieldSetMapper<Coffee>() {{
+               setTargetType(Coffee.class);
+            }})
+            .build();
+   }
 
-	@Bean
-	public CoffeeItemProcessor processor() {
-		return new CoffeeItemProcessor();
-	}
+   @Bean
+   public CoffeeItemProcessor processor() {
+      return new CoffeeItemProcessor();
+   }
 
-	@Bean
-	public JdbcBatchItemWriter<Coffee> writer(DataSource dataSource) {
-		return new JdbcBatchItemWriterBuilder<Coffee>().itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-			.sql("INSERT INTO coffee (brand, origin, characteristics) VALUES (:brand, :origin, :characteristics)")
-			.dataSource(dataSource)
-			.build();
-	}
+   @Bean
+   public JdbcBatchItemWriter<Coffee> writer(DataSource dataSource) {
+      return new JdbcBatchItemWriterBuilder<Coffee>().itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
+            .sql("INSERT INTO coffee (brand, origin, characteristics) VALUES (:brand, :origin, :characteristics)")
+            .dataSource(dataSource)
+            .build();
+   }
 
-	@Bean
-	public Job importUserJob(JobRepository jobRepository, JobCompletionNotificationListener listener, Step step1) {
-		return new JobBuilder("importUserJob", jobRepository)
-			.incrementer(new RunIdIncrementer())
-			.listener(listener)
-			.flow(step1)
-			.end()
-			.build();
-	}
+   @Bean
+   public Job importUserJob(JobRepository jobRepository, JobCompletionNotificationListener listener, Step step1) {
+      return new JobBuilder("importUserJob", jobRepository)
+            .incrementer(new RunIdIncrementer())
+            .listener(listener)
+            .flow(step1)
+            .end()
+            .build();
+   }
 
-	@Bean
-	public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager, JdbcBatchItemWriter<Coffee> writer) {
-		return new StepBuilder("step1", jobRepository)
-			.<Coffee, Coffee>chunk(10, transactionManager)
-			.reader(reader())
-			.processor(processor())
-			.writer(writer)
-			.build();
-	}
+   @Bean
+   public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager, JdbcBatchItemWriter<Coffee> writer) {
+      return new StepBuilder("step1", jobRepository)
+            .<Coffee, Coffee>chunk(10, transactionManager)
+            .reader(reader())
+            .processor(processor())
+            .writer(writer)
+            .build();
+   }
 
 }

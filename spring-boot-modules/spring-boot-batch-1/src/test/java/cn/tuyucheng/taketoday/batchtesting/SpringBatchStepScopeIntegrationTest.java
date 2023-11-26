@@ -30,77 +30,77 @@ import static org.springframework.batch.test.AssertFile.assertFileEquals;
 @ContextConfiguration(classes = {SpringBatchConfiguration.class})
 public class SpringBatchStepScopeIntegrationTest {
 
-	private static final String TEST_OUTPUT = "src/test/resources/output/actual-output.json";
+   private static final String TEST_OUTPUT = "src/test/resources/output/actual-output.json";
 
-	private static final String EXPECTED_OUTPUT_ONE = "src/test/resources/output/expected-output-one.json";
+   private static final String EXPECTED_OUTPUT_ONE = "src/test/resources/output/expected-output-one.json";
 
-	private static final String TEST_INPUT_ONE = "src/test/resources/input/test-input-one.csv";
-	@Autowired
-	private JsonFileItemWriter<Book> jsonItemWriter;
+   private static final String TEST_INPUT_ONE = "src/test/resources/input/test-input-one.csv";
+   @Autowired
+   private JsonFileItemWriter<Book> jsonItemWriter;
 
-	@Autowired
-	private FlatFileItemReader<BookRecord> itemReader;
+   @Autowired
+   private FlatFileItemReader<BookRecord> itemReader;
 
-	@Autowired
-	private JobRepositoryTestUtils jobRepositoryTestUtils;
+   @Autowired
+   private JobRepositoryTestUtils jobRepositoryTestUtils;
 
-	private JobParameters defaultJobParameters() {
-		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
-		paramsBuilder.addString("file.input", TEST_INPUT_ONE);
-		paramsBuilder.addString("file.output", TEST_OUTPUT);
-		return paramsBuilder.toJobParameters();
-	}
+   private JobParameters defaultJobParameters() {
+      JobParametersBuilder paramsBuilder = new JobParametersBuilder();
+      paramsBuilder.addString("file.input", TEST_INPUT_ONE);
+      paramsBuilder.addString("file.output", TEST_OUTPUT);
+      return paramsBuilder.toJobParameters();
+   }
 
-	@AfterEach
-	public void cleanUp() {
-		jobRepositoryTestUtils.removeJobExecutions();
-	}
+   @AfterEach
+   public void cleanUp() {
+      jobRepositoryTestUtils.removeJobExecutions();
+   }
 
-	@Test
-	public void givenMockedStep_whenReaderCalled_thenSuccess() throws Exception {
+   @Test
+   public void givenMockedStep_whenReaderCalled_thenSuccess() throws Exception {
 
-		// given
-		StepExecution stepExecution = MetaDataInstanceFactory.createStepExecution(defaultJobParameters());
+      // given
+      StepExecution stepExecution = MetaDataInstanceFactory.createStepExecution(defaultJobParameters());
 
-		// when
-		StepScopeTestUtils.doInStepScope(stepExecution, () -> {
-			BookRecord bookRecord;
-			itemReader.open(stepExecution.getExecutionContext());
-			while ((bookRecord = itemReader.read()) != null) {
+      // when
+      StepScopeTestUtils.doInStepScope(stepExecution, () -> {
+         BookRecord bookRecord;
+         itemReader.open(stepExecution.getExecutionContext());
+         while ((bookRecord = itemReader.read()) != null) {
 
-				// then
-				assertEquals("Foundation", bookRecord.getBookName());
-				assertEquals("Asimov I.", bookRecord.getBookAuthor());
-				assertEquals("ISBN 12839", bookRecord.getBookISBN());
-				assertEquals("hardcover", bookRecord.getBookFormat());
-				assertEquals("2018", bookRecord.getPublishingYear());
-			}
-			itemReader.close();
-			return null;
-		});
-	}
+            // then
+            assertEquals("Foundation", bookRecord.getBookName());
+            assertEquals("Asimov I.", bookRecord.getBookAuthor());
+            assertEquals("ISBN 12839", bookRecord.getBookISBN());
+            assertEquals("hardcover", bookRecord.getBookFormat());
+            assertEquals("2018", bookRecord.getPublishingYear());
+         }
+         itemReader.close();
+         return null;
+      });
+   }
 
-	@Test
-	public void givenMockedStep_whenWriterCalled_thenSuccess() throws Exception {
+   @Test
+   public void givenMockedStep_whenWriterCalled_thenSuccess() throws Exception {
 
-		// given
-		FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT_ONE);
-		FileSystemResource actualResult = new FileSystemResource(TEST_OUTPUT);
-		Book demoBook = new Book();
-		demoBook.setAuthor("Grisham J.");
-		demoBook.setName("The Firm");
-		StepExecution stepExecution = MetaDataInstanceFactory.createStepExecution(defaultJobParameters());
+      // given
+      FileSystemResource expectedResult = new FileSystemResource(EXPECTED_OUTPUT_ONE);
+      FileSystemResource actualResult = new FileSystemResource(TEST_OUTPUT);
+      Book demoBook = new Book();
+      demoBook.setAuthor("Grisham J.");
+      demoBook.setName("The Firm");
+      StepExecution stepExecution = MetaDataInstanceFactory.createStepExecution(defaultJobParameters());
 
-		// when
-		StepScopeTestUtils.doInStepScope(stepExecution, () -> {
+      // when
+      StepScopeTestUtils.doInStepScope(stepExecution, () -> {
 
-			jsonItemWriter.open(stepExecution.getExecutionContext());
-			jsonItemWriter.write(new Chunk<>(List.of(demoBook)));
-			jsonItemWriter.close();
-			return null;
-		});
+         jsonItemWriter.open(stepExecution.getExecutionContext());
+         jsonItemWriter.write(new Chunk<>(List.of(demoBook)));
+         jsonItemWriter.close();
+         return null;
+      });
 
-		// then
-		assertFileEquals(expectedResult, actualResult);
-	}
+      // then
+      assertFileEquals(expectedResult, actualResult);
+   }
 }

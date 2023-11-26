@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class RootController {
 
-    public RootController() {
-        super();
-    }
+   public RootController() {
+      super();
+   }
 
-    // API
+   // API
 
-    @RequestMapping(value = "/admin/x", method = RequestMethod.GET)
-    @ResponseBody
-    public String sampleAdminPage() {
-        return "Hello";
-    }
+   @RequestMapping(value = "/admin/x", method = RequestMethod.GET)
+   @ResponseBody
+   public String sampleAdminPage() {
+      return "Hello";
+   }
 
 
-    @RequestMapping(value = "/my-error-page", method = RequestMethod.GET)
-    @ResponseBody
-    public String sampleErrorPage() {
-        return "Error Occurred";
-    }
+   @RequestMapping(value = "/my-error-page", method = RequestMethod.GET)
+   @ResponseBody
+   public String sampleErrorPage() {
+      return "Error Occurred";
+   }
 
 }

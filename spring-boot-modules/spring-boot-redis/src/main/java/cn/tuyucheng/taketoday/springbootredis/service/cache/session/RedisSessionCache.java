@@ -14,24 +14,24 @@ import java.util.stream.Stream;
 
 @Service
 public class RedisSessionCache implements SessionCache {
-	@Autowired
-	private SessionRepository sessionRepository;
+   @Autowired
+   private SessionRepository sessionRepository;
 
-	@Override
-	public Session createASession(Session session) {
-		return sessionRepository.save(session);
-	}
+   @Override
+   public Session createASession(Session session) {
+      return sessionRepository.save(session);
+   }
 
-	@Override
-	public Session getSession(String id) {
-		return sessionRepository.findById(id)
-			.orElseThrow(() -> new SessionNotFoundException(id));
-	}
+   @Override
+   public Session getSession(String id) {
+      return sessionRepository.findById(id)
+            .orElseThrow(() -> new SessionNotFoundException(id));
+   }
 
-	@Override
-	public List<Session> getAllSessions() {
-		return Stream.iterate(sessionRepository.findAll().iterator(), Iterator::hasNext, UnaryOperator.identity())
-			.map(Iterator::next)
-			.collect(Collectors.toList());
-	}
+   @Override
+   public List<Session> getAllSessions() {
+      return Stream.iterate(sessionRepository.findAll().iterator(), Iterator::hasNext, UnaryOperator.identity())
+            .map(Iterator::next)
+            .collect(Collectors.toList());
+   }
 }

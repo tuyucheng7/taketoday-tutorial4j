@@ -9,10 +9,10 @@ import java.io.IOException;
 
 public class RestTemplateHeaderModifierInterceptor implements ClientHttpRequestInterceptor {
 
-	@Override
-	public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-		ClientHttpResponse response = execution.execute(request, body);
-		response.getHeaders().add("Foo", "bar");
-		return response;
-	}
+   @Override
+   public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+      ClientHttpResponse response = execution.execute(request, body);
+      response.getHeaders().add("Foo", "bar");
+      return response;
+   }
 }

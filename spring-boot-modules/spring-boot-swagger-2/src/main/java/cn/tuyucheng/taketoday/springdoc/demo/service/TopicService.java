@@ -1,26 +1,25 @@
 package cn.tuyucheng.taketoday.springdoc.demo.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import cn.tuyucheng.taketoday.springdoc.demo.model.Topic;
 import org.springframework.stereotype.Service;
 
-import cn.tuyucheng.taketoday.springdoc.demo.model.Topic;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TopicService {
 
-	private List<Topic> topicsList;
+   private List<Topic> topicsList;
 
-	public TopicService() {
-		this.topicsList = new ArrayList<Topic>() {{
-			add(new Topic(1, "Topic1"));
-			add(new Topic(2, "Topic2"));
-			add(new Topic(3, "Topic3"));
-		}};
-	}
+   public TopicService() {
+      this.topicsList = new ArrayList<Topic>() {{
+         add(new Topic(1, "Topic1"));
+         add(new Topic(2, "Topic2"));
+         add(new Topic(3, "Topic3"));
+      }};
+   }
 
-	public List<Topic> getAlllTopics() {
-		return topicsList;
-	}
+   public List<Topic> getAlllTopics() {
+      return topicsList;
+   }
 }

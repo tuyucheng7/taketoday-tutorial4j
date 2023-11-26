@@ -25,57 +25,57 @@ import java.util.Collections;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public abstract class KeycloakTestContainers {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(KeycloakTestContainers.class.getName());
+   private static final Logger LOGGER = LoggerFactory.getLogger(KeycloakTestContainers.class.getName());
 
-	@LocalServerPort
-	private int port;
+   @LocalServerPort
+   private int port;
 
-	static final KeycloakContainer keycloak;
+   static final KeycloakContainer keycloak;
 
-	static {
-		keycloak = new KeycloakContainer().withRealmImportFile("keycloak/realm-export.json");
-		keycloak.start();
-	}
+   static {
+      keycloak = new KeycloakContainer().withRealmImportFile("keycloak/realm-export.json");
+      keycloak.start();
+   }
 
-	@PostConstruct
-	public void init() {
-		RestAssured.baseURI = "http://localhost:" + port;
-	}
+   @PostConstruct
+   public void init() {
+      RestAssured.baseURI = "http://localhost:" + port;
+   }
 
-	@DynamicPropertySource
-	static void registerResourceServerIssuerProperty(DynamicPropertyRegistry registry) {
-		registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> keycloak.getAuthServerUrl() + "/realms/baeldung");
-	}
+   @DynamicPropertySource
+   static void registerResourceServerIssuerProperty(DynamicPropertyRegistry registry) {
+      registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> keycloak.getAuthServerUrl() + "/realms/baeldung");
+   }
 
-	protected String getJaneDoeBearer() {
+   protected String getJaneDoeBearer() {
 
-		try {
-			URI authorizationURI = new URIBuilder(keycloak.getAuthServerUrl() + "/realms/baeldung/protocol/openid-connect/token").build();
-			WebClient webclient = WebClient.builder()
-				.build();
-			MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
-			formData.put("grant_type", Collections.singletonList("password"));
-			formData.put("client_id", Collections.singletonList("baeldung-api"));
-			formData.put("username", Collections.singletonList("jane.doe@baeldung.com"));
-			formData.put("password", Collections.singletonList("s3cr3t"));
+      try {
+         URI authorizationURI = new URIBuilder(keycloak.getAuthServerUrl() + "/realms/baeldung/protocol/openid-connect/token").build();
+         WebClient webclient = WebClient.builder()
+               .build();
+         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
+         formData.put("grant_type", Collections.singletonList("password"));
+         formData.put("client_id", Collections.singletonList("baeldung-api"));
+         formData.put("username", Collections.singletonList("jane.doe@baeldung.com"));
+         formData.put("password", Collections.singletonList("s3cr3t"));
 
-			String result = webclient.post()
-				.uri(authorizationURI)
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.body(BodyInserters.fromFormData(formData))
-				.retrieve()
-				.bodyToMono(String.class)
-				.block();
+         String result = webclient.post()
+               .uri(authorizationURI)
+               .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+               .body(BodyInserters.fromFormData(formData))
+               .retrieve()
+               .bodyToMono(String.class)
+               .block();
 
-			JacksonJsonParser jsonParser = new JacksonJsonParser();
+         JacksonJsonParser jsonParser = new JacksonJsonParser();
 
-			return "Bearer " + jsonParser.parseMap(result)
-				.get("access_token")
-				.toString();
-		} catch (URISyntaxException e) {
-			LOGGER.error("Can't obtain an access token from Keycloak!", e);
-		}
+         return "Bearer " + jsonParser.parseMap(result)
+               .get("access_token")
+               .toString();
+      } catch (URISyntaxException e) {
+         LOGGER.error("Can't obtain an access token from Keycloak!", e);
+      }
 
-		return null;
-	}
+      return null;
+   }
 }

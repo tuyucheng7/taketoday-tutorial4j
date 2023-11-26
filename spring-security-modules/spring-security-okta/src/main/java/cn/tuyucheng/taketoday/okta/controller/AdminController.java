@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdminController {
 
-    @Autowired
-    public Client client;
+   @Autowired
+   public Client client;
 
-    @GetMapping("/users")
-    public UserList getUsers() {
-        return client.listUsers();
-    }
+   @GetMapping("/users")
+   public UserList getUsers() {
+      return client.listUsers();
+   }
 
-    @GetMapping("/user")
-    public UserList searchUserByEmail(@RequestParam String query) {
-        return client.listUsers(query, null, null, null, null);
-    }
+   @GetMapping("/user")
+   public UserList searchUserByEmail(@RequestParam String query) {
+      return client.listUsers(query, null, null, null, null);
+   }
 
-    @GetMapping("/createUser")
-    public User createUser() {
-        char[] tempPassword = {'P', 'a', '$', '$', 'w', '0', 'r', 'd'};
-        User user = UserBuilder.instance()
-              .setEmail("norman.lewis@email.com")
-              .setFirstName("Norman")
-              .setLastName("Lewis")
-              .setPassword(tempPassword)
-              .setActive(true)
-              .buildAndCreate(client);
-        return user;
-    }
+   @GetMapping("/createUser")
+   public User createUser() {
+      char[] tempPassword = {'P', 'a', '$', '$', 'w', '0', 'r', 'd'};
+      User user = UserBuilder.instance()
+            .setEmail("norman.lewis@email.com")
+            .setFirstName("Norman")
+            .setLastName("Lewis")
+            .setPassword(tempPassword)
+            .setActive(true)
+            .buildAndCreate(client);
+      return user;
+   }
 
 }
 

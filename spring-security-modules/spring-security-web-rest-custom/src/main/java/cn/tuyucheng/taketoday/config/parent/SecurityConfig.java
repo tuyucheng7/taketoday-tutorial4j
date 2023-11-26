@@ -17,23 +17,23 @@ import org.springframework.security.web.SecurityFilterChain;
 @ComponentScan("cn.tuyucheng.taketoday.security")
 public class SecurityConfig {
 
-    @Autowired
-    private CustomAuthenticationProvider authProvider;
+   @Autowired
+   private CustomAuthenticationProvider authProvider;
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.authenticationProvider(authProvider);
-        return authenticationManagerBuilder.build();
-    }
+   @Bean
+   public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.authenticationProvider(authProvider);
+      return authenticationManagerBuilder.build();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 }

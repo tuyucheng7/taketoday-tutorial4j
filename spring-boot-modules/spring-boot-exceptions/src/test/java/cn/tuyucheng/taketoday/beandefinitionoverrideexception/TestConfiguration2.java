@@ -6,21 +6,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TestConfiguration2 {
 
-	class TestBean2 {
+   class TestBean2 {
 
-		private String name;
+      private String name;
 
-		public String getName() {
-			return name;
-		}
+      public String getName() {
+         return name;
+      }
 
-		public void setName(String name) {
-			this.name = name;
-		}
-	}
+      public void setName(String name) {
+         this.name = name;
+      }
+   }
 
-	@Bean
-	public TestBean2 testBean() {
-		return new TestBean2();
-	}
+   @Bean
+   public TestBean2 testBean() {
+      return new TestBean2();
+   }
 }

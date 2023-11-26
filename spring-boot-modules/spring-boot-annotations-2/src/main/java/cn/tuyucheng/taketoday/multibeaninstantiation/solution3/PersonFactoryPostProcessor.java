@@ -9,25 +9,25 @@ import java.util.Map;
 
 public class PersonFactoryPostProcessor implements BeanFactoryPostProcessor {
 
-	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		Map<String, Object> map = beanFactory.getBeansWithAnnotation(Qualifier.class);
-		for (Map.Entry<String, Object> entry : map.entrySet()) {
-			createInstances(beanFactory, entry.getKey(), entry.getValue());
-		}
-	}
+   @Override
+   public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+      Map<String, Object> map = beanFactory.getBeansWithAnnotation(Qualifier.class);
+      for (Map.Entry<String, Object> entry : map.entrySet()) {
+         createInstances(beanFactory, entry.getKey(), entry.getValue());
+      }
+   }
 
-	private void createInstances(ConfigurableListableBeanFactory beanFactory, String beanName, Object bean) {
-		Qualifier qualifier = bean.getClass()
-			.getAnnotation(Qualifier.class);
-		for (String name : extractNames(qualifier)) {
-			Object newBean = beanFactory.getBean(beanName);
-			beanFactory.registerSingleton(name.trim(), newBean);
-		}
-	}
+   private void createInstances(ConfigurableListableBeanFactory beanFactory, String beanName, Object bean) {
+      Qualifier qualifier = bean.getClass()
+            .getAnnotation(Qualifier.class);
+      for (String name : extractNames(qualifier)) {
+         Object newBean = beanFactory.getBean(beanName);
+         beanFactory.registerSingleton(name.trim(), newBean);
+      }
+   }
 
-	private String[] extractNames(Qualifier qualifier) {
-		return qualifier.value()
-			.split(",");
-	}
+   private String[] extractNames(Qualifier qualifier) {
+      return qualifier.value()
+            .split(",");
+   }
 }

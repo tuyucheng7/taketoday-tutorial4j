@@ -1,12 +1,10 @@
 package cn.tuyucheng.taketoday;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import cn.tuyucheng.taketoday.ServletResourceServerApplication.GreetingController;
+import cn.tuyucheng.taketoday.ServletResourceServerApplication.MessageService;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import cn.tuyucheng.taketoday.ServletResourceServerApplication.GreetingController;
-import cn.tuyucheng.taketoday.ServletResourceServerApplication.MessageService;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = GreetingController.class, properties = {"server.ssl.enabled=false"})
 class SpringAddonsGreetingControllerUnitTest {

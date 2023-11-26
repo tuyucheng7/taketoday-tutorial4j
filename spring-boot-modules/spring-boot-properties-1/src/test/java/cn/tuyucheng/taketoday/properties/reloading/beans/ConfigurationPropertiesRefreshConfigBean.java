@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "application.theme")
 @RefreshScope
 public class ConfigurationPropertiesRefreshConfigBean {
-	private String color;
+   private String color;
 
-	public String getColor() {
-		return color;
-	}
+   public String getColor() {
+      return color;
+   }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+   public void setColor(String color) {
+      this.color = color;
+   }
 }

@@ -13,26 +13,26 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class InMemoryAuthWebSecurityConfigurer {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        UserDetails user = User.withUsername("spring")
-              .password(encoder.encode("secret"))
-              .roles("USER")
-              .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+      UserDetails user = User.withUsername("spring")
+            .password(encoder.encode("secret"))
+            .roles("USER")
+            .build();
+      return new InMemoryUserDetailsManager(user);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/private/**")
-              .authenticated()
-              .antMatchers("/public/**")
-              .permitAll()
-              .and()
-              .httpBasic();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/private/**")
+            .authenticated()
+            .antMatchers("/public/**")
+            .permitAll()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 
 }

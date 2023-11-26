@@ -14,34 +14,34 @@ import java.io.IOException;
 
 public class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private RequestCache requestCache = new HttpSessionRequestCache();
+   private RequestCache requestCache = new HttpSessionRequestCache();
 
-    @Override
-    public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
-        final SavedRequest savedRequest = requestCache.getRequest(request, response);
+   @Override
+   public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
+      final SavedRequest savedRequest = requestCache.getRequest(request, response);
 
-        if (savedRequest == null) {
-            super.onAuthenticationSuccess(request, response, authentication);
+      if (savedRequest == null) {
+         super.onAuthenticationSuccess(request, response, authentication);
 
-            return;
-        }
-        final String targetUrlParameter = getTargetUrlParameter();
-        if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
-            requestCache.removeRequest(request, response);
-            super.onAuthenticationSuccess(request, response, authentication);
+         return;
+      }
+      final String targetUrlParameter = getTargetUrlParameter();
+      if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
+         requestCache.removeRequest(request, response);
+         super.onAuthenticationSuccess(request, response, authentication);
 
-            return;
-        }
+         return;
+      }
 
-        clearAuthenticationAttributes(request);
+      clearAuthenticationAttributes(request);
 
-        // Use the DefaultSavedRequest URL
-        // final String targetUrl = savedRequest.getRedirectUrl();
-        // logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
-        // getRedirectStrategy().sendRedirect(request, response, targetUrl);
-    }
+      // Use the DefaultSavedRequest URL
+      // final String targetUrl = savedRequest.getRedirectUrl();
+      // logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
+      // getRedirectStrategy().sendRedirect(request, response, targetUrl);
+   }
 
-    public void setRequestCache(final RequestCache requestCache) {
-        this.requestCache = requestCache;
-    }
+   public void setRequestCache(final RequestCache requestCache) {
+      this.requestCache = requestCache;
+   }
 }

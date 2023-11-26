@@ -15,19 +15,19 @@ import org.springframework.retry.support.RetryTemplate;
 @PropertySource("classpath:retryConfig.properties")
 public class AppConfig {
 
-	@Bean
-	public RetryTemplate retryTemplate() {
-		RetryTemplate retryTemplate = new RetryTemplate();
+   @Bean
+   public RetryTemplate retryTemplate() {
+      RetryTemplate retryTemplate = new RetryTemplate();
 
-		FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
-		fixedBackOffPolicy.setBackOffPeriod(2000l);
-		retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
+      FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
+      fixedBackOffPolicy.setBackOffPeriod(2000l);
+      retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
 
-		SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
-		retryPolicy.setMaxAttempts(2);
-		retryTemplate.setRetryPolicy(retryPolicy);
+      SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
+      retryPolicy.setMaxAttempts(2);
+      retryTemplate.setRetryPolicy(retryPolicy);
 
-		retryTemplate.registerListener(new DefaultListenerSupport());
-		return retryTemplate;
-	}
+      retryTemplate.registerListener(new DefaultListenerSupport());
+      return retryTemplate;
+   }
 }

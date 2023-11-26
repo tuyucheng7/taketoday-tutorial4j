@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringRegistrationBeanServlet {
 
-    @Bean
-    public ServletRegistrationBean<GenericCustomServlet> genericCustomServlet() {
-        ServletRegistrationBean<GenericCustomServlet> bean = new ServletRegistrationBean<>(new GenericCustomServlet(), "/springregistrationbeanservlet/*");
-        bean.setLoadOnStartup(1);
-        return bean;
-    }
+   @Bean
+   public ServletRegistrationBean<GenericCustomServlet> genericCustomServlet() {
+      ServletRegistrationBean<GenericCustomServlet> bean = new ServletRegistrationBean<>(new GenericCustomServlet(), "/springregistrationbeanservlet/*");
+      bean.setLoadOnStartup(1);
+      return bean;
+   }
 }

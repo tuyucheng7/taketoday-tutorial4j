@@ -4,5 +4,5 @@ import cn.tuyucheng.taketoday.webservice.generated.Product;
 
 public interface ProductRepository {
 
-	Product findProduct(String id);
+   Product findProduct(String id);
 }

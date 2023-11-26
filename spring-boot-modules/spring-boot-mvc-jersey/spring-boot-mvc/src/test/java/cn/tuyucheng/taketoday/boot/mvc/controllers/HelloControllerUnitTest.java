@@ -14,13 +14,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ExtendWith(SpringExtension.class)
 class HelloControllerUnitTest {
 
-	@Autowired
-	private HelloController helloController;
+   @Autowired
+   private HelloController helloController;
 
-	@Test
-	void whenHelloIsInvokedWithCaio_thenReturn200AsStatusAndHelloCaioAsBody() {
-		ResponseEntity response = this.helloController.hello("Caio");
-		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(response.getBody()).isEqualTo("Hello, Caio");
-	}
+   @Test
+   void whenHelloIsInvokedWithCaio_thenReturn200AsStatusAndHelloCaioAsBody() {
+      ResponseEntity response = this.helloController.hello("Caio");
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+      assertThat(response.getBody()).isEqualTo("Hello, Caio");
+   }
 }

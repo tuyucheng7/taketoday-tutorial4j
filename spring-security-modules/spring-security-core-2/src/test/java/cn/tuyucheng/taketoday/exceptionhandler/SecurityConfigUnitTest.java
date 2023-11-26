@@ -17,33 +17,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(SecurityConfig.class)
 class SecurityConfigUnitTest {
-    @Autowired
-    private MockMvc mvc;
+   @Autowired
+   private MockMvc mvc;
 
-    @Test
-    void whenUserAccessLogin_shouldSucceed() throws Exception {
-        mvc.perform(get("/login"))
-              .andExpect(status().isOk());
-    }
+   @Test
+   void whenUserAccessLogin_shouldSucceed() throws Exception {
+      mvc.perform(get("/login"))
+            .andExpect(status().isOk());
+   }
 
-    @Test
-    void whenUserAccessWithWrongCredentials_shouldRedirectToCustomErrorPage() throws Exception {
-        mvc.perform(formLogin("/login").user("username", "wrong")
-                    .password("password", "credentials"))
-              .andExpect(redirectedUrl("/customError"));
-    }
+   @Test
+   void whenUserAccessWithWrongCredentials_shouldRedirectToCustomErrorPage() throws Exception {
+      mvc.perform(formLogin("/login").user("username", "wrong")
+                  .password("password", "credentials"))
+            .andExpect(redirectedUrl("/customError"));
+   }
 
-    @Test
-    void whenUserAccessWithCorrectCredentials_shouldRedirectToHome() throws Exception {
-        mvc.perform(formLogin("/login").user("username", "user")
-                    .password("password", "password"))
-              .andExpect(redirectedUrl("/home"));
-    }
+   @Test
+   void whenUserAccessWithCorrectCredentials_shouldRedirectToHome() throws Exception {
+      mvc.perform(formLogin("/login").user("username", "user")
+                  .password("password", "password"))
+            .andExpect(redirectedUrl("/home"));
+   }
 
-    @Test
-    @WithMockUser(username = "user", roles = {"USER"})
-    void whenUserAccessToSecuredPageWithoutUserRole_shouldRedirectToDeniedPage() throws Exception {
-        mvc.perform(get("/secured"))
-              .andExpect(redirectedUrl("/access-denied"));
-    }
+   @Test
+   @WithMockUser(username = "user", roles = {"USER"})
+   void whenUserAccessToSecuredPageWithoutUserRole_shouldRedirectToDeniedPage() throws Exception {
+      mvc.perform(get("/secured"))
+            .andExpect(redirectedUrl("/access-denied"));
+   }
 }

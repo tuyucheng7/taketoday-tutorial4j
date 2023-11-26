@@ -15,11 +15,11 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(classes = {HazelcastConfig.class}, webEnvironment = NONE)
 class HazelcastConfigIntegrationTest {
 
-	@Autowired
-	private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-	@Test
-	void whenApplicationContextStarts_HazelcastConfigBeanExists() {
-		assertNotEquals(null, applicationContext.getBean("hazelcast"));
-	}
+   @Test
+   void whenApplicationContextStarts_HazelcastConfigBeanExists() {
+      assertNotEquals(null, applicationContext.getBean("hazelcast"));
+   }
 }

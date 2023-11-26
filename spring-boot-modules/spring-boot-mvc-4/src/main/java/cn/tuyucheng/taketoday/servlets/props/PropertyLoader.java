@@ -8,20 +8,20 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-    private static final Logger log = LoggerFactory.getLogger(PropertyLoader.class);
+   private static final Logger log = LoggerFactory.getLogger(PropertyLoader.class);
 
-    public Properties getProperties(String file) {
-        Properties prop = new Properties();
-        InputStream input = null;
-        try {
-            input = getClass().getResourceAsStream(file);
-            prop.load(input);
-            if (input != null) {
-                input.close();
-            }
-        } catch (IOException ex) {
-            log.error("IOException: " + ex);
-        }
-        return prop;
-    }
+   public Properties getProperties(String file) {
+      Properties prop = new Properties();
+      InputStream input = null;
+      try {
+         input = getClass().getResourceAsStream(file);
+         prop.load(input);
+         if (input != null) {
+            input.close();
+         }
+      } catch (IOException ex) {
+         log.error("IOException: " + ex);
+      }
+      return prop;
+   }
 }

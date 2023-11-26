@@ -8,9 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class EnumMappingConfig implements WebMvcConfigurer {
-	@Override
-	public void addFormatters(FormatterRegistry registry) {
-		ApplicationConversionService.configure(registry);
-		registry.addConverter(new StringToLevelConverter());
-	}
+   @Override
+   public void addFormatters(FormatterRegistry registry) {
+      ApplicationConversionService.configure(registry);
+      registry.addConverter(new StringToLevelConverter());
+   }
 }

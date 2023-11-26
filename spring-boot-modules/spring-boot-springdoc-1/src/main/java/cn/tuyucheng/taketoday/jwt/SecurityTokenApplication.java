@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SecurityTokenApplication {
 
-	/**
-	 * The bootstrap method
-	 *
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(SecurityTokenApplication.class);
-	}
+   /**
+    * The bootstrap method
+    *
+    * @param args
+    */
+   public static void main(String[] args) {
+      SpringApplication.run(SecurityTokenApplication.class);
+   }
 }

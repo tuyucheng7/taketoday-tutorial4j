@@ -13,20 +13,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("multidocument-staging")
 class StagingMultidocumentFilesIntegrationTest {
 
-	@Value("${tuyucheng.property}")
-	private String tuyuchengCustomProperty;
+   @Value("${tuyucheng.property}")
+   private String tuyuchengCustomProperty;
 
-	@Value("${tuyucheng.stagingProperty}")
-	private String tuyuchengStagingProperty;
+   @Value("${tuyucheng.stagingProperty}")
+   private String tuyuchengStagingProperty;
 
-	@Value("${tuyucheng.root-level-property}")
-	private String tuyuchengRootProperty;
+   @Value("${tuyucheng.root-level-property}")
+   private String tuyuchengRootProperty;
 
-	@Test
-	void givenProductionProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
-		assertThat(tuyuchengStagingProperty).isEqualTo("stagingPropertyValue");
-		// application.properties is loaded after the application.yml file and overrides the values
-		assertThat(tuyuchengCustomProperty).isEqualTo("defaultValue");
-		assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
-	}
+   @Test
+   void givenProductionProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
+      assertThat(tuyuchengStagingProperty).isEqualTo("stagingPropertyValue");
+      // application.properties is loaded after the application.yml file and overrides the values
+      assertThat(tuyuchengCustomProperty).isEqualTo("defaultValue");
+      assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
+   }
 }

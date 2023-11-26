@@ -8,6 +8,6 @@ import javax.annotation.Nonnull;
 @ConfigurationProperties(prefix = "opa")
 @Data
 public class OpaProperties {
-    @Nonnull
-    private String endpoint = "http://localhost:8181";
+   @Nonnull
+   private String endpoint = "http://localhost:8181";
 }

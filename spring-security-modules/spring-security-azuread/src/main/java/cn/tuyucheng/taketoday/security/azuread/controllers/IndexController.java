@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class IndexController {
 
-	@GetMapping
-	public String index(Model model, Authentication user) {
-		LOGGER.info("GET /: user={}", user);
-		model.addAttribute("user", user);
-		return "index";
-	}
+   @GetMapping
+   public String index(Model model, Authentication user) {
+      LOGGER.info("GET /: user={}", user);
+      model.addAttribute("user", user);
+      return "index";
+   }
 }

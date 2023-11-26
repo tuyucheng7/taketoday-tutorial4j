@@ -14,16 +14,16 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class DenyMethodSecurityConfig extends GlobalMethodSecurityConfiguration {
-    @Override
-    protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
-        return new CustomPermissionAllowedMethodSecurityMetadataSource();
-    }
+   @Override
+   protected MethodSecurityMetadataSource customMethodSecurityMetadataSource() {
+      return new CustomPermissionAllowedMethodSecurityMetadataSource();
+   }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new InMemoryUserDetailsManager(
-              User.withUsername("user").password("{noop}password").roles("USER").build(),
-              User.withUsername("guest").password("{noop}password").roles().build()
-        );
-    }
+   @Bean
+   public UserDetailsService userDetailsService() {
+      return new InMemoryUserDetailsManager(
+            User.withUsername("user").password("{noop}password").roles("USER").build(),
+            User.withUsername("guest").password("{noop}password").roles().build()
+      );
+   }
 }

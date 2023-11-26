@@ -16,21 +16,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = Application.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 class AutoConfigIntegrationTest {
 
-	/**
-	 * Encapsulates the random port the test server is listening on.
-	 */
-	@LocalServerPort
-	private int port;
+   /**
+    * Encapsulates the random port the test server is listening on.
+    */
+   @LocalServerPort
+   private int port;
 
-	@Test
-	void givenNoAuthentication_whenAccessHome_thenUnauthorized() {
-		int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
-		assertEquals(HttpStatus.UNAUTHORIZED.value(), statusCode);
-	}
+   @Test
+   void givenNoAuthentication_whenAccessHome_thenUnauthorized() {
+      int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
+      assertEquals(HttpStatus.UNAUTHORIZED.value(), statusCode);
+   }
 
-	@Test
-	void givenAuthentication_whenAccessHome_thenOK() {
-		int statusCode = RestAssured.given().auth().basic("john", "123").get("http://localhost:" + port).statusCode();
-		assertEquals(HttpStatus.OK.value(), statusCode);
-	}
+   @Test
+   void givenAuthentication_whenAccessHome_thenOK() {
+      int statusCode = RestAssured.given().auth().basic("john", "123").get("http://localhost:" + port).statusCode();
+      assertEquals(HttpStatus.OK.value(), statusCode);
+   }
 }

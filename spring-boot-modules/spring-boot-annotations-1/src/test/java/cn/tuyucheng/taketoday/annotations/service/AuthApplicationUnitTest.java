@@ -14,34 +14,34 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AuthApplicationUnitTest {
 
-	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+   private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
 
-	@Test
-	void whenOnlyInterfacesAnnotated_noSuchBeanDefinitionExceptionThrown() {
-		contextRunner
-			.withUserConfiguration(InterfacesAnnotatedTestConfiguration.class)
-			.run(context -> assertThrows(NoSuchBeanDefinitionException.class,
-				() -> context.getBean(AuthenticationService.class)));
-	}
+   @Test
+   void whenOnlyInterfacesAnnotated_noSuchBeanDefinitionExceptionThrown() {
+      contextRunner
+            .withUserConfiguration(InterfacesAnnotatedTestConfiguration.class)
+            .run(context -> assertThrows(NoSuchBeanDefinitionException.class,
+                  () -> context.getBean(AuthenticationService.class)));
+   }
 
-	@Test
-	void whenOnlyAbstractClassesAnnotated_noSuchBeanDefinitionExceptionThrown() {
-		contextRunner
-			.withUserConfiguration(AbstractsAnnotatedTestConfiguration.class)
-			.run(context -> assertThrows(NoSuchBeanDefinitionException.class,
-				() -> context.getBean(AbstractAuthenticationService.class)));
-	}
+   @Test
+   void whenOnlyAbstractClassesAnnotated_noSuchBeanDefinitionExceptionThrown() {
+      contextRunner
+            .withUserConfiguration(AbstractsAnnotatedTestConfiguration.class)
+            .run(context -> assertThrows(NoSuchBeanDefinitionException.class,
+                  () -> context.getBean(AbstractAuthenticationService.class)));
+   }
 
-	@Test
-	void whenConcreteClassesAnnotated_noExceptionThrown() {
-		contextRunner
-			.withUserConfiguration(ConcreteClassesAnnotatedTestConfiguration.class)
-			.run(context -> {
-				AuthenticationService inMemoryAuthService = context.getBean(AuthenticationService.class);
-				AbstractAuthenticationService ldapAuthService = context.getBean(AbstractAuthenticationService.class);
+   @Test
+   void whenConcreteClassesAnnotated_noExceptionThrown() {
+      contextRunner
+            .withUserConfiguration(ConcreteClassesAnnotatedTestConfiguration.class)
+            .run(context -> {
+               AuthenticationService inMemoryAuthService = context.getBean(AuthenticationService.class);
+               AbstractAuthenticationService ldapAuthService = context.getBean(AbstractAuthenticationService.class);
 
-				assertNotNull(inMemoryAuthService);
-				assertNotNull(ldapAuthService);
-			});
-	}
+               assertNotNull(inMemoryAuthService);
+               assertNotNull(ldapAuthService);
+            });
+   }
 }

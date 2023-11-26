@@ -17,60 +17,60 @@ import java.io.IOException;
 //@Component("myAuthenticationSuccessHandler")
 public class MyCustomLoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+   private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-	@Autowired
-	ActiveUserStore activeUserStore;
+   @Autowired
+   ActiveUserStore activeUserStore;
 
-	@Override
-	public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
-		addWelcomeCookie(gerUserName(authentication), response);
-		redirectStrategy.sendRedirect(request, response, "/homepage.html?user=" + authentication.getName());
+   @Override
+   public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
+      addWelcomeCookie(gerUserName(authentication), response);
+      redirectStrategy.sendRedirect(request, response, "/homepage.html?user=" + authentication.getName());
 
-		final HttpSession session = request.getSession(false);
-		if (session != null) {
-			session.setMaxInactiveInterval(30 * 60);
-			String username;
-			if (authentication.getPrincipal() instanceof User) {
-				username = ((User) authentication.getPrincipal()).getEmail();
-			} else {
-				username = authentication.getName();
-			}
+      final HttpSession session = request.getSession(false);
+      if (session != null) {
+         session.setMaxInactiveInterval(30 * 60);
+         String username;
+         if (authentication.getPrincipal() instanceof User) {
+            username = ((User) authentication.getPrincipal()).getEmail();
+         } else {
+            username = authentication.getName();
+         }
 
-			LoggedUser user = new LoggedUser(username, activeUserStore);
-			session.setAttribute("user", user);
-		}
-		clearAuthenticationAttributes(request);
-	}
+         LoggedUser user = new LoggedUser(username, activeUserStore);
+         session.setAttribute("user", user);
+      }
+      clearAuthenticationAttributes(request);
+   }
 
-	private String gerUserName(final Authentication authentication) {
-		return ((User) authentication.getPrincipal()).getFirstName();
-	}
+   private String gerUserName(final Authentication authentication) {
+      return ((User) authentication.getPrincipal()).getFirstName();
+   }
 
-	private void addWelcomeCookie(final String user, final HttpServletResponse response) {
-		Cookie welcomeCookie = getWelcomeCookie(user);
-		response.addCookie(welcomeCookie);
-	}
+   private void addWelcomeCookie(final String user, final HttpServletResponse response) {
+      Cookie welcomeCookie = getWelcomeCookie(user);
+      response.addCookie(welcomeCookie);
+   }
 
-	private Cookie getWelcomeCookie(final String user) {
-		Cookie welcomeCookie = new Cookie("welcome", user);
-		welcomeCookie.setMaxAge(60 * 60 * 24 * 30); // 30 days
-		return welcomeCookie;
-	}
+   private Cookie getWelcomeCookie(final String user) {
+      Cookie welcomeCookie = new Cookie("welcome", user);
+      welcomeCookie.setMaxAge(60 * 60 * 24 * 30); // 30 days
+      return welcomeCookie;
+   }
 
-	protected void clearAuthenticationAttributes(final HttpServletRequest request) {
-		final HttpSession session = request.getSession(false);
-		if (session == null) {
-			return;
-		}
-		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-	}
+   protected void clearAuthenticationAttributes(final HttpServletRequest request) {
+      final HttpSession session = request.getSession(false);
+      if (session == null) {
+         return;
+      }
+      session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+   }
 
-	public void setRedirectStrategy(final RedirectStrategy redirectStrategy) {
-		this.redirectStrategy = redirectStrategy;
-	}
+   public void setRedirectStrategy(final RedirectStrategy redirectStrategy) {
+      this.redirectStrategy = redirectStrategy;
+   }
 
-	protected RedirectStrategy getRedirectStrategy() {
-		return redirectStrategy;
-	}
+   protected RedirectStrategy getRedirectStrategy() {
+      return redirectStrategy;
+   }
 }

@@ -4,5 +4,5 @@ import cn.tuyucheng.taketoday.swaggerresponses.response.CustomerResponse;
 
 public interface CustomerService {
 
-	CustomerResponse getById(Long id);
+   CustomerResponse getById(Long id);
 }

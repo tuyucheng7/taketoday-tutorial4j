@@ -10,26 +10,26 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties
 @PropertySources({
-	@PropertySource(value = "classpath:application-teachers.yml", factory = MultipleYamlPropertySourceFactory.class),
-	@PropertySource(value = "classpath:application-students.yml", factory = MultipleYamlPropertySourceFactory.class)})
+      @PropertySource(value = "classpath:application-teachers.yml", factory = MultipleYamlPropertySourceFactory.class),
+      @PropertySource(value = "classpath:application-students.yml", factory = MultipleYamlPropertySourceFactory.class)})
 public class MultipleYamlConfiguration {
 
-	List<String> teachers;
-	List<String> students;
+   List<String> teachers;
+   List<String> students;
 
-	public void setTeachers(List<String> teachers) {
-		this.teachers = teachers;
-	}
+   public void setTeachers(List<String> teachers) {
+      this.teachers = teachers;
+   }
 
-	public void setStudents(List<String> students) {
-		this.students = students;
-	}
+   public void setStudents(List<String> students) {
+      this.students = students;
+   }
 
-	public List<String> getTeachers() {
-		return teachers;
-	}
+   public List<String> getTeachers() {
+      return teachers;
+   }
 
-	public List<String> getStudents() {
-		return students;
-	}
+   public List<String> getStudents() {
+      return students;
+   }
 }

@@ -14,64 +14,64 @@ import java.util.List;
 @RequestMapping(value = "/contacts")
 public class ContactController {
 
-	@GetMapping
-	public List<Contact> getContacts() {
-		List<Contact> contacts = new ArrayList<>();
+   @GetMapping
+   public List<Contact> getContacts() {
+      List<Contact> contacts = new ArrayList<>();
 
-		Contact contact1 = new Contact("John Doe", "123 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
-		Contact contact2 = new Contact("John Doe 2", "124 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
-		Contact contact3 = new Contact("John Doe 3", "125 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      Contact contact1 = new Contact("John Doe", "123 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      Contact contact2 = new Contact("John Doe 2", "124 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      Contact contact3 = new Contact("John Doe 3", "125 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
 
-		contacts.add(contact1);
-		contacts.add(contact2);
-		contacts.add(contact3);
+      contacts.add(contact1);
+      contacts.add(contact2);
+      contacts.add(contact3);
 
-		return contacts;
-	}
+      return contacts;
+   }
 
-	@GetMapping("/javaUtilDate")
-	public List<ContactWithJavaUtilDate> getContactsWithJavaUtilDate() {
-		List<ContactWithJavaUtilDate> contacts = new ArrayList<>();
+   @GetMapping("/javaUtilDate")
+   public List<ContactWithJavaUtilDate> getContactsWithJavaUtilDate() {
+      List<ContactWithJavaUtilDate> contacts = new ArrayList<>();
 
-		ContactWithJavaUtilDate contact1 = new ContactWithJavaUtilDate("John Doe", "123 Sesame Street", "123-456-789", new Date(), new Date());
-		ContactWithJavaUtilDate contact2 = new ContactWithJavaUtilDate("John Doe 2", "124 Sesame Street", "123-456-789", new Date(), new Date());
-		ContactWithJavaUtilDate contact3 = new ContactWithJavaUtilDate("John Doe 3", "125 Sesame Street", "123-456-789", new Date(), new Date());
+      ContactWithJavaUtilDate contact1 = new ContactWithJavaUtilDate("John Doe", "123 Sesame Street", "123-456-789", new Date(), new Date());
+      ContactWithJavaUtilDate contact2 = new ContactWithJavaUtilDate("John Doe 2", "124 Sesame Street", "123-456-789", new Date(), new Date());
+      ContactWithJavaUtilDate contact3 = new ContactWithJavaUtilDate("John Doe 3", "125 Sesame Street", "123-456-789", new Date(), new Date());
 
-		contacts.add(contact1);
-		contacts.add(contact2);
-		contacts.add(contact3);
+      contacts.add(contact1);
+      contacts.add(contact2);
+      contacts.add(contact3);
 
-		return contacts;
-	}
+      return contacts;
+   }
 
-	@GetMapping("/plain")
-	public List<PlainContact> getPlainContacts() {
-		List<PlainContact> contacts = new ArrayList<>();
+   @GetMapping("/plain")
+   public List<PlainContact> getPlainContacts() {
+      List<PlainContact> contacts = new ArrayList<>();
 
-		PlainContact contact1 = new PlainContact("John Doe", "123 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
-		PlainContact contact2 = new PlainContact("John Doe 2", "124 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
-		PlainContact contact3 = new PlainContact("John Doe 3", "125 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      PlainContact contact1 = new PlainContact("John Doe", "123 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      PlainContact contact2 = new PlainContact("John Doe 2", "124 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
+      PlainContact contact3 = new PlainContact("John Doe 3", "125 Sesame Street", "123-456-789", LocalDate.now(), LocalDateTime.now());
 
-		contacts.add(contact1);
-		contacts.add(contact2);
-		contacts.add(contact3);
+      contacts.add(contact1);
+      contacts.add(contact2);
+      contacts.add(contact3);
 
-		return contacts;
-	}
+      return contacts;
+   }
 
-	@GetMapping("/plainWithJavaUtilDate")
-	public List<PlainContactWithJavaUtilDate> getPlainContactsWithJavaUtilDate() {
-		List<PlainContactWithJavaUtilDate> contacts = new ArrayList<>();
+   @GetMapping("/plainWithJavaUtilDate")
+   public List<PlainContactWithJavaUtilDate> getPlainContactsWithJavaUtilDate() {
+      List<PlainContactWithJavaUtilDate> contacts = new ArrayList<>();
 
-		PlainContactWithJavaUtilDate contact1 = new PlainContactWithJavaUtilDate("John Doe", "123 Sesame Street", "123-456-789", new Date(), new Date());
-		PlainContactWithJavaUtilDate contact2 = new PlainContactWithJavaUtilDate("John Doe 2", "124 Sesame Street", "123-456-789", new Date(), new Date());
-		PlainContactWithJavaUtilDate contact3 = new PlainContactWithJavaUtilDate("John Doe 3", "125 Sesame Street", "123-456-789", new Date(), new Date());
+      PlainContactWithJavaUtilDate contact1 = new PlainContactWithJavaUtilDate("John Doe", "123 Sesame Street", "123-456-789", new Date(), new Date());
+      PlainContactWithJavaUtilDate contact2 = new PlainContactWithJavaUtilDate("John Doe 2", "124 Sesame Street", "123-456-789", new Date(), new Date());
+      PlainContactWithJavaUtilDate contact3 = new PlainContactWithJavaUtilDate("John Doe 3", "125 Sesame Street", "123-456-789", new Date(), new Date());
 
-		contacts.add(contact1);
-		contacts.add(contact2);
-		contacts.add(contact3);
+      contacts.add(contact1);
+      contacts.add(contact2);
+      contacts.add(contact3);
 
-		return contacts;
-	}
+      return contacts;
+   }
 
 }

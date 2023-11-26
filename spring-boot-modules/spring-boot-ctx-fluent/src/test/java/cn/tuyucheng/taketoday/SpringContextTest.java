@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 class SpringContextTest {
 
-    @Test
-    final void testMain() {
-        App.main(new String[]{});
-    }
+   @Test
+   final void testMain() {
+      App.main(new String[]{});
+   }
 }

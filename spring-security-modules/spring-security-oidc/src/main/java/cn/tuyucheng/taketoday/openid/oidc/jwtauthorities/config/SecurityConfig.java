@@ -20,51 +20,51 @@ import java.util.Collection;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final JwtMappingProperties mappingProps;
-    private final AccountService accountService;
+   private final JwtMappingProperties mappingProps;
+   private final AccountService accountService;
 
-    public SecurityConfig(JwtMappingProperties mappingProps, AccountService accountService) {
-        this.mappingProps = mappingProps;
-        this.accountService = accountService;
-    }
+   public SecurityConfig(JwtMappingProperties mappingProps, AccountService accountService) {
+      this.mappingProps = mappingProps;
+      this.accountService = accountService;
+   }
 
-    @Bean
-    public String jwtGrantedAuthoritiesPrefix() {
-        return mappingProps.getAuthoritiesPrefix();
-    }
+   @Bean
+   public String jwtGrantedAuthoritiesPrefix() {
+      return mappingProps.getAuthoritiesPrefix();
+   }
 
-    @Bean
-    public Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter() {
-        MappingJwtGrantedAuthoritiesConverter converter = new MappingJwtGrantedAuthoritiesConverter(mappingProps.getScopes());
+   @Bean
+   public Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter() {
+      MappingJwtGrantedAuthoritiesConverter converter = new MappingJwtGrantedAuthoritiesConverter(mappingProps.getScopes());
 
-        if (StringUtils.hasText(mappingProps.getAuthoritiesPrefix())) {
-            converter.setAuthorityPrefix(mappingProps.getAuthoritiesPrefix()
-                  .trim());
-        }
+      if (StringUtils.hasText(mappingProps.getAuthoritiesPrefix())) {
+         converter.setAuthorityPrefix(mappingProps.getAuthoritiesPrefix()
+               .trim());
+      }
 
-        if (StringUtils.hasText(mappingProps.getAuthoritiesClaimName())) {
-            converter.setAuthoritiesClaimName(mappingProps.getAuthoritiesClaimName());
-        }
-        return converter;
-    }
+      if (StringUtils.hasText(mappingProps.getAuthoritiesClaimName())) {
+         converter.setAuthoritiesClaimName(mappingProps.getAuthoritiesClaimName());
+      }
+      return converter;
+   }
 
-    @Bean
-    public Converter<Jwt, AbstractAuthenticationToken> customJwtAuthenticationConverter(AccountService accountService) {
-        return new CustomJwtAuthenticationConverter(
-              accountService,
-              jwtGrantedAuthoritiesConverter(),
-              mappingProps.getPrincipalClaimName());
-    }
+   @Bean
+   public Converter<Jwt, AbstractAuthenticationToken> customJwtAuthenticationConverter(AccountService accountService) {
+      return new CustomJwtAuthenticationConverter(
+            accountService,
+            jwtGrantedAuthoritiesConverter(),
+            mappingProps.getPrincipalClaimName());
+   }
 
-    @Bean
-    SecurityFilterChain customJwtSecurityChain(HttpSecurity http) throws Exception {
-        // @formatter:off
+   @Bean
+   SecurityFilterChain customJwtSecurityChain(HttpSecurity http) throws Exception {
+      // @formatter:off
         return http.oauth2ResourceServer(oauth2 -> {
                   oauth2.jwt()
                         .jwtAuthenticationConverter(customJwtAuthenticationConverter(accountService));
               })
               .build();
         // @formatter:on
-    }
+   }
 
 }

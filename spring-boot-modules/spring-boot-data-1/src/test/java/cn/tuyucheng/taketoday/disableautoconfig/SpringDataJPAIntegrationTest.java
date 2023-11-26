@@ -15,12 +15,12 @@ import javax.sql.DataSource;
 @SpringBootTest(classes = SpringDataJPA.class)
 public class SpringDataJPAIntegrationTest {
 
-	@Autowired
-	private ApplicationContext context;
+   @Autowired
+   private ApplicationContext context;
 
-	@Test(expected = NoSuchBeanDefinitionException.class)
-	public void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
-		context.getBean(DataSource.class);
-	}
+   @Test(expected = NoSuchBeanDefinitionException.class)
+   public void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
+      context.getBean(DataSource.class);
+   }
 
 }

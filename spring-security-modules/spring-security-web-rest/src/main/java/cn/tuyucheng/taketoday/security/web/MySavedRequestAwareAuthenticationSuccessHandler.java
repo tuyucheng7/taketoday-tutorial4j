@@ -16,27 +16,27 @@ import java.io.IOException;
 @Component
 public class MySavedRequestAwareAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private RequestCache requestCache = new HttpSessionRequestCache();
+   private RequestCache requestCache = new HttpSessionRequestCache();
 
-    @Override
-    public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
-        final SavedRequest savedRequest = requestCache.getRequest(request, response);
+   @Override
+   public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
+      final SavedRequest savedRequest = requestCache.getRequest(request, response);
 
-        if (savedRequest == null) {
-            clearAuthenticationAttributes(request);
-            return;
-        }
-        final String targetUrlParameter = getTargetUrlParameter();
-        if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
-            requestCache.removeRequest(request, response);
-            clearAuthenticationAttributes(request);
-            return;
-        }
+      if (savedRequest == null) {
+         clearAuthenticationAttributes(request);
+         return;
+      }
+      final String targetUrlParameter = getTargetUrlParameter();
+      if (isAlwaysUseDefaultTargetUrl() || (targetUrlParameter != null && StringUtils.hasText(request.getParameter(targetUrlParameter)))) {
+         requestCache.removeRequest(request, response);
+         clearAuthenticationAttributes(request);
+         return;
+      }
 
-        clearAuthenticationAttributes(request);
-    }
+      clearAuthenticationAttributes(request);
+   }
 
-    public void setRequestCache(final RequestCache requestCache) {
-        this.requestCache = requestCache;
-    }
+   public void setRequestCache(final RequestCache requestCache) {
+      this.requestCache = requestCache;
+   }
 }

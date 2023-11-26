@@ -1,9 +1,8 @@
 package cn.tuyucheng.taketoday.restvalidation.service3;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Objects;
-
+import cn.tuyucheng.taketoday.restvalidation.RestValidationApplication;
+import cn.tuyucheng.taketoday.restvalidation.response.InputFieldError;
+import cn.tuyucheng.taketoday.restvalidation.response.UpdateUserResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cn.tuyucheng.taketoday.restvalidation.RestValidationApplication;
-import cn.tuyucheng.taketoday.restvalidation.response.InputFieldError;
-import cn.tuyucheng.taketoday.restvalidation.response.UpdateUserResponse;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = RestValidationApplication.class)

@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-	@GetMapping("/products")
-	public List<Product> getProducts() {
-		return new ArrayList<>(Arrays.asList(
-			new Product("Product 1", "Description 1", 1.0),
-			new Product("Product 2", "Description 2", 2.0)
-		));
-	}
+   @GetMapping("/products")
+   public List<Product> getProducts() {
+      return new ArrayList<>(Arrays.asList(
+            new Product("Product 1", "Description 1", 1.0),
+            new Product("Product 2", "Description 2", 2.0)
+      ));
+   }
 }

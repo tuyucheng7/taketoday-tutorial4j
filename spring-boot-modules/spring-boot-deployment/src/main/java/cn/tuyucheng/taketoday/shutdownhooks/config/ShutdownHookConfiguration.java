@@ -10,15 +10,15 @@ import javax.servlet.ServletContextListener;
 @Configuration
 public class ShutdownHookConfiguration {
 
-    @Bean(destroyMethod = "destroy")
-    public Bean3 initializeBean3() {
-        return new Bean3();
-    }
+   @Bean(destroyMethod = "destroy")
+   public Bean3 initializeBean3() {
+      return new Bean3();
+   }
 
-    @Bean
-    ServletListenerRegistrationBean<ServletContextListener> servletListener() {
-        ServletListenerRegistrationBean<ServletContextListener> srb = new ServletListenerRegistrationBean<>();
-        srb.setListener(new ExampleServletContextListener());
-        return srb;
-    }
+   @Bean
+   ServletListenerRegistrationBean<ServletContextListener> servletListener() {
+      ServletListenerRegistrationBean<ServletContextListener> srb = new ServletListenerRegistrationBean<>();
+      srb.setListener(new ExampleServletContextListener());
+      return srb;
+   }
 }

@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {MultidocumentTestConfig.class})
 class MultidocumentPropertiesFileWithTestProfileIntegrationTest {
 
-	Logger logger = LoggerFactory.getLogger(MultidocumentPropertiesFileWithTestProfileIntegrationTest.class);
+   Logger logger = LoggerFactory.getLogger(MultidocumentPropertiesFileWithTestProfileIntegrationTest.class);
 
-	@Value("${tuyucheng.customProperty}")
-	private String customProperty;
+   @Value("${tuyucheng.customProperty}")
+   private String customProperty;
 
-	@Test
-	void givenMultidocumentPropertiesFileWhenBootContextLoadedThenDocumentProcessedCorrectly() {
-		assertThat(customProperty).isEqualTo("valueDev");
-	}
+   @Test
+   void givenMultidocumentPropertiesFileWhenBootContextLoadedThenDocumentProcessedCorrectly() {
+      assertThat(customProperty).isEqualTo("valueDev");
+   }
 }

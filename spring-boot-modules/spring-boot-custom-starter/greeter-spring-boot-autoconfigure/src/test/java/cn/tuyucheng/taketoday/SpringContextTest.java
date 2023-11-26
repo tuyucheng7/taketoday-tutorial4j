@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(classes = GreeterAutoConfiguration.class)
 class SpringContextTest {
 
-    @Test
-    void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

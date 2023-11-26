@@ -10,10 +10,10 @@ import org.springframework.web.util.HtmlUtils;
 @Controller
 public class WebSocketController {
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(Message message) throws Exception {
-        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-    }
+   @MessageMapping("/hello")
+   @SendTo("/topic/greetings")
+   public Greeting greeting(Message message) throws Exception {
+      return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+   }
 
 }

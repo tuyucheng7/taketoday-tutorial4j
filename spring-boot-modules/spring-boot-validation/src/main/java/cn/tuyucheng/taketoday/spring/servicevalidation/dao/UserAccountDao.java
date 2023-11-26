@@ -10,18 +10,18 @@ import java.util.Map;
 @Service
 public class UserAccountDao {
 
-	private Map<String, UserAccount> DB = new HashMap<>();
+   private Map<String, UserAccount> DB = new HashMap<>();
 
-	public String addUserAccount(UserAccount useraccount) {
-		DB.put(useraccount.getName(), useraccount);
-		return "success";
-	}
+   public String addUserAccount(UserAccount useraccount) {
+      DB.put(useraccount.getName(), useraccount);
+      return "success";
+   }
 
-	public Collection<UserAccount> getAllUserAccounts() {
-		Collection<UserAccount> list = DB.values();
-		if (list.isEmpty()) {
-			list.addAll(DB.values());
-		}
-		return list;
-	}
+   public Collection<UserAccount> getAllUserAccounts() {
+      Collection<UserAccount> list = DB.values();
+      if (list.isEmpty()) {
+         list.addAll(DB.values());
+      }
+      return list;
+   }
 }

@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class MyCustomErrorController implements ErrorController {
 
-    private static final String PATH = "/error";
+   private static final String PATH = "/error";
 
-    @GetMapping(value = PATH)
-    public String error() {
-        return "Error haven";
-    }
+   @GetMapping(value = PATH)
+   public String error() {
+      return "Error haven";
+   }
 }

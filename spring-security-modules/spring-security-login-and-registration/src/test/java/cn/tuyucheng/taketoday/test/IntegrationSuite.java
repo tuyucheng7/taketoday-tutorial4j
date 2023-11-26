@@ -13,5 +13,5 @@ package cn.tuyucheng.taketoday.test;
 // 	LocalizationIntegrationTest.class
 // })// @formatter:on
 public class IntegrationSuite {
-	//
+   //
 }

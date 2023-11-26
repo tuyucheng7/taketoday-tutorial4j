@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource({"classpath*:application-context.xml"})
 public class XmlBeanApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(XmlBeanApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(XmlBeanApplication.class, args);
+   }
 }

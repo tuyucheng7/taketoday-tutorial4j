@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.shutdown")
 public class ShutdownConfig {
 
-	@Bean
-	public TerminateBean getTerminateBean() {
-		return new TerminateBean();
-	}
+   @Bean
+   public TerminateBean getTerminateBean() {
+      return new TerminateBean();
+   }
 }

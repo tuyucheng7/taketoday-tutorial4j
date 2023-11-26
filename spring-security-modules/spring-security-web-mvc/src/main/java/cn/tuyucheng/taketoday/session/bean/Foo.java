@@ -12,18 +12,18 @@ import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSIO
 @Component
 @Scope(value = SCOPE_SESSION, proxyMode = TARGET_CLASS)
 public class Foo {
-    private final String created;
+   private final String created;
 
-    public Foo() {
-        this.created = LocalDateTime.now()
-              .format(DateTimeFormatter.ISO_DATE_TIME);
-    }
+   public Foo() {
+      this.created = LocalDateTime.now()
+            .format(DateTimeFormatter.ISO_DATE_TIME);
+   }
 
-    public Foo(Foo theFoo) {
-        this.created = theFoo.created;
-    }
+   public Foo(Foo theFoo) {
+      this.created = theFoo.created;
+   }
 
-    public String getCreated() {
-        return created;
-    }
+   public String getCreated() {
+      return created;
+   }
 }

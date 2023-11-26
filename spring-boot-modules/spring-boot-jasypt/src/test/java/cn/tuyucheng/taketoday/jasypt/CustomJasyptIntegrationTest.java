@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = {MainApplication.class})
 class CustomJasyptIntegrationTest {
 
-	@Autowired
-	ApplicationContext appCtx;
+   @Autowired
+   ApplicationContext appCtx;
 
-	@Test
-	void whenConfiguredExcryptorUsed_ReturnCustomEncryptor() {
-		Environment environment = appCtx.getBean(Environment.class);
+   @Test
+   void whenConfiguredExcryptorUsed_ReturnCustomEncryptor() {
+      Environment environment = appCtx.getBean(Environment.class);
 
-		assertEquals("Password@3", environment.getProperty("encryptedv3.property"));
-	}
+      assertEquals("Password@3", environment.getProperty("encryptedv3.property"));
+   }
 }

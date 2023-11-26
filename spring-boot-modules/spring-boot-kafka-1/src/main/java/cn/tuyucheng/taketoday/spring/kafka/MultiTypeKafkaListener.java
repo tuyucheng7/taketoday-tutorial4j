@@ -8,18 +8,18 @@ import org.springframework.stereotype.Component;
 @KafkaListener(id = "multiGroup", topics = "multitype")
 public class MultiTypeKafkaListener {
 
-	@KafkaHandler
-	public void handleGreeting(Greeting greeting) {
-		System.out.println("Greeting received: " + greeting);
-	}
+   @KafkaHandler
+   public void handleGreeting(Greeting greeting) {
+      System.out.println("Greeting received: " + greeting);
+   }
 
-	@KafkaHandler
-	public void handleF(Farewell farewell) {
-		System.out.println("Farewell received: " + farewell);
-	}
+   @KafkaHandler
+   public void handleF(Farewell farewell) {
+      System.out.println("Farewell received: " + farewell);
+   }
 
-	@KafkaHandler(isDefault = true)
-	public void unknown(Object object) {
-		System.out.println("Unknown type received: " + object);
-	}
+   @KafkaHandler(isDefault = true)
+   public void unknown(Object object) {
+      System.out.println("Unknown type received: " + object);
+   }
 }

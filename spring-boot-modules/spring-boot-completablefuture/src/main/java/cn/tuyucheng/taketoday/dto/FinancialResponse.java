@@ -11,17 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FinancialResponse {
 
-	private String id;
+   private String id;
 
-	private String creditCardNumber;
+   private String creditCardNumber;
 
-	private String iban;
+   private String iban;
 
-	public static FinancialResponse valueOf(FinancialInfo financialInfo) {
-		return builder()
-			.id(financialInfo.getId())
-			.creditCardNumber(financialInfo.getCreditCardNumber())
-			.iban(financialInfo.getIban())
-			.build();
-	}
+   public static FinancialResponse valueOf(FinancialInfo financialInfo) {
+      return builder()
+            .id(financialInfo.getId())
+            .creditCardNumber(financialInfo.getCreditCardNumber())
+            .iban(financialInfo.getIban())
+            .build();
+   }
 }

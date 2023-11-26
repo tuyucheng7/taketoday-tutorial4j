@@ -14,9 +14,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Bucket4jRateLimitApplication.class)
@@ -24,37 +22,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class Bucket4jBootStarterRateLimitIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	public void givenTriangleAreaCalculator_whenRequestsWithinRateLimit_thenAccepted() throws Exception {
-		RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
-			.content("{ \"height\": 8, \"base\": 10 }")
-			.header("X-api-key", "FX001-UBSZ5YRYQ");
+   @Test
+   public void givenTriangleAreaCalculator_whenRequestsWithinRateLimit_thenAccepted() throws Exception {
+      RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content("{ \"height\": 8, \"base\": 10 }")
+            .header("X-api-key", "FX001-UBSZ5YRYQ");
 
-		for (int i = 1; i <= PricingPlan.FREE.bucketCapacity(); i++) {
-			mockMvc.perform(request)
-				.andExpect(status().isOk())
-				.andExpect(header().exists("X-Rate-Limit-Remaining"))
-				.andExpect(jsonPath("$.shape", equalTo("triangle")))
-				.andExpect(jsonPath("$.area", equalTo(40d)));
-		}
-	}
+      for (int i = 1; i <= PricingPlan.FREE.bucketCapacity(); i++) {
+         mockMvc.perform(request)
+               .andExpect(status().isOk())
+               .andExpect(header().exists("X-Rate-Limit-Remaining"))
+               .andExpect(jsonPath("$.shape", equalTo("triangle")))
+               .andExpect(jsonPath("$.area", equalTo(40d)));
+      }
+   }
 
-	@Test
-	public void givenTriangleAreaCalculator_whenRequestRateLimitTriggered_thenRejected() throws Exception {
-		RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
-			.content("{ \"height\": 8, \"base\": 10 }")
-			.header("X-api-key", "FX001-ZBSY6YSLP");
+   @Test
+   public void givenTriangleAreaCalculator_whenRequestRateLimitTriggered_thenRejected() throws Exception {
+      RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content("{ \"height\": 8, \"base\": 10 }")
+            .header("X-api-key", "FX001-ZBSY6YSLP");
 
-		for (int i = 1; i <= PricingPlan.FREE.bucketCapacity(); i++) {
-			mockMvc.perform(request); // exhaust limit
-		}
+      for (int i = 1; i <= PricingPlan.FREE.bucketCapacity(); i++) {
+         mockMvc.perform(request); // exhaust limit
+      }
 
-		mockMvc.perform(request)
-			.andExpect(status().isTooManyRequests())
-			.andExpect(jsonPath("$.message", equalTo("You have exhausted your API Request Quota")))
-			.andExpect(header().exists("X-Rate-Limit-Retry-After-Seconds"));
-	}
+      mockMvc.perform(request)
+            .andExpect(status().isTooManyRequests())
+            .andExpect(jsonPath("$.message", equalTo("You have exhausted your API Request Quota")))
+            .andExpect(header().exists("X-Rate-Limit-Retry-After-Seconds"));
+   }
 }

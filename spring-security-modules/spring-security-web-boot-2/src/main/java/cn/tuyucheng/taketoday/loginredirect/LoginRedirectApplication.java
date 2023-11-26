@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @ImportResource({"classpath*:spring-security-login-redirect.xml"})
 class LoginRedirectApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(LoginRedirectApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(LoginRedirectApplication.class, args);
+   }
 }

@@ -22,29 +22,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {SecurityWithoutCsrfConfig.class, MvcConfig.class})
 public class LoggerInterceptorIntegrationTest {
 
-    @Autowired
-    WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-    @Autowired
-    MockHttpSession session;
+   @Autowired
+   MockHttpSession session;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+   @Before
+   public void setup() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+   }
 
-    /**
-     * After execution of HTTP GET logs from interceptor will be displayed in
-     * the console
-     *
-     * @throws Exception
-     */
-    @Test
-    public void testInterceptors() throws Exception {
-        mockMvc.perform(get("/login.html"))
-              .andExpect(status().isOk());
-    }
+   /**
+    * After execution of HTTP GET logs from interceptor will be displayed in
+    * the console
+    *
+    * @throws Exception
+    */
+   @Test
+   public void testInterceptors() throws Exception {
+      mockMvc.perform(get("/login.html"))
+            .andExpect(status().isOk());
+   }
 
 }

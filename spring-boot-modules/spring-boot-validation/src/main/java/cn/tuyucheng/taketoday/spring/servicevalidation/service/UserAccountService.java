@@ -13,24 +13,24 @@ import java.util.Set;
 @Service
 public class UserAccountService {
 
-	@Autowired
-	private Validator validator;
+   @Autowired
+   private Validator validator;
 
-	@Autowired
-	private UserAccountDao dao;
+   @Autowired
+   private UserAccountDao dao;
 
-	public String addUserAccount(UserAccount useraccount) {
-		Set<ConstraintViolation<UserAccount>> violations = validator.validate(useraccount);
+   public String addUserAccount(UserAccount useraccount) {
+      Set<ConstraintViolation<UserAccount>> violations = validator.validate(useraccount);
 
-		if (!violations.isEmpty()) {
-			StringBuilder sb = new StringBuilder();
-			for (ConstraintViolation<UserAccount> constraintViolation : violations) {
-				sb.append(constraintViolation.getMessage());
-			}
-			throw new ConstraintViolationException("Error occurred: " + sb, violations);
-		}
+      if (!violations.isEmpty()) {
+         StringBuilder sb = new StringBuilder();
+         for (ConstraintViolation<UserAccount> constraintViolation : violations) {
+            sb.append(constraintViolation.getMessage());
+         }
+         throw new ConstraintViolationException("Error occurred: " + sb, violations);
+      }
 
-		dao.addUserAccount(useraccount);
-		return "Account for " + useraccount.getName() + " Added!";
-	}
+      dao.addUserAccount(useraccount);
+      return "Account for " + useraccount.getName() + " Added!";
+   }
 }

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class LogoutClearSiteDataController {
 
-    @GetMapping(value = "/baeldung/logout")
-    public ResponseEntity<String> logout(@PathVariable String name) {
-        return ResponseEntity.ok().build();
-    }
+   @GetMapping(value = "/baeldung/logout")
+   public ResponseEntity<String> logout(@PathVariable String name) {
+      return ResponseEntity.ok().build();
+   }
 
 }

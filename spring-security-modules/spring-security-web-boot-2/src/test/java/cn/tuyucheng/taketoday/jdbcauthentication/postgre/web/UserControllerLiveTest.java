@@ -11,15 +11,14 @@ import static org.hamcrest.CoreMatchers.is;
  * *  a PostgreSQL instance running, that allows a 'root' user with password 'pass', and with a database named jdbc_authentication
  * (e.g. with the following command `docker run -p 5432:5432 --name bael-postgre -e POSTGRES_PASSWORD=pass -e POSTGRES_DB=jdbc_authentication postgres:latest`)
  * * the  service up and running
- *
  */
 public class UserControllerLiveTest {
 
-    private static final String PRINCIPAL_SVC_URL = "http://localhost:8082/principal";
+   private static final String PRINCIPAL_SVC_URL = "http://localhost:8082/principal";
 
-    @Test
-    public void givenExisting_whenRequestPrincipal_thenRetrieveData() throws Exception {
-        given().auth()
+   @Test
+   public void givenExisting_whenRequestPrincipal_thenRetrieveData() throws Exception {
+      given().auth()
             .preemptive()
             .basic("user", "pass")
             .when()
@@ -30,6 +29,6 @@ public class UserControllerLiveTest {
             .body("authorities[0].authority", is("ROLE_USER"))
             .body("principal.username", is("user"))
             .body("name", is("user"));
-    }
+   }
 
 }

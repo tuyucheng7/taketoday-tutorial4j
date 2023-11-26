@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @AutoConfigureTestDatabase
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

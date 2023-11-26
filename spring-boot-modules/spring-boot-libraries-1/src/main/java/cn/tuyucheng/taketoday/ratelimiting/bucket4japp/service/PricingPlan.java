@@ -7,36 +7,36 @@ import java.time.Duration;
 
 public enum PricingPlan {
 
-	FREE(20),
+   FREE(20),
 
-	BASIC(40),
+   BASIC(40),
 
-	PROFESSIONAL(100);
+   PROFESSIONAL(100);
 
-	private int bucketCapacity;
+   private int bucketCapacity;
 
-	private PricingPlan(int bucketCapacity) {
-		this.bucketCapacity = bucketCapacity;
-	}
+   private PricingPlan(int bucketCapacity) {
+      this.bucketCapacity = bucketCapacity;
+   }
 
-	Bandwidth getLimit() {
-		return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofHours(1)));
-	}
+   Bandwidth getLimit() {
+      return Bandwidth.classic(bucketCapacity, Refill.intervally(bucketCapacity, Duration.ofHours(1)));
+   }
 
-	public int bucketCapacity() {
-		return bucketCapacity;
-	}
+   public int bucketCapacity() {
+      return bucketCapacity;
+   }
 
-	static PricingPlan resolvePlanFromApiKey(String apiKey) {
-		if (apiKey == null || apiKey.isEmpty()) {
-			return FREE;
+   static PricingPlan resolvePlanFromApiKey(String apiKey) {
+      if (apiKey == null || apiKey.isEmpty()) {
+         return FREE;
 
-		} else if (apiKey.startsWith("PX001-")) {
-			return PROFESSIONAL;
+      } else if (apiKey.startsWith("PX001-")) {
+         return PROFESSIONAL;
 
-		} else if (apiKey.startsWith("BX001-")) {
-			return BASIC;
-		}
-		return FREE;
-	}
+      } else if (apiKey.startsWith("BX001-")) {
+         return BASIC;
+      }
+      return FREE;
+   }
 }

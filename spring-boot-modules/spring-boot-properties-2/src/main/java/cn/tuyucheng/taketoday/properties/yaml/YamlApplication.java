@@ -8,15 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class YamlApplication implements CommandLineRunner {
 
-	@Autowired
-	private YamlFooProperties yamlFooProperties;
+   @Autowired
+   private YamlFooProperties yamlFooProperties;
 
-	public static void main(String[] args) {
-		SpringApplication.run(YamlApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(YamlApplication.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.println("YAML Properties " + yamlFooProperties);
-	}
+   @Override
+   public void run(String... args) throws Exception {
+      System.out.println("YAML Properties " + yamlFooProperties);
+   }
 }

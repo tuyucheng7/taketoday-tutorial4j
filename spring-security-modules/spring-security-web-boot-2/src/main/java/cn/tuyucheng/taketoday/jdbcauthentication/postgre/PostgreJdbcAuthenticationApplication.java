@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-postgre.properties")
 public class PostgreJdbcAuthenticationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PostgreJdbcAuthenticationApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(PostgreJdbcAuthenticationApplication.class, args);
+   }
 
 }

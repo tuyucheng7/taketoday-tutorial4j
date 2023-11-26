@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.swagger2bootmvc.model;
 
-import java.util.List;
-
 import io.swagger.v3.oas.annotations.media.Schema;
+
+import java.util.List;
 
 @Schema
 public class Foo {

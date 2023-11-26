@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("api/tasks")
 public class TaskController {
 
-    @Autowired
-    private TaskService taskService;
+   @Autowired
+   private TaskService taskService;
 
-    @Autowired(required = false)
-    private UserDetailsService userDetailsService;
+   @Autowired(required = false)
+   private UserDetailsService userDetailsService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Task>> findAllTasks() {
-        Iterable<Task> tasks = taskService.findAll();
+   @RequestMapping(method = RequestMethod.GET)
+   public ResponseEntity<Iterable<Task>> findAllTasks() {
+      Iterable<Task> tasks = taskService.findAll();
 
-        return ResponseEntity.ok().body(tasks);
-    }
+      return ResponseEntity.ok().body(tasks);
+   }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<Iterable<Task>> addTasks(@RequestBody Iterable<Task> newTasks) {
-        Iterable<Task> tasks = taskService.save(newTasks);
+   @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+   public ResponseEntity<Iterable<Task>> addTasks(@RequestBody Iterable<Task> newTasks) {
+      Iterable<Task> tasks = taskService.save(newTasks);
 
-        return ResponseEntity.ok().body(tasks);
-    }
+      return ResponseEntity.ok().body(tasks);
+   }
 }

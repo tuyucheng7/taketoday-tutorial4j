@@ -20,40 +20,40 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan("cn.tuyucheng.taketoday.filterresponse")
 public class AppConfig implements WebMvcConfigurer {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("user")
-              .password(passwordEncoder.encode("userPass"))
-              .roles("USER")
-              .build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails user = User.withUsername("user")
+            .password(passwordEncoder.encode("userPass"))
+            .roles("USER")
+            .build();
 
-        UserDetails admin = User.withUsername("admin")
-              .password(passwordEncoder.encode("adminPass"))
-              .roles("ADMIN")
-              .build();
+      UserDetails admin = User.withUsername("admin")
+            .password(passwordEncoder.encode("adminPass"))
+            .roles("ADMIN")
+            .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+      return new InMemoryUserDetailsManager(user, admin);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .authorizeRequests()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 
-    public enum Role {
-        ROLE_USER,
-        ROLE_ADMIN
-    }
+   public enum Role {
+      ROLE_USER,
+      ROLE_ADMIN
+   }
 }

@@ -15,43 +15,43 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = EnableMethodSecurityApplication.class)
 public class EnableMethodSecurityIntegrationTest {
-    @Autowired
-    private WebApplicationContext context;
+   @Autowired
+   private WebApplicationContext context;
 
-    private MockMvc mvc;
+   private MockMvc mvc;
 
-    @BeforeEach
-    public void setup() {
-        mvc = MockMvcBuilders.webAppContextSetup(context)
-              .apply(springSecurity())
-              .build();
-    }
+   @BeforeEach
+   public void setup() {
+      mvc = MockMvcBuilders.webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+   }
 
-    @Test
-    @WithUserDetails(value = "admin")
-    public void whenAdminAccessOpenEndpoint_thenOk() throws Exception {
-        mvc.perform(get("/openPolicy"))
-              .andExpect(status().isOk());
-    }
+   @Test
+   @WithUserDetails(value = "admin")
+   public void whenAdminAccessOpenEndpoint_thenOk() throws Exception {
+      mvc.perform(get("/openPolicy"))
+            .andExpect(status().isOk());
+   }
 
-    @Test
-    @WithUserDetails(value = "admin")
-    public void whenAdminAccessRestrictedEndpoint_thenOk() throws Exception {
-        mvc.perform(get("/restrictedPolicy"))
-              .andExpect(status().isOk());
-    }
+   @Test
+   @WithUserDetails(value = "admin")
+   public void whenAdminAccessRestrictedEndpoint_thenOk() throws Exception {
+      mvc.perform(get("/restrictedPolicy"))
+            .andExpect(status().isOk());
+   }
 
-    @Test
-    @WithUserDetails()
-    public void whenUserAccessOpenEndpoint_thenOk() throws Exception {
-        mvc.perform(get("/openPolicy"))
-              .andExpect(status().isOk());
-    }
+   @Test
+   @WithUserDetails()
+   public void whenUserAccessOpenEndpoint_thenOk() throws Exception {
+      mvc.perform(get("/openPolicy"))
+            .andExpect(status().isOk());
+   }
 
-    @Test
-    @WithUserDetails()
-    public void whenUserAccessRestrictedEndpoint_thenIsForbidden() throws Exception {
-        mvc.perform(get("/restrictedPolicy"))
-              .andExpect(status().isForbidden());
-    }
+   @Test
+   @WithUserDetails()
+   public void whenUserAccessRestrictedEndpoint_thenIsForbidden() throws Exception {
+      mvc.perform(get("/restrictedPolicy"))
+            .andExpect(status().isForbidden());
+   }
 }

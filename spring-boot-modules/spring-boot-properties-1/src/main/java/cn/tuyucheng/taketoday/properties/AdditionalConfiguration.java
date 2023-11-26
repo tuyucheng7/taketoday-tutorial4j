@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(AdditionalProperties.class)
 public class AdditionalConfiguration {
 
-	@Autowired
-	private AdditionalProperties additionalProperties;
+   @Autowired
+   private AdditionalProperties additionalProperties;
 }

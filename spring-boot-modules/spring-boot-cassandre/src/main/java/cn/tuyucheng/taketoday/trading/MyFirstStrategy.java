@@ -22,43 +22,43 @@ import static tech.cassandre.trading.bot.dto.util.CurrencyDTO.USDT;
 @CassandreStrategy
 public class MyFirstStrategy extends BasicCassandreStrategy {
 
-	private final Logger logger = LoggerFactory.getLogger(MyFirstStrategy.class);
+   private final Logger logger = LoggerFactory.getLogger(MyFirstStrategy.class);
 
-	@Override
-	public Set<CurrencyPairDTO> getRequestedCurrencyPairs() {
-		return Set.of(new CurrencyPairDTO(BTC, USDT));
-	}
+   @Override
+   public Set<CurrencyPairDTO> getRequestedCurrencyPairs() {
+      return Set.of(new CurrencyPairDTO(BTC, USDT));
+   }
 
-	@Override
-	public Optional<AccountDTO> getTradeAccount(Set<AccountDTO> accounts) {
-		return accounts.stream()
-			.filter(a -> "trade".equals(a.getName()))
-			.findFirst();
-	}
+   @Override
+   public Optional<AccountDTO> getTradeAccount(Set<AccountDTO> accounts) {
+      return accounts.stream()
+            .filter(a -> "trade".equals(a.getName()))
+            .findFirst();
+   }
 
-	@Override
-	public void onTickerUpdate(TickerDTO ticker) {
-		logger.info("Received a new ticker : {}", ticker);
+   @Override
+   public void onTickerUpdate(TickerDTO ticker) {
+      logger.info("Received a new ticker : {}", ticker);
 
-		if (new BigDecimal("56000").compareTo(ticker.getLast()) == -1) {
-			if (canBuy(new CurrencyPairDTO(BTC, USDT), new BigDecimal("0.01"))) {
-				PositionRulesDTO rules = PositionRulesDTO.builder()
-					.stopGainPercentage(4f)
-					.stopLossPercentage(25f)
-					.build();
-				createLongPosition(new CurrencyPairDTO(BTC, USDT), new BigDecimal("0.01"), rules);
-			}
+      if (new BigDecimal("56000").compareTo(ticker.getLast()) == -1) {
+         if (canBuy(new CurrencyPairDTO(BTC, USDT), new BigDecimal("0.01"))) {
+            PositionRulesDTO rules = PositionRulesDTO.builder()
+                  .stopGainPercentage(4f)
+                  .stopLossPercentage(25f)
+                  .build();
+            createLongPosition(new CurrencyPairDTO(BTC, USDT), new BigDecimal("0.01"), rules);
+         }
 
-		}
-	}
+      }
+   }
 
-	@Override
-	public void onPositionStatusUpdate(PositionDTO position) {
-		if (position.getStatus() == OPENED) {
-			logger.info("> New position opened : {}", position.getPositionId());
-		}
-		if (position.getStatus() == CLOSED) {
-			logger.info("> Position closed : {}", position.getDescription());
-		}
-	}
+   @Override
+   public void onPositionStatusUpdate(PositionDTO position) {
+      if (position.getStatus() == OPENED) {
+         logger.info("> New position opened : {}", position.getPositionId());
+      }
+      if (position.getStatus() == CLOSED) {
+         logger.info("> Position closed : {}", position.getDescription());
+      }
+   }
 }

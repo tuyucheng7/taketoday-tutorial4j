@@ -17,26 +17,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource("classpath:conversion.properties")
 class PropertiesConversionIntegrationTest {
 
-	@Autowired
-	private PropertyConversion properties;
+   @Autowired
+   private PropertyConversion properties;
 
-	@Test
-	void whenUseTimeUnitPropertyConversion_thenSuccess() throws Exception {
-		assertEquals(Duration.ofMillis(10), properties.getTimeInDefaultUnit());
-		assertEquals(Duration.ofNanos(9), properties.getTimeInNano());
-		assertEquals(Duration.ofDays(2), properties.getTimeInDays());
-	}
+   @Test
+   void whenUseTimeUnitPropertyConversion_thenSuccess() throws Exception {
+      assertEquals(Duration.ofMillis(10), properties.getTimeInDefaultUnit());
+      assertEquals(Duration.ofNanos(9), properties.getTimeInNano());
+      assertEquals(Duration.ofDays(2), properties.getTimeInDays());
+   }
 
-	@Test
-	void whenUseDataSizePropertyConversion_thenSuccess() throws Exception {
-		assertEquals(DataSize.ofBytes(300), properties.getSizeInDefaultUnit());
-		assertEquals(DataSize.ofGigabytes(2), properties.getSizeInGB());
-		assertEquals(DataSize.ofTerabytes(4), properties.getSizeInTB());
-	}
+   @Test
+   void whenUseDataSizePropertyConversion_thenSuccess() throws Exception {
+      assertEquals(DataSize.ofBytes(300), properties.getSizeInDefaultUnit());
+      assertEquals(DataSize.ofGigabytes(2), properties.getSizeInGB());
+      assertEquals(DataSize.ofTerabytes(4), properties.getSizeInTB());
+   }
 
-	@Test
-	void whenUseCustomPropertyConverter_thenSuccess() throws Exception {
-		assertEquals("john", properties.getEmployee().getName());
-		assertEquals(2000.0, properties.getEmployee().getSalary());
-	}
+   @Test
+   void whenUseCustomPropertyConverter_thenSuccess() throws Exception {
+      assertEquals("john", properties.getEmployee().getName());
+      assertEquals(2000.0, properties.getEmployee().getSalary());
+   }
 }

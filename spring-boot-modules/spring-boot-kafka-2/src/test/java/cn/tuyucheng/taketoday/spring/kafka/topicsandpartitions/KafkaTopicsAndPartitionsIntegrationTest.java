@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 
-import java.util.concurrent.TimeUnit;
-
 @SpringBootTest(classes = ThermostatApplicationKafkaApp.class)
 @EmbeddedKafka(partitions = 2, controlledShutdown = true, brokerProperties = {"listeners=PLAINTEXT://localhost:9094", "port=9094"})
 public class KafkaTopicsAndPartitionsIntegrationTest {

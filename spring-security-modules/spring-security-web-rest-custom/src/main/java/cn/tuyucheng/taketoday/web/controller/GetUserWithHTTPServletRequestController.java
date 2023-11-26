@@ -11,15 +11,15 @@ import java.security.Principal;
 @Controller
 public class GetUserWithHTTPServletRequestController {
 
-    public GetUserWithHTTPServletRequestController() {
-        super();
-    }
+   public GetUserWithHTTPServletRequestController() {
+      super();
+   }
 
-    @RequestMapping(value = "/username4", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserNameSimple(final HttpServletRequest request) {
-        final Principal principal = request.getUserPrincipal();
-        return principal.getName();
-    }
+   @RequestMapping(value = "/username4", method = RequestMethod.GET)
+   @ResponseBody
+   public String currentUserNameSimple(final HttpServletRequest request) {
+      final Principal principal = request.getUserPrincipal();
+      return principal.getName();
+   }
 
 }

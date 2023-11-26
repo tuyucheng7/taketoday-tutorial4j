@@ -12,7 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 class SpringContextLiveTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

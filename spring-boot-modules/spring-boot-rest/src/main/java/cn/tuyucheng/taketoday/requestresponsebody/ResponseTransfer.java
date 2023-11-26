@@ -2,17 +2,17 @@ package cn.tuyucheng.taketoday.requestresponsebody;
 
 public class ResponseTransfer {
 
-	private String text;
+   private String text;
 
-	public ResponseTransfer(String text) {
-		this.setText(text);
-	}
+   public ResponseTransfer(String text) {
+      this.setText(text);
+   }
 
-	public String getText() {
-		return text;
-	}
+   public String getText() {
+      return text;
+   }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+   public void setText(String text) {
+      this.text = text;
+   }
 }

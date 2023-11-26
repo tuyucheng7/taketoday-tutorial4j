@@ -14,11 +14,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class LoyaltyClient {
 
-	private final DataLoader dataLoader;
+   private final DataLoader dataLoader;
 
-	public Optional<LoyaltyClientResponse> getLoyaltyPointsByCustomerId(Integer customerId) {
-		LOGGER.info("Getting loyalty points by customerId {}", customerId);
-		SleepUtils.loadingSimulator(1);
-		return Optional.ofNullable(new LoyaltyClientResponse(dataLoader.getPoints().get(customerId)));
-	}
+   public Optional<LoyaltyClientResponse> getLoyaltyPointsByCustomerId(Integer customerId) {
+      LOGGER.info("Getting loyalty points by customerId {}", customerId);
+      SleepUtils.loadingSimulator(1);
+      return Optional.ofNullable(new LoyaltyClientResponse(dataLoader.getPoints().get(customerId)));
+   }
 }

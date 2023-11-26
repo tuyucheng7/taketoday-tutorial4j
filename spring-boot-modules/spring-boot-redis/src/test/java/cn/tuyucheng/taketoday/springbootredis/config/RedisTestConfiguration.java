@@ -9,19 +9,19 @@ import redis.embedded.RedisServer;
 @TestConfiguration
 public class RedisTestConfiguration {
 
-	private final RedisServer redisServer;
+   private final RedisServer redisServer;
 
-	public RedisTestConfiguration(RedisProperties redisProperties) {
-		this.redisServer = new RedisServer(redisProperties.getPort());
-	}
+   public RedisTestConfiguration(RedisProperties redisProperties) {
+      this.redisServer = new RedisServer(redisProperties.getPort());
+   }
 
-	@PostConstruct
-	public void postConstruct() {
-		redisServer.start();
-	}
+   @PostConstruct
+   public void postConstruct() {
+      redisServer.start();
+   }
 
-	@PreDestroy
-	public void preDestroy() {
-		redisServer.stop();
-	}
+   @PreDestroy
+   public void preDestroy() {
+      redisServer.stop();
+   }
 }

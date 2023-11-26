@@ -21,38 +21,38 @@ import java.util.Properties;
 @ConditionalOnClass(DataSource.class)
 public class MySQLAutoconfiguration {
 
-	@Bean
-	@ConditionalOnBean(name = "dataSource")
-	LocalContainerEntityManagerFactoryBean entityManagerFactory() throws IOException {
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource());
-		em.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
+   @Bean
+   @ConditionalOnBean(name = "dataSource")
+   LocalContainerEntityManagerFactoryBean entityManagerFactory() throws IOException {
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource());
+      em.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
 
-		final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(additionalProperties());
-		return em;
-	}
+      final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      em.setJpaVendorAdapter(vendorAdapter);
+      em.setJpaProperties(additionalProperties());
+      return em;
+   }
 
-	@Bean
-	@ConditionalOnProperty(name = "usemysql", havingValue = "local")
-	DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:mem:testdb");
-		dataSource.setUsername("sa");
-		dataSource.setPassword("");
-		return dataSource;
-	}
+   @Bean
+   @ConditionalOnProperty(name = "usemysql", havingValue = "local")
+   DataSource dataSource() {
+      DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
+      dataSource.setUrl("jdbc:hsqldb:mem:testdb");
+      dataSource.setUsername("sa");
+      dataSource.setPassword("");
+      return dataSource;
+   }
 
-	@ConditionalOnResource(resources = "classpath:mysql.properties")
-	Properties additionalProperties() throws IOException {
-		final Properties additionalProperties = new Properties();
+   @ConditionalOnResource(resources = "classpath:mysql.properties")
+   Properties additionalProperties() throws IOException {
+      final Properties additionalProperties = new Properties();
 
-		try (InputStream inputStream = new ClassPathResource("classpath:mysql.properties").getInputStream()) {
-			additionalProperties.load(inputStream);
-		}
+      try (InputStream inputStream = new ClassPathResource("classpath:mysql.properties").getInputStream()) {
+         additionalProperties.load(inputStream);
+      }
 
-		return additionalProperties;
-	}
+      return additionalProperties;
+   }
 }

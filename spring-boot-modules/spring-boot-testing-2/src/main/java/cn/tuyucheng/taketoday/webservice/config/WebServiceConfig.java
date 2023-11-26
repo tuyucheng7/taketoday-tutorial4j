@@ -15,26 +15,26 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig {
 
-	@Bean
-	public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
-		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
-		servlet.setApplicationContext(applicationContext);
-		servlet.setTransformWsdlLocations(true);
-		return new ServletRegistrationBean<>(servlet, "/ws/*");
-	}
+   @Bean
+   public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
+      MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+      servlet.setApplicationContext(applicationContext);
+      servlet.setTransformWsdlLocations(true);
+      return new ServletRegistrationBean<>(servlet, "/ws/*");
+   }
 
-	@Bean(name = "products")
-	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema productsSchema) {
-		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName("ProductsPort");
-		wsdl11Definition.setLocationUri("/ws");
-		wsdl11Definition.setTargetNamespace("http://tuyucheng.com/spring-boot-web-service");
-		wsdl11Definition.setSchema(productsSchema);
-		return wsdl11Definition;
-	}
+   @Bean(name = "products")
+   public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema productsSchema) {
+      DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+      wsdl11Definition.setPortTypeName("ProductsPort");
+      wsdl11Definition.setLocationUri("/ws");
+      wsdl11Definition.setTargetNamespace("http://tuyucheng.com/spring-boot-web-service");
+      wsdl11Definition.setSchema(productsSchema);
+      return wsdl11Definition;
+   }
 
-	@Bean
-	public XsdSchema productsSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("webservice/products.xsd"));
-	}
+   @Bean
+   public XsdSchema productsSchema() {
+      return new SimpleXsdSchema(new ClassPathResource("webservice/products.xsd"));
+   }
 }

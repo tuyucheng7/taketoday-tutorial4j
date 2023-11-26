@@ -22,24 +22,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:data.sql")
 @SlowTest
 class HotelControllerIntegrationTest {
-	@Autowired
-	private MockMvc mockMvc;
-	@Autowired
-	private HotelRepository repository;
+   @Autowired
+   private MockMvc mockMvc;
+   @Autowired
+   private HotelRepository repository;
 
-	@Test
-	@DisplayName("When all hotels requested then request is successful")
-	void whenAllHotelsRequested_thenRequestIsSuccessful() throws Exception {
-		mockMvc
-			.perform(get("/hotel"))
-			.andExpect(status().isOk());
-	}
+   @Test
+   @DisplayName("When all hotels requested then request is successful")
+   void whenAllHotelsRequested_thenRequestIsSuccessful() throws Exception {
+      mockMvc
+            .perform(get("/hotel"))
+            .andExpect(status().isOk());
+   }
 
-	@Test
-	@DisplayName("When all hotels are requested then they correct number of hotels is returned")
-	void whenAllHotelsRequested_thenReturnAllHotels() throws Exception {
-		mockMvc
-			.perform(get("/hotel"))
-			.andExpect(jsonPath("$", hasSize((int) repository.findAll().stream().count())));
-	}
+   @Test
+   @DisplayName("When all hotels are requested then they correct number of hotels is returned")
+   void whenAllHotelsRequested_thenReturnAllHotels() throws Exception {
+      mockMvc
+            .perform(get("/hotel"))
+            .andExpect(jsonPath("$", hasSize((int) repository.findAll().stream().count())));
+   }
 }

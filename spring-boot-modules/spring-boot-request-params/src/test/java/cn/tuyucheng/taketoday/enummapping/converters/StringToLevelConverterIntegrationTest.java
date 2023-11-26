@@ -16,21 +16,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = EnumMappingMainApplication.class)
 class StringToLevelConverterIntegrationTest {
 
-	@Autowired
-	ConversionService conversionService;
+   @Autowired
+   ConversionService conversionService;
 
-	@Test
-	void whenConvertStringToLevelEnumUsingCustomConverter_thenSuccess() {
-		Assertions.assertThat(conversionService.convert("low", Level.class)).isEqualTo(Level.LOW);
-	}
+   @Test
+   void whenConvertStringToLevelEnumUsingCustomConverter_thenSuccess() {
+      Assertions.assertThat(conversionService.convert("low", Level.class)).isEqualTo(Level.LOW);
+   }
 
-	@Test
-	void whenStringIsEmpty_thenReturnNull() {
-		assertThat(conversionService.convert("", Level.class)).isNull();
-	}
+   @Test
+   void whenStringIsEmpty_thenReturnNull() {
+      assertThat(conversionService.convert("", Level.class)).isNull();
+   }
 
-	@Test
-	void whenStringIsNull_thenReturnNull() {
-		assertThat(conversionService.convert(null, Level.class)).isNull();
-	}
+   @Test
+   void whenStringIsNull_thenReturnNull() {
+      assertThat(conversionService.convert(null, Level.class)).isNull();
+   }
 }

@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 class SecuredMethodSpringBootIntegrationTest {
 
-	@Autowired
-	private SecuredService service;
+   @Autowired
+   private SecuredService service;
 
-	@Test
-	void givenUnauthenticated_whenCallService_thenThrowsException() {
-		assertThrows(AuthenticationCredentialsNotFoundException.class, () -> service.sayHelloSecured());
-	}
+   @Test
+   void givenUnauthenticated_whenCallService_thenThrowsException() {
+      assertThrows(AuthenticationCredentialsNotFoundException.class, () -> service.sayHelloSecured());
+   }
 
-	@WithMockUser(username = "spring")
-	@Test
-	void givenAuthenticated_whenCallServiceWithSecured_thenOk() {
-		assertThat(service.sayHelloSecured()).isNotBlank();
-	}
+   @WithMockUser(username = "spring")
+   @Test
+   void givenAuthenticated_whenCallServiceWithSecured_thenOk() {
+      assertThat(service.sayHelloSecured()).isNotBlank();
+   }
 }

@@ -9,10 +9,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringOidcJwtAuthoritiesApplication {
 
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(SpringOidcJwtAuthoritiesApplication.class);
-        ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("jwtauthorities-application.yml");
-        application.addInitializers(yamlInitializer);
-        application.run(args);
-    }
+   public static void main(String[] args) {
+      SpringApplication application = new SpringApplication(SpringOidcJwtAuthoritiesApplication.class);
+      ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("jwtauthorities-application.yml");
+      application.addInitializers(yamlInitializer);
+      application.run(args);
+   }
 }

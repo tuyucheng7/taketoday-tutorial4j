@@ -14,11 +14,11 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class PurchaseTransactionClient {
 
-	private final DataLoader dataLoader;
+   private final DataLoader dataLoader;
 
-	public Set<PurchaseTransaction> getPurchaseTransactionsByCustomerId(Integer customerId) {
-		LOGGER.info("Getting purchase transactions by customerId {}", customerId);
-		SleepUtils.loadingSimulator(3);
-		return dataLoader.getPurchaseTransactionResponses().get(customerId);
-	}
+   public Set<PurchaseTransaction> getPurchaseTransactionsByCustomerId(Integer customerId) {
+      LOGGER.info("Getting purchase transactions by customerId {}", customerId);
+      SleepUtils.loadingSimulator(3);
+      return dataLoader.getPurchaseTransactionResponses().get(customerId);
+   }
 }

@@ -12,31 +12,31 @@ import java.util.List;
 @PropertySource(value = "classpath:foo.yml", factory = YamlPropertySourceFactory.class)
 public class YamlFooProperties {
 
-	private String name;
+   private String name;
 
-	private List<String> aliases;
+   private List<String> aliases;
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public List<String> getAliases() {
-		return aliases;
-	}
+   public List<String> getAliases() {
+      return aliases;
+   }
 
-	public void setAliases(List<String> aliases) {
-		this.aliases = aliases;
-	}
+   public void setAliases(List<String> aliases) {
+      this.aliases = aliases;
+   }
 
-	@Override
-	public String toString() {
-		return "YamlFooProperties{" +
-			"name='" + name + '\'' +
-			", aliases=" + aliases +
-			'}';
-	}
+   @Override
+   public String toString() {
+      return "YamlFooProperties{" +
+            "name='" + name + '\'' +
+            ", aliases=" + aliases +
+            '}';
+   }
 }

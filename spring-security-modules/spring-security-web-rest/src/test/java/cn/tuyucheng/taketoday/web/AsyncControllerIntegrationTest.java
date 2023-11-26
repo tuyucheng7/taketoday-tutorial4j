@@ -25,24 +25,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {ClientWebConfig.class, SecurityJavaConfig.class, WebConfig.class})
 public class AsyncControllerIntegrationTest {
 
-    @Autowired
-    WebApplicationContext wac;
-    @Autowired
-    MockHttpSession session;
+   @Autowired
+   WebApplicationContext wac;
+   @Autowired
+   MockHttpSession session;
 
-    @Mock
-    AsyncController controller;
+   @Mock
+   AsyncController controller;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+   @Before
+   public void setup() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+   }
 
-    @Test
-    public void testAsync() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/async")).andExpect(status().is5xxServerError());
-    }
+   @Test
+   public void testAsync() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders.get("/async")).andExpect(status().is5xxServerError());
+   }
 
 }

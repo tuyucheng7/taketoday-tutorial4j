@@ -8,6 +8,6 @@ import org.springframework.context.annotation.FilterType;
 @ComponentScan(includeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = ".*(nt)"))
 public class ComponentScanRegexFilterApp {
 
-    public static void main(String[] args) {
-    }
+   public static void main(String[] args) {
+   }
 }

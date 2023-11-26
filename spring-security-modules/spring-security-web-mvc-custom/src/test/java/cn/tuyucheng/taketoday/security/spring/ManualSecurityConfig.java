@@ -18,48 +18,48 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ManualSecurityConfig {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withUsername("user1")
-              .password("{noop}user1Pass")
-              .authorities("ROLE_USER")
-              .build();
-        UserDetails admin = User.withUsername("admin")
-              .password("adminPass")
-              .authorities("ROLE_ADMIN")
-              .build();
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails user = User.withUsername("user1")
+            .password("{noop}user1Pass")
+            .authorities("ROLE_USER")
+            .build();
+      UserDetails admin = User.withUsername("admin")
+            .password("adminPass")
+            .authorities("ROLE_ADMIN")
+            .build();
+      return new InMemoryUserDetailsManager(user, admin);
+   }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-              .antMatchers("/resources/**");
-    }
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.ignoring()
+            .antMatchers("/resources/**");
+   }
 
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-              .build();
-    }
+   @Bean
+   public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+      return http.getSharedObject(AuthenticationManagerBuilder.class)
+            .build();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .mvcMatchers("/custom/login")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic()
-              .and()
-              .headers()
-              .cacheControl()
-              .disable()
-              .and()
-              .csrf()
-              .disable();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .mvcMatchers("/custom/login")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic()
+            .and()
+            .headers()
+            .cacheControl()
+            .disable()
+            .and()
+            .csrf()
+            .disable();
+      return http.build();
+   }
 
 }

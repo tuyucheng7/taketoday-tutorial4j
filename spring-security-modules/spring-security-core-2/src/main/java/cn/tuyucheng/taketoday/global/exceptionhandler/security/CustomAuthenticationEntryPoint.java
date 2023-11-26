@@ -17,17 +17,17 @@ import java.io.OutputStream;
 @Component("customAuthenticationEntryPoint")
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+   @Override
+   public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed");
+      RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed");
 
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        OutputStream responseStream = response.getOutputStream();
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(responseStream, re);
-        responseStream.flush();
+      response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      OutputStream responseStream = response.getOutputStream();
+      ObjectMapper mapper = new ObjectMapper();
+      mapper.writeValue(responseStream, re);
+      responseStream.flush();
 
-    }
+   }
 }

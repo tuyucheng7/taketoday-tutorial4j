@@ -9,19 +9,19 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @SpringBootApplication
 public class CharacterEncodingDemoApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CharacterEncodingDemoApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(CharacterEncodingDemoApplication.class, args);
+   }
 
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
+   @Bean
+   public FilterRegistrationBean filterRegistrationBean() {
+      CharacterEncodingFilter filter = new CharacterEncodingFilter();
+      filter.setEncoding("UTF-8");
+      filter.setForceEncoding(true);
 
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(filter);
-        registrationBean.addUrlPatterns("/*");
-        return registrationBean;
-    }
+      FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+      registrationBean.setFilter(filter);
+      registrationBean.addUrlPatterns("/*");
+      return registrationBean;
+   }
 }

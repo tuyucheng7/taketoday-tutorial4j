@@ -8,17 +8,17 @@ import java.util.Random;
 @Service
 public class ThermostatService {
 
-    private final KafkaTemplate<String, Double> kafkaTemplate;
+   private final KafkaTemplate<String, Double> kafkaTemplate;
 
-    public ThermostatService(KafkaTemplate<String, Double> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
+   public ThermostatService(KafkaTemplate<String, Double> kafkaTemplate) {
+      this.kafkaTemplate = kafkaTemplate;
+   }
 
-    public void measureCelsiusAndPublish(int numMeasurements) {
-        new Random().doubles(25, 35)
-                .limit(numMeasurements)
-                .forEach(tmp -> {
-                    kafkaTemplate.send("celcius-scale-topic", tmp);
-                });
-    }
+   public void measureCelsiusAndPublish(int numMeasurements) {
+      new Random().doubles(25, 35)
+            .limit(numMeasurements)
+            .forEach(tmp -> {
+               kafkaTemplate.send("celcius-scale-topic", tmp);
+            });
+   }
 }

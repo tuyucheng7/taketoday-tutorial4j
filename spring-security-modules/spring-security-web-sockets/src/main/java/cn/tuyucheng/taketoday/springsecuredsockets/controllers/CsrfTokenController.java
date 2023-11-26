@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CsrfTokenController {
-    @GetMapping("/csrf")
-    public @ResponseBody
-    String getCsrfToken(HttpServletRequest request) {
-        CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-        return csrf.getToken();
-    }
+   @GetMapping("/csrf")
+   public @ResponseBody
+   String getCsrfToken(HttpServletRequest request) {
+      CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+      return csrf.getToken();
+   }
 }

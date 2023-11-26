@@ -11,22 +11,22 @@ import java.util.Collection;
 @Controller
 public class AppController {
 
-    OAuth2RestTemplate restTemplate;
+   OAuth2RestTemplate restTemplate;
 
-    public AppController(OAuth2RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+   public AppController(OAuth2RestTemplate restTemplate) {
+      this.restTemplate = restTemplate;
+   }
 
-    @GetMapping("/home")
-    public String welcome(Model model, Principal principal) {
-        model.addAttribute("name", principal.getName());
-        return "home";
-    }
+   @GetMapping("/home")
+   public String welcome(Model model, Principal principal) {
+      model.addAttribute("name", principal.getName());
+      return "home";
+   }
 
-    @GetMapping("/repos")
-    public String repos(Model model) {
-        Collection<GithubRepo> repos = restTemplate.getForObject("https://api.github.com/user/repos", Collection.class);
-        model.addAttribute("repos", repos);
-        return "repositories";
-    }
+   @GetMapping("/repos")
+   public String repos(Model model) {
+      Collection<GithubRepo> repos = restTemplate.getForObject("https://api.github.com/user/repos", Collection.class);
+      model.addAttribute("repos", repos);
+      return "repositories";
+   }
 }

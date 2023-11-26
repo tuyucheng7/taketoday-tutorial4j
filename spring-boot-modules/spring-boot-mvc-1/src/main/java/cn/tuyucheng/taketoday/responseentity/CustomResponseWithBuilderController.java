@@ -13,39 +13,39 @@ import java.time.Year;
 @RequestMapping("/customResponseWithBuilder")
 public class CustomResponseWithBuilderController {
 
-	@GetMapping("/hello")
-	public ResponseEntity<String> hello() {
-		return ResponseEntity.ok("Hello World!");
-	}
+   @GetMapping("/hello")
+   public ResponseEntity<String> hello() {
+      return ResponseEntity.ok("Hello World!");
+   }
 
-	@GetMapping("/age")
-	public ResponseEntity<String> age(@RequestParam("yearOfBirth") int yearOfBirth) {
-		if (isInFuture(yearOfBirth)) {
-			return ResponseEntity.badRequest()
-				.body("Year of birth cannot be in the future");
-		}
+   @GetMapping("/age")
+   public ResponseEntity<String> age(@RequestParam("yearOfBirth") int yearOfBirth) {
+      if (isInFuture(yearOfBirth)) {
+         return ResponseEntity.badRequest()
+               .body("Year of birth cannot be in the future");
+      }
 
-		return ResponseEntity.status(HttpStatus.OK)
-			.body("Your age is " + calculateAge(yearOfBirth));
-	}
+      return ResponseEntity.status(HttpStatus.OK)
+            .body("Your age is " + calculateAge(yearOfBirth));
+   }
 
-	private int calculateAge(int yearOfBirth) {
-		return currentYear() - yearOfBirth;
-	}
+   private int calculateAge(int yearOfBirth) {
+      return currentYear() - yearOfBirth;
+   }
 
-	private boolean isInFuture(int year) {
-		return currentYear() < year;
-	}
+   private boolean isInFuture(int year) {
+      return currentYear() < year;
+   }
 
-	private int currentYear() {
-		return Year.now()
-			.getValue();
-	}
+   private int currentYear() {
+      return Year.now()
+            .getValue();
+   }
 
-	@GetMapping("/customHeader")
-	public ResponseEntity<String> customHeader() {
-		return ResponseEntity.ok()
-			.header("Custom-Header", "foo")
-			.body("Custom header set");
-	}
+   @GetMapping("/customHeader")
+   public ResponseEntity<String> customHeader() {
+      return ResponseEntity.ok()
+            .header("Custom-Header", "foo")
+            .body("Custom header set");
+   }
 }

@@ -13,23 +13,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class BaeldungPasswordEncoderSetup {
 
-    private final static Logger LOG = LoggerFactory.getLogger(BaeldungPasswordEncoderSetup.class);
+   private final static Logger LOG = LoggerFactory.getLogger(BaeldungPasswordEncoderSetup.class);
 
-    @Bean
-    public ApplicationListener<AuthenticationSuccessEvent> authenticationSuccessListener(final PasswordEncoder encoder) {
+   @Bean
+   public ApplicationListener<AuthenticationSuccessEvent> authenticationSuccessListener(final PasswordEncoder encoder) {
 
-        return (AuthenticationSuccessEvent event) -> {
-            final Authentication auth = event.getAuthentication();
+      return (AuthenticationSuccessEvent event) -> {
+         final Authentication auth = event.getAuthentication();
 
-            if (auth instanceof UsernamePasswordAuthenticationToken && auth.getCredentials() != null) {
+         if (auth instanceof UsernamePasswordAuthenticationToken && auth.getCredentials() != null) {
 
-                final CharSequence clearTextPass = (CharSequence) auth.getCredentials(); // 1
-                final String newPasswordHash = encoder.encode(clearTextPass); // 2
+            final CharSequence clearTextPass = (CharSequence) auth.getCredentials(); // 1
+            final String newPasswordHash = encoder.encode(clearTextPass); // 2
 
-                LOG.info("New password hash {} for user {}", newPasswordHash, auth.getName());
+            LOG.info("New password hash {} for user {}", newPasswordHash, auth.getName());
 
-                ((UsernamePasswordAuthenticationToken) auth).eraseCredentials(); // 3
-            }
-        };
-    }
+            ((UsernamePasswordAuthenticationToken) auth).eraseCredentials(); // 3
+         }
+      };
+   }
 }

@@ -16,20 +16,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class OpenApiPetsIntegrationTest {
 
-	private static final String PETS_PATH = "/pets/";
+   private static final String PETS_PATH = "/pets/";
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	public void whenReadAll_thenStatusIsNotImplemented() throws Exception {
-		this.mockMvc.perform(get(PETS_PATH))
-			.andExpect(status().isNotImplemented());
-	}
+   @Test
+   public void whenReadAll_thenStatusIsNotImplemented() throws Exception {
+      this.mockMvc.perform(get(PETS_PATH))
+            .andExpect(status().isNotImplemented());
+   }
 
-	@Test
-	public void whenReadOne_thenStatusIsNotImplemented() throws Exception {
-		this.mockMvc.perform(get(PETS_PATH + 1))
-			.andExpect(status().isNotImplemented());
-	}
+   @Test
+   public void whenReadOne_thenStatusIsNotImplemented() throws Exception {
+      this.mockMvc.perform(get(PETS_PATH + 1))
+            .andExpect(status().isNotImplemented());
+   }
 }

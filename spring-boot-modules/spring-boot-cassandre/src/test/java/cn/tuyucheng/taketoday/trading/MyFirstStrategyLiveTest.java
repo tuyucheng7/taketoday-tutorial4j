@@ -23,31 +23,31 @@ import static tech.cassandre.trading.bot.dto.util.CurrencyDTO.USDT;
 @DisplayName("Simple strategy test")
 class MyFirstStrategyLiveTest {
 
-	private final Logger logger = LoggerFactory.getLogger(MyFirstStrategyLiveTest.class);
+   private final Logger logger = LoggerFactory.getLogger(MyFirstStrategyLiveTest.class);
 
-	@Autowired
-	private MyFirstStrategy strategy;
+   @Autowired
+   private MyFirstStrategy strategy;
 
-	@Autowired
-	private TickerFluxMock tickerFluxMock;
+   @Autowired
+   private TickerFluxMock tickerFluxMock;
 
-	@Test
-	@DisplayName("Check gains")
-	void whenTickersArrives_thenCheckGains() {
-		await().forever().until(() -> tickerFluxMock.isFluxDone());
+   @Test
+   @DisplayName("Check gains")
+   void whenTickersArrives_thenCheckGains() {
+      await().forever().until(() -> tickerFluxMock.isFluxDone());
 
-		final HashMap<CurrencyDTO, GainDTO> gains = strategy.getGains();
+      final HashMap<CurrencyDTO, GainDTO> gains = strategy.getGains();
 
-		logger.info("Cumulated gains:");
-		gains.forEach((currency, gain) -> logger.info(currency + " : " + gain.getAmount()));
+      logger.info("Cumulated gains:");
+      gains.forEach((currency, gain) -> logger.info(currency + " : " + gain.getAmount()));
 
-		logger.info("Position still opened :");
-		strategy.getPositions()
-			.values()
-			.stream()
-			.filter(p -> p.getStatus().equals(OPENED))
-			.forEach(p -> logger.info(" - {} " + p.getDescription()));
+      logger.info("Position still opened :");
+      strategy.getPositions()
+            .values()
+            .stream()
+            .filter(p -> p.getStatus().equals(OPENED))
+            .forEach(p -> logger.info(" - {} " + p.getDescription()));
 
-		assertTrue(gains.get(USDT).getPercentage() > 0);
-	}
+      assertTrue(gains.get(USDT).getPercentage() > 0);
+   }
 }

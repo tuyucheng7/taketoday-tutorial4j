@@ -18,38 +18,38 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ActiveProfiles("randomport")
 class GetServerRandomPortUnitTest {
 
-    @Value("${server.port}")
-    private int randomServerPort;
+   @Value("${server.port}")
+   private int randomServerPort;
 
-    @Autowired
-    private ServerPortService serverPortService;
+   @Autowired
+   private ServerPortService serverPortService;
 
-    @Autowired
-    private ServerProperties serverProperties;
+   @Autowired
+   private ServerProperties serverProperties;
 
-    @Autowired
-    private ServletWebServerApplicationContext webServerAppCtxt;
+   @Autowired
+   private ServletWebServerApplicationContext webServerAppCtxt;
 
-    @Test
-    void given0AsServerPort_whenReadServerPort_thenGet0() {
-        assertEquals(0, randomServerPort, "Reading random port by @Value(\"${server.port}\") will get 0.");
-    }
+   @Test
+   void given0AsServerPort_whenReadServerPort_thenGet0() {
+      assertEquals(0, randomServerPort, "Reading random port by @Value(\"${server.port}\") will get 0.");
+   }
 
-    @Test
-    void given0AsServerPort_whenReadServerProps_thenGet0() {
-        int port = serverProperties.getPort();
-        assertEquals(0, port, "Reading random port by serverProperties will get 0.");
-    }
+   @Test
+   void given0AsServerPort_whenReadServerProps_thenGet0() {
+      int port = serverProperties.getPort();
+      assertEquals(0, port, "Reading random port by serverProperties will get 0.");
+   }
 
-    @Test
-    void given0AsServerPort_whenReadWebAppCtxt_thenGetThePort() {
-        int port = webServerAppCtxt.getWebServer().getPort();
-        assertTrue(port > 1023, "The random port should be greater than 1023");
-    }
+   @Test
+   void given0AsServerPort_whenReadWebAppCtxt_thenGetThePort() {
+      int port = webServerAppCtxt.getWebServer().getPort();
+      assertTrue(port > 1023, "The random port should be greater than 1023");
+   }
 
-    @Test
-    void given0AsServerPort_whenReadFromListener_thenGetThePort() {
-        int port = serverPortService.getPort();
-        assertTrue(port > 1023, "The random port should be greater than 1023");
-    }
+   @Test
+   void given0AsServerPort_whenReadFromListener_thenGetThePort() {
+      int port = serverPortService.getPort();
+      assertTrue(port > 1023, "The random port should be greater than 1023");
+   }
 }

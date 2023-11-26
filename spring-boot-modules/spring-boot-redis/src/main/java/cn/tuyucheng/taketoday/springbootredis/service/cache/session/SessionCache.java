@@ -5,9 +5,9 @@ import cn.tuyucheng.taketoday.springbootredis.model.Session;
 import java.util.List;
 
 public interface SessionCache {
-	Session createASession(Session session);
+   Session createASession(Session session);
 
-	Session getSession(String id);
+   Session getSession(String id);
 
-	List<Session> getAllSessions();
+   List<Session> getAllSessions();
 }

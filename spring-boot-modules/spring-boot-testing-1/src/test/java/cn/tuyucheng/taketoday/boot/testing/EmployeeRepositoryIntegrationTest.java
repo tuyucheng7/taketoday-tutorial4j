@@ -16,55 +16,55 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 class EmployeeRepositoryIntegrationTest {
 
-	@Autowired
-	private TestEntityManager entityManager;
+   @Autowired
+   private TestEntityManager entityManager;
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+   @Autowired
+   private EmployeeRepository employeeRepository;
 
-	@Test
-	void whenFindByName_thenReturnEmployee() {
-		Employee alex = new Employee("alex");
-		entityManager.persistAndFlush(alex);
+   @Test
+   void whenFindByName_thenReturnEmployee() {
+      Employee alex = new Employee("alex");
+      entityManager.persistAndFlush(alex);
 
-		Employee found = employeeRepository.findByName(alex.getName());
-		assertThat(found.getName()).isEqualTo(alex.getName());
-	}
+      Employee found = employeeRepository.findByName(alex.getName());
+      assertThat(found.getName()).isEqualTo(alex.getName());
+   }
 
-	@Test
-	void whenInvalidName_thenReturnNull() {
-		Employee fromDb = employeeRepository.findByName("doesNotExist");
-		assertThat(fromDb).isNull();
-	}
+   @Test
+   void whenInvalidName_thenReturnNull() {
+      Employee fromDb = employeeRepository.findByName("doesNotExist");
+      assertThat(fromDb).isNull();
+   }
 
-	@Test
-	void whenFindById_thenReturnEmployee() {
-		Employee emp = new Employee("test");
-		entityManager.persistAndFlush(emp);
+   @Test
+   void whenFindById_thenReturnEmployee() {
+      Employee emp = new Employee("test");
+      entityManager.persistAndFlush(emp);
 
-		Employee fromDb = employeeRepository.findById(emp.getId()).orElse(null);
-		assertThat(fromDb.getName()).isEqualTo(emp.getName());
-	}
+      Employee fromDb = employeeRepository.findById(emp.getId()).orElse(null);
+      assertThat(fromDb.getName()).isEqualTo(emp.getName());
+   }
 
-	@Test
-	void whenInvalidId_thenReturnNull() {
-		Employee fromDb = employeeRepository.findById(-11L).orElse(null);
-		assertThat(fromDb).isNull();
-	}
+   @Test
+   void whenInvalidId_thenReturnNull() {
+      Employee fromDb = employeeRepository.findById(-11L).orElse(null);
+      assertThat(fromDb).isNull();
+   }
 
-	@Test
-	void givenSetOfEmployees_whenFindAll_thenReturnAllEmployees() {
-		Employee alex = new Employee("alex");
-		Employee ron = new Employee("ron");
-		Employee bob = new Employee("bob");
+   @Test
+   void givenSetOfEmployees_whenFindAll_thenReturnAllEmployees() {
+      Employee alex = new Employee("alex");
+      Employee ron = new Employee("ron");
+      Employee bob = new Employee("bob");
 
-		entityManager.persist(alex);
-		entityManager.persist(bob);
-		entityManager.persist(ron);
-		entityManager.flush();
+      entityManager.persist(alex);
+      entityManager.persist(bob);
+      entityManager.persist(ron);
+      entityManager.flush();
 
-		List<Employee> allEmployees = employeeRepository.findAll();
+      List<Employee> allEmployees = employeeRepository.findAll();
 
-		Assertions.assertThat(allEmployees).hasSize(3).extracting(Employee::getName).containsOnly(alex.getName(), ron.getName(), bob.getName());
-	}
+      Assertions.assertThat(allEmployees).hasSize(3).extracting(Employee::getName).containsOnly(alex.getName(), ron.getName(), bob.getName());
+   }
 }

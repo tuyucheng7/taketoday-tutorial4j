@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.stream.Stream;
-
+import cn.tuyucheng.taketoday.ServletResourceServerApplication.MessageService;
+import cn.tuyucheng.taketoday.ServletResourceServerApplication.SecurityConf;
+import com.c4_soft.springaddons.security.oauth2.test.AuthenticationFactoriesTestConf;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -26,11 +26,10 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cn.tuyucheng.taketoday.ServletResourceServerApplication.MessageService;
-import cn.tuyucheng.taketoday.ServletResourceServerApplication.SecurityConf;
-import com.c4_soft.springaddons.security.oauth2.test.AuthenticationFactoriesTestConf;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Import({MessageService.class, SecurityConf.class})
 @ImportAutoConfiguration(AuthenticationFactoriesTestConf.class)

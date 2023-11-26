@@ -17,51 +17,51 @@ import java.util.List;
 @EnableWebSocketMessageBroker
 public class WebSocketMessageBrokerConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws");
-    }
+   @Override
+   public void registerStompEndpoints(StompEndpointRegistry registry) {
+      registry.addEndpoint("/ws");
+   }
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.setApplicationDestinationPrefixes("/app");
-        config.enableSimpleBroker("/topic");
-    }
+   @Override
+   public void configureMessageBroker(MessageBrokerRegistry config) {
+      config.setApplicationDestinationPrefixes("/app");
+      config.enableSimpleBroker("/topic");
+   }
 
-    @Override
-    public void configureWebSocketTransport(WebSocketTransportRegistration registry) {
-        // TODO Auto-generated method stub
+   @Override
+   public void configureWebSocketTransport(WebSocketTransportRegistration registry) {
+      // TODO Auto-generated method stub
 
-    }
+   }
 
-    @Override
-    public void configureClientInboundChannel(ChannelRegistration registration) {
-        // TODO Auto-generated method stub
+   @Override
+   public void configureClientInboundChannel(ChannelRegistration registration) {
+      // TODO Auto-generated method stub
 
-    }
+   }
 
-    @Override
-    public void configureClientOutboundChannel(ChannelRegistration registration) {
-        // TODO Auto-generated method stub
+   @Override
+   public void configureClientOutboundChannel(ChannelRegistration registration) {
+      // TODO Auto-generated method stub
 
-    }
+   }
 
-    @Override
-    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        // TODO Auto-generated method stub
+   @Override
+   public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+      // TODO Auto-generated method stub
 
-    }
+   }
 
-    @Override
-    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
-        // TODO Auto-generated method stub
+   @Override
+   public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
+      // TODO Auto-generated method stub
 
-    }
+   }
 
-    @Override
-    public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+   @Override
+   public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
+      // TODO Auto-generated method stub
+      return false;
+   }
 
 }

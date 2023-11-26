@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/ex")
 public class BarMappingExamplesController {
 
-	public BarMappingExamplesController() {
-		super();
-	}
+   public BarMappingExamplesController() {
+      super();
+   }
 
-	// API
+   // API
 
-	// with @RequestParam
+   // with @RequestParam
 
-	@RequestMapping(value = "/bars")
-	@ResponseBody
-	public String getBarBySimplePathWithRequestParam(@RequestParam("id") final long id) {
-		return "Get a specific Bar with id=" + id;
-	}
+   @RequestMapping(value = "/bars")
+   @ResponseBody
+   public String getBarBySimplePathWithRequestParam(@RequestParam("id") final long id) {
+      return "Get a specific Bar with id=" + id;
+   }
 
-	@RequestMapping(value = "/bars", params = "id")
-	@ResponseBody
-	public String getBarBySimplePathWithExplicitRequestParam(@RequestParam("id") final long id) {
-		return "Get a specific Bar with id=" + id;
-	}
+   @RequestMapping(value = "/bars", params = "id")
+   @ResponseBody
+   public String getBarBySimplePathWithExplicitRequestParam(@RequestParam("id") final long id) {
+      return "Get a specific Bar with id=" + id;
+   }
 
-	@RequestMapping(value = "/bars", params = {"id", "second"})
-	@ResponseBody
-	public String getBarBySimplePathWithExplicitRequestParams(@RequestParam("id") final long id) {
-		return "Get a specific Bar with id=" + id;
-	}
+   @RequestMapping(value = "/bars", params = {"id", "second"})
+   @ResponseBody
+   public String getBarBySimplePathWithExplicitRequestParams(@RequestParam("id") final long id) {
+      return "Get a specific Bar with id=" + id;
+   }
 
-	// with @PathVariable
+   // with @PathVariable
 
-	@RequestMapping(value = "/bars/{numericId:[\\d]+}")
-	@ResponseBody
-	public String getBarsBySimplePathWithPathVariable(@PathVariable final long numericId) {
-		return "Get a specific Bar with id=" + numericId;
-	}
+   @RequestMapping(value = "/bars/{numericId:[\\d]+}")
+   @ResponseBody
+   public String getBarsBySimplePathWithPathVariable(@PathVariable final long numericId) {
+      return "Get a specific Bar with id=" + numericId;
+   }
 }

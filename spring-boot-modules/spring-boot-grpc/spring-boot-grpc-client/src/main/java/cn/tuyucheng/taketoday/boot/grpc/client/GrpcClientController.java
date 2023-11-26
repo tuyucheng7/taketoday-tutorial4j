@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GrpcClientController {
 
-	@Autowired
-	private GrpcClientService grpcClientService;
+   @Autowired
+   private GrpcClientService grpcClientService;
 
-	@RequestMapping("/")
-	public String printMessage(@RequestParam(defaultValue = "Michael") String name) {
-		return grpcClientService.sendMessage(name);
-	}
+   @RequestMapping("/")
+   public String printMessage(@RequestParam(defaultValue = "Michael") String name) {
+      return grpcClientService.sendMessage(name);
+   }
 }

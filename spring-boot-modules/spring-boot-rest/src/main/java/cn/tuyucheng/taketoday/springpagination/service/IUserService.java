@@ -4,6 +4,6 @@ import cn.tuyucheng.taketoday.springpagination.model.User;
 
 public interface IUserService {
 
-	User getCurrentUser();
+   User getCurrentUser();
 
 }

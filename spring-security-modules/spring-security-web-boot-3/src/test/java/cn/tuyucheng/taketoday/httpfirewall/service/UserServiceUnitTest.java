@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.httpfirewall.service;
 
 import cn.tuyucheng.taketoday.httpfirewall.dao.InMemoryUserDao;
-
 import cn.tuyucheng.taketoday.httpfirewall.model.User;
 import cn.tuyucheng.taketoday.httpfirewall.utility.UserTestUtility;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,76 +16,69 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @DisplayName("UserService Unit Tests")
 class UserServiceUnitTest {
 
-    @InjectMocks
-    private UserServiceImpl userService;
+   @InjectMocks
+   private UserServiceImpl userService;
 
-    @Mock
-    private InMemoryUserDao userDao;
+   @Mock
+   private InMemoryUserDao userDao;
 
-    @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
+   @BeforeEach
+   void setup() {
+      MockitoAnnotations.openMocks(this);
+   }
 
-    @Test
-    @DisplayName("Check Create User")
-    void whenCalledCreateUser_thenVerify() {
-        User user = UserTestUtility.createUser();
-        doNothing().when(userDao).save(user);
+   @Test
+   @DisplayName("Check Create User")
+   void whenCalledCreateUser_thenVerify() {
+      User user = UserTestUtility.createUser();
+      doNothing().when(userDao).save(user);
 
-        userService.saveUser(user);
-        verify(userDao, times(1)).save(user);
-    }
+      userService.saveUser(user);
+      verify(userDao, times(1)).save(user);
+   }
 
 
+   @Test
+   @DisplayName("Check Get User")
+   void givenUserId_whenCalledFindById_thenReturnUser() {
+      User user = UserTestUtility.createUserWithId("1").orElse(new User("1", "jhondoe", "jhon.doe@gmail.com"));
 
-    @Test
-    @DisplayName("Check Get User")
-    void givenUserId_whenCalledFindById_thenReturnUser() {
-        User user = UserTestUtility.createUserWithId("1").orElse(new User("1", "jhondoe", "jhon.doe@gmail.com"));
+      when(userDao.findById(user.getId())).thenReturn(Optional.of(user));
 
-        when(userDao.findById(user.getId())).thenReturn(Optional.of(user));
+      User actualUser = userService.findById("1").get();
 
-        User actualUser = userService.findById("1").get();
+      assertNotNull(actualUser);
+      assertEquals("jhondoe", actualUser.getUsername());
+      verify(userDao, times(1)).findById(user.getId());
+   }
 
-        assertNotNull(actualUser);
-        assertEquals("jhondoe", actualUser.getUsername());
-        verify(userDao, times(1)).findById(user.getId());
-    }
+   @Test
+   @DisplayName("Check Get All Users")
+   void whenCalledFindAll_thenReturnAllUsers() {
+      List<User> users = UserTestUtility.createUsers().orElse(new ArrayList<>());
 
-    @Test
-    @DisplayName("Check Get All Users")
-    void whenCalledFindAll_thenReturnAllUsers() {
-        List<User> users = UserTestUtility.createUsers().orElse(new ArrayList<>());
+      when(userDao.findAll()).thenReturn(Optional.of(users));
 
-        when(userDao.findAll()).thenReturn(Optional.of(users));
+      Optional<List<User>> actualUsers = userService.findAll();
 
-        Optional<List<User>> actualUsers = userService.findAll();
+      assertNotNull(actualUsers);
+      assertEquals(2, users.size());
+      verify(userDao, times(1)).findAll();
+   }
 
-        assertNotNull(actualUsers);
-        assertEquals(2, users.size());
-        verify(userDao, times(1)).findAll();
-    }
+   @Test
+   @DisplayName("Check Delete Users")
+   void givenId_whenCalledDeleteUser_thenDeleteUser() {
+      User user = UserTestUtility.createUserWithId("1").orElse(new User());
 
-    @Test
-    @DisplayName("Check Delete Users")
-    void givenId_whenCalledDeleteUser_thenDeleteUser() {
-        User user = UserTestUtility.createUserWithId("1").orElse(new User());
-
-        doNothing().when(userDao).delete(user.getId());
-        userService.deleteUser(user.getId());
-        verify(userDao, times(1)).delete(user.getId());
-    }
+      doNothing().when(userDao).delete(user.getId());
+      userService.deleteUser(user.getId());
+      verify(userDao, times(1)).delete(user.getId());
+   }
 
 }

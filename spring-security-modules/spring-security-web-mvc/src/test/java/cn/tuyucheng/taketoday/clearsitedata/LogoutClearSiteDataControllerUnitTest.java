@@ -21,28 +21,28 @@ import javax.servlet.Filter;
 @ContextConfiguration(classes = {SpringSecurityConfig.class, WebConfig.class})
 public class LogoutClearSiteDataControllerUnitTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-    @Autowired
-    private Filter springSecurityFilterChain;
+   @Autowired
+   private Filter springSecurityFilterChain;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @BeforeEach
-    void setup() throws Exception {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilters(springSecurityFilterChain).build();
-    }
+   @BeforeEach
+   void setup() throws Exception {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilters(springSecurityFilterChain).build();
+   }
 
-    @Test
-    void whenResponseBody_thenReturnCacheHeader() throws Exception {
-        this.mockMvc
-              .perform(MockMvcRequestBuilders
-                    .get("/baeldung/logout").secure(true))
-              .andDo(MockMvcResultHandlers.print())
-              .andExpect(MockMvcResultMatchers.status().is(302))
-              .andExpect(MockMvcResultMatchers.header()
-                    .string("Clear-Site-Data", "\"cache\", \"cookies\", \"storage\""));
-    }
+   @Test
+   void whenResponseBody_thenReturnCacheHeader() throws Exception {
+      this.mockMvc
+            .perform(MockMvcRequestBuilders
+                  .get("/baeldung/logout").secure(true))
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().is(302))
+            .andExpect(MockMvcResultMatchers.header()
+                  .string("Clear-Site-Data", "\"cache\", \"cookies\", \"storage\""));
+   }
 
 }

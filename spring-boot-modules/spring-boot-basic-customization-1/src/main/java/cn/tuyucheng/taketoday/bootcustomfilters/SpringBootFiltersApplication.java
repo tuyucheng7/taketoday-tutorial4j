@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.bootcustomfilters.*")
 public class SpringBootFiltersApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootFiltersApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootFiltersApplication.class, args);
+   }
 }

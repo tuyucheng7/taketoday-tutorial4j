@@ -10,14 +10,14 @@ import java.util.List;
 @RestController
 public class BooksControllerGraphQL {
 
-	private final BooksService booksService;
+   private final BooksService booksService;
 
-	public BooksControllerGraphQL(BooksService booksService) {
-		this.booksService = booksService;
-	}
+   public BooksControllerGraphQL(BooksService booksService) {
+      this.booksService = booksService;
+   }
 
-	@QueryMapping
-	public List<Book> books() {
-		return booksService.getBooks();
-	}
+   @QueryMapping
+   public List<Book> books() {
+      return booksService.getBooks();
+   }
 }

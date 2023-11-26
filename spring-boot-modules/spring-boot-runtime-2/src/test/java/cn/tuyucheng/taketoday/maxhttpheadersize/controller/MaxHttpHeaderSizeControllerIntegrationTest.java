@@ -22,30 +22,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class MaxHttpHeaderSizeControllerIntegrationTest {
 
-	private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-	@BeforeEach
-	void setUp() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-			.build();
-	}
+   @BeforeEach
+   void setUp() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
+            .build();
+   }
 
-	@Test
-	void givenTokenWithLessThan8KBLength_whenSendGetRequest_thenReturnsOK() throws Exception {
-		mockMvc.perform(get("/request-header-test").contentType(MediaType.APPLICATION_JSON_VALUE)
-				.with(httpBasic("user", "password"))
-				.header("token", "token"))
-			.andExpect(status().isOk());
-	}
+   @Test
+   void givenTokenWithLessThan8KBLength_whenSendGetRequest_thenReturnsOK() throws Exception {
+      mockMvc.perform(get("/request-header-test").contentType(MediaType.APPLICATION_JSON_VALUE)
+                  .with(httpBasic("user", "password"))
+                  .header("token", "token"))
+            .andExpect(status().isOk());
+   }
 
-	@Test
-	void givenTokenIsMissingInHeader_whenSendGetRequest_thenThrowsBadRequest() throws Exception {
-		mockMvc.perform(get("/request-header-test")
-				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.with(httpBasic("user", "password")))
-			.andExpect(status().isBadRequest());
-	}
+   @Test
+   void givenTokenIsMissingInHeader_whenSendGetRequest_thenThrowsBadRequest() throws Exception {
+      mockMvc.perform(get("/request-header-test")
+                  .contentType(MediaType.APPLICATION_JSON_VALUE)
+                  .with(httpBasic("user", "password")))
+            .andExpect(status().isBadRequest());
+   }
 }

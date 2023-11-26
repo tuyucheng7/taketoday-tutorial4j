@@ -19,23 +19,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {AntMatchersExampleApplication.class, SecurityConfiguration.class})
 class CustomerControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void getCustomerByIdUnauthorized() throws Exception {
-		mockMvc.perform(get("/customers/1")).andExpect(status().isUnauthorized());
-	}
+   @Test
+   void getCustomerByIdUnauthorized() throws Exception {
+      mockMvc.perform(get("/customers/1")).andExpect(status().isUnauthorized());
+   }
 
-	@Test
-	void getCustomerByIdForbidden() throws Exception {
-		mockMvc.perform(get("/customers/1").with(user("user").roles("USER")))
-			.andExpect(status().isForbidden());
-	}
+   @Test
+   void getCustomerByIdForbidden() throws Exception {
+      mockMvc.perform(get("/customers/1").with(user("user").roles("USER")))
+            .andExpect(status().isForbidden());
+   }
 
-	@Test
-	void getCustomerByIdOk() throws Exception {
-		mockMvc.perform(get("/customers/1").with(user("admin").roles("ADMIN")))
-			.andExpect(status().isOk());
-	}
+   @Test
+   void getCustomerByIdOk() throws Exception {
+      mockMvc.perform(get("/customers/1").with(user("admin").roles("ADMIN")))
+            .andExpect(status().isOk());
+   }
 }

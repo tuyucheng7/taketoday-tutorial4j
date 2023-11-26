@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ManagerService {
 
-	@Autowired
-	private Manager manager;
+   @Autowired
+   private Manager manager;
 
-	public Manager getManager() {
-		return manager;
-	}
+   public Manager getManager() {
+      return manager;
+   }
 }

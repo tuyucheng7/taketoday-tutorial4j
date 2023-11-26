@@ -22,37 +22,37 @@ import java.util.Map;
 @Configuration
 public class PasswordStorageWebSecurityConfigurer {
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.eraseCredentials(false)
-              .userDetailsService(getUserDefaultDetailsService())
-              .passwordEncoder(passwordEncoder());
-        return authenticationManagerBuilder.build();
-    }
+   @Bean
+   public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.eraseCredentials(false)
+            .userDetailsService(getUserDefaultDetailsService())
+            .passwordEncoder(passwordEncoder());
+      return authenticationManagerBuilder.build();
+   }
 
-    @Bean
-    public UserDetailsService getUserDefaultDetailsService() {
-        return new InMemoryUserDetailsManager(User
-              .withUsername("baeldung")
-              .password("{noop}SpringSecurity5")
-              .authorities(Collections.emptyList())
-              .build());
-    }
+   @Bean
+   public UserDetailsService getUserDefaultDetailsService() {
+      return new InMemoryUserDetailsManager(User
+            .withUsername("baeldung")
+            .password("{noop}SpringSecurity5")
+            .authorities(Collections.emptyList())
+            .build());
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        // set up the list of supported encoders and their prefixes
-        PasswordEncoder defaultEncoder = new StandardPasswordEncoder();
-        Map<String, PasswordEncoder> encoders = new HashMap<>();
-        encoders.put("bcrypt", new BCryptPasswordEncoder());
-        encoders.put("scrypt", new SCryptPasswordEncoder());
-        encoders.put("noop", NoOpPasswordEncoder.getInstance());
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      // set up the list of supported encoders and their prefixes
+      PasswordEncoder defaultEncoder = new StandardPasswordEncoder();
+      Map<String, PasswordEncoder> encoders = new HashMap<>();
+      encoders.put("bcrypt", new BCryptPasswordEncoder());
+      encoders.put("scrypt", new SCryptPasswordEncoder());
+      encoders.put("noop", NoOpPasswordEncoder.getInstance());
 
-        DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
-        passwordEncoder.setDefaultPasswordEncoderForMatches(defaultEncoder);
+      DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("bcrypt", encoders);
+      passwordEncoder.setDefaultPasswordEncoderForMatches(defaultEncoder);
 
-        return passwordEncoder;
-    }
+      return passwordEncoder;
+   }
 
 }

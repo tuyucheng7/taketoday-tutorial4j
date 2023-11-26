@@ -12,24 +12,24 @@ import java.io.IOException;
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {
 
-	@Override
-	protected void doFilterInternal(
-		HttpServletRequest request,
-		HttpServletResponse response,
-		FilterChain filterChain) throws
-		ServletException, IOException {
-		String usrName = request.getHeader("userName");
-		logger.info("Successfully authenticated user  " + usrName);
-		filterChain.doFilter(request, response);
-	}
+   @Override
+   protected void doFilterInternal(
+         HttpServletRequest request,
+         HttpServletResponse response,
+         FilterChain filterChain) throws
+         ServletException, IOException {
+      String usrName = request.getHeader("userName");
+      logger.info("Successfully authenticated user  " + usrName);
+      filterChain.doFilter(request, response);
+   }
 
-	@Override
-	protected boolean shouldNotFilterAsyncDispatch() {
-		return false;
-	}
+   @Override
+   protected boolean shouldNotFilterAsyncDispatch() {
+      return false;
+   }
 
-	@Override
-	protected boolean shouldNotFilterErrorDispatch() {
-		return false;
-	}
+   @Override
+   protected boolean shouldNotFilterErrorDispatch() {
+      return false;
+   }
 }

@@ -16,43 +16,41 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, classes = SpringBootSecurityApplication.class)
 class BasicConfigurationIntegrationTest {
 
-	TestRestTemplate restTemplate;
-	URL base;
+   TestRestTemplate restTemplate;
+   URL base;
 
-	@LocalServerPort
-	int port;
+   @LocalServerPort
+   int port;
 
-	@BeforeEach
-	void setUp() throws MalformedURLException {
-		restTemplate = new TestRestTemplate("user", "password");
-		base = new URL("http://localhost:" + port);
-	}
+   @BeforeEach
+   void setUp() throws MalformedURLException {
+      restTemplate = new TestRestTemplate("user", "password");
+      base = new URL("http://localhost:" + port);
+   }
 
-	@Test
-	void whenLoggedUserRequestsHomePage_ThenSuccess() throws IllegalStateException, IOException {
-		ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
+   @Test
+   void whenLoggedUserRequestsHomePage_ThenSuccess() throws IllegalStateException, IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
 
-		assertEquals(HttpStatus.OK, response.getStatusCode());
-		assertTrue(Objects.requireNonNull(response
-				.getBody())
-			.contains("Tuyucheng"));
-	}
+      assertEquals(HttpStatus.OK, response.getStatusCode());
+      assertTrue(Objects.requireNonNull(response
+                  .getBody())
+            .contains("Tuyucheng"));
+   }
 
-	@Test
-	void whenUserWithWrongCredentials_thenUnauthorizedPage() throws IllegalStateException, IOException {
-		restTemplate = new TestRestTemplate("user", "wrongpassword");
-		ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
+   @Test
+   void whenUserWithWrongCredentials_thenUnauthorizedPage() throws IllegalStateException, IOException {
+      restTemplate = new TestRestTemplate("user", "wrongpassword");
+      ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
 
-		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-		assertNull(response.getBody());
-	}
+      assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+      assertNull(response.getBody());
+   }
 }

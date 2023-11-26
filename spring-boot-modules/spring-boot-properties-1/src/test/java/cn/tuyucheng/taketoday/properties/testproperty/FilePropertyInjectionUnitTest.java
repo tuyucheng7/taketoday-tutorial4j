@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource("/foo.properties")
 class FilePropertyInjectionUnitTest {
 
-	@Value("${foo}")
-	private String foo;
+   @Value("${foo}")
+   private String foo;
 
-	@Test
-	void whenFilePropertyProvided_thenProperlyInjected() {
-		assertThat(foo).isEqualTo("bar");
-	}
+   @Test
+   void whenFilePropertyProvided_thenProperlyInjected() {
+      assertThat(foo).isEqualTo("bar");
+   }
 }

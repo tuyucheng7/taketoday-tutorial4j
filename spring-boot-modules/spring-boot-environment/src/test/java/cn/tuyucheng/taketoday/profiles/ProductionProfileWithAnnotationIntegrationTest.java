@@ -15,18 +15,18 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(classes = {SpringProfilesConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class ProductionProfileWithAnnotationIntegrationTest {
 
-	@Autowired
-	DatasourceConfig datasourceConfig;
+   @Autowired
+   DatasourceConfig datasourceConfig;
 
-	@Autowired
-	Environment environment;
+   @Autowired
+   Environment environment;
 
-	@Test
-	public void testSpringProfiles() {
-		for (final String profileName : environment.getActiveProfiles()) {
-			System.out.println("Currently active profile - " + profileName);
-		}
-		Assert.assertEquals("production", environment.getActiveProfiles()[0]);
-		Assert.assertTrue(datasourceConfig instanceof ProductionDatasourceConfig);
-	}
+   @Test
+   public void testSpringProfiles() {
+      for (final String profileName : environment.getActiveProfiles()) {
+         System.out.println("Currently active profile - " + profileName);
+      }
+      Assert.assertEquals("production", environment.getActiveProfiles()[0]);
+      Assert.assertTrue(datasourceConfig instanceof ProductionDatasourceConfig);
+   }
 }

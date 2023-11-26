@@ -12,11 +12,11 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(classes = {SpringProfilesConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class SpringProfilesWithMavenPropertiesIntegrationTest {
 
-	@Autowired
-	DatasourceConfig datasourceConfig;
+   @Autowired
+   DatasourceConfig datasourceConfig;
 
-	@Test
-	public void setupDatasource() {
-		Assert.assertTrue(datasourceConfig instanceof DevDatasourceConfig);
-	}
+   @Test
+   public void setupDatasource() {
+      Assert.assertTrue(datasourceConfig instanceof DevDatasourceConfig);
+   }
 }

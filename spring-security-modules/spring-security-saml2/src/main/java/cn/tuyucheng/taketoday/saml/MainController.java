@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-	@GetMapping("/")
-	public String index(Model model, @AuthenticationPrincipal Saml2AuthenticatedPrincipal principal) {
-		String emailAddress = principal.getFirstAttribute("email");
-		model.addAttribute("emailAddress", emailAddress);
-		model.addAttribute("userAttributes", principal.getAttributes());
-		return "index";
-	}
+   @GetMapping("/")
+   public String index(Model model, @AuthenticationPrincipal Saml2AuthenticatedPrincipal principal) {
+      String emailAddress = principal.getFirstAttribute("email");
+      model.addAttribute("emailAddress", emailAddress);
+      model.addAttribute("userAttributes", principal.getAttributes());
+      return "index";
+   }
 }

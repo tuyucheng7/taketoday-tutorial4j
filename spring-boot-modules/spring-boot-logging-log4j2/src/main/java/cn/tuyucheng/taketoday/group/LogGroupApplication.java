@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @ActiveProfiles("log-group")
 public class LogGroupApplication {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LogGroupApplication.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(LogGroupApplication.class);
 
-	@RequestMapping("/log-group")
-	public void justLog() {
-		LOGGER.debug("Received a request");
-	}
+   @RequestMapping("/log-group")
+   public void justLog() {
+      LOGGER.debug("Received a request");
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(LogGroupApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(LogGroupApplication.class, args);
+   }
 }

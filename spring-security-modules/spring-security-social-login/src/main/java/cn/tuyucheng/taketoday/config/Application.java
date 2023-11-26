@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("cn.tuyucheng.taketoday.persistence.model")
 public class Application extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 
 }

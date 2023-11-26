@@ -21,53 +21,53 @@ import java.util.Map;
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
 
-	@Value("${ws.api.path:/ws/api/v1/*}")
-	private String webserviceApiPath;
-	@Value("${ws.port.type.name:ProductsPort}")
-	private String webservicePortTypeName;
-	@Value("${ws.target.namespace:http://www.tuyucheng.com/springbootsoap/keycloak}")
-	private String webserviceTargetNamespace;
-	@Value("${ws.location.uri:http://localhost:18080/ws/api/v1/}")
-	private String locationUri;
+   @Value("${ws.api.path:/ws/api/v1/*}")
+   private String webserviceApiPath;
+   @Value("${ws.port.type.name:ProductsPort}")
+   private String webservicePortTypeName;
+   @Value("${ws.target.namespace:http://www.tuyucheng.com/springbootsoap/keycloak}")
+   private String webserviceTargetNamespace;
+   @Value("${ws.location.uri:http://localhost:18080/ws/api/v1/}")
+   private String locationUri;
 
-	@Bean
-	public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
-		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
-		servlet.setApplicationContext(applicationContext);
-		servlet.setTransformWsdlLocations(true);
-		return new ServletRegistrationBean<>(servlet, webserviceApiPath);
-	}
+   @Bean
+   public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
+      MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+      servlet.setApplicationContext(applicationContext);
+      servlet.setTransformWsdlLocations(true);
+      return new ServletRegistrationBean<>(servlet, webserviceApiPath);
+   }
 
-	@Bean(name = "products")
-	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema productsSchema) {
-		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-		wsdl11Definition.setPortTypeName(webservicePortTypeName);
-		wsdl11Definition.setTargetNamespace(webserviceTargetNamespace);
-		wsdl11Definition.setLocationUri(locationUri);
-		wsdl11Definition.setSchema(productsSchema);
-		return wsdl11Definition;
-	}
+   @Bean(name = "products")
+   public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema productsSchema) {
+      DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+      wsdl11Definition.setPortTypeName(webservicePortTypeName);
+      wsdl11Definition.setTargetNamespace(webserviceTargetNamespace);
+      wsdl11Definition.setLocationUri(locationUri);
+      wsdl11Definition.setSchema(productsSchema);
+      return wsdl11Definition;
+   }
 
-	@Bean
-	public XsdSchema productsSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("products.xsd"));
-	}
+   @Bean
+   public XsdSchema productsSchema() {
+      return new SimpleXsdSchema(new ClassPathResource("products.xsd"));
+   }
 
-	@Bean
-	public Map<String, Product> getProducts() {
-		Map<String, Product> map = new HashMap<>();
-		Product foldsack = new Product();
-		foldsack.setId("1");
-		foldsack.setName("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops");
-		foldsack.setDescription("Your perfect pack for everyday use and walks in the forest. ");
+   @Bean
+   public Map<String, Product> getProducts() {
+      Map<String, Product> map = new HashMap<>();
+      Product foldsack = new Product();
+      foldsack.setId("1");
+      foldsack.setName("Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops");
+      foldsack.setDescription("Your perfect pack for everyday use and walks in the forest. ");
 
-		Product shirt = new Product();
-		shirt.setId("2");
-		shirt.setName("Mens Casual Premium Slim Fit T-Shirts");
-		shirt.setDescription("Slim-fitting style, contrast raglan long sleeve, three-button henley placket.");
+      Product shirt = new Product();
+      shirt.setId("2");
+      shirt.setName("Mens Casual Premium Slim Fit T-Shirts");
+      shirt.setDescription("Slim-fitting style, contrast raglan long sleeve, three-button henley placket.");
 
-		map.put("1", foldsack);
-		map.put("2", shirt);
-		return map;
-	}
+      map.put("1", foldsack);
+      map.put("2", shirt);
+      return map;
+   }
 }

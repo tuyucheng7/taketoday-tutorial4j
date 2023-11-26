@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class CaffeineTutorialApplication {
 
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(CaffeineTutorialApplication.class).run(args);
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(CaffeineTutorialApplication.class).run(args);
+   }
 }

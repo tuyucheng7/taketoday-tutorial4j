@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 class UsersController {
 
-    @GetMapping("/userMainPage")
-    public String getUserPage() {
-        return "userMainPage";
-    }
+   @GetMapping("/userMainPage")
+   public String getUserPage() {
+      return "userMainPage";
+   }
 
-    @GetMapping("/loginUser")
-    public String getUserLoginPage() {
-        if (isAuthenticated()) {
-            return "redirect:userMainPage";
-        }
-        return "loginUser";
-    }
+   @GetMapping("/loginUser")
+   public String getUserLoginPage() {
+      if (isAuthenticated()) {
+         return "redirect:userMainPage";
+      }
+      return "loginUser";
+   }
 
-    private boolean isAuthenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
-            return false;
-        }
-        return authentication.isAuthenticated();
-    }
+   private boolean isAuthenticated() {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
+         return false;
+      }
+      return authentication.isAuthenticated();
+   }
 }

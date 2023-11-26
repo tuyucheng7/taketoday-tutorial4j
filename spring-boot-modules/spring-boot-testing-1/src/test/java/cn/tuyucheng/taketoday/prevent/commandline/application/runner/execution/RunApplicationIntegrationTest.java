@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
-import cn.tuyucheng.taketoday.prevent.commandline.application.runner.execution.ApplicationRunnerTaskExecutor;
-import cn.tuyucheng.taketoday.prevent.commandline.application.runner.execution.CommandLineTaskExecutor;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

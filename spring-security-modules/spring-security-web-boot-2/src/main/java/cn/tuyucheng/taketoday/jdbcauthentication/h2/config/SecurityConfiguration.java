@@ -14,9 +14,9 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfiguration {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+      httpSecurity.authorizeRequests()
             .antMatchers("/h2-console/**")
             .permitAll()
             .anyRequest()
@@ -24,22 +24,22 @@ public class SecurityConfiguration {
             .and()
             .formLogin()
             .permitAll();
-        httpSecurity.csrf()
+      httpSecurity.csrf()
             .ignoringAntMatchers("/h2-console/**");
-        httpSecurity.headers()
+      httpSecurity.headers()
             .frameOptions()
             .sameOrigin();
-        return httpSecurity.build();
-    }
+      return httpSecurity.build();
+   }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource, PasswordEncoder passwordEncoder) throws Exception {
-        auth.jdbcAuthentication()
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource, PasswordEncoder passwordEncoder) throws Exception {
+      auth.jdbcAuthentication()
             .dataSource(dataSource)
             .withDefaultSchema()
             .withUser(User.withUsername("user")
-                .password(passwordEncoder.encode("pass"))
-                .roles("USER"));
-    }
+                  .password(passwordEncoder.encode("pass"))
+                  .roles("USER"));
+   }
 
 }

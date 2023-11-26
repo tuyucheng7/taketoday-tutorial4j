@@ -4,8 +4,8 @@ import java.util.concurrent.Callable;
 
 public interface AsyncService {
 
-    void asyncCall();
+   void asyncCall();
 
-    Callable<Boolean> checkIfPrincipalPropagated();
+   Callable<Boolean> checkIfPrincipalPropagated();
 
 }

@@ -12,5 +12,5 @@ import org.junit.runners.Suite.SuiteClasses;
 	ExtendedPropertiesWithJavaIntegrationTest.class,
 })// @formatter:on
 public final class IntegrationTestSuite {
-	//
+   //
 }

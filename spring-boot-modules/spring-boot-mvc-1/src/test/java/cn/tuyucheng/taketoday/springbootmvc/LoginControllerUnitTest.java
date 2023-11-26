@@ -19,21 +19,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ContextConfiguration(classes = {SpringBootMvcApplication.class, CustomMessageSourceConfiguration.class})
 class LoginControllerUnitTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void givenLoginForm_whenEmailFieldNotProvided_testCustomValidMessageIsReturned() throws Exception {
-		String content = "{\"email\":\"\",\"password\":\"helo\"}";
+   @Test
+   void givenLoginForm_whenEmailFieldNotProvided_testCustomValidMessageIsReturned() throws Exception {
+      String content = "{\"email\":\"\",\"password\":\"helo\"}";
 
-		RequestBuilder builder = MockMvcRequestBuilders
-			.post("/loginform")
-			.contentType("application/json")
-			.content(content);
+      RequestBuilder builder = MockMvcRequestBuilders
+            .post("/loginform")
+            .contentType("application/json")
+            .content(content);
 
-		// header("accept-language", "fr").
-		MvcResult perform = mockMvc.perform(builder).andReturn();
-		System.out.println(perform.getResolvedException().getMessage());
-		assertTrue(perform.getResolvedException().getMessage().contains("valid email"));
-	}
+      // header("accept-language", "fr").
+      MvcResult perform = mockMvc.perform(builder).andReturn();
+      System.out.println(perform.getResolvedException().getMessage());
+      assertTrue(perform.getResolvedException().getMessage().contains("valid email"));
+   }
 }

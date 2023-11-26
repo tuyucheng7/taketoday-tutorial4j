@@ -20,43 +20,43 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ToggleIntegrationTest {
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+   @Autowired
+   private EmployeeRepository employeeRepository;
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-	@Before
-	public void setup() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+   @Before
+   public void setup() {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+   }
 
-	@Test
-	public void givenFeaturePropertyFalse_whenIncreaseSalary_thenNoIncrease() throws Exception {
-		Employee emp = new Employee(1, 2000);
-		employeeRepository.save(emp);
+   @Test
+   public void givenFeaturePropertyFalse_whenIncreaseSalary_thenNoIncrease() throws Exception {
+      Employee emp = new Employee(1, 2000);
+      employeeRepository.save(emp);
 
-		System.setProperty("employee.feature", "false");
+      System.setProperty("employee.feature", "false");
 
-		mockMvc.perform(post("/increaseSalary").param("id", emp.getId() + "")).andExpect(status().is(200));
+      mockMvc.perform(post("/increaseSalary").param("id", emp.getId() + "")).andExpect(status().is(200));
 
-		emp = employeeRepository.findById(1L).orElse(null);
-		assertEquals("salary incorrect", 2000, emp.getSalary(), 0.5);
-	}
+      emp = employeeRepository.findById(1L).orElse(null);
+      assertEquals("salary incorrect", 2000, emp.getSalary(), 0.5);
+   }
 
-	@Test
-	public void givenFeaturePropertyTrue_whenIncreaseSalary_thenIncrease() throws Exception {
-		Employee emp = new Employee(1, 2000);
-		employeeRepository.save(emp);
+   @Test
+   public void givenFeaturePropertyTrue_whenIncreaseSalary_thenIncrease() throws Exception {
+      Employee emp = new Employee(1, 2000);
+      employeeRepository.save(emp);
 
-		System.setProperty("employee.feature", "true");
+      System.setProperty("employee.feature", "true");
 
-		mockMvc.perform(post("/increaseSalary").param("id", emp.getId() + "")).andExpect(status().is(200));
+      mockMvc.perform(post("/increaseSalary").param("id", emp.getId() + "")).andExpect(status().is(200));
 
-		emp = employeeRepository.findById(1L).orElse(null);
-		assertEquals("salary incorrect", 2200, emp.getSalary(), 0.5);
-	}
+      emp = employeeRepository.findById(1L).orElse(null);
+      assertEquals("salary incorrect", 2200, emp.getSalary(), 0.5);
+   }
 }

@@ -10,22 +10,22 @@ import javax.annotation.PostConstruct;
 @Component
 public class PropertyLoggerBean {
 
-	private static final Logger log = LoggerFactory.getLogger(PropertyLoggerBean.class);
+   private static final Logger log = LoggerFactory.getLogger(PropertyLoggerBean.class);
 
-	@Value("${expanded.project.version}")
-	private String projectVersion;
+   @Value("${expanded.project.version}")
+   private String projectVersion;
 
-	@Value("${expanded.project.property}")
-	private String projectProperty;
+   @Value("${expanded.project.property}")
+   private String projectProperty;
 
-	@PostConstruct
-	public void printProperties() {
-		log.info("");
-		log.info("Properties logged in a bean:");
-		log.info("===========================================");
-		log.info("Project version : {}", projectVersion);
-		log.info("Project property : {}", projectProperty);
-		log.info("===========================================");
-		log.info("");
-	}
+   @PostConstruct
+   public void printProperties() {
+      log.info("");
+      log.info("Properties logged in a bean:");
+      log.info("===========================================");
+      log.info("Project version : {}", projectVersion);
+      log.info("Project property : {}", projectProperty);
+      log.info("===========================================");
+      log.info("");
+   }
 }

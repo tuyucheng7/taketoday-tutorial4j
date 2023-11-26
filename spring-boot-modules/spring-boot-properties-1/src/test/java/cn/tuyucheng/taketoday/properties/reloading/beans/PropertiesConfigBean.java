@@ -8,13 +8,13 @@ import java.util.Properties;
 @Component
 public class PropertiesConfigBean {
 
-	private Properties properties;
+   private Properties properties;
 
-	public PropertiesConfigBean(@Autowired Properties properties) {
-		this.properties = properties;
-	}
+   public PropertiesConfigBean(@Autowired Properties properties) {
+      this.properties = properties;
+   }
 
-	public String getColor() {
-		return properties.getProperty("application.theme.color");
-	}
+   public String getColor() {
+      return properties.getProperty("application.theme.color");
+   }
 }

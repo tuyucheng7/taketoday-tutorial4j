@@ -13,27 +13,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class MapFromYamlIntegrationTest {
 
-	@Autowired
-	private ServerProperties serverProperties;
+   @Autowired
+   private ServerProperties serverProperties;
 
-	@Test
-	void whenYamlFileProvidedThenInjectSimpleMap() {
-		assertThat(serverProperties.getApplication()).containsOnlyKeys("name", "url", "description");
+   @Test
+   void whenYamlFileProvidedThenInjectSimpleMap() {
+      assertThat(serverProperties.getApplication()).containsOnlyKeys("name", "url", "description");
 
-		assertThat(serverProperties.getApplication())
-			.containsEntry("name", "InjectMapFromYAML");
-	}
+      assertThat(serverProperties.getApplication())
+            .containsEntry("name", "InjectMapFromYAML");
+   }
 
-	@Test
-	void whenYamlFileProvidedThenInjectComplexMap() {
-		assertThat(serverProperties.getConfig()).hasSize(2);
+   @Test
+   void whenYamlFileProvidedThenInjectComplexMap() {
+      assertThat(serverProperties.getConfig()).hasSize(2);
 
-		assertThat(serverProperties.getConfig()
-			.get("ips")
-			.get(0)).isEqualTo("10.10.10.10");
+      assertThat(serverProperties.getConfig()
+            .get("ips")
+            .get(0)).isEqualTo("10.10.10.10");
 
-		assertThat(serverProperties.getUsers()
-			.get("root")
-			.getUsername()).isEqualTo("root");
-	}
+      assertThat(serverProperties.getUsers()
+            .get("root")
+            .getUsername()).isEqualTo("root");
+   }
 }

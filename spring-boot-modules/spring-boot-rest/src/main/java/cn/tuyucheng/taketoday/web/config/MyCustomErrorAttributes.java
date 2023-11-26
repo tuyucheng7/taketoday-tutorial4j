@@ -10,15 +10,15 @@ import java.util.Map;
 @Component
 public class MyCustomErrorAttributes extends DefaultErrorAttributes {
 
-	@Override
-	public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
-		Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
-		errorAttributes.put("locale", webRequest.getLocale()
-			.toString());
-		errorAttributes.remove("error");
-		errorAttributes.put("cause", errorAttributes.get("message"));
-		errorAttributes.remove("message");
-		errorAttributes.put("status", String.valueOf(errorAttributes.get("status")));
-		return errorAttributes;
-	}
+   @Override
+   public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+      Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
+      errorAttributes.put("locale", webRequest.getLocale()
+            .toString());
+      errorAttributes.remove("error");
+      errorAttributes.put("cause", errorAttributes.get("message"));
+      errorAttributes.remove("message");
+      errorAttributes.put("status", String.valueOf(errorAttributes.get("status")));
+      return errorAttributes;
+   }
 }

@@ -29,73 +29,73 @@ import javax.sql.DataSource;
 @ConditionalOnExpression("'${using.spring.schedulerFactory}'=='true'")
 public class SpringQrtzScheduler {
 
-	Logger logger = LoggerFactory.getLogger(getClass());
+   Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-	@PostConstruct
-	public void init() {
-		logger.info("Hello world from Spring...");
-	}
+   @PostConstruct
+   public void init() {
+      logger.info("Hello world from Spring...");
+   }
 
-	@Bean
-	public SpringBeanJobFactory springBeanJobFactory() {
-		AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
-		logger.debug("Configuring Job factory");
+   @Bean
+   public SpringBeanJobFactory springBeanJobFactory() {
+      AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
+      logger.debug("Configuring Job factory");
 
-		jobFactory.setApplicationContext(applicationContext);
-		return jobFactory;
-	}
+      jobFactory.setApplicationContext(applicationContext);
+      return jobFactory;
+   }
 
-	@Bean
-	public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail job, DataSource quartzDataSource) {
+   @Bean
+   public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail job, DataSource quartzDataSource) {
 
-		SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
-		schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
+      SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
+      schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 
-		logger.debug("Setting the Scheduler up");
-		schedulerFactory.setJobFactory(springBeanJobFactory());
-		schedulerFactory.setJobDetails(job);
-		schedulerFactory.setTriggers(trigger);
+      logger.debug("Setting the Scheduler up");
+      schedulerFactory.setJobFactory(springBeanJobFactory());
+      schedulerFactory.setJobDetails(job);
+      schedulerFactory.setTriggers(trigger);
 
-		// Comment the following line to use the default Quartz job store.
-		schedulerFactory.setDataSource(quartzDataSource);
+      // Comment the following line to use the default Quartz job store.
+      schedulerFactory.setDataSource(quartzDataSource);
 
-		return schedulerFactory;
-	}
+      return schedulerFactory;
+   }
 
-	@Bean
-	public JobDetailFactoryBean jobDetail() {
+   @Bean
+   public JobDetailFactoryBean jobDetail() {
 
-		JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
-		jobDetailFactory.setJobClass(SampleJob.class);
-		jobDetailFactory.setName("Qrtz_Job_Detail");
-		jobDetailFactory.setDescription("Invoke Sample Job service...");
-		jobDetailFactory.setDurability(true);
-		return jobDetailFactory;
-	}
+      JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
+      jobDetailFactory.setJobClass(SampleJob.class);
+      jobDetailFactory.setName("Qrtz_Job_Detail");
+      jobDetailFactory.setDescription("Invoke Sample Job service...");
+      jobDetailFactory.setDurability(true);
+      return jobDetailFactory;
+   }
 
-	@Bean
-	public SimpleTriggerFactoryBean trigger(JobDetail job) {
+   @Bean
+   public SimpleTriggerFactoryBean trigger(JobDetail job) {
 
-		SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
-		trigger.setJobDetail(job);
+      SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
+      trigger.setJobDetail(job);
 
-		int frequencyInSec = 10;
-		logger.info("Configuring trigger to fire every {} seconds", frequencyInSec);
+      int frequencyInSec = 10;
+      logger.info("Configuring trigger to fire every {} seconds", frequencyInSec);
 
-		trigger.setRepeatInterval(frequencyInSec * 1000);
-		trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-		trigger.setName("Qrtz_Trigger");
-		return trigger;
-	}
+      trigger.setRepeatInterval(frequencyInSec * 1000);
+      trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
+      trigger.setName("Qrtz_Trigger");
+      return trigger;
+   }
 
-	@Bean
-	@QuartzDataSource
-	@ConfigurationProperties(prefix = "spring.datasource")
-	public DataSource quartzDataSource() {
-		return DataSourceBuilder.create().build();
-	}
+   @Bean
+   @QuartzDataSource
+   @ConfigurationProperties(prefix = "spring.datasource")
+   public DataSource quartzDataSource() {
+      return DataSourceBuilder.create().build();
+   }
 
 }

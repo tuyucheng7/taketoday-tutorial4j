@@ -8,18 +8,18 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class CountryClient extends WebServiceGatewaySupport {
 
-	private static final Logger logger = LoggerFactory.getLogger(CountryClient.class);
+   private static final Logger logger = LoggerFactory.getLogger(CountryClient.class);
 
-	public GetCountryResponse getCountry(String country) {
+   public GetCountryResponse getCountry(String country) {
 
-		GetCountryRequest request = new GetCountryRequest();
-		request.setName(country);
+      GetCountryRequest request = new GetCountryRequest();
+      request.setName(country);
 
-		logger.info("Requesting information for " + country);
+      logger.info("Requesting information for " + country);
 
-		GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+      GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate().marshalSendAndReceive(request);
 
-		return response;
-	}
+      return response;
+   }
 
 }

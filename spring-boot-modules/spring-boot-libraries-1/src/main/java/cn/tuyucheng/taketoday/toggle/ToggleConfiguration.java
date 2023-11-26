@@ -12,8 +12,8 @@ import org.togglz.core.spi.FeatureProvider;
 @EntityScan("cn.tuyucheng.taketoday.toggle")
 public class ToggleConfiguration {
 
-	@Bean
-	public FeatureProvider featureProvider() {
-		return new EnumBasedFeatureProvider(MyFeatures.class);
-	}
+   @Bean
+   public FeatureProvider featureProvider() {
+      return new EnumBasedFeatureProvider(MyFeatures.class);
+   }
 }

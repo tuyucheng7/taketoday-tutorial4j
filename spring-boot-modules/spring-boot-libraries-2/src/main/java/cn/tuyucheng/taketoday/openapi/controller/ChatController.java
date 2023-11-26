@@ -17,28 +17,28 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ChatController {
-	/**
-	 * A logger instance for the ChatController class.
-	 */
-	private static final Logger LOG = LoggerFactory.getLogger(ChatController.class);
+   /**
+    * A logger instance for the ChatController class.
+    */
+   private static final Logger LOG = LoggerFactory.getLogger(ChatController.class);
 
-	/**
-	 * The ChatService instance used to create and send chat requests.
-	 */
-	@Autowired
-	private ChatService chatService;
+   /**
+    * The ChatService instance used to create and send chat requests.
+    */
+   @Autowired
+   private ChatService chatService;
 
-	/**
-	 * Handles GET requests to the /chat endpoint by creating a chat request with the
-	 * specified prompt and sending it to the OpenAI API. Returns the first message from
-	 * the API response.
-	 *
-	 * @param prompt the prompt to send to the API
-	 * @return a ResponseEntity object containing the first message from the API response
-	 */
-	@GetMapping(value = "/chat")
-	public ResponseEntity<Object> chat(@RequestParam String prompt) {
-		LOG.info("Received GET request on /chat endpoint with prompt: {}", prompt);
-		return chatService.chatWithOpenAiGpt(prompt);
-	}
+   /**
+    * Handles GET requests to the /chat endpoint by creating a chat request with the
+    * specified prompt and sending it to the OpenAI API. Returns the first message from
+    * the API response.
+    *
+    * @param prompt the prompt to send to the API
+    * @return a ResponseEntity object containing the first message from the API response
+    */
+   @GetMapping(value = "/chat")
+   public ResponseEntity<Object> chat(@RequestParam String prompt) {
+      LOG.info("Received GET request on /chat endpoint with prompt: {}", prompt);
+      return chatService.chatWithOpenAiGpt(prompt);
+   }
 }

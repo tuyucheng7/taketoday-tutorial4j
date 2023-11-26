@@ -12,38 +12,38 @@ import javax.annotation.security.RolesAllowed;
 @EnableGlobalMethodSecurity(jsr250Enabled = true, prePostEnabled = true)
 public class AnnotationSecuredController {
 
-	@Autowired
-	DifferentClass differentClass;
+   @Autowired
+   DifferentClass differentClass;
 
-	@GetMapping("/public")
-	public String publicHello() {
-		return "Hello Public";
-	}
+   @GetMapping("/public")
+   public String publicHello() {
+      return "Hello Public";
+   }
 
-	@RolesAllowed("ADMIN")
-	@GetMapping("/admin")
-	public String adminHello() {
-		return "Hello Admin";
-	}
+   @RolesAllowed("ADMIN")
+   @GetMapping("/admin")
+   public String adminHello() {
+      return "Hello Admin";
+   }
 
-	@RolesAllowed("USER")
-	@GetMapping("/protected")
-	public String jsr250Hello() {
-		return "Hello Jsr250";
-	}
+   @RolesAllowed("USER")
+   @GetMapping("/protected")
+   public String jsr250Hello() {
+      return "Hello Jsr250";
+   }
 
-	@GetMapping("/indirect")
-	public String indirectHello() {
-		return jsr250Hello();
-	}
+   @GetMapping("/indirect")
+   public String indirectHello() {
+      return jsr250Hello();
+   }
 
-	@GetMapping("/differentclass")
-	public String differentClassHello() {
-		return differentClass.differentJsr250Hello();
-	}
+   @GetMapping("/differentclass")
+   public String differentClassHello() {
+      return differentClass.differentJsr250Hello();
+   }
 
-	@PreAuthorize("hasRole('USER')")
-	public String preAuthorizeHello() {
-		return "Hello PreAuthorize";
-	}
+   @PreAuthorize("hasRole('USER')")
+   public String preAuthorizeHello() {
+      return "Hello PreAuthorize";
+   }
 }

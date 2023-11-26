@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Primary
 public class GeneralManager implements Manager {
 
-	@Override
-	public String getManagerName() {
-		return "General manager";
-	}
+   @Override
+   public String getManagerName() {
+      return "General manager";
+   }
 }

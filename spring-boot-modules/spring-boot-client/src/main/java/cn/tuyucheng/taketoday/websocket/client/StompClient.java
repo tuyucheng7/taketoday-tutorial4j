@@ -13,17 +13,17 @@ import java.util.Scanner;
  */
 public class StompClient {
 
-	private static String URL = "ws://localhost:8080/spring-mvc-java/chat";
+   private static String URL = "ws://localhost:8080/spring-mvc-java/chat";
 
-	public static void main(String[] args) {
-		WebSocketClient client = new StandardWebSocketClient();
-		WebSocketStompClient stompClient = new WebSocketStompClient(client);
+   public static void main(String[] args) {
+      WebSocketClient client = new StandardWebSocketClient();
+      WebSocketStompClient stompClient = new WebSocketStompClient(client);
 
-		stompClient.setMessageConverter(new MappingJackson2MessageConverter());
+      stompClient.setMessageConverter(new MappingJackson2MessageConverter());
 
-		StompSessionHandler sessionHandler = new MyStompSessionHandler();
-		stompClient.connect(URL, sessionHandler);
+      StompSessionHandler sessionHandler = new MyStompSessionHandler();
+      stompClient.connect(URL, sessionHandler);
 
-		new Scanner(System.in).nextLine(); // Don't close immediately.
-	}
+      new Scanner(System.in).nextLine(); // Don't close immediately.
+   }
 }

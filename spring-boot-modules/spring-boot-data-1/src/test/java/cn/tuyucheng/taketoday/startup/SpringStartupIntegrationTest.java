@@ -14,36 +14,36 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(classes = {SpringStartupConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class SpringStartupIntegrationTest {
 
-	@Autowired
-	private ApplicationContext ctx;
+   @Autowired
+   private ApplicationContext ctx;
 
-	@Test(expected = BeanCreationException.class)
-	public void whenInstantiating_shouldThrowBCE() throws Exception {
-		ctx.getBean(InvalidInitExampleBean.class);
-	}
+   @Test(expected = BeanCreationException.class)
+   public void whenInstantiating_shouldThrowBCE() throws Exception {
+      ctx.getBean(InvalidInitExampleBean.class);
+   }
 
-	@Test
-	public void whenPostConstruct_shouldLogEnv() throws Exception {
-		ctx.getBean(PostConstructExampleBean.class);
-	}
+   @Test
+   public void whenPostConstruct_shouldLogEnv() throws Exception {
+      ctx.getBean(PostConstructExampleBean.class);
+   }
 
-	@Test
-	public void whenConstructorInjection_shouldLogEnv() throws Exception {
-		ctx.getBean(LogicInConstructorExampleBean.class);
-	}
+   @Test
+   public void whenConstructorInjection_shouldLogEnv() throws Exception {
+      ctx.getBean(LogicInConstructorExampleBean.class);
+   }
 
-	@Test
-	public void whenInitializingBean_shouldLogEnv() throws Exception {
-		ctx.getBean(InitializingBeanExampleBean.class);
-	}
+   @Test
+   public void whenInitializingBean_shouldLogEnv() throws Exception {
+      ctx.getBean(InitializingBeanExampleBean.class);
+   }
 
-	@Test
-	public void whenInitMethod_shouldLogEnv() throws Exception {
-		ctx.getBean(InitMethodExampleBean.class);
-	}
+   @Test
+   public void whenInitMethod_shouldLogEnv() throws Exception {
+      ctx.getBean(InitMethodExampleBean.class);
+   }
 
-	@Test
-	public void whenApplicationListener_shouldRunOnce() throws Exception {
-		Assertions.assertThat(StartupApplicationListenerExample.counter).isEqualTo(1);
-	}
+   @Test
+   public void whenApplicationListener_shouldRunOnce() throws Exception {
+      Assertions.assertThat(StartupApplicationListenerExample.counter).isEqualTo(1);
+   }
 }

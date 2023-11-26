@@ -13,8 +13,8 @@ import org.springframework.context.annotation.PropertySource;
 @EnableAutoConfiguration
 public class Ctx1Config {
 
-    @Bean
-    public HomeService homeService() {
-        return new GreetingService();
-    }
+   @Bean
+   public HomeService homeService() {
+      return new GreetingService();
+   }
 }

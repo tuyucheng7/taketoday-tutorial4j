@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.chooseapi.grpc;
 
-import cn.tuyucheng.taketoday.chooseapi.BooksServiceGrpc;
 import cn.tuyucheng.taketoday.chooseapi.BooksServiceOuterClass;
 import cn.tuyucheng.taketoday.chooseapi.dtos.Book;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,32 +19,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootTest(properties = {
-	"grpc.server.inProcessName=test", // Enable inProcess server
-	"grpc.server.port=-1", // Disable external server
-	"grpc.client.inProcess.address=in-process:test" // Configure the client to connect to the inProcess server
+      "grpc.server.inProcessName=test", // Enable inProcess server
+      "grpc.server.port=-1", // Disable external server
+      "grpc.client.inProcess.address=in-process:test" // Configure the client to connect to the inProcess server
 })
 @SpringJUnitConfig(GrpcIntegrationTestConfig.class)
 @DirtiesContext // Ensures that the grpc-server is properly shutdown after each test
 class BooksServiceGrpcIntegrationTest {
 
-	private static final ObjectMapper objectMapper = new ObjectMapper();
+   private static final ObjectMapper objectMapper = new ObjectMapper();
 
-	@GrpcClient("inProcess")
-	private BooksServiceGrpc.BooksServiceBlockingStub booksServiceGrpc;
+   @GrpcClient("inProcess")
+   private BooksServiceGrpc.BooksServiceBlockingStub booksServiceGrpc;
 
-	@Test
-	@DirtiesContext
-	void givenBooksServiceThatReturnThreeBooks_whenCallingGrpcEndpoint_thenThreeBooksAreReturned() throws IOException, JSONException {
-		Path expectedResponse = Paths.get("src/test/resources/graphql-test/books_expected_response.json");
-		String expectedJson = new String(Files.readAllBytes(expectedResponse));
+   @Test
+   @DirtiesContext
+   void givenBooksServiceThatReturnThreeBooks_whenCallingGrpcEndpoint_thenThreeBooksAreReturned() throws IOException, JSONException {
+      Path expectedResponse = Paths.get("src/test/resources/graphql-test/books_expected_response.json");
+      String expectedJson = new String(Files.readAllBytes(expectedResponse));
 
-		BooksServiceOuterClass.BooksRequest request = BooksServiceOuterClass.BooksRequest.newBuilder().build();
-		BooksServiceOuterClass.BooksResponse response = booksServiceGrpc.books(request);
+      BooksServiceOuterClass.BooksRequest request = BooksServiceOuterClass.BooksRequest.newBuilder().build();
+      BooksServiceOuterClass.BooksResponse response = booksServiceGrpc.books(request);
 
-		List<Book> books = response.getBookList().stream()
-			.map(GrpcBooksMapper::mapProtoToBook)
-			.collect(Collectors.toList());
+      List<Book> books = response.getBookList().stream()
+            .map(GrpcBooksMapper::mapProtoToBook)
+            .collect(Collectors.toList());
 
-		JSONAssert.assertEquals(objectMapper.writeValueAsString(books), expectedJson, true);
-	}
+      JSONAssert.assertEquals(objectMapper.writeValueAsString(books), expectedJson, true);
+   }
 }

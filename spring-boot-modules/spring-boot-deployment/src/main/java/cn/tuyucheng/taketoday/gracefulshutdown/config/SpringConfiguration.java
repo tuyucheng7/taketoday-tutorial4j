@@ -12,21 +12,21 @@ import javax.annotation.PreDestroy;
 @Configuration
 public class SpringConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SpringConfiguration.class);
+   private static final Logger LOG = LoggerFactory.getLogger(SpringConfiguration.class);
 
-    @Bean
-    public TaskExecutor taskExecutor() {
-        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(2);
-        taskExecutor.setMaxPoolSize(2);
-        taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
-        taskExecutor.setAwaitTerminationSeconds(30);
-        taskExecutor.initialize();
-        return taskExecutor;
-    }
+   @Bean
+   public TaskExecutor taskExecutor() {
+      ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+      taskExecutor.setCorePoolSize(2);
+      taskExecutor.setMaxPoolSize(2);
+      taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+      taskExecutor.setAwaitTerminationSeconds(30);
+      taskExecutor.initialize();
+      return taskExecutor;
+   }
 
-    @PreDestroy
-    public void destroy() {
-        LOG.info("Shutdown initiated");
-    }
+   @PreDestroy
+   public void destroy() {
+      LOG.info("Shutdown initiated");
+   }
 }

@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = CollectionProvider.class)
 class CollectionProviderIntegrationTest {
 
-	@Autowired
-	private CollectionProvider collectionProvider;
+   @Autowired
+   private CollectionProvider collectionProvider;
 
-	@Test
-	void givenPropertyFileWhenSetterInjectionUsedThenValueInjected() {
-		assertThat(collectionProvider.getValues()).contains("A", "B", "C");
-	}
+   @Test
+   void givenPropertyFileWhenSetterInjectionUsedThenValueInjected() {
+      assertThat(collectionProvider.getValues()).contains("A", "B", "C");
+   }
 }

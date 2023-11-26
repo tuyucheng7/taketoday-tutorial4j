@@ -9,8 +9,8 @@ import java.util.List;
 @RestController
 public class EmployeeController {
 
-	@GetMapping("/employees")
-	public List<String> getEmployees() {
-		return Collections.singletonList("Adam Johnson");
-	}
+   @GetMapping("/employees")
+   public List<String> getEmployees() {
+      return Collections.singletonList("Adam Johnson");
+   }
 }

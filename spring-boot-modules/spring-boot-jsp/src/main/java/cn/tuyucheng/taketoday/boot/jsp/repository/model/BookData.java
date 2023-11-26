@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookData {
-	private String isbn;
-	private String name;
-	private String author;
+   private String isbn;
+   private String name;
+   private String author;
 }

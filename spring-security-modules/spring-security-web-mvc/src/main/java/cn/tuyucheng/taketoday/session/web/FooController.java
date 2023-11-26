@@ -15,29 +15,29 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(path = "/foo")
 public class FooController {
 
-    @Autowired
-    private Foo theFoo;
+   @Autowired
+   private Foo theFoo;
 
-    @GetMapping(path = "set")
-    public void fooSet(HttpSession session) {
-        session.setAttribute(Constants.FOO, new Foo());
-    }
+   @GetMapping(path = "set")
+   public void fooSet(HttpSession session) {
+      session.setAttribute(Constants.FOO, new Foo());
+   }
 
-    @GetMapping(path = "autowired")
-    public Foo getAutowired() {
-        return new Foo(theFoo);
-    }
+   @GetMapping(path = "autowired")
+   public Foo getAutowired() {
+      return new Foo(theFoo);
+   }
 
-    @GetMapping(path = "inject")
-    public Foo fooInject(HttpSession session) {
-        return (Foo) session.getAttribute(Constants.FOO);
-    }
+   @GetMapping(path = "inject")
+   public Foo fooInject(HttpSession session) {
+      return (Foo) session.getAttribute(Constants.FOO);
+   }
 
-    @GetMapping(path = "raw")
-    public Foo fromRaw() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpSession session = attr.getRequest()
-              .getSession(true);
-        return (Foo) session.getAttribute(Constants.FOO);
-    }
+   @GetMapping(path = "raw")
+   public Foo fromRaw() {
+      ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+      HttpSession session = attr.getRequest()
+            .getSession(true);
+      return (Foo) session.getAttribute(Constants.FOO);
+   }
 }

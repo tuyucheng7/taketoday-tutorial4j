@@ -32,86 +32,86 @@ import java.util.stream.Collectors;
 @PropertySource("application-oauth2.properties")
 public class CustomRequestSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/oauth_login", "/loginFailure", "/")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .oauth2Login()
-              .loginPage("/oauth_login")
-              .authorizationEndpoint()
-              .authorizationRequestResolver(new CustomAuthorizationRequestResolver(clientRegistrationRepository(), "/oauth2/authorize-client"))
-              .baseUri("/oauth2/authorize-client")
-              .authorizationRequestRepository(authorizationRequestRepository())
-              .and()
-              .tokenEndpoint()
-              .accessTokenResponseClient(accessTokenResponseClient())
-              .and()
-              .defaultSuccessUrl("/loginSuccess")
-              .failureUrl("/loginFailure");
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/oauth_login", "/loginFailure", "/")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .oauth2Login()
+            .loginPage("/oauth_login")
+            .authorizationEndpoint()
+            .authorizationRequestResolver(new CustomAuthorizationRequestResolver(clientRegistrationRepository(), "/oauth2/authorize-client"))
+            .baseUri("/oauth2/authorize-client")
+            .authorizationRequestRepository(authorizationRequestRepository())
+            .and()
+            .tokenEndpoint()
+            .accessTokenResponseClient(accessTokenResponseClient())
+            .and()
+            .defaultSuccessUrl("/loginSuccess")
+            .failureUrl("/loginFailure");
+      return http.build();
+   }
 
-    @Bean
-    public AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository() {
-        return new HttpSessionOAuth2AuthorizationRequestRepository();
-    }
+   @Bean
+   public AuthorizationRequestRepository<OAuth2AuthorizationRequest> authorizationRequestRepository() {
+      return new HttpSessionOAuth2AuthorizationRequestRepository();
+   }
 
-    @Bean
-    public OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient() {
-        DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient = new DefaultAuthorizationCodeTokenResponseClient();
-        accessTokenResponseClient.setRequestEntityConverter(new CustomRequestEntityConverter());
+   @Bean
+   public OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient() {
+      DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient = new DefaultAuthorizationCodeTokenResponseClient();
+      accessTokenResponseClient.setRequestEntityConverter(new CustomRequestEntityConverter());
 
-        OAuth2AccessTokenResponseHttpMessageConverter tokenResponseHttpMessageConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
-        tokenResponseHttpMessageConverter.setTokenResponseConverter(new CustomTokenResponseConverter());
-        RestTemplate restTemplate = new RestTemplate(Arrays.asList(new FormHttpMessageConverter(), tokenResponseHttpMessageConverter));
-        restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
-        accessTokenResponseClient.setRestOperations(restTemplate);
-        return accessTokenResponseClient;
-    }
+      OAuth2AccessTokenResponseHttpMessageConverter tokenResponseHttpMessageConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
+      tokenResponseHttpMessageConverter.setTokenResponseConverter(new CustomTokenResponseConverter());
+      RestTemplate restTemplate = new RestTemplate(Arrays.asList(new FormHttpMessageConverter(), tokenResponseHttpMessageConverter));
+      restTemplate.setErrorHandler(new OAuth2ErrorResponseErrorHandler());
+      accessTokenResponseClient.setRestOperations(restTemplate);
+      return accessTokenResponseClient;
+   }
 
 
-    // additional configuration for non-Spring Boot projects
-    private static List<String> clients = Arrays.asList("google", "facebook");
+   // additional configuration for non-Spring Boot projects
+   private static List<String> clients = Arrays.asList("google", "facebook");
 
-    //@Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        List<ClientRegistration> registrations = clients.stream()
-              .map(c -> getRegistration(c))
-              .filter(registration -> registration != null)
-              .collect(Collectors.toList());
+   //@Bean
+   public ClientRegistrationRepository clientRegistrationRepository() {
+      List<ClientRegistration> registrations = clients.stream()
+            .map(c -> getRegistration(c))
+            .filter(registration -> registration != null)
+            .collect(Collectors.toList());
 
-        return new InMemoryClientRegistrationRepository(registrations);
-    }
+      return new InMemoryClientRegistrationRepository(registrations);
+   }
 
-    private static String CLIENT_PROPERTY_KEY = "spring.security.oauth2.client.registration.";
+   private static String CLIENT_PROPERTY_KEY = "spring.security.oauth2.client.registration.";
 
-    @Autowired
-    private Environment env;
+   @Autowired
+   private Environment env;
 
-    private ClientRegistration getRegistration(String client) {
-        String clientId = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-id");
+   private ClientRegistration getRegistration(String client) {
+      String clientId = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-id");
 
-        if (clientId == null) {
-            return null;
-        }
+      if (clientId == null) {
+         return null;
+      }
 
-        String clientSecret = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-secret");
-        if (client.equals("google")) {
-            return CommonOAuth2Provider.GOOGLE.getBuilder(client)
-                  .clientId(clientId)
-                  .clientSecret(clientSecret)
-                  .build();
-        }
-        if (client.equals("facebook")) {
-            return CommonOAuth2Provider.FACEBOOK.getBuilder(client)
-                  .clientId(clientId)
-                  .clientSecret(clientSecret)
-                  .build();
-        }
-        return null;
-    }
+      String clientSecret = env.getProperty(CLIENT_PROPERTY_KEY + client + ".client-secret");
+      if (client.equals("google")) {
+         return CommonOAuth2Provider.GOOGLE.getBuilder(client)
+               .clientId(clientId)
+               .clientSecret(clientSecret)
+               .build();
+      }
+      if (client.equals("facebook")) {
+         return CommonOAuth2Provider.FACEBOOK.getBuilder(client)
+               .clientId(clientId)
+               .clientSecret(clientSecret)
+               .build();
+      }
+      return null;
+   }
 }

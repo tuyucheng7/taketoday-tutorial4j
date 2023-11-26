@@ -15,18 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/rest")
 public class RestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestController.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(RestController.class);
 
-    @GetMapping
-    public ResponseEntity<Void> get(HttpServletRequest request) {
-        CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-        LOGGER.info("{}={}", token.getHeaderName(), token.getToken());
-        return ResponseEntity.ok().build();
-    }
+   @GetMapping
+   public ResponseEntity<Void> get(HttpServletRequest request) {
+      CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+      LOGGER.info("{}={}", token.getHeaderName(), token.getToken());
+      return ResponseEntity.ok().build();
+   }
 
-    @PostMapping
-    public ResponseEntity<Void> post(HttpServletRequest request) {
-        // Same impl as GET for testing purpose
-        return this.get(request);
-    }
+   @PostMapping
+   public ResponseEntity<Void> post(HttpServletRequest request) {
+      // Same impl as GET for testing purpose
+      return this.get(request);
+   }
 }

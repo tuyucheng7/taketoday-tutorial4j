@@ -17,40 +17,40 @@ import java.util.List;
 
 public class ClientErrorLoggingFilter extends GenericFilterBean {
 
-    private static final Logger logger = LogManager.getLogger(ClientErrorLoggingFilter.class);
+   private static final Logger logger = LogManager.getLogger(ClientErrorLoggingFilter.class);
 
-    private List<HttpStatus> errorCodes;
+   private List<HttpStatus> errorCodes;
 
-    public ClientErrorLoggingFilter(List<HttpStatus> errorCodes) {
-        this.errorCodes = errorCodes;
-    }
+   public ClientErrorLoggingFilter(List<HttpStatus> errorCodes) {
+      this.errorCodes = errorCodes;
+   }
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+   @Override
+   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        Authentication auth = SecurityContextHolder.getContext()
-              .getAuthentication();
+      Authentication auth = SecurityContextHolder.getContext()
+            .getAuthentication();
 
-        if (auth == null) {
-            chain.doFilter(request, response);
-            return;
-        }
-        int status = ((HttpServletResponse) response).getStatus();
-        if (status < 400 || status >= 500) {
-            chain.doFilter(request, response);
-            return;
-        }
+      if (auth == null) {
+         chain.doFilter(request, response);
+         return;
+      }
+      int status = ((HttpServletResponse) response).getStatus();
+      if (status < 400 || status >= 500) {
+         chain.doFilter(request, response);
+         return;
+      }
 
-        if (errorCodes == null) {
+      if (errorCodes == null) {
+         logger.debug("User " + auth.getName() + " encountered error " + status);
+      } else {
+         if (errorCodes.stream()
+               .anyMatch(s -> s.value() == status)) {
             logger.debug("User " + auth.getName() + " encountered error " + status);
-        } else {
-            if (errorCodes.stream()
-                  .anyMatch(s -> s.value() == status)) {
-                logger.debug("User " + auth.getName() + " encountered error " + status);
-            }
-        }
+         }
+      }
 
-        chain.doFilter(request, response);
-    }
+      chain.doFilter(request, response);
+   }
 
 }

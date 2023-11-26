@@ -16,12 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(locations = "/test-context.xml")
 public class EmployeeServiceTestContextIntegrationTest {
 
-	@Autowired
-	@Qualifier("employeeServiceTestImpl")
-	private EmployeeService serviceTest;
+   @Autowired
+   @Qualifier("employeeServiceTestImpl")
+   private EmployeeService serviceTest;
 
-	@Test
-	public void whenTestContextLoads_thenServiceTestISNotNull() {
-		assertThat(serviceTest).isNotNull();
-	}
+   @Test
+   public void whenTestContextLoads_thenServiceTestISNotNull() {
+      assertThat(serviceTest).isNotNull();
+   }
 }

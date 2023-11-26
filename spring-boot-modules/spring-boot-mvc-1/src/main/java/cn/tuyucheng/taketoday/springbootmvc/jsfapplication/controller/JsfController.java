@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 @Component(value = "jsfController")
 public class JsfController {
 
-	public String loadTodoPage() {
-		checkPermission();
-		return "/todo.xhtml";
-	}
+   public String loadTodoPage() {
+      checkPermission();
+      return "/todo.xhtml";
+   }
 
-	private void checkPermission() {
-		// Details omitted
-	}
+   private void checkPermission() {
+      // Details omitted
+   }
 }

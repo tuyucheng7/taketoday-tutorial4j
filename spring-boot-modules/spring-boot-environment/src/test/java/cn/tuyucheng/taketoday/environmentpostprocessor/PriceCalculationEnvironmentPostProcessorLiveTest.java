@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = PriceCalculationApplication.class)
 class PriceCalculationEnvironmentPostProcessorLiveTest {
 
-    @Autowired
-    PriceCalculationService pcService;
+   @Autowired
+   PriceCalculationService pcService;
 
-    @Test
-    void whenSetNetEnvironmentVariablebyDefault_thenNoTaxApplied() {
-        double total = pcService.productTotalPrice(100, 4);
-        assertEquals(400.0, total, 0);
-    }
+   @Test
+   void whenSetNetEnvironmentVariablebyDefault_thenNoTaxApplied() {
+      double total = pcService.productTotalPrice(100, 4);
+      assertEquals(400.0, total, 0);
+   }
 }

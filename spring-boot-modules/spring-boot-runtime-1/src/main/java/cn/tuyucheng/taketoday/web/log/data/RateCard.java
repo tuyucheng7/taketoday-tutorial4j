@@ -2,28 +2,28 @@ package cn.tuyucheng.taketoday.web.log.data;
 
 public class RateCard {
 
-	private String nightSurcharge;
-	private String ratePerMile;
+   private String nightSurcharge;
+   private String ratePerMile;
 
-	public RateCard() {
-		nightSurcharge = "Extra $ 100";
-		ratePerMile = "$ 10 Per Mile";
-	}
+   public RateCard() {
+      nightSurcharge = "Extra $ 100";
+      ratePerMile = "$ 10 Per Mile";
+   }
 
 
-	public String getNightSurcharge() {
-		return nightSurcharge;
-	}
+   public String getNightSurcharge() {
+      return nightSurcharge;
+   }
 
-	public void setNightSurcharge(String nightSurcharge) {
-		this.nightSurcharge = nightSurcharge;
-	}
+   public void setNightSurcharge(String nightSurcharge) {
+      this.nightSurcharge = nightSurcharge;
+   }
 
-	public String getRatePerMile() {
-		return ratePerMile;
-	}
+   public String getRatePerMile() {
+      return ratePerMile;
+   }
 
-	public void setRatePerMile(String ratePerMile) {
-		this.ratePerMile = ratePerMile;
-	}
+   public void setRatePerMile(String ratePerMile) {
+      this.ratePerMile = ratePerMile;
+   }
 }

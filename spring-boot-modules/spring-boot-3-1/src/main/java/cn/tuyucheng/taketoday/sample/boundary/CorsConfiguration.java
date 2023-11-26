@@ -7,15 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import static java.util.Arrays.stream;
-import static org.springframework.http.HttpHeaders.ACCEPT;
-import static org.springframework.http.HttpHeaders.ACCEPT_LANGUAGE;
-import static org.springframework.http.HttpHeaders.CONTENT_LANGUAGE;
-import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
-import static org.springframework.http.HttpHeaders.IF_MATCH;
-import static org.springframework.http.HttpHeaders.IF_NONE_MATCH;
-import static org.springframework.http.HttpHeaders.LINK;
-import static org.springframework.http.HttpHeaders.LOCATION;
-import static org.springframework.http.HttpHeaders.ORIGIN;
+import static org.springframework.http.HttpHeaders.*;
 
 @Configuration
 public class CorsConfiguration {

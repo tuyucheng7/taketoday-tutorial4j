@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class PriceCalculationService {
 
-	@Autowired
-	PriceCalculator priceCalculator;
+   @Autowired
+   PriceCalculator priceCalculator;
 
-	public double productTotalPrice(double singlePrice, int quantity) {
-		return priceCalculator.calculate(singlePrice, quantity);
-	}
+   public double productTotalPrice(double singlePrice, int quantity) {
+      return priceCalculator.calculate(singlePrice, quantity);
+   }
 }

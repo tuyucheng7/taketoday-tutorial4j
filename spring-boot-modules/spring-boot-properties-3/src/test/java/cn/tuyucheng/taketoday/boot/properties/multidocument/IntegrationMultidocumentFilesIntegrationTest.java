@@ -13,19 +13,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("multidocument-integration")
 class IntegrationMultidocumentFilesIntegrationTest {
 
-	@Value("${tuyucheng.property}")
-	private String tuyuchengCustomProperty;
+   @Value("${tuyucheng.property}")
+   private String tuyuchengCustomProperty;
 
-	@Value("${tuyucheng.otherProperty}")
-	private String tuyuchengCustomOtherProperty;
+   @Value("${tuyucheng.otherProperty}")
+   private String tuyuchengCustomOtherProperty;
 
-	@Value("${tuyucheng.root-level-property}")
-	private String tuyuchengRootProperty;
+   @Value("${tuyucheng.root-level-property}")
+   private String tuyuchengRootProperty;
 
-	@Test
-	void givenProductionProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
-		assertThat(tuyuchengCustomProperty).isEqualTo("integrationValue");
-		assertThat(tuyuchengCustomOtherProperty).isEqualTo("integrationExtensionOtherValue");
-		assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
-	}
+   @Test
+   void givenProductionProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
+      assertThat(tuyuchengCustomProperty).isEqualTo("integrationValue");
+      assertThat(tuyuchengCustomOtherProperty).isEqualTo("integrationExtensionOtherValue");
+      assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
+   }
 }

@@ -16,20 +16,20 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 @ActiveProfiles("test")
 public class FooDiscoverabilityLiveTest extends AbstractDiscoverabilityLiveTest<Foo> {
 
-	public FooDiscoverabilityLiveTest() {
-		super(Foo.class);
-	}
+   public FooDiscoverabilityLiveTest() {
+      super(Foo.class);
+   }
 
-	// API
+   // API
 
-	@Override
-	public final void create() {
-		create(new Foo(randomAlphabetic(6)));
-	}
+   @Override
+   public final void create() {
+      create(new Foo(randomAlphabetic(6)));
+   }
 
-	@Override
-	public final String createAsUri() {
-		return createAsUri(new Foo(randomAlphabetic(6)));
-	}
+   @Override
+   public final String createAsUri() {
+      return createAsUri(new Foo(randomAlphabetic(6)));
+   }
 
 }

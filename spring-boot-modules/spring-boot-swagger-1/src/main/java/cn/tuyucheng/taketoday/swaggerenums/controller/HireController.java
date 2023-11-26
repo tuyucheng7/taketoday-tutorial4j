@@ -14,9 +14,9 @@ import javax.ws.rs.Produces;
 @Produces({"application/json"})
 public class HireController {
 
-	@POST
-	@ApiOperation(value = "This method is used to hire employee with a specific role")
-	public String hireEmployee(@ApiParam(value = "role", required = true) Employee employee) {
-		return String.format("Hired for role: %s", employee.role.name());
-	}
+   @POST
+   @ApiOperation(value = "This method is used to hire employee with a specific role")
+   public String hireEmployee(@ApiParam(value = "role", required = true) Employee employee) {
+      return String.format("Hired for role: %s", employee.role.name());
+   }
 }

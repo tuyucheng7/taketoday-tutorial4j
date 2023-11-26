@@ -17,28 +17,28 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomerResponse {
 
-	private Integer id;
+   private Integer id;
 
-	private String fullName;
+   private String fullName;
 
-	private String phoneNumber;
+   private String phoneNumber;
 
-	private LocalDate createdAt;
+   private LocalDate createdAt;
 
-	private AddressResponse addressResponse;
+   private AddressResponse addressResponse;
 
-	private LoyaltyResponse loyaltyResponse;
+   private LoyaltyResponse loyaltyResponse;
 
-	private List<FinancialResponse> financialResponses;
+   private List<FinancialResponse> financialResponses;
 
-	private List<PurchaseTransactionResponse> purchaseTransactions;
+   private List<PurchaseTransactionResponse> purchaseTransactions;
 
-	public static CustomerResponse valueOf(CustomerEntity customer) {
-		return builder()
-			.id(customer.getId())
-			.fullName(customer.getFullName())
-			.phoneNumber(customer.getPhoneNumber())
-			.createdAt(customer.getCreatedAt())
-			.build();
-	}
+   public static CustomerResponse valueOf(CustomerEntity customer) {
+      return builder()
+            .id(customer.getId())
+            .fullName(customer.getFullName())
+            .phoneNumber(customer.getPhoneNumber())
+            .createdAt(customer.getCreatedAt())
+            .build();
+   }
 }

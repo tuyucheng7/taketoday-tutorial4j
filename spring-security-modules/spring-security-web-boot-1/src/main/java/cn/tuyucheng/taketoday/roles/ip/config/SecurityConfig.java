@@ -15,24 +15,24 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private CustomIpAuthenticationProvider authenticationProvider;
+   @Autowired
+   private CustomIpAuthenticationProvider authenticationProvider;
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService(HttpSecurity http) throws Exception {
-        UserDetails user = User.withUsername("john")
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(HttpSecurity http) throws Exception {
+      UserDetails user = User.withUsername("john")
             .password("{noop}123")
             .authorities("ROLE_USER")
             .build();
-        http.getSharedObject(AuthenticationManagerBuilder.class)
+      http.getSharedObject(AuthenticationManagerBuilder.class)
             .authenticationProvider(authenticationProvider)
             .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+      return new InMemoryUserDetailsManager(user);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
             .antMatchers("/login")
             .permitAll()
             .antMatchers("/foos/**")
@@ -45,6 +45,6 @@ public class SecurityConfig {
             .and()
             .csrf()
             .disable();
-        return http.build();
-    }
+      return http.build();
+   }
 }

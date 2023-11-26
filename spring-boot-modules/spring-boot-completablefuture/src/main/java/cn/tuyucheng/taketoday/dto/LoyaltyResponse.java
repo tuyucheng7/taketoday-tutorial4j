@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoyaltyResponse {
 
-	private Long points;
+   private Long points;
 }

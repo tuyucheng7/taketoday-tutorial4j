@@ -10,20 +10,20 @@ import org.springframework.stereotype.Component;
 @DependsOn("engine")
 public class Car implements Vehicle {
 
-	@Autowired
-	private Engine engine;
+   @Autowired
+   private Engine engine;
 
-	@Autowired
-	public Car(Engine engine) {
-		this.engine = engine;
-	}
+   @Autowired
+   public Car(Engine engine) {
+      this.engine = engine;
+   }
 
-	@Autowired
-	public void setEngine(Engine engine) {
-		this.engine = engine;
-	}
+   @Autowired
+   public void setEngine(Engine engine) {
+      this.engine = engine;
+   }
 
-	public Engine getEngine() {
-		return engine;
-	}
+   public Engine getEngine() {
+      return engine;
+   }
 }

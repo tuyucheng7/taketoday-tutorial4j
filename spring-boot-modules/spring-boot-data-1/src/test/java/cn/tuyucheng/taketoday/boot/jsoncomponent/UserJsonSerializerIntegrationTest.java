@@ -15,12 +15,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 public class UserJsonSerializerIntegrationTest {
 
-	@Autowired
-	private ObjectMapper objectMapper;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-	@Test
-	public void testSerialization() throws JsonProcessingException {
-		String json = objectMapper.writeValueAsString(new User(Color.ALICEBLUE));
-		assertEquals("{\"favoriteColor\":\"#f0f8ff\"}", json);
-	}
+   @Test
+   public void testSerialization() throws JsonProcessingException {
+      String json = objectMapper.writeValueAsString(new User(Color.ALICEBLUE));
+      assertEquals("{\"favoriteColor\":\"#f0f8ff\"}", json);
+   }
 }

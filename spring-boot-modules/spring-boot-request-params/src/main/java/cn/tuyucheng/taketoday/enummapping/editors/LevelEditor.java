@@ -8,12 +8,12 @@ import java.beans.PropertyEditorSupport;
 
 public class LevelEditor extends PropertyEditorSupport {
 
-	@Override
-	public void setAsText(String text) {
-		if (StringUtils.isBlank(text)) {
-			setValue(null);
-		} else {
-			setValue(EnumUtils.getEnum(Level.class, text.toUpperCase()));
-		}
-	}
+   @Override
+   public void setAsText(String text) {
+      if (StringUtils.isBlank(text)) {
+         setValue(null);
+      } else {
+         setValue(EnumUtils.getEnum(Level.class, text.toUpperCase()));
+      }
+   }
 }

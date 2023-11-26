@@ -11,29 +11,29 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddressResponse {
 
-	private String id;
+   private String id;
 
-	private String street;
+   private String street;
 
-	private String streetNumber;
+   private String streetNumber;
 
-	private String city;
+   private String city;
 
-	private String state;
+   private String state;
 
-	private String zipCode;
+   private String zipCode;
 
-	private String country;
+   private String country;
 
-	public static AddressResponse valueOf(Address address) {
-		return AddressResponse.builder()
-			.id(address.getId())
-			.street(address.getStreet())
-			.streetNumber(address.getStreetNumber())
-			.city(address.getCity())
-			.state(address.getState())
-			.zipCode(address.getZipCode())
-			.country(address.getCountry())
-			.build();
-	}
+   public static AddressResponse valueOf(Address address) {
+      return AddressResponse.builder()
+            .id(address.getId())
+            .street(address.getStreet())
+            .streetNumber(address.getStreetNumber())
+            .city(address.getCity())
+            .state(address.getState())
+            .zipCode(address.getZipCode())
+            .country(address.getCountry())
+            .build();
+   }
 }

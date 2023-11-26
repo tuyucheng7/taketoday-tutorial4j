@@ -33,77 +33,77 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class SpringBatchRetryConfig {
 
-	private static final String[] tokens = {"username", "userid", "transactiondate", "amount"};
-	private static final int TWO_SECONDS = 2000;
+   private static final String[] tokens = {"username", "userid", "transactiondate", "amount"};
+   private static final int TWO_SECONDS = 2000;
 
-	@Value("input/recordRetry.csv")
-	private Resource inputCsv;
+   @Value("input/recordRetry.csv")
+   private Resource inputCsv;
 
-	@Value("file:xml/retryOutput.xml")
-	private WritableResource outputXml;
+   @Value("file:xml/retryOutput.xml")
+   private WritableResource outputXml;
 
-	public ItemReader<Transaction> itemReader(Resource inputData) {
-		DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
-		tokenizer.setNames(tokens);
-		DefaultLineMapper<Transaction> lineMapper = new DefaultLineMapper<>();
-		lineMapper.setLineTokenizer(tokenizer);
-		lineMapper.setFieldSetMapper(new RecordFieldSetMapper());
-		FlatFileItemReader<Transaction> reader = new FlatFileItemReader<>();
-		reader.setResource(inputData);
-		reader.setLinesToSkip(1);
-		reader.setLineMapper(lineMapper);
-		return reader;
-	}
+   public ItemReader<Transaction> itemReader(Resource inputData) {
+      DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
+      tokenizer.setNames(tokens);
+      DefaultLineMapper<Transaction> lineMapper = new DefaultLineMapper<>();
+      lineMapper.setLineTokenizer(tokenizer);
+      lineMapper.setFieldSetMapper(new RecordFieldSetMapper());
+      FlatFileItemReader<Transaction> reader = new FlatFileItemReader<>();
+      reader.setResource(inputData);
+      reader.setLinesToSkip(1);
+      reader.setLineMapper(lineMapper);
+      return reader;
+   }
 
-	@Bean
-	public CloseableHttpClient closeableHttpClient() {
-		final RequestConfig config = RequestConfig.custom()
-			.setConnectTimeout(TWO_SECONDS)
-			.build();
-		return HttpClientBuilder.create().setDefaultRequestConfig(config).build();
-	}
+   @Bean
+   public CloseableHttpClient closeableHttpClient() {
+      final RequestConfig config = RequestConfig.custom()
+            .setConnectTimeout(TWO_SECONDS)
+            .build();
+      return HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+   }
 
-	@Bean
-	public ItemProcessor<Transaction, Transaction> retryItemProcessor() {
-		return new RetryItemProcessor();
-	}
+   @Bean
+   public ItemProcessor<Transaction, Transaction> retryItemProcessor() {
+      return new RetryItemProcessor();
+   }
 
-	@Bean
-	public ItemWriter<Transaction> itemWriter(Marshaller marshaller) {
-		StaxEventItemWriter<Transaction> itemWriter = new StaxEventItemWriter<>();
-		itemWriter.setMarshaller(marshaller);
-		itemWriter.setRootTagName("transactionRecord");
-		itemWriter.setResource(outputXml);
-		return itemWriter;
-	}
+   @Bean
+   public ItemWriter<Transaction> itemWriter(Marshaller marshaller) {
+      StaxEventItemWriter<Transaction> itemWriter = new StaxEventItemWriter<>();
+      itemWriter.setMarshaller(marshaller);
+      itemWriter.setRootTagName("transactionRecord");
+      itemWriter.setResource(outputXml);
+      return itemWriter;
+   }
 
-	@Bean
-	public Marshaller marshaller() {
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(Transaction.class);
-		return marshaller;
-	}
+   @Bean
+   public Marshaller marshaller() {
+      Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+      marshaller.setClassesToBeBound(Transaction.class);
+      return marshaller;
+   }
 
-	@Bean
-	public Step retryStep(
-		JobRepository jobRepository, PlatformTransactionManager transactionManager, @Qualifier("retryItemProcessor") ItemProcessor<Transaction, Transaction> processor,
-		ItemWriter<Transaction> writer) {
-		return new StepBuilder("retryStep", jobRepository)
-			.<Transaction, Transaction>chunk(10, transactionManager)
-			.reader(itemReader(inputCsv))
-			.processor(processor)
-			.writer(writer)
-			.faultTolerant()
-			.retryLimit(3)
-			.retry(ConnectTimeoutException.class)
-			.retry(DeadlockLoserDataAccessException.class)
-			.build();
-	}
+   @Bean
+   public Step retryStep(
+         JobRepository jobRepository, PlatformTransactionManager transactionManager, @Qualifier("retryItemProcessor") ItemProcessor<Transaction, Transaction> processor,
+         ItemWriter<Transaction> writer) {
+      return new StepBuilder("retryStep", jobRepository)
+            .<Transaction, Transaction>chunk(10, transactionManager)
+            .reader(itemReader(inputCsv))
+            .processor(processor)
+            .writer(writer)
+            .faultTolerant()
+            .retryLimit(3)
+            .retry(ConnectTimeoutException.class)
+            .retry(DeadlockLoserDataAccessException.class)
+            .build();
+   }
 
-	@Bean(name = "retryBatchJob")
-	public Job retryJob(JobRepository jobRepository, @Qualifier("retryStep") Step retryStep) {
-		return new JobBuilder("retryBatchJob", jobRepository)
-			.start(retryStep)
-			.build();
-	}
+   @Bean(name = "retryBatchJob")
+   public Job retryJob(JobRepository jobRepository, @Qualifier("retryStep") Step retryStep) {
+      return new JobBuilder("retryBatchJob", jobRepository)
+            .start(retryStep)
+            .build();
+   }
 }

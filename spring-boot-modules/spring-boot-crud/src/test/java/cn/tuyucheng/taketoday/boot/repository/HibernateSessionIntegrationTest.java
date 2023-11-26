@@ -14,17 +14,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @Transactional
 class HibernateSessionIntegrationTest extends DemoApplicationIntegrationTest {
 
-    @Autowired
-    private FooRepository fooRepository;
+   @Autowired
+   private FooRepository fooRepository;
 
-    @Test
-    void whenSavingWithCurrentSession_thenThrowNoException() {
-        fooRepository.save(new Foo("Exception Solved"));
+   @Test
+   void whenSavingWithCurrentSession_thenThrowNoException() {
+      fooRepository.save(new Foo("Exception Solved"));
 
-        Foo foo = fooRepository.findByName("Exception Solved");
+      Foo foo = fooRepository.findByName("Exception Solved");
 
-        assertThat(foo, notNullValue());
-        assertThat(foo.getId(), notNullValue());
-        assertThat(foo.getName(), is("Exception Solved"));
-    }
+      assertThat(foo, notNullValue());
+      assertThat(foo.getId(), notNullValue());
+      assertThat(foo.getName(), is("Exception Solved"));
+   }
 }

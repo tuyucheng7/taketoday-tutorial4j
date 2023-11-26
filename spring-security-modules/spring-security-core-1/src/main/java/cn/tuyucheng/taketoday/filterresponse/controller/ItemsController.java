@@ -10,9 +10,9 @@ import java.util.Collection;
 @RestController
 public class ItemsController {
 
-    @RequestMapping("/items")
-    public Collection<Item> getItems() {
-        return Arrays.asList(new Item(1, "Item 1", "Frank"), new Item(2, "Item 2", "Bob"));
-    }
+   @RequestMapping("/items")
+   public Collection<Item> getItems() {
+      return Arrays.asList(new Item(1, "Item 1", "Frank"), new Item(2, "Item 2", "Bob"));
+   }
 
 }

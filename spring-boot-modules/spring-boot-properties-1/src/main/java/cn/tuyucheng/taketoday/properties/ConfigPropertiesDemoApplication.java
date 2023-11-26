@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = {ConfigProperties.class, AdditionalProperties.class})
 public class ConfigPropertiesDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ConfigPropertiesDemoApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ConfigPropertiesDemoApplication.class, args);
+   }
 }

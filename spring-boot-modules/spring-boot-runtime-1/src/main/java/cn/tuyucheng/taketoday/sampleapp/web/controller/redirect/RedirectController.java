@@ -17,51 +17,51 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class RedirectController {
 
-	@RequestMapping(value = "/redirectWithXMLConfig", method = RequestMethod.GET)
-	public ModelAndView redirectWithUsingXMLConfig(final ModelMap model) {
-		model.addAttribute("attribute", "redirectWithXMLConfig");
-		return new ModelAndView("RedirectedUrl", model);
-	}
+   @RequestMapping(value = "/redirectWithXMLConfig", method = RequestMethod.GET)
+   public ModelAndView redirectWithUsingXMLConfig(final ModelMap model) {
+      model.addAttribute("attribute", "redirectWithXMLConfig");
+      return new ModelAndView("RedirectedUrl", model);
+   }
 
-	@RequestMapping(value = "/redirectWithRedirectPrefix", method = RequestMethod.GET)
-	public ModelAndView redirectWithUsingRedirectPrefix(final ModelMap model) {
-		model.addAttribute("attribute", "redirectWithRedirectPrefix");
-		return new ModelAndView("redirect:/redirectedUrl", model);
-	}
+   @RequestMapping(value = "/redirectWithRedirectPrefix", method = RequestMethod.GET)
+   public ModelAndView redirectWithUsingRedirectPrefix(final ModelMap model) {
+      model.addAttribute("attribute", "redirectWithRedirectPrefix");
+      return new ModelAndView("redirect:/redirectedUrl", model);
+   }
 
-	@RequestMapping(value = "/redirectWithRedirectAttributes", method = RequestMethod.GET)
-	public RedirectView redirectWithRedirectAttributes(final RedirectAttributes redirectAttributes) {
-		redirectAttributes.addFlashAttribute("flashAttribute", "redirectWithRedirectAttributes");
-		redirectAttributes.addAttribute("attribute", "redirectWithRedirectAttributes");
-		return new RedirectView("redirectedUrl");
-	}
+   @RequestMapping(value = "/redirectWithRedirectAttributes", method = RequestMethod.GET)
+   public RedirectView redirectWithRedirectAttributes(final RedirectAttributes redirectAttributes) {
+      redirectAttributes.addFlashAttribute("flashAttribute", "redirectWithRedirectAttributes");
+      redirectAttributes.addAttribute("attribute", "redirectWithRedirectAttributes");
+      return new RedirectView("redirectedUrl");
+   }
 
-	@RequestMapping(value = "/redirectWithRedirectView", method = RequestMethod.GET)
-	public RedirectView redirectWithUsingRedirectView(final ModelMap model) {
-		model.addAttribute("attribute", "redirectWithRedirectView");
-		return new RedirectView("redirectedUrl");
-	}
+   @RequestMapping(value = "/redirectWithRedirectView", method = RequestMethod.GET)
+   public RedirectView redirectWithUsingRedirectView(final ModelMap model) {
+      model.addAttribute("attribute", "redirectWithRedirectView");
+      return new RedirectView("redirectedUrl");
+   }
 
-	@RequestMapping(value = "/forwardWithForwardPrefix", method = RequestMethod.GET)
-	public ModelAndView forwardWithUsingForwardPrefix(final ModelMap model) {
-		model.addAttribute("attribute", "redirectWithForwardPrefix");
-		return new ModelAndView("forward:/redirectedUrl", model);
-	}
+   @RequestMapping(value = "/forwardWithForwardPrefix", method = RequestMethod.GET)
+   public ModelAndView forwardWithUsingForwardPrefix(final ModelMap model) {
+      model.addAttribute("attribute", "redirectWithForwardPrefix");
+      return new ModelAndView("forward:/redirectedUrl", model);
+   }
 
-	@RequestMapping(value = "/redirectedUrl", method = RequestMethod.GET)
-	public ModelAndView redirection(final ModelMap model, @ModelAttribute("flashAttribute") final Object flashAttribute) {
-		model.addAttribute("redirectionAttribute", flashAttribute);
-		return new ModelAndView("redirection", model);
-	}
+   @RequestMapping(value = "/redirectedUrl", method = RequestMethod.GET)
+   public ModelAndView redirection(final ModelMap model, @ModelAttribute("flashAttribute") final Object flashAttribute) {
+      model.addAttribute("redirectionAttribute", flashAttribute);
+      return new ModelAndView("redirection", model);
+   }
 
-	@RequestMapping(value = "/redirectPostToPost", method = RequestMethod.POST)
-	public ModelAndView redirectPostToPost(HttpServletRequest request) {
-		request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-		return new ModelAndView("redirect:/redirectedPostToPost");
-	}
+   @RequestMapping(value = "/redirectPostToPost", method = RequestMethod.POST)
+   public ModelAndView redirectPostToPost(HttpServletRequest request) {
+      request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+      return new ModelAndView("redirect:/redirectedPostToPost");
+   }
 
-	@RequestMapping(value = "/redirectedPostToPost", method = RequestMethod.POST)
-	public ModelAndView redirectedPostToPost() {
-		return new ModelAndView("redirection");
-	}
+   @RequestMapping(value = "/redirectedPostToPost", method = RequestMethod.POST)
+   public ModelAndView redirectedPostToPost() {
+      return new ModelAndView("redirection");
+   }
 }

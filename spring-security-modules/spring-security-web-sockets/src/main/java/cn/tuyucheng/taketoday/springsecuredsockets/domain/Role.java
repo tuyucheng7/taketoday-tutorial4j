@@ -1,58 +1,51 @@
 package cn.tuyucheng.taketoday.springsecuredsockets.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "role")
 public class Role {
 
-    @Id
-    // Slight increase in performance over GenerationType.IDENTITY
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id", updatable = false, nullable = false)
-    private long role_id;
+   @Id
+   // Slight increase in performance over GenerationType.IDENTITY
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "role_id", updatable = false, nullable = false)
+   private long role_id;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+   @Column(name = "role", nullable = false)
+   private String role;
 
-    /**
-     * Many to Many Example - see Role.
-     * <p>
-     * One User many have many Roles.
-     * Each Role may be assigned to many Users.
-     */
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    private Set<User> users;
+   /**
+    * Many to Many Example - see Role.
+    * <p>
+    * One User many have many Roles.
+    * Each Role may be assigned to many Users.
+    */
+   @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+   private Set<User> users;
 
-    public long getRole_id() {
-        return role_id;
-    }
+   public long getRole_id() {
+      return role_id;
+   }
 
-    public void setRole_id(long role_id) {
-        this.role_id = role_id;
-    }
+   public void setRole_id(long role_id) {
+      this.role_id = role_id;
+   }
 
-    public String getRole() {
-        return role;
-    }
+   public String getRole() {
+      return role;
+   }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+   public void setRole(String role) {
+      this.role = role;
+   }
 
-    public Set<User> getUsers() {
-        return users;
-    }
+   public Set<User> getUsers() {
+      return users;
+   }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+   public void setUsers(Set<User> users) {
+      this.users = users;
+   }
 }

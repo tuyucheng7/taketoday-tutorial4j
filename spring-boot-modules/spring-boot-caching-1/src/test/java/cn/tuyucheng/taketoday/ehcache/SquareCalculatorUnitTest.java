@@ -12,34 +12,34 @@ import static org.junit.Assert.assertTrue;
 
 public class SquareCalculatorUnitTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SquareCalculatorUnitTest.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(SquareCalculatorUnitTest.class);
 
-	private final SquaredCalculator squaredCalculator = new SquaredCalculator();
-	private final CacheHelper cacheHelper = new CacheHelper();
+   private final SquaredCalculator squaredCalculator = new SquaredCalculator();
+   private final CacheHelper cacheHelper = new CacheHelper();
 
-	@Before
-	public void setup() {
-		squaredCalculator.setCache(cacheHelper);
-	}
+   @Before
+   public void setup() {
+      squaredCalculator.setCache(cacheHelper);
+   }
 
-	@Test
-	public void whenCalculatingSquareValueOnce_thenCacheDontHaveValues() {
-		for (int i = 10; i < 15; i++) {
-			assertFalse(cacheHelper.getSquareNumberCache().containsKey(i));
-			LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i));
-		}
-	}
+   @Test
+   public void whenCalculatingSquareValueOnce_thenCacheDontHaveValues() {
+      for (int i = 10; i < 15; i++) {
+         assertFalse(cacheHelper.getSquareNumberCache().containsKey(i));
+         LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i));
+      }
+   }
 
-	@Test
-	public void whenCalculatingSquareValueAgain_thenCacheHasAllValues() {
-		for (int i = 10; i < 15; i++) {
-			assertFalse(cacheHelper.getSquareNumberCache().containsKey(i));
-			LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i));
-		}
+   @Test
+   public void whenCalculatingSquareValueAgain_thenCacheHasAllValues() {
+      for (int i = 10; i < 15; i++) {
+         assertFalse(cacheHelper.getSquareNumberCache().containsKey(i));
+         LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i));
+      }
 
-		for (int i = 10; i < 15; i++) {
-			assertTrue(cacheHelper.getSquareNumberCache().containsKey(i));
-			LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i) + "\n");
-		}
-	}
+      for (int i = 10; i < 15; i++) {
+         assertTrue(cacheHelper.getSquareNumberCache().containsKey(i));
+         LOGGER.debug("Square value of {} is: {}", i, squaredCalculator.getSquareValueOfNumber(i) + "\n");
+      }
+   }
 }

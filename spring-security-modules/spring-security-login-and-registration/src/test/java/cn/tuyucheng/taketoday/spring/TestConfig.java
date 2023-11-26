@@ -10,14 +10,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // @ComponentScan("cn.tuyucheng.taketoday.test")
 public class TestConfig implements WebMvcConfigurer {
 
-	public TestConfig() {
-		super();
-	}
+   public TestConfig() {
+      super();
+   }
 
-	// API
-	@Bean
-	public PasswordEncoder encoder() {
-		return new BCryptPasswordEncoder(11);
-	}
+   // API
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder(11);
+   }
 
 }

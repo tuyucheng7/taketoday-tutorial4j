@@ -10,12 +10,12 @@ import java.util.Date;
 @Controller
 public class BotsController {
 
-	@MessageMapping("/chatwithbots")
-	@SendTo("/topic/pushmessages")
-	public OutputMessage send(final Message message) throws Exception {
+   @MessageMapping("/chatwithbots")
+   @SendTo("/topic/pushmessages")
+   public OutputMessage send(final Message message) throws Exception {
 
-		final String time = new SimpleDateFormat("HH:mm").format(new Date());
-		return new OutputMessage(message.getFrom(), message.getText(), time);
-	}
+      final String time = new SimpleDateFormat("HH:mm").format(new Date());
+      return new OutputMessage(message.getFrom(), message.getText(), time);
+   }
 
 }

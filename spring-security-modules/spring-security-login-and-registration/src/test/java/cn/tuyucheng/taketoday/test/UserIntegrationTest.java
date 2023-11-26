@@ -30,65 +30,65 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Transactional
 public class UserIntegrationTest {
 
-	@Autowired
-	private VerificationTokenRepository tokenRepository;
+   @Autowired
+   private VerificationTokenRepository tokenRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@PersistenceContext
-	private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-	private Long tokenId;
-	private Long userId;
+   private Long tokenId;
+   private Long userId;
 
-	//
+   //
 
-	@BeforeEach
-	public void givenUserAndVerificationToken() throws EmailExistsException {
-		User user = new User();
-		user.setEmail("test@example.com");
-		user.setPassword("SecretPassword");
-		user.setFirstName("First");
-		user.setLastName("Last");
-		entityManager.persist(user);
+   @BeforeEach
+   public void givenUserAndVerificationToken() throws EmailExistsException {
+      User user = new User();
+      user.setEmail("test@example.com");
+      user.setPassword("SecretPassword");
+      user.setFirstName("First");
+      user.setLastName("Last");
+      entityManager.persist(user);
 
-		String token = UUID.randomUUID().toString();
-		VerificationToken verificationToken = new VerificationToken(token, user);
-		entityManager.persist(verificationToken);
+      String token = UUID.randomUUID().toString();
+      VerificationToken verificationToken = new VerificationToken(token, user);
+      entityManager.persist(verificationToken);
 
-		entityManager.flush();
-		entityManager.clear();
+      entityManager.flush();
+      entityManager.clear();
 
-		tokenId = verificationToken.getId();
-		userId = user.getId();
-	}
+      tokenId = verificationToken.getId();
+      userId = user.getId();
+   }
 
-	@AfterEach
-	public void flushAfter() {
-		entityManager.flush();
-		entityManager.clear();
-	}
+   @AfterEach
+   public void flushAfter() {
+      entityManager.flush();
+      entityManager.clear();
+   }
 
-	//
+   //
 
-	@Test
-	public void whenContextLoad_thenCorrect() {
-		assertTrue(userRepository.count() > 0);
-		assertTrue(tokenRepository.count() > 0);
-	}
+   @Test
+   public void whenContextLoad_thenCorrect() {
+      assertTrue(userRepository.count() > 0);
+      assertTrue(tokenRepository.count() > 0);
+   }
 
-	// @Test(expected = Exception.class)
-	@Test
-	@Disabled("needs to go through the service and get transactional semantics")
-	public void whenRemovingUser_thenFkViolationException() {
-		userRepository.deleteById(userId);
-	}
+   // @Test(expected = Exception.class)
+   @Test
+   @Disabled("needs to go through the service and get transactional semantics")
+   public void whenRemovingUser_thenFkViolationException() {
+      userRepository.deleteById(userId);
+   }
 
-	@Test
-	public void whenRemovingTokenThenUser_thenCorrect() {
-		tokenRepository.deleteById(tokenId);
-		userRepository.deleteById(userId);
-	}
+   @Test
+   public void whenRemovingTokenThenUser_thenCorrect() {
+      tokenRepository.deleteById(tokenId);
+      userRepository.deleteById(userId);
+   }
 
 }

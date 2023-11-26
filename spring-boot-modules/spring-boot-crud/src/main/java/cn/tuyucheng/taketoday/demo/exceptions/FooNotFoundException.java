@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.demo.exceptions;
 
 public class FooNotFoundException extends RuntimeException {
 
-    private static final long serialVersionUID = 9042200028456133589L;
+   private static final long serialVersionUID = 9042200028456133589L;
 
-    public FooNotFoundException(String message) {
-        super(message);
-    }
+   public FooNotFoundException(String message) {
+      super(message);
+   }
 }

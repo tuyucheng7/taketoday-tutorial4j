@@ -13,39 +13,39 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-	@Bean
-	public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-		UserDetails admin = User.withUsername("admin")
-			.password(passwordEncoder.encode("password"))
-			.roles("USER", "ADMIN")
-			.build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails admin = User.withUsername("admin")
+            .password(passwordEncoder.encode("password"))
+            .roles("USER", "ADMIN")
+            .build();
 
-		UserDetails user = User.withUsername("user")
-			.password(passwordEncoder.encode("password"))
-			.roles("USER")
-			.build();
+      UserDetails user = User.withUsername("user")
+            .password(passwordEncoder.encode("password"))
+            .roles("USER")
+            .build();
 
-		return new InMemoryUserDetailsManager(admin, user);
-	}
+      return new InMemoryUserDetailsManager(admin, user);
+   }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/products/**")
-			.permitAll()
-			.and()
-			.authorizeRequests()
-			.antMatchers("/customers/**")
-			.hasRole("ADMIN")
-			.anyRequest()
-			.authenticated()
-			.and()
-			.httpBasic();
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/products/**")
+            .permitAll()
+            .and()
+            .authorizeRequests()
+            .antMatchers("/customers/**")
+            .hasRole("ADMIN")
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 }

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service("userDetailService")
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    UserRoleRepository userRoleRepo;
+   @Autowired
+   UserRoleRepository userRoleRepo;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        return userRoleRepo.loadUserByUserName(username);
-    }
+   @Override
+   public UserDetails loadUserByUsername(String username) {
+      return userRoleRepo.loadUserByUserName(username);
+   }
 }

@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday.overridebean.primary;
 
+import cn.tuyucheng.taketoday.overridebean.Service;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-
-import cn.tuyucheng.taketoday.overridebean.Service;
 
 @TestConfiguration
 public class PrimaryTestConfig {

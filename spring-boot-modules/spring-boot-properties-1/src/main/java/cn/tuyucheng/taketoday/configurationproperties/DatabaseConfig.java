@@ -8,17 +8,17 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class DatabaseConfig {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Bean(name = "dataSource")
-	public Database dataSource() {
+   @Bean(name = "dataSource")
+   public Database dataSource() {
 
-		Database dataSource = new Database();
-		dataSource.setUrl(env.getProperty("jdbc.url"));
-		dataSource.setUsername(env.getProperty("database.username"));
-		dataSource.setPassword(env.getProperty("database.password"));
+      Database dataSource = new Database();
+      dataSource.setUrl(env.getProperty("jdbc.url"));
+      dataSource.setUsername(env.getProperty("database.username"));
+      dataSource.setPassword(env.getProperty("database.password"));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 }

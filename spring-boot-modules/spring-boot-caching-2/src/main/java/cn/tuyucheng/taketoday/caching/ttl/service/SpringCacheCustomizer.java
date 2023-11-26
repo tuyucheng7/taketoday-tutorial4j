@@ -9,8 +9,8 @@ import static java.util.Arrays.asList;
 @Component
 public class SpringCacheCustomizer implements CacheManagerCustomizer<ConcurrentMapCacheManager> {
 
-	@Override
-	public void customize(ConcurrentMapCacheManager cacheManager) {
-		cacheManager.setCacheNames(asList("hotels"));
-	}
+   @Override
+   public void customize(ConcurrentMapCacheManager cacheManager) {
+      cacheManager.setCacheNames(asList("hotels"));
+   }
 }

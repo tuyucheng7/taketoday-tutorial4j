@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(classes = TestRedisConfiguration.class)
 class UserRepositoryIntegrationTest {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Test
-	void shouldSaveUser_toRedis() {
-		final UUID id = UUID.randomUUID();
-		final User user = new User(id, "name");
+   @Test
+   void shouldSaveUser_toRedis() {
+      final UUID id = UUID.randomUUID();
+      final User user = new User(id, "name");
 
-		final User saved = userRepository.save(user);
+      final User saved = userRepository.save(user);
 
-		assertNotNull(saved);
-	}
+      assertNotNull(saved);
+   }
 }

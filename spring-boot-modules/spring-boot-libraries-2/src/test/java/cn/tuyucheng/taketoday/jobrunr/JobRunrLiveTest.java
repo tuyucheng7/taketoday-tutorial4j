@@ -20,26 +20,26 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = DEFINED_PORT, classes = JobRunrSpringBootApplication.class)
 public class JobRunrLiveTest {
 
-	@Autowired
-	TestRestTemplate restTemplate;
+   @Autowired
+   TestRestTemplate restTemplate;
 
-	@Autowired
-	StorageProvider storageProvider;
+   @Autowired
+   StorageProvider storageProvider;
 
-	@Test
-	public void givenEndpoint_whenJobEnqueued_thenJobIsProcessedWithin30Seconds() {
-		String response = enqueueJobViaRest("some-input");
-		assertEquals("job enqueued successfully", response);
+   @Test
+   public void givenEndpoint_whenJobEnqueued_thenJobIsProcessedWithin30Seconds() {
+      String response = enqueueJobViaRest("some-input");
+      assertEquals("job enqueued successfully", response);
 
-		await().atMost(30, TimeUnit.SECONDS).until(() -> storageProvider.countJobs(StateName.SUCCEEDED) == 1);
-	}
+      await().atMost(30, TimeUnit.SECONDS).until(() -> storageProvider.countJobs(StateName.SUCCEEDED) == 1);
+   }
 
-	private String enqueueJobViaRest(String input) {
-		try {
-			return restTemplate.getForObject(new URI("http://localhost:8080/jobrunr/enqueue/" + input), String.class);
-		} catch (Exception ignored) {
-			ignored.printStackTrace();
-		}
-		return null;
-	}
+   private String enqueueJobViaRest(String input) {
+      try {
+         return restTemplate.getForObject(new URI("http://localhost:8080/jobrunr/enqueue/" + input), String.class);
+      } catch (Exception ignored) {
+         ignored.printStackTrace();
+      }
+      return null;
+   }
 }

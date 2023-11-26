@@ -11,13 +11,13 @@ import java.util.Map;
 @Service
 public class UserService {
 
-    public Map<String, Object> getUserClaims() {
-        Authentication authentication = SecurityContextHolder.getContext()
-              .getAuthentication();
-        if (authentication.getPrincipal() instanceof OidcUser) {
-            OidcUser principal = ((OidcUser) authentication.getPrincipal());
-            return principal.getClaims();
-        }
-        return Collections.emptyMap();
-    }
+   public Map<String, Object> getUserClaims() {
+      Authentication authentication = SecurityContextHolder.getContext()
+            .getAuthentication();
+      if (authentication.getPrincipal() instanceof OidcUser) {
+         OidcUser principal = ((OidcUser) authentication.getPrincipal());
+         return principal.getClaims();
+      }
+      return Collections.emptyMap();
+   }
 }

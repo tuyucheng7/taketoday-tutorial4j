@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProfileManager {
 
-	@Autowired
-	private Environment environment;
+   @Autowired
+   private Environment environment;
 
-	public void getActiveProfiles() {
-		for (final String profileName : environment.getActiveProfiles()) {
-			System.out.println("Currently active profile - " + profileName);
-		}
-	}
+   public void getActiveProfiles() {
+      for (final String profileName : environment.getActiveProfiles()) {
+         System.out.println("Currently active profile - " + profileName);
+      }
+   }
 }

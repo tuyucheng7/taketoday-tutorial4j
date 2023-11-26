@@ -7,8 +7,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 class LoginRedirectMvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginPageInterceptor());
-    }
+   @Override
+   public void addInterceptors(InterceptorRegistry registry) {
+      registry.addInterceptor(new LoginPageInterceptor());
+   }
 }

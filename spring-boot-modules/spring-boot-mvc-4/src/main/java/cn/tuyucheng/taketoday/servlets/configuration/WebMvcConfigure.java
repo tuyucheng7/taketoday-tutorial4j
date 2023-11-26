@@ -13,26 +13,26 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class WebMvcConfigure implements WebMvcConfigurer {
 
-    @Bean
-    public ViewResolver getViewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
+   @Bean
+   public ViewResolver getViewResolver() {
+      InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+      resolver.setPrefix("/WEB-INF/");
+      resolver.setSuffix(".jsp");
+      return resolver;
+   }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
+   @Override
+   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+      configurer.enable();
+   }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(3600).resourceChain(true).addResolver(new PathResourceResolver());
-    }
+   @Override
+   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+      registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(3600).resourceChain(true).addResolver(new PathResourceResolver());
+   }
 
-    @Bean
-    public ErrorPageFilter errorPageFilter() {
-        return new ErrorPageFilter();
-    }
+   @Bean
+   public ErrorPageFilter errorPageFilter() {
+      return new ErrorPageFilter();
+   }
 }

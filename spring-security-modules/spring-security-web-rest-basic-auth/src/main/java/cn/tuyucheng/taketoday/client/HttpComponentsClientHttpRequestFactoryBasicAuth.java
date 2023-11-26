@@ -14,26 +14,26 @@ import java.net.URI;
 
 public class HttpComponentsClientHttpRequestFactoryBasicAuth extends HttpComponentsClientHttpRequestFactory {
 
-    HttpHost host;
+   HttpHost host;
 
-    public HttpComponentsClientHttpRequestFactoryBasicAuth(HttpHost host) {
-        super();
-        this.host = host;
-    }
+   public HttpComponentsClientHttpRequestFactoryBasicAuth(HttpHost host) {
+      super();
+      this.host = host;
+   }
 
-    protected HttpContext createHttpContext(HttpMethod httpMethod, URI uri) {
-        return createHttpContext();
-    }
+   protected HttpContext createHttpContext(HttpMethod httpMethod, URI uri) {
+      return createHttpContext();
+   }
 
-    private HttpContext createHttpContext() {
+   private HttpContext createHttpContext() {
 
-        AuthCache authCache = new BasicAuthCache();
+      AuthCache authCache = new BasicAuthCache();
 
-        BasicScheme basicAuth = new BasicScheme();
-        authCache.put(host, basicAuth);
+      BasicScheme basicAuth = new BasicScheme();
+      authCache.put(host, basicAuth);
 
-        BasicHttpContext localcontext = new BasicHttpContext();
-        localcontext.setAttribute(HttpClientContext.AUTH_CACHE, authCache);
-        return localcontext;
-    }
+      BasicHttpContext localcontext = new BasicHttpContext();
+      localcontext.setAttribute(HttpClientContext.AUTH_CACHE, authCache);
+      return localcontext;
+   }
 }

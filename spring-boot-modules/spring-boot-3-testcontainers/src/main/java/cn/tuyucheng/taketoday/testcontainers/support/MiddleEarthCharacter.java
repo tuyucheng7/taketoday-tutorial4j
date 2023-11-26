@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.testcontainers.support;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.UUID;
 
 @Document("characters")
 public record MiddleEarthCharacter(@Id String id, String name, String race) {

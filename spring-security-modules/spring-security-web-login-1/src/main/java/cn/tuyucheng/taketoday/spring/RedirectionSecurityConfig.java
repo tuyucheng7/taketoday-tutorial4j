@@ -14,27 +14,27 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 //@Profile("!https")
 public class RedirectionSecurityConfig {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user1 = User.withUsername("user1")
-              .password("user1Pass")
-              .roles("USER")
-              .build();
-        return new InMemoryUserDetailsManager(user1);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails user1 = User.withUsername("user1")
+            .password("user1Pass")
+            .roles("USER")
+            .build();
+      return new InMemoryUserDetailsManager(user1);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/login*")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .successHandler(new SavedRequestAwareAuthenticationSuccessHandler());
-        // .successHandler(new RefererAuthenticationSuccessHandler())
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/login*")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .successHandler(new SavedRequestAwareAuthenticationSuccessHandler());
+      // .successHandler(new RefererAuthenticationSuccessHandler())
+      return http.build();
+   }
 
 }

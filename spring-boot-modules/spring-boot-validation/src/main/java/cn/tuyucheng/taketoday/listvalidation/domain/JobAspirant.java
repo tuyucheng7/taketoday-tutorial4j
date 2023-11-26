@@ -6,12 +6,7 @@ import cn.tuyucheng.taketoday.listvalidation.groups.MidSenior;
 import cn.tuyucheng.taketoday.listvalidation.groups.Senior;
 import org.springframework.lang.Nullable;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 public class JobAspirant {

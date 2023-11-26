@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CustomerService {
 
-	List<Customer> allCustomers();
+   List<Customer> allCustomers();
 
-	Customer getCustomerDetail(final String id);
+   Customer getCustomerDetail(final String id);
 
 }

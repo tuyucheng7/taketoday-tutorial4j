@@ -10,31 +10,31 @@ import java.util.List;
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+   @Autowired
+   private EmployeeRepository employeeRepository;
 
-	@Override
-	public Employee getEmployeeById(Long id) {
-		return employeeRepository.findById(id).orElse(null);
-	}
+   @Override
+   public Employee getEmployeeById(Long id) {
+      return employeeRepository.findById(id).orElse(null);
+   }
 
-	@Override
-	public Employee getEmployeeByName(String name) {
-		return employeeRepository.findByName(name);
-	}
+   @Override
+   public Employee getEmployeeByName(String name) {
+      return employeeRepository.findByName(name);
+   }
 
-	@Override
-	public boolean exists(String name) {
-		return employeeRepository.findByName(name) != null;
-	}
+   @Override
+   public boolean exists(String name) {
+      return employeeRepository.findByName(name) != null;
+   }
 
-	@Override
-	public Employee save(Employee employee) {
-		return employeeRepository.save(employee);
-	}
+   @Override
+   public Employee save(Employee employee) {
+      return employeeRepository.save(employee);
+   }
 
-	@Override
-	public List<Employee> getAllEmployees() {
-		return employeeRepository.findAll();
-	}
+   @Override
+   public List<Employee> getAllEmployees() {
+      return employeeRepository.findAll();
+   }
 }

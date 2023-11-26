@@ -6,5 +6,5 @@ import org.springframework.data.repository.Repository;
 import java.util.Optional;
 
 public interface ContactInfoExpressionRepository extends Repository<ContactInfoExpression, String> {
-	Optional<ContactInfoExpression> findById(String id);
+   Optional<ContactInfoExpression> findById(String id);
 }

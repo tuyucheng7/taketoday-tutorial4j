@@ -5,17 +5,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BuildInfoService {
-	@Value("${application-description}")
-	private String applicationDescription;
+   @Value("${application-description}")
+   private String applicationDescription;
 
-	@Value("${application-version}")
-	private String applicationVersion;
+   @Value("${application-version}")
+   private String applicationVersion;
 
-	public String getApplicationDescription() {
-		return applicationDescription;
-	}
+   public String getApplicationDescription() {
+      return applicationDescription;
+   }
 
-	public String getApplicationVersion() {
-		return applicationVersion;
-	}
+   public String getApplicationVersion() {
+      return applicationVersion;
+   }
 }

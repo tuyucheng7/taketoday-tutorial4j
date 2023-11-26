@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:values.properties")
 public class PriorityProvider {
 
-	private final String priority;
+   private final String priority;
 
-	@Autowired
-	public PriorityProvider(@Value("${priority:normal}") String priority) {
-		this.priority = priority;
-	}
+   @Autowired
+   public PriorityProvider(@Value("${priority:normal}") String priority) {
+      this.priority = priority;
+   }
 
-	public String getPriority() {
-		return priority;
-	}
+   public String getPriority() {
+      return priority;
+   }
 }

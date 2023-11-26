@@ -8,14 +8,14 @@ import java.util.List;
 
 @Service
 public class ProductService {
-	List<Product> productsList = new ArrayList<>();
+   List<Product> productsList = new ArrayList<>();
 
-	public Product addProducts(Product product) {
-		productsList.add(product);
-		return product;
-	}
+   public Product addProducts(Product product) {
+      productsList.add(product);
+      return product;
+   }
 
-	public List<Product> getProductsList() {
-		return productsList;
-	}
+   public List<Product> getProductsList() {
+      return productsList;
+   }
 }

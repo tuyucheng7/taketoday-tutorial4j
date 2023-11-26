@@ -14,8 +14,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @AutoConfigureTestDatabase
 public class ActivitiSpringSecurityIntegrationTest {
 
-	@Test
-	public void contextLoads() {
-	}
+   @Test
+   public void contextLoads() {
+   }
 
 }

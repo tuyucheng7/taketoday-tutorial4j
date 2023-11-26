@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HealthCheckController {
 
-	private static final String STATUS = "UP";
+   private static final String STATUS = "UP";
 
-	@GetMapping("/health")
-	public ResponseEntity<String> healthCheck() {
-		return ResponseEntity.ok(STATUS);
-	}
+   @GetMapping("/health")
+   public ResponseEntity<String> healthCheck() {
+      return ResponseEntity.ok(STATUS);
+   }
 }

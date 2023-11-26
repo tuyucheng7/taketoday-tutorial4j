@@ -13,21 +13,21 @@ import java.io.IOException;
 @Controller
 public class LogoutController implements LogoutSuccessHandler {
 
-    @Autowired
-    private AuthConfig config;
+   @Autowired
+   private AuthConfig config;
 
-    @Override
-    public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse res, Authentication authentication) {
-        if (req.getSession() != null) {
-            req.getSession().invalidate();
-        }
-        String returnTo = config.getContextPath(req);
-        String logoutUrl = config.getLogoutUrl() + "?client_id=" + config.getClientId() + "&returnTo=" + returnTo;
-        try {
-            res.sendRedirect(logoutUrl);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+   @Override
+   public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse res, Authentication authentication) {
+      if (req.getSession() != null) {
+         req.getSession().invalidate();
+      }
+      String returnTo = config.getContextPath(req);
+      String logoutUrl = config.getLogoutUrl() + "?client_id=" + config.getClientId() + "&returnTo=" + returnTo;
+      try {
+         res.sendRedirect(logoutUrl);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
 
 }

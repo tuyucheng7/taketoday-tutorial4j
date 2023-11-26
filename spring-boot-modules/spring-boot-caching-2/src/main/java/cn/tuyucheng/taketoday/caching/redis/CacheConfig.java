@@ -13,21 +13,21 @@ import static org.springframework.data.redis.serializer.RedisSerializationContex
 @Configuration
 public class CacheConfig {
 
-	@Bean
-	public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
-		return (builder) -> builder
-			.withCacheConfiguration("itemCache",
-				RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)))
-			.withCacheConfiguration("customerCache",
-				RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5)));
-	}
+   @Bean
+   public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
+      return (builder) -> builder
+            .withCacheConfiguration("itemCache",
+                  RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)))
+            .withCacheConfiguration("customerCache",
+                  RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5)));
+   }
 
-	@Bean
-	public RedisCacheConfiguration cacheConfiguration() {
-		return RedisCacheConfiguration.defaultCacheConfig()
-			.entryTtl(Duration.ofMinutes(60))
-			.disableCachingNullValues()
-			.serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
-	}
+   @Bean
+   public RedisCacheConfiguration cacheConfiguration() {
+      return RedisCacheConfiguration.defaultCacheConfig()
+            .entryTtl(Duration.ofMinutes(60))
+            .disableCachingNullValues()
+            .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+   }
 
 }

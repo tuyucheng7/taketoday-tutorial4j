@@ -11,24 +11,24 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.ratelimiting", exclude = {
-	DataSourceAutoConfiguration.class,
-	SecurityAutoConfiguration.class
+      DataSourceAutoConfiguration.class,
+      SecurityAutoConfiguration.class
 })
 public class Bucket4jRateLimitApplication implements WebMvcConfigurer {
 
-	@Autowired
-	@Lazy
-	private RateLimitInterceptor interceptor;
+   @Autowired
+   @Lazy
+   private RateLimitInterceptor interceptor;
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(interceptor)
-			.addPathPatterns("/api/v1/area/**");
-	}
+   @Override
+   public void addInterceptors(InterceptorRegistry registry) {
+      registry.addInterceptor(interceptor)
+            .addPathPatterns("/api/v1/area/**");
+   }
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(Bucket4jRateLimitApplication.class)
-			.properties("spring.config.location=classpath:ratelimiting/application-bucket4j.yml")
-			.run(args);
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(Bucket4jRateLimitApplication.class)
+            .properties("spring.config.location=classpath:ratelimiting/application-bucket4j.yml")
+            .run(args);
+   }
 }

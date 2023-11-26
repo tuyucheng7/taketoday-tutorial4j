@@ -25,60 +25,60 @@ import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.security"})
 public class SecurityConfig {
 
-    @Value("${spring.social.facebook.appSecret}")
-    String appSecret;
+   @Value("${spring.social.facebook.appSecret}")
+   String appSecret;
 
-    @Value("${spring.social.facebook.appId}")
-    String appId;
+   @Value("${spring.social.facebook.appId}")
+   String appId;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+   @Autowired
+   private UserDetailsService userDetailsService;
 
-    @Autowired
-    private FacebookConnectionSignup facebookConnectionSignup;
+   @Autowired
+   private FacebookConnectionSignup facebookConnectionSignup;
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-              .userDetailsService(userDetailsService)
-              .and()
-              .build();
-    }
+   @Bean
+   public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+      return http.getSharedObject(AuthenticationManagerBuilder.class)
+            .userDetailsService(userDetailsService)
+            .and()
+            .build();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .authorizeRequests()
-              .antMatchers("/login*", "/signin/**", "/signup/**")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .loginPage("/login")
-              .permitAll()
-              .and()
-              .logout();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeRequests()
+            .antMatchers("/login*", "/signin/**", "/signup/**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .permitAll()
+            .and()
+            .logout();
+      return http.build();
+   }
 
-    @Bean
-    // @Primary
-    public ProviderSignInController providerSignInController() {
-        ConnectionFactoryLocator connectionFactoryLocator = connectionFactoryLocator();
-        UsersConnectionRepository usersConnectionRepository = getUsersConnectionRepository(connectionFactoryLocator);
-        ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
-        return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, new FacebookSignInAdapter());
-    }
+   @Bean
+   // @Primary
+   public ProviderSignInController providerSignInController() {
+      ConnectionFactoryLocator connectionFactoryLocator = connectionFactoryLocator();
+      UsersConnectionRepository usersConnectionRepository = getUsersConnectionRepository(connectionFactoryLocator);
+      ((InMemoryUsersConnectionRepository) usersConnectionRepository).setConnectionSignUp(facebookConnectionSignup);
+      return new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, new FacebookSignInAdapter());
+   }
 
-    private ConnectionFactoryLocator connectionFactoryLocator() {
-        ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-        registry.addConnectionFactory(new FacebookConnectionFactory(appId, appSecret));
-        return registry;
-    }
+   private ConnectionFactoryLocator connectionFactoryLocator() {
+      ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
+      registry.addConnectionFactory(new FacebookConnectionFactory(appId, appSecret));
+      return registry;
+   }
 
-    private UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-        return new InMemoryUsersConnectionRepository(connectionFactoryLocator);
-    }
+   private UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
+      return new InMemoryUsersConnectionRepository(connectionFactoryLocator);
+   }
 }

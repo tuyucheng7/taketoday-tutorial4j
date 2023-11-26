@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GraylogDemoApplication {
 
-	private static final Logger LOG = Logger.getLogger(GraylogDemoApplication.class);
+   private static final Logger LOG = Logger.getLogger(GraylogDemoApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(GraylogDemoApplication.class, args);
-		LOG.info("Hello from Spring Boot");
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(GraylogDemoApplication.class, args);
+      LOG.info("Hello from Spring Boot");
+   }
 }

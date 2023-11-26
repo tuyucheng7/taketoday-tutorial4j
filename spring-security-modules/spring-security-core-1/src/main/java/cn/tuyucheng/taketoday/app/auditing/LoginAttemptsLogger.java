@@ -10,16 +10,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LoginAttemptsLogger {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginAttemptsLogger.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(LoginAttemptsLogger.class);
 
-    @EventListener
-    public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) {
-        AuditEvent auditEvent = auditApplicationEvent.getAuditEvent();
-        LOGGER.info("Principal " + auditEvent.getPrincipal() + " - " + auditEvent.getType());
+   @EventListener
+   public void auditEventHappened(AuditApplicationEvent auditApplicationEvent) {
+      AuditEvent auditEvent = auditApplicationEvent.getAuditEvent();
+      LOGGER.info("Principal " + auditEvent.getPrincipal() + " - " + auditEvent.getType());
 
-        WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
-        LOGGER.info("  Remote IP address: " + details.getRemoteAddress());
-        LOGGER.info("  Session Id: " + details.getSessionId());
-        LOGGER.info("  Request URL: " + auditEvent.getData().get("requestUrl"));
-    }
+      WebAuthenticationDetails details = (WebAuthenticationDetails) auditEvent.getData().get("details");
+      LOGGER.info("  Remote IP address: " + details.getRemoteAddress());
+      LOGGER.info("  Session Id: " + details.getSessionId());
+      LOGGER.info("  Request URL: " + auditEvent.getData().get("requestUrl"));
+   }
 }

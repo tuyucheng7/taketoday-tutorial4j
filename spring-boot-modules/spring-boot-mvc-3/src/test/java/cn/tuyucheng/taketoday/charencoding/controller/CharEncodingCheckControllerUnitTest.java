@@ -16,19 +16,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CharEncodingCheckControllerUnitTest {
 
-    @Test
-    void whenCharEncodingFilter_thenVerifyEncoding() throws ServletException, IOException {
-        HttpServletRequest request = new MockHttpServletRequest();
-        HttpServletResponse response = new MockHttpServletResponse();
-        FilterChain chain = new MockFilterChain();
+   @Test
+   void whenCharEncodingFilter_thenVerifyEncoding() throws ServletException, IOException {
+      HttpServletRequest request = new MockHttpServletRequest();
+      HttpServletResponse response = new MockHttpServletResponse();
+      FilterChain chain = new MockFilterChain();
 
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
+      CharacterEncodingFilter filter = new CharacterEncodingFilter();
+      filter.setEncoding("UTF-8");
+      filter.setForceEncoding(true);
 
-        filter.doFilter(request, response, chain);
+      filter.doFilter(request, response, chain);
 
-        assertEquals("UTF-8", request.getCharacterEncoding());
-        assertEquals("UTF-8", response.getCharacterEncoding());
-    }
+      assertEquals("UTF-8", request.getCharacterEncoding());
+      assertEquals("UTF-8", response.getCharacterEncoding());
+   }
 }

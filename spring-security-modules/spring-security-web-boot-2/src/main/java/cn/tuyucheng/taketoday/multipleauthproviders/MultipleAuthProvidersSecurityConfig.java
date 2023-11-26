@@ -13,34 +13,34 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class MultipleAuthProvidersSecurityConfig {
 
-    @Autowired
-    CustomAuthenticationProvider customAuthProvider;
+   @Autowired
+   CustomAuthenticationProvider customAuthProvider;
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.authenticationProvider(customAuthProvider);
-        authenticationManagerBuilder.inMemoryAuthentication()
+   @Bean
+   public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.authenticationProvider(customAuthProvider);
+      authenticationManagerBuilder.inMemoryAuthentication()
             .withUser("memuser")
             .password(passwordEncoder().encode("pass"))
             .roles("USER");
-        return authenticationManagerBuilder.build();
-    }
+      return authenticationManagerBuilder.build();
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
-        http.httpBasic()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
+      http.httpBasic()
             .and()
             .authorizeRequests()
             .antMatchers("/api/**")
             .authenticated()
             .and()
             .authenticationManager(authManager);
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

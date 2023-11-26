@@ -11,15 +11,15 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday"})
 public class SpringMustacheApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringMustacheApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringMustacheApplication.class, args);
+   }
 
-	@Bean
-	public Mustache.Compiler mustacheCompiler(Mustache.TemplateLoader templateLoader) {
-		return Mustache.compiler()
-			.defaultValue("Some Default Value")
-			.withLoader(templateLoader)
-			.withCollector(new DefaultCollector());
-	}
+   @Bean
+   public Mustache.Compiler mustacheCompiler(Mustache.TemplateLoader templateLoader) {
+      return Mustache.compiler()
+            .defaultValue("Some Default Value")
+            .withLoader(templateLoader)
+            .withCollector(new DefaultCollector());
+   }
 }

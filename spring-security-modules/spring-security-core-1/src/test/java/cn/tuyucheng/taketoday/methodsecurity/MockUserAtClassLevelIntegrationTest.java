@@ -17,18 +17,18 @@ import static org.junit.Assert.assertEquals;
 @WithMockUser(username = "john", roles = {"VIEWER"})
 public class MockUserAtClassLevelIntegrationTest {
 
-    @Test
-    public void givenRoleViewer_whenCallGetUsername_thenReturnUsername() {
-        String currentUserName = userService.getUsername();
-        assertEquals("john", currentUserName);
-    }
+   @Test
+   public void givenRoleViewer_whenCallGetUsername_thenReturnUsername() {
+      String currentUserName = userService.getUsername();
+      assertEquals("john", currentUserName);
+   }
 
-    @Autowired
-    UserRoleService userService;
+   @Autowired
+   UserRoleService userService;
 
-    @Configuration
-    @ComponentScan("cn.tuyucheng.taketoday.methodsecurity.*")
-    public static class SpringConfig {
+   @Configuration
+   @ComponentScan("cn.tuyucheng.taketoday.methodsecurity.*")
+   public static class SpringConfig {
 
-    }
+   }
 }

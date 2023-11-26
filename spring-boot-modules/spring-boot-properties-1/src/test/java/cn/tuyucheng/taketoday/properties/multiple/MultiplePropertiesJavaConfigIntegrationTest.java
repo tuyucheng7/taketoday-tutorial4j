@@ -10,16 +10,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringJUnitConfig(PropertiesWithJavaConfig.class)
 class MultiplePropertiesJavaConfigIntegrationTest {
 
-	@Value("${key.something}")
-	private String something;
+   @Value("${key.something}")
+   private String something;
 
-	@Value("${key.something2}")
-	private String something2;
+   @Value("${key.something2}")
+   private String something2;
 
 
-	@Test
-	void whenReadInjectedValues_thenGetCorrectValues() {
-		assertThat(something).isEqualTo("val");
-		assertThat(something2).isEqualTo("val2");
-	}
+   @Test
+   void whenReadInjectedValues_thenGetCorrectValues() {
+      assertThat(something).isEqualTo("val");
+      assertThat(something2).isEqualTo("val2");
+   }
 }

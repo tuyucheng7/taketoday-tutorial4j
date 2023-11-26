@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday.testcontainers.support;
 
-import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharacter;
-import cn.tuyucheng.taketoday.testcontainers.support.MiddleEarthCharactersRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

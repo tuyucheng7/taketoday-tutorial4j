@@ -8,13 +8,13 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {
-	SecurityAutoConfiguration.class,
-	HibernateJpaAutoConfiguration.class
+      SecurityAutoConfiguration.class,
+      HibernateJpaAutoConfiguration.class
 })
 public class GraphqlVsRestApplication {
 
-	public static void main(String[] args) {
-		System.setProperty("spring.profiles.default", "rest-vs-graphql");
-		SpringApplication.run(GraphqlVsRestApplication.class, args);
-	}
+   public static void main(String[] args) {
+      System.setProperty("spring.profiles.default", "rest-vs-graphql");
+      SpringApplication.run(GraphqlVsRestApplication.class, args);
+   }
 }

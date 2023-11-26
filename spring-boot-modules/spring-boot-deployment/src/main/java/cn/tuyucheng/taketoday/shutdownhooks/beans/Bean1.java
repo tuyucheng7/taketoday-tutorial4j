@@ -7,8 +7,8 @@ import javax.annotation.PreDestroy;
 @Component
 public class Bean1 {
 
-    @PreDestroy
-    public void destroy() {
-        System.out.println("Shutdown triggered using @PreDestroy.");
-    }
+   @PreDestroy
+   public void destroy() {
+      System.out.println("Shutdown triggered using @PreDestroy.");
+   }
 }

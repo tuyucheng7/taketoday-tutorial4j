@@ -13,9 +13,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {SecurityWithCsrfConfig.class, MvcConfig.class})
 public class CsrfEnabledIntegrationTest extends CsrfAbstractIntegrationTest {
 
-    @Test
-    public void givenNoCsrf_whenAddFoo_thenForbidden() throws Exception {
-        // @formatter:off
+   @Test
+   public void givenNoCsrf_whenAddFoo_thenForbidden() throws Exception {
+      // @formatter:off
         mvc
               .perform(post("/auth/foos")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -23,11 +23,11 @@ public class CsrfEnabledIntegrationTest extends CsrfAbstractIntegrationTest {
                     .with(testUser()))
               .andExpect(status().isForbidden());
         // @formatter:on
-    }
+   }
 
-    @Test
-    public void givenCsrf_whenAddFoo_thenCreated() throws Exception {
-        // @formatter:off
+   @Test
+   public void givenCsrf_whenAddFoo_thenCreated() throws Exception {
+      // @formatter:off
         mvc
               .perform(post("/auth/foos")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -36,6 +36,6 @@ public class CsrfEnabledIntegrationTest extends CsrfAbstractIntegrationTest {
                     .with(csrf()))
               .andExpect(status().isCreated());
         // @formatter:on
-    }
+   }
 
 }

@@ -10,22 +10,22 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 public class StompClientSessionHandler extends StompSessionHandlerAdapter {
-	private static final Logger logger = LoggerFactory.getLogger("StompClientSessionHandler");
+   private static final Logger logger = LoggerFactory.getLogger("StompClientSessionHandler");
 
-	@Override
-	public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
-		logger.info("New session established. Session Id -> {}", session.getSessionId());
-		session.subscribe("/topic/ticks", this);
-		logger.info("Subscribed to topic: /topic/ticks");
-	}
+   @Override
+   public void afterConnected(StompSession session, StompHeaders connectedHeaders) {
+      logger.info("New session established. Session Id -> {}", session.getSessionId());
+      session.subscribe("/topic/ticks", this);
+      logger.info("Subscribed to topic: /topic/ticks");
+   }
 
-	@Override
-	public void handleFrame(StompHeaders headers, Object payload) {
-		logger.info("Payload -> {}", payload);
-	}
+   @Override
+   public void handleFrame(StompHeaders headers, Object payload) {
+      logger.info("Payload -> {}", payload);
+   }
 
-	@Override
-	public Type getPayloadType(StompHeaders headers) {
-		return Map.class;
-	}
+   @Override
+   public Type getPayloadType(StompHeaders headers) {
+      return Map.class;
+   }
 }

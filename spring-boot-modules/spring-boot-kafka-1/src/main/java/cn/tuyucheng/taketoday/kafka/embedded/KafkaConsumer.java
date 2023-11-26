@@ -11,29 +11,29 @@ import java.util.concurrent.CountDownLatch;
 @Component
 public class KafkaConsumer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(KafkaConsumer.class);
 
-	private CountDownLatch latch = new CountDownLatch(1);
+   private CountDownLatch latch = new CountDownLatch(1);
 
-	private String payload;
+   private String payload;
 
-	@KafkaListener(topics = "${test.topic}")
-	public void receive(ConsumerRecord<?, ?> consumerRecord) {
-		LOGGER.info("received payload='{}'", consumerRecord.toString());
+   @KafkaListener(topics = "${test.topic}")
+   public void receive(ConsumerRecord<?, ?> consumerRecord) {
+      LOGGER.info("received payload='{}'", consumerRecord.toString());
 
-		payload = consumerRecord.toString();
-		latch.countDown();
-	}
+      payload = consumerRecord.toString();
+      latch.countDown();
+   }
 
-	public CountDownLatch getLatch() {
-		return latch;
-	}
+   public CountDownLatch getLatch() {
+      return latch;
+   }
 
-	public void resetLatch() {
-		latch = new CountDownLatch(1);
-	}
+   public void resetLatch() {
+      latch = new CountDownLatch(1);
+   }
 
-	public String getPayload() {
-		return payload;
-	}
+   public String getPayload() {
+      return payload;
+   }
 }

@@ -9,29 +9,29 @@ import org.springframework.boot.context.metrics.buffering.BufferingApplicationSt
 import static java.lang.Boolean.FALSE;
 
 @SpringBootApplication(exclude = {
-	SecurityAutoConfiguration.class,
-	ManagementWebSecurityAutoConfiguration.class}
+      SecurityAutoConfiguration.class,
+      ManagementWebSecurityAutoConfiguration.class}
 )
 public class StartupTrackingApplication {
 
-	public static void main(String[] args) {
-		// only load properties for this application
-		System.setProperty("spring.config.location", "classpath:application-startup.properties");
+   public static void main(String[] args) {
+      // only load properties for this application
+      System.setProperty("spring.config.location", "classpath:application-startup.properties");
 
-		SpringApplication app = new SpringApplication(StartupTrackingApplication.class);
-		BufferingApplicationStartup startup = new BufferingApplicationStartup(2048);
+      SpringApplication app = new SpringApplication(StartupTrackingApplication.class);
+      BufferingApplicationStartup startup = new BufferingApplicationStartup(2048);
 
-		if (shouldFilterSteps()) {
-			startup.addFilter(startupStep -> startupStep.getName().matches("spring.beans.instantiate"));
-		}
+      if (shouldFilterSteps()) {
+         startup.addFilter(startupStep -> startupStep.getName().matches("spring.beans.instantiate"));
+      }
 
-		app.setApplicationStartup(startup);
-		app.run(args);
-	}
+      app.setApplicationStartup(startup);
+      app.run(args);
+   }
 
-	private static boolean shouldFilterSteps() {
-		return Boolean.parseBoolean(
-			System.getProperty("startup.steps.filter", FALSE.toString())
-		);
-	}
+   private static boolean shouldFilterSteps() {
+      return Boolean.parseBoolean(
+            System.getProperty("startup.steps.filter", FALSE.toString())
+      );
+   }
 }

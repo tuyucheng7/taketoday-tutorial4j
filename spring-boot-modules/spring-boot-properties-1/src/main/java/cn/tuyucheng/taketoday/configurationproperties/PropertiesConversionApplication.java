@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = {PropertyConversion.class, EmployeeConverter.class})
 public class PropertiesConversionApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PropertiesConversionApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(PropertiesConversionApplication.class, args);
+   }
 }

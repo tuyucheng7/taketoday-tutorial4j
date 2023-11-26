@@ -20,17 +20,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource("classpath:server-config-test.properties")
 class BindingPropertiesToBeanMethodsUnitTest {
 
-	@Autowired
-	@Qualifier("default_bean")
-	private ServerConfig serverConfig;
+   @Autowired
+   @Qualifier("default_bean")
+   private ServerConfig serverConfig;
 
-	@Test
-	void givenBeanAnnotatedMethod_whenBindingProperties_thenAllFieldsAreSet() {
-		assertEquals("192.168.0.2", serverConfig.getAddress().getIp());
+   @Test
+   void givenBeanAnnotatedMethod_whenBindingProperties_thenAllFieldsAreSet() {
+      assertEquals("192.168.0.2", serverConfig.getAddress().getIp());
 
-		Map<String, String> expectedResourcesPath = new HashMap<>();
-		expectedResourcesPath.put("imgs", "/root/def/imgs");
+      Map<String, String> expectedResourcesPath = new HashMap<>();
+      expectedResourcesPath.put("imgs", "/root/def/imgs");
 
-		assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
-	}
+      assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
+   }
 }

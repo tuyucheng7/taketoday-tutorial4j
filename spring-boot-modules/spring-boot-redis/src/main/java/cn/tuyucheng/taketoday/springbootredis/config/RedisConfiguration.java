@@ -22,36 +22,36 @@ import java.util.Collections;
 @EnableRedisRepositories(enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
 @Slf4j
 public class RedisConfiguration {
-	@Bean
-	public RedisTemplate<String, Session> getRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
-		RedisTemplate<String, Session> redisTemplate = new RedisTemplate<>();
-		redisTemplate.setConnectionFactory(redisConnectionFactory);
+   @Bean
+   public RedisTemplate<String, Session> getRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
+      RedisTemplate<String, Session> redisTemplate = new RedisTemplate<>();
+      redisTemplate.setConnectionFactory(redisConnectionFactory);
 
-		return redisTemplate;
-	}
+      return redisTemplate;
+   }
 
-	@Bean
-	public RedisMappingContext keyValueMappingContext() {
-		return new RedisMappingContext(new MappingConfiguration(new IndexConfiguration(), new MyKeyspaceConfiguration()));
-	}
+   @Bean
+   public RedisMappingContext keyValueMappingContext() {
+      return new RedisMappingContext(new MappingConfiguration(new IndexConfiguration(), new MyKeyspaceConfiguration()));
+   }
 
-	public static class MyKeyspaceConfiguration extends KeyspaceConfiguration {
+   public static class MyKeyspaceConfiguration extends KeyspaceConfiguration {
 
-		@Override
-		protected Iterable<KeyspaceSettings> initialConfiguration() {
-			KeyspaceSettings keyspaceSettings = new KeyspaceSettings(Session.class, "session");
-			keyspaceSettings.setTimeToLive(60L);
-			return Collections.singleton(keyspaceSettings);
-		}
-	}
+      @Override
+      protected Iterable<KeyspaceSettings> initialConfiguration() {
+         KeyspaceSettings keyspaceSettings = new KeyspaceSettings(Session.class, "session");
+         keyspaceSettings.setTimeToLive(60L);
+         return Collections.singleton(keyspaceSettings);
+      }
+   }
 
-	@Component
-	public static class SessionExpiredEventListener {
-		@EventListener
-		public void handleRedisKeyExpiredEvent(RedisKeyExpiredEvent<Session> event) {
-			Session expiredSession = (Session) event.getValue();
-			assert expiredSession != null;
-			LOGGER.info("Session with key={} has expired", expiredSession.getId());
-		}
-	}
+   @Component
+   public static class SessionExpiredEventListener {
+      @EventListener
+      public void handleRedisKeyExpiredEvent(RedisKeyExpiredEvent<Session> event) {
+         Session expiredSession = (Session) event.getValue();
+         assert expiredSession != null;
+         LOGGER.info("Session with key={} has expired", expiredSession.getId());
+      }
+   }
 }

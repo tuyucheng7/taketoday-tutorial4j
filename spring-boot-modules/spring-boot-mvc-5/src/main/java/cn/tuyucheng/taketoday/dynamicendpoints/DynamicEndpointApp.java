@@ -18,29 +18,29 @@ import java.util.Properties;
 @SpringBootApplication
 @EnableWebMvc
 public class DynamicEndpointApp {
-    public static void main(String[] args) {
-        SpringApplication.run(DynamicEndpointApp.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(DynamicEndpointApp.class, args);
+   }
 
 
-    @Bean
-    @ConditionalOnProperty(name = "dynamic.endpoint.config.location", matchIfMissing = false)
-    public PropertiesConfiguration propertiesConfiguration(
-          @Value("${dynamic.endpoint.config.location}") String path,
-          @Value("${spring.properties.refreshDelay}") long refreshDelay) throws Exception {
-        String filePath = path.substring("file:".length());
-        PropertiesConfiguration configuration = new PropertiesConfiguration(new File(filePath).getCanonicalPath());
-        FileChangedReloadingStrategy fileChangedReloadingStrategy = new FileChangedReloadingStrategy();
-        fileChangedReloadingStrategy.setRefreshDelay(refreshDelay);
-        configuration.setReloadingStrategy(fileChangedReloadingStrategy);
-        return configuration;
-    }
+   @Bean
+   @ConditionalOnProperty(name = "dynamic.endpoint.config.location", matchIfMissing = false)
+   public PropertiesConfiguration propertiesConfiguration(
+         @Value("${dynamic.endpoint.config.location}") String path,
+         @Value("${spring.properties.refreshDelay}") long refreshDelay) throws Exception {
+      String filePath = path.substring("file:".length());
+      PropertiesConfiguration configuration = new PropertiesConfiguration(new File(filePath).getCanonicalPath());
+      FileChangedReloadingStrategy fileChangedReloadingStrategy = new FileChangedReloadingStrategy();
+      fileChangedReloadingStrategy.setRefreshDelay(refreshDelay);
+      configuration.setReloadingStrategy(fileChangedReloadingStrategy);
+      return configuration;
+   }
 
-    @Bean
-    @ConditionalOnBean(PropertiesConfiguration.class)
-    @Primary
-    public Properties properties(PropertiesConfiguration propertiesConfiguration) throws Exception {
-        ReloadableProperties properties = new ReloadableProperties(propertiesConfiguration);
-        return properties;
-    }
+   @Bean
+   @ConditionalOnBean(PropertiesConfiguration.class)
+   @Primary
+   public Properties properties(PropertiesConfiguration propertiesConfiguration) throws Exception {
+      ReloadableProperties properties = new ReloadableProperties(propertiesConfiguration);
+      return properties;
+   }
 }

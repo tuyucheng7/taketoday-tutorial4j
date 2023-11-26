@@ -19,55 +19,55 @@ import static org.springframework.web.servlet.function.ServerResponse.status;
 @SpringBootApplication
 public class SpringBootMvcFnApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(SpringBootMvcFnApplication.class);
+   private static final Logger LOG = LoggerFactory.getLogger(SpringBootMvcFnApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootMvcFnApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootMvcFnApplication.class, args);
+   }
 
-	@Bean
-	RouterFunction<ServerResponse> productListing(ProductController pc, ProductService ps) {
-		return pc.productListing(ps);
-	}
+   @Bean
+   RouterFunction<ServerResponse> productListing(ProductController pc, ProductService ps) {
+      return pc.productListing(ps);
+   }
 
-	@Bean
-	RouterFunction<ServerResponse> allApplicationRoutes(ProductController pc, ProductService ps) {
-		return route().add(pc.remainingProductRoutes(ps))
-			.before(req -> {
-				LOG.info("Found a route which matches " + req.uri()
-					.getPath());
-				return req;
-			})
-			.after((req, res) -> {
-				if (res.statusCode() == HttpStatus.OK) {
-					LOG.info("Finished processing request " + req.uri()
-						.getPath());
-				} else {
-					LOG.info("There was an error while processing request" + req.uri());
-				}
-				return res;
-			})
-			.onError(Throwable.class, (e, res) -> {
-				LOG.error("Fatal exception has occurred", e);
-				return status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-			})
-			.build()
-			.and(route(RequestPredicates.all(), req -> notFound().build()));
-	}
+   @Bean
+   RouterFunction<ServerResponse> allApplicationRoutes(ProductController pc, ProductService ps) {
+      return route().add(pc.remainingProductRoutes(ps))
+            .before(req -> {
+               LOG.info("Found a route which matches " + req.uri()
+                     .getPath());
+               return req;
+            })
+            .after((req, res) -> {
+               if (res.statusCode() == HttpStatus.OK) {
+                  LOG.info("Finished processing request " + req.uri()
+                        .getPath());
+               } else {
+                  LOG.info("There was an error while processing request" + req.uri());
+               }
+               return res;
+            })
+            .onError(Throwable.class, (e, res) -> {
+               LOG.error("Fatal exception has occurred", e);
+               return status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            })
+            .build()
+            .and(route(RequestPredicates.all(), req -> notFound().build()));
+   }
 
-	public static class Error {
-		private String errorMessage;
+   public static class Error {
+      private String errorMessage;
 
-		public Error(String message) {
-			this.errorMessage = message;
-		}
+      public Error(String message) {
+         this.errorMessage = message;
+      }
 
-		public String getErrorMessage() {
-			return errorMessage;
-		}
+      public String getErrorMessage() {
+         return errorMessage;
+      }
 
-		public void setErrorMessage(String errorMessage) {
-			this.errorMessage = errorMessage;
-		}
-	}
+      public void setErrorMessage(String errorMessage) {
+         this.errorMessage = errorMessage;
+      }
+   }
 }

@@ -10,20 +10,20 @@ import java.util.Map;
 import java.util.Objects;
 
 public class GithubAuthoritiesExtractor implements AuthoritiesExtractor {
-    private List<GrantedAuthority> GITHUB_FREE_AUTHORITIES = AuthorityUtils
-          .commaSeparatedStringToAuthorityList("GITHUB_USER,GITHUB_USER_FREE");
-    private List<GrantedAuthority> GITHUB_SUBSCRIBED_AUTHORITIES = AuthorityUtils
-          .commaSeparatedStringToAuthorityList("GITHUB_USER,GITHUB_USER_SUBSCRIBED");
+   private List<GrantedAuthority> GITHUB_FREE_AUTHORITIES = AuthorityUtils
+         .commaSeparatedStringToAuthorityList("GITHUB_USER,GITHUB_USER_FREE");
+   private List<GrantedAuthority> GITHUB_SUBSCRIBED_AUTHORITIES = AuthorityUtils
+         .commaSeparatedStringToAuthorityList("GITHUB_USER,GITHUB_USER_SUBSCRIBED");
 
-    @Override
-    public List<GrantedAuthority> extractAuthorities(Map<String, Object> map) {
-        if (Objects.nonNull(map.get("plan"))) {
-            if (!((LinkedHashMap) map.get("plan"))
-                  .get("name")
-                  .equals("free")) {
-                return GITHUB_SUBSCRIBED_AUTHORITIES;
-            }
-        }
-        return GITHUB_FREE_AUTHORITIES;
-    }
+   @Override
+   public List<GrantedAuthority> extractAuthorities(Map<String, Object> map) {
+      if (Objects.nonNull(map.get("plan"))) {
+         if (!((LinkedHashMap) map.get("plan"))
+               .get("name")
+               .equals("free")) {
+            return GITHUB_SUBSCRIBED_AUTHORITIES;
+         }
+      }
+      return GITHUB_FREE_AUTHORITIES;
+   }
 }

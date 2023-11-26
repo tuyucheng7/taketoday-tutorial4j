@@ -20,32 +20,32 @@ import java.util.HashSet;
 @Service()
 public class CustomUserDetailsService implements UserDetailsService {
 
-    Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
+   Logger log = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
-    @Autowired
-    private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-    public CustomUserDetailsService() {
-        super();
-    }
+   public CustomUserDetailsService() {
+      super();
+   }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try {
-            User user = userRepository.findByUsername(username);
-            if (user != null) return new CustomUserDetails(user, getAuthorities(user));
-        } catch (Exception ex) {
-            log.error("Exception in CustomUserDetailsService: " + ex);
-        }
-        return null;
-    }
+   @Override
+   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+      try {
+         User user = userRepository.findByUsername(username);
+         if (user != null) return new CustomUserDetails(user, getAuthorities(user));
+      } catch (Exception ex) {
+         log.error("Exception in CustomUserDetailsService: " + ex);
+      }
+      return null;
+   }
 
-    private Collection<GrantedAuthority> getAuthorities(User user) {
-        Collection<GrantedAuthority> authorities = new HashSet<>();
-        for (Role role : user.getRoles()) {
-            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
-            authorities.add(grantedAuthority);
-        }
-        return authorities;
-    }
+   private Collection<GrantedAuthority> getAuthorities(User user) {
+      Collection<GrantedAuthority> authorities = new HashSet<>();
+      for (Role role : user.getRoles()) {
+         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
+         authorities.add(grantedAuthority);
+      }
+      return authorities;
+   }
 }

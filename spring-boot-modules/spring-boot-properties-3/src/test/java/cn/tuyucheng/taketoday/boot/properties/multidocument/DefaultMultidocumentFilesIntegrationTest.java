@@ -11,15 +11,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {DemoApplication.class}, webEnvironment = WebEnvironment.MOCK)
 class DefaultMultidocumentFilesIntegrationTest {
 
-	@Value("${tuyucheng.property}")
-	private String tuyuchengCustomProperty;
+   @Value("${tuyucheng.property}")
+   private String tuyuchengCustomProperty;
 
-	@Value("${tuyucheng.root-level-property}")
-	private String tuyuchengRootProperty;
+   @Value("${tuyucheng.root-level-property}")
+   private String tuyuchengRootProperty;
 
-	@Test
-	void givenDefaultProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
-		assertThat(tuyuchengCustomProperty).isEqualTo("defaultValue");
-		assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
-	}
+   @Test
+   void givenDefaultProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
+      assertThat(tuyuchengCustomProperty).isEqualTo("defaultValue");
+      assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
+   }
 }

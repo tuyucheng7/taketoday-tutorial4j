@@ -14,22 +14,22 @@ import java.util.List;
 @Service
 public class HotelService {
 
-	private final HotelRepository hotelRepository;
-	Logger logger = LoggerFactory.getLogger(HotelService.class);
+   private final HotelRepository hotelRepository;
+   Logger logger = LoggerFactory.getLogger(HotelService.class);
 
-	HotelService(HotelRepository hotelRepository) {
-		this.hotelRepository = hotelRepository;
-	}
+   HotelService(HotelRepository hotelRepository) {
+      this.hotelRepository = hotelRepository;
+   }
 
-	@Cacheable("hotels")
-	public List<Hotel> getAllHotels() {
-		return hotelRepository.getAllHotels();
-	}
+   @Cacheable("hotels")
+   public List<Hotel> getAllHotels() {
+      return hotelRepository.getAllHotels();
+   }
 
-	@CacheEvict(value = "hotels", allEntries = true)
-	@Scheduled(fixedRateString = "${caching.spring.hotelListTTL}")
-	public void emptyHotelsCache() {
-		logger.info("emptying Hotels cache");
-	}
+   @CacheEvict(value = "hotels", allEntries = true)
+   @Scheduled(fixedRateString = "${caching.spring.hotelListTTL}")
+   public void emptyHotelsCache() {
+      logger.info("emptying Hotels cache");
+   }
 
 }

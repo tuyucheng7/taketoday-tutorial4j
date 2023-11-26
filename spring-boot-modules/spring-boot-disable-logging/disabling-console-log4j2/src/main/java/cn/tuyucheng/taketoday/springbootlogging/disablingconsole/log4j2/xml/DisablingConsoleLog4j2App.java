@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DisablingConsoleLog4j2App {
 
-    public static void main(String[] args) {
-        SpringApplication.run(DisablingConsoleLog4j2App.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(DisablingConsoleLog4j2App.class, args);
+   }
 }

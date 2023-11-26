@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 @Import(value = {KafkaTopicConfig.class, KafkaConsumerConfig.class, KafkaProducerConfig.class})
 public class MultipleListenersApplicationKafkaApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MultipleListenersApplicationKafkaApp.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MultipleListenersApplicationKafkaApp.class, args);
+   }
 }

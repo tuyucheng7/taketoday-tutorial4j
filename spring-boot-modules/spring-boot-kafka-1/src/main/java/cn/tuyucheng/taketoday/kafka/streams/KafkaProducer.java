@@ -10,16 +10,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaProducer {
 
-	private final KafkaTemplate<String, String> kafkaTemplate;
+   private final KafkaTemplate<String, String> kafkaTemplate;
 
-	public void sendMessage(String message) {
-		kafkaTemplate.send("input-topic", message)
-			.whenComplete((result, ex) -> {
-				if (ex == null) {
-					LOGGER.info("Message sent to topic: {}", message);
-				} else {
-					LOGGER.error("Failed to send message", ex);
-				}
-			});
-	}
+   public void sendMessage(String message) {
+      kafkaTemplate.send("input-topic", message)
+            .whenComplete((result, ex) -> {
+               if (ex == null) {
+                  LOGGER.info("Message sent to topic: {}", message);
+               } else {
+                  LOGGER.error("Failed to send message", ex);
+               }
+            });
+   }
 }

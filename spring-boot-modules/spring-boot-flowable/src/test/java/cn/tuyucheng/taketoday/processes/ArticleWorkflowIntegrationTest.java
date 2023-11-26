@@ -18,26 +18,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(FlowableSpringExtension.class)
 @SpringBootTest
 class ArticleWorkflowIntegrationTest {
-	@Autowired
-	private RuntimeService runtimeService;
-	@Autowired
-	private TaskService taskService;
+   @Autowired
+   private RuntimeService runtimeService;
+   @Autowired
+   private TaskService taskService;
 
-	@Test
-	@Deployment(resources = {"processes/article-workflow.bpmn20.xml"})
-	void articleApprovalTest() {
-		Map<String, Object> variables = new HashMap<>();
-		variables.put("author", "test@baeldung.com");
-		variables.put("url", "http://baeldung.com/dummy");
-		runtimeService.startProcessInstanceByKey("articleReview", variables);
-		Task task = taskService.createTaskQuery()
-			.singleResult();
+   @Test
+   @Deployment(resources = {"processes/article-workflow.bpmn20.xml"})
+   void articleApprovalTest() {
+      Map<String, Object> variables = new HashMap<>();
+      variables.put("author", "test@baeldung.com");
+      variables.put("url", "http://baeldung.com/dummy");
+      runtimeService.startProcessInstanceByKey("articleReview", variables);
+      Task task = taskService.createTaskQuery()
+            .singleResult();
 
-		assertEquals("Review the submitted tutorial", task.getName());
+      assertEquals("Review the submitted tutorial", task.getName());
 
-		variables.put("approved", true);
-		taskService.complete(task.getId(), variables);
+      variables.put("approved", true);
+      taskService.complete(task.getId(), variables);
 
-		assertEquals(0, runtimeService.createProcessInstanceQuery().count());
-	}
+      assertEquals(0, runtimeService.createProcessInstanceQuery().count());
+   }
 }

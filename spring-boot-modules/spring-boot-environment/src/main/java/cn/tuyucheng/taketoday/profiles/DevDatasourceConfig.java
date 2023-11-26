@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Profile("dev")
 public class DevDatasourceConfig implements DatasourceConfig {
 
-	@Override
-	public void setup() {
-		System.out.println("Setting up datasource for DEV environment. ");
-	}
+   @Override
+   public void setup() {
+      System.out.println("Setting up datasource for DEV environment. ");
+   }
 
 }

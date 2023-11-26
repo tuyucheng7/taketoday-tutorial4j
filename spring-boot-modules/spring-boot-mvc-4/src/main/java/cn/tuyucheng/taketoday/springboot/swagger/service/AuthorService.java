@@ -8,14 +8,14 @@ import java.util.List;
 
 @Service
 public class AuthorService {
-	private List<Author> authors = new ArrayList<>();
+   private List<Author> authors = new ArrayList<>();
 
-	public List<Author> getAllAuthors() {
-		return authors;
-	}
+   public List<Author> getAllAuthors() {
+      return authors;
+   }
 
-	public void addAuthors(Author author) {
-		author.setId(authors.size() + 1);
-		authors.add(author);
-	}
+   public void addAuthors(Author author) {
+      author.setId(authors.size() + 1);
+      authors.add(author);
+   }
 }

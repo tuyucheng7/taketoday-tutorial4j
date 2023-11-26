@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EvenOddApplication {
 
-    private EvenOddService evenOddService;
+   private EvenOddService evenOddService;
 
-    public EvenOddApplication(EvenOddService evenOddService) {
-        this.evenOddService = evenOddService;
-    }
+   public EvenOddApplication(EvenOddService evenOddService) {
+      this.evenOddService = evenOddService;
+   }
 
-    @GetMapping("/validate/")
-    public String isEvenOrOdd(@RequestParam("number") Integer number) {
-        return evenOddService.isEvenOrOdd(number);
-    }
+   @GetMapping("/validate/")
+   public String isEvenOrOdd(@RequestParam("number") Integer number) {
+      return evenOddService.isEvenOrOdd(number);
+   }
 
-    public static void main(String[] args) {
-        SpringApplication.run(EvenOddApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(EvenOddApplication.class, args);
+   }
 }

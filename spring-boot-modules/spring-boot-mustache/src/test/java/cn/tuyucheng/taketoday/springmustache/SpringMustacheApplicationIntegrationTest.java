@@ -19,14 +19,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SpringMustacheApplicationIntegrationTest {
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Test
-	public void givenIndexPageWhenContainsArticleThenTrue() {
-		ResponseEntity<String> entity = this.restTemplate.getForEntity("/article", String.class);
+   @Test
+   public void givenIndexPageWhenContainsArticleThenTrue() {
+      ResponseEntity<String> entity = this.restTemplate.getForEntity("/article", String.class);
 
-		assertEquals(entity.getStatusCode(), HttpStatus.OK);
-		assertTrue(Objects.requireNonNull(entity.getBody()).contains("Article Title 0"));
-	}
+      assertEquals(entity.getStatusCode(), HttpStatus.OK);
+      assertTrue(Objects.requireNonNull(entity.getBody()).contains("Article Title 0"));
+   }
 }

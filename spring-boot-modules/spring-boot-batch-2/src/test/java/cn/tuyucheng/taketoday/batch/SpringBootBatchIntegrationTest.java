@@ -25,27 +25,27 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @EnableAutoConfiguration
 public class SpringBootBatchIntegrationTest {
 
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+   @Autowired
+   private JobLauncherTestUtils jobLauncherTestUtils;
 
-	@Autowired
-	private JobRepositoryTestUtils jobRepositoryTestUtils;
+   @Autowired
+   private JobRepositoryTestUtils jobRepositoryTestUtils;
 
-	@MockBean
-	private JobCompletionNotificationListener jobCompletionNotificationListener;
+   @MockBean
+   private JobCompletionNotificationListener jobCompletionNotificationListener;
 
-	@AfterEach
-	public void cleanUp() {
-		jobRepositoryTestUtils.removeJobExecutions();
-	}
+   @AfterEach
+   public void cleanUp() {
+      jobRepositoryTestUtils.removeJobExecutions();
+   }
 
-	@Test
-	public void givenCoffeeList_whenJobExecuted_thenSuccess() throws Exception {
-		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		JobInstance jobInstance = jobExecution.getJobInstance();
-		ExitStatus jobExitStatus = jobExecution.getExitStatus();
+   @Test
+   public void givenCoffeeList_whenJobExecuted_thenSuccess() throws Exception {
+      JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+      JobInstance jobInstance = jobExecution.getJobInstance();
+      ExitStatus jobExitStatus = jobExecution.getExitStatus();
 
-		assertEquals("importUserJob", jobInstance.getJobName());
-		assertEquals("COMPLETED", jobExitStatus.getExitCode());
-	}
+      assertEquals("importUserJob", jobInstance.getJobName());
+      assertEquals("COMPLETED", jobExitStatus.getExitCode());
+   }
 }

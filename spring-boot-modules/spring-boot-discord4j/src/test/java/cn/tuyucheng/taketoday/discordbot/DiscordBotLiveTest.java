@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DiscordBotLiveTest {
 
-	@Test
-	void contextTest() {
-	}
+   @Test
+   void contextTest() {
+   }
 }

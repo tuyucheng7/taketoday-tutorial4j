@@ -10,17 +10,17 @@ import org.springframework.core.io.support.EncodedResource;
 import java.io.IOException;
 
 public class ReloadablePropertySourceFactory extends DefaultPropertySourceFactory {
-	@Override
-	public PropertySource<?> createPropertySource(String s, EncodedResource encodedResource) throws IOException {
-		Resource internal = encodedResource.getResource();
-		if (internal instanceof FileSystemResource) {
-			return new ReloadablePropertySource(s, ((FileSystemResource) internal).getPath());
-		}
-		if (internal instanceof FileUrlResource) {
-			return new ReloadablePropertySource(s, ((FileUrlResource) internal)
-				.getURL()
-				.getPath());
-		}
-		return super.createPropertySource(s, encodedResource);
-	}
+   @Override
+   public PropertySource<?> createPropertySource(String s, EncodedResource encodedResource) throws IOException {
+      Resource internal = encodedResource.getResource();
+      if (internal instanceof FileSystemResource) {
+         return new ReloadablePropertySource(s, ((FileSystemResource) internal).getPath());
+      }
+      if (internal instanceof FileUrlResource) {
+         return new ReloadablePropertySource(s, ((FileUrlResource) internal)
+               .getURL()
+               .getPath());
+      }
+      return super.createPropertySource(s, encodedResource);
+   }
 }

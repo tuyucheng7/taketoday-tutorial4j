@@ -14,11 +14,11 @@ import java.util.List;
 @RequestMapping("order")
 public class OrderController {
 
-	@Autowired
-	OrderRepository orderRepository;
+   @Autowired
+   OrderRepository orderRepository;
 
-	@GetMapping()
-	public List<Order> getOrders(@RequestParam("product-id") Integer productId) {
-		return orderRepository.getOrdersByProduct(productId);
-	}
+   @GetMapping()
+   public List<Order> getOrders(@RequestParam("product-id") Integer productId) {
+      return orderRepository.getOrdersByProduct(productId);
+   }
 }

@@ -16,34 +16,34 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter {
 
-    @Autowired
-    private RestAuthenticationEntryPoint authenticationEntryPoint;
+   @Autowired
+   private RestAuthenticationEntryPoint authenticationEntryPoint;
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-              .inMemoryAuthentication()
-              .withUser("user1")
-              .password(passwordEncoder().encode("user1Pass"))
-              .authorities("ROLE_USER");
-    }
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+            .inMemoryAuthentication()
+            .withUser("user1")
+            .password(passwordEncoder().encode("user1Pass"))
+            .authorities("ROLE_USER");
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/securityNone")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic()
-              .authenticationEntryPoint(authenticationEntryPoint);
-        http.addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/securityNone")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic()
+            .authenticationEntryPoint(authenticationEntryPoint);
+      http.addFilterAfter(new CustomFilter(), BasicAuthenticationFilter.class);
+      return http.build();
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

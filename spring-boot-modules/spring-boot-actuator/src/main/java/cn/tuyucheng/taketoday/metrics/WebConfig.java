@@ -14,17 +14,17 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
-	@Bean
-	public ViewResolver viewResolver() {
-		final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/view/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+   @Bean
+   public ViewResolver viewResolver() {
+      final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+      viewResolver.setPrefix("/WEB-INF/view/");
+      viewResolver.setSuffix(".jsp");
+      return viewResolver;
+   }
 
-	@Override
-	public void addViewControllers(final ViewControllerRegistry registry) {
-		registry.addViewController("/metrics/graph.html");
-		registry.addViewController("/metrics/homepage.html");
-	}
+   @Override
+   public void addViewControllers(final ViewControllerRegistry registry) {
+      registry.addViewController("/metrics/graph.html");
+      registry.addViewController("/metrics/homepage.html");
+   }
 }

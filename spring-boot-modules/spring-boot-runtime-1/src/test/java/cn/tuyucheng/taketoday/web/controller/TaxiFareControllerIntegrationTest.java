@@ -16,18 +16,18 @@ import static org.hamcrest.Matchers.equalTo;
 @SpringBootTest(classes = {Application.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TaxiFareControllerIntegrationTest {
 
-	@LocalServerPort
-	private int port;
+   @LocalServerPort
+   private int port;
 
-	@Test
-	public void givenRequest_whenFetchTaxiFareRateCard_thanOK() {
-		String URL = "http://localhost:" + port + "/spring-rest";
-		TestRestTemplate testRestTemplate = new TestRestTemplate();
-		TaxiRide taxiRide = new TaxiRide(true, 10l);
-		String fare = testRestTemplate.postForObject(
-			URL + "/taxifare/calculate/",
-			taxiRide, String.class);
+   @Test
+   public void givenRequest_whenFetchTaxiFareRateCard_thanOK() {
+      String URL = "http://localhost:" + port + "/spring-rest";
+      TestRestTemplate testRestTemplate = new TestRestTemplate();
+      TaxiRide taxiRide = new TaxiRide(true, 10l);
+      String fare = testRestTemplate.postForObject(
+            URL + "/taxifare/calculate/",
+            taxiRide, String.class);
 
-		assertThat(fare, equalTo("200"));
-	}
+      assertThat(fare, equalTo("200"));
+   }
 }

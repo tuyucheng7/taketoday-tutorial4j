@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class RestartService {
 
-	@Autowired
-	private RestartEndpoint restartEndpoint;
+   @Autowired
+   private RestartEndpoint restartEndpoint;
 
-	public void restartApp() {
-		restartEndpoint.restart();
-	}
+   public void restartApp() {
+      restartEndpoint.restart();
+   }
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("cn.tuyucheng.taketoday.maxhttpheadersize")
 public class MaxHttpHeaderSizeApplication {
 
-	public static void main(final String[] args) {
-		SpringApplication.run(MaxHttpHeaderSizeApplication.class, args);
-	}
+   public static void main(final String[] args) {
+      SpringApplication.run(MaxHttpHeaderSizeApplication.class, args);
+   }
 }

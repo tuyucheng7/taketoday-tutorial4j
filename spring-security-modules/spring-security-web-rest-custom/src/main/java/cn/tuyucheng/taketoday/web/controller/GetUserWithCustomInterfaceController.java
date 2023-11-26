@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class GetUserWithCustomInterfaceController {
 
-    @Autowired
-    private IAuthenticationFacade authenticationFacade;
+   @Autowired
+   private IAuthenticationFacade authenticationFacade;
 
-    public GetUserWithCustomInterfaceController() {
-        super();
-    }
+   public GetUserWithCustomInterfaceController() {
+      super();
+   }
 
-    @RequestMapping(value = "/username5", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserNameSimple() {
-        final Authentication authentication = authenticationFacade.getAuthentication();
-        return authentication.getName();
-    }
+   @RequestMapping(value = "/username5", method = RequestMethod.GET)
+   @ResponseBody
+   public String currentUserNameSimple() {
+      final Authentication authentication = authenticationFacade.getAuthentication();
+      return authentication.getName();
+   }
 
 }

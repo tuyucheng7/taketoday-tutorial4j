@@ -11,16 +11,16 @@ import java.util.Date;
 @Service
 public class ProductService {
 
-	private final ApplicationEventPublisher events;
-	private final NotificationService notificationService;
+   private final ApplicationEventPublisher events;
+   private final NotificationService notificationService;
 
-	public ProductService(ApplicationEventPublisher events, NotificationService notificationService) {
-		this.events = events;
-		this.notificationService = notificationService;
-	}
+   public ProductService(ApplicationEventPublisher events, NotificationService notificationService) {
+      this.events = events;
+      this.notificationService = notificationService;
+   }
 
-	public void create(Product product) {
-		notificationService.createNotification(new NotificationDTO(new Date(), "SMS", product.getName()));
-		events.publishEvent(new NotificationDTO(new Date(), "SMS", product.getName()));
-	}
+   public void create(Product product) {
+      notificationService.createNotification(new NotificationDTO(new Date(), "SMS", product.getName()));
+      events.publishEvent(new NotificationDTO(new Date(), "SMS", product.getName()));
+   }
 }

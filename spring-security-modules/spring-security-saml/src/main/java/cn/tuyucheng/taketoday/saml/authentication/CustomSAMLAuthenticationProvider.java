@@ -12,17 +12,17 @@ import java.util.List;
 
 public class CustomSAMLAuthenticationProvider extends SAMLAuthenticationProvider {
 
-    @Override
-    public Collection<? extends GrantedAuthority> getEntitlements(SAMLCredential credential, Object userDetail) {
+   @Override
+   public Collection<? extends GrantedAuthority> getEntitlements(SAMLCredential credential, Object userDetail) {
 
-        if (userDetail instanceof ExpiringUsernameAuthenticationToken) {
-            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.addAll(((ExpiringUsernameAuthenticationToken) userDetail).getAuthorities());
-            return authorities;
+      if (userDetail instanceof ExpiringUsernameAuthenticationToken) {
+         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+         authorities.addAll(((ExpiringUsernameAuthenticationToken) userDetail).getAuthorities());
+         return authorities;
 
-        } else {
-            return Collections.emptyList();
-        }
-    }
+      } else {
+         return Collections.emptyList();
+      }
+   }
 
 }

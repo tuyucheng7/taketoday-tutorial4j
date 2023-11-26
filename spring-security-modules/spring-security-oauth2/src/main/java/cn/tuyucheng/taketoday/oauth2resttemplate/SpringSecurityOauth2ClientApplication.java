@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-oauth2-rest-template.properties")
 public class SpringSecurityOauth2ClientApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringSecurityOauth2ClientApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringSecurityOauth2ClientApplication.class, args);
+   }
 
 }

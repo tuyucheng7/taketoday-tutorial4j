@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.springsoap;
 
-import cn.tuyucheng.taketoday.springsoap.CountryRepository;
 import cn.tuyucheng.taketoday.springsoap.client.gen.GetCountryRequest;
 import cn.tuyucheng.taketoday.springsoap.client.gen.GetCountryResponse;
 import org.springframework.beans.factory.annotation.Autowired;

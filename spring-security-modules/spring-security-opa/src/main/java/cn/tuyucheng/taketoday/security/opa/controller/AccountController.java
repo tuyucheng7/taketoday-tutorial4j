@@ -12,10 +12,10 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class AccountController {
 
-    private final AccountService accountService;
+   private final AccountService accountService;
 
-    @GetMapping("/account/{accountId}")
-    public Mono<Account> getAccount(@PathVariable("accountId") String accountId) {
-        return accountService.findByAccountId(accountId);
-    }
+   @GetMapping("/account/{accountId}")
+   public Mono<Account> getAccount(@PathVariable("accountId") String accountId) {
+      return accountService.findByAccountId(accountId);
+   }
 }

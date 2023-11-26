@@ -16,20 +16,20 @@ import java.util.concurrent.Executor;
 @ComponentScan("cn.tuyucheng.taketoday.async")
 public class SpringAsyncConfig implements AsyncConfigurer {
 
-	@Bean(name = "threadPoolTaskExecutor")
-	public Executor threadPoolTaskExecutor() {
-		return new ThreadPoolTaskExecutor();
-	}
+   @Bean(name = "threadPoolTaskExecutor")
+   public Executor threadPoolTaskExecutor() {
+      return new ThreadPoolTaskExecutor();
+   }
 
-	@Override
-	public Executor getAsyncExecutor() {
-		ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-		threadPoolTaskExecutor.initialize();
-		return threadPoolTaskExecutor;
-	}
+   @Override
+   public Executor getAsyncExecutor() {
+      ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+      threadPoolTaskExecutor.initialize();
+      return threadPoolTaskExecutor;
+   }
 
-	@Override
-	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-		return new CustomAsyncExceptionHandler();
-	}
+   @Override
+   public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+      return new CustomAsyncExceptionHandler();
+   }
 }

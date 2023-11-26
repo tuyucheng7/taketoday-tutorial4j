@@ -16,12 +16,12 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 public class UserJsonDeserializerIntegrationTest {
 
-	@Autowired
-	private ObjectMapper objectMapper;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-	@Test
-	public void testDeserialize() throws IOException {
-		User user = objectMapper.readValue("{\"favoriteColor\":\"#f0f8ff\"}", User.class);
-		assertEquals(Color.ALICEBLUE, user.getFavoriteColor());
-	}
+   @Test
+   public void testDeserialize() throws IOException {
+      User user = objectMapper.readValue("{\"favoriteColor\":\"#f0f8ff\"}", User.class);
+      assertEquals(Color.ALICEBLUE, user.getFavoriteColor());
+   }
 }

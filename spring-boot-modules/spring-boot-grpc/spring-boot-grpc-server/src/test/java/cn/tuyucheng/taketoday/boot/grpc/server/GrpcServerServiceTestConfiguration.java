@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GrpcServerServiceTestConfiguration {
 
-	@Bean
-	public GrpcServerService grpcServerService() {
-		return new GrpcServerService();
-	}
+   @Bean
+   public GrpcServerService grpcServerService() {
+      return new GrpcServerService();
+   }
 }

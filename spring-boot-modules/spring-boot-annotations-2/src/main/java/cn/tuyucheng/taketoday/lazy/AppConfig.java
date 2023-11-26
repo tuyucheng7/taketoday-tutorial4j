@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Lazy;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.lazy")
 public class AppConfig {
 
-	@Lazy
-	@Bean
-	public Region getRegion() {
-		return new Region();
-	}
+   @Lazy
+   @Bean
+   public Region getRegion() {
+      return new Region();
+   }
 
-	@Bean
-	public Country getCountry() {
-		return new Country();
-	}
+   @Bean
+   public Country getCountry() {
+      return new Country();
+   }
 }

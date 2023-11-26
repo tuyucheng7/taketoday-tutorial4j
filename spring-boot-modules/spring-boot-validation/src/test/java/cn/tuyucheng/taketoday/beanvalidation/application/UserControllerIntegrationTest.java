@@ -24,48 +24,48 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureMockMvc
 class UserControllerIntegrationTest {
 
-	@MockBean
-	private UserRepository userRepository;
+   @MockBean
+   private UserRepository userRepository;
 
-	@Autowired
-	UserController userController;
+   @Autowired
+   UserController userController;
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void whenUserControllerInjected_thenNotNull() throws Exception {
-		assertThat(userController).isNotNull();
-	}
+   @Test
+   void whenUserControllerInjected_thenNotNull() throws Exception {
+      assertThat(userController).isNotNull();
+   }
 
-	@Test
-	void whenGetRequestToUsers_thenCorrectResponse() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/users")
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+   @Test
+   void whenGetRequestToUsers_thenCorrectResponse() throws Exception {
+      mockMvc.perform(MockMvcRequestBuilders.get("/users")
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
 
-	}
+   }
 
-	@Test
-	void whenPostRequestToUsersAndValidUser_thenCorrectResponse() throws Exception {
-		MediaType textPlainUtf8 = new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8);
-		String user = "{\"name\": \"bob\", \"email\" : \"bob@domain.com\"}";
-		mockMvc.perform(MockMvcRequestBuilders.post("/users")
-				.content(user)
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(MockMvcResultMatchers.status().isOk())
-			.andExpect(MockMvcResultMatchers.content().contentType(textPlainUtf8));
-	}
+   @Test
+   void whenPostRequestToUsersAndValidUser_thenCorrectResponse() throws Exception {
+      MediaType textPlainUtf8 = new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8);
+      String user = "{\"name\": \"bob\", \"email\" : \"bob@domain.com\"}";
+      mockMvc.perform(MockMvcRequestBuilders.post("/users")
+                  .content(user)
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().contentType(textPlainUtf8));
+   }
 
-	@Test
-	void whenPostRequestToUsersAndInValidUser_thenCorrectResponse() throws Exception {
-		String user = "{\"name\": \"\", \"email\" : \"bob@domain.com\"}";
-		mockMvc.perform(MockMvcRequestBuilders.post("/users")
-				.content(user)
-				.contentType(MediaType.APPLICATION_JSON))
-			.andExpect(MockMvcResultMatchers.status().isBadRequest())
-			.andExpect(MockMvcResultMatchers.jsonPath("$.name", Is.is("Name is mandatory")))
-			.andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
-	}
+   @Test
+   void whenPostRequestToUsersAndInValidUser_thenCorrectResponse() throws Exception {
+      String user = "{\"name\": \"\", \"email\" : \"bob@domain.com\"}";
+      mockMvc.perform(MockMvcRequestBuilders.post("/users")
+                  .content(user)
+                  .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isBadRequest())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name", Is.is("Name is mandatory")))
+            .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON));
+   }
 }

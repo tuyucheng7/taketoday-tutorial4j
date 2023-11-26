@@ -18,15 +18,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MemoryStatusController.class)
 class MemoryStatusControllerIntegrationTest {
 
-	@Autowired
-	private MockMvc mvc;
+   @Autowired
+   private MockMvc mvc;
 
-	@Test
-	void whenGetMemoryStatistics_thenReturnJsonArray() throws Exception {
-		mvc.perform(get("/memory-status").contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("heapSize", not(notANumber())))
-			.andExpect(jsonPath("heapMaxSize", not(notANumber())))
-			.andExpect(jsonPath("heapFreeSize", not(notANumber())));
-	}
+   @Test
+   void whenGetMemoryStatistics_thenReturnJsonArray() throws Exception {
+      mvc.perform(get("/memory-status").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("heapSize", not(notANumber())))
+            .andExpect(jsonPath("heapMaxSize", not(notANumber())))
+            .andExpect(jsonPath("heapFreeSize", not(notANumber())));
+   }
 }

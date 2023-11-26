@@ -18,22 +18,22 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class SecurityJsonViewControllerAdvice extends AbstractMappingJacksonResponseBodyAdvice {
 
-    @Override
-    protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,
-                                           MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
-        if (SecurityContextHolder.getContext().getAuthentication() != null
-              && SecurityContextHolder.getContext().getAuthentication().getAuthorities() != null) {
-            Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-            List<Class> jsonViews = authorities.stream()
-                  .map(GrantedAuthority::getAuthority)
-                  .map(AppConfig.Role::valueOf)
-                  .map(View.MAPPING::get)
-                  .collect(Collectors.toList());
-            if (jsonViews.size() == 1) {
-                bodyContainer.setSerializationView(jsonViews.get(0));
-                return;
-            }
-            throw new IllegalArgumentException("Ambiguous @JsonView declaration for roles " + authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(",")));
-        }
-    }
+   @Override
+   protected void beforeBodyWriteInternal(MappingJacksonValue bodyContainer, MediaType contentType,
+                                          MethodParameter returnType, ServerHttpRequest request, ServerHttpResponse response) {
+      if (SecurityContextHolder.getContext().getAuthentication() != null
+            && SecurityContextHolder.getContext().getAuthentication().getAuthorities() != null) {
+         Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+         List<Class> jsonViews = authorities.stream()
+               .map(GrantedAuthority::getAuthority)
+               .map(AppConfig.Role::valueOf)
+               .map(View.MAPPING::get)
+               .collect(Collectors.toList());
+         if (jsonViews.size() == 1) {
+            bodyContainer.setSerializationView(jsonViews.get(0));
+            return;
+         }
+         throw new IllegalArgumentException("Ambiguous @JsonView declaration for roles " + authorities.stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(",")));
+      }
+   }
 }

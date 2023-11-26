@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ViewController {
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
+   @RequestMapping("/login")
+   public String login() {
+      return "login";
+   }
 
-    @RequestMapping({"/index", "/"})
-    public String index() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return "userdetails";
-    }
+   @RequestMapping({"/index", "/"})
+   public String index() {
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      return "userdetails";
+   }
 }

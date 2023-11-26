@@ -8,25 +8,25 @@ import org.springframework.util.StringUtils;
 
 public class ReloadablePropertySource extends PropertySource {
 
-    private final PropertiesConfiguration propertiesConfiguration;
+   private final PropertiesConfiguration propertiesConfiguration;
 
-    public ReloadablePropertySource(String name, PropertiesConfiguration propertiesConfiguration) {
-        super(name);
-        this.propertiesConfiguration = propertiesConfiguration;
-    }
+   public ReloadablePropertySource(String name, PropertiesConfiguration propertiesConfiguration) {
+      super(name);
+      this.propertiesConfiguration = propertiesConfiguration;
+   }
 
-    public ReloadablePropertySource(String name, String path) throws ConfigurationException {
-        super(StringUtils.hasText(name) ? path : name);
-        try {
-            this.propertiesConfiguration = new PropertiesConfiguration(path);
-            this.propertiesConfiguration.setReloadingStrategy(new FileChangedReloadingStrategy());
-        } catch (PropertiesException e) {
-            throw e;
-        }
-    }
+   public ReloadablePropertySource(String name, String path) throws ConfigurationException {
+      super(StringUtils.hasText(name) ? path : name);
+      try {
+         this.propertiesConfiguration = new PropertiesConfiguration(path);
+         this.propertiesConfiguration.setReloadingStrategy(new FileChangedReloadingStrategy());
+      } catch (PropertiesException e) {
+         throw e;
+      }
+   }
 
-    @Override
-    public Object getProperty(String s) {
-        return propertiesConfiguration.getProperty(s);
-    }
+   @Override
+   public Object getProperty(String s) {
+      return propertiesConfiguration.getProperty(s);
+   }
 }

@@ -7,22 +7,22 @@ import java.util.concurrent.ExecutorService;
 
 public class ExecutorServiceExitCodeGenerator implements ExitCodeGenerator {
 
-    private ExecutorService executorService;
+   private ExecutorService executorService;
 
-    public ExecutorServiceExitCodeGenerator(ExecutorService executorService) {
-    }
+   public ExecutorServiceExitCodeGenerator(ExecutorService executorService) {
+   }
 
-    @Override
-    public int getExitCode() {
-        try {
-            if (!Objects.isNull(executorService)) {
-                executorService.shutdownNow();
-                return 1;
-            }
+   @Override
+   public int getExitCode() {
+      try {
+         if (!Objects.isNull(executorService)) {
+            executorService.shutdownNow();
+            return 1;
+         }
 
-            return 0;
-        } catch (SecurityException ex) {
-            return 0;
-        }
-    }
+         return 0;
+      } catch (SecurityException ex) {
+         return 0;
+      }
+   }
 }

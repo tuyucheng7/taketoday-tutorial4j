@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = {DatabaseProperties.class})
 public class AnnotationProcessorApplication {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(AnnotationProcessorApplication.class).run();
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(AnnotationProcessorApplication.class).run();
+   }
 }

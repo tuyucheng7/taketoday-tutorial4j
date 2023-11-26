@@ -7,23 +7,23 @@ import java.util.List;
 
 public interface IOperations<T extends Serializable> {
 
-	// read - one
+   // read - one
 
-	T findById(final long id);
+   T findById(final long id);
 
-	// read - all
+   // read - all
 
-	List<T> findAll();
+   List<T> findAll();
 
-	Page<T> findPaginated(int page, int size);
+   Page<T> findPaginated(int page, int size);
 
-	// write
+   // write
 
-	T create(final T entity);
+   T create(final T entity);
 
-	T update(final T entity);
+   T update(final T entity);
 
-	void delete(final T entity);
+   void delete(final T entity);
 
-	void deleteById(final long entityId);
+   void deleteById(final long entityId);
 }

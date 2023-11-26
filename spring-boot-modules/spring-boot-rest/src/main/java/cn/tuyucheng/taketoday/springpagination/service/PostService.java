@@ -13,34 +13,34 @@ import java.util.List;
 @Service
 public class PostService implements IPostService {
 
-	@Autowired
-	private PostRepository postRepository;
+   @Autowired
+   private PostRepository postRepository;
 
-	@Autowired
-	private IUserService userService;
+   @Autowired
+   private IUserService userService;
 
-	@Override
-	public List<Post> getPostsList(int page, int size, String sortDir, String sort) {
+   @Override
+   public List<Post> getPostsList(int page, int size, String sortDir, String sort) {
 
-		PageRequest pageReq
-			= PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
+      PageRequest pageReq
+            = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
 
-		Page<Post> posts = postRepository.findByUser(userService.getCurrentUser(), pageReq);
-		return posts.getContent();
-	}
+      Page<Post> posts = postRepository.findByUser(userService.getCurrentUser(), pageReq);
+      return posts.getContent();
+   }
 
-	@Override
-	public void updatePost(Post post) {
-		postRepository.save(post);
-	}
+   @Override
+   public void updatePost(Post post) {
+      postRepository.save(post);
+   }
 
-	@Override
-	public Post createPost(Post post) {
-		return postRepository.save(post);
-	}
+   @Override
+   public Post createPost(Post post) {
+      return postRepository.save(post);
+   }
 
-	@Override
-	public Post getPostById(Long id) {
-		return postRepository.getOne(id);
-	}
+   @Override
+   public Post getPostById(Long id) {
+      return postRepository.getOne(id);
+   }
 }

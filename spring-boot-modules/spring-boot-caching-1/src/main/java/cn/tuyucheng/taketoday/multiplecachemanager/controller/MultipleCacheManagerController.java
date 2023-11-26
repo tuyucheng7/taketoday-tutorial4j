@@ -14,29 +14,29 @@ import java.util.List;
 @RestController
 public class MultipleCacheManagerController {
 
-	@Autowired
-	private CustomerDetailBO customerDetailBO;
+   @Autowired
+   private CustomerDetailBO customerDetailBO;
 
-	@Autowired
-	private OrderDetailBO orderDetailBO;
+   @Autowired
+   private OrderDetailBO orderDetailBO;
 
-	@GetMapping(value = "/getCustomer/{customerid}")
-	public Customer getCustomer(@PathVariable Integer customerid) {
-		return customerDetailBO.getCustomerDetail(customerid);
-	}
+   @GetMapping(value = "/getCustomer/{customerid}")
+   public Customer getCustomer(@PathVariable Integer customerid) {
+      return customerDetailBO.getCustomerDetail(customerid);
+   }
 
-	@GetMapping(value = "/getCustomerOrders/{customerid}")
-	public List<Order> getCustomerOrders(@PathVariable Integer customerid) {
-		return customerDetailBO.getCustomerOrders(customerid);
-	}
+   @GetMapping(value = "/getCustomerOrders/{customerid}")
+   public List<Order> getCustomerOrders(@PathVariable Integer customerid) {
+      return customerDetailBO.getCustomerOrders(customerid);
+   }
 
-	@GetMapping(value = "/getOrder/{orderid}")
-	public Order getOrder(@PathVariable Integer orderid) {
-		return orderDetailBO.getOrderDetail(orderid);
-	}
+   @GetMapping(value = "/getOrder/{orderid}")
+   public Order getOrder(@PathVariable Integer orderid) {
+      return orderDetailBO.getOrderDetail(orderid);
+   }
 
-	@GetMapping(value = "/getOrderPrice/{orderid}")
-	public double getOrderPrice(@PathVariable Integer orderid) {
-		return orderDetailBO.getOrderPrice(orderid);
-	}
+   @GetMapping(value = "/getOrderPrice/{orderid}")
+   public double getOrderPrice(@PathVariable Integer orderid) {
+      return orderDetailBO.getOrderPrice(orderid);
+   }
 }

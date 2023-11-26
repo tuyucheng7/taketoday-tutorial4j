@@ -12,26 +12,26 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 class ClassNotManagedBySpringIntegrationTest {
 
-	@MockBean
-	private InitializerBean initializerBean;
+   @MockBean
+   private InitializerBean initializerBean;
 
-	@BeforeEach
-	void init() {
-		when(initializerBean.initClass())
-			.thenReturn(new ClassNotManagedBySpring("This is only sample value", "Another configured value"));
-	}
+   @BeforeEach
+   void init() {
+      when(initializerBean.initClass())
+            .thenReturn(new ClassNotManagedBySpring("This is only sample value", "Another configured value"));
+   }
 
-	@Test
-	void givenInitializerBean_whenInvokedInitClass_shouldInitialize() throws Exception {
-		// given
-		ClassNotManagedBySpring classNotManagedBySpring = initializerBean.initClass();
+   @Test
+   void givenInitializerBean_whenInvokedInitClass_shouldInitialize() throws Exception {
+      // given
+      ClassNotManagedBySpring classNotManagedBySpring = initializerBean.initClass();
 
-		// when
-		String initializedValue = classNotManagedBySpring.getCustomVariable();
-		String anotherCustomVariable = classNotManagedBySpring.getAnotherCustomVariable();
+      // when
+      String initializedValue = classNotManagedBySpring.getCustomVariable();
+      String anotherCustomVariable = classNotManagedBySpring.getAnotherCustomVariable();
 
-		// then
-		assertEquals("This is only sample value", initializedValue);
-		assertEquals("Another configured value", anotherCustomVariable);
-	}
+      // then
+      assertEquals("This is only sample value", initializedValue);
+      assertEquals("Another configured value", anotherCustomVariable);
+   }
 }

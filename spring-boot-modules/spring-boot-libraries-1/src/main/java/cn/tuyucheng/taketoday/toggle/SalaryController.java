@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SalaryController {
 
-	@Autowired
-	SalaryService salaryService;
+   @Autowired
+   SalaryService salaryService;
 
-	@PostMapping(value = "/increaseSalary")
-	@ResponseBody
-	public void increaseSalary(@RequestParam long id) {
-		salaryService.increaseSalary(id);
-	}
+   @PostMapping(value = "/increaseSalary")
+   @ResponseBody
+   public void increaseSalary(@RequestParam long id) {
+      salaryService.increaseSalary(id);
+   }
 }

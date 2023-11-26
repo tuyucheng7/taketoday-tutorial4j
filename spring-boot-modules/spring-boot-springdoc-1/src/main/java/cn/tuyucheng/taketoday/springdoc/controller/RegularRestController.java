@@ -11,19 +11,19 @@ import java.time.LocalTime;
 @RestController
 public class RegularRestController {
 
-	@Hidden
-	@GetMapping("/getAuthor")
-	public String getAuthor() {
-		return "Umang Budhwar";
-	}
+   @Hidden
+   @GetMapping("/getAuthor")
+   public String getAuthor() {
+      return "Umang Budhwar";
+   }
 
-	@GetMapping("/getDate")
-	public LocalDate getDate() {
-		return LocalDate.now();
-	}
+   @GetMapping("/getDate")
+   public LocalDate getDate() {
+      return LocalDate.now();
+   }
 
-	@GetMapping("/getTime")
-	public LocalTime getTime() {
-		return LocalTime.now();
-	}
+   @GetMapping("/getTime")
+   public LocalTime getTime() {
+      return LocalTime.now();
+   }
 }

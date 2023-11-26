@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ErrorController {
 
-    public ErrorController() {
-    }
+   public ErrorController() {
+   }
 
-    @GetMapping("/400")
-    String error400() {
-        return "Error Code: 400 occured.";
-    }
+   @GetMapping("/400")
+   String error400() {
+      return "Error Code: 400 occured.";
+   }
 
-    @GetMapping("/errorHaven")
-    String errorHeaven() {
-        return "You have reached the haven of errors!!!";
-    }
+   @GetMapping("/errorHaven")
+   String errorHeaven() {
+      return "You have reached the haven of errors!!!";
+   }
 }

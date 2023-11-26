@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class VehicleFactoryApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(VehicleFactoryApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(VehicleFactoryApplication.class, args);
+   }
 }

@@ -12,17 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class SampleJob implements Job {
 
-	Logger logger = LoggerFactory.getLogger(getClass());
+   Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	private SampleJobService jobService;
+   @Autowired
+   private SampleJobService jobService;
 
-	public void execute(JobExecutionContext context) throws JobExecutionException {
+   public void execute(JobExecutionContext context) throws JobExecutionException {
 
-		logger.info("Job ** {} ** fired @ {}", context.getJobDetail().getKey().getName(), context.getFireTime());
+      logger.info("Job ** {} ** fired @ {}", context.getJobDetail().getKey().getName(), context.getFireTime());
 
-		jobService.executeSampleJob();
+      jobService.executeSampleJob();
 
-		logger.info("Next job scheduled @ {}", context.getNextFireTime());
-	}
+      logger.info("Next job scheduled @ {}", context.getNextFireTime());
+   }
 }

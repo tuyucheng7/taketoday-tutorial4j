@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 @RestController
 public class SessionRestController {
 
-    @GetMapping("/session-max-interval")
-    public String retrieveMaxSessionInactiveInterval(HttpSession session) {
-        return "Max Inactive Interval before Session expires: " + session.getMaxInactiveInterval();
-    }
+   @GetMapping("/session-max-interval")
+   public String retrieveMaxSessionInactiveInterval(HttpSession session) {
+      return "Max Inactive Interval before Session expires: " + session.getMaxInactiveInterval();
+   }
 }

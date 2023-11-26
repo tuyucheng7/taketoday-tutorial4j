@@ -20,20 +20,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ShutdownApplicationIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-	@Before
-	public void setup() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+   @Before
+   public void setup() {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+   }
 
-	@Test
-	@Ignore
-	public void givenBootApp_whenShutdownEndpoint_thenExit() throws Exception {
-		mockMvc.perform(post("/shutdown")).andExpect(status().isOk());
-	}
+   @Test
+   @Ignore
+   public void givenBootApp_whenShutdownEndpoint_thenExit() throws Exception {
+      mockMvc.perform(post("/shutdown")).andExpect(status().isOk());
+   }
 }

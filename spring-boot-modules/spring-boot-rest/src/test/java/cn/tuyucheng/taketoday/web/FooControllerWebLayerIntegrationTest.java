@@ -36,38 +36,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(FooController.class)
 public class FooControllerWebLayerIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@MockBean
-	private IFooService service;
+   @MockBean
+   private IFooService service;
 
-	@MockBean
-	private ApplicationEventPublisher publisher;
+   @MockBean
+   private ApplicationEventPublisher publisher;
 
-	@Test()
-	public void givenPresentFoo_whenFindPaginatedRequest_thenPageWithFooRetrieved() throws Exception {
-		Page<Foo> page = new PageImpl<>(Collections.singletonList(new Foo("fooName")));
-		when(service.findPaginated(0, 2)).thenReturn(page);
-		doNothing().when(publisher)
-			.publishEvent(any(PaginatedResultsRetrievedEvent.class));
+   @Test()
+   public void givenPresentFoo_whenFindPaginatedRequest_thenPageWithFooRetrieved() throws Exception {
+      Page<Foo> page = new PageImpl<>(Collections.singletonList(new Foo("fooName")));
+      when(service.findPaginated(0, 2)).thenReturn(page);
+      doNothing().when(publisher)
+            .publishEvent(any(PaginatedResultsRetrievedEvent.class));
 
-		this.mockMvc.perform(get("/foos")
-				.param("page", "0")
-				.param("size", "2")
-				.accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$", Matchers.hasSize(1)));
-	}
+      this.mockMvc.perform(get("/foos")
+                  .param("page", "0")
+                  .param("size", "2")
+                  .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", Matchers.hasSize(1)));
+   }
 
-	@Test
-	public void delete_forException_fromService() throws Exception {
-		Mockito.when(service.findAll()).thenThrow(new CustomException1());
-		this.mockMvc.perform(get("/foos")).andDo(h -> {
-			final Exception expectedException = h.getResolvedException();
-			Assert.assertTrue(expectedException instanceof CustomException1);
+   @Test
+   public void delete_forException_fromService() throws Exception {
+      Mockito.when(service.findAll()).thenThrow(new CustomException1());
+      this.mockMvc.perform(get("/foos")).andDo(h -> {
+         final Exception expectedException = h.getResolvedException();
+         Assert.assertTrue(expectedException instanceof CustomException1);
 
-		});
-	}
+      });
+   }
 
 }

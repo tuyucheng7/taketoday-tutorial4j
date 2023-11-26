@@ -10,25 +10,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class IsDevEnvConditionUnitTest {
 
-	@Test
-	void whenDevEnvEnabled_thenDevEnvConditionShouldPass() {
-		System.setProperty("env", "dev");
+   @Test
+   void whenDevEnvEnabled_thenDevEnvConditionShouldPass() {
+      System.setProperty("env", "dev");
 
-		assertTrue(
-			new IsDevEnvCondition().matches(
-				Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-			)
-		);
-	}
+      assertTrue(
+            new IsDevEnvCondition().matches(
+                  Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+            )
+      );
+   }
 
-	@Test
-	void whenDevEnvNotEnabled_thenDevEnvConditionShouldNotPass() {
-		System.setProperty("env", "not-dev");
+   @Test
+   void whenDevEnvNotEnabled_thenDevEnvConditionShouldNotPass() {
+      System.setProperty("env", "not-dev");
 
-		assertFalse(
-			new IsDevEnvCondition().matches(
-				Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
-			)
-		);
-	}
+      assertFalse(
+            new IsDevEnvCondition().matches(
+                  Mockito.mock(ConditionContext.class), Mockito.mock(AnnotatedTypeMetadata.class)
+            )
+      );
+   }
 }

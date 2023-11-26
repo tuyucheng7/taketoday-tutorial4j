@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.roles.voter"})
 public class VoterApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(VoterApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(VoterApplication.class, args);
+   }
 }

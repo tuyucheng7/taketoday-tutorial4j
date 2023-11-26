@@ -12,29 +12,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AddressService {
-	private final static Logger LOG = LoggerFactory.getLogger(AddressService.class);
+   private final static Logger LOG = LoggerFactory.getLogger(AddressService.class);
 
-	@Autowired
-	private CacheManager cacheManager;
+   @Autowired
+   private CacheManager cacheManager;
 
-	@Cacheable(cacheNames = "addresses")
-	public String getAddress(long customerId) {
-		LOG.info("Method getAddress is invoked for customer {}", customerId);
+   @Cacheable(cacheNames = "addresses")
+   public String getAddress(long customerId) {
+      LOG.info("Method getAddress is invoked for customer {}", customerId);
 
-		return "123 Main St";
-	}
+      return "123 Main St";
+   }
 
-	public String getAddress2(long customerId) {
-		if (cacheManager.getCache("addresses2").get(customerId) != null) {
-			return cacheManager.getCache("addresses2").get(customerId).get().toString();
-		}
+   public String getAddress2(long customerId) {
+      if (cacheManager.getCache("addresses2").get(customerId) != null) {
+         return cacheManager.getCache("addresses2").get(customerId).get().toString();
+      }
 
-		LOG.info("Method getAddress2 is invoked for customer {}", customerId);
+      LOG.info("Method getAddress2 is invoked for customer {}", customerId);
 
-		String address = "123 Main St";
+      String address = "123 Main St";
 
-		cacheManager.getCache("addresses2").put(customerId, address);
+      cacheManager.getCache("addresses2").put(customerId, address);
 
-		return address;
-	}
+      return address;
+   }
 }

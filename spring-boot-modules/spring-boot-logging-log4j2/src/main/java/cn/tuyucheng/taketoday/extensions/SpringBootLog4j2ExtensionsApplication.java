@@ -10,16 +10,16 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-log4j2-extensions.properties")
 public class SpringBootLog4j2ExtensionsApplication {
 
-	private static final Logger logger = LogManager.getLogger(SpringBootLog4j2ExtensionsApplication.class);
+   private static final Logger logger = LogManager.getLogger(SpringBootLog4j2ExtensionsApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootLog4j2ExtensionsApplication.class, args);
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootLog4j2ExtensionsApplication.class, args);
 
-		logger.trace("Trace log message");
-		logger.debug("Debug log message");
-		logger.info("Info log message");
-		logger.error("Error log message");
-		logger.warn("Warn log message");
-		logger.fatal("Fatal log message");
-	}
+      logger.trace("Trace log message");
+      logger.debug("Debug log message");
+      logger.info("Info log message");
+      logger.error("Error log message");
+      logger.warn("Warn log message");
+      logger.fatal("Fatal log message");
+   }
 }

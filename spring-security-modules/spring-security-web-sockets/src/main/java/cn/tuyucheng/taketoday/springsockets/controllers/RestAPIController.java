@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/rest")
 public class RestAPIController {
 
-    @GetMapping(path = "/{name}", produces = "application/json")
-    public String getGreeting(@PathVariable("name") String name) {
-        return "{\"greeting\" : \"Hello, " + name + "!\"}";
-    }
+   @GetMapping(path = "/{name}", produces = "application/json")
+   public String getGreeting(@PathVariable("name") String name) {
+      return "{\"greeting\" : \"Hello, " + name + "!\"}";
+   }
 
 }

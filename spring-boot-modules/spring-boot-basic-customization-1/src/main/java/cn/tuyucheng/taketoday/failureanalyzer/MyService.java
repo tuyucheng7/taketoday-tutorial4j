@@ -7,6 +7,6 @@ import javax.annotation.Resource;
 @Service
 public class MyService {
 
-	@Resource(name = "myDAO")
-	private MyDAO myDAO;
+   @Resource(name = "myDAO")
+   private MyDAO myDAO;
 }

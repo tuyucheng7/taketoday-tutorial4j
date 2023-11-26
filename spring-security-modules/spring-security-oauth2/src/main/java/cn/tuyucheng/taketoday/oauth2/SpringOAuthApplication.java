@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 public class SpringOAuthApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringOAuthApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringOAuthApplication.class, args);
+   }
 
 }

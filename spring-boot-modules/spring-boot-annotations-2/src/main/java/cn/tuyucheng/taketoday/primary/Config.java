@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Primary;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.primary")
 public class Config {
 
-	@Bean
-	public Employee johnEmployee() {
-		return new Employee("John");
-	}
+   @Bean
+   public Employee johnEmployee() {
+      return new Employee("John");
+   }
 
-	@Bean
-	@Primary
-	public Employee tonyEmployee() {
-		return new Employee("Tony");
-	}
+   @Bean
+   @Primary
+   public Employee tonyEmployee() {
+      return new Employee("Tony");
+   }
 }

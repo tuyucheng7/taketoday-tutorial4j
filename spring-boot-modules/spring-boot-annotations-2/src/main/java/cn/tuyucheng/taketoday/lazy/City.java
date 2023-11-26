@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class City {
 
-	public City() {
-		System.out.println("City bean initialized");
-	}
+   public City() {
+      System.out.println("City bean initialized");
+   }
 }

@@ -16,44 +16,44 @@ import java.time.Year;
 @RequestMapping("/customResponse")
 public class CustomResponseController {
 
-	@GetMapping("/hello")
-	public ResponseEntity<String> hello() {
-		return new ResponseEntity<>("Hello World!", HttpStatus.OK);
-	}
+   @GetMapping("/hello")
+   public ResponseEntity<String> hello() {
+      return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+   }
 
-	@GetMapping("/age")
-	public ResponseEntity<String> age(@RequestParam("yearOfBirth") int yearOfBirth) {
-		if (isInFuture(yearOfBirth)) {
-			return new ResponseEntity<>("Year of birth cannot be in the future", HttpStatus.BAD_REQUEST);
-		}
+   @GetMapping("/age")
+   public ResponseEntity<String> age(@RequestParam("yearOfBirth") int yearOfBirth) {
+      if (isInFuture(yearOfBirth)) {
+         return new ResponseEntity<>("Year of birth cannot be in the future", HttpStatus.BAD_REQUEST);
+      }
 
-		return new ResponseEntity<>("Your age is " + calculateAge(yearOfBirth), HttpStatus.OK);
-	}
+      return new ResponseEntity<>("Your age is " + calculateAge(yearOfBirth), HttpStatus.OK);
+   }
 
-	private int calculateAge(int yearOfBirth) {
-		return currentYear() - yearOfBirth;
-	}
+   private int calculateAge(int yearOfBirth) {
+      return currentYear() - yearOfBirth;
+   }
 
-	private boolean isInFuture(int year) {
-		return currentYear() < year;
-	}
+   private boolean isInFuture(int year) {
+      return currentYear() < year;
+   }
 
-	private int currentYear() {
-		return Year.now().getValue();
-	}
+   private int currentYear() {
+      return Year.now().getValue();
+   }
 
-	@GetMapping("/customHeader")
-	public ResponseEntity<String> customHeader() {
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Custom-Header", "foo");
+   @GetMapping("/customHeader")
+   public ResponseEntity<String> customHeader() {
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("Custom-Header", "foo");
 
-		return new ResponseEntity<>("Custom header set", headers, HttpStatus.OK);
-	}
+      return new ResponseEntity<>("Custom header set", headers, HttpStatus.OK);
+   }
 
-	@GetMapping("/manual")
-	public void manual(HttpServletResponse response) throws IOException {
-		response.setHeader("Custom-Header", "foo");
-		response.setStatus(200);
-		response.getWriter().println("Hello World!");
-	}
+   @GetMapping("/manual")
+   public void manual(HttpServletResponse response) throws IOException {
+      response.setHeader("Custom-Header", "foo");
+      response.setStatus(200);
+      response.getWriter().println("Hello World!");
+   }
 }

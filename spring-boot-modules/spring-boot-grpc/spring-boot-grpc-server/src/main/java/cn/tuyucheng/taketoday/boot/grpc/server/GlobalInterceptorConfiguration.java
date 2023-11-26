@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 public class GlobalInterceptorConfiguration {
 
-	@GrpcGlobalServerInterceptor
-	LogGrpcInterceptor logServerInterceptor() {
-		return new LogGrpcInterceptor();
-	}
+   @GrpcGlobalServerInterceptor
+   LogGrpcInterceptor logServerInterceptor() {
+      return new LogGrpcInterceptor();
+   }
 }

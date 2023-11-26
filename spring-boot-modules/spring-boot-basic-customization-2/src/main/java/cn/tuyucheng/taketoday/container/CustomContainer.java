@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomContainer implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
-	@Override
-	public void customize(ConfigurableServletWebServerFactory factory) {
-		factory.setContextPath("");
-		factory.setPort(8080);
-	}
+   @Override
+   public void customize(ConfigurableServletWebServerFactory factory) {
+      factory.setContextPath("");
+      factory.setPort(8080);
+   }
 }

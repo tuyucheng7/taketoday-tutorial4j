@@ -8,8 +8,8 @@ import org.springframework.core.annotation.Order;
 @Configuration(proxyBeanMethods = false)
 public class GlobalClientInterceptorConfiguration {
 
-	@GrpcGlobalClientInterceptor
-	LogGrpcInterceptor logClientInterceptor() {
-		return new LogGrpcInterceptor();
-	}
+   @GrpcGlobalClientInterceptor
+   LogGrpcInterceptor logClientInterceptor() {
+      return new LogGrpcInterceptor();
+   }
 }

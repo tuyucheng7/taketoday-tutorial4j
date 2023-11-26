@@ -26,53 +26,53 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 @ActiveProfiles("logback-test")
 public class LogbackTestLogLevelIntegrationTest {
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Rule
-	public OutputCaptureRule outputCapture = new OutputCaptureRule();
+   @Rule
+   public OutputCaptureRule outputCapture = new OutputCaptureRule();
 
-	private String baseUrl = "/testLogLevel";
+   private String baseUrl = "/testLogLevel";
 
-	@Test
-	public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenPrintDebugLogsForOurPackage() {
-		ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+   @Test
+   public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenPrintDebugLogsForOurPackage() {
+      ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
 
-		assertThat(response.getStatusCode()
-			.value()).isEqualTo(200);
-		assertThatOutputContainsLogForOurPackage("DEBUG");
-	}
+      assertThat(response.getStatusCode()
+            .value()).isEqualTo(200);
+      assertThatOutputContainsLogForOurPackage("DEBUG");
+   }
 
-	@Test
-	public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenNoDebugLogsForOtherPackages() {
-		ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+   @Test
+   public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenNoDebugLogsForOtherPackages() {
+      ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
 
-		assertThat(response.getStatusCode()
-			.value()).isEqualTo(200);
-		assertThatOutputDoesntContainLogForOtherPackages("DEBUG");
-	}
+      assertThat(response.getStatusCode()
+            .value()).isEqualTo(200);
+      assertThatOutputDoesntContainLogForOtherPackages("DEBUG");
+   }
 
-	@Test
-	public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenPrintErrorLogs() {
-		ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
+   @Test
+   public void givenErrorRootLevelAndDebugLevelForOurPackage_whenCall_thenPrintErrorLogs() {
+      ResponseEntity<String> response = restTemplate.getForEntity(baseUrl, String.class);
 
-		assertThat(response.getStatusCode()
-			.value()).isEqualTo(200);
-		assertThatOutputContainsLogForOurPackage("ERROR");
-		assertThatOutputContainsLogForOtherPackages("ERROR");
-	}
+      assertThat(response.getStatusCode()
+            .value()).isEqualTo(200);
+      assertThatOutputContainsLogForOurPackage("ERROR");
+      assertThatOutputContainsLogForOtherPackages("ERROR");
+   }
 
-	private void assertThatOutputContainsLogForOurPackage(String level) {
-		assertThat(outputCapture.toString()).containsPattern("TestLogLevelController.*" + level + ".*");
-	}
+   private void assertThatOutputContainsLogForOurPackage(String level) {
+      assertThat(outputCapture.toString()).containsPattern("TestLogLevelController.*" + level + ".*");
+   }
 
-	private void assertThatOutputDoesntContainLogForOtherPackages(String level) {
-		assertThat(outputCapture.toString()
-			.replaceAll("(?m)^.*TestLogLevelController.*$", "")).doesNotContain(level);
-	}
+   private void assertThatOutputDoesntContainLogForOtherPackages(String level) {
+      assertThat(outputCapture.toString()
+            .replaceAll("(?m)^.*TestLogLevelController.*$", "")).doesNotContain(level);
+   }
 
-	private void assertThatOutputContainsLogForOtherPackages(String level) {
-		assertThat(outputCapture.toString()
-			.replaceAll("(?m)^.*TestLogLevelController.*$", "")).contains(level);
-	}
+   private void assertThatOutputContainsLogForOtherPackages(String level) {
+      assertThat(outputCapture.toString()
+            .replaceAll("(?m)^.*TestLogLevelController.*$", "")).contains(level);
+   }
 }

@@ -15,42 +15,42 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
-              .authorizeRequests()
-              .antMatchers("/login**")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .disable()
-              .oauth2Login();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.antMatcher("/**")
+            .authorizeRequests()
+            .antMatchers("/login**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .disable()
+            .oauth2Login();
+      return http.build();
+   }
 
-    @Bean
-    @Profile("oauth2-extractors-baeldung")
-    public PrincipalExtractor baeldungPrincipalExtractor() {
-        return new BaeldungPrincipalExtractor();
-    }
+   @Bean
+   @Profile("oauth2-extractors-baeldung")
+   public PrincipalExtractor baeldungPrincipalExtractor() {
+      return new BaeldungPrincipalExtractor();
+   }
 
-    @Bean
-    @Profile("oauth2-extractors-baeldung")
-    public AuthoritiesExtractor baeldungAuthoritiesExtractor() {
-        return new BaeldungAuthoritiesExtractor();
-    }
+   @Bean
+   @Profile("oauth2-extractors-baeldung")
+   public AuthoritiesExtractor baeldungAuthoritiesExtractor() {
+      return new BaeldungAuthoritiesExtractor();
+   }
 
-    @Bean
-    @Profile("oauth2-extractors-github")
-    public PrincipalExtractor githubPrincipalExtractor() {
-        return new GithubPrincipalExtractor();
-    }
+   @Bean
+   @Profile("oauth2-extractors-github")
+   public PrincipalExtractor githubPrincipalExtractor() {
+      return new GithubPrincipalExtractor();
+   }
 
-    @Bean
-    @Profile("oauth2-extractors-github")
-    public AuthoritiesExtractor githubAuthoritiesExtractor() {
-        return new GithubAuthoritiesExtractor();
-    }
+   @Bean
+   @Profile("oauth2-extractors-github")
+   public AuthoritiesExtractor githubAuthoritiesExtractor() {
+      return new GithubAuthoritiesExtractor();
+   }
 }

@@ -7,14 +7,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class RoleHierarchyController {
 
-	@GetMapping("/roleHierarchy")
-	public ModelAndView roleHierarcy() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("adminMessage", "Admin content available");
-		model.addObject("staffMessage", "Staff content available");
-		model.addObject("userMessage", "User content available");
-		model.setViewName("roleHierarchy");
-		return model;
-	}
+   @GetMapping("/roleHierarchy")
+   public ModelAndView roleHierarcy() {
+      ModelAndView model = new ModelAndView();
+      model.addObject("adminMessage", "Admin content available");
+      model.addObject("staffMessage", "Staff content available");
+      model.addObject("userMessage", "User content available");
+      model.setViewName("roleHierarchy");
+      return model;
+   }
 
 }

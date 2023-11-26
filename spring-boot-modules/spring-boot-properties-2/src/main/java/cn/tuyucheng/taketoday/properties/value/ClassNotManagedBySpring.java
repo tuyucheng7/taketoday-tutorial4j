@@ -2,27 +2,27 @@ package cn.tuyucheng.taketoday.properties.value;
 
 public class ClassNotManagedBySpring {
 
-	private String customVariable;
-	private String anotherCustomVariable;
+   private String customVariable;
+   private String anotherCustomVariable;
 
-	public ClassNotManagedBySpring(String someInitialValue, String anotherManagedValue) {
-		this.customVariable = someInitialValue;
-		this.anotherCustomVariable = anotherManagedValue;
-	}
+   public ClassNotManagedBySpring(String someInitialValue, String anotherManagedValue) {
+      this.customVariable = someInitialValue;
+      this.anotherCustomVariable = anotherManagedValue;
+   }
 
-	public String getCustomVariable() {
-		return customVariable;
-	}
+   public String getCustomVariable() {
+      return customVariable;
+   }
 
-	public void setCustomVariable(String customVariable) {
-		this.customVariable = customVariable;
-	}
+   public void setCustomVariable(String customVariable) {
+      this.customVariable = customVariable;
+   }
 
-	public String getAnotherCustomVariable() {
-		return anotherCustomVariable;
-	}
+   public String getAnotherCustomVariable() {
+      return anotherCustomVariable;
+   }
 
-	public void setAnotherCustomVariable(String anotherCustomVariable) {
-		this.anotherCustomVariable = anotherCustomVariable;
-	}
+   public void setAnotherCustomVariable(String anotherCustomVariable) {
+      this.anotherCustomVariable = anotherCustomVariable;
+   }
 }

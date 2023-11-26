@@ -23,35 +23,35 @@ import java.sql.SQLException;
 @Import({SecurityConfig.class, DataStoreConfig.class, SocketBrokerConfig.class, SocketSecurityConfig.class})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/secured/socket").setViewName("socket");
-        registry.addViewController("/secured/success").setViewName("success");
-        registry.addViewController("/denied").setViewName("denied");
-    }
+   public void addViewControllers(ViewControllerRegistry registry) {
+      registry.addViewController("/").setViewName("index");
+      registry.addViewController("/login").setViewName("login");
+      registry.addViewController("/secured/socket").setViewName("socket");
+      registry.addViewController("/secured/success").setViewName("success");
+      registry.addViewController("/denied").setViewName("denied");
+   }
 
-    @Bean
-    public UrlBasedViewResolver viewResolver() {
-        final UrlBasedViewResolver bean = new UrlBasedViewResolver();
-        bean.setPrefix("/WEB-INF/jsp/");
-        bean.setSuffix(".jsp");
-        bean.setViewClass(JstlView.class);
-        return bean;
-    }
+   @Bean
+   public UrlBasedViewResolver viewResolver() {
+      final UrlBasedViewResolver bean = new UrlBasedViewResolver();
+      bean.setPrefix("/WEB-INF/jsp/");
+      bean.setSuffix(".jsp");
+      bean.setViewClass(JstlView.class);
+      return bean;
+   }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**")
-              .addResourceLocations("/", "/resources/")
-              .setCachePeriod(3600)
-              .resourceChain(true)
-              .addResolver(new PathResourceResolver());
-    }
+   @Override
+   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+      registry.addResourceHandler("/resources/**")
+            .addResourceLocations("/", "/resources/")
+            .setCachePeriod(3600)
+            .resourceChain(true)
+            .addResolver(new PathResourceResolver());
+   }
 
-    // View H2
-    @Bean(initMethod = "start", destroyMethod = "stop")
-    public Server h2Console() throws SQLException {
-        return Server.createWebServer("-web", "-webAllowOthers", "-webDaemon", "-webPort", "8084");
-    }
+   // View H2
+   @Bean(initMethod = "start", destroyMethod = "stop")
+   public Server h2Console() throws SQLException {
+      return Server.createWebServer("-web", "-webAllowOthers", "-webDaemon", "-webPort", "8084");
+   }
 }

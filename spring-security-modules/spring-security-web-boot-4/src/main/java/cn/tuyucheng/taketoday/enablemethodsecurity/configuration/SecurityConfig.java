@@ -26,48 +26,48 @@ import static org.springframework.beans.factory.config.BeanDefinition.ROLE_INFRA
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity httpSecurity, UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.userDetailsService(userDetailsService)
-              .passwordEncoder(bCryptPasswordEncoder);
-        return authenticationManagerBuilder.build();
-    }
+   @Bean
+   public AuthenticationManager authenticationManager(HttpSecurity httpSecurity, UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) throws Exception {
+      AuthenticationManagerBuilder authenticationManagerBuilder = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.userDetailsService(userDetailsService)
+            .passwordEncoder(bCryptPasswordEncoder);
+      return authenticationManagerBuilder.build();
+   }
 
-    @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        return new CustomUserDetailService(bCryptPasswordEncoder);
-    }
+   @Bean
+   public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
+      return new CustomUserDetailService(bCryptPasswordEncoder);
+   }
 
-    @Bean
-    public AuthorizationManager<MethodInvocation> authorizationManager() {
-        return new CustomAuthorizationManager<>();
-    }
+   @Bean
+   public AuthorizationManager<MethodInvocation> authorizationManager() {
+      return new CustomAuthorizationManager<>();
+   }
 
-    @Bean
-    @Role(ROLE_INFRASTRUCTURE)
-    public Advisor authorizationManagerBeforeMethodInterception(AuthorizationManager<MethodInvocation> authorizationManager) {
-        JdkRegexpMethodPointcut pattern = new JdkRegexpMethodPointcut();
-        pattern.setPattern("cn.tuyucheng.taketoday.enablemethodsecurity.services.*");
-        return new AuthorizationManagerBeforeMethodInterceptor(pattern, authorizationManager);
-    }
+   @Bean
+   @Role(ROLE_INFRASTRUCTURE)
+   public Advisor authorizationManagerBeforeMethodInterception(AuthorizationManager<MethodInvocation> authorizationManager) {
+      JdkRegexpMethodPointcut pattern = new JdkRegexpMethodPointcut();
+      pattern.setPattern("cn.tuyucheng.taketoday.enablemethodsecurity.services.*");
+      return new AuthorizationManagerBeforeMethodInterceptor(pattern, authorizationManager);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .authorizeRequests()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .sessionManagement()
-              .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public BCryptPasswordEncoder bCryptPasswordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

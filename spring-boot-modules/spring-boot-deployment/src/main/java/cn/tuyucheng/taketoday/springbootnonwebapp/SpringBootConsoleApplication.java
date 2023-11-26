@@ -16,22 +16,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
+   private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
 
-    public static void main(String[] args) {
-        LOG.info("STARTING THE APPLICATION");
-        SpringApplication.run(SpringBootConsoleApplication.class, args);
-        LOG.info("APPLICATION FINISHED");
-    }
+   public static void main(String[] args) {
+      LOG.info("STARTING THE APPLICATION");
+      SpringApplication.run(SpringBootConsoleApplication.class, args);
+      LOG.info("APPLICATION FINISHED");
+   }
 
-    /**
-     * This method will be executed after the application context is loaded and right before the Spring Application main method is completed.
-     */
-    @Override
-    public void run(String... args) throws Exception {
-        LOG.info("EXECUTING : command line runner");
-        for (int i = 0; i < args.length; ++i) {
-            LOG.info("args[{}]: {}", i, args[i]);
-        }
-    }
+   /**
+    * This method will be executed after the application context is loaded and right before the Spring Application main method is completed.
+    */
+   @Override
+   public void run(String... args) throws Exception {
+      LOG.info("EXECUTING : command line runner");
+      for (int i = 0; i < args.length; ++i) {
+         LOG.info("args[{}]: {}", i, args[i]);
+      }
+   }
 }

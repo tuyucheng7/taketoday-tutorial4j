@@ -11,18 +11,18 @@ import org.springframework.core.env.MutablePropertySources;
 @Configuration
 public class ReloadablePropertySourceConfig {
 
-	private ConfigurableEnvironment env;
+   private ConfigurableEnvironment env;
 
-	public ReloadablePropertySourceConfig(@Autowired ConfigurableEnvironment env) {
-		this.env = env;
-	}
+   public ReloadablePropertySourceConfig(@Autowired ConfigurableEnvironment env) {
+      this.env = env;
+   }
 
-	@Bean
-	@ConditionalOnProperty(name = "spring.config.location", matchIfMissing = false)
-	public ReloadablePropertySource reloadablePropertySource(PropertiesConfiguration properties) {
-		ReloadablePropertySource ret = new ReloadablePropertySource("dynamic", properties);
-		MutablePropertySources sources = env.getPropertySources();
-		sources.addFirst(ret);
-		return ret;
-	}
+   @Bean
+   @ConditionalOnProperty(name = "spring.config.location", matchIfMissing = false)
+   public ReloadablePropertySource reloadablePropertySource(PropertiesConfiguration properties) {
+      ReloadablePropertySource ret = new ReloadablePropertySource("dynamic", properties);
+      MutablePropertySources sources = env.getPropertySources();
+      sources.addFirst(ret);
+      return ret;
+   }
 }

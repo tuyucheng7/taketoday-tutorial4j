@@ -1,10 +1,5 @@
 package cn.tuyucheng.taketoday.roles.ip.web;
 
-import java.util.List;
-
-import javax.servlet.Filter;
-import javax.servlet.http.HttpServletRequest;
-
 import cn.tuyucheng.taketoday.roles.custom.persistence.model.Foo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,26 +10,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.Filter;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 @Controller
 public class MainController {
 
-    @Autowired
-    @Qualifier("springSecurityFilterChain")
-    private Filter springSecurityFilterChain;
+   @Autowired
+   @Qualifier("springSecurityFilterChain")
+   private Filter springSecurityFilterChain;
 
-    @GetMapping("/filters")
-    @ResponseBody
-    public void getFilters() {
-        FilterChainProxy filterChainProxy = (FilterChainProxy) springSecurityFilterChain;
-        List<SecurityFilterChain> list = filterChainProxy.getFilterChains();
-        list.stream()
-              .flatMap(chain -> chain.getFilters().stream())
-              .forEach(filter -> System.out.println(filter.getClass()));
-    }
+   @GetMapping("/filters")
+   @ResponseBody
+   public void getFilters() {
+      FilterChainProxy filterChainProxy = (FilterChainProxy) springSecurityFilterChain;
+      List<SecurityFilterChain> list = filterChainProxy.getFilterChains();
+      list.stream()
+            .flatMap(chain -> chain.getFilters().stream())
+            .forEach(filter -> System.out.println(filter.getClass()));
+   }
 
-    @GetMapping("/foos/{id}")
-    @ResponseBody
-    public Foo findById(@PathVariable final long id, HttpServletRequest request) {
-        return new Foo("Sample");
-    }
+   @GetMapping("/foos/{id}")
+   @ResponseBody
+   public Foo findById(@PathVariable final long id, HttpServletRequest request) {
+      return new Foo("Sample");
+   }
 }

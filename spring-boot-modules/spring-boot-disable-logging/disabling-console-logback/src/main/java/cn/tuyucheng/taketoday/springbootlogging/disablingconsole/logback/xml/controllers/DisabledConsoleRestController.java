@@ -10,11 +10,11 @@ import java.time.LocalTime;
 @RestController
 public class DisabledConsoleRestController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DisabledConsoleRestController.class);
+   private static final Logger LOG = LoggerFactory.getLogger(DisabledConsoleRestController.class);
 
-    @GetMapping("/disabled-console-logback-xml")
-    public String logTime() {
-        LOG.info("Current time: {}", LocalTime.now());
-        return "finished!";
-    }
+   @GetMapping("/disabled-console-logback-xml")
+   public String logTime() {
+      LOG.info("Current time: {}", LocalTime.now());
+      return "finished!";
+   }
 }

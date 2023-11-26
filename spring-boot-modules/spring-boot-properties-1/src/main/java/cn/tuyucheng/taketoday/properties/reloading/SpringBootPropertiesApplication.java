@@ -17,28 +17,28 @@ import java.util.Properties;
 @SpringBootApplication
 public class SpringBootPropertiesApplication {
 
-	@Bean
-	@ConditionalOnProperty(name = "spring.config.location", matchIfMissing = false)
-	public PropertiesConfiguration propertiesConfiguration(
-		@Value("${spring.config.location}") String path,
-		@Value("${spring.properties.refreshDelay}") long refreshDelay) throws Exception {
+   @Bean
+   @ConditionalOnProperty(name = "spring.config.location", matchIfMissing = false)
+   public PropertiesConfiguration propertiesConfiguration(
+         @Value("${spring.config.location}") String path,
+         @Value("${spring.properties.refreshDelay}") long refreshDelay) throws Exception {
 
-		String filePath = path.substring("file:".length());
-		PropertiesConfiguration configuration = new PropertiesConfiguration(new File(filePath).getCanonicalPath());
-		FileChangedReloadingStrategy fileChangedReloadingStrategy = new FileChangedReloadingStrategy();
-		fileChangedReloadingStrategy.setRefreshDelay(refreshDelay);
-		configuration.setReloadingStrategy(fileChangedReloadingStrategy);
-		return configuration;
-	}
+      String filePath = path.substring("file:".length());
+      PropertiesConfiguration configuration = new PropertiesConfiguration(new File(filePath).getCanonicalPath());
+      FileChangedReloadingStrategy fileChangedReloadingStrategy = new FileChangedReloadingStrategy();
+      fileChangedReloadingStrategy.setRefreshDelay(refreshDelay);
+      configuration.setReloadingStrategy(fileChangedReloadingStrategy);
+      return configuration;
+   }
 
-	@Bean
-	@ConditionalOnBean(PropertiesConfiguration.class)
-	@Primary
-	public Properties properties(PropertiesConfiguration propertiesConfiguration) throws Exception {
-		return new ReloadableProperties(propertiesConfiguration);
-	}
+   @Bean
+   @ConditionalOnBean(PropertiesConfiguration.class)
+   @Primary
+   public Properties properties(PropertiesConfiguration propertiesConfiguration) throws Exception {
+      return new ReloadableProperties(propertiesConfiguration);
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootPropertiesApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootPropertiesApplication.class, args);
+   }
 }

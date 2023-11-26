@@ -23,13 +23,13 @@ import java.util.UUID;
 @Configuration
 public class AuthServerConfiguration {
 
-    @Bean
-    @Order(1)
-    public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
+   @Bean
+   @Order(1)
+   public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
 
-        OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer<>();
+      OAuth2AuthorizationServerConfigurer<HttpSecurity> authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer<>();
 
-        // @formatter:off
+      // @formatter:off
         http
               .requestMatcher(authorizationServerConfigurer.getEndpointsMatcher())
               .authorizeRequests(authorize ->
@@ -48,47 +48,47 @@ public class AuthServerConfiguration {
         http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
         return http.build();
         // @formatter:on
-    }
+   }
 
-    @Bean
-    @Order(2)
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        // @formatter:off
+   @Bean
+   @Order(2)
+   public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+      // @formatter:off
         return http
               .formLogin(Customizer.withDefaults())
               .build();
         // @formatter:on
-    }
+   }
 
-    @Bean
-    public RegisteredClientRepository registeredClientRepository() {
+   @Bean
+   public RegisteredClientRepository registeredClientRepository() {
 
-        RegisteredClient pkceClient = RegisteredClient
-              .withId(UUID.randomUUID().toString())
-              .clientId("pkce-client")
-              .clientSecret("{noop}obscura")
-              .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
-              .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-              .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-              .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-              .scope(OidcScopes.OPENID)
-              .scope(OidcScopes.EMAIL)
-              .scope(OidcScopes.PROFILE)
-              .clientSettings(ClientSettings.builder()
-                    .requireAuthorizationConsent(false)
-                    .requireProofKey(true)
-                    .build())
-              .redirectUri("http://127.0.0.1:8080/login/oauth2/code/pkce") // Localhost not allowed
-              .build();
+      RegisteredClient pkceClient = RegisteredClient
+            .withId(UUID.randomUUID().toString())
+            .clientId("pkce-client")
+            .clientSecret("{noop}obscura")
+            .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+            .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+            .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+            .scope(OidcScopes.OPENID)
+            .scope(OidcScopes.EMAIL)
+            .scope(OidcScopes.PROFILE)
+            .clientSettings(ClientSettings.builder()
+                  .requireAuthorizationConsent(false)
+                  .requireProofKey(true)
+                  .build())
+            .redirectUri("http://127.0.0.1:8080/login/oauth2/code/pkce") // Localhost not allowed
+            .build();
 
-        return new InMemoryRegisteredClientRepository(pkceClient);
-    }
+      return new InMemoryRegisteredClientRepository(pkceClient);
+   }
 
-    @Bean
-    public ProviderSettings providerSettings() {
-        return ProviderSettings
-              .builder()
-              .build();
-    }
+   @Bean
+   public ProviderSettings providerSettings() {
+      return ProviderSettings
+            .builder()
+            .build();
+   }
 
 }

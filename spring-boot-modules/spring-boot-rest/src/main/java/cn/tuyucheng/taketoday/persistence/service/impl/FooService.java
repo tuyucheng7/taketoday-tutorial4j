@@ -18,33 +18,33 @@ import java.util.List;
 @Transactional
 public class FooService extends AbstractService<Foo> implements IFooService {
 
-	@Autowired
-	private IFooDao dao;
+   @Autowired
+   private IFooDao dao;
 
-	public FooService() {
-		super();
-	}
+   public FooService() {
+      super();
+   }
 
-	// API
+   // API
 
-	@Override
-	protected PagingAndSortingRepository<Foo, Long> getDao() {
-		return dao;
-	}
+   @Override
+   protected PagingAndSortingRepository<Foo, Long> getDao() {
+      return dao;
+   }
 
-	// custom methods
+   // custom methods
 
-	@Override
-	public Page<Foo> findPaginated(Pageable pageable) {
-		return dao.findAll(pageable);
-	}
+   @Override
+   public Page<Foo> findPaginated(Pageable pageable) {
+      return dao.findAll(pageable);
+   }
 
-	// overridden to be secured
+   // overridden to be secured
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Foo> findAll() {
-		return Lists.newArrayList(getDao().findAll());
-	}
+   @Override
+   @Transactional(readOnly = true)
+   public List<Foo> findAll() {
+      return Lists.newArrayList(getDao().findAll());
+   }
 
 }

@@ -9,20 +9,20 @@ import java.util.logging.Logger;
  * implementation for Hello interface.
  */
 @WebService(serviceName = "HelloService", portName = "HelloPort",
-	targetNamespace = "http://service.cxf.taketoday.tuyucheng.cn/",
-	endpointInterface = "cn.tuyucheng.taketoday.cxf.service.Hello")
+      targetNamespace = "http://service.cxf.taketoday.tuyucheng.cn/",
+      endpointInterface = "cn.tuyucheng.taketoday.cxf.service.Hello")
 public class HelloPortImpl implements Hello {
 
-	private static final Logger LOG = Logger.getLogger(HelloPortImpl.class.getName());
+   private static final Logger LOG = Logger.getLogger(HelloPortImpl.class.getName());
 
-	public java.lang.String sayHello(String myname) {
-		LOG.info("Executing operation sayHello" + myname);
-		try {
-			return "Hello, Welcome to CXF Spring boot " + myname + "!!!";
+   public java.lang.String sayHello(String myname) {
+      LOG.info("Executing operation sayHello" + myname);
+      try {
+         return "Hello, Welcome to CXF Spring boot " + myname + "!!!";
 
-		} catch (java.lang.Exception ex) {
-			ex.printStackTrace();
-			throw new RuntimeException(ex);
-		}
-	}
+      } catch (java.lang.Exception ex) {
+         ex.printStackTrace();
+         throw new RuntimeException(ex);
+      }
+   }
 }

@@ -9,11 +9,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringOidcLoginApplication {
 
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(SpringOidcLoginApplication.class);
-        ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("login-application.yml");
-        application.addInitializers(yamlInitializer);
-        application.run(args);
-    }
+   public static void main(String[] args) {
+      SpringApplication application = new SpringApplication(SpringOidcLoginApplication.class);
+      ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("login-application.yml");
+      application.addInitializers(yamlInitializer);
+      application.run(args);
+   }
 
 }

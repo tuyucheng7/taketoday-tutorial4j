@@ -11,6 +11,6 @@ import org.springframework.context.annotation.FilterType;
             + "|| cn.tuyucheng.taketoday.componentscan.filter.aspectj.C*)"))
 public class ComponentScanAspectJFilterApp {
 
-    public static void main(String[] args) {
-    }
+   public static void main(String[] args) {
+   }
 }

@@ -14,25 +14,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class TuyuchengTaskSchedulerIntegrationTest {
-	@Autowired
-	private TuyuchengTaskScheduler taskScheduler;
+   @Autowired
+   private TuyuchengTaskScheduler taskScheduler;
 
-	@Test
-	void whenShedLockConfigCorrect_thenSpringCtxtStartsWithoutError() {
-		// save the old out
-		PrintStream old = System.out;
+   @Test
+   void whenShedLockConfigCorrect_thenSpringCtxtStartsWithoutError() {
+      // save the old out
+      PrintStream old = System.out;
 
-		// Create a stream to hold the output for test
-		ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
-		PrintStream ps = new PrintStream(consoleOutput);
-		System.setOut(ps);
-		// test
-		taskScheduler.scheduledTask();
-		System.out.flush();
-		String expected = "Running ShedLock task\n";
-		assertThat(consoleOutput.toString()).hasToString(expected);
+      // Create a stream to hold the output for test
+      ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
+      PrintStream ps = new PrintStream(consoleOutput);
+      System.setOut(ps);
+      // test
+      taskScheduler.scheduledTask();
+      System.out.flush();
+      String expected = "Running ShedLock task\n";
+      assertThat(consoleOutput.toString()).hasToString(expected);
 
-		// restore the old out
-		System.setOut(old);
-	}
+      // restore the old out
+      System.setOut(old);
+   }
 }

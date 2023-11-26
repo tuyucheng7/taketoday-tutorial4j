@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 @Configuration
 public class SchedulerConfiguration {
 
-	@Bean
-	public LockProvider lockProvider(DataSource dataSource) {
-		return new JdbcTemplateLockProvider(dataSource);
-	}
+   @Bean
+   public LockProvider lockProvider(DataSource dataSource) {
+      return new JdbcTemplateLockProvider(dataSource);
+   }
 }

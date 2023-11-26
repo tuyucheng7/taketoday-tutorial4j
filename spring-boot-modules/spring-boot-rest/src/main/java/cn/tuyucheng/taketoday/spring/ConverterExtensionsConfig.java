@@ -15,15 +15,15 @@ import org.springframework.oxm.xstream.XStreamMarshaller;
 //@Configuration
 public class ConverterExtensionsConfig {
 
-	@Bean
-	public HttpMessageConverter<Object> createXmlHttpMessageConverter() {
-		final MarshallingHttpMessageConverter xmlConverter = new MarshallingHttpMessageConverter();
+   @Bean
+   public HttpMessageConverter<Object> createXmlHttpMessageConverter() {
+      final MarshallingHttpMessageConverter xmlConverter = new MarshallingHttpMessageConverter();
 
-		final XStreamMarshaller xstreamMarshaller = new XStreamMarshaller();
-		xmlConverter.setMarshaller(xstreamMarshaller);
-		xmlConverter.setUnmarshaller(xstreamMarshaller);
+      final XStreamMarshaller xstreamMarshaller = new XStreamMarshaller();
+      xmlConverter.setMarshaller(xstreamMarshaller);
+      xmlConverter.setUnmarshaller(xstreamMarshaller);
 
-		return xmlConverter;
-	}
+      return xmlConverter;
+   }
 
 }

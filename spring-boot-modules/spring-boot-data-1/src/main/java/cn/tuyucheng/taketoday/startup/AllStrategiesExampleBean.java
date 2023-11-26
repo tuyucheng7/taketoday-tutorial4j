@@ -12,23 +12,23 @@ import javax.annotation.PostConstruct;
 @Scope(value = "prototype")
 public class AllStrategiesExampleBean implements InitializingBean {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AllStrategiesExampleBean.class);
+   private static final Logger LOG = LoggerFactory.getLogger(AllStrategiesExampleBean.class);
 
-	public AllStrategiesExampleBean() {
-		LOG.info("Constructor");
-	}
+   public AllStrategiesExampleBean() {
+      LOG.info("Constructor");
+   }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		LOG.info("InitializingBean");
-	}
+   @Override
+   public void afterPropertiesSet() throws Exception {
+      LOG.info("InitializingBean");
+   }
 
-	@PostConstruct
-	public void postConstruct() {
-		LOG.info("PostConstruct");
-	}
+   @PostConstruct
+   public void postConstruct() {
+      LOG.info("PostConstruct");
+   }
 
-	public void init() {
-		LOG.info("init-method");
-	}
+   public void init() {
+      LOG.info("init-method");
+   }
 }

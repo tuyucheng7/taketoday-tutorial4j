@@ -11,13 +11,13 @@ import java.util.List;
 
 public interface NoticeMessageRepository extends JpaRepository<NoticeMessage, Long> {
 
-	@PostFilter("hasPermission(filterObject, 'READ')")
-	List<NoticeMessage> findAll();
+   @PostFilter("hasPermission(filterObject, 'READ')")
+   List<NoticeMessage> findAll();
 
-	@PostAuthorize("hasPermission(returnObject, 'READ')")
-	NoticeMessage findById(Integer id);
+   @PostAuthorize("hasPermission(returnObject, 'READ')")
+   NoticeMessage findById(Integer id);
 
-	@SuppressWarnings("unchecked")
-	@PreAuthorize("hasPermission(#noticeMessage, 'WRITE')")
-	NoticeMessage save(@Param("noticeMessage") NoticeMessage noticeMessage);
+   @SuppressWarnings("unchecked")
+   @PreAuthorize("hasPermission(#noticeMessage, 'WRITE')")
+   NoticeMessage save(@Param("noticeMessage") NoticeMessage noticeMessage);
 }

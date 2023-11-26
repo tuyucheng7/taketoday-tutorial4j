@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MultipleAuthController {
 
-    @GetMapping("/api/ping")
-    public String getPing() {
-        return "OK";
-    }
+   @GetMapping("/api/ping")
+   public String getPing() {
+      return "OK";
+   }
 }

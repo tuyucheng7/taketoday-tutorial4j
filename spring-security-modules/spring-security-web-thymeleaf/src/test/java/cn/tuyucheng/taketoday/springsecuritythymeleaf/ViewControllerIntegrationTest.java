@@ -18,12 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(PasswordEncoderConfiguration.class)
 public class ViewControllerIntegrationTest {
 
-    @Autowired
-    MockMvc mockMvc;
+   @Autowired
+   MockMvc mockMvc;
 
-    @Test
-    public void givenUser_whenPerformingGet_thenReturnsIndex() throws Exception {
-        mockMvc.perform(get("/index").with(user("user").password("password"))).andExpect(status().isOk()).andExpect(view().name("index"));
-    }
+   @Test
+   public void givenUser_whenPerformingGet_thenReturnsIndex() throws Exception {
+      mockMvc.perform(get("/index").with(user("user").password("password"))).andExpect(status().isOk()).andExpect(view().name("index"));
+   }
 
 }

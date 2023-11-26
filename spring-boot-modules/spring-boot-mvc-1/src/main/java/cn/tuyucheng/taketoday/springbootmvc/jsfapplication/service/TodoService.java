@@ -14,36 +14,36 @@ import java.util.stream.Collectors;
 @Component(value = "todoService")
 public class TodoService {
 
-	@Autowired
-	private Dao<Todo> todoDao;
-	private Todo todo = new Todo();
+   @Autowired
+   private Dao<Todo> todoDao;
+   private Todo todo = new Todo();
 
-	public void save() {
-		todoDao.save(todo);
-		todo = new Todo();
-	}
+   public void save() {
+      todoDao.save(todo);
+      todo = new Todo();
+   }
 
-	public Collection<Todo> getAllTodo() {
-		return todoDao.getAll();
-	}
+   public Collection<Todo> getAllTodo() {
+      return todoDao.getAll();
+   }
 
-	public Collection<Todo> getAllTodoSortedByPriority() {
-		return todoDao.getAll()
-			.stream()
-			.sorted(Comparator.comparingInt(Todo::getId))
-			.collect(Collectors.toList());
-	}
+   public Collection<Todo> getAllTodoSortedByPriority() {
+      return todoDao.getAll()
+            .stream()
+            .sorted(Comparator.comparingInt(Todo::getId))
+            .collect(Collectors.toList());
+   }
 
-	public int saveTodo(Todo todo) {
-		validate(todo);
-		return todoDao.save(todo);
-	}
+   public int saveTodo(Todo todo) {
+      validate(todo);
+      return todoDao.save(todo);
+   }
 
-	private void validate(Todo todo) {
-		// Details omitted
-	}
+   private void validate(Todo todo) {
+      // Details omitted
+   }
 
-	public Todo getTodo() {
-		return todo;
-	}
+   public Todo getTodo() {
+      return todo;
+   }
 }

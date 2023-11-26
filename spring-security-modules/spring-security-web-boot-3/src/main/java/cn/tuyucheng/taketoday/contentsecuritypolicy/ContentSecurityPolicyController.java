@@ -12,12 +12,12 @@ import java.nio.charset.StandardCharsets;
 
 @RestController
 public class ContentSecurityPolicyController {
-    private static final Logger logger = LoggerFactory.getLogger(ContentSecurityPolicyController.class);
+   private static final Logger logger = LoggerFactory.getLogger(ContentSecurityPolicyController.class);
 
-    @PostMapping("/report")
-    public void report(HttpServletRequest request) throws IOException {
-        if (logger.isInfoEnabled()) {
-            logger.info("Report: {}", IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8));
-        }
-    }
+   @PostMapping("/report")
+   public void report(HttpServletRequest request) throws IOException {
+      if (logger.isInfoEnabled()) {
+         logger.info("Report: {}", IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8));
+      }
+   }
 }

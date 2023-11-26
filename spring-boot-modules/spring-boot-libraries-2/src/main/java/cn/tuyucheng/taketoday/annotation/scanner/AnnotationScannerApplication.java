@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration(exclude = {JobRunrAutoConfiguration.class})
 public class AnnotationScannerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AnnotationScannerApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(AnnotationScannerApplication.class, args);
+   }
 }

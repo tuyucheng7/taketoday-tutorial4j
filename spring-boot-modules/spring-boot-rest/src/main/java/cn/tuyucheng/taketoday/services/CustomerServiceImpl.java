@@ -10,30 +10,30 @@ import java.util.List;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	private HashMap<String, Customer> customerMap;
+   private HashMap<String, Customer> customerMap;
 
-	public CustomerServiceImpl() {
+   public CustomerServiceImpl() {
 
-		customerMap = new HashMap<>();
+      customerMap = new HashMap<>();
 
-		final Customer customerOne = new Customer("10A", "Jane", "ABC Company");
-		final Customer customerTwo = new Customer("20B", "Bob", "XYZ Company");
-		final Customer customerThree = new Customer("30C", "Tim", "CKV Company");
+      final Customer customerOne = new Customer("10A", "Jane", "ABC Company");
+      final Customer customerTwo = new Customer("20B", "Bob", "XYZ Company");
+      final Customer customerThree = new Customer("30C", "Tim", "CKV Company");
 
-		customerMap.put("10A", customerOne);
-		customerMap.put("20B", customerTwo);
-		customerMap.put("30C", customerThree);
+      customerMap.put("10A", customerOne);
+      customerMap.put("20B", customerTwo);
+      customerMap.put("30C", customerThree);
 
-	}
+   }
 
-	@Override
-	public List<Customer> allCustomers() {
-		return new ArrayList<>(customerMap.values());
-	}
+   @Override
+   public List<Customer> allCustomers() {
+      return new ArrayList<>(customerMap.values());
+   }
 
-	@Override
-	public Customer getCustomerDetail(final String customerId) {
-		return customerMap.get(customerId);
-	}
+   @Override
+   public Customer getCustomerDetail(final String customerId) {
+      return customerMap.get(customerId);
+   }
 
 }

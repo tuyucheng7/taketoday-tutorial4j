@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FinancialRequest {
 
-	private String creditCardNumber;
+   private String creditCardNumber;
 
-	private String iban;
+   private String iban;
 }

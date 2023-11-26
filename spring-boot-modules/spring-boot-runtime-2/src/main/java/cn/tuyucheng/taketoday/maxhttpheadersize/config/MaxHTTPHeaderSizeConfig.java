@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan({"cn.tuyucheng.taketoday.maxhttpheadersize.*"})
 public class MaxHTTPHeaderSizeConfig implements WebMvcConfigurer {
 
-	public MaxHTTPHeaderSizeConfig() {
-		super();
-	}
+   public MaxHTTPHeaderSizeConfig() {
+      super();
+   }
 }

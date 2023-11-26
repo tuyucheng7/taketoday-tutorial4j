@@ -14,12 +14,12 @@ import java.util.List;
 @ComponentScan("cn.tuyucheng.taketoday.web")
 public class WebConfig implements WebMvcConfigurer {
 
-    public WebConfig() {
-        super();
-    }
+   public WebConfig() {
+      super();
+   }
 
-    @Override
-    public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter());
-    }
+   @Override
+   public void configureMessageConverters(final List<HttpMessageConverter<?>> converters) {
+      converters.add(new MappingJackson2HttpMessageConverter());
+   }
 }

@@ -26,79 +26,79 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 @ComponentScan("cn.tuyucheng.taketoday.security")
 public class SecurityJavaConfig {
 
-    @Autowired
-    private CustomAccessDeniedHandler accessDeniedHandler;
+   @Autowired
+   private CustomAccessDeniedHandler accessDeniedHandler;
 
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+   @Autowired
+   private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
 
-    @Autowired
-    private MySavedRequestAwareAuthenticationSuccessHandler mySuccessHandler;
+   @Autowired
+   private MySavedRequestAwareAuthenticationSuccessHandler mySuccessHandler;
 
-    private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
+   private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails admin = User.withUsername("admin")
-              .password(encoder().encode("adminPass"))
-              .roles("ADMIN")
-              .build();
-        UserDetails user = User.withUsername("user")
-              .password(encoder().encode("userPass"))
-              .roles("USER")
-              .build();
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails admin = User.withUsername("admin")
+            .password(encoder().encode("adminPass"))
+            .roles("ADMIN")
+            .build();
+      UserDetails user = User.withUsername("user")
+            .password(encoder().encode("userPass"))
+            .roles("USER")
+            .build();
+      return new InMemoryUserDetailsManager(admin, user);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .authorizeRequests()
-              .and()
-              .exceptionHandling()
-              .accessDeniedHandler(accessDeniedHandler)
-              .authenticationEntryPoint(restAuthenticationEntryPoint)
-              .and()
-              .authorizeRequests()
-              .antMatchers("/api/csrfAttacker*")
-              .permitAll()
-              .antMatchers("/api/customer/**")
-              .permitAll()
-              .antMatchers("/api/foos/**")
-              .authenticated()
-              .antMatchers("/api/async/**")
-              .permitAll()
-              .antMatchers("/api/admin/**")
-              .hasRole("ADMIN")
-              .and()
-              .formLogin()
-              .successHandler(mySuccessHandler)
-              .failureHandler(myFailureHandler)
-              .and()
-              .httpBasic()
-              .and()
-              .logout();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeRequests()
+            .and()
+            .exceptionHandling()
+            .accessDeniedHandler(accessDeniedHandler)
+            .authenticationEntryPoint(restAuthenticationEntryPoint)
+            .and()
+            .authorizeRequests()
+            .antMatchers("/api/csrfAttacker*")
+            .permitAll()
+            .antMatchers("/api/customer/**")
+            .permitAll()
+            .antMatchers("/api/foos/**")
+            .authenticated()
+            .antMatchers("/api/async/**")
+            .permitAll()
+            .antMatchers("/api/admin/**")
+            .hasRole("ADMIN")
+            .and()
+            .formLogin()
+            .successHandler(mySuccessHandler)
+            .failureHandler(myFailureHandler)
+            .and()
+            .httpBasic()
+            .and()
+            .logout();
+      return http.build();
+   }
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder();
+   }
 
-    @Bean
-    public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(100);
-        executor.setQueueCapacity(50);
-        executor.setThreadNamePrefix("async-");
-        return executor;
-    }
+   @Bean
+   public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
+      ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+      executor.setCorePoolSize(10);
+      executor.setMaxPoolSize(100);
+      executor.setQueueCapacity(50);
+      executor.setThreadNamePrefix("async-");
+      return executor;
+   }
 
-    @Bean
-    public DelegatingSecurityContextAsyncTaskExecutor taskExecutor(ThreadPoolTaskExecutor delegate) {
-        return new DelegatingSecurityContextAsyncTaskExecutor(delegate);
-    }
+   @Bean
+   public DelegatingSecurityContextAsyncTaskExecutor taskExecutor(ThreadPoolTaskExecutor delegate) {
+      return new DelegatingSecurityContextAsyncTaskExecutor(delegate);
+   }
 }

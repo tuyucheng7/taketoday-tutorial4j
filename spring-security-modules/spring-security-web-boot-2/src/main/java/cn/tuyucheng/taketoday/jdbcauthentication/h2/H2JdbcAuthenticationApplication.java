@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @PropertySource("classpath:application-defaults.properties")
 public class H2JdbcAuthenticationApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(H2JdbcAuthenticationApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(H2JdbcAuthenticationApplication.class, args);
+   }
 
 }

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class LoginController {
 
-    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponse> login() {
-        return ResponseEntity.ok(new RestResponse("Success"));
-    }
+   @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<RestResponse> login() {
+      return ResponseEntity.ok(new RestResponse("Success"));
+   }
 
-    @PostMapping(value = "/login-handler", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponse> loginWithExceptionHandler() {
-        return ResponseEntity.ok(new RestResponse("Success"));
-    }
+   @PostMapping(value = "/login-handler", produces = MediaType.APPLICATION_JSON_VALUE)
+   public ResponseEntity<RestResponse> loginWithExceptionHandler() {
+      return ResponseEntity.ok(new RestResponse("Success"));
+   }
 
 }

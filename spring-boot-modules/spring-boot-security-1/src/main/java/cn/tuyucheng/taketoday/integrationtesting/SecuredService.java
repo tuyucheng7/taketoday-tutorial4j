@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecuredService {
 
-	@PreAuthorize("authenticated")
-	public String sayHelloSecured() {
-		return "Hello user.";
-	}
+   @PreAuthorize("authenticated")
+   public String sayHelloSecured() {
+      return "Hello user.";
+   }
 }

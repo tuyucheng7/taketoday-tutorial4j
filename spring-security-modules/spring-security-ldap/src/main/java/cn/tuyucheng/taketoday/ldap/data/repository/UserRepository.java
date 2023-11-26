@@ -8,10 +8,10 @@ import java.util.List;
 @Repository
 public interface UserRepository extends LdapRepository<User> {
 
-    User findByUsername(String username);
+   User findByUsername(String username);
 
-    User findByUsernameAndPassword(String username, String password);
+   User findByUsernameAndPassword(String username, String password);
 
-    List<User> findByUsernameLikeIgnoreCase(String username);
+   List<User> findByUsernameLikeIgnoreCase(String username);
 
 }

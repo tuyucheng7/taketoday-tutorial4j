@@ -13,21 +13,21 @@ import org.springframework.kafka.core.KafkaAdmin;
 @Configuration
 public class KafkaTopicConfig {
 
-	@Value(value = "${spring.kafka.bootstrap-servers}")
-	private String bootstrapAddress;
+   @Value(value = "${spring.kafka.bootstrap-servers}")
+   private String bootstrapAddress;
 
-	@Value(value = "${multiple-listeners.books.topic.name}")
-	private String booksTopicName;
+   @Value(value = "${multiple-listeners.books.topic.name}")
+   private String booksTopicName;
 
-	@Bean
-	public KafkaAdmin kafkaAdmin() {
-		Map<String, Object> configs = new HashMap<>();
-		configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-		return new KafkaAdmin(configs);
-	}
+   @Bean
+   public KafkaAdmin kafkaAdmin() {
+      Map<String, Object> configs = new HashMap<>();
+      configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+      return new KafkaAdmin(configs);
+   }
 
-	@Bean
-	public NewTopic booksTopic() {
-		return new NewTopic(booksTopicName, 1, (short) 1);
-	}
+   @Bean
+   public NewTopic booksTopic() {
+      return new NewTopic(booksTopicName, 1, (short) 1);
+   }
 }

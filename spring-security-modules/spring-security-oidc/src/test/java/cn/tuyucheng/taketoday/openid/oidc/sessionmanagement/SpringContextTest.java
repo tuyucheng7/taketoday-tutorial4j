@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(initializers = YamlLoaderInitializer.class)
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

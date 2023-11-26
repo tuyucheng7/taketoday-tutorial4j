@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Hospital {
 
-	@Bean("doctor")
-	public Doctor getDoctor() {
-		return new Doctor();
-	}
+   @Bean("doctor")
+   public Doctor getDoctor() {
+      return new Doctor();
+   }
 }

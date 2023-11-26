@@ -13,29 +13,29 @@ import java.util.concurrent.TimeUnit;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.taskscheduler", basePackageClasses = {ThreadPoolTaskSchedulerExamples.class})
 public class ThreadPoolTaskSchedulerConfig {
 
-	@Bean
-	public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
-		ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
-		threadPoolTaskScheduler.setPoolSize(5);
-		threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
-		return threadPoolTaskScheduler;
-	}
+   @Bean
+   public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
+      ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+      threadPoolTaskScheduler.setPoolSize(5);
+      threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
+      return threadPoolTaskScheduler;
+   }
 
-	@Bean
-	public CronTrigger cronTrigger() {
-		return new CronTrigger("10 * * * * ?");
-	}
+   @Bean
+   public CronTrigger cronTrigger() {
+      return new CronTrigger("10 * * * * ?");
+   }
 
-	@Bean
-	public PeriodicTrigger periodicTrigger() {
-		return new PeriodicTrigger(2000, TimeUnit.MICROSECONDS);
-	}
+   @Bean
+   public PeriodicTrigger periodicTrigger() {
+      return new PeriodicTrigger(2000, TimeUnit.MICROSECONDS);
+   }
 
-	@Bean
-	public PeriodicTrigger periodicFixedDelayTrigger() {
-		PeriodicTrigger periodicTrigger = new PeriodicTrigger(2000, TimeUnit.MICROSECONDS);
-		periodicTrigger.setFixedRate(true);
-		periodicTrigger.setInitialDelay(1000);
-		return periodicTrigger;
-	}
+   @Bean
+   public PeriodicTrigger periodicFixedDelayTrigger() {
+      PeriodicTrigger periodicTrigger = new PeriodicTrigger(2000, TimeUnit.MICROSECONDS);
+      periodicTrigger.setFixedRate(true);
+      periodicTrigger.setInitialDelay(1000);
+      return periodicTrigger;
+   }
 }

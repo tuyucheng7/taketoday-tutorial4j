@@ -16,27 +16,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class GrpcClientControllerIntegrationTest {
 
-	@Autowired
-	MockMvc mockMvc;
+   @Autowired
+   MockMvc mockMvc;
 
-	@MockBean
-	private GrpcClientService grpcClientService;
+   @MockBean
+   private GrpcClientService grpcClientService;
 
-	@Test
-	void givenQueryParam_whenGetRequest_thenCorrectResponse() throws Exception {
-		when(grpcClientService.sendMessage("Tuyucheng")).thenReturn("Hello Tuyucheng");
+   @Test
+   void givenQueryParam_whenGetRequest_thenCorrectResponse() throws Exception {
+      when(grpcClientService.sendMessage("Tuyucheng")).thenReturn("Hello Tuyucheng");
 
-		mockMvc.perform(get("/").param("name", "Tuyucheng"))
-			.andExpect(status().isOk())
-			.andExpect(content().string("Hello Tuyucheng"));
-	}
+      mockMvc.perform(get("/").param("name", "Tuyucheng"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello Tuyucheng"));
+   }
 
-	@Test
-	void givenEmptyQueryParam_whenGetRequest_thenReturnDefaultResponse() throws Exception {
-		when(grpcClientService.sendMessage("Michael")).thenReturn("Hello Michael");
+   @Test
+   void givenEmptyQueryParam_whenGetRequest_thenReturnDefaultResponse() throws Exception {
+      when(grpcClientService.sendMessage("Michael")).thenReturn("Hello Michael");
 
-		mockMvc.perform(get("/"))
-			.andExpect(status().isOk())
-			.andExpect(content().string("Hello Michael"));
-	}
+      mockMvc.perform(get("/"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("Hello Michael"));
+   }
 }

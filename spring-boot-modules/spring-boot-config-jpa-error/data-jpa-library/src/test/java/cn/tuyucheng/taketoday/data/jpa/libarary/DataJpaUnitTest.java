@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 class DataJpaUnitTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
+   @Autowired
+   private TestEntityManager entityManager;
 
-    @Test
-    void givenACorrectSetup_thenAnEntityManagerWillBeAvailable() {
-        assertNotNull(entityManager);
-    }
+   @Test
+   void givenACorrectSetup_thenAnEntityManagerWillBeAvailable() {
+      assertNotNull(entityManager);
+   }
 }

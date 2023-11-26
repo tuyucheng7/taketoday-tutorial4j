@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ReloadableProperties extends Properties {
-    private PropertiesConfiguration propertiesConfiguration;
+   private PropertiesConfiguration propertiesConfiguration;
 
-    public ReloadableProperties(PropertiesConfiguration propertiesConfiguration) throws IOException {
-        super.load(new FileReader(propertiesConfiguration.getFile()));
-        this.propertiesConfiguration = propertiesConfiguration;
-    }
+   public ReloadableProperties(PropertiesConfiguration propertiesConfiguration) throws IOException {
+      super.load(new FileReader(propertiesConfiguration.getFile()));
+      this.propertiesConfiguration = propertiesConfiguration;
+   }
 
-    @Override
-    public String getProperty(String key) {
-        String val = propertiesConfiguration.getString(key);
-        super.setProperty(key, val);
-        return val;
-    }
+   @Override
+   public String getProperty(String key) {
+      String val = propertiesConfiguration.getString(key);
+      super.setProperty(key, val);
+      return val;
+   }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-//Before running this live test make sure both authorization server and resource server in this module are running
+// Before running this live test make sure both authorization server and resource server in this module are running
 
 public class AuthorizationCodeLiveTest {
    public final static String AUTH_SERVER = "http://localhost:8083/auth/realms/tuyucheng/protocol/openid-connect";

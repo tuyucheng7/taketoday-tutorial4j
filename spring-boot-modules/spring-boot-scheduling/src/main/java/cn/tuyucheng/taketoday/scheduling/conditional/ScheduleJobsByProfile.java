@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class ScheduleJobsByProfile {
 
-	private final static Logger LOG = LoggerFactory.getLogger(ScheduleJobsByProfile.class);
+   private final static Logger LOG = LoggerFactory.getLogger(ScheduleJobsByProfile.class);
 
-	@Profile("prod")
-	@Bean
-	public ScheduledJob scheduledJob() {
-		return new ScheduledJob("@Profile");
-	}
+   @Profile("prod")
+   @Bean
+   public ScheduledJob scheduledJob() {
+      return new ScheduledJob("@Profile");
+   }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 @Api(tags = {SwaggerConfiguration.BOOK_TAG})
 public class BookController {
 
-	@GetMapping("/")
-	public List<String> getBooks() {
-		return Arrays.asList("book1", "book2");
-	}
+   @GetMapping("/")
+   public List<String> getBooks() {
+      return Arrays.asList("book1", "book2");
+   }
 }

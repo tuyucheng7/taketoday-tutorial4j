@@ -31,70 +31,70 @@ import static org.assertj.core.api.BDDAssertions.then;
 @TestPropertySource(properties = {"management.port=0", "management.endpoints.web.exposure.include=*"})
 class DisplayBeanIntegrationTest {
 
-    @LocalServerPort
-    private int port;
+   @LocalServerPort
+   private int port;
 
-    @Value("${local.management.port}")
-    private int mgt;
+   @Value("${local.management.port}")
+   private int mgt;
 
-    @Autowired
-    private TestRestTemplate testRestTemplate;
+   @Autowired
+   private TestRestTemplate testRestTemplate;
 
-    @Autowired
-    private WebApplicationContext context;
+   @Autowired
+   private WebApplicationContext context;
 
-    private static final String ACTUATOR_PATH = "/actuator";
+   private static final String ACTUATOR_PATH = "/actuator";
 
-    @Test
-    void givenRestTemplate_whenAccessServerUrl_thenHttpStatusOK() throws Exception {
-        ResponseEntity<String> entity = this.testRestTemplate.getForEntity("http://localhost:" + this.port + "/displayallbeans", String.class);
+   @Test
+   void givenRestTemplate_whenAccessServerUrl_thenHttpStatusOK() throws Exception {
+      ResponseEntity<String> entity = this.testRestTemplate.getForEntity("http://localhost:" + this.port + "/displayallbeans", String.class);
 
-        then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
+      then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+   }
 
-    @Test
-    void givenRestTemplate_whenAccessEndpointUrl_thenHttpStatusOK() throws Exception {
-        ParameterizedTypeReference<Map<String, ContextBeans>> responseType = new ParameterizedTypeReference<>() {
-        };
-        RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
-              .accept(MediaType.APPLICATION_JSON)
-              .build();
-        ResponseEntity<Map<String, ContextBeans>> entity = this.testRestTemplate.exchange(requestEntity, responseType);
+   @Test
+   void givenRestTemplate_whenAccessEndpointUrl_thenHttpStatusOK() throws Exception {
+      ParameterizedTypeReference<Map<String, ContextBeans>> responseType = new ParameterizedTypeReference<>() {
+      };
+      RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
+            .accept(MediaType.APPLICATION_JSON)
+            .build();
+      ResponseEntity<Map<String, ContextBeans>> entity = this.testRestTemplate.exchange(requestEntity, responseType);
 
-        then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
+      then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+   }
 
-    @Test
-    void givenRestTemplate_whenAccessEndpointUrl_thenReturnsBeanNames() throws Exception {
-        RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
-              .accept(MediaType.APPLICATION_JSON)
-              .build();
-        ResponseEntity<BeanActuatorResponse> entity = this.testRestTemplate.exchange(requestEntity, BeanActuatorResponse.class);
+   @Test
+   void givenRestTemplate_whenAccessEndpointUrl_thenReturnsBeanNames() throws Exception {
+      RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
+            .accept(MediaType.APPLICATION_JSON)
+            .build();
+      ResponseEntity<BeanActuatorResponse> entity = this.testRestTemplate.exchange(requestEntity, BeanActuatorResponse.class);
 
-        Collection<String> beanNamesList = entity.getBody().getBeans();
+      Collection<String> beanNamesList = entity.getBody().getBeans();
 
-        assertThat(beanNamesList).contains("fooController", "fooService");
-    }
+      assertThat(beanNamesList).contains("fooController", "fooService");
+   }
 
-    @Test
-    void givenWebApplicationContext_whenAccessGetBeanDefinitionNames_thenReturnsBeanNames() throws Exception {
-        String[] beanNames = context.getBeanDefinitionNames();
+   @Test
+   void givenWebApplicationContext_whenAccessGetBeanDefinitionNames_thenReturnsBeanNames() throws Exception {
+      String[] beanNames = context.getBeanDefinitionNames();
 
-        List<String> beanNamesList = Arrays.asList(beanNames);
-        assertThat(beanNamesList).contains("fooController", "fooService");
-    }
+      List<String> beanNamesList = Arrays.asList(beanNames);
+      assertThat(beanNamesList).contains("fooController", "fooService");
+   }
 
-    private static class BeanActuatorResponse {
-        private Map<String, Map<String, Map<String, Map<String, Object>>>> contexts;
+   private static class BeanActuatorResponse {
+      private Map<String, Map<String, Map<String, Map<String, Object>>>> contexts;
 
-        public Collection<String> getBeans() {
-            return this.contexts.get("application")
-                  .get("beans")
-                  .keySet();
-        }
+      public Collection<String> getBeans() {
+         return this.contexts.get("application")
+               .get("beans")
+               .keySet();
+      }
 
-        public Map<String, Map<String, Map<String, Map<String, Object>>>> getContexts() {
-            return contexts;
-        }
-    }
+      public Map<String, Map<String, Map<String, Map<String, Object>>>> getContexts() {
+         return contexts;
+      }
+   }
 }

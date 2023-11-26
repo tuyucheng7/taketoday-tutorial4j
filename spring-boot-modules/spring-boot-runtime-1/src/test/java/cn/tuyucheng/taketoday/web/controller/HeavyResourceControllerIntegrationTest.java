@@ -28,42 +28,42 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class HeavyResourceControllerIntegrationTest {
 
-	private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-	private final ObjectMapper objectMapper = new ObjectMapper();
+   private final ObjectMapper objectMapper = new ObjectMapper();
 
-	@Before
-	public void setUp() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
+   @Before
+   public void setUp() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+   }
 
-	@Test
-	public void givenHeavyResource_whenSendPutRequest_thenCreateResource() throws Exception {
-		mockMvc.perform(put("/heavyresource/1")
-			.contentType(MediaType.APPLICATION_JSON_VALUE)
-			.content(objectMapper.writeValueAsString(new HeavyResource(1, "Tom", "Jackson", 12, "heaven street")))
-		).andExpect(status().isOk());
-	}
+   @Test
+   public void givenHeavyResource_whenSendPutRequest_thenCreateResource() throws Exception {
+      mockMvc.perform(put("/heavyresource/1")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(objectMapper.writeValueAsString(new HeavyResource(1, "Tom", "Jackson", 12, "heaven street")))
+      ).andExpect(status().isOk());
+   }
 
-	@Test
-	public void givenNewAddressOfResource_whenExecutePatchRequest_thenUpdateResourcePartially() throws Exception {
-		mockMvc.perform(patch("/heavyresource/1")
-			.contentType(MediaType.APPLICATION_JSON_VALUE)
-			.content(objectMapper.writeValueAsString(new HeavyResourceAddressOnly(1, "5th avenue")))
-		).andExpect(status().isOk());
-	}
+   @Test
+   public void givenNewAddressOfResource_whenExecutePatchRequest_thenUpdateResourcePartially() throws Exception {
+      mockMvc.perform(patch("/heavyresource/1")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(objectMapper.writeValueAsString(new HeavyResourceAddressOnly(1, "5th avenue")))
+      ).andExpect(status().isOk());
+   }
 
-	@Test
-	public void givenNewAddressOfResource_whenExecutePatchGeneric_thenUpdateResourcePartially() throws Exception {
-		HashMap<String, Object> updates = new HashMap<>();
-		updates.put("address", "5th avenue");
+   @Test
+   public void givenNewAddressOfResource_whenExecutePatchGeneric_thenUpdateResourcePartially() throws Exception {
+      HashMap<String, Object> updates = new HashMap<>();
+      updates.put("address", "5th avenue");
 
-		mockMvc.perform(patch("/heavyresource/1")
-			.contentType(MediaType.APPLICATION_JSON_VALUE)
-			.content(objectMapper.writeValueAsString(updates))
-		).andExpect(status().isOk());
-	}
+      mockMvc.perform(patch("/heavyresource/1")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(objectMapper.writeValueAsString(updates))
+      ).andExpect(status().isOk());
+   }
 }

@@ -13,18 +13,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class WebServiceConfig {
 
-	@Autowired
-	private Bus bus;
+   @Autowired
+   private Bus bus;
 
-	@Autowired
-	private MetricsProvider metricsProvider;
+   @Autowired
+   private MetricsProvider metricsProvider;
 
-	@Bean
-	public Endpoint endpoint() {
-		EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl(), null, null, new MetricsFeature[]{
-			new MetricsFeature(metricsProvider)
-		});
-		endpoint.publish("/Hello");
-		return endpoint;
-	}
+   @Bean
+   public Endpoint endpoint() {
+      EndpointImpl endpoint = new EndpointImpl(bus, new HelloPortImpl(), null, null, new MetricsFeature[]{
+            new MetricsFeature(metricsProvider)
+      });
+      endpoint.publish("/Hello");
+      return endpoint;
+   }
 }

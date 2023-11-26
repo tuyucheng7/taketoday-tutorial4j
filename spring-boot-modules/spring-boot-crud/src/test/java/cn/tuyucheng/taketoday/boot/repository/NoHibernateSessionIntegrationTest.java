@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @TestPropertySource("classpath:exception-hibernate.properties")
 class NoHibernateSessionIntegrationTest extends ApplicationIntegrationTest {
 
-    @Autowired
-    private FooRepository fooRepository;
+   @Autowired
+   private FooRepository fooRepository;
 
-    @Test
-    void whenSavingWithoutCurrentSession_thenThrowException() {
-        Foo foo = new Foo("Exception Thrown");
-        assertThrows(HibernateException.class, () -> fooRepository.save(foo));
-    }
+   @Test
+   void whenSavingWithoutCurrentSession_thenThrowException() {
+      Foo foo = new Foo("Exception Thrown");
+      assertThrows(HibernateException.class, () -> fooRepository.save(foo));
+   }
 }

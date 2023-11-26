@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class XmlConfigurationUnitTest {
 
-	@Test
-	void whenXmlConfig_thenCorrectPerson() {
-		final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("xml-bean-config.xml");
+   @Test
+   void whenXmlConfig_thenCorrectPerson() {
+      final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("xml-bean-config.xml");
 
-		JavaPersonBean j = (JavaPersonBean) applicationContext.getBean("JavaPersonBean");
+      JavaPersonBean j = (JavaPersonBean) applicationContext.getBean("JavaPersonBean");
 
-		assertEquals("30", j.getAge());
-		assertEquals("brown", j.getEyesColor());
-		assertEquals("brown", j.getHairColor());
-	}
+      assertEquals("30", j.getAge());
+      assertEquals("brown", j.getEyesColor());
+      assertEquals("brown", j.getHairColor());
+   }
 }

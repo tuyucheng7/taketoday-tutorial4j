@@ -16,38 +16,38 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.spring"})
 public class MvcConfig implements WebMvcConfigurer {
 
-    public MvcConfig() {
-        super();
-    }
+   public MvcConfig() {
+      super();
+   }
 
-    @Override
-    public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/anonymous.html");
+   @Override
+   public void addViewControllers(final ViewControllerRegistry registry) {
+      registry.addViewController("/anonymous.html");
 
-        registry.addViewController("/login.html");
-        registry.addViewController("/homepage.html");
-        registry.addViewController("/admin/adminpage.html");
-        registry.addViewController("/accessDenied");
-    }
+      registry.addViewController("/login.html");
+      registry.addViewController("/homepage.html");
+      registry.addViewController("/admin/adminpage.html");
+      registry.addViewController("/accessDenied");
+   }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/view/react/build/static/");
+   @Override
+   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+      registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/view/react/build/static/");
 
-        registry.addResourceHandler("/*.js").addResourceLocations("/WEB-INF/view/react/build/");
-        registry.addResourceHandler("/*.json").addResourceLocations("/WEB-INF/view/react/build/");
-        registry.addResourceHandler("/*.ico").addResourceLocations("/WEB-INF/view/react/build/");
-        registry.addResourceHandler("/index.html").addResourceLocations("/WEB-INF/view/react/build/index.html");
-    }
+      registry.addResourceHandler("/*.js").addResourceLocations("/WEB-INF/view/react/build/");
+      registry.addResourceHandler("/*.json").addResourceLocations("/WEB-INF/view/react/build/");
+      registry.addResourceHandler("/*.ico").addResourceLocations("/WEB-INF/view/react/build/");
+      registry.addResourceHandler("/index.html").addResourceLocations("/WEB-INF/view/react/build/index.html");
+   }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver bean = new InternalResourceViewResolver();
+   @Bean
+   public ViewResolver viewResolver() {
+      final InternalResourceViewResolver bean = new InternalResourceViewResolver();
 
-        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/view/");
-        bean.setSuffix(".jsp");
+      bean.setViewClass(JstlView.class);
+      bean.setPrefix("/WEB-INF/view/");
+      bean.setSuffix(".jsp");
 
-        return bean;
-    }
+      return bean;
+   }
 }

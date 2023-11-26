@@ -12,34 +12,34 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.antMatcher("/**")
-			.authorizeRequests()
-			.antMatchers("/protected-process*")
-			.authenticated()
-			.anyRequest()
-			.permitAll()
-			.and()
-			.formLogin()
-			.loginPage("/login")
-			.defaultSuccessUrl("/homepage")
-			.failureUrl("/login?error=true")
-			.and()
-			.csrf()
-			.disable()
-			.logout()
-			.logoutSuccessUrl("/login");
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.antMatcher("/**")
+            .authorizeRequests()
+            .antMatchers("/protected-process*")
+            .authenticated()
+            .anyRequest()
+            .permitAll()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .defaultSuccessUrl("/homepage")
+            .failureUrl("/login?error=true")
+            .and()
+            .csrf()
+            .disable()
+            .logout()
+            .logoutSuccessUrl("/login");
+      return http.build();
+   }
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		UserDetails user = User.withUsername("user")
-			.password("{noop}pass")
-			.authorities("ROLE_ACTIVITI_USER")
-			.build();
+   @Bean
+   public UserDetailsService userDetailsService() {
+      UserDetails user = User.withUsername("user")
+            .password("{noop}pass")
+            .authorities("ROLE_ACTIVITI_USER")
+            .build();
 
-		return new InMemoryUserDetailsManager(user);
-	}
+      return new InMemoryUserDetailsManager(user);
+   }
 }

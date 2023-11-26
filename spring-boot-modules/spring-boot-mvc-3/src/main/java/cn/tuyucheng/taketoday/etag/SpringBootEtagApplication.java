@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootEtagApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootEtagApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootEtagApplication.class, args);
+   }
 }

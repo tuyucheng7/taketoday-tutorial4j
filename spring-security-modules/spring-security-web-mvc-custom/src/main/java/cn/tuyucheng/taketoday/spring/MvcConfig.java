@@ -19,37 +19,37 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("cn.tuyucheng.taketoday.web.controller")
 public class MvcConfig implements WebMvcConfigurer {
 
-    public MvcConfig() {
-        super();
-    }
+   public MvcConfig() {
+      super();
+   }
 
-    // API
+   // API
 
-    @Override
-    public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/anonymous.html");
+   @Override
+   public void addViewControllers(final ViewControllerRegistry registry) {
+      registry.addViewController("/anonymous.html");
 
-        registry.addViewController("/login.html");
-        registry.addViewController("/homepage.html");
-        registry.addViewController("/console.html");
-        registry.addViewController("/csrfHome.html");
-    }
+      registry.addViewController("/login.html");
+      registry.addViewController("/homepage.html");
+      registry.addViewController("/console.html");
+      registry.addViewController("/csrfHome.html");
+   }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver bean = new InternalResourceViewResolver();
+   @Bean
+   public ViewResolver viewResolver() {
+      final InternalResourceViewResolver bean = new InternalResourceViewResolver();
 
-        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/view/");
-        bean.setSuffix(".jsp");
+      bean.setViewClass(JstlView.class);
+      bean.setPrefix("/WEB-INF/view/");
+      bean.setSuffix(".jsp");
 
-        return bean;
-    }
+      return bean;
+   }
 
-    @Override
-    public void addInterceptors(final InterceptorRegistry registry) {
-        registry.addInterceptor(new LoggerInterceptor());
-        registry.addInterceptor(new UserInterceptor());
-        registry.addInterceptor(new SessionTimerInterceptor());
-    }
+   @Override
+   public void addInterceptors(final InterceptorRegistry registry) {
+      registry.addInterceptor(new LoggerInterceptor());
+      registry.addInterceptor(new UserInterceptor());
+      registry.addInterceptor(new SessionTimerInterceptor());
+   }
 }

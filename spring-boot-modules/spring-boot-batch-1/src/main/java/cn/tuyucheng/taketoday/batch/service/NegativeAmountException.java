@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.batch.service;
 
 public class NegativeAmountException extends RuntimeException {
 
-	private double amount;
+   private double amount;
 
-	public NegativeAmountException(double amount) {
-		this.amount = amount;
-	}
+   public NegativeAmountException(double amount) {
+      this.amount = amount;
+   }
 
-	public double getAmount() {
-		return amount;
-	}
+   public double getAmount() {
+      return amount;
+   }
 }

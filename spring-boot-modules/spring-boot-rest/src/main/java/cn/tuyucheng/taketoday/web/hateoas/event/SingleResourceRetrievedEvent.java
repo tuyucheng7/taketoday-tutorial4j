@@ -5,18 +5,18 @@ import org.springframework.context.ApplicationEvent;
 import javax.servlet.http.HttpServletResponse;
 
 public class SingleResourceRetrievedEvent extends ApplicationEvent {
-	private final HttpServletResponse response;
+   private final HttpServletResponse response;
 
-	public SingleResourceRetrievedEvent(final Object source, final HttpServletResponse response) {
-		super(source);
+   public SingleResourceRetrievedEvent(final Object source, final HttpServletResponse response) {
+      super(source);
 
-		this.response = response;
-	}
+      this.response = response;
+   }
 
-	// API
+   // API
 
-	public HttpServletResponse getResponse() {
-		return response;
-	}
+   public HttpServletResponse getResponse() {
+      return response;
+   }
 
 }

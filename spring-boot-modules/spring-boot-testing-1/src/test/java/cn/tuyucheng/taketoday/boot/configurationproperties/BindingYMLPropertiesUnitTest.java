@@ -20,16 +20,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles("test")
 class BindingYMLPropertiesUnitTest {
 
-	@Autowired
-	private ServerConfig serverConfig;
+   @Autowired
+   private ServerConfig serverConfig;
 
-	@Test
-	void whenBindingYMLConfigFile_thenAllFieldsAreSet() {
-		assertEquals("192.168.0.4", serverConfig.getAddress().getIp());
+   @Test
+   void whenBindingYMLConfigFile_thenAllFieldsAreSet() {
+      assertEquals("192.168.0.4", serverConfig.getAddress().getIp());
 
-		Map<String, String> expectedResourcesPath = new HashMap<>();
-		expectedResourcesPath.put("imgs", "/etc/test/imgs");
+      Map<String, String> expectedResourcesPath = new HashMap<>();
+      expectedResourcesPath.put("imgs", "/etc/test/imgs");
 
-		assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
-	}
+      assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
+   }
 }

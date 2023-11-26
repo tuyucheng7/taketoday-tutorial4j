@@ -16,26 +16,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { SpringBootSecurityApplication.class })
+@SpringBootTest(classes = {SpringBootSecurityApplication.class})
 public class ResourceControllerUnitTest {
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @Autowired
-    private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac)
+   @Before
+   public void setUp() {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(wac)
             .apply(SecurityMockMvcConfigurers.springSecurity())
             .build();
-    }
+   }
 
-    @Test
-    public void givenPreFlightRequest_whenPerfomed_shouldReturnOK() throws Exception {
-        mockMvc.perform(options("/user")
-            .header("Access-Control-Request-Method", "GET")
-            .header("Origin", "http://localhost:4200"))
+   @Test
+   public void givenPreFlightRequest_whenPerfomed_shouldReturnOK() throws Exception {
+      mockMvc.perform(options("/user")
+                  .header("Access-Control-Request-Method", "GET")
+                  .header("Origin", "http://localhost:4200"))
             .andExpect(status().isOk());
-    }
+   }
 }

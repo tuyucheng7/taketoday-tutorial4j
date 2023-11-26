@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Conditional(IsDevEnvCondition.class)
 public class DevEnvLoggingConfiguration {
 
-	@Bean
-	@Conditional(IsDevEnvCondition.class)
-	LoggingService loggingService() {
-		return new LoggingService();
-	}
+   @Bean
+   @Conditional(IsDevEnvCondition.class)
+   LoggingService loggingService() {
+      return new LoggingService();
+   }
 }

@@ -16,14 +16,14 @@ import javax.faces.webapp.FacesServlet;
 @ComponentScan(basePackageClasses = {JsfController.class, TodoDao.class, TodoService.class})
 public class JsfApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JsfApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(JsfApplication.class, args);
+   }
 
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean() {
-		FacesServlet servlet = new FacesServlet();
-		ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.jsf");
-		return servletRegistrationBean;
-	}
+   @Bean
+   public ServletRegistrationBean servletRegistrationBean() {
+      FacesServlet servlet = new FacesServlet();
+      ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(servlet, "*.jsf");
+      return servletRegistrationBean;
+   }
 }

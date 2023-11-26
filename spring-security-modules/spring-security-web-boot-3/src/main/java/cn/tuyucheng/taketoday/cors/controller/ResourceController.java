@@ -10,8 +10,8 @@ import java.security.Principal;
 @CrossOrigin("http://localhost:4200")
 public class ResourceController {
 
-    @GetMapping("/user")
-    public String user(Principal principal) {
-        return principal.getName();
-    }
+   @GetMapping("/user")
+   public String user(Principal principal) {
+      return principal.getName();
+   }
 }

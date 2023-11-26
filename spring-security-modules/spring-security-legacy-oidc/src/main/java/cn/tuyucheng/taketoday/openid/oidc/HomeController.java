@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping("/")
-    @ResponseBody
-    public final String home() {
-        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        logger.info(username);
-        return "Welcome, " + username;
-    }
+   @RequestMapping("/")
+   @ResponseBody
+   public final String home() {
+      final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+      logger.info(username);
+      return "Welcome, " + username;
+   }
 
 }

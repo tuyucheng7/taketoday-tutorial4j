@@ -15,32 +15,32 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringBootSecurityTagLibsConfig {
 
-	@Bean
-	public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-		UserDetails user = User.withUsername("testUser")
-			.password(passwordEncoder.encode("password"))
-			.roles("ADMIN")
-			.build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails user = User.withUsername("testUser")
+            .password(passwordEncoder.encode("password"))
+            .roles("ADMIN")
+            .build();
 
-		return new InMemoryUserDetailsManager(user);
-	}
+      return new InMemoryUserDetailsManager(user);
+   }
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf()
-			.and()
-			.authorizeRequests()
-			.antMatchers("/userManagement")
-			.hasRole("ADMIN")
-			.anyRequest()
-			.permitAll()
-			.and()
-			.httpBasic();
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .and()
+            .authorizeRequests()
+            .antMatchers("/userManagement")
+            .hasRole("ADMIN")
+            .anyRequest()
+            .permitAll()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+   @Bean
+   public BCryptPasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

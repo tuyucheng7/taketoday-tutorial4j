@@ -2,35 +2,35 @@ package cn.tuyucheng.taketoday.spring.kafka.retryable;
 
 public class Farewell {
 
-	private String message;
-	private Integer remainingMinutes;
+   private String message;
+   private Integer remainingMinutes;
 
-	public Farewell() {
-	}
+   public Farewell() {
+   }
 
-	public Farewell(String message, Integer remainingMinutes) {
-		this.message = message;
-		this.remainingMinutes = remainingMinutes;
-	}
+   public Farewell(String message, Integer remainingMinutes) {
+      this.message = message;
+      this.remainingMinutes = remainingMinutes;
+   }
 
-	public String getMessage() {
-		return message;
-	}
+   public String getMessage() {
+      return message;
+   }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+   public void setMessage(String message) {
+      this.message = message;
+   }
 
-	public Integer getRemainingMinutes() {
-		return remainingMinutes;
-	}
+   public Integer getRemainingMinutes() {
+      return remainingMinutes;
+   }
 
-	public void setRemainingMinutes(Integer remainingMinutes) {
-		this.remainingMinutes = remainingMinutes;
-	}
+   public void setRemainingMinutes(Integer remainingMinutes) {
+      this.remainingMinutes = remainingMinutes;
+   }
 
-	@Override
-	public String toString() {
-		return message + ". In " + remainingMinutes + "!";
-	}
+   @Override
+   public String toString() {
+      return message + ". In " + remainingMinutes + "!";
+   }
 }

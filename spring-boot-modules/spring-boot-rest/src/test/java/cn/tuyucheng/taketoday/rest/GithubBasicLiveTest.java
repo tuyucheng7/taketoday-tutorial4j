@@ -19,46 +19,46 @@ import static org.junit.Assert.assertThat;
 
 public class GithubBasicLiveTest {
 
-	// simple request - response
+   // simple request - response
 
-	@Test
-	public void givenUserDoesNotExists_whenUserInfoIsRetrieved_then404IsReceived() throws ClientProtocolException, IOException {
-		// Given
-		final String name = randomAlphabetic(8);
-		final HttpUriRequest request = new HttpGet("https://api.github.com/users/" + name);
+   @Test
+   public void givenUserDoesNotExists_whenUserInfoIsRetrieved_then404IsReceived() throws ClientProtocolException, IOException {
+      // Given
+      final String name = randomAlphabetic(8);
+      final HttpUriRequest request = new HttpGet("https://api.github.com/users/" + name);
 
-		// When
-		final HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
+      // When
+      final HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
 
-		// Then
-		assertThat(httpResponse.getStatusLine().getStatusCode(), equalTo(HttpStatus.SC_NOT_FOUND));
-	}
+      // Then
+      assertThat(httpResponse.getStatusLine().getStatusCode(), equalTo(HttpStatus.SC_NOT_FOUND));
+   }
 
-	@Test
-	public void givenRequestWithNoAcceptHeader_whenRequestIsExecuted_thenDefaultResponseContentTypeIsJson() throws ClientProtocolException, IOException {
-		// Given
-		final String jsonMimeType = "application/json";
-		final HttpUriRequest request = new HttpGet("https://api.github.com/users/eugenp");
+   @Test
+   public void givenRequestWithNoAcceptHeader_whenRequestIsExecuted_thenDefaultResponseContentTypeIsJson() throws ClientProtocolException, IOException {
+      // Given
+      final String jsonMimeType = "application/json";
+      final HttpUriRequest request = new HttpGet("https://api.github.com/users/eugenp");
 
-		// When
-		final HttpResponse response = HttpClientBuilder.create().build().execute(request);
+      // When
+      final HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-		// Then
-		final String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
-		assertEquals(jsonMimeType, mimeType);
-	}
+      // Then
+      final String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
+      assertEquals(jsonMimeType, mimeType);
+   }
 
-	@Test
-	public void givenUserExists_whenUserInformationIsRetrieved_thenRetrievedResourceIsCorrect() throws ClientProtocolException, IOException {
-		// Given
-		final HttpUriRequest request = new HttpGet("https://api.github.com/users/eugenp");
+   @Test
+   public void givenUserExists_whenUserInformationIsRetrieved_thenRetrievedResourceIsCorrect() throws ClientProtocolException, IOException {
+      // Given
+      final HttpUriRequest request = new HttpGet("https://api.github.com/users/eugenp");
 
-		// When
-		final HttpResponse response = HttpClientBuilder.create().build().execute(request);
+      // When
+      final HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-		// Then
-		final GitHubUser resource = RetrieveUtil.retrieveResourceFromResponse(response, GitHubUser.class);
-		assertThat("eugenp", Matchers.is(resource.getLogin()));
-	}
+      // Then
+      final GitHubUser resource = RetrieveUtil.retrieveResourceFromResponse(response, GitHubUser.class);
+      assertThat("eugenp", Matchers.is(resource.getLogin()));
+   }
 
 }

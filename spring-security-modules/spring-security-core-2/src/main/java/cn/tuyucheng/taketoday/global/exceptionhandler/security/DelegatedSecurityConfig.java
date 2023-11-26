@@ -18,32 +18,32 @@ import org.springframework.security.web.SecurityFilterChain;
 @Order(101)
 public class DelegatedSecurityConfig {
 
-    @Autowired
-    @Qualifier("delegatedAuthenticationEntryPoint")
-    AuthenticationEntryPoint authEntryPoint;
+   @Autowired
+   @Qualifier("delegatedAuthenticationEntryPoint")
+   AuthenticationEntryPoint authEntryPoint;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-              .antMatchers("/login-handler")
-              .and()
-              .authorizeRequests()
-              .anyRequest()
-              .hasRole("ADMIN")
-              .and()
-              .httpBasic()
-              .and()
-              .exceptionHandling()
-              .authenticationEntryPoint(authEntryPoint);
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.requestMatchers()
+            .antMatchers("/login-handler")
+            .and()
+            .authorizeRequests()
+            .anyRequest()
+            .hasRole("ADMIN")
+            .and()
+            .httpBasic()
+            .and()
+            .exceptionHandling()
+            .authenticationEntryPoint(authEntryPoint);
+      return http.build();
+   }
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails admin = User.withUsername("admin")
-              .password("password")
-              .roles("ADMIN")
-              .build();
-        return new InMemoryUserDetailsManager(admin);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails admin = User.withUsername("admin")
+            .password("password")
+            .roles("ADMIN")
+            .build();
+      return new InMemoryUserDetailsManager(admin);
+   }
 }

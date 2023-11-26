@@ -16,71 +16,71 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
+   @Bean
+   public UserDetailsService userDetailsService() {
 
-        UserDetails user = User.withUsername("user")
-              .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder()::encode)
-              .password("password")
-              .roles("USER")
-              .build();
+      UserDetails user = User.withUsername("user")
+            .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder()::encode)
+            .password("password")
+            .roles("USER")
+            .build();
 
-        UserDetails admin = User.withUsername("admin")
-              .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder()::encode)
-              .password("password")
-              .roles("ADMIN")
-              .build();
+      UserDetails admin = User.withUsername("admin")
+            .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder()::encode)
+            .password("password")
+            .roles("ADMIN")
+            .build();
 
-        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
+      InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
 
-        userDetailsManager.createUser(user);
-        userDetailsManager.createUser(admin);
+      userDetailsManager.createUser(user);
+      userDetailsManager.createUser(admin);
 
-        return userDetailsManager;
-    }
+      return userDetailsManager;
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .httpBasic()
-              .disable()
-              .authorizeRequests()
-              .antMatchers("/login")
-              .permitAll()
-              .antMatchers("/customError")
-              .permitAll()
-              .antMatchers("/access-denied")
-              .permitAll()
-              .antMatchers("/secured")
-              .hasRole("ADMIN")
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .failureHandler(authenticationFailureHandler())
-              .successHandler(authenticationSuccessHandler())
-              .and()
-              .exceptionHandling()
-              .accessDeniedHandler(accessDeniedHandler())
-              .and()
-              .logout();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .httpBasic()
+            .disable()
+            .authorizeRequests()
+            .antMatchers("/login")
+            .permitAll()
+            .antMatchers("/customError")
+            .permitAll()
+            .antMatchers("/access-denied")
+            .permitAll()
+            .antMatchers("/secured")
+            .hasRole("ADMIN")
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .failureHandler(authenticationFailureHandler())
+            .successHandler(authenticationSuccessHandler())
+            .and()
+            .exceptionHandling()
+            .accessDeniedHandler(accessDeniedHandler())
+            .and()
+            .logout();
+      return http.build();
+   }
 
-    @Bean
-    public AuthenticationFailureHandler authenticationFailureHandler() {
-        return new CustomAuthenticationFailureHandler();
-    }
+   @Bean
+   public AuthenticationFailureHandler authenticationFailureHandler() {
+      return new CustomAuthenticationFailureHandler();
+   }
 
-    @Bean
-    public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new CustomAuthenticationSuccessHandler();
-    }
+   @Bean
+   public AuthenticationSuccessHandler authenticationSuccessHandler() {
+      return new CustomAuthenticationSuccessHandler();
+   }
 
-    @Bean
-    public AccessDeniedHandler accessDeniedHandler() {
-        return new CustomAccessDeniedHandler();
-    }
+   @Bean
+   public AccessDeniedHandler accessDeniedHandler() {
+      return new CustomAccessDeniedHandler();
+   }
 
 }

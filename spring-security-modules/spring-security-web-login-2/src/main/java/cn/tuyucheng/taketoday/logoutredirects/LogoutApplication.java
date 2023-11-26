@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LogoutApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(LogoutApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(LogoutApplication.class, args);
+   }
 
 }

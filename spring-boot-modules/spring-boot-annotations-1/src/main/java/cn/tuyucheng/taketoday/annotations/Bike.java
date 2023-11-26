@@ -6,14 +6,14 @@ import org.springframework.context.annotation.DependsOn;
 @DependsOn
 public class Bike implements Vehicle {
 
-	private String color;
+   private String color;
 
-	@Required
-	public void setColor(String color) {
-		this.color = color;
-	}
+   @Required
+   public void setColor(String color) {
+      this.color = color;
+   }
 
-	public String getColor() {
-		return color;
-	}
+   public String getColor() {
+      return color;
+   }
 }

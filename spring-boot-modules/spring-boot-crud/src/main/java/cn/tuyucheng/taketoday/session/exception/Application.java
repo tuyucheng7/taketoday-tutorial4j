@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @SpringBootApplication
 public class Application {
 
-    public static void main(String[] args) {
-        System.setProperty("spring.config.name", "exception");
-        System.setProperty("spring.profiles.active", "exception");
-        SpringApplication.run(Application.class, args);
-    }
+   public static void main(String[] args) {
+      System.setProperty("spring.config.name", "exception");
+      System.setProperty("spring.profiles.active", "exception");
+      SpringApplication.run(Application.class, args);
+   }
 }

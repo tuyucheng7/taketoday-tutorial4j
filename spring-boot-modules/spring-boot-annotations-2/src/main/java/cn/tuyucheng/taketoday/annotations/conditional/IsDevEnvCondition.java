@@ -6,8 +6,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 
 public class IsDevEnvCondition implements Condition {
 
-	@Override
-	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-		return "dev".equals(System.getProperty("env"));
-	}
+   @Override
+   public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+      return "dev".equals(System.getProperty("env"));
+   }
 }

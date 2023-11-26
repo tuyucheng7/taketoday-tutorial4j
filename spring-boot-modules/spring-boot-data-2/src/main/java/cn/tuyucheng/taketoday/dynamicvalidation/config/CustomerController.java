@@ -12,18 +12,18 @@ import javax.validation.Valid;
 @Controller
 public class CustomerController {
 
-	@GetMapping("/customer")
-	public String getCustomerPage(Model model) {
-		return "customer";
-	}
+   @GetMapping("/customer")
+   public String getCustomerPage(Model model) {
+      return "customer";
+   }
 
-	@PostMapping("/customer")
-	public String validateCustomer(@Valid final Customer customer, final BindingResult result, final Model model) {
-		if (result.hasErrors()) {
-			model.addAttribute("message", "The information is invalid!");
-		} else {
-			model.addAttribute("message", "The information is valid!");
-		}
-		return "customer";
-	}
+   @PostMapping("/customer")
+   public String validateCustomer(@Valid final Customer customer, final BindingResult result, final Model model) {
+      if (result.hasErrors()) {
+         model.addAttribute("message", "The information is invalid!");
+      } else {
+         model.addAttribute("message", "The information is valid!");
+      }
+      return "customer";
+   }
 }

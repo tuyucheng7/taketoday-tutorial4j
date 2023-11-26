@@ -16,25 +16,25 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {ApplicationCommandLineRunnerApplication.class},
-	initializers = ConfigDataApplicationContextInitializer.class)
+      initializers = ConfigDataApplicationContextInitializer.class)
 class LoadSpringContextIntegrationTest {
-	@SpyBean
-	TaskService taskService;
+   @SpyBean
+   TaskService taskService;
 
-	@SpyBean
-	CommandLineRunner commandLineRunner;
+   @SpyBean
+   CommandLineRunner commandLineRunner;
 
-	@SpyBean
-	ApplicationRunner applicationRunner;
+   @SpyBean
+   ApplicationRunner applicationRunner;
 
-	@Test
-	void whenContextLoads_thenRunnersDoNotRun() throws Exception {
-		assertNotNull(taskService);
-		assertNotNull(commandLineRunner);
-		assertNotNull(applicationRunner);
+   @Test
+   void whenContextLoads_thenRunnersDoNotRun() throws Exception {
+      assertNotNull(taskService);
+      assertNotNull(commandLineRunner);
+      assertNotNull(applicationRunner);
 
-		verify(taskService, times(0)).execute(any());
-		verify(commandLineRunner, times(0)).run(any());
-		verify(applicationRunner, times(0)).run(any());
-	}
+      verify(taskService, times(0)).execute(any());
+      verify(commandLineRunner, times(0)).run(any());
+      verify(applicationRunner, times(0)).run(any());
+   }
 }

@@ -23,22 +23,22 @@ import java.util.List;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-        .inMemoryAuthentication()
-        .withUser("user")
-        .password(passwordEncoder().encode("pass"))
-        .roles("USER")
-        .and()
-        .withUser("admin")
-        .password(passwordEncoder().encode("pass"))
-        .roles("ADMIN");
-    }
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+            .inMemoryAuthentication()
+            .withUser("user")
+            .password(passwordEncoder().encode("pass"))
+            .roles("USER")
+            .and()
+            .withUser("admin")
+            .password(passwordEncoder().encode("pass"))
+            .roles("ADMIN");
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
             .disable()
             .authorizeRequests()
             .anyRequest()
@@ -52,22 +52,22 @@ public class WebSecurityConfig {
             .permitAll()
             .deleteCookies("JSESSIONID")
             .logoutSuccessUrl("/login");
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public AccessDecisionManager accessDecisionManager() {
-        List<AccessDecisionVoter<?>> decisionVoters = Arrays.asList(
-                new WebExpressionVoter(),
-                new RoleVoter(),
-                new AuthenticatedVoter(),
-                new MinuteBasedVoter());
+   @Bean
+   public AccessDecisionManager accessDecisionManager() {
+      List<AccessDecisionVoter<?>> decisionVoters = Arrays.asList(
+            new WebExpressionVoter(),
+            new RoleVoter(),
+            new AuthenticatedVoter(),
+            new MinuteBasedVoter());
 
-        return new UnanimousBased(decisionVoters);
-    }
+      return new UnanimousBased(decisionVoters);
+   }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

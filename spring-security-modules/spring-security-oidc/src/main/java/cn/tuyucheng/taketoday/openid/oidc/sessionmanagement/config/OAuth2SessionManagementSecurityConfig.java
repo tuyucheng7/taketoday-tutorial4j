@@ -14,25 +14,25 @@ import java.net.URI;
 @Configuration
 public class OAuth2SessionManagementSecurityConfig {
 
-    @Autowired
-    private ClientRegistrationRepository clientRegistrationRepository;
+   @Autowired
+   private ClientRegistrationRepository clientRegistrationRepository;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests(authorizeRequests -> authorizeRequests.mvcMatchers("/home")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated())
-              .oauth2Login(oauthLogin -> oauthLogin.permitAll())
-              .logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler()));
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests(authorizeRequests -> authorizeRequests.mvcMatchers("/home")
+                  .permitAll()
+                  .anyRequest()
+                  .authenticated())
+            .oauth2Login(oauthLogin -> oauthLogin.permitAll())
+            .logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler()));
+      return http.build();
+   }
 
-    private LogoutSuccessHandler oidcLogoutSuccessHandler() {
-        OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler = new OidcClientInitiatedLogoutSuccessHandler(this.clientRegistrationRepository);
+   private LogoutSuccessHandler oidcLogoutSuccessHandler() {
+      OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler = new OidcClientInitiatedLogoutSuccessHandler(this.clientRegistrationRepository);
 
-        oidcLogoutSuccessHandler.setPostLogoutRedirectUri(URI.create("http://localhost:8081/home"));
+      oidcLogoutSuccessHandler.setPostLogoutRedirectUri(URI.create("http://localhost:8081/home"));
 
-        return oidcLogoutSuccessHandler;
-    }
+      return oidcLogoutSuccessHandler;
+   }
 }

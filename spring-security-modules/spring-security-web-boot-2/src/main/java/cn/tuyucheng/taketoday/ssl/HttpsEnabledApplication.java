@@ -8,9 +8,9 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-defaults.properties")
 public class HttpsEnabledApplication {
 
-    public static void main(String... args) {
-        SpringApplication application = new SpringApplication(HttpsEnabledApplication.class);
-        application.setAdditionalProfiles("ssl");
-        application.run(args);
-    }
+   public static void main(String... args) {
+      SpringApplication application = new SpringApplication(HttpsEnabledApplication.class);
+      application.setAdditionalProfiles("ssl");
+      application.run(args);
+   }
 }

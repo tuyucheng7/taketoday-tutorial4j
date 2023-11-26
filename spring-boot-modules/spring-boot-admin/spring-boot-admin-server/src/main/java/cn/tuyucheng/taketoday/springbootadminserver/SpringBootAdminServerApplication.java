@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(exclude = AdminServerHazelcastAutoConfiguration.class)
 public class SpringBootAdminServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootAdminServerApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootAdminServerApplication.class, args);
+   }
 }

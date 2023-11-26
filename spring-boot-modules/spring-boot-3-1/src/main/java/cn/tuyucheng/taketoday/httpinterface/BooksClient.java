@@ -8,16 +8,16 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @Component
 public class BooksClient {
 
-	private final BooksService booksService;
+   private final BooksService booksService;
 
-	public BooksClient(WebClient webClient) {
-		HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory
-			.builder(WebClientAdapter.forClient(webClient))
-			.build();
-		booksService = httpServiceProxyFactory.createClient(BooksService.class);
-	}
+   public BooksClient(WebClient webClient) {
+      HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory
+            .builder(WebClientAdapter.forClient(webClient))
+            .build();
+      booksService = httpServiceProxyFactory.createClient(BooksService.class);
+   }
 
-	public BooksService getBooksService() {
-		return booksService;
-	}
+   public BooksService getBooksService() {
+      return booksService;
+   }
 }

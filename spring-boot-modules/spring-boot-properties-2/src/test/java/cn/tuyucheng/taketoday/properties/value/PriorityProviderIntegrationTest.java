@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = PriorityProvider.class)
 class PriorityProviderIntegrationTest {
 
-	@Autowired
-	private PriorityProvider priorityProvider;
+   @Autowired
+   private PriorityProvider priorityProvider;
 
-	@Test
-	void givenPropertyFileWhenConstructorInjectionUsedThenValueInjected() {
-		assertThat(priorityProvider.getPriority()).isEqualTo("high");
-	}
+   @Test
+   void givenPropertyFileWhenConstructorInjectionUsedThenValueInjected() {
+      assertThat(priorityProvider.getPriority()).isEqualTo("high");
+   }
 }

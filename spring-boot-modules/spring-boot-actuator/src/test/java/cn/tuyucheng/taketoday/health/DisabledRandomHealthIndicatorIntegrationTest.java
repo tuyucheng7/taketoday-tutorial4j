@@ -15,12 +15,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(properties = "management.health.random.enabled=false")
 class DisabledRandomHealthIndicatorIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void givenADisabledIndicator_whenSendingRequest_thenReturns404() throws Exception {
-		mockMvc.perform(get("/actuator/health/random"))
-			.andExpect(status().isNotFound());
-	}
+   @Test
+   void givenADisabledIndicator_whenSendingRequest_thenReturns404() throws Exception {
+      mockMvc.perform(get("/actuator/health/random"))
+            .andExpect(status().isNotFound());
+   }
 }

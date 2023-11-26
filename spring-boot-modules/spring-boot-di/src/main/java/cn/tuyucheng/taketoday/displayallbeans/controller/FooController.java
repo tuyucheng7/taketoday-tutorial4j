@@ -10,13 +10,13 @@ import java.util.Map;
 
 @Controller
 public class FooController {
-    @Autowired
-    private FooService fooService;
+   @Autowired
+   private FooService fooService;
 
-    @GetMapping(value = "/displayallbeans")
-    public ResponseEntity<String> getHeaderAndBody(Map<String, Object> model) {
-        model.put("header", fooService.getHeader());
-        model.put("message", fooService.getBody());
-        return ResponseEntity.ok("displayallbeans");
-    }
+   @GetMapping(value = "/displayallbeans")
+   public ResponseEntity<String> getHeaderAndBody(Map<String, Object> model) {
+      model.put("header", fooService.getHeader());
+      model.put("message", fooService.getBody());
+      return ResponseEntity.ok("displayallbeans");
+   }
 }

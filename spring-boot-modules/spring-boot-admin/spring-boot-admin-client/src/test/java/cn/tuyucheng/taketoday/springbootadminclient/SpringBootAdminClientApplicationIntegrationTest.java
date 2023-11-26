@@ -21,36 +21,36 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class SpringBootAdminClientApplicationIntegrationTest {
 
-	@Autowired
-	Environment environment;
+   @Autowired
+   Environment environment;
 
-	@Autowired
-	WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-	private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-	@BeforeEach
-	void setup() {
-		mockMvc = MockMvcBuilders
-			.webAppContextSetup(wac)
-			.build();
-	}
+   @BeforeEach
+   void setup() {
+      mockMvc = MockMvcBuilders
+            .webAppContextSetup(wac)
+            .build();
+   }
 
-	@Test
-	void whenEnvironmentAvailable_ThenAdminServerPropertiesExist() {
-		assertEquals(environment.getProperty("spring.boot.admin.client.url"), "http://localhost:8080");
-		assertEquals(environment.getProperty("spring.boot.admin.client.username"), "admin");
-		assertEquals(environment.getProperty("spring.boot.admin.client.password"), "admin");
-	}
+   @Test
+   void whenEnvironmentAvailable_ThenAdminServerPropertiesExist() {
+      assertEquals(environment.getProperty("spring.boot.admin.client.url"), "http://localhost:8080");
+      assertEquals(environment.getProperty("spring.boot.admin.client.username"), "admin");
+      assertEquals(environment.getProperty("spring.boot.admin.client.password"), "admin");
+   }
 
-	@Test
-	void whenHttpBasicAttempted_ThenSuccess() throws Exception {
-		mockMvc.perform(get("/actuator/env").with(httpBasic("client", "client")));
-	}
+   @Test
+   void whenHttpBasicAttempted_ThenSuccess() throws Exception {
+      mockMvc.perform(get("/actuator/env").with(httpBasic("client", "client")));
+   }
 
-	@Test
-	void whenInvalidHttpBasicAttempted_ThenUnauthorized() throws Exception {
-		mockMvc.perform(get("/actuator/env").with(httpBasic("client", "invalid")))
-			.andExpect(unauthenticated());
-	}
+   @Test
+   void whenInvalidHttpBasicAttempted_ThenUnauthorized() throws Exception {
+      mockMvc.perform(get("/actuator/env").with(httpBasic("client", "invalid")))
+            .andExpect(unauthenticated());
+   }
 }

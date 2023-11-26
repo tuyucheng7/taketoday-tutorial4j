@@ -16,27 +16,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(properties = {"spring.jmx.default-domain=test"})
 class CommitIdIntegrationTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CommitIdIntegrationTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(CommitIdIntegrationTest.class);
 
-	@Value("${git.commit.message.short:UNKNOWN}")
-	private String commitMessage;
+   @Value("${git.commit.message.short:UNKNOWN}")
+   private String commitMessage;
 
-	@Value("${git.branch:UNKNOWN}")
-	private String branch;
+   @Value("${git.branch:UNKNOWN}")
+   private String branch;
 
-	@Value("${git.commit.id:UNKNOWN}")
-	private String commitId;
+   @Value("${git.commit.id:UNKNOWN}")
+   private String commitId;
 
-	@Test
-	void whenInjecting_shouldDisplay() throws Exception {
-		LOG.info(commitId);
-		LOG.info(commitMessage);
-		LOG.info(branch);
+   @Test
+   void whenInjecting_shouldDisplay() throws Exception {
+      LOG.info(commitId);
+      LOG.info(commitMessage);
+      LOG.info(branch);
 
-		assertThat(commitMessage).isNotEqualTo("UNKNOWN");
+      assertThat(commitMessage).isNotEqualTo("UNKNOWN");
 
-		assertThat(branch).isNotEqualTo("UNKNOWN");
+      assertThat(branch).isNotEqualTo("UNKNOWN");
 
-		assertThat(commitId).isNotEqualTo("UNKNOWN");
-	}
+      assertThat(commitId).isNotEqualTo("UNKNOWN");
+   }
 }

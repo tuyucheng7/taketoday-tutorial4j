@@ -7,15 +7,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday.ratelimiting", exclude = {
-	DataSourceAutoConfiguration.class,
-	SecurityAutoConfiguration.class,
+      DataSourceAutoConfiguration.class,
+      SecurityAutoConfiguration.class,
 })
 @EnableCaching
 public class Bucket4jRateLimitApplication {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(Bucket4jRateLimitApplication.class)
-			.properties("spring.config.location=classpath:ratelimiting/application-bucket4j-starter.yml")
-			.run(args);
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(Bucket4jRateLimitApplication.class)
+            .properties("spring.config.location=classpath:ratelimiting/application-bucket4j-starter.yml")
+            .run(args);
+   }
 }

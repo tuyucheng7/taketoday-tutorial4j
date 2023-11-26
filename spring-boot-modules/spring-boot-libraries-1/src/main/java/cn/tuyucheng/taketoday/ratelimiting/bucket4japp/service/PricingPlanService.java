@@ -10,20 +10,20 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class PricingPlanService {
 
-	private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
+   private final Map<String, Bucket> cache = new ConcurrentHashMap<>();
 
-	public Bucket resolveBucket(String apiKey) {
-		return cache.computeIfAbsent(apiKey, this::newBucket);
-	}
+   public Bucket resolveBucket(String apiKey) {
+      return cache.computeIfAbsent(apiKey, this::newBucket);
+   }
 
-	private Bucket newBucket(String apiKey) {
-		PricingPlan pricingPlan = PricingPlan.resolvePlanFromApiKey(apiKey);
-		return bucket(pricingPlan.getLimit());
-	}
+   private Bucket newBucket(String apiKey) {
+      PricingPlan pricingPlan = PricingPlan.resolvePlanFromApiKey(apiKey);
+      return bucket(pricingPlan.getLimit());
+   }
 
-	private Bucket bucket(Bandwidth limit) {
-		return Bucket.builder()
-			.addLimit(limit)
-			.build();
-	}
+   private Bucket bucket(Bandwidth limit) {
+      return Bucket.builder()
+            .addLimit(limit)
+            .build();
+   }
 }

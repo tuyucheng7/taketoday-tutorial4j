@@ -13,17 +13,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {AdditionalPropertiesTestConfig.class})
 class AdditionalPropertiesFilesIntegrationTest {
 
-	Logger logger = LoggerFactory.getLogger(AdditionalPropertiesFilesIntegrationTest.class);
+   Logger logger = LoggerFactory.getLogger(AdditionalPropertiesFilesIntegrationTest.class);
 
-	@Value("${tuyucheng.additionalProperty}")
-	private String additionalProperty;
+   @Value("${tuyucheng.additionalProperty}")
+   private String additionalProperty;
 
-	@Value("${tuyucheng.otherProperty}")
-	private String otherProperty;
+   @Value("${tuyucheng.otherProperty}")
+   private String otherProperty;
 
-	@Test
-	void givenMultidocumentPropertiesFileWhenBootContextLoadedThenDocumentProcessedCorrectly() {
-		assertThat(additionalProperty).isEqualTo("additionalValue2");
-		assertThat(otherProperty).isEqualTo("latterValue");
-	}
+   @Test
+   void givenMultidocumentPropertiesFileWhenBootContextLoadedThenDocumentProcessedCorrectly() {
+      assertThat(additionalProperty).isEqualTo("additionalValue2");
+      assertThat(otherProperty).isEqualTo("latterValue");
+   }
 }

@@ -4,5 +4,5 @@ import io.swagger.annotations.ApiModel;
 
 @ApiModel
 public enum Role {
-	Engineer, Clerk, Driver, Janitor
+   Engineer, Clerk, Driver, Janitor
 }

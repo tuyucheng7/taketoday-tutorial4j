@@ -13,27 +13,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class RetryItemProcessor implements ItemProcessor<Transaction, Transaction> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RetryItemProcessor.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(RetryItemProcessor.class);
 
-	@Autowired
-	private CloseableHttpClient closeableHttpClient;
+   @Autowired
+   private CloseableHttpClient closeableHttpClient;
 
-	@Override
-	public Transaction process(Transaction transaction) throws Exception {
-		LOGGER.info("Attempting to process user with id={}", transaction.getUserId());
-		HttpResponse response = fetchMoreUserDetails(transaction.getUserId());
+   @Override
+   public Transaction process(Transaction transaction) throws Exception {
+      LOGGER.info("Attempting to process user with id={}", transaction.getUserId());
+      HttpResponse response = fetchMoreUserDetails(transaction.getUserId());
 
-		// parse user's age and postCode from response and update transaction
-		String result = EntityUtils.toString(response.getEntity());
-		JSONObject userObject = new JSONObject(result);
-		transaction.setAge(Integer.parseInt(userObject.getString("age")));
-		transaction.setPostCode(userObject.getString("postCode"));
+      // parse user's age and postCode from response and update transaction
+      String result = EntityUtils.toString(response.getEntity());
+      JSONObject userObject = new JSONObject(result);
+      transaction.setAge(Integer.parseInt(userObject.getString("age")));
+      transaction.setPostCode(userObject.getString("postCode"));
 
-		return transaction;
-	}
+      return transaction;
+   }
 
-	private HttpResponse fetchMoreUserDetails(int id) throws Exception {
-		final HttpGet request = new HttpGet("http://www.baeldung.com:81/user/" + id);
-		return closeableHttpClient.execute(request);
-	}
+   private HttpResponse fetchMoreUserDetails(int id) throws Exception {
+      final HttpGet request = new HttpGet("http://www.baeldung.com:81/user/" + id);
+      return closeableHttpClient.execute(request);
+   }
 }

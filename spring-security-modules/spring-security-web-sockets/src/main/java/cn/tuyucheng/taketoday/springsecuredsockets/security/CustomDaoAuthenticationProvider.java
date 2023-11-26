@@ -12,30 +12,30 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class CustomDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
-    Logger log = LoggerFactory.getLogger(CustomDaoAuthenticationProvider.class);
+   Logger log = LoggerFactory.getLogger(CustomDaoAuthenticationProvider.class);
 
-    @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+   @Override
+   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        String name = authentication.getName();
-        String password = authentication.getCredentials().toString();
-        UserDetails u = null;
+      String name = authentication.getName();
+      String password = authentication.getCredentials().toString();
+      UserDetails u = null;
 
-        try {
-            u = getUserDetailsService().loadUserByUsername(name);
-        } catch (UsernameNotFoundException ex) {
-            log.error("User '" + name + "' not found");
-        } catch (Exception e) {
-            log.error("Exception in CustomDaoAuthenticationProvider: " + e);
-        }
+      try {
+         u = getUserDetailsService().loadUserByUsername(name);
+      } catch (UsernameNotFoundException ex) {
+         log.error("User '" + name + "' not found");
+      } catch (Exception e) {
+         log.error("Exception in CustomDaoAuthenticationProvider: " + e);
+      }
 
-        if (u != null) {
-            if (u.getPassword().equals(password)) {
-                return new UsernamePasswordAuthenticationToken(u, password, u.getAuthorities());
-            }
-        }
+      if (u != null) {
+         if (u.getPassword().equals(password)) {
+            return new UsernamePasswordAuthenticationToken(u, password, u.getAuthorities());
+         }
+      }
 
-        throw new BadCredentialsException(messages.getMessage("CustomDaoAuthenticationProvider.badCredentials", "Bad credentials"));
+      throw new BadCredentialsException(messages.getMessage("CustomDaoAuthenticationProvider.badCredentials", "Bad credentials"));
 
-    }
+   }
 }

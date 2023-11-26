@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:bar.properties")
 public class PropertiesWithJavaConfigOther {
 
-	public PropertiesWithJavaConfigOther() {
-		super();
-	}
+   public PropertiesWithJavaConfigOther() {
+      super();
+   }
 }

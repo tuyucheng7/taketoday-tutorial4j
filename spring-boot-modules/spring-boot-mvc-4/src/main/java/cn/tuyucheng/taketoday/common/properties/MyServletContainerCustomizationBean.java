@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyServletContainerCustomizationBean implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
 
-    public MyServletContainerCustomizationBean() {
+   public MyServletContainerCustomizationBean() {
 
-    }
+   }
 
-    @Override
-    public void customize(ConfigurableServletWebServerFactory container) {
-        container.setPort(8084);
-        container.setContextPath("/springbootapp");
+   @Override
+   public void customize(ConfigurableServletWebServerFactory container) {
+      container.setPort(8084);
+      container.setContextPath("/springbootapp");
 
-        container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));
-        container.addErrorPages(new ErrorPage("/errorHaven"));
-    }
+      container.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));
+      container.addErrorPages(new ErrorPage("/errorHaven"));
+   }
 }

@@ -12,16 +12,16 @@ import java.util.List;
 @Component
 public class CustomerDetailBO {
 
-	@Autowired
-	private CustomerDetailRepository customerDetailRepository;
+   @Autowired
+   private CustomerDetailRepository customerDetailRepository;
 
-	@Cacheable(cacheNames = "customers")
-	public Customer getCustomerDetail(Integer customerId) {
-		return customerDetailRepository.getCustomerDetail(customerId);
-	}
+   @Cacheable(cacheNames = "customers")
+   public Customer getCustomerDetail(Integer customerId) {
+      return customerDetailRepository.getCustomerDetail(customerId);
+   }
 
-	@Cacheable(cacheNames = "customerOrders", cacheManager = "alternateCacheManager")
-	public List<Order> getCustomerOrders(Integer customerId) {
-		return customerDetailRepository.getCustomerOrders(customerId);
-	}
+   @Cacheable(cacheNames = "customerOrders", cacheManager = "alternateCacheManager")
+   public List<Order> getCustomerOrders(Integer customerId) {
+      return customerDetailRepository.getCustomerOrders(customerId);
+   }
 }

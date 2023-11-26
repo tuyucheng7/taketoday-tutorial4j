@@ -16,33 +16,33 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AnnotationScannerApplication.class)
 public class SampleAnnotationScannerUnitTest {
-	@Autowired
-	private List<SampleAnnotationScanner> scannerList;
+   @Autowired
+   private List<SampleAnnotationScanner> scannerList;
 
-	@Test
-	public void givenPackage_whenScanAnnotatedClasses_thenAnnotationValues() {
-		final List<String> annotatedClasses = scannerList.stream()
-			.filter(SampleAnnotationScanner::supportsClassScan)
-			.map(SampleAnnotationScanner::scanAnnotatedClasses)
-			.flatMap(Collection::stream)
-			.collect(Collectors.toList());
+   @Test
+   public void givenPackage_whenScanAnnotatedClasses_thenAnnotationValues() {
+      final List<String> annotatedClasses = scannerList.stream()
+            .filter(SampleAnnotationScanner::supportsClassScan)
+            .map(SampleAnnotationScanner::scanAnnotatedClasses)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
 
-		assertNotNull(annotatedClasses);
-		assertEquals(4, annotatedClasses.size());
-		annotatedClasses.forEach(annotValue -> assertEquals("SampleAnnotatedClass",
-			annotValue));
-	}
+      assertNotNull(annotatedClasses);
+      assertEquals(4, annotatedClasses.size());
+      annotatedClasses.forEach(annotValue -> assertEquals("SampleAnnotatedClass",
+            annotValue));
+   }
 
-	@Test
-	public void givenPackage_whenScanAnnotatedMethods_thenAnnotationValues() {
-		final List<String> annotatedMethods = scannerList.stream()
-			.filter(SampleAnnotationScanner::supportsMethodScan)
-			.map(SampleAnnotationScanner::scanAnnotatedMethods)
-			.flatMap(Collection::stream)
-			.collect(Collectors.toList());
+   @Test
+   public void givenPackage_whenScanAnnotatedMethods_thenAnnotationValues() {
+      final List<String> annotatedMethods = scannerList.stream()
+            .filter(SampleAnnotationScanner::supportsMethodScan)
+            .map(SampleAnnotationScanner::scanAnnotatedMethods)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
 
-		assertNotNull(annotatedMethods);
-		assertEquals(3, annotatedMethods.size());
-		annotatedMethods.forEach(annotValue -> assertEquals("annotatedMethod", annotValue));
-	}
+      assertNotNull(annotatedMethods);
+      assertEquals(3, annotatedMethods.size());
+      annotatedMethods.forEach(annotValue -> assertEquals("annotatedMethod", annotValue));
+   }
 }

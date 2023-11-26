@@ -19,35 +19,35 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class ChunksConfig {
 
-	@Bean
-	public ItemReader<Line> itemReader() {
-		return new LineReader();
-	}
+   @Bean
+   public ItemReader<Line> itemReader() {
+      return new LineReader();
+   }
 
-	@Bean
-	public ItemProcessor<Line, Line> itemProcessor() {
-		return new LineProcessor();
-	}
+   @Bean
+   public ItemProcessor<Line, Line> itemProcessor() {
+      return new LineProcessor();
+   }
 
-	@Bean
-	public ItemWriter<Line> itemWriter() {
-		return new LinesWriter();
-	}
+   @Bean
+   public ItemWriter<Line> itemWriter() {
+      return new LinesWriter();
+   }
 
-	@Bean(name = "processLines")
-	protected Step processLines(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<Line> reader, ItemProcessor<Line, Line> processor, ItemWriter<Line> writer) {
-		return new StepBuilder("processLines", jobRepository).<Line, Line>chunk(2, transactionManager)
-			.reader(reader)
-			.processor(processor)
-			.writer(writer)
-			.build();
-	}
+   @Bean(name = "processLines")
+   protected Step processLines(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<Line> reader, ItemProcessor<Line, Line> processor, ItemWriter<Line> writer) {
+      return new StepBuilder("processLines", jobRepository).<Line, Line>chunk(2, transactionManager)
+            .reader(reader)
+            .processor(processor)
+            .writer(writer)
+            .build();
+   }
 
-	@Bean(name = "chunksJob")
-	public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new JobBuilder("chunksJob", jobRepository)
-			.start(processLines(jobRepository, transactionManager, itemReader(), itemProcessor(), itemWriter()))
-			.build();
-	}
+   @Bean(name = "chunksJob")
+   public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+      return new JobBuilder("chunksJob", jobRepository)
+            .start(processLines(jobRepository, transactionManager, itemReader(), itemProcessor(), itemWriter()))
+            .build();
+   }
 
 }

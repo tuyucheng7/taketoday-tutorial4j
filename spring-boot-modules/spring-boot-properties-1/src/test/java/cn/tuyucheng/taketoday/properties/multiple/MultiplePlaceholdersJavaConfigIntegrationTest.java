@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringJUnitConfig({PropertySourcesPlaceholderConfig.class})
 class MultiplePlaceholdersJavaConfigIntegrationTest {
 
-	@Value("${key.something}")
-	private String something;
+   @Value("${key.something}")
+   private String something;
 
 
-	@Test
-	void whenReadInjectedValues_thenGetCorrectValues() {
-		assertThat(something).isEqualTo("val");
-	}
+   @Test
+   void whenReadInjectedValues_thenGetCorrectValues() {
+      assertThat(something).isEqualTo("val");
+   }
 }

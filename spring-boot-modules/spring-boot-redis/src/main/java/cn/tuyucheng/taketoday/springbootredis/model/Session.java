@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.springbootredis.model;
 
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;

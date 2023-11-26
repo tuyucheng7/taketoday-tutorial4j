@@ -11,15 +11,15 @@ import java.util.Map;
 @Component
 public class TotalUsersInfoContributor implements InfoContributor {
 
-	@Autowired
-	UserRepository userRepository;
+   @Autowired
+   UserRepository userRepository;
 
-	@Override
-	public void contribute(Info.Builder builder) {
-		Map<String, Integer> userDetails = new HashMap<>();
-		userDetails.put("active", userRepository.countByStatus(1));
-		userDetails.put("inactive", userRepository.countByStatus(0));
+   @Override
+   public void contribute(Info.Builder builder) {
+      Map<String, Integer> userDetails = new HashMap<>();
+      userDetails.put("active", userRepository.countByStatus(1));
+      userDetails.put("inactive", userRepository.countByStatus(0));
 
-		builder.withDetail("users", userDetails);
-	}
+      builder.withDetail("users", userDetails);
+   }
 }

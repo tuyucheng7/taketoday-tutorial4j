@@ -10,18 +10,18 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ImportAutoConfiguration({
-	GrpcServerAutoConfiguration.class, // Create required server beans
-	GrpcServerFactoryAutoConfiguration.class, // Select server implementation
-	GrpcClientAutoConfiguration.class}) // Support @GrpcClient annotation
+      GrpcServerAutoConfiguration.class, // Create required server beans
+      GrpcServerFactoryAutoConfiguration.class, // Select server implementation
+      GrpcClientAutoConfiguration.class}) // Support @GrpcClient annotation
 public class GrpcIntegrationTestConfig {
 
-	@Bean
-	BooksService booksService() {
-		return new BooksService();
-	}
+   @Bean
+   BooksService booksService() {
+      return new BooksService();
+   }
 
-	@Bean
-	BooksServiceGrpc booksServiceGrpc() {
-		return new BooksServiceGrpc(booksService());
-	}
+   @Bean
+   BooksServiceGrpc booksServiceGrpc() {
+      return new BooksServiceGrpc(booksService());
+   }
 }

@@ -15,21 +15,21 @@ import java.io.IOException;
 @Controller
 public class HomeController {
 
-    @GetMapping(value = "/")
-    @ResponseBody
-    public String home(HttpServletRequest request, HttpServletResponse response, final Authentication authentication) throws IOException {
+   @GetMapping(value = "/")
+   @ResponseBody
+   public String home(HttpServletRequest request, HttpServletResponse response, final Authentication authentication) throws IOException {
 
-        if (authentication != null && authentication instanceof TestingAuthenticationToken) {
-            TestingAuthenticationToken token = (TestingAuthenticationToken) authentication;
+      if (authentication != null && authentication instanceof TestingAuthenticationToken) {
+         TestingAuthenticationToken token = (TestingAuthenticationToken) authentication;
 
-            DecodedJWT jwt = JWT.decode(token.getCredentials().toString());
-            String email = jwt.getClaims().get("email").asString();
+         DecodedJWT jwt = JWT.decode(token.getCredentials().toString());
+         String email = jwt.getClaims().get("email").asString();
 
-            return "Welcome, " + email + "!";
-        } else {
-            response.sendRedirect("http://localhost:8080/login");
-            return null;
-        }
-    }
+         return "Welcome, " + email + "!";
+      } else {
+         response.sendRedirect("http://localhost:8080/login");
+         return null;
+      }
+   }
 
 }

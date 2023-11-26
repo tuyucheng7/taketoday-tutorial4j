@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan("cn.tuyucheng.taketoday.test")
 public class ConfigIntegrationTest implements WebMvcConfigurer {
 
-	public ConfigIntegrationTest() {
-		super();
-	}
+   public ConfigIntegrationTest() {
+      super();
+   }
 
-	// API
+   // API
 
 }

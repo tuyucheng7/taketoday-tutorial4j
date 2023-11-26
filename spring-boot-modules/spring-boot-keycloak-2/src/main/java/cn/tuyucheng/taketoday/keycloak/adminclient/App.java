@@ -12,19 +12,19 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-adminclient.properties")
 public class App {
 
-	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(App.class, args);
+   }
 
-	@Bean
-	Keycloak keycloak() {
-		return KeycloakBuilder.builder()
-			.serverUrl("http://localhost:8080")
-			.realm("master")
-			.clientId("admin-cli")
-			.grantType(OAuth2Constants.PASSWORD)
-			.username("admin")
-			.password("password")
-			.build();
-	}
+   @Bean
+   Keycloak keycloak() {
+      return KeycloakBuilder.builder()
+            .serverUrl("http://localhost:8080")
+            .realm("master")
+            .clientId("admin-cli")
+            .grantType(OAuth2Constants.PASSWORD)
+            .username("admin")
+            .password("password")
+            .build();
+   }
 }

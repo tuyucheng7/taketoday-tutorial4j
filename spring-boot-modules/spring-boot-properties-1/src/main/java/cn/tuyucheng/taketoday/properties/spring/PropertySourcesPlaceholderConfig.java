@@ -9,16 +9,16 @@ import org.springframework.core.io.Resource;
 @Configuration
 public class PropertySourcesPlaceholderConfig {
 
-	public PropertySourcesPlaceholderConfig() {
-		super();
-	}
+   public PropertySourcesPlaceholderConfig() {
+      super();
+   }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer properties() {
-		PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
-		Resource[] resources = new ClassPathResource[]{new ClassPathResource("foo.properties")};
-		pspc.setLocations(resources);
-		pspc.setIgnoreUnresolvablePlaceholders(true);
-		return pspc;
-	}
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer properties() {
+      PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
+      Resource[] resources = new ClassPathResource[]{new ClassPathResource("foo.properties")};
+      pspc.setLocations(resources);
+      pspc.setIgnoreUnresolvablePlaceholders(true);
+      return pspc;
+   }
 }

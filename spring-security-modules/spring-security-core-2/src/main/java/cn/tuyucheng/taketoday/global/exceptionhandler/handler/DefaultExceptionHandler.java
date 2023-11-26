@@ -11,12 +11,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({AuthenticationException.class})
-    @ResponseBody
-    public ResponseEntity<RestError> handleAuthenticationException(Exception ex) {
+   @ExceptionHandler({AuthenticationException.class})
+   @ResponseBody
+   public ResponseEntity<RestError> handleAuthenticationException(Exception ex) {
 
-        RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-              .body(re);
-    }
+      RestError re = new RestError(HttpStatus.UNAUTHORIZED.toString(), "Authentication failed at controller advice");
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body(re);
+   }
 }

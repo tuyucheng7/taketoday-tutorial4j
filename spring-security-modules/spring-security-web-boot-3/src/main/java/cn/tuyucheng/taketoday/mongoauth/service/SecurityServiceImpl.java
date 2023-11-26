@@ -10,30 +10,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityServiceImpl implements SecurityService {
 
-    private final AuthenticationManager authenticationManager;
+   private final AuthenticationManager authenticationManager;
 
-    private final UserDetailsService userDetailsService;
+   private final UserDetailsService userDetailsService;
 
-    public SecurityServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
-        this.authenticationManager = authenticationManager;
-        this.userDetailsService = userDetailsService;
-    }
+   public SecurityServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
+      this.authenticationManager = authenticationManager;
+      this.userDetailsService = userDetailsService;
+   }
 
-    @Override
-    public boolean login(String username, String password) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+   @Override
+   public boolean login(String username, String password) {
+      UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+      UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+      authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext()
-              .setAuthentication(usernamePasswordAuthenticationToken);
+      if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+         SecurityContextHolder.getContext()
+               .setAuthentication(usernamePasswordAuthenticationToken);
 
-            return true;
-        }
+         return true;
+      }
 
-        return false;
-    }
+      return false;
+   }
 }

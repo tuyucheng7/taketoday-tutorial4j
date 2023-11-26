@@ -10,13 +10,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @PropertySource("classpath:parent.properties")
 public class ParentConfig {
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+      return new PropertySourcesPlaceholderConfigurer();
+   }
 
-	@Bean
-	public ParentValueHolder parentValueHolder() {
-		return new ParentValueHolder();
-	}
+   @Bean
+   public ParentValueHolder parentValueHolder() {
+      return new ParentValueHolder();
+   }
 }

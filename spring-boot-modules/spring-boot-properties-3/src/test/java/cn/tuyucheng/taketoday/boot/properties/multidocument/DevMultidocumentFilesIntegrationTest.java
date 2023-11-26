@@ -13,15 +13,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("multidocument-dev")
 class DevMultidocumentFilesIntegrationTest {
 
-	@Value("${tuyucheng.property}")
-	private String tuyuchengCustomProperty;
+   @Value("${tuyucheng.property}")
+   private String tuyuchengCustomProperty;
 
-	@Value("${tuyucheng.root-level-property}")
-	private String tuyuchengRootProperty;
+   @Value("${tuyucheng.root-level-property}")
+   private String tuyuchengRootProperty;
 
-	@Test
-	void givenDefaultProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
-		assertThat(tuyuchengCustomProperty).isEqualTo("devValue");
-		assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
-	}
+   @Test
+   void givenDefaultProfileActive_whenApplicationStarts_thenDefaultPropertiesUser() {
+      assertThat(tuyuchengCustomProperty).isEqualTo("devValue");
+      assertThat(tuyuchengRootProperty).isEqualTo("defaultRootLevelValue");
+   }
 }

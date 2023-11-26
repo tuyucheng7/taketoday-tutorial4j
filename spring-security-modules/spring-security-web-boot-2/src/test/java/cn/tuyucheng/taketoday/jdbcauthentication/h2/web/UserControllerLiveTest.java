@@ -13,12 +13,12 @@ import static org.hamcrest.CoreMatchers.is;
  */
 public class UserControllerLiveTest {
 
-    private static final String PRINCIPAL_SVC_URL = "http://localhost:8082/principal";
+   private static final String PRINCIPAL_SVC_URL = "http://localhost:8082/principal";
 
-    @Test
-    public void givenExisting_whenRequestPrincipal_thenRetrieveData() throws Exception {
-        SessionFilter filter = new SessionFilter();
-        given().auth()
+   @Test
+   public void givenExisting_whenRequestPrincipal_thenRetrieveData() throws Exception {
+      SessionFilter filter = new SessionFilter();
+      given().auth()
             .form("user", "pass", new FormAuthConfig("/login", "username", "password").withCsrfFieldName("_csrf"))
             .and()
             .filter(filter)
@@ -30,5 +30,5 @@ public class UserControllerLiveTest {
             .body("authorities[0].authority", is("ROLE_USER"))
             .body("principal.username", is("user"))
             .body("name", is("user"));
-    }
+   }
 }

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootSpringdocBasicAuth {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringBootSpringdocBasicAuth.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootSpringdocBasicAuth.class, args);
+   }
 
 }

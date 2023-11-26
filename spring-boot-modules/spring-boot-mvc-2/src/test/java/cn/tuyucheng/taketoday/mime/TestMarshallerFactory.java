@@ -10,34 +10,34 @@ import org.springframework.stereotype.Component;
 @Profile("test")
 public class TestMarshallerFactory implements FactoryBean<IMarshaller> {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	public TestMarshallerFactory() {
-		super();
-	}
+   public TestMarshallerFactory() {
+      super();
+   }
 
-	@Override
-	public IMarshaller getObject() {
-		final String testMime = env.getProperty("test.mime");
-		if (testMime != null) {
-			return switch (testMime) {
-				case "json" -> new JacksonMarshaller();
-				case "xml" -> new XStreamMarshaller();
-				default -> throw new IllegalStateException();
-			};
-		}
+   @Override
+   public IMarshaller getObject() {
+      final String testMime = env.getProperty("test.mime");
+      if (testMime != null) {
+         return switch (testMime) {
+            case "json" -> new JacksonMarshaller();
+            case "xml" -> new XStreamMarshaller();
+            default -> throw new IllegalStateException();
+         };
+      }
 
-		return new JacksonMarshaller();
-	}
+      return new JacksonMarshaller();
+   }
 
-	@Override
-	public Class<IMarshaller> getObjectType() {
-		return IMarshaller.class;
-	}
+   @Override
+   public Class<IMarshaller> getObjectType() {
+      return IMarshaller.class;
+   }
 
-	@Override
-	public boolean isSingleton() {
-		return true;
-	}
+   @Override
+   public boolean isSingleton() {
+      return true;
+   }
 }

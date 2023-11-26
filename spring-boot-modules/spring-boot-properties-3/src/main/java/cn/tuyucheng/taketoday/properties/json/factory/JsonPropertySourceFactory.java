@@ -11,9 +11,9 @@ import java.util.Map;
 
 public class JsonPropertySourceFactory implements PropertySourceFactory {
 
-	@Override
-	public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
-		Map readValue = new ObjectMapper().readValue(resource.getInputStream(), Map.class);
-		return new MapPropertySource("json-property", readValue);
-	}
+   @Override
+   public PropertySource<?> createPropertySource(String name, EncodedResource resource) throws IOException {
+      Map readValue = new ObjectMapper().readValue(resource.getInputStream(), Map.class);
+      return new MapPropertySource("json-property", readValue);
+   }
 }

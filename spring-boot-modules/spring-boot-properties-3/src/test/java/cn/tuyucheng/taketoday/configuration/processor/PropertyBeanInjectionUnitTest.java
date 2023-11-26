@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = DemoApplication.class)
 class PropertyBeanInjectionUnitTest {
 
-	@Autowired
-	private PropertyBeanInjection propertyBeanInjection;
+   @Autowired
+   private PropertyBeanInjection propertyBeanInjection;
 
-	@Test
-	void checkThatJdbcPropertiesHaveTheCorrectValueFromPropertiesFile() {
-		assertEquals("jdbc:postgresql:/localhost:5432", propertyBeanInjection.getJdbcUrl());
-	}
+   @Test
+   void checkThatJdbcPropertiesHaveTheCorrectValueFromPropertiesFile() {
+      assertEquals("jdbc:postgresql:/localhost:5432", propertyBeanInjection.getJdbcUrl());
+   }
 
-	@Test
-	void checkThatCustomPropertiesHaveTheCorrectValueFromPropertiesFile() {
-		assertEquals("www.abc.test.com", propertyBeanInjection.getUrl());
-		assertEquals(2000, propertyBeanInjection.getTimeoutInMilliseconds());
-	}
+   @Test
+   void checkThatCustomPropertiesHaveTheCorrectValueFromPropertiesFile() {
+      assertEquals("www.abc.test.com", propertyBeanInjection.getUrl());
+      assertEquals(2000, propertyBeanInjection.getTimeoutInMilliseconds());
+   }
 }

@@ -18,48 +18,48 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping(value = "/vehicles", method = RequestMethod.GET)
 public class VehicleController {
 
-	@CrossOrigin
-	@ResponseBody
-	@RequestMapping("/hello")
-	public String hello() {
-		return "Hello World!";
-	}
+   @CrossOrigin
+   @ResponseBody
+   @RequestMapping("/hello")
+   public String hello() {
+      return "Hello World!";
+   }
 
-	@RequestMapping("/home")
-	public String home() {
-		return "home";
-	}
+   @RequestMapping("/home")
+   public String home() {
+      return "home";
+   }
 
-	@PostMapping("/save")
-	public void saveVehicle(@RequestBody Vehicle vehicle) {
-	}
+   @PostMapping("/save")
+   public void saveVehicle(@RequestBody Vehicle vehicle) {
+   }
 
-	@RequestMapping("/{id}")
-	public Vehicle getVehicle(@PathVariable("id") long id) {
-		return null;
-	}
+   @RequestMapping("/{id}")
+   public Vehicle getVehicle(@PathVariable("id") long id) {
+      return null;
+   }
 
-	@RequestMapping
-	public Vehicle getVehicleByParam(@RequestParam("id") long id) {
-		return null;
-	}
+   @RequestMapping
+   public Vehicle getVehicleByParam(@RequestParam("id") long id) {
+      return null;
+   }
 
-	@RequestMapping("/buy")
-	public Car buyCar(@RequestParam(defaultValue = "5") int seatCount) {
-		return null;
-	}
+   @RequestMapping("/buy")
+   public Car buyCar(@RequestParam(defaultValue = "5") int seatCount) {
+      return null;
+   }
 
-	@ExceptionHandler(IllegalArgumentException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public void onIllegalArgumentException(IllegalArgumentException exception) {
-	}
+   @ExceptionHandler(IllegalArgumentException.class)
+   @ResponseStatus(HttpStatus.BAD_REQUEST)
+   public void onIllegalArgumentException(IllegalArgumentException exception) {
+   }
 
-	@PostMapping("/assemble")
-	public void assembleVehicle(@ModelAttribute("vehicle") Vehicle vehicle) {
-	}
+   @PostMapping("/assemble")
+   public void assembleVehicle(@ModelAttribute("vehicle") Vehicle vehicle) {
+   }
 
-	@ModelAttribute("vehicle")
-	public Vehicle getVehicle() {
-		return null;
-	}
+   @ModelAttribute("vehicle")
+   public Vehicle getVehicle() {
+      return null;
+   }
 }

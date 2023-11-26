@@ -8,12 +8,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class AzureApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(AzureApplication.class);
-	}
+   @Override
+   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+      return application.sources(AzureApplication.class);
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(AzureApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(AzureApplication.class, args);
+   }
 }

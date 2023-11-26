@@ -10,16 +10,16 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class AsynchronousLambdaHandler implements RequestHandler<AwsProxyRequest, AwsProxyResponse> {
-	private SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+   private SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
 
-	public AsynchronousLambdaHandler() throws ContainerInitializationException {
-		handler = (SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse>) new SpringBootProxyHandlerBuilder().springBootApplication(Application.class)
-			.asyncInit()
-			.buildAndInitialize();
-	}
+   public AsynchronousLambdaHandler() throws ContainerInitializationException {
+      handler = (SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse>) new SpringBootProxyHandlerBuilder().springBootApplication(Application.class)
+            .asyncInit()
+            .buildAndInitialize();
+   }
 
-	@Override
-	public AwsProxyResponse handleRequest(AwsProxyRequest input, Context context) {
-		return handler.proxy(input, context);
-	}
+   @Override
+   public AwsProxyResponse handleRequest(AwsProxyRequest input, Context context) {
+      return handler.proxy(input, context);
+   }
 }

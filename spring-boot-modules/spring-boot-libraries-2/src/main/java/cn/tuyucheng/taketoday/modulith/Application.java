@@ -13,9 +13,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAutoConfiguration(exclude = {JobRunrAutoConfiguration.class})
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args)
-			.getBean(ProductService.class)
-			.create(new Product("tuyucheng", "course", 10));
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args)
+            .getBean(ProductService.class)
+            .create(new Product("tuyucheng", "course", 10));
+   }
 }

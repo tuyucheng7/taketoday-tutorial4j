@@ -9,26 +9,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class SampleJobService {
 
-	public static final long EXECUTION_TIME = 5000L;
+   public static final long EXECUTION_TIME = 5000L;
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
+   private Logger logger = LoggerFactory.getLogger(getClass());
 
-	private AtomicInteger count = new AtomicInteger();
+   private AtomicInteger count = new AtomicInteger();
 
-	public void executeSampleJob() {
+   public void executeSampleJob() {
 
-		logger.info("The sample job has begun...");
-		try {
-			Thread.sleep(EXECUTION_TIME);
-		} catch (InterruptedException e) {
-			logger.error("Error while executing sample job", e);
-		} finally {
-			count.incrementAndGet();
-			logger.info("Sample job has finished...");
-		}
-	}
+      logger.info("The sample job has begun...");
+      try {
+         Thread.sleep(EXECUTION_TIME);
+      } catch (InterruptedException e) {
+         logger.error("Error while executing sample job", e);
+      } finally {
+         count.incrementAndGet();
+         logger.info("Sample job has finished...");
+      }
+   }
 
-	public int getNumberOfInvocations() {
-		return count.get();
-	}
+   public int getNumberOfInvocations() {
+      return count.get();
+   }
 }

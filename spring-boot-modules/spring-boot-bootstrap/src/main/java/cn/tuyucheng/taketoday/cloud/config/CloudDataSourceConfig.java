@@ -11,9 +11,9 @@ import javax.sql.DataSource;
 @Profile("cloud")
 public class CloudDataSourceConfig extends AbstractCloudConfig {
 
-    @Bean
-    public DataSource dataSource() {
-        return connectionFactory().dataSource();
-    }
+   @Bean
+   public DataSource dataSource() {
+      return connectionFactory().dataSource();
+   }
 
 }

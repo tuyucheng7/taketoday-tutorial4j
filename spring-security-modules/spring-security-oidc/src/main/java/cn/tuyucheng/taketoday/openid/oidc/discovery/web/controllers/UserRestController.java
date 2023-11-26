@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserRestController {
 
-    @GetMapping("/oidc-principal")
-    public OidcUser getOidcUserPrincipal(@AuthenticationPrincipal OidcUser principal) {
-        return principal;
-    }
+   @GetMapping("/oidc-principal")
+   public OidcUser getOidcUserPrincipal(@AuthenticationPrincipal OidcUser principal) {
+      return principal;
+   }
 }

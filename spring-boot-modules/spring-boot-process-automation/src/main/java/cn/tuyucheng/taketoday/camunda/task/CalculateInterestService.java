@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalculateInterestService implements JavaDelegate {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CalculateInterestService.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(CalculateInterestService.class);
 
-	@Override
-	public void execute(DelegateExecution execution) {
-		LOGGER.info("calculating interest of the loan");
-	}
+   @Override
+   public void execute(DelegateExecution execution) {
+      LOGGER.info("calculating interest of the loan");
+   }
 }

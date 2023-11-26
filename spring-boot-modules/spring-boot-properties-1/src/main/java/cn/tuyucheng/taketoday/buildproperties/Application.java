@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 //@PropertySource("classpath:build.yml")
 public class Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 }

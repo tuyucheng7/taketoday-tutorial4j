@@ -16,22 +16,22 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 
-    @Override
-    protected RunAsManager runAsManager() {
-        RunAsManagerImpl runAsManager = new RunAsManagerImpl();
-        runAsManager.setKey("MyRunAsKey");
-        return runAsManager;
-    }
+   @Override
+   protected RunAsManager runAsManager() {
+      RunAsManagerImpl runAsManager = new RunAsManagerImpl();
+      runAsManager.setKey("MyRunAsKey");
+      return runAsManager;
+   }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(runAsAuthenticationProvider());
-    }
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+      auth.authenticationProvider(runAsAuthenticationProvider());
+   }
 
-    @Bean
-    public AuthenticationProvider runAsAuthenticationProvider() {
-        RunAsImplAuthenticationProvider authProvider = new RunAsImplAuthenticationProvider();
-        authProvider.setKey("MyRunAsKey");
-        return authProvider;
-    }
+   @Bean
+   public AuthenticationProvider runAsAuthenticationProvider() {
+      RunAsImplAuthenticationProvider authProvider = new RunAsImplAuthenticationProvider();
+      authProvider.setKey("MyRunAsKey");
+      return authProvider;
+   }
 }

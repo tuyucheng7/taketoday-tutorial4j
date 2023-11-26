@@ -8,6 +8,6 @@ import org.springframework.context.annotation.FilterType;
 @ComponentScan(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = Animal.class))
 public class ComponentScanAssignableTypeFilterApp {
 
-    public static void main(String[] args) {
-    }
+   public static void main(String[] args) {
+   }
 }

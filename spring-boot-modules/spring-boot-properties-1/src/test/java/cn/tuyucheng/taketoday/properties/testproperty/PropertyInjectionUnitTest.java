@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(properties = {"foo=bar"})
 class PropertyInjectionUnitTest {
 
-	@Value("${foo}")
-	private String foo;
+   @Value("${foo}")
+   private String foo;
 
-	@Test
-	void whenPropertyProvided_thenProperlyInjected() {
-		assertThat(foo).isEqualTo("bar");
-	}
+   @Test
+   void whenPropertyProvided_thenProperlyInjected() {
+      assertThat(foo).isEqualTo("bar");
+   }
 }

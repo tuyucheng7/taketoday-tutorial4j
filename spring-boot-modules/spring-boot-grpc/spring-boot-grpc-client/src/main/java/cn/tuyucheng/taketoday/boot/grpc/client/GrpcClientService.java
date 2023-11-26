@@ -10,22 +10,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class GrpcClientService {
 
-	private SimpleBlockingStub simpleStub;
+   private SimpleBlockingStub simpleStub;
 
-	@GrpcClient("local-grpc-server")
-	public void setSimpleStub(final SimpleBlockingStub simpleStub) {
-		this.simpleStub = simpleStub;
-	}
+   @GrpcClient("local-grpc-server")
+   public void setSimpleStub(final SimpleBlockingStub simpleStub) {
+      this.simpleStub = simpleStub;
+   }
 
-	public String sendMessage(final String name) {
-		try {
-			HelloRequest request = HelloRequest.newBuilder()
-				.setName(name)
-				.build();
-			final HelloReply response = this.simpleStub.sayHello(request);
-			return response.getMessage();
-		} catch (final StatusRuntimeException e) {
-			return "FAILED with " + e.getStatus().getCode().name();
-		}
-	}
+   public String sendMessage(final String name) {
+      try {
+         HelloRequest request = HelloRequest.newBuilder()
+               .setName(name)
+               .build();
+         final HelloReply response = this.simpleStub.sayHello(request);
+         return response.getMessage();
+      } catch (final StatusRuntimeException e) {
+         return "FAILED with " + e.getStatus().getCode().name();
+      }
+   }
 }

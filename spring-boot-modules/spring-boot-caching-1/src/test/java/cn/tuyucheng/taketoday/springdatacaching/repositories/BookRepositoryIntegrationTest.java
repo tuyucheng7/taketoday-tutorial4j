@@ -25,34 +25,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @EnableJpaRepositories(basePackageClasses = BookRepository.class)
 public class BookRepositoryIntegrationTest {
 
-	@Autowired
-	CacheManager cacheManager;
+   @Autowired
+   CacheManager cacheManager;
 
-	@Autowired
-	BookRepository repository;
+   @Autowired
+   BookRepository repository;
 
-	@BeforeEach
-	void setUp() {
-		repository.save(new Book(UUID.randomUUID(), "Dune"));
-		repository.save(new Book(UUID.randomUUID(), "Foundation"));
-	}
+   @BeforeEach
+   void setUp() {
+      repository.save(new Book(UUID.randomUUID(), "Dune"));
+      repository.save(new Book(UUID.randomUUID(), "Foundation"));
+   }
 
-	@Test
-	void givenBookThatShouldBeCached_whenFindByTitle_thenResultShouldBePutInCache() {
-		Optional<Book> dune = repository.findFirstByTitle("Dune");
+   @Test
+   void givenBookThatShouldBeCached_whenFindByTitle_thenResultShouldBePutInCache() {
+      Optional<Book> dune = repository.findFirstByTitle("Dune");
 
-		assertEquals(dune, getCachedBook("Dune"));
-	}
+      assertEquals(dune, getCachedBook("Dune"));
+   }
 
-	@Test
-	void givenBookThatShouldNotBeCached_whenFindByTitle_thenResultShouldNotBePutInCache() {
-		repository.findFirstByTitle("Foundation");
+   @Test
+   void givenBookThatShouldNotBeCached_whenFindByTitle_thenResultShouldNotBePutInCache() {
+      repository.findFirstByTitle("Foundation");
 
-		assertEquals(empty(), getCachedBook("Foundation"));
-	}
+      assertEquals(empty(), getCachedBook("Foundation"));
+   }
 
-	private Optional<Book> getCachedBook(String title) {
-		return ofNullable(cacheManager.getCache("books")).map(c -> c.get(title, Book.class));
-	}
+   private Optional<Book> getCachedBook(String title) {
+      return ofNullable(cacheManager.getCache("books")).map(c -> c.get(title, Book.class));
+   }
 
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @OpenAPIDefinition(info = @Info(title = "logout-endpoint"))
 public class LogoutController {
 
-    @PostMapping("logout")
-    @Operation(description = "End authenticated user session")
-    public void logout() {
-        throw new UnsupportedOperationException();
-    }
+   @PostMapping("logout")
+   @Operation(description = "End authenticated user session")
+   public void logout() {
+      throw new UnsupportedOperationException();
+   }
 }

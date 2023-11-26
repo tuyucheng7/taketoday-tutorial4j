@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan("cn.tuyucheng.taketoday.security")
 public class SecSecurityConfig {
 
-    public SecSecurityConfig() {
-        super();
-    }
+   public SecSecurityConfig() {
+      super();
+   }
 
 }

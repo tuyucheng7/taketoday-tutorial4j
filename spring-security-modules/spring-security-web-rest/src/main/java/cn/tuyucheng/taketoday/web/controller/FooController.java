@@ -21,27 +21,27 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 @RequestMapping(value = "/foos")
 public class FooController {
 
-    // API
+   // API
 
-    // read - single
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Foo findById(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
-        return new Foo(randomAlphabetic(6));
-    }
+   // read - single
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+   @ResponseBody
+   public Foo findById(@PathVariable("id") final Long id, final UriComponentsBuilder uriBuilder, final HttpServletResponse response) {
+      return new Foo(randomAlphabetic(6));
+   }
 
-    // read - multiple
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<Foo> findAll() {
-        return Lists.newArrayList(new Foo(randomAlphabetic(6)));
-    }
+   // read - multiple
+   @RequestMapping(method = RequestMethod.GET)
+   @ResponseBody
+   public List<Foo> findAll() {
+      return Lists.newArrayList(new Foo(randomAlphabetic(6)));
+   }
 
-    // write - just for test
-    @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public Foo create(@RequestBody final Foo foo) {
-        return foo;
-    }
+   // write - just for test
+   @RequestMapping(method = RequestMethod.POST)
+   @ResponseStatus(HttpStatus.CREATED)
+   @ResponseBody
+   public Foo create(@RequestBody final Foo foo) {
+      return foo;
+   }
 }

@@ -16,41 +16,41 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class AppController {
 
-    private EndpointRefreshConfigBean endpointRefreshConfigBean;
-    private EnvironmentConfigBean environmentConfigBean;
+   private EndpointRefreshConfigBean endpointRefreshConfigBean;
+   private EnvironmentConfigBean environmentConfigBean;
 
-    @Autowired
-    public AppController(EndpointRefreshConfigBean endpointRefreshConfigBean, EnvironmentConfigBean environmentConfigBean) {
-        this.endpointRefreshConfigBean = endpointRefreshConfigBean;
-        this.environmentConfigBean = environmentConfigBean;
-    }
+   @Autowired
+   public AppController(EndpointRefreshConfigBean endpointRefreshConfigBean, EnvironmentConfigBean environmentConfigBean) {
+      this.endpointRefreshConfigBean = endpointRefreshConfigBean;
+      this.environmentConfigBean = environmentConfigBean;
+   }
 
-    @GetMapping("/foo")
-    public ResponseEntity<String> fooHandler() {
-        if (endpointRefreshConfigBean.isFoo()) {
-            return ResponseEntity.status(200)
-                  .body("foo");
-        } else {
-            return ResponseEntity.status(503).body("endpoint is unavailable");
-        }
-    }
+   @GetMapping("/foo")
+   public ResponseEntity<String> fooHandler() {
+      if (endpointRefreshConfigBean.isFoo()) {
+         return ResponseEntity.status(200)
+               .body("foo");
+      } else {
+         return ResponseEntity.status(503).body("endpoint is unavailable");
+      }
+   }
 
-    @GetMapping("/bar1")
-    public String bar1Handler() {
-        return "bar1";
-    }
+   @GetMapping("/bar1")
+   public String bar1Handler() {
+      return "bar1";
+   }
 
-    @GetMapping("/bar2")
-    public String bar2Handler() {
-        return "bar2";
-    }
+   @GetMapping("/bar2")
+   public String bar2Handler() {
+      return "bar2";
+   }
 
-    @Bean
-    @ConditionalOnBean(EnvironmentConfigBean.class)
-    public FilterRegistrationBean<DynamicEndpointFilter> dynamicEndpointFilterFilterRegistrationBean(EnvironmentConfigBean environmentConfigBean) {
-        FilterRegistrationBean<DynamicEndpointFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(new DynamicEndpointFilter(environmentConfigBean.getEnvironment()));
-        registrationBean.addUrlPatterns("*");
-        return registrationBean;
-    }
+   @Bean
+   @ConditionalOnBean(EnvironmentConfigBean.class)
+   public FilterRegistrationBean<DynamicEndpointFilter> dynamicEndpointFilterFilterRegistrationBean(EnvironmentConfigBean environmentConfigBean) {
+      FilterRegistrationBean<DynamicEndpointFilter> registrationBean = new FilterRegistrationBean<>();
+      registrationBean.setFilter(new DynamicEndpointFilter(environmentConfigBean.getEnvironment()));
+      registrationBean.addUrlPatterns("*");
+      return registrationBean;
+   }
 }

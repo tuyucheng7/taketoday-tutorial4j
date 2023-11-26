@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class JasyptSimpleIntegrationTest {
 
-	@Autowired
-	ApplicationContext appCtx;
+   @Autowired
+   ApplicationContext appCtx;
 
-	@Test
-	void whenDecryptedPasswordNeeded_GetFromService() {
-		System.setProperty("jasypt.encryptor.password", "password");
-		PropertyServiceForJasyptSimple service = appCtx.getBean(PropertyServiceForJasyptSimple.class);
+   @Test
+   void whenDecryptedPasswordNeeded_GetFromService() {
+      System.setProperty("jasypt.encryptor.password", "password");
+      PropertyServiceForJasyptSimple service = appCtx.getBean(PropertyServiceForJasyptSimple.class);
 
-		assertEquals("Password@2", service.getProperty());
-	}
+      assertEquals("Password@2", service.getProperty());
+   }
 }

@@ -14,24 +14,24 @@ import java.util.regex.Pattern;
 
 public class DynamicEndpointFilter extends OncePerRequestFilter {
 
-    private Environment environment;
+   private Environment environment;
 
-    public DynamicEndpointFilter(Environment environment) {
-        this.environment = environment;
-    }
+   public DynamicEndpointFilter(Environment environment) {
+      this.environment = environment;
+   }
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String path = request.getRequestURI();
-        String regex = this.environment.getProperty("endpoint.regex");
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(path);
-        boolean matches = matcher.matches();
+   @Override
+   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+      String path = request.getRequestURI();
+      String regex = this.environment.getProperty("endpoint.regex");
+      Pattern pattern = Pattern.compile(regex);
+      Matcher matcher = pattern.matcher(path);
+      boolean matches = matcher.matches();
 
-        if (!matches) {
-            response.sendError(HttpStatus.SERVICE_UNAVAILABLE.value(), "Service is unavailable");
-        } else {
-            filterChain.doFilter(request, response);
-        }
-    }
+      if (!matches) {
+         response.sendError(HttpStatus.SERVICE_UNAVAILABLE.value(), "Service is unavailable");
+      } else {
+         filterChain.doFilter(request, response);
+      }
+   }
 }

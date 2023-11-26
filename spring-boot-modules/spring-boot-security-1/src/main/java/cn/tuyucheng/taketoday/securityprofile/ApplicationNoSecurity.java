@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Profile("test")
 public class ApplicationNoSecurity {
 
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		return web -> web.ignoring()
-			.antMatchers("/**");
-	}
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return web -> web.ignoring()
+            .antMatchers("/**");
+   }
 }

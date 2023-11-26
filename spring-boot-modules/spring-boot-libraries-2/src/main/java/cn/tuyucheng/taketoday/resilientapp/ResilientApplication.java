@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(exclude = {JobRunrAutoConfiguration.class})
 public class ResilientApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ResilientApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ResilientApplication.class, args);
+   }
 }

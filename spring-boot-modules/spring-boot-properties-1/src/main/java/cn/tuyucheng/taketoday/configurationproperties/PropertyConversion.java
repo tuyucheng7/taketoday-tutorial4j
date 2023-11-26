@@ -15,77 +15,77 @@ import java.time.temporal.ChronoUnit;
 @PropertySource("classpath:conversion.properties")
 @ConfigurationProperties(prefix = "conversion")
 public class PropertyConversion {
-	private Duration timeInDefaultUnit;
+   private Duration timeInDefaultUnit;
 
-	private Duration timeInNano;
+   private Duration timeInNano;
 
-	@DurationUnit(ChronoUnit.DAYS)
-	private Duration timeInDays;
+   @DurationUnit(ChronoUnit.DAYS)
+   private Duration timeInDays;
 
-	private DataSize sizeInDefaultUnit;
+   private DataSize sizeInDefaultUnit;
 
-	private DataSize sizeInGB;
+   private DataSize sizeInGB;
 
-	@DataSizeUnit(DataUnit.TERABYTES)
-	private DataSize sizeInTB;
+   @DataSizeUnit(DataUnit.TERABYTES)
+   private DataSize sizeInTB;
 
-	private Employee employee;
+   private Employee employee;
 
-	// Getters and setters
+   // Getters and setters
 
-	public Duration getTimeInDefaultUnit() {
-		return timeInDefaultUnit;
-	}
+   public Duration getTimeInDefaultUnit() {
+      return timeInDefaultUnit;
+   }
 
-	public void setTimeInDefaultUnit(Duration timeInDefaultUnit) {
-		this.timeInDefaultUnit = timeInDefaultUnit;
-	}
+   public void setTimeInDefaultUnit(Duration timeInDefaultUnit) {
+      this.timeInDefaultUnit = timeInDefaultUnit;
+   }
 
-	public Duration getTimeInNano() {
-		return timeInNano;
-	}
+   public Duration getTimeInNano() {
+      return timeInNano;
+   }
 
-	public void setTimeInNano(Duration timeInNano) {
-		this.timeInNano = timeInNano;
-	}
+   public void setTimeInNano(Duration timeInNano) {
+      this.timeInNano = timeInNano;
+   }
 
-	public Duration getTimeInDays() {
-		return timeInDays;
-	}
+   public Duration getTimeInDays() {
+      return timeInDays;
+   }
 
-	public void setTimeInDays(Duration timeInDays) {
-		this.timeInDays = timeInDays;
-	}
+   public void setTimeInDays(Duration timeInDays) {
+      this.timeInDays = timeInDays;
+   }
 
-	public DataSize getSizeInDefaultUnit() {
-		return sizeInDefaultUnit;
-	}
+   public DataSize getSizeInDefaultUnit() {
+      return sizeInDefaultUnit;
+   }
 
-	public void setSizeInDefaultUnit(DataSize sizeInDefaultUnit) {
-		this.sizeInDefaultUnit = sizeInDefaultUnit;
-	}
+   public void setSizeInDefaultUnit(DataSize sizeInDefaultUnit) {
+      this.sizeInDefaultUnit = sizeInDefaultUnit;
+   }
 
-	public DataSize getSizeInGB() {
-		return sizeInGB;
-	}
+   public DataSize getSizeInGB() {
+      return sizeInGB;
+   }
 
-	public void setSizeInGB(DataSize sizeInGB) {
-		this.sizeInGB = sizeInGB;
-	}
+   public void setSizeInGB(DataSize sizeInGB) {
+      this.sizeInGB = sizeInGB;
+   }
 
-	public DataSize getSizeInTB() {
-		return sizeInTB;
-	}
+   public DataSize getSizeInTB() {
+      return sizeInTB;
+   }
 
-	public void setSizeInTB(DataSize sizeInTB) {
-		this.sizeInTB = sizeInTB;
-	}
+   public void setSizeInTB(DataSize sizeInTB) {
+      this.sizeInTB = sizeInTB;
+   }
 
-	public Employee getEmployee() {
-		return employee;
-	}
+   public Employee getEmployee() {
+      return employee;
+   }
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+   public void setEmployee(Employee employee) {
+      this.employee = employee;
+   }
 }

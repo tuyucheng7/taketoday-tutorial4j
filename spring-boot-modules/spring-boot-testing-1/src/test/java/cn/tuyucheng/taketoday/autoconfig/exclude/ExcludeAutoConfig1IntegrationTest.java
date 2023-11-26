@@ -18,15 +18,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource(properties = "spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration")
 class ExcludeAutoConfig1IntegrationTest {
 
-	/**
-	 * Encapsulates the random port the test server is listening on.
-	 */
-	@LocalServerPort
-	private int port;
+   /**
+    * Encapsulates the random port the test server is listening on.
+    */
+   @LocalServerPort
+   private int port;
 
-	@Test
-	void givenSecurityConfigExcluded_whenAccessHome_thenNoAuthenticationRequired() {
-		int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
-		assertEquals(HttpStatus.OK.value(), statusCode);
-	}
+   @Test
+   void givenSecurityConfigExcluded_whenAccessHome_thenNoAuthenticationRequired() {
+      int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
+      assertEquals(HttpStatus.OK.value(), statusCode);
+   }
 }

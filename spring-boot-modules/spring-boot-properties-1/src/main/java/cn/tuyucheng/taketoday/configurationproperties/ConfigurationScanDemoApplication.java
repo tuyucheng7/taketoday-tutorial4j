@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationPropertiesScan("cn.tuyucheng.taketoday.configurationproperties")
 public class ConfigurationScanDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ConfigurationScanDemoApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ConfigurationScanDemoApplication.class, args);
+   }
 }

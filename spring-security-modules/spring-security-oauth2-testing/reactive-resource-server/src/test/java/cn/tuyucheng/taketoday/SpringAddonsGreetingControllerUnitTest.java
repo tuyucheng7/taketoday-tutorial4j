@@ -1,9 +1,10 @@
 package cn.tuyucheng.taketoday;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
-import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
-
 import reactor.core.publisher.Mono;
+
+import static org.mockito.Mockito.*;
 
 @WebFluxTest(controllers = GreetingController.class, properties = {"server.ssl.enabled=false"})
 class SpringAddonsGreetingControllerUnitTest {

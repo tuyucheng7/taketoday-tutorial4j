@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class BeanA {
 
-	@Autowired
-	BeanB dependency;
+   @Autowired
+   BeanB dependency;
 }

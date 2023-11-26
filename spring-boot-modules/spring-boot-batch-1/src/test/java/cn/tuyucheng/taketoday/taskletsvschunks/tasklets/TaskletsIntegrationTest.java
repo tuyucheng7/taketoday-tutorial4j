@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = TaskletsConfig.class)
 public class TaskletsIntegrationTest {
 
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+   @Autowired
+   private JobLauncherTestUtils jobLauncherTestUtils;
 
-	@Test
-	public void givenTaskletsJob_WhenJobEnds_ThenStatusCompleted() throws Exception {
-		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
-	}
+   @Test
+   public void givenTaskletsJob_WhenJobEnds_ThenStatusCompleted() throws Exception {
+      JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+      assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
+   }
 }

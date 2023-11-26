@@ -14,36 +14,36 @@ import java.util.stream.Collectors;
 @Service
 public class BookServiceImpl implements BookService {
 
-	private final BookRepository bookRepository;
+   private final BookRepository bookRepository;
 
-	public BookServiceImpl(BookRepository bookRepository) {
-		this.bookRepository = bookRepository;
-	}
+   public BookServiceImpl(BookRepository bookRepository) {
+      this.bookRepository = bookRepository;
+   }
 
-	@Override
-	public Collection<Book> getBooks() {
-		return bookRepository.findAll()
-			.stream()
-			.map(BookServiceImpl::convertBookData)
-			.collect(Collectors.toList());
-	}
+   @Override
+   public Collection<Book> getBooks() {
+      return bookRepository.findAll()
+            .stream()
+            .map(BookServiceImpl::convertBookData)
+            .collect(Collectors.toList());
+   }
 
-	@Override
-	public Book addBook(Book book) {
-		final Optional<BookData> existingBook = bookRepository.findById(book.getIsbn());
-		if (existingBook.isPresent()) {
-			throw new DuplicateBookException(book);
-		}
+   @Override
+   public Book addBook(Book book) {
+      final Optional<BookData> existingBook = bookRepository.findById(book.getIsbn());
+      if (existingBook.isPresent()) {
+         throw new DuplicateBookException(book);
+      }
 
-		final BookData savedBook = bookRepository.add(convertBook(book));
-		return convertBookData(savedBook);
-	}
+      final BookData savedBook = bookRepository.add(convertBook(book));
+      return convertBookData(savedBook);
+   }
 
-	private static Book convertBookData(BookData bookData) {
-		return new Book(bookData.getIsbn(), bookData.getName(), bookData.getAuthor());
-	}
+   private static Book convertBookData(BookData bookData) {
+      return new Book(bookData.getIsbn(), bookData.getName(), bookData.getAuthor());
+   }
 
-	private static BookData convertBook(Book book) {
-		return new BookData(book.getIsbn(), book.getName(), book.getAuthor());
-	}
+   private static BookData convertBook(Book book) {
+      return new BookData(book.getIsbn(), book.getName(), book.getAuthor());
+   }
 }

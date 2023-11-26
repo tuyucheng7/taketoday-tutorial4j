@@ -10,5 +10,5 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({METHOD, TYPE})
 @Retention(RUNTIME)
 public @interface SampleAnnotation {
-	String name();
+   String name();
 }

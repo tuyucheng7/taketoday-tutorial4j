@@ -8,7 +8,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class Credential {
-	Map<String, Object> value;
-	String type;
-	String name;
+   Map<String, Object> value;
+   String type;
+   String name;
 }

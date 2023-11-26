@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableWebSecurity
 public class ConfigSecuredController {
 
-	@GetMapping("/public")
-	public String publicHello() {
-		return "Hello Public";
-	}
+   @GetMapping("/public")
+   public String publicHello() {
+      return "Hello Public";
+   }
 
-	@GetMapping("/protected")
-	public String protectedHello() {
-		return "Hello from protected";
-	}
+   @GetMapping("/protected")
+   public String protectedHello() {
+      return "Hello from protected";
+   }
 
-	@GetMapping("/admin")
-	public String adminHello() {
-		return "Hello from admin";
-	}
+   @GetMapping("/admin")
+   public String adminHello() {
+      return "Hello from admin";
+   }
 }

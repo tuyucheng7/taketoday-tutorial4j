@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class LagAnalyzerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LagAnalyzerApplication.class, args);
-		while (true) ;
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(LagAnalyzerApplication.class, args);
+      while (true) ;
+   }
 }

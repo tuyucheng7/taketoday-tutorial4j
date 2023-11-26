@@ -18,26 +18,26 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value = "/custom")
 public class LoginController {
 
-    @Resource(name = "authenticationManager")
-    private AuthenticationManager authManager;
+   @Resource(name = "authenticationManager")
+   private AuthenticationManager authManager;
 
-    public LoginController() {
-        super();
-    }
+   public LoginController() {
+      super();
+   }
 
-    // API
+   // API
 
-    // custom login
+   // custom login
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@RequestParam("username") final String username, @RequestParam("password") final String password, final HttpServletRequest request) {
-        UsernamePasswordAuthenticationToken authReq =
-              new UsernamePasswordAuthenticationToken(username, password);
-        Authentication auth = authManager.authenticate(authReq);
-        SecurityContext sc = SecurityContextHolder.getContext();
-        sc.setAuthentication(auth);
-        HttpSession session = request.getSession(true);
-        session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
-    }
+   @RequestMapping(value = "/login", method = RequestMethod.POST)
+   public void login(@RequestParam("username") final String username, @RequestParam("password") final String password, final HttpServletRequest request) {
+      UsernamePasswordAuthenticationToken authReq =
+            new UsernamePasswordAuthenticationToken(username, password);
+      Authentication auth = authManager.authenticate(authReq);
+      SecurityContext sc = SecurityContextHolder.getContext();
+      sc.setAuthentication(auth);
+      HttpSession session = request.getSession(true);
+      session.setAttribute("SPRING_SECURITY_CONTEXT", sc);
+   }
 
 }

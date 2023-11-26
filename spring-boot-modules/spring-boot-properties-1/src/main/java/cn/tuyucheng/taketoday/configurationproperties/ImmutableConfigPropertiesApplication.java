@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 @ConfigurationPropertiesScan
 public class ImmutableConfigPropertiesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ImmutableConfigPropertiesApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ImmutableConfigPropertiesApplication.class, args);
+   }
 }

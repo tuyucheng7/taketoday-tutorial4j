@@ -14,17 +14,17 @@ import org.springframework.core.Ordered;
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
 public class PriceCalculationAutoConfig {
 
-	@Bean
-	@ConditionalOnProperty(name = "cn.tuyucheng.taketoday.environmentpostprocessor.calculation.mode", havingValue = "NET")
-	@ConditionalOnMissingBean
-	public PriceCalculator getNetPriceCalculator() {
-		return new NetPriceCalculator();
-	}
+   @Bean
+   @ConditionalOnProperty(name = "cn.tuyucheng.taketoday.environmentpostprocessor.calculation.mode", havingValue = "NET")
+   @ConditionalOnMissingBean
+   public PriceCalculator getNetPriceCalculator() {
+      return new NetPriceCalculator();
+   }
 
-	@Bean
-	@ConditionalOnProperty(name = "cn.tuyucheng.taketoday.environmentpostprocessor.calculation.mode", havingValue = "GROSS")
-	@ConditionalOnMissingBean
-	public PriceCalculator getGrossPriceCalculator() {
-		return new GrossPriceCalculator();
-	}
+   @Bean
+   @ConditionalOnProperty(name = "cn.tuyucheng.taketoday.environmentpostprocessor.calculation.mode", havingValue = "GROSS")
+   @ConditionalOnMissingBean
+   public PriceCalculator getGrossPriceCalculator() {
+      return new GrossPriceCalculator();
+   }
 }

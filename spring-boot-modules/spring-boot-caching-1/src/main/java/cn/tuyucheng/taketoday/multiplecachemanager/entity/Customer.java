@@ -2,23 +2,23 @@ package cn.tuyucheng.taketoday.multiplecachemanager.entity;
 
 public class Customer {
 
-	private int customerId;
+   private int customerId;
 
-	private String customerName;
+   private String customerName;
 
-	public int getCustomerId() {
-		return customerId;
-	}
+   public int getCustomerId() {
+      return customerId;
+   }
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
+   public void setCustomerId(int customerId) {
+      this.customerId = customerId;
+   }
 
-	public String getCustomerName() {
-		return customerName;
-	}
+   public String getCustomerName() {
+      return customerName;
+   }
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
+   public void setCustomerName(String customerName) {
+      this.customerName = customerName;
+   }
 }

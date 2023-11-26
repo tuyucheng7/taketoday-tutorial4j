@@ -11,18 +11,18 @@ import org.springframework.core.env.MutablePropertySources;
 @Configuration
 public class ReloadablePropertySourceConfig {
 
-    private ConfigurableEnvironment env;
+   private ConfigurableEnvironment env;
 
-    public ReloadablePropertySourceConfig(@Autowired ConfigurableEnvironment env) {
-        this.env = env;
-    }
+   public ReloadablePropertySourceConfig(@Autowired ConfigurableEnvironment env) {
+      this.env = env;
+   }
 
-    @Bean
-    @ConditionalOnProperty(name = "dynamic.endpoint.config.location", matchIfMissing = false)
-    public ReloadablePropertySource reloadablePropertySource(PropertiesConfiguration properties) {
-        ReloadablePropertySource reloadablePropertySource = new ReloadablePropertySource("toggle-endpoints", properties);
-        MutablePropertySources sources = env.getPropertySources();
-        sources.addFirst(reloadablePropertySource);
-        return reloadablePropertySource;
-    }
+   @Bean
+   @ConditionalOnProperty(name = "dynamic.endpoint.config.location", matchIfMissing = false)
+   public ReloadablePropertySource reloadablePropertySource(PropertiesConfiguration properties) {
+      ReloadablePropertySource reloadablePropertySource = new ReloadablePropertySource("toggle-endpoints", properties);
+      MutablePropertySources sources = env.getPropertySources();
+      sources.addFirst(reloadablePropertySource);
+      return reloadablePropertySource;
+   }
 }

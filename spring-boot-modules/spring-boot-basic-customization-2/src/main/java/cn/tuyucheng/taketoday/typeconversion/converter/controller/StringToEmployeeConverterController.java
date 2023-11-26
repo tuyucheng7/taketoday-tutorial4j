@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StringToEmployeeConverterController {
 
-	@GetMapping("/string-to-employee")
-	public ResponseEntity<Object> getStringToEmployee(@RequestParam("employee") Employee employee) {
-		return ResponseEntity.ok(employee);
-	}
+   @GetMapping("/string-to-employee")
+   public ResponseEntity<Object> getStringToEmployee(@RequestParam("employee") Employee employee) {
+      return ResponseEntity.ok(employee);
+   }
 }

@@ -18,24 +18,24 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(classes = {NotifierConfiguration.class, SpringBootAdminServerApplication.class}, webEnvironment = NONE)
 class NotifierConfigurationIntegrationTest {
 
-	@Autowired
-	private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-	@Test
-	void whenApplicationContextStart_ThenNotifierBeanExists() {
-		Notifier notifier = (Notifier) applicationContext.getBean("notifier");
-		assertNotEquals(null, notifier);
-	}
+   @Test
+   void whenApplicationContextStart_ThenNotifierBeanExists() {
+      Notifier notifier = (Notifier) applicationContext.getBean("notifier");
+      assertNotEquals(null, notifier);
+   }
 
-	@Test
-	void whenApplicationContextStart_ThenFilteringNotifierBeanExists() {
-		FilteringNotifier filteringNotifier = (FilteringNotifier) applicationContext.getBean("filteringNotifier");
-		assertNotEquals(null, filteringNotifier);
-	}
+   @Test
+   void whenApplicationContextStart_ThenFilteringNotifierBeanExists() {
+      FilteringNotifier filteringNotifier = (FilteringNotifier) applicationContext.getBean("filteringNotifier");
+      assertNotEquals(null, filteringNotifier);
+   }
 
-	@Test
-	void whenApplicationContextStart_ThenRemindingNotifierBeanExists() {
-		RemindingNotifier remindingNotifier = (RemindingNotifier) applicationContext.getBean("remindingNotifier");
-		assertNotEquals(null, remindingNotifier);
-	}
+   @Test
+   void whenApplicationContextStart_ThenRemindingNotifierBeanExists() {
+      RemindingNotifier remindingNotifier = (RemindingNotifier) applicationContext.getBean("remindingNotifier");
+      assertNotEquals(null, remindingNotifier);
+   }
 }

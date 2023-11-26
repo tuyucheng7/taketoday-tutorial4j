@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.roles.rolesauthorities.config;
 
+import cn.tuyucheng.taketoday.roles.rolesauthorities.CustomAuthenticationProvider;
+import cn.tuyucheng.taketoday.roles.rolesauthorities.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,39 +18,36 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
-import cn.tuyucheng.taketoday.roles.rolesauthorities.CustomAuthenticationProvider;
-import cn.tuyucheng.taketoday.roles.rolesauthorities.persistence.UserRepository;
-
 @Configuration
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.rolesauthorities"})
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+   @Autowired
+   private UserDetailsService userDetailsService;
 
-    @Autowired
-    private LogoutSuccessHandler myLogoutSuccessHandler;
+   @Autowired
+   private LogoutSuccessHandler myLogoutSuccessHandler;
 
-    @Bean
-    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
+   @Bean
+   public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+      return http.getSharedObject(AuthenticationManagerBuilder.class)
             .authenticationProvider(authProvider())
             .build();
-    }
+   }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.ignoring()
             .antMatchers("/resources/**");
-    }
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
             .disable()
             .authorizeRequests()
             .antMatchers("/login*", "/logout*", "/protectedbynothing*", "/home*")
@@ -69,19 +68,19 @@ public class SecurityConfig {
             .logoutSuccessUrl("/logout.html?logSucc=true")
             .deleteCookies("JSESSIONID")
             .permitAll();
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public DaoAuthenticationProvider authProvider() {
-        final CustomAuthenticationProvider authProvider
-        	= new CustomAuthenticationProvider(userRepository, userDetailsService);
-        authProvider.setPasswordEncoder(encoder());
-        return authProvider;
-    }
+   @Bean
+   public DaoAuthenticationProvider authProvider() {
+      final CustomAuthenticationProvider authProvider
+            = new CustomAuthenticationProvider(userRepository, userDetailsService);
+      authProvider.setPasswordEncoder(encoder());
+      return authProvider;
+   }
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(11);
-    }
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder(11);
+   }
 }

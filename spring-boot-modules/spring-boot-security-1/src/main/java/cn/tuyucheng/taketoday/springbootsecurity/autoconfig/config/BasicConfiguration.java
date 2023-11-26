@@ -15,34 +15,34 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class BasicConfiguration {
 
-	@Bean
-	public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-		UserDetails user = User.withUsername("user")
-			.password(passwordEncoder.encode("password"))
-			.roles("USER")
-			.build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails user = User.withUsername("user")
+            .password(passwordEncoder.encode("password"))
+            .roles("USER")
+            .build();
 
-		UserDetails admin = User.withUsername("admin")
-			.password(passwordEncoder.encode("admin"))
-			.roles("USER", "ADMIN")
-			.build();
+      UserDetails admin = User.withUsername("admin")
+            .password(passwordEncoder.encode("admin"))
+            .roles("USER", "ADMIN")
+            .build();
 
-		return new InMemoryUserDetailsManager(user, admin);
-	}
+      return new InMemoryUserDetailsManager(user, admin);
+   }
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.httpBasic();
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		return encoder;
-	}
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+      return encoder;
+   }
 }

@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CachingController {
 
-	@Autowired
-	CachingService cachingService;
+   @Autowired
+   CachingService cachingService;
 
-	@GetMapping("clearAllCaches")
-	public void clearAllCaches() {
-		cachingService.evictAllCaches();
-	}
+   @GetMapping("clearAllCaches")
+   public void clearAllCaches() {
+      cachingService.evictAllCaches();
+   }
 }

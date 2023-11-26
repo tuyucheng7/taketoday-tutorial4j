@@ -7,21 +7,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnvironmentConfigBean {
 
-    private final Environment environment;
+   private final Environment environment;
 
-    public EnvironmentConfigBean(@Autowired Environment environment) {
-        this.environment = environment;
-    }
+   public EnvironmentConfigBean(@Autowired Environment environment) {
+      this.environment = environment;
+   }
 
-    public String getEndpointRegex() {
-        return environment.getProperty("endpoint.regex");
-    }
+   public String getEndpointRegex() {
+      return environment.getProperty("endpoint.regex");
+   }
 
-    public boolean isFooEndpointEnabled() {
-        return Boolean.parseBoolean(environment.getProperty("endpoint.foo"));
-    }
+   public boolean isFooEndpointEnabled() {
+      return Boolean.parseBoolean(environment.getProperty("endpoint.foo"));
+   }
 
-    public Environment getEnvironment() {
-        return environment;
-    }
+   public Environment getEnvironment() {
+      return environment;
+   }
 }

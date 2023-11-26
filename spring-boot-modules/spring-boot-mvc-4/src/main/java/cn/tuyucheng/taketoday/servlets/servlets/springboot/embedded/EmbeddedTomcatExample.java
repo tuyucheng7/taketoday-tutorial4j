@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EmbeddedTomcatExample {
 
-    @Bean
-    public ConfigurableServletWebServerFactory servletContainer() {
-        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-        return tomcat;
-    }
+   @Bean
+   public ConfigurableServletWebServerFactory servletContainer() {
+      TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+      return tomcat;
+   }
 }

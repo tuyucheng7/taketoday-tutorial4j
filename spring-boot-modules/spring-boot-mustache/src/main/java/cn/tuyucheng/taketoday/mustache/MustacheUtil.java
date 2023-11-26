@@ -5,9 +5,9 @@ import com.github.mustachejava.MustacheFactory;
 
 public class MustacheUtil {
 
-	private static final MustacheFactory mf = new DefaultMustacheFactory();
+   private static final MustacheFactory mf = new DefaultMustacheFactory();
 
-	public static MustacheFactory getMustacheFactory() {
-		return mf;
-	}
+   public static MustacheFactory getMustacheFactory() {
+      return mf;
+   }
 }

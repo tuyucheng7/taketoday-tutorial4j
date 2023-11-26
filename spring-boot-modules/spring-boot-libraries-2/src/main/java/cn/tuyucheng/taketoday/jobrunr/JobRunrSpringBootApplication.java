@@ -12,15 +12,15 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class JobRunrSpringBootApplication {
 
-	@Autowired
-	private JobScheduler jobScheduler;
+   @Autowired
+   private JobScheduler jobScheduler;
 
-	public static void main(String[] args) {
-		SpringApplication.run(JobRunrSpringBootApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(JobRunrSpringBootApplication.class, args);
+   }
 
-	@PostConstruct
-	public void scheduleRecurrently() {
-		jobScheduler.<SampleJobService>scheduleRecurrently(Cron.every5minutes(), x -> x.executeSampleJob("a recurring job"));
-	}
+   @PostConstruct
+   public void scheduleRecurrently() {
+      jobScheduler.<SampleJobService>scheduleRecurrently(Cron.every5minutes(), x -> x.executeSampleJob("a recurring job"));
+   }
 }

@@ -16,65 +16,65 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class Bucket4jUsageUnitTest {
 
-	@Test
-	void givenBucketLimit_whenExceedLimit_thenConsumeReturnsFalse() {
-		Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
-		Bandwidth limit = Bandwidth.classic(10, refill);
-		Bucket bucket = Bucket.builder()
-			.addLimit(limit)
-			.build();
+   @Test
+   void givenBucketLimit_whenExceedLimit_thenConsumeReturnsFalse() {
+      Refill refill = Refill.intervally(10, Duration.ofMinutes(1));
+      Bandwidth limit = Bandwidth.classic(10, refill);
+      Bucket bucket = Bucket.builder()
+            .addLimit(limit)
+            .build();
 
-		for (int i = 1; i <= 10; i++) {
-			assertTrue(bucket.tryConsume(1));
-		}
-		assertFalse(bucket.tryConsume(1));
-	}
+      for (int i = 1; i <= 10; i++) {
+         assertTrue(bucket.tryConsume(1));
+      }
+      assertFalse(bucket.tryConsume(1));
+   }
 
-	@Test
-	void givenMultipletLimits_whenExceedSmallerLimit_thenConsumeReturnsFalse() {
-		Bucket bucket = Bucket.builder()
-			.addLimit(Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1))))
-			.addLimit(Bandwidth.classic(5, Refill.intervally(5, Duration.ofSeconds(20))))
-			.build();
+   @Test
+   void givenMultipletLimits_whenExceedSmallerLimit_thenConsumeReturnsFalse() {
+      Bucket bucket = Bucket.builder()
+            .addLimit(Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1))))
+            .addLimit(Bandwidth.classic(5, Refill.intervally(5, Duration.ofSeconds(20))))
+            .build();
 
-		for (int i = 1; i <= 5; i++) {
-			assertTrue(bucket.tryConsume(1));
-		}
-		assertFalse(bucket.tryConsume(1));
-	}
+      for (int i = 1; i <= 5; i++) {
+         assertTrue(bucket.tryConsume(1));
+      }
+      assertFalse(bucket.tryConsume(1));
+   }
 
-	@Test
-	void givenBucketLimit_whenThrottleRequests_thenConsumeReturnsTrue() throws InterruptedException {
-		Refill refill = Refill.intervally(1, Duration.ofSeconds(2));
-		Bandwidth limit = Bandwidth.classic(1, refill);
-		Bucket bucket = Bucket.builder()
-			.addLimit(limit)
-			.build();
+   @Test
+   void givenBucketLimit_whenThrottleRequests_thenConsumeReturnsTrue() throws InterruptedException {
+      Refill refill = Refill.intervally(1, Duration.ofSeconds(2));
+      Bandwidth limit = Bandwidth.classic(1, refill);
+      Bucket bucket = Bucket.builder()
+            .addLimit(limit)
+            .build();
 
-		assertTrue(bucket.tryConsume(1));
+      assertTrue(bucket.tryConsume(1));
 
-		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-		CountDownLatch latch = new CountDownLatch(1);
+      ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+      CountDownLatch latch = new CountDownLatch(1);
 
-		executor.schedule(new AssertTryConsume(bucket, latch), 2, TimeUnit.SECONDS);
+      executor.schedule(new AssertTryConsume(bucket, latch), 2, TimeUnit.SECONDS);
 
-		latch.await();
-	}
+      latch.await();
+   }
 
-	static class AssertTryConsume implements Runnable {
+   static class AssertTryConsume implements Runnable {
 
-		private final Bucket bucket;
-		private final CountDownLatch latch;
+      private final Bucket bucket;
+      private final CountDownLatch latch;
 
-		AssertTryConsume(Bucket bucket, CountDownLatch latch) {
-			this.bucket = bucket;
-			this.latch = latch;
-		}
+      AssertTryConsume(Bucket bucket, CountDownLatch latch) {
+         this.bucket = bucket;
+         this.latch = latch;
+      }
 
-		@Override
-		public void run() {
-			assertTrue(bucket.tryConsume(1));
-			latch.countDown();
-		}
-	}
+      @Override
+      public void run() {
+         assertTrue(bucket.tryConsume(1));
+         latch.countDown();
+      }
+   }
 }

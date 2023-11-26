@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(classes = StartWithoutDbApplication.class)
 class StartWithoutDbIntegrationTest {
 
-	@Autowired
-	private ApplicationContext context;
+   @Autowired
+   private ApplicationContext context;
 
-	@Test
-	void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
-		assertNotNull(context.getBean(DataSource.class));
-	}
+   @Test
+   void givenAutoConfigDisabled_whenStarting_thenNoAutoconfiguredBeansInContext() {
+      assertNotNull(context.getBean(DataSource.class));
+   }
 }

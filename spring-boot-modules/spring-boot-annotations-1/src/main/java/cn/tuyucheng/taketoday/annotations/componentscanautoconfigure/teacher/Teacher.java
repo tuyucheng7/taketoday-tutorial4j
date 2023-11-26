@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component("teacher")
 public class Teacher {
 
-	@Override
-	public String toString() {
-		return "Teacher" + this.hashCode();
-	}
+   @Override
+   public String toString() {
+      return "Teacher" + this.hashCode();
+   }
 }

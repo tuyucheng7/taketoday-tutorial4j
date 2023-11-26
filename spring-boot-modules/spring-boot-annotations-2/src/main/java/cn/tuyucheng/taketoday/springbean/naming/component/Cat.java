@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Qualifier("cat")
 public class Cat implements Animal {
 
-	@Override
-	public String name() {
-		return "Cat";
-	}
+   @Override
+   public String name() {
+      return "Cat";
+   }
 }

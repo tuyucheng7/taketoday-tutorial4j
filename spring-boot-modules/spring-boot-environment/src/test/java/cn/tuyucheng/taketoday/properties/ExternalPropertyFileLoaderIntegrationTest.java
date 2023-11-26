@@ -14,13 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = ExternalPropertyFileLoader.class)
 class ExternalPropertyFileLoaderIntegrationTest {
 
-    @Autowired
-    ConfProperties props;
+   @Autowired
+   ConfProperties props;
 
-    @Test
-    void whenExternalisedPropertiesLoaded_thenReadValues() throws IOException {
-        assertEquals("jdbc:postgresql://localhost:5432/", props.getUrl());
-        assertEquals("admin", props.getUsername());
-        assertEquals("root", props.getPassword());
-    }
+   @Test
+   void whenExternalisedPropertiesLoaded_thenReadValues() throws IOException {
+      assertEquals("jdbc:postgresql://localhost:5432/", props.getUrl());
+      assertEquals("admin", props.getUsername());
+      assertEquals("root", props.getPassword());
+   }
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @ComponentScan("cn.tuyucheng.taketoday.micronaut.vs.springboot")
 public class CompareApplication {
-    public static void main(final String[] args) {
-        SpringApplication.run(CompareApplication.class, args);
-    }
+   public static void main(final String[] args) {
+      SpringApplication.run(CompareApplication.class, args);
+   }
 }

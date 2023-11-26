@@ -19,73 +19,68 @@ import java.util.UUID;
 import static java.util.Optional.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration
 @ExtendWith(SpringExtension.class)
 public class BookRepositoryCachingIntegrationTest {
 
-	private static final Book DUNE = new Book(UUID.randomUUID(), "Dune");
-	private static final Book FOUNDATION = new Book(UUID.randomUUID(), "Foundation");
+   private static final Book DUNE = new Book(UUID.randomUUID(), "Dune");
+   private static final Book FOUNDATION = new Book(UUID.randomUUID(), "Foundation");
 
-	private BookRepository mock;
+   private BookRepository mock;
 
-	@Autowired
-	private BookRepository bookRepository;
+   @Autowired
+   private BookRepository bookRepository;
 
-	@EnableCaching
-	@Configuration
-	public static class CachingTestConfig {
+   @EnableCaching
+   @Configuration
+   public static class CachingTestConfig {
 
-		@Bean
-		public BookRepository bookRepositoryMockImplementation() {
-			return mock(BookRepository.class);
-		}
+      @Bean
+      public BookRepository bookRepositoryMockImplementation() {
+         return mock(BookRepository.class);
+      }
 
-		@Bean
-		public CacheManager cacheManager() {
-			return new ConcurrentMapCacheManager("books");
-		}
+      @Bean
+      public CacheManager cacheManager() {
+         return new ConcurrentMapCacheManager("books");
+      }
 
-	}
+   }
 
-	@BeforeEach
-	void setUp() {
-		mock = AopTestUtils.getTargetObject(bookRepository);
+   @BeforeEach
+   void setUp() {
+      mock = AopTestUtils.getTargetObject(bookRepository);
 
-		reset(mock);
+      reset(mock);
 
-		when(mock.findFirstByTitle(eq("Foundation")))
-			.thenReturn(of(FOUNDATION));
+      when(mock.findFirstByTitle(eq("Foundation")))
+            .thenReturn(of(FOUNDATION));
 
-		when(mock.findFirstByTitle(eq("Dune")))
-			.thenReturn(of(DUNE))
-			.thenThrow(new RuntimeException("Book should be cached!"));
-	}
+      when(mock.findFirstByTitle(eq("Dune")))
+            .thenReturn(of(DUNE))
+            .thenThrow(new RuntimeException("Book should be cached!"));
+   }
 
-	@Test
-	void givenCachedBook_whenFindByTitle_thenRepositoryShouldNotBeHit() {
-		assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
-		verify(mock).findFirstByTitle("Dune");
+   @Test
+   void givenCachedBook_whenFindByTitle_thenRepositoryShouldNotBeHit() {
+      assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
+      verify(mock).findFirstByTitle("Dune");
 
-		assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
-		assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
+      assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
+      assertEquals(of(DUNE), bookRepository.findFirstByTitle("Dune"));
 
-		verifyNoMoreInteractions(mock);
-	}
+      verifyNoMoreInteractions(mock);
+   }
 
-	@Test
-	void givenNotCachedBook_whenFindByTitle_thenRepositoryShouldBeHit() {
-		assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
-		assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
-		assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
+   @Test
+   void givenNotCachedBook_whenFindByTitle_thenRepositoryShouldBeHit() {
+      assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
+      assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
+      assertEquals(of(FOUNDATION), bookRepository.findFirstByTitle("Foundation"));
 
-		verify(mock, times(3)).findFirstByTitle("Foundation");
-	}
+      verify(mock, times(3)).findFirstByTitle("Foundation");
+   }
 
 }

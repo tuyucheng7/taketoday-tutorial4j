@@ -12,23 +12,23 @@ import java.util.concurrent.TimeoutException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
-	@ExceptionHandler({CallNotPermittedException.class})
-	@ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
-	public void handleCallNotPermittedException() {
-	}
+   @ExceptionHandler({CallNotPermittedException.class})
+   @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+   public void handleCallNotPermittedException() {
+   }
 
-	@ExceptionHandler({TimeoutException.class})
-	@ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
-	public void handleTimeoutException() {
-	}
+   @ExceptionHandler({TimeoutException.class})
+   @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
+   public void handleTimeoutException() {
+   }
 
-	@ExceptionHandler({BulkheadFullException.class})
-	@ResponseStatus(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED)
-	public void handleBulkheadFullException() {
-	}
+   @ExceptionHandler({BulkheadFullException.class})
+   @ResponseStatus(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED)
+   public void handleBulkheadFullException() {
+   }
 
-	@ExceptionHandler({RequestNotPermitted.class})
-	@ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
-	public void handleRequestNotPermitted() {
-	}
+   @ExceptionHandler({RequestNotPermitted.class})
+   @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
+   public void handleRequestNotPermitted() {
+   }
 }

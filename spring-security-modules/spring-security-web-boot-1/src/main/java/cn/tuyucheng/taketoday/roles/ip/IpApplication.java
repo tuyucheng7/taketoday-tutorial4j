@@ -8,7 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @PropertySource("classpath:application-defaults.properties")
 public class IpApplication extends SpringBootServletInitializer {
-    public static void main(String[] args) {
-        SpringApplication.run(IpApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(IpApplication.class, args);
+   }
 }

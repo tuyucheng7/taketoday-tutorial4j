@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = {Database.class, DatabaseConfig.class})
 public class DatabaseConfigPropertiesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DatabaseConfigPropertiesApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(DatabaseConfigPropertiesApplication.class, args);
+   }
 }

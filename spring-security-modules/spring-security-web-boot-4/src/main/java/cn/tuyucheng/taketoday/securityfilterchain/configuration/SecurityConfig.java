@@ -14,37 +14,37 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
-    @Value("${spring.security.debug:false}")
-    boolean securityDebug;
+   @Value("${spring.security.debug:false}")
+   boolean securityDebug;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
-              .disable()
-              .authorizeRequests()
-              .antMatchers(HttpMethod.DELETE)
-              .hasRole("ADMIN")
-              .antMatchers("/admin/**")
-              .hasAnyRole("ADMIN")
-              .antMatchers("/user/**")
-              .hasAnyRole("USER", "ADMIN")
-              .antMatchers("/login/**")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic()
-              .and()
-              .sessionManagement()
-              .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeRequests()
+            .antMatchers(HttpMethod.DELETE)
+            .hasRole("ADMIN")
+            .antMatchers("/admin/**")
+            .hasAnyRole("ADMIN")
+            .antMatchers("/user/**")
+            .hasAnyRole("USER", "ADMIN")
+            .antMatchers("/login/**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.debug(securityDebug)
-              .ignoring()
-              .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
-    }
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.debug(securityDebug)
+            .ignoring()
+            .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
+   }
 }

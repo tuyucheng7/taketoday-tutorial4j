@@ -15,15 +15,15 @@ import java.util.Map;
 @Component
 public class MyErrorController extends BasicErrorController {
 
-	public MyErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
-		super(errorAttributes, serverProperties.getError());
-	}
+   public MyErrorController(ErrorAttributes errorAttributes, ServerProperties serverProperties) {
+      super(errorAttributes, serverProperties.getError());
+   }
 
-	@RequestMapping(produces = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Map<String, Object>> xmlError(HttpServletRequest request) {
-		Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions(request, MediaType.APPLICATION_XML));
-		body.put("xmlkey", "the XML response is different!");
-		HttpStatus status = getStatus(request);
-		return new ResponseEntity<>(body, status);
-	}
+   @RequestMapping(produces = MediaType.APPLICATION_XML_VALUE)
+   public ResponseEntity<Map<String, Object>> xmlError(HttpServletRequest request) {
+      Map<String, Object> body = getErrorAttributes(request, getErrorAttributeOptions(request, MediaType.APPLICATION_XML));
+      body.put("xmlkey", "the XML response is different!");
+      HttpStatus status = getStatus(request);
+      return new ResponseEntity<>(body, status);
+   }
 }

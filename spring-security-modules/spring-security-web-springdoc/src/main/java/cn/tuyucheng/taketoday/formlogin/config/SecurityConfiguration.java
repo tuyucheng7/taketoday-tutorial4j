@@ -13,27 +13,27 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-              .csrf().disable()
-              .authorizeRequests()
-              .antMatchers("/v3/api-docs/**",
-                    "/swagger-ui/**",
-                    "/swagger-ui.html").permitAll()
-              .anyRequest().authenticated()
-              .and()
-              .formLogin()
-              .defaultSuccessUrl("/foos");
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/v3/api-docs/**",
+                  "/swagger-ui/**",
+                  "/swagger-ui.html").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .defaultSuccessUrl("/foos");
+      return http.build();
+   }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
-        auth.inMemoryAuthentication()
-              .withUser("user")
-              .password(passwordEncoder.encode("password"))
-              .roles("USER");
-    }
+   @Autowired
+   public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
+      auth.inMemoryAuthentication()
+            .withUser("user")
+            .password(passwordEncoder.encode("password"))
+            .roles("USER");
+   }
 
 }

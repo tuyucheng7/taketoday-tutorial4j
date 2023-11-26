@@ -38,115 +38,115 @@ import java.util.concurrent.atomic.AtomicInteger;
 @EnableScheduling
 public class SpringBatchScheduler {
 
-	private final Logger logger = LoggerFactory.getLogger(SpringBatchScheduler.class);
+   private final Logger logger = LoggerFactory.getLogger(SpringBatchScheduler.class);
 
-	private AtomicBoolean enabled = new AtomicBoolean(true);
+   private AtomicBoolean enabled = new AtomicBoolean(true);
 
-	private AtomicInteger batchRunCounter = new AtomicInteger(0);
+   private AtomicInteger batchRunCounter = new AtomicInteger(0);
 
-	private final Map<Object, ScheduledFuture<?>> scheduledTasks = new IdentityHashMap<>();
+   private final Map<Object, ScheduledFuture<?>> scheduledTasks = new IdentityHashMap<>();
 
-	@Autowired
-	private JobLauncher jobLauncher;
+   @Autowired
+   private JobLauncher jobLauncher;
 
-	@Autowired
-	private JobRepository jobRepository;
+   @Autowired
+   private JobRepository jobRepository;
 
-	@Autowired
-	private PlatformTransactionManager transactionManager;
+   @Autowired
+   private PlatformTransactionManager transactionManager;
 
-	@Scheduled(fixedRate = 2000)
-	public void launchJob() throws Exception {
-		Date date = new Date();
-		logger.debug("scheduler starts at " + date);
-		if (enabled.get()) {
-			JobExecution jobExecution = jobLauncher.run(job(jobRepository, transactionManager), new JobParametersBuilder().addDate("launchDate", date)
-				.toJobParameters());
-			batchRunCounter.incrementAndGet();
-			logger.debug("Batch job ends with status as " + jobExecution.getStatus());
-		}
-		logger.debug("scheduler ends ");
-	}
+   @Scheduled(fixedRate = 2000)
+   public void launchJob() throws Exception {
+      Date date = new Date();
+      logger.debug("scheduler starts at " + date);
+      if (enabled.get()) {
+         JobExecution jobExecution = jobLauncher.run(job(jobRepository, transactionManager), new JobParametersBuilder().addDate("launchDate", date)
+               .toJobParameters());
+         batchRunCounter.incrementAndGet();
+         logger.debug("Batch job ends with status as " + jobExecution.getStatus());
+      }
+      logger.debug("scheduler ends ");
+   }
 
-	public void stop() {
-		enabled.set(false);
-	}
+   public void stop() {
+      enabled.set(false);
+   }
 
-	public void start() {
-		enabled.set(true);
-	}
+   public void start() {
+      enabled.set(true);
+   }
 
-	@Bean
-	public TaskScheduler poolScheduler() {
-		return new CustomTaskScheduler();
-	}
+   @Bean
+   public TaskScheduler poolScheduler() {
+      return new CustomTaskScheduler();
+   }
 
-	private class CustomTaskScheduler extends ThreadPoolTaskScheduler {
+   private class CustomTaskScheduler extends ThreadPoolTaskScheduler {
 
-		private static final long serialVersionUID = -7142624085505040603L;
+      private static final long serialVersionUID = -7142624085505040603L;
 
-		@Override
-		public ScheduledFuture<?> scheduleAtFixedRate(Runnable task, long period) {
-			ScheduledFuture<?> future = super.scheduleAtFixedRate(task, period);
+      @Override
+      public ScheduledFuture<?> scheduleAtFixedRate(Runnable task, long period) {
+         ScheduledFuture<?> future = super.scheduleAtFixedRate(task, period);
 
-			ScheduledMethodRunnable runnable = (ScheduledMethodRunnable) task;
-			scheduledTasks.put(runnable.getTarget(), future);
+         ScheduledMethodRunnable runnable = (ScheduledMethodRunnable) task;
+         scheduledTasks.put(runnable.getTarget(), future);
 
-			return future;
-		}
+         return future;
+      }
 
-	}
+   }
 
-	public void cancelFutureSchedulerTasks() {
-		scheduledTasks.forEach((k, v) -> {
-			if (k instanceof SpringBatchScheduler) {
-				v.cancel(false);
-			}
-		});
-	}
+   public void cancelFutureSchedulerTasks() {
+      scheduledTasks.forEach((k, v) -> {
+         if (k instanceof SpringBatchScheduler) {
+            v.cancel(false);
+         }
+      });
+   }
 
-	@Bean
-	public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new JobBuilder("job", jobRepository)
-			.start(readBooks(jobRepository, transactionManager))
-			.build();
-	}
+   @Bean
+   public Job job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+      return new JobBuilder("job", jobRepository)
+            .start(readBooks(jobRepository, transactionManager))
+            .build();
+   }
 
-	@Bean
-	protected Step readBooks(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-		return new StepBuilder("readBooks", jobRepository)
-			.<Book, Book>chunk(2, transactionManager)
-			.reader(reader())
-			.writer(writer())
-			.build();
-	}
+   @Bean
+   protected Step readBooks(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+      return new StepBuilder("readBooks", jobRepository)
+            .<Book, Book>chunk(2, transactionManager)
+            .reader(reader())
+            .writer(writer())
+            .build();
+   }
 
-	@Bean
-	public FlatFileItemReader<Book> reader() {
-		return new FlatFileItemReaderBuilder<Book>().name("bookItemReader")
-			.resource(new ClassPathResource("books.csv"))
-			.delimited()
-			.names(new String[]{"id", "name"})
-			.fieldSetMapper(new BeanWrapperFieldSetMapper<>() {
-				{
-					setTargetType(Book.class);
-				}
-			})
-			.build();
-	}
+   @Bean
+   public FlatFileItemReader<Book> reader() {
+      return new FlatFileItemReaderBuilder<Book>().name("bookItemReader")
+            .resource(new ClassPathResource("books.csv"))
+            .delimited()
+            .names(new String[]{"id", "name"})
+            .fieldSetMapper(new BeanWrapperFieldSetMapper<>() {
+               {
+                  setTargetType(Book.class);
+               }
+            })
+            .build();
+   }
 
-	@Bean
-	public ItemWriter<Book> writer() {
-		return items -> {
-			logger.debug("writer..." + items.size());
-			for (Book item : items) {
-				logger.debug(item.toString());
-			}
-		};
-	}
+   @Bean
+   public ItemWriter<Book> writer() {
+      return items -> {
+         logger.debug("writer..." + items.size());
+         for (Book item : items) {
+            logger.debug(item.toString());
+         }
+      };
+   }
 
-	public AtomicInteger getBatchRunCounter() {
-		return batchRunCounter;
-	}
+   public AtomicInteger getBatchRunCounter() {
+      return batchRunCounter;
+   }
 
 }

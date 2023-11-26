@@ -11,14 +11,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableConfigurationProperties(OpaProperties.class)
 public class OpaConfiguration {
 
-    private final OpaProperties opaProperties;
+   private final OpaProperties opaProperties;
 
-    @Bean
-    public WebClient opaWebClient(WebClient.Builder builder) {
+   @Bean
+   public WebClient opaWebClient(WebClient.Builder builder) {
 
-        return builder
-              .baseUrl(opaProperties.getEndpoint())
-              .build();
-    }
+      return builder
+            .baseUrl(opaProperties.getEndpoint())
+            .build();
+   }
 
 }

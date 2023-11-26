@@ -20,49 +20,49 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WebSecurityConfigIntegrationTest {
 
-	@Autowired
-	WebApplicationContext wac;
+   @Autowired
+   WebApplicationContext wac;
 
-	private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-	@BeforeEach
-	void setup() {
-		mockMvc = MockMvcBuilders
-			.webAppContextSetup(wac)
-			.build();
-	}
+   @BeforeEach
+   void setup() {
+      mockMvc = MockMvcBuilders
+            .webAppContextSetup(wac)
+            .build();
+   }
 
-	@Test
-	void whenApplicationStarts_ThenGetLoginPageWithSuccess() throws Exception {
-		mockMvc.perform(get("/login.html"))
-			.andExpect(status().is2xxSuccessful());
-	}
+   @Test
+   void whenApplicationStarts_ThenGetLoginPageWithSuccess() throws Exception {
+      mockMvc.perform(get("/login.html"))
+            .andExpect(status().is2xxSuccessful());
+   }
 
-	@Test
-	void whenFormLoginAttempted_ThenSuccess() throws Exception {
-		mockMvc.perform(formLogin("/login")
-			.user("admin")
-			.password("admin"));
-	}
+   @Test
+   void whenFormLoginAttempted_ThenSuccess() throws Exception {
+      mockMvc.perform(formLogin("/login")
+            .user("admin")
+            .password("admin"));
+   }
 
-	@Test
-	void whenFormLoginWithSuccess_ThenApiEndpointsAreAccessible() throws Exception {
-		mockMvc.perform(formLogin("/login")
-			.user("admin")
-			.password("admin"));
+   @Test
+   void whenFormLoginWithSuccess_ThenApiEndpointsAreAccessible() throws Exception {
+      mockMvc.perform(formLogin("/login")
+            .user("admin")
+            .password("admin"));
 
-		mockMvc.perform(get("/applications/"))
-			.andExpect(status().is2xxSuccessful());
-	}
+      mockMvc.perform(get("/applications/"))
+            .andExpect(status().is2xxSuccessful());
+   }
 
-	@Test
-	void whenHttpBasicAttempted_ThenSuccess() throws Exception {
-		mockMvc.perform(get("/actuator/env").with(httpBasic("admin", "admin")));
-	}
+   @Test
+   void whenHttpBasicAttempted_ThenSuccess() throws Exception {
+      mockMvc.perform(get("/actuator/env").with(httpBasic("admin", "admin")));
+   }
 
-	@Test
-	void whenInvalidHttpBasicAttempted_ThenUnauthorized() throws Exception {
-		mockMvc.perform(get("/actuator/env").with(httpBasic("admin", "invalid")))
-			.andExpect(unauthenticated());
-	}
+   @Test
+   void whenInvalidHttpBasicAttempted_ThenUnauthorized() throws Exception {
+      mockMvc.perform(get("/actuator/env").with(httpBasic("admin", "invalid")))
+            .andExpect(unauthenticated());
+   }
 }

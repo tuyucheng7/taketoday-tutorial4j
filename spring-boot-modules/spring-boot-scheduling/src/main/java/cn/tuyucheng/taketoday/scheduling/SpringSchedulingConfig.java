@@ -15,16 +15,16 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 @PropertySource("classpath:springScheduled.properties")
 public class SpringSchedulingConfig {
 
-	@Bean
-	public TaskScheduler taskScheduler() {
-		ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
-		threadPoolTaskScheduler.setPoolSize(5);
-		threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
-		return threadPoolTaskScheduler;
-	}
+   @Bean
+   public TaskScheduler taskScheduler() {
+      ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+      threadPoolTaskScheduler.setPoolSize(5);
+      threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
+      return threadPoolTaskScheduler;
+   }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+      return new PropertySourcesPlaceholderConfigurer();
+   }
 }

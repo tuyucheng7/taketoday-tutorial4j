@@ -10,7 +10,7 @@ import java.util.List;
 @Transactional
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-	Employee findByName(String name);
+   Employee findByName(String name);
 
-	List<Employee> findAll();
+   List<Employee> findAll();
 }

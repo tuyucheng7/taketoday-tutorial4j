@@ -25,72 +25,72 @@ import static org.junit.Assert.assertThat;
 @ContextConfiguration
 public class CacheManagerEvictIntegrationTest {
 
-	@Configuration
-	static class ContextConfiguration {
+   @Configuration
+   static class ContextConfiguration {
 
-		@Bean
-		public CachingService cachingService() {
-			return new CachingService();
-		}
+      @Bean
+      public CachingService cachingService() {
+         return new CachingService();
+      }
 
-		@Bean
-		public CacheManager cacheManager() {
-			SimpleCacheManager cacheManager = new SimpleCacheManager();
-			List<Cache> caches = new ArrayList<>();
-			caches.add(cacheBeanFirst().getObject());
-			caches.add(cacheBeanSecond().getObject());
-			cacheManager.setCaches(caches);
-			return cacheManager;
-		}
+      @Bean
+      public CacheManager cacheManager() {
+         SimpleCacheManager cacheManager = new SimpleCacheManager();
+         List<Cache> caches = new ArrayList<>();
+         caches.add(cacheBeanFirst().getObject());
+         caches.add(cacheBeanSecond().getObject());
+         cacheManager.setCaches(caches);
+         return cacheManager;
+      }
 
-		@Bean
-		public ConcurrentMapCacheFactoryBean cacheBeanFirst() {
-			ConcurrentMapCacheFactoryBean cacheFactoryBean = new ConcurrentMapCacheFactoryBean();
-			cacheFactoryBean.setName("first");
-			return cacheFactoryBean;
-		}
+      @Bean
+      public ConcurrentMapCacheFactoryBean cacheBeanFirst() {
+         ConcurrentMapCacheFactoryBean cacheFactoryBean = new ConcurrentMapCacheFactoryBean();
+         cacheFactoryBean.setName("first");
+         return cacheFactoryBean;
+      }
 
-		@Bean
-		public ConcurrentMapCacheFactoryBean cacheBeanSecond() {
-			ConcurrentMapCacheFactoryBean cacheFactoryBean = new ConcurrentMapCacheFactoryBean();
-			cacheFactoryBean.setName("second");
-			return cacheFactoryBean;
-		}
-	}
+      @Bean
+      public ConcurrentMapCacheFactoryBean cacheBeanSecond() {
+         ConcurrentMapCacheFactoryBean cacheFactoryBean = new ConcurrentMapCacheFactoryBean();
+         cacheFactoryBean.setName("second");
+         return cacheFactoryBean;
+      }
+   }
 
-	@Autowired
-	CachingService cachingService;
+   @Autowired
+   CachingService cachingService;
 
-	@Before
-	public void before() {
-		cachingService.putToCache("first", "key1", "Baeldung");
-		cachingService.putToCache("first", "key2", "Article");
-		cachingService.putToCache("second", "key", "Article");
-	}
+   @Before
+   public void before() {
+      cachingService.putToCache("first", "key1", "Baeldung");
+      cachingService.putToCache("first", "key2", "Article");
+      cachingService.putToCache("second", "key", "Article");
+   }
 
-	@Test
-	public void givenFirstCache_whenSingleCacheValueEvictRequested_thenEmptyCacheValue() {
-		cachingService.evictSingleCacheValue("first", "key1");
-		String key1 = cachingService.getFromCache("first", "key1");
-		assertThat(key1, is(nullValue()));
-	}
+   @Test
+   public void givenFirstCache_whenSingleCacheValueEvictRequested_thenEmptyCacheValue() {
+      cachingService.evictSingleCacheValue("first", "key1");
+      String key1 = cachingService.getFromCache("first", "key1");
+      assertThat(key1, is(nullValue()));
+   }
 
-	@Test
-	public void givenFirstCache_whenAllCacheValueEvictRequested_thenEmptyCache() {
-		cachingService.evictAllCacheValues("first");
-		String key1 = cachingService.getFromCache("first", "key1");
-		String key2 = cachingService.getFromCache("first", "key2");
-		assertThat(key1, is(nullValue()));
-		assertThat(key2, is(nullValue()));
-	}
+   @Test
+   public void givenFirstCache_whenAllCacheValueEvictRequested_thenEmptyCache() {
+      cachingService.evictAllCacheValues("first");
+      String key1 = cachingService.getFromCache("first", "key1");
+      String key2 = cachingService.getFromCache("first", "key2");
+      assertThat(key1, is(nullValue()));
+      assertThat(key2, is(nullValue()));
+   }
 
-	@Test
-	public void givenAllCaches_whenAllCacheEvictRequested_thenEmptyAllCaches() {
-		cachingService.evictAllCaches();
-		String key1 = cachingService.getFromCache("first", "key1");
-		assertThat(key1, is(nullValue()));
+   @Test
+   public void givenAllCaches_whenAllCacheEvictRequested_thenEmptyAllCaches() {
+      cachingService.evictAllCaches();
+      String key1 = cachingService.getFromCache("first", "key1");
+      assertThat(key1, is(nullValue()));
 
-		String key = cachingService.getFromCache("second", "key");
-		assertThat(key, is(nullValue()));
-	}
+      String key = cachingService.getFromCache("second", "key");
+      assertThat(key, is(nullValue()));
+   }
 }

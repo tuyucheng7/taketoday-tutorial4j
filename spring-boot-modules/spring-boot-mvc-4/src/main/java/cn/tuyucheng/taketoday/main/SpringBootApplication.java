@@ -29,42 +29,42 @@ import java.util.concurrent.Executors;
       "cn.tuyucheng.taketoday.boot.config"})
 public class SpringBootApplication {
 
-    private static ApplicationContext applicationContext;
+   private static ApplicationContext applicationContext;
 
-    @GetMapping("/")
-    String home() {
-        return "TADA!!! You are in Spring Boot Actuator test application.";
-    }
+   @GetMapping("/")
+   String home() {
+      return "TADA!!! You are in Spring Boot Actuator test application.";
+   }
 
-    public static void main(String[] args) {
-        applicationContext = SpringApplication.run(SpringBootApplication.class, args);
-    }
+   public static void main(String[] args) {
+      applicationContext = SpringApplication.run(SpringBootApplication.class, args);
+   }
 
-    @Bean
-    public ExecutorService executorService() {
-        return Executors.newFixedThreadPool(10);
-    }
+   @Bean
+   public ExecutorService executorService() {
+      return Executors.newFixedThreadPool(10);
+   }
 
-    @Bean
-    public HelloWorldServlet helloWorldServlet() {
-        return new HelloWorldServlet();
-    }
+   @Bean
+   public HelloWorldServlet helloWorldServlet() {
+      return new HelloWorldServlet();
+   }
 
-    @Bean
-    public SpringHelloServletRegistrationBean servletRegistrationBean() {
-        SpringHelloServletRegistrationBean bean = new SpringHelloServletRegistrationBean(new SpringHelloWorldServlet(), "/springHelloWorld/*");
-        bean.setLoadOnStartup(1);
-        bean.addInitParameter("message", "SpringHelloWorldServlet special message");
-        return bean;
-    }
+   @Bean
+   public SpringHelloServletRegistrationBean servletRegistrationBean() {
+      SpringHelloServletRegistrationBean bean = new SpringHelloServletRegistrationBean(new SpringHelloWorldServlet(), "/springHelloWorld/*");
+      bean.setLoadOnStartup(1);
+      bean.addInitParameter("message", "SpringHelloWorldServlet special message");
+      return bean;
+   }
 
-    @Bean
-    @Autowired
-    public ExecutorServiceExitCodeGenerator executorServiceExitCodeGenerator(ExecutorService executorService) {
-        return new ExecutorServiceExitCodeGenerator(executorService);
-    }
+   @Bean
+   @Autowired
+   public ExecutorServiceExitCodeGenerator executorServiceExitCodeGenerator(ExecutorService executorService) {
+      return new ExecutorServiceExitCodeGenerator(executorService);
+   }
 
-    public void shutDown(ExecutorServiceExitCodeGenerator executorServiceExitCodeGenerator) {
-        SpringApplication.exit(applicationContext, executorServiceExitCodeGenerator);
-    }
+   public void shutDown(ExecutorServiceExitCodeGenerator executorServiceExitCodeGenerator) {
+      SpringApplication.exit(applicationContext, executorServiceExitCodeGenerator);
+   }
 }

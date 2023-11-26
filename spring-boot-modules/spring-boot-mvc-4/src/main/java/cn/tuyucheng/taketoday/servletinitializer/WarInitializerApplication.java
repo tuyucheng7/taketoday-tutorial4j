@@ -13,24 +13,24 @@ import java.time.LocalDateTime;
 @SpringBootApplication
 public class WarInitializerApplication extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(WarInitializerApplication.class);
-    }
+   @Override
+   protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+      return builder.sources(WarInitializerApplication.class);
+   }
 
-    public static void main(String[] args) {
-        SpringApplication sa = new SpringApplication(WarInitializerApplication.class);
-        sa.setLogStartupInfo(false);
-        sa.run(args);
-    }
+   public static void main(String[] args) {
+      SpringApplication sa = new SpringApplication(WarInitializerApplication.class);
+      sa.setLogStartupInfo(false);
+      sa.run(args);
+   }
 
-    @RestController
-    public static class WarInitializerController {
+   @RestController
+   public static class WarInitializerController {
 
-        @GetMapping("/")
-        public String handler(Model model) {
-            model.addAttribute("date", LocalDateTime.now());
-            return "WarInitializerApplication is up and running!";
-        }
-    }
+      @GetMapping("/")
+      public String handler(Model model) {
+         model.addAttribute("date", LocalDateTime.now());
+         return "WarInitializerApplication is up and running!";
+      }
+   }
 }

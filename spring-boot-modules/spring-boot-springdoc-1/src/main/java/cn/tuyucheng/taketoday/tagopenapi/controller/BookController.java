@@ -13,8 +13,8 @@ import java.util.List;
 @Tag(name = "book service", description = "the book API with description tag annotation")
 public class BookController {
 
-	@GetMapping("/")
-	public List<String> getBooks() {
-		return Arrays.asList("book1", "book2");
-	}
+   @GetMapping("/")
+   public List<String> getBooks() {
+      return Arrays.asList("book1", "book2");
+   }
 }

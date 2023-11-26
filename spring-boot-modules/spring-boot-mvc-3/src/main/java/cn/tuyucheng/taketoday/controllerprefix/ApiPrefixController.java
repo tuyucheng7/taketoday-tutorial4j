@@ -12,12 +12,12 @@ import java.util.Random;
 @RequestMapping("/api")
 public class ApiPrefixController {
 
-    @GetMapping
-    public ModelAndView route(ModelMap model) {
-        if (new Random().nextBoolean()) {
-            return new ModelAndView("forward:/endpoint1", model);
-        } else {
-            return new ModelAndView("forward:/endpoint2", model);
-        }
-    }
+   @GetMapping
+   public ModelAndView route(ModelMap model) {
+      if (new Random().nextBoolean()) {
+         return new ModelAndView("forward:/endpoint1", model);
+      } else {
+         return new ModelAndView("forward:/endpoint2", model);
+      }
+   }
 }

@@ -11,25 +11,25 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class OpenAIRestTemplateConfig {
-	/**
-	 * API key for OpenAI API authentication.
-	 */
-	@Value("${openai.api.key}")
-	private String openaiApiKey;
+   /**
+    * API key for OpenAI API authentication.
+    */
+   @Value("${openai.api.key}")
+   private String openaiApiKey;
 
-	/**
-	 * Configures RestTemplate with OpenAI API key in header for authentication.
-	 *
-	 * @return RestTemplate instance with OpenAI API key header
-	 */
-	@Bean
-	@Qualifier("openaiRestTemplate")
-	public RestTemplate openaiRestTemplate() {
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getInterceptors().add((request, body, execution) -> {
-			request.getHeaders().add("Authorization", "Bearer " + openaiApiKey);
-			return execution.execute(request, body);
-		});
-		return restTemplate;
-	}
+   /**
+    * Configures RestTemplate with OpenAI API key in header for authentication.
+    *
+    * @return RestTemplate instance with OpenAI API key header
+    */
+   @Bean
+   @Qualifier("openaiRestTemplate")
+   public RestTemplate openaiRestTemplate() {
+      RestTemplate restTemplate = new RestTemplate();
+      restTemplate.getInterceptors().add((request, body, execution) -> {
+         request.getHeaders().add("Authorization", "Bearer " + openaiApiKey);
+         return execution.execute(request, body);
+      });
+      return restTemplate;
+   }
 }

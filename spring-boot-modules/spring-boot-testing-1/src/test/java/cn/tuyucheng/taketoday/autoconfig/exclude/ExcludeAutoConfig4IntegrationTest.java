@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = TestApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 class ExcludeAutoConfig4IntegrationTest {
 
-	/**
-	 * Encapsulates the random port the test server is listening on.
-	 */
-	@LocalServerPort
-	private int port;
+   /**
+    * Encapsulates the random port the test server is listening on.
+    */
+   @LocalServerPort
+   private int port;
 
-	@Test
-	void givenSecurityConfigExcluded_whenAccessHome_thenNoAuthenticationRequired() {
-		int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
-		assertEquals(HttpStatus.OK.value(), statusCode);
-	}
+   @Test
+   void givenSecurityConfigExcluded_whenAccessHome_thenNoAuthenticationRequired() {
+      int statusCode = RestAssured.get("http://localhost:" + port).statusCode();
+      assertEquals(HttpStatus.OK.value(), statusCode);
+   }
 }

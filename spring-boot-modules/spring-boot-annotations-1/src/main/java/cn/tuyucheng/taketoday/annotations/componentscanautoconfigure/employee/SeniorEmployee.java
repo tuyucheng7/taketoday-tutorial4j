@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SeniorEmployee {
 
-	@Override
-	public String toString() {
-		return "Senior Employee" + this.hashCode();
-	}
+   @Override
+   public String toString() {
+      return "Senior Employee" + this.hashCode();
+   }
 }

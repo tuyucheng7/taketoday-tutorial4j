@@ -14,13 +14,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class WarningHealthIndicatorIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Test
-	void givenCustomMapping_whenCallingTheAPI_thenTheStatusCodeIsAsExpected() throws Exception {
-		mockMvc.perform(get("/actuator/health/warning"))
-			.andExpect(jsonPath("$.status").value("WARNING"))
-			.andExpect(status().isInternalServerError());
-	}
+   @Test
+   void givenCustomMapping_whenCallingTheAPI_thenTheStatusCodeIsAsExpected() throws Exception {
+      mockMvc.perform(get("/actuator/health/warning"))
+            .andExpect(jsonPath("$.status").value("WARNING"))
+            .andExpect(status().isInternalServerError());
+   }
 }

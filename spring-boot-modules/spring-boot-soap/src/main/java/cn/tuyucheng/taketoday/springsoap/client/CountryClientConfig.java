@@ -7,19 +7,19 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 @Configuration
 public class CountryClientConfig {
 
-	@Bean
-	public Jaxb2Marshaller marshaller() {
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setContextPath("cn.tuyucheng.taketoday.springsoap.client.gen");
-		return marshaller;
-	}
+   @Bean
+   public Jaxb2Marshaller marshaller() {
+      Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+      marshaller.setContextPath("cn.tuyucheng.taketoday.springsoap.client.gen");
+      return marshaller;
+   }
 
-	@Bean
-	public CountryClient countryClient(Jaxb2Marshaller marshaller) {
-		CountryClient client = new CountryClient();
-		client.setDefaultUri("http://localhost:8080/ws");
-		client.setMarshaller(marshaller);
-		client.setUnmarshaller(marshaller);
-		return client;
-	}
+   @Bean
+   public CountryClient countryClient(Jaxb2Marshaller marshaller) {
+      CountryClient client = new CountryClient();
+      client.setDefaultUri("http://localhost:8080/ws");
+      client.setMarshaller(marshaller);
+      client.setUnmarshaller(marshaller);
+      return client;
+   }
 }

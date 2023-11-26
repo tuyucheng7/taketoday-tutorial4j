@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessagingServiceImpl implements MessagingService {
 
-	@Autowired
-	@Qualifier("qualifierComponent")
-	private CustomComponent customComponent;
+   @Autowired
+   @Qualifier("qualifierComponent")
+   private CustomComponent customComponent;
 }

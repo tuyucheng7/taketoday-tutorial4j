@@ -1,10 +1,6 @@
 package cn.tuyucheng.taketoday;
 
-import cn.tuyucheng.taketoday.springsecuredsockets.config.AppConfig;
-import cn.tuyucheng.taketoday.springsecuredsockets.config.DataStoreConfig;
-import cn.tuyucheng.taketoday.springsecuredsockets.config.SecurityConfig;
-import cn.tuyucheng.taketoday.springsecuredsockets.config.SocketBrokerConfig;
-import cn.tuyucheng.taketoday.springsecuredsockets.config.SocketSecurityConfig;
+import cn.tuyucheng.taketoday.springsecuredsockets.config.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

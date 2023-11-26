@@ -8,8 +8,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class HeaderInterceptorApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(HeaderInterceptorApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(HeaderInterceptorApplication.class, args);
+   }
 
 }

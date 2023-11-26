@@ -6,8 +6,8 @@ import javax.annotation.security.RolesAllowed;
 
 @Component
 public class DifferentClass {
-	@RolesAllowed("USER")
-	public String differentJsr250Hello() {
-		return "Hello Jsr250";
-	}
+   @RolesAllowed("USER")
+   public String differentJsr250Hello() {
+      return "Hello Jsr250";
+   }
 }

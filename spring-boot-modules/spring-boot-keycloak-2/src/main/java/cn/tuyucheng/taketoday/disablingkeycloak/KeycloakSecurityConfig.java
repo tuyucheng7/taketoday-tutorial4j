@@ -16,19 +16,19 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @ConditionalOnProperty(name = "keycloak.enabled", havingValue = "true", matchIfMissing = true)
 public class KeycloakSecurityConfig {
 
-	@Bean
-	protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-		return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
-	}
+   @Bean
+   protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+      return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+   }
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf()
-			.disable()
-			.authorizeHttpRequests(auth -> auth.anyRequest()
-				.authenticated());
-		http.oauth2Login();
-		http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .disable()
+            .authorizeHttpRequests(auth -> auth.anyRequest()
+                  .authenticated());
+      http.oauth2Login();
+      http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+      return http.build();
+   }
 }

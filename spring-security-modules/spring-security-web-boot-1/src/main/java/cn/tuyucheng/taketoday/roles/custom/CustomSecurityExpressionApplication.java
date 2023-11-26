@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application-defaults.properties")
 public class CustomSecurityExpressionApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CustomSecurityExpressionApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(CustomSecurityExpressionApplication.class, args);
+   }
 }

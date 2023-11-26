@@ -12,19 +12,19 @@ import java.util.Set;
 @Configuration
 public class OAuth2LoginSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        Set<String> googleScopes = new HashSet<>();
-        googleScopes.add("https://www.googleapis.com/auth/userinfo.email");
-        googleScopes.add("https://www.googleapis.com/auth/userinfo.profile");
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      Set<String> googleScopes = new HashSet<>();
+      googleScopes.add("https://www.googleapis.com/auth/userinfo.email");
+      googleScopes.add("https://www.googleapis.com/auth/userinfo.profile");
 
-        OidcUserService googleUserService = new OidcUserService();
-        googleUserService.setAccessibleScopes(googleScopes);
+      OidcUserService googleUserService = new OidcUserService();
+      googleUserService.setAccessibleScopes(googleScopes);
 
-        http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest()
-                    .authenticated())
-              .oauth2Login(oauthLogin -> oauthLogin.userInfoEndpoint()
-                    .oidcUserService(googleUserService));
-        return http.build();
-    }
+      http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest()
+                  .authenticated())
+            .oauth2Login(oauthLogin -> oauthLogin.userInfoEndpoint()
+                  .oidcUserService(googleUserService));
+      return http.build();
+   }
 }

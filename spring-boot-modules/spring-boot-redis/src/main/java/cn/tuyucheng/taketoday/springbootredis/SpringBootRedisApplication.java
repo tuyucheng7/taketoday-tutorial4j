@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootRedisApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootRedisApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootRedisApplication.class, args);
+   }
 }

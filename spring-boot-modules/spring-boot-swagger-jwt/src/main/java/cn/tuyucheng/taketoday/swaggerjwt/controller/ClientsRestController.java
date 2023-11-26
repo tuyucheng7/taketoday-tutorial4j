@@ -12,9 +12,9 @@ import java.util.List;
 @Tag(name = "Clients")
 public class ClientsRestController {
 
-    @Operation(summary = "This method is used to get the clients.")
-    @GetMapping
-    public List<String> getClients() {
-        return Arrays.asList("First Client", "Second Client");
-    }
+   @Operation(summary = "This method is used to get the clients.")
+   @GetMapping
+   public List<String> getClients() {
+      return Arrays.asList("First Client", "Second Client");
+   }
 }

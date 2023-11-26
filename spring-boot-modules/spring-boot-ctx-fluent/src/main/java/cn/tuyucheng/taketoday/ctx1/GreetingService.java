@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreetingService implements HomeService {
 
-    public String getGreeting() {
-        return "Greetings for the day";
-    }
+   public String getGreeting() {
+      return "Greetings for the day";
+   }
 }

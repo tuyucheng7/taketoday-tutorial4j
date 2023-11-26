@@ -11,12 +11,12 @@ import java.io.IOException;
 
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    @Override
-    public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
-        final String refererUrl = request.getHeader("Referer");
-        System.out.println(refererUrl);
+   @Override
+   public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
+      final String refererUrl = request.getHeader("Referer");
+      System.out.println(refererUrl);
 
-        super.onLogoutSuccess(request, response, authentication);
-    }
+      super.onLogoutSuccess(request, response, authentication);
+   }
 
 }

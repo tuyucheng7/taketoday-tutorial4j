@@ -12,21 +12,21 @@ import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
 
-    @Override
-    public void onStartup(final ServletContext sc) {
+   @Override
+   public void onStartup(final ServletContext sc) {
 
-        AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
+      AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
 
-        root.scan("cn.tuyucheng.taketoday");
-        sc.addListener(new ContextLoaderListener(root));
+      root.scan("cn.tuyucheng.taketoday");
+      sc.addListener(new ContextLoaderListener(root));
 
-        ServletRegistration.Dynamic appServlet = sc.addServlet("mvc", new DispatcherServlet(new GenericWebApplicationContext()));
-        appServlet.setLoadOnStartup(1);
-        appServlet.addMapping("/");
+      ServletRegistration.Dynamic appServlet = sc.addServlet("mvc", new DispatcherServlet(new GenericWebApplicationContext()));
+      appServlet.setLoadOnStartup(1);
+      appServlet.addMapping("/");
 
-        sc.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
-              .addMappingForUrlPatterns(null, false, "/*");
+      sc.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
+            .addMappingForUrlPatterns(null, false, "/*");
 
-    }
+   }
 
 }

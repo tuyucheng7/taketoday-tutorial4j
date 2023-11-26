@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SessionCreateRequest {
-	private Long expirationInSeconds;
+   private Long expirationInSeconds;
 }

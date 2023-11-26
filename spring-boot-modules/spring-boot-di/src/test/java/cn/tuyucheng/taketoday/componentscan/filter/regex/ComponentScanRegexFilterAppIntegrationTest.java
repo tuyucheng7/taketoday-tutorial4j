@@ -19,14 +19,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @SpringBootTest(classes = ComponentScanRegexFilterApp.class)
 class ComponentScanRegexFilterAppIntegrationTest {
 
-    @Test
-    void whenRegexFilterIsUsed_thenComponentScanShouldRegisterBeanMatchingRegex() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ComponentScanRegexFilterApp.class);
-        List<String> beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
-              .filter(bean -> !bean.contains("org.springframework") && !bean.contains("componentScanRegexFilterApp"))
-              .collect(Collectors.toList());
+   @Test
+   void whenRegexFilterIsUsed_thenComponentScanShouldRegisterBeanMatchingRegex() {
+      ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ComponentScanRegexFilterApp.class);
+      List<String> beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
+            .filter(bean -> !bean.contains("org.springframework") && !bean.contains("componentScanRegexFilterApp"))
+            .collect(Collectors.toList());
 
-        assertThat(beans.size(), equalTo(1));
-        assertThat(beans.contains("elephant"), equalTo(true));
-    }
+      assertThat(beans.size(), equalTo(1));
+      assertThat(beans.contains("elephant"), equalTo(true));
+   }
 }

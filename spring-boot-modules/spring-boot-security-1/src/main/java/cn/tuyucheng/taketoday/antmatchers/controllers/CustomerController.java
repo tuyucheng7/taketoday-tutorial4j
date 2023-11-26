@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerController {
 
-	@GetMapping("/customers/{id}")
-	public Customer getCustomerById(@PathVariable("id") String id) {
-		return new Customer("Customer 1", "Address 1", "Phone 1");
-	}
+   @GetMapping("/customers/{id}")
+   public Customer getCustomerById(@PathVariable("id") String id) {
+      return new Customer("Customer 1", "Address 1", "Phone 1");
+   }
 }

@@ -32,17 +32,17 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class SpringBatchConfiguration {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(SpringBatchConfiguration.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(SpringBatchConfiguration.class);
 
-	private static final String[] TOKENS = {"bookname", "bookauthor", "bookformat", "isbn", "publishyear"};
+   private static final String[] TOKENS = {"bookname", "bookauthor", "bookformat", "isbn", "publishyear"};
 
-	@Bean
-	@StepScope
-	public FlatFileItemReader<BookRecord> csvItemReader(@Value("#{jobParameters['file.input']}") String input) {
-		FlatFileItemReaderBuilder<BookRecord> builder = new FlatFileItemReaderBuilder<>();
-		FieldSetMapper<BookRecord> bookRecordFieldSetMapper = new BookRecordFieldSetMapper();
-		LOGGER.info("Configuring reader to input {}", input);
-		// @formatter:off
+   @Bean
+   @StepScope
+   public FlatFileItemReader<BookRecord> csvItemReader(@Value("#{jobParameters['file.input']}") String input) {
+      FlatFileItemReaderBuilder<BookRecord> builder = new FlatFileItemReaderBuilder<>();
+      FieldSetMapper<BookRecord> bookRecordFieldSetMapper = new BookRecordFieldSetMapper();
+      LOGGER.info("Configuring reader to input {}", input);
+      // @formatter:off
         return builder
           .name("bookRecordItemReader")
           .resource(new FileSystemResource(input))
@@ -51,44 +51,44 @@ public class SpringBatchConfiguration {
           .fieldSetMapper(bookRecordFieldSetMapper)
           .build();
         // @formatter:on
-	}
+   }
 
-	@Bean
-	@StepScope
-	public JsonFileItemWriter<Book> jsonItemWriter(@Value("#{jobParameters['file.output']}") String output) {
-		JsonFileItemWriterBuilder<Book> builder = new JsonFileItemWriterBuilder<>();
-		JacksonJsonObjectMarshaller<Book> marshaller = new JacksonJsonObjectMarshaller<>();
-		LOGGER.info("Configuring writer to output {}", output);
-		// @formatter:off
+   @Bean
+   @StepScope
+   public JsonFileItemWriter<Book> jsonItemWriter(@Value("#{jobParameters['file.output']}") String output) {
+      JsonFileItemWriterBuilder<Book> builder = new JsonFileItemWriterBuilder<>();
+      JacksonJsonObjectMarshaller<Book> marshaller = new JacksonJsonObjectMarshaller<>();
+      LOGGER.info("Configuring writer to output {}", output);
+      // @formatter:off
         return builder
           .name("bookItemWriter")
           .jsonObjectMarshaller(marshaller)
           .resource(new FileSystemResource(output))
           .build();
         // @formatter:on
-	}
+   }
 
-	@Bean
-	@StepScope
-	public ListItemWriter<BookDetails> listItemWriter() {
-		return new ListItemWriter<>();
-	}
+   @Bean
+   @StepScope
+   public ListItemWriter<BookDetails> listItemWriter() {
+      return new ListItemWriter<>();
+   }
 
-	@Bean
-	@StepScope
-	public BookItemProcessor bookItemProcessor() {
-		return new BookItemProcessor();
-	}
+   @Bean
+   @StepScope
+   public BookItemProcessor bookItemProcessor() {
+      return new BookItemProcessor();
+   }
 
-	@Bean
-	@StepScope
-	public BookDetailsItemProcessor bookDetailsItemProcessor() {
-		return new BookDetailsItemProcessor();
-	}
+   @Bean
+   @StepScope
+   public BookDetailsItemProcessor bookDetailsItemProcessor() {
+      return new BookDetailsItemProcessor();
+   }
 
-	@Bean(name = "step1")
-	public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<BookRecord> csvItemReader, ItemWriter<Book> jsonItemWriter) {
-		// @formatter:off
+   @Bean(name = "step1")
+   public Step step1(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<BookRecord> csvItemReader, ItemWriter<Book> jsonItemWriter) {
+      // @formatter:off
         return new StepBuilder("step1", jobRepository)
           .<BookRecord, Book> chunk(3, transactionManager)
           .reader(csvItemReader)
@@ -96,11 +96,11 @@ public class SpringBatchConfiguration {
           .writer(jsonItemWriter)
           .build();
         // @formatter:on
-	}
+   }
 
-	@Bean(name = "step2")
-	public Step step2(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<BookRecord> csvItemReader, ItemWriter<BookDetails> listItemWriter) {
-		// @formatter:off
+   @Bean(name = "step2")
+   public Step step2(JobRepository jobRepository, PlatformTransactionManager transactionManager, ItemReader<BookRecord> csvItemReader, ItemWriter<BookDetails> listItemWriter) {
+      // @formatter:off
         return new StepBuilder("step2", jobRepository)
           .<BookRecord, BookDetails> chunk(3, transactionManager)
           .reader(csvItemReader)
@@ -108,16 +108,16 @@ public class SpringBatchConfiguration {
           .writer(listItemWriter)
           .build();
         // @formatter:on
-	}
+   }
 
-	@Bean(name = "transformBooksRecords")
-	public Job transformBookRecords(JobRepository jobRepository, Step step1, Step step2) {
-		// @formatter:off
+   @Bean(name = "transformBooksRecords")
+   public Job transformBookRecords(JobRepository jobRepository, Step step1, Step step2) {
+      // @formatter:off
         return new JobBuilder("transformBooksRecords", jobRepository)
           .flow(step1)
           .next(step2)
           .end()
           .build();
         // @formatter:on
-	}
+   }
 }

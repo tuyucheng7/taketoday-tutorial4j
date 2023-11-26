@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class SecurityFilterChainApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SecurityFilterChainApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SecurityFilterChainApplication.class, args);
+   }
 }

@@ -6,16 +6,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 public class ScheduledJob {
 
-	private String source;
+   private String source;
 
-	public ScheduledJob(String source) {
-		this.source = source;
-	}
+   public ScheduledJob(String source) {
+      this.source = source;
+   }
 
-	private final static Logger LOG = LoggerFactory.getLogger(ScheduledJob.class);
+   private final static Logger LOG = LoggerFactory.getLogger(ScheduledJob.class);
 
-	@Scheduled(fixedDelay = 60000)
-	public void cleanTempDir() {
-		LOG.info("Cleaning temp directory via {}", source);
-	}
+   @Scheduled(fixedDelay = 60000)
+   public void cleanTempDir() {
+      LOG.info("Cleaning temp directory via {}", source);
+   }
 }

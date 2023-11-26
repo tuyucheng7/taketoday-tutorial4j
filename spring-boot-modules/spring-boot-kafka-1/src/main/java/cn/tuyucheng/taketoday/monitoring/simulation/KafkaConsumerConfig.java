@@ -21,34 +21,34 @@ import java.util.Map;
 @Component
 public class KafkaConsumerConfig {
 
-	@Value(value = "${monitor.kafka.bootstrap.config}")
-	private String bootstrapAddress;
-	@Value(value = "${monitor.kafka.consumer.groupid}")
-	private String groupId;
+   @Value(value = "${monitor.kafka.bootstrap.config}")
+   private String bootstrapAddress;
+   @Value(value = "${monitor.kafka.consumer.groupid}")
+   private String groupId;
 
-	@Autowired
-	private MeterRegistry meterRegistry;
+   @Autowired
+   private MeterRegistry meterRegistry;
 
-	@Bean
-	public ConsumerFactory<String, String> consumerFactory() {
-		Map<String, Object> props = new HashMap<>();
-		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-		props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 0);
-		props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-		DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(props);
-		consumerFactory.addListener(new MicrometerConsumerListener<>(this.meterRegistry));
-		return consumerFactory;
-	}
+   @Bean
+   public ConsumerFactory<String, String> consumerFactory() {
+      Map<String, Object> props = new HashMap<>();
+      props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+      props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+      props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+      props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, 0);
+      props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+      DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(props);
+      consumerFactory.addListener(new MicrometerConsumerListener<>(this.meterRegistry));
+      return consumerFactory;
+   }
 
-	@Bean
-	public ConcurrentKafkaListenerContainerFactory<String, String>
-	kafkaListenerContainerFactory(@Qualifier("consumerFactory") ConsumerFactory<String,
-		String> consumerFactory) {
-		ConcurrentKafkaListenerContainerFactory<String, String> listenerContainerFactory =
-			new ConcurrentKafkaListenerContainerFactory<>();
-		listenerContainerFactory.setConsumerFactory(consumerFactory);
-		return listenerContainerFactory;
-	}
+   @Bean
+   public ConcurrentKafkaListenerContainerFactory<String, String>
+   kafkaListenerContainerFactory(@Qualifier("consumerFactory") ConsumerFactory<String,
+         String> consumerFactory) {
+      ConcurrentKafkaListenerContainerFactory<String, String> listenerContainerFactory =
+            new ConcurrentKafkaListenerContainerFactory<>();
+      listenerContainerFactory.setConsumerFactory(consumerFactory);
+      return listenerContainerFactory;
+   }
 }

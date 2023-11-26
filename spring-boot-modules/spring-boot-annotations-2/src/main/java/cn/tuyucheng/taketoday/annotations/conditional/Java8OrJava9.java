@@ -4,15 +4,15 @@ import org.springframework.boot.autoconfigure.condition.AnyNestedCondition;
 import org.springframework.context.annotation.Conditional;
 
 public class Java8OrJava9 extends AnyNestedCondition {
-	Java8OrJava9() {
-		super(ConfigurationPhase.REGISTER_BEAN);
-	}
+   Java8OrJava9() {
+      super(ConfigurationPhase.REGISTER_BEAN);
+   }
 
-	@Conditional(Java8Condition.class)
-	static class Java8 {
-	}
+   @Conditional(Java8Condition.class)
+   static class Java8 {
+   }
 
-	@Conditional(Java9Condition.class)
-	static class Java9 {
-	}
+   @Conditional(Java9Condition.class)
+   static class Java9 {
+   }
 }

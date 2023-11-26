@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KafkaSslApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KafkaSslApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(KafkaSslApplication.class, args);
+   }
 }

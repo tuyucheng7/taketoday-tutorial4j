@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 @Profile("logging")
 @SpringBootApplication
 public class LoggingApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(LoggingApplication.class);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(LoggingApplication.class);
+   }
 }

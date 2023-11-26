@@ -6,18 +6,18 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class Application {
-    private static ApplicationContext applicationContext;
+   private static ApplicationContext applicationContext;
 
-    public static void main(String[] args) {
-        applicationContext = SpringApplication.run(Application.class, args);
+   public static void main(String[] args) {
+      applicationContext = SpringApplication.run(Application.class, args);
 
-        displayAllBeans();
-    }
+      displayAllBeans();
+   }
 
-    public static void displayAllBeans() {
-        String[] allBeanNames = applicationContext.getBeanDefinitionNames();
-        for (String beanName : allBeanNames) {
-            System.out.println(beanName);
-        }
-    }
+   public static void displayAllBeans() {
+      String[] allBeanNames = applicationContext.getBeanDefinitionNames();
+      for (String beanName : allBeanNames) {
+         System.out.println(beanName);
+      }
+   }
 }

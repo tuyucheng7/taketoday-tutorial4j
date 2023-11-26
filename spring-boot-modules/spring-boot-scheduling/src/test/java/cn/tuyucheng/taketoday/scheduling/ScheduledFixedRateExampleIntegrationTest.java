@@ -10,8 +10,8 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(classes = {SpringSchedulingConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class ScheduledFixedRateExampleIntegrationTest {
 
-	@Test
-	public void testScheduledFixedRateAnnotation() throws InterruptedException {
-		Thread.sleep(5000);
-	}
+   @Test
+   public void testScheduledFixedRateAnnotation() throws InterruptedException {
+      Thread.sleep(5000);
+   }
 }

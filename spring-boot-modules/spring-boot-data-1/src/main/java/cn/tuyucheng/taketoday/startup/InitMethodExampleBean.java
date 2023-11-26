@@ -13,12 +13,12 @@ import java.util.Arrays;
 @Scope(value = "prototype")
 public class InitMethodExampleBean {
 
-	private static final Logger LOG = LoggerFactory.getLogger(InitMethodExampleBean.class);
+   private static final Logger LOG = LoggerFactory.getLogger(InitMethodExampleBean.class);
 
-	@Autowired
-	private Environment environment;
+   @Autowired
+   private Environment environment;
 
-	public void init() {
-		LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
-	}
+   public void init() {
+      LOG.info("Env Default Profiles", Arrays.asList(environment.getDefaultProfiles()));
+   }
 }

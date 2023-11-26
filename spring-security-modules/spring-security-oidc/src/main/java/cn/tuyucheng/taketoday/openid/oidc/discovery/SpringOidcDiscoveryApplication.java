@@ -9,11 +9,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringOidcDiscoveryApplication {
 
-    public static void main(String[] args) {
-        SpringApplication application = new SpringApplication(SpringOidcDiscoveryApplication.class);
-        ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("discovery-application.yml");
-        application.addInitializers(yamlInitializer);
-        application.run(args);
-    }
+   public static void main(String[] args) {
+      SpringApplication application = new SpringApplication(SpringOidcDiscoveryApplication.class);
+      ApplicationContextInitializer<ConfigurableApplicationContext> yamlInitializer = new YamlLoaderInitializer("discovery-application.yml");
+      application.addInitializers(yamlInitializer);
+      application.run(args);
+   }
 
 }

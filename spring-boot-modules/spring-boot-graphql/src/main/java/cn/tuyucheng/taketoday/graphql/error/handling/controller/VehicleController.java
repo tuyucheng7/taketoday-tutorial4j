@@ -13,31 +13,31 @@ import java.util.List;
 @Controller
 public class VehicleController {
 
-	private final InventoryService inventoryService;
+   private final InventoryService inventoryService;
 
-	public VehicleController(InventoryService inventoryService) {
-		this.inventoryService = inventoryService;
-	}
+   public VehicleController(InventoryService inventoryService) {
+      this.inventoryService = inventoryService;
+   }
 
-	@QueryMapping
-	public List<Vehicle> searchAll() {
-		return this.inventoryService.searchAll();
-	}
+   @QueryMapping
+   public List<Vehicle> searchAll() {
+      return this.inventoryService.searchAll();
+   }
 
-	@QueryMapping
-	public List<Vehicle> searchByLocation(@Argument String zipcode) {
-		return this.inventoryService.searchByLocation(zipcode);
-	}
+   @QueryMapping
+   public List<Vehicle> searchByLocation(@Argument String zipcode) {
+      return this.inventoryService.searchByLocation(zipcode);
+   }
 
-	@QueryMapping
-	public Vehicle searchByVin(@Argument String vin) {
-		return this.inventoryService.searchByVin(vin);
-	}
+   @QueryMapping
+   public Vehicle searchByVin(@Argument String vin) {
+      return this.inventoryService.searchByVin(vin);
+   }
 
-	@MutationMapping
-	public Vehicle addVehicle(@Argument String vin, @Argument Integer year,
-							  @Argument String make, @Argument String model, @Argument String trim,
-							  @Argument Location location) {
-		return this.inventoryService.addVehicle(vin, year, make, model, trim, location);
-	}
+   @MutationMapping
+   public Vehicle addVehicle(@Argument String vin, @Argument Integer year,
+                             @Argument String make, @Argument String model, @Argument String trim,
+                             @Argument Location location) {
+      return this.inventoryService.addVehicle(vin, year, make, model, trim, location);
+   }
 }

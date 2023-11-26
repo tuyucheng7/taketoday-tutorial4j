@@ -13,11 +13,11 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ActiveProfiles("dev")
 @ContextConfiguration(classes = {SpringProfilesConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class DevProfileWithAnnotationIntegrationTest {
-	@Autowired
-	DatasourceConfig datasourceConfig;
+   @Autowired
+   DatasourceConfig datasourceConfig;
 
-	@Test
-	public void testSpringProfiles() {
-		Assert.assertTrue(datasourceConfig instanceof DevDatasourceConfig);
-	}
+   @Test
+   public void testSpringProfiles() {
+      Assert.assertTrue(datasourceConfig instanceof DevDatasourceConfig);
+   }
 }

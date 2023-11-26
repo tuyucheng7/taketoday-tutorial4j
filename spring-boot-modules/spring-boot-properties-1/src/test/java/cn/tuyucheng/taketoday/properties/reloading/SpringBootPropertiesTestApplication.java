@@ -12,16 +12,16 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class SpringBootPropertiesTestApplication {
 
-	@Bean("singletonValueRefreshConfigBean")
-	@RefreshScope
-	@Scope("singleton")
-	public ValueRefreshConfigBean singletonValueRefreshConfigBean(@Value("${application.theme.color:null}") String val) {
-		return new ValueRefreshConfigBean(val);
-	}
+   @Bean("singletonValueRefreshConfigBean")
+   @RefreshScope
+   @Scope("singleton")
+   public ValueRefreshConfigBean singletonValueRefreshConfigBean(@Value("${application.theme.color:null}") String val) {
+      return new ValueRefreshConfigBean(val);
+   }
 
-	@Bean
-	@RefreshScope
-	public ValueRefreshConfigBean valueRefreshConfigBean(@Value("${application.theme.color:null}") String val) {
-		return new ValueRefreshConfigBean(val);
-	}
+   @Bean
+   @RefreshScope
+   public ValueRefreshConfigBean valueRefreshConfigBean(@Value("${application.theme.color:null}") String val) {
+      return new ValueRefreshConfigBean(val);
+   }
 }

@@ -16,25 +16,25 @@ import java.util.List;
 
 @RestController
 public class ProductController {
-	private final ProductService productService;
+   private final ProductService productService;
 
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+   public ProductController(ProductService productService) {
+      this.productService = productService;
+   }
 
-	@PostMapping("/create")
-	public Product addProduct(@RequestBody Product product) {
-		return productService.addProducts(product);
-	}
+   @PostMapping("/create")
+   public Product addProduct(@RequestBody Product product) {
+      return productService.addProducts(product);
+   }
 
-	@ApiResponses(value = {
-		@ApiResponse(
-			content = {@Content(mediaType = "application/json",
-			array = @ArraySchema(schema = @Schema(implementation = Product.class))
-			)})
-	})
-	@GetMapping("/products")
-	public List<Product> getProductsList() {
-		return productService.getProductsList();
-	}
+   @ApiResponses(value = {
+         @ApiResponse(
+               content = {@Content(mediaType = "application/json",
+                     array = @ArraySchema(schema = @Schema(implementation = Product.class))
+               )})
+   })
+   @GetMapping("/products")
+   public List<Product> getProductsList() {
+      return productService.getProductsList();
+   }
 }

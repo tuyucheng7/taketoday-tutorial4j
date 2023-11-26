@@ -14,17 +14,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AddressClient {
 
-	private final DataLoader dataLoader;
+   private final DataLoader dataLoader;
 
-	public Optional<Address> getAddressByCustomerId(Integer customerId) {
-		LOGGER.info("Getting address by customerId {}", customerId);
-		SleepUtils.loadingSimulator(1);
-		return Optional.ofNullable(dataLoader.getAddressClientResponses().get(customerId));
-	}
+   public Optional<Address> getAddressByCustomerId(Integer customerId) {
+      LOGGER.info("Getting address by customerId {}", customerId);
+      SleepUtils.loadingSimulator(1);
+      return Optional.ofNullable(dataLoader.getAddressClientResponses().get(customerId));
+   }
 
-	public void updateAddressByCustomerId(Integer customerId, Address address) {
-		LOGGER.info("Updating address by customerId {}", customerId);
-		SleepUtils.loadingSimulator(1);
-		dataLoader.getAddressClientResponses().put(customerId, address);
-	}
+   public void updateAddressByCustomerId(Integer customerId, Address address) {
+      LOGGER.info("Updating address by customerId {}", customerId);
+      SleepUtils.loadingSimulator(1);
+      dataLoader.getAddressClientResponses().put(customerId, address);
+   }
 }

@@ -22,51 +22,51 @@ import static org.springframework.http.MediaType.TEXT_HTML;
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @TestPropertySource(properties = "spring.security.oauth2.client.registration.github.client-id:test-id")
 public class JerseyResourceUnitTest {
-    @Autowired
-    private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-    @LocalServerPort
-    private int port;
+   @LocalServerPort
+   private int port;
 
-    private String basePath;
+   private String basePath;
 
-    @Before
-    public void setup() {
-        basePath = "http://localhost:" + port + "/";
-    }
+   @Before
+   public void setup() {
+      basePath = "http://localhost:" + port + "/";
+   }
 
-    @Test
-    public void whenUserIsUnauthenticated_thenTheyAreRedirectedToLoginPage() {
-        ResponseEntity<Object> response = restTemplate.getForEntity(basePath, Object.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FOUND);
-        assertThat(response.getBody()).isNull();
+   @Test
+   public void whenUserIsUnauthenticated_thenTheyAreRedirectedToLoginPage() {
+      ResponseEntity<Object> response = restTemplate.getForEntity(basePath, Object.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+      assertThat(response.getBody()).isNull();
 
-        URI redirectLocation = response.getHeaders().getLocation();
-        assertThat(redirectLocation).isNotNull();
-        assertThat(redirectLocation.toString()).isEqualTo(basePath + "login");
-    }
+      URI redirectLocation = response.getHeaders().getLocation();
+      assertThat(redirectLocation).isNotNull();
+      assertThat(redirectLocation.toString()).isEqualTo(basePath + "login");
+   }
 
-    @Test
-    public void whenUserAttemptsToLogin_thenAuthorizationPathIsReturned() {
-        ResponseEntity<String> response = restTemplate.getForEntity(basePath + "login", String.class);
-        assertThat(response.getHeaders().getContentType()).isEqualTo(TEXT_HTML);
-        assertThat(response.getBody()).isEqualTo("Log in with <a href=\"/oauth2/authorization/github\">GitHub</a>");
-    }
+   @Test
+   public void whenUserAttemptsToLogin_thenAuthorizationPathIsReturned() {
+      ResponseEntity<String> response = restTemplate.getForEntity(basePath + "login", String.class);
+      assertThat(response.getHeaders().getContentType()).isEqualTo(TEXT_HTML);
+      assertThat(response.getBody()).isEqualTo("Log in with <a href=\"/oauth2/authorization/github\">GitHub</a>");
+   }
 
-    @Test
-    public void whenUserAccessesAuthorizationEndpoint_thenTheyAresRedirectedToProvider() {
-        ResponseEntity<String> response = restTemplate.getForEntity(basePath + "oauth2/authorization/github", String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FOUND);
-        assertThat(response.getBody()).isNull();
+   @Test
+   public void whenUserAccessesAuthorizationEndpoint_thenTheyAresRedirectedToProvider() {
+      ResponseEntity<String> response = restTemplate.getForEntity(basePath + "oauth2/authorization/github", String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.FOUND);
+      assertThat(response.getBody()).isNull();
 
-        URI redirectLocation = response.getHeaders().getLocation();
-        assertThat(redirectLocation).isNotNull();
-        assertThat(redirectLocation.getHost()).isEqualTo("github.com");
-        assertThat(redirectLocation.getPath()).isEqualTo("/login/oauth/authorize");
+      URI redirectLocation = response.getHeaders().getLocation();
+      assertThat(redirectLocation).isNotNull();
+      assertThat(redirectLocation.getHost()).isEqualTo("github.com");
+      assertThat(redirectLocation.getPath()).isEqualTo("/login/oauth/authorize");
 
-        String redirectionQuery = redirectLocation.getQuery();
-        assertThat(redirectionQuery.contains("response_type=code"));
-        assertThat(redirectionQuery.contains("client_id=test-id"));
-        assertThat(redirectionQuery.contains("scope=read:user"));
-    }
+      String redirectionQuery = redirectLocation.getQuery();
+      assertThat(redirectionQuery.contains("response_type=code"));
+      assertThat(redirectionQuery.contains("client_id=test-id"));
+      assertThat(redirectionQuery.contains("scope=read:user"));
+   }
 }

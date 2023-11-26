@@ -9,13 +9,13 @@ import java.util.List;
 @RestController
 public class SecuredController {
 
-	@GetMapping("/public/hello")
-	public List<String> publicHello() {
-		return Arrays.asList("Hello", "World", "from", "Public");
-	}
+   @GetMapping("/public/hello")
+   public List<String> publicHello() {
+      return Arrays.asList("Hello", "World", "from", "Public");
+   }
 
-	@GetMapping("/private/hello")
-	public List<String> privateHello() {
-		return Arrays.asList("Hello", "World", "from", "Private");
-	}
+   @GetMapping("/private/hello")
+   public List<String> privateHello() {
+      return Arrays.asList("Hello", "World", "from", "Private");
+   }
 }

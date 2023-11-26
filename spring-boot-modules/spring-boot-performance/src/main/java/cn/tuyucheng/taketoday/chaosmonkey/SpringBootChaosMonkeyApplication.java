@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {"cn.tuyucheng.taketoday.chaosmonkey"})
 public class SpringBootChaosMonkeyApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootChaosMonkeyApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootChaosMonkeyApplication.class, args);
+   }
 }

@@ -15,33 +15,33 @@ import org.springframework.security.web.authentication.preauth.AbstractPreAuthen
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private OAuth2RestTemplate restTemplate;
+   @Autowired
+   private OAuth2RestTemplate restTemplate;
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-              .antMatchers("/resources/**");
-    }
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.ignoring()
+            .antMatchers("/resources/**");
+   }
 
-    @Bean
-    public OpenIdConnectFilter myFilter() {
-        final OpenIdConnectFilter filter = new OpenIdConnectFilter("/google-login");
-        filter.setRestTemplate(restTemplate);
-        return filter;
-    }
+   @Bean
+   public OpenIdConnectFilter myFilter() {
+      final OpenIdConnectFilter filter = new OpenIdConnectFilter("/google-login");
+      filter.setRestTemplate(restTemplate);
+      return filter;
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterAfter(new OAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
-              .addFilterAfter(myFilter(), OAuth2ClientContextFilter.class)
-              .httpBasic()
-              .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/google-login"))
-              .and()
-              .authorizeRequests()
-              // .antMatchers("/","/index*").permitAll()
-              .anyRequest()
-              .authenticated();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.addFilterAfter(new OAuth2ClientContextFilter(), AbstractPreAuthenticatedProcessingFilter.class)
+            .addFilterAfter(myFilter(), OAuth2ClientContextFilter.class)
+            .httpBasic()
+            .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/google-login"))
+            .and()
+            .authorizeRequests()
+            // .antMatchers("/","/index*").permitAll()
+            .anyRequest()
+            .authenticated();
+      return http.build();
+   }
 }

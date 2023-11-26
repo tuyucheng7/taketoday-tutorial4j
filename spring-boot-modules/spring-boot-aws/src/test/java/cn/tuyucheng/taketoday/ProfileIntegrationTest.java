@@ -14,22 +14,22 @@ import java.io.IOException;
 @SpringBootApplication
 public class ProfileIntegrationTest {
 
-	MockLambdaContext lambdaContext = new MockLambdaContext();
+   MockLambdaContext lambdaContext = new MockLambdaContext();
 
-	@Test
-	void whenTheUsersPathIsInvokedViaLambda_thenShouldReturnAList() throws IOException {
-		LambdaHandler lambdaHandler = new LambdaHandler();
-		AwsProxyRequest req = new AwsProxyRequestBuilder("/api/v1/users", "GET").build();
-		AwsProxyResponse resp = lambdaHandler.handleRequest(req, lambdaContext);
-		Assertions.assertNotNull(resp.getBody());
-		Assertions.assertEquals(200, resp.getStatusCode());
-	}
+   @Test
+   void whenTheUsersPathIsInvokedViaLambda_thenShouldReturnAList() throws IOException {
+      LambdaHandler lambdaHandler = new LambdaHandler();
+      AwsProxyRequest req = new AwsProxyRequestBuilder("/api/v1/users", "GET").build();
+      AwsProxyResponse resp = lambdaHandler.handleRequest(req, lambdaContext);
+      Assertions.assertNotNull(resp.getBody());
+      Assertions.assertEquals(200, resp.getStatusCode());
+   }
 
-	@Test
-	void whenWrongPathPathIsInvokedViaLambda_thenShouldNotFound() throws IOException {
-		LambdaHandler lambdaHandler = new LambdaHandler();
-		AwsProxyRequest req = new AwsProxyRequestBuilder("/api/v1/users/plus-one-level", "GET").build();
-		AwsProxyResponse resp = lambdaHandler.handleRequest(req, lambdaContext);
-		Assertions.assertEquals(404, resp.getStatusCode());
-	}
+   @Test
+   void whenWrongPathPathIsInvokedViaLambda_thenShouldNotFound() throws IOException {
+      LambdaHandler lambdaHandler = new LambdaHandler();
+      AwsProxyRequest req = new AwsProxyRequestBuilder("/api/v1/users/plus-one-level", "GET").build();
+      AwsProxyResponse resp = lambdaHandler.handleRequest(req, lambdaContext);
+      Assertions.assertEquals(404, resp.getStatusCode());
+   }
 }

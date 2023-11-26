@@ -11,15 +11,15 @@ import java.util.List;
 
 interface BooksService {
 
-	@GetExchange("/books")
-	List<Book> getBooks();
+   @GetExchange("/books")
+   List<Book> getBooks();
 
-	@GetExchange("/books/{id}")
-	Book getBook(@PathVariable long id);
+   @GetExchange("/books/{id}")
+   Book getBook(@PathVariable long id);
 
-	@PostExchange("/books")
-	Book saveBook(@RequestBody Book book);
+   @PostExchange("/books")
+   Book saveBook(@RequestBody Book book);
 
-	@DeleteExchange("/books/{id}")
-	ResponseEntity<Void> deleteBook(@PathVariable long id);
+   @DeleteExchange("/books/{id}")
+   ResponseEntity<Void> deleteBook(@PathVariable long id);
 }

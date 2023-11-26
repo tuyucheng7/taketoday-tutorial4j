@@ -11,32 +11,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(NotificationService.class);
+   private static final Logger LOG = LoggerFactory.getLogger(NotificationService.class);
 
-	public void createNotification(NotificationDTO notificationDTO) {
-		Notification notification = toEntity(notificationDTO);
-		LOG.info("Received notification by module dependency for product {} in date {} by {}.", notification.getProductName()
-			, notification.getDate(), notification.getFormat());
-	}
+   public void createNotification(NotificationDTO notificationDTO) {
+      Notification notification = toEntity(notificationDTO);
+      LOG.info("Received notification by module dependency for product {} in date {} by {}.", notification.getProductName()
+            , notification.getDate(), notification.getFormat());
+   }
 
-	@Async
-	@ApplicationModuleListener
-	public void notificationEvent(NotificationDTO event) {
-		Notification notification = toEntity(event);
-		LOG.info("Received notification by event for product {} in date {} by {}.", notification.getProductName()
-			, notification.getDate(), notification.getFormat());
-	}
+   @Async
+   @ApplicationModuleListener
+   public void notificationEvent(NotificationDTO event) {
+      Notification notification = toEntity(event);
+      LOG.info("Received notification by event for product {} in date {} by {}.", notification.getProductName()
+            , notification.getDate(), notification.getFormat());
+   }
 
-	private Notification toEntity(NotificationDTO notificationDTO) {
-		Notification notification = new Notification();
-		notification.setDate(notificationDTO.getDate());
-		if (notificationDTO.getFormat().equals("SMS")) {
-			notification.setFormat(NotificationType.SMS);
-		}
-		if (notificationDTO.getFormat().equals("EMAIL")) {
-			notification.setFormat(NotificationType.EMAIL);
-		}
-		notification.setProductName(notificationDTO.getProductName());
-		return notification;
-	}
+   private Notification toEntity(NotificationDTO notificationDTO) {
+      Notification notification = new Notification();
+      notification.setDate(notificationDTO.getDate());
+      if (notificationDTO.getFormat().equals("SMS")) {
+         notification.setFormat(NotificationType.SMS);
+      }
+      if (notificationDTO.getFormat().equals("EMAIL")) {
+         notification.setFormat(NotificationType.EMAIL);
+      }
+      notification.setProductName(notificationDTO.getProductName());
+      return notification;
+   }
 }

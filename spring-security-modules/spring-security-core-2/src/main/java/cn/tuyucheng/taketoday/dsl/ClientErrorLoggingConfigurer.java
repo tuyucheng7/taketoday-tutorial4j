@@ -9,24 +9,24 @@ import java.util.List;
 
 public class ClientErrorLoggingConfigurer extends AbstractHttpConfigurer<ClientErrorLoggingConfigurer, HttpSecurity> {
 
-    private List<HttpStatus> errorCodes;
+   private List<HttpStatus> errorCodes;
 
-    public ClientErrorLoggingConfigurer(List<HttpStatus> errorCodes) {
-        this.errorCodes = errorCodes;
-    }
+   public ClientErrorLoggingConfigurer(List<HttpStatus> errorCodes) {
+      this.errorCodes = errorCodes;
+   }
 
-    public ClientErrorLoggingConfigurer() {
+   public ClientErrorLoggingConfigurer() {
 
-    }
+   }
 
-    @Override
-    public void init(HttpSecurity http) throws Exception {
-        // initialization code
-    }
+   @Override
+   public void init(HttpSecurity http) throws Exception {
+      // initialization code
+   }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.addFilterAfter(new ClientErrorLoggingFilter(errorCodes), FilterSecurityInterceptor.class);
-    }
+   @Override
+   public void configure(HttpSecurity http) throws Exception {
+      http.addFilterAfter(new ClientErrorLoggingFilter(errorCodes), FilterSecurityInterceptor.class);
+   }
 
 }

@@ -10,10 +10,10 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserServiceImpl implements IUserService {
 
-    @Autowired
-    private UserRepository repository;
+   @Autowired
+   private UserRepository repository;
 
-    public User findUserByEmail(String email) {
-        return repository.findByEmail(email);
-    }
+   public User findUserByEmail(String email) {
+      return repository.findByEmail(email);
+   }
 }

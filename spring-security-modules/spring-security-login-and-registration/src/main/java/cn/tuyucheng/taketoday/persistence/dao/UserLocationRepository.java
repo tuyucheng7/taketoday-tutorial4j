@@ -5,6 +5,6 @@ import cn.tuyucheng.taketoday.persistence.model.UserLocation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserLocationRepository extends JpaRepository<UserLocation, Long> {
-	UserLocation findByCountryAndUser(String country, User user);
+   UserLocation findByCountryAndUser(String country, User user);
 
 }

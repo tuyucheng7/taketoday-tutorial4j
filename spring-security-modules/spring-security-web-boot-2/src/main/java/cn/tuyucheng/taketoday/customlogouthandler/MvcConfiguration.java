@@ -18,15 +18,15 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class MvcConfiguration {
 
-    @Autowired
-    private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-    @Autowired
-    private CustomLogoutHandler logoutHandler;
+   @Autowired
+   private CustomLogoutHandler logoutHandler;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.httpBasic()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.httpBasic()
             .and()
             .authorizeRequests()
             .antMatchers(HttpMethod.GET, "/user/**")
@@ -42,14 +42,14 @@ public class MvcConfiguration {
             .disable()
             .formLogin()
             .disable();
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        jdbcUserDetailsManager.setUsersByUsernameQuery("select login, password, true from users where login=?");
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select login, role from users where login=?");
-        return jdbcUserDetailsManager;
-    }
+   @Bean
+   public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
+      JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+      jdbcUserDetailsManager.setUsersByUsernameQuery("select login, password, true from users where login=?");
+      jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select login, role from users where login=?");
+      return jdbcUserDetailsManager;
+   }
 }

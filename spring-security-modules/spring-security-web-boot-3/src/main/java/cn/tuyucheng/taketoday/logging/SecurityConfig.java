@@ -10,19 +10,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${spring.websecurity.debug:false}")
-    boolean webSecurityDebug;
+   @Value("${spring.websecurity.debug:false}")
+   boolean webSecurityDebug;
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.debug(webSecurityDebug);
-    }
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.debug(webSecurityDebug);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
             .antMatchers("/**")
             .permitAll();
-        return http.build();
-    }
+      return http.build();
+   }
 }

@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderDetailBO {
 
-	@Autowired
-	private OrderDetailRepository orderDetailRepository;
+   @Autowired
+   private OrderDetailRepository orderDetailRepository;
 
-	@Cacheable(cacheNames = "orders", cacheResolver = "cacheResolver")
-	public Order getOrderDetail(Integer orderId) {
-		return orderDetailRepository.getOrderDetail(orderId);
-	}
+   @Cacheable(cacheNames = "orders", cacheResolver = "cacheResolver")
+   public Order getOrderDetail(Integer orderId) {
+      return orderDetailRepository.getOrderDetail(orderId);
+   }
 
-	@Cacheable(cacheNames = "orderprice", cacheResolver = "cacheResolver")
-	public double getOrderPrice(Integer orderId) {
-		return orderDetailRepository.getOrderPrice(orderId);
-	}
+   @Cacheable(cacheNames = "orderprice", cacheResolver = "cacheResolver")
+   public double getOrderPrice(Integer orderId) {
+      return orderDetailRepository.getOrderPrice(orderId);
+   }
 }

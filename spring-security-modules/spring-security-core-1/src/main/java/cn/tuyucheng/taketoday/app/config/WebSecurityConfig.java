@@ -16,40 +16,40 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/css/**", "/js/**", "/loggedout")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .httpBasic()
-              .and()
-              .logout()
-              .disable()
-              .csrf()
-              .disable();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/css/**", "/js/**", "/loggedout")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .httpBasic()
+            .and()
+            .logout()
+            .disable()
+            .csrf()
+            .disable();
+      return http.build();
+   }
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails jim = User.withUsername("jim")
-              .password(passwordEncoder.encode("jim"))
-              .roles("USER", "ACTUATOR")
-              .build();
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
+      UserDetails jim = User.withUsername("jim")
+            .password(passwordEncoder.encode("jim"))
+            .roles("USER", "ACTUATOR")
+            .build();
 
-        UserDetails pam = User.withUsername("pam")
-              .password(passwordEncoder.encode("pam"))
-              .roles("USER")
-              .build();
+      UserDetails pam = User.withUsername("pam")
+            .password(passwordEncoder.encode("pam"))
+            .roles("USER")
+            .build();
 
-        UserDetails michael = User.withUsername("michael")
-              .password(passwordEncoder.encode("michael"))
-              .roles("MANAGER")
-              .build();
+      UserDetails michael = User.withUsername("michael")
+            .password(passwordEncoder.encode("michael"))
+            .roles("MANAGER")
+            .build();
 
-        return new InMemoryUserDetailsManager(jim, pam, michael);
-    }
+      return new InMemoryUserDetailsManager(jim, pam, michael);
+   }
 }

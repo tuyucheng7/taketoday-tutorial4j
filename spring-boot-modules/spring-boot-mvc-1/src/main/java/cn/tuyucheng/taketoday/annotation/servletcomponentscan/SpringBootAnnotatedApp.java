@@ -18,7 +18,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @ServletComponentScan("cn.tuyucheng.taketoday.annotation.servletcomponentscan.components")
 public class SpringBootAnnotatedApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootAnnotatedApp.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootAnnotatedApp.class, args);
+   }
 }

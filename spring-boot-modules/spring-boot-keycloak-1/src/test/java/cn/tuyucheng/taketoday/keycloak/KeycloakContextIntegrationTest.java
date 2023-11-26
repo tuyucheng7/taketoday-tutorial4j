@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = {SpringBootKeycloakApp.class})
 public class KeycloakContextIntegrationTest {
 
-	@Test
-	public void whenLoadApplication_thenSuccess() {
-	}
+   @Test
+   public void whenLoadApplication_thenSuccess() {
+   }
 }

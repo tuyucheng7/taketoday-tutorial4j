@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringdocApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringdocApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringdocApplication.class, args);
+   }
 }

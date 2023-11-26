@@ -18,15 +18,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @SpringBootTest(classes = ComponentScanCustomFilterApp.class)
 class ComponentScanCustomFilterAppIntegrationTest {
 
-    @Test
-    void whenCustomFilterIsUsed_thenComponentScanShouldRegisterBeanMatchingCustomFilter() {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ComponentScanCustomFilterApp.class);
-        List<String> beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
-              .filter(bean -> !bean.contains("org.springframework") && !bean.contains("componentScanCustomFilterApp")
-                    && !bean.contains("componentScanCustomFilter"))
-              .collect(Collectors.toList());
+   @Test
+   void whenCustomFilterIsUsed_thenComponentScanShouldRegisterBeanMatchingCustomFilter() {
+      ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ComponentScanCustomFilterApp.class);
+      List<String> beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
+            .filter(bean -> !bean.contains("org.springframework") && !bean.contains("componentScanCustomFilterApp")
+                  && !bean.contains("componentScanCustomFilter"))
+            .collect(Collectors.toList());
 
-        assertThat(beans.size(), equalTo(1));
-        assertThat(beans.get(0), equalTo("elephant"));
-    }
+      assertThat(beans.size(), equalTo(1));
+      assertThat(beans.get(0), equalTo("elephant"));
+   }
 }

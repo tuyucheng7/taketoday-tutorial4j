@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:foo.properties")
 public class BasicPropertiesWithJavaConfig {
 
-	public BasicPropertiesWithJavaConfig() {
-		super();
-	}
+   public BasicPropertiesWithJavaConfig() {
+      super();
+   }
 }

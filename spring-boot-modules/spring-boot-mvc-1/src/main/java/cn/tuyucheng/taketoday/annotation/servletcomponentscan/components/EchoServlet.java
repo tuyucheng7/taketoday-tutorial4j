@@ -13,15 +13,15 @@ import java.nio.file.StandardCopyOption;
 @WebServlet(name = "echo servlet", urlPatterns = "/echo")
 public class EchoServlet extends HttpServlet {
 
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			Path path = File.createTempFile("echo", "tmp").toPath();
-			Files.copy(request.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-			Files.copy(path, response.getOutputStream());
-			Files.delete(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+   @Override
+   public void doPost(HttpServletRequest request, HttpServletResponse response) {
+      try {
+         Path path = File.createTempFile("echo", "tmp").toPath();
+         Files.copy(request.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+         Files.copy(path, response.getOutputStream());
+         Files.delete(path);
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
 }

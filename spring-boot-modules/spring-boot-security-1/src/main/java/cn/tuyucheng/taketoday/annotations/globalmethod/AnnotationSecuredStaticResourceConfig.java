@@ -9,10 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class AnnotationSecuredStaticResourceConfig {
 
-	@Bean
-	public WebSecurityCustomizer ignoreResources() {
-		return webSecurity -> webSecurity
-			.ignoring()
-			.antMatchers("/hello/*");
-	}
+   @Bean
+   public WebSecurityCustomizer ignoreResources() {
+      return webSecurity -> webSecurity
+            .ignoring()
+            .antMatchers("/hello/*");
+   }
 }

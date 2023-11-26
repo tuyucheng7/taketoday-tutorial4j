@@ -2,39 +2,39 @@ package cn.tuyucheng.taketoday.springgroovyconfig;
 
 public class Company {
 
-	private String name;
-	private String contact;
-	private String type;
+   private String name;
+   private String contact;
+   private String type;
 
-	public Company() {
-	}
+   public Company() {
+   }
 
-	public Company(String name) {
-		super();
-		this.name = name;
-	}
+   public Company(String name) {
+      super();
+      this.name = name;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public String getContact() {
-		return contact;
-	}
+   public String getContact() {
+      return contact;
+   }
 
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
+   public void setContact(String contact) {
+      this.contact = contact;
+   }
 
-	public String getType() {
-		return type;
-	}
+   public String getType() {
+      return type;
+   }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+   public void setType(String type) {
+      this.type = type;
+   }
 }

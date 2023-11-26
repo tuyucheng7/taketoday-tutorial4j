@@ -14,14 +14,14 @@ import java.util.List;
 @PropertySource("classpath:values.properties")
 public class CollectionProvider {
 
-	private final List<String> values = new ArrayList<>();
+   private final List<String> values = new ArrayList<>();
 
-	public Collection<String> getValues() {
-		return Collections.unmodifiableCollection(values);
-	}
+   public Collection<String> getValues() {
+      return Collections.unmodifiableCollection(values);
+   }
 
-	@Autowired
-	public void setValues(@Value("#{'${listOfValues}'.split(',')}") List<String> values) {
-		this.values.addAll(values);
-	}
+   @Autowired
+   public void setValues(@Value("#{'${listOfValues}'.split(',')}") List<String> values) {
+      this.values.addAll(values);
+   }
 }

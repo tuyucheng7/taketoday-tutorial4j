@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Ctx2Controller {
 
-    @Autowired
-    private HomeService homeService;
+   @Autowired
+   private HomeService homeService;
 
-    @GetMapping("/greeting")
-    public String getGreeting() {
-        return homeService.getGreeting();
-    }
+   @GetMapping("/greeting")
+   public String getGreeting() {
+      return homeService.getGreeting();
+   }
 }

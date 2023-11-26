@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("cn.tuyucheng.taketoday.client")
 public class ClientConfig {
 
-    public ClientConfig() {
-        super();
-    }
-    // beans
+   public ClientConfig() {
+      super();
+   }
+   // beans
 }

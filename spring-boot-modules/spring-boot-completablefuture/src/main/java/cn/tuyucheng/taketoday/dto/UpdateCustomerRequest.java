@@ -13,9 +13,9 @@ import java.util.Set;
 @AllArgsConstructor
 public class UpdateCustomerRequest {
 
-	private String phoneNumber;
+   private String phoneNumber;
 
-	private Set<FinancialRequest> financialInfo;
+   private Set<FinancialRequest> financialInfo;
 
-	private UpdateAddressRequest address;
+   private UpdateAddressRequest address;
 }

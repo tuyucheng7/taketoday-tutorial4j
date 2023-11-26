@@ -11,26 +11,26 @@ import org.springframework.batch.item.ItemReader;
 
 public class LineReader implements ItemReader<Line>, StepExecutionListener {
 
-	private final Logger logger = LoggerFactory.getLogger(LineReader.class);
-	private FileUtils fu;
+   private final Logger logger = LoggerFactory.getLogger(LineReader.class);
+   private FileUtils fu;
 
-	@Override
-	public void beforeStep(StepExecution stepExecution) {
-		fu = new FileUtils("taskletsvschunks/input/tasklets-vs-chunks.csv");
-		logger.debug("Line Reader initialized.");
-	}
+   @Override
+   public void beforeStep(StepExecution stepExecution) {
+      fu = new FileUtils("taskletsvschunks/input/tasklets-vs-chunks.csv");
+      logger.debug("Line Reader initialized.");
+   }
 
-	@Override
-	public Line read() {
-		Line line = fu.readLine();
-		if (line != null) logger.debug("Read line: " + line);
-		return line;
-	}
+   @Override
+   public Line read() {
+      Line line = fu.readLine();
+      if (line != null) logger.debug("Read line: " + line);
+      return line;
+   }
 
-	@Override
-	public ExitStatus afterStep(StepExecution stepExecution) {
-		fu.closeReader();
-		logger.debug("Line Reader ended.");
-		return ExitStatus.COMPLETED;
-	}
+   @Override
+   public ExitStatus afterStep(StepExecution stepExecution) {
+      fu.closeReader();
+      logger.debug("Line Reader ended.");
+      return ExitStatus.COMPLETED;
+   }
 }

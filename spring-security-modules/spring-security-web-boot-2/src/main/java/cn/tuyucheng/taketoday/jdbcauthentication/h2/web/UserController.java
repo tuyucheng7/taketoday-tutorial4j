@@ -10,8 +10,8 @@ import java.security.Principal;
 @RequestMapping("/principal")
 public class UserController {
 
-    @GetMapping
-    public Principal retrievePrincipal(Principal principal) {
-        return principal;
-    }
+   @GetMapping
+   public Principal retrievePrincipal(Principal principal) {
+      return principal;
+   }
 }

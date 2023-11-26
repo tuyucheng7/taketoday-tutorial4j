@@ -9,8 +9,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ResponseMessage {
-	/**
-	 * The content of the response message.
-	 */
-	private String message;
+   /**
+    * The content of the response message.
+    */
+   private String message;
 }

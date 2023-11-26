@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class VehicleService {
 
-	@Async
-	public void repairCar() {
-	}
+   @Async
+   public void repairCar() {
+   }
 }

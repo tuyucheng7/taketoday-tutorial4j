@@ -22,26 +22,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ContextConfiguration(classes = {NumberInfoConfig.class})
 public class DeciderJobIntegrationTest {
 
-	@Autowired
-	private JobLauncherTestUtils jobLauncherTestUtils;
+   @Autowired
+   private JobLauncherTestUtils jobLauncherTestUtils;
 
-	@Test
-	public void givenNumberGeneratorDecider_whenDeciderRuns_thenStatusIsNotify() throws Exception {
-		JobExecution jobExecution = jobLauncherTestUtils.launchJob();
-		Collection<StepExecution> actualStepExecutions = jobExecution.getStepExecutions();
-		ExitStatus actualJobExitStatus = jobExecution.getExitStatus();
+   @Test
+   public void givenNumberGeneratorDecider_whenDeciderRuns_thenStatusIsNotify() throws Exception {
+      JobExecution jobExecution = jobLauncherTestUtils.launchJob();
+      Collection<StepExecution> actualStepExecutions = jobExecution.getStepExecutions();
+      ExitStatus actualJobExitStatus = jobExecution.getExitStatus();
 
-		assertEquals("COMPLETED", actualJobExitStatus.getExitCode());
-		assertEquals(2, actualStepExecutions.size());
-		boolean notifyStepDidRun = false;
-		Iterator<StepExecution> iterator = actualStepExecutions.iterator();
-		while (iterator.hasNext() && !notifyStepDidRun) {
-			if (iterator.next()
-				.getStepName()
-				.equals("Notify step")) {
-				notifyStepDidRun = true;
-			}
-		}
-		assertTrue(notifyStepDidRun);
-	}
+      assertEquals("COMPLETED", actualJobExitStatus.getExitCode());
+      assertEquals(2, actualStepExecutions.size());
+      boolean notifyStepDidRun = false;
+      Iterator<StepExecution> iterator = actualStepExecutions.iterator();
+      while (iterator.hasNext() && !notifyStepDidRun) {
+         if (iterator.next()
+               .getStepName()
+               .equals("Notify step")) {
+            notifyStepDidRun = true;
+         }
+      }
+      assertTrue(notifyStepDidRun);
+   }
 }

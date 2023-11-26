@@ -16,26 +16,26 @@ import java.util.Map;
 @ResponseBody
 public class MetricsController {
 
-	@Autowired
-	private InMemoryMetricService metricService;
+   @Autowired
+   private InMemoryMetricService metricService;
 
-	// change the qualifier to use the in-memory implementation
-	@Autowired
-	@Qualifier("customActuatorMetricService")
-	private MetricService graphMetricService;
+   // change the qualifier to use the in-memory implementation
+   @Autowired
+   @Qualifier("customActuatorMetricService")
+   private MetricService graphMetricService;
 
-	@GetMapping(value = "/metric")
-	public Map<String, Map<Integer, Integer>> getMetric() {
-		return metricService.getFullMetric();
-	}
+   @GetMapping(value = "/metric")
+   public Map<String, Map<Integer, Integer>> getMetric() {
+      return metricService.getFullMetric();
+   }
 
-	@GetMapping(value = "/status-metric")
-	public Map<Integer, Integer> getStatusMetric() {
-		return metricService.getStatusMetric();
-	}
+   @GetMapping(value = "/status-metric")
+   public Map<Integer, Integer> getStatusMetric() {
+      return metricService.getStatusMetric();
+   }
 
-	@GetMapping(value = "/metric-graph-data")
-	public Object[][] getMetricData() {
-		return graphMetricService.getGraphData();
-	}
+   @GetMapping(value = "/metric-graph-data")
+   public Object[][] getMetricData() {
+      return graphMetricService.getGraphData();
+   }
 }

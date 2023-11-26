@@ -21,46 +21,46 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
 class EmbeddedKafkaIntegrationTest {
 
-	@Autowired
-	public KafkaTemplate<String, String> template;
+   @Autowired
+   public KafkaTemplate<String, String> template;
 
-	@Autowired
-	private KafkaConsumer consumer;
+   @Autowired
+   private KafkaConsumer consumer;
 
-	@Autowired
-	private KafkaProducer producer;
+   @Autowired
+   private KafkaProducer producer;
 
-	@Value("${test.topic}")
-	private String topic;
+   @Value("${test.topic}")
+   private String topic;
 
-	private ObjectMapper objectMapper = new ObjectMapper();
+   private ObjectMapper objectMapper = new ObjectMapper();
 
-	@BeforeEach
-	void setup() {
-		consumer.resetLatch();
-	}
+   @BeforeEach
+   void setup() {
+      consumer.resetLatch();
+   }
 
-	@Test
-	public void givenEmbeddedKafkaBroker_whenSendingWithDefaultTemplate_thenMessageReceived() throws Exception {
-		String data = "Sending with default template";
+   @Test
+   public void givenEmbeddedKafkaBroker_whenSendingWithDefaultTemplate_thenMessageReceived() throws Exception {
+      String data = "Sending with default template";
 
-		template.send(topic, data);
+      template.send(topic, data);
 
-		boolean messageConsumed = consumer.getLatch()
-			.await(10, TimeUnit.SECONDS);
-		assertTrue(messageConsumed);
-		assertThat(consumer.getPayload(), containsString(data));
-	}
+      boolean messageConsumed = consumer.getLatch()
+            .await(10, TimeUnit.SECONDS);
+      assertTrue(messageConsumed);
+      assertThat(consumer.getPayload(), containsString(data));
+   }
 
-	@Test
-	public void givenEmbeddedKafkaBroker_whenSendingWithSimpleProducer_thenMessageReceived() throws Exception {
-		String data = "Sending with our own simple KafkaProducer";
+   @Test
+   public void givenEmbeddedKafkaBroker_whenSendingWithSimpleProducer_thenMessageReceived() throws Exception {
+      String data = "Sending with our own simple KafkaProducer";
 
-		producer.send(topic, data);
+      producer.send(topic, data);
 
-		boolean messageConsumed = consumer.getLatch()
-			.await(10, TimeUnit.SECONDS);
-		assertTrue(messageConsumed);
-		assertThat(consumer.getPayload(), containsString(data));
-	}
+      boolean messageConsumed = consumer.getLatch()
+            .await(10, TimeUnit.SECONDS);
+      assertTrue(messageConsumed);
+      assertThat(consumer.getPayload(), containsString(data));
+   }
 }

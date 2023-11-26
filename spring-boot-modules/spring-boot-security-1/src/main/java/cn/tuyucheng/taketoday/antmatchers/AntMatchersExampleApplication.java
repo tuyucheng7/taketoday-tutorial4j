@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AntMatchersExampleApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AntMatchersExampleApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(AntMatchersExampleApplication.class, args);
+   }
 }

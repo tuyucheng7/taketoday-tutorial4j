@@ -16,20 +16,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @EnableConfigurationProperties(value = ApplicationProps.class)
 class YamlComplexListsUnitTest {
 
-	@Autowired
-	private ApplicationProps applicationProps;
+   @Autowired
+   private ApplicationProps applicationProps;
 
-	@Test
-	void whenYamlNestedLists_thenLoadComplexLists() {
-		assertThat(applicationProps.getUsers()
-			.get(0)
-			.getPassword()).isEqualTo("admin@10@");
-		assertThat(applicationProps.getProps()
-			.get(0))
-			.containsEntry("name", "YamlList");
-		assertThat(applicationProps.getProps()
-			.get(1)
-			.get("port")
-			.getClass()).isEqualTo(Integer.class);
-	}
+   @Test
+   void whenYamlNestedLists_thenLoadComplexLists() {
+      assertThat(applicationProps.getUsers()
+            .get(0)
+            .getPassword()).isEqualTo("admin@10@");
+      assertThat(applicationProps.getProps()
+            .get(0))
+            .containsEntry("name", "YamlList");
+      assertThat(applicationProps.getProps()
+            .get(1)
+            .get("port")
+            .getClass()).isEqualTo(Integer.class);
+   }
 }

@@ -1,12 +1,7 @@
 package cn.tuyucheng.taketoday.testcontainers;
 
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.Matchers.hasItems;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
-import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_CLASS;
-
-import java.util.List;
-
+import cn.tuyucheng.taketoday.testcontainers.middleearth.MiddleEarthCharacter;
+import cn.tuyucheng.taketoday.testcontainers.middleearth.MiddleEarthCharactersRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +13,12 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-import cn.tuyucheng.taketoday.testcontainers.middleearth.MiddleEarthCharacter;
-import cn.tuyucheng.taketoday.testcontainers.middleearth.MiddleEarthCharactersRepository;
+import java.util.List;
+
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.hasItems;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
+import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_CLASS;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = DEFINED_PORT)

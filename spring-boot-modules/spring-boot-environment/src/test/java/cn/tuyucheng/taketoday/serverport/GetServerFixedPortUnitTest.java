@@ -15,22 +15,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = GetServerPortApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("fixedport")
 class GetServerFixedPortUnitTest {
-    private final static int EXPECTED_PORT = 7777;
+   private final static int EXPECTED_PORT = 7777;
 
-    @Value("${server.port}")
-    private int serverPort;
+   @Value("${server.port}")
+   private int serverPort;
 
-    @Autowired
-    private ServerProperties serverProperties;
+   @Autowired
+   private ServerProperties serverProperties;
 
-    @Test
-    void givenFixedPortAsServerPort_whenReadServerPort_thenGetThePort() {
-        assertEquals(EXPECTED_PORT, serverPort, "Reading fixed port by @Value(\"${server.port}\") will get the port.");
-    }
+   @Test
+   void givenFixedPortAsServerPort_whenReadServerPort_thenGetThePort() {
+      assertEquals(EXPECTED_PORT, serverPort, "Reading fixed port by @Value(\"${server.port}\") will get the port.");
+   }
 
-    @Test
-    void givenFixedPortAsServerPort_whenReadServerProps_thenGetThePort() {
-        int port = serverProperties.getPort();
-        assertEquals(EXPECTED_PORT, port, "Reading fixed port from serverProperties will get the port.");
-    }
+   @Test
+   void givenFixedPortAsServerPort_whenReadServerProps_thenGetThePort() {
+      int port = serverProperties.getPort();
+      assertEquals(EXPECTED_PORT, port, "Reading fixed port from serverProperties will get the port.");
+   }
 }

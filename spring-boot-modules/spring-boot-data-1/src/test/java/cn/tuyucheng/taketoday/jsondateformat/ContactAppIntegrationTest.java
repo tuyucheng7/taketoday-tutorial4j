@@ -28,77 +28,77 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, classes = ContactApp.class)
 @TestPropertySource(properties = {
-	"spring.jackson.date-format=yyyy-MM-dd HH:mm:ss"
+      "spring.jackson.date-format=yyyy-MM-dd HH:mm:ss"
 })
 public class ContactAppIntegrationTest {
 
-	private final ObjectMapper mapper = new ObjectMapper();
+   private final ObjectMapper mapper = new ObjectMapper();
 
-	@LocalServerPort
-	private int port;
+   @LocalServerPort
+   private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Test
-	public void givenJsonFormatAnnotationAndJava8DateType_whenGet_thenReturnExpectedDateFormat() throws IOException, ParseException {
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts", String.class);
+   @Test
+   public void givenJsonFormatAnnotationAndJava8DateType_whenGet_thenReturnExpectedDateFormat() throws IOException, ParseException {
+      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts", String.class);
 
-		assertEquals(200, response.getStatusCodeValue());
+      assertEquals(200, response.getStatusCodeValue());
 
-		List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
-		});
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      });
 
-		LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-		assertNotNull(birthdayDate);
-		assertNotNull(lastUpdateTime);
-	}
+      assertNotNull(birthdayDate);
+      assertNotNull(lastUpdateTime);
+   }
 
-	@Test
-	public void givenJsonFormatAnnotationAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/javaUtilDate", String.class);
+   @Test
+   public void givenJsonFormatAnnotationAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/javaUtilDate", String.class);
 
-		assertEquals(200, response.getStatusCodeValue());
+      assertEquals(200, response.getStatusCodeValue());
 
-		List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
-		});
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      });
 
-		LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-		assertNotNull(birthdayDate);
-		assertNotNull(lastUpdateTime);
-	}
+      assertNotNull(birthdayDate);
+      assertNotNull(lastUpdateTime);
+   }
 
-	@Test
-	public void givenDefaultDateFormatInAppPropertiesAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plainWithJavaUtilDate", String.class);
+   @Test
+   public void givenDefaultDateFormatInAppPropertiesAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plainWithJavaUtilDate", String.class);
 
-		assertEquals(200, response.getStatusCodeValue());
+      assertEquals(200, response.getStatusCodeValue());
 
-		List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
-		});
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      });
 
-		LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-		assertNotNull(birthdayDate);
-		assertNotNull(lastUpdateTime);
-	}
+      assertNotNull(birthdayDate);
+      assertNotNull(lastUpdateTime);
+   }
 
-	@Test(expected = DateTimeParseException.class)
-	public void givenDefaultDateFormatInAppPropertiesAndJava8DateType_whenGet_thenNotApplyFormat() throws IOException {
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plain", String.class);
+   @Test(expected = DateTimeParseException.class)
+   public void givenDefaultDateFormatInAppPropertiesAndJava8DateType_whenGet_thenNotApplyFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plain", String.class);
 
-		assertEquals(200, response.getStatusCodeValue());
+      assertEquals(200, response.getStatusCodeValue());
 
-		List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
-		});
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      });
 
-		LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-	}
+      LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+      LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+   }
 
 }

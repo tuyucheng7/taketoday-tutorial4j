@@ -1,13 +1,12 @@
 package cn.tuyucheng.taketoday.restvalidation.config;
 
+import org.hibernate.validator.messageinterpolation.AbstractMessageInterpolator;
+import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
+
+import javax.validation.MessageInterpolator;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.validation.MessageInterpolator;
-
-import org.hibernate.validator.messageinterpolation.AbstractMessageInterpolator;
-import org.hibernate.validator.messageinterpolation.ResourceBundleMessageInterpolator;
 
 public class RecursiveLocaleContextMessageInterpolator extends AbstractMessageInterpolator {
 

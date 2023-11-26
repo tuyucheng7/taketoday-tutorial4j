@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {TestConfiguration1.class, TestConfiguration2.class}, properties = {"spring.main.allow-bean-definition-overriding=true"})
 class SpringBootBeanDefinitionOverrideExceptionIntegrationTest {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-    @Test
-    void whenBeanOverridingAllowed_thenTestBean2OverridesTestBean1() {
-        Object testBean = applicationContext.getBean("testBean");
+   @Test
+   void whenBeanOverridingAllowed_thenTestBean2OverridesTestBean1() {
+      Object testBean = applicationContext.getBean("testBean");
 
-        assertThat(testBean.getClass()).isEqualTo(TestConfiguration2.TestBean2.class);
-    }
+      assertThat(testBean.getClass()).isEqualTo(TestConfiguration2.TestBean2.class);
+   }
 }

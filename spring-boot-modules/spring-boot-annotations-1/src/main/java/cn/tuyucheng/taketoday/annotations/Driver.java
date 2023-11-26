@@ -7,25 +7,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class Driver {
 
-	@Autowired
-	private Vehicle vehicle;
+   @Autowired
+   private Vehicle vehicle;
 
-	@Autowired
-	public Driver(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
+   @Autowired
+   public Driver(Vehicle vehicle) {
+      this.vehicle = vehicle;
+   }
 
-	@Autowired
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
+   @Autowired
+   public void setVehicle(Vehicle vehicle) {
+      this.vehicle = vehicle;
+   }
 
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
+   public Vehicle getVehicle() {
+      return vehicle;
+   }
 
-	@Scheduled(fixedRate = 10000)
-	@Scheduled(cron = "0 * * * * MON-FRI")
-	public void checkVehicle() {
-	}
+   @Scheduled(fixedRate = 10000)
+   @Scheduled(cron = "0 * * * * MON-FRI")
+   public void checkVehicle() {
+   }
 }

@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class SpringCachingConfig {
 
-	@Bean
-	public CacheManager cacheManager() {
-		return new ConcurrentMapCacheManager("hotels");
-	}
+   @Bean
+   public CacheManager cacheManager() {
+      return new ConcurrentMapCacheManager("hotels");
+   }
 }

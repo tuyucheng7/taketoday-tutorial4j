@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/custom")
 public class PrintUserController {
 
-    public PrintUserController() {
-        super();
-    }
+   public PrintUserController() {
+      super();
+   }
 
-    @RequestMapping(value = "/print", method = RequestMethod.GET)
-    public void printUser() {
-        SecurityContext sc = SecurityContextHolder.getContext();
-        System.out.println("Logged User: " + sc.getAuthentication().getName());
-    }
+   @RequestMapping(value = "/print", method = RequestMethod.GET)
+   public void printUser() {
+      SecurityContext sc = SecurityContextHolder.getContext();
+      System.out.println("Logged User: " + sc.getAuthentication().getName());
+   }
 
 }

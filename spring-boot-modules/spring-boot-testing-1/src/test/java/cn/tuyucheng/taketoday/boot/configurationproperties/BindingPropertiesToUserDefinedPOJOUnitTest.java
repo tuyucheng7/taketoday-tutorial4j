@@ -17,16 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource("classpath:server-config-test.properties")
 class BindingPropertiesToUserDefinedPOJOUnitTest {
 
-	@Autowired
-	private ServerConfig serverConfig;
+   @Autowired
+   private ServerConfig serverConfig;
 
-	@Test
-	void givenUserDefinedPOJO_whenBindingPropertiesFile_thenAllFieldsAreSet() {
-		assertEquals("192.168.0.1", serverConfig.getAddress().getIp());
+   @Test
+   void givenUserDefinedPOJO_whenBindingPropertiesFile_thenAllFieldsAreSet() {
+      assertEquals("192.168.0.1", serverConfig.getAddress().getIp());
 
-		Map<String, String> expectedResourcesPath = new HashMap<>();
-		expectedResourcesPath.put("imgs", "/root/imgs");
+      Map<String, String> expectedResourcesPath = new HashMap<>();
+      expectedResourcesPath.put("imgs", "/root/imgs");
 
-		assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
-	}
+      assertEquals(expectedResourcesPath, serverConfig.getResourcesPath());
+   }
 }

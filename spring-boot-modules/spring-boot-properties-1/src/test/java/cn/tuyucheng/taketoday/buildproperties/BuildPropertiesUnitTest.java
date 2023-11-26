@@ -11,20 +11,20 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class BuildPropertiesUnitTest {
-	@Autowired
-	private BuildProperties buildProperties;
+   @Autowired
+   private BuildProperties buildProperties;
 
-	@Test
-	void givenBuildPropertiesBean_WhenFetchDefaultBuildProperties_ThenGetValidValues() {
-		Assertions.assertEquals("spring-boot-properties-1", buildProperties.getArtifact());
-		Assertions.assertEquals("cn.tuyucheng.taketoday", buildProperties.getGroup());
-		Assertions.assertEquals("1.0.0", buildProperties.getVersion());
-	}
+   @Test
+   void givenBuildPropertiesBean_WhenFetchDefaultBuildProperties_ThenGetValidValues() {
+      Assertions.assertEquals("spring-boot-properties-1", buildProperties.getArtifact());
+      Assertions.assertEquals("cn.tuyucheng.taketoday", buildProperties.getGroup());
+      Assertions.assertEquals("1.0.0", buildProperties.getVersion());
+   }
 
-	@Test
-	void givenBuildPropertiesBean_WhenFetchCustomBuildProperties_ThenGetValidValues() {
-		Assertions.assertEquals("123", buildProperties.get("custom.value"));
-		Assertions.assertNotNull(buildProperties.get("java.version"));
-		Assertions.assertEquals("Spring Boot Properties Module", buildProperties.get("description"));
-	}
+   @Test
+   void givenBuildPropertiesBean_WhenFetchCustomBuildProperties_ThenGetValidValues() {
+      Assertions.assertEquals("123", buildProperties.get("custom.value"));
+      Assertions.assertNotNull(buildProperties.get("java.version"));
+      Assertions.assertEquals("Spring Boot Properties Module", buildProperties.get("description"));
+   }
 }

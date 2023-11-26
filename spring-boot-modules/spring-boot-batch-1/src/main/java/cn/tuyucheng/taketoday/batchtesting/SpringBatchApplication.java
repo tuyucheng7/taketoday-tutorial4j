@@ -15,29 +15,29 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:batchtesting/application.properties")
 public class SpringBatchApplication implements CommandLineRunner {
 
-	@Autowired
-	private JobLauncher jobLauncher;
+   @Autowired
+   private JobLauncher jobLauncher;
 
-	@Autowired
-	@Qualifier("transformBooksRecords")
-	private Job transformBooksRecordsJob;
+   @Autowired
+   @Qualifier("transformBooksRecords")
+   private Job transformBooksRecordsJob;
 
-	@Value("${file.input}")
-	private String input;
+   @Value("${file.input}")
+   private String input;
 
-	@Value("${file.output}")
-	private String output;
+   @Value("${file.output}")
+   private String output;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBatchApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBatchApplication.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		JobParametersBuilder paramsBuilder = new JobParametersBuilder();
-		paramsBuilder.addString("file.input", input);
-		paramsBuilder.addString("file.output", output);
-		jobLauncher.run(transformBooksRecordsJob, paramsBuilder.toJobParameters());
-	}
+   @Override
+   public void run(String... args) throws Exception {
+      JobParametersBuilder paramsBuilder = new JobParametersBuilder();
+      paramsBuilder.addString("file.input", input);
+      paramsBuilder.addString("file.output", output);
+      jobLauncher.run(transformBooksRecordsJob, paramsBuilder.toJobParameters());
+   }
 
 }

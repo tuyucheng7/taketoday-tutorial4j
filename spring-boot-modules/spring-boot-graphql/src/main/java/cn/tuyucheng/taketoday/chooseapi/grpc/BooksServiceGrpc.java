@@ -11,18 +11,18 @@ import java.util.List;
 @GrpcService
 public class BooksServiceGrpc extends cn.tuyucheng.taketoday.chooseapi.BooksServiceGrpc.BooksServiceImplBase {
 
-	private final BooksService booksService;
+   private final BooksService booksService;
 
-	public BooksServiceGrpc(BooksService booksService) {
-		this.booksService = booksService;
-	}
+   public BooksServiceGrpc(BooksService booksService) {
+      this.booksService = booksService;
+   }
 
-	@Override
-	public void books(BooksServiceOuterClass.BooksRequest request, StreamObserver<BooksServiceOuterClass.BooksResponse> responseObserver) {
-		List<Book> books = booksService.getBooks();
-		BooksServiceOuterClass.BooksResponse.Builder responseBuilder = BooksServiceOuterClass.BooksResponse.newBuilder();
-		books.forEach(book -> responseBuilder.addBook(GrpcBooksMapper.mapBookToProto(book)));
-		responseObserver.onNext(responseBuilder.build());
-		responseObserver.onCompleted();
-	}
+   @Override
+   public void books(BooksServiceOuterClass.BooksRequest request, StreamObserver<BooksServiceOuterClass.BooksResponse> responseObserver) {
+      List<Book> books = booksService.getBooks();
+      BooksServiceOuterClass.BooksResponse.Builder responseBuilder = BooksServiceOuterClass.BooksResponse.newBuilder();
+      books.forEach(book -> responseBuilder.addBook(GrpcBooksMapper.mapBookToProto(book)));
+      responseObserver.onNext(responseBuilder.build());
+      responseObserver.onCompleted();
+   }
 }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 @XmlRootElement
 public class Bar implements Serializable {
 
-    public Bar() {
-        super();
-    }
+   public Bar() {
+      super();
+   }
 }

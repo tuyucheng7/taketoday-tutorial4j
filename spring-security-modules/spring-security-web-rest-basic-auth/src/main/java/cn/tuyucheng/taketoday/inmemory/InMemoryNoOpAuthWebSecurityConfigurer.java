@@ -10,24 +10,24 @@ import org.springframework.security.web.SecurityFilterChain;
 //@Configuration
 public class InMemoryNoOpAuthWebSecurityConfigurer {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withUsername("spring")
-              .password("{noop}secret")
-              .roles("USER")
-              .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails user = User.withUsername("spring")
+            .password("{noop}secret")
+            .roles("USER")
+            .build();
+      return new InMemoryUserDetailsManager(user);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/private/**")
-              .authenticated()
-              .antMatchers("/public/**")
-              .permitAll()
-              .and()
-              .httpBasic();
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/private/**")
+            .authenticated()
+            .antMatchers("/public/**")
+            .permitAll()
+            .and()
+            .httpBasic();
+      return http.build();
+   }
 }

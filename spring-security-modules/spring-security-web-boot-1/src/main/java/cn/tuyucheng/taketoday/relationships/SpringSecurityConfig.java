@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.relationships;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
-
+import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
+import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,53 +20,53 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.context.WebApplicationContext;
 
-import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
-import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 @ComponentScan("cn.tuyucheng.taketoday.security")
 public class SpringSecurityConfig {
 
-    @Autowired
-    private WebApplicationContext applicationContext;
+   @Autowired
+   private WebApplicationContext applicationContext;
 
-    @Autowired
-    private AuthenticationSuccessHandlerImpl successHandler;
+   @Autowired
+   private AuthenticationSuccessHandlerImpl successHandler;
 
-    @Autowired
-    private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-    private CustomUserDetailsService userDetailsService;
+   private CustomUserDetailsService userDetailsService;
 
-    @PostConstruct
-    public void completeSetup() {
-        userDetailsService = applicationContext.getBean(CustomUserDetailsService.class);
-    }
+   @PostConstruct
+   public void completeSetup() {
+      userDetailsService = applicationContext.getBean(CustomUserDetailsService.class);
+   }
 
-    @Bean
-    public UserDetailsManager users(HttpSecurity http) throws Exception {
-        AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManagerBuilder.class)
+   @Bean
+   public UserDetailsManager users(HttpSecurity http) throws Exception {
+      AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManagerBuilder.class)
             .userDetailsService(userDetailsService)
             .passwordEncoder(encoder())
             .and()
             .authenticationProvider(authenticationProvider())
             .build();
 
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-        jdbcUserDetailsManager.setAuthenticationManager(authenticationManager);
-        return jdbcUserDetailsManager;
-    }
+      JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+      jdbcUserDetailsManager.setAuthenticationManager(authenticationManager);
+      return jdbcUserDetailsManager;
+   }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
+   @Bean
+   public WebSecurityCustomizer webSecurityCustomizer() {
+      return (web) -> web.ignoring()
             .antMatchers("/resources/**");
-    }
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
             .antMatchers("/login")
             .permitAll()
             .and()
@@ -77,24 +76,24 @@ public class SpringSecurityConfig {
             .and()
             .csrf()
             .disable();
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(encoder());
-        return authProvider;
-    }
+   @Bean
+   public DaoAuthenticationProvider authenticationProvider() {
+      final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+      authProvider.setUserDetailsService(userDetailsService);
+      authProvider.setPasswordEncoder(encoder());
+      return authProvider;
+   }
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(11);
-    }
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder(11);
+   }
 
-    @Bean
-    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-        return new SecurityEvaluationContextExtension();
-    }
+   @Bean
+   public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+      return new SecurityEvaluationContextExtension();
+   }
 }

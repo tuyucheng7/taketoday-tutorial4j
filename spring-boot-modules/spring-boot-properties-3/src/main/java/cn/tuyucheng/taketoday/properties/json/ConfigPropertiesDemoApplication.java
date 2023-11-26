@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackageClasses = {JsonProperties.class, CustomJsonProperties.class})
 public class ConfigPropertiesDemoApplication {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(ConfigPropertiesDemoApplication.class).initializers(new JsonPropertyContextInitializer())
-			.run();
-	}
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(ConfigPropertiesDemoApplication.class).initializers(new JsonPropertyContextInitializer())
+            .run();
+   }
 }

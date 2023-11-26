@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ApplicationCommandLineRunnerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApplicationCommandLineRunnerApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ApplicationCommandLineRunnerApplication.class, args);
+   }
 }

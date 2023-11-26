@@ -13,29 +13,29 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @EnableWebSecurity
 class SecurityConfig {
 
-	private final KeycloakLogoutHandler keycloakLogoutHandler;
+   private final KeycloakLogoutHandler keycloakLogoutHandler;
 
-	SecurityConfig(KeycloakLogoutHandler keycloakLogoutHandler) {
-		this.keycloakLogoutHandler = keycloakLogoutHandler;
-	}
+   SecurityConfig(KeycloakLogoutHandler keycloakLogoutHandler) {
+      this.keycloakLogoutHandler = keycloakLogoutHandler;
+   }
 
-	@Bean
-	protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-		return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
-	}
+   @Bean
+   protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+      return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+   }
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/customers*", "/users*")
-			.hasRole("USER")
-			.anyRequest()
-			.permitAll();
-		http.oauth2Login()
-			.and()
-			.logout()
-			.addLogoutHandler(keycloakLogoutHandler)
-			.logoutSuccessUrl("/");
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/customers*", "/users*")
+            .hasRole("USER")
+            .anyRequest()
+            .permitAll();
+      http.oauth2Login()
+            .and()
+            .logout()
+            .addLogoutHandler(keycloakLogoutHandler)
+            .logoutSuccessUrl("/");
+      return http.build();
+   }
 }

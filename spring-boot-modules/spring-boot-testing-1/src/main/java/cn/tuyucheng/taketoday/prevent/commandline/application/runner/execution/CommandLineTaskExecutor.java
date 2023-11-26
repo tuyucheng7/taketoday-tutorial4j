@@ -7,20 +7,20 @@ import org.springframework.stereotype.Component;
 
 @Profile("!test")
 @ConditionalOnProperty(
-	prefix = "command.line.runner",
-	value = "enabled",
-	havingValue = "true",
-	matchIfMissing = true)
+      prefix = "command.line.runner",
+      value = "enabled",
+      havingValue = "true",
+      matchIfMissing = true)
 @Component
 public class CommandLineTaskExecutor implements CommandLineRunner {
-	private TaskService taskService;
+   private TaskService taskService;
 
-	public CommandLineTaskExecutor(TaskService taskService) {
-		this.taskService = taskService;
-	}
+   public CommandLineTaskExecutor(TaskService taskService) {
+      this.taskService = taskService;
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		taskService.execute("command line runner task");
-	}
+   @Override
+   public void run(String... args) throws Exception {
+      taskService.execute("command line runner task");
+   }
 }

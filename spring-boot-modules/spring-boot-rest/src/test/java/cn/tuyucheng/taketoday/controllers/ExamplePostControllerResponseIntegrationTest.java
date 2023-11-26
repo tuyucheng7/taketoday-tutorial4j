@@ -25,37 +25,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SpringBootRestApplication.class)
 public class ExamplePostControllerResponseIntegrationTest {
 
-	MockMvc mockMvc;
-	@Mock
-	private ExampleService exampleService;
-	@InjectMocks
-	private ExamplePostController exampleController;
-	private final String jsonBody = "{\"username\": \"username\", \"password\": \"password\"}";
-	private LoginForm lf = new LoginForm();
+   MockMvc mockMvc;
+   @Mock
+   private ExampleService exampleService;
+   @InjectMocks
+   private ExamplePostController exampleController;
+   private final String jsonBody = "{\"username\": \"username\", \"password\": \"password\"}";
+   private LoginForm lf = new LoginForm();
 
-	@Before
-	public void preTest() {
-		MockitoAnnotations.openMocks(this);
-		mockMvc = MockMvcBuilders
-			.standaloneSetup(exampleController)
-			.build();
-		lf.setPassword("password");
-		lf.setUsername("username");
-	}
+   @Before
+   public void preTest() {
+      MockitoAnnotations.openMocks(this);
+      mockMvc = MockMvcBuilders
+            .standaloneSetup(exampleController)
+            .build();
+      lf.setPassword("password");
+      lf.setUsername("username");
+   }
 
-	@Test
-	public void requestBodyTest() {
-		try {
-			when(exampleService.fakeAuthenticate(lf)).thenReturn(true);
-			mockMvc
-				.perform(post("/post/response")
-					.content(jsonBody)
-					.contentType("application/json"))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().json("{\"text\":\"Thanks For Posting!!!\"}"));
-		} catch (Exception e) {
-			System.out.println("Exception: " + e);
-		}
-	}
+   @Test
+   public void requestBodyTest() {
+      try {
+         when(exampleService.fakeAuthenticate(lf)).thenReturn(true);
+         mockMvc
+               .perform(post("/post/response")
+                     .content(jsonBody)
+                     .contentType("application/json"))
+               .andDo(print())
+               .andExpect(status().isOk())
+               .andExpect(content().json("{\"text\":\"Thanks For Posting!!!\"}"));
+      } catch (Exception e) {
+         System.out.println("Exception: " + e);
+      }
+   }
 }

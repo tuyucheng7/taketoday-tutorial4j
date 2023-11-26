@@ -11,8 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("cn.tuyucheng.taketoday.boot.problem")
 public class SpringProblemApplication {
 
-	public static void main(String[] args) {
-		System.setProperty("spring.profiles.active", "problem");
-		SpringApplication.run(SpringProblemApplication.class, args);
-	}
+   public static void main(String[] args) {
+      System.setProperty("spring.profiles.active", "problem");
+      SpringApplication.run(SpringProblemApplication.class, args);
+   }
 }

@@ -10,12 +10,12 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan("cn.tuyucheng.taketoday.web.log")
 @PropertySource("application-log.properties")
 @SpringBootApplication(exclude = {
-	SecurityAutoConfiguration.class,
-	ManagementWebSecurityAutoConfiguration.class
+      SecurityAutoConfiguration.class,
+      ManagementWebSecurityAutoConfiguration.class
 })
 public class Application {
 
-	public static void main(final String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+   public static void main(final String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 }

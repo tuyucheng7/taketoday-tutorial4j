@@ -7,10 +7,10 @@ import javax.servlet.ServletException;
 
 public class MainWebAppInitializer implements WebApplicationInitializer {
 
-    @Override
-    public void onStartup(ServletContext sc) throws ServletException {
-        sc.getSessionCookieConfig().setHttpOnly(true);
-        sc.getSessionCookieConfig().setSecure(true);
-    }
+   @Override
+   public void onStartup(ServletContext sc) throws ServletException {
+      sc.getSessionCookieConfig().setHttpOnly(true);
+      sc.getSessionCookieConfig().setSecure(true);
+   }
 
 }

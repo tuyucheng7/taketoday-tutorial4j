@@ -15,46 +15,46 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = SpringBootSecurityTagLibsApplication.class)
 class HomeControllerUnitTest {
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-	@Test
-	void whenUserIsAuthenticatedThenAuthenticatedSectionsShowOnSite() throws Exception {
-		String body = this.restTemplate.withBasicAuth("testUser", "password")
-			.getForEntity("/", String.class)
-			.getBody();
+   @Test
+   void whenUserIsAuthenticatedThenAuthenticatedSectionsShowOnSite() throws Exception {
+      String body = this.restTemplate.withBasicAuth("testUser", "password")
+            .getForEntity("/", String.class)
+            .getBody();
 
-		// test <sec:authorize access="!isAuthenticated()">
-		assertFalse(body.contains("Login"));
+      // test <sec:authorize access="!isAuthenticated()">
+      assertFalse(body.contains("Login"));
 
-		// test <sec:authorize access="isAuthenticated()">
-		assertTrue(body.contains("Logout"));
+      // test <sec:authorize access="isAuthenticated()">
+      assertTrue(body.contains("Logout"));
 
-		// test <sec:authorize access="hasRole('ADMIN')">
-		assertTrue(body.contains("Manage Users"));
+      // test <sec:authorize access="hasRole('ADMIN')">
+      assertTrue(body.contains("Manage Users"));
 
-		// test <sec:authentication property="principal.username" />
-		assertTrue(body.contains("testUser"));
+      // test <sec:authentication property="principal.username" />
+      assertTrue(body.contains("testUser"));
 
-		// test <sec:authorize url="/adminOnlyURL">
-		assertTrue(body.contains("<a href=\"/userManagement\">"));
+      // test <sec:authorize url="/adminOnlyURL">
+      assertTrue(body.contains("<a href=\"/userManagement\">"));
 
-		// test <sec:csrfInput />
-		assertTrue(body.contains("<input type=\"hidden\" name=\"_csrf\" value=\""));
+      // test <sec:csrfInput />
+      assertTrue(body.contains("<input type=\"hidden\" name=\"_csrf\" value=\""));
 
-		// test <sec:csrfMetaTags />
-		assertTrue(body.contains("<meta name=\"_csrf_parameter\" content=\"_csrf\" />"));
-	}
+      // test <sec:csrfMetaTags />
+      assertTrue(body.contains("<meta name=\"_csrf_parameter\" content=\"_csrf\" />"));
+   }
 
-	@Test
-	void whenUserIsNotAuthenticatedThenOnlyAnonymousSectionsShowOnSite() throws Exception {
-		String body = this.restTemplate.getForEntity("/", String.class)
-			.getBody();
+   @Test
+   void whenUserIsNotAuthenticatedThenOnlyAnonymousSectionsShowOnSite() throws Exception {
+      String body = this.restTemplate.getForEntity("/", String.class)
+            .getBody();
 
-		// test <sec:authorize access="!isAuthenticated()">
-		assertTrue(body.contains("Login"));
+      // test <sec:authorize access="!isAuthenticated()">
+      assertTrue(body.contains("Login"));
 
-		// test <sec:authorize access="isAuthenticated()">
-		assertFalse(body.contains("Logout"));
-	}
+      // test <sec:authorize access="isAuthenticated()">
+      assertFalse(body.contains("Logout"));
+   }
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class CustomErrorController {
 
-    @GetMapping("/customError")
-    public String customErrorController() {
-        return "/error";
-    }
+   @GetMapping("/customError")
+   public String customErrorController() {
+      return "/error";
+   }
 }

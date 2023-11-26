@@ -11,16 +11,16 @@ import static org.hamcrest.Matchers.equalTo;
  */
 class UserControllerManualTest extends KeycloakTestContainers {
 
-	@Test
-	void givenAuthenticatedUser_whenGetMe_shouldReturnMyInfo() {
+   @Test
+   void givenAuthenticatedUser_whenGetMe_shouldReturnMyInfo() {
 
-		given().header("Authorization", getJaneDoeBearer())
-			.when()
-			.get("/users/me")
-			.then()
-			.body("username", equalTo("janedoe"))
-			.body("lastname", equalTo("Doe"))
-			.body("firstname", equalTo("Jane"))
-			.body("email", equalTo("jane.doe@baeldung.com"));
-	}
+      given().header("Authorization", getJaneDoeBearer())
+            .when()
+            .get("/users/me")
+            .then()
+            .body("username", equalTo("janedoe"))
+            .body("lastname", equalTo("Doe"))
+            .body("firstname", equalTo("Jane"))
+            .body("email", equalTo("jane.doe@baeldung.com"));
+   }
 }

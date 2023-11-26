@@ -10,11 +10,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Profile("prod")
 public class ApplicationSecurity {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.anyRequest()
-			.authenticated();
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .anyRequest()
+            .authenticated();
+      return http.build();
+   }
 }

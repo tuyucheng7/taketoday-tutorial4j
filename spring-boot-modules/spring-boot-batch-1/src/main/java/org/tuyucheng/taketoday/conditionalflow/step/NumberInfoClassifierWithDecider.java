@@ -6,8 +6,8 @@ import org.tuyucheng.taketoday.conditionalflow.model.NumberInfo;
 
 public class NumberInfoClassifierWithDecider extends ItemListenerSupport<NumberInfo, Integer> implements ItemProcessor<NumberInfo, Integer> {
 
-	@Override
-	public Integer process(NumberInfo numberInfo) {
-		return Integer.valueOf(numberInfo.getNumber());
-	}
+   @Override
+   public Integer process(NumberInfo numberInfo) {
+      return Integer.valueOf(numberInfo.getNumber());
+   }
 }

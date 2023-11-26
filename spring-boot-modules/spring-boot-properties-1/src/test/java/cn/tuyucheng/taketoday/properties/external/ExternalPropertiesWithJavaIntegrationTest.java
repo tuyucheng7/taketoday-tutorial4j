@@ -16,21 +16,21 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @Disabled("manual only")
 public class ExternalPropertiesWithJavaIntegrationTest {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Value("${key.something}")
-	private String injectedProperty;
+   @Value("${key.something}")
+   private String injectedProperty;
 
-	@Value("${external.something}")
-	private String injectedExternalProperty;
+   @Value("${external.something}")
+   private String injectedExternalProperty;
 
-	@Test
-	final void givenContextIsInitialized_thenNoException() {
-		System.out.println("in test via @Value: " + injectedProperty);
-		System.out.println("in test Environment: " + env.getProperty("key.something"));
+   @Test
+   final void givenContextIsInitialized_thenNoException() {
+      System.out.println("in test via @Value: " + injectedProperty);
+      System.out.println("in test Environment: " + env.getProperty("key.something"));
 
-		System.out.println("in test via @Value - external: " + injectedExternalProperty);
-		System.out.println("in test Environment - external: " + env.getProperty("external.something"));
-	}
+      System.out.println("in test via @Value - external: " + injectedExternalProperty);
+      System.out.println("in test Environment - external: " + env.getProperty("external.something"));
+   }
 }

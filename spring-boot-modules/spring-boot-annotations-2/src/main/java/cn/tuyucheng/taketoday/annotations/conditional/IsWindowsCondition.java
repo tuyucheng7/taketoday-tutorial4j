@@ -6,8 +6,8 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 
 public class IsWindowsCondition implements Condition {
 
-	@Override
-	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-		return ConditionalUtils.isWindows();
-	}
+   @Override
+   public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+      return ConditionalUtils.isWindows();
+   }
 }

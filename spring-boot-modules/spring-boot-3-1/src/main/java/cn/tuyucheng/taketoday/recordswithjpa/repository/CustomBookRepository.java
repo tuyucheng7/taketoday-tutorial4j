@@ -5,5 +5,5 @@ import cn.tuyucheng.taketoday.recordswithjpa.records.CustomBookRecord;
 import java.util.List;
 
 public interface CustomBookRepository {
-	List<CustomBookRecord> findAllBooks();
+   List<CustomBookRecord> findAllBooks();
 }

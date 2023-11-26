@@ -9,16 +9,16 @@ import org.springframework.core.io.ClassPathResource;
 @SpringBootApplication(scanBasePackages = {"cn.tuyucheng.taketoday.git"})
 public class CommitIdApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CommitIdApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(CommitIdApplication.class, args);
+   }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-		PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
-		c.setLocation(new ClassPathResource("git.properties"));
-		c.setIgnoreResourceNotFound(true);
-		c.setIgnoreUnresolvablePlaceholders(true);
-		return c;
-	}
+   @Bean
+   public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+      PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+      c.setLocation(new ClassPathResource("git.properties"));
+      c.setIgnoreResourceNotFound(true);
+      c.setIgnoreUnresolvablePlaceholders(true);
+      return c;
+   }
 }

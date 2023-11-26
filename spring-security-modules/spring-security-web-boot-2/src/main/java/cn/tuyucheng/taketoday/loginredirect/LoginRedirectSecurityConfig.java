@@ -16,18 +16,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 class LoginRedirectSecurityConfig {
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withUsername("user")
+   @Bean
+   public InMemoryUserDetailsManager userDetailsService() {
+      UserDetails user = User.withUsername("user")
             .password(encoder().encode("user"))
             .roles("USER")
             .build();
-        return new InMemoryUserDetailsManager(user);
-    }
+      return new InMemoryUserDetailsManager(user);
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterAfter(new LoginPageFilter(), UsernamePasswordAuthenticationFilter.class)
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.addFilterAfter(new LoginPageFilter(), UsernamePasswordAuthenticationFilter.class)
             .authorizeRequests()
             .antMatchers("/loginUser")
             .permitAll()
@@ -48,11 +48,11 @@ class LoginRedirectSecurityConfig {
             .and()
             .csrf()
             .disable();
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public static PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
+   @Bean
+   public static PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

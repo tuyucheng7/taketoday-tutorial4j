@@ -4,30 +4,30 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
-	private String address;
-	private Integer zipCode;
+   private String address;
+   private Integer zipCode;
 
-	public Address(String address, Integer zipCode) {
-		this.address = address;
-		this.zipCode = zipCode;
-	}
+   public Address(String address, Integer zipCode) {
+      this.address = address;
+      this.zipCode = zipCode;
+   }
 
-	public Address() {
-	}
+   public Address() {
+   }
 
-	public String getAddress() {
-		return address;
-	}
+   public String getAddress() {
+      return address;
+   }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+   public void setAddress(String address) {
+      this.address = address;
+   }
 
-	public Integer getZipCode() {
-		return zipCode;
-	}
+   public Integer getZipCode() {
+      return zipCode;
+   }
 
-	public void setZipCode(Integer zipCode) {
-		this.zipCode = zipCode;
-	}
+   public void setZipCode(Integer zipCode) {
+      this.zipCode = zipCode;
+   }
 }

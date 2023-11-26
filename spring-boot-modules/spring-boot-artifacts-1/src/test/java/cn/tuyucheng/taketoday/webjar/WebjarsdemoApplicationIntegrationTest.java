@@ -11,7 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 class WebjarsdemoApplicationIntegrationTest {
 
-	@Test
-	void contextLoads() {
-	}
+   @Test
+   void contextLoads() {
+   }
 }

@@ -12,9 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf()
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
             .disable()
             .authorizeRequests()
             .anyRequest()
@@ -22,11 +22,11 @@ public class SecurityConfig {
             .and()
             .formLogin()
             .permitAll();
-        return http.build();
-    }
+      return http.build();
+   }
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(11);
-    }
+   @Bean
+   public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder(11);
+   }
 }
