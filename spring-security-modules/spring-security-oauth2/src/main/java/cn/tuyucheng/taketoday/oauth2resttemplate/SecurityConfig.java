@@ -22,60 +22,60 @@ import javax.servlet.Filter;
 @Configuration
 @EnableOAuth2Client
 public class SecurityConfig {
-    OAuth2ClientContext oauth2ClientContext;
+   OAuth2ClientContext oauth2ClientContext;
 
-    public SecurityConfig(OAuth2ClientContext oauth2ClientContext) {
-        this.oauth2ClientContext = oauth2ClientContext;
-    }
+   public SecurityConfig(OAuth2ClientContext oauth2ClientContext) {
+      this.oauth2ClientContext = oauth2ClientContext;
+   }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-              .antMatchers("/", "/login**", "/error**")
-              .permitAll()
-              .anyRequest()
-              .authenticated()
-              .and()
-              .logout()
-              .logoutUrl("/logout")
-              .logoutSuccessUrl("/")
-              .and()
-              .addFilterBefore(oauth2ClientFilter(), BasicAuthenticationFilter.class);
-        return http.build();
-    }
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/", "/login**", "/error**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .logout()
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/")
+            .and()
+            .addFilterBefore(oauth2ClientFilter(), BasicAuthenticationFilter.class);
+      return http.build();
+   }
 
-    @Bean
-    public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
-        FilterRegistrationBean<OAuth2ClientContextFilter> registration = new FilterRegistrationBean<>();
-        registration.setFilter(filter);
-        registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
-        return registration;
-    }
+   @Bean
+   public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
+      FilterRegistrationBean<OAuth2ClientContextFilter> registration = new FilterRegistrationBean<>();
+      registration.setFilter(filter);
+      registration.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
+      return registration;
+   }
 
-    @Bean
-    public OAuth2RestTemplate restTemplate() {
-        return new OAuth2RestTemplate(githubClient(), oauth2ClientContext);
-    }
+   @Bean
+   public OAuth2RestTemplate restTemplate() {
+      return new OAuth2RestTemplate(githubClient(), oauth2ClientContext);
+   }
 
-    @Bean
-    @ConfigurationProperties("github.client")
-    public AuthorizationCodeResourceDetails githubClient() {
-        return new AuthorizationCodeResourceDetails();
-    }
+   @Bean
+   @ConfigurationProperties("github.client")
+   public AuthorizationCodeResourceDetails githubClient() {
+      return new AuthorizationCodeResourceDetails();
+   }
 
-    private Filter oauth2ClientFilter() {
-        OAuth2ClientAuthenticationProcessingFilter oauth2ClientFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/github");
-        OAuth2RestTemplate restTemplate = restTemplate();
-        oauth2ClientFilter.setRestTemplate(restTemplate);
-        UserInfoTokenServices tokenServices = new UserInfoTokenServices(githubResource().getUserInfoUri(), githubClient().getClientId());
-        tokenServices.setRestTemplate(restTemplate);
-        oauth2ClientFilter.setTokenServices(tokenServices);
-        return oauth2ClientFilter;
-    }
+   private Filter oauth2ClientFilter() {
+      OAuth2ClientAuthenticationProcessingFilter oauth2ClientFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/github");
+      OAuth2RestTemplate restTemplate = restTemplate();
+      oauth2ClientFilter.setRestTemplate(restTemplate);
+      UserInfoTokenServices tokenServices = new UserInfoTokenServices(githubResource().getUserInfoUri(), githubClient().getClientId());
+      tokenServices.setRestTemplate(restTemplate);
+      oauth2ClientFilter.setTokenServices(tokenServices);
+      return oauth2ClientFilter;
+   }
 
-    @Bean
-    @ConfigurationProperties("github.resource")
-    public ResourceServerProperties githubResource() {
-        return new ResourceServerProperties();
-    }
+   @Bean
+   @ConfigurationProperties("github.resource")
+   public ResourceServerProperties githubResource() {
+      return new ResourceServerProperties();
+   }
 }
