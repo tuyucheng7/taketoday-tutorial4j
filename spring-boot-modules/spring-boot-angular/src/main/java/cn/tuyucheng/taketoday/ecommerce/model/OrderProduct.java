@@ -2,10 +2,10 @@ package cn.tuyucheng.taketoday.ecommerce.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 
 @Entity
 public class OrderProduct {
@@ -76,13 +76,7 @@ public class OrderProduct {
       }
       OrderProduct other = (OrderProduct) obj;
       if (pk == null) {
-         if (other.pk != null) {
-            return false;
-         }
-      } else if (!pk.equals(other.pk)) {
-         return false;
-      }
-
-      return true;
+         return other.pk == null;
+      } else return pk.equals(other.pk);
    }
 }

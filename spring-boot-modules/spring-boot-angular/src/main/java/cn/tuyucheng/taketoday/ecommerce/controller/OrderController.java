@@ -15,11 +15,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -77,7 +76,7 @@ public class OrderController {
             .filter(op -> Objects.isNull(productService.getProduct(op
                   .getProduct()
                   .getId())))
-            .collect(Collectors.toList());
+            .toList();
 
       if (!CollectionUtils.isEmpty(list)) {
          new ResourceNotFoundException("Product not found");

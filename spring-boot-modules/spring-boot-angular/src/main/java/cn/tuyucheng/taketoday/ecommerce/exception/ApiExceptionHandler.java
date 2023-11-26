@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +59,6 @@ public class ApiExceptionHandler {
       public void setMessage(String message) {
          this.message = message;
       }
-
    }
 
    public static class ErrorResponse {
@@ -77,6 +76,5 @@ public class ApiExceptionHandler {
       public void addError(ErrorItem error) {
          this.errors.add(error);
       }
-
    }
 }

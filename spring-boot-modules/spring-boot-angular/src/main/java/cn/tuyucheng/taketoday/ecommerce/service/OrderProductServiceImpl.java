@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class OrderProductServiceImpl implements OrderProductService {
 
-   private OrderProductRepository orderProductRepository;
+   private final OrderProductRepository orderProductRepository;
 
    public OrderProductServiceImpl(OrderProductRepository orderProductRepository) {
       this.orderProductRepository = orderProductRepository;

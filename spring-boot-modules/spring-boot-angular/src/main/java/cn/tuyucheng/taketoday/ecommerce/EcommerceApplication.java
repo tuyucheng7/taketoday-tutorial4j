@@ -16,7 +16,7 @@ public class EcommerceApplication {
 
    @Bean
    CommandLineRunner runner(ProductService productService) {
-      return args -> {
+      return _ -> {
          productService.save(new Product(1L, "TV Set", 300.00, "http://placehold.it/200x100"));
          productService.save(new Product(2L, "Game Console", 200.00, "http://placehold.it/200x100"));
          productService.save(new Product(3L, "Sofa", 100.00, "http://placehold.it/200x100"));

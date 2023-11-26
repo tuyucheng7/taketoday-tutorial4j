@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Transactional
 public class OrderServiceImpl implements OrderService {
 
-   private OrderRepository orderRepository;
+   private final OrderRepository orderRepository;
 
    public OrderServiceImpl(OrderRepository orderRepository) {
       this.orderRepository = orderRepository;

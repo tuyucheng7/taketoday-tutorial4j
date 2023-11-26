@@ -6,17 +6,16 @@ import cn.tuyucheng.taketoday.ecommerce.dto.OrderProductDto;
 import cn.tuyucheng.taketoday.ecommerce.model.Order;
 import cn.tuyucheng.taketoday.ecommerce.model.Product;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 
@@ -25,9 +24,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasProperty;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {EcommerceApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EcommerceApplicationIntegrationTest {
+class EcommerceApplicationIntegrationTest {
 
    @Autowired
    private TestRestTemplate restTemplate;
@@ -42,7 +41,7 @@ public class EcommerceApplicationIntegrationTest {
    private OrderController orderController;
 
    @Test
-   public void contextLoads() {
+   void contextLoads() {
       Assertions
             .assertThat(productController)
             .isNotNull();
@@ -52,8 +51,8 @@ public class EcommerceApplicationIntegrationTest {
    }
 
    @Test
-   public void givenGetProductsApiCall_whenProductListRetrieved_thenSizeMatchAndListContainsProductNames() {
-      ResponseEntity<Iterable<Product>> responseEntity = restTemplate.exchange("http://localhost:" + port + "/api/products", HttpMethod.GET, null, new ParameterizedTypeReference<Iterable<Product>>() {
+   void givenGetProductsApiCall_whenProductListRetrieved_thenSizeMatchAndListContainsProductNames() {
+      ResponseEntity<Iterable<Product>> responseEntity = restTemplate.exchange(STR."http://localhost:\{port}/api/products", HttpMethod.GET, null, new ParameterizedTypeReference<>() {
       });
       Iterable<Product> products = responseEntity.getBody();
       Assertions
@@ -70,8 +69,8 @@ public class EcommerceApplicationIntegrationTest {
    }
 
    @Test
-   public void givenGetOrdersApiCall_whenProductListRetrieved_thenSizeMatchAndListContainsProductNames() {
-      ResponseEntity<Iterable<Order>> responseEntity = restTemplate.exchange("http://localhost:" + port + "/api/orders", HttpMethod.GET, null, new ParameterizedTypeReference<Iterable<Order>>() {
+   void givenGetOrdersApiCall_whenProductListRetrieved_thenSizeMatchAndListContainsProductNames() {
+      ResponseEntity<Iterable<Order>> responseEntity = restTemplate.exchange(STR."http://localhost:\{port}/api/orders", HttpMethod.GET, null, new ParameterizedTypeReference<>() {
       });
 
       Iterable<Order> orders = responseEntity.getBody();
@@ -81,12 +80,13 @@ public class EcommerceApplicationIntegrationTest {
    }
 
    @Test
-   public void givenPostOrder_whenBodyRequestMatcherJson_thenResponseContainsEqualObjectProperties() {
-      final ResponseEntity<Order> postResponse = restTemplate.postForEntity("http://localhost:" + port + "/api/orders", prepareOrderForm(), Order.class);
+   void givenPostOrder_whenBodyRequestMatcherJson_thenResponseContainsEqualObjectProperties() {
+      final ResponseEntity<Order> postResponse = restTemplate.postForEntity(STR."http://localhost:\{port}/api/orders", prepareOrderForm(), Order.class);
       Order order = postResponse.getBody();
       Assertions
             .assertThat(postResponse.getStatusCode())
-            .isEqualByComparingTo(HttpStatus.CREATED);
+            .isEqualTo(postResponse.getStatusCode())
+            /* .isEqualByComparingTo(HttpStatus.CREATED) */;
 
       assertThat(order, hasProperty("status", is("PAID")));
       assertThat(order.getOrderProducts(), hasItem(hasProperty("quantity", is(2))));
