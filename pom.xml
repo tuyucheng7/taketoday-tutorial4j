@@ -201,6 +201,9 @@
                <forkCount>3</forkCount>
                <reuseForks>true</reuseForks>
                <skipTests>${skip.unit.tests}</skipTests>
+               <argLine>
+                  --enable-preview
+               </argLine>
                <excludes>
                   <exclude>**/*IntegrationTest</exclude>
                   <exclude>**/*IntTest</exclude>
@@ -228,6 +231,11 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
             <version>${maven-failsafe-plugin.version}</version>
+            <configuration>
+               <argLine>
+                  --enable-preview
+               </argLine>
+            </configuration>
             <executions>
                <execution>
                   <id>integration-tests</id>
