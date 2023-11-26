@@ -1,22 +1,20 @@
 package cn.tuyucheng.taketoday.activitiwithspring;
 
-
 import org.activiti.engine.*;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ProcessExecutionIntegrationTest {
+class ProcessExecutionIntegrationTest {
 
    @Test
-   public void givenBPMN_whenDeployProcess_thenDeployed() {
+   void givenBPMN_whenDeployProcess_thenDeployed() {
       ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
       RepositoryService repositoryService = processEngine.getRepositoryService();
       repositoryService.createDeployment()
@@ -27,7 +25,7 @@ public class ProcessExecutionIntegrationTest {
    }
 
    @Test
-   public void givenProcessDefinition_whenStartProcessInstance_thenProcessRunning() {
+   void givenProcessDefinition_whenStartProcessInstance_thenProcessRunning() {
       ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
       RepositoryService repositoryService = processEngine.getRepositoryService();
       repositoryService.createDeployment()
@@ -48,7 +46,7 @@ public class ProcessExecutionIntegrationTest {
    }
 
    @Test
-   public void givenProcessInstance_whenCompleteTask_thenProcessExecutionContinues() {
+   void givenProcessInstance_whenCompleteTask_thenProcessExecutionContinues() {
       ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
       RepositoryService repositoryService = processEngine.getRepositoryService();
       repositoryService.createDeployment()
@@ -78,8 +76,8 @@ public class ProcessExecutionIntegrationTest {
       assertNotNull(currentTask);
    }
 
-   @Test(expected = ActivitiException.class)
-   public void givenProcessDefinition_whenSuspend_thenNoProcessInstanceCreated() {
+   @Test
+   void givenProcessDefinition_whenSuspend_thenNoProcessInstanceCreated() {
       ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
       RepositoryService repositoryService = processEngine.getRepositoryService();
       repositoryService.createDeployment()
@@ -88,6 +86,6 @@ public class ProcessExecutionIntegrationTest {
 
       RuntimeService runtimeService = processEngine.getRuntimeService();
       repositoryService.suspendProcessDefinitionByKey("vacationRequest");
-      runtimeService.startProcessInstanceByKey("vacationRequest");
+      assertThrows(ActivitiException.class, () -> runtimeService.startProcessInstanceByKey("vacationRequest"));
    }
 }

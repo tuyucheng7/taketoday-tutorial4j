@@ -26,8 +26,7 @@ public class ActivitiController {
    @GetMapping("/start-process")
    public String startProcess() {
       runtimeService.startProcessInstanceByKey("my-process");
-      return "Process started. Number of currently running process instances = " + runtimeService.createProcessInstanceQuery()
-            .count();
+      return STR."Process started. Number of currently running process instances = \{runtimeService.createProcessInstanceQuery().count()}";
    }
 
    @GetMapping("/get-tasks/{processInstanceId}")

@@ -3,14 +3,14 @@ package cn.tuyucheng.taketoday.activitiwithspring;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,12 +20,12 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebAppConfiguration
 @SpringBootTest
-public class ActivitiControllerIntegrationTest {
+class ActivitiControllerIntegrationTest {
    private static final Logger logger = LoggerFactory.getLogger(ActivitiControllerIntegrationTest.class);
    private MockMvc mockMvc;
 
@@ -35,8 +35,8 @@ public class ActivitiControllerIntegrationTest {
    @Autowired
    RuntimeService runtimeService;
 
-   @Before
-   public void setUp() {
+   @BeforeEach
+   void setUp() {
       this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
             .build();
 
@@ -47,8 +47,7 @@ public class ActivitiControllerIntegrationTest {
    }
 
    @Test
-   public void givenProcess_whenStartProcess_thenIncreaseInProcessInstanceCount() throws Exception {
-
+   void givenProcess_whenStartProcess_thenIncreaseInProcessInstanceCount() throws Exception {
       String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/start-process"))
             .andReturn()
             .getResponse()
@@ -69,8 +68,7 @@ public class ActivitiControllerIntegrationTest {
    }
 
    @Test
-   public void givenProcess_whenProcessInstance_thenReceivedRunningTask() throws Exception {
-
+   void givenProcess_whenProcessInstance_thenReceivedRunningTask() throws Exception {
       this.mockMvc.perform(MockMvcRequestBuilders.get("/start-process"))
             .andReturn()
             .getResponse();
@@ -80,8 +78,8 @@ public class ActivitiControllerIntegrationTest {
             .list()
             .get(0);
 
-      logger.info("process instance = " + pi.getId());
-      String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/get-tasks/" + pi.getId()))
+      logger.info(STR."process instance = \{pi.getId()}");
+      String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get(STR."/get-tasks/\{pi.getId()}"))
             .andReturn()
             .getResponse()
             .getContentAsString();
@@ -90,12 +88,10 @@ public class ActivitiControllerIntegrationTest {
       List<TaskRepresentation> tasks = Arrays.asList(mapper.readValue(responseBody, TaskRepresentation[].class));
       assertEquals(1, tasks.size());
       assertEquals("A", tasks.get(0).getName());
-
    }
 
    @Test
-   public void givenProcess_whenCompleteTaskA_thenReceivedNextTask() throws Exception {
-
+   void givenProcess_whenCompleteTaskA_thenReceivedNextTask() throws Exception {
       this.mockMvc.perform(MockMvcRequestBuilders.get("/start-process"))
             .andReturn()
             .getResponse();
@@ -105,8 +101,8 @@ public class ActivitiControllerIntegrationTest {
             .list()
             .get(0);
 
-      logger.info("process instance = " + pi.getId());
-      this.mockMvc.perform(MockMvcRequestBuilders.get("/complete-task-A/" + pi.getId()))
+      logger.info(STR."process instance = \{pi.getId()}");
+      this.mockMvc.perform(MockMvcRequestBuilders.get(STR."/complete-task-A/\{pi.getId()}"))
             .andReturn()
             .getResponse()
             .getContentAsString();
