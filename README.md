@@ -1,7 +1,7 @@
 Taketoday Tutorial4j
 ==============
 
-[![Java 17](https://img.shields.io/badge/java-17-green)](https://img.shields.io/badge/java-17-blue)
+[![Java 21](https://img.shields.io/badge/java-21-green)](https://img.shields.io/badge/java-17-blue)
 ![example workflow](https://github.com/tu-yucheng/taketoday-tutorial4j/actions/workflows/maven-ci.yml/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tu-yucheng_taketoday-tutorial4j)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=tu-yucheng_taketoday-tutorial4j&metric=coverage)](https://sonarcloud.io/dashboard?id=tu-yucheng_taketoday-tutorial4j)
@@ -15,7 +15,7 @@ Taketoday Tutorial4j
 
 ## 多版本JDK构建
 
-就目前而言，大多数模块都是基于JDK 17(JAVA_HOME)才能正确构建和运行。此外，还有一些模块基于JDK 8/19，我们通过Maven工具链来保证这些模块能够使用单独的JDK构建。
+就目前而言，大多数模块都是基于JDK 21(JAVA_HOME)才能正确构建和运行。此外，还有一些模块基于JDK 8，我们通过Maven工具链来保证这些模块能够使用单独的JDK构建。
 
 首先，你需要同时下载这些版本的JDK。然后配置Maven工具链，在你用户目录下的.m2文件夹中创建一个toolchains.xml文件：
 
@@ -30,16 +30,6 @@ Taketoday Tutorial4j
     <toolchain>
         <type>jdk</type>
         <provides>
-            <version>17</version>
-            <vendor>adopt</vendor>
-        </provides>
-        <configuration>
-            <jdkHome>D:\\xxx\\jdk-17.0.5</jdkHome>
-        </configuration>
-    </toolchain>
-    <toolchain>
-        <type>jdk</type>
-        <provides>
             <version>8</version>
             <vendor>adopt</vendor>
         </provides>
@@ -50,11 +40,11 @@ Taketoday Tutorial4j
     <toolchain>
         <type>jdk</type>
         <provides>
-            <version>19</version>
+            <version>21</version>
             <vendor>adopt</vendor>
         </provides>
         <configuration>
-            <jdkHome>D:\\xxx\\jdk-19.0.1</jdkHome>
+            <jdkHome>D:\\xxx\\jdk-21.0.1</jdkHome>
         </configuration>
     </toolchain>
 </toolchains>
