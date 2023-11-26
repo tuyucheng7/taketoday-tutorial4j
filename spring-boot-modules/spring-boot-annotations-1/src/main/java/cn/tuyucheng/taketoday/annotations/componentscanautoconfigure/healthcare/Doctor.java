@@ -4,6 +4,6 @@ public class Doctor {
 
    @Override
    public String toString() {
-      return "Doctor" + this.hashCode();
+      return STR."Doctor\{this.hashCode()}";
    }
 }

@@ -7,6 +7,6 @@ public class Student {
 
    @Override
    public String toString() {
-      return "Student" + this.hashCode();
+      return STR."Student\{this.hashCode()}";
    }
 }

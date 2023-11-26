@@ -12,10 +12,10 @@ public class MyBeanNotOfRequiredTypeFailureAnalyzer extends AbstractFailureAnaly
    }
 
    private String getDescription(BeanNotOfRequiredTypeException ex) {
-      return String.format("The bean %s could not be injected as %s because it is of type %s", ex.getBeanName(), ex.getRequiredType().getName(), ex.getActualType().getName());
+      return STR."The bean \{ex.getBeanName()} could not be injected as \{ex.getRequiredType().getName()} because it is of type \{ex.getActualType().getName()}";
    }
 
    private String getAction(BeanNotOfRequiredTypeException ex) {
-      return String.format("Consider creating a bean with name %s of type %s", ex.getBeanName(), ex.getRequiredType().getName());
+      return STR."Consider creating a bean with name \{ex.getBeanName()} of type \{ex.getRequiredType().getName()}";
    }
 }

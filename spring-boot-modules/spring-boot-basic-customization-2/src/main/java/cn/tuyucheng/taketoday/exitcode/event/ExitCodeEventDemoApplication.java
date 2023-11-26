@@ -25,7 +25,7 @@ public class ExitCodeEventDemoApplication {
    private static class DemoListener {
       @EventListener
       public void exitEvent(ExitCodeEvent event) {
-         System.out.println("Exit code: " + event.getExitCode());
+         System.out.println(STR."Exit code: \{event.getExitCode()}");
       }
    }
 }

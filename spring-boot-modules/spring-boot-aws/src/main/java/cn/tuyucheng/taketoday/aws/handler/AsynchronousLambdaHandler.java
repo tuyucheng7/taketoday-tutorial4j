@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.aws.handler;
 
-import cn.tuyucheng.taketoday.aws.Application;
+import cn.tuyucheng.taketoday.aws.AWSLambdaApplication;
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
 import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
@@ -13,7 +13,7 @@ public class AsynchronousLambdaHandler implements RequestHandler<AwsProxyRequest
    private SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
 
    public AsynchronousLambdaHandler() throws ContainerInitializationException {
-      handler = (SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse>) new SpringBootProxyHandlerBuilder().springBootApplication(Application.class)
+      handler = (SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse>) new SpringBootProxyHandlerBuilder().springBootApplication(AWSLambdaApplication.class)
             .asyncInit()
             .buildAndInitialize();
    }

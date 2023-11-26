@@ -3,9 +3,7 @@ package cn.tuyucheng.taketoday.annotations;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeApplicationUnitTest {
    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()

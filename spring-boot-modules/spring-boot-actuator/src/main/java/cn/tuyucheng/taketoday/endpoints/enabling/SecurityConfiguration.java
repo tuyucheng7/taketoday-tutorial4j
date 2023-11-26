@@ -26,12 +26,10 @@ public class SecurityConfiguration {
    public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
       http.httpBasic(Customizer.withDefaults());
       http.securityMatcher(EndpointRequest.toAnyEndpoint());
-      http.authorizeHttpRequests(authz -> {
-         authz.requestMatchers(mvc.pattern("/actuator/**"))
-               .hasRole("ADMIN")
-               .anyRequest()
-               .authenticated();
-      });
+      http.authorizeHttpRequests(authz -> authz.requestMatchers(mvc.pattern("/actuator/**"))
+            .hasRole("ADMIN")
+            .anyRequest()
+            .authenticated());
 
       return http.build();
    }

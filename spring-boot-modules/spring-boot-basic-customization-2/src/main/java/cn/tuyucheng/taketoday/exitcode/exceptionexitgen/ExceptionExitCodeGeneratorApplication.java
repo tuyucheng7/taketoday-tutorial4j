@@ -14,7 +14,7 @@ public class ExceptionExitCodeGeneratorApplication {
 
    @Bean
    CommandLineRunner failApplication() {
-      return args -> {
+      return _ -> {
          throw new FailedToStartException();
       };
    }

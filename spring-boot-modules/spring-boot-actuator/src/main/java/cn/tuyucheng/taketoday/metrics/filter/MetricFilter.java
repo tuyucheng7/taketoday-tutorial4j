@@ -33,7 +33,7 @@ public class MetricFilter implements Filter {
    @Override
    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws java.io.IOException, ServletException {
       final HttpServletRequest httpRequest = ((HttpServletRequest) request);
-      final String req = httpRequest.getMethod() + " " + httpRequest.getRequestURI();
+      final String req = STR."\{httpRequest.getMethod()} \{httpRequest.getRequestURI()}";
 
       chain.doFilter(request, response);
 

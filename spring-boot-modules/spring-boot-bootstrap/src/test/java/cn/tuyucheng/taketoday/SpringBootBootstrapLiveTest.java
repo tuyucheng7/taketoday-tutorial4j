@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday;
 import cn.tuyucheng.taketoday.persistence.model.Book;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
@@ -11,32 +11,32 @@ import java.util.List;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SpringBootBootstrapLiveTest {
+class SpringBootBootstrapLiveTest {
 
    private static final String API_ROOT = "http://localhost:8080/api/books";
 
    @Test
-   public void whenGetAllBooks_thenOK() {
+   void whenGetAllBooks_thenOK() {
       final Response response = RestAssured.get(API_ROOT);
       assertEquals(HttpStatus.OK.value(), response.getStatusCode());
    }
 
    @Test
-   public void whenGetBooksByTitle_thenOK() {
+   void whenGetBooksByTitle_thenOK() {
       final Book book = createRandomBook();
       createBookAsUri(book);
 
-      final Response response = RestAssured.get(API_ROOT + "/title/" + book.getTitle());
+      final Response response = RestAssured.get(STR."\{API_ROOT}/title/\{book.getTitle()}");
       assertEquals(HttpStatus.OK.value(), response.getStatusCode());
       assertTrue(response.as(List.class)
             .size() > 0);
    }
 
    @Test
-   public void whenGetCreatedBookById_thenOK() {
+   void whenGetCreatedBookById_thenOK() {
       final Book book = createRandomBook();
       final String location = createBookAsUri(book);
 
@@ -47,14 +47,14 @@ public class SpringBootBootstrapLiveTest {
    }
 
    @Test
-   public void whenGetNotExistBookById_thenNotFound() {
-      final Response response = RestAssured.get(API_ROOT + "/" + randomNumeric(4));
+   void whenGetNotExistBookById_thenNotFound() {
+      final Response response = RestAssured.get(STR."\{API_ROOT}/\{randomNumeric(4)}");
       assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode());
    }
 
    // POST
    @Test
-   public void whenCreateNewBook_thenCreated() {
+   void whenCreateNewBook_thenCreated() {
       final Book book = createRandomBook();
 
       final Response response = RestAssured.given()
@@ -65,7 +65,7 @@ public class SpringBootBootstrapLiveTest {
    }
 
    @Test
-   public void whenInvalidBook_thenError() {
+   void whenInvalidBook_thenError() {
       final Book book = createRandomBook();
       book.setAuthor(null);
 
@@ -77,7 +77,7 @@ public class SpringBootBootstrapLiveTest {
    }
 
    @Test
-   public void whenUpdateCreatedBook_thenUpdated() {
+   void whenUpdateCreatedBook_thenUpdated() {
       final Book book = createRandomBook();
       final String location = createBookAsUri(book);
 
@@ -97,7 +97,7 @@ public class SpringBootBootstrapLiveTest {
    }
 
    @Test
-   public void whenDeleteCreatedBook_thenOk() {
+   void whenDeleteCreatedBook_thenOk() {
       final Book book = createRandomBook();
       final String location = createBookAsUri(book);
 
@@ -122,8 +122,6 @@ public class SpringBootBootstrapLiveTest {
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .body(book)
             .post(API_ROOT);
-      return API_ROOT + "/" + response.jsonPath()
-            .get("id");
+      return STR."\{API_ROOT}/\{response.jsonPath().get("id")}";
    }
-
 }

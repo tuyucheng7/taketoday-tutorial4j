@@ -83,7 +83,6 @@ public class ActuatorMetricService implements MetricService {
    }
 
    private void updateMetrics(Meter counterMetric, List<Integer> statusCount) {
-
       String metricName = counterMetric.getId().getName();
 
       if (metricName.contains("counter.status.")) {

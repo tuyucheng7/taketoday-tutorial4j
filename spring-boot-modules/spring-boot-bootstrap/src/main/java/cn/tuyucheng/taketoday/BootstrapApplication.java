@@ -10,10 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = "cn.tuyucheng.taketoday")
 @EnableJpaRepositories("cn.tuyucheng.taketoday.persistence.repo")
 @EntityScan("cn.tuyucheng.taketoday.persistence.model")
-public class Application {
+public class BootstrapApplication {
 
    public static void main(String[] args) {
-      SpringApplication.run(Application.class, args);
+      SpringApplication.run(BootstrapApplication.class, args);
    }
-
 }

@@ -15,7 +15,7 @@ public class ExitCodeExceptionMapperDemoApplication {
 
    @Bean
    CommandLineRunner createException() {
-      return args -> Integer.parseInt("test");
+      return _ -> Integer.parseInt("test");
    }
 
    @Bean

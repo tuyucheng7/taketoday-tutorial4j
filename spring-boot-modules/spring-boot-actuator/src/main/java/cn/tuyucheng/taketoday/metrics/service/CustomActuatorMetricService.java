@@ -29,7 +29,7 @@ public class CustomActuatorMetricService implements MetricService {
    }
 
    public void increaseCount(int status) {
-      String counterName = "counter.status." + status;
+      String counterName = STR."counter.status.\{status}";
       registry.counter(counterName).increment();
       if (!statusList.contains(counterName)) {
          statusList.add(counterName);

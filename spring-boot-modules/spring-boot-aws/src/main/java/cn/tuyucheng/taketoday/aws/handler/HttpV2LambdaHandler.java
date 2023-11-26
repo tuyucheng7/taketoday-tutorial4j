@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.aws.handler;
 
-import cn.tuyucheng.taketoday.aws.Application;
+import cn.tuyucheng.taketoday.aws.AWSLambdaApplication;
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
@@ -13,7 +13,7 @@ public class HttpV2LambdaHandler implements RequestHandler<HttpApiV2ProxyRequest
 
    static {
       try {
-         handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(Application.class);
+         handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(AWSLambdaApplication.class);
       } catch (ContainerInitializationException ex) {
          throw new RuntimeException("Unable to load spring boot application", ex);
       }

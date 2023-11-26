@@ -26,29 +26,29 @@ public class WebSecurityConfig {
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
       SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
       successHandler.setTargetUrlParameter("redirectTo");
-      successHandler.setDefaultTargetUrl(this.adminServer.getContextPath() + "/");
+      successHandler.setDefaultTargetUrl(STR."\{this.adminServer.getContextPath()}/");
 
       http.authorizeRequests()
-            .antMatchers(this.adminServer.getContextPath() + "/assets/**")
+            .antMatchers(STR."\{this.adminServer.getContextPath()}/assets/**")
             .permitAll()
-            .antMatchers(this.adminServer.getContextPath() + "/login")
+            .antMatchers(STR."\{this.adminServer.getContextPath()}/login")
             .permitAll()
             .anyRequest()
             .authenticated()
             .and()
             .formLogin()
-            .loginPage(this.adminServer.getContextPath() + "/login")
+            .loginPage(STR."\{this.adminServer.getContextPath()}/login")
             .successHandler(successHandler)
             .and()
             .logout()
-            .logoutUrl(this.adminServer.getContextPath() + "/logout")
+            .logoutUrl(STR."\{this.adminServer.getContextPath()}/logout")
             .and()
             .httpBasic()
             .and()
             .csrf()
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            .ignoringRequestMatchers(new AntPathRequestMatcher(this.adminServer.getContextPath() + "/instances", HttpMethod.POST.toString()), new AntPathRequestMatcher(this.adminServer.getContextPath() + "/instances/*", HttpMethod.DELETE.toString()),
-                  new AntPathRequestMatcher(this.adminServer.getContextPath() + "/actuator/**"))
+            .ignoringRequestMatchers(new AntPathRequestMatcher(STR."\{this.adminServer.getContextPath()}/instances", HttpMethod.POST.toString()), new AntPathRequestMatcher(STR."\{this.adminServer.getContextPath()}/instances/*", HttpMethod.DELETE.toString()),
+                  new AntPathRequestMatcher(STR."\{this.adminServer.getContextPath()}/actuator/**"))
             .and()
             .rememberMe()
             .key(UUID.randomUUID().toString())

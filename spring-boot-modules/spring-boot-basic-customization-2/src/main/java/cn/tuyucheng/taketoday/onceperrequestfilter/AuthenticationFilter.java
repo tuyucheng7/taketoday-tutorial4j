@@ -19,7 +19,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
          FilterChain filterChain) throws
          ServletException, IOException {
       String usrName = request.getHeader("userName");
-      logger.info("Successfully authenticated user  " + usrName);
+      logger.info(STR."Successfully authenticated user  \{usrName}");
       filterChain.doFilter(request, response);
    }
 

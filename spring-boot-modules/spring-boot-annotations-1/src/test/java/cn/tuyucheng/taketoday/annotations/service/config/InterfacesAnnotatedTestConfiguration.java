@@ -6,5 +6,4 @@ import org.springframework.context.annotation.ComponentScan;
 @TestConfiguration
 @ComponentScan("cn.tuyucheng.taketoday.annotations.service.interfaces")
 public class InterfacesAnnotatedTestConfiguration {
-
 }

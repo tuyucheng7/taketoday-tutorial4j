@@ -25,7 +25,7 @@ public class PerformanceAspect {
       Object retval = pjp.proceed();
       long end = System.nanoTime();
       String methodName = pjp.getSignature().getName();
-      logger.info("Execution of " + methodName + " took " + TimeUnit.NANOSECONDS.toMillis(end - start) + " ms");
+      logger.info(STR."Execution of \{methodName} took \{TimeUnit.NANOSECONDS.toMillis(end - start)} ms");
       return retval;
    }
 }

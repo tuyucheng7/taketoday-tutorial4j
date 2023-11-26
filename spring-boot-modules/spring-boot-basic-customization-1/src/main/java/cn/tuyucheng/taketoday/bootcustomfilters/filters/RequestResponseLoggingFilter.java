@@ -23,7 +23,7 @@ public class RequestResponseLoggingFilter implements Filter {
    private static final Logger LOG = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
 
    @Override
-   public void init(final FilterConfig filterConfig) throws ServletException {
+   public void init(final FilterConfig filterConfig) {
       LOG.info("Initializing filter :{}", this);
    }
 

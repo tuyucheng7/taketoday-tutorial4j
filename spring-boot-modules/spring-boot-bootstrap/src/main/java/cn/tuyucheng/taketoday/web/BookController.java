@@ -36,8 +36,7 @@ public class BookController {
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public Book create(@RequestBody Book book) {
-      Book book1 = bookRepository.save(book);
-      return book1;
+      return bookRepository.save(book);
    }
 
    @DeleteMapping("/{id}")

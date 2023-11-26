@@ -26,9 +26,7 @@ class ConditionalOnClassIntegrationTest {
    @Test
    void whenDependentClassIsPresent_thenBeanMissing() {
       this.contextRunner.withUserConfiguration(ConditionalOnMissingClassConfiguration.class)
-            .run(context -> {
-               assertThat(context).doesNotHaveBean("missed");
-            });
+            .run(context -> assertThat(context).doesNotHaveBean("missed"));
    }
 
    @Test

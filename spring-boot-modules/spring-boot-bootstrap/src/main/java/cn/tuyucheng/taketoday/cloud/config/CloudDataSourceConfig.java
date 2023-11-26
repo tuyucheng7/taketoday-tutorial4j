@@ -15,5 +15,4 @@ public class CloudDataSourceConfig extends AbstractCloudConfig {
    public DataSource dataSource() {
       return connectionFactory().dataSource();
    }
-
 }

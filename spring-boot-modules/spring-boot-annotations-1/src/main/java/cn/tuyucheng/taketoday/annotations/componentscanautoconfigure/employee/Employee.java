@@ -7,6 +7,6 @@ public class Employee {
 
    @Override
    public String toString() {
-      return "Employee" + this.hashCode();
+      return STR."Employee\{this.hashCode()}";
    }
 }
