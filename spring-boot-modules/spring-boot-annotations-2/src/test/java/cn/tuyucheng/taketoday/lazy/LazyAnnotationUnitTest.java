@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.lazy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class LazyAnnotationUnitTest {
 
    @Test
-   public void givenLazyAnnotation_whenConfigClass_thenLazyAll() {
+   void givenLazyAnnotation_whenConfigClass_thenLazyAll() {
       // Add @Lazy to AppConfig.class while testing
       AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
       ctx.register(AppConfig.class);
@@ -16,7 +16,7 @@ public class LazyAnnotationUnitTest {
    }
 
    @Test
-   public void givenLazyAnnotation_whenAutowire_thenLazyBean() {
+   void givenLazyAnnotation_whenAutowire_thenLazyBean() {
       AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
       ctx.register(AppConfig.class);
       ctx.refresh();
@@ -25,7 +25,7 @@ public class LazyAnnotationUnitTest {
    }
 
    @Test
-   public void givenLazyAnnotation_whenBeanConfig_thenLazyBean() {
+   void givenLazyAnnotation_whenBeanConfig_thenLazyBean() {
       AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
       ctx.register(AppConfig.class);
       ctx.refresh();

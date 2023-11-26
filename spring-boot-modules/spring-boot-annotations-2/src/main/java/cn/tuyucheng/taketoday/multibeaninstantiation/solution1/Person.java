@@ -12,6 +12,6 @@ public class Person {
 
    @Override
    public String toString() {
-      return "Person [firstName=" + firstName + ", secondName=" + lastName + "]";
+      return STR."Person [firstName=\{firstName}, secondName=\{lastName}]";
    }
 }

@@ -25,5 +25,4 @@ public @interface MyMapping {
 
    @AliasFor(annotation = RequestMapping.class, attribute = "path")
    String[] route() default {};
-
 }

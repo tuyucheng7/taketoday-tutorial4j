@@ -9,5 +9,4 @@ public class MyMappingController {
    @MyMapping(action = RequestMethod.PATCH, route = "/test")
    public void mappingMethod() {
    }
-
 }

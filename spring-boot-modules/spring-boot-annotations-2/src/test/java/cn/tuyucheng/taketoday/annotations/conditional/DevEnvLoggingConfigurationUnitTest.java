@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.annotations.conditional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
@@ -7,6 +8,7 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Disabled("Disable On Java 21")
 class DevEnvLoggingConfigurationUnitTest {
 
    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();

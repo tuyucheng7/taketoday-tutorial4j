@@ -44,6 +44,6 @@ public class Person implements FactoryBean<Object> {
 
    @Override
    public String toString() {
-      return "Person [firstName=" + firstName + ", secondName=" + secondName + "]";
+      return STR."Person [firstName=\{firstName}, secondName=\{secondName}]";
    }
 }

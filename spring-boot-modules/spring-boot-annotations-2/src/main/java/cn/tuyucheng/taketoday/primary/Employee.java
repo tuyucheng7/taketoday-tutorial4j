@@ -10,8 +10,6 @@ public class Employee {
 
    @Override
    public String toString() {
-      return "Employee{" +
-            "name='" + name + '\'' +
-            '}';
+      return STR."Employee{name='\{name}\{'\''}\{'}'}";
    }
 }

@@ -2,12 +2,10 @@ package cn.tuyucheng.taketoday.primary;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
 public class PrimaryApplication {
 
    public static void main(String[] args) {
-      AnnotationConfigApplicationContext context
-            = new AnnotationConfigApplicationContext(Config.class);
+      AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 
       Employee employee = context.getBean(Employee.class);
       System.out.println(employee);
@@ -16,5 +14,4 @@ public class PrimaryApplication {
       Manager manager = service.getManager();
       System.out.println(manager.getManagerName());
    }
-
 }
