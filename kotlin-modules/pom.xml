@@ -250,7 +250,7 @@
    </pluginRepositories>
 
    <properties>
-      <kotlin.version>1.8.20</kotlin.version>
+      <kotlin.version>1.9.20</kotlin.version>
       <kotlinx.version>1.6.4</kotlinx.version>
       <serialization.version>1.4.1</serialization.version>
    </properties>
