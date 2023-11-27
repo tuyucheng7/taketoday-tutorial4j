@@ -9,7 +9,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {TestConfiguration1.class, TestConfiguration2.class}, properties = {"spring.main.allow-bean-definition-overriding=true"})
 class SpringBootBeanDefinitionOverrideExceptionIntegrationTest {

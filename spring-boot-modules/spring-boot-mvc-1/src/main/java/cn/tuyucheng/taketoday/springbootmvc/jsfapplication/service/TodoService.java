@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 @Scope(value = "session")
 @Component(value = "todoService")
@@ -31,7 +30,7 @@ public class TodoService {
       return todoDao.getAll()
             .stream()
             .sorted(Comparator.comparingInt(Todo::getId))
-            .collect(Collectors.toList());
+            .toList();
    }
 
    public int saveTodo(Todo todo) {

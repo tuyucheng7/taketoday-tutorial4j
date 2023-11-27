@@ -34,7 +34,7 @@ public class ProducerSimulator {
    public void sendMessage() throws ExecutionException, InterruptedException {
       if (enabled) {
          if (endTime.after(new Date())) {
-            String message = "msg-" + time();
+            String message = STR."msg-\{time()}";
             SendResult<String, String> result = kafkaTemplate
                   .send(topicName, message)
                   .get();

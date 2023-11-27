@@ -18,7 +18,7 @@ public class WsApplicationClient {
       String request = "<q0:sayHello xmlns:q0=\"http://service.cxf.taketoday.tuyucheng.cn/\"><myname>Elan</myname></q0:sayHello>";
 
       StreamSource source = new StreamSource(new StringReader(request));
-      Service service = Service.create(new URL(address + "?wsdl"),
+      Service service = Service.create(new URL(STR."\{address}?wsdl"),
             new QName("http://service.cxf.taketoday.tuyucheng.cn/", "HelloService"));
       Dispatch<Source> disp = service.createDispatch(new QName("http://service.cxf.taketoday.tuyucheng.cn/", "HelloPort"),
             Source.class, Mode.PAYLOAD);

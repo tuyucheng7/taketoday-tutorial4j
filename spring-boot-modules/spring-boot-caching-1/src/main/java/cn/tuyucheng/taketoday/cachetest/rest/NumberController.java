@@ -22,7 +22,6 @@ public class NumberController {
    @GetMapping(path = "/square/{number}")
    public String getThing(@PathVariable Long number) {
       log.info("call numberService to square {}", number);
-      return String.format("{\"square\": %s}", numberService.square(number));
+      return STR."{\"square\": \{numberService.square(number)}}";
    }
-
 }

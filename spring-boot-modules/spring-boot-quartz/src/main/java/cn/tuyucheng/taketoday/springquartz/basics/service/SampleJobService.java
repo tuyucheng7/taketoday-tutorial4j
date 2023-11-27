@@ -16,7 +16,6 @@ public class SampleJobService {
    private AtomicInteger count = new AtomicInteger();
 
    public void executeSampleJob() {
-
       logger.info("The sample job has begun...");
       try {
          Thread.sleep(EXECUTION_TIME);

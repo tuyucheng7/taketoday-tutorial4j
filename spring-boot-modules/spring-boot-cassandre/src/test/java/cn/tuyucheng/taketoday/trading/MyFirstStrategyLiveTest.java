@@ -39,14 +39,14 @@ class MyFirstStrategyLiveTest {
       final HashMap<CurrencyDTO, GainDTO> gains = strategy.getGains();
 
       logger.info("Cumulated gains:");
-      gains.forEach((currency, gain) -> logger.info(currency + " : " + gain.getAmount()));
+      gains.forEach((currency, gain) -> logger.info(STR."\{currency} : \{gain.getAmount()}"));
 
       logger.info("Position still opened :");
       strategy.getPositions()
             .values()
             .stream()
             .filter(p -> p.getStatus().equals(OPENED))
-            .forEach(p -> logger.info(" - {} " + p.getDescription()));
+            .forEach(p -> logger.info(STR." - {} \{p.getDescription()}"));
 
       assertTrue(gains.get(USDT).getPercentage() > 0);
    }

@@ -32,7 +32,7 @@ public class CustomerDetailRepository {
 
    public List<Order> getCustomerOrders(Integer customerId) {
       String customerOrderQuery = "select * from orderdetail where customerid = ? ";
-      List<Order> orders = new ArrayList<Order>();
+      List<Order> orders = new ArrayList<>();
       jdbcTemplate.query(customerOrderQuery, new Object[]{customerId}, new RowCallbackHandler() {
          public void processRow(ResultSet rs) throws SQLException {
             Order order = new Order();

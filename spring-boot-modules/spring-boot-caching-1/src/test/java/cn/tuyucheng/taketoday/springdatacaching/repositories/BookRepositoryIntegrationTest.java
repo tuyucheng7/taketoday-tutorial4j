@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @EntityScan(basePackageClasses = Book.class)
 @SpringBootTest(classes = CacheApplication.class)
 @EnableJpaRepositories(basePackageClasses = BookRepository.class)
-public class BookRepositoryIntegrationTest {
+class BookRepositoryIntegrationTest {
 
    @Autowired
    CacheManager cacheManager;
@@ -54,5 +54,4 @@ public class BookRepositoryIntegrationTest {
    private Optional<Book> getCachedBook(String title) {
       return ofNullable(cacheManager.getCache("books")).map(c -> c.get(title, Book.class));
    }
-
 }

@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.spring.kafka.multiplelisteners;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -18,6 +15,9 @@ import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.util.backoff.BackOff;
 import org.springframework.util.backoff.FixedBackOff;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @EnableKafka
 @Configuration
@@ -58,6 +58,6 @@ public class KafkaConsumerConfig {
    @Bean
    public DefaultErrorHandler errorHandler() {
       BackOff fixedBackOff = new FixedBackOff(interval, maxAttempts);
-      return new DefaultErrorHandler((consumerRecord, e) -> LOGGER.error(String.format("consumed record %s because this exception was thrown", consumerRecord.toString())), fixedBackOff);
+      return new DefaultErrorHandler((consumerRecord, _) -> LOGGER.error(String.format("consumed record %s because this exception was thrown", consumerRecord.toString())), fixedBackOff);
    }
 }

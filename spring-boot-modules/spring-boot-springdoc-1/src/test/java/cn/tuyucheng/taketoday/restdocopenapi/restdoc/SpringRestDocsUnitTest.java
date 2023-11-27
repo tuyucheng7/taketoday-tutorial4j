@@ -79,7 +79,7 @@ class SpringRestDocsUnitTest {
             .andExpect(status().isOk())
             .andDo(document("getAFoo", preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
                   pathParameters(parameterWithName("id").description("id of foo to be searched")),
-                  responseFields(fieldWithPath("id").description("The id of the foo" + collectionToDelimitedString(desc.descriptionsForProperty("id"), ". ")),
+                  responseFields(fieldWithPath("id").description(STR."The id of the foo\{collectionToDelimitedString(desc.descriptionsForProperty("id"), ". ")}"),
                         fieldWithPath("title").description("The title of the foo"), fieldWithPath("body").description("The body of the foo"))));
    }
 
@@ -120,7 +120,7 @@ class SpringRestDocsUnitTest {
                   .content(this.objectMapper.writeValueAsString(foo)))
             .andExpect(status().isOk())
             .andDo(document("updateFoo", pathParameters(parameterWithName("id").description("The id of the foo to update")),
-                  responseFields(fieldWithPath("id").description("The id of the updated foo" + collectionToDelimitedString(desc.descriptionsForProperty("id"), ". ")),
+                  responseFields(fieldWithPath("id").description(STR."The id of the updated foo\{collectionToDelimitedString(desc.descriptionsForProperty("id"), ". ")}"),
                         fieldWithPath("title").description("The title of the updated foo"), fieldWithPath("body").description("The body of the updated foo"))));
    }
 }

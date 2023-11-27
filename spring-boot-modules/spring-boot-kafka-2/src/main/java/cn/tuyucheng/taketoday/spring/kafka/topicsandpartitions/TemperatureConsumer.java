@@ -23,8 +23,8 @@ public class TemperatureConsumer {
    }
 
    private void trackConsumedPartitions(String consumerName, int partitionNumber) {
-      consumedRecords.computeIfAbsent(consumerName, k -> new HashSet<>());
-      consumedRecords.computeIfPresent(consumerName, (k, v) -> {
+      consumedRecords.computeIfAbsent(consumerName, _ -> new HashSet<>());
+      consumedRecords.computeIfPresent(consumerName, (_, v) -> {
          v.add(String.valueOf(partitionNumber));
          return v;
       });

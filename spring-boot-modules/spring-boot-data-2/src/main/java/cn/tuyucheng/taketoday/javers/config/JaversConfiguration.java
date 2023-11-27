@@ -14,7 +14,7 @@ public class JaversConfiguration {
    private static class SimpleAuthorProvider implements AuthorProvider {
       @Override
       public String provide() {
-         return "Baeldung Author";
+         return "Tuyucheng Author";
       }
    }
 }

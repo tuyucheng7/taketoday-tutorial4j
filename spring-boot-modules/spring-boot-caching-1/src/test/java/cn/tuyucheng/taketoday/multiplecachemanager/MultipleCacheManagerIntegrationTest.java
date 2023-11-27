@@ -16,7 +16,7 @@ import org.springframework.util.Assert;
 
 @SpringBootApplication
 @SpringBootTest
-public class MultipleCacheManagerIntegrationTest {
+class MultipleCacheManagerIntegrationTest {
 
    @MockBean
    private OrderDetailRepository orderDetailRepository;
@@ -31,7 +31,7 @@ public class MultipleCacheManagerIntegrationTest {
    private CacheManager alternateCacheManager;
 
    @Test
-   public void givenCacheResolverIsConfigured_whenCallGetOrderDetail_thenDataShouldBeInCaffieneCacheManager() {
+   void givenCacheResolverIsConfigured_whenCallGetOrderDetail_thenDataShouldBeInCaffieneCacheManager() {
       Integer key = 30001;
       cacheManager.getCache("orders")
             .evict(key);
@@ -45,11 +45,11 @@ public class MultipleCacheManagerIntegrationTest {
       orderDetailBO.getOrderDetail(key);
       org.springframework.cache.caffeine.CaffeineCache cache = (CaffeineCache) cacheManager.getCache("orders");
       Assert.notNull(cache.get(key)
-            .get(), "caffieneCache should have had the data");
+            .get(), "caffeineCache should have had the data");
    }
 
    @Test
-   public void givenCacheResolverIsConfigured_whenCallGetOrderPrice_thenDataShouldBeInAlternateCacheManager() {
+   void givenCacheResolverIsConfigured_whenCallGetOrderPrice_thenDataShouldBeInAlternateCacheManager() {
       Integer key = 30001;
       alternateCacheManager.getCache("orderprice")
             .evict(key);

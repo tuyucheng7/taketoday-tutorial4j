@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class UserService3 {
@@ -22,7 +21,7 @@ public class UserService3 {
       if (bindingResult.hasFieldErrors()) {
          List<InputFieldError> fieldErrorList = bindingResult.getFieldErrors().stream()
                .map(error -> new InputFieldError(error.getField(), error.getDefaultMessage()))
-               .collect(Collectors.toList());
+               .toList();
 
          UpdateUserResponse updateResponse = new UpdateUserResponse(fieldErrorList);
          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(updateResponse);

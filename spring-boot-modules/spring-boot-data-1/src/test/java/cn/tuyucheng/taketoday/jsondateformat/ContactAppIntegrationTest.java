@@ -2,18 +2,17 @@ package cn.tuyucheng.taketoday.jsondateformat;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,16 +20,15 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, classes = ContactApp.class)
 @TestPropertySource(properties = {
       "spring.jackson.date-format=yyyy-MM-dd HH:mm:ss"
 })
-public class ContactAppIntegrationTest {
+class ContactAppIntegrationTest {
 
    private final ObjectMapper mapper = new ObjectMapper();
 
@@ -41,12 +39,12 @@ public class ContactAppIntegrationTest {
    private TestRestTemplate restTemplate;
 
    @Test
-   public void givenJsonFormatAnnotationAndJava8DateType_whenGet_thenReturnExpectedDateFormat() throws IOException, ParseException {
-      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts", String.class);
+   void givenJsonFormatAnnotationAndJava8DateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity(STR."http://localhost:\{port}/contacts", String.class);
 
       assertEquals(200, response.getStatusCodeValue());
 
-      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<>() {
       });
 
       LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -57,12 +55,12 @@ public class ContactAppIntegrationTest {
    }
 
    @Test
-   public void givenJsonFormatAnnotationAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
-      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/javaUtilDate", String.class);
+   void givenJsonFormatAnnotationAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity(STR."http://localhost:\{port}/contacts/javaUtilDate", String.class);
 
       assertEquals(200, response.getStatusCodeValue());
 
-      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<>() {
       });
 
       LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -73,12 +71,12 @@ public class ContactAppIntegrationTest {
    }
 
    @Test
-   public void givenDefaultDateFormatInAppPropertiesAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
-      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plainWithJavaUtilDate", String.class);
+   void givenDefaultDateFormatInAppPropertiesAndLegacyDateType_whenGet_thenReturnExpectedDateFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity(STR."http://localhost:\{port}/contacts/plainWithJavaUtilDate", String.class);
 
       assertEquals(200, response.getStatusCodeValue());
 
-      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<>() {
       });
 
       LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -88,17 +86,16 @@ public class ContactAppIntegrationTest {
       assertNotNull(lastUpdateTime);
    }
 
-   @Test(expected = DateTimeParseException.class)
-   public void givenDefaultDateFormatInAppPropertiesAndJava8DateType_whenGet_thenNotApplyFormat() throws IOException {
-      ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:" + port + "/contacts/plain", String.class);
+   @Test
+   void givenDefaultDateFormatInAppPropertiesAndJava8DateType_whenGet_thenNotApplyFormat() throws IOException {
+      ResponseEntity<String> response = restTemplate.getForEntity(STR."http://localhost:\{port}/contacts/plain", String.class);
 
       assertEquals(200, response.getStatusCodeValue());
 
-      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<List<Map<String, String>>>() {
+      List<Map<String, String>> respMap = mapper.readValue(response.getBody(), new TypeReference<>() {
       });
 
       LocalDate birthdayDate = LocalDate.parse(respMap.get(0).get("birthday"), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-      LocalDateTime lastUpdateTime = LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      assertThrows(DateTimeParseException.class, () -> LocalDateTime.parse(respMap.get(0).get("lastUpdate"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
    }
-
 }

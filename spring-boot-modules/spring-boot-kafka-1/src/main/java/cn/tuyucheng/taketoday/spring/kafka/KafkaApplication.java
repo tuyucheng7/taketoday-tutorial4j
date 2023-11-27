@@ -53,7 +53,7 @@ public class KafkaApplication {
        * configuration,  all messages with char sequence
        * 'World' will be discarded.
        */
-      producer.sendMessageToFiltered("Hello Baeldung!");
+      producer.sendMessageToFiltered("Hello Tuyucheng!");
       producer.sendMessageToFiltered("Hello World!");
       listener.filterLatch.await(10, TimeUnit.SECONDS);
 
@@ -103,10 +103,9 @@ public class KafkaApplication {
          future.whenComplete((result, ex) -> {
 
             if (ex == null) {
-               System.out.println("Sent message=[" + message + "] with offset=[" + result.getRecordMetadata()
-                     .offset() + "]");
+               System.out.println(STR."Sent message=[\{message}] with offset=[\{result.getRecordMetadata().offset()}]");
             } else {
-               System.out.println("Unable to send message=[" + message + "] due to : " + ex.getMessage());
+               System.out.println(STR."Unable to send message=[\{message}] due to : \{ex.getMessage()}");
             }
          });
       }
@@ -136,37 +135,37 @@ public class KafkaApplication {
 
       @KafkaListener(topics = "${message.topic.name}", groupId = "foo", containerFactory = "fooKafkaListenerContainerFactory")
       public void listenGroupFoo(String message) {
-         System.out.println("Received Message in group 'foo': " + message);
+         System.out.println(STR."Received Message in group 'foo': \{message}");
          latch.countDown();
       }
 
       @KafkaListener(topics = "${message.topic.name}", groupId = "bar", containerFactory = "barKafkaListenerContainerFactory")
       public void listenGroupBar(String message) {
-         System.out.println("Received Message in group 'bar': " + message);
+         System.out.println(STR."Received Message in group 'bar': \{message}");
          latch.countDown();
       }
 
       @KafkaListener(topics = "${message.topic.name}", containerFactory = "headersKafkaListenerContainerFactory")
       public void listenWithHeaders(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION) int partition) {
-         System.out.println("Received Message: " + message + " from partition: " + partition);
+         System.out.println(STR."Received Message: \{message} from partition: \{partition}");
          latch.countDown();
       }
 
       @KafkaListener(topicPartitions = @TopicPartition(topic = "${partitioned.topic.name}", partitions = {"0", "3"}), containerFactory = "partitionsKafkaListenerContainerFactory")
       public void listenToPartition(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION) int partition) {
-         System.out.println("Received Message: " + message + " from partition: " + partition);
+         System.out.println(STR."Received Message: \{message} from partition: \{partition}");
          this.partitionLatch.countDown();
       }
 
       @KafkaListener(topics = "${filtered.topic.name}", containerFactory = "filterKafkaListenerContainerFactory")
       public void listenWithFilter(String message) {
-         System.out.println("Received Message in filtered listener: " + message);
+         System.out.println(STR."Received Message in filtered listener: \{message}");
          this.filterLatch.countDown();
       }
 
       @KafkaListener(topics = "${greeting.topic.name}", containerFactory = "greetingKafkaListenerContainerFactory")
       public void greetingListener(Greeting greeting) {
-         System.out.println("Received greeting message: " + greeting);
+         System.out.println(STR."Received greeting message: \{greeting}");
          this.greetingLatch.countDown();
       }
    }

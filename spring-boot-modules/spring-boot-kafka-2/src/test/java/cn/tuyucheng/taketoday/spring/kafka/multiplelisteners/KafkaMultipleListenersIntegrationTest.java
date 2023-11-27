@@ -1,14 +1,5 @@
 package cn.tuyucheng.taketoday.spring.kafka.multiplelisteners;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +8,14 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.test.context.EmbeddedKafka;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(classes = MultipleListenersApplicationKafkaApp.class)
 @EmbeddedKafka(partitions = 1, controlledShutdown = true, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
@@ -37,12 +36,12 @@ class KafkaMultipleListenersIntegrationTest {
       List<? extends ConcurrentMessageListenerContainer<?, ?>> bookListeners = registry.getAllListenerContainers()
             .stream()
             .map(c -> (ConcurrentMessageListenerContainer<?, ?>) c)
-            .collect(Collectors.toList());
+            .toList();
 
       bookListeners.forEach(listener -> {
          listener.stop();
          listener.getContainerProperties()
-               .setMessageListener((AcknowledgingConsumerAwareMessageListener<String, BookEvent>) (data, acknowledgment, consumer) -> {
+               .setMessageListener((AcknowledgingConsumerAwareMessageListener<String, BookEvent>) (data, _, _) -> {
                   assertThat(data.value()).isEqualTo(bookEvent);
                   latch.countDown();
                });

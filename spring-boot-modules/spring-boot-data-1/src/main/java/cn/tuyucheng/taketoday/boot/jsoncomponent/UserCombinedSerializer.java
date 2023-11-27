@@ -2,7 +2,6 @@ package cn.tuyucheng.taketoday.boot.jsoncomponent;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -19,7 +18,7 @@ public class UserCombinedSerializer {
    public static class UserJsonSerializer extends JsonSerializer<User> {
 
       @Override
-      public void serialize(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+      public void serialize(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
          jsonGenerator.writeStartObject();
          jsonGenerator.writeStringField("favoriteColor", getColorAsWebColor(user.getFavoriteColor()));
          jsonGenerator.writeEndObject();
@@ -35,7 +34,7 @@ public class UserCombinedSerializer {
 
    public static class UserJsonDeserializer extends JsonDeserializer<User> {
       @Override
-      public User deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+      public User deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
          TreeNode treeNode = jsonParser.getCodec().readTree(jsonParser);
          TextNode favoriteColor = (TextNode) treeNode.get("favoriteColor");
          return new User(Color.web(favoriteColor.asText()));

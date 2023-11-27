@@ -16,9 +16,9 @@ public class YAMLConfig {
    private String name;
    private String environment;
    private boolean enabled;
-   private List<String> servers = new ArrayList<String>();
-   private List<String> external = new ArrayList<String>();
-   private Map<String, String> map = new HashMap<String, String>();
+   private List<String> servers = new ArrayList<>();
+   private List<String> external = new ArrayList<>();
+   private Map<String, String> map = new HashMap<>();
    private Component component = new Component();
 
    public List<String> getServers() {

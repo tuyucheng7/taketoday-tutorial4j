@@ -96,9 +96,9 @@ class EtagIntegrationTest {
 
    private final String createAsUri() {
       final Response response = createAsResponse(new Foo(randomAlphabetic(6)));
-      Preconditions.checkState(response.getStatusCode() == 201, "create operation: " + response.getStatusCode());
+      Preconditions.checkState(response.getStatusCode() == 201, STR."create operation: \{response.getStatusCode()}");
 
-      return getURL() + "/" + response.getBody().as(Foo.class).getId();
+      return STR."\{getURL()}/\{response.getBody().as(Foo.class).getId()}";
    }
 
    private Response createAsResponse(final Foo resource) {
@@ -113,6 +113,6 @@ class EtagIntegrationTest {
    }
 
    private String getURL() {
-      return "http://localhost:" + port + "/foos";
+      return STR."http://localhost:\{port}/foos";
    }
 }

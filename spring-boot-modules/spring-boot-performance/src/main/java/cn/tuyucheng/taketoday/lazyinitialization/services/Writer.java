@@ -6,10 +6,10 @@ public class Writer {
 
    public Writer(String writerId) {
       this.writerId = writerId;
-      System.out.println(writerId + " initialized!!!");
+      System.out.println(STR."\{writerId} initialized!!!");
    }
 
    public void write(String message) {
-      System.out.println(writerId + ": " + message);
+      System.out.println(STR."\{writerId}: \{message}");
    }
 }

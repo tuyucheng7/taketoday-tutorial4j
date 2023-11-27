@@ -9,5 +9,4 @@ public class ContactApp {
    public static void main(String[] args) {
       SpringApplication.run(ContactApp.class, args);
    }
-
 }

@@ -32,7 +32,7 @@ public class DeferredResultController {
                }
                return "OK";
             })
-            .whenCompleteAsync((result, exc) -> deferredResult.setResult(ResponseEntity.ok(result)));
+            .whenCompleteAsync((result, _) -> deferredResult.setResult(ResponseEntity.ok(result)));
 
       LOG.info("Servlet thread freed");
       return deferredResult;
@@ -47,7 +47,7 @@ public class DeferredResultController {
    @GetMapping("/async-deferredresult-timeout")
    public DeferredResult<ResponseEntity<?>> handleReqWithTimeouts(Model model) {
       LOG.info("Received async request with a configured timeout");
-      DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>(500l);
+      DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>(500L);
       deferredResult.onTimeout(() -> deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT)
             .body("Request timeout occurred.")));
 
@@ -60,7 +60,7 @@ public class DeferredResultController {
                }
                return "error";
             })
-            .whenCompleteAsync((result, exc) -> deferredResult.setResult(ResponseEntity.ok(result)));
+            .whenCompleteAsync((result, _) -> deferredResult.setResult(ResponseEntity.ok(result)));
       LOG.info("servlet thread freed");
       return deferredResult;
    }
@@ -69,7 +69,7 @@ public class DeferredResultController {
    public DeferredResult<ResponseEntity<?>> handleAsyncFailedRequest(Model model) {
       LOG.info("Received async request with a configured error handler");
       DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
-      deferredResult.onError(t -> deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+      deferredResult.onError(_ -> deferredResult.setErrorResult(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body("An error occurred.")));
       LOG.info("servlet thread freed");
       return deferredResult;

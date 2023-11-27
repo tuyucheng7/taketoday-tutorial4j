@@ -24,7 +24,7 @@ class ExtendedPropertiesWithJavaIntegrationTest {
 
    @Test
    final void givenContextIsInitialized_thenNoException() {
-      System.out.println("in test via @Value: " + injectedProperty);
-      System.out.println("in test Environment: " + env.getProperty("key.something"));
+      System.out.println(STR."in test via @Value: \{injectedProperty}");
+      System.out.println(STR."in test Environment: \{env.getProperty("key.something")}");
    }
 }

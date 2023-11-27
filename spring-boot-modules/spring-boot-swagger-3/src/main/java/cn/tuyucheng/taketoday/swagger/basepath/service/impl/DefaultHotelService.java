@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 class DefaultHotelService implements HotelService {
@@ -28,7 +27,7 @@ class DefaultHotelService implements HotelService {
    public List<Hotel> getHotelsByCity(Long cityId) {
       return hotelRepository.findAll().stream()
             .filter((hotel) -> cityId.equals(hotel.getCity().getId()))
-            .collect(Collectors.toList());
+            .toList();
    }
 
    @Override

@@ -27,7 +27,6 @@ public class Application {
    }
 
    private static void exitApplication() {
-
       ConfigurableApplicationContext ctx = new SpringApplicationBuilder(Application.class).web(WebApplicationType.NONE).run();
 
       int exitCode = SpringApplication.exit(ctx, () -> {

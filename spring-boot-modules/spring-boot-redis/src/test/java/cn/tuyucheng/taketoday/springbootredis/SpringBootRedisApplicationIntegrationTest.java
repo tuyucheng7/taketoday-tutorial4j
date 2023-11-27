@@ -15,7 +15,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,13 +81,13 @@ class SpringBootRedisApplicationIntegrationTest {
       int numberOfSessionsToCreate = random.nextInt(5);
 
       List<Session> createdSessions = IntStream.range(0, numberOfSessionsToCreate)
-            .mapToObj(i -> webTestClient.post()
+            .mapToObj(_ -> webTestClient.post()
                   .uri(V1_SESSIONS_ENDPOINT)
                   .bodyValue(session)
                   .exchange()
                   .expectStatus().isCreated()
                   .expectBody(Session.class).returnResult().getResponseBody())
-            .collect(Collectors.toList());
+            .toList();
 
       // WHEN
       webTestClient.get()

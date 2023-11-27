@@ -7,6 +7,7 @@ import javax.annotation.security.RolesAllowed;
 
 @SpringBootApplication
 public class DynamicValidationApp {
+
    @RolesAllowed("*")
    public static void main(String[] args) {
       SpringApplication.run(DynamicValidationApp.class, args);

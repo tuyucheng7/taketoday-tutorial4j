@@ -2,20 +2,14 @@ package cn.tuyucheng.taketoday.asyncvsflux;
 
 import org.springframework.stereotype.Component;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import java.io.IOException;
 
 @Component
 public class AsyncFilter implements Filter {
 
    @Override
-   public void init(FilterConfig filterConfig) throws ServletException {
-
+   public void init(FilterConfig filterConfig) {
    }
 
    @Override
@@ -30,6 +24,5 @@ public class AsyncFilter implements Filter {
 
    @Override
    public void destroy() {
-
    }
 }

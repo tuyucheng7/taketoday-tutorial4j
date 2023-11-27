@@ -24,7 +24,6 @@ public class UserController {
          description = "First Name of the user",
          example = "Vatsal",
          required = true) @RequestParam String firstName) {
-      User user = new User(firstName);
-      return user;
+      return new User(firstName);
    }
 }

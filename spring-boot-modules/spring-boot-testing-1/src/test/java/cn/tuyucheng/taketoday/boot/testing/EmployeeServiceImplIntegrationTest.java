@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.boot.testing;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -108,7 +107,7 @@ class EmployeeServiceImplIntegrationTest {
 
       List<Employee> allEmployees = employeeService.getAllEmployees();
       verifyFindAllEmployeesIsCalledOnce();
-      Assertions.assertThat(allEmployees).hasSize(3).extracting(Employee::getName).contains(alex.getName(), john.getName(), bob.getName());
+      assertThat(allEmployees).hasSize(3).extracting(Employee::getName).contains(alex.getName(), john.getName(), bob.getName());
    }
 
    private void verifyFindByNameIsCalledOnce(String name) {

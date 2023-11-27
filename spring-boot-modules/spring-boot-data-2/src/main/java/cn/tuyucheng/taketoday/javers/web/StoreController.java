@@ -69,5 +69,4 @@ public class StoreController {
       List<CdoSnapshot> snapshots = javers.findSnapshots(jqlQuery.build());
       return javers.getJsonConverter().toJson(snapshots);
    }
-
 }

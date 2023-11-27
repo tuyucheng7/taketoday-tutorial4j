@@ -6,7 +6,7 @@ import groovy.util.logging.Log
 @Log
 class Test {
 
-	static void main(String[] args) {
-		log.info "Test..."
-	}
+   static void main(String[] args) {
+      log.info "Test..."
+   }
 }

@@ -9,7 +9,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,7 +23,7 @@ class ComponentScanCustomFilterAppIntegrationTest {
       List<String> beans = Arrays.stream(applicationContext.getBeanDefinitionNames())
             .filter(bean -> !bean.contains("org.springframework") && !bean.contains("componentScanCustomFilterApp")
                   && !bean.contains("componentScanCustomFilter"))
-            .collect(Collectors.toList());
+            .toList();
 
       assertThat(beans.size(), equalTo(1));
       assertThat(beans.get(0), equalTo("elephant"));

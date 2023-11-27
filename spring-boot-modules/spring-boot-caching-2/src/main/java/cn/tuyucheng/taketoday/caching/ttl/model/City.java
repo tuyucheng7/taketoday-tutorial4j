@@ -62,5 +62,4 @@ public class City implements Serializable {
       if (!Objects.equals(id, city.id)) return false;
       return Objects.equals(name, city.name);
    }
-
 }

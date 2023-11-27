@@ -16,8 +16,8 @@ import javax.sql.DataSource
 @ComponentScan('tuyucheng.data')
 class DataConfig {
 
-	@Bean
-	DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
-	}
+   @Bean
+   DataSource dataSource() {
+      return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+   }
 }

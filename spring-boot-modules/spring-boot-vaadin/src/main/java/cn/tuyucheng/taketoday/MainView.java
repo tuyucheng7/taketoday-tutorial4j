@@ -42,11 +42,9 @@ public class MainView extends VerticalLayout {
       filter.setValueChangeMode(ValueChangeMode.EAGER);
       filter.addValueChangeListener(e -> listEmployees(e.getValue()));
 
-      grid.asSingleSelect().addValueChangeListener(e -> {
-         editor.editEmployee(e.getValue());
-      });
+      grid.asSingleSelect().addValueChangeListener(e -> editor.editEmployee(e.getValue()));
 
-      addNewBtn.addClickListener(e -> editor.editEmployee(new Employee("", "")));
+      addNewBtn.addClickListener(_ -> editor.editEmployee(new Employee("", "")));
 
       editor.setChangeHandler(() -> {
          editor.setVisible(false);

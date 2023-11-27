@@ -9,31 +9,31 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping('todo')
 public class TodoController {
 
-	@Autowired
-	TodoService todoService
+   @Autowired
+   TodoService todoService
 
-	@GetMapping
-	List<Todo> getAllTodoList() {
-		todoService.findAll()
-	}
+   @GetMapping
+   List<Todo> getAllTodoList() {
+      todoService.findAll()
+   }
 
-	@PostMapping
-	Todo saveTodo(@RequestBody Todo todo) {
-		todoService.saveTodo todo
-	}
+   @PostMapping
+   Todo saveTodo(@RequestBody Todo todo) {
+      todoService.saveTodo todo
+   }
 
-	@PutMapping
-	Todo updateTodo(@RequestBody Todo todo) {
-		todoService.updateTodo todo
-	}
+   @PutMapping
+   Todo updateTodo(@RequestBody Todo todo) {
+      todoService.updateTodo todo
+   }
 
-	@DeleteMapping('/{todoId}')
-	deleteTodo(@PathVariable Integer todoId) {
-		todoService.deleteTodo todoId
-	}
+   @DeleteMapping('/{todoId}')
+   deleteTodo(@PathVariable Integer todoId) {
+      todoService.deleteTodo todoId
+   }
 
-	@GetMapping('/{todoId}')
-	Todo getTodoById(@PathVariable Integer todoId) {
-		todoService.findById todoId
-	}
+   @GetMapping('/{todoId}')
+   Todo getTodoById(@PathVariable Integer todoId) {
+      todoService.findById todoId
+   }
 }

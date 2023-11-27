@@ -4,38 +4,38 @@ import cn.tuyucheng.taketoday.kong.domain.APIObject;
 import cn.tuyucheng.taketoday.kong.domain.ConsumerObject;
 import cn.tuyucheng.taketoday.kong.domain.KeyAuthObject;
 import cn.tuyucheng.taketoday.kong.domain.PluginObject;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.URI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
 /**
  * @author tuyucheng
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT, classes = StockApplication.class)
-public class KongAdminAPILiveTest {
+class KongAdminAPILiveTest {
 
    private String getStockPrice(String code) {
       try {
-         return restTemplate.getForObject(new URI("http://localhost:8080/stock/" + code), String.class);
+         return restTemplate.getForObject(new URI(STR."http://localhost:8080/stock/\{code}"), String.class);
       } catch (Exception ignored) {
       }
       return null;
    }
 
-   @Before
-   public void init() {
+   @BeforeEach
+   void init() {
       System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
    }
 
@@ -43,7 +43,7 @@ public class KongAdminAPILiveTest {
    TestRestTemplate restTemplate;
 
    @Test
-   public void givenEndpoint_whenQueryStockPrice_thenPriceCorrect() {
+   void givenEndpoint_whenQueryStockPrice_thenPriceCorrect() {
       String response = getStockPrice("btc");
       assertEquals("10000", response);
 
@@ -52,7 +52,7 @@ public class KongAdminAPILiveTest {
    }
 
    @Test
-   public void givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong() throws Exception {
+   void givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong() throws Exception {
       restTemplate.delete("http://localhost:8001/stock-api");
 
       APIObject stockAPI = new APIObject("stock-api", "stock.api", "http://localhost:9090", "/");
@@ -76,7 +76,7 @@ public class KongAdminAPILiveTest {
    }
 
    @Test
-   public void givenKongAdminAPI_whenAddAPIConsumer_thenAdded() {
+   void givenKongAdminAPI_whenAddAPIConsumer_thenAdded() {
       restTemplate.delete("http://localhost:8001/consumers/eugenp");
 
       ConsumerObject consumer = new ConsumerObject("eugenp");
@@ -93,7 +93,7 @@ public class KongAdminAPILiveTest {
    }
 
    @Test
-   public void givenAPI_whenEnableAuth_thenAnonymousDenied() throws Exception {
+   void givenAPI_whenEnableAuth_thenAnonymousDenied() throws Exception {
       String apiListResp = restTemplate.getForObject("http://localhost:8001/", String.class);
       if (!apiListResp.contains("stock-api")) {
          givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong();
@@ -115,7 +115,7 @@ public class KongAdminAPILiveTest {
    }
 
    @Test
-   public void givenAPIAuthEnabled_whenAddKey_thenAccessAllowed() throws Exception {
+   void givenAPIAuthEnabled_whenAddKey_thenAccessAllowed() throws Exception {
       String apiListResp = restTemplate.getForObject("http://localhost:8001/", String.class);
       if (!apiListResp.contains("stock-api")) {
          givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong();
@@ -151,7 +151,7 @@ public class KongAdminAPILiveTest {
    }
 
    @Test
-   public void givenAdminAPIProxy_whenAddAPIViaProxy_thenAPIAdded() throws Exception {
+   void givenAdminAPIProxy_whenAddAPIViaProxy_thenAPIAdded() throws Exception {
       APIObject adminAPI = new APIObject("admin-api", "admin.api", "http://localhost:8001", "/admin-api");
       HttpEntity<APIObject> apiEntity = new HttpEntity<>(adminAPI);
       ResponseEntity<String> addAPIResp = restTemplate.postForEntity("http://localhost:8001", apiEntity, String.class);

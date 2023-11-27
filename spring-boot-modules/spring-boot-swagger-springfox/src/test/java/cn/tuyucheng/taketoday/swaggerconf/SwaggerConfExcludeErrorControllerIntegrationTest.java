@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.swaggerconf;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,7 +28,7 @@ class SwaggerConfExcludeErrorControllerIntegrationTest {
       ResultActions resultActions = mvc.perform(get("/v2/api-docs")).andExpect(status().isOk());
       MvcResult result = resultActions.andReturn();
       String content = result.getResponse().getContentAsString();
-      Assertions.assertNotNull(content);
-      Assertions.assertFalse(content.contains("error-controller"));
+      assertNotNull(content);
+      assertFalse(content.contains("error-controller"));
    }
 }

@@ -34,9 +34,6 @@ public class YamlFooProperties {
 
    @Override
    public String toString() {
-      return "YamlFooProperties{" +
-            "name='" + name + '\'' +
-            ", aliases=" + aliases +
-            '}';
+      return STR."YamlFooProperties{name='\{name}\{'\''}, aliases=\{aliases}\{'}'}";
    }
 }

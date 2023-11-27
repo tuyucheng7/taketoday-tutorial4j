@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @SpringBootTest(classes = ReadOnlyRepositoryApplication.class)
-public class ReadOnlyRepositoryUnitTest {
+class ReadOnlyRepositoryUnitTest {
    @Autowired
    private BookRepository bookRepository;
 
@@ -17,7 +17,7 @@ public class ReadOnlyRepositoryUnitTest {
    private BookReadOnlyRepository bookReadOnlyRepository;
 
    @Test
-   public void givenBooks_whenUsingReadOnlyRepository_thenGetThem() {
+   void givenBooks_whenUsingReadOnlyRepository_thenGetThem() {
       Book aChristmasCarolCharlesDickens = new Book();
       aChristmasCarolCharlesDickens.setTitle("A Christmas Carol");
       aChristmasCarolCharlesDickens.setAuthor("Charles Dickens");

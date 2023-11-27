@@ -32,7 +32,7 @@ class BasicConfigurationIntegrationTest {
    @BeforeEach
    void setUp() throws MalformedURLException {
       restTemplate = new TestRestTemplate("user", "password");
-      base = new URL("http://localhost:" + port);
+      base = new URL(STR."http://localhost:\{port}");
    }
 
    @Test

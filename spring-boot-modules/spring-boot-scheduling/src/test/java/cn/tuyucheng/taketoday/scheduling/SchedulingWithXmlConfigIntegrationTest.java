@@ -1,16 +1,16 @@
 package cn.tuyucheng.taketoday.scheduling;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:springScheduled-config.xml")
-public class SchedulingWithXmlConfigIntegrationTest {
+class SchedulingWithXmlConfigIntegrationTest {
 
    @Test
-   public void testXmlBasedScheduling() throws InterruptedException {
+   void testXmlBasedScheduling() throws InterruptedException {
       Thread.sleep(5000);
    }
 }

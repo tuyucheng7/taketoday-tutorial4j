@@ -14,7 +14,6 @@ public class BuzzController {
 
    @GetMapping("buzz")
    public String buzz() {
-      return "hello, " + operatorHolder.getOperator();
+      return STR."hello, \{operatorHolder.getOperator()}";
    }
-
 }

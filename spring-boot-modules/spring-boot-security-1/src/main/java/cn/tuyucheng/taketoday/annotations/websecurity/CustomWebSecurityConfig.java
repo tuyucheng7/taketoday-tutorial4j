@@ -23,7 +23,7 @@ public class CustomWebSecurityConfig {
 
    @Bean
    public WebSecurityCustomizer webSecurityCustomizer() {
-      return (web) -> web.ignoring()
+      return web -> web.ignoring()
             .antMatchers("/public/*");
    }
 }

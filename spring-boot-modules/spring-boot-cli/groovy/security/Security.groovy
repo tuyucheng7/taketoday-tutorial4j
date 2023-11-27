@@ -5,8 +5,8 @@ package tuyucheng.security
 @RestController
 class SampleController {
 
-	@RequestMapping("/")
-	def example() {
-		[message: "Hello World!"]
-	}
+   @RequestMapping("/")
+   def example() {
+      [message: "Hello World!"]
+   }
 }

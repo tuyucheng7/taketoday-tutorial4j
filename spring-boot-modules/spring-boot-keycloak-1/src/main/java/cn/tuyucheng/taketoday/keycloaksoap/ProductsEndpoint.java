@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.keycloaksoap;
 
 import cn.tuyucheng.taketoday.*;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.Map;
 
 @Endpoint
@@ -32,7 +32,7 @@ public class ProductsEndpoint {
    @ResponsePayload
    public DeleteProductResponse deleteProduct(@RequestPayload DeleteProductRequest request) {
       DeleteProductResponse response = new DeleteProductResponse();
-      response.setMessage("Success! Deleted the product with the id - " + request.getId());
+      response.setMessage(STR."Success! Deleted the product with the id - \{request.getId()}");
       return response;
    }
 }

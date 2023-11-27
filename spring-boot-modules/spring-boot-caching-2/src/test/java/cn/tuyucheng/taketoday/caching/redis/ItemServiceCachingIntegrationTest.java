@@ -80,5 +80,4 @@ class ItemServiceCachingIntegrationTest {
          this.redisServer.stop();
       }
    }
-
 }

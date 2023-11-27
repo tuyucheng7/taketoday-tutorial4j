@@ -20,7 +20,6 @@ public class SpringFoxSwaggerConfig {
    }
 
    private ApiInfo metaInfo() {
-
       return new ApiInfo("Sample API REST", "API REST", "1.0", "Terms of Service", null, "Apache License Version 2.0",
             "https://www.apache.org/licesen.html", new ArrayList<>());
    }

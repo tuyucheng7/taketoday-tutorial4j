@@ -4,13 +4,13 @@ import cn.tuyucheng.taketoday.sampleapp.config.WebConfig;
 import cn.tuyucheng.taketoday.sampleapp.web.dto.HeavyResource;
 import cn.tuyucheng.taketoday.sampleapp.web.dto.HeavyResourceAddressOnly;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -22,11 +22,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = WebConfig.class)
 @WebAppConfiguration
-public class HeavyResourceControllerIntegrationTest {
+class HeavyResourceControllerIntegrationTest {
 
    private MockMvc mockMvc;
 
@@ -35,13 +34,13 @@ public class HeavyResourceControllerIntegrationTest {
 
    private final ObjectMapper objectMapper = new ObjectMapper();
 
-   @Before
-   public void setUp() {
+   @BeforeEach
+   void setUp() {
       mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
    }
 
    @Test
-   public void givenHeavyResource_whenSendPutRequest_thenCreateResource() throws Exception {
+   void givenHeavyResource_whenSendPutRequest_thenCreateResource() throws Exception {
       mockMvc.perform(put("/heavyresource/1")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content(objectMapper.writeValueAsString(new HeavyResource(1, "Tom", "Jackson", 12, "heaven street")))
@@ -49,7 +48,7 @@ public class HeavyResourceControllerIntegrationTest {
    }
 
    @Test
-   public void givenNewAddressOfResource_whenExecutePatchRequest_thenUpdateResourcePartially() throws Exception {
+   void givenNewAddressOfResource_whenExecutePatchRequest_thenUpdateResourcePartially() throws Exception {
       mockMvc.perform(patch("/heavyresource/1")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content(objectMapper.writeValueAsString(new HeavyResourceAddressOnly(1, "5th avenue")))
@@ -57,7 +56,7 @@ public class HeavyResourceControllerIntegrationTest {
    }
 
    @Test
-   public void givenNewAddressOfResource_whenExecutePatchGeneric_thenUpdateResourcePartially() throws Exception {
+   void givenNewAddressOfResource_whenExecutePatchGeneric_thenUpdateResourcePartially() throws Exception {
       HashMap<String, Object> updates = new HashMap<>();
       updates.put("address", "5th avenue");
 

@@ -41,7 +41,7 @@ class EmbeddedKafkaIntegrationTest {
    }
 
    @Test
-   public void givenEmbeddedKafkaBroker_whenSendingWithDefaultTemplate_thenMessageReceived() throws Exception {
+   void givenEmbeddedKafkaBroker_whenSendingWithDefaultTemplate_thenMessageReceived() throws Exception {
       String data = "Sending with default template";
 
       template.send(topic, data);

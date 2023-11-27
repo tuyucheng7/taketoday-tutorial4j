@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.permitallanonymous;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,22 +9,22 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SecuredEcommerceApplication.class)
 @AutoConfigureMockMvc
-public class SecureEcommerceApplicationUnitTest {
+class SecureEcommerceApplicationUnitTest {
    @Autowired
    private MockMvc mockMvc;
    private static final Logger logger = LoggerFactory.getLogger(SecureEcommerceApplicationUnitTest.class);
 
    @WithAnonymousUser
    @Test
-   public void givenAnonymousUser_whenAccessToUserRegisterPage_thenAllowAccess() throws Exception {
+   void givenAnonymousUser_whenAccessToUserRegisterPage_thenAllowAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/public/registerUser"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.content().string("Register User"));
@@ -32,14 +32,14 @@ public class SecureEcommerceApplicationUnitTest {
 
    @WithMockUser(username = "spring", password = "secret")
    @Test
-   public void givenAuthenticatedUser_whenAccessToUserRegisterPage_thenDenyAccess() throws Exception {
+   void givenAuthenticatedUser_whenAccessToUserRegisterPage_thenDenyAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/public/registerUser"))
             .andExpect(MockMvcResultMatchers.status().isForbidden());
    }
 
    @WithMockUser(username = "spring", password = "secret")
    @Test
-   public void givenAuthenticatedUser_whenAccessToProductLinePage_thenAllowAccess() throws Exception {
+   void givenAuthenticatedUser_whenAccessToProductLinePage_thenAllowAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/public/showProducts"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.content().string("List Products"));
@@ -47,7 +47,7 @@ public class SecureEcommerceApplicationUnitTest {
 
    @WithAnonymousUser
    @Test
-   public void givenAnonymousUser_whenAccessToProductLinePage_thenAllowAccess() throws Exception {
+   void givenAnonymousUser_whenAccessToProductLinePage_thenAllowAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/public/showProducts"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.content().string("List Products"));
@@ -55,7 +55,7 @@ public class SecureEcommerceApplicationUnitTest {
 
    @WithMockUser(username = "spring", password = "secret")
    @Test
-   public void givenAuthenticatedUser_whenAccessToCartPage_thenAllowAccess() throws Exception {
+   void givenAuthenticatedUser_whenAccessToCartPage_thenAllowAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/private/showCart"))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andExpect(MockMvcResultMatchers.content().string("Show Cart"));
@@ -63,7 +63,7 @@ public class SecureEcommerceApplicationUnitTest {
 
    @WithAnonymousUser
    @Test
-   public void givenAnonymousUser_whenAccessToCartPage_thenDenyAccess() throws Exception {
+   void givenAnonymousUser_whenAccessToCartPage_thenDenyAccess() throws Exception {
       mockMvc.perform(MockMvcRequestBuilders.get("/private/showCart"))
             .andExpect(MockMvcResultMatchers.status().isUnauthorized());
    }

@@ -9,31 +9,31 @@ import org.springframework.stereotype.Service
 @Service
 class TodoServiceImpl implements TodoService {
 
-	@Autowired
-	TodoRepository todoRepository
+   @Autowired
+   TodoRepository todoRepository
 
-	@Override
-	List<Todo> findAll() {
-		todoRepository.findAll()
-	}
+   @Override
+   List<Todo> findAll() {
+      todoRepository.findAll()
+   }
 
-	@Override
-	Todo findById(Integer todoId) {
-		todoRepository.findById todoId get()
-	}
+   @Override
+   Todo findById(Integer todoId) {
+      todoRepository.findById todoId get()
+   }
 
-	@Override
-	Todo saveTodo(Todo todo) {
-		todoRepository.save todo
-	}
+   @Override
+   Todo saveTodo(Todo todo) {
+      todoRepository.save todo
+   }
 
-	@Override
-	Todo updateTodo(Todo todo) {
-		todoRepository.save todo
-	}
+   @Override
+   Todo updateTodo(Todo todo) {
+      todoRepository.save todo
+   }
 
-	@Override
-	Todo deleteTodo(Integer todoId) {
-		todoRepository.deleteById todoId
-	}
+   @Override
+   Todo deleteTodo(Integer todoId) {
+      todoRepository.deleteById todoId
+   }
 }

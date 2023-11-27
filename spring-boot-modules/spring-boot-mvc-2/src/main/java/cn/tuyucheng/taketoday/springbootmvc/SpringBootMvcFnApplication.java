@@ -34,20 +34,18 @@ public class SpringBootMvcFnApplication {
    RouterFunction<ServerResponse> allApplicationRoutes(ProductController pc, ProductService ps) {
       return route().add(pc.remainingProductRoutes(ps))
             .before(req -> {
-               LOG.info("Found a route which matches " + req.uri()
-                     .getPath());
+               LOG.info(STR."Found a route which matches \{req.uri().getPath()}");
                return req;
             })
             .after((req, res) -> {
                if (res.statusCode() == HttpStatus.OK) {
-                  LOG.info("Finished processing request " + req.uri()
-                        .getPath());
+                  LOG.info(STR."Finished processing request \{req.uri().getPath()}");
                } else {
-                  LOG.info("There was an error while processing request" + req.uri());
+                  LOG.info(STR."There was an error while processing request\{req.uri()}");
                }
                return res;
             })
-            .onError(Throwable.class, (e, res) -> {
+            .onError(Throwable.class, (e, _) -> {
                LOG.error("Fatal exception has occurred", e);
                return status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             })

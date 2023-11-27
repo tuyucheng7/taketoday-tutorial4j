@@ -77,14 +77,7 @@ public class LoginDto {
 
    @Override
    public String toString() {
-      return "class LoginDto {\n" +
-            "    user: " +
-            toIndentedString(user) +
-            "\n" +
-            "    pass: " +
-            toIndentedString(pass) +
-            "\n" +
-            "}";
+      return STR."class LoginDto {\n    user: \{toIndentedString(user)}\n    pass: \{toIndentedString(pass)}\n}";
    }
 
    /**

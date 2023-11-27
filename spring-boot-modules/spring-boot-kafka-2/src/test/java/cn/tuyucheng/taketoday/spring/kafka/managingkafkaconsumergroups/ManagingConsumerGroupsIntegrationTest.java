@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = ManagingConsumerGroupsApplicationKafkaApp.class)
 @EmbeddedKafka(partitions = 2, brokerProperties = {"listeners=PLAINTEXT://localhost:9092", "port=9092"})
-public class ManagingConsumerGroupsIntegrationTest {
+class ManagingConsumerGroupsIntegrationTest {
 
    private static final String CONSUMER_1_IDENTIFIER = "org.springframework.kafka.KafkaListenerEndpointContainer#1";
    private static final int TOTAL_PRODUCED_MESSAGES = 50000;
@@ -31,7 +31,7 @@ public class ManagingConsumerGroupsIntegrationTest {
    MessageConsumerService consumerService;
 
    @Test
-   public void givenContinuousMessageFlow_whenAConsumerLeavesTheGroup_thenKafkaTriggersPartitionRebalance() throws InterruptedException {
+   void givenContinuousMessageFlow_whenAConsumerLeavesTheGroup_thenKafkaTriggersPartitionRebalance() throws InterruptedException {
       int currentMessage = 0;
 
       do {

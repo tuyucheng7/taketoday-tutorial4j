@@ -48,7 +48,6 @@ public class MyFirstStrategy extends BasicCassandreStrategy {
                   .build();
             createLongPosition(new CurrencyPairDTO(BTC, USDT), new BigDecimal("0.01"), rules);
          }
-
       }
    }
 

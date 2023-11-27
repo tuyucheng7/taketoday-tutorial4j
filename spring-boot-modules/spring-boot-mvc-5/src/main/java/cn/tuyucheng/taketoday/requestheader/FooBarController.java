@@ -12,11 +12,11 @@ public class FooBarController {
    @GetMapping("foo")
    public String foo(HttpServletRequest request) {
       String operator = request.getHeader("operator");
-      return "hello, " + operator;
+      return STR."hello, \{operator}";
    }
 
    @GetMapping("bar")
    public String bar(@RequestHeader("operator") String operator) {
-      return "hello, " + operator;
+      return STR."hello, \{operator}";
    }
 }

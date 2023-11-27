@@ -16,9 +16,9 @@ public class HelloPortImpl implements Hello {
    private static final Logger LOG = Logger.getLogger(HelloPortImpl.class.getName());
 
    public java.lang.String sayHello(String myname) {
-      LOG.info("Executing operation sayHello" + myname);
+      LOG.info(STR."Executing operation sayHello\{myname}");
       try {
-         return "Hello, Welcome to CXF Spring boot " + myname + "!!!";
+         return STR."Hello, Welcome to CXF Spring boot \{myname}!!!";
 
       } catch (java.lang.Exception ex) {
          ex.printStackTrace();

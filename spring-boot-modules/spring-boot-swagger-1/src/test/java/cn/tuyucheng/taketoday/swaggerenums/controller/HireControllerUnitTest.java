@@ -2,8 +2,9 @@ package cn.tuyucheng.taketoday.swaggerenums.controller;
 
 import cn.tuyucheng.taketoday.swaggerenums.model.Employee;
 import cn.tuyucheng.taketoday.swaggerenums.model.Role;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HireControllerUnitTest {
 
@@ -19,6 +20,6 @@ class HireControllerUnitTest {
       String response = hireController.hireEmployee(employee);
 
       // Assert
-      Assertions.assertEquals(String.format("Hired for role: %s", testRole), response);
+      assertEquals(String.format("Hired for role: %s", testRole), response);
    }
 }

@@ -31,5 +31,4 @@ public class PropertyEditorRestController {
    public void initBinder(WebDataBinder binder) {
       binder.registerCustomEditor(ExoticType.class, new CustomExoticTypeEditor());
    }
-
 }

@@ -42,7 +42,6 @@ public class BasicConfiguration {
 
    @Bean
    public PasswordEncoder passwordEncoder() {
-      PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-      return encoder;
+      return PasswordEncoderFactories.createDelegatingPasswordEncoder();
    }
 }

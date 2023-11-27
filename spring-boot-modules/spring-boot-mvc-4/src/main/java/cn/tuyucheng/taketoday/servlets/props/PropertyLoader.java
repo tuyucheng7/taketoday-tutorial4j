@@ -20,7 +20,7 @@ public class PropertyLoader {
             input.close();
          }
       } catch (IOException ex) {
-         log.error("IOException: " + ex);
+         log.error(STR."IOException: \{ex}");
       }
       return prop;
    }

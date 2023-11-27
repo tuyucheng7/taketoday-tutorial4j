@@ -37,7 +37,7 @@ class EmployeeControllerIntegrationTest {
    private EmployeeService service;
 
    @BeforeEach
-   void setUp() throws Exception {
+   void setUp() {
    }
 
    @Test

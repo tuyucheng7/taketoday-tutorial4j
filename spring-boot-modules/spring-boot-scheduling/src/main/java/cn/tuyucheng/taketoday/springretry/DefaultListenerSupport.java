@@ -27,5 +27,4 @@ public class DefaultListenerSupport extends RetryListenerSupport {
       logger.info("onOpen");
       return super.open(context, callback);
    }
-
 }

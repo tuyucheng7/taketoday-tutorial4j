@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -25,7 +24,7 @@ public class BookServiceImpl implements BookService {
       return bookRepository.findAll()
             .stream()
             .map(BookServiceImpl::convertBookData)
-            .collect(Collectors.toList());
+            .toList();
    }
 
    @Override

@@ -25,5 +25,4 @@ public class CacheHelper {
    public Cache<Integer, Integer> getSquareNumberCacheFromCacheManager() {
       return cacheManager.getCache("squaredNumber", Integer.class, Integer.class);
    }
-
 }

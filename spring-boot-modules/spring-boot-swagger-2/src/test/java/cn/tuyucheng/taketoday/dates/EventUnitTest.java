@@ -27,5 +27,4 @@ class EventUnitTest {
       Set<ConstraintViolation<Event>> violations = VALIDATOR.validate(new Event().ticketSales("2024-01-01"));
       assertEquals(1, violations.size());
    }
-
 }

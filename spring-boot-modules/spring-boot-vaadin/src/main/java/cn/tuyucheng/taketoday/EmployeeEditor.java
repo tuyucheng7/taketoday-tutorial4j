@@ -44,11 +44,11 @@ public class EmployeeEditor extends VerticalLayout implements KeyNotifier {
       save.getElement().getThemeList().add("primary");
       delete.getElement().getThemeList().add("error");
 
-      addKeyPressListener(Key.ENTER, e -> save());
+      addKeyPressListener(Key.ENTER, _ -> save());
 
-      save.addClickListener(e -> save());
-      delete.addClickListener(e -> delete());
-      cancel.addClickListener(e -> editEmployee(employee));
+      save.addClickListener(_ -> save());
+      delete.addClickListener(_ -> delete());
+      cancel.addClickListener(_ -> editEmployee(employee));
       setVisible(false);
    }
 

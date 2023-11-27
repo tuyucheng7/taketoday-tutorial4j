@@ -10,7 +10,7 @@ public class OperatorInterceptor implements HandlerInterceptor {
    private final OperatorHolder operatorHolder;
 
    @Override
-   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
       String operator = request.getHeader("operator");
       operatorHolder.setOperator(operator);
       return true;

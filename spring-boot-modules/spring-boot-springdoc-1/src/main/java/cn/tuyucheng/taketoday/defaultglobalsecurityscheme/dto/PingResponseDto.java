@@ -58,11 +58,7 @@ public class PingResponseDto {
 
    @Override
    public String toString() {
-      return "class PingResponseDto {\n" +
-            "    pong: " +
-            toIndentedString(pong) +
-            "\n" +
-            "}";
+      return STR."class PingResponseDto {\n    pong: \{toIndentedString(pong)}\n}";
    }
 
    /**

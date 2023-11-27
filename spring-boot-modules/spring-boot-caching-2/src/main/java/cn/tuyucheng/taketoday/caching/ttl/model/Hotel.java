@@ -128,5 +128,4 @@ public class Hotel implements Serializable {
       if (!Objects.equals(city, hotel.city)) return false;
       return Objects.equals(address, hotel.address);
    }
-
 }

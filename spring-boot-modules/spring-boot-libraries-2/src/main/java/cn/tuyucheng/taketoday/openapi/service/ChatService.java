@@ -78,7 +78,7 @@ public class ChatService {
       } catch (RestClientException e) {
          LOG.error("Failed to retrieve response from OpenAI API: {}", e.getMessage());
          return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-               .body(new ResponseMessage("Failed to retrieve response from OpenAI API: " + e.getMessage()));
+               .body(new ResponseMessage(STR."Failed to retrieve response from OpenAI API: \{e.getMessage()}"));
       }
    }
 }

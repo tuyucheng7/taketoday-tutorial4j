@@ -9,6 +9,6 @@ public class GreetingsController {
 
    @GetMapping("/greetings/{username}")
    public String getGreetings(@PathVariable("username") String userName) {
-      return "Hello " + userName + ", Good day...!!!";
+      return STR."Hello \{userName}, Good day...!!!";
    }
 }

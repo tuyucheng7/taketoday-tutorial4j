@@ -15,5 +15,4 @@ public class ItemService {
       return itemRepository.findById(id)
             .orElseThrow(RuntimeException::new);
    }
-
 }

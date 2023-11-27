@@ -1,16 +1,15 @@
 package cn.tuyucheng.taketoday.jsonexception;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class MainControllerIntegrationTest {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-   @Test(expected = CustomException.class)
-   public void givenIndex_thenCustomException() throws CustomException {
+class MainControllerIntegrationTest {
 
+   @Test
+   void givenIndex_thenCustomException() throws CustomException {
       MainController mainController = new MainController();
 
-      mainController.index();
-
+      assertThrows(CustomException.class, mainController::index);
    }
-
 }

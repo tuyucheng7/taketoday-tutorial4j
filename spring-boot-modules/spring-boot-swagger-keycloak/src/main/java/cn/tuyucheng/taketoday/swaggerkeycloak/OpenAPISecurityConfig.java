@@ -41,7 +41,7 @@ public class OpenAPISecurityConfig {
 
    private OAuthFlow createAuthorizationCodeFlow() {
       return new OAuthFlow()
-            .authorizationUrl(authServerUrl + "/realms/" + realm + "/protocol/openid-connect/auth")
+            .authorizationUrl(STR."\{authServerUrl}/realms/\{realm}/protocol/openid-connect/auth")
             .scopes(new Scopes().addString("read_access", "read data")
                   .addString("write_access", "modify data"));
    }

@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.spytest;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -26,8 +26,8 @@ class OrderServiceIntegrationTest {
       doReturn(true).when(notificationService)
             .raiseAlert(any(Order.class));
       Order order = orderService.save(orderInput);
-      Assertions.assertNotNull(order);
-      Assertions.assertNotNull(order.getId());
+      assertNotNull(order);
+      assertNotNull(order.getId());
       verify(notificationService).notify(any(Order.class));
    }
 }

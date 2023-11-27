@@ -40,8 +40,7 @@ public class OpenAPI30Configuration {
                         .name(securitySchemeName)
                         .type(SecurityScheme.Type.HTTP)
                         .scheme("bearer")
-                        .description(
-                              "Provide the JWT token. JWT token can be obtained from the Login API. For testing, use the credentials <strong>john/password</strong>")
+                        .description("Provide the JWT token. JWT token can be obtained from the Login API. For testing, use the credentials <strong>john/password</strong>")
                         .bearerFormat("JWT")));
    }
 }

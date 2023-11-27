@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.ratelimiting.bootstarterapp;
 
 import cn.tuyucheng.taketoday.ratelimiting.bucket4japp.service.PricingPlan;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
@@ -16,17 +16,17 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Bucket4jRateLimitApplication.class)
 @TestPropertySource(properties = "spring.config.location=classpath:ratelimiting/application-bucket4j-starter.yml")
 @AutoConfigureMockMvc
-public class Bucket4jBootStarterRateLimitIntegrationTest {
+class Bucket4jBootStarterRateLimitIntegrationTest {
 
    @Autowired
    private MockMvc mockMvc;
 
    @Test
-   public void givenTriangleAreaCalculator_whenRequestsWithinRateLimit_thenAccepted() throws Exception {
+   void givenTriangleAreaCalculator_whenRequestsWithinRateLimit_thenAccepted() throws Exception {
       RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
             .content("{ \"height\": 8, \"base\": 10 }")
             .header("X-api-key", "FX001-UBSZ5YRYQ");
@@ -41,7 +41,7 @@ public class Bucket4jBootStarterRateLimitIntegrationTest {
    }
 
    @Test
-   public void givenTriangleAreaCalculator_whenRequestRateLimitTriggered_thenRejected() throws Exception {
+   void givenTriangleAreaCalculator_whenRequestRateLimitTriggered_thenRejected() throws Exception {
       RequestBuilder request = post("/api/v1/area/triangle").contentType(MediaType.APPLICATION_JSON_VALUE)
             .content("{ \"height\": 8, \"base\": 10 }")
             .header("X-api-key", "FX001-ZBSY6YSLP");

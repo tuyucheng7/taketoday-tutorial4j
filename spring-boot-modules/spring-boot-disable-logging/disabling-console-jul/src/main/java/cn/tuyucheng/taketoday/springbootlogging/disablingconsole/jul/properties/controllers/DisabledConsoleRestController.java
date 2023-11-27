@@ -13,7 +13,7 @@ public class DisabledConsoleRestController {
 
    @GetMapping("/disabled-console-jul-properties")
    public String logTime() {
-      LOG.info("Current time: " + LocalTime.now());
+      LOG.info(STR."Current time: \{LocalTime.now()}");
       return "finished!";
    }
 }

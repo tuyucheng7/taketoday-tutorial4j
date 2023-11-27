@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.boot.controller.servlet;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ public class HelloWorldServlet extends HttpServlet {
       super();
    }
 
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
       PrintWriter out = null;
       try {
          out = response.getWriter();
@@ -28,7 +27,7 @@ public class HelloWorldServlet extends HttpServlet {
       }
    }
 
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       PrintWriter out = null;
       try {
          out = response.getWriter();

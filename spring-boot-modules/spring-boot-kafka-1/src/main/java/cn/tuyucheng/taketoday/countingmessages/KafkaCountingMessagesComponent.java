@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.countingmessages;
 
 import jakarta.annotation.PostConstruct;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 
 @Component
 public class KafkaCountingMessagesComponent {
@@ -28,15 +28,15 @@ public class KafkaCountingMessagesComponent {
    }
 
    public Long getTotalNumberOfMessagesInATopic(String topic) {
-      org.apache.kafka.clients.consumer.KafkaConsumer<String, String> consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<>(getProps());
+      KafkaConsumer<String, String> consumer = new KafkaConsumer<>(getProps());
       List<TopicPartition> partitions = consumer.partitionsFor(topic).stream()
             .map(p -> new TopicPartition(topic, p.partition()))
-            .collect(Collectors.toList());
+            .toList();
       consumer.assign(partitions);
       consumer.seekToEnd(Collections.emptySet());
       Map<TopicPartition, Long> endPartitions = partitions.stream()
             .collect(Collectors.toMap(Function.identity(), consumer::position));
-      return partitions.stream().mapToLong(p -> endPartitions.get(p)).sum();
+      return partitions.stream().mapToLong(endPartitions::get).sum();
    }
 
    public Map<String, Object> getProps() {

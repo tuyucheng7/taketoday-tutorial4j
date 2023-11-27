@@ -22,13 +22,13 @@ import java.nio.charset.StandardCharsets;
       "port=9092",
 })
 @DirtiesContext
-public class ApiIntegrationTest {
+class ApiIntegrationTest {
 
    @Autowired
    private TestRestTemplate restTemplate;
 
    @Test
-   public void asyncApiResourceArtifactTest() throws JSONException, IOException {
+   void asyncApiResourceArtifactTest() throws JSONException, IOException {
       // given
       InputStream s = this.getClass().getResourceAsStream("/asyncapi.json");
       String expected = IOUtils.toString(s, StandardCharsets.UTF_8);

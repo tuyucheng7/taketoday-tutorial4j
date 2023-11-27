@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -32,6 +31,6 @@ public class RedisSessionCache implements SessionCache {
    public List<Session> getAllSessions() {
       return Stream.iterate(sessionRepository.findAll().iterator(), Iterator::hasNext, UnaryOperator.identity())
             .map(Iterator::next)
-            .collect(Collectors.toList());
+            .toList();
    }
 }

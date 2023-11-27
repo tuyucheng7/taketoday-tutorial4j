@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 @ContextConfiguration
 @ExtendWith(SpringExtension.class)
-public class BookRepositoryCachingIntegrationTest {
+class BookRepositoryCachingIntegrationTest {
 
    private static final Book DUNE = new Book(UUID.randomUUID(), "Dune");
    private static final Book FOUNDATION = new Book(UUID.randomUUID(), "Foundation");
@@ -46,7 +46,6 @@ public class BookRepositoryCachingIntegrationTest {
       public CacheManager cacheManager() {
          return new ConcurrentMapCacheManager("books");
       }
-
    }
 
    @BeforeEach
@@ -82,5 +81,4 @@ public class BookRepositoryCachingIntegrationTest {
 
       verify(mock, times(3)).findFirstByTitle("Foundation");
    }
-
 }

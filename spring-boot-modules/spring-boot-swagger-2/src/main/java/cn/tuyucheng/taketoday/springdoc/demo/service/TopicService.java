@@ -12,7 +12,7 @@ public class TopicService {
    private List<Topic> topicsList;
 
    public TopicService() {
-      this.topicsList = new ArrayList<Topic>() {{
+      this.topicsList = new ArrayList<>() {{
          add(new Topic(1, "Topic1"));
          add(new Topic(2, "Topic2"));
          add(new Topic(3, "Topic3"));

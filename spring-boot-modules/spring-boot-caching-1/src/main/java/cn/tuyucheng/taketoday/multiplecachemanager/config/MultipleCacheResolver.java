@@ -26,7 +26,7 @@ public class MultipleCacheResolver implements CacheResolver {
 
    @Override
    public Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context) {
-      Collection<Cache> caches = new ArrayList<Cache>();
+      Collection<Cache> caches = new ArrayList<>();
       if ("getOrderDetail".equals(context.getMethod()
             .getName())) {
          caches.add(caffeineCacheManager.getCache(ORDER_CACHE));

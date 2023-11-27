@@ -41,5 +41,4 @@ public class CreditCard {
    public void setCheckCode(Integer checkCode) {
       this.checkCode = checkCode;
    }
-
 }

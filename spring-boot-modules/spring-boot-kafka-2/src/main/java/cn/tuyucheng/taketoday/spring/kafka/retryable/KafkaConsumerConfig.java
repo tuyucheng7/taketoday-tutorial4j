@@ -139,9 +139,8 @@ public class KafkaConsumerConfig {
    @Bean
    public DefaultErrorHandler errorHandler() {
       BackOff fixedBackOff = new FixedBackOff(interval, maxAttempts);
-      DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, e) -> {
-         System.out.println(String.format("consumed record %s because this exception was thrown", consumerRecord.toString(), e.getClass().getName()));
-      }, fixedBackOff);
+      DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, e) ->
+            System.out.printf("consumed record %s because this exception was thrown%n", consumerRecord.toString(), e.getClass().getName()), fixedBackOff);
       // Commented because of the test
       // errorHandler.addRetryableExceptions(SocketTimeoutException.class,RuntimeException.class);
       errorHandler.addNotRetryableExceptions(NullPointerException.class);

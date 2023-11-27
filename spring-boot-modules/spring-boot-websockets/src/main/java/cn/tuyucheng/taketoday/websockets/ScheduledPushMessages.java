@@ -27,5 +27,4 @@ public class ScheduledPushMessages {
       simpMessagingTemplate.convertAndSend("/topic/pushmessages",
             new OutputMessage("Chuck Norris", faker.chuckNorris().fact(), time));
    }
-
 }

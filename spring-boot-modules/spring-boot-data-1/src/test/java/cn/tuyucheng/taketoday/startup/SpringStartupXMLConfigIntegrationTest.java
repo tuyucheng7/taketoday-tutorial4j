@@ -1,26 +1,26 @@
 package cn.tuyucheng.taketoday.startup;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration("classpath:startupConfig.xml")
-public class SpringStartupXMLConfigIntegrationTest {
+class SpringStartupXMLConfigIntegrationTest {
 
    @Autowired
    private ApplicationContext ctx;
 
    @Test
-   public void whenInitMethod_shouldLogEnv() throws Exception {
+   void whenInitMethod_shouldLogEnv() {
       ctx.getBean(InitMethodExampleBean.class);
    }
 
    @Test
-   public void whenAllStrategies_shouldLogOrder() throws Exception {
+   void whenAllStrategies_shouldLogOrder() {
       ctx.getBean(AllStrategiesExampleBean.class);
    }
 }

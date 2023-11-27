@@ -32,7 +32,7 @@ public class WsApplicationClientIntegrationTest {
 
    @Before
    public void setUp() {
-      this.webServiceTemplate.setDefaultUri("http://localhost:" + this.port + "/Service/Hello");
+      this.webServiceTemplate.setDefaultUri(STR."http://localhost:\{this.port}/Service/Hello");
    }
 
    @Test

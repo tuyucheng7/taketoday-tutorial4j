@@ -17,30 +17,28 @@ public class BarMappingExamplesController {
    // API
 
    // with @RequestParam
-
    @RequestMapping(value = "/bars")
    @ResponseBody
    public String getBarBySimplePathWithRequestParam(@RequestParam("id") final long id) {
-      return "Get a specific Bar with id=" + id;
+      return STR."Get a specific Bar with id=\{id}";
    }
 
    @RequestMapping(value = "/bars", params = "id")
    @ResponseBody
    public String getBarBySimplePathWithExplicitRequestParam(@RequestParam("id") final long id) {
-      return "Get a specific Bar with id=" + id;
+      return STR."Get a specific Bar with id=\{id}";
    }
 
    @RequestMapping(value = "/bars", params = {"id", "second"})
    @ResponseBody
    public String getBarBySimplePathWithExplicitRequestParams(@RequestParam("id") final long id) {
-      return "Get a specific Bar with id=" + id;
+      return STR."Get a specific Bar with id=\{id}";
    }
 
    // with @PathVariable
-
    @RequestMapping(value = "/bars/{numericId:[\\d]+}")
    @ResponseBody
    public String getBarsBySimplePathWithPathVariable(@PathVariable final long numericId) {
-      return "Get a specific Bar with id=" + numericId;
+      return STR."Get a specific Bar with id=\{numericId}";
    }
 }

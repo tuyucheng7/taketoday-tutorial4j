@@ -10,5 +10,4 @@ public class MainController {
    public void index() throws CustomException {
       throw new CustomException();
    }
-
 }

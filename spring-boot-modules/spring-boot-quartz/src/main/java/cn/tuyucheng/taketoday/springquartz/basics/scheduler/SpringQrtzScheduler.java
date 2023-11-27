@@ -50,7 +50,6 @@ public class SpringQrtzScheduler {
 
    @Bean
    public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail job, DataSource quartzDataSource) {
-
       SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
       schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 
@@ -67,7 +66,6 @@ public class SpringQrtzScheduler {
 
    @Bean
    public JobDetailFactoryBean jobDetail() {
-
       JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
       jobDetailFactory.setJobClass(SampleJob.class);
       jobDetailFactory.setName("Qrtz_Job_Detail");
@@ -78,7 +76,6 @@ public class SpringQrtzScheduler {
 
    @Bean
    public SimpleTriggerFactoryBean trigger(JobDetail job) {
-
       SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
       trigger.setJobDetail(job);
 
@@ -97,5 +94,4 @@ public class SpringQrtzScheduler {
    public DataSource quartzDataSource() {
       return DataSourceBuilder.create().build();
    }
-
 }

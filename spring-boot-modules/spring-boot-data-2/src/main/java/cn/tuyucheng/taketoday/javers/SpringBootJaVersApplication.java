@@ -21,9 +21,9 @@ public class SpringBootJaVersApplication {
 
    @EventListener
    public void appReady(ApplicationReadyEvent event) {
-      Store store = new Store("Baeldung store", new Address("Some street", 22222));
+      Store store = new Store("Tuyucheng store", new Address("Some street", 22222));
       for (int i = 1; i < 3; i++) {
-         Product product = new Product("Product #" + i, 100 * i);
+         Product product = new Product(STR."Product #\{i}", 100 * i);
          store.addProduct(product);
       }
       storeRepository.save(store);

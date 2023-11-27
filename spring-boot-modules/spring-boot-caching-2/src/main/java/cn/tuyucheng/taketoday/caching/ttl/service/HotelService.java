@@ -31,5 +31,4 @@ public class HotelService {
    public void emptyHotelsCache() {
       logger.info("emptying Hotels cache");
    }
-
 }

@@ -20,7 +20,7 @@ public class MyFooController {
 
    public MyFooController() {
       super();
-      myfoos = new HashMap<Long, Foo>();
+      myfoos = new HashMap<>();
       myfoos.put(1L, new Foo(1L, "sample foo"));
    }
 
@@ -64,7 +64,7 @@ public class MyFooController {
    public Foo createFoo(@RequestBody final Foo foo, HttpServletResponse response) {
       myfoos.put(foo.getId(), foo);
       response.setHeader("Location", ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/" + foo.getId())
+            .path(STR."/\{foo.getId()}")
             .toUriString());
       return foo;
    }

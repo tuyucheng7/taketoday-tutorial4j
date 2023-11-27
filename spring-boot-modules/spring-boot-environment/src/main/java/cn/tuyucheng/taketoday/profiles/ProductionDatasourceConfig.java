@@ -11,5 +11,4 @@ public class ProductionDatasourceConfig implements DatasourceConfig {
    public void setup() {
       System.out.println("Setting up datasource for PRODUCTION environment. ");
    }
-
 }

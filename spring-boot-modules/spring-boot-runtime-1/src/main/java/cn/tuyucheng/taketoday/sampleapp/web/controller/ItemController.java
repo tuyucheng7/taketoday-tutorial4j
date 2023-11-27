@@ -32,7 +32,6 @@ public class ItemController {
 
    @RequestMapping("/delay/{seconds}")
    public void getCurrentTime(@PathVariable final int seconds) throws Exception {
-
-      Thread.sleep(seconds * 1000);
+      Thread.sleep(seconds * 1000L);
    }
 }

@@ -25,8 +25,8 @@ public class MessageConsumerService {
    }
 
    private void trackConsumedPartitions(String key, ConsumerRecord<?, ?> record) {
-      consumedPartitions.computeIfAbsent(key, k -> new HashSet<>());
-      consumedPartitions.computeIfPresent(key, (k, v) -> {
+      consumedPartitions.computeIfAbsent(key, _ -> new HashSet<>());
+      consumedPartitions.computeIfPresent(key, (_, v) -> {
          v.add(record.partition());
          return v;
       });

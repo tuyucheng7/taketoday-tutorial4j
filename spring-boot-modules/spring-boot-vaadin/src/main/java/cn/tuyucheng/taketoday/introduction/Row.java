@@ -9,7 +9,6 @@ public class Row {
    private String column3;
 
    public Row() {
-
    }
 
    public Row(String column1, String column2, String column3) {

@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.javers.service;
 
-
 import cn.tuyucheng.taketoday.javers.domain.Product;
 import cn.tuyucheng.taketoday.javers.domain.Store;
 import cn.tuyucheng.taketoday.javers.repo.ProductRepository;
@@ -32,9 +31,7 @@ public class StoreService {
       Optional<Store> storeOpt = storeRepository.findById(storeId);
       storeOpt.ifPresent(store -> {
          store.setName(updatedName);
-         store.getProducts().forEach(product -> {
-            product.setNamePrefix(updatedName);
-         });
+         store.getProducts().forEach(product -> product.setNamePrefix(updatedName));
          storeRepository.save(store);
       });
    }
@@ -43,7 +40,7 @@ public class StoreService {
       Optional<Store> storeOpt = this.storeRepository.findById(storeId);
       storeOpt.ifPresent(store -> {
          Random random = new Random();
-         Product product = new Product("Product#" + random.nextInt(), random.nextDouble() * 100);
+         Product product = new Product(STR."Product#\{random.nextInt()}", random.nextDouble() * 100);
          store.addProduct(product);
          storeRepository.save(store);
       });

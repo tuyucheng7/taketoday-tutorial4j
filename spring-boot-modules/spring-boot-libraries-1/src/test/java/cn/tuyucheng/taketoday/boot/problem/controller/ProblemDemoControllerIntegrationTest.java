@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.boot.problem.controller;
 
 import cn.tuyucheng.taketoday.boot.problem.SpringProblemApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -16,16 +16,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = SpringProblemApplication.class)
 @AutoConfigureMockMvc
-public class ProblemDemoControllerIntegrationTest {
+class ProblemDemoControllerIntegrationTest {
 
    @Autowired
    private MockMvc mockMvc;
 
    @Test
-   public void whenRequestingAllTasks_thenReturnSuccessfulResponseWithArrayWithTwoTasks() throws Exception {
+   void whenRequestingAllTasks_thenReturnSuccessfulResponseWithArrayWithTwoTasks() throws Exception {
       mockMvc.perform(get("/tasks").contentType(MediaType.APPLICATION_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.length()", equalTo(2)))
@@ -33,7 +33,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenRequestingExistingTask_thenReturnSuccessfulResponse() throws Exception {
+   void whenRequestingExistingTask_thenReturnSuccessfulResponse() throws Exception {
       mockMvc.perform(get("/tasks/1").contentType(MediaType.APPLICATION_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.id", equalTo(1)))
@@ -41,7 +41,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenRequestingMissingTask_thenReturnNotFoundProblemResponse() throws Exception {
+   void whenRequestingMissingTask_thenReturnNotFoundProblemResponse() throws Exception {
       mockMvc.perform(get("/tasks/5").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.title", equalTo("Not found")))
@@ -51,7 +51,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenMakePutCall_thenReturnNotImplementedProblemResponse() throws Exception {
+   void whenMakePutCall_thenReturnNotImplementedProblemResponse() throws Exception {
       mockMvc.perform(put("/tasks/1").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.title", equalTo("Not Implemented")))
@@ -60,7 +60,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenMakeDeleteCall_thenReturnForbiddenProblemResponse() throws Exception {
+   void whenMakeDeleteCall_thenReturnForbiddenProblemResponse() throws Exception {
       mockMvc.perform(delete("/tasks/2").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.title", equalTo("Forbidden")))
@@ -70,7 +70,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenMakeGetCallWithInvalidIdFormat_thenReturnBadRequestResponseWithStackTrace() throws Exception {
+   void whenMakeGetCallWithInvalidIdFormat_thenReturnBadRequestResponseWithStackTrace() throws Exception {
       mockMvc.perform(get("/tasks/invalid-id").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.title", equalTo("Bad Request")))
@@ -80,7 +80,7 @@ public class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
-   public void whenMakeGetCallWithInvalidIdFormat_thenReturnBadRequestResponseWithCause() throws Exception {
+   void whenMakeGetCallWithInvalidIdFormat_thenReturnBadRequestResponseWithCause() throws Exception {
       mockMvc.perform(get("/tasks/invalid-id").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
             .andExpect(jsonPath("$.title", equalTo("Bad Request")))

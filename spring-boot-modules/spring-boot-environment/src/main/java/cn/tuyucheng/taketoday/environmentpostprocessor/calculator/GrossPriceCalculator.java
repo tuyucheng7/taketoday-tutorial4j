@@ -16,7 +16,7 @@ public class GrossPriceCalculator implements PriceCalculator {
       logger.info("Gross based price calculation with input parameters [singlePrice = {},quantity= {} ], {} percent tax applied.", singlePrice, quantity, taxRate * 100);
       double netPrice = singlePrice * quantity;
       double result = Math.round(netPrice * (1 + taxRate));
-      logger.info("Calcuation result is {}", result);
+      logger.info("Calculation result is {}", result);
       return result;
    }
 }

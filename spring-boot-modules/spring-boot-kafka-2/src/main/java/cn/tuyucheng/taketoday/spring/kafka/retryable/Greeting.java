@@ -32,6 +32,6 @@ public class Greeting {
 
    @Override
    public String toString() {
-      return msg + ", " + name + "!";
+      return STR."\{msg}, \{name}!";
    }
 }

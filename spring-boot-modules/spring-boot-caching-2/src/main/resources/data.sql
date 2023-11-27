@@ -1,36 +1,36 @@
 DROP TABLE IF EXISTS ITEM;
 create table ITEM
 (
-	ID          CHARACTER VARYING not null,
-	DESCRIPTION CHARACTER VARYING,
-	constraint ITEM_PK
-		primary key (ID)
+   ID          CHARACTER VARYING not null,
+   DESCRIPTION CHARACTER VARYING,
+   constraint ITEM_PK
+      primary key (ID)
 );
 DROP TABLE IF EXISTS HOTEL;
 DROP TABLE IF EXISTS CITY;
 create table CITY
 (
-	id                    bigint,
-	name                  varchar,
-	city_centre_lattitude double,
-	city_centre_longitude double,
-	constraint city_pk
-		primary key (id)
+   id   bigint,
+   name varchar,
+   city_centre_lattitude double,
+   city_centre_longitude double,
+   constraint city_pk
+      primary key (id)
 );
 create table hotel
 (
-	id        bigint auto_increment,
-	name      varchar,
-	deleted   boolean,
-	rating    double,
-	city_id   bigint,
-	address   varchar,
-	lattitude varchar,
-	longitude varchar,
-	constraint hotel_pk
-		primary key (id),
-	constraint "hotel_CITY_null_fk"
-		foreign key (city_id) references CITY (id)
+   id        bigint auto_increment,
+   name      varchar,
+   deleted   boolean,
+   rating double,
+   city_id   bigint,
+   address   varchar,
+   lattitude varchar,
+   longitude varchar,
+   constraint hotel_pk
+      primary key (id),
+   constraint "hotel_CITY_null_fk"
+      foreign key (city_id) references CITY (id)
 );
 
 

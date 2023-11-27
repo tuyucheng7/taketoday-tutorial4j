@@ -21,7 +21,7 @@ public class ComponentUsingProperties implements InitializingBean {
 
    @Override
    public void afterPropertiesSet() throws Exception {
-      System.out.println("in afterPropertiesSet via @Value: " + injectedProperty);
-      System.out.println("in afterPropertiesSet Environment: " + env.getProperty("key.something"));
+      System.out.println(STR."in afterPropertiesSet via @Value: \{injectedProperty}");
+      System.out.println(STR."in afterPropertiesSet Environment: \{env.getProperty("key.something")}");
    }
 }

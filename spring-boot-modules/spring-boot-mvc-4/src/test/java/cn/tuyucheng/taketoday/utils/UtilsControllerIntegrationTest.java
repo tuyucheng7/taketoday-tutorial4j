@@ -22,7 +22,6 @@ class UtilsControllerIntegrationTest {
    void setup() {
       openMocks(this);
       this.mockMvc = MockMvcBuilders.standaloneSetup(utilsController).build();
-
    }
 
    @Test

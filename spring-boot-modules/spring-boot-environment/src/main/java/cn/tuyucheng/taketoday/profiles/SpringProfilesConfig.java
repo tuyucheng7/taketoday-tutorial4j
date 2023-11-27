@@ -8,5 +8,4 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan("cn.tuyucheng.taketoday.profiles")
 @PropertySource(value = "classpath:application.properties")
 public class SpringProfilesConfig {
-
 }

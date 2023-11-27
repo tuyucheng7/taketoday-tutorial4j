@@ -6,7 +6,6 @@ import org.springframework.retry.annotation.Retryable;
 
 import java.sql.SQLException;
 
-
 public interface MyService {
 
    @Retryable

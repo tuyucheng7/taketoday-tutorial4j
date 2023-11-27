@@ -25,7 +25,7 @@ class SpringGroovyConfigUnitTest {
    @Test
    void givenGroovyConfigFile_whenCalledWithBeanName_thenReturnCompanyBean() {
       try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
-         ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
+         ctx.load(STR."file:\{getPath(FILE_PATH)}\{FILE_NAME}");
          ctx.refresh();
 
          Company company = (Company) ctx.getBean("companyBean");
@@ -39,7 +39,7 @@ class SpringGroovyConfigUnitTest {
    @Test
    void givenGroovyConfigFile_whenCalledWithRefBean_thenReturnEmployeeBean() {
       try (GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext()) {
-         ctx.load("file:" + getPath(FILE_PATH) + FILE_NAME);
+         ctx.load(STR."file:\{getPath(FILE_PATH)}\{FILE_NAME}");
          ctx.refresh();
 
          Employee employee = ctx.getBean(Employee.class);
@@ -55,7 +55,6 @@ class SpringGroovyConfigUnitTest {
    @SuppressWarnings("unchecked")
    @Test
    void givenGroovyFileWithSpringAnnotations_whenCalledWithBeanName_thenReturnValidBean() {
-
       try (AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();) {
          ctx.register(SpringGroovyConfiguration.class);
          ctx.refresh();

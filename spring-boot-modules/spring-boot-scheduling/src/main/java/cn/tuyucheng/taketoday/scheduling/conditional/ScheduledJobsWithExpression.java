@@ -7,8 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 @Configuration
 public class ScheduledJobsWithExpression {
-   private final static Logger LOG =
-         LoggerFactory.getLogger(ScheduledJobsWithExpression.class);
+   private final static Logger LOG = LoggerFactory.getLogger(ScheduledJobsWithExpression.class);
 
    /**
     * A scheduled job controlled via application property. The job always

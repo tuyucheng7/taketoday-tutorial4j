@@ -41,7 +41,7 @@ public class AdminClientService {
             .users()
             .searchByUsername(username, exact);
       logger.info("Users found by username {}", users.stream()
-            .map(user -> user.getUsername())
+            .map(UserRepresentation::getUsername)
             .collect(Collectors.toList()));
    }
 
@@ -51,7 +51,7 @@ public class AdminClientService {
             .users()
             .searchByEmail(email, exact);
       logger.info("Users found by email {}", users.stream()
-            .map(user -> user.getEmail())
+            .map(UserRepresentation::getEmail)
             .collect(Collectors.toList()));
    }
 
@@ -61,7 +61,7 @@ public class AdminClientService {
             .users()
             .searchByAttributes(query);
       logger.info("Users found by attributes {}", users.stream()
-            .map(user -> user.getUsername() + " " + user.getAttributes())
+            .map(user -> STR."\{user.getUsername()} \{user.getAttributes()}")
             .collect(Collectors.toList()));
    }
 
@@ -72,7 +72,7 @@ public class AdminClientService {
             .group(groupId)
             .members();
       logger.info("Users found by group {}", users.stream()
-            .map(user -> user.getUsername())
+            .map(UserRepresentation::getUsername)
             .collect(Collectors.toList()));
    }
 
@@ -83,7 +83,7 @@ public class AdminClientService {
             .get(roleName)
             .getUserMembers();
       logger.info("Users found by role {}", users.stream()
-            .map(user -> user.getUsername())
+            .map(UserRepresentation::getUsername)
             .collect(Collectors.toList()));
    }
 }

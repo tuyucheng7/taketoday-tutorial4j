@@ -23,11 +23,10 @@ public abstract class AbstractCoffeeIntegrationTest {
             .format(FIXED_DATE);
 
       String brand = "Lavazza";
-      String url = "/coffee?brand=" + brand;
+      String url = STR."/coffee?brand=\{brand}";
 
       String response = restTemplate.getForObject(url, String.class);
 
-      assertThat(response).isEqualTo(
-            "{\"brand\":\"" + brand + "\",\"date\":\"" + formattedDate + "\"}");
+      assertThat(response).isEqualTo(STR."{\"brand\":\"\{brand}\",\"date\":\"\{formattedDate}\"}");
    }
 }

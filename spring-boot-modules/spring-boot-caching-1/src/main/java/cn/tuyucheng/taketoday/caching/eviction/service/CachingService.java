@@ -47,7 +47,7 @@ public class CachingService {
    }
 
    @Scheduled(fixedRate = 6000)
-   public void evictAllcachesAtIntervals() {
+   public void evictAllCachesAtIntervals() {
       evictAllCaches();
    }
 }

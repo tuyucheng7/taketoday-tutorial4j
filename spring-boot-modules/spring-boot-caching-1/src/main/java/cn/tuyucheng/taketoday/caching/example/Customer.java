@@ -15,8 +15,6 @@ public class Customer {
       this.address = address;
    }
 
-   //
-
    public int getId() {
       return id;
    }
@@ -44,5 +42,4 @@ public class Customer {
    public void setCustomerAddress(final String address) {
       this.address = name + "," + address;
    }
-
 }

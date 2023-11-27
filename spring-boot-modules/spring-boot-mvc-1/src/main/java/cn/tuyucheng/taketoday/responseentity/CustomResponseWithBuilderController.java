@@ -26,7 +26,7 @@ public class CustomResponseWithBuilderController {
       }
 
       return ResponseEntity.status(HttpStatus.OK)
-            .body("Your age is " + calculateAge(yearOfBirth));
+            .body(STR."Your age is \{calculateAge(yearOfBirth)}");
    }
 
    private int calculateAge(int yearOfBirth) {

@@ -13,7 +13,6 @@ class UserControllerManualTest extends KeycloakTestContainers {
 
    @Test
    void givenAuthenticatedUser_whenGetMe_shouldReturnMyInfo() {
-
       given().header("Authorization", getJaneDoeBearer())
             .when()
             .get("/users/me")

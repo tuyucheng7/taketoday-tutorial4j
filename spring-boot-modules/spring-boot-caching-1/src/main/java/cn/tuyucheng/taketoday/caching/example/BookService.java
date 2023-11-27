@@ -17,5 +17,4 @@ public class BookService {
       books.add(new Book(2, "Peer Gynt and Hedda Gabler", "Henrik Ibsen"));
       return books;
    }
-
 }

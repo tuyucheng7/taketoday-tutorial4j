@@ -12,7 +12,7 @@ public class ProfileManager {
 
    public void getActiveProfiles() {
       for (final String profileName : environment.getActiveProfiles()) {
-         System.out.println("Currently active profile - " + profileName);
+         System.out.println(STR."Currently active profile - \{profileName}");
       }
    }
 }

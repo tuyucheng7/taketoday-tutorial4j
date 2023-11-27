@@ -54,8 +54,7 @@ public class LiveLagAnalyzerServiceLiveTest {
    }
 
    @Test
-   public void givenEmbeddedKafkaBroker_whenAllProducedMessagesAreConsumed_thenLagBecomesZero()
-         throws ExecutionException, InterruptedException {
+   public void givenEmbeddedKafkaBroker_whenAllProducedMessagesAreConsumed_thenLagBecomesZero() throws ExecutionException, InterruptedException {
       produce();
       long consumeLag = 0L;
       consume();
@@ -108,8 +107,7 @@ public class LiveLagAnalyzerServiceLiveTest {
    }
 
    @Test
-   public void givenEmbeddedKafkaBroker_whenMessageConsumedLessThanProduced_thenLagIsNonZero()
-         throws ExecutionException, InterruptedException {
+   public void givenEmbeddedKafkaBroker_whenMessageConsumedLessThanProduced_thenLagIsNonZero() throws ExecutionException, InterruptedException {
       produce();
       consume();
       produce();

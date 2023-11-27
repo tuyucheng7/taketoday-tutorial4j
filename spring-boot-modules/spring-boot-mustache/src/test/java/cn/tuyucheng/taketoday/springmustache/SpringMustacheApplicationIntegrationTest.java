@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class SpringMustacheApplicationIntegrationTest {
+class SpringMustacheApplicationIntegrationTest {
 
    @Autowired
    private TestRestTemplate restTemplate;
 
    @Test
-   public void givenIndexPageWhenContainsArticleThenTrue() {
+   void givenIndexPageWhenContainsArticleThenTrue() {
       ResponseEntity<String> entity = this.restTemplate.getForEntity("/article", String.class);
 
       assertEquals(entity.getStatusCode(), HttpStatus.OK);

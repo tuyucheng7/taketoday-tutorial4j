@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HeaderInterceptorApplication.class})
 @WebAppConfiguration
-public class HeaderInterceptorIntegrationTest {
+class HeaderInterceptorIntegrationTest {
 
    @Autowired
    private WebApplicationContext webApplicationContext;
@@ -27,13 +27,13 @@ public class HeaderInterceptorIntegrationTest {
    private MockMvc mockMvc;
 
    @BeforeEach
-   public void setup() {
+   void setup() {
       this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext)
             .build();
    }
 
    @Test
-   public void givenARequestWithOperatorHeader_whenWeCallFooEndpoint_thenOperatorIsExtracted() throws Exception {
+   void givenARequestWithOperatorHeader_whenWeCallFooEndpoint_thenOperatorIsExtracted() throws Exception {
       MockHttpServletResponse response = this.mockMvc.perform(get("/foo").header("operator", "John.Doe"))
             .andDo(print())
             .andReturn()
@@ -43,7 +43,7 @@ public class HeaderInterceptorIntegrationTest {
    }
 
    @Test
-   public void givenARequestWithOperatorHeader_whenWeCallBarEndpoint_thenOperatorIsExtracted() throws Exception {
+   void givenARequestWithOperatorHeader_whenWeCallBarEndpoint_thenOperatorIsExtracted() throws Exception {
       MockHttpServletResponse response = this.mockMvc.perform(get("/bar").header("operator", "John.Doe"))
             .andDo(print())
             .andReturn()
@@ -53,7 +53,7 @@ public class HeaderInterceptorIntegrationTest {
    }
 
    @Test
-   public void givenARequestWithOperatorHeader_whenWeCallBuzzEndpoint_thenOperatorIsIntercepted() throws Exception {
+   void givenARequestWithOperatorHeader_whenWeCallBuzzEndpoint_thenOperatorIsIntercepted() throws Exception {
       MockHttpServletResponse response = this.mockMvc.perform(get("/buzz").header("operator", "John.Doe"))
             .andDo(print())
             .andReturn()

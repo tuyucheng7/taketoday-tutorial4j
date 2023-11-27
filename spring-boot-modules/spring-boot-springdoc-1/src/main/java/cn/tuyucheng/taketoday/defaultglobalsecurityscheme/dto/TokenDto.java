@@ -24,7 +24,7 @@ public class TokenDto {
 
    @Override
    public String toString() {
-      return "TokenDto [raw=" + raw + "]";
+      return STR."TokenDto [raw=\{raw}]";
    }
 
    @Override

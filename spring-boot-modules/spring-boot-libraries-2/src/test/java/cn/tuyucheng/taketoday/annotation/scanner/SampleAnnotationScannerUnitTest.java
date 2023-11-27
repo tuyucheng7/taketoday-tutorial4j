@@ -1,26 +1,26 @@
 package cn.tuyucheng.taketoday.annotation.scanner;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = AnnotationScannerApplication.class)
-public class SampleAnnotationScannerUnitTest {
+class SampleAnnotationScannerUnitTest {
    @Autowired
    private List<SampleAnnotationScanner> scannerList;
 
    @Test
-   public void givenPackage_whenScanAnnotatedClasses_thenAnnotationValues() {
+   void givenPackage_whenScanAnnotatedClasses_thenAnnotationValues() {
       final List<String> annotatedClasses = scannerList.stream()
             .filter(SampleAnnotationScanner::supportsClassScan)
             .map(SampleAnnotationScanner::scanAnnotatedClasses)
@@ -34,7 +34,7 @@ public class SampleAnnotationScannerUnitTest {
    }
 
    @Test
-   public void givenPackage_whenScanAnnotatedMethods_thenAnnotationValues() {
+   void givenPackage_whenScanAnnotatedMethods_thenAnnotationValues() {
       final List<String> annotatedMethods = scannerList.stream()
             .filter(SampleAnnotationScanner::supportsMethodScan)
             .map(SampleAnnotationScanner::scanAnnotatedMethods)

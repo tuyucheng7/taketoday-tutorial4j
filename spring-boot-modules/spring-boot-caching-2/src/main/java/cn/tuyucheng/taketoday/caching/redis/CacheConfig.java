@@ -29,5 +29,4 @@ public class CacheConfig {
             .disableCachingNullValues()
             .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
    }
-
 }

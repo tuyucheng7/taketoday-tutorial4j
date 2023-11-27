@@ -19,5 +19,4 @@ public class NumberService {
       log.info("square of {} is {}", number, square);
       return square;
    }
-
 }

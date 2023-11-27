@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage;
 public class BarcodesController {
 
    // Barbecue library
-
    @GetMapping(value = "/barbecue/upca/{barcode}", produces = MediaType.IMAGE_PNG_VALUE)
    public ResponseEntity<BufferedImage> barbecueUPCABarcode(@PathVariable("barcode") String barcode) throws Exception {
       return okResponse(BarbecueBarcodeGenerator.generateUPCABarcodeImage(barcode));
@@ -38,7 +37,6 @@ public class BarcodesController {
    }
 
    // Barcode4j library
-
    @GetMapping(value = "/barcode4j/upca/{barcode}", produces = MediaType.IMAGE_PNG_VALUE)
    public ResponseEntity<BufferedImage> barcode4jUPCABarcode(@PathVariable("barcode") String barcode) {
       return okResponse(Barcode4jBarcodeGenerator.generateUPCABarcodeImage(barcode));
@@ -60,7 +58,6 @@ public class BarcodesController {
    }
 
    // Zxing library
-
    @GetMapping(value = "/zxing/upca/{barcode}", produces = MediaType.IMAGE_PNG_VALUE)
    public ResponseEntity<BufferedImage> zxingUPCABarcode(@PathVariable("barcode") String barcode) throws Exception {
       return okResponse(ZxingBarcodeGenerator.generateUPCABarcodeImage(barcode));
@@ -87,7 +84,6 @@ public class BarcodesController {
    }
 
    // QRGen
-
    @PostMapping(value = "/qrgen/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
    public ResponseEntity<BufferedImage> qrgenQRCode(@RequestBody String barcode) throws Exception {
       return okResponse(QRGenBarcodeGenerator.generateQRCodeImage(barcode));

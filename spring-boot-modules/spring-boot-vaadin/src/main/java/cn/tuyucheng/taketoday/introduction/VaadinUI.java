@@ -95,9 +95,7 @@ public class VaadinUI extends UI {
 
       Button normalButton = new Button("Normal Button");
       normalButton.setId("NormalButton");
-      normalButton.addClickListener(e -> {
-         label.setValue("CLICK");
-      });
+      normalButton.addClickListener(_ -> label.setValue("CLICK"));
       buttonLayout.addComponent(normalButton);
 
       Button tinyButton = new Button("Tiny Button");
@@ -156,10 +154,10 @@ public class VaadinUI extends UI {
 
       final CheckBox checkbox = new CheckBox("CheckBox");
       checkbox.setValue(true);
-      checkbox.addValueChangeListener(e -> checkbox.setValue(!checkbox.getValue()));
+      checkbox.addValueChangeListener(_ -> checkbox.setValue(!checkbox.getValue()));
       formLayout.addComponent(checkbox);
 
-      List<String> numbers = new ArrayList<String>();
+      List<String> numbers = new ArrayList<>();
       numbers.add("One");
       numbers.add("Ten");
       numbers.add("Eleven");
@@ -201,9 +199,7 @@ public class VaadinUI extends UI {
       serverPushPanel.setContent(timeLayout);
       serverPushPanel.setSizeUndefined();
       ScheduledExecutorService scheduleExecutor = Executors.newScheduledThreadPool(1);
-      Runnable task = () -> {
-         currentTime.setValue("Current Time : " + Instant.now());
-      };
+      Runnable task = () -> currentTime.setValue(STR."Current Time : \{Instant.now()}");
       scheduleExecutor.scheduleWithFixedDelay(task, 0, 1, TimeUnit.SECONDS);
 
       FormLayout dataBindingLayout = new FormLayout();
@@ -237,7 +233,7 @@ public class VaadinUI extends UI {
 
       textValidatorLayout.addComponent(stringValidator);
       Button buttonStringValidator = new Button("Validate String");
-      buttonStringValidator.addClickListener(e -> stringValidatorBinder.validate());
+      buttonStringValidator.addClickListener(_ -> stringValidatorBinder.validate());
       textValidatorLayout.addComponent(buttonStringValidator);
 
       validatorLayout.addComponent(textValidatorLayout);

@@ -1,33 +1,34 @@
 package cn.tuyucheng.taketoday.profiles;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-public class SpringProfilesWithXMLIntegrationTest {
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
+class SpringProfilesWithXMLIntegrationTest {
 
    private ClassPathXmlApplicationContext classPathXmlApplicationContext;
 
    @Test
-   public void testSpringProfilesForDevEnvironment() {
+   void testSpringProfilesForDevEnvironment() {
       classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:springProfiles-config.xml");
       final ConfigurableEnvironment configurableEnvironment = classPathXmlApplicationContext.getEnvironment();
       configurableEnvironment.setActiveProfiles("dev");
       classPathXmlApplicationContext.refresh();
       final DatasourceConfig datasourceConfig = classPathXmlApplicationContext.getBean("devDatasourceConfig", DatasourceConfig.class);
 
-      Assert.assertTrue(datasourceConfig instanceof DevDatasourceConfig);
+      assertInstanceOf(DevDatasourceConfig.class, datasourceConfig);
    }
 
    @Test
-   public void testSpringProfilesForProdEnvironment() {
+   void testSpringProfilesForProdEnvironment() {
       classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:springProfiles-config.xml");
       final ConfigurableEnvironment configurableEnvironment = classPathXmlApplicationContext.getEnvironment();
       configurableEnvironment.setActiveProfiles("production");
       classPathXmlApplicationContext.refresh();
       final DatasourceConfig datasourceConfig = classPathXmlApplicationContext.getBean("productionDatasourceConfig", DatasourceConfig.class);
 
-      Assert.assertTrue(datasourceConfig instanceof ProductionDatasourceConfig);
+      assertInstanceOf(ProductionDatasourceConfig.class, datasourceConfig);
    }
 }

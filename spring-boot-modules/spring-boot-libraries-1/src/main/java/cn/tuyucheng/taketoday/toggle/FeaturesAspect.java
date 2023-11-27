@@ -18,7 +18,7 @@ public class FeaturesAspect {
       if (featureAssociation.value().isActive()) {
          return joinPoint.proceed();
       } else {
-         LOG.info("Feature " + featureAssociation.value().name() + " is not enabled!");
+         LOG.info(STR."Feature \{featureAssociation.value().name()} is not enabled!");
          return null;
       }
    }

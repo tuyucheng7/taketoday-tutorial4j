@@ -2,21 +2,21 @@ package cn.tuyucheng.taketoday.jobrunr;
 
 import org.jobrunr.jobs.states.StateName;
 import org.jobrunr.storage.StorageProvider;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 import static org.awaitility.Awaitility.await;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT, classes = JobRunrSpringBootApplication.class)
 public class JobRunrLiveTest {
 
@@ -36,7 +36,7 @@ public class JobRunrLiveTest {
 
    private String enqueueJobViaRest(String input) {
       try {
-         return restTemplate.getForObject(new URI("http://localhost:8080/jobrunr/enqueue/" + input), String.class);
+         return restTemplate.getForObject(new URI(STR."http://localhost:8080/jobrunr/enqueue/\{input}"), String.class);
       } catch (Exception ignored) {
          ignored.printStackTrace();
       }

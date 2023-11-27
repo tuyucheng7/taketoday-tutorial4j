@@ -1,49 +1,51 @@
 package cn.tuyucheng.taketoday.startup;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringStartupConfig.class}, loader = AnnotationConfigContextLoader.class)
-public class SpringStartupIntegrationTest {
+class SpringStartupIntegrationTest {
 
    @Autowired
    private ApplicationContext ctx;
 
-   @Test(expected = BeanCreationException.class)
-   public void whenInstantiating_shouldThrowBCE() throws Exception {
-      ctx.getBean(InvalidInitExampleBean.class);
+   @Test
+   void whenInstantiating_shouldThrowBCE() {
+      assertThrows(BeanCreationException.class, () -> ctx.getBean(InvalidInitExampleBean.class));
    }
 
    @Test
-   public void whenPostConstruct_shouldLogEnv() throws Exception {
+   void whenPostConstruct_shouldLogEnv() {
       ctx.getBean(PostConstructExampleBean.class);
    }
 
    @Test
-   public void whenConstructorInjection_shouldLogEnv() throws Exception {
+   void whenConstructorInjection_shouldLogEnv() {
       ctx.getBean(LogicInConstructorExampleBean.class);
    }
 
    @Test
-   public void whenInitializingBean_shouldLogEnv() throws Exception {
+   void whenInitializingBean_shouldLogEnv() {
       ctx.getBean(InitializingBeanExampleBean.class);
    }
 
    @Test
-   public void whenInitMethod_shouldLogEnv() throws Exception {
+   void whenInitMethod_shouldLogEnv() {
       ctx.getBean(InitMethodExampleBean.class);
    }
 
    @Test
-   public void whenApplicationListener_shouldRunOnce() throws Exception {
+   void whenApplicationListener_shouldRunOnce() {
       Assertions.assertThat(StartupApplicationListenerExample.counter).isEqualTo(1);
    }
 }

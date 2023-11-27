@@ -14,7 +14,7 @@ public class KafkaProducer {
 
    public void sendMessage(String message) {
       kafkaTemplate.send("input-topic", message)
-            .whenComplete((result, ex) -> {
+            .whenComplete((_, ex) -> {
                if (ex == null) {
                   LOGGER.info("Message sent to topic: {}", message);
                } else {

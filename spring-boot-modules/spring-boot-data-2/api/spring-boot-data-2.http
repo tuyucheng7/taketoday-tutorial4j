@@ -3,7 +3,7 @@ POST {{baseUrl}}/stores/1/rebrand
 Content-Type: application/json
 
 {
-    "name": "Product #11"
+  "name": "Product #11"
 }
 
 ### get product snapshots
@@ -14,7 +14,7 @@ POST {{baseUrl}}/stores/1/products/2/price
 Content-Type: application/json
 
 {
-    "price": "300.0"
+  "price": "300.0"
 }
 
 ### query product changes

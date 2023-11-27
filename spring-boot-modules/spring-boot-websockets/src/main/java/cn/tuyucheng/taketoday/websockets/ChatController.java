@@ -17,5 +17,4 @@ public class ChatController {
       final String time = new SimpleDateFormat("HH:mm").format(new Date());
       return new OutputMessage(message.getFrom(), message.getText(), time);
    }
-
 }

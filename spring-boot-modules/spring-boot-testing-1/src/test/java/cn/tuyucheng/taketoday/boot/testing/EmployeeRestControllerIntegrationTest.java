@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.boot.testing;
 
 import cn.tuyucheng.taketoday.boot.Application;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
@@ -52,7 +52,7 @@ class EmployeeRestControllerIntegrationTest {
       mvc.perform(post("/api/employees").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(bob)));
 
       List<Employee> found = repository.findAll();
-      Assertions.assertThat(found).extracting(Employee::getName).containsOnly("bob");
+      assertThat(found).extracting(Employee::getName).containsOnly("bob");
    }
 
    @Test

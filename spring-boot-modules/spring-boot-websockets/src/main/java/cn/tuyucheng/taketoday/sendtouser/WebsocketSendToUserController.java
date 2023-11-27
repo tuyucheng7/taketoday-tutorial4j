@@ -17,7 +17,7 @@ public class WebsocketSendToUserController {
 
    @MessageMapping("/message")
    @SendToUser("/queue/reply")
-   public String processMessageFromClient(@Payload String message, Principal principal) throws Exception {
+   public String processMessageFromClient(@Payload String message, Principal principal) {
       return gson.fromJson(message, Map.class).get("name").toString();
    }
 

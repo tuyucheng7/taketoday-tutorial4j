@@ -13,9 +13,7 @@ import java.util.Map;
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
    @ExceptionHandler(ElementNotFoundException.class)
-   public ResponseEntity<Object> handleNodataFoundException(
-         ElementNotFoundException ex) {
-
+   public ResponseEntity<Object> handleNodataFoundException(ElementNotFoundException ex) {
       Map<String, Object> body = new LinkedHashMap<>();
       body.put("status", 404);
       body.put("error", "Not Found");

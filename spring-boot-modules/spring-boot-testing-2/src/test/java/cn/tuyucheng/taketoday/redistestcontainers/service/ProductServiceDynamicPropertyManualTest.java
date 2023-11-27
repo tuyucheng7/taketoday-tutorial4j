@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Testcontainers(disabledWithoutDocker = true)
-public class ProductServiceDynamicPropertyManualTest {
+class ProductServiceDynamicPropertyManualTest {
 
    @Autowired
    private ProductService productService;

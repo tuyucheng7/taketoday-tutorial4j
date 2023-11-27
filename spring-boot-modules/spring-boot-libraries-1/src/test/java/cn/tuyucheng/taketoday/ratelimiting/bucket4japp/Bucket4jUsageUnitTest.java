@@ -31,7 +31,7 @@ class Bucket4jUsageUnitTest {
    }
 
    @Test
-   void givenMultipletLimits_whenExceedSmallerLimit_thenConsumeReturnsFalse() {
+   void givenMultipleLimits_whenExceedSmallerLimit_thenConsumeReturnsFalse() {
       Bucket bucket = Bucket.builder()
             .addLimit(Bandwidth.classic(10, Refill.intervally(10, Duration.ofMinutes(1))))
             .addLimit(Bandwidth.classic(5, Refill.intervally(5, Duration.ofSeconds(20))))

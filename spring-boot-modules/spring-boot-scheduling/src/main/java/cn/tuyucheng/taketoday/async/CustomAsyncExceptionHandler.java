@@ -8,11 +8,10 @@ public class CustomAsyncExceptionHandler implements AsyncUncaughtExceptionHandle
 
    @Override
    public void handleUncaughtException(final Throwable throwable, final Method method, final Object... obj) {
-      System.out.println("Exception message - " + throwable.getMessage());
-      System.out.println("Method name - " + method.getName());
+      System.out.println(STR."Exception message - \{throwable.getMessage()}");
+      System.out.println(STR."Method name - \{method.getName()}");
       for (final Object param : obj) {
-         System.out.println("Param - " + param);
+         System.out.println(STR."Param - \{param}");
       }
    }
-
 }

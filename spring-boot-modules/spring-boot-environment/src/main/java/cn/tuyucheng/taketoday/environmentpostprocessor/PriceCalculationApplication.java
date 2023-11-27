@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class PriceCalculationApplication implements CommandLineRunner {
@@ -25,16 +24,16 @@ public class PriceCalculationApplication implements CommandLineRunner {
    }
 
    @Override
-   public void run(String... args) throws Exception {
+   public void run(String... args) {
       List<String> params = Arrays.stream(args)
-            .collect(Collectors.toList());
+            .toList();
 
       if (verifyArguments(params)) {
          double singlePrice = Double.valueOf(params.get(0));
          int quantity = Integer.valueOf(params.get(1));
          priceCalculationService.productTotalPrice(singlePrice, quantity);
       } else {
-         logger.warn("Invalid arguments " + params.toString());
+         logger.warn(STR."Invalid arguments \{params.toString()}");
       }
    }
 

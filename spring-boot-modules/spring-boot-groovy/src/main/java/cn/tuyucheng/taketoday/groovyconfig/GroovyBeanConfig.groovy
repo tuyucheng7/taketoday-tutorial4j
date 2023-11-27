@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.groovyconfig;
 
 beans {
-	javaPesronBean(JavaPersonBean) {
-		firstName = 'John'
-		lastName = 'Doe'
-		age = '32'
-		eyesColor = 'blue'
-		hairColor = 'black'
-	}
+   javaPesronBean(JavaPersonBean) {
+      firstName = 'John'
+      lastName = 'Doe'
+      age = '32'
+      eyesColor = 'blue'
+      hairColor = 'black'
+   }
 
-	bandsBean(BandsBean) { bean ->
-		bean.scope = "singleton"
-		bandsList = ['Nirvana', 'Pearl Jam', 'Foo Fighters']
-	}
+   bandsBean(BandsBean) { bean ->
+      bean.scope = "singleton"
+      bandsList = ['Nirvana', 'Pearl Jam', 'Foo Fighters']
+   }
 
-	registerAlias("bandsBean", "bands")
+   registerAlias("bandsBean", "bands")
 }

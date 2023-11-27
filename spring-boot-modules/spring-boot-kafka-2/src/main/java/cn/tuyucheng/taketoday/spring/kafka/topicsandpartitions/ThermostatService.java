@@ -17,8 +17,6 @@ public class ThermostatService {
    public void measureCelsiusAndPublish(int numMeasurements) {
       new Random().doubles(25, 35)
             .limit(numMeasurements)
-            .forEach(tmp -> {
-               kafkaTemplate.send("celcius-scale-topic", tmp);
-            });
+            .forEach(tmp -> kafkaTemplate.send("celcius-scale-topic", tmp));
    }
 }

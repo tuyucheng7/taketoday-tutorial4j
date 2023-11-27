@@ -26,7 +26,7 @@ public class SpringBootComponentScanApp {
 
    private static void checkBeansPresence(String... beans) {
       for (String beanName : beans) {
-         System.out.println("Is " + beanName + " in ApplicationContext: " + applicationContext.containsBean(beanName));
+         System.out.println(STR."Is \{beanName} in ApplicationContext: \{applicationContext.containsBean(beanName)}");
       }
    }
 }

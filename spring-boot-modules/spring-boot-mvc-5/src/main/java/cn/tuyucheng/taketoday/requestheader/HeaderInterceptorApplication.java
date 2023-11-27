@@ -11,5 +11,4 @@ public class HeaderInterceptorApplication {
    public static void main(String[] args) {
       SpringApplication.run(HeaderInterceptorApplication.class, args);
    }
-
 }

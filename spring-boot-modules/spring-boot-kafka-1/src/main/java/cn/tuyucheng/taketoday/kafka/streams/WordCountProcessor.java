@@ -22,7 +22,7 @@ public class WordCountProcessor {
       KTable<String, Long> wordCounts = messageStream
             .mapValues((ValueMapper<String, String>) String::toLowerCase)
             .flatMapValues(value -> Arrays.asList(value.split("\\W+")))
-            .groupBy((key, word) -> word, Grouped.with(STRING_SERDE, STRING_SERDE))
+            .groupBy((_, word) -> word, Grouped.with(STRING_SERDE, STRING_SERDE))
             .count(Materialized.as("counts"));
 
       wordCounts.toStream().to("output-topic");

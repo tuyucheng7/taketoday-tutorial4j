@@ -54,6 +54,6 @@ public class User implements Serializable {
 
    @Override
    public String toString() {
-      return "User [username=" + username + ", password=" + password + ", role=" + role + "]";
+      return STR."User [username=\{username}, password=\{password}, role=\{role}]";
    }
 }

@@ -11,15 +11,11 @@ public class CountryClient extends WebServiceGatewaySupport {
    private static final Logger logger = LoggerFactory.getLogger(CountryClient.class);
 
    public GetCountryResponse getCountry(String country) {
-
       GetCountryRequest request = new GetCountryRequest();
       request.setName(country);
 
-      logger.info("Requesting information for " + country);
+      logger.info(STR."Requesting information for \{country}");
 
-      GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate().marshalSendAndReceive(request);
-
-      return response;
+      return (GetCountryResponse) getWebServiceTemplate().marshalSendAndReceive(request);
    }
-
 }

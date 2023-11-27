@@ -19,7 +19,7 @@ public class AllStrategiesExampleBean implements InitializingBean {
    }
 
    @Override
-   public void afterPropertiesSet() throws Exception {
+   public void afterPropertiesSet() {
       LOG.info("InitializingBean");
    }
 

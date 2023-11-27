@@ -14,7 +14,7 @@ public class LogFilter implements Filter {
 
    @Override
    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-      logger.info("Hello from: " + request.getLocalAddr());
+      logger.info(STR."Hello from: \{request.getLocalAddr()}");
       chain.doFilter(request, response);
    }
 }

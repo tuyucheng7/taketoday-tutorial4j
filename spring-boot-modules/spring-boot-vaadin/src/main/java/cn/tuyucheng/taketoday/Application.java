@@ -18,7 +18,7 @@ public class Application {
 
    @Bean
    public CommandLineRunner loadData(EmployeeRepository repository) {
-      return (args) -> {
+      return _ -> {
          repository.save(new Employee("Bill", "Gates"));
          repository.save(new Employee("Mark", "Zuckerberg"));
          repository.save(new Employee("Sundar", "Pichai"));

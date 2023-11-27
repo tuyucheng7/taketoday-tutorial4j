@@ -13,5 +13,4 @@ public class ErrorHandler {
    public CustomException handleCustomException(CustomException ce) {
       return ce;
    }
-
 }

@@ -11,7 +11,7 @@ public class HelloFilter implements Filter {
    private FilterConfig filterConfig;
 
    @Override
-   public void init(FilterConfig filterConfig) throws ServletException {
+   public void init(FilterConfig filterConfig) {
       System.out.println("filter init");
       this.filterConfig = filterConfig;
    }

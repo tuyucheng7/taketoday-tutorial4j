@@ -14,7 +14,6 @@ public class MyWebController {
 
    @RequestMapping("/")
    public String index(Map<String, Object> model) throws Exception {
-
       ScriptEngine nashorn = new ScriptEngineManager().getEngineByName("nashorn");
 
       getClass().getResource("classpath:storedProcedures.sql");

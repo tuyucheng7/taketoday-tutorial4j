@@ -9,7 +9,7 @@ public class InMemoryProductRepository implements ProductRepository {
    public Product findProduct(String id) {
       Product product = new Product();
       product.setId(id);
-      product.setName("Product " + id);
+      product.setName(STR."Product \{id}");
       return product;
    }
 }

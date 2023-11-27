@@ -16,27 +16,27 @@ public class MyApplication implements CommandLineRunner {
       app.run();
    }
 
-   public void run(String... args) throws Exception {
-      System.out.println("using environment:" + myConfig.getEnvironment());
-      System.out.println("name:" + myConfig.getName());
-      System.out.println("enabled:" + myConfig.isEnabled());
-      System.out.println("servers:" + myConfig.getServers());
+   public void run(String... args) {
+      System.out.println(STR."using environment:\{myConfig.getEnvironment()}");
+      System.out.println(STR."name:\{myConfig.getName()}");
+      System.out.println(STR."enabled:\{myConfig.isEnabled()}");
+      System.out.println(STR."servers:\{myConfig.getServers()}");
 
       if ("testing".equalsIgnoreCase(myConfig.getEnvironment())) {
-         System.out.println("external:" + myConfig.getExternal());
-         System.out.println("map:" + myConfig.getMap());
+         System.out.println(STR."external:\{myConfig.getExternal()}");
+         System.out.println(STR."map:\{myConfig.getMap()}");
 
          YAMLConfig.Idm idm = myConfig.getComponent().getIdm();
          YAMLConfig.Service service = myConfig.getComponent().getService();
          System.out.println("Idm:");
-         System.out.println("   Url: " + idm.getUrl());
-         System.out.println("   User: " + idm.getUser());
-         System.out.println("   Password: " + idm.getPassword());
-         System.out.println("   Description: " + idm.getDescription());
+         System.out.println(STR."   Url: \{idm.getUrl()}");
+         System.out.println(STR."   User: \{idm.getUser()}");
+         System.out.println(STR."   Password: \{idm.getPassword()}");
+         System.out.println(STR."   Description: \{idm.getDescription()}");
          System.out.println("Service:");
-         System.out.println("   Url: " + service.getUrl());
-         System.out.println("   Token: " + service.getToken());
-         System.out.println("   Description: " + service.getDescription());
+         System.out.println(STR."   Url: \{service.getUrl()}");
+         System.out.println(STR."   Token: \{service.getToken()}");
+         System.out.println(STR."   Description: \{service.getDescription()}");
       }
    }
 }

@@ -28,5 +28,4 @@ public class HeaderInterceptorConfig implements WebMvcConfigurer {
    public OperatorHolder operatorHolder() {
       return new OperatorHolder();
    }
-
 }

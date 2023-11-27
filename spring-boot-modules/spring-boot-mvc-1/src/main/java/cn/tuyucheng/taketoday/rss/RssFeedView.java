@@ -38,9 +38,7 @@ public class RssFeedView extends AbstractRssFeedView {
     * javax.servlet.http.HttpServletResponse)
     */
    @Override
-   protected List<Item> buildFeedItems(Map<String, Object> model, HttpServletRequest request,
-                                       HttpServletResponse response) {
-
+   protected List<Item> buildFeedItems(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) {
       // Builds the single entries.
       Item entryOne = new Item();
       entryOne.setTitle("JUnit 5 @Test Annotation");

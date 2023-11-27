@@ -22,7 +22,6 @@ public class AppContextRefreshedEventPropertiesPrinter {
    }
 
    private void printAllActiveProperties(ConfigurableEnvironment env) {
-
       LOGGER.info("************************* ALL PROPERTIES(EVENT) ******************************");
 
       env.getPropertySources()
@@ -38,7 +37,6 @@ public class AppContextRefreshedEventPropertiesPrinter {
    }
 
    private void printAllApplicationProperties(ConfigurableEnvironment env) {
-
       LOGGER.info("************************* APP PROPERTIES(EVENT) ******************************");
 
       env.getPropertySources()

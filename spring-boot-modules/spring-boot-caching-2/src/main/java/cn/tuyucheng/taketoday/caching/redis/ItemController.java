@@ -15,5 +15,4 @@ public class ItemController {
    public Item getItemById(@PathVariable String id) {
       return itemService.getItemForId(id);
    }
-
 }

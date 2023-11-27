@@ -10,5 +10,4 @@ import org.springframework.context.annotation.PropertySource;
 @EnableAutoConfiguration
 @PropertySource("classpath:ctx2.properties")
 public class Ctx2Config {
-
 }

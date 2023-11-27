@@ -13,9 +13,9 @@ class GroovyConfigurationUnitTest {
    private static final String FILE_PATH = "src/main/java/cn/tuyucheng/taketoday/groovyconfig/";
 
    @Test
-   void whenGroovyConfig_thenCorrectPerson() throws Exception {
+   void whenGroovyConfig_thenCorrectPerson() {
       GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext();
-      ctx.load("file:" + getPathPart() + FILE_NAME);
+      ctx.load(STR."file:\{getPathPart()}\{FILE_NAME}");
       ctx.refresh();
 
       JavaPersonBean j = ctx.getBean(JavaPersonBean.class);
@@ -26,9 +26,9 @@ class GroovyConfigurationUnitTest {
    }
 
    @Test
-   void whenGroovyConfig_thenCorrectListLength() throws Exception {
+   void whenGroovyConfig_thenCorrectListLength() {
       GenericGroovyApplicationContext ctx = new GenericGroovyApplicationContext();
-      ctx.load("file:" + getPathPart() + FILE_NAME);
+      ctx.load(STR."file:\{getPathPart()}\{FILE_NAME}");
       ctx.refresh();
 
       BandsBean bb = ctx.getBean(BandsBean.class);

@@ -46,8 +46,8 @@ class DisplayBeanIntegrationTest {
    private static final String ACTUATOR_PATH = "/actuator";
 
    @Test
-   void givenRestTemplate_whenAccessServerUrl_thenHttpStatusOK() throws Exception {
-      ResponseEntity<String> entity = this.testRestTemplate.getForEntity("http://localhost:" + this.port + "/displayallbeans", String.class);
+   void givenRestTemplate_whenAccessServerUrl_thenHttpStatusOK() {
+      ResponseEntity<String> entity = this.testRestTemplate.getForEntity(STR."http://localhost:\{this.port}/displayallbeans", String.class);
 
       then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
    }
@@ -56,7 +56,7 @@ class DisplayBeanIntegrationTest {
    void givenRestTemplate_whenAccessEndpointUrl_thenHttpStatusOK() throws Exception {
       ParameterizedTypeReference<Map<String, ContextBeans>> responseType = new ParameterizedTypeReference<>() {
       };
-      RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
+      RequestEntity<Void> requestEntity = RequestEntity.get(new URI(STR."http://localhost:\{this.mgt}\{ACTUATOR_PATH}/beans"))
             .accept(MediaType.APPLICATION_JSON)
             .build();
       ResponseEntity<Map<String, ContextBeans>> entity = this.testRestTemplate.exchange(requestEntity, responseType);
@@ -66,7 +66,7 @@ class DisplayBeanIntegrationTest {
 
    @Test
    void givenRestTemplate_whenAccessEndpointUrl_thenReturnsBeanNames() throws Exception {
-      RequestEntity<Void> requestEntity = RequestEntity.get(new URI("http://localhost:" + this.mgt + ACTUATOR_PATH + "/beans"))
+      RequestEntity<Void> requestEntity = RequestEntity.get(new URI(STR."http://localhost:\{this.mgt}\{ACTUATOR_PATH}/beans"))
             .accept(MediaType.APPLICATION_JSON)
             .build();
       ResponseEntity<BeanActuatorResponse> entity = this.testRestTemplate.exchange(requestEntity, BeanActuatorResponse.class);
@@ -77,7 +77,7 @@ class DisplayBeanIntegrationTest {
    }
 
    @Test
-   void givenWebApplicationContext_whenAccessGetBeanDefinitionNames_thenReturnsBeanNames() throws Exception {
+   void givenWebApplicationContext_whenAccessGetBeanDefinitionNames_thenReturnsBeanNames() {
       String[] beanNames = context.getBeanDefinitionNames();
 
       List<String> beanNamesList = Arrays.asList(beanNames);

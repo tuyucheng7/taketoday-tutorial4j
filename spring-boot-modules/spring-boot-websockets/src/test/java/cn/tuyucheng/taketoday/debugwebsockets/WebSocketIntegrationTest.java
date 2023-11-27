@@ -36,7 +36,7 @@ class WebSocketIntegrationTest {
    private static final Logger logger = LoggerFactory.getLogger(WebSocketIntegrationTest.class);
 
    @BeforeEach
-   public void setup() {
+   void setup() {
       logger.info("Setting up the tests ...");
       client = new StandardWebSocketClient();
       stompClient = new WebSocketStompClient(client);
@@ -69,7 +69,6 @@ class WebSocketIntegrationTest {
                @Override
                public void handleFrame(StompHeaders headers, Object payload) {
                   try {
-
                      assertThat(payload).isNotNull();
                      assertThat(payload).isInstanceOf(Map.class);
 
@@ -85,7 +84,6 @@ class WebSocketIntegrationTest {
                      session.disconnect();
                      latch.countDown();
                   }
-
                }
             });
          }

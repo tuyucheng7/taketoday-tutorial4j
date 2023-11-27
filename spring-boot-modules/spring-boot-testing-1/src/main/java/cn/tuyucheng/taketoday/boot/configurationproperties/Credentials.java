@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.boot.configurationproperties;
 
-
 public class Credentials {
 
    private String username;

@@ -49,7 +49,6 @@ public class Foo {
       this.body = body;
    }
 
-
    @Override
    public int hashCode() {
       final int prime = 31;
@@ -81,6 +80,6 @@ public class Foo {
 
    @Override
    public String toString() {
-      return "Foo [id=" + id + ", title=" + title + "]";
+      return STR."Foo [id=\{id}, title=\{title}]";
    }
 }

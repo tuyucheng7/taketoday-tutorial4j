@@ -21,5 +21,4 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
    public void registerStompEndpoints(StompEndpointRegistry registry) {
       registry.addEndpoint("/stock-ticks").setAllowedOriginPatterns("*").withSockJS();
    }
-
 }

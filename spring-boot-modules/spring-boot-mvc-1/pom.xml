@@ -55,12 +55,6 @@
          <artifactId>javax.faces</artifactId>
          <version>${javax.faces.version}</version>
       </dependency>
-      <!--Test -->
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-         <scope>test</scope>
-      </dependency>
       <!-- ROME for RSS -->
       <dependency>
          <groupId>com.rometools</groupId>

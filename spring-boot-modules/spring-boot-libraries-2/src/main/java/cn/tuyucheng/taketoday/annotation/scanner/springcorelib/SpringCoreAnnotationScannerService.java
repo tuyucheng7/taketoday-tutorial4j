@@ -17,14 +17,12 @@ public class SpringCoreAnnotationScannerService implements SampleAnnotationScann
    @Override
    public List<String> scanAnnotatedMethods() {
       Class<?> userClass = ClassUtils.getUserClass(SampleAnnotatedClass.class);
-      List<String> annotatedMethods = Arrays.stream(userClass.getMethods())
+      return Arrays.stream(userClass.getMethods())
             .filter(method -> AnnotationUtils
                   .getAnnotation(method, SampleAnnotation.class) != null)
             .map(method -> method.getAnnotation(SampleAnnotation.class)
                   .name())
             .collect(Collectors.toList());
-
-      return annotatedMethods;
    }
 
    @Override

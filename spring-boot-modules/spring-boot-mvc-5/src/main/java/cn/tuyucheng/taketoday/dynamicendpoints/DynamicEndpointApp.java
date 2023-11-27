@@ -40,7 +40,6 @@ public class DynamicEndpointApp {
    @ConditionalOnBean(PropertiesConfiguration.class)
    @Primary
    public Properties properties(PropertiesConfiguration propertiesConfiguration) throws Exception {
-      ReloadableProperties properties = new ReloadableProperties(propertiesConfiguration);
-      return properties;
+      return new ReloadableProperties(propertiesConfiguration);
    }
 }

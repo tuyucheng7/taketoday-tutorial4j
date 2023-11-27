@@ -3,29 +3,29 @@ package cn.tuyucheng.taketoday.kong;
 import cn.tuyucheng.taketoday.kong.domain.APIObject;
 import cn.tuyucheng.taketoday.kong.domain.TargetObject;
 import cn.tuyucheng.taketoday.kong.domain.UpstreamObject;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.net.URI;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
 /**
  * @author tuyucheng
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT, classes = StockApplication.class, properties = "server.servlet.contextPath=/springbootapp")
-public class KongLoadBalanceLiveTest {
+class KongLoadBalanceLiveTest {
 
-   @Before
+   @BeforeEach
    public void init() {
       System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
    }
@@ -34,7 +34,7 @@ public class KongLoadBalanceLiveTest {
    TestRestTemplate restTemplate;
 
    @Test
-   public void givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong() throws Exception {
+   void givenKongAdminAPI_whenAddAPI_thenAPIAccessibleViaKong() throws Exception {
       UpstreamObject upstream = new UpstreamObject("stock.api.service");
       ResponseEntity<String> addUpstreamResp = restTemplate.postForEntity("http://localhost:8001/upstreams", new HttpEntity<>(upstream), String.class);
       assertTrue(HttpStatus.CREATED == addUpstreamResp.getStatusCode() || HttpStatus.CONFLICT == addUpstreamResp.getStatusCode());
@@ -63,6 +63,6 @@ public class KongLoadBalanceLiveTest {
       int releaseCount = restTemplate.getForObject("http://localhost:9090/springbootapp/stock/reqcount", Integer.class);
       int testCount = restTemplate.getForObject("http://localhost:8080/springbootapp/stock/reqcount", Integer.class);
 
-      assertTrue(Math.round(releaseCount * 1.0 / testCount) == 4);
+      assertEquals(4, Math.round(releaseCount * 1.0 / testCount));
    }
 }

@@ -15,7 +15,7 @@ import static org.springframework.web.servlet.function.ServerResponse.status;
 public class ProductController {
 
    public RouterFunction<ServerResponse> productListing(ProductService ps) {
-      return route().GET("/product", req -> ok().body(ps.findAll()))
+      return route().GET("/product", _ -> ok().body(ps.findAll()))
             .build();
    }
 
@@ -23,7 +23,7 @@ public class ProductController {
       return route().nest(RequestPredicates.path("/product"), builder ->
                   builder.GET("/name/{name}", req -> ok().body(ps.findByName(req.pathVariable("name"))))
                         .GET("/id/{id}", req -> ok().body(ps.findById(Integer.parseInt(req.pathVariable("id"))))))
-            .onError(ProductService.ItemNotFoundException.class, (e, req) -> EntityResponse.fromObject(new SpringBootMvcFnApplication.Error(e.getMessage()))
+            .onError(ProductService.ItemNotFoundException.class, (e, _) -> EntityResponse.fromObject(new SpringBootMvcFnApplication.Error(e.getMessage()))
                   .status(HttpStatus.NOT_FOUND)
                   .build())
             .build();
@@ -32,7 +32,7 @@ public class ProductController {
    public RouterFunction<ServerResponse> adminFunctions(ProductService ps) {
       return route().POST("/product", req -> ok().body(ps.save(req.body(Product.class))))
             .filter((req, next) -> authenticate(req) ? next.handle(req) : status(HttpStatus.UNAUTHORIZED).build())
-            .onError(IllegalArgumentException.class, (e, req) -> EntityResponse.fromObject(new SpringBootMvcFnApplication.Error(e.getMessage()))
+            .onError(IllegalArgumentException.class, (e, _) -> EntityResponse.fromObject(new SpringBootMvcFnApplication.Error(e.getMessage()))
                   .status(HttpStatus.BAD_REQUEST)
                   .build())
             .build();

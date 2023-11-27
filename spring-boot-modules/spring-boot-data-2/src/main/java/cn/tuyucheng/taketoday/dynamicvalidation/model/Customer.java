@@ -42,5 +42,4 @@ public class Customer {
    public void setId(final long id) {
       this.id = id;
    }
-
 }

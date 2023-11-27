@@ -20,8 +20,8 @@ public class MultipleYamlApplication implements CommandLineRunner {
       springApp.run(args);
    }
 
-   public void run(String... args) throws Exception {
-      System.out.println("Students: " + config.getStudents());
-      System.out.println("Teachers: " + config.getTeachers());
+   public void run(String... args) {
+      System.out.println(STR."Students: \{config.getStudents()}");
+      System.out.println(STR."Teachers: \{config.getTeachers()}");
    }
 }

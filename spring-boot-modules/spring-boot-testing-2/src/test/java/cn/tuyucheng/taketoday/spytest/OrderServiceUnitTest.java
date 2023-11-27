@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spytest;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,6 +8,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -32,8 +33,8 @@ class OrderServiceUnitTest {
       doReturn(true).when(notificationService)
             .raiseAlert(any(Order.class));
       Order order = orderService.save(orderInput);
-      Assertions.assertNotNull(order);
-      Assertions.assertEquals(orderId, order.getId());
+      assertNotNull(order);
+      assertEquals(orderId, order.getId());
       verify(notificationService).notify(any(Order.class));
    }
 }

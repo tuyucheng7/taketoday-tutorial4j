@@ -19,7 +19,7 @@ public class RestClientConfig {
 
       List<ClientHttpRequestInterceptor> interceptors = restTemplate.getInterceptors();
       if (CollectionUtils.isEmpty(interceptors)) {
-         interceptors = new ArrayList<ClientHttpRequestInterceptor>();
+         interceptors = new ArrayList<>();
       }
       interceptors.add(new RestTemplateHeaderModifierInterceptor());
       restTemplate.setInterceptors(interceptors);

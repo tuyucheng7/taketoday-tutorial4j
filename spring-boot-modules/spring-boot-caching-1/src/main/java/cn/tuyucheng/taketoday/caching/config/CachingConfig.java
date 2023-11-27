@@ -21,5 +21,4 @@ public class CachingConfig {
       cacheManager.setCaches(Arrays.asList(new ConcurrentMapCache("directory"), new ConcurrentMapCache("addresses")));
       return cacheManager;
    }
-
 }

@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.students;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +20,13 @@ public class StudentService {
                      new Student(2, "Sebastian", "Bach"),
                      new Student(3, "Pablo", "Picasso"),
                }).stream()
-         .collect(Collectors.toConcurrentMap(s -> s.getId(), Function.identity()));
+         .collect(Collectors.toConcurrentMap(Student::getId, Function.identity()));
 
    // DB id sequence mock
    private AtomicLong sequence = new AtomicLong(3);
 
    public List<Student> readAll() {
-      return repository.values().stream().collect(Collectors.toList());
+      return new ArrayList<>(repository.values());
    }
 
    public Student read(Long id) {

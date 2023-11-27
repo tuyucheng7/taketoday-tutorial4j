@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 public class TopicsController {
 
@@ -19,6 +18,6 @@ public class TopicsController {
 
    @GetMapping(value = "/topics")
    public ResponseEntity<List<Topic>> getAllTopics() {
-      return new ResponseEntity<>(topicService.getAlllTopics(), HttpStatus.OK);
+      return new ResponseEntity<>(topicService.getAllTopics(), HttpStatus.OK);
    }
 }

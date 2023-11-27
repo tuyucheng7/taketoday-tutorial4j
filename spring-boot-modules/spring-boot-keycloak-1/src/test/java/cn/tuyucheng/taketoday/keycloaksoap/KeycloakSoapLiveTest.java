@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.LinkedMultiValueMap;
@@ -63,9 +63,9 @@ class KeycloakSoapLiveTest {
 
       HttpHeaders headers = new HttpHeaders();
       headers.set("content-type", "text/xml");
-      headers.set("Authorization", "Bearer " + generateToken("janedoe", "password"));
+      headers.set("Authorization", STR."Bearer \{generateToken("janedoe", "password")}");
       HttpEntity<String> request = new HttpEntity<>(Utility.getGetProductDetailsRequest(), headers);
-      ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:" + port + "/ws/api/v1/", request, String.class);
+      ResponseEntity<String> responseEntity = restTemplate.postForEntity(STR."http://localhost:\{port}/ws/api/v1/", request, String.class);
 
       assertThat(responseEntity).isNotNull();
       assertThat(responseEntity.getStatusCodeValue()).isEqualTo(HttpStatus.OK.value());
@@ -83,9 +83,9 @@ class KeycloakSoapLiveTest {
 
       HttpHeaders headers = new HttpHeaders();
       headers.set("content-type", "text/xml");
-      headers.set("Authorization", "Bearer " + generateToken("janeadoe", "password"));
+      headers.set("Authorization", STR."Bearer \{generateToken("janeadoe", "password")}");
       HttpEntity<String> request = new HttpEntity<>(Utility.getGetProductDetailsRequest(), headers);
-      ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:" + port + "/ws/api/v1/", request, String.class);
+      ResponseEntity<String> responseEntity = restTemplate.postForEntity(STR."http://localhost:\{port}/ws/api/v1/", request, String.class);
       assertThat(responseEntity).isNotNull();
       assertThat(responseEntity.getStatusCodeValue()).isEqualTo(HttpStatus.UNAUTHORIZED.value());
       assertThat(responseEntity.getBody()).isBlank();
@@ -100,9 +100,9 @@ class KeycloakSoapLiveTest {
    void givenAccessToken_whenDeleteProduct_thenReturnSuccess() {
       HttpHeaders headers = new HttpHeaders();
       headers.set("content-type", "text/xml");
-      headers.set("Authorization", "Bearer " + generateToken("johndoe", "password"));
+      headers.set("Authorization", STR."Bearer \{generateToken("johndoe", "password")}");
       HttpEntity<String> request = new HttpEntity<>(Utility.getDeleteProductsRequest(), headers);
-      ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:" + port + "/ws/api/v1/", request, String.class);
+      ResponseEntity<String> responseEntity = restTemplate.postForEntity(STR."http://localhost:\{port}/ws/api/v1/", request, String.class);
 
       assertThat(responseEntity).isNotNull();
       assertThat(responseEntity.getStatusCodeValue()).isEqualTo(HttpStatus.OK.value());
@@ -120,9 +120,9 @@ class KeycloakSoapLiveTest {
    void givenUnauthorizedAccessToken_whenDeleteProduct_thenReturnUnauthorized() {
       HttpHeaders headers = new HttpHeaders();
       headers.set("content-type", "text/xml");
-      headers.set("Authorization", "Bearer " + generateToken("janedoe", "password"));
+      headers.set("Authorization", STR."Bearer \{generateToken("janedoe", "password")}");
       HttpEntity<String> request = new HttpEntity<>(Utility.getDeleteProductsRequest(), headers);
-      ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:" + port + "/ws/api/v1/", request, String.class);
+      ResponseEntity<String> responseEntity = restTemplate.postForEntity(STR."http://localhost:\{port}/ws/api/v1/", request, String.class);
 
       assertThat(responseEntity).isNotNull();
       assertThat(responseEntity.getStatusCodeValue()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());

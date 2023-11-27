@@ -4,16 +4,16 @@ import cn.tuyucheng.taketoday.caching.config.CachingConfig;
 import cn.tuyucheng.taketoday.caching.example.Customer;
 import cn.tuyucheng.taketoday.caching.example.CustomerDataService;
 import cn.tuyucheng.taketoday.caching.example.CustomerServiceWithParent;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {CachingConfig.class}, loader = AnnotationConfigContextLoader.class)
-public class SpringCachingIntegrationTest {
+class SpringCachingIntegrationTest {
 
    @Autowired
    private CustomerDataService service;
@@ -21,10 +21,8 @@ public class SpringCachingIntegrationTest {
    @Autowired
    private CustomerServiceWithParent serviceWithParent;
 
-   //
-
    @Test
-   public void whenGettingAddress_thenCorrect() {
+   void whenGettingAddress_thenCorrect() {
       final Customer cust = new Customer("Tom", "67-2, Downing Street, NY");
       service.getAddress(cust);
       service.getAddress(cust);
@@ -46,7 +44,7 @@ public class SpringCachingIntegrationTest {
    }
 
    @Test
-   public void givenUsingServiceWithParent_whenGettingAddress_thenCorrect() {
+   void givenUsingServiceWithParent_whenGettingAddress_thenCorrect() {
       final Customer cust = new Customer("Tom", "67-2, Downing Street, NY");
 
       serviceWithParent.getAddress(cust);
@@ -67,5 +65,4 @@ public class SpringCachingIntegrationTest {
       serviceWithParent.getAddress5(cust);
       serviceWithParent.getAddress5(cust);
    }
-
 }

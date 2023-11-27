@@ -43,7 +43,7 @@ class FooLiveTest {
 
    private String createAsUri(final Foo resource) {
       final Response response = createAsResponse(resource);
-      return getURL() + "/" + response.getBody().as(Foo.class).getId();
+      return STR."\{getURL()}/\{response.getBody().as(Foo.class).getId()}";
    }
 
    private Response createAsResponse(final Foo resource) {
@@ -55,7 +55,7 @@ class FooLiveTest {
    }
 
    protected String getURL() {
-      return "http://localhost:" + port + "/foos";
+      return STR."http://localhost:\{port}/foos";
    }
 
    @Test

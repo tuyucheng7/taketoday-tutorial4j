@@ -13,7 +13,7 @@ public class AppStartupRunner implements ApplicationRunner {
    public static int counter;
 
    @Override
-   public void run(ApplicationArguments args) throws Exception {
+   public void run(ApplicationArguments args) {
       LOG.info("Application started with option names : {}", args.getOptionNames());
       LOG.info("Increment counter");
       counter++;

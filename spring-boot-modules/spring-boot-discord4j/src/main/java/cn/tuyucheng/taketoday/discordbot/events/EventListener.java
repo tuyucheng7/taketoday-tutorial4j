@@ -14,7 +14,7 @@ public interface EventListener<T extends Event> {
    Mono<Void> execute(T event);
 
    default Mono<Void> handleError(Throwable error) {
-      LOG.error("Unable to process " + getEventType().getSimpleName(), error);
+      LOG.error(STR."Unable to process \{getEventType().getSimpleName()}", error);
       return Mono.empty();
    }
 }

@@ -40,11 +40,6 @@
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
       </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-         <scope>test</scope>
-      </dependency>
       <!-- SpringDoc for Spring Boot Version 1.x and 2.x -->
       <dependency>
          <groupId>org.springdoc</groupId>
@@ -69,17 +64,6 @@
       <dependency>
          <groupId>org.springframework.restdocs</groupId>
          <artifactId>spring-restdocs-restassured</artifactId>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
-         <groupId>org.jetbrains.kotlin</groupId>
-         <artifactId>kotlin-stdlib-jdk8</artifactId>
-         <version>${kotlin.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.jetbrains.kotlin</groupId>
-         <artifactId>kotlin-test</artifactId>
-         <version>${kotlin.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
@@ -113,50 +97,6 @@
                </execution>
             </executions>
          </plugin>
-         <plugin>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-maven-plugin</artifactId>
-            <version>${kotlin.version}</version>
-            <executions>
-               <execution>
-                  <id>compile</id>
-                  <phase>compile</phase>
-                  <goals>
-                     <goal>compile</goal>
-                  </goals>
-               </execution>
-               <execution>
-                  <id>test-compile</id>
-                  <phase>test-compile</phase>
-                  <goals>
-                     <goal>test-compile</goal>
-                  </goals>
-               </execution>
-            </executions>
-            <configuration>
-               <jvmTarget>1.8</jvmTarget>
-            </configuration>
-         </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>compile</id>
-                  <phase>compile</phase>
-                  <goals>
-                     <goal>compile</goal>
-                  </goals>
-               </execution>
-               <execution>
-                  <id>testCompile</id>
-                  <phase>test-compile</phase>
-                  <goals>
-                     <goal>testCompile</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
       </plugins>
       <resources>
          <resource>
@@ -168,14 +108,12 @@
                <include>schema.sql</include>
                <include>app.key</include>
                <include>app.pub</include>
-               <include>logback.xml</include>
             </includes>
          </resource>
       </resources>
    </build>
 
    <properties>
-      <kotlin.version>1.7.22</kotlin.version>
       <springdoc.version>1.7.0</springdoc.version>
       <asciidoctor-plugin.version>1.5.6</asciidoctor-plugin.version>
       <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>

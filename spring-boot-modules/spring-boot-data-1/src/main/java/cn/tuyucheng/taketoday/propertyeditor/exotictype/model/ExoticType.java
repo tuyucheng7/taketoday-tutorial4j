@@ -11,5 +11,4 @@ public class ExoticType {
    public void setName(String name) {
       this.name = name;
    }
-
 }

@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PricingPlanServiceUnitTest {
 
-   private PricingPlanService service = new PricingPlanService();
+   private final PricingPlanService service = new PricingPlanService();
 
    @Test
    void givenAPIKey_whenFreePlan_thenReturnFreePlanBucket() {
@@ -20,7 +20,7 @@ class PricingPlanServiceUnitTest {
    }
 
    @Test
-   void givenAPIKey_whenBasiclan_thenReturnBasicPlanBucket() {
+   void givenAPIKey_whenBasicPlan_thenReturnBasicPlanBucket() {
       Bucket bucket = service.resolveBucket("BX001-MBSZ5YRYP");
 
       assertEquals(PricingPlan.BASIC.bucketCapacity(), bucket.getAvailableTokens());

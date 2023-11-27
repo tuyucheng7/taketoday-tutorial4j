@@ -9,7 +9,7 @@ import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
+import java.util.List;
 
 @EnableCaching
 @Configuration
@@ -19,7 +19,7 @@ public class ApplicationCacheConfig {
    public CacheManager cacheManager() {
       SimpleCacheManager cacheManager = new SimpleCacheManager();
       Cache booksCache = new ConcurrentMapCache("books");
-      cacheManager.setCaches(Arrays.asList(booksCache));
+      cacheManager.setCaches(List.of(booksCache));
       return cacheManager;
    }
 

@@ -72,5 +72,4 @@ public abstract class AbstractService {
    public String getAddress5(final Customer customer) {
       return customer.getAddress();
    }
-
 }

@@ -66,7 +66,7 @@ class ResilientAppControllerManualTest {
 
       IntStream.rangeClosed(1, 5)
             .forEach(
-                  i -> {
+                  _ -> {
                      ResponseEntity<String> response =
                            restTemplate.getForEntity("/api/circuit-breaker", String.class);
                      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -109,7 +109,7 @@ class ResilientAppControllerManualTest {
 
       IntStream.rangeClosed(1, 5)
             .forEach(
-                  i -> {
+                  _ -> {
                      ResponseEntity<String> response =
                            restTemplate.getForEntity("/api/circuit-breaker", String.class);
                      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.SERVICE_UNAVAILABLE);
@@ -138,7 +138,7 @@ class ResilientAppControllerManualTest {
    private List<CircuitBreakerEvent> getCircuitBreakerEvents() throws Exception {
       String jsonEventsList =
             IOUtils.toString(
-                  new URI("http://localhost:" + port + "/actuator/circuitbreakerevents"), StandardCharsets.UTF_8);
+                  new URI(STR."http://localhost:\{port}/actuator/circuitbreakerevents"), StandardCharsets.UTF_8);
       CircuitBreakerEvents circuitBreakerEvents =
             objectMapper.readValue(jsonEventsList, CircuitBreakerEvents.class);
       return circuitBreakerEvents.getCircuitBreakerEvents();
@@ -222,7 +222,7 @@ class ResilientAppControllerManualTest {
 
       IntStream.rangeClosed(1, 5)
             .forEach(
-                  i ->
+                  _ ->
                         executorService.execute(
                               () -> {
                                  ResponseEntity<String> response =
@@ -263,9 +263,7 @@ class ResilientAppControllerManualTest {
    }
 
    private List<BulkheadEvent> getBulkheadEvents() throws Exception {
-      String jsonEventsList =
-            IOUtils.toString(
-                  new URI("http://localhost:" + port + "/actuator/bulkheadevents"), StandardCharsets.UTF_8);
+      String jsonEventsList = IOUtils.toString(new URI(STR."http://localhost:\{port}/actuator/bulkheadevents"), StandardCharsets.UTF_8);
       BulkheadEvents bulkheadEvents = objectMapper.readValue(jsonEventsList, BulkheadEvents.class);
       return bulkheadEvents.getBulkheadEvents();
    }
@@ -277,7 +275,7 @@ class ResilientAppControllerManualTest {
 
       IntStream.rangeClosed(1, 50)
             .forEach(
-                  i -> {
+                  _ -> {
                      ResponseEntity<String> response =
                            restTemplate.getForEntity("/api/rate-limiter", String.class);
                      int statusCode = response.getStatusCodeValue();
@@ -316,9 +314,7 @@ class ResilientAppControllerManualTest {
    }
 
    private List<RateLimiterEvent> getRateLimiterEvents() throws Exception {
-      String jsonEventsList =
-            IOUtils.toString(
-                  new URI("http://localhost:" + port + "/actuator/ratelimiterevents"), StandardCharsets.UTF_8);
+      String jsonEventsList = IOUtils.toString(new URI(STR."http://localhost:\{port}/actuator/ratelimiterevents"), StandardCharsets.UTF_8);
       RateLimiterEvents rateLimiterEvents =
             objectMapper.readValue(jsonEventsList, RateLimiterEvents.class);
       return rateLimiterEvents.getRateLimiterEvents();

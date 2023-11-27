@@ -11,5 +11,4 @@ public class DevDatasourceConfig implements DatasourceConfig {
    public void setup() {
       System.out.println("Setting up datasource for DEV environment. ");
    }
-
 }

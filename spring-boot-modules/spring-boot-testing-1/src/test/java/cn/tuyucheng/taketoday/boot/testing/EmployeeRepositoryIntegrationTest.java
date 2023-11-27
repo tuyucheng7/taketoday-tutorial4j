@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.boot.testing;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +64,6 @@ class EmployeeRepositoryIntegrationTest {
 
       List<Employee> allEmployees = employeeRepository.findAll();
 
-      Assertions.assertThat(allEmployees).hasSize(3).extracting(Employee::getName).containsOnly(alex.getName(), ron.getName(), bob.getName());
+      assertThat(allEmployees).hasSize(3).extracting(Employee::getName).containsOnly(alex.getName(), ron.getName(), bob.getName());
    }
 }

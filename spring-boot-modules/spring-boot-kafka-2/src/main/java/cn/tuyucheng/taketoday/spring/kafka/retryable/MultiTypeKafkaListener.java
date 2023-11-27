@@ -12,20 +12,19 @@ public class MultiTypeKafkaListener {
    @KafkaHandler
    // @RetryableTopic(backoff = @Backoff(value = 3000L), attempts = "5", autoCreateTopics = "false", include = SocketTimeoutException.class, exclude = NullPointerException.class)
    public void handleGreeting(Greeting greeting) {
-      if (greeting.getName()
-            .equalsIgnoreCase("test")) {
+      if (greeting.getName().equalsIgnoreCase("test")) {
          throw new MessagingException("test not allowed");
       }
-      System.out.println("Greeting received: " + greeting);
+      System.out.println(STR."Greeting received: \{greeting}");
    }
 
    @KafkaHandler
    public void handleF(Farewell farewell) {
-      System.out.println("Farewell received: " + farewell);
+      System.out.println(STR."Farewell received: \{farewell}");
    }
 
    @KafkaHandler(isDefault = true)
    public void unknown(Object object) {
-      System.out.println("Unknown type received: " + object);
+      System.out.println(STR."Unknown type received: \{object}");
    }
 }

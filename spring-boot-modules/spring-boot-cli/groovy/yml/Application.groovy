@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ComponentScan
 @ComponentScan('tuyucheng.yml')
 class App {
 
-	static void main(String[] args) {
-		new SpringApplicationBuilder()
-			.sources(App)
-			.run(args)
-	}
+   static void main(String[] args) {
+      new SpringApplicationBuilder()
+            .sources(App)
+            .run(args)
+   }
 }

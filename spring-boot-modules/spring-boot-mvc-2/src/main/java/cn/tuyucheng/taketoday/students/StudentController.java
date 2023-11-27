@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -32,7 +31,7 @@ public class StudentController {
    }
 
    @PostMapping("/")
-   public ResponseEntity<Student> create(@RequestBody Student student) throws URISyntaxException {
+   public ResponseEntity<Student> create(@RequestBody Student student) {
       Student createdStudent = service.create(student);
 
       URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

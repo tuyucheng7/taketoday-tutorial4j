@@ -83,7 +83,7 @@ public class ResponseHandler {
       } else {
          SendMessage sendMessage = new SendMessage();
          sendMessage.setChatId(chatId);
-         sendMessage.setText("We don't sell " + message.getText() + " Pizza.\nSelect the toppings!");
+         sendMessage.setText(STR."We don't sell \{message.getText()} Pizza.\nSelect the toppings!");
          sendMessage.setReplyMarkup(KeyboardFactory.getPizzaToppingsKeyboard());
          sender.execute(sendMessage);
       }
@@ -111,14 +111,14 @@ public class ResponseHandler {
          sender.execute(sendMessage);
          chatStates.put(chatId, UserState.PIZZA_TOPPINGS);
       } else {
-         sendMessage.setText("We don't sell " + message.getText() + ". Please select from the options below.");
+         sendMessage.setText(STR."We don't sell \{message.getText()}. Please select from the options below.");
          sendMessage.setReplyMarkup(KeyboardFactory.getPizzaOrDrinkKeyboard());
          sender.execute(sendMessage);
       }
    }
 
    private void replyToName(long chatId, Message message) {
-      promptWithKeyboardForState(chatId, "Hello " + message.getText() + ". What would you like to have?",
+      promptWithKeyboardForState(chatId, STR."Hello \{message.getText()}. What would you like to have?",
             KeyboardFactory.getPizzaOrDrinkKeyboard(),
             UserState.FOOD_DRINK_SELECTION);
    }

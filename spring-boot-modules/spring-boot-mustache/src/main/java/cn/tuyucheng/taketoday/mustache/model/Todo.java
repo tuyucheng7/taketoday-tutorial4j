@@ -70,6 +70,6 @@ public class Todo {
    }
 
    public Function<Object, Object> handleDone() {
-      return (obj) -> done ? String.format("<small>Done %s minutes ago<small>", obj) : "";
+      return obj -> done ? String.format("<small>Done %s minutes ago<small>", obj) : "";
    }
 }

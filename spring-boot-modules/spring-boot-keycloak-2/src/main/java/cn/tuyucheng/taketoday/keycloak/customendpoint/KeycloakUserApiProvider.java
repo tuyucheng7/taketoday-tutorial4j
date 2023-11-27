@@ -41,11 +41,11 @@ public class KeycloakUserApiProvider implements RealmResourceProvider {
             .filter(group -> group.getName().equals(groupName))
             .findAny();
 
-      GroupModel group = groupByName.orElseThrow(() -> new NotFoundException("Group not found with name " + groupName));
+      GroupModel group = groupByName.orElseThrow(() -> new NotFoundException(STR."Group not found with name \{groupName}"));
 
       return session.users()
             .getGroupMembersStream(realm, group)
             .filter(user -> user.getRealmRoleMappingsStream().anyMatch(role -> role.getName().equals(roleName)))
-            .map(user -> ModelToRepresentation.toBriefRepresentation(user));
+            .map(ModelToRepresentation::toBriefRepresentation);
    }
 }

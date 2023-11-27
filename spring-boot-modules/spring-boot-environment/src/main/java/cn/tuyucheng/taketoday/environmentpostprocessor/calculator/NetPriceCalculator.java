@@ -11,7 +11,7 @@ public class NetPriceCalculator implements PriceCalculator {
    public double calculate(double singlePrice, int quantity) {
       logger.info("Net based price calculation with input parameters [singlePrice = {},quantity= {} ], NO tax applied.", singlePrice, quantity);
       double result = Math.round(singlePrice * quantity);
-      logger.info("Calcuation result is {}", result);
+      logger.info("Calculation result is {}", result);
       return result;
    }
 }

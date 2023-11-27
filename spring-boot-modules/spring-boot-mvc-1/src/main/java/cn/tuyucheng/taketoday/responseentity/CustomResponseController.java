@@ -27,7 +27,7 @@ public class CustomResponseController {
          return new ResponseEntity<>("Year of birth cannot be in the future", HttpStatus.BAD_REQUEST);
       }
 
-      return new ResponseEntity<>("Your age is " + calculateAge(yearOfBirth), HttpStatus.OK);
+      return new ResponseEntity<>(STR."Your age is \{calculateAge(yearOfBirth)}", HttpStatus.OK);
    }
 
    private int calculateAge(int yearOfBirth) {

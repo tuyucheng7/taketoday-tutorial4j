@@ -39,18 +39,18 @@ public abstract class KeycloakTestContainers {
 
    @PostConstruct
    public void init() {
-      RestAssured.baseURI = "http://localhost:" + port;
+      RestAssured.baseURI = STR."http://localhost:\{port}";
    }
 
    @DynamicPropertySource
    static void registerResourceServerIssuerProperty(DynamicPropertyRegistry registry) {
-      registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> keycloak.getAuthServerUrl() + "/realms/baeldung");
+      registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri", () -> STR."\{keycloak.getAuthServerUrl()}/realms/baeldung");
    }
 
    protected String getJaneDoeBearer() {
 
       try {
-         URI authorizationURI = new URIBuilder(keycloak.getAuthServerUrl() + "/realms/baeldung/protocol/openid-connect/token").build();
+         URI authorizationURI = new URIBuilder(STR."\{keycloak.getAuthServerUrl()}/realms/baeldung/protocol/openid-connect/token").build();
          WebClient webclient = WebClient.builder()
                .build();
          MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
@@ -69,9 +69,7 @@ public abstract class KeycloakTestContainers {
 
          JacksonJsonParser jsonParser = new JacksonJsonParser();
 
-         return "Bearer " + jsonParser.parseMap(result)
-               .get("access_token")
-               .toString();
+         return STR."Bearer \{jsonParser.parseMap(result).get("access_token").toString()}";
       } catch (URISyntaxException e) {
          LOGGER.error("Can't obtain an access token from Keycloak!", e);
       }

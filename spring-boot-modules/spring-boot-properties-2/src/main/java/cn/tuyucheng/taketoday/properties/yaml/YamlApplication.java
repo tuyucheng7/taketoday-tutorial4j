@@ -17,6 +17,6 @@ public class YamlApplication implements CommandLineRunner {
 
    @Override
    public void run(String... args) throws Exception {
-      System.out.println("YAML Properties " + yamlFooProperties);
+      System.out.println(STR."YAML Properties \{yamlFooProperties}");
    }
 }

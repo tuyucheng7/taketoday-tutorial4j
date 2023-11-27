@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%highlight(%date{HH:mm:ss.SSS}) %blue([%thread]) %yellow(%-5level) %green(%logger{36}).%green(%M)[%green(%line)] - %green(%msg%n)
-			</pattern>
-		</encoder>
-	</appender>
+   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+         <pattern>%highlight(%date{HH:mm:ss.SSS}) %blue([%thread]) %yellow(%-5level) %green(%logger{36}).%green(%M)[%green(%line)] - %green(%msg%n)
+         </pattern>
+      </encoder>
+   </appender>
 
-	<root level="INFO">
-		<appender-ref ref="STDOUT"/>
-	</root>
+   <root level="INFO">
+      <appender-ref ref="STDOUT"/>
+   </root>
 
-	<!-- Reduce the noise as the consumer keeps trying to connect until the Kafka instance is available -->
-	<springProfile name="ssl">
-		<logger name="org.apache.kafka.clients.NetworkClient" level="ERROR" additivity="false"/>
-	</springProfile>
+   <!-- Reduce the noise as the consumer keeps trying to connect until the Kafka instance is available -->
+   <springProfile name="ssl">
+      <logger name="org.apache.kafka.clients.NetworkClient" level="ERROR" additivity="false"/>
+   </springProfile>
 </configuration>

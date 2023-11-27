@@ -8,9 +8,9 @@
 #            html-application-cache: true
 
 spring:
-    web:
-        resources:
-            cache:
-                period: 31536000
-            chain:
-                compressed: false
+   web:
+      resources:
+         cache:
+            period: 31536000
+         chain:
+            compressed: false

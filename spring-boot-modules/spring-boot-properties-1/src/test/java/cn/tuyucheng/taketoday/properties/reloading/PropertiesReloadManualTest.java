@@ -23,7 +23,7 @@ import java.io.FileOutputStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = SpringBootPropertiesTestApplication.class)
-public class PropertiesReloadManualTest {
+class PropertiesReloadManualTest {
 
    protected MockMvc mvc;
 
@@ -48,9 +48,8 @@ public class PropertiesReloadManualTest {
    @Qualifier("singletonValueRefreshConfigBean")
    ValueRefreshConfigBean singletonValueRefreshConfigBean;
 
-
    @BeforeEach
-   public void setUp() throws Exception {
+   void setUp() throws Exception {
       mvc = MockMvcBuilders
             .webAppContextSetup(webApplicationContext)
             .build();
@@ -61,13 +60,13 @@ public class PropertiesReloadManualTest {
    }
 
    @AfterEach
-   public void tearDown() throws Exception {
+   void tearDown() throws Exception {
       createConfig("extra.properties", "application.theme.color", "blue");
       createConfig("extra2.properties", "application.theme.background", "red");
    }
 
    @Test
-   public void givenEnvironmentReader_whenColorChanged_thenExpectChangeValue() throws Exception {
+   void givenEnvironmentReader_whenColorChanged_thenExpectChangeValue() throws Exception {
       assertEquals("blue", environmentConfigBean.getColor());
 
       createConfig("extra.properties", "application.theme.color", "red");
@@ -77,7 +76,7 @@ public class PropertiesReloadManualTest {
    }
 
    @Test
-   public void givenEnvironmentReader_whenBackgroundChanged_thenExpectChangeValue() throws Exception {
+   void givenEnvironmentReader_whenBackgroundChanged_thenExpectChangeValue() throws Exception {
       assertEquals("red", environmentConfigBean.getBackgroundColor());
 
       createConfig("extra2.properties", "application.theme.background", "blue");
@@ -87,7 +86,7 @@ public class PropertiesReloadManualTest {
    }
 
    @Test
-   public void givenPropertiesReader_whenColorChanged_thenExpectChangeValue() throws Exception {
+   void givenPropertiesReader_whenColorChanged_thenExpectChangeValue() throws Exception {
       assertEquals("blue", propertiesConfigBean.getColor());
 
       createConfig("extra.properties", "application.theme.color", "red");
@@ -97,7 +96,7 @@ public class PropertiesReloadManualTest {
    }
 
    @Test
-   public void givenRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
+   void givenRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
       assertEquals("blue", valueRefreshConfigBean.getColor());
 
       createConfig("extra.properties", "application.theme.color", "red");
@@ -111,7 +110,7 @@ public class PropertiesReloadManualTest {
    }
 
    @Test
-   public void givenSingletonRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectOldValue() throws Exception {
+   void givenSingletonRefreshScopedValueReader_whenColorChangedAndRefreshCalled_thenExpectOldValue() throws Exception {
       assertEquals("blue", singletonValueRefreshConfigBean.getColor());
 
       createConfig("extra.properties", "application.theme.color", "red");
@@ -125,7 +124,7 @@ public class PropertiesReloadManualTest {
    }
 
    @Test
-   public void givenRefreshScopedConfigurationPropertiesReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
+   void givenRefreshScopedConfigurationPropertiesReader_whenColorChangedAndRefreshCalled_thenExpectChangeValue() throws Exception {
       assertEquals("blue", configurationPropertiesRefreshConfigBean.getColor());
 
       createConfig("extra.properties", "application.theme.color", "red");

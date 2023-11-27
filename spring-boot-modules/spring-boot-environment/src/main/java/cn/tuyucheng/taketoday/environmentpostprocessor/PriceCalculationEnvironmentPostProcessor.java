@@ -40,11 +40,10 @@ public class PriceCalculationEnvironmentPostProcessor implements EnvironmentPost
 
    @Override
    public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-
       PropertySource<?> system = environment.getPropertySources()
             .get(SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME);
 
-      Map<String, Object> prefixed = new LinkedHashMap<>();
+      Map<String, Object> prefixed;
 
       if (!hasOurPriceProperties(system)) {
          // Tuyucheng-internal code so this doesn't break other examples

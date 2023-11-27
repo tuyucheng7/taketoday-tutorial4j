@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
@@ -17,8 +16,8 @@ public class ArticleController {
    @GetMapping("/article")
    public ModelAndView displayArticle(Map<String, Object> model) {
       List<Article> articles = IntStream.range(0, 10)
-            .mapToObj(i -> generateArticle("Article Title " + i))
-            .collect(Collectors.toList());
+            .mapToObj(i -> generateArticle(STR."Article Title \{i}"))
+            .toList();
 
       model.put("articles", articles);
 

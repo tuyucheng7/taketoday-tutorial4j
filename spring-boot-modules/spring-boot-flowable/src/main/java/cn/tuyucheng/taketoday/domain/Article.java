@@ -46,6 +46,6 @@ public class Article {
 
    @Override
    public String toString() {
-      return ("[" + this.author + " " + this.url + "]");
+      return (STR."[\{this.author} \{this.url}]");
    }
 }

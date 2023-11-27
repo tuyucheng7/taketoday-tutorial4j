@@ -10,7 +10,6 @@ public class EmbeddedTomcatExample {
 
    @Bean
    public ConfigurableServletWebServerFactory servletContainer() {
-      TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-      return tomcat;
+      return new TomcatServletWebServerFactory();
    }
 }

@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "cn.tuyucheng.taketoday.utils")
 public class UtilsApplication {
 
    @RolesAllowed("*")

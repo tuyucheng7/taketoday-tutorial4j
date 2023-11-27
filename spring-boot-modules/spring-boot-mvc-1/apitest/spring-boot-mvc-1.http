@@ -4,8 +4,8 @@ Accept-Language: zh-CN
 Content-Type: application/json
 
 {
-    "email": "",
-    "password": "123456"
+  "email": "",
+  "password": "123456"
 }
 
 ### valid email and invalid password
@@ -14,7 +14,7 @@ Accept-Language: zh-CN
 Content-Type: application/json
 
 {
-    "email": "halo@qq.com"
+  "email": "halo@qq.com"
 }
 
 ### valid email and valid password
@@ -23,8 +23,8 @@ Accept-Language: zh-CN
 Content-Type: application/json
 
 {
-    "email": "halo@qq.com",
-    "password": "123456"
+  "email": "halo@qq.com",
+  "password": "123456"
 }
 
 ### invalid email and invalid password
@@ -33,5 +33,5 @@ Accept-Language: zh-CN
 Content-Type: application/json
 
 {
-    "email": ""
+  "email": ""
 }

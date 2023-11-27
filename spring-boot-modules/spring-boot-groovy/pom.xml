@@ -47,15 +47,6 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
          </plugin>
          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-               <source>1.8</source>
-               <target>1.8</target>
-            </configuration>
-         </plugin>
-         <plugin>
             <groupId>org.codehaus.gmavenplus</groupId>
             <artifactId>gmavenplus-plugin</artifactId>
             <version>${gmavenplus-plugin.version}</version>
@@ -79,7 +70,7 @@
 
    <properties>
       <start-class>cn.tuyucheng.taketoday.springwithgroovy.SpringBootGroovyApplication</start-class>
-      <groovy.version>3.0.13</groovy.version>
-      <gmavenplus-plugin.version>1.9.0</gmavenplus-plugin.version>
+      <groovy.version>3.0.19</groovy.version>
+      <gmavenplus-plugin.version>3.0.2</gmavenplus-plugin.version>
    </properties>
 </project>

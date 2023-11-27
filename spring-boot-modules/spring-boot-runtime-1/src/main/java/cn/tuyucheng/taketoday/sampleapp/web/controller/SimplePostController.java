@@ -37,9 +37,9 @@ public class SimplePostController {
             final BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fileServer));
             stream.write(bytes);
             stream.close();
-            return "You successfully uploaded " + username;
+            return STR."You successfully uploaded \{username}";
          } catch (final Exception e) {
-            return "You failed to upload " + e.getMessage();
+            return STR."You failed to upload \{e.getMessage()}";
          }
       } else {
          return "You failed to upload because the file was empty.";
@@ -60,7 +60,7 @@ public class SimplePostController {
             stream.close();
             return "You successfully uploaded ";
          } catch (final Exception e) {
-            return "You failed to upload " + e.getMessage();
+            return STR."You failed to upload \{e.getMessage()}";
          }
       } else {
          return "You failed to upload because the file was empty.";

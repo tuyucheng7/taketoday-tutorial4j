@@ -1,14 +1,14 @@
 spring:
-    kafka:
-        consumer:
-            auto-offset-reset: earliest
-            group-id: tuyucheng
+   kafka:
+      consumer:
+         auto-offset-reset: earliest
+         group-id: tuyucheng
 test:
-    topic: embedded-test-topic
+   topic: embedded-test-topic
 
 monitor:
-    kafka:
-        bootstrap:
-            config: "PLAINTEXT://localhost:9085"
-        consumer:
-            groupid: "tuyuchengGrp"
+   kafka:
+      bootstrap:
+         config: "PLAINTEXT://localhost:9085"
+      consumer:
+         groupid: "tuyuchengGrp"

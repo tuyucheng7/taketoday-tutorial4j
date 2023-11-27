@@ -36,5 +36,4 @@ public class ContactInfoExpression {
    public void setPattern(final String pattern) {
       this.pattern = pattern;
    }
-
 }

@@ -36,12 +36,9 @@ public class RateLimitInterceptor implements HandlerInterceptor {
       ConsumptionProbe probe = tokenBucket.tryConsumeAndReturnRemaining(1);
 
       if (probe.isConsumed()) {
-
          response.addHeader(HEADER_LIMIT_REMAINING, String.valueOf(probe.getRemainingTokens()));
          return true;
-
       } else {
-
          long waitForRefill = probe.getNanosToWaitForRefill() / 1_000_000_000;
 
          response.setContentType(MediaType.APPLICATION_JSON_VALUE);

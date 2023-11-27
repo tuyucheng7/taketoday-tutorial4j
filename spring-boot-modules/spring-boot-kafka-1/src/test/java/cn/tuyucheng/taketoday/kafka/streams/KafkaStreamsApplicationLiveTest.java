@@ -125,7 +125,7 @@ class KafkaStreamsApplicationLiveTest {
 
       consumer.setupMessageListener((MessageListener<String, Long>) record -> {
          LOGGER.info("Record received: {}", record);
-         output.add(record.key() + ":" + record.value());
+         output.add(STR."\{record.key()}:\{record.value()}");
       });
    }
 

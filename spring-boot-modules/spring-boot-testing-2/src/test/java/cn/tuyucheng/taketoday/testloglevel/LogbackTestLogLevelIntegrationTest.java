@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.testloglevel;
 
 import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration;
@@ -14,13 +14,13 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
 
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = TestLogLevelApplication.class)
 @EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class, OAuth2ResourceServerAutoConfiguration.class})
 @ActiveProfiles("logback-test")
@@ -63,7 +63,7 @@ public class LogbackTestLogLevelIntegrationTest {
    }
 
    private void assertThatOutputContainsLogForOurPackage(String level) {
-      assertThat(outputCapture.toString()).containsPattern("TestLogLevelController.*" + level + ".*");
+      assertThat(outputCapture.toString()).containsPattern(STR."TestLogLevelController.*\{level}.*");
    }
 
    private void assertThatOutputDoesntContainLogForOtherPackages(String level) {

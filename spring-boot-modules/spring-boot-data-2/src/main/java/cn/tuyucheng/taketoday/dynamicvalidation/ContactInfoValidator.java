@@ -41,5 +41,4 @@ public class ContactInfoValidator implements ConstraintValidator<ContactInfo, St
       LOG.error("Contact info pattern missing!");
       return false;
    }
-
 }

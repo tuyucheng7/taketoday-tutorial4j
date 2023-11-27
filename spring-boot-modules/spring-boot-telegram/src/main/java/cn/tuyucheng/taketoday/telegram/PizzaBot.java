@@ -37,7 +37,7 @@ public class PizzaBot extends AbilityBot {
    }
 
    public Reply replyToButtons() {
-      BiConsumer<BaseAbilityBot, Update> action = (abilityBot, upd) -> responseHandler.replyToButtons(getChatId(upd), upd.getMessage());
+      BiConsumer<BaseAbilityBot, Update> action = (_, upd) -> responseHandler.replyToButtons(getChatId(upd), upd.getMessage());
       return Reply.of(action, Flag.TEXT, upd -> responseHandler.userIsActive(getChatId(upd)));
    }
 

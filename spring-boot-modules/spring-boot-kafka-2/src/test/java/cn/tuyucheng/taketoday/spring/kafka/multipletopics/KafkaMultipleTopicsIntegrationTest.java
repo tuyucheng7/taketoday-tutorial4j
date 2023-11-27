@@ -1,14 +1,5 @@
 package cn.tuyucheng.taketoday.spring.kafka.multipletopics;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
-
-import java.math.BigDecimal;
-import java.util.Currency;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +11,18 @@ import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 
+import java.math.BigDecimal;
+import java.util.Currency;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+
 @SpringBootTest(classes = KafkaMultipleTopicsApplication.class)
 @EmbeddedKafka(partitions = 1, brokerProperties = {"listeners=PLAINTEXT://localhost:9099", "port=9099"})
-public class KafkaMultipleTopicsIntegrationTest {
+class KafkaMultipleTopicsIntegrationTest {
    private static final String CARD_PAYMENTS_TOPIC = "card-payments";
    private static final String BANK_TRANSFERS_TOPIC = "bank-transfers";
 
@@ -44,9 +44,9 @@ public class KafkaMultipleTopicsIntegrationTest {
    }
 
    @Test
-   public void whenSendingMessagesOnTwoTopics_thenConsumerReceivesMessages() throws Exception {
+   void whenSendingMessagesOnTwoTopics_thenConsumerReceivesMessages() throws Exception {
       CountDownLatch countDownLatch = new CountDownLatch(2);
-      doAnswer(invocation -> {
+      doAnswer(_ -> {
          countDownLatch.countDown();
          return null;
       }).when(paymentsConsumer)
