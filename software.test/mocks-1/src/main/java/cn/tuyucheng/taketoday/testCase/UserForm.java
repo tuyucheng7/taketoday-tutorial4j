@@ -2,14 +2,14 @@ package cn.tuyucheng.taketoday.testCase;
 
 public class UserForm {
 
-	// public access modifiers as only for testing
+   // public access modifiers as only for testing
 
-	public String password;
+   public String password;
 
-	public String username;
+   public String username;
 
-	public String getUsername() {
-		return username;
-	}
+   public String getUsername() {
+      return username;
+   }
 
 }

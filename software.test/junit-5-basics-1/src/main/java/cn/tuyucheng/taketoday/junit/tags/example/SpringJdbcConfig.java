@@ -12,8 +12,8 @@ import javax.sql.DataSource;
 @ComponentScan("cn.tuyucheng.taketoday.junit.tags.example")
 public class SpringJdbcConfig {
 
-	@Bean
-	public DataSource dataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("classpath:jdbc/schema.sql").addScript("classpath:jdbc/test-data.sql").build();
-	}
+   @Bean
+   public DataSource dataSource() {
+      return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("classpath:jdbc/schema.sql").addScript("classpath:jdbc/test-data.sql").build();
+   }
 }

@@ -14,38 +14,38 @@ import static org.junit.Assert.assertEquals;
 
 @Testable
 public class GenericContainerLiveTest {
-	@ClassRule
-	public static GenericContainer simpleWebServer =
-		new GenericContainer("alpine:3.2")
-			.withExposedPorts(80)
-			.withCommand("/bin/sh", "-c", "while true; do echo "
-				+ "\"HTTP/1.1 200 OK\n\nHello World!\" | nc -l -p 80; done");
+   @ClassRule
+   public static GenericContainer simpleWebServer =
+         new GenericContainer("alpine:3.2")
+               .withExposedPorts(80)
+               .withCommand("/bin/sh", "-c", "while true; do echo "
+                     + "\"HTTP/1.1 200 OK\n\nHello World!\" | nc -l -p 80; done");
 
-	@Test
-	public void givenSimpleWebServerContainer_whenGetReuqest_thenReturnsResponse()
-		throws Exception {
-		String address = "http://"
-			+ simpleWebServer.getContainerIpAddress()
-			+ ":" + simpleWebServer.getMappedPort(80);
-		String response = simpleGetRequest(address);
+   @Test
+   public void givenSimpleWebServerContainer_whenGetReuqest_thenReturnsResponse()
+         throws Exception {
+      String address = "http://"
+            + simpleWebServer.getContainerIpAddress()
+            + ":" + simpleWebServer.getMappedPort(80);
+      String response = simpleGetRequest(address);
 
-		assertEquals(response, "Hello World!");
-	}
+      assertEquals(response, "Hello World!");
+   }
 
-	private String simpleGetRequest(String address) throws Exception {
-		URL url = new URL(address);
-		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-		con.setRequestMethod("GET");
+   private String simpleGetRequest(String address) throws Exception {
+      URL url = new URL(address);
+      HttpURLConnection con = (HttpURLConnection) url.openConnection();
+      con.setRequestMethod("GET");
 
-		BufferedReader in = new BufferedReader(
-			new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer content = new StringBuffer();
-		while ((inputLine = in.readLine()) != null) {
-			content.append(inputLine);
-		}
-		in.close();
+      BufferedReader in = new BufferedReader(
+            new InputStreamReader(con.getInputStream()));
+      String inputLine;
+      StringBuffer content = new StringBuffer();
+      while ((inputLine = in.readLine()) != null) {
+         content.append(inputLine);
+      }
+      in.close();
 
-		return content.toString();
-	}
+      return content.toString();
+   }
 }

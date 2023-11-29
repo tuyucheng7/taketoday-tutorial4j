@@ -6,36 +6,36 @@ import org.openqa.selenium.support.FindBy;
 
 public class RandomNumberGeneratorPage extends Page {
 
-	@FindBy(id = "min")
-	private WebElement minField;
+   @FindBy(id = "min")
+   private WebElement minField;
 
-	@FindBy(id = "max")
-	private WebElement maxField;
+   @FindBy(id = "max")
+   private WebElement maxField;
 
-	@FindBy(id = "generate")
-	private WebElement generateButton;
+   @FindBy(id = "generate")
+   private WebElement generateButton;
 
-	@FindBy(id = "result")
-	private WebElement result;
+   @FindBy(id = "result")
+   private WebElement result;
 
-	public RandomNumberGeneratorPage(WebDriver driver) {
-		super(driver, "Random Number Generator");
-	}
+   public RandomNumberGeneratorPage(WebDriver driver) {
+      super(driver, "Random Number Generator");
+   }
 
-	public void enterMinField(String min) {
-		minField.sendKeys(min);
-	}
+   public void enterMinField(String min) {
+      minField.sendKeys(min);
+   }
 
-	public void enterMaxField(String max) {
-		maxField.sendKeys(max);
-	}
+   public void enterMaxField(String max) {
+      maxField.sendKeys(max);
+   }
 
-	public void pressGenerateButton() {
-		generateButton.click();
-	}
+   public void pressGenerateButton() {
+      generateButton.click();
+   }
 
-	public String getResult() {
-		return result.getText();
-	}
+   public String getResult() {
+      return result.getText();
+   }
 }
 

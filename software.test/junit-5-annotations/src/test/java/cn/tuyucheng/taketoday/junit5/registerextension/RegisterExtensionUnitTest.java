@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class RegisterExtensionUnitTest {
 
-	@RegisterExtension
-	static RegisterExtensionSampleExtension staticExtension = new RegisterExtensionSampleExtension("static version");
+   @RegisterExtension
+   static RegisterExtensionSampleExtension staticExtension = new RegisterExtensionSampleExtension("static version");
 
-	@RegisterExtension
-	RegisterExtensionSampleExtension instanceLevelExtension = new RegisterExtensionSampleExtension("instance version");
+   @RegisterExtension
+   RegisterExtensionSampleExtension instanceLevelExtension = new RegisterExtensionSampleExtension("instance version");
 
-	@Test
-	void demoTest() {
-		assertEquals("instance version", instanceLevelExtension.getType());
-	}
+   @Test
+   void demoTest() {
+      assertEquals("instance version", instanceLevelExtension.getType());
+   }
 }

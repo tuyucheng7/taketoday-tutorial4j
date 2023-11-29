@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CourseRestControllerAdvice {
 
-	@ExceptionHandler(CourseExistsException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ResponseEntity<CourseVO> handlerCourseExistsEx(CourseExistsException ex) {
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CourseVO(ex.getMessage(), 400));
-	}
+   @ExceptionHandler(CourseExistsException.class)
+   @ResponseStatus(HttpStatus.BAD_REQUEST)
+   public ResponseEntity<CourseVO> handlerCourseExistsEx(CourseExistsException ex) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new CourseVO(ex.getMessage(), 400));
+   }
 }

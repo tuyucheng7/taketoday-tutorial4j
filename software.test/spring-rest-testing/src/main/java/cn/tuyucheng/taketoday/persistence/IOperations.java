@@ -5,17 +5,17 @@ import java.util.List;
 
 public interface IOperations<T extends Serializable> {
 
-    // read - one
+   // read - one
 
-    T findOne(final long id);
+   T findOne(final long id);
 
-    // read - all
+   // read - all
 
-    List<T> findAll();
+   List<T> findAll();
 
-    // write
+   // write
 
-    T create(final T entity);
+   T create(final T entity);
 
-    T update(final T entity);
+   T update(final T entity);
 }

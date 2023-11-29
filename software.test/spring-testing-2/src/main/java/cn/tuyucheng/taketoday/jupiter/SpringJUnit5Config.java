@@ -21,24 +21,24 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface SpringJUnit5Config {
 
-	@AliasFor(annotation = ContextConfiguration.class, attribute = "classes")
-	Class<?>[] value() default {};
+   @AliasFor(annotation = ContextConfiguration.class, attribute = "classes")
+   Class<?>[] value() default {};
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	Class<?>[] classes() default {};
+   @AliasFor(annotation = ContextConfiguration.class)
+   Class<?>[] classes() default {};
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	String[] locations() default {};
+   @AliasFor(annotation = ContextConfiguration.class)
+   String[] locations() default {};
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	Class<? extends ApplicationContextInitializer<? extends ConfigurableApplicationContext>>[] initializers() default {};
+   @AliasFor(annotation = ContextConfiguration.class)
+   Class<? extends ApplicationContextInitializer<? extends ConfigurableApplicationContext>>[] initializers() default {};
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	boolean inheritLocations() default true;
+   @AliasFor(annotation = ContextConfiguration.class)
+   boolean inheritLocations() default true;
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	boolean inheritInitializers() default true;
+   @AliasFor(annotation = ContextConfiguration.class)
+   boolean inheritInitializers() default true;
 
-	@AliasFor(annotation = ContextConfiguration.class)
-	String name() default "";
+   @AliasFor(annotation = ContextConfiguration.class)
+   String name() default "";
 }

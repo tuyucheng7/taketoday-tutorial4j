@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HRService {
 
-	public String getEmployeeStatus(Integer employeeId) {
-		return "Inactive";
-	}
+   public String getEmployeeStatus(Integer employeeId) {
+      return "Inactive";
+   }
 }

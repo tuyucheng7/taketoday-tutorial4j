@@ -21,43 +21,43 @@ import static org.springframework.http.HttpStatus.OK;
 @RunWith(MockitoJUnitRunner.class)
 public class CourseControllerUnitTest {
 
-	@Mock
-	private CourseService courseService;
-	@InjectMocks
-	private CourseController courseController;
-	@InjectMocks
-	private CourseControllerExceptionHandler courseControllerExceptionHandler;
+   @Mock
+   private CourseService courseService;
+   @InjectMocks
+   private CourseController courseController;
+   @InjectMocks
+   private CourseControllerExceptionHandler courseControllerExceptionHandler;
 
-	@Before
-	public void initialiseRestAssuredMockMvcStandalone() {
-		RestAssuredMockMvc.standaloneSetup(courseController, courseControllerExceptionHandler);
-	}
+   @Before
+   public void initialiseRestAssuredMockMvcStandalone() {
+      RestAssuredMockMvc.standaloneSetup(courseController, courseControllerExceptionHandler);
+   }
 
-	@Test
-	public void givenNoExistingCoursesWhenGetCoursesThenRespondWithStatusOkAndEmptyArray() {
-		when(courseService.getCourses()).thenReturn(Collections.emptyList());
+   @Test
+   public void givenNoExistingCoursesWhenGetCoursesThenRespondWithStatusOkAndEmptyArray() {
+      when(courseService.getCourses()).thenReturn(Collections.emptyList());
 
-		given()
-			.when()
-			.get("/courses")
-			.then()
-			.log().ifValidationFails()
-			.statusCode(OK.value())
-			.contentType(JSON)
-			.body(is(equalTo("[]")));
-	}
+      given()
+            .when()
+            .get("/courses")
+            .then()
+            .log().ifValidationFails()
+            .statusCode(OK.value())
+            .contentType(JSON)
+            .body(is(equalTo("[]")));
+   }
 
-	@Test
-	public void givenNoMatchingCoursesWhenGetCoursesThenRespondWithStatusNotFound() {
-		String nonMatchingCourseCode = "nonMatchingCourseCode";
+   @Test
+   public void givenNoMatchingCoursesWhenGetCoursesThenRespondWithStatusNotFound() {
+      String nonMatchingCourseCode = "nonMatchingCourseCode";
 
-		when(courseService.getCourse(nonMatchingCourseCode)).thenThrow(new CourseNotFoundException(nonMatchingCourseCode));
+      when(courseService.getCourse(nonMatchingCourseCode)).thenThrow(new CourseNotFoundException(nonMatchingCourseCode));
 
-		given()
-			.when()
-			.get("/courses/" + nonMatchingCourseCode)
-			.then()
-			.log().ifValidationFails()
-			.statusCode(NOT_FOUND.value());
-	}
+      given()
+            .when()
+            .get("/courses/" + nonMatchingCourseCode)
+            .then()
+            .log().ifValidationFails()
+            .statusCode(NOT_FOUND.value());
+   }
 }

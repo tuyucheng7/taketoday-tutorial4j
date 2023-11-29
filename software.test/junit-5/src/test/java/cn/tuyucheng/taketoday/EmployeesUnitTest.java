@@ -1,10 +1,6 @@
 package cn.tuyucheng.taketoday;
 
-import cn.tuyucheng.taketoday.extensions.EmployeeDaoParameterResolver;
-import cn.tuyucheng.taketoday.extensions.EmployeeDatabaseSetupExtension;
-import cn.tuyucheng.taketoday.extensions.EnvironmentExtension;
-import cn.tuyucheng.taketoday.extensions.IgnoreFileNotFoundExceptionExtension;
-import cn.tuyucheng.taketoday.extensions.LoggingExtension;
+import cn.tuyucheng.taketoday.extensions.*;
 import cn.tuyucheng.taketoday.helpers.Employee;
 import cn.tuyucheng.taketoday.helpers.EmployeeJdbcDao;
 import org.apache.logging.log4j.Logger;

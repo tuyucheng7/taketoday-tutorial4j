@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-	private NameService nameService;
+   private NameService nameService;
 
-	@Autowired
-	public UserService(NameService nameService) {
-		this.nameService = nameService;
-	}
+   @Autowired
+   public UserService(NameService nameService) {
+      this.nameService = nameService;
+   }
 
-	public String getUserName(String id) {
-		return nameService.getUserName(id);
-	}
+   public String getUserName(String id) {
+      return nameService.getUserName(id);
+   }
 }

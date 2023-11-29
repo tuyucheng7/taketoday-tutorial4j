@@ -5,6 +5,6 @@ import cn.tuyucheng.taketoday.persistence.model.Foo;
 
 public interface IFooService extends IOperations<Foo> {
 
-    Foo retrieveByName(String name);
+   Foo retrieveByName(String name);
 
 }

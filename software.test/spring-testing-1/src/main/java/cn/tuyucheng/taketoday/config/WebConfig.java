@@ -12,6 +12,6 @@ import javax.servlet.ServletContext;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.controller.parameterized"})
 public class WebConfig {
 
-	@Autowired
-	private ServletContext ctx;
+   @Autowired
+   private ServletContext ctx;
 }

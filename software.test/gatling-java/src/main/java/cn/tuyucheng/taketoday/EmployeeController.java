@@ -24,72 +24,72 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
-	public List<Employee> getAllEmployees() {
-		return createEmployees();
-	}
+   @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
+   public List<Employee> getAllEmployees() {
+      return createEmployees();
+   }
 
-	@GetMapping("/{id}")
-	public Employee getEmployeeWithId(@PathVariable("id") Long id) {
-		LOGGER.info("Getting employee with ID '{}'", id);
+   @GetMapping("/{id}")
+   public Employee getEmployeeWithId(@PathVariable("id") Long id) {
+      LOGGER.info("Getting employee with ID '{}'", id);
 
-		List<Employee> allEmployees = createEmployees();
-		return allEmployees.get(ThreadLocalRandom.current()
-			.nextInt(0, allEmployees.size()));
-	}
+      List<Employee> allEmployees = createEmployees();
+      return allEmployees.get(ThreadLocalRandom.current()
+            .nextInt(0, allEmployees.size()));
+   }
 
-	@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<Void> addEmployee(@RequestBody EmployeeCreationRequest request, UriComponentsBuilder uriComponentsBuilder) {
-		LOGGER.info("Creating new employee with employeeName: {}", request.getEmpName());
+   @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+   public ResponseEntity<Void> addEmployee(@RequestBody EmployeeCreationRequest request, UriComponentsBuilder uriComponentsBuilder) {
+      LOGGER.info("Creating new employee with employeeName: {}", request.getEmpName());
 
-		URI location = uriComponentsBuilder.path("/api/employees/{id}")
-			.buildAndExpand("99")
-			.toUri();
-		return ResponseEntity.created(location)
-			.build();
-	}
+      URI location = uriComponentsBuilder.path("/api/employees/{id}")
+            .buildAndExpand("99")
+            .toUri();
+      return ResponseEntity.created(location)
+            .build();
+   }
 
-	private List<Employee> createEmployees() {
-		Set<String> projects = new HashSet<>();
-		projects.add("proj1");
-		projects.add("proj2");
+   private List<Employee> createEmployees() {
+      Set<String> projects = new HashSet<>();
+      projects.add("proj1");
+      projects.add("proj2");
 
-		Employee employee1 = Employee.builder()
-			.id(UUID.randomUUID()
-				.toString())
-			.address(Address.builder()
-				.houseNo("1")
-				.city("London")
-				.postCode("HP17")
-				.build())
-			.projects(projects)
-			.empName("Andy")
-			.build();
+      Employee employee1 = Employee.builder()
+            .id(UUID.randomUUID()
+                  .toString())
+            .address(Address.builder()
+                  .houseNo("1")
+                  .city("London")
+                  .postCode("HP17")
+                  .build())
+            .projects(projects)
+            .empName("Andy")
+            .build();
 
-		Employee employee2 = Employee.builder()
-			.id(UUID.randomUUID()
-				.toString())
-			.address(Address.builder()
-				.houseNo("2")
-				.city("Cardiff")
-				.postCode("CF12")
-				.build())
-			.projects(projects)
-			.empName("Bob")
-			.build();
+      Employee employee2 = Employee.builder()
+            .id(UUID.randomUUID()
+                  .toString())
+            .address(Address.builder()
+                  .houseNo("2")
+                  .city("Cardiff")
+                  .postCode("CF12")
+                  .build())
+            .projects(projects)
+            .empName("Bob")
+            .build();
 
-		Employee employee3 = Employee.builder()
-			.id(UUID.randomUUID()
-				.toString())
-			.address(Address.builder()
-				.houseNo("4")
-				.city("Burmingham")
-				.postCode("BA4")
-				.build())
-			.projects(projects)
-			.empName("Clive")
-			.build();
+      Employee employee3 = Employee.builder()
+            .id(UUID.randomUUID()
+                  .toString())
+            .address(Address.builder()
+                  .houseNo("4")
+                  .city("Burmingham")
+                  .postCode("BA4")
+                  .build())
+            .projects(projects)
+            .empName("Clive")
+            .build();
 
-		return Arrays.asList(employee1, employee2, employee3);
-	}
+      return Arrays.asList(employee1, employee2, employee3);
+   }
 }

@@ -3,21 +3,21 @@ package cn.tuyucheng.taketoday.performancetests.model.destination;
 import com.googlecode.jmapper.annotations.JMap;
 
 public class DestinationCode {
-	@JMap
-	String code;
+   @JMap
+   String code;
 
-	public DestinationCode(String code) {
-		this.code = code;
-	}
+   public DestinationCode(String code) {
+      this.code = code;
+   }
 
-	public DestinationCode() {
-	}
+   public DestinationCode() {
+   }
 
-	public String getCode() {
-		return code;
-	}
+   public String getCode() {
+      return code;
+   }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+   public void setCode(String code) {
+      this.code = code;
+   }
 }

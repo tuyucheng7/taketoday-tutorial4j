@@ -2,19 +2,19 @@ package cn.tuyucheng.taketoday.instancio.generics;
 
 public class Pair<L, R> {
 
-	private L left;
-	private R right;
+   private L left;
+   private R right;
 
-	public L getLeft() {
-		return left;
-	}
+   public L getLeft() {
+      return left;
+   }
 
-	public R getRight() {
-		return right;
-	}
+   public R getRight() {
+      return right;
+   }
 
-	@Override
-	public String toString() {
-		return String.format("Pair[left=%s, right=%s]", left, right);
-	}
+   @Override
+   public String toString() {
+      return String.format("Pair[left=%s, right=%s]", left, right);
+   }
 }

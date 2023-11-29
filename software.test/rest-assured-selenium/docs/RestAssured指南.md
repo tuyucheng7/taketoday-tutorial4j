@@ -4,13 +4,14 @@ REST-assured 旨在简化 REST API 的测试和验证，并受到 Ruby 和 Groov
 
 该库对 HTTP 有坚实的支持，当然从动词和标准 HTTP 操作开始，但也远远超出了这些基础。
 
-在本指南中，我们将**探索 REST-assured**，并使用 Hamcrest 进行断言。如果您还不熟悉 Hamcrest，您应该先复习一下教程：[使用 Hamcrest 进行测试](https://www.baeldung.com/java-junit-hamcrest-guide)。
+在本指南中，我们将**探索 REST-assured**，并使用 Hamcrest 进行断言。如果您还不熟悉
+Hamcrest，您应该先复习一下教程：[使用 Hamcrest 进行测试](https://www.baeldung.com/java-junit-hamcrest-guide)。
 
 此外，要了解 REST-assured 的更高级用例，请查看我们的其他文章：
 
--   [使用 Groovy 确保 REST](https://www.baeldung.com/rest-assured-groovy)
--   [JSON Schema Validation with REST-assured](https://www.baeldung.com/rest-assured-json-schema)
--   [具有 REST 保证的参数、标头和 Cookie](https://www.baeldung.com/rest-assured-header-cookie-parameter)
+- [使用 Groovy 确保 REST](https://www.baeldung.com/rest-assured-groovy)
+- [JSON Schema Validation with REST-assured](https://www.baeldung.com/rest-assured-json-schema)
+- [具有 REST 保证的参数、标头和 Cookie](https://www.baeldung.com/rest-assured-header-cookie-parameter)
 
 现在让我们通过一个简单的例子来深入了解。
 
@@ -59,7 +60,8 @@ public void givenUrl_whenSuccessOnGetsResponseAndJsonHasRequiredKV_thenCorrect()
 }复制
 ```
 
-所以，我们在这里所做的是——我们验证了对端点*/events?id=390*的调用会响应一个包含*JSON 字符串*的主体，该 JSON 字符串的*数据*对象的*LeagueId为 35。*
+所以，我们在这里所做的是——我们验证了对端点*/events?id=390*的调用会响应一个包含*JSON 字符串*的主体，该 JSON 字符串的*数据
+*对象的*LeagueId为 35。*
 
 让我们看一个更有趣的例子。假设您想验证*赔率*数组是否包含价格为*1.30*和*5.25*的记录：
 
@@ -107,7 +109,8 @@ REST-assured 利用 Hamcrest 匹配器的强大功能来执行其断言，因此
 
 这称为匿名 JSON 根，这意味着它没有键值对，但它仍然是有效的 JSON 数据。
 
-在这种情况下，我们可以使用*`$`*符号或空字符串（“”）作为路径来运行验证。*假设我们通过http://localhost:8080/json*公开上述服务，那么我们可以使用 REST-assured 来验证它：
+在这种情况下，我们可以使用*`$`*符号或空字符串（“”）作为路径来运行验证。*假设我们通过http://localhost:8080/json*
+公开上述服务，那么我们可以使用 REST-assured 来验证它：
 
 ```java
 when().get("/json").then().body("$", hasItems(1, 2, 3));复制
@@ -229,8 +232,8 @@ public void whenMeasureResponseTime_thenOK() {
 
 注意：
 
--   *time()*用于获取以毫秒为单位的响应时间
--   *timeIn()*用于获取指定时间单位的响应时间
+- *time()*用于获取以毫秒为单位的响应时间
+- *timeIn()*用于获取指定时间单位的响应时间
 
 ### **8.1。验证响应时间**
 
@@ -356,7 +359,8 @@ Cookies:		<none>
 Body:			<none>复制
 ```
 
-为了只记录请求的特定部分，我们将*log()*方法与*params()、body()、headers()、cookie()、method()、path()*结合使用，例如*log.().params( ）。*
+为了只记录请求的特定部分，我们将*log()*方法与*params()、body()、headers()、cookie()、method()、path()*结合使用，例如*log.()
+.params( ）。*
 
 **请注意，使用的其他库或过滤器可能会改变实际发送到服务器的内容，因此这应该只用于记录初始请求规范。**
 

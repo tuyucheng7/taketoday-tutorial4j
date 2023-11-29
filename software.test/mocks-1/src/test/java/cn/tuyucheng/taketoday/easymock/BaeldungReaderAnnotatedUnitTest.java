@@ -15,49 +15,49 @@ import static org.easymock.EasyMock.verify;
 @RunWith(EasyMockRunner.class)
 public class BaeldungReaderAnnotatedUnitTest {
 
-	@Mock
-	ArticleReader mockArticleReader;
+   @Mock
+   ArticleReader mockArticleReader;
 
-	@Mock
-	IArticleWriter mockArticleWriter;
+   @Mock
+   IArticleWriter mockArticleWriter;
 
-	@TestSubject
-	BaeldungReader baeldungReader = new BaeldungReader();
+   @TestSubject
+   BaeldungReader baeldungReader = new BaeldungReader();
 
-	@Test
-	public void givenBaeldungReader_whenReadNext_thenNextArticleRead() {
-		expect(mockArticleReader.next()).andReturn(null);
-		replay(mockArticleReader);
-		baeldungReader.readNext();
-		verify(mockArticleReader);
-	}
+   @Test
+   public void givenBaeldungReader_whenReadNext_thenNextArticleRead() {
+      expect(mockArticleReader.next()).andReturn(null);
+      replay(mockArticleReader);
+      baeldungReader.readNext();
+      verify(mockArticleReader);
+   }
 
-	@Mock
-	BaeldungReader mockBaeldungReader;
+   @Mock
+   BaeldungReader mockBaeldungReader;
 
-	@Test
-	public void givenBaeldungReader_whenWrite_thenWriterCalled() {
-		expect(mockArticleWriter.write("title", "content")).andReturn(null);
-		replay(mockArticleWriter);
-		baeldungReader.write("title", "content");
-		verify(mockArticleWriter);
-	}
+   @Test
+   public void givenBaeldungReader_whenWrite_thenWriterCalled() {
+      expect(mockArticleWriter.write("title", "content")).andReturn(null);
+      replay(mockArticleWriter);
+      baeldungReader.write("title", "content");
+      verify(mockArticleWriter);
+   }
 
-	@Test
-	public void givenArticlesInReader_whenReadTillEnd_thenThrowException() {
-		expect(mockArticleReader.next())
-			.andReturn(null)
-			.times(2)
-			.andThrow(new NoSuchElementException());
-		replay(mockArticleReader);
-		try {
-			for (int i = 0; i < 3; i++) {
-				baeldungReader.readNext();
-			}
-		} catch (Exception ignored) {
-		}
-		verify(mockArticleReader);
-	}
+   @Test
+   public void givenArticlesInReader_whenReadTillEnd_thenThrowException() {
+      expect(mockArticleReader.next())
+            .andReturn(null)
+            .times(2)
+            .andThrow(new NoSuchElementException());
+      replay(mockArticleReader);
+      try {
+         for (int i = 0; i < 3; i++) {
+            baeldungReader.readNext();
+         }
+      } catch (Exception ignored) {
+      }
+      verify(mockArticleReader);
+   }
 
 }
 

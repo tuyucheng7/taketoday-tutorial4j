@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 public class CourseResource {
 
-	@Autowired
-	private CoursesHardcodedService courseManagementService;
+   @Autowired
+   private CoursesHardcodedService courseManagementService;
 
-	@GetMapping("/instructors/courses")
-	public List<Course> getAllCourses() {
-		return courseManagementService.findAll();
-	}
+   @GetMapping("/instructors/courses")
+   public List<Course> getAllCourses() {
+      return courseManagementService.findAll();
+   }
 }

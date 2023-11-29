@@ -12,47 +12,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SummationServiceIntegrationTest {
-	private static List<Integer> numbers;
+   private static List<Integer> numbers;
 
-	@BeforeClass
-	public static void initialize() {
-		numbers = new ArrayList<>();
-	}
+   @BeforeClass
+   public static void initialize() {
+      numbers = new ArrayList<>();
+   }
 
-	@AfterClass
-	public static void tearDown() {
-		numbers = null;
-	}
+   @AfterClass
+   public static void tearDown() {
+      numbers = null;
+   }
 
-	@Before
-	public void runBeforeEachTest() {
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-	}
+   @Before
+   public void runBeforeEachTest() {
+      numbers.add(1);
+      numbers.add(2);
+      numbers.add(3);
+   }
 
-	@After
-	public void runAfterEachTest() {
-		numbers.clear();
-	}
+   @After
+   public void runAfterEachTest() {
+      numbers.clear();
+   }
 
-	@Test
-	public void givenNumbers_sumEquals_thenCorrect() {
-		int sum = numbers.stream()
-				.reduce(0, Integer::sum);
-		Assert.assertEquals(6, sum);
-	}
+   @Test
+   public void givenNumbers_sumEquals_thenCorrect() {
+      int sum = numbers.stream()
+            .reduce(0, Integer::sum);
+      Assert.assertEquals(6, sum);
+   }
 
-	@Ignore
-	@Test
-	public void givenEmptyList_sumEqualsZero_thenCorrect() {
-		int sum = numbers.stream()
-				.reduce(0, Integer::sum);
-		Assert.assertEquals(6, sum);
-	}
+   @Ignore
+   @Test
+   public void givenEmptyList_sumEqualsZero_thenCorrect() {
+      int sum = numbers.stream()
+            .reduce(0, Integer::sum);
+      Assert.assertEquals(6, sum);
+   }
 
-	@Test(expected = ArithmeticException.class)
-	public void givenNumber_whenThrowsException_thenCorrect() {
-		int i = 1 / 0;
-	}
+   @Test(expected = ArithmeticException.class)
+   public void givenNumber_whenThrowsException_thenCorrect() {
+      int i = 1 / 0;
+   }
 }

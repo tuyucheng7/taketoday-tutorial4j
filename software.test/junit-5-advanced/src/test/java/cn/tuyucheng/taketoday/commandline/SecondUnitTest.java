@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SecondUnitTest {
 
-	@Test
-	void whenSomething_thenSomething() {
-		assertTrue(true);
-	}
+   @Test
+   void whenSomething_thenSomething() {
+      assertTrue(true);
+   }
 
-	@Test
-	void whenSomethingElse_thenSomethingElse() {
-		assertTrue(true);
-	}
+   @Test
+   void whenSomethingElse_thenSomethingElse() {
+      assertTrue(true);
+   }
 }

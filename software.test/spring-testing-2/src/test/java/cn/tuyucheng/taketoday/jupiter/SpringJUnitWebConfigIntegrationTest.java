@@ -17,15 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringJUnitWebConfig(SpringJUnitWebConfigIntegrationTest.Config.class)
 class SpringJUnitWebConfigIntegrationTest {
 
-	@Configuration
-	static class Config {
-	}
+   @Configuration
+   static class Config {
+   }
 
-	@Autowired
-	private WebApplicationContext webAppContext;
+   @Autowired
+   private WebApplicationContext webAppContext;
 
-	@Test
-	void givenWebAppContext_WhenInjected_ThenItShouldNotBeNull() {
-		assertNotNull(webAppContext);
-	}
+   @Test
+   void givenWebAppContext_WhenInjected_ThenItShouldNotBeNull() {
+      assertNotNull(webAppContext);
+   }
 }

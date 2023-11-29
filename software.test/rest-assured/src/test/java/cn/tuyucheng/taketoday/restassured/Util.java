@@ -8,31 +8,31 @@ import java.util.Scanner;
 
 final class Util {
 
-	private static final int DEFAULT_PORT = 8069;
+   private static final int DEFAULT_PORT = 8069;
 
-	private Util() {
-	}
+   private Util() {
+   }
 
-	static String inputStreamToString(InputStream is) {
-		Scanner s = new Scanner(is).useDelimiter("\\A");
-		return s.hasNext() ? s.next() : "";
-	}
+   static String inputStreamToString(InputStream is) {
+      Scanner s = new Scanner(is).useDelimiter("\\A");
+      return s.hasNext() ? s.next() : "";
+   }
 
-	static int getAvailablePort() {
-		return new Random()
-			.ints(6000, 9000)
-			.filter(Util::isFree)
-			.findFirst()
-			.orElse(DEFAULT_PORT);
-	}
+   static int getAvailablePort() {
+      return new Random()
+            .ints(6000, 9000)
+            .filter(Util::isFree)
+            .findFirst()
+            .orElse(DEFAULT_PORT);
+   }
 
 
-	private static boolean isFree(int port) {
-		try {
-			new ServerSocket(port).close();
-			return true;
-		} catch (IOException e) {
-			return false;
-		}
-	}
+   private static boolean isFree(int port) {
+      try {
+         new ServerSocket(port).close();
+         return true;
+      } catch (IOException e) {
+         return false;
+      }
+   }
 }

@@ -12,26 +12,26 @@ import org.mockito.MockitoAnnotations;
 import java.util.stream.Stream;
 
 public class StringConverterWithInitUnitTest {
-	@Mock
-	private DataProvider dataProvider;
+   @Mock
+   private DataProvider dataProvider;
 
-	@InjectMocks
-	private StringConverter stringConverter;
+   @InjectMocks
+   private StringConverter stringConverter;
 
-	@Before
-	public void init() {
-		MockitoAnnotations.openMocks(this);
-		// or
-		// dataProvider = Mockito.mock(DataProvider.class);
-		// stringConverter = new StringConverter(dataProvider);
-	}
+   @Before
+   public void init() {
+      MockitoAnnotations.openMocks(this);
+      // or
+      // dataProvider = Mockito.mock(DataProvider.class);
+      // stringConverter = new StringConverter(dataProvider);
+   }
 
-	@Test
-	public void givenStrings_whenConvert_thenReturnUpperCase() {
-		Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
+   @Test
+   public void givenStrings_whenConvert_thenReturnUpperCase() {
+      Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
 
-		val result = stringConverter.convert();
+      val result = stringConverter.convert();
 
-		Assertions.assertThat(result).contains("FIRST", "SECOND");
-	}
+      Assertions.assertThat(result).contains("FIRST", "SECOND");
+   }
 }

@@ -14,35 +14,35 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BeforeEachAndAfterEachAnnotationsUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(BeforeEachAndAfterEachAnnotationsUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(BeforeEachAndAfterEachAnnotationsUnitTest.class);
 
-	private List<String> list;
+   private List<String> list;
 
-	@BeforeEach
-	void init() {
-		LOG.debug("startup");
-		list = new ArrayList<>(Arrays.asList("test1", "test2"));
-	}
+   @BeforeEach
+   void init() {
+      LOG.debug("startup");
+      list = new ArrayList<>(Arrays.asList("test1", "test2"));
+   }
 
-	@AfterEach
-	void teardown() {
-		LOG.debug("teardown");
-		list.clear();
-	}
+   @AfterEach
+   void teardown() {
+      LOG.debug("teardown");
+      list.clear();
+   }
 
-	@Test
-	void whenCheckingListSize_thenSizeEqualsToInit() {
-		LOG.debug("executing test");
-		assertEquals(2, list.size());
+   @Test
+   void whenCheckingListSize_thenSizeEqualsToInit() {
+      LOG.debug("executing test");
+      assertEquals(2, list.size());
 
-		list.add("another test");
-	}
+      list.add("another test");
+   }
 
-	@Test
-	public void whenCheckingListSizeAgain_thenSizeEqualsToInit() {
-		LOG.debug("executing another test");
-		assertEquals(2, list.size());
+   @Test
+   public void whenCheckingListSizeAgain_thenSizeEqualsToInit() {
+      LOG.debug("executing another test");
+      assertEquals(2, list.size());
 
-		list.add("yet another test");
-	}
+      list.add("yet another test");
+   }
 }

@@ -7,5 +7,5 @@
     http://www.springframework.org/schema/data/jpa
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <jpa:repositories base-package="cn.tuyucheng.taketoday.persistence.dao"/>
+   <jpa:repositories base-package="cn.tuyucheng.taketoday.persistence.dao"/>
 </beans>

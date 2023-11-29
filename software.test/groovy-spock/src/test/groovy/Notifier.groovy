@@ -1,3 +1,3 @@
 interface Notifier {
-	void notify(String message)
+   void notify(String message)
 }

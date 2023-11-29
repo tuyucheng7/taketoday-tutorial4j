@@ -13,26 +13,26 @@ import java.util.BitSet;
 
 public class Plotter {
 
-	public static void main(String[] args) throws IOException {
-		Path path = Paths.get("footprint.csv");
-		try (BufferedWriter stream = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
-			stream.write("bits,bool,bitset\n");
+   public static void main(String[] args) throws IOException {
+      Path path = Paths.get("footprint.csv");
+      try (BufferedWriter stream = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
+         stream.write("bits,bool,bitset\n");
 
-			for (int i = 0; i <= 10_000_000; i += 500) {
-				System.out.println("Number of bits => " + i);
+         for (int i = 0; i <= 10_000_000; i += 500) {
+            System.out.println("Number of bits => " + i);
 
-				boolean[] ba = new boolean[i];
-				BitSet bitSet = new BitSet(i);
+            boolean[] ba = new boolean[i];
+            BitSet bitSet = new BitSet(i);
 
-				long baSize = ClassLayout.parseInstance(ba).instanceSize();
-				long bitSetSize = GraphLayout.parseInstance(bitSet).totalSize();
+            long baSize = ClassLayout.parseInstance(ba).instanceSize();
+            long bitSetSize = GraphLayout.parseInstance(bitSet).totalSize();
 
-				stream.write((i + "," + baSize + "," + bitSetSize + "\n"));
+            stream.write((i + "," + baSize + "," + bitSetSize + "\n"));
 
-				if (i % 10_000 == 0) {
-					stream.flush();
-				}
-			}
-		}
-	}
+            if (i % 10_000 == 0) {
+               stream.flush();
+            }
+         }
+      }
+   }
 }

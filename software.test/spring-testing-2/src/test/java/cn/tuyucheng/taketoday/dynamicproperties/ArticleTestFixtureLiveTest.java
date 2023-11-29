@@ -17,22 +17,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext
 class ArticleTestFixtureLiveTest {
 
-	@Autowired
-	private ArticleRepository articleRepository;
+   @Autowired
+   private ArticleRepository articleRepository;
 
-	@Test
-	void givenAnArticle_whenPersisted_thenShouldBeAbleToReadIt() {
-		Article article = new Article();
-		article.setTitle("A Guide to @DynamicPropertySource in Spring");
-		article.setContent("Today's applications...");
+   @Test
+   void givenAnArticle_whenPersisted_thenShouldBeAbleToReadIt() {
+      Article article = new Article();
+      article.setTitle("A Guide to @DynamicPropertySource in Spring");
+      article.setContent("Today's applications...");
 
-		articleRepository.save(article);
+      articleRepository.save(article);
 
-		List<Article> allArticles = articleRepository.findAll();
-		assertThat(allArticles).hasSize(1);
+      List<Article> allArticles = articleRepository.findAll();
+      assertThat(allArticles).hasSize(1);
 
-		Article persisted = allArticles.get(0);
-		assertThat(persisted.getTitle()).isEqualTo("A Guide to @DynamicPropertySource in Spring");
-		assertThat(persisted.getContent()).isEqualTo("Today's applications...");
-	}
+      Article persisted = allArticles.get(0);
+      assertThat(persisted.getTitle()).isEqualTo("A Guide to @DynamicPropertySource in Spring");
+      assertThat(persisted.getContent()).isEqualTo("Today's applications...");
+   }
 }

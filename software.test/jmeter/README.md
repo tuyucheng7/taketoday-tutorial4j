@@ -25,11 +25,13 @@ You can see what crud operation are available using curl:
 ```bash
 $ curl localhost:8080
 ```
+
 You can view existing student objects with this command:
 
 ```bash
 $ curl localhost:8080/students
 ```
+
 Or create a new one via a POST:
 
 ```bash

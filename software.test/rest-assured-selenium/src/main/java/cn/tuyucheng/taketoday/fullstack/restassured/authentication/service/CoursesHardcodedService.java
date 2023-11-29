@@ -9,17 +9,17 @@ import java.util.List;
 @Service
 public class CoursesHardcodedService {
 
-	private static final List<Course> courses = new ArrayList<>();
-	private static long idCounter = 0;
+   private static final List<Course> courses = new ArrayList<>();
+   private static long idCounter = 0;
 
-	static {
-		courses.add(new Course(++idCounter, "Take-Today", "Learn Full stack with Spring Boot and Angular"));
-		courses.add(new Course(++idCounter, "Take-Today", "Learn Full stack with Spring Boot and React"));
-		courses.add(new Course(++idCounter, "Take-Today", "Master Microservices with Spring Boot and Spring Cloud"));
-		courses.add(new Course(++idCounter, "Take-Today", "Deploy Spring Boot Microservices to Cloud with Docker and Kubernetes"));
-	}
+   static {
+      courses.add(new Course(++idCounter, "Take-Today", "Learn Full stack with Spring Boot and Angular"));
+      courses.add(new Course(++idCounter, "Take-Today", "Learn Full stack with Spring Boot and React"));
+      courses.add(new Course(++idCounter, "Take-Today", "Master Microservices with Spring Boot and Spring Cloud"));
+      courses.add(new Course(++idCounter, "Take-Today", "Deploy Spring Boot Microservices to Cloud with Docker and Kubernetes"));
+   }
 
-	public List<Course> findAll() {
-		return courses;
-	}
+   public List<Course> findAll() {
+      return courses;
+   }
 }

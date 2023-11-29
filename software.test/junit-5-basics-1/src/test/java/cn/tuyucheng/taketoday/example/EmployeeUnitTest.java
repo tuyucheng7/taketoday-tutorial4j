@@ -12,28 +12,28 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 public class EmployeeUnitTest {
 
-	@Mock
-	private JdbcTemplate jdbcTemplate;
+   @Mock
+   private JdbcTemplate jdbcTemplate;
 
-	private EmployeeDAO employeeDAO;
+   private EmployeeDAO employeeDAO;
 
-	@BeforeEach
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		employeeDAO = new EmployeeDAO();
-		employeeDAO.setJdbcTemplate(jdbcTemplate);
-	}
+   @BeforeEach
+   public void setup() {
+      MockitoAnnotations.initMocks(this);
+      employeeDAO = new EmployeeDAO();
+      employeeDAO.setJdbcTemplate(jdbcTemplate);
+   }
 
-	@Test
-	public void givenNumberOfEmployeeWhenCountEmployeeThenCountMatch() {
-		// given
-		Mockito.when(jdbcTemplate.queryForObject(Mockito.any(String.class), Mockito.eq(Integer.class)))
-			.thenReturn(1);
+   @Test
+   public void givenNumberOfEmployeeWhenCountEmployeeThenCountMatch() {
+      // given
+      Mockito.when(jdbcTemplate.queryForObject(Mockito.any(String.class), Mockito.eq(Integer.class)))
+            .thenReturn(1);
 
-		// when
-		int countOfEmployees = employeeDAO.getCountOfEmployees();
+      // when
+      int countOfEmployees = employeeDAO.getCountOfEmployees();
 
-		// then
-		Assert.assertThat(countOfEmployees, CoreMatchers.is(1));
-	}
+      // then
+      Assert.assertThat(countOfEmployees, CoreMatchers.is(1));
+   }
 }

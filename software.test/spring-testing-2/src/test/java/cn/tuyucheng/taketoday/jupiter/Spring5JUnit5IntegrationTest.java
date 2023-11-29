@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ContextConfiguration(classes = TestConfig.class)
 class Spring5JUnit5IntegrationTest {
 
-	@Autowired
-	private Task task;
+   @Autowired
+   private Task task;
 
-	@Test
-	void givenAMethodName_whenInjecting_thenApplicationContextInjectedIntoMethod(ApplicationContext applicationContext) {
-		assertNotNull(applicationContext, "ApplicationContext should have been injected by Spring");
-		assertEquals(this.task, applicationContext.getBean("taskName", Task.class));
-	}
+   @Test
+   void givenAMethodName_whenInjecting_thenApplicationContextInjectedIntoMethod(ApplicationContext applicationContext) {
+      assertNotNull(applicationContext, "ApplicationContext should have been injected by Spring");
+      assertEquals(this.task, applicationContext.getBean("taskName", Task.class));
+   }
 }

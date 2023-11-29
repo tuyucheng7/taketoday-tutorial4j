@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GreetingsUnitTest {
 
-	@Test
-	void whenCallingSayHello_thenReturnHello() {
-		assertEquals("Hello", Greetings.sayHello());
-	}
+   @Test
+   void whenCallingSayHello_thenReturnHello() {
+      assertEquals("Hello", Greetings.sayHello());
+   }
 }

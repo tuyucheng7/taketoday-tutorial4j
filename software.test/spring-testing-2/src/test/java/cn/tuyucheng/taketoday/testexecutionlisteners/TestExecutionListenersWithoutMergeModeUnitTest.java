@@ -16,11 +16,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ContextConfiguration(classes = AdditionService.class)
 class TestExecutionListenersWithoutMergeModeUnitTest {
 
-	@Autowired
-	private AdditionService additionService;
+   @Autowired
+   private AdditionService additionService;
 
-	@Test
-	void whenValidNumbersPassed_thenReturnSum() {
-		assertThat(additionService.add(5, 13), Matchers.is(18));
-	}
+   @Test
+   void whenValidNumbersPassed_thenReturnSum() {
+      assertThat(additionService.add(5, 13), Matchers.is(18));
+   }
 }

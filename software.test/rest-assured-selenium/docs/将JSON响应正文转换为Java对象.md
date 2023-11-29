@@ -1,22 +1,28 @@
-在本章中，我们将实现我们收到***的 JSON 响应的反序列化。***它可以帮助我们阅读响应的正文。随后，在这个反序列化的过程中，我们会将***JSON Response Body 转换为 Java Objects***。它也称为 JSON 响应的对象表示。
+在本章中，我们将实现我们收到
+***的 JSON 响应的反序列化。***它可以帮助我们阅读响应的正文。随后，在这个反序列化的过程中，我们会将***JSON Response Body 转换为
+Java Objects***。它也称为 JSON 响应的对象表示。
 
-此外，要了解有关 JSON 响应反序列化的更多信息，我们建议您阅读[***Deserialize JSON Response***](https://www.toolsqa.com/rest-assured/deserialize-json-response/)。
+此外，要了解有关 JSON 响应反序列化的更多信息，我们建议您阅读[
+***Deserialize JSON Response***](https://www.toolsqa.com/rest-assured/deserialize-json-response/)。
 
-我们将按照以下步骤在框架中实现响应的反序列化。[***我们在将 JSON 请求正文转换为 Java 对象***](https://www.toolsqa.com/rest-assured/convert-json-to-java-object/)的上一章中也遵循了它们 。
+我们将按照以下步骤在框架中实现响应的反序列化。[
+***我们在将 JSON 请求正文转换为 Java 对象***](https://www.toolsqa.com/rest-assured/convert-json-to-java-object/)
+的上一章中也遵循了它们 。
 
-1.  *为我们的每个响应对象创建 POJO 类：*
+1. *为我们的每个响应对象创建 POJO 类：*
 
--   *书*
--   *图书*
--   *令牌*
--   *用户帐号*
+- *书*
+- *图书*
+- *令牌*
+- *用户帐号*
 
-1.  *将 Step 文件中的 Response 主体替换为 POJO 类对象*
-2.  *运行测试*
+1. *将 Step 文件中的 Response 主体替换为 POJO 类对象*
+2. *运行测试*
 
 ## 将 JSON 响应正文转换为 Java 对象
 
-首先，我们需要将*JSON Response* 转换为我们的响应对象的*POJO*类。*因此，让我们学习从JSON Response*创建*POJO*类。在反序列化下，我们将研究我们的*JSON*主体参数并为其创建一个*POJO*类。让我们从 Get A Book 请求的简单请求示例开始：
+首先，我们需要将*JSON Response* 转换为我们的响应对象的*POJO*类。*因此，让我们学习从JSON Response*创建*POJO*
+类。在反序列化下，我们将研究我们的*JSON*主体参数并为其创建一个*POJO*类。让我们从 Get A Book 请求的简单请求示例开始：
 
 ### ***创建 POJO 类 Book***
 
@@ -43,7 +49,8 @@
 }
 ```
 
-作为下一步的一部分，我们将为响应对象创建一个 POJO 类。此外，您可以使用我们在前一章中讨论的相同[***在线实用程序将响应转换为 POJO 类。***](https://www.jsonschema2pojo.org/)
+作为下一步的一部分，我们将为响应对象创建一个 POJO 类。此外，您可以使用我们在前一章中讨论的相同[
+***在线实用程序将响应转换为 POJO 类。***](https://www.jsonschema2pojo.org/)
 
 要创建它的 POJO 类，请按照以下步骤操作：
 
@@ -97,12 +104,13 @@ Bookstore API 的响应正文，如下图所示：
 }
 ```
 
-***注意**：作为响应正文的一部分，我们获得了为用户添加的图书的图书详细信息以及其他用户详细信息，例如**userName**和**userID。***
+***注意**：作为响应正文的一部分，我们获得了为用户添加的图书的图书详细信息以及其他用户详细信息，例如**userName**和*
+*userID。***
 
 要创建它的 POJO 类，请按照以下步骤操作：
 
-1.  首先，在这个***模型**包中，右键单击*模型并选择 ***新建>>包。*** *将其命名*为***响应。*** 此外，我们将捕获此包下的所有响应类。
-2.  其次，*右键单击* 上面创建的***响应***包并选择 ***New >> Class***。将其命名为***书籍。***
+1. 首先，在这个***模型**包中，右键单击*模型并选择 ***新建>>包。*** *将其命名*为***响应。*** 此外，我们将捕获此包下的所有响应类。
+2. 其次，*右键单击* 上面创建的***响应***包并选择 ***New >> Class***。将其命名为***书籍。***
 
 ***书籍类***
 
@@ -121,9 +129,8 @@ public class Books {
 
 ### ***为 Token Object 创建一个 POJO 类：***
 
-
-
-至此，我们已经了解了创建 POJO 类的过程，如上例所示。因此，在接下来的 API 中，我将直接添加各个 API 的 POJO。***因此，来自Bookstore API***的 Generate Token API 的响应正文 是：
+至此，我们已经了解了创建 POJO 类的过程，如上例所示。因此，在接下来的 API 中，我将直接添加各个 API 的 POJO。
+***因此，来自Bookstore API***的 Generate Token API 的响应正文 是：
 
 ```java
 {
@@ -226,7 +233,8 @@ public class UserAccount {
 
 *注意导入语句：**import io.restassured.path.json.JsonPath**；不再需要，因为我们已经反序列化了对 Token 类的响应。*
 
-***代码说明：*** 我们在上面这一步中将响应体反序列化为***Token***类。此响应正文保存在“ ***tokenResponse*** ”变量中。保存的变量将与令牌一起在请求中进一步使用。
+***代码说明：*** 我们在上面这一步中将响应体反序列化为***Token***类。此响应正文保存在“ ***tokenResponse***
+”变量中。保存的变量将与令牌一起在请求中进一步使用。
 
 我们将这些代码片段放在了我们的 Steps 文件中：
 
@@ -348,7 +356,8 @@ public class Steps {
 
 ***以 JUnit 运行测试***
 
-我们现在都准备好运行更新的 Cucumber 测试了。首先，*右键单击* TestRunner ***类*** ，然后单击 ***Run As >> JUnit Test。*** *Cucumber以与**Selenium WebDriver*相同的方式运行脚本。 因此，结果将显示在控制台的*JUnit选项卡中。*
+我们现在都准备好运行更新的 Cucumber 测试了。首先，*右键单击* TestRunner ***类*** ，然后单击 ***Run As >> JUnit Test。***
+*Cucumber以与**Selenium WebDriver*相同的方式运行脚本。 因此，结果将显示在控制台的*JUnit选项卡中。*
 
 ![图片：第 4 章 Junit 结果](https://toolsqa.com/gallery/Rest%20Assured/3.Image%20Chapter%204%20Junit%20Results.png)
 

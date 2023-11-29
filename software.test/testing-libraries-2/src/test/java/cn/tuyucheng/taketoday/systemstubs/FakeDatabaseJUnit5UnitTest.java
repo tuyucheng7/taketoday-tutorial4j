@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SystemStubsExtension.class)
 class FakeDatabaseJUnit5UnitTest {
 
-	@Test
-	void useFakeDatabase(FakeDatabaseTestResource fakeDatabase) {
-		assertThat(fakeDatabase.getDatabaseConnection()).isEqualTo("open");
-	}
+   @Test
+   void useFakeDatabase(FakeDatabaseTestResource fakeDatabase) {
+      assertThat(fakeDatabase.getDatabaseConnection()).isEqualTo("open");
+   }
 }

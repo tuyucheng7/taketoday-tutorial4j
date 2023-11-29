@@ -18,29 +18,29 @@ import org.springframework.web.context.ConfigurableWebApplicationContext;
 @PactFolder("target/mypacts")
 public class PactProviderLiveTest {
 
-	private static ConfigurableWebApplicationContext application;
+   private static ConfigurableWebApplicationContext application;
 
-	@BeforeAll
-	public static void start() {
-		application = (ConfigurableWebApplicationContext) SpringApplication.run(MainApplication.class);
-	}
+   @BeforeAll
+   public static void start() {
+      application = (ConfigurableWebApplicationContext) SpringApplication.run(MainApplication.class);
+   }
 
-	@BeforeEach
-	void before(PactVerificationContext context) {
-		context.setTarget(new HttpTestTarget("localhost", 8081, "/spring-rest"));
-	}
+   @BeforeEach
+   void before(PactVerificationContext context) {
+      context.setTarget(new HttpTestTarget("localhost", 8081, "/spring-rest"));
+   }
 
-	@TestTemplate
-	@ExtendWith(PactVerificationInvocationContextProvider.class)
-	void pactVerificationTestTemplate(PactVerificationContext context) {
-		context.verifyInteraction();
-	}
+   @TestTemplate
+   @ExtendWith(PactVerificationInvocationContextProvider.class)
+   void pactVerificationTestTemplate(PactVerificationContext context) {
+      context.verifyInteraction();
+   }
 
-	@State("test GET")
-	public void toGetState() {
-	}
+   @State("test GET")
+   public void toGetState() {
+   }
 
-	@State("test POST")
-	public void toPostState() {
-	}
+   @State("test POST")
+   public void toPostState() {
+   }
 }

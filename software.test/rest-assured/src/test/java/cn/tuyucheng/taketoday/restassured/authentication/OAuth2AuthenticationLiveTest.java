@@ -18,44 +18,44 @@ import static org.hamcrest.Matchers.hasKey;
  */
 public class OAuth2AuthenticationLiveTest {
 
-	private static final String USER = "john";
-	private static final String PASSWORD = "123";
-	private static final String CLIENT_ID = "fooClientIdPassword";
-	private static final String SECRET = "secret";
-	private static final String AUTH_SVC_TOKEN_URL = "http://localhost:8081/spring-security-oauth-server/oauth/token";
-	private static final String RESOURCE_SVC_URL = "http://localhost:8082/spring-security-oauth-resource/foos/1";
+   private static final String USER = "john";
+   private static final String PASSWORD = "123";
+   private static final String CLIENT_ID = "fooClientIdPassword";
+   private static final String SECRET = "secret";
+   private static final String AUTH_SVC_TOKEN_URL = "http://localhost:8081/spring-security-oauth-server/oauth/token";
+   private static final String RESOURCE_SVC_URL = "http://localhost:8082/spring-security-oauth-resource/foos/1";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(RESOURCE_SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.UNAUTHORIZED.value());
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(RESOURCE_SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.UNAUTHORIZED.value());
+   }
 
-	@Test
-	public void givenAccessTokenAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		String accessToken = given().auth()
-			.basic(CLIENT_ID, SECRET)
-			.formParam("grant_type", "password")
-			.formParam("username", USER)
-			.formParam("password", PASSWORD)
-			.formParam("scope", "read foo")
-			.when()
-			.post(AUTH_SVC_TOKEN_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.extract()
-			.path("access_token");
+   @Test
+   public void givenAccessTokenAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      String accessToken = given().auth()
+            .basic(CLIENT_ID, SECRET)
+            .formParam("grant_type", "password")
+            .formParam("username", USER)
+            .formParam("password", PASSWORD)
+            .formParam("scope", "read foo")
+            .when()
+            .post(AUTH_SVC_TOKEN_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .extract()
+            .path("access_token");
 
-		given().auth()
-			.oauth2(accessToken)
-			.when()
-			.get(RESOURCE_SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body("$", hasKey("id"))
-			.body("$", hasKey("name"));
-	}
+      given().auth()
+            .oauth2(accessToken)
+            .when()
+            .get(RESOURCE_SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body("$", hasKey("id"))
+            .body("$", hasKey("name"));
+   }
 }

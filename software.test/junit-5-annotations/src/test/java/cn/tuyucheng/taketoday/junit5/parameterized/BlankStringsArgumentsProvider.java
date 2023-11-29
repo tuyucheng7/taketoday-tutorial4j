@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 
 class BlankStringsArgumentsProvider implements ArgumentsProvider {
 
-	@Override
-	public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
-		return Stream.of(
-				Arguments.of((String) null),
-				Arguments.of(""),
-				Arguments.of("   ")
-		);
-	}
+   @Override
+   public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
+      return Stream.of(
+            Arguments.of((String) null),
+            Arguments.of(""),
+            Arguments.of("   ")
+      );
+   }
 }

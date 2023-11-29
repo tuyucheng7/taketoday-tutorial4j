@@ -17,66 +17,66 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class JsonSourceUnitTest {
 
-	@ParameterizedTest
-	@JsonSource("""
-		[
-			{ "name": "Luke", "height": 172  },
-			{ "name": "Yoda", "height": 66 }
-		]
-		""")
-	void givenTestBlockSource_whenInjectToArgs_thenCorrect(@Property("name") String name,
-														   @Property("height") int height) {
-		if (name.equals("Luke"))
-			assertEquals(172, height);
-		else if (name.equals("Yoda"))
-			assertEquals(66, height);
-		else
-			fail();
-	}
+   @ParameterizedTest
+   @JsonSource("""
+         [
+         	{ "name": "Luke", "height": 172  },
+         	{ "name": "Yoda", "height": 66 }
+         ]
+         """)
+   void givenTestBlockSource_whenInjectToArgs_thenCorrect(@Property("name") String name,
+                                                          @Property("height") int height) {
+      if (name.equals("Luke"))
+         assertEquals(172, height);
+      else if (name.equals("Yoda"))
+         assertEquals(66, height);
+      else
+         fail();
+   }
 
-	@ParameterizedTest
-	@JsonClasspathSource("jedis.json")
-	void givenJsonFileSource_whenInjectObj_thenFieldShouldNotNull(Jedi jedi) {
-		assertThat(jedi.name).isNotNull();
-		assertThat(jedi.height).isNotNull();
-	}
+   @ParameterizedTest
+   @JsonClasspathSource("jedis.json")
+   void givenJsonFileSource_whenInjectObj_thenFieldShouldNotNull(Jedi jedi) {
+      assertThat(jedi.name).isNotNull();
+      assertThat(jedi.height).isNotNull();
+   }
 
-	@ParameterizedTest
-	@JsonSource("[ { name: 'Luke', height: 172  }, { name: 'Yoda', height: 66 } ]")
-	void givenStringSource_whenInjectObj_thenFieldShouldNotNull(Jedi jedi) {
-		assertThat(jedi.name).isNotNull();
-		assertThat(jedi.height).isNotNull();
-	}
+   @ParameterizedTest
+   @JsonSource("[ { name: 'Luke', height: 172  }, { name: 'Yoda', height: 66 } ]")
+   void givenStringSource_whenInjectObj_thenFieldShouldNotNull(Jedi jedi) {
+      assertThat(jedi.name).isNotNull();
+      assertThat(jedi.height).isNotNull();
+   }
 
-	@ParameterizedTest
-	@JsonClasspathSource("jedis.json")
-	void givenJsonFileSource_whenInjectOnlyName_thenShouldNotNull(@Property("name") String jediName) {
-		assertThat(jediName).isNotNull();
-	}
+   @ParameterizedTest
+   @JsonClasspathSource("jedis.json")
+   void givenJsonFileSource_whenInjectOnlyName_thenShouldNotNull(@Property("name") String jediName) {
+      assertThat(jediName).isNotNull();
+   }
 
-	@ParameterizedTest
-	@JsonSource({
-		"{ name: 'Yoda', padawans: ['Dooku', 'Luke']  }",
-		"{ name: 'Obi-Wan', padawans: ['Anakin', 'Luke'] }"
-	})
-	void givenStringSource_whenInjectToList_thenListItemsShouldNotNull(@Property("padawans") List<String> padawanNames) {
-		assertThat(padawanNames).hasSize(2)
-			.allMatch(Objects::nonNull);
-	}
+   @ParameterizedTest
+   @JsonSource({
+         "{ name: 'Yoda', padawans: ['Dooku', 'Luke']  }",
+         "{ name: 'Obi-Wan', padawans: ['Anakin', 'Luke'] }"
+   })
+   void givenStringSource_whenInjectToList_thenListItemsShouldNotNull(@Property("padawans") List<String> padawanNames) {
+      assertThat(padawanNames).hasSize(2)
+            .allMatch(Objects::nonNull);
+   }
 
-	@ParameterizedTest
-	@JsonClasspathSource("jedis.json")
-	void givenJsonFileSource_whenDeconstructFromArray_thenCorrect(@Property("name") String name,
-																  @Property("height") int height) {
-		assertNotNull(name);
-		assertTrue(height > 0);
-	}
+   @ParameterizedTest
+   @JsonClasspathSource("jedis.json")
+   void givenJsonFileSource_whenDeconstructFromArray_thenCorrect(@Property("name") String name,
+                                                                 @Property("height") int height) {
+      assertNotNull(name);
+      assertTrue(height > 0);
+   }
 
-	@ParameterizedTest
-	@JsonClasspathSource(value = "luke.json", data = "vehicles")
-	void givenJsonFileSource_whenExtractArray_thenCorrect(@Property("name") String name,
-														  @Property("length") double length) {
-		assertNotNull(name);
-		assertTrue(length > 0);
-	}
+   @ParameterizedTest
+   @JsonClasspathSource(value = "luke.json", data = "vehicles")
+   void givenJsonFileSource_whenExtractArray_thenCorrect(@Property("name") String name,
+                                                         @Property("length") double length) {
+      assertNotNull(name);
+      assertTrue(length > 0);
+   }
 }

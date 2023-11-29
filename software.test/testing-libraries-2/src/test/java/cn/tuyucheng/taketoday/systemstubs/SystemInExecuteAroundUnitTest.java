@@ -9,12 +9,12 @@ import static uk.org.webcompere.systemstubs.SystemStubs.withTextFromSystemIn;
 
 class SystemInExecuteAroundUnitTest {
 
-	@Test
-	void givenTextInSystemIn_thenCanReadIt() throws Exception {
-		withTextFromSystemIn("line1", "line2", "line3")
-			.execute(() -> {
-				assertThat(new Scanner(System.in).nextLine())
-					.isEqualTo("line1");
-			});
-	}
+   @Test
+   void givenTextInSystemIn_thenCanReadIt() throws Exception {
+      withTextFromSystemIn("line1", "line2", "line3")
+            .execute(() -> {
+               assertThat(new Scanner(System.in).nextLine())
+                     .isEqualTo("line1");
+            });
+   }
 }

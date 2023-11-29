@@ -4,8 +4,8 @@ import org.junit.Test;
 
 public class ExtendedBaseUnitTest extends BaseUnitTest {
 
-    @Test
-    public void whenDoTest_thenAssert() {
+   @Test
+   public void whenDoTest_thenAssert() {
 
-    }
+   }
 }

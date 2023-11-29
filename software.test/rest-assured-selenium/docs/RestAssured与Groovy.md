@@ -24,7 +24,8 @@ def words = ['ant', 'buffalo', 'cat', 'dinosaur']复制
 def wordsWithSizeGreaterThanFour = words.findAll { it.length() > 4 }复制
 ```
 
-在这里，*findAll()*是一个应用于集合的方法，其中一个*闭包*应用于该方法。该*方法*定义了应用于集合的逻辑，*闭包*为该方法提供了一个谓词来自定义逻辑。
+在这里，*findAll()*是一个应用于集合的方法，其中一个*闭包*应用于该方法。该*方法*定义了应用于集合的逻辑，*闭包*
+为该方法提供了一个谓词来自定义逻辑。
 
 我们告诉 Groovy 循环遍历集合并查找长度大于 4 的所有单词并将结果返回到新集合中。
 
@@ -124,11 +125,13 @@ public void givenUrl_whenVerifiesOddPricesAccuratelyByStatus_thenCorrect() {
 }复制
 ```
 
-这里发生的事情是这样的；我们使用 Groovy 语法来加载关键*赔率*下的 JSON 数组。由于它有多个项目，因此我们获得了一个 Groovy 集合。然后我们在这个集合上调用*findAll方法。*
+这里发生的事情是这样的；我们使用 Groovy 语法来加载关键*赔率*下的 JSON 数组。由于它有多个项目，因此我们获得了一个 Groovy
+集合。然后我们在这个集合上调用*findAll方法。*
 
 闭包谓词告诉 Groovy 使用状态大于零的 JSON 对象创建另一个集合。
 
-*我们以price*结束我们的路径，它告诉 groovy 在我们之前的 JSON 对象列表中创建另一个仅包含赔率价格的列表。然后我们将*hasItems* Hamcrest 匹配器应用到这个列表。
+*我们以price*结束我们的路径，它告诉 groovy 在我们之前的 JSON 对象列表中创建另一个仅包含赔率价格的列表。然后我们将
+*hasItems* Hamcrest 匹配器应用到这个列表。
 
 ## **4. 使用 Groovy 验证 XML**
 

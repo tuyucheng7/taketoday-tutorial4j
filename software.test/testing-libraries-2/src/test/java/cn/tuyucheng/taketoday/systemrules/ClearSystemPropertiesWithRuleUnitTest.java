@@ -8,11 +8,11 @@ import static org.junit.Assert.assertNull;
 
 public class ClearSystemPropertiesWithRuleUnitTest {
 
-	@Rule
-	public final ClearSystemProperties userNameIsClearedRule = new ClearSystemProperties("user.name");
+   @Rule
+   public final ClearSystemProperties userNameIsClearedRule = new ClearSystemProperties("user.name");
 
-	@Test
-	public void givenClearUsernameProperty_whenGetUserName_thenNull() {
-		assertNull(System.getProperty("user.name"));
-	}
+   @Test
+   public void givenClearUsernameProperty_whenGetUserName_thenNull() {
+      assertNull(System.getProperty("user.name"));
+   }
 }

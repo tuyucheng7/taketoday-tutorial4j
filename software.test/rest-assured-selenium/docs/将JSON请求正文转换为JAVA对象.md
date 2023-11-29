@@ -1,4 +1,8 @@
-到目前为止，我们已经将我们的[***Rest Assured E2E API 测试***](https://toolsqa.com/rest-assured/rest-api-end-to-end-test/) 转换为[***Cucumber BDD 样式测试***](https://www.toolsqa.com/rest-assured/rest-api-test-in-cucumber/)。随后，我们的下一步将使用***序列化******将 JSON 转换为 JAVA 对象***。我们已经介绍了 Java 中的序列化和反序列化教程。如果您重新访问[***序列化和反序列化***](https://www.toolsqa.com/rest-assured/serialization-and-deserialization-in-java/)章节以更好地了解我们下一阶段框架开发的整体情况，我们将不胜感激。
+到目前为止，我们已经将我们的[***Rest Assured E2E API 测试***](https://toolsqa.com/rest-assured/rest-api-end-to-end-test/)
+转换为[***Cucumber BDD 样式测试***](https://www.toolsqa.com/rest-assured/rest-api-test-in-cucumber/)。随后，我们的下一步将使用
+***序列化******将 JSON 转换为 JAVA 对象***。我们已经介绍了 Java 中的序列化和反序列化教程。如果您重新访问[
+***序列化和反序列化***](https://www.toolsqa.com/rest-assured/serialization-and-deserialization-in-java/)
+章节以更好地了解我们下一阶段框架开发的整体情况，我们将不胜感激。
 
 ## 将 JSON 转换为 JAVA 对象
 
@@ -11,9 +15,12 @@ request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD +
 
 我们以原始 JSON 字符串格式发送正文请求。以这种格式发送请求体，维护繁琐，容易出错。现在，我们只处理两个参数。但是，在实际的正文请求中，我们可能不得不处理更多的参数。
 
-此外，建议将请求正文中的用户名和密码作为对象发送。为此，我们需要将 JSON 转换为 JAVA 对象。但是，网络不理解 Java 对象。因此，我们需要在发送请求之前将对象序列化为字符串。
+此外，建议将请求正文中的用户名和密码作为对象发送。为此，我们需要将 JSON 转换为 JAVA 对象。但是，网络不理解 Java
+对象。因此，我们需要在发送请求之前将对象序列化为字符串。
 
-我们可以使用许多可用的序列化-反序列化库来做到这一点。但是，Rest Assured 内置了此功能。它使我们能够直接在 Rest Assured 请求中发送对象，而库在内部负责序列化。如果您深入了解 RequestSpecification 的实现，您将看到下面的代码片段，它清楚地显示了 Rest Assured 如何处理序列化。
+我们可以使用许多可用的序列化-反序列化库来做到这一点。但是，Rest Assured 内置了此功能。它使我们能够直接在 Rest Assured
+请求中发送对象，而库在内部负责序列化。如果您深入了解 RequestSpecification 的实现，您将看到下面的代码片段，它清楚地显示了
+Rest Assured 如何处理序列化。
 
 ![Image-RequestSpecificationImpl](https://toolsqa.com/gallery/Rest%20Assured/1.Image-RequestSpecificationImpl.png)
 
@@ -29,7 +36,8 @@ request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD +
 
 ![将 JSON 字符串转换为 JAVA 对象示例](https://toolsqa.com/gallery/Rest%20Assured/2.Convert%20JSON%20String%20to%20JAVA%20Object%20Example.png)
 
-从上面的[***Swagger 书店 API***](https://bookstore.toolsqa.com/swagger/index.html)文档中可以看出，我们在请求体中传入的请求*JSON*体参数为：
+从上面的[***Swagger 书店 API***](https://bookstore.toolsqa.com/swagger/index.html)文档中可以看出，我们在请求体中传入的请求
+*JSON*体参数为：
 
 ```java
 {
@@ -38,20 +46,20 @@ request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD +
 }
 ```
 
-此外，您可以手动创建一个*POJO类，其中包含**JSON*正文的所有列出的字段。此外，还有各种免费在线可用的实用程序，我们可以使用它们将任何*JSON*结构转换为 Java *POJO*类。
+此外，您可以手动创建一个*POJO类，其中包含**JSON*正文的所有列出的字段。此外，还有各种免费在线可用的实用程序，我们可以使用它们将任何
+*JSON*结构转换为 Java *POJO*类。
 
 #### ***如何使用在线实用程序为 JSON 请求正文创建 Java POJO 类？***
 
-
-
-在这里，我们将看到***如何将 JSON 字符串转换为 Java 对象***。因此，让我们借助其中一个网站来帮助我们将*JSON*转换为 Java *POJO*类。
+在这里，我们将看到***如何将 JSON 字符串转换为 Java 对象***。因此，让我们借助其中一个网站来帮助我们将*JSON*转换为 Java
+*POJO*类。
 
 ***请按照以下步骤操作***
 
--   *首先，导航到网站： http:* [***//www.jsonschema2pojo.org/***](https://www.jsonschema2pojo.org/)
--   *其次，在左侧文本框中输入 JSON 正文。*
--   *第三，在右侧面板中输入包名和类名。*
--   *最后，根据下图输入其他所需的选择详细信息。*
+- *首先，导航到网站： http:* [***//www.jsonschema2pojo.org/***](https://www.jsonschema2pojo.org/)
+- *其次，在左侧文本框中输入 JSON 正文。*
+- *第三，在右侧面板中输入包名和类名。*
+- *最后，根据下图输入其他所需的选择详细信息。*
 
 ![使用 Online Utitlity 将 JSON 转换为 POJO 或 JAVA 对象](https://toolsqa.com/gallery/Rest%20Assured/3.Convert%20JSON%20to%20POJO%20or%20JAVA%20Object%20using%20Online%20Utitlity.png)
 
@@ -63,21 +71,22 @@ request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD +
 
 ***解释***
 
-因此，我们输入了一个带有用户名和密码作为字段的*JSON*，我们创建了一个*POJO*。此外，我们将使用此*POJO*发送到我们的 API ***/Account/v1/GenerateToken 的请求正文中。***
+因此，我们输入了一个带有用户名和密码作为字段的*JSON*，我们创建了一个*POJO*。此外，我们将使用此*POJO*发送到我们的 API
+***/Account/v1/GenerateToken 的请求正文中。***
 
 ## 使用 POJO 类更新 JSON 字符串的步骤
 
 我们将按照以下步骤在我们的框架中实现序列化：
 
-1.  *首先，为我们的每个请求对象创建 POJO 类：*
+1. *首先，为我们的每个请求对象创建 POJO 类：*
 
--   *令牌请求*
--   *添加书籍请求*
--   *国际标准书号*
--   *删除图书请求*
+- *令牌请求*
+- *添加书籍请求*
+- *国际标准书号*
+- *删除图书请求*
 
-1.  *其次，将 Step 文件中的 Request 主体替换为 POJO 类对象。*
-2.  *最后，运行测试。*
+1. *其次，将 Step 文件中的 Request 主体替换为 POJO 类对象。*
+2. *最后，运行测试。*
 
 ### ***授权令牌请求的 POJO 类：***
 
@@ -94,8 +103,11 @@ request.body("{ \"userName\":\"" + USERNAME + "\", \"password\":\"" + PASSWORD +
 
 要创建它的*POJO*类，请按照以下步骤操作：
 
-1.  *首先，右键单击* src ***/test/java*** 并选择 **New >> Package**。之后，创建一个*New Package*文件并将其命名为*apiEngine。*在内部，***apiEngine*** *包*创建了一个名为 ***model****的新包*。此外，在这个***模型****Package*中，创建一个名称为***requests****的Package 。* 我们将捕获此包下的所有请求类。
-2.  其次，在其下创建一个*New Class*文件并将其命名为***AuthorizationRequest***，*右键单击* 上面创建的 Package 并选择 ***New >> Class***。
+1. *首先，右键单击* src ***/test/java*** 并选择 **New >> Package**。之后，创建一个*New Package*文件并将其命名为
+   *apiEngine。*在内部，***apiEngine*** *包*创建了一个名为 ***model****的新包*。此外，在这个***模型****Package*中，创建一个名称为
+   ***requests****的Package 。* 我们将捕获此包下的所有请求类。
+2. 其次，在其下创建一个*New Class*文件并将其命名为***AuthorizationRequest***，*右键单击* 上面创建的 Package 并选择
+   ***New >> Class***。
 
 ***AuthorizationRequest.class***
 
@@ -116,7 +128,9 @@ public class AuthorizationRequest {
 
 ***代码说明***
 
-Bookstore URL 要求客户端发送用户名和密码，正如我们在授权令牌的[***API 文档教程中学习的那样。***](https://www.toolsqa.com/rest-assured/api-documentation/)我们为此目的定义了*AuthorizationRequest类。*我们将使用带有参数用户名和密码的构造函数创建一个*AuthorizationRequest对象。*
+Bookstore URL 要求客户端发送用户名和密码，正如我们在授权令牌的[
+***API 文档教程中学习的那样。***](https://www.toolsqa.com/rest-assured/api-documentation/)我们为此目的定义了
+*AuthorizationRequest类。*我们将使用带有参数用户名和密码的构造函数创建一个*AuthorizationRequest对象。*
 
 同样，我们将为 Add Books Request、Remove Books Request 和*ISBN 创建类。*
 
@@ -135,7 +149,8 @@ Bookstore URL 要求客户端发送用户名和密码，正如我们在授权令
 }
 ```
 
-要创建*JSON*请求正文的*POJO*类，请*右键单击*上面创建的***请求****包*并选择 ***New >> Class***。此外，将其命名为***AddBooksRequest***。
+要创建*JSON*请求正文的*POJO*类，请*右键单击*上面创建的***请求****包*并选择 ***New >> Class***。此外，将其命名为
+***AddBooksRequest***。
 
 ***AddBooksRequest.class***
 
@@ -163,7 +178,8 @@ public class AddBooksRequest {
 
 ***代码说明***
 
-AddBooksRequest类将负责为我们提供一个将一本书添加到用户帐户的对象*。*在此过程中，我们需要 userId 和图书的唯一标识符 ISBN。因此，*userID*和*isbn*作为参数传递给*AddBooksRequest*类对象。
+AddBooksRequest类将负责为我们提供一个将一本书添加到用户帐户的对象*。*在此过程中，我们需要 userId 和图书的唯一标识符
+ISBN。因此，*userID*和*isbn*作为参数传递给*AddBooksRequest*类对象。
 
 ### ***ISBN 的 POJO 类：***
 
@@ -196,7 +212,8 @@ public class ISBN {
 }
 ```
 
-要创建 JSON 请求正文的 POJO 类，请*右键单击*上面创建的***请求**包*并选择 ***New >> Class***。此外，将其命名为***RemoveBookRequest***。
+要创建 JSON 请求正文的 POJO 类，请*右键单击*上面创建的***请求**包*并选择 ***New >> Class***。此外，将其命名为
+***RemoveBookRequest***。
 
 ```java
 package apiEngine.model.requests;
@@ -240,9 +257,11 @@ public class RemoveBookRequest {
 
 ***代码说明***
 
-我们创建了一个对象， AuthorizationRequest 类的*authRequest* *。*在这个对象中，我们传递*用户名*和*密码。*此外，此*authRequest* 对象将传入请求的正文。
+我们创建了一个对象， AuthorizationRequest 类的*authRequest* *。*在这个对象中，我们传递*用户名*和*密码。*此外，此*authRequest*
+对象将传入请求的正文。
 
-同样，我们将对以下步骤定义进行更改，以使用我们使用我们定义的 POJO 创建的 Java 对象。在内部，放心库会在通过网络发送请求之前将此对象序列化为 JSON 字符串。因此，我们不必担心序列化请求对象。
+同样，我们将对以下步骤定义进行更改，以使用我们使用我们定义的 POJO 创建的 Java 对象。在内部，放心库会在通过网络发送请求之前将此对象序列化为
+JSON 字符串。因此，我们不必担心序列化请求对象。
 
 ```java
 @When("^I add a book to my reading list$")
@@ -366,7 +385,9 @@ public class Steps {
 }
 ```
 
-***注意**：我们为 JSONpath 添加了一个 import 语句**import io.restassured.path.json.JsonPath**；它将帮助我们遍历 JSON 的特定部分。此外，您可以在[***JSONPath 文章***](https://www.toolsqa.com/rest-assured/jsonpath-and-query-json-using-jsonpath/)中阅读更多内容。*
+***注意**：我们为 JSONpath 添加了一个 import 语句**import io.restassured.path.json.JsonPath**；它将帮助我们遍历 JSON
+的特定部分。此外，您可以在[
+***JSONPath 文章***](https://www.toolsqa.com/rest-assured/jsonpath-and-query-json-using-jsonpath/)中阅读更多内容。*
 
 现在，如果我们尝试在对 Steps 文件进行所有更改后使用***TestRunner运行测试，我们的测试将******失败***。
 
@@ -391,7 +412,10 @@ java.lang.IllegalStateException: Cannot serialize object because no JSON seriali
 	at stepDefinitions.Steps.iAmAnAuthorizedUser(Steps.java:38
 ```
 
-我们在整个节目中缺少一个关键元素。如上文第一节所述，Rest Assured 在内部负责序列化。我们还在代码片段中确认了这一点。Rest Assured 库依赖于[***Jackson (Databind)***](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.10.2)库来完成序列化的这项工作。由于我们还没有添加这个库，所以我们遇到了错误。
+我们在整个节目中缺少一个关键元素。如上文第一节所述，Rest Assured 在内部负责序列化。我们还在代码片段中确认了这一点。Rest
+Assured 库依赖于[
+***Jackson (Databind)***](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind/2.10.2)
+库来完成序列化的这项工作。由于我们还没有添加这个库，所以我们遇到了错误。
 
 让我们在我们的框架项目文件 pom.xml 中快速添加依赖：
 
@@ -472,7 +496,8 @@ java.lang.IllegalStateException: Cannot serialize object because no JSON seriali
 
 ***以 JUnit 运行测试***
 
-现在我们都准备好运行更新的 Cucumber 测试了。*右键单击* TestRunner ***类***，然后单击***Run As >> JUnit Test。*** 因此，结果将显示在控制台的*JUnit选项卡中。*
+现在我们都准备好运行更新的 Cucumber 测试了。*右键单击* TestRunner ***类***，然后单击***Run As >> JUnit Test。***
+因此，结果将显示在控制台的*JUnit选项卡中。*
 
 ![第三章 Junit 测试结果](https://toolsqa.com/gallery/Rest%20Assured/6.Chapter%203%20Junit%20test%20result.png)
 
@@ -482,8 +507,10 @@ java.lang.IllegalStateException: Cannot serialize object because no JSON seriali
 
 ![将 JSON 转换为 POJO 对象执行结果](https://toolsqa.com/gallery/Rest%20Assured/7.Convert%20JSON%20to%20POJO%20Object%20Execution%20Results.png)
 
-正如您在上面附加的屏幕截图中看到的，我们的测试已经通过更改。我们在本章中使用序列化*将 JSON 转换为 JAVA 对象。*请尝试在您的框架中实现它，如上所述。下面是当前项目浏览器的屏幕截图。
+正如您在上面附加的屏幕截图中看到的，我们的测试已经通过更改。我们在本章中使用序列化*将 JSON 转换为 JAVA 对象。*
+请尝试在您的框架中实现它，如上所述。下面是当前项目浏览器的屏幕截图。
 
 ![图片：第 3 章文件夹结构](https://toolsqa.com/gallery/Rest%20Assured/8.Image%20Chapter%203%20Folder%20Structure.png)
 
-随后，我们将在下一章访问[***将 JSON 响应体转换为 POJO 。***](https://www.toolsqa.com/rest-assured/convert-json-to-java-object/)
+随后，我们将在下一章访问[
+***将 JSON 响应体转换为 POJO 。***](https://www.toolsqa.com/rest-assured/convert-json-to-java-object/)

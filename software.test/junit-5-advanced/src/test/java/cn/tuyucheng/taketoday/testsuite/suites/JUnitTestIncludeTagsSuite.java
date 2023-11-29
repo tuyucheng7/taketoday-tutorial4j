@@ -8,5 +8,5 @@ import org.junit.platform.suite.api.Suite;
 @SelectPackages("cn.tuyucheng.taketoday.testsuite")
 @IncludeTags("slow")
 public class JUnitTestIncludeTagsSuite {
-	// runs ClassTwoUnitTest
+   // runs ClassTwoUnitTest
 }

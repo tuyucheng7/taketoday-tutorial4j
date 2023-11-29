@@ -17,23 +17,23 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class CourseControllerIntegrationTest {
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-	@Before
-	public void initialiseRestAssuredMockMvcWebApplicationContext() {
-		RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
-	}
+   @Before
+   public void initialiseRestAssuredMockMvcWebApplicationContext() {
+      RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
+   }
 
-	@Test
-	public void givenNoMatchingCourseCodeWhenGetCourseThenRespondWithStatusNotFound() {
-		String nonMatchingCourseCode = "nonMatchingCourseCode";
+   @Test
+   public void givenNoMatchingCourseCodeWhenGetCourseThenRespondWithStatusNotFound() {
+      String nonMatchingCourseCode = "nonMatchingCourseCode";
 
-		given()
-			.when()
-			.get("/courses/" + nonMatchingCourseCode)
-			.then()
-			.log().ifValidationFails()
-			.statusCode(NOT_FOUND.value());
-	}
+      given()
+            .when()
+            .get("/courses/" + nonMatchingCourseCode)
+            .then()
+            .log().ifValidationFails()
+            .statusCode(NOT_FOUND.value());
+   }
 }

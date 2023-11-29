@@ -24,43 +24,43 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class EmployeeDAOIntegrationTest {
 
-	@Autowired
-	private EmployeeDAO employeeDao;
+   @Autowired
+   private EmployeeDAO employeeDao;
 
-	@Mock
-	private JdbcTemplate jdbcTemplate;
-	private EmployeeDAO employeeDAO;
+   @Mock
+   private JdbcTemplate jdbcTemplate;
+   private EmployeeDAO employeeDAO;
 
-	@BeforeEach
-	public void setup() {
-		MockitoAnnotations.initMocks(this);
-		employeeDAO = new EmployeeDAO();
-		employeeDAO.setJdbcTemplate(jdbcTemplate);
-	}
+   @BeforeEach
+   public void setup() {
+      MockitoAnnotations.initMocks(this);
+      employeeDAO = new EmployeeDAO();
+      employeeDAO.setJdbcTemplate(jdbcTemplate);
+   }
 
-	@Test
-	@Tag("IntegrationTest")
-	public void testAddEmployeeUsingSimpelJdbcInsert() {
-		final Employee emp = new Employee();
-		emp.setId(12);
-		emp.setFirstName("testFirstName");
-		emp.setLastName("testLastName");
-		emp.setAddress("testAddress");
+   @Test
+   @Tag("IntegrationTest")
+   public void testAddEmployeeUsingSimpelJdbcInsert() {
+      final Employee emp = new Employee();
+      emp.setId(12);
+      emp.setFirstName("testFirstName");
+      emp.setLastName("testLastName");
+      emp.setAddress("testAddress");
 
-		Assertions.assertEquals(1, employeeDao.addEmployeeUsingSimpleJdbcInsert(emp));
-	}
+      Assertions.assertEquals(1, employeeDao.addEmployeeUsingSimpleJdbcInsert(emp));
+   }
 
-	@Test
-	@Tag("UnitTest")
-	public void givenNumberOfEmployeeWhenCountEmployeeThenCountMatch() {
-		// given
-		Mockito.when(jdbcTemplate.queryForObject(Mockito.any(String.class), Mockito.eq(Integer.class)))
-			.thenReturn(1);
+   @Test
+   @Tag("UnitTest")
+   public void givenNumberOfEmployeeWhenCountEmployeeThenCountMatch() {
+      // given
+      Mockito.when(jdbcTemplate.queryForObject(Mockito.any(String.class), Mockito.eq(Integer.class)))
+            .thenReturn(1);
 
-		// when
-		int countOfEmployees = employeeDAO.getCountOfEmployees();
+      // when
+      int countOfEmployees = employeeDAO.getCountOfEmployees();
 
-		// then
-		Assertions.assertEquals(1, countOfEmployees);
-	}
+      // then
+      Assertions.assertEquals(1, countOfEmployees);
+   }
 }

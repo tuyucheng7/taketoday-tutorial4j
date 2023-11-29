@@ -5,9 +5,9 @@ import spock.lang.Specification
 
 class RequiresTest extends Specification {
 
-	@Requires({ System.getProperty("os.name").contains("windows") })
-	def "I will run only on Windows"() {
-		expect:
-		true
-	}
+   @Requires({ System.getProperty("os.name").contains("windows") })
+   def "I will run only on Windows"() {
+      expect:
+      true
+   }
 }

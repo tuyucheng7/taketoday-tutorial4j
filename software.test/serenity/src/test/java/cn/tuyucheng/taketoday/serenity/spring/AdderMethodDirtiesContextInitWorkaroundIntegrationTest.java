@@ -21,31 +21,31 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = AdderService.class)
 public class AdderMethodDirtiesContextInitWorkaroundIntegrationTest {
 
-	@Steps
-	private AdderServiceSteps adderServiceSteps;
+   @Steps
+   private AdderServiceSteps adderServiceSteps;
 
-	@Before
-	public void init() {
-		adderServiceSteps.givenBaseAndAdder(RandomNumberUtil.randomInt(), RandomNumberUtil.randomInt());
-	}
+   @Before
+   public void init() {
+      adderServiceSteps.givenBaseAndAdder(RandomNumberUtil.randomInt(), RandomNumberUtil.randomInt());
+   }
 
-	@Test
-	public void _1_givenNumber_whenAdd_thenSumWrong() {
-		adderServiceSteps.whenAdd();
-		adderServiceSteps.summedUp();
-	}
+   @Test
+   public void _1_givenNumber_whenAdd_thenSumWrong() {
+      adderServiceSteps.whenAdd();
+      adderServiceSteps.summedUp();
+   }
 
-	@Rule
-	public SpringIntegrationMethodRule springIntegration = new SpringIntegrationMethodRule();
+   @Rule
+   public SpringIntegrationMethodRule springIntegration = new SpringIntegrationMethodRule();
 
-	@DirtiesContext
-	@Test
-	public void _0_givenNumber_whenAddAndAccumulate_thenSummedUp() {
-		adderServiceSteps.whenAccumulate();
-		adderServiceSteps.summedUp();
+   @DirtiesContext
+   @Test
+   public void _0_givenNumber_whenAddAndAccumulate_thenSummedUp() {
+      adderServiceSteps.whenAccumulate();
+      adderServiceSteps.summedUp();
 
-		adderServiceSteps.whenAdd();
-		adderServiceSteps.sumWrong();
-	}
+      adderServiceSteps.whenAdd();
+      adderServiceSteps.sumWrong();
+   }
 
 }

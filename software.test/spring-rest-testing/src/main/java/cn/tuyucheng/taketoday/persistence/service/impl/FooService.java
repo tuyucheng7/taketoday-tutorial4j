@@ -13,24 +13,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class FooService extends AbstractService<Foo> implements IFooService {
 
-    @Autowired
-    private IFooDao dao;
+   @Autowired
+   private IFooDao dao;
 
-    public FooService() {
-        super();
-    }
+   public FooService() {
+      super();
+   }
 
-    // API
+   // API
 
-    @Override
-    protected PagingAndSortingRepository<Foo, Long> getDao() {
-        return dao;
-    }
+   @Override
+   protected PagingAndSortingRepository<Foo, Long> getDao() {
+      return dao;
+   }
 
-    // custom methods
+   // custom methods
 
-    @Override
-    public Foo retrieveByName(final String name) {
-        return dao.retrieveByName(name);
-    }
+   @Override
+   public Foo retrieveByName(final String name) {
+      return dao.retrieveByName(name);
+   }
 }

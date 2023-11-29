@@ -16,22 +16,22 @@ import static org.jbehave.core.reporters.Format.CONSOLE;
 
 public class IncreaseStoryLiveTest extends JUnitStories {
 
-	@Override
-	public Configuration configuration() {
-		return new MostUsefulConfiguration()
-				.useStoryLoader(new LoadFromClasspath(this.getClass()))
-				.useStoryReporterBuilder(new StoryReporterBuilder()
-						.withCodeLocation(codeLocationFromClass(this.getClass()))
-						.withFormats(CONSOLE));
-	}
+   @Override
+   public Configuration configuration() {
+      return new MostUsefulConfiguration()
+            .useStoryLoader(new LoadFromClasspath(this.getClass()))
+            .useStoryReporterBuilder(new StoryReporterBuilder()
+                  .withCodeLocation(codeLocationFromClass(this.getClass()))
+                  .withFormats(CONSOLE));
+   }
 
-	@Override
-	public InjectableStepsFactory stepsFactory() {
-		return new InstanceStepsFactory(configuration(), new IncreaseSteps());
-	}
+   @Override
+   public InjectableStepsFactory stepsFactory() {
+      return new InstanceStepsFactory(configuration(), new IncreaseSteps());
+   }
 
-	@Override
-	protected List<String> storyPaths() {
-		return Collections.singletonList("increase.story");
-	}
+   @Override
+   protected List<String> storyPaths() {
+      return Collections.singletonList("increase.story");
+   }
 }

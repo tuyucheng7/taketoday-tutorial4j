@@ -4,7 +4,8 @@
 
 ## 2. 测试类的设置
 
-在之前的教程中，我们[一般探索了 REST-assured](https://www.baeldung.com/rest-assured-tutorial)，并且我们展示了如何操作请求[标头、cookie 和参数](https://www.baeldung.com/rest-assured-header-cookie-parameter)。
+在之前的教程中，我们[一般探索了 REST-assured](https://www.baeldung.com/rest-assured-tutorial)
+，并且我们展示了如何操作请求[标头、cookie 和参数](https://www.baeldung.com/rest-assured-header-cookie-parameter)。
 
 在此现有设置的基础上，我们添加了一个简单的 REST 控制器*AppController*，它在内部调用服务*AppService*。我们将在测试示例中使用这些类。
 
@@ -34,7 +35,8 @@ public class AppControllerIntegrationTest {
 }复制
 ```
 
-在这个 JUnit 测试中，我们使用一些 Spring 特定的注释来注释我们的类，这些注释在随机可用端口中本地启动应用程序。在*@PostConstruct*中，我们捕获了我们将在其上进行 REST 调用的完整 URI。
+在这个 JUnit 测试中，我们使用一些 Spring 特定的注释来注释我们的类，这些注释在随机可用端口中本地启动应用程序。在*
+@PostConstruct*中，我们捕获了我们将在其上进行 REST 调用的完整 URI。
 
 我们还在*AppService*上 使用*了@MockBean*，因为我们需要模拟这个类的方法调用。
 
@@ -64,9 +66,11 @@ public void givenMovieId_whenMakingGetRequestToMovieEndpoint_thenReturnMovie() {
 }复制
 ```
 
-上面，我们首先模拟了*appService.findMovie(1)*调用以返回一个对象。*然后，我们在 REST-assured 提供的get()*方法中构造了我们的 REST URL，用于发出 GET 请求。最后，我们做了四个断言。
+上面，我们首先模拟了*appService.findMovie(1)*调用以返回一个对象。*然后，我们在 REST-assured 提供的get()*方法中构造了我们的
+REST URL，用于发出 GET 请求。最后，我们做了四个断言。
 
-首先，**我们检查了响应状态码，然后是*正文*元素**。我们使用[Hamcrest](https://www.baeldung.com/java-junit-hamcrest-guide)来断言期望值。
+首先，**我们检查了响应状态码，然后是*正文*元素**。我们使用[Hamcrest](https://www.baeldung.com/java-junit-hamcrest-guide)
+来断言期望值。
 
 另请注意，如果响应 JSON 是嵌套的，我们可以使用*点*运算符（如*“key1.key2.key3”）*来测试嵌套键。
 
@@ -196,7 +200,8 @@ byte[] result = get(uri + "/download/1").asByteArray();
 assertThat(result.length).isEqualTo(fileSize);复制
 ```
 
-在这里，我们首先 *模拟 appService.getFile(1)*以返回一个文本文件，该文件存在于我们的*src/test/resources*路径中。然后我们调用我们的端点并在*byte[]*中提取响应，然后我们断言它具有预期值。
+在这里，我们首先 *模拟 appService.getFile(1)*以返回一个文本文件，该文件存在于我们的*src/test/resources*
+路径中。然后我们调用我们的端点并在*byte[]*中提取响应，然后我们断言它具有预期值。
 
 ## 六，结论
 

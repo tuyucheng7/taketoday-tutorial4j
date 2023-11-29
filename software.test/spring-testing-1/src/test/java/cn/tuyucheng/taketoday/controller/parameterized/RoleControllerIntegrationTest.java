@@ -22,31 +22,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = WebConfig.class)
 public class RoleControllerIntegrationTest {
 
-	private static final String CONTENT_TYPE = "application/text;charset=ISO-8859-1";
-	@Autowired
-	private WebApplicationContext wac;
-	private MockMvc mockMvc;
+   private static final String CONTENT_TYPE = "application/text;charset=ISO-8859-1";
+   @Autowired
+   private WebApplicationContext wac;
+   private MockMvc mockMvc;
 
-	@Before
-	public void setup() throws Exception {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+   @Before
+   public void setup() throws Exception {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+   }
 
-	@Test
-	public void givenEmployeeNameJohnWhenInvokeRoleThenReturnAdmin() throws Exception {
-		this.mockMvc.perform(get("/role/John"))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(CONTENT_TYPE))
-				.andExpect(content().string("ADMIN"));
-	}
+   @Test
+   public void givenEmployeeNameJohnWhenInvokeRoleThenReturnAdmin() throws Exception {
+      this.mockMvc.perform(get("/role/John"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(CONTENT_TYPE))
+            .andExpect(content().string("ADMIN"));
+   }
 
-	@Test
-	public void givenEmployeeNameDoeWhenInvokeRoleThenReturnEmployee() throws Exception {
-		this.mockMvc.perform(get("/role/Doe"))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(CONTENT_TYPE))
-				.andExpect(content().string("EMPLOYEE"));
-	}
+   @Test
+   public void givenEmployeeNameDoeWhenInvokeRoleThenReturnEmployee() throws Exception {
+      this.mockMvc.perform(get("/role/Doe"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(CONTENT_TYPE))
+            .andExpect(content().string("EMPLOYEE"));
+   }
 }

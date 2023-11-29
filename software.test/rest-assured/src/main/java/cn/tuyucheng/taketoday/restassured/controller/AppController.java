@@ -27,72 +27,72 @@ import java.util.UUID;
 @RestController
 public class AppController {
 
-	@Autowired
-	AppService appService;
+   @Autowired
+   AppService appService;
 
-	@GetMapping("/movies")
-	public ResponseEntity<?> getMovies() {
+   @GetMapping("/movies")
+   public ResponseEntity<?> getMovies() {
 
-		Set<Movie> result = appService.getAll();
+      Set<Movie> result = appService.getAll();
 
-		return ResponseEntity.ok()
-			.body(result);
-	}
+      return ResponseEntity.ok()
+            .body(result);
+   }
 
-	@PostMapping("/movie")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Movie addMovie(@RequestBody Movie movie) {
+   @PostMapping("/movie")
+   @ResponseStatus(HttpStatus.CREATED)
+   public Movie addMovie(@RequestBody Movie movie) {
 
-		appService.add(movie);
-		return movie;
-	}
+      appService.add(movie);
+      return movie;
+   }
 
-	@GetMapping("/movie/{id}")
-	public ResponseEntity<?> getMovie(@PathVariable int id) {
+   @GetMapping("/movie/{id}")
+   public ResponseEntity<?> getMovie(@PathVariable int id) {
 
-		Movie movie = appService.findMovie(id);
-		if (movie == null) {
-			return ResponseEntity.badRequest()
-				.body("Invalid movie id");
-		}
+      Movie movie = appService.findMovie(id);
+      if (movie == null) {
+         return ResponseEntity.badRequest()
+               .body("Invalid movie id");
+      }
 
-		return ResponseEntity.ok(movie);
-	}
+      return ResponseEntity.ok(movie);
+   }
 
-	@GetMapping("/welcome")
-	public ResponseEntity<?> welcome(HttpServletResponse response) {
+   @GetMapping("/welcome")
+   public ResponseEntity<?> welcome(HttpServletResponse response) {
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
-		headers.add("sessionId", UUID.randomUUID()
-			.toString());
+      HttpHeaders headers = new HttpHeaders();
+      headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=UTF-8");
+      headers.add("sessionId", UUID.randomUUID()
+            .toString());
 
-		Cookie cookie = new Cookie("token", "some-token");
-		cookie.setDomain("localhost");
+      Cookie cookie = new Cookie("token", "some-token");
+      cookie.setDomain("localhost");
 
-		response.addCookie(cookie);
+      response.addCookie(cookie);
 
-		return ResponseEntity.noContent()
-			.headers(headers)
-			.build();
-	}
+      return ResponseEntity.noContent()
+            .headers(headers)
+            .build();
+   }
 
-	@GetMapping("/download/{id}")
-	public ResponseEntity<Resource> getFile(@PathVariable int id) throws FileNotFoundException {
+   @GetMapping("/download/{id}")
+   public ResponseEntity<Resource> getFile(@PathVariable int id) throws FileNotFoundException {
 
-		File file = appService.getFile(id);
+      File file = appService.getFile(id);
 
-		if (file == null) {
-			return ResponseEntity.notFound()
-				.build();
-		}
+      if (file == null) {
+         return ResponseEntity.notFound()
+               .build();
+      }
 
-		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+      InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
-		return ResponseEntity.ok()
-			.contentLength(file.length())
-			.contentType(MediaType.parseMediaType("application/octet-stream"))
-			.body(resource);
-	}
+      return ResponseEntity.ok()
+            .contentLength(file.length())
+            .contentType(MediaType.parseMediaType("application/octet-stream"))
+            .body(resource);
+   }
 
 }

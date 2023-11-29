@@ -22,23 +22,23 @@ import static org.hamcrest.CoreMatchers.hasItem;
 @RunWith(SerenityRunner.class)
 public class GoogleSearchScreenplayLiveTest {
 
-	@Managed(driver = "chrome")
-	private WebDriver browser;
+   @Managed(driver = "chrome")
+   private WebDriver browser;
 
-	private Actor kitty = Actor.named("kitty");
+   private Actor kitty = Actor.named("kitty");
 
-	@Before
-	public void setup() {
-		kitty.can(BrowseTheWeb.with(browser));
-	}
+   @Before
+   public void setup() {
+      kitty.can(BrowseTheWeb.with(browser));
+   }
 
-	@Test
-	public void whenGoogleBaeldungThenShouldSeeEugen() {
-		givenThat(kitty).wasAbleTo(StartWith.googleSearchPage());
+   @Test
+   public void whenGoogleBaeldungThenShouldSeeEugen() {
+      givenThat(kitty).wasAbleTo(StartWith.googleSearchPage());
 
-		when(kitty).attemptsTo(SearchForKeyword.of("baeldung"));
+      when(kitty).attemptsTo(SearchForKeyword.of("baeldung"));
 
-		then(kitty).should(GivenWhenThen.seeThat(GoogleSearchResults.displayed(), hasItem(containsString("Eugen (Baeldung)"))));
-	}
+      then(kitty).should(GivenWhenThen.seeThat(GoogleSearchResults.displayed(), hasItem(containsString("Eugen (Baeldung)"))));
+   }
 
 }

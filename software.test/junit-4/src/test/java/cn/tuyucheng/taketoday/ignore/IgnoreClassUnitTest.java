@@ -6,8 +6,8 @@ import org.junit.Test;
 @Ignore("Class not ready for tests")
 public class IgnoreClassUnitTest {
 
-    @Test
-    public void whenDoTest_thenAssert() {
+   @Test
+   public void whenDoTest_thenAssert() {
 
-    }
+   }
 }

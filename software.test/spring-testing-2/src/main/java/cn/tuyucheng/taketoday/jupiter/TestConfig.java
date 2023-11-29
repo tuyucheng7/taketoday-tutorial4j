@@ -7,13 +7,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 public class TestConfig {
 
-	@Bean
-	static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+   @Bean
+   static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+      return new PropertySourcesPlaceholderConfigurer();
+   }
 
-	@Bean
-	Task taskName() {
-		return new Task("taskName", 1);
-	}
+   @Bean
+   Task taskName() {
+      return new Task("taskName", 1);
+   }
 }

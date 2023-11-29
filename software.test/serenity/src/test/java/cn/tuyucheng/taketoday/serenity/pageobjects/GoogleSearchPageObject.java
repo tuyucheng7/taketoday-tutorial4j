@@ -16,25 +16,25 @@ public class GoogleSearchPageObject extends PageObject {
     /* The selectors "q", "._ksh" and "button[id='L2AGLb'] div[role='none']" must be appropriate for your own context.
        you can inspect the desired element on the web page you are testing to get the appropriate selector */
 
-	@FindBy(name = "q")
-	private WebElement search;
+   @FindBy(name = "q")
+   private WebElement search;
 
-	@FindBy(css = "._ksh")
-	private WebElement result;
+   @FindBy(css = "._ksh")
+   private WebElement result;
 
-	@FindBy(css = "button[id='L2AGLb'] div[role='none']")
-	private WebElement validateCookies;
+   @FindBy(css = "button[id='L2AGLb'] div[role='none']")
+   private WebElement validateCookies;
 
-	public void searchFor(String keyword) {
-		search.sendKeys(keyword, Keys.ENTER);
-	}
+   public void searchFor(String keyword) {
+      search.sendKeys(keyword, Keys.ENTER);
+   }
 
-	public void resultMatches(String expected) {
-		withTimeoutOf(5, SECONDS).waitFor(result).waitUntilVisible();
-		assertThat(result.getText(), containsString(expected));
-	}
+   public void resultMatches(String expected) {
+      withTimeoutOf(5, SECONDS).waitFor(result).waitUntilVisible();
+      assertThat(result.getText(), containsString(expected));
+   }
 
-	public void validateCookies() {
-		validateCookies.click();
-	}
+   public void validateCookies() {
+      validateCookies.click();
+   }
 }

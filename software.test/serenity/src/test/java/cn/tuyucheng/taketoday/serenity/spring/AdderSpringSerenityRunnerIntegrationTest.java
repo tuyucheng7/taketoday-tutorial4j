@@ -15,17 +15,17 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(locations = "classpath:adder-beans.xml")
 public class AdderSpringSerenityRunnerIntegrationTest {
 
-	@Steps
-	private AdderSteps adderSteps;
+   @Steps
+   private AdderSteps adderSteps;
 
-	@Value("#{props['adder']}")
-	private int adder;
+   @Value("#{props['adder']}")
+   private int adder;
 
-	@Test
-	public void givenNumber_whenAdd_thenSummedUp() {
-		adderSteps.givenNumber();
-		adderSteps.whenAdd(adder);
-		adderSteps.thenSummedUp();
-	}
+   @Test
+   public void givenNumber_whenAdd_thenSummedUp() {
+      adderSteps.givenNumber();
+      adderSteps.whenAdd(adder);
+      adderSteps.thenSummedUp();
+   }
 
 }

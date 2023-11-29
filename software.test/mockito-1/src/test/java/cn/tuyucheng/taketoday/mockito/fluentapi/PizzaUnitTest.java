@@ -3,9 +3,7 @@ package cn.tuyucheng.taketoday.mockito.fluentapi;
 import cn.tuyucheng.taketoday.mockito.fluentapi.Pizza.PizzaSize;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PizzaUnitTest {
 

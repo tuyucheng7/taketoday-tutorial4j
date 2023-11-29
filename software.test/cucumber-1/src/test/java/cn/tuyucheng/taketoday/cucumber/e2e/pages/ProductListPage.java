@@ -14,43 +14,43 @@ import java.util.List;
 
 public class ProductListPage {
 
-	WebDriver driver;
+   WebDriver driver;
 
-	public ProductListPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+   public ProductListPage(WebDriver driver) {
+      this.driver = driver;
+      PageFactory.initElements(driver, this);
+   }
 
-	@FindBy(how = How.CSS, using = "button.single_add_to_cart_button")
-	private WebElement btn_addToCart;
+   @FindBy(how = How.CSS, using = "button.single_add_to_cart_button")
+   private WebElement btn_addToCart;
 
-	@FindAll(@FindBy(how = How.CSS, using = ".noo-product-inner"))
-	private List<WebElement> product_list;
+   @FindAll(@FindBy(how = How.CSS, using = ".noo-product-inner"))
+   private List<WebElement> product_list;
 
-	@FindBy(how = How.ID, using = "pa_color")
-	private WebElement color_li;
+   @FindBy(how = How.ID, using = "pa_color")
+   private WebElement color_li;
 
-	@FindBy(how = How.ID, using = "pa_size")
-	private WebElement size_li;
+   @FindBy(how = How.ID, using = "pa_size")
+   private WebElement size_li;
 
-	public void clickOn_addToCart() {
-		btn_addToCart.click();
-		Wait.untilJqueryIsDone(driver);
-	}
+   public void clickOn_addToCart() {
+      btn_addToCart.click();
+      Wait.untilJqueryIsDone(driver);
+   }
 
-	public void select_product(int productNumber) {
-		product_list.get(productNumber).click();
-	}
+   public void select_product(int productNumber) {
+      product_list.get(productNumber).click();
+   }
 
-	public void select_color(int index) {
-		new Select(color_li).selectByIndex(index);
-	}
+   public void select_color(int index) {
+      new Select(color_li).selectByIndex(index);
+   }
 
-	public void select_size(int index) {
-		new Select(size_li).selectByIndex(index);
-	}
+   public void select_size(int index) {
+      new Select(size_li).selectByIndex(index);
+   }
 
-	public String getProductName(int productNumber) {
-		return product_list.get(productNumber).findElement(By.cssSelector("h3")).getText();
-	}
+   public String getProductName(int productNumber) {
+      return product_list.get(productNumber).findElement(By.cssSelector("h3")).getText();
+   }
 }

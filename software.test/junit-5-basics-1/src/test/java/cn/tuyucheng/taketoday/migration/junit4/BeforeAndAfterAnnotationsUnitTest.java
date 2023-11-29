@@ -17,35 +17,35 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnit4.class)
 public class BeforeAndAfterAnnotationsUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(BeforeAndAfterAnnotationsUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(BeforeAndAfterAnnotationsUnitTest.class);
 
-	private List<String> list;
+   private List<String> list;
 
-	@Before
-	public void init() {
-		LOG.debug("startup");
-		list = new ArrayList<>(Arrays.asList("test1", "test2"));
-	}
+   @Before
+   public void init() {
+      LOG.debug("startup");
+      list = new ArrayList<>(Arrays.asList("test1", "test2"));
+   }
 
-	@After
-	public void teardown() {
-		LOG.debug("teardown");
-		list.clear();
-	}
+   @After
+   public void teardown() {
+      LOG.debug("teardown");
+      list.clear();
+   }
 
-	@Test
-	public void whenCheckingListSize_thenSizeEqualsToInit() {
-		LOG.debug("executing test");
-		assertEquals(2, list.size());
+   @Test
+   public void whenCheckingListSize_thenSizeEqualsToInit() {
+      LOG.debug("executing test");
+      assertEquals(2, list.size());
 
-		list.add("another test");
-	}
+      list.add("another test");
+   }
 
-	@Test
-	public void whenCheckingListSizeAgain_thenSizeEqualsToInit() {
-		LOG.debug("executing another test");
-		assertEquals(2, list.size());
+   @Test
+   public void whenCheckingListSizeAgain_thenSizeEqualsToInit() {
+      LOG.debug("executing another test");
+      assertEquals(2, list.size());
 
-		list.add("yet another test");
-	}
+      list.add("yet another test");
+   }
 }

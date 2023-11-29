@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories
 public class SpringJMeterJenkinsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringJMeterJenkinsApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringJMeterJenkinsApplication.class, args);
+   }
 }

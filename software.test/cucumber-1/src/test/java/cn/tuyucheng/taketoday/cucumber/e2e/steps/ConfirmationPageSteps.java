@@ -9,20 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConfirmationPageSteps {
 
-	TestContext testContext;
-	ConfirmationPage confirmationPage;
+   TestContext testContext;
+   ConfirmationPage confirmationPage;
 
-	public ConfirmationPageSteps(TestContext testContext) {
-		this.testContext = testContext;
-		confirmationPage = testContext.getPageObjectManager().getConfirmationPage();
-	}
+   public ConfirmationPageSteps(TestContext testContext) {
+      this.testContext = testContext;
+      confirmationPage = testContext.getPageObjectManager().getConfirmationPage();
+   }
 
-	@Then("verify the order details")
-	public void verify_the_order_details() {
-		String productName = (String) testContext.scenarioContext.getContext(Context.PRODUCT_NAME);
-		assertTrue(confirmationPage.getProductNames().stream()
-				.filter(x -> x.contains(productName.toLowerCase())).findFirst()
-				.get()
-				.length() > 0);
-	}
+   @Then("verify the order details")
+   public void verify_the_order_details() {
+      String productName = (String) testContext.scenarioContext.getContext(Context.PRODUCT_NAME);
+      assertTrue(confirmationPage.getProductNames().stream()
+            .filter(x -> x.contains(productName.toLowerCase())).findFirst()
+            .get()
+            .length() > 0);
+   }
 }

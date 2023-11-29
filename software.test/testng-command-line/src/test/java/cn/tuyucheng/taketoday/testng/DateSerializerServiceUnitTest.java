@@ -7,17 +7,17 @@ import java.util.Date;
 
 @Test(testName = "Date Serializer")
 public class DateSerializerServiceUnitTest {
-	private DateSerializerService toTest;
+   private DateSerializerService toTest;
 
-	@BeforeClass
-	public void beforeClass() {
-		toTest = new DateSerializerService();
-	}
+   @BeforeClass
+   public void beforeClass() {
+      toTest = new DateSerializerService();
+   }
 
-	@Test(expectedExceptions = {NullPointerException.class})
-	void givenNullDate_whenSerializeDate_thenThrowsException() {
-		Date dateToTest = null;
+   @Test(expectedExceptions = {NullPointerException.class})
+   void givenNullDate_whenSerializeDate_thenThrowsException() {
+      Date dateToTest = null;
 
-		toTest.serializeDate(dateToTest, "yyyy/MM/dd HH:mm:ss.SSS");
-	}
+      toTest.serializeDate(dateToTest, "yyyy/MM/dd HH:mm:ss.SSS");
+   }
 }

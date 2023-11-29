@@ -15,26 +15,26 @@ import static org.hamcrest.Matchers.containsString;
  */
 public class DigestAuthenticationLiveTest {
 
-	private static final String USER = "user1";
-	private static final String PASSWORD = "user1Pass";
-	private static final String SVC_URL = "http://localhost:8080/spring-security-mvc-digest-auth/homepage.html";
+   private static final String USER = "user1";
+   private static final String PASSWORD = "user1Pass";
+   private static final String SVC_URL = "http://localhost:8080/spring-security-mvc-digest-auth/homepage.html";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.UNAUTHORIZED.value());
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.UNAUTHORIZED.value());
+   }
 
-	@Test
-	public void givenFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		given().auth()
-			.digest(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("This is the body of the sample view"));
-	}
+   @Test
+   public void givenFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      given().auth()
+            .digest(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("This is the body of the sample view"));
+   }
 }

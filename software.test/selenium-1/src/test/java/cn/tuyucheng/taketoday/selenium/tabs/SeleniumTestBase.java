@@ -14,46 +14,46 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class SeleniumTestBase {
 
-    protected static WebDriver driver;
-    protected static TabHelper tabHelper;
+   protected static WebDriver driver;
+   protected static TabHelper tabHelper;
 
-    private static void setupChromeDriver() {
-        WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
+   private static void setupChromeDriver() {
+      WebDriverManager.chromedriver().setup();
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
 
-        driver = new ChromeDriver(options);
-        options();
-        tabHelper = new TabHelper(driver);
-    }
+      driver = new ChromeDriver(options);
+      options();
+      tabHelper = new TabHelper(driver);
+   }
 
-    private static void options() {
-        driver.manage().window().maximize();
-    }
+   private static void options() {
+      driver.manage().window().maximize();
+   }
 
-    /**
-     * Initializes the ChromeDriver before all tests.
-     */
-    @BeforeAll
-    public static void init() {
-        setupChromeDriver();
-    }
+   /**
+    * Initializes the ChromeDriver before all tests.
+    */
+   @BeforeAll
+   public static void init() {
+      setupChromeDriver();
+   }
 
-    /**
-     * After each test all tabs except the current tab will be closed.
-     */
-    @AfterEach
-    public void closeTabs() {
-        tabHelper.closeAllTabsExceptCurrent();
-    }
+   /**
+    * After each test all tabs except the current tab will be closed.
+    */
+   @AfterEach
+   public void closeTabs() {
+      tabHelper.closeAllTabsExceptCurrent();
+   }
 
-    /**
-     * After all tests the browser will be closed.
-     */
-    @AfterAll
-    public static void cleanup() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+   /**
+    * After all tests the browser will be closed.
+    */
+   @AfterAll
+   public static void cleanup() {
+      if (driver != null) {
+         driver.quit();
+      }
+   }
 }

@@ -10,35 +10,35 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MockWebServerApplication implements CommandLineRunner {
-	public static final Logger LOGGER = LoggerFactory.getLogger(MockWebServerApplication.class);
+   public static final Logger LOGGER = LoggerFactory.getLogger(MockWebServerApplication.class);
 
-	private final UsersClient usersClient;
-	private final ObjectMapper objectMapper;
+   private final UsersClient usersClient;
+   private final ObjectMapper objectMapper;
 
-	public MockWebServerApplication(UsersClient usersClient, ObjectMapper objectMapper) {
-		this.usersClient = usersClient;
-		this.objectMapper = objectMapper;
-	}
+   public MockWebServerApplication(UsersClient usersClient, ObjectMapper objectMapper) {
+      this.usersClient = usersClient;
+      this.objectMapper = objectMapper;
+   }
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(MockWebServerApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MockWebServerApplication.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		LOGGER.info("name: {}", usersClient.getUserById(1L).get("name"));
-		System.out.println(usersClient.getUserById(1L));
+   @Override
+   public void run(String... args) throws Exception {
+      LOGGER.info("name: {}", usersClient.getUserById(1L).get("name"));
+      System.out.println(usersClient.getUserById(1L));
 
-		ObjectNode objectNode = objectMapper.createObjectNode();
-		objectNode.put("name", "duke");
-		objectNode.put("email", "duke@java.io");
-		objectNode.set("address",
-			objectMapper.createObjectNode()
-				.put("street", "main")
-				.put("postalCode", "91074"));
-		objectNode.set("hobbies", objectMapper.createArrayNode().add("sports").add("bowling"));
+      ObjectNode objectNode = objectMapper.createObjectNode();
+      objectNode.put("name", "duke");
+      objectNode.put("email", "duke@java.io");
+      objectNode.set("address",
+            objectMapper.createObjectNode()
+                  .put("street", "main")
+                  .put("postalCode", "91074"));
+      objectNode.set("hobbies", objectMapper.createArrayNode().add("sports").add("bowling"));
 
-		System.out.println(usersClient.createNewUser(objectNode));
-	}
+      System.out.println(usersClient.createNewUser(objectNode));
+   }
 }

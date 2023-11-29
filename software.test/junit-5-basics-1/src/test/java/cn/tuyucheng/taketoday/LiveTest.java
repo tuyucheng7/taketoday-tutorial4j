@@ -12,27 +12,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LiveTest {
 
-	private List<String> in = new ArrayList<>(Arrays.asList("Hello", "Yes", "No"));
-	private List<String> out = new ArrayList<>(Arrays.asList("Cześć", "Tak", "Nie"));
+   private List<String> in = new ArrayList<>(Arrays.asList("Hello", "Yes", "No"));
+   private List<String> out = new ArrayList<>(Arrays.asList("Cześć", "Tak", "Nie"));
 
-	@TestFactory
-	Stream<DynamicTest> translateDynamicTestsFromStream() {
+   @TestFactory
+   Stream<DynamicTest> translateDynamicTestsFromStream() {
 
-		return in.stream()
-			.map(word -> DynamicTest.dynamicTest("Test translate " + word, () -> {
-				int id = in.indexOf(word);
-				assertEquals(out.get(id), translate(word));
-			}));
-	}
+      return in.stream()
+            .map(word -> DynamicTest.dynamicTest("Test translate " + word, () -> {
+               int id = in.indexOf(word);
+               assertEquals(out.get(id), translate(word));
+            }));
+   }
 
-	private String translate(String word) {
-		if ("Hello".equalsIgnoreCase(word)) {
-			return "Cześć";
-		} else if ("Yes".equalsIgnoreCase(word)) {
-			return "Tak";
-		} else if ("No".equalsIgnoreCase(word)) {
-			return "Nie";
-		}
-		return "Error";
-	}
+   private String translate(String word) {
+      if ("Hello".equalsIgnoreCase(word)) {
+         return "Cześć";
+      } else if ("Yes".equalsIgnoreCase(word)) {
+         return "Tak";
+      } else if ("No".equalsIgnoreCase(word)) {
+         return "Nie";
+      }
+      return "Error";
+   }
 }

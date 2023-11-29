@@ -13,14 +13,14 @@ import java.util.List;
 @RestController
 public class SmurfsController {
 
-	private SmurfsService smurfs;
+   private SmurfsService smurfs;
 
-	public SmurfsController(SmurfsService smurfs) {
-		this.smurfs = smurfs;
-	}
+   public SmurfsController(SmurfsService smurfs) {
+      this.smurfs = smurfs;
+   }
 
-	@GetMapping
-	public List<SmurfDTO> getSmurfs() {
-		return smurfs.findAll();
-	}
+   @GetMapping
+   public List<SmurfDTO> getSmurfs() {
+      return smurfs.findAll();
+   }
 }

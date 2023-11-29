@@ -14,19 +14,19 @@ import org.junit.runner.RunWith;
 @RunWith(SerenityRunner.class)
 public class AdderMockMvcIntegrationTest {
 
-	@Before
-	public void init() {
-		RestAssuredMockMvc.standaloneSetup(new PlainAdderController());
-	}
+   @Before
+   public void init() {
+      RestAssuredMockMvc.standaloneSetup(new PlainAdderController());
+   }
 
-	@Steps
-	AdderRestSteps steps;
+   @Steps
+   AdderRestSteps steps;
 
-	@Test
-	public void givenNumber_whenAdd_thenSummedUp() throws Exception {
-		steps.givenCurrentNumber();
-		steps.whenAddNumber(RandomNumberUtil.randomInt());
-		steps.thenSummedUp();
-	}
+   @Test
+   public void givenNumber_whenAdd_thenSummedUp() throws Exception {
+      steps.givenCurrentNumber();
+      steps.whenAddNumber(RandomNumberUtil.randomInt());
+      steps.thenSummedUp();
+   }
 
 }

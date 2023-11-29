@@ -11,48 +11,48 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(Enclosed.class)
 public class GettingStartedWithSystemStubsJUnit4UnitTest {
-	public static class SetEnvironmentInsideTest {
-		@Rule
-		public EnvironmentVariablesRule environmentVariablesRule = new EnvironmentVariablesRule();
+   public static class SetEnvironmentInsideTest {
+      @Rule
+      public EnvironmentVariablesRule environmentVariablesRule = new EnvironmentVariablesRule();
 
-		@Test
-		public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
-			environmentVariablesRule.set("ENV", "value1");
+      @Test
+      public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
+         environmentVariablesRule.set("ENV", "value1");
 
-			assertThat(System.getenv("ENV")).isEqualTo("value1");
-		}
-	}
+         assertThat(System.getenv("ENV")).isEqualTo("value1");
+      }
+   }
 
-	public static class SetEnvironmentAtConstruction {
-		@Rule
-		public EnvironmentVariablesRule environmentVariablesRule =
-			new EnvironmentVariablesRule("ENV", "value1",
-				"ENV2", "value2");
-
-
-		@Test
-		public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
-			assertThat(System.getenv("ENV")).isEqualTo("value1");
-			assertThat(System.getenv("ENV2")).isEqualTo("value2");
-		}
-	}
-
-	public static class SetEnvironmentInBefore {
-		@Rule
-		public EnvironmentVariablesRule environmentVariablesRule =
-			new EnvironmentVariablesRule();
-
-		@Before
-		public void before() {
-			environmentVariablesRule.set("ENV", "value1")
-				.set("ENV2", "value2");
-		}
+   public static class SetEnvironmentAtConstruction {
+      @Rule
+      public EnvironmentVariablesRule environmentVariablesRule =
+            new EnvironmentVariablesRule("ENV", "value1",
+                  "ENV2", "value2");
 
 
-		@Test
-		public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
-			assertThat(System.getenv("ENV")).isEqualTo("value1");
-			assertThat(System.getenv("ENV2")).isEqualTo("value2");
-		}
-	}
+      @Test
+      public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
+         assertThat(System.getenv("ENV")).isEqualTo("value1");
+         assertThat(System.getenv("ENV2")).isEqualTo("value2");
+      }
+   }
+
+   public static class SetEnvironmentInBefore {
+      @Rule
+      public EnvironmentVariablesRule environmentVariablesRule =
+            new EnvironmentVariablesRule();
+
+      @Before
+      public void before() {
+         environmentVariablesRule.set("ENV", "value1")
+               .set("ENV2", "value2");
+      }
+
+
+      @Test
+      public void givenEnvironmentCanBeModified_whenSetEnvironment_thenItIsSet() {
+         assertThat(System.getenv("ENV")).isEqualTo("value1");
+         assertThat(System.getenv("ENV2")).isEqualTo("value2");
+      }
+   }
 }

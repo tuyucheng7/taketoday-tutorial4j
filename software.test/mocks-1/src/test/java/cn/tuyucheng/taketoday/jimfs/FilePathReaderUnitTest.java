@@ -13,36 +13,36 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FilePathReaderUnitTest {
 
-	private static final String DIRECTORY_NAME = "baeldung";
+   private static final String DIRECTORY_NAME = "baeldung";
 
-	private final FilePathReader filePathReader = new FilePathReader();
+   private final FilePathReader filePathReader = new FilePathReader();
 
-	@Test
-	@DisplayName("Should get path on windows")
-	void givenWindowsSystem_shouldGetPath_thenReturnWindowsPath() throws Exception {
-		final FileSystem fileSystem = Jimfs.newFileSystem(Configuration.windows());
-		final Path path = getPathToFile(fileSystem);
+   @Test
+   @DisplayName("Should get path on windows")
+   void givenWindowsSystem_shouldGetPath_thenReturnWindowsPath() throws Exception {
+      final FileSystem fileSystem = Jimfs.newFileSystem(Configuration.windows());
+      final Path path = getPathToFile(fileSystem);
 
-		final String stringPath = filePathReader.getSystemPath(path);
+      final String stringPath = filePathReader.getSystemPath(path);
 
-		assertEquals("C:\\work\\" + DIRECTORY_NAME, stringPath);
-	}
+      assertEquals("C:\\work\\" + DIRECTORY_NAME, stringPath);
+   }
 
-	@Test
-	@DisplayName("Should get path on unix")
-	void givenUnixSystem_shouldGetPath_thenReturnUnixPath() throws Exception {
-		final FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
-		final Path path = getPathToFile(fileSystem);
+   @Test
+   @DisplayName("Should get path on unix")
+   void givenUnixSystem_shouldGetPath_thenReturnUnixPath() throws Exception {
+      final FileSystem fileSystem = Jimfs.newFileSystem(Configuration.unix());
+      final Path path = getPathToFile(fileSystem);
 
-		final String stringPath = filePathReader.getSystemPath(path);
+      final String stringPath = filePathReader.getSystemPath(path);
 
-		assertEquals("/work/" + DIRECTORY_NAME, stringPath);
-	}
+      assertEquals("/work/" + DIRECTORY_NAME, stringPath);
+   }
 
-	private Path getPathToFile(final FileSystem fileSystem) throws Exception {
-		final Path path = fileSystem.getPath(DIRECTORY_NAME);
-		Files.createDirectory(path);
+   private Path getPathToFile(final FileSystem fileSystem) throws Exception {
+      final Path path = fileSystem.getPath(DIRECTORY_NAME);
+      Files.createDirectory(path);
 
-		return path;
-	}
+      return path;
+   }
 }

@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PhoneNumber {
-	private String home;
-	private String mob;
+   private String home;
+   private String mob;
 }

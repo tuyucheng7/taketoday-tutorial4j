@@ -15,18 +15,18 @@ import java.util.stream.Stream;
 @ContextConfiguration(classes = StringConverter.class)
 @RunWith(SpringRunner.class)
 public class StringConverterSpringRunnerUnitTest {
-	@MockBean
-	private DataProvider dataProvider;
+   @MockBean
+   private DataProvider dataProvider;
 
-	@Autowired
-	private StringConverter stringConverter;
+   @Autowired
+   private StringConverter stringConverter;
 
-	@Test
-	public void givenStrings_whenConvert_thenReturnUpperCase() {
-		Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
+   @Test
+   public void givenStrings_whenConvert_thenReturnUpperCase() {
+      Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
 
-		val result = stringConverter.convert();
+      val result = stringConverter.convert();
 
-		Assertions.assertThat(result).contains("FIRST", "SECOND");
-	}
+      Assertions.assertThat(result).contains("FIRST", "SECOND");
+   }
 }

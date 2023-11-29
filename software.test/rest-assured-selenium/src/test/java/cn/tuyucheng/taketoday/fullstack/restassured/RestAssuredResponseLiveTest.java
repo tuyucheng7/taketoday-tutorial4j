@@ -15,110 +15,110 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RestAssuredResponseLiveTest {
 
-	@Test
-	void whenAccessBooks_thenStatusCodeShouldBe200() {
-		baseURI = "https://demoqa.com/BookStore/v1/Books";
+   @Test
+   void whenAccessBooks_thenStatusCodeShouldBe200() {
+      baseURI = "https://demoqa.com/BookStore/v1/Books";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("");
-		// Get the status code of the request. If request is successful, status code will be 200.
-		int statusCode = response.getStatusCode();
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("");
+      // Get the status code of the request. If request is successful, status code will be 200.
+      int statusCode = response.getStatusCode();
 
-		// Assert that correct status code is returned.
-		assertEquals(200, statusCode, "InCorrect status code returned");
-	}
+      // Assert that correct status code is returned.
+      assertEquals(200, statusCode, "InCorrect status code returned");
+   }
 
-	@Test
-	void givenNoneExistsUserId_whenGetUserDetails_thenStatuesCodeShouldBe401() {
-		baseURI = "https://demoqa.com/Account/v1/User";
+   @Test
+   void givenNoneExistsUserId_whenGetUserDetails_thenStatuesCodeShouldBe401() {
+      baseURI = "https://demoqa.com/Account/v1/User";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("test");
-		int statusCode = response.getStatusCode();
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("test");
+      int statusCode = response.getStatusCode();
 
-		assertEquals(401, statusCode, "InCorrect status code returned");
-	}
+      assertEquals(401, statusCode, "InCorrect status code returned");
+   }
 
-	@Test
-	void givenAccessBooks_whenAssertStatusLine_thenShouldCorrect() {
-		baseURI = "https://demoqa.com/BookStore/v1/Books";
+   @Test
+   void givenAccessBooks_whenAssertStatusLine_thenShouldCorrect() {
+      baseURI = "https://demoqa.com/BookStore/v1/Books";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("");
-		String statusLine = response.getStatusLine();
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("");
+      String statusLine = response.getStatusLine();
 
-		// Get the status line from the Response in a variable called statusLine
-		assertEquals("HTTP/1.1 200 OK", statusLine);
-	}
+      // Get the status line from the Response in a variable called statusLine
+      assertEquals("HTTP/1.1 200 OK", statusLine);
+   }
 
-	@Test
-	void givenAccessBooks_whenGetAllResponseHeaders_thenIterating() {
-		baseURI = "https://demoqa.com/BookStore/v1/Books";
+   @Test
+   void givenAccessBooks_whenGetAllResponseHeaders_thenIterating() {
+      baseURI = "https://demoqa.com/BookStore/v1/Books";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("");
-		Headers allHeaders = response.headers();
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("");
+      Headers allHeaders = response.headers();
 
-		allHeaders.forEach(header -> System.out.println("Key: " + header.getName() + " Value: " + header.getValue()));
-	}
+      allHeaders.forEach(header -> System.out.println("Key: " + header.getName() + " Value: " + header.getValue()));
+   }
 
-	@Test
-	void givenAccessBooks_whenGetSomeHeaders_thenAssertShouldBeCorrect() {
-		baseURI = "https://demoqa.com/BookStore/v1/Books";
+   @Test
+   void givenAccessBooks_whenGetSomeHeaders_thenAssertShouldBeCorrect() {
+      baseURI = "https://demoqa.com/BookStore/v1/Books";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("");
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("");
 
-		String contentType = response.getHeader("Content-Type");
-		assertEquals("application/json; charset=utf-8", contentType);
+      String contentType = response.getHeader("Content-Type");
+      assertEquals("application/json; charset=utf-8", contentType);
 
-		String serverType = response.getHeader("Server");
-		assertEquals("nginx/1.17.10 (Ubuntu)", serverType);
+      String serverType = response.getHeader("Server");
+      assertEquals("nginx/1.17.10 (Ubuntu)", serverType);
 
-		String acceptLanguage = response.header("Content-Encoding");
-		assertNull(acceptLanguage);
-	}
+      String acceptLanguage = response.header("Content-Encoding");
+      assertNull(acceptLanguage);
+   }
 
-	@Test
-	void givenCityNameWithHyderabad_whenAccessWeather_thenPrintBody() {
-		baseURI = "https://demoqa.com/utilities/weather/city";
+   @Test
+   void givenCityNameWithHyderabad_whenAccessWeather_thenPrintBody() {
+      baseURI = "https://demoqa.com/utilities/weather/city";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("/Hyderabad");
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("/Hyderabad");
 
-		// Retrieve the body of the Response
-		ResponseBody body = response.getBody();
+      // Retrieve the body of the Response
+      ResponseBody body = response.getBody();
 
-		// By using the ResponseBody.asString() method, we can convert the body into the string representation.
-		System.out.println(body.asString());
-	}
+      // By using the ResponseBody.asString() method, we can convert the body into the string representation.
+      System.out.println(body.asString());
+   }
 
-	@Test
-	void givenCityNameWithHyderabad_whenAccessWeather_thenAssertBodyContainsHyderabad() {
-		baseURI = "https://demoqa.com/utilities/weather/city";
+   @Test
+   void givenCityNameWithHyderabad_whenAccessWeather_thenAssertBodyContainsHyderabad() {
+      baseURI = "https://demoqa.com/utilities/weather/city";
 
-		RequestSpecification httpRequest = given();
-		Response response = httpRequest.get("/Hyderabad");
+      RequestSpecification httpRequest = given();
+      Response response = httpRequest.get("/Hyderabad");
 
-		ResponseBody body = response.getBody();
-		String bodyAsString = body.asString();
+      ResponseBody body = response.getBody();
+      String bodyAsString = body.asString();
 
-		assertTrue(bodyAsString.contains("Hyderabad"));
-	}
+      assertTrue(bodyAsString.contains("Hyderabad"));
+   }
 
-	@Test
-	void givenCityNameWithHyderabad_whenAccessWeather_thenAssertCityNodeShouldCorrect() {
-		baseURI = "https://demoqa.com/utilities/weather/city";
+   @Test
+   void givenCityNameWithHyderabad_whenAccessWeather_thenAssertCityNodeShouldCorrect() {
+      baseURI = "https://demoqa.com/utilities/weather/city";
 
-		Response response = given().get("/Hyderabad");
+      Response response = given().get("/Hyderabad");
 
-		// First get the JsonPath object instance from the Response interface.
-		JsonPath jsonPathEvaluator = response.jsonPath();
+      // First get the JsonPath object instance from the Response interface.
+      JsonPath jsonPathEvaluator = response.jsonPath();
 
-		// Then simply query the JsonPath object to get a String value of the node specified by JsonPath: City
-		// Note: You should not put $. in the Java node.
-		String city = jsonPathEvaluator.get("City");
+      // Then simply query the JsonPath object to get a String value of the node specified by JsonPath: City
+      // Note: You should not put $. in the Java node.
+      String city = jsonPathEvaluator.get("City");
 
-		assertEquals("Hyderabad", city);
-	}
+      assertEquals("Hyderabad", city);
+   }
 }

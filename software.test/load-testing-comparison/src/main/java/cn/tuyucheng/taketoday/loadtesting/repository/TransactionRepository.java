@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
 
-    List<Transaction> findByCustomerRewardsId(Integer rewardsId);
+   List<Transaction> findByCustomerRewardsId(Integer rewardsId);
 }

@@ -13,23 +13,23 @@ import static org.hamcrest.core.IsEqual.equalTo;
  */
 public class AdderRestSteps {
 
-	private MockMvcResponse mockMvcResponse;
-	private int currentNum;
+   private MockMvcResponse mockMvcResponse;
+   private int currentNum;
 
-	@Step("get the current number")
-	public void givenCurrentNumber() throws UnsupportedEncodingException {
-		currentNum = Integer.valueOf(given().when().get("/adder/current").mvcResult().getResponse().getContentAsString());
-	}
+   @Step("get the current number")
+   public void givenCurrentNumber() throws UnsupportedEncodingException {
+      currentNum = Integer.valueOf(given().when().get("/adder/current").mvcResult().getResponse().getContentAsString());
+   }
 
-	@Step("adding {0}")
-	public void whenAddNumber(int num) {
-		mockMvcResponse = given().queryParam("num", num).when().post("/adder");
-		currentNum += num;
-	}
+   @Step("adding {0}")
+   public void whenAddNumber(int num) {
+      mockMvcResponse = given().queryParam("num", num).when().post("/adder");
+      currentNum += num;
+   }
 
-	@Step("got the sum")
-	public void thenSummedUp() {
-		mockMvcResponse.then().statusCode(200).body(equalTo(currentNum + ""));
-	}
+   @Step("got the sum")
+   public void thenSummedUp() {
+      mockMvcResponse.then().statusCode(200).body(equalTo(currentNum + ""));
+   }
 
 }

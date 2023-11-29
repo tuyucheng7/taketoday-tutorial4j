@@ -13,28 +13,28 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class FirstUnitTest {
 
-	@Test
-	void lambdaExpressions() {
-		List<Integer> numbers = Arrays.asList(1, 2, 3);
-		assertTrue(numbers.stream()
-			.mapToInt(Integer::intValue)
-			.sum() > 5, "Sum should be greater than 5");
-	}
+   @Test
+   void lambdaExpressions() {
+      List<Integer> numbers = Arrays.asList(1, 2, 3);
+      assertTrue(numbers.stream()
+            .mapToInt(Integer::intValue)
+            .sum() > 5, "Sum should be greater than 5");
+   }
 
-	@Disabled("test to show MultipleFailuresError")
-	@Test
-	void groupAssertions() {
-		int[] numbers = {0, 1, 2, 3, 4};
-		assertAll("numbers",
-			() -> assertEquals(numbers[0], 1),
-			() -> assertEquals(numbers[3], 3),
-			() -> assertEquals(numbers[4], 1)
-		);
-	}
+   @Disabled("test to show MultipleFailuresError")
+   @Test
+   void groupAssertions() {
+      int[] numbers = {0, 1, 2, 3, 4};
+      assertAll("numbers",
+            () -> assertEquals(numbers[0], 1),
+            () -> assertEquals(numbers[3], 3),
+            () -> assertEquals(numbers[4], 1)
+      );
+   }
 
-	@Test
-	@Disabled("Disabled test example")
-	void disabledTest() {
-		fail();
-	}
+   @Test
+   @Disabled("Disabled test example")
+   void disabledTest() {
+      fail();
+   }
 }

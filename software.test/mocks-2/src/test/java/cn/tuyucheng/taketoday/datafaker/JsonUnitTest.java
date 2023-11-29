@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class JsonUnitTest {
 
-	private static final ObjectMapper objectMapper = new ObjectMapper();
+   private static final ObjectMapper objectMapper = new ObjectMapper();
 
-	@Test
-	void whenGettingJsonExpression_thenResultIsValidJson() {
-		assertAll(
-				() -> assertThatNoException().isThrownBy(() -> objectMapper.readTree(Json.getExpression())),
-				() -> assertThat(Json.getExpression()).isNotBlank()
-		);
-	}
+   @Test
+   void whenGettingJsonExpression_thenResultIsValidJson() {
+      assertAll(
+            () -> assertThatNoException().isThrownBy(() -> objectMapper.readTree(Json.getExpression())),
+            () -> assertThat(Json.getExpression()).isNotBlank()
+      );
+   }
 }

@@ -9,26 +9,26 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 
 public class IncreaseSteps {
-	private int counter;
-	private int previousValue;
+   private int counter;
+   private int previousValue;
 
-	@Given("a counter")
-	public void aCounter() {
-	}
+   @Given("a counter")
+   public void aCounter() {
+   }
 
-	@Given("the counter has any integral value")
-	public void counterHasAnyIntegralValue() {
-		counter = new Random().nextInt();
-		previousValue = counter;
-	}
+   @Given("the counter has any integral value")
+   public void counterHasAnyIntegralValue() {
+      counter = new Random().nextInt();
+      previousValue = counter;
+   }
 
-	@When("the user increases the counter")
-	public void increasesTheCounter() {
-		counter++;
-	}
+   @When("the user increases the counter")
+   public void increasesTheCounter() {
+      counter++;
+   }
 
-	@Then("the value of the counter must be 1 greater than previous value")
-	public void theValueOfTheCounterMustBe1Greater() {
-		assertEquals(1, counter - previousValue);
-	}
+   @Then("the value of the counter must be 1 greater than previous value")
+   public void theValueOfTheCounterMustBe1Greater() {
+      assertEquals(1, counter - previousValue);
+   }
 }

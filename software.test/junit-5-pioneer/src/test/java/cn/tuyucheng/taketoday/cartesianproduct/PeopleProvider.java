@@ -10,11 +10,11 @@ import java.util.stream.Stream;
 
 class PeopleProvider implements CartesianParameterArgumentsProvider<Person> {
 
-	@Override
-	public Stream<Person> provideArguments(ExtensionContext context, Parameter parameter) {
-		People source = Objects.requireNonNull(parameter.getAnnotation(People.class));
-		return IntStream
-			.range(0, source.names().length)
-			.mapToObj(i -> new Person(source.names()[i], source.ages()[i]));
-	}
+   @Override
+   public Stream<Person> provideArguments(ExtensionContext context, Parameter parameter) {
+      People source = Objects.requireNonNull(parameter.getAnnotation(People.class));
+      return IntStream
+            .range(0, source.names().length)
+            .mapToObj(i -> new Person(source.names()[i], source.ages()[i]));
+   }
 }

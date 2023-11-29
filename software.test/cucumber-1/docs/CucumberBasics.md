@@ -238,7 +238,8 @@ Gherkin还有很多的关键词，我们将在接下来的教程中介绍。但�
 
 ### 5.1 JUnit Test Runner类
 
-我们可以新建一个RunCucumberTest类，这个类只需要添加注解来通过它运行Cucumber，并且你可以指定要获取的Feature文件以及Step Definition类的位置。
+我们可以新建一个RunCucumberTest类，这个类只需要添加注解来通过它运行Cucumber，并且你可以指定要获取的Feature文件以及Step
+Definition类的位置。
 还可以配置其他一些参数，稍后将在Cucumber Options中讨论。
 
 ```java

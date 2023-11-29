@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CourseCopy {
 
-	private Long id;
-	private String username;
-	private String description;
+   private Long id;
+   private String username;
+   private String description;
 }

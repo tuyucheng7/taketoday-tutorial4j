@@ -12,15 +12,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(SystemStubsExtension.class)
 class SystemExitJUnit5UnitTest {
-	@SystemStub
-	private SystemExit systemExit;
+   @SystemStub
+   private SystemExit systemExit;
 
-	@Test
-	void whenExit_thenExitCodeIsAvailable() {
-		assertThatThrownBy(() -> {
-			System.exit(123);
-		}).isInstanceOf(AbortExecutionException.class);
+   @Test
+   void whenExit_thenExitCodeIsAvailable() {
+      assertThatThrownBy(() -> {
+         System.exit(123);
+      }).isInstanceOf(AbortExecutionException.class);
 
-		assertThat(systemExit.getExitCode()).isEqualTo(123);
-	}
+      assertThat(systemExit.getExitCode()).isEqualTo(123);
+   }
 }

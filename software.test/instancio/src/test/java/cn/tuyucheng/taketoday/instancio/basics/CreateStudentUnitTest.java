@@ -1,11 +1,6 @@
 package cn.tuyucheng.taketoday.instancio.basics;
 
-import cn.tuyucheng.taketoday.instancio.student.model.Address;
-import cn.tuyucheng.taketoday.instancio.student.model.ContactInfo;
-import cn.tuyucheng.taketoday.instancio.student.model.Course;
-import cn.tuyucheng.taketoday.instancio.student.model.Grade;
-import cn.tuyucheng.taketoday.instancio.student.model.Phone;
-import cn.tuyucheng.taketoday.instancio.student.model.Student;
+import cn.tuyucheng.taketoday.instancio.student.model.*;
 import org.instancio.Instancio;
 import org.instancio.Model;
 import org.instancio.junit.InstancioExtension;
@@ -40,135 +35,135 @@ import static org.instancio.Select.field;
 @ExtendWith(InstancioExtension.class)
 class CreateStudentUnitTest {
 
-	/**
-	 * Common settings to be used by all test methods.
-	 */
-	@WithSettings
-	private static final Settings settings = Settings.create()
-		.set(Keys.COLLECTION_MAX_SIZE, 3);
+   /**
+    * Common settings to be used by all test methods.
+    */
+   @WithSettings
+   private static final Settings settings = Settings.create()
+         .set(Keys.COLLECTION_MAX_SIZE, 3);
 
-	/**
-	 * A {@link Model} is a template for creating objects.
-	 * Objects created from a model can be created as is, or customized, if needed.
-	 */
-	private static Model<Student> studentModel() {
-		return Instancio.of(Student.class)
-			.generate(field(Student::getDateOfBirth), gen -> gen.temporal().localDate().past())
-			.generate(field(Student::getEnrollmentYear), gen -> gen.temporal().year().past())
-			.generate(field(ContactInfo::getEmail), gen -> gen.text().pattern("#a#a#a#a#a#a@example.com"))
-			.generate(field(Phone::getCountryCode), gen -> gen.string().prefix("+").digits().maxLength(2))
-			.withNullable(field(Student::getEmergencyContact))
-			.toModel();
-	}
+   /**
+    * A {@link Model} is a template for creating objects.
+    * Objects created from a model can be created as is, or customized, if needed.
+    */
+   private static Model<Student> studentModel() {
+      return Instancio.of(Student.class)
+            .generate(field(Student::getDateOfBirth), gen -> gen.temporal().localDate().past())
+            .generate(field(Student::getEnrollmentYear), gen -> gen.temporal().year().past())
+            .generate(field(ContactInfo::getEmail), gen -> gen.text().pattern("#a#a#a#a#a#a@example.com"))
+            .generate(field(Phone::getCountryCode), gen -> gen.string().prefix("+").digits().maxLength(2))
+            .withNullable(field(Student::getEmergencyContact))
+            .toModel();
+   }
 
-	private static void assertModelProperties(Student student) {
-		assertThat(student.getDateOfBirth()).isBefore(LocalDate.now());
-		assertThat(student.getEnrollmentYear()).isLessThan(Year.now());
-		assertThat(student.getContactInfo().getEmail()).matches("^[a-zA-Z0-9]+@example.com$");
-		assertThat(student.getContactInfo().getPhones())
-			.extracting(Phone::getCountryCode)
-			.allSatisfy(countryCode -> assertThat(countryCode).matches("^\\+\\d\\d?$"));
-	}
+   private static void assertModelProperties(Student student) {
+      assertThat(student.getDateOfBirth()).isBefore(LocalDate.now());
+      assertThat(student.getEnrollmentYear()).isLessThan(Year.now());
+      assertThat(student.getContactInfo().getEmail()).matches("^[a-zA-Z0-9]+@example.com$");
+      assertThat(student.getContactInfo().getPhones())
+            .extracting(Phone::getCountryCode)
+            .allSatisfy(countryCode -> assertThat(countryCode).matches("^\\+\\d\\d?$"));
+   }
 
-	/**
-	 * Generates random Student objects based on the Model.
-	 */
-	@Test
-	void whenGivenAModel_thenShouldCreateAStudentBasedOnModel() {
-		Student student = Instancio.create(studentModel());
+   /**
+    * Generates random Student objects based on the Model.
+    */
+   @Test
+   void whenGivenAModel_thenShouldCreateAStudentBasedOnModel() {
+      Student student = Instancio.create(studentModel());
 
-		assertModelProperties(student);
-	}
+      assertModelProperties(student);
+   }
 
-	/**
-	 * Generate a list of international students based on the Model.
-	 */
-	@Test
-	void whenGivenAModel_thenShouldCreateAListOfStudents() {
-		// Given
-		final int numberOfStudents = 100;
-		final List<String> countries = Arrays.asList(
-			"China", "Germany", "India", "Poland", "Romania", "Sweden", "Switzerland");
+   /**
+    * Generate a list of international students based on the Model.
+    */
+   @Test
+   void whenGivenAModel_thenShouldCreateAListOfStudents() {
+      // Given
+      final int numberOfStudents = 100;
+      final List<String> countries = Arrays.asList(
+            "China", "Germany", "India", "Poland", "Romania", "Sweden", "Switzerland");
 
-		// When
-		List<Student> studentList = Instancio.ofList(studentModel())
-			.size(numberOfStudents)
-			.generate(field(Address::getCountry), gen -> gen.oneOf(countries))
-			.create();
+      // When
+      List<Student> studentList = Instancio.ofList(studentModel())
+            .size(numberOfStudents)
+            .generate(field(Address::getCountry), gen -> gen.oneOf(countries))
+            .create();
 
-		// Then
-		assertThat(studentList).hasSize(numberOfStudents)
-			.allSatisfy(CreateStudentUnitTest::assertModelProperties)
-			.extracting(student -> student.getContactInfo().getAddress().getCountry())
-			.allSatisfy(country -> assertThat(country).isIn(countries));
-	}
+      // Then
+      assertThat(studentList).hasSize(numberOfStudents)
+            .allSatisfy(CreateStudentUnitTest::assertModelProperties)
+            .extracting(student -> student.getContactInfo().getAddress().getCountry())
+            .allSatisfy(country -> assertThat(country).isIn(countries));
+   }
 
-	/**
-	 * Use the Model to create a student with a failed course.
-	 * This test also demonstrates how Instancio can provide
-	 * arguments to parameterized tests.
-	 *
-	 * @param failedCourse provided by Instancio
-	 */
-	@InstancioSource
-	@ParameterizedTest
-	void whenGivenFailingGrade_thenStudentShouldHaveAFailedCourse(final Course failedCourse) {
-		// Given
-		final Model<Student> model = studentModel();
-		final Grade failingGrade = Grade.F;
+   /**
+    * Use the Model to create a student with a failed course.
+    * This test also demonstrates how Instancio can provide
+    * arguments to parameterized tests.
+    *
+    * @param failedCourse provided by Instancio
+    */
+   @InstancioSource
+   @ParameterizedTest
+   void whenGivenFailingGrade_thenStudentShouldHaveAFailedCourse(final Course failedCourse) {
+      // Given
+      final Model<Student> model = studentModel();
+      final Grade failingGrade = Grade.F;
 
-		// When
-		Student student = Instancio.of(model)
-			.generate(field(Student::getCourseGrades), gen -> gen.map().with(failedCourse, failingGrade))
-			.create();
+      // When
+      Student student = Instancio.of(model)
+            .generate(field(Student::getCourseGrades), gen -> gen.map().with(failedCourse, failingGrade))
+            .create();
 
-		// Then
-		Map<Course, Grade> courseGrades = student.getCourseGrades();
-		assertModelProperties(student);
-		assertThat(courseGrades).containsEntry(failedCourse, failingGrade);
-	}
+      // Then
+      Map<Course, Grade> courseGrades = student.getCourseGrades();
+      assertModelProperties(student);
+      assertThat(courseGrades).containsEntry(failedCourse, failingGrade);
+   }
 
-	/**
-	 * Generate a student with only Grades A and/or B.
-	 */
-	@Test
-	void whenGivenGoodGrades_thenCreatedStudentShouldHaveExpectedGrades() {
-		// Given
-		final int numOfCourses = 10;
-		final Grade[] grades = {Grade.A, Grade.B};
+   /**
+    * Generate a student with only Grades A and/or B.
+    */
+   @Test
+   void whenGivenGoodGrades_thenCreatedStudentShouldHaveExpectedGrades() {
+      // Given
+      final int numOfCourses = 10;
+      final Grade[] grades = {Grade.A, Grade.B};
 
-		// When
-		Student student = Instancio.of(studentModel())
-			.generate(all(Grade.class), gen -> gen.oneOf(grades))
-			.generate(field(Student::getCourseGrades), gen -> gen.map().size(numOfCourses))
-			.create();
+      // When
+      Student student = Instancio.of(studentModel())
+            .generate(all(Grade.class), gen -> gen.oneOf(grades))
+            .generate(field(Student::getCourseGrades), gen -> gen.map().size(numOfCourses))
+            .create();
 
-		// Then
-		Map<Course, Grade> courseGrades = student.getCourseGrades();
-		assertModelProperties(student);
-		assertThat(courseGrades.values())
-			.hasSize(numOfCourses)
-			.containsAnyOf(grades)
-			.doesNotContain(Grade.C, Grade.D, Grade.F);
-	}
+      // Then
+      Map<Course, Grade> courseGrades = student.getCourseGrades();
+      assertModelProperties(student);
+      assertThat(courseGrades.values())
+            .hasSize(numOfCourses)
+            .containsAnyOf(grades)
+            .doesNotContain(Grade.C, Grade.D, Grade.F);
+   }
 
-	/**
-	 * Generate String fields prefixed with the field's name.
-	 */
-	@Test
-	void whenGivenCustomSettings_thenStudentShouldBeCreatedUsingTheSettings() {
-		// Given
-		Settings customSettings = Settings.create()
-			.set(Keys.STRING_FIELD_PREFIX_ENABLED, true);
+   /**
+    * Generate String fields prefixed with the field's name.
+    */
+   @Test
+   void whenGivenCustomSettings_thenStudentShouldBeCreatedUsingTheSettings() {
+      // Given
+      Settings customSettings = Settings.create()
+            .set(Keys.STRING_FIELD_PREFIX_ENABLED, true);
 
-		// When
-		Student student = Instancio.of(studentModel())
-			.withSettings(customSettings)
-			.create();
+      // When
+      Student student = Instancio.of(studentModel())
+            .withSettings(customSettings)
+            .create();
 
-		// Then
-		assertThat(student.getFirstName()).startsWith("firstName_");
-		assertThat(student.getLastName()).startsWith("lastName_");
-		assertThat(student.getContactInfo().getAddress().getCity()).startsWith("city_");
-	}
+      // Then
+      assertThat(student.getFirstName()).startsWith("firstName_");
+      assertThat(student.getLastName()).startsWith("lastName_");
+      assertThat(student.getContactInfo().getAddress().getCity()).startsWith("city_");
+   }
 }

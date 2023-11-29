@@ -23,44 +23,44 @@ import java.util.List;
 @RequestMapping("/instructors/courses")
 public class CourseResource {
 
-	@Autowired
-	private CoursesHardcodedService courseManagementService;
+   @Autowired
+   private CoursesHardcodedService courseManagementService;
 
-	@GetMapping("/")
-	public List<Course> getAllCourses() {
-		return courseManagementService.findAll();
-	}
+   @GetMapping("/")
+   public List<Course> getAllCourses() {
+      return courseManagementService.findAll();
+   }
 
-	@GetMapping("/{id}")
-	public Course getCourse(@PathVariable long id) {
-		return courseManagementService.findById(id);
-	}
+   @GetMapping("/{id}")
+   public Course getCourse(@PathVariable long id) {
+      return courseManagementService.findById(id);
+   }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteCourse(@PathVariable long id) {
+   @DeleteMapping("/{id}")
+   public ResponseEntity<Void> deleteCourse(@PathVariable long id) {
 
-		Course course = courseManagementService.deleteById(id);
+      Course course = courseManagementService.deleteById(id);
 
-		if (course != null) {
-			return ResponseEntity.noContent().build();
-		}
+      if (course != null) {
+         return ResponseEntity.noContent().build();
+      }
 
-		return ResponseEntity.notFound().build();
-	}
+      return ResponseEntity.notFound().build();
+   }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Course> updateCourse(@PathVariable long id, @RequestBody Course course) {
-		course.setId(id);
+   @PutMapping("/{id}")
+   public ResponseEntity<Course> updateCourse(@PathVariable long id, @RequestBody Course course) {
+      course.setId(id);
 
-		Course courseUpdated = courseManagementService.update(course);
+      Course courseUpdated = courseManagementService.update(course);
 
-		return new ResponseEntity<>(course, HttpStatus.OK);
-	}
+      return new ResponseEntity<>(course, HttpStatus.OK);
+   }
 
-	@PostMapping("/")
-	public ResponseEntity<CourseVO> createCourse(@RequestBody Course course) {
-		courseManagementService.save(course);
+   @PostMapping("/")
+   public ResponseEntity<CourseVO> createCourse(@RequestBody Course course) {
+      courseManagementService.save(course);
 
-		return ResponseEntity.ok().body(CourseVO.buildSuccessVO());
-	}
+      return ResponseEntity.ok().body(CourseVO.buildSuccessVO());
+   }
 }

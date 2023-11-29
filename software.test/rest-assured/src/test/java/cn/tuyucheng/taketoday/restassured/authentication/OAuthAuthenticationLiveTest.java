@@ -18,36 +18,36 @@ import static org.hamcrest.Matchers.hasKey;
  */
 public class OAuthAuthenticationLiveTest {
 
-	// We can obtain these two from the spring-mvc-simple / TwitterController class
-	private static final String OAUTH_API_KEY = "PSRszoHhRDVhyo2RIkThEbWko";
-	private static final String OAUTH_API_SECRET = "prpJbz03DcGRN46sb4ucdSYtVxG8unUKhcnu3an5ItXbEOuenL";
-	private static final String TWITTER_ENDPOINT = "https://api.twitter.com/1.1/account/settings.json";
-	/* We can obtain the following by:
-	 * - starting the spring-mvc-simple application
-	 * - calling localhost:8080/spring-mvc-simple/twitter/authorization/
-	 * - debugging the callback function */
-	private static final String ACCESS_TOKEN = "...";
-	private static final String TOKEN_SECRET = "...";
+   // We can obtain these two from the spring-mvc-simple / TwitterController class
+   private static final String OAUTH_API_KEY = "PSRszoHhRDVhyo2RIkThEbWko";
+   private static final String OAUTH_API_SECRET = "prpJbz03DcGRN46sb4ucdSYtVxG8unUKhcnu3an5ItXbEOuenL";
+   private static final String TWITTER_ENDPOINT = "https://api.twitter.com/1.1/account/settings.json";
+   /* We can obtain the following by:
+    * - starting the spring-mvc-simple application
+    * - calling localhost:8080/spring-mvc-simple/twitter/authorization/
+    * - debugging the callback function */
+   private static final String ACCESS_TOKEN = "...";
+   private static final String TOKEN_SECRET = "...";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(TWITTER_ENDPOINT).then()
-			.assertThat()
-			.statusCode(HttpStatus.BAD_REQUEST.value());
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(TWITTER_ENDPOINT).then()
+            .assertThat()
+            .statusCode(HttpStatus.BAD_REQUEST.value());
+   }
 
-	@Test
-	public void givenAccessTokenAuthentication_whenRequestSecuredResource_thenResourceIsRequested() {
-		given().accept(ContentType.JSON)
-			.auth()
-			.oauth(OAUTH_API_KEY, OAUTH_API_SECRET, ACCESS_TOKEN, TOKEN_SECRET)
-			.when()
-			.get(TWITTER_ENDPOINT)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body("$", hasKey("geo_enabled"))
-			.body("$", hasKey("language"));
-	}
+   @Test
+   public void givenAccessTokenAuthentication_whenRequestSecuredResource_thenResourceIsRequested() {
+      given().accept(ContentType.JSON)
+            .auth()
+            .oauth(OAUTH_API_KEY, OAUTH_API_SECRET, ACCESS_TOKEN, TOKEN_SECRET)
+            .when()
+            .get(TWITTER_ENDPOINT)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body("$", hasKey("geo_enabled"))
+            .body("$", hasKey("language"));
+   }
 
 }

@@ -7,22 +7,22 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SimpleLongRunningUnitTest extends TestNG {
-    private int number;
+   private int number;
 
-    @BeforeClass
-    public void setup() {
-        number = 12;
-    }
+   @BeforeClass
+   public void setup() {
+      number = 12;
+   }
 
-    @AfterClass
-    public void tearDown() {
-        number = 0;
-    }
+   @AfterClass
+   public void tearDown() {
+      number = 0;
+   }
 
-    @Test
-    public void givenNumber_whenEven_thenTrue() {
-        Assert.assertTrue(number % 2 == 0);
-    }
+   @Test
+   public void givenNumber_whenEven_thenTrue() {
+      Assert.assertTrue(number % 2 == 0);
+   }
 
 }
 

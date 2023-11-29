@@ -13,15 +13,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @EnableWebMvc
 class TestResourcePropertySourceResolverIntegrationTest {
 
-	@Autowired
-	private PropertySourceResolver propertySourceResolver;
+   @Autowired
+   private PropertySourceResolver propertySourceResolver;
 
-	@Test
-	void shouldTestResourceFile_overridePropertyValues() {
-		final String firstProperty = propertySourceResolver.getFirstProperty();
-		final String secondProperty = propertySourceResolver.getSecondProperty();
+   @Test
+   void shouldTestResourceFile_overridePropertyValues() {
+      final String firstProperty = propertySourceResolver.getFirstProperty();
+      final String secondProperty = propertySourceResolver.getSecondProperty();
 
-		assertEquals("file", firstProperty);
-		assertEquals("file", secondProperty);
-	}
+      assertEquals("file", firstProperty);
+      assertEquals("file", secondProperty);
+   }
 }

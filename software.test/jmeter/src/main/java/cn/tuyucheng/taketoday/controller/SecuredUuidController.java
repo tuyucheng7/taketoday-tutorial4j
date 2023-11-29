@@ -11,12 +11,12 @@ import java.util.UUID;
 @RestController
 public class SecuredUuidController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecuredUuidController.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(SecuredUuidController.class);
 
-	@GetMapping("/secured/uuid")
-	public Response uuid() {
-		LOGGER.info("Returning response");
+   @GetMapping("/secured/uuid")
+   public Response uuid() {
+      LOGGER.info("Returning response");
 
-		return new Response(String.format("Secured test message... %s.", UUID.randomUUID()));
-	}
+      return new Response(String.format("Secured test message... %s.", UUID.randomUUID()));
+   }
 }

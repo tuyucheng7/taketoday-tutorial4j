@@ -17,53 +17,53 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class ExceptionBenchmark {
-	private static final int LIMIT = 10_000;
+   private static final int LIMIT = 10_000;
 
-	@Benchmark
-	public void doNotThrowException(Blackhole blackhole) {
-		for (int i = 0; i < LIMIT; i++) {
-			blackhole.consume(new Object());
-		}
-	}
+   @Benchmark
+   public void doNotThrowException(Blackhole blackhole) {
+      for (int i = 0; i < LIMIT; i++) {
+         blackhole.consume(new Object());
+      }
+   }
 
-	@Benchmark
-	public void throwAndCatchException(Blackhole blackhole) {
-		for (int i = 0; i < LIMIT; i++) {
-			try {
-				throw new Exception();
-			} catch (Exception e) {
-				blackhole.consume(e);
-			}
-		}
-	}
+   @Benchmark
+   public void throwAndCatchException(Blackhole blackhole) {
+      for (int i = 0; i < LIMIT; i++) {
+         try {
+            throw new Exception();
+         } catch (Exception e) {
+            blackhole.consume(e);
+         }
+      }
+   }
 
-	@Benchmark
-	public void createExceptionWithoutThrowingIt(Blackhole blackhole) {
-		for (int i = 0; i < LIMIT; i++) {
-			blackhole.consume(new Exception());
-		}
-	}
+   @Benchmark
+   public void createExceptionWithoutThrowingIt(Blackhole blackhole) {
+      for (int i = 0; i < LIMIT; i++) {
+         blackhole.consume(new Exception());
+      }
+   }
 
-	@Benchmark
-	@Fork(value = 1, jvmArgs = "-XX:-StackTraceInThrowable")
-	public void throwExceptionWithoutAddingStackTrace(Blackhole blackhole) {
-		for (int i = 0; i < LIMIT; i++) {
-			try {
-				throw new Exception();
-			} catch (Exception e) {
-				blackhole.consume(e);
-			}
-		}
-	}
+   @Benchmark
+   @Fork(value = 1, jvmArgs = "-XX:-StackTraceInThrowable")
+   public void throwExceptionWithoutAddingStackTrace(Blackhole blackhole) {
+      for (int i = 0; i < LIMIT; i++) {
+         try {
+            throw new Exception();
+         } catch (Exception e) {
+            blackhole.consume(e);
+         }
+      }
+   }
 
-	@Benchmark
-	public void throwExceptionAndUnwindStackTrace(Blackhole blackhole) {
-		for (int i = 0; i < LIMIT; i++) {
-			try {
-				throw new Exception();
-			} catch (Exception e) {
-				blackhole.consume(e.getStackTrace());
-			}
-		}
-	}
+   @Benchmark
+   public void throwExceptionAndUnwindStackTrace(Blackhole blackhole) {
+      for (int i = 0; i < LIMIT; i++) {
+         try {
+            throw new Exception();
+         } catch (Exception e) {
+            blackhole.consume(e.getStackTrace());
+         }
+      }
+   }
 }

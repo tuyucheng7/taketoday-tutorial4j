@@ -16,44 +16,44 @@ import static org.junit.Assert.assertEquals;
 
 public class GithubUserNotFoundSteps {
 
-	private String api;
-	private String nonExistentUser;
-	private int githubResponseCode;
+   private String api;
+   private String nonExistentUser;
+   private int githubResponseCode;
 
-	@Given("github user profile api")
-	public void givenGithubUserProfileApi() {
-		api = "https://api.github.com/users/%s";
-	}
+   @Given("github user profile api")
+   public void givenGithubUserProfileApi() {
+      api = "https://api.github.com/users/%s";
+   }
 
-	@Given("a random non-existent username")
-	public void givenANonexistentUsername() {
-		nonExistentUser = randomAlphabetic(8);
-	}
+   @Given("a random non-existent username")
+   public void givenANonexistentUsername() {
+      nonExistentUser = randomAlphabetic(8);
+   }
 
-	@When("I look for the random user via the api")
-	public void whenILookForTheUserViaTheApi() throws IOException {
-		githubResponseCode = getGithubUserProfile(api, nonExistentUser)
-				.getStatusLine()
-				.getStatusCode();
-	}
+   @When("I look for the random user via the api")
+   public void whenILookForTheUserViaTheApi() throws IOException {
+      githubResponseCode = getGithubUserProfile(api, nonExistentUser)
+            .getStatusLine()
+            .getStatusCode();
+   }
 
-	@When("I look for $user via the api")
-	public void whenILookForSomeNonExistentUserViaTheApi(String user) throws IOException {
-		githubResponseCode = getGithubUserProfile(api, user)
-				.getStatusLine()
-				.getStatusCode();
-	}
+   @When("I look for $user via the api")
+   public void whenILookForSomeNonExistentUserViaTheApi(String user) throws IOException {
+      githubResponseCode = getGithubUserProfile(api, user)
+            .getStatusLine()
+            .getStatusCode();
+   }
 
-	static HttpResponse getGithubUserProfile(String api, String username) throws IOException {
-		HttpUriRequest request = new HttpGet(String.format(api, username));
-		return HttpClientBuilder
-				.create()
-				.build()
-				.execute(request);
-	}
+   static HttpResponse getGithubUserProfile(String api, String username) throws IOException {
+      HttpUriRequest request = new HttpGet(String.format(api, username));
+      return HttpClientBuilder
+            .create()
+            .build()
+            .execute(request);
+   }
 
-	@Then("github respond: 404 not found")
-	public void thenGithubRespond404NotFound() {
-		assertEquals(SC_NOT_FOUND, githubResponseCode);
-	}
+   @Then("github respond: 404 not found")
+   public void thenGithubRespond404NotFound() {
+      assertEquals(SC_NOT_FOUND, githubResponseCode);
+   }
 }

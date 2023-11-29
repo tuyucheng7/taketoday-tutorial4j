@@ -9,18 +9,18 @@ import java.util.Set;
 @Component
 public class UserCache {
 
-	@Getter
-	private final Set<String> userList = new HashSet<>();
+   @Getter
+   private final Set<String> userList = new HashSet<>();
 
-	public boolean addUser(String user) {
-		return userList.add(user);
-	}
+   public boolean addUser(String user) {
+      return userList.add(user);
+   }
 
-	public boolean removeUser(String user) {
-		return userList.remove(user);
-	}
+   public boolean removeUser(String user) {
+      return userList.remove(user);
+   }
 
-	public void printUserList(String message) {
-		System.out.println(message + ": " + userList);
-	}
+   public void printUserList(String message) {
+      System.out.println(message + ": " + userList);
+   }
 }

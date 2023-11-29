@@ -18,23 +18,23 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/users")
 public class ZerocodeApplication {
-	private List<User> users = new ArrayList<>();
+   private List<User> users = new ArrayList<>();
 
-	public static void main(String[] args) {
-		SpringApplication.run(ZerocodeApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ZerocodeApplication.class, args);
+   }
 
-	@PostMapping
-	public ResponseEntity create(@RequestBody User user) {
-		if (!StringUtils.hasText(user.getFirstName())) {
-			return new ResponseEntity("firstName can't be empty!", HttpStatus.BAD_REQUEST);
-		}
-		if (!StringUtils.hasText(user.getLastName())) {
-			return new ResponseEntity("lastName can't be empty!", HttpStatus.BAD_REQUEST);
-		}
-		user.setId(UUID.randomUUID()
-			.toString());
-		users.add(user);
-		return new ResponseEntity(user, HttpStatus.CREATED);
-	}
+   @PostMapping
+   public ResponseEntity create(@RequestBody User user) {
+      if (!StringUtils.hasText(user.getFirstName())) {
+         return new ResponseEntity("firstName can't be empty!", HttpStatus.BAD_REQUEST);
+      }
+      if (!StringUtils.hasText(user.getLastName())) {
+         return new ResponseEntity("lastName can't be empty!", HttpStatus.BAD_REQUEST);
+      }
+      user.setId(UUID.randomUUID()
+            .toString());
+      users.add(user);
+      return new ResponseEntity(user, HttpStatus.CREATED);
+   }
 }

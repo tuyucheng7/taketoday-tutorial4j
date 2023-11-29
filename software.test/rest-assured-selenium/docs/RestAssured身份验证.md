@@ -1,13 +1,14 @@
 ## 一、概述
 
-在本教程中，我们将分析如何使用[REST Assured](https://www.baeldung.com/rest-assured-tutorial)进行身份验证，以正确测试和验证安全 API。
+在本教程中，我们将分析如何使用[REST Assured](https://www.baeldung.com/rest-assured-tutorial)进行身份验证，以正确测试和验证安全
+API。
 
 **该工具支持多种身份验证方案**：
 
--   基本认证
--   摘要式身份验证
--   表单认证
--   OAuth 1 和 OAuth 2
+- 基本认证
+- 摘要式身份验证
+- 表单认证
+- OAuth 1 和 OAuth 2
 
 我们将看到每个示例。
 
@@ -29,7 +30,8 @@ given().auth()
 
 ### 2.1。抢先认证
 
-正如我们在[之前一篇关于 Spring Security 身份验证的文章中](https://www.baeldung.com/spring-security-basic-authentication#usage)所见，服务器可能会使用[质询-响应机制](https://tools.ietf.org/html/rfc2617#section-1.2)来明确指示消费者何时需要进行身份验证才能访问资源。
+正如我们在[之前一篇关于 Spring Security 身份验证的文章中](https://www.baeldung.com/spring-security-basic-authentication#usage)
+所见，服务器可能会使用[质询-响应机制](https://tools.ietf.org/html/rfc2617#section-1.2)来明确指示消费者何时需要进行身份验证才能访问资源。
 
 **默认情况下，REST Assured 会等待服务器质询，然后再发送凭据。**
 
@@ -51,7 +53,8 @@ given().auth()
 
 ## 3. 使用摘要认证
 
-尽管这也被认为是一种[“弱”的身份验证方法](https://tools.ietf.org/html/rfc2617#section-4.4)，但使用[摘要式身份验证](https://tools.ietf.org/html/rfc7616)代表了优于基本协议的优势。
+尽管这也被认为是一种[“弱”的身份验证方法](https://tools.ietf.org/html/rfc2617#section-4.4)
+，但使用[摘要式身份验证](https://tools.ietf.org/html/rfc7616)代表了优于基本协议的优势。
 
 这是因为该方案避免以明文形式发送密码。
 
@@ -101,15 +104,16 @@ given().auth()
 
 除了这些基本配置之外，REST Assured 还提供以下功能：
 
--   检测或指示网页中的 CSRF 令牌字段
--   在请求中使用额外的表单字段
--   认证过程的日志信息
+- 检测或指示网页中的 CSRF 令牌字段
+- 在请求中使用额外的表单字段
+- 认证过程的日志信息
 
 ## 5. OAuth 支持
 
 OAuth 在技术上是一个*授权*框架，它没有定义任何验证用户的机制。
 
-尽管如此，它仍可用作构建身份验证和身份协议的基础，就像[OpenID Connect](https://www.baeldung.com/spring-security-openid-connect)的情况一样。
+尽管如此，它仍可用作构建身份验证和身份协议的基础，就像[OpenID Connect](https://www.baeldung.com/spring-security-openid-connect)
+的情况一样。
 
 ### 5.1。OAuth 2.0
 
@@ -143,7 +147,8 @@ given().accept(ContentType.JSON)
 
 该协议需要用户输入，因此获取最后两个字段并非易事。
 
-请注意，如果我们使用的是 2.5.0 之前版本的 OAuth 2.0 功能，或者我们正在使用 OAuth 1.0a 功能，我们需要在我们的项目中添加*scribejava-apis依赖项。*
+请注意，如果我们使用的是 2.5.0 之前版本的 OAuth 2.0 功能，或者我们正在使用 OAuth 1.0a 功能，我们需要在我们的项目中添加
+*scribejava-apis依赖项。*
 
 ## 六，结论
 

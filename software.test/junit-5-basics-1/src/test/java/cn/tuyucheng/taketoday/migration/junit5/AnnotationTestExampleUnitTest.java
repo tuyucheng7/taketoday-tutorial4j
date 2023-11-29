@@ -11,16 +11,16 @@ import java.time.Duration;
 @Tag("junit5")
 class AnnotationTestExampleUnitTest {
 
-	@Test
-	void shouldRaiseAnException() {
-		Assertions.assertThrows(Exception.class, () -> {
-			throw new Exception("This is my expected exception");
-		});
-	}
+   @Test
+   void shouldRaiseAnException() {
+      Assertions.assertThrows(Exception.class, () -> {
+         throw new Exception("This is my expected exception");
+      });
+   }
 
-	@Test
-	@Disabled
-	void shouldFailBecauseTimeout() {
-		Assertions.assertTimeout(Duration.ofMillis(1), () -> Thread.sleep(10));
-	}
+   @Test
+   @Disabled
+   void shouldFailBecauseTimeout() {
+      Assertions.assertTimeout(Duration.ofMillis(1), () -> Thread.sleep(10));
+   }
 }

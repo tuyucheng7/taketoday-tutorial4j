@@ -12,27 +12,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 class MockAnnotationUnitTest {
 
-	@Mock
-	UserRepository mockRepository;
+   @Mock
+   UserRepository mockRepository;
 
-	@Test
-	void givenCountMethodMocked_WhenCountInvoked_ThenMockValueReturned() {
-		Mockito.when(mockRepository.count()).thenReturn(123L);
+   @Test
+   void givenCountMethodMocked_WhenCountInvoked_ThenMockValueReturned() {
+      Mockito.when(mockRepository.count()).thenReturn(123L);
 
-		long userCount = mockRepository.count();
+      long userCount = mockRepository.count();
 
-		assertEquals(123L, userCount);
-		Mockito.verify(mockRepository).count();
-	}
+      assertEquals(123L, userCount);
+      Mockito.verify(mockRepository).count();
+   }
 
-	@Test
-	void givenCountMethodMocked_WhenCountInvoked_ThenMockedValueReturned() {
-		UserRepository localMockRepository = Mockito.mock(UserRepository.class);
-		Mockito.when(localMockRepository.count()).thenReturn(111L);
+   @Test
+   void givenCountMethodMocked_WhenCountInvoked_ThenMockedValueReturned() {
+      UserRepository localMockRepository = Mockito.mock(UserRepository.class);
+      Mockito.when(localMockRepository.count()).thenReturn(111L);
 
-		long userCount = localMockRepository.count();
+      long userCount = localMockRepository.count();
 
-		assertEquals(111L, userCount);
-		Mockito.verify(localMockRepository).count();
-	}
+      assertEquals(111L, userCount);
+      Mockito.verify(localMockRepository).count();
+   }
 }

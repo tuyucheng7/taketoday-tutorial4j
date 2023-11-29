@@ -9,10 +9,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice(assignableTypes = CourseController.class)
 public class CourseControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler(CourseNotFoundException.class)
-	@SuppressWarnings("ThrowablePrintedToSystemOut")
-	public void handleCourseNotFoundException(CourseNotFoundException cnfe) {
-		System.out.println(cnfe);
-	}
+   @ResponseStatus(HttpStatus.NOT_FOUND)
+   @ExceptionHandler(CourseNotFoundException.class)
+   @SuppressWarnings("ThrowablePrintedToSystemOut")
+   public void handleCourseNotFoundException(CourseNotFoundException cnfe) {
+      System.out.println(cnfe);
+   }
 }

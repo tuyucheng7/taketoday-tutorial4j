@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Profile;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, MongoAutoConfiguration.class, MongoRepositoriesAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class DashboardApplication {
 
-	public static void main(String[] args) throws Exception {
-		SpringApplication.run(DashboardApplication.class, args);
-	}
+   public static void main(String[] args) throws Exception {
+      SpringApplication.run(DashboardApplication.class, args);
+   }
 }

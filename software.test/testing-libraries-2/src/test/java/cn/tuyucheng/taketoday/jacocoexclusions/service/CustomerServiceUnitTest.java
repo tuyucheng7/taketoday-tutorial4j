@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CustomerServiceUnitTest {
 
-	@Test
-	void givenCustomer_whenGetCustomer_thenReturnNewCustomer() {
-		CustomerService customerService = new CustomerService();
-		assertNotNull(customerService.getCustomerName());
-	}
+   @Test
+   void givenCustomer_whenGetCustomer_thenReturnNewCustomer() {
+      CustomerService customerService = new CustomerService();
+      assertNotNull(customerService.getCustomerName());
+   }
 }

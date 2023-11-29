@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource
 class DefaultTestPropertySourceIntegrationTest {
 
-	@Autowired
-	ClassUsingProperty classUsingProperty;
+   @Autowired
+   ClassUsingProperty classUsingProperty;
 
-	@Test
-	void givenDefaultTestPropertySource_whenVariableOneRetrieved_thenValueInDefaultFileReturned() {
-		String output = classUsingProperty.retrievePropertyOne();
+   @Test
+   void givenDefaultTestPropertySource_whenVariableOneRetrieved_thenValueInDefaultFileReturned() {
+      String output = classUsingProperty.retrievePropertyOne();
 
-		assertThat(output).isEqualTo("default-value");
-	}
+      assertThat(output).isEqualTo("default-value");
+   }
 }

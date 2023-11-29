@@ -8,25 +8,25 @@ import org.slf4j.LoggerFactory;
 
 class BeforeAllAndAfterAllAnnotationsUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(BeforeAllAndAfterAllAnnotationsUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(BeforeAllAndAfterAllAnnotationsUnitTest.class);
 
-	@BeforeAll
-	static void setup() {
-		LOG.debug("startup - creating DB connection");
-	}
+   @BeforeAll
+   static void setup() {
+      LOG.debug("startup - creating DB connection");
+   }
 
-	@AfterAll
-	static void tearDown() {
-		LOG.debug("closing DB connection");
-	}
+   @AfterAll
+   static void tearDown() {
+      LOG.debug("closing DB connection");
+   }
 
-	@Test
-	void simpleTest() {
-		LOG.debug("simple test");
-	}
+   @Test
+   void simpleTest() {
+      LOG.debug("simple test");
+   }
 
-	@Test
-	void anotherSimpleTest() {
-		LOG.debug("another simple test");
-	}
+   @Test
+   void anotherSimpleTest() {
+      LOG.debug("another simple test");
+   }
 }

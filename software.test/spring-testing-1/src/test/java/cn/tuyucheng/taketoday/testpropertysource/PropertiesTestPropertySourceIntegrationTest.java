@@ -14,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestPropertySource(locations = "/other-location.properties", properties = "tuyucheng.testpropertysource.one=other-properties-value")
 class PropertiesTestPropertySourceIntegrationTest {
 
-	@Autowired
-	ClassUsingProperty classUsingProperty;
+   @Autowired
+   ClassUsingProperty classUsingProperty;
 
-	@Test
-	void givenDefaultTestPropertySource_whenVariableOneRetrieved_thenValueInDefaultFileReturned() {
-		String output = classUsingProperty.retrievePropertyOne();
+   @Test
+   void givenDefaultTestPropertySource_whenVariableOneRetrieved_thenValueInDefaultFileReturned() {
+      String output = classUsingProperty.retrievePropertyOne();
 
-		assertThat(output).isEqualTo("other-properties-value");
-	}
+      assertThat(output).isEqualTo("other-properties-value");
+   }
 }

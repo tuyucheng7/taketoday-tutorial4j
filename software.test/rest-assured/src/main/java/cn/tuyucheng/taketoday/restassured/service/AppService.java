@@ -12,33 +12,33 @@ import java.util.Set;
 @Service
 public class AppService {
 
-	private Set<Movie> movieSet = new HashSet<>();
+   private Set<Movie> movieSet = new HashSet<>();
 
-	public Set<Movie> getAll() {
-		return movieSet;
-	}
+   public Set<Movie> getAll() {
+      return movieSet;
+   }
 
-	public void add(Movie movie) {
-		movieSet.add(movie);
-	}
+   public void add(Movie movie) {
+      movieSet.add(movie);
+   }
 
-	public Movie findMovie(int id) {
-		return movieSet.stream()
-			.filter(movie -> movie.getId()
-				.equals(id))
-			.findFirst()
-			.orElse(null);
-	}
+   public Movie findMovie(int id) {
+      return movieSet.stream()
+            .filter(movie -> movie.getId()
+                  .equals(id))
+            .findFirst()
+            .orElse(null);
+   }
 
-	public File getFile(int id) {
-		File file = null;
-		try {
-			file = new ClassPathResource(String.valueOf(id)).getFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+   public File getFile(int id) {
+      File file = null;
+      try {
+         file = new ClassPathResource(String.valueOf(id)).getFile();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
 
-		return file;
-	}
+      return file;
+   }
 
 }

@@ -7,5 +7,7 @@
 - [JSONassert简介](http://tu-yucheng.github.io/assertion/2023/05/12/jsonassert.html)
 - [JSON的ModelAssert库指南](http://tu-yucheng.github.io/assertion/2023/05/12/json-modelassert.html)
 - [在没有equals()方法的情况下断言两个对象相等](http://tu-yucheng.github.io/assertion/2023/06/27/java-assert-equality-no-equals.html)
+- [在JUnit中断言正则表达式匹配](http://tu-yucheng.github.io/assertion/2023/11/02/junit-assert-regex-matches.html)
+- [使用JUnit断言嵌套Map](http://tu-yucheng.github.io/assertion/2023/11/24/junit-assert-nested-map.html)
 
 - 更多文章： [[<-- prev]](../assertion-libraries/README.md)

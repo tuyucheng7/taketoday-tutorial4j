@@ -8,5 +8,5 @@ import org.junit.platform.suite.api.Suite;
 @SelectPackages("cn.tuyucheng.taketoday.testsuite")
 @IncludePackages("cn.tuyucheng.taketoday.testsuite.subpackage")
 public class JUnitTestIncludePackagesSuite {
-	// runs ClassTwoUnitTest
+   // runs ClassTwoUnitTest
 }

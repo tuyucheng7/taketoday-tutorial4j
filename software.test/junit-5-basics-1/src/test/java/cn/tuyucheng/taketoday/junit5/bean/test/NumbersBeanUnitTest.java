@@ -11,30 +11,30 @@ import org.junit.jupiter.api.Test;
  */
 public class NumbersBeanUnitTest {
 
-	/**
-	 * The bean to test.
-	 */
-	private NumbersBean bean = new NumbersBean();
+   /**
+    * The bean to test.
+    */
+   private NumbersBean bean = new NumbersBean();
 
-	/**
-	 * Tests that when an even number is passed to
-	 * {@link NumbersBean#isNumberEven(int)}, true is returned.
-	 */
-	@Test
-	void givenEvenNumber_whenCheckingIsNumberEven_thenTrue() {
-		boolean result = bean.isNumberEven(8);
+   /**
+    * Tests that when an even number is passed to
+    * {@link NumbersBean#isNumberEven(int)}, true is returned.
+    */
+   @Test
+   void givenEvenNumber_whenCheckingIsNumberEven_thenTrue() {
+      boolean result = bean.isNumberEven(8);
 
-		Assertions.assertTrue(result);
-	}
+      Assertions.assertTrue(result);
+   }
 
-	/**
-	 * Tests that when an odd number is passed to
-	 * {@link NumbersBean#isNumberEven(int)}, false is returned.
-	 */
-	@Test
-	void givenOddNumber_whenCheckingIsNumberEven_thenFalse() {
-		boolean result = bean.isNumberEven(3);
+   /**
+    * Tests that when an odd number is passed to
+    * {@link NumbersBean#isNumberEven(int)}, false is returned.
+    */
+   @Test
+   void givenOddNumber_whenCheckingIsNumberEven_thenFalse() {
+      boolean result = bean.isNumberEven(3);
 
-		Assertions.assertFalse(result);
-	}
+      Assertions.assertFalse(result);
+   }
 }

@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class CollectionUnitTest {
 
-	@Test
-	void whenGettingFictionaCharacters_thenResultNotEmptyAndOfCorrectSize() {
-		assertAll(
-			() -> assertThat(Collection.getFictionalCharacters()).isNotEmpty(),
-			() -> assertThat(Collection.getFictionalCharacters()).size().isGreaterThanOrEqualTo(Collection.MIN),
-			() -> assertThat(Collection.getFictionalCharacters()).size().isLessThanOrEqualTo(Collection.MAX)
-		);
-	}
+   @Test
+   void whenGettingFictionaCharacters_thenResultNotEmptyAndOfCorrectSize() {
+      assertAll(
+            () -> assertThat(Collection.getFictionalCharacters()).isNotEmpty(),
+            () -> assertThat(Collection.getFictionalCharacters()).size().isGreaterThanOrEqualTo(Collection.MIN),
+            () -> assertThat(Collection.getFictionalCharacters()).size().isLessThanOrEqualTo(Collection.MAX)
+      );
+   }
 }

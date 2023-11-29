@@ -9,12 +9,12 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration(classes = {AdderController.class, AdderService.class})
 public class AdderIntegrationTest extends SerenityStory {
 
-	@Autowired
-	private AdderService adderService;
+   @Autowired
+   private AdderService adderService;
 
-	@BeforeStory
-	public void init() {
-		RestAssuredMockMvc.standaloneSetup(new AdderController(adderService));
-	}
+   @BeforeStory
+   public void init() {
+      RestAssuredMockMvc.standaloneSetup(new AdderController(adderService));
+   }
 
 }

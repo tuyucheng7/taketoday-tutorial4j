@@ -18,33 +18,33 @@ import static org.springframework.core.annotation.AnnotatedElementUtils.hasAnnot
 
 abstract class ParameterAutowireUtils {
 
-	private ParameterAutowireUtils() {
-	}
+   private ParameterAutowireUtils() {
+   }
 
-	public static boolean isAutowirable(Parameter parameter) {
-		return ApplicationContext.class.isAssignableFrom(parameter.getType())
-			   || hasAnnotation(parameter, Autowired.class)
-			   || hasAnnotation(parameter, Qualifier.class)
-			   || hasAnnotation(parameter, Value.class);
-	}
+   public static boolean isAutowirable(Parameter parameter) {
+      return ApplicationContext.class.isAssignableFrom(parameter.getType())
+            || hasAnnotation(parameter, Autowired.class)
+            || hasAnnotation(parameter, Qualifier.class)
+            || hasAnnotation(parameter, Value.class);
+   }
 
-	public static Object resolveDependency(Parameter parameter, Class<?> containingClass, ApplicationContext applicationContext) {
-		boolean required = findMergedAnnotation(parameter, Autowired.class)
-			.map(Autowired::required)
-			.orElse(true);
-		MethodParameter methodParameter = (parameter.getDeclaringExecutable() instanceof Method ?
-			MethodParameterFactory.createSynthesizingMethodParameter(parameter) :
-			MethodParameterFactory.createMethodParameter(parameter));
+   public static Object resolveDependency(Parameter parameter, Class<?> containingClass, ApplicationContext applicationContext) {
+      boolean required = findMergedAnnotation(parameter, Autowired.class)
+            .map(Autowired::required)
+            .orElse(true);
+      MethodParameter methodParameter = (parameter.getDeclaringExecutable() instanceof Method ?
+            MethodParameterFactory.createSynthesizingMethodParameter(parameter) :
+            MethodParameterFactory.createMethodParameter(parameter));
 
-		DependencyDescriptor descriptor = new DependencyDescriptor(methodParameter, required);
-		descriptor.setContainingClass(containingClass);
+      DependencyDescriptor descriptor = new DependencyDescriptor(methodParameter, required);
+      descriptor.setContainingClass(containingClass);
 
-		return applicationContext
-			.getAutowireCapableBeanFactory()
-			.resolveDependency(descriptor, null);
-	}
+      return applicationContext
+            .getAutowireCapableBeanFactory()
+            .resolveDependency(descriptor, null);
+   }
 
-	private static <A extends Annotation> Optional<A> findMergedAnnotation(AnnotatedElement element, Class<A> annotationType) {
-		return Optional.ofNullable(AnnotatedElementUtils.findMergedAnnotation(element, annotationType));
-	}
+   private static <A extends Annotation> Optional<A> findMergedAnnotation(AnnotatedElement element, Class<A> annotationType) {
+      return Optional.ofNullable(AnnotatedElementUtils.findMergedAnnotation(element, annotationType));
+   }
 }

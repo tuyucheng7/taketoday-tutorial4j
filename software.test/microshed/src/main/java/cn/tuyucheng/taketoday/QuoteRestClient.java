@@ -11,8 +11,8 @@ import javax.ws.rs.core.MediaType;
 @RegisterRestClient(baseUri = "https://quotes.rest")
 public interface QuoteRestClient {
 
-	@GET
-	@Path("/qod")
-	@Consumes(MediaType.APPLICATION_JSON)
-	JsonObject getQuoteOfTheDay();
+   @GET
+   @Path("/qod")
+   @Consumes(MediaType.APPLICATION_JSON)
+   JsonObject getQuoteOfTheDay();
 }

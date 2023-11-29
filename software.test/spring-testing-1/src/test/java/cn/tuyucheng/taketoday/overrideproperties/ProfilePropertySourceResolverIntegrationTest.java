@@ -14,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @EnableWebMvc
 class ProfilePropertySourceResolverIntegrationTest {
 
-	@Autowired
-	private PropertySourceResolver propertySourceResolver;
+   @Autowired
+   private PropertySourceResolver propertySourceResolver;
 
-	@Test
-	void shouldProfiledProperty_overridePropertyValues() {
-		final String firstProperty = propertySourceResolver.getFirstProperty();
-		final String secondProperty = propertySourceResolver.getSecondProperty();
+   @Test
+   void shouldProfiledProperty_overridePropertyValues() {
+      final String firstProperty = propertySourceResolver.getFirstProperty();
+      final String secondProperty = propertySourceResolver.getSecondProperty();
 
-		assertEquals("profile", firstProperty);
-		assertEquals("file", secondProperty);
-	}
+      assertEquals("profile", firstProperty);
+      assertEquals("file", secondProperty);
+   }
 }

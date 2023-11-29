@@ -15,35 +15,35 @@ import io.restassured.response.Response;
 
 public class BooksSteps extends BaseStep {
 
-	public BooksSteps(TestContext testContext) {
-		super(testContext);
-	}
+   public BooksSteps(TestContext testContext) {
+      super(testContext);
+   }
 
-	@Given("A list of books are available")
-	public void a_list_of_books_are_available() {
-		RestResponse<Books> booksResponse = getEndPoints().getBooks();
-		Book book = booksResponse.getBody().getBooks().get(0);
-		getScenarioContext().setContext(Context.BOOK, book);
-	}
+   @Given("A list of books are available")
+   public void a_list_of_books_are_available() {
+      RestResponse<Books> booksResponse = getEndPoints().getBooks();
+      Book book = booksResponse.getBody().getBooks().get(0);
+      getScenarioContext().setContext(Context.BOOK, book);
+   }
 
-	@When("I add a book to my reading list")
-	public void i_add_a_book_to_my_reading_list() {
-		Book book = (Book) getScenarioContext().getContext(Context.BOOK);
-		String userId = (String) getScenarioContext().getContext(Context.USER_ID);
+   @When("I add a book to my reading list")
+   public void i_add_a_book_to_my_reading_list() {
+      Book book = (Book) getScenarioContext().getContext(Context.BOOK);
+      String userId = (String) getScenarioContext().getContext(Context.USER_ID);
 
-		ISBN isbn = new ISBN(book.getIsbn());
-		AddBooksRequest addBooksRequest = new AddBooksRequest(userId, isbn);
-		RestResponse<UserAccount> userAccountResponse = getEndPoints().addBook(addBooksRequest);
-		getScenarioContext().setContext(Context.USER_ACCOUNT_RESPONSE, userAccountResponse);
-	}
+      ISBN isbn = new ISBN(book.getIsbn());
+      AddBooksRequest addBooksRequest = new AddBooksRequest(userId, isbn);
+      RestResponse<UserAccount> userAccountResponse = getEndPoints().addBook(addBooksRequest);
+      getScenarioContext().setContext(Context.USER_ACCOUNT_RESPONSE, userAccountResponse);
+   }
 
-	@When("I remove a book from my reading list")
-	public void i_remove_a_book_from_my_reading_list() {
-		Book book = (Book) getScenarioContext().getContext(Context.BOOK);
-		String userId = (String) getScenarioContext().getContext(Context.USER_ID);
-		RemoveBookRequest removeBookRequest = new RemoveBookRequest(userId, book.getIsbn());
+   @When("I remove a book from my reading list")
+   public void i_remove_a_book_from_my_reading_list() {
+      Book book = (Book) getScenarioContext().getContext(Context.BOOK);
+      String userId = (String) getScenarioContext().getContext(Context.USER_ID);
+      RemoveBookRequest removeBookRequest = new RemoveBookRequest(userId, book.getIsbn());
 
-		Response response = getEndPoints().removeBook(removeBookRequest);
-		getScenarioContext().setContext(Context.BOOK_REMOVE_RESPONSE, response);
-	}
+      Response response = getEndPoints().removeBook(removeBookRequest);
+      getScenarioContext().setContext(Context.BOOK_REMOVE_RESPONSE, response);
+   }
 }

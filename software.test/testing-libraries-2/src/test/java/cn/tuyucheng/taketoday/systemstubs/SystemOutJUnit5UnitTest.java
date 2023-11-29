@@ -11,18 +11,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SystemStubsExtension.class)
 class SystemOutJUnit5UnitTest {
-	@SystemStub
-	private SystemOut systemOut;
+   @SystemStub
+   private SystemOut systemOut;
 
-	@SystemStub
-	private SystemErr systemErr;
+   @SystemStub
+   private SystemErr systemErr;
 
-	@Test
-	void whenWriteToOutput_thenItCanBeAsserted() {
-		System.out.println("to out");
-		System.err.println("to err");
+   @Test
+   void whenWriteToOutput_thenItCanBeAsserted() {
+      System.out.println("to out");
+      System.err.println("to err");
 
-		assertThat(systemOut.getLines()).containsExactly("to out");
-		assertThat(systemErr.getLines()).containsExactly("to err");
-	}
+      assertThat(systemOut.getLines()).containsExactly("to out");
+      assertThat(systemErr.getLines()).containsExactly("to err");
+   }
 }

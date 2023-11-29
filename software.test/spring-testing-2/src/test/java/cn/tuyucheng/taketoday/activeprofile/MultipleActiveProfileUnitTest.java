@@ -15,15 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles(value = "test")
 class MultipleActiveProfileUnitTest {
 
-	@Value("${profile.property.value}")
-	private String propertyString;
+   @Value("${profile.property.value}")
+   private String propertyString;
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Test
-	void whenDevIsActive_thenValueShouldBeKeptFromDedicatedApplicationYaml() {
-		String currentProfile = env.getActiveProfiles()[0];
-		assertEquals(String.format("This the the application-%s.yaml file", currentProfile), propertyString);
-	}
+   @Test
+   void whenDevIsActive_thenValueShouldBeKeptFromDedicatedApplicationYaml() {
+      String currentProfile = env.getActiveProfiles()[0];
+      assertEquals(String.format("This the the application-%s.yaml file", currentProfile), propertyString);
+   }
 }

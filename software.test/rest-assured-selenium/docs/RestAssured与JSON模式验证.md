@@ -101,7 +101,8 @@ public void givenUrl_whenValidatesResponseWithInstanceSettings_thenCorrect() {
 }复制
 ```
 
-那么验证器将始终期望一个数组作为*odds的值，因此，* *odds*为*String*的响应将无法通过验证。因此，如果我们希望对我们的响应不那么严格，我们可以在验证期间添加自定义规则，首先进行以下静态导入：
+那么验证器将始终期望一个数组作为*odds的值，因此，* *odds*为*String*
+的响应将无法通过验证。因此，如果我们希望对我们的响应不那么严格，我们可以在验证期间添加自定义规则，首先进行以下静态导入：
 
 ```java
 io.restassured.module.jsv.JsonSchemaValidatorSettings.settings;复制

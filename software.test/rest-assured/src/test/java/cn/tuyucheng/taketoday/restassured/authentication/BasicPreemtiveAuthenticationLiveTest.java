@@ -16,41 +16,41 @@ import static org.hamcrest.Matchers.is;
  */
 public class BasicPreemtiveAuthenticationLiveTest {
 
-	private static final String USER = "admin";
-	private static final String PASSWORD = "admin";
-	private static final String SVC_URL = "http://localhost:8080/api/applications/";
+   private static final String USER = "admin";
+   private static final String PASSWORD = "admin";
+   private static final String SVC_URL = "http://localhost:8080/api/applications/";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("<form"), containsString("action=\"login\""));
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("<form"), containsString("action=\"login\""));
+   }
 
-	@Test
-	public void givenNonPreemtiveBasicAuthentication_whenRequestSecuredResource_thenLoginPageRetrieved() {
-		given().auth()
-			.basic(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("<form"), containsString("action=\"login\""));
-	}
+   @Test
+   public void givenNonPreemtiveBasicAuthentication_whenRequestSecuredResource_thenLoginPageRetrieved() {
+      given().auth()
+            .basic(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("<form"), containsString("action=\"login\""));
+   }
 
-	@Test
-	public void givenPreemtiveBasicAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		given().auth()
-			.preemptive()
-			.basic(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body("size()", is(1));
-	}
+   @Test
+   public void givenPreemtiveBasicAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      given().auth()
+            .preemptive()
+            .basic(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body("size()", is(1));
+   }
 
 }

@@ -10,17 +10,17 @@ import java.util.stream.Stream;
 
 class PeopleProviderWithAnnotationConsumer implements CartesianParameterArgumentsProvider<Person>, AnnotationConsumer<People> {
 
-	private People source;
+   private People source;
 
-	@Override
-	public Stream<Person> provideArguments(ExtensionContext context, Parameter parameter) {
-		return IntStream
-			.range(0, source.names().length)
-			.mapToObj(i -> new Person(source.names()[i], source.ages()[i]));
-	}
+   @Override
+   public Stream<Person> provideArguments(ExtensionContext context, Parameter parameter) {
+      return IntStream
+            .range(0, source.names().length)
+            .mapToObj(i -> new Person(source.names()[i], source.ages()[i]));
+   }
 
-	@Override
-	public void accept(People source) {
-		this.source = source;
-	}
+   @Override
+   public void accept(People source) {
+      this.source = source;
+   }
 }

@@ -16,15 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringJUnitConfig(SpringJUnitConfigIntegrationTest.Config.class)
 class SpringJUnitConfigIntegrationTest {
 
-	@Configuration
-	static class Config {
-	}
+   @Configuration
+   static class Config {
+   }
 
-	@Autowired
-	private ApplicationContext applicationContext;
+   @Autowired
+   private ApplicationContext applicationContext;
 
-	@Test
-	void givenAppContext_WhenInjected_ThenItShouldNotBeNull() {
-		assertNotNull(applicationContext);
-	}
+   @Test
+   void givenAppContext_WhenInjected_ThenItShouldNotBeNull() {
+      assertNotNull(applicationContext);
+   }
 }

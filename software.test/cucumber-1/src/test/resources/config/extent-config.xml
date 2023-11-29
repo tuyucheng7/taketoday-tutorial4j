@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extentreports>
-    <configuration>
-        <!-- report theme --> <!-- standard, dark -->
-        <theme>standard</theme>
+   <configuration>
+      <!-- report theme --> <!-- standard, dark -->
+      <theme>standard</theme>
 
-        <!-- document encoding -->  <!-- defaults to UTF-8 -->
-        <encoding>UTF-8</encoding>
+      <!-- document encoding -->  <!-- defaults to UTF-8 -->
+      <encoding>UTF-8</encoding>
 
-        <!-- protocol for script and stylesheets -->   <!-- defaults to https -->
-        <protocol>https</protocol>
+      <!-- protocol for script and stylesheets -->   <!-- defaults to https -->
+      <protocol>https</protocol>
 
-        <!-- title of the document -->
-        <documentTitle>TakeToday - Cucumber Framework</documentTitle>
+      <!-- title of the document -->
+      <documentTitle>TakeToday - Cucumber Framework</documentTitle>
 
-        <!-- report name - displayed at top-nav -->
-        <reportName>TakeToday - Cucumber Report</reportName>
+      <!-- report name - displayed at top-nav -->
+      <reportName>TakeToday - Cucumber Report</reportName>
 
-        <!-- global date format override -->  <!-- defaults to yyyy-MM-dd -->
-        <dateFormat>yyyy-MM-dd</dateFormat>
+      <!-- global date format override -->  <!-- defaults to yyyy-MM-dd -->
+      <dateFormat>yyyy-MM-dd</dateFormat>
 
-        <!-- global time format override -->   <!-- defaults to HH:mm:ss -->
-        <timeFormat>HH:mm:ss</timeFormat>
+      <!-- global time format override -->   <!-- defaults to HH:mm:ss -->
+      <timeFormat>HH:mm:ss</timeFormat>
 
-        <!-- custom javascript -->
-        <scripts>
-            <![CDATA[
+      <!-- custom javascript -->
+      <scripts>
+         <![CDATA[
         $(document).ready(function() {
-        
+
         });
       ]]>
-        </scripts>
+      </scripts>
 
-        <!-- custom styles -->
-        <styles>
-            <![CDATA[
-        
+      <!-- custom styles -->
+      <styles>
+         <![CDATA[
+
       ]]>
-        </styles>
-    </configuration>
+      </styles>
+   </configuration>
 </extentreports>

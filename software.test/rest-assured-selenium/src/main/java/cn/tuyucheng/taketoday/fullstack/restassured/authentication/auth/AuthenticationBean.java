@@ -9,10 +9,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AuthenticationBean {
 
-	private String message;
+   private String message;
 
-	@Override
-	public String toString() {
-		return String.format("HelloWorldBean [message=%s]", message);
-	}
+   @Override
+   public String toString() {
+      return String.format("HelloWorldBean [message=%s]", message);
+   }
 }

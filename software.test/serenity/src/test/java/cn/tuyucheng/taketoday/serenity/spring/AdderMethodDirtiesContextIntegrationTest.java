@@ -22,27 +22,27 @@ import static cn.tuyucheng.taketoday.serenity.spring.RandomNumberUtil.randomInt;
 @ContextConfiguration(classes = AdderService.class)
 public class AdderMethodDirtiesContextIntegrationTest {
 
-	@Steps
-	private AdderServiceSteps adderServiceSteps;
+   @Steps
+   private AdderServiceSteps adderServiceSteps;
 
-	@Test
-	public void _1_givenNumber_whenAdd_thenSumWrong() {
-		adderServiceSteps.whenAdd();
-		adderServiceSteps.summedUp();
-	}
+   @Test
+   public void _1_givenNumber_whenAdd_thenSumWrong() {
+      adderServiceSteps.whenAdd();
+      adderServiceSteps.summedUp();
+   }
 
-	@Rule
-	public SpringIntegrationMethodRule springIntegration = new SpringIntegrationMethodRule();
+   @Rule
+   public SpringIntegrationMethodRule springIntegration = new SpringIntegrationMethodRule();
 
-	@DirtiesContext
-	@Test
-	public void _0_givenNumber_whenAddAndAccumulate_thenSummedUp() {
-		adderServiceSteps.givenBaseAndAdder(randomInt(), randomInt());
-		adderServiceSteps.whenAccumulate();
-		adderServiceSteps.summedUp();
+   @DirtiesContext
+   @Test
+   public void _0_givenNumber_whenAddAndAccumulate_thenSummedUp() {
+      adderServiceSteps.givenBaseAndAdder(randomInt(), randomInt());
+      adderServiceSteps.whenAccumulate();
+      adderServiceSteps.summedUp();
 
-		adderServiceSteps.whenAdd();
-		adderServiceSteps.sumWrong();
-	}
+      adderServiceSteps.whenAdd();
+      adderServiceSteps.sumWrong();
+   }
 
 }

@@ -5,9 +5,9 @@ import org.junit.Test;
 
 public class IgnoreMethodUnitTest {
 
-    @Ignore("This test method not ready yet")
-    @Test
-    public void whenMethodIsIgnored_thenTestsDoNotRun() {
+   @Ignore("This test method not ready yet")
+   @Test
+   public void whenMethodIsIgnored_thenTestsDoNotRun() {
 
-    }
+   }
 }

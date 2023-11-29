@@ -5,12 +5,7 @@ import cn.tuyucheng.taketoday.hamcrest.objectmatchers.Location;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.hamcrest.Matchers.hasToString;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.typeCompatibleWith;
+import static org.hamcrest.Matchers.*;
 
 class HamcrestObjectUnitTest {
 

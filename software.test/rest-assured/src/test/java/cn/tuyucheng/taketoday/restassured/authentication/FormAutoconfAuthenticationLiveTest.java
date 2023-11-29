@@ -16,27 +16,27 @@ import static org.hamcrest.Matchers.is;
  */
 public class FormAutoconfAuthenticationLiveTest {
 
-	private static final String USER = "admin";
-	private static final String PASSWORD = "admin";
-	private static final String SVC_URL = "http://localhost:8080/ger1/api/applications/";
+   private static final String USER = "admin";
+   private static final String PASSWORD = "admin";
+   private static final String SVC_URL = "http://localhost:8080/ger1/api/applications/";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("<form"), containsString("action=\"login\""));
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("<form"), containsString("action=\"login\""));
+   }
 
-	@Test
-	public void givenParsingFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		given().auth()
-			.form(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body("size()", is(1));
-	}
+   @Test
+   public void givenParsingFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      given().auth()
+            .form(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body("size()", is(1));
+   }
 }

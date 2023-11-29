@@ -7,31 +7,31 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car {
-	@Id
-	@GeneratedValue
-	private Long id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
-	@NotNull
-	private String name;
+   @NotNull
+   private String name;
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(final Long id) {
-		this.id = id;
-	}
+   public void setId(final Long id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(final String name) {
-		this.name = name;
-	}
+   public void setName(final String name) {
+      this.name = name;
+   }
 
-	@Override
-	public String toString() {
-		return "Car [id=" + id + ", name=" + name + "]";
-	}
+   @Override
+   public String toString() {
+      return "Car [id=" + id + ", name=" + name + "]";
+   }
 }

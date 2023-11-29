@@ -18,27 +18,27 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class EmployeeDAOIntegrationTest {
 
-	@Autowired
-	private EmployeeDAO employeeDao;
+   @Autowired
+   private EmployeeDAO employeeDao;
 
-	@Test
-	public void testQueryMethod() {
-		Assert.assertEquals(employeeDao.getAllEmployees().size(), 4);
-	}
+   @Test
+   public void testQueryMethod() {
+      Assert.assertEquals(employeeDao.getAllEmployees().size(), 4);
+   }
 
-	@Test
-	public void testUpdateMethod() {
-		Assert.assertEquals(employeeDao.addEmployee(5), 1);
-	}
+   @Test
+   public void testUpdateMethod() {
+      Assert.assertEquals(employeeDao.addEmployee(5), 1);
+   }
 
-	@Test
-	public void testAddEmployeeUsingSimpleJdbcInsert() {
-		final Employee emp = new Employee();
-		emp.setId(11);
-		emp.setFirstName("testFirstName");
-		emp.setLastName("testLastName");
-		emp.setAddress("testAddress");
+   @Test
+   public void testAddEmployeeUsingSimpleJdbcInsert() {
+      final Employee emp = new Employee();
+      emp.setId(11);
+      emp.setFirstName("testFirstName");
+      emp.setLastName("testLastName");
+      emp.setAddress("testAddress");
 
-		Assert.assertEquals(1, employeeDao.addEmployeeUsingSimpleJdbcInsert(emp));
-	}
+      Assert.assertEquals(1, employeeDao.addEmployeeUsingSimpleJdbcInsert(emp));
+   }
 }

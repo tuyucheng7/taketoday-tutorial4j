@@ -13,31 +13,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class VerificationSteps extends BaseStep {
 
-	public VerificationSteps(TestContext testContext) {
-		super(testContext);
-	}
+   public VerificationSteps(TestContext testContext) {
+      super(testContext);
+   }
 
-	@Then("The book is added")
-	public void the_book_is_added() {
-		Book book = (Book) getScenarioContext().getContext(Context.BOOK);
-		RestResponse<UserAccount> userAccountResponse = (RestResponse<UserAccount>) getScenarioContext().getContext(Context.USER_ACCOUNT_RESPONSE);
+   @Then("The book is added")
+   public void the_book_is_added() {
+      Book book = (Book) getScenarioContext().getContext(Context.BOOK);
+      RestResponse<UserAccount> userAccountResponse = (RestResponse<UserAccount>) getScenarioContext().getContext(Context.USER_ACCOUNT_RESPONSE);
 
-		assertTrue(userAccountResponse.isSuccessful());
-		assertEquals(201, userAccountResponse.getStatusCode());
+      assertTrue(userAccountResponse.isSuccessful());
+      assertEquals(201, userAccountResponse.getStatusCode());
 
-		assertEquals(book.getIsbn(), userAccountResponse.getBody().getBooks().get(0).getIsbn());
-	}
+      assertEquals(book.getIsbn(), userAccountResponse.getBody().getBooks().get(0).getIsbn());
+   }
 
-	@Then("The book is removed")
-	public void the_book_is_removed() {
-		String userId = (String) getScenarioContext().getContext(Context.USER_ID);
-		Response response = (Response) getScenarioContext().getContext(Context.BOOK_REMOVE_RESPONSE);
+   @Then("The book is removed")
+   public void the_book_is_removed() {
+      String userId = (String) getScenarioContext().getContext(Context.USER_ID);
+      Response response = (Response) getScenarioContext().getContext(Context.BOOK_REMOVE_RESPONSE);
 
-		assertEquals(204, response.getStatusCode());
+      assertEquals(204, response.getStatusCode());
 
-		RestResponse<UserAccount> userAccountResponse = getEndPoints().getUserAccount(userId);
+      RestResponse<UserAccount> userAccountResponse = getEndPoints().getUserAccount(userId);
 
-		assertEquals(200, userAccountResponse.getStatusCode());
-		assertEquals(0, userAccountResponse.getBody().getBooks().size());
-	}
+      assertEquals(200, userAccountResponse.getStatusCode());
+      assertEquals(0, userAccountResponse.getBody().getBooks().size());
+   }
 }

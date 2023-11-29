@@ -9,17 +9,17 @@ import java.io.IOException;
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
 public class UserServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 2923732283720972121L;
+   private static final long serialVersionUID = 2923732283720972121L;
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
+   @Override
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String firstName = request.getParameter("firstName");
+      String lastName = request.getParameter("lastName");
 
-		response.getWriter()
-			.append("Full Name: ")
-			.append(firstName)
-			.append(" ")
-			.append(lastName);
-	}
+      response.getWriter()
+            .append("Full Name: ")
+            .append(firstName)
+            .append(" ")
+            .append(lastName);
+   }
 }

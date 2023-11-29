@@ -11,20 +11,20 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.emp
 
 public class SystemInWithRuleUnitTest {
 
-	@Rule
-	public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
+   @Rule
+   public final TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
-	@Test
-	public void givenTwoNames_whenSystemInMock_thenNamesJoinedTogether() {
-		systemInMock.provideLines("Jonathan", "Cook");
-		assertEquals("Names should be concatenated", "Jonathan Cook", getFullname());
-	}
+   @Test
+   public void givenTwoNames_whenSystemInMock_thenNamesJoinedTogether() {
+      systemInMock.provideLines("Jonathan", "Cook");
+      assertEquals("Names should be concatenated", "Jonathan Cook", getFullname());
+   }
 
-	private String getFullname() {
-		try (Scanner scanner = new Scanner(System.in)) {
-			String firstName = scanner.next();
-			String surname = scanner.next();
-			return String.join(" ", firstName, surname);
-		}
-	}
+   private String getFullname() {
+      try (Scanner scanner = new Scanner(System.in)) {
+         String firstName = scanner.next();
+         String surname = scanner.next();
+         return String.join(" ", firstName, surname);
+      }
+   }
 }

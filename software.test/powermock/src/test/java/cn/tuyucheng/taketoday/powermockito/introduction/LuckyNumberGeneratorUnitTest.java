@@ -13,35 +13,35 @@ import static org.powermock.api.mockito.PowerMockito.*;
 @PrepareForTest(fullyQualifiedNames = "cn.tuyucheng.taketoday.powermockito.introduction.LuckyNumberGenerator")
 public class LuckyNumberGeneratorUnitTest {
 
-	@Test
-	public final void givenPrivateMethodWithReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
-		LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
+   @Test
+   public final void givenPrivateMethodWithReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
+      LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
 
-		when(mock, "getDefaultLuckyNumber").thenReturn(300);
+      when(mock, "getDefaultLuckyNumber").thenReturn(300);
 
-		int result = mock.getLuckyNumber(null);
+      int result = mock.getLuckyNumber(null);
 
-		assertEquals(300, result);
-	}
+      assertEquals(300, result);
+   }
 
-	@Test
-	public final void givenPrivateMethodWithArgumentAndReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
-		LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
+   @Test
+   public final void givenPrivateMethodWithArgumentAndReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
+      LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
 
-		doReturn(1).when(mock, "getComputedLuckyNumber", ArgumentMatchers.anyInt());
+      doReturn(1).when(mock, "getComputedLuckyNumber", ArgumentMatchers.anyInt());
 
-		int result = mock.getLuckyNumber("Jack");
+      int result = mock.getLuckyNumber("Jack");
 
-		assertEquals(1, result);
-	}
+      assertEquals(1, result);
+   }
 
-	@Test
-	public final void givenPrivateMethodWithNoArgumentAndReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
-		LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
+   @Test
+   public final void givenPrivateMethodWithNoArgumentAndReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
+      LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
 
-		int result = mock.getLuckyNumber("Tyranosorous");
+      int result = mock.getLuckyNumber("Tyranosorous");
 
-		verifyPrivate(mock).invoke("saveIntoDatabase", ArgumentMatchers.anyString());
-		assertEquals(10000, result);
-	}
+      verifyPrivate(mock).invoke("saveIntoDatabase", ArgumentMatchers.anyString());
+      assertEquals(10000, result);
+   }
 }

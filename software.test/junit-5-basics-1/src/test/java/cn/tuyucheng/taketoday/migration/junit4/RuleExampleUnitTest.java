@@ -8,14 +8,14 @@ import org.slf4j.LoggerFactory;
 
 public class RuleExampleUnitTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RuleExampleUnitTest.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(RuleExampleUnitTest.class);
 
-	@Rule
-	public final TraceUnitTestRule traceRuleTests = new TraceUnitTestRule();
+   @Rule
+   public final TraceUnitTestRule traceRuleTests = new TraceUnitTestRule();
 
-	@Test
-	public void whenTracingTests() {
-		LOGGER.debug("This is my test");
-		/*...*/
-	}
+   @Test
+   public void whenTracingTests() {
+      LOGGER.debug("This is my test");
+      /*...*/
+   }
 }

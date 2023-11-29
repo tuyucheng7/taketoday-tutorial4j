@@ -19,29 +19,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(OrderAnnotation.class)
 class SharedTemporaryDirectoryUnitTest {
 
-	@TempDir
-	static Path sharedTempDir;
+   @TempDir
+   static Path sharedTempDir;
 
-	@Test
-	@Order(1)
-	void givenFieldWithSharedTempDirectoryPath_whenWriteToFile_thenContentIsCorrect() throws IOException {
-		Path numbers = sharedTempDir.resolve("numbers.txt");
+   @Test
+   @Order(1)
+   void givenFieldWithSharedTempDirectoryPath_whenWriteToFile_thenContentIsCorrect() throws IOException {
+      Path numbers = sharedTempDir.resolve("numbers.txt");
 
-		List<String> lines = Arrays.asList("1", "2", "3");
-		Files.write(numbers, lines);
+      List<String> lines = Arrays.asList("1", "2", "3");
+      Files.write(numbers, lines);
 
-		assertAll(
-			() -> assertTrue(Files.exists(numbers), "File should exist"),
-			() -> assertLinesMatch(lines, Files.readAllLines(numbers)));
+      assertAll(
+            () -> assertTrue(Files.exists(numbers), "File should exist"),
+            () -> assertLinesMatch(lines, Files.readAllLines(numbers)));
 
-		Files.createTempDirectory("bpb");
-	}
+      Files.createTempDirectory("bpb");
+   }
 
-	@Test
-	@Order(2)
-	void givenAlreadyWrittenToSharedFile_whenCheckContents_thenContentIsCorrect() throws IOException {
-		Path numbers = sharedTempDir.resolve("numbers.txt");
+   @Test
+   @Order(2)
+   void givenAlreadyWrittenToSharedFile_whenCheckContents_thenContentIsCorrect() throws IOException {
+      Path numbers = sharedTempDir.resolve("numbers.txt");
 
-		assertLinesMatch(Arrays.asList("1", "2", "3"), Files.readAllLines(numbers));
-	}
+      assertLinesMatch(Arrays.asList("1", "2", "3"), Files.readAllLines(numbers));
+   }
 }

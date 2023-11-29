@@ -8,11 +8,11 @@ import java.util.Scanner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WithMockedInputStreamUnitTest {
-	@Test
-	void givenInputStream_thenCanRead() {
-		LinesAltStream testInput = new LinesAltStream("line1", "line2");
+   @Test
+   void givenInputStream_thenCanRead() {
+      LinesAltStream testInput = new LinesAltStream("line1", "line2");
 
-		Scanner scanner = new Scanner(testInput);
-		assertThat(scanner.nextLine()).isEqualTo("line1");
-	}
+      Scanner scanner = new Scanner(testInput);
+      assertThat(scanner.nextLine()).isEqualTo("line1");
+   }
 }

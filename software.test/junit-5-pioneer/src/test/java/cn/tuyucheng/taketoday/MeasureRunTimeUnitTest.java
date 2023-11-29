@@ -6,12 +6,12 @@ import org.junitpioneer.jupiter.Stopwatch;
 @Stopwatch
 public class MeasureRunTimeUnitTest {
 
-	@Test
-	@Stopwatch
-	void givenMethodAnno_shouldMeasureRunTime() {
-	}
+   @Test
+   @Stopwatch
+   void givenMethodAnno_shouldMeasureRunTime() {
+   }
 
-	@Test
-	void givenClassAnno_shouldMeasureRunTime() {
-	}
+   @Test
+   void givenClassAnno_shouldMeasureRunTime() {
+   }
 }

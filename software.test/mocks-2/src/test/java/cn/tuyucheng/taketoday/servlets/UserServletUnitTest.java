@@ -21,72 +21,72 @@ import static org.mockito.Mockito.when;
 
 class UserServletUnitTest {
 
-	private UserServlet servlet;
-	private StringWriter writer;
+   private UserServlet servlet;
+   private StringWriter writer;
 
-	@Mocked
-	HttpServletRequest mockRequest;
-	@Mocked
-	HttpServletResponse mockResponse;
+   @Mocked
+   HttpServletRequest mockRequest;
+   @Mocked
+   HttpServletResponse mockResponse;
 
-	@BeforeEach
-	public void setUp() throws IOException {
-		servlet = new UserServlet();
-		writer = new StringWriter();
-	}
+   @BeforeEach
+   public void setUp() throws IOException {
+      servlet = new UserServlet();
+      writer = new StringWriter();
+   }
 
-	@Test
-	void givenHttpServletRequest_whenUsingAnonymousClass_thenReturnsParameterValues() throws IOException {
-		final Map<String, String[]> params = new HashMap<>();
-		params.put("firstName", new String[]{"Anonymous Class"});
-		params.put("lastName", new String[]{"Test"});
+   @Test
+   void givenHttpServletRequest_whenUsingAnonymousClass_thenReturnsParameterValues() throws IOException {
+      final Map<String, String[]> params = new HashMap<>();
+      params.put("firstName", new String[]{"Anonymous Class"});
+      params.put("lastName", new String[]{"Test"});
 
-		servlet.doGet(TestUtil.getRequest(params), TestUtil.getResponse(writer));
+      servlet.doGet(TestUtil.getRequest(params), TestUtil.getResponse(writer));
 
-		assertThat(writer.toString()).isEqualTo("Full Name: Anonymous Class Test");
-	}
+      assertThat(writer.toString()).isEqualTo("Full Name: Anonymous Class Test");
+   }
 
-	@Test
-	void givenHttpServletRequest_whenMockedWithMockito_thenReturnsParameterValues() throws IOException {
-		// mock HttpServletRequest & HttpServletResponse
-		HttpServletRequest request = mock(HttpServletRequest.class);
-		HttpServletResponse response = mock(HttpServletResponse.class);
+   @Test
+   void givenHttpServletRequest_whenMockedWithMockito_thenReturnsParameterValues() throws IOException {
+      // mock HttpServletRequest & HttpServletResponse
+      HttpServletRequest request = mock(HttpServletRequest.class);
+      HttpServletResponse response = mock(HttpServletResponse.class);
 
-		// mock the returned value of request.getParameterMap()
-		when(request.getParameter("firstName")).thenReturn("Mockito");
-		when(request.getParameter("lastName")).thenReturn("Test");
-		when(response.getWriter()).thenReturn(new PrintWriter(writer));
+      // mock the returned value of request.getParameterMap()
+      when(request.getParameter("firstName")).thenReturn("Mockito");
+      when(request.getParameter("lastName")).thenReturn("Test");
+      when(response.getWriter()).thenReturn(new PrintWriter(writer));
 
-		servlet.doGet(request, response);
+      servlet.doGet(request, response);
 
-		assertThat(writer.toString()).isEqualTo("Full Name: Mockito Test");
-	}
+      assertThat(writer.toString()).isEqualTo("Full Name: Mockito Test");
+   }
 
-	@Test
-	void givenHttpServletRequest_whenMockedWithJMockit_thenReturnsParameterValues() throws IOException {
-		new Expectations() {{
-			mockRequest.getParameter("firstName");
-			result = "JMockit";
-			mockRequest.getParameter("lastName");
-			result = "Test";
-			mockResponse.getWriter();
-			result = new PrintWriter(writer);
-		}};
+   @Test
+   void givenHttpServletRequest_whenMockedWithJMockit_thenReturnsParameterValues() throws IOException {
+      new Expectations() {{
+         mockRequest.getParameter("firstName");
+         result = "JMockit";
+         mockRequest.getParameter("lastName");
+         result = "Test";
+         mockResponse.getWriter();
+         result = new PrintWriter(writer);
+      }};
 
-		servlet.doGet(mockRequest, mockResponse);
+      servlet.doGet(mockRequest, mockResponse);
 
-		assertThat(writer.toString()).isEqualTo("Full Name: JMockit Test");
-	}
+      assertThat(writer.toString()).isEqualTo("Full Name: JMockit Test");
+   }
 
-	@Test
-	void givenHttpServletRequest_whenUsingMockHttpServletRequest_thenReturnsParameterValues() throws IOException {
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.setParameter("firstName", "Spring");
-		request.setParameter("lastName", "Test");
-		MockHttpServletResponse response = new MockHttpServletResponse();
+   @Test
+   void givenHttpServletRequest_whenUsingMockHttpServletRequest_thenReturnsParameterValues() throws IOException {
+      MockHttpServletRequest request = new MockHttpServletRequest();
+      request.setParameter("firstName", "Spring");
+      request.setParameter("lastName", "Test");
+      MockHttpServletResponse response = new MockHttpServletResponse();
 
-		servlet.doGet(request, response);
+      servlet.doGet(request, response);
 
-		assertThat(response.getContentAsString()).isEqualTo("Full Name: Spring Test");
-	}
+      assertThat(response.getContentAsString()).isEqualTo("Full Name: Spring Test");
+   }
 }

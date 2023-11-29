@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = MocksApplication.class)
 public class SpringContextTest {
 
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

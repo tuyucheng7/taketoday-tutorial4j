@@ -4,13 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Answers;
 import org.mockito.MockedConstruction;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.withSettings;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.List;
 
-import static org.mockito.Mockito.mockConstruction;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class FruitUnitTest {
 

@@ -13,18 +13,18 @@ import java.util.stream.Stream;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StringConverterMockitoRunnerUnitTest {
-	@Mock
-	private DataProvider dataProvider;
+   @Mock
+   private DataProvider dataProvider;
 
-	@InjectMocks
-	private StringConverter stringConverter;
+   @InjectMocks
+   private StringConverter stringConverter;
 
-	@Test
-	public void givenStrings_whenConvert_thenReturnUpperCase() {
-		Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
+   @Test
+   public void givenStrings_whenConvert_thenReturnUpperCase() {
+      Mockito.when(dataProvider.getValues()).thenReturn(Stream.of("first", "second"));
 
-		val result = stringConverter.convert();
+      val result = stringConverter.convert();
 
-		Assertions.assertThat(result).contains("FIRST", "SECOND");
-	}
+      Assertions.assertThat(result).contains("FIRST", "SECOND");
+   }
 }

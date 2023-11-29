@@ -6,21 +6,21 @@ import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
 public class GenericTypedParameterResolver<T> implements ParameterResolver {
-	T data;
+   T data;
 
-	public GenericTypedParameterResolver(T data) {
-		this.data = data;
-	}
+   public GenericTypedParameterResolver(T data) {
+      this.data = data;
+   }
 
-	@Override
-	public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-		return parameterContext.getParameter()
-			.getType()
-			.isInstance(data);
-	}
+   @Override
+   public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+      return parameterContext.getParameter()
+            .getType()
+            .isInstance(data);
+   }
 
-	@Override
-	public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-		return data;
-	}
+   @Override
+   public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+      return data;
+   }
 }

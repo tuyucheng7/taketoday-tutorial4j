@@ -12,14 +12,14 @@ import org.junit.runner.RunWith;
 @RunWith(SerenityRunner.class)
 public class AdderServiceIntegrationTest {
 
-	@Steps
-	private AdderServiceSteps adderServiceSteps;
+   @Steps
+   private AdderServiceSteps adderServiceSteps;
 
-	@Test
-	public void givenNumber_whenAdd_thenSummedUp() {
-		adderServiceSteps.givenBaseAndAdder(RandomNumberUtil.randomInt(), RandomNumberUtil.randomInt());
-		adderServiceSteps.whenAdd();
-		adderServiceSteps.summedUp();
-	}
+   @Test
+   public void givenNumber_whenAdd_thenSummedUp() {
+      adderServiceSteps.givenBaseAndAdder(RandomNumberUtil.randomInt(), RandomNumberUtil.randomInt());
+      adderServiceSteps.whenAdd();
+      adderServiceSteps.summedUp();
+   }
 
 }

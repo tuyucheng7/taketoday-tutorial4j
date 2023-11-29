@@ -12,19 +12,19 @@ import java.util.List;
 
 public class ConfirmationPage {
 
-	WebDriver driver;
+   WebDriver driver;
 
-	public ConfirmationPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+   public ConfirmationPage(WebDriver driver) {
+      this.driver = driver;
+      PageFactory.initElements(driver, this);
+   }
 
-	@FindAll(@FindBy(how = How.CSS, using = ".order_item"))
-	private List<WebElement> product_List;
+   @FindAll(@FindBy(how = How.CSS, using = ".order_item"))
+   private List<WebElement> product_List;
 
-	public List<String> getProductNames() {
-		return product_List.stream()
-				.map(element -> element.findElement(By.cssSelector(".product-name")).getText())
-				.toList();
-	}
+   public List<String> getProductNames() {
+      return product_List.stream()
+            .map(element -> element.findElement(By.cssSelector(".product-name")).getText())
+            .toList();
+   }
 }

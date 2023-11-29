@@ -13,37 +13,37 @@ import static org.junit.Assert.assertEquals;
 
 @ExtendWith(SystemStubsExtension.class)
 class SystemLambdaComparisonUnitTest {
-	@SystemStub
-	private EnvironmentVariables environmentVariables =
-		new EnvironmentVariables("ADDRESS", "https://www.baeldung.com");
+   @SystemStub
+   private EnvironmentVariables environmentVariables =
+         new EnvironmentVariables("ADDRESS", "https://www.baeldung.com");
 
-	@SystemStub
-	private SystemProperties systemProperties = new SystemProperties();
+   @SystemStub
+   private SystemProperties systemProperties = new SystemProperties();
 
-	@Test
-	void aSingleSystemLambda() throws Exception {
-		restoreSystemProperties(() -> {
-			System.setProperty("log_dir", "test/resources");
-			assertEquals("test/resources", System.getProperty("log_dir"));
-		});
-	}
+   @Test
+   void aSingleSystemLambda() throws Exception {
+      restoreSystemProperties(() -> {
+         System.setProperty("log_dir", "test/resources");
+         assertEquals("test/resources", System.getProperty("log_dir"));
+      });
+   }
 
-	@Test
-	void multipleSystemLambdas() throws Exception {
-		restoreSystemProperties(() -> {
-			withEnvironmentVariable("URL", "https://www.baeldung.com")
-				.execute(() -> {
-					System.setProperty("log_dir", "test/resources");
-					assertEquals("test/resources", System.getProperty("log_dir"));
-					assertEquals("https://www.baeldung.com", System.getenv("URL"));
-				});
-		});
-	}
+   @Test
+   void multipleSystemLambdas() throws Exception {
+      restoreSystemProperties(() -> {
+         withEnvironmentVariable("URL", "https://www.baeldung.com")
+               .execute(() -> {
+                  System.setProperty("log_dir", "test/resources");
+                  assertEquals("test/resources", System.getProperty("log_dir"));
+                  assertEquals("https://www.baeldung.com", System.getenv("URL"));
+               });
+      });
+   }
 
-	@Test
-	void multipleSystemStubs() {
-		System.setProperty("log_dir", "test/resources");
-		assertEquals("test/resources", System.getProperty("log_dir"));
-		assertEquals("https://www.baeldung.com", System.getenv("ADDRESS"));
-	}
+   @Test
+   void multipleSystemStubs() {
+      System.setProperty("log_dir", "test/resources");
+      assertEquals("test/resources", System.getProperty("log_dir"));
+      assertEquals("https://www.baeldung.com", System.getenv("ADDRESS"));
+   }
 }

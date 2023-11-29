@@ -1,11 +1,13 @@
 ## 将 JSON 数组反序列化为数组
 
-本教程进一步建立在我们对将***JSON 响应******反序列***化为给定类型的对象的理解之上。请在下面的教程中了解***序列化和反序列化的基础知识***
+本教程进一步建立在我们对将***JSON 响应******反序列***化为给定类型的对象的理解之上。请在下面的教程中了解
+***序列化和反序列化的基础知识***
 
--   [***将 JSON 数据反序列化为 POJO 类对象***](https://toolsqa.com/rest-assured/deserialize-json-response/)
--   [***将 JSON 数组反序列化为列表***](https://toolsqa.com/rest-assured/deserialize-json-array/)
+- [***将 JSON 数据反序列化为 POJO 类对象***](https://toolsqa.com/rest-assured/deserialize-json-response/)
+- [***将 JSON 数组反序列化为列表***](https://toolsqa.com/rest-assured/deserialize-json-array/)
 
-我们将以*演示 REST API 端点*为例： [***https***](https://bookstore.demoqa.com/swagger/#/BookStore/BookStoreV1BooksGet) ://bookstore.demoqa.com/swagger/#/BookStore/BookStoreV1BooksGet如果您点击此端点，您将在 Json 响应中获得书籍**集合**。以下是回复：
+我们将以*演示 REST API 端点*为例： [***https***](https://bookstore.demoqa.com/swagger/#/BookStore/BookStoreV1BooksGet) :
+//bookstore.demoqa.com/swagger/#/BookStore/BookStoreV1BooksGet如果您点击此端点，您将在 Json 响应中获得书籍**集合**。以下是回复：
 
 ```java
 {
@@ -102,11 +104,15 @@
 }
 ```
 
-此***JSON 响应***包含***Books 数组***。*JSON 数组*中的每一项都代表一本书，并具有诸如“ ***isbn*** ”、“ ***title”***、“ ***author*** ”等书籍的属性。在前面的教程中，我们学习了如何将***单节点的 JSON 响应反序列化为 Class 的实例***。然而，在将节点***集合反序列***化为数组时变得有点棘手。让我们看看 Rest Assured 如何帮助我们快速实现这一目标，而无需编写任何样板代码。
+此***JSON 响应***包含***Books 数组***。*JSON 数组*中的每一项都代表一本书，并具有诸如“ ***isbn*** ”、“ ***title”***、“
+***author*** ”等书籍的属性。在前面的教程中，我们学习了如何将***单节点的 JSON 响应反序列化为 Class 的实例***。然而，在将节点
+***集合反序列***化为数组时变得有点棘手。让我们看看 Rest Assured 如何帮助我们快速实现这一目标，而无需编写任何样板代码。
 
 ### ***使用 Rest Assured 的 JSONPath 将 JSON 数组反序列化为数组？***
 
-同样，我们可以将***Json Array 转换为 Java Array。JsonPath***类具有称为***getObject***的方法。此方法可用于将响应直接转换为***Java Array of Book***。我们唯一需要做的就是将***Book[].class***作为第二个参数传递给该方法，以表示我们希望将 Json 反序列化为 Book 数组。这是执行此操作的代码
+同样，我们可以将***Json Array 转换为 Java Array。JsonPath***类具有称为***getObject***的方法。此方法可用于将响应直接转换为
+***Java Array of Book***。我们唯一需要做的就是将***Book[].class***作为第二个参数传递给该方法，以表示我们希望将 Json 反序列化为
+Book 数组。这是执行此操作的代码
 
 ```java
 @Test
@@ -132,4 +138,5 @@ public void JsonArrayToArray()
 }
 ```
 
-以上两种技术对于编写***简洁***的 测试代码很重要。除了使用上述技术编写简洁的测试外，我们还充分利用了 Rest-Assured 提供给我们的功能。这有助于我们在 Rest Assured 之外减少依赖，也使我们能够编写可靠的测试。
+以上两种技术对于编写***简洁***的 测试代码很重要。除了使用上述技术编写简洁的测试外，我们还充分利用了 Rest-Assured
+提供给我们的功能。这有助于我们在 Rest Assured 之外减少依赖，也使我们能够编写可靠的测试。

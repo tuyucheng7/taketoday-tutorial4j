@@ -12,27 +12,27 @@ import java.util.List;
 
 public class TraceUnitTestRule implements TestRule {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TraceUnitTestRule.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(TraceUnitTestRule.class);
 
-	@Override
-	public Statement apply(Statement base, Description description) {
+   @Override
+   public Statement apply(Statement base, Description description) {
 
-		return new Statement() {
-			@Override
-			public void evaluate() throws Throwable {
-				List<Throwable> errors = new ArrayList<>();
+      return new Statement() {
+         @Override
+         public void evaluate() throws Throwable {
+            List<Throwable> errors = new ArrayList<>();
 
-				LOGGER.debug("Starting test ... {}", description.getMethodName());
-				try {
-					base.evaluate();
-				} catch (Throwable e) {
-					errors.add(e);
-				} finally {
-					LOGGER.debug("... test finished. {}", description.getMethodName());
-				}
+            LOGGER.debug("Starting test ... {}", description.getMethodName());
+            try {
+               base.evaluate();
+            } catch (Throwable e) {
+               errors.add(e);
+            } finally {
+               LOGGER.debug("... test finished. {}", description.getMethodName());
+            }
 
-				MultipleFailureException.assertEmpty(errors);
-			}
-		};
-	}
+            MultipleFailureException.assertEmpty(errors);
+         }
+      };
+   }
 }

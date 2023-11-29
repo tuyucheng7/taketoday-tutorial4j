@@ -1,6 +1,7 @@
 ## **一、概述**
 
-在本快速教程中，我们将探索一些 REST 保证的高级场景。我们之前在教程[REST-assured 指南中探讨了 REST-assured](https://www.baeldung.com/rest-assured-tutorial)。
+在本快速教程中，我们将探索一些 REST
+保证的高级场景。我们之前在教程[REST-assured 指南中探讨了 REST-assured](https://www.baeldung.com/rest-assured-tutorial)。
 
 为了继续，**我们将介绍如何为我们的请求设置标头、cookie 和参数的示例。**
 

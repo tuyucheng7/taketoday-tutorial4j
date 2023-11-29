@@ -10,5 +10,5 @@ import org.junit.platform.suite.api.Suite;
 @IncludeClassNamePatterns("cn.tuyucheng.taketoday.testsuite.Class.*UnitTest")
 @ExcludeClassNamePatterns("cn.tuyucheng.taketoday.testsuite.ClassTwoUnitTest")
 public class JUnitClassNamePatternsSuite {
-	// runs ClassOneUnitTest and ClassThreeUnitTest
+   // runs ClassOneUnitTest and ClassThreeUnitTest
 }

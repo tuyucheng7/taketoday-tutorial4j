@@ -2,5 +2,5 @@ package mocks;
 
 public interface EventPublisher {
 
-	void publish(String addedOfferId);
+   void publish(String addedOfferId);
 }

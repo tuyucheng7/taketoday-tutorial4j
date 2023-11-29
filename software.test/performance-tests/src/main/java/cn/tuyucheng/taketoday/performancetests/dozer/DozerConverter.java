@@ -9,21 +9,21 @@ import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
 
 public class DozerConverter implements Converter {
-	private final Mapper mapper;
+   private final Mapper mapper;
 
-	public DozerConverter() {
-		this.mapper = DozerBeanMapperBuilder.create()
-			.withMappingFiles("dozer-mapping.xml")
-			.build();
-	}
+   public DozerConverter() {
+      this.mapper = DozerBeanMapperBuilder.create()
+            .withMappingFiles("dozer-mapping.xml")
+            .build();
+   }
 
-	@Override
-	public Order convert(SourceOrder sourceOrder) {
-		return mapper.map(sourceOrder, Order.class);
-	}
+   @Override
+   public Order convert(SourceOrder sourceOrder) {
+      return mapper.map(sourceOrder, Order.class);
+   }
 
-	@Override
-	public DestinationCode convert(SourceCode sourceCode) {
-		return mapper.map(sourceCode, DestinationCode.class);
-	}
+   @Override
+   public DestinationCode convert(SourceCode sourceCode) {
+      return mapper.map(sourceCode, DestinationCode.class);
+   }
 }

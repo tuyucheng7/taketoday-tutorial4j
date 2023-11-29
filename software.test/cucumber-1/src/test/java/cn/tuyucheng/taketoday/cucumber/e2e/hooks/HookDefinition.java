@@ -6,19 +6,19 @@ import io.cucumber.java.Before;
 
 public class HookDefinition {
 
-	TestContext testContext;
+   TestContext testContext;
 
-	public HookDefinition(TestContext testContext) {
-		this.testContext = testContext;
-	}
+   public HookDefinition(TestContext testContext) {
+      this.testContext = testContext;
+   }
 
-	@Before
-	public void beforeScenario() {
+   @Before
+   public void beforeScenario() {
 
-	}
+   }
 
-	@After
-	public void AfterSteps() {
-		testContext.getWebDriverManager().closeDriver();
-	}
+   @After
+   public void AfterSteps() {
+      testContext.getWebDriverManager().closeDriver();
+   }
 }

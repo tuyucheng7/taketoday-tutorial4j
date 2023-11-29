@@ -18,61 +18,61 @@ import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
 @Scope(scopeName = "cucumber-glue")
 public class ScenarioContextUI {
 
-	protected static final String RANDOM_NUMBER_URL = "/random-number-generator";
+   protected static final String RANDOM_NUMBER_URL = "/random-number-generator";
 
-	@LocalServerPort
-	int port;
-	private WebDriver driver;
-	private ScenarioReport report;
+   @LocalServerPort
+   int port;
+   private WebDriver driver;
+   private ScenarioReport report;
 
-	public ScenarioContextUI() {
-		reset();
-	}
+   public ScenarioContextUI() {
+      reset();
+   }
 
-	private void reset() {
-		report = new ScenarioReport();
-		driver = null;
-	}
+   private void reset() {
+      report = new ScenarioReport();
+      driver = null;
+   }
 
-	private static WebDriver getRemoteWebDriver(URL url) {
-		return new RemoteWebDriver(url, new DesiredCapabilities("chrome", "", Platform.ANY));
-	}
+   private static WebDriver getRemoteWebDriver(URL url) {
+      return new RemoteWebDriver(url, new DesiredCapabilities("chrome", "", Platform.ANY));
+   }
 
-	private static WebDriver getLocalChromeDriver() {
-		getInstance(CHROME).setup();
-		return new ChromeDriver();
-	}
+   private static WebDriver getLocalChromeDriver() {
+      getInstance(CHROME).setup();
+      return new ChromeDriver();
+   }
 
-	public ScenarioReport getReport() {
-		return report;
-	}
+   public ScenarioReport getReport() {
+      return report;
+   }
 
-	public String getRandomNumberUrl() {
-		return "http://" + getServiceBaseUrl() + RANDOM_NUMBER_URL;
-	}
+   public String getRandomNumberUrl() {
+      return "http://" + getServiceBaseUrl() + RANDOM_NUMBER_URL;
+   }
 
-	private String getServiceBaseUrl() {
-		return CucumberEnvironment.getServiceHost() + ":" + Integer.toString(port);
-	}
+   private String getServiceBaseUrl() {
+      return CucumberEnvironment.getServiceHost() + ":" + Integer.toString(port);
+   }
 
-	/**
-	 * If we are running inside docker (mostly for gitlab ci purposes), we expect a selenium grid setup.
-	 * If that environment variable isn't set, we assume we're in "dev mode" and ChromeDriverManager will
-	 * provide the local instance of chromedriver (no need to have chromedriver installed).
-	 */
-	public WebDriver getWebDriver() {
-		if (driver == null) {
-			return getFreshWebdriver();
-		} else {
-			return driver;
-		}
-	}
+   /**
+    * If we are running inside docker (mostly for gitlab ci purposes), we expect a selenium grid setup.
+    * If that environment variable isn't set, we assume we're in "dev mode" and ChromeDriverManager will
+    * provide the local instance of chromedriver (no need to have chromedriver installed).
+    */
+   public WebDriver getWebDriver() {
+      if (driver == null) {
+         return getFreshWebdriver();
+      } else {
+         return driver;
+      }
+   }
 
-	private WebDriver getFreshWebdriver() {
-		driver = CucumberEnvironment.getSeleniumGridUrl()
-			.map(ScenarioContextUI::getRemoteWebDriver)
-			.orElseGet(ScenarioContextUI::getLocalChromeDriver);
-		return driver;
-	}
+   private WebDriver getFreshWebdriver() {
+      driver = CucumberEnvironment.getSeleniumGridUrl()
+            .map(ScenarioContextUI::getRemoteWebDriver)
+            .orElseGet(ScenarioContextUI::getLocalChromeDriver);
+      return driver;
+   }
 
 }

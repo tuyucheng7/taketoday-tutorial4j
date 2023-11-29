@@ -2,87 +2,87 @@ import spock.lang.Specification
 
 class FirstSpecification extends Specification {
 
-	def "one plus one should equal two"() {
-		expect:
-		1 + 1 == 2
-	}
+   def "one plus one should equal two"() {
+      expect:
+      1 + 1 == 2
+   }
 
-	def "two plus two should equal four"() {
-		given:
-		int left = 2
-		int right = 2
+   def "two plus two should equal four"() {
+      given:
+      int left = 2
+      int right = 2
 
-		when:
-		int result = left + right
+      when:
+      int result = left + right
 
-		then:
-		result == 4
-	}
+      then:
+      result == 4
+   }
 
-	def "Should be able to remove from list"() {
-		given:
-		def list = [1, 2, 3, 4]
+   def "Should be able to remove from list"() {
+      given:
+      def list = [1, 2, 3, 4]
 
-		when:
-		list.remove(0)
+      when:
+      list.remove(0)
 
-		then:
-		list == [2, 3, 4]
-	}
+      then:
+      list == [2, 3, 4]
+   }
 
-	def "Should get an index out of bounds when removing a non-existent element"() {
-		given:
-		def list = [1, 2, 3, 4]
+   def "Should get an index out of bounds when removing a non-existent element"() {
+      given:
+      def list = [1, 2, 3, 4]
 
-		when:
-		list.remove(4)
+      when:
+      list.remove(4)
 
-		then:
-		thrown(IndexOutOfBoundsException)
-	}
+      then:
+      thrown(IndexOutOfBoundsException)
+   }
 
-	def "numbers to the power of two"(int a, int b, int c) {
-		expect:
-		Math.pow(a, b) == c
+   def "numbers to the power of two"(int a, int b, int c) {
+      expect:
+      Math.pow(a, b) == c
 
-		where:
-		a | b | c
-		1 | 2 | 1
-		2 | 2 | 4
-		3 | 2 | 9
-	}
+      where:
+      a | b | c
+      1 | 2 | 1
+      2 | 2 | 4
+      3 | 2 | 9
+   }
 
-	def "Should return default value for mock"() {
-		given:
-		def paymentGateway = Mock(PaymentGateway)
+   def "Should return default value for mock"() {
+      given:
+      def paymentGateway = Mock(PaymentGateway)
 
-		when:
-		def result = paymentGateway.makePayment(12.99)
+      when:
+      def result = paymentGateway.makePayment(12.99)
 
-		then:
-		!result
-	}
+      then:
+      !result
+   }
 
-	def "Should return true value for mock"() {
-		given:
-		def paymentGateway = Mock(PaymentGateway)
-		paymentGateway.makePayment(20.0) >> true
+   def "Should return true value for mock"() {
+      given:
+      def paymentGateway = Mock(PaymentGateway)
+      paymentGateway.makePayment(20.0) >> true
 
-		when:
-		def result = paymentGateway.makePayment(20.0)
+      when:
+      def result = paymentGateway.makePayment(20.0)
 
-		then:
-		result
-	}
+      then:
+      result
+   }
 
-	def "Should verify notify was called"() {
-		given:
-		def notifier = Mock(Notifier)
+   def "Should verify notify was called"() {
+      given:
+      def notifier = Mock(Notifier)
 
-		when:
-		notifier.notify('foo')
+      when:
+      notifier.notify('foo')
 
-		then:
-		1 * notifier.notify('foo')
-	}
+      then:
+      1 * notifier.notify('foo')
+   }
 }

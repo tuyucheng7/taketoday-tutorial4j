@@ -11,6 +11,6 @@ import org.junit.runner.RunWith;
 @SuiteDisplayName("My Test Suite")
 @SelectClasses({ClassOneUnitTest.class, ClassTwoUnitTest.class})
 public class JUnitRunWithSuite {
-	// runs ClassOneUnitTest and ClassTwoUnitTest
-	// equivalent to JUnitSelectClassesSuite
+   // runs ClassOneUnitTest and ClassTwoUnitTest
+   // equivalent to JUnitSelectClassesSuite
 }

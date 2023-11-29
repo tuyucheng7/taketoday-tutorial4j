@@ -21,35 +21,35 @@ import static org.instancio.Select.field;
  */
 class SubtypeUnitTest {
 
-	@Test
-	void whenGivenCollectionSubtype_shouldUseSpecifiedCollectionClass() {
-		// Given
-		final Class<?> subtype = LinkedList.class;
+   @Test
+   void whenGivenCollectionSubtype_shouldUseSpecifiedCollectionClass() {
+      // Given
+      final Class<?> subtype = LinkedList.class;
 
-		// When
-		Student student = Instancio.of(Student.class)
-			.subtype(field(ContactInfo::getPhones), subtype)
-			.create();
+      // When
+      Student student = Instancio.of(Student.class)
+            .subtype(field(ContactInfo::getPhones), subtype)
+            .create();
 
-		// Then
-		assertThat(student.getContactInfo().getPhones())
-			.isNotEmpty()
-			.isExactlyInstanceOf(subtype);
-	}
+      // Then
+      assertThat(student.getContactInfo().getPhones())
+            .isNotEmpty()
+            .isExactlyInstanceOf(subtype);
+   }
 
-	@Test
-	void whenGivenSubtypeForGenericAbstractType_shouldUseSpecifiedConcreteClass() {
-		// Given
-		final Class<?> subtype = Item.class;
+   @Test
+   void whenGivenSubtypeForGenericAbstractType_shouldUseSpecifiedConcreteClass() {
+      // Given
+      final Class<?> subtype = Item.class;
 
-		// When
-		AbstractItem<LocalDateTime> abstractItem = Instancio.of(new TypeToken<AbstractItem<LocalDateTime>>() {
-			})
-			.subtype(all(AbstractItem.class), subtype)
-			.create();
+      // When
+      AbstractItem<LocalDateTime> abstractItem = Instancio.of(new TypeToken<AbstractItem<LocalDateTime>>() {
+            })
+            .subtype(all(AbstractItem.class), subtype)
+            .create();
 
-		// Then
-		assertThat(abstractItem).isExactlyInstanceOf(subtype);
-		assertThat(abstractItem.getValue()).isNotNull();
-	}
+      // Then
+      assertThat(abstractItem).isExactlyInstanceOf(subtype);
+      assertThat(abstractItem.getValue()).isNotNull();
+   }
 }

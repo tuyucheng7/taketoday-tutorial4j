@@ -6,5 +6,5 @@ import org.junit.platform.suite.api.Suite;
 @Suite
 @SelectPackages({"cn.tuyucheng.taketoday.testsuite", "cn.tuyucheng.taketoday.testsuitetwo"})
 public class JUnitSelectPackagesSuite {
-	// runs ClassOneUnitTest, ClassTwoUnitTest and ClassThreeUnitTest
+   // runs ClassOneUnitTest, ClassTwoUnitTest and ClassThreeUnitTest
 }

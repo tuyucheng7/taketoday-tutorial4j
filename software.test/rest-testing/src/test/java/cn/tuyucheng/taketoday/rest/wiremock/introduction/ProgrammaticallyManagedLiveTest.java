@@ -22,33 +22,33 @@ import static org.junit.Assert.assertEquals;
 
 public class ProgrammaticallyManagedLiveTest {
 
-	private static final String TUYUCHENG_PATH = "/tuyucheng";
+   private static final String TUYUCHENG_PATH = "/tuyucheng";
 
-	private WireMockServer wireMockServer = new WireMockServer();
-	private CloseableHttpClient httpClient = HttpClients.createDefault();
+   private WireMockServer wireMockServer = new WireMockServer();
+   private CloseableHttpClient httpClient = HttpClients.createDefault();
 
-	@Test
-	public void givenProgrammaticallyManagedServer_whenUsingSimpleStubbing_thenCorrect() throws IOException {
-		wireMockServer.start();
+   @Test
+   public void givenProgrammaticallyManagedServer_whenUsingSimpleStubbing_thenCorrect() throws IOException {
+      wireMockServer.start();
 
-		configureFor("localhost", 8080);
-		stubFor(get(urlEqualTo(TUYUCHENG_PATH)).willReturn(aResponse().withBody("Welcome to Tuyucheng!")));
+      configureFor("localhost", 8080);
+      stubFor(get(urlEqualTo(TUYUCHENG_PATH)).willReturn(aResponse().withBody("Welcome to Tuyucheng!")));
 
-		HttpGet request = new HttpGet("http://localhost:8080/tuyucheng");
-		HttpResponse httpResponse = httpClient.execute(request);
-		String stringResponse = convertResponseToString(httpResponse);
+      HttpGet request = new HttpGet("http://localhost:8080/tuyucheng");
+      HttpResponse httpResponse = httpClient.execute(request);
+      String stringResponse = convertResponseToString(httpResponse);
 
-		verify(getRequestedFor(urlEqualTo(TUYUCHENG_PATH)));
-		assertEquals("Welcome to Tuyucheng!", stringResponse);
+      verify(getRequestedFor(urlEqualTo(TUYUCHENG_PATH)));
+      assertEquals("Welcome to Tuyucheng!", stringResponse);
 
-		wireMockServer.stop();
-	}
+      wireMockServer.stop();
+   }
 
-	private static String convertResponseToString(HttpResponse response) throws IOException {
-		InputStream responseStream = response.getEntity().getContent();
-		Scanner scanner = new Scanner(responseStream, "UTF-8");
-		String stringResponse = scanner.useDelimiter("\\Z").next();
-		scanner.close();
-		return stringResponse;
-	}
+   private static String convertResponseToString(HttpResponse response) throws IOException {
+      InputStream responseStream = response.getEntity().getContent();
+      Scanner scanner = new Scanner(responseStream, "UTF-8");
+      String stringResponse = scanner.useDelimiter("\\Z").next();
+      scanner.close();
+      return stringResponse;
+   }
 }

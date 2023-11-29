@@ -2,16 +2,16 @@ package cn.tuyucheng.taketoday.restassured.learner;
 
 class Course {
 
-	private String code;
+   private String code;
 
-	public Course() {
-	}
+   public Course() {
+   }
 
-	Course(String code) {
-		this.code = code;
-	}
+   Course(String code) {
+      this.code = code;
+   }
 
-	String getCode() {
-		return code;
-	}
+   String getCode() {
+      return code;
+   }
 }

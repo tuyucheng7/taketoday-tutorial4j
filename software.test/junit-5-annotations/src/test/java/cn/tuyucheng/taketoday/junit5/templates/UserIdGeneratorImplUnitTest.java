@@ -7,13 +7,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class UserIdGeneratorImplUnitTest {
 
-	@TestTemplate
-	@ExtendWith(UserIdGeneratorTestInvocationContextProvider.class)
-	void whenUserIdRequested_thenUserIdIsReturnedInCorrectFormat(UserIdGeneratorTestCase testCase) {
-		UserIdGenerator userIdGenerator = new UserIdGeneratorImpl(testCase.isFeatureEnabled());
+   @TestTemplate
+   @ExtendWith(UserIdGeneratorTestInvocationContextProvider.class)
+   void whenUserIdRequested_thenUserIdIsReturnedInCorrectFormat(UserIdGeneratorTestCase testCase) {
+      UserIdGenerator userIdGenerator = new UserIdGeneratorImpl(testCase.isFeatureEnabled());
 
-		String actualUserId = userIdGenerator.generate(testCase.getFirstName(), testCase.getLastName());
+      String actualUserId = userIdGenerator.generate(testCase.getFirstName(), testCase.getLastName());
 
-		assertThat(actualUserId).isEqualTo(testCase.getExpectedUserId());
-	}
+      assertThat(actualUserId).isEqualTo(testCase.getExpectedUserId());
+   }
 }

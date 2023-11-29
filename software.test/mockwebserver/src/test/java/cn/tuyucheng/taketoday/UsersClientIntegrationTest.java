@@ -19,75 +19,75 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UsersClientIntegrationTest {
 
-	private MockWebServer mockWebServer;
-	private UsersClient usersClient;
+   private MockWebServer mockWebServer;
+   private UsersClient usersClient;
 
-	@BeforeEach
-	public void setup() throws IOException {
-		this.mockWebServer = new MockWebServer();
-		this.mockWebServer.start();
-		this.usersClient = new UsersClient(WebClient.builder(), mockWebServer.url("/").toString());
-	}
+   @BeforeEach
+   public void setup() throws IOException {
+      this.mockWebServer = new MockWebServer();
+      this.mockWebServer.start();
+      this.usersClient = new UsersClient(WebClient.builder(), mockWebServer.url("/").toString());
+   }
 
-	@Test
-	public void testGetUserById() throws InterruptedException {
-		MockResponse mockResponse = new MockResponse()
-			.addHeader("Content-Type", "application/json; charset=utf-8")
-			.setBody("{\"id\": 1, \"name\":\"duke\"}")
-			.throttleBody(16, 5, TimeUnit.SECONDS);
-		mockWebServer.enqueue(mockResponse);
+   @Test
+   public void testGetUserById() throws InterruptedException {
+      MockResponse mockResponse = new MockResponse()
+            .addHeader("Content-Type", "application/json; charset=utf-8")
+            .setBody("{\"id\": 1, \"name\":\"duke\"}")
+            .throttleBody(16, 5, TimeUnit.SECONDS);
+      mockWebServer.enqueue(mockResponse);
 
-		JsonNode result = usersClient.getUserById(1L);
+      JsonNode result = usersClient.getUserById(1L);
 
-		assertEquals(1, result.get("id").asInt());
-		assertEquals("duke", result.get("name").asText());
+      assertEquals(1, result.get("id").asInt());
+      assertEquals("duke", result.get("name").asText());
 
-		RecordedRequest request = mockWebServer.takeRequest();
-		assertEquals("/users/1", request.getPath());
-	}
+      RecordedRequest request = mockWebServer.takeRequest();
+      assertEquals("/users/1", request.getPath());
+   }
 
-	@Test
-	public void testCreatingUsers() {
-		MockResponse mockResponse = new MockResponse()
-			.addHeader("Content-Type", "application/json; charset=utf-8")
-			.setBody("{\"id\": 1, \"name\":\"duke\"}")
-			.throttleBody(16, 5, TimeUnit.SECONDS)
-			.setResponseCode(201);
-		mockWebServer.enqueue(mockResponse);
+   @Test
+   public void testCreatingUsers() {
+      MockResponse mockResponse = new MockResponse()
+            .addHeader("Content-Type", "application/json; charset=utf-8")
+            .setBody("{\"id\": 1, \"name\":\"duke\"}")
+            .throttleBody(16, 5, TimeUnit.SECONDS)
+            .setResponseCode(201);
+      mockWebServer.enqueue(mockResponse);
 
-		JsonNode result = usersClient.createNewUser(new ObjectMapper().createObjectNode().put("name", "duke"));
+      JsonNode result = usersClient.createNewUser(new ObjectMapper().createObjectNode().put("name", "duke"));
 
-		assertEquals(1, result.get("id").asInt());
-		assertEquals("duke", result.get("name").asText());
-	}
+      assertEquals(1, result.get("id").asInt());
+      assertEquals("duke", result.get("name").asText());
+   }
 
-	@Test
-	public void testCreatingUsersWithNon201ResponseCode() {
-		MockResponse mockResponse = new MockResponse()
-			.setResponseCode(204);
+   @Test
+   public void testCreatingUsersWithNon201ResponseCode() {
+      MockResponse mockResponse = new MockResponse()
+            .setResponseCode(204);
 
-		mockWebServer.enqueue(mockResponse);
+      mockWebServer.enqueue(mockResponse);
 
-		assertThrows(RuntimeException.class, () ->
-			usersClient.createNewUser(new ObjectMapper().createObjectNode().put("name", "duke")));
-	}
+      assertThrows(RuntimeException.class, () ->
+            usersClient.createNewUser(new ObjectMapper().createObjectNode().put("name", "duke")));
+   }
 
-	@Test
-	public void testMultipleResponseCodes() {
-		final Dispatcher dispatcher = new Dispatcher() {
-			@Override
-			public MockResponse dispatch(RecordedRequest request) {
-				return switch (request.getPath()) {
-					case "/users/1" -> new MockResponse().setResponseCode(200);
-					case "/users/2" -> new MockResponse().setResponseCode(500);
-					case "/users/3" -> new MockResponse().setResponseCode(200).setBody("{\"id\": 1, \"name\":\"duke\"}");
-					default -> new MockResponse().setResponseCode(404);
-				};
-			}
-		};
-		mockWebServer.setDispatcher(dispatcher);
+   @Test
+   public void testMultipleResponseCodes() {
+      final Dispatcher dispatcher = new Dispatcher() {
+         @Override
+         public MockResponse dispatch(RecordedRequest request) {
+            return switch (request.getPath()) {
+               case "/users/1" -> new MockResponse().setResponseCode(200);
+               case "/users/2" -> new MockResponse().setResponseCode(500);
+               case "/users/3" -> new MockResponse().setResponseCode(200).setBody("{\"id\": 1, \"name\":\"duke\"}");
+               default -> new MockResponse().setResponseCode(404);
+            };
+         }
+      };
+      mockWebServer.setDispatcher(dispatcher);
 
-		assertThrows(WebClientResponseException.class, () -> usersClient.getUserById(2L));
-		assertThrows(WebClientResponseException.class, () -> usersClient.getUserById(4L));
-	}
+      assertThrows(WebClientResponseException.class, () -> usersClient.getUserById(2L));
+      assertThrows(WebClientResponseException.class, () -> usersClient.getUserById(4L));
+   }
 }

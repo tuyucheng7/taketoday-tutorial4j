@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles(value = "test")
 class TestActiveProfileUnitTest {
 
-	@Value("${profile.property.value}")
-	private String propertyString;
+   @Value("${profile.property.value}")
+   private String propertyString;
 
-	@Test
-	void whenTestIsActive_thenValueShouldBeKeptFromApplicationTestYaml() {
-		assertEquals("This the the application-test.yaml file", propertyString);
-	}
+   @Test
+   void whenTestIsActive_thenValueShouldBeKeptFromApplicationTestYaml() {
+      assertEquals("This the the application-test.yaml file", propertyString);
+   }
 }

@@ -3,11 +3,11 @@ package cn.tuyucheng.taketoday.arquillian;
 import java.io.PrintStream;
 
 public class Component {
-	public void sendMessage(PrintStream to, String msg) {
-		to.println(message(msg));
-	}
+   public void sendMessage(PrintStream to, String msg) {
+      to.println(message(msg));
+   }
 
-	public String message(String msg) {
-		return "Message, " + msg;
-	}
+   public String message(String msg) {
+      return "Message, " + msg;
+   }
 }

@@ -12,20 +12,20 @@ import java.util.Map;
 @Controller
 public class EmployeeRoleController {
 
-	private static final Map<String, Role> userRoleCache = new HashMap<>();
+   private static final Map<String, Role> userRoleCache = new HashMap<>();
 
-	static {
-		userRoleCache.put("John", Role.ADMIN);
-		userRoleCache.put("Doe", Role.EMPLOYEE);
-	}
+   static {
+      userRoleCache.put("John", Role.ADMIN);
+      userRoleCache.put("Doe", Role.EMPLOYEE);
+   }
 
-	@RequestMapping(value = "/role/{name}", method = RequestMethod.GET, produces = "application/text")
-	@ResponseBody
-	public String getEmployeeRole(@PathVariable("name") String employeeName) {
-		return userRoleCache.get(employeeName).toString();
-	}
+   @RequestMapping(value = "/role/{name}", method = RequestMethod.GET, produces = "application/text")
+   @ResponseBody
+   public String getEmployeeRole(@PathVariable("name") String employeeName) {
+      return userRoleCache.get(employeeName).toString();
+   }
 
-	private enum Role {
-		ADMIN, EMPLOYEE
-	}
+   private enum Role {
+      ADMIN, EMPLOYEE
+   }
 }

@@ -12,12 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SystemStubsExtension.class)
 class SystemInJUnit5UnitTest {
-	@SystemStub
-	private SystemIn systemIn = new SystemIn("line1", "line2", "line3");
+   @SystemStub
+   private SystemIn systemIn = new SystemIn("line1", "line2", "line3");
 
-	@Test
-	void givenInput_canReadFirstLine() {
-		assertThat(new Scanner(System.in).nextLine())
-			.isEqualTo("line1");
-	}
+   @Test
+   void givenInput_canReadFirstLine() {
+      assertThat(new Scanner(System.in).nextLine())
+            .isEqualTo("line1");
+   }
 }

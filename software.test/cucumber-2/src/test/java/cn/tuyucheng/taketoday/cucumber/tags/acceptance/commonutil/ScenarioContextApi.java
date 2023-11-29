@@ -16,42 +16,42 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 @Scope(scopeName = "cucumber-glue")
 public class ScenarioContextApi {
 
-	@LocalServerPort
-	int port;
+   @LocalServerPort
+   int port;
 
-	private ScenarioReport report;
-	public MockMvcRequestSpecification request;
-	public MockMvcResponse response;
-	public Map<String, Object> postBody = new HashMap<>();
-	public Map<String, Object> queryParams = new HashMap<>();
+   private ScenarioReport report;
+   public MockMvcRequestSpecification request;
+   public MockMvcResponse response;
+   public Map<String, Object> postBody = new HashMap<>();
+   public Map<String, Object> queryParams = new HashMap<>();
 
-	public ScenarioContextApi() {
-		reset();
-	}
+   public ScenarioContextApi() {
+      reset();
+   }
 
-	private void reset() {
-		report = new ScenarioReport();
-		request = null;
-		response = null;
-		postBody.clear();
-		queryParams.clear();
-	}
+   private void reset() {
+      report = new ScenarioReport();
+      request = null;
+      response = null;
+      postBody.clear();
+      queryParams.clear();
+   }
 
-	public void invokeHttpGet(String path, Object... pathParams) {
-		request = given().log().all();
-		response = request.when().get(path, pathParams);
-		response.then().log().all();
-	}
+   public void invokeHttpGet(String path, Object... pathParams) {
+      request = given().log().all();
+      response = request.when().get(path, pathParams);
+      response.then().log().all();
+   }
 
-	public void invokeHttpPost(String path, Map<String, ?> data) {
-		request = given().log().all().body(data).queryParams(queryParams).contentType(ContentType.JSON);
-		response = request.post(path);
-		response.then().log().all();
-	}
+   public void invokeHttpPost(String path, Map<String, ?> data) {
+      request = given().log().all().body(data).queryParams(queryParams).contentType(ContentType.JSON);
+      response = request.post(path);
+      response.then().log().all();
+   }
 
 
-	public ScenarioReport getReport() {
-		return report;
-	}
+   public ScenarioReport getReport() {
+      return report;
+   }
 
 }

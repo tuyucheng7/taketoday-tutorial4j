@@ -18,33 +18,33 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 class DirtiesContextIntegrationTest {
 
-	@Autowired
-	protected UserCache userCache;
+   @Autowired
+   protected UserCache userCache;
 
-	@Test
-	@Order(1)
-	void addJaneDoeAndPrintCache() {
-		userCache.addUser("Jane Doe");
-		userCache.printUserList("addJaneDoeAndPrintCache");
-	}
+   @Test
+   @Order(1)
+   void addJaneDoeAndPrintCache() {
+      userCache.addUser("Jane Doe");
+      userCache.printUserList("addJaneDoeAndPrintCache");
+   }
 
-	@Test
-	@Order(2)
-	void printCache() {
-		userCache.printUserList("printCache");
-	}
+   @Test
+   @Order(2)
+   void printCache() {
+      userCache.printUserList("printCache");
+   }
 
-	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
-	@Test
-	@Order(3)
-	void addJohnDoeAndPrintCache() {
-		userCache.addUser("John Doe");
-		userCache.printUserList("addJohnDoeAndPrintCache");
-	}
+   @DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
+   @Test
+   @Order(3)
+   void addJohnDoeAndPrintCache() {
+      userCache.addUser("John Doe");
+      userCache.printUserList("addJohnDoeAndPrintCache");
+   }
 
-	@Test
-	@Order(4)
-	void printCacheAgain() {
-		userCache.printUserList("printCacheAgain");
-	}
+   @Test
+   @Order(4)
+   void printCacheAgain() {
+      userCache.printUserList("printCacheAgain");
+   }
 }

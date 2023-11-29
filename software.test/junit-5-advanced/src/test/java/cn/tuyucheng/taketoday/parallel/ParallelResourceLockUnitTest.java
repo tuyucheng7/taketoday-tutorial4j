@@ -10,36 +10,36 @@ import java.util.List;
 
 class ParallelResourceLockUnitTest {
 
-	private List<String> resources;
+   private List<String> resources;
 
-	@BeforeEach
-	void before() {
-		resources = new ArrayList<>();
-		resources.add("test");
-	}
+   @BeforeEach
+   void before() {
+      resources = new ArrayList<>();
+      resources.add("test");
+   }
 
-	@AfterEach
-	void after() {
-		resources.clear();
-	}
+   @AfterEach
+   void after() {
+      resources.clear();
+   }
 
-	@Test
-	@ResourceLock(value = "resources")
-	void first() throws Exception {
-		System.out.println("ParallelResourceLockUnitTest first() start => " + Thread.currentThread().getName());
-		resources.add("first");
-		System.out.println(resources);
-		Thread.sleep(500);
-		System.out.println("ParallelResourceLockUnitTest first() end => " + Thread.currentThread().getName());
-	}
+   @Test
+   @ResourceLock(value = "resources")
+   void first() throws Exception {
+      System.out.println("ParallelResourceLockUnitTest first() start => " + Thread.currentThread().getName());
+      resources.add("first");
+      System.out.println(resources);
+      Thread.sleep(500);
+      System.out.println("ParallelResourceLockUnitTest first() end => " + Thread.currentThread().getName());
+   }
 
-	@Test
-	@ResourceLock(value = "resources")
-	void second() throws Exception {
-		System.out.println("ParallelResourceLockUnitTest second() start => " + Thread.currentThread().getName());
-		resources.add("second");
-		System.out.println(resources);
-		Thread.sleep(500);
-		System.out.println("ParallelResourceLockUnitTest second() end => " + Thread.currentThread().getName());
-	}
+   @Test
+   @ResourceLock(value = "resources")
+   void second() throws Exception {
+      System.out.println("ParallelResourceLockUnitTest second() start => " + Thread.currentThread().getName());
+      resources.add("second");
+      System.out.println(resources);
+      Thread.sleep(500);
+      System.out.println("ParallelResourceLockUnitTest second() end => " + Thread.currentThread().getName());
+   }
 }

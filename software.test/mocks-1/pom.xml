@@ -50,8 +50,14 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
                <argLine>
-                  ${argLine} --add-opens java.base/java.lang=ALL-UNNAMED
+                  --add-opens java.base/java.lang=ALL-UNNAMED
+                  -javaagent:${settings.localRepository}/org/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar
+                  -Djdk.attach.allowAttachSelf
                </argLine>
+               <disableXmlReport>true</disableXmlReport>
+               <excludes>
+                  <exclude>**/testsuite/**/*UnitTest.java</exclude>
+               </excludes>
             </configuration>
          </plugin>
       </plugins>

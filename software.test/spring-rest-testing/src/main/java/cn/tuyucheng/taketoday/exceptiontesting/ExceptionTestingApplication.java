@@ -17,7 +17,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class ExceptionTestingApplication extends SpringBootServletInitializer {
 
-    public static void main(final String[] args) {
-        SpringApplication.run(ExceptionTestingApplication.class, args);
-    }
+   public static void main(final String[] args) {
+      SpringApplication.run(ExceptionTestingApplication.class, args);
+   }
 }

@@ -28,38 +28,38 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = WebConfig.class)
 public class RoleControllerParameterizedIntegrationTest {
 
-	private static final String CONTENT_TYPE = "application/text;charset=ISO-8859-1";
-	@Parameter(value = 0)
-	public String name;
-	@Parameter(value = 1)
-	public String role;
-	@Autowired
-	private WebApplicationContext wac;
-	private MockMvc mockMvc;
-	private TestContextManager testContextManager;
+   private static final String CONTENT_TYPE = "application/text;charset=ISO-8859-1";
+   @Parameter(value = 0)
+   public String name;
+   @Parameter(value = 1)
+   public String role;
+   @Autowired
+   private WebApplicationContext wac;
+   private MockMvc mockMvc;
+   private TestContextManager testContextManager;
 
-	@Parameters
-	public static Collection<Object[]> data() {
-		Collection<Object[]> params = new ArrayList<>();
-		params.add(new Object[]{"John", "ADMIN"});
-		params.add(new Object[]{"Doe", "EMPLOYEE"});
-		return params;
-	}
+   @Parameters
+   public static Collection<Object[]> data() {
+      Collection<Object[]> params = new ArrayList<>();
+      params.add(new Object[]{"John", "ADMIN"});
+      params.add(new Object[]{"Doe", "EMPLOYEE"});
+      return params;
+   }
 
-	@Before
-	public void setup() throws Exception {
-		this.testContextManager = new TestContextManager(getClass());
-		this.testContextManager.prepareTestInstance(this);
+   @Before
+   public void setup() throws Exception {
+      this.testContextManager = new TestContextManager(getClass());
+      this.testContextManager.prepareTestInstance(this);
 
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
-	}
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+   }
 
-	@Test
-	public void givenEmployeeNameWhenInvokeRoleThenReturnRole() throws Exception {
-		this.mockMvc.perform(get("/role/" + name))
-				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(content().contentType(CONTENT_TYPE))
-				.andExpect(content().string(role));
-	}
+   @Test
+   public void givenEmployeeNameWhenInvokeRoleThenReturnRole() throws Exception {
+      this.mockMvc.perform(get("/role/" + name))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(CONTENT_TYPE))
+            .andExpect(content().string(role));
+   }
 }

@@ -7,19 +7,19 @@ import org.testng.annotations.Test;
 
 public class DependentLongRunningUnitTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DependentLongRunningUnitTest.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(DependentLongRunningUnitTest.class);
 
-    private String email = "abc@qwe.com";
+   private String email = "abc@qwe.com";
 
-    @Test
-    public void givenEmail_ifValid_thenTrue() {
-        boolean valid = email.contains("@");
-        Assert.assertEquals(valid, true);
-    }
+   @Test
+   public void givenEmail_ifValid_thenTrue() {
+      boolean valid = email.contains("@");
+      Assert.assertEquals(valid, true);
+   }
 
-    @Test(dependsOnMethods = {"givenEmail_ifValid_thenTrue"})
-    public void givenValidEmail_whenLoggedIn_thenTrue() {
-        LOGGER.info("Email {} valid >> logging in", email);
-    }
+   @Test(dependsOnMethods = {"givenEmail_ifValid_thenTrue"})
+   public void givenValidEmail_whenLoggedIn_thenTrue() {
+      LOGGER.info("Email {} valid >> logging in", email);
+   }
 }
 

@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 
 class IntArgumentsProvider implements CartesianParameterArgumentsProvider<Integer> {
 
-	@Override
-	public Stream<Integer> provideArguments(ExtensionContext context, Parameter parameter) {
-		Ints source = Objects.requireNonNull(parameter.getAnnotation(Ints.class));
-		return Arrays.stream(source.value()).boxed();
-	}
+   @Override
+   public Stream<Integer> provideArguments(ExtensionContext context, Parameter parameter) {
+      Ints source = Objects.requireNonNull(parameter.getAnnotation(Ints.class));
+      return Arrays.stream(source.value()).boxed();
+   }
 }

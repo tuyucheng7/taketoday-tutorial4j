@@ -14,20 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 class MockBeanAnnotationIntegrationTest {
 
-	@MockBean
-	UserRepository mockRepository;
+   @MockBean
+   UserRepository mockRepository;
 
-	@Autowired
-	ApplicationContext context;
+   @Autowired
+   ApplicationContext context;
 
-	@Test
-	void givenCountMethodMocked_WhenCountInvoked_ThenMockValueReturned() {
-		Mockito.when(mockRepository.count()).thenReturn(123L);
+   @Test
+   void givenCountMethodMocked_WhenCountInvoked_ThenMockValueReturned() {
+      Mockito.when(mockRepository.count()).thenReturn(123L);
 
-		UserRepository userRepoFromContext = context.getBean(UserRepository.class);
-		long userCount = userRepoFromContext.count();
+      UserRepository userRepoFromContext = context.getBean(UserRepository.class);
+      long userCount = userRepoFromContext.count();
 
-		assertEquals(123L, userCount);
-		Mockito.verify(mockRepository).count();
-	}
+      assertEquals(123L, userCount);
+      Mockito.verify(mockRepository).count();
+   }
 }

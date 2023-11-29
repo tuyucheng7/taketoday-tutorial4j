@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class Customer {
 
-	private String firstName;
-	private String lastName;
-	private int age;
-	private String emailAddress;
-	private Address address;
-	private PhoneNumber phoneNumber;
+   private String firstName;
+   private String lastName;
+   private int age;
+   private String emailAddress;
+   private Address address;
+   private PhoneNumber phoneNumber;
 }

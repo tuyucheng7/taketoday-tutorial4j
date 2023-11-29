@@ -14,25 +14,25 @@ import static io.restassured.RestAssured.given;
  */
 public class BasicAuthenticationLiveTest {
 
-	private static final String USER = "user1";
-	private static final String PASSWORD = "user1Pass";
-	private static final String SVC_URL = "http://localhost:8080/spring-security-rest-basic-auth/api/foos/1";
+   private static final String USER = "user1";
+   private static final String PASSWORD = "user1Pass";
+   private static final String SVC_URL = "http://localhost:8080/spring-security-rest-basic-auth/api/foos/1";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
-		get(SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.UNAUTHORIZED.value());
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenUnauthorizedResponse() {
+      get(SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.UNAUTHORIZED.value());
+   }
 
-	@Test
-	public void givenBasicAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		given().auth()
-			.basic(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value());
-	}
+   @Test
+   public void givenBasicAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      given().auth()
+            .basic(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value());
+   }
 }

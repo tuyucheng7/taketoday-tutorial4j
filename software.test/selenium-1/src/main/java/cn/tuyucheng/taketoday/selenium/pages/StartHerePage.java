@@ -6,16 +6,16 @@ import org.openqa.selenium.support.FindBy;
 
 public class StartHerePage {
 
-    private SeleniumConfig config;
+   private SeleniumConfig config;
 
-    @FindBy(css = ".page-title")
-    private WebElement title;
+   @FindBy(css = ".page-title")
+   private WebElement title;
 
-    public StartHerePage(SeleniumConfig config) {
-        this.config = config;
-    }
+   public StartHerePage(SeleniumConfig config) {
+      this.config = config;
+   }
 
-    public String getPageTitle() {
-        return title.getText();
-    }
+   public String getPageTitle() {
+      return title.getText();
+   }
 }

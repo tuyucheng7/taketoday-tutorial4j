@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 @Service
 public class StringConverter {
 
-	private final DataProvider dataProvider;
+   private final DataProvider dataProvider;
 
-	@Autowired
-	public StringConverter(DataProvider dataProvider) {
-		this.dataProvider = dataProvider;
-	}
+   @Autowired
+   public StringConverter(DataProvider dataProvider) {
+      this.dataProvider = dataProvider;
+   }
 
-	public List<String> convert() {
-		return dataProvider.getValues().map(String::toUpperCase).collect(Collectors.toList());
-	}
+   public List<String> convert() {
+      return dataProvider.getValues().map(String::toUpperCase).collect(Collectors.toList());
+   }
 }

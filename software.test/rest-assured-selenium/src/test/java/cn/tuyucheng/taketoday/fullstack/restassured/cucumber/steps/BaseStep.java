@@ -6,19 +6,19 @@ import cn.tuyucheng.taketoday.fullstack.restassured.cucumber.scenario.ScenarioCo
 
 public class BaseStep {
 
-	private final ScenarioContext scenarioContext;
-	private final Endpoints endpoints;
+   private final ScenarioContext scenarioContext;
+   private final Endpoints endpoints;
 
-	public BaseStep(TestContext testContext) {
-		endpoints = testContext.getEndpoints();
-		scenarioContext = testContext.getScenarioContext();
-	}
+   public BaseStep(TestContext testContext) {
+      endpoints = testContext.getEndpoints();
+      scenarioContext = testContext.getScenarioContext();
+   }
 
-	public Endpoints getEndPoints() {
-		return endpoints;
-	}
+   public Endpoints getEndPoints() {
+      return endpoints;
+   }
 
-	public ScenarioContext getScenarioContext() {
-		return scenarioContext;
-	}
+   public ScenarioContext getScenarioContext() {
+      return scenarioContext;
+   }
 }

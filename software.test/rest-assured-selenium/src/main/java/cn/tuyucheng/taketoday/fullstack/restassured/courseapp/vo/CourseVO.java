@@ -11,10 +11,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class CourseVO {
 
-	private String message;
-	private int statusCode;
+   private String message;
+   private int statusCode;
 
-	public static CourseVO buildSuccessVO() {
-		return new CourseVO("saved successful", 200);
-	}
+   public static CourseVO buildSuccessVO() {
+      return new CourseVO("saved successful", 200);
+   }
 }

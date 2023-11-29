@@ -16,26 +16,26 @@ import static org.jbehave.core.reporters.Format.CONSOLE;
 
 public abstract class AbstractStory extends JUnitStories {
 
-	abstract String storyName();
+   abstract String storyName();
 
-	@Override
-	public Configuration configuration() {
-		return new MostUsefulConfiguration()
-				.useStoryLoader(new LoadFromClasspath(this.getClass()))
-				.useStoryReporterBuilder(new StoryReporterBuilder()
-						.withCodeLocation(codeLocationFromClass(this.getClass()))
-						.withFormats(CONSOLE));
-	}
+   @Override
+   public Configuration configuration() {
+      return new MostUsefulConfiguration()
+            .useStoryLoader(new LoadFromClasspath(this.getClass()))
+            .useStoryReporterBuilder(new StoryReporterBuilder()
+                  .withCodeLocation(codeLocationFromClass(this.getClass()))
+                  .withFormats(CONSOLE));
+   }
 
-	abstract Object stepInstance();
+   abstract Object stepInstance();
 
-	@Override
-	public InjectableStepsFactory stepsFactory() {
-		return new InstanceStepsFactory(configuration(), stepInstance());
-	}
+   @Override
+   public InjectableStepsFactory stepsFactory() {
+      return new InstanceStepsFactory(configuration(), stepInstance());
+   }
 
-	@Override
-	protected List<String> storyPaths() {
-		return Collections.singletonList(storyName());
-	}
+   @Override
+   protected List<String> storyPaths() {
+      return Collections.singletonList(storyName());
+   }
 }

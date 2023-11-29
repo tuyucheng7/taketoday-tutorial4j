@@ -5,6 +5,6 @@ package cn.tuyucheng.taketoday.serenity.membership;
  */
 public enum MemberGrade {
 
-	Bronze, Silver, Gold;
+   Bronze, Silver, Gold;
 
 }

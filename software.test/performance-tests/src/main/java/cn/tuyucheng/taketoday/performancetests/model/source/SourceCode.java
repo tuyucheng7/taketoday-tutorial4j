@@ -1,20 +1,20 @@
 package cn.tuyucheng.taketoday.performancetests.model.source;
 
 public class SourceCode {
-	String code;
+   String code;
 
-	public SourceCode() {
-	}
+   public SourceCode() {
+   }
 
-	public String getCode() {
-		return code;
-	}
+   public String getCode() {
+      return code;
+   }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+   public void setCode(String code) {
+      this.code = code;
+   }
 
-	public SourceCode(String code) {
-		this.code = code;
-	}
+   public SourceCode(String code) {
+      this.code = code;
+   }
 }

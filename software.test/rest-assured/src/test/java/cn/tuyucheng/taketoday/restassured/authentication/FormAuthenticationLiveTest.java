@@ -17,40 +17,40 @@ import static org.hamcrest.Matchers.isEmptyString;
  */
 public class FormAuthenticationLiveTest {
 
-	private static final String USER = "user1";
-	private static final String PASSWORD = "user1Pass";
-	private static final String SVC_URL = "http://localhost:8080/spring-security-mvc-login/secured";
+   private static final String USER = "user1";
+   private static final String PASSWORD = "user1Pass";
+   private static final String SVC_URL = "http://localhost:8080/spring-security-mvc-login/secured";
 
-	@Test
-	public void givenNoAuthentication_whenRequestSecuredResource_thenLoginFormResponse() {
-		get(SVC_URL).then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("<form"), containsString("action=\"perform_login\""));
-	}
+   @Test
+   public void givenNoAuthentication_whenRequestSecuredResource_thenLoginFormResponse() {
+      get(SVC_URL).then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("<form"), containsString("action=\"perform_login\""));
+   }
 
-	@Test
-	public void givenParsingFormAuthentication_whenRequestSecuredResource_thenLoginFormResponse() {
-		// Form can't be parsed correctly because the app is in servlet container, thus the form's 'action' attribute doesn't include the correct URI
-		given().auth()
-			.form(USER, PASSWORD)
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(containsString("<form"), containsString("action=\"perform_login\""));
-	}
+   @Test
+   public void givenParsingFormAuthentication_whenRequestSecuredResource_thenLoginFormResponse() {
+      // Form can't be parsed correctly because the app is in servlet container, thus the form's 'action' attribute doesn't include the correct URI
+      given().auth()
+            .form(USER, PASSWORD)
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(containsString("<form"), containsString("action=\"perform_login\""));
+   }
 
-	@Test
-	public void givenFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
-		given().auth()
-			.form(USER, PASSWORD, new FormAuthConfig("/spring-security-mvc-login/perform_login", "username", "password"))
-			.when()
-			.get(SVC_URL)
-			.then()
-			.assertThat()
-			.statusCode(HttpStatus.OK.value())
-			.body(isEmptyString());
-	}
+   @Test
+   public void givenFormAuthentication_whenRequestSecuredResource_thenResourceRetrieved() {
+      given().auth()
+            .form(USER, PASSWORD, new FormAuthConfig("/spring-security-mvc-login/perform_login", "username", "password"))
+            .when()
+            .get(SVC_URL)
+            .then()
+            .assertThat()
+            .statusCode(HttpStatus.OK.value())
+            .body(isEmptyString());
+   }
 }

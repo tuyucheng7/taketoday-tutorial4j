@@ -10,21 +10,21 @@ import org.openqa.selenium.WebDriver;
 @RunWith(SerenityRunner.class)
 public class GoogleSearchPageObjectLiveTest {
 
-	@Managed(driver = "chrome")
-	private WebDriver browser;
+   @Managed(driver = "chrome")
+   private WebDriver browser;
 
-	private GoogleSearchPageObject googleSearch;
+   private GoogleSearchPageObject googleSearch;
 
-	@Test
-	public void whenGoogleBaeldungThenShouldSeeEugen() {
-		googleSearch.open();
+   @Test
+   public void whenGoogleBaeldungThenShouldSeeEugen() {
+      googleSearch.open();
 
-		// If your browser displays cookie settings dialog, uncomment the line below
-		// googleSearch.validateCookies();
+      // If your browser displays cookie settings dialog, uncomment the line below
+      // googleSearch.validateCookies();
 
-		googleSearch.searchFor("baeldung");
+      googleSearch.searchFor("baeldung");
 
-		googleSearch.resultMatches("Eugen (Baeldung)");
-	}
+      googleSearch.resultMatches("Eugen (Baeldung)");
+   }
 
 }

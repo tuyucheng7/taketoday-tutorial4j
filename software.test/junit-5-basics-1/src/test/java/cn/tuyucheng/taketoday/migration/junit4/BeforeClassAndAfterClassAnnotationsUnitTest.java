@@ -11,25 +11,25 @@ import org.slf4j.LoggerFactory;
 @RunWith(JUnit4.class)
 public class BeforeClassAndAfterClassAnnotationsUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(BeforeClassAndAfterClassAnnotationsUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(BeforeClassAndAfterClassAnnotationsUnitTest.class);
 
-	@BeforeClass
-	public static void setup() {
-		LOG.debug("startup - creating DB connection");
-	}
+   @BeforeClass
+   public static void setup() {
+      LOG.debug("startup - creating DB connection");
+   }
 
-	@AfterClass
-	public static void tearDown() {
-		LOG.debug("closing DB connection");
-	}
+   @AfterClass
+   public static void tearDown() {
+      LOG.debug("closing DB connection");
+   }
 
-	@Test
-	public void simpleTest() {
-		LOG.debug("simple test");
-	}
+   @Test
+   public void simpleTest() {
+      LOG.debug("simple test");
+   }
 
-	@Test
-	public void anotherSimpleTest() {
-		LOG.debug("another simple test");
-	}
+   @Test
+   public void anotherSimpleTest() {
+      LOG.debug("another simple test");
+   }
 }

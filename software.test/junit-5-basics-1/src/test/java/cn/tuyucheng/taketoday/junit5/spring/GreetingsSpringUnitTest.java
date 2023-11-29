@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = {SpringTestConfiguration.class})
 public class GreetingsSpringUnitTest {
 
-	@Test
-	void whenCallingSayHello_thenReturnHello() {
-		assertEquals("Hello", Greetings.sayHello());
-	}
+   @Test
+   void whenCallingSayHello_thenReturnHello() {
+      assertEquals("Hello", Greetings.sayHello());
+   }
 }

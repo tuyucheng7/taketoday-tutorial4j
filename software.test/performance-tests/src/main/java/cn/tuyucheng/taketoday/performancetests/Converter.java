@@ -6,7 +6,7 @@ import cn.tuyucheng.taketoday.performancetests.model.source.SourceOrder;
 import cn.tuyucheng.taketoday.performancetests.model.destination.Order;
 
 public interface Converter {
-	Order convert(SourceOrder sourceOrder);
+   Order convert(SourceOrder sourceOrder);
 
-	DestinationCode convert(SourceCode sourceCode);
+   DestinationCode convert(SourceCode sourceCode);
 }

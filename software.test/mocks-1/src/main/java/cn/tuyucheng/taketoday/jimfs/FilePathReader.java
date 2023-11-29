@@ -6,13 +6,13 @@ import java.nio.file.Path;
 
 class FilePathReader {
 
-	String getSystemPath(final Path path) {
-		try {
-			return path
-				.toRealPath()
-				.toString();
-		} catch (final IOException ex) {
-			throw new UncheckedIOException(ex);
-		}
-	}
+   String getSystemPath(final Path path) {
+      try {
+         return path
+               .toRealPath()
+               .toString();
+      } catch (final IOException ex) {
+         throw new UncheckedIOException(ex);
+      }
+   }
 }

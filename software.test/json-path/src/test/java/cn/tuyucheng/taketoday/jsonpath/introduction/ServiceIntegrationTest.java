@@ -1,20 +1,11 @@
 package cn.tuyucheng.taketoday.jsonpath.introduction;
 
-import com.jayway.jsonpath.Configuration;
-import com.jayway.jsonpath.Criteria;
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.Filter;
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.Option;
+import com.jayway.jsonpath.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;

@@ -9,23 +9,23 @@ import com.googlecode.jmapper.JMapper;
 import com.googlecode.jmapper.api.JMapperAPI;
 
 public class JMapperConverter implements Converter {
-	JMapper realLifeMapper;
-	JMapper simpleMapper;
+   JMapper realLifeMapper;
+   JMapper simpleMapper;
 
-	public JMapperConverter() {
-		JMapperAPI api = new JMapperAPI().add(JMapperAPI.mappedClass(Order.class));
-		realLifeMapper = new JMapper(Order.class, SourceOrder.class, api);
-		JMapperAPI simpleApi = new JMapperAPI().add(JMapperAPI.mappedClass(DestinationCode.class));
-		simpleMapper = new JMapper(DestinationCode.class, SourceCode.class, simpleApi);
-	}
+   public JMapperConverter() {
+      JMapperAPI api = new JMapperAPI().add(JMapperAPI.mappedClass(Order.class));
+      realLifeMapper = new JMapper(Order.class, SourceOrder.class, api);
+      JMapperAPI simpleApi = new JMapperAPI().add(JMapperAPI.mappedClass(DestinationCode.class));
+      simpleMapper = new JMapper(DestinationCode.class, SourceCode.class, simpleApi);
+   }
 
-	@Override
-	public Order convert(SourceOrder sourceOrder) {
-		return (Order) realLifeMapper.getDestination(sourceOrder);
-	}
+   @Override
+   public Order convert(SourceOrder sourceOrder) {
+      return (Order) realLifeMapper.getDestination(sourceOrder);
+   }
 
-	@Override
-	public DestinationCode convert(SourceCode sourceCode) {
-		return (DestinationCode) simpleMapper.getDestination(sourceCode);
-	}
+   @Override
+   public DestinationCode convert(SourceCode sourceCode) {
+      return (DestinationCode) simpleMapper.getDestination(sourceCode);
+   }
 }

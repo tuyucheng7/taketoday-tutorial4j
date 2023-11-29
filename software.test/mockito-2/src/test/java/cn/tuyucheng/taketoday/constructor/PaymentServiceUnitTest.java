@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.constructor;
 
-import static org.mockito.Mockito.when;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
+
+import static org.mockito.Mockito.when;
 
 class PaymentServiceUnitTest {
 

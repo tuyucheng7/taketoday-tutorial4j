@@ -7,15 +7,15 @@ import static org.junit.Assert.assertEquals;
 
 public class StringCaseUnitTest {
 
-	private static String data;
+   private static String data;
 
-	@BeforeClass
-	public static void setup() {
-		data = "HELLO TUYUCHENG";
-	}
+   @BeforeClass
+   public static void setup() {
+      data = "HELLO TUYUCHENG";
+   }
 
-	@Test
-	public void givenString_whenAllCaps_thenCorrect() {
-		assertEquals(data.toUpperCase(), data);
-	}
+   @Test
+   public void givenString_whenAllCaps_thenCorrect() {
+      assertEquals(data.toUpperCase(), data);
+   }
 }

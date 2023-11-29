@@ -6,18 +6,18 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
 
-	WebDriver driver;
+   WebDriver driver;
 
-	public HomePage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+   public HomePage(WebDriver driver) {
+      this.driver = driver;
+      PageFactory.initElements(driver, this);
+   }
 
-	public void perform_search(String searchedKey) {
-		driver.navigate().to(FileReaderManager.getInstance().getConfigFileReader().getApplicationUrl() + "/?s=" + searchedKey + "&post_type=product");
-	}
+   public void perform_search(String searchedKey) {
+      driver.navigate().to(FileReaderManager.getInstance().getConfigFileReader().getApplicationUrl() + "/?s=" + searchedKey + "&post_type=product");
+   }
 
-	public void navigateTo_homePage() {
-		driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationUrl());
-	}
+   public void navigateTo_homePage() {
+      driver.get(FileReaderManager.getInstance().getConfigFileReader().getApplicationUrl());
+   }
 }

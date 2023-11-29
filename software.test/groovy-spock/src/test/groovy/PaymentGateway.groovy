@@ -1,3 +1,3 @@
 interface PaymentGateway {
-	boolean makePayment(BigDecimal amount)
+   boolean makePayment(BigDecimal amount)
 }

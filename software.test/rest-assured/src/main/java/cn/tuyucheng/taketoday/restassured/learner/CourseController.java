@@ -13,19 +13,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 @RequestMapping(path = "/courses")
 public class CourseController {
 
-	private final CourseService courseService;
+   private final CourseService courseService;
 
-	public CourseController(CourseService courseService) {
-		this.courseService = courseService;
-	}
+   public CourseController(CourseService courseService) {
+      this.courseService = courseService;
+   }
 
-	@GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
-	public Collection<Course> getCourses() {
-		return courseService.getCourses();
-	}
+   @GetMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+   public Collection<Course> getCourses() {
+      return courseService.getCourses();
+   }
 
-	@GetMapping(path = "/{code}", produces = APPLICATION_JSON_UTF8_VALUE)
-	public Course getCourse(@PathVariable String code) {
-		return courseService.getCourse(code);
-	}
+   @GetMapping(path = "/{code}", produces = APPLICATION_JSON_UTF8_VALUE)
+   public Course getCourse(@PathVariable String code) {
+      return courseService.getCourse(code);
+   }
 }

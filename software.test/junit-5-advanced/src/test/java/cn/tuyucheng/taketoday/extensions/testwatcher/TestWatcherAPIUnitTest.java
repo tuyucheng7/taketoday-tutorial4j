@@ -11,25 +11,25 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 @ExtendWith(TestResultLoggerExtension.class)
 class TestWatcherAPIUnitTest {
 
-	@Test
-	void givenFalseIsTrue_whenTestAbortedThenCaptureResult() {
-		assumeTrue(true);
-	}
+   @Test
+   void givenFalseIsTrue_whenTestAbortedThenCaptureResult() {
+      assumeTrue(true);
+   }
 
-	@Disabled
-	@Test
-	void givenTrueIsTrue_whenTestDisabledThenCaptureResult() {
-		assertTrue(true);
-	}
+   @Disabled
+   @Test
+   void givenTrueIsTrue_whenTestDisabledThenCaptureResult() {
+      assertTrue(true);
+   }
 
-	@Test
-	void givenTrueIsTrue_whenTestAbortedThenCaptureResult() {
-		assumeTrue(true);
-	}
+   @Test
+   void givenTrueIsTrue_whenTestAbortedThenCaptureResult() {
+      assumeTrue(true);
+   }
 
-	@Disabled("This test is disabled")
-	@Test
-	void givenFailure_whenTestDisabledWithReason_ThenCaptureResult() {
-		fail("Not yet implemented");
-	}
+   @Disabled("This test is disabled")
+   @Test
+   void givenFailure_whenTestDisabledWithReason_ThenCaptureResult() {
+      fail("Not yet implemented");
+   }
 }

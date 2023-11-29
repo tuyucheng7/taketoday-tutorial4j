@@ -7,25 +7,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.org.webcompere.systemstubs.SystemStubs.restoreSystemProperties;
 
 class SystemPropertiesExecuteAroundUnitTest {
-	@Test
-	void givenRestoreSystemProperties_thenPropertyRestored() throws Exception {
-		restoreSystemProperties(() -> {
-			// test code
-			System.setProperty("unrestored", "true");
-		});
+   @Test
+   void givenRestoreSystemProperties_thenPropertyRestored() throws Exception {
+      restoreSystemProperties(() -> {
+         // test code
+         System.setProperty("unrestored", "true");
+      });
 
-		assertThat(System.getProperty("unrestored")).isNull();
-	}
+      assertThat(System.getProperty("unrestored")).isNull();
+   }
 
-	@Test
-	void givenSystemPropertiesObject_thenPropertyRestored() throws Exception {
-		String result = new SystemProperties()
-			.execute(() -> {
-				System.setProperty("unrestored", "true");
-				return "it works";
-			});
+   @Test
+   void givenSystemPropertiesObject_thenPropertyRestored() throws Exception {
+      String result = new SystemProperties()
+            .execute(() -> {
+               System.setProperty("unrestored", "true");
+               return "it works";
+            });
 
-		assertThat(result).isEqualTo("it works");
-		assertThat(System.getProperty("unrestored")).isNull();
-	}
+      assertThat(result).isEqualTo("it works");
+      assertThat(System.getProperty("unrestored")).isNull();
+   }
 }

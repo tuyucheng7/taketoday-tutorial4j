@@ -2,14 +2,14 @@ package cn.tuyucheng.taketoday.object.type;
 
 public class Deciduous implements Tree {
 
-	private String name;
+   private String name;
 
-	public Deciduous(String name) {
-		this.name = name;
-	}
+   public Deciduous(String name) {
+      this.name = name;
+   }
 
-	@Override
-	public boolean isEvergreen() {
-		return false;
-	}
+   @Override
+   public boolean isEvergreen() {
+      return false;
+   }
 }

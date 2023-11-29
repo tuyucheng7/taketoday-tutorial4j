@@ -4,17 +4,17 @@ import io.restassured.response.Response;
 
 public interface RestResponse<T> {
 
-	T getBody();
+   T getBody();
 
-	String getContent();
+   String getContent();
 
-	int getStatusCode();
+   int getStatusCode();
 
-	boolean isSuccessful();
+   boolean isSuccessful();
 
-	String getStatusDescription();
+   String getStatusDescription();
 
-	Response getResponse();
+   Response getResponse();
 
-	Exception getException();
+   Exception getException();
 }

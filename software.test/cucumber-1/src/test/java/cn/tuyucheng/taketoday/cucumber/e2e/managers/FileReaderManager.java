@@ -5,23 +5,23 @@ import cn.tuyucheng.taketoday.cucumber.e2e.config.JsonDataReader;
 
 public class FileReaderManager {
 
-	private static final FileReaderManager fileReaderManager = new FileReaderManager();
-	private static ConfigFileReader configFileReader;
-	private static JsonDataReader jsonDataReader;
+   private static final FileReaderManager fileReaderManager = new FileReaderManager();
+   private static ConfigFileReader configFileReader;
+   private static JsonDataReader jsonDataReader;
 
-	private FileReaderManager() {
+   private FileReaderManager() {
 
-	}
+   }
 
-	public static FileReaderManager getInstance() {
-		return fileReaderManager;
-	}
+   public static FileReaderManager getInstance() {
+      return fileReaderManager;
+   }
 
-	public ConfigFileReader getConfigFileReader() {
-		return configFileReader == null ? new ConfigFileReader() : configFileReader;
-	}
+   public ConfigFileReader getConfigFileReader() {
+      return configFileReader == null ? new ConfigFileReader() : configFileReader;
+   }
 
-	public JsonDataReader getJsonDataReader() {
-		return jsonDataReader == null ? new JsonDataReader() : jsonDataReader;
-	}
+   public JsonDataReader getJsonDataReader() {
+      return jsonDataReader == null ? new JsonDataReader() : jsonDataReader;
+   }
 }

@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
 @TargetEnv("rest_api.properties")
 public class UserEndpointIT {
 
-	@Test
-	@Scenario("rest/user_create_test.json")
-	public void test_user_creation_endpoint() {
-	}
+   @Test
+   @Scenario("rest/user_create_test.json")
+   public void test_user_creation_endpoint() {
+   }
 }

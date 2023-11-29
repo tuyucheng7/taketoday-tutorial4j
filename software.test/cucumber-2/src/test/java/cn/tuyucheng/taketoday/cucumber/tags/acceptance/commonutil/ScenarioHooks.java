@@ -21,38 +21,38 @@ import java.io.IOException;
 @CucumberContextConfiguration
 public class ScenarioHooks {
 
-	@Autowired
-	private ScenarioContextUI uiContext;
+   @Autowired
+   private ScenarioContextUI uiContext;
 
-	@Autowired
-	private ScenarioContextApi apiContext;
+   @Autowired
+   private ScenarioContextApi apiContext;
 
-	@Autowired
-	private MockMvc mvc;
+   @Autowired
+   private MockMvc mvc;
 
-	@Before("@ui")
-	public void setupForUI() {
-		uiContext.getWebDriver();
-	}
+   @Before("@ui")
+   public void setupForUI() {
+      uiContext.getWebDriver();
+   }
 
-	@After("@ui")
-	public void tearDownForUi(Scenario scenario) throws IOException {
-		uiContext.getReport().write(scenario);
-		uiContext.getReport().captureScreenShot(scenario, uiContext.getWebDriver());
-		uiContext.getWebDriver().quit();
-	}
+   @After("@ui")
+   public void tearDownForUi(Scenario scenario) throws IOException {
+      uiContext.getReport().write(scenario);
+      uiContext.getReport().captureScreenShot(scenario, uiContext.getWebDriver());
+      uiContext.getWebDriver().quit();
+   }
 
-	@Before("@api")
-	public void setupForApi() {
-		RestAssuredMockMvc.mockMvc(mvc);
-		RestAssuredMockMvc.config = RestAssuredMockMvc.config()
-			.logConfig(new LogConfig(
-				apiContext.getReport().getRestLogPrintStream(),
-				true));
-	}
+   @Before("@api")
+   public void setupForApi() {
+      RestAssuredMockMvc.mockMvc(mvc);
+      RestAssuredMockMvc.config = RestAssuredMockMvc.config()
+            .logConfig(new LogConfig(
+                  apiContext.getReport().getRestLogPrintStream(),
+                  true));
+   }
 
-	@After("@api")
-	public void tearDownForApi(Scenario scenario) throws IOException {
-		apiContext.getReport().write(scenario);
-	}
+   @After("@api")
+   public void tearDownForApi(Scenario scenario) throws IOException {
+      apiContext.getReport().write(scenario);
+   }
 }

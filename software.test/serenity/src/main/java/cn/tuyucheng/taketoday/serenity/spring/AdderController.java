@@ -1,11 +1,7 @@
 package cn.tuyucheng.taketoday.serenity.spring;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author tuyucheng
@@ -14,20 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdderController {
 
-	private AdderService adderService;
+   private AdderService adderService;
 
-	public AdderController(AdderService adderService) {
-		this.adderService = adderService;
-	}
+   public AdderController(AdderService adderService) {
+      this.adderService = adderService;
+   }
 
-	@GetMapping("/current")
-	public int currentNum() {
-		return adderService.currentBase();
-	}
+   @GetMapping("/current")
+   public int currentNum() {
+      return adderService.currentBase();
+   }
 
-	@PostMapping
-	public int add(@RequestParam int num) {
-		return adderService.add(num);
-	}
+   @PostMapping
+   public int add(@RequestParam int num) {
+      return adderService.add(num);
+   }
 
 }

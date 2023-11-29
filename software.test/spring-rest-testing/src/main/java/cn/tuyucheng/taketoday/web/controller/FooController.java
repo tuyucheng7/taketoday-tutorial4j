@@ -22,55 +22,55 @@ import java.util.List;
 @RequestMapping(value = "/auth/foos")
 public class FooController {
 
-    @Autowired
-    private IFooService service;
+   @Autowired
+   private IFooService service;
 
-    public FooController() {
-        super();
-    }
+   public FooController() {
+      super();
+   }
 
-    // API
+   // API
 
-    @RequestMapping(method = RequestMethod.GET, value = "/count")
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.OK)
-    public long count() {
-        return 2L;
-    }
+   @RequestMapping(method = RequestMethod.GET, value = "/count")
+   @ResponseBody
+   @ResponseStatus(value = HttpStatus.OK)
+   public long count() {
+      return 2L;
+   }
 
-    // read - one
+   // read - one
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Foo findById(@PathVariable("id") final Long id, final HttpServletResponse response) {
-        final Foo resourceById = RestPreconditions.checkFound(service.findOne(id));
-        return resourceById;
-    }
+   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+   @ResponseBody
+   public Foo findById(@PathVariable("id") final Long id, final HttpServletResponse response) {
+      final Foo resourceById = RestPreconditions.checkFound(service.findOne(id));
+      return resourceById;
+   }
 
-    // read - all
+   // read - all
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
-    public List<Foo> findAll() {
-        return service.findAll();
-    }
+   @RequestMapping(method = RequestMethod.GET)
+   @ResponseBody
+   public List<Foo> findAll() {
+      return service.findAll();
+   }
 
-    // write
+   // write
 
-    @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public Foo create(@RequestBody final Foo resource, final HttpServletResponse response) {
-        Preconditions.checkNotNull(resource);
-        final Foo foo = service.create(resource);
+   @RequestMapping(method = RequestMethod.POST)
+   @ResponseStatus(HttpStatus.CREATED)
+   @ResponseBody
+   public Foo create(@RequestBody final Foo resource, final HttpServletResponse response) {
+      Preconditions.checkNotNull(resource);
+      final Foo foo = service.create(resource);
 
-        return foo;
-    }
+      return foo;
+   }
 
-    @RequestMapping(method = RequestMethod.HEAD)
-    @ResponseStatus(HttpStatus.OK)
-    public void head(final HttpServletResponse resp) {
-        resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        resp.setHeader("bar", "baz");
-    }
+   @RequestMapping(method = RequestMethod.HEAD)
+   @ResponseStatus(HttpStatus.OK)
+   public void head(final HttpServletResponse resp) {
+      resp.setContentType(MediaType.APPLICATION_JSON_VALUE);
+      resp.setHeader("bar", "baz");
+   }
 }

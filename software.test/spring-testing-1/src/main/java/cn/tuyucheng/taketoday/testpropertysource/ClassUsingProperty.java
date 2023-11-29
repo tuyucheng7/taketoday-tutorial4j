@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ClassUsingProperty {
 
-	@Value("${tuyucheng.testpropertysource.one}")
-	private String propertyOne;
+   @Value("${tuyucheng.testpropertysource.one}")
+   private String propertyOne;
 
-	public String retrievePropertyOne() {
-		return propertyOne;
-	}
+   public String retrievePropertyOne() {
+      return propertyOne;
+   }
 }

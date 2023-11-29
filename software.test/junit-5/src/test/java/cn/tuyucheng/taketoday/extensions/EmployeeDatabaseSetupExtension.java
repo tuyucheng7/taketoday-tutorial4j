@@ -2,11 +2,7 @@ package cn.tuyucheng.taketoday.extensions;
 
 import cn.tuyucheng.taketoday.helpers.EmployeeJdbcDao;
 import cn.tuyucheng.taketoday.helpers.JdbcConnectionUtil;
-import org.junit.jupiter.api.extension.AfterAllCallback;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeAllCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;

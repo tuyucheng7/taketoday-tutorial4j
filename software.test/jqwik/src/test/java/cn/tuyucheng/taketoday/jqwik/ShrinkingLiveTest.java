@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShrinkingLiveTest {
 
-    @Property
-    public void square(@ForAll @Positive int a) {
-        int result = a * a;
-        assertTrue(result >= a);
-    }
+   @Property
+   public void square(@ForAll @Positive int a) {
+      int result = a * a;
+      assertTrue(result >= a);
+   }
 }

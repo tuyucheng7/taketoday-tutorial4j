@@ -6,6 +6,6 @@ import spock.lang.Subject
 
 class SubjectTest extends Specification {
 
-	@Subject
-	ItemService itemService // initialization here...
+   @Subject
+   ItemService itemService // initialization here...
 }

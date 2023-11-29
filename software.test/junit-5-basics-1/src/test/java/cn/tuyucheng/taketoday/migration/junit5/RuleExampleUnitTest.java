@@ -9,11 +9,11 @@ import org.slf4j.LoggerFactory;
 @ExtendWith(TraceUnitExtension.class)
 class RuleExampleUnitTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RuleExampleUnitTest.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(RuleExampleUnitTest.class);
 
-	@Test
-	void whenTracingTests() {
-		LOGGER.debug("This is my test");
-		/*...*/
-	}
+   @Test
+   void whenTracingTests() {
+      LOGGER.debug("This is my test");
+      /*...*/
+   }
 }

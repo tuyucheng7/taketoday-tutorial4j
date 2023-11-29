@@ -4,8 +4,8 @@ import spock.lang.Specification
 
 class StackTraceTest extends Specification {
 
-	def 'stkacktrace'() {
+   def 'stkacktrace'() {
 //        expect:
 //        throw new RuntimeException("blabla")
-	}
+   }
 }

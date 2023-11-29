@@ -1,19 +1,19 @@
 package cn.tuyucheng.taketoday.junit5.nested;
 
 public class User {
-    private String name;
-    private Membership membership;
+   private String name;
+   private Membership membership;
 
-    public User(String name, Membership membership) {
-        this.name = name;
-        this.membership = membership;
-    }
+   public User(String name, Membership membership) {
+      this.name = name;
+      this.membership = membership;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public Membership getMembership() {
-        return membership;
-    }
+   public Membership getMembership() {
+      return membership;
+   }
 }

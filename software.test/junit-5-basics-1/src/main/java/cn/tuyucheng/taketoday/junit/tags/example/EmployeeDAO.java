@@ -14,45 +14,45 @@ import java.util.Map;
 @Repository
 public class EmployeeDAO {
 
-	private JdbcTemplate jdbcTemplate;
+   private JdbcTemplate jdbcTemplate;
 
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	private SimpleJdbcInsert simpleJdbcInsert;
+   private SimpleJdbcInsert simpleJdbcInsert;
 
-	@Autowired
-	public void setDataSource(final DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
+   @Autowired
+   public void setDataSource(final DataSource dataSource) {
+      jdbcTemplate = new JdbcTemplate(dataSource);
 
-		namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-		simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("EMPLOYEE");
+      namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+      simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("EMPLOYEE");
 
-	}
+   }
 
-	public int getCountOfEmployees() {
-		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM EMPLOYEE", Integer.class);
-	}
+   public int getCountOfEmployees() {
+      return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM EMPLOYEE", Integer.class);
+   }
 
-	public List<Employee> getAllEmployees() {
-		return jdbcTemplate.query("SELECT * FROM EMPLOYEE", new EmployeeRowMapper());
-	}
+   public List<Employee> getAllEmployees() {
+      return jdbcTemplate.query("SELECT * FROM EMPLOYEE", new EmployeeRowMapper());
+   }
 
-	public int addEmployee(final int id) {
-		return jdbcTemplate.update("INSERT INTO EMPLOYEE VALUES (?, ?, ?, ?)", id, "Bill", "Gates", "USA");
-	}
+   public int addEmployee(final int id) {
+      return jdbcTemplate.update("INSERT INTO EMPLOYEE VALUES (?, ?, ?, ?)", id, "Bill", "Gates", "USA");
+   }
 
-	public int addEmployeeUsingSimpleJdbcInsert(final Employee emp) {
-		final Map<String, Object> parameters = new HashMap<>();
-		parameters.put("ID", emp.getId());
-		parameters.put("FIRST_NAME", emp.getFirstName());
-		parameters.put("LAST_NAME", emp.getLastName());
-		parameters.put("ADDRESS", emp.getAddress());
+   public int addEmployeeUsingSimpleJdbcInsert(final Employee emp) {
+      final Map<String, Object> parameters = new HashMap<>();
+      parameters.put("ID", emp.getId());
+      parameters.put("FIRST_NAME", emp.getFirstName());
+      parameters.put("LAST_NAME", emp.getLastName());
+      parameters.put("ADDRESS", emp.getAddress());
 
-		return simpleJdbcInsert.execute(parameters);
-	}
+      return simpleJdbcInsert.execute(parameters);
+   }
 
-	// for testing
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+   // for testing
+   public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+      this.jdbcTemplate = jdbcTemplate;
+   }
 }

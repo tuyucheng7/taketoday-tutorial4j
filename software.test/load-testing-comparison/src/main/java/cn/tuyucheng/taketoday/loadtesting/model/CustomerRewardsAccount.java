@@ -8,29 +8,29 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 @Entity
-@Table(indexes = {@Index(columnList="customerId")})
+@Table(indexes = {@Index(columnList = "customerId")})
 public class CustomerRewardsAccount {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-    private Integer customerId;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   private Integer id;
+   private Integer customerId;
 
-    public Integer getCustomerId(){
-        return this.customerId;
-    }
+   public Integer getCustomerId() {
+      return this.customerId;
+   }
 
-    public Integer getId() {
-        return id;
-    }
+   public Integer getId() {
+      return id;
+   }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+   public void setId(Integer id) {
+      this.id = id;
+   }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
+   public void setCustomerId(Integer customerId) {
+      this.customerId = customerId;
+   }
 
 
 }

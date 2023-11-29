@@ -9,21 +9,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class SystemExitJUnit4UnitTest {
-	@Rule
-	public SystemExitRule systemExitRule = new SystemExitRule();
+   @Rule
+   public SystemExitRule systemExitRule = new SystemExitRule();
 
-	@Test
-	public void whenAccidentalSystemExit_thenTestFailsRatherThanJVMKilled() {
-		// uncomment this to try it
-		// System.exit(1);
-	}
+   @Test
+   public void whenAccidentalSystemExit_thenTestFailsRatherThanJVMKilled() {
+      // uncomment this to try it
+      // System.exit(1);
+   }
 
-	@Test
-	public void whenExit_thenExitCodeIsAvailable() {
-		assertThatThrownBy(() -> {
-			System.exit(123);
-		}).isInstanceOf(AbortExecutionException.class);
+   @Test
+   public void whenExit_thenExitCodeIsAvailable() {
+      assertThatThrownBy(() -> {
+         System.exit(123);
+      }).isInstanceOf(AbortExecutionException.class);
 
-		assertThat(systemExitRule.getExitCode()).isEqualTo(123);
-	}
+      assertThat(systemExitRule.getExitCode()).isEqualTo(123);
+   }
 }

@@ -10,5 +10,5 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 @SuiteDisplayName("My Test Suite")
 @SelectClasses({ClassOneUnitTest.class, ClassTwoUnitTest.class})
 public class JUnitSelectClassesSuite {
-	// runs ClassOneUnitTest and ClassTwoUnitTest
+   // runs ClassOneUnitTest and ClassTwoUnitTest
 }

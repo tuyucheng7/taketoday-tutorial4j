@@ -14,61 +14,61 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SmurfsArchManualTest {
 
-	@Test
-	public void givenPresentationLayerClasses_thenWrongCheckFails() {
-		JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
+   @Test
+   public void givenPresentationLayerClasses_thenWrongCheckFails() {
+      JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
 
-		ArchRule r1 = classes()
-			.that()
-			.resideInAPackage("..presentation..")
-			.should().onlyDependOnClassesThat()
-			.resideInAPackage("..service..");
+      ArchRule r1 = classes()
+            .that()
+            .resideInAPackage("..presentation..")
+            .should().onlyDependOnClassesThat()
+            .resideInAPackage("..service..");
 
-		assertThrows(AssertionError.class, () -> r1.check(jc));
-	}
+      assertThrows(AssertionError.class, () -> r1.check(jc));
+   }
 
 
-	@Test
-	public void givenPresentationLayerClasses_thenCheckWithFrameworkDependenciesSuccess() {
-		JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
+   @Test
+   public void givenPresentationLayerClasses_thenCheckWithFrameworkDependenciesSuccess() {
+      JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
 
-		ArchRule r1 = classes()
-			.that()
-			.resideInAPackage("..presentation..")
-			.should().onlyDependOnClassesThat()
-			.resideInAnyPackage("..service..", "java..", "javax..", "org.springframework..");
+      ArchRule r1 = classes()
+            .that()
+            .resideInAPackage("..presentation..")
+            .should().onlyDependOnClassesThat()
+            .resideInAnyPackage("..service..", "java..", "javax..", "org.springframework..");
 
-		r1.check(jc);
-	}
+      r1.check(jc);
+   }
 
-	@Test
-	public void givenPresentationLayerClasses_thenNoPersistenceLayerAccess() {
-		JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
+   @Test
+   public void givenPresentationLayerClasses_thenNoPersistenceLayerAccess() {
+      JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
 
-		ArchRule r1 = noClasses()
-			.that()
-			.resideInAPackage("..presentation..")
-			.should().dependOnClassesThat()
-			.resideInAPackage("..persistence..");
+      ArchRule r1 = noClasses()
+            .that()
+            .resideInAPackage("..presentation..")
+            .should().dependOnClassesThat()
+            .resideInAPackage("..persistence..");
 
-		r1.check(jc);
-	}
+      r1.check(jc);
+   }
 
-	@Test
-	public void givenApplicationClasses_thenNoLayerViolationsShouldExist() {
+   @Test
+   public void givenApplicationClasses_thenNoLayerViolationsShouldExist() {
 
-		JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
+      JavaClasses jc = new ClassFileImporter().importPackages("cn.tuyucheng.taketoday.archunit.smurfs");
 
-		LayeredArchitecture arch = layeredArchitecture()
-			// Define layers
-			.layer("Presentation").definedBy("..presentation..")
-			.layer("Service").definedBy("..service..")
-			.layer("Persistence").definedBy("..persistence..")
-			// Add constraints
-			.whereLayer("Presentation").mayNotBeAccessedByAnyLayer()
-			.whereLayer("Service").mayOnlyBeAccessedByLayers("Presentation")
-			.whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service");
+      LayeredArchitecture arch = layeredArchitecture()
+            // Define layers
+            .layer("Presentation").definedBy("..presentation..")
+            .layer("Service").definedBy("..service..")
+            .layer("Persistence").definedBy("..persistence..")
+            // Add constraints
+            .whereLayer("Presentation").mayNotBeAccessedByAnyLayer()
+            .whereLayer("Service").mayOnlyBeAccessedByLayers("Presentation")
+            .whereLayer("Persistence").mayOnlyBeAccessedByLayers("Service");
 
-		arch.check(jc);
-	}
+      arch.check(jc);
+   }
 }

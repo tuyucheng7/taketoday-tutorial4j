@@ -14,24 +14,24 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.TEXT_PLAIN)
 public class SampleResource {
 
-	@Inject
-	@ConfigProperty(name = "message")
-	private String message;
+   @Inject
+   @ConfigProperty(name = "message")
+   private String message;
 
-	@Inject
-	@RestClient
-	private QuoteRestClient quoteRestClient;
+   @Inject
+   @RestClient
+   private QuoteRestClient quoteRestClient;
 
-	@GET
-	@Path("/message")
-	public String getMessage() {
-		return message;
-	}
+   @GET
+   @Path("/message")
+   public String getMessage() {
+      return message;
+   }
 
-	@GET
-	@Path("/quotes")
-	public String getQuotes() {
-		var quoteOfTheDayPointer = Json.createPointer("/contents/quotes/0/quote");
-		return quoteOfTheDayPointer.getValue(quoteRestClient.getQuoteOfTheDay()).toString();
-	}
+   @GET
+   @Path("/quotes")
+   public String getQuotes() {
+      var quoteOfTheDayPointer = Json.createPointer("/contents/quotes/0/quote");
+      return quoteOfTheDayPointer.getValue(quoteRestClient.getQuoteOfTheDay()).toString();
+   }
 }

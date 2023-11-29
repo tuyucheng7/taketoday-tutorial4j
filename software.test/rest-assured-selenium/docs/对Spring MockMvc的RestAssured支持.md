@@ -1,14 +1,17 @@
 ## 一、简介
 
-在本教程中，我们将学习如何使用***RestAssuredMockMvc*****测试我们的 Spring REST 控制器，这是一个构建在 Spring 的***MockMvc*之上的 REST-assured API 。
+在本教程中，我们将学习如何使用***RestAssuredMockMvc*****测试我们的 Spring REST 控制器，这是一个构建在 Spring 的***MockMvc*
+之上的 REST-assured API 。
 
 首先，我们将检查不同的设置选项。然后，我们将深入研究如何编写单元测试和集成测试。
 
-本教程使用[Spring MVC](https://www.baeldung.com/spring-mvc)、[Spring MockMVC](https://www.baeldung.com/integration-testing-in-spring)和[REST-assured](https://www.baeldung.com/rest-assured-tutorial)，因此请务必查看这些教程。
+本教程使用[Spring MVC](https://www.baeldung.com/spring-mvc)、[Spring MockMVC](https://www.baeldung.com/integration-testing-in-spring)
+和[REST-assured](https://www.baeldung.com/rest-assured-tutorial)，因此请务必查看这些教程。
 
 ## 2.Maven依赖
 
-在开始编写测试之前，我们需要将[*io.rest-assured:spring-mock-mvc*模块](https://search.maven.org/search?q=g:io.rest-assured AND a:spring-mock-mvc)导入到 Maven *pom.xml*中：
+在开始编写测试之前，我们需要将[*io.rest-assured:spring-mock-mvc*模块](https://search.maven.org/search?q=g:io.rest-assured
+AND a:spring-mock-mvc)导入到 Maven *pom.xml*中：
 
 ```xml
 <dependency>
@@ -27,7 +30,11 @@
 
 ### 3.1。独立
 
-在独立模式下，我们**使用一个或多个*****[@Controller](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html)*****或*****[@ControllerAdvice](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)*****注释类来初始化*RestAssuredMockMvc*。**
+在独立模式下，我们**使用一个或多个
+*****[@Controller](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html)
+*****或**
+***[@ControllerAdvice](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ControllerAdvice.html)***
+**注释类来初始化*RestAssuredMockMvc*。**
 
 如果我们只有几个测试，我们可以及时初始化*RestAssuredMockMvc*：
 
@@ -51,7 +58,9 @@ public void initialiseRestAssuredMockMvcStandalone() {
 
 ### 3.2. Web 应用程序上下文
 
-在 Web 应用程序上下文模式中，我们使用 Spring **[*WebApplicationContext*](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/WebApplicationContext.html)****的实例****初始化*RestAssuredMockMvc*。**
+在 Web 应用程序上下文模式中，我们使用 Spring **[
+*WebApplicationContext*](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/WebApplicationContext.html)
+****的实例****初始化*RestAssuredMockMvc*。**
 
 与我们在独立模式设置中看到的类似，我们可以在每次测试时及时初始化*RestAssuredMockMvc ：*
 
@@ -81,7 +90,8 @@ public void initialiseRestAssuredMockMvcWebApplicationContext() {
 
 ## 4. 被测系统 (SUT)
 
-在我们深入研究一些示例测试之前，我们需要一些东西来测试。让我们检查一下我们的测试系统，从我们的*[@SpringBootApplication](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/SpringBootApplication.html)*配置开始：
+在我们深入研究一些示例测试之前，我们需要一些东西来测试。让我们检查一下我们的测试系统，从我们的*[@SpringBootApplication](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/SpringBootApplication.html)*
+配置开始：
 
 ```java
 @SpringBootApplication
@@ -93,7 +103,8 @@ class Application {
 }复制
 ```
 
-接下来，我们有一个简单的*[@RestController](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)*公开我们的*Course*域：
+接下来，我们有一个简单的*[@RestController](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)
+*公开我们的*Course*域：
 
 ```java
 @RestController
@@ -167,7 +178,8 @@ class CourseNotFoundException extends RuntimeException {
 
 ## 5. REST-assured 的 REST 控制器单元测试
 
-我们可以使用*RestAssuredMockMvc*和我们最喜欢的测试工具[JUnit](https://www.baeldung.com/junit)和[Mockito](https://www.baeldung.com/mockito-series)来测试我们的*@RestController*。
+我们可以使用*RestAssuredMockMvc*和我们最喜欢的测试工具[JUnit](https://www.baeldung.com/junit)
+和[Mockito](https://www.baeldung.com/mockito-series)来测试我们的*@RestController*。
 
 首先，我们模拟并构建我们的 SUT，然后在独立模式下初始化*RestAssuredMockMvc*，如上：
 
@@ -231,15 +243,17 @@ public void givenNoMatchingCoursesWhenGetCoursesThenRespondWithStatusNotFound() 
 
 如上所示，REST-assured 使用熟悉的 given-when-then 场景格式来定义测试：
 
--   *given()* — 指定 HTTP 请求详细信息
--   *when()* — 指定 HTTP 动词和路由
--   *then()* — 验证 HTTP 响应
+- *given()* — 指定 HTTP 请求详细信息
+- *when()* — 指定 HTTP 动词和路由
+- *then()* — 验证 HTTP 响应
 
 ## 6. REST-assured 的 REST 控制器集成测试
 
 我们还可以将*RestAssuredMockMvc*与 Spring 的测试工具一起用于我们的集成测试。
 
-*首先，我们使用@RunWith(SpringRunner.class)*和[*@SpringBootTest(webEnvironment = RANDOM_PORT)*](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html)设置我们的测试类：
+*首先，我们使用@RunWith(SpringRunner.class)*和[*@SpringBootTest(webEnvironment =
+RANDOM_PORT)*](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/context/SpringBootTest.html)
+设置我们的测试类：
 
 ```java
 @RunWith(SpringRunner.class)

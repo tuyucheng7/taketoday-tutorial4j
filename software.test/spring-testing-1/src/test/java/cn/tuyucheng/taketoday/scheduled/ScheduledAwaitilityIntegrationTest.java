@@ -13,12 +13,12 @@ import static org.mockito.Mockito.verify;
 @SpringJUnitConfig(ScheduledConfig.class)
 class ScheduledAwaitilityIntegrationTest {
 
-	@SpyBean
-	private Counter counter;
+   @SpyBean
+   private Counter counter;
 
-	@Test
-	void whenWaitOneSecond_thenScheduledIsCalledAtLeastTenTimes() {
-		await().atMost(Duration.ONE_SECOND)
-				.untilAsserted(() -> verify(counter, atLeast(10)).scheduled());
-	}
+   @Test
+   void whenWaitOneSecond_thenScheduledIsCalledAtLeastTenTimes() {
+      await().atMost(Duration.ONE_SECOND)
+            .untilAsserted(() -> verify(counter, atLeast(10)).scheduled());
+   }
 }

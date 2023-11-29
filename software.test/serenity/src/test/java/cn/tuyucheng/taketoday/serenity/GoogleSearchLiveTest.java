@@ -16,26 +16,26 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 @RunWith(SerenityRunner.class)
 public class GoogleSearchLiveTest {
 
-	/* The selectors must be appropriate for your own context.
-	   you can inspect the desired element on the web page you are testing to get the appropriate selector */
-	private static String SELECTOR_EUGEN_TEXT = ".haz7je";
-	private static String SELECTOR_VALIDATE_COOKIES_DIALOG = "button[id='L2AGLb'] div[role='none']";
+   /* The selectors must be appropriate for your own context.
+      you can inspect the desired element on the web page you are testing to get the appropriate selector */
+   private static String SELECTOR_EUGEN_TEXT = ".haz7je";
+   private static String SELECTOR_VALIDATE_COOKIES_DIALOG = "button[id='L2AGLb'] div[role='none']";
 
-	@Managed(driver = "chrome")
-	private WebDriver browser;
+   @Managed(driver = "chrome")
+   private WebDriver browser;
 
-	@Test
-	public void whenGoogleBaeldungThenShouldSeeEugen() {
-		browser.get("https://www.google.com/ncr");
+   @Test
+   public void whenGoogleBaeldungThenShouldSeeEugen() {
+      browser.get("https://www.google.com/ncr");
 
-		// If your browser displays cookie settings dialog, uncomment the line below
-		// browser.findElement(By.cssSelector(SELECTOR_VALIDATE_COOKIES_DIALOG)).click();
+      // If your browser displays cookie settings dialog, uncomment the line below
+      // browser.findElement(By.cssSelector(SELECTOR_VALIDATE_COOKIES_DIALOG)).click();
 
-		browser.findElement(By.name("q")).sendKeys("baeldung", Keys.ENTER);
+      browser.findElement(By.name("q")).sendKeys("baeldung", Keys.ENTER);
 
-		new WebDriverWait(browser, 5).until(visibilityOfElementLocated(By.cssSelector(SELECTOR_EUGEN_TEXT)));
+      new WebDriverWait(browser, 5).until(visibilityOfElementLocated(By.cssSelector(SELECTOR_EUGEN_TEXT)));
 
-		assertThat(browser.findElement(By.cssSelector(SELECTOR_EUGEN_TEXT)).getText(), containsString("Eugen (Baeldung)"));
-	}
+      assertThat(browser.findElement(By.cssSelector(SELECTOR_EUGEN_TEXT)).getText(), containsString("Eugen (Baeldung)"));
+   }
 
 }

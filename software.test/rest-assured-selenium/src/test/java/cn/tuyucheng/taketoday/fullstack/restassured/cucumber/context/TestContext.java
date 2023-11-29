@@ -7,19 +7,19 @@ import cn.tuyucheng.taketoday.fullstack.restassured.cucumber.scenario.ScenarioCo
 
 public class TestContext {
 
-	private final Endpoints endpoints = new Endpoints(ConfigFileReader.getInstance().getBaseUrl());
-	private final ScenarioContext scenarioContext;
+   private final Endpoints endpoints = new Endpoints(ConfigFileReader.getInstance().getBaseUrl());
+   private final ScenarioContext scenarioContext;
 
-	public TestContext() {
-		scenarioContext = new ScenarioContext();
-		scenarioContext.setContext(Context.USER_ID, ConfigFileReader.getInstance().getUserID());
-	}
+   public TestContext() {
+      scenarioContext = new ScenarioContext();
+      scenarioContext.setContext(Context.USER_ID, ConfigFileReader.getInstance().getUserID());
+   }
 
-	public Endpoints getEndpoints() {
-		return endpoints;
-	}
+   public Endpoints getEndpoints() {
+      return endpoints;
+   }
 
-	public ScenarioContext getScenarioContext() {
-		return scenarioContext;
-	}
+   public ScenarioContext getScenarioContext() {
+      return scenarioContext;
+   }
 }

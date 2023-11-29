@@ -12,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(initializers = PropertyOverrideContextInitializer.class, classes = TestApplication.class)
 class ContextPropertySourceResolverIntegrationTest {
 
-	@Autowired
-	private PropertySourceResolver propertySourceResolver;
+   @Autowired
+   private PropertySourceResolver propertySourceResolver;
 
-	@Test
-	void shouldContext_overridePropertyValues() {
-		final String firstProperty = propertySourceResolver.getFirstProperty();
-		final String secondProperty = propertySourceResolver.getSecondProperty();
+   @Test
+   void shouldContext_overridePropertyValues() {
+      final String firstProperty = propertySourceResolver.getFirstProperty();
+      final String secondProperty = propertySourceResolver.getSecondProperty();
 
-		assertEquals(PropertyOverrideContextInitializer.PROPERTY_FIRST_VALUE, firstProperty);
-		assertEquals("contextFile", secondProperty);
-	}
+      assertEquals(PropertyOverrideContextInitializer.PROPERTY_FIRST_VALUE, firstProperty);
+      assertEquals("contextFile", secondProperty);
+   }
 }

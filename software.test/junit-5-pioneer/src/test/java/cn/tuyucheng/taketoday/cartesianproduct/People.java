@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @CartesianArgumentsSource(PeopleProvider.class)
 @interface People {
 
-	String[] names();
+   String[] names();
 
-	int[] ages();
+   int[] ages();
 }

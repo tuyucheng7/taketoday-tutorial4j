@@ -1,13 +1,16 @@
 ## 使用 Rest Assured 读取 JSON 响应正文
 
-让我们继续前面教程中使用的 Weather Web 服务示例。当我们请求特定城市的天气详细信息时，服务器通过将城市的天气详细信息作为响应主体发送来进行响应。Response 接口包含两种获取 Response Body 的方法
+让我们继续前面教程中使用的 Weather Web 服务示例。当我们请求特定城市的天气详细信息时，服务器通过将城市的天气详细信息作为响应主体发送来进行响应。Response
+接口包含两种获取 Response Body 的方法
 
--   ***Response.body() ：返回 ResponseBody***
--   ***Response.getBody() ：返回 ResponseBody***
+- ***Response.body() ：返回 ResponseBody***
+- ***Response.getBody() ：返回 ResponseBody***
 
 ![使用 Rest-Assured 读取 Json 响应正文](https://toolsqa.com/gallery/Rest%20Assured/1.Read%20Json%20Response%20Body%20using%20Rest-Assured.png)
 
-使用这些方法，我们可以获得一个***io.restassured.response.ResponseBody***类型的对象。此类表示接收到的响应的正文。使用此类，您可以获取和验证完整或部分响应正文。在下面的代码中，我们将 使用***Response.getBody()简单地读取完整的******响应正文*** ，并将其打印在控制台窗口上。
+使用这些方法，我们可以获得一个***io.restassured.response.ResponseBody***
+类型的对象。此类表示接收到的响应的正文。使用此类，您可以获取和验证完整或部分响应正文。在下面的代码中，我们将 使用
+***Response.getBody()简单地读取完整的******响应正文*** ，并将其打印在控制台窗口上。
 
 ```java
 @Test
@@ -26,7 +29,8 @@ public void WeatherMessageBody()
 }
 ```
 
-***ResponseBody***接口还有一个名为***.asString()***的方法，如上面的代码中所用，它将***ResponseBody***转换为其字符串表示形式。如果您运行此测试，输出将如下所示：
+***ResponseBody***接口还有一个名为***.asString()***的方法，如上面的代码中所用，它将***ResponseBody***
+转换为其字符串表示形式。如果您运行此测试，输出将如下所示：
 
 ![使用 Rest Assured 读取 Json 响应正文](https://toolsqa.com/gallery/Rest%20Assured/2.Read%20Json%20Response%20Body%20using%20Rest%20Assured.png)
 
@@ -34,7 +38,9 @@ public void WeatherMessageBody()
 
 ### ***如何验证响应正文包含一些字符串？***
 
-***ResponseBody***可以返回字符串格式的响应正文。我们可以使用简单的字符串方法来验证响应中某些基本级别的值。例如，我们可以使用***String.contains()***方法来查看响应中是否包含“ ***Hyderabad*** ”。下面的代码显示了如何检查子字符串是否存在。
+***ResponseBody***
+可以返回字符串格式的响应正文。我们可以使用简单的字符串方法来验证响应中某些基本级别的值。例如，我们可以使用***
+String.contains()***方法来查看响应中是否包含“ ***Hyderabad*** ”。下面的代码显示了如何检查子字符串是否存在。
 
 ```java
 @Test
@@ -78,16 +84,20 @@ public void WeatherMessageBody()
 }
 ```
 
-上述两种方法都有一个经典问题，如果字符串“ ***Hyderabad*** ”出现在错误的节点中，或者可能是同一字符串的多个实例，该怎么办。***这不是在Response***中测试特定节点的万无一失的方法。还有更好的方法，***响应***接口为您提供了一种基于给定***JsonPath***提取节点的机制。有一个名为***Response.JsonPath()***的方法，它返回一个***io.restassured.path.json.JsonPath*** 对象。该对象可用于进一步查询***Response Json***的特定部分。
+上述两种方法都有一个经典问题，如果字符串“ ***Hyderabad*** ”出现在错误的节点中，或者可能是同一字符串的多个实例，该怎么办。
+***这不是在Response***中测试特定节点的万无一失的方法。还有更好的方法，***响应***接口为您提供了一种基于给定***JsonPath***
+提取节点的机制。有一个名为***Response.JsonPath()***的方法，它返回一个***io.restassured.path.json.JsonPath***
+对象。该对象可用于进一步查询***Response Json***的特定部分。
 
 *如果您不了解 JsonPath，请阅读这些教程*
 
--   [***什么是 JsonPath***](https://toolsqa.com/rest-assured/jsonpath-and-query-json-using-jsonpath/)
--   [***JsonPath 表达式***](https://toolsqa.com/rest-assured/expressions-in-jsonpath/)
+- [***什么是 JsonPath***](https://toolsqa.com/rest-assured/jsonpath-and-query-json-using-jsonpath/)
+- [***JsonPath 表达式***](https://toolsqa.com/rest-assured/expressions-in-jsonpath/)
 
 ### ***如何使用 JsonPath 从响应中提取节点文本？***
 
-让我们继续上面的示例并从***Response中检索******City***。为此，我们只需从 Response 接口获取*JsonPath*对象，然后查询特定节点。为了清楚起见，让我们再看一下 Weather API 响应。
+让我们继续上面的示例并从***Response中检索******City***。为此，我们只需从 Response 接口获取*JsonPath*
+对象，然后查询特定节点。为了清楚起见，让我们再看一下 Weather API 响应。
 
 ```java
 {
@@ -100,7 +110,8 @@ public void WeatherMessageBody()
 }
 ```
 
-在这个响应中，如果我们想去 City 节点，我们所要做的就是拥有以下***JsonPath： $.City***。在[***JsonPath Evaluator***](https://jsonpath.com/)上试用以验证输出。
+在这个响应中，如果我们想去 City 节点，我们所要做的就是拥有以下***JsonPath： $.City***。在[
+***JsonPath Evaluator***](https://jsonpath.com/)上试用以验证输出。
 
 现在让我们看一下代码，特别注意代码中的注释。
 

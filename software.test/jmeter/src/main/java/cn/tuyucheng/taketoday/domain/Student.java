@@ -9,58 +9,58 @@ import java.io.Serializable;
 @Document(collection = "STUDENT")
 public class Student implements Serializable {
 
-	@Id
-	private String id;
-	@NotNull
-	private String firstName;
-	private String lastName;
-	@NotNull
-	private String phoneNumber;
-	private String email;
+   @Id
+   private String id;
+   @NotNull
+   private String firstName;
+   private String lastName;
+   @NotNull
+   private String phoneNumber;
+   private String email;
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 
-	public String getFirstName() {
-		return firstName;
-	}
+   public String getFirstName() {
+      return firstName;
+   }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+   }
 
-	public String getLastName() {
-		return lastName;
-	}
+   public String getLastName() {
+      return lastName;
+   }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+   public void setLastName(String lastName) {
+      this.lastName = lastName;
+   }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+   public String getPhoneNumber() {
+      return phoneNumber;
+   }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+   public void setPhoneNumber(String phoneNumber) {
+      this.phoneNumber = phoneNumber;
+   }
 
-	public String getEmail() {
-		return email;
-	}
+   public String getEmail() {
+      return email;
+   }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
-	@Override
-	public String toString() {
-		return "Student{" +
-			"firstName='" + firstName + '\'' +
-			", lastName='" + lastName + '\'' +
-			", phoneNumber='" + phoneNumber + '\'' +
-			", email='" + email + '\'' +
-			'}';
-	}
+   @Override
+   public String toString() {
+      return "Student{" +
+            "firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", phoneNumber='" + phoneNumber + '\'' +
+            ", email='" + email + '\'' +
+            '}';
+   }
 }

@@ -10,13 +10,13 @@ import static org.mockserver.model.HttpResponse.response;
 
 public class ExpectationCallbackHandler implements ExpectationCallback {
 
-	public HttpResponse handle(HttpRequest httpRequest) {
-		if (httpRequest.getPath().getValue().endsWith("/callback")) {
-			return httpResponse;
-		} else {
-			return notFoundResponse();
-		}
-	}
+   public HttpResponse handle(HttpRequest httpRequest) {
+      if (httpRequest.getPath().getValue().endsWith("/callback")) {
+         return httpResponse;
+      } else {
+         return notFoundResponse();
+      }
+   }
 
-	public static HttpResponse httpResponse = response().withStatusCode(200);
+   public static HttpResponse httpResponse = response().withStatusCode(200);
 }

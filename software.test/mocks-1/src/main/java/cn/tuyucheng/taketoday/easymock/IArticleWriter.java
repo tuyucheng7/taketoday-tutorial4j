@@ -2,6 +2,6 @@ package cn.tuyucheng.taketoday.easymock;
 
 public interface IArticleWriter {
 
-	String write(String title, String content);
+   String write(String title, String content);
 
 }

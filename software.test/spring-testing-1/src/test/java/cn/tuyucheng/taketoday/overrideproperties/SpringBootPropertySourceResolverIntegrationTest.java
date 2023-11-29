@@ -12,15 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @EnableWebMvc
 class SpringBootPropertySourceResolverIntegrationTest {
 
-	@Autowired
-	private PropertySourceResolver propertySourceResolver;
+   @Autowired
+   private PropertySourceResolver propertySourceResolver;
 
-	@Test
-	void shouldSpringBootTestAnnotation_overridePropertyValues() {
-		final String firstProperty = propertySourceResolver.getFirstProperty();
-		final String secondProperty = propertySourceResolver.getSecondProperty();
+   @Test
+   void shouldSpringBootTestAnnotation_overridePropertyValues() {
+      final String firstProperty = propertySourceResolver.getFirstProperty();
+      final String secondProperty = propertySourceResolver.getSecondProperty();
 
-		assertEquals("annotation", firstProperty);
-		assertEquals("file", secondProperty);
-	}
+      assertEquals("annotation", firstProperty);
+      assertEquals("file", secondProperty);
+   }
 }

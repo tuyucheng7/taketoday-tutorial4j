@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ExceptionController {
 
-    @GetMapping("/exception/{exception_id}")
-    public void getSpecificException(@PathVariable("exception_id") String pException) {
-        if ("not_found".equals(pException)) {
-            throw new ResourceNotFoundException("resource not found");
-        } else if ("bad_arguments".equals(pException)) {
-            throw new BadArgumentsException("bad arguments");
-        } else {
-            throw new InternalException("internal error");
-        }
-    }
+   @GetMapping("/exception/{exception_id}")
+   public void getSpecificException(@PathVariable("exception_id") String pException) {
+      if ("not_found".equals(pException)) {
+         throw new ResourceNotFoundException("resource not found");
+      } else if ("bad_arguments".equals(pException)) {
+         throw new BadArgumentsException("bad arguments");
+      } else {
+         throw new InternalException("internal error");
+      }
+   }
 
-    @GetMapping("/exception/throw")
-    public void getException() throws Exception {
-        throw new Exception("error");
-    }
+   @GetMapping("/exception/throw")
+   public void getException() throws Exception {
+      throw new Exception("error");
+   }
 }

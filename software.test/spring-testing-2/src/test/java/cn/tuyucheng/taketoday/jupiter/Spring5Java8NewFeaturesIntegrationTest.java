@@ -10,22 +10,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Spring5Java8NewFeaturesIntegrationTest {
 
-	@FunctionalInterface
-	public interface FunctionalInterfaceExample<Input, Result> {
-		Result reverseString(Input input);
-	}
+   @FunctionalInterface
+   public interface FunctionalInterfaceExample<Input, Result> {
+      Result reverseString(Input input);
+   }
 
-	public static class StringUtils {
-		FunctionalInterfaceExample<String, String> functionLambdaString = s -> Pattern.compile(" +")
-			.splitAsStream(s)
-			.map(word -> new StringBuilder(word).reverse())
-			.collect(Collectors.joining(" "));
-	}
+   public static class StringUtils {
+      FunctionalInterfaceExample<String, String> functionLambdaString = s -> Pattern.compile(" +")
+            .splitAsStream(s)
+            .map(word -> new StringBuilder(word).reverse())
+            .collect(Collectors.joining(" "));
+   }
 
-	@Test
-	void givenStringUtil_whenSupplierCall_thenFunctionalInterfaceReverseString() throws Exception {
-		Supplier<StringUtils> stringUtilsSupplier = StringUtils::new;
+   @Test
+   void givenStringUtil_whenSupplierCall_thenFunctionalInterfaceReverseString() throws Exception {
+      Supplier<StringUtils> stringUtilsSupplier = StringUtils::new;
 
-		assertEquals(stringUtilsSupplier.get().functionLambdaString.reverseString("hello"), "olleh");
-	}
+      assertEquals(stringUtilsSupplier.get().functionLambdaString.reverseString("hello"), "olleh");
+   }
 }

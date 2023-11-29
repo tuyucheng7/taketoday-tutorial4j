@@ -15,34 +15,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RetryClientIntegrationTest {
 
-	private MockWebServer mockWebServer;
-	private RetryClient retryClient;
+   private MockWebServer mockWebServer;
+   private RetryClient retryClient;
 
-	@BeforeEach
-	public void setup() throws IOException {
-		this.mockWebServer = new MockWebServer();
-		this.mockWebServer.start();
-		this.retryClient = new RetryClient(WebClient.builder(), mockWebServer.url("/").toString(), new ObjectMapper());
-	}
+   @BeforeEach
+   public void setup() throws IOException {
+      this.mockWebServer = new MockWebServer();
+      this.mockWebServer.start();
+      this.retryClient = new RetryClient(WebClient.builder(), mockWebServer.url("/").toString(), new ObjectMapper());
+   }
 
-	@Test
-	public void testRetry() {
-		MockResponse failureResponse = new MockResponse()
-			.setResponseCode(500);
+   @Test
+   public void testRetry() {
+      MockResponse failureResponse = new MockResponse()
+            .setResponseCode(500);
 
-		mockWebServer.enqueue(failureResponse);
-		mockWebServer.enqueue(failureResponse);
+      mockWebServer.enqueue(failureResponse);
+      mockWebServer.enqueue(failureResponse);
 
-		MockResponse mockResponse = new MockResponse()
-			.addHeader("Content-Type", "application/json; charset=utf-8")
-			.setBody("{\"id\": 1, \"name\":\"duke\"}")
-			.throttleBody(16, 5000, TimeUnit.MILLISECONDS);
+      MockResponse mockResponse = new MockResponse()
+            .addHeader("Content-Type", "application/json; charset=utf-8")
+            .setBody("{\"id\": 1, \"name\":\"duke\"}")
+            .throttleBody(16, 5000, TimeUnit.MILLISECONDS);
 
-		mockWebServer.enqueue(mockResponse);
+      mockWebServer.enqueue(mockResponse);
 
-		JsonNode result = retryClient.getData();
+      JsonNode result = retryClient.getData();
 
-		System.out.println(result);
-		assertEquals("fallback", result.get("message").asText());
-	}
+      System.out.println(result);
+      assertEquals("fallback", result.get("message").asText());
+   }
 }
