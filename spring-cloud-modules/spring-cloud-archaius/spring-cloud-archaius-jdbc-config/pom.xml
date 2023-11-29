@@ -35,6 +35,6 @@
    </dependencies>
 
    <properties>
-      <lombok.version>1.18.26</lombok.version>
+      <lombok.version>1.18.30</lombok.version>
    </properties>
 </project>

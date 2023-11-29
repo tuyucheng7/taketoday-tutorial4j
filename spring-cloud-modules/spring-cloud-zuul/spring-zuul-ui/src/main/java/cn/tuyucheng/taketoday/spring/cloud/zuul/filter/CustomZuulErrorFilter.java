@@ -13,49 +13,47 @@ import java.time.Instant;
 @Component
 public class CustomZuulErrorFilter extends ZuulFilter {
 
-    private static final Logger log = LoggerFactory.getLogger(CustomZuulErrorFilter.class);
+   private static final Logger log = LoggerFactory.getLogger(CustomZuulErrorFilter.class);
 
-    private static final String RESPONSE_BODY = "{\n" + "    \"timestamp\": " + "\"" + Instant.now()
-          .toString() + "\"" + ",\n" + "    \"status\": 503,\n" + "    \"error\": \"Service Unavailable\"\n" + "}";
+   private static final String RESPONSE_BODY = "{\n" + "    \"timestamp\": " + "\"" + Instant.now()
+         .toString() + "\"" + ",\n" + "    \"status\": 503,\n" + "    \"error\": \"Service Unavailable\"\n" + "}";
 
-    @Override
-    public Object run() {
-        RequestContext context = RequestContext.getCurrentContext();
-        Throwable throwable = context.getThrowable();
+   @Override
+   public Object run() {
+      RequestContext context = RequestContext.getCurrentContext();
+      Throwable throwable = context.getThrowable();
 
-        if (throwable instanceof ZuulException) {
-            final ZuulException zuulException = (ZuulException) throwable;
-            log.error("Zuul exception: " + zuulException.getMessage());
+      if (throwable instanceof ZuulException) {
+         final ZuulException zuulException = (ZuulException) throwable;
+         log.error("Zuul exception: " + zuulException.getMessage());
 
-            if (throwable.getCause().getCause().getCause() instanceof ConnectException) {
+         if (throwable.getCause().getCause().getCause() instanceof ConnectException) {
+            // reset throwable to prevent further error handling in follow up filters
+            context.remove("throwable");
 
-                // reset throwable to prevent further error handling in follow up filters
-                context.remove("throwable");
+            // set custom response attributes
+            context.setResponseBody(RESPONSE_BODY);
+            context.getResponse()
+                  .setContentType("application/json");
+            context.setResponseStatusCode(503);
+         }
 
-                // set custom response attributes
-                context.setResponseBody(RESPONSE_BODY);
-                context.getResponse()
-                      .setContentType("application/json");
-                context.setResponseStatusCode(503);
-            }
+      }
+      return null;
+   }
 
-        }
-        return null;
-    }
+   @Override
+   public boolean shouldFilter() {
+      return true;
+   }
 
-    @Override
-    public boolean shouldFilter() {
-        return true;
-    }
+   @Override
+   public int filterOrder() {
+      return -1;
+   }
 
-    @Override
-    public int filterOrder() {
-        return -1;
-    }
-
-    @Override
-    public String filterType() {
-        return "error";
-    }
-
+   @Override
+   public String filterType() {
+      return "error";
+   }
 }

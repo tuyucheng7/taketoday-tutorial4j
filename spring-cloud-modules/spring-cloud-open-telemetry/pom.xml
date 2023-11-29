@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-cloud-open-telemetry</artifactId>
-	<version>1.0.0</version>
-	<name>spring-cloud-open-telemetry</name>
-	<packaging>pom</packaging>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-cloud-open-telemetry</artifactId>
+   <version>1.0.0</version>
+   <name>spring-cloud-open-telemetry</name>
+   <packaging>pom</packaging>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
-		<artifactId>spring-cloud-modules</artifactId>
-		<version>1.0.0</version>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
+      <artifactId>spring-cloud-modules</artifactId>
+      <version>1.0.0</version>
+   </parent>
 
-	<modules>
-		<module>spring-cloud-open-telemetry1</module>
-		<module>spring-cloud-open-telemetry2</module>
-	</modules>
+   <modules>
+      <module>spring-cloud-open-telemetry1</module>
+      <module>spring-cloud-open-telemetry2</module>
+   </modules>
 </project>

@@ -13,10 +13,10 @@ import org.springframework.integration.annotation.ServiceActivator;
 @EnableBinding(Sink.class)
 @Import(HdfsSinkConfiguration.class)
 public class SinkApp {
-    Logger log = LoggerFactory.getLogger(SinkApp.class);
+   Logger log = LoggerFactory.getLogger(SinkApp.class);
 
-    @ServiceActivator(inputChannel = Sink.INPUT)
-    public void loggerSink(Object payload) {
-        log.info("Received: " + payload);
-    }
+   @ServiceActivator(inputChannel = Sink.INPUT)
+   public void loggerSink(Object payload) {
+      log.info("Received: " + payload);
+   }
 }

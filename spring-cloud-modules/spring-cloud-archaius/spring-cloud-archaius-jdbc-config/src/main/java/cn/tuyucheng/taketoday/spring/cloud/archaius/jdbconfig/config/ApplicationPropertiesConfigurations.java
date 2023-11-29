@@ -14,12 +14,12 @@ import javax.sql.DataSource;
 @Configuration
 public class ApplicationPropertiesConfigurations {
 
-	@Autowired
-	DataSource h2DataSource;
+   @Autowired
+   DataSource h2DataSource;
 
-	@Bean
-	public AbstractConfiguration addApplicationPropertiesSource() {
-		PolledConfigurationSource source = new JDBCConfigurationSource(h2DataSource, "select distinct key, value from properties", "key", "value");
-		return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
-	}
+   @Bean
+   public AbstractConfiguration addApplicationPropertiesSource() {
+      PolledConfigurationSource source = new JDBCConfigurationSource(h2DataSource, "select distinct key, value from properties", "key", "value");
+      return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
+   }
 }

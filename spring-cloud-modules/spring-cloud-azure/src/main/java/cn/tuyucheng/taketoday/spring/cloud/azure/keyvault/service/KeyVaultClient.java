@@ -7,15 +7,15 @@ import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
 
 public interface KeyVaultClient {
 
-	SecretClient getSecretClient();
+   SecretClient getSecretClient();
 
-	default KeyVaultSecret getSecret(String key) {
-		KeyVaultSecret secret;
-		try {
-			secret = getSecretClient().getSecret(key);
-		} catch (Exception ex) {
-			throw new NoSuchElementException();
-		}
-		return secret;
-	}
+   default KeyVaultSecret getSecret(String key) {
+      KeyVaultSecret secret;
+      try {
+         secret = getSecretClient().getSecret(key);
+      } catch (Exception ex) {
+         throw new NoSuchElementException();
+      }
+      return secret;
+   }
 }

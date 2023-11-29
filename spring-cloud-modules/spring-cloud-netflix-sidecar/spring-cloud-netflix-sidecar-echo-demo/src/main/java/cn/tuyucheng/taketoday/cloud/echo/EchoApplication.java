@@ -22,27 +22,27 @@ import java.util.List;
 @EnableZuulProxy
 @RestController
 public class EchoApplication {
-	@Autowired
-	DiscoveryClient discoveryClient;
-	@Autowired
-	RestTemplate restTemplate;
+   @Autowired
+   DiscoveryClient discoveryClient;
+   @Autowired
+   RestTemplate restTemplate;
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+   @Bean
+   public RestTemplate restTemplate() {
+      return new RestTemplate();
+   }
 
-	@GetMapping("/hello/{me}")
-	public ResponseEntity<String> echo(@PathVariable("me") String me) {
-		List<ServiceInstance> instances = discoveryClient.getInstances("sidecar");
-		if (instances.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("hello service is down");
-		}
-		String url = instances.get(0).getUri().toString();
-		return ResponseEntity.ok(restTemplate.getForObject(url + "/hello/" + me, String.class));
-	}
+   @GetMapping("/hello/{me}")
+   public ResponseEntity<String> echo(@PathVariable("me") String me) {
+      List<ServiceInstance> instances = discoveryClient.getInstances("sidecar");
+      if (instances.isEmpty()) {
+         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("hello service is down");
+      }
+      String url = instances.get(0).getUri().toString();
+      return ResponseEntity.ok(restTemplate.getForObject(url + "/hello/" + me, String.class));
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(EchoApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(EchoApplication.class, args);
+   }
 }

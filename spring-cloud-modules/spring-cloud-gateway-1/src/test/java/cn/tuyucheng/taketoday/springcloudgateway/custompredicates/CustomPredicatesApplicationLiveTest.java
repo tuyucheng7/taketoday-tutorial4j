@@ -22,43 +22,38 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("customroutes")
-public class CustomPredicatesApplicationLiveTest {
+class CustomPredicatesApplicationLiveTest {
 
-    @LocalServerPort
-    String serverPort;
+   @LocalServerPort
+   String serverPort;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-    @Test
-    void givenNormalCustomer_whenCallHeadersApi_thenResponseForNormalCustomer() throws JSONException {
+   @Test
+   void givenNormalCustomer_whenCallHeadersApi_thenResponseForNormalCustomer() throws JSONException {
+      String url = "http://localhost:" + serverPort + "/api/headers";
+      ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        String url = "http://localhost:" + serverPort + "/api/headers";
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+      JSONObject json = new JSONObject(response.getBody());
+      JSONObject headers = json.getJSONObject("headers");
+      assertThat(headers.getString("Goldencustomer")).isEqualTo("false");
+   }
 
-        JSONObject json = new JSONObject(response.getBody());
-        JSONObject headers = json.getJSONObject("headers");
-        assertThat(headers.getString("Goldencustomer")).isEqualTo("false");
+   @Test
+   void givenGoldenCustomer_whenCallHeadersApi_thenResponseForGoldenCustomer() throws JSONException {
+      String url = "http://localhost:" + serverPort + "/api/headers";
+      RequestEntity<Void> request = RequestEntity
+            .get(URI.create(url))
+            .header("Cookie", "customerId=baeldung")
+            .build();
 
-    }
+      ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-    @Test
-    void givenGoldenCustomer_whenCallHeadersApi_thenResponseForGoldenCustomer() throws JSONException {
-
-        String url = "http://localhost:" + serverPort + "/api/headers";
-        RequestEntity<Void> request = RequestEntity
-              .get(URI.create(url))
-              .header("Cookie", "customerId=baeldung")
-              .build();
-
-        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        JSONObject json = new JSONObject(response.getBody());
-        JSONObject headers = json.getJSONObject("headers");
-        assertThat(headers.getString("Goldencustomer")).isEqualTo("true");
-
-    }
-
+      JSONObject json = new JSONObject(response.getBody());
+      JSONObject headers = json.getJSONObject("headers");
+      assertThat(headers.getString("Goldencustomer")).isEqualTo("true");
+   }
 }

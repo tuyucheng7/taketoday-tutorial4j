@@ -13,24 +13,23 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class KinesisKPLApplication {
 
-	@Value("${aws.access.key}")
-	private String accessKey;
+   @Value("${aws.access.key}")
+   private String accessKey;
 
-	@Value("${aws.secret.key}")
-	private String secretKey;
+   @Value("${aws.secret.key}")
+   private String secretKey;
 
-	public static void main(String[] args) {
-		SpringApplication.run(KinesisKPLApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(KinesisKPLApplication.class, args);
+   }
 
-	@Bean
-	public KinesisProducer kinesisProducer() {
-		BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-		KinesisProducerConfiguration producerConfig = new KinesisProducerConfiguration().setCredentialsProvider(new AWSStaticCredentialsProvider(awsCredentials))
-			.setVerifyCertificate(false)
-			.setRegion(Regions.EU_CENTRAL_1.getName());
+   @Bean
+   public KinesisProducer kinesisProducer() {
+      BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
+      KinesisProducerConfiguration producerConfig = new KinesisProducerConfiguration().setCredentialsProvider(new AWSStaticCredentialsProvider(awsCredentials))
+            .setVerifyCertificate(false)
+            .setRegion(Regions.EU_CENTRAL_1.getName());
 
-		return new KinesisProducer(producerConfig);
-	}
-
+      return new KinesisProducer(producerConfig);
+   }
 }

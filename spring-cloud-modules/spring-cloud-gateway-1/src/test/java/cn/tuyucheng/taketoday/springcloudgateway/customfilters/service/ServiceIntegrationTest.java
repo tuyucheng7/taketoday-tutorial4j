@@ -10,21 +10,21 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @WebFluxTest(controllers = ServiceRestController.class,
       excludeAutoConfiguration = ReactiveSecurityAutoConfiguration.class)
-public class ServiceIntegrationTest {
+class ServiceIntegrationTest {
 
-    @Autowired
-    private WebTestClient webClient;
+   @Autowired
+   private WebTestClient webClient;
 
-    @Test
-    public void whenResourceEndpointCalled_thenRetrievesResourceStringWithContentLanguageHeader() throws Exception {
-        this.webClient.get()
-              .uri("/resource")
-              .exchange()
-              .expectStatus()
-              .isOk()
-              .expectHeader()
-              .valueEquals(HttpHeaders.CONTENT_LANGUAGE, "en")
-              .expectBody(String.class)
-              .isEqualTo("Service Resource");
-    }
+   @Test
+   void whenResourceEndpointCalled_thenRetrievesResourceStringWithContentLanguageHeader() throws Exception {
+      this.webClient.get()
+            .uri("/resource")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectHeader()
+            .valueEquals(HttpHeaders.CONTENT_LANGUAGE, "en")
+            .expectBody(String.class)
+            .isEqualTo("Service Resource");
+   }
 }

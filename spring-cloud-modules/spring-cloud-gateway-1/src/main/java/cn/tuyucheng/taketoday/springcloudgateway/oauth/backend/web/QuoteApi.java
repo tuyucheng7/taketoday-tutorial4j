@@ -11,19 +11,18 @@ import reactor.core.publisher.Mono;
 
 @RestController
 public class QuoteApi {
-    private static final GrantedAuthority GOLD_CUSTOMER = new SimpleGrantedAuthority("gold");
+   private static final GrantedAuthority GOLD_CUSTOMER = new SimpleGrantedAuthority("gold");
 
-    @GetMapping("/quotes/{symbol}")
-    public Mono<Quote> getQuote(@PathVariable("symbol") String symbol, BearerTokenAuthentication auth) {
+   @GetMapping("/quotes/{symbol}")
+   public Mono<Quote> getQuote(@PathVariable("symbol") String symbol, BearerTokenAuthentication auth) {
+      Quote q = new Quote();
+      q.setSymbol(symbol);
 
-        Quote q = new Quote();
-        q.setSymbol(symbol);
-
-        if (auth.getAuthorities().contains(GOLD_CUSTOMER)) {
-            q.setPrice(10.0);
-        } else {
-            q.setPrice(12.0);
-        }
-        return Mono.just(q);
-    }
+      if (auth.getAuthorities().contains(GOLD_CUSTOMER)) {
+         q.setPrice(10.0);
+      } else {
+         q.setPrice(12.0);
+      }
+      return Mono.just(q);
+   }
 }

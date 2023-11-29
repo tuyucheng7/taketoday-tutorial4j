@@ -14,9 +14,8 @@ import java.util.List;
 @ActiveProfiles("eureka-test")
 public class MockBookServiceConfig {
 
-	@RequestMapping("/books")
-	public List<Book> getBooks() {
-		return Collections.singletonList(new Book("Hitchhiker's guide to the galaxy", "Douglas Adams"));
-	}
-
+   @RequestMapping("/books")
+   public List<Book> getBooks() {
+      return Collections.singletonList(new Book("Hitchhiker's guide to the galaxy", "Douglas Adams"));
+   }
 }

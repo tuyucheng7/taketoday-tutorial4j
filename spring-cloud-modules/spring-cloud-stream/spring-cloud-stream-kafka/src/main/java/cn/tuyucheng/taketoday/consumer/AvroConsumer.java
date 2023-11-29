@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AvroConsumer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AvroConsumer.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(AvroConsumer.class);
 
-	@StreamListener(Processor.INPUT)
-	public void consumeEmployeeDetails(Employee employeeDetails) {
-		LOGGER.info("Let's process employee details: {}", employeeDetails);
-	}
-
+   @StreamListener(Processor.INPUT)
+   public void consumeEmployeeDetails(Employee employeeDetails) {
+      LOGGER.info("Let's process employee details: {}", employeeDetails);
+   }
 }

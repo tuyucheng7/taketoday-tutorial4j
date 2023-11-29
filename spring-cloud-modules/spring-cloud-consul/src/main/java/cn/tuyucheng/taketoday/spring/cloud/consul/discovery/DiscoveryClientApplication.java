@@ -8,9 +8,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 public class DiscoveryClientApplication {
 
-	public static void main(String[] args) {
-		new SpringApplicationBuilder(DiscoveryClientApplication.class)
-			.run(args);
-	}
-
+   public static void main(String[] args) {
+      new SpringApplicationBuilder(DiscoveryClientApplication.class)
+            .run(args);
+   }
 }

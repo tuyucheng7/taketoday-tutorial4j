@@ -1,92 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>spring-cloud-eureka</artifactId>
-	<version>1.0.0</version>
-	<name>spring-cloud-eureka</name>
-	<packaging>pom</packaging>
-	<description>Spring Cloud Eureka Server and Sample Clients</description>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <artifactId>spring-cloud-eureka</artifactId>
+   <version>1.0.0</version>
+   <name>spring-cloud-eureka</name>
+   <packaging>pom</packaging>
+   <description>Spring Cloud Eureka Server and Sample Clients</description>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
-		<artifactId>spring-cloud-modules</artifactId>
-		<version>1.0.0</version>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
+      <artifactId>spring-cloud-modules</artifactId>
+      <version>1.0.0</version>
+   </parent>
 
-	<modules>
-		<module>spring-cloud-eureka-client</module>
-		<module>spring-cloud-eureka-client-profiles</module>
-		<module>spring-cloud-eureka-feign-client</module>
-		<module>spring-cloud-eureka-feign-client-integration-test</module>
-		<module>spring-cloud-eureka-server</module>
-	</modules>
+   <modules>
+      <module>spring-cloud-eureka-client</module>
+      <module>spring-cloud-eureka-client-profiles</module>
+      <module>spring-cloud-eureka-feign-client</module>
+      <module>spring-cloud-eureka-feign-client-integration-test</module>
+      <module>spring-cloud-eureka-server</module>
+   </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-bom</artifactId>
-				<version>${log4j2.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-bom</artifactId>
+            <version>${log4j2.version}</version>
+            <scope>import</scope>
+            <type>pom</type>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${spring-boot.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <version>${spring-boot.version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-toolchains-plugin</artifactId>
-				<version>${maven-toolchains-plugin-version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>toolchain</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<toolchains>
-						<jdk>
-							<version>${toolchains.java.version}</version>
-						</jdk>
-					</toolchains>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<properties>
-		<toolchains.java.version>8</toolchains.java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven-toolchains-plugin-version>3.1.0</maven-toolchains-plugin-version>
-		<mockito.version>3.11.2</mockito.version>
-		<spring-boot.version>2.1.2.RELEASE</spring-boot.version>
-		<spring-cloud-dependencies.version>Greenwich.RELEASE</spring-cloud-dependencies.version>
-		<log4j2.version>2.17.1</log4j2.version>
-	</properties>
+   <properties>
+      <log4j2.version>2.17.1</log4j2.version>
+   </properties>
 </project>

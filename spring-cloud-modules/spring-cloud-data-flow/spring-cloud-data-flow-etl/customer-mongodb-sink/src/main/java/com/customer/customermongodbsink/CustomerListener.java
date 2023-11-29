@@ -8,11 +8,11 @@ import org.springframework.cloud.stream.messaging.Sink;
 @EnableBinding(Sink.class)
 public class CustomerListener {
 
-	@Autowired
-	private CustomerRepository repository;
+   @Autowired
+   private CustomerRepository repository;
 
-	@StreamListener(Sink.INPUT)
-	public void save(Customer customer) {
-		repository.save(customer);
-	}
+   @StreamListener(Sink.INPUT)
+   public void save(Customer customer) {
+      repository.save(customer);
+   }
 }

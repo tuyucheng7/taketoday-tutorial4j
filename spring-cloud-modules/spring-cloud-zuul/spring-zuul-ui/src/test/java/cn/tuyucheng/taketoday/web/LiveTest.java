@@ -2,22 +2,22 @@ package cn.tuyucheng.taketoday.web;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LiveTest {
+class LiveTest {
 
-    @Test
-    public void whenSendRequestToFooResource_thenOK() {
-        final Response response = RestAssured.get("http://localhost:8080/foos/1");
-        assertEquals(200, response.getStatusCode());
-    }
+   @Test
+   void whenSendRequestToFooResource_thenOK() {
+      final Response response = RestAssured.get("http://localhost:8080/foos/1");
+      assertEquals(200, response.getStatusCode());
+   }
 
-    @Test
-    public void whenSendRequest_thenHeaderAdded() {
-        final Response response = RestAssured.get("http://localhost:8080/foos/1");
-        assertEquals(200, response.getStatusCode());
-        assertEquals("TestSample", response.getHeader("Test"));
-    }
+   @Test
+   void whenSendRequest_thenHeaderAdded() {
+      final Response response = RestAssured.get("http://localhost:8080/foos/1");
+      assertEquals(200, response.getStatusCode());
+      assertEquals("TestSample", response.getHeader("Test"));
+   }
 }

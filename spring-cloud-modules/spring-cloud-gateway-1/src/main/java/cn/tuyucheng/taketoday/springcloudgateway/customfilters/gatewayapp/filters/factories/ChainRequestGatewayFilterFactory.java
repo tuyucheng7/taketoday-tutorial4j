@@ -16,73 +16,73 @@ import java.util.stream.Collectors;
 @Component
 public class ChainRequestGatewayFilterFactory extends AbstractGatewayFilterFactory<ChainRequestGatewayFilterFactory.Config> {
 
-    final Logger logger = LoggerFactory.getLogger(ChainRequestGatewayFilterFactory.class);
+   final Logger logger = LoggerFactory.getLogger(ChainRequestGatewayFilterFactory.class);
 
-    private final WebClient client;
+   private final WebClient client;
 
-    public ChainRequestGatewayFilterFactory(WebClient client) {
-        super(Config.class);
-        this.client = client;
-    }
+   public ChainRequestGatewayFilterFactory(WebClient client) {
+      super(Config.class);
+      this.client = client;
+   }
 
-    @Override
-    public List<String> shortcutFieldOrder() {
-        return Arrays.asList("languageServiceEndpoint", "defaultLanguage");
-    }
+   @Override
+   public List<String> shortcutFieldOrder() {
+      return Arrays.asList("languageServiceEndpoint", "defaultLanguage");
+   }
 
-    @Override
-    public GatewayFilter apply(Config config) {
-        return (exchange, chain) -> {
-            return client.get()
-                  .uri(config.getLanguageServiceEndpoint())
-                  .exchange()
-                  .flatMap(response -> {
-                      return (response.statusCode()
-                            .is2xxSuccessful()) ? response.bodyToMono(String.class) : Mono.just(config.getDefaultLanguage());
-                  })
-                  .map(LanguageRange::parse)
-                  .map(range -> {
-                      exchange.getRequest()
-                            .mutate()
-                            .headers(h -> h.setAcceptLanguage(range));
+   @Override
+   public GatewayFilter apply(Config config) {
+      return (exchange, chain) -> {
+         return client.get()
+               .uri(config.getLanguageServiceEndpoint())
+               .exchange()
+               .flatMap(response -> {
+                  return (response.statusCode()
+                        .is2xxSuccessful()) ? response.bodyToMono(String.class) : Mono.just(config.getDefaultLanguage());
+               })
+               .map(LanguageRange::parse)
+               .map(range -> {
+                  exchange.getRequest()
+                        .mutate()
+                        .headers(h -> h.setAcceptLanguage(range));
 
-                      String allOutgoingRequestLanguages = exchange.getRequest()
-                            .getHeaders()
-                            .getAcceptLanguage()
-                            .stream()
-                            .map(r -> r.getRange())
-                            .collect(Collectors.joining(","));
+                  String allOutgoingRequestLanguages = exchange.getRequest()
+                        .getHeaders()
+                        .getAcceptLanguage()
+                        .stream()
+                        .map(LanguageRange::getRange)
+                        .collect(Collectors.joining(","));
 
-                      logger.info("Chain Request output - Request contains Accept-Language header: " + allOutgoingRequestLanguages);
+                  logger.info("Chain Request output - Request contains Accept-Language header: " + allOutgoingRequestLanguages);
 
-                      return exchange;
-                  })
-                  .flatMap(chain::filter);
+                  return exchange;
+               })
+               .flatMap(chain::filter);
 
-        };
-    }
+      };
+   }
 
-    public static class Config {
-        private String languageServiceEndpoint;
-        private String defaultLanguage;
+   public static class Config {
+      private String languageServiceEndpoint;
+      private String defaultLanguage;
 
-        public Config() {
-        }
+      public Config() {
+      }
 
-        public String getLanguageServiceEndpoint() {
-            return languageServiceEndpoint;
-        }
+      public String getLanguageServiceEndpoint() {
+         return languageServiceEndpoint;
+      }
 
-        public void setLanguageServiceEndpoint(String languageServiceEndpoint) {
-            this.languageServiceEndpoint = languageServiceEndpoint;
-        }
+      public void setLanguageServiceEndpoint(String languageServiceEndpoint) {
+         this.languageServiceEndpoint = languageServiceEndpoint;
+      }
 
-        public String getDefaultLanguage() {
-            return defaultLanguage;
-        }
+      public String getDefaultLanguage() {
+         return defaultLanguage;
+      }
 
-        public void setDefaultLanguage(String defaultLanguage) {
-            this.defaultLanguage = defaultLanguage;
-        }
-    }
+      public void setDefaultLanguage(String defaultLanguage) {
+         this.defaultLanguage = defaultLanguage;
+      }
+   }
 }

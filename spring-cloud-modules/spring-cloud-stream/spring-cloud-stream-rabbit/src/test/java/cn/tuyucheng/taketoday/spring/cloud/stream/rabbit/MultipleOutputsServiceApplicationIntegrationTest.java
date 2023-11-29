@@ -1,51 +1,51 @@
 package cn.tuyucheng.taketoday.spring.cloud.stream.rabbit;
 
 import cn.tuyucheng.taketoday.spring.cloud.stream.rabbit.processor.MyProcessor;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MultipleOutputsServiceApplication.class)
 @DirtiesContext
-public class MultipleOutputsServiceApplicationIntegrationTest {
+class MultipleOutputsServiceApplicationIntegrationTest {
 
-	@Autowired
-	private MyProcessor pipe;
+   @Autowired
+   private MyProcessor pipe;
 
-	@Autowired
-	private MessageCollector messageCollector;
+   @Autowired
+   private MessageCollector messageCollector;
 
-	@Test
-	public void whenSendMessage_thenResponseIsInAOutput() {
-		whenSendMessage(1);
-		thenPayloadInChannelIs(pipe.anOutput(), "1");
-	}
+   @Test
+   void whenSendMessage_thenResponseIsInAOutput() {
+      whenSendMessage(1);
+      thenPayloadInChannelIs(pipe.anOutput(), "1");
+   }
 
-	@Test
-	public void whenSendMessage_thenResponseIsInAnotherOutput() {
-		whenSendMessage(11);
-		thenPayloadInChannelIs(pipe.anotherOutput(), "11");
-	}
+   @Test
+   void whenSendMessage_thenResponseIsInAnotherOutput() {
+      whenSendMessage(11);
+      thenPayloadInChannelIs(pipe.anotherOutput(), "11");
+   }
 
-	private void whenSendMessage(Integer val) {
-		pipe.myInput()
-			.send(MessageBuilder.withPayload(val)
-				.build());
-	}
+   private void whenSendMessage(Integer val) {
+      pipe.myInput()
+            .send(MessageBuilder.withPayload(val)
+                  .build());
+   }
 
-	private void thenPayloadInChannelIs(MessageChannel channel, String expectedValue) {
-		Object payload = messageCollector.forChannel(channel)
-			.poll()
-			.getPayload();
-		assertEquals(expectedValue, payload);
-	}
+   private void thenPayloadInChannelIs(MessageChannel channel, String expectedValue) {
+      Object payload = messageCollector.forChannel(channel)
+            .poll()
+            .getPayload();
+      assertEquals(expectedValue, payload);
+   }
 }

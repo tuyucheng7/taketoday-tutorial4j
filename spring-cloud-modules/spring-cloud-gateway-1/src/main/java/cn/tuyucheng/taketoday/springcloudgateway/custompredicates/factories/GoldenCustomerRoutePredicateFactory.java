@@ -13,80 +13,72 @@ import java.util.function.Predicate;
 
 public class GoldenCustomerRoutePredicateFactory extends AbstractRoutePredicateFactory<GoldenCustomerRoutePredicateFactory.Config> {
 
-    private final GoldenCustomerService goldenCustomerService;
+   private final GoldenCustomerService goldenCustomerService;
 
-    public GoldenCustomerRoutePredicateFactory(GoldenCustomerService goldenCustomerService) {
-        super(Config.class);
-        this.goldenCustomerService = goldenCustomerService;
-    }
+   public GoldenCustomerRoutePredicateFactory(GoldenCustomerService goldenCustomerService) {
+      super(Config.class);
+      this.goldenCustomerService = goldenCustomerService;
+   }
 
+   @Override
+   public List<String> shortcutFieldOrder() {
+      return Arrays.asList("isGolden", "customerIdCookie");
+   }
 
-    @Override
-    public List<String> shortcutFieldOrder() {
-        return Arrays.asList("isGolden", "customerIdCookie");
-    }
+   @Override
+   public Predicate<ServerWebExchange> apply(Config config) {
+      return (ServerWebExchange t) -> {
+         List<HttpCookie> cookies = t.getRequest()
+               .getCookies()
+               .get(config.getCustomerIdCookie());
 
+         boolean isGolden;
+         if (cookies == null || cookies.isEmpty()) {
+            isGolden = false;
+         } else {
+            String customerId = cookies.get(0).getValue();
+            isGolden = goldenCustomerService.isGoldenCustomer(customerId);
+         }
 
-    @Override
-    public Predicate<ServerWebExchange> apply(Config config) {
+         return config.isGolden() ? isGolden : !isGolden;
+      };
+   }
 
-        return (ServerWebExchange t) -> {
-            List<HttpCookie> cookies = t.getRequest()
-                  .getCookies()
-                  .get(config.getCustomerIdCookie());
+   @Validated
+   public static class Config {
+      boolean isGolden = true;
 
-            boolean isGolden;
-            if (cookies == null || cookies.isEmpty()) {
-                isGolden = false;
-            } else {
-                String customerId = cookies.get(0).getValue();
-                isGolden = goldenCustomerService.isGoldenCustomer(customerId);
-            }
+      @NotEmpty
+      String customerIdCookie = "customerId";
 
-            return config.isGolden() ? isGolden : !isGolden;
-        };
-    }
+      public Config() {
+      }
 
+      public Config(boolean isGolden, String customerIdCookie) {
+         this.isGolden = isGolden;
+         this.customerIdCookie = customerIdCookie;
+      }
 
-    @Validated
-    public static class Config {
-        boolean isGolden = true;
+      public boolean isGolden() {
+         return isGolden;
+      }
 
-        @NotEmpty
-        String customerIdCookie = "customerId";
+      public void setGolden(boolean value) {
+         this.isGolden = value;
+      }
 
+      /**
+       * @return the customerIdCookie
+       */
+      public String getCustomerIdCookie() {
+         return customerIdCookie;
+      }
 
-        public Config() {
-        }
-
-        public Config(boolean isGolden, String customerIdCookie) {
-            this.isGolden = isGolden;
-            this.customerIdCookie = customerIdCookie;
-        }
-
-        public boolean isGolden() {
-            return isGolden;
-        }
-
-        public void setGolden(boolean value) {
-            this.isGolden = value;
-        }
-
-        /**
-         * @return the customerIdCookie
-         */
-        public String getCustomerIdCookie() {
-            return customerIdCookie;
-        }
-
-        /**
-         * @param customerIdCookie the customerIdCookie to set
-         */
-        public void setCustomerIdCookie(String customerIdCookie) {
-            this.customerIdCookie = customerIdCookie;
-        }
-
-
-    }
-
+      /**
+       * @param customerIdCookie the customerIdCookie to set
+       */
+      public void setCustomerIdCookie(String customerIdCookie) {
+         this.customerIdCookie = customerIdCookie;
+      }
+   }
 }

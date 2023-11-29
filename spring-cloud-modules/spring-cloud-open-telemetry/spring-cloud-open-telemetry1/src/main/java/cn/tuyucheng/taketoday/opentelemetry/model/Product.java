@@ -4,24 +4,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Product {
 
-	@JsonProperty("id")
-	private long id;
+   @JsonProperty("id")
+   private long id;
 
-	@JsonProperty("name")
-	private String name;
+   @JsonProperty("name")
+   private String name;
 
-	@JsonProperty("price")
-	private Price price;
+   @JsonProperty("price")
+   private Price price;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public void setId(long id) {
+      this.id = id;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public void setPrice(Price price) {
-		this.price = price;
-	}
+   public void setPrice(Price price) {
+      this.price = price;
+   }
 }

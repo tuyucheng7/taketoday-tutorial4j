@@ -11,27 +11,27 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClientConfiguration {
 
-    @Bean
-    public Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
-    }
+   @Bean
+   public Logger.Level feignLoggerLevel() {
+      return Logger.Level.FULL;
+   }
 
-    @Bean
-    public ErrorDecoder errorDecoder() {
-        return new ErrorDecoder.Default();
-    }
+   @Bean
+   public ErrorDecoder errorDecoder() {
+      return new ErrorDecoder.Default();
+   }
 
-    @Bean
-    public OkHttpClient client() {
-        return new OkHttpClient();
-    }
+   @Bean
+   public OkHttpClient client() {
+      return new OkHttpClient();
+   }
 
-    @Bean
-    public RequestInterceptor requestInterceptor() {
-        return requestTemplate -> {
-            requestTemplate.header("user", "ajeje");
-            requestTemplate.header("password", "brazof");
-            requestTemplate.header("Accept", ContentType.APPLICATION_JSON.getMimeType());
-        };
-    }
+   @Bean
+   public RequestInterceptor requestInterceptor() {
+      return requestTemplate -> {
+         requestTemplate.header("user", "ajeje");
+         requestTemplate.header("password", "brazof");
+         requestTemplate.header("Accept", ContentType.APPLICATION_JSON.getMimeType());
+      };
+   }
 }

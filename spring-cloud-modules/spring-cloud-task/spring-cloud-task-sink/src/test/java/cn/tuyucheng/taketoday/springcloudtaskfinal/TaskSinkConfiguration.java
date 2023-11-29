@@ -6,13 +6,11 @@ import org.springframework.context.annotation.Configuration;
 
 import static org.mockito.Mockito.mock;
 
-
 @Configuration
 public class TaskSinkConfiguration {
 
-    @Bean
-    public TaskLauncher taskLauncher() {
-        return mock(TaskLauncher.class);
-    }
-
+   @Bean
+   public TaskLauncher taskLauncher() {
+      return mock(TaskLauncher.class);
+   }
 }

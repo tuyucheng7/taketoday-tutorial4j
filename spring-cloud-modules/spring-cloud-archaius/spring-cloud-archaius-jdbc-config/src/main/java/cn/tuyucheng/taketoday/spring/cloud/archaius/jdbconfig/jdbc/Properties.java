@@ -6,9 +6,9 @@ import javax.persistence.Id;
 @Entity
 public class Properties {
 
-	@Id
-	private String key;
+   @Id
+   private String key;
 
-	@SuppressWarnings("unused")
-	private String value;
+   @SuppressWarnings("unused")
+   private String value;
 }

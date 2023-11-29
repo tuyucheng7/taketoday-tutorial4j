@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday;
 
 import cn.tuyucheng.taketoday.spring.cloud.DataFlowShellApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * This live test requires:
@@ -14,12 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
  * For more info:
  * https://www.baeldung.com/spring-cloud-data-flow-stream-processing
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = DataFlowShellApplication.class)
-public class SpringContextLiveTest {
+class SpringContextLiveTest {
 
-	@Test
-	public void contextLoads() {
-	}
-
+   @Test
+   void contextLoads() {
+   }
 }

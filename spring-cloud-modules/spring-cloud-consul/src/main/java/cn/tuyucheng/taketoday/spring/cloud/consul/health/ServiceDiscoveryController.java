@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServiceDiscoveryController {
 
-	@GetMapping("/ping")
-	public String ping() {
-		return "pong";
-	}
+   @GetMapping("/ping")
+   public String ping() {
+      return "pong";
+   }
 
-	@GetMapping("/my-health-check")
-	public ResponseEntity<String> myCustomCheck() {
-		String message = "Testing my healh check function";
-		return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
-	}
-
+   @GetMapping("/my-health-check")
+   public ResponseEntity<String> myCustomCheck() {
+      String message = "Testing my health check function";
+      return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+   }
 }

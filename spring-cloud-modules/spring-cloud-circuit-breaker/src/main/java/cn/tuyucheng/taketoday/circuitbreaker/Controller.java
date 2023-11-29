@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-	@Autowired
-	private AlbumService service;
+   @Autowired
+   private AlbumService service;
 
-	@GetMapping("/albums")
-	public String albums() {
-		return service.getAlbumList();
-	}
+   @GetMapping("/albums")
+   public String albums() {
+      return service.getAlbumList();
+   }
 }

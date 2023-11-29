@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class GreetingService {
 
-	@SentinelResource(value = "greeting", fallback = "getGreetingFallback")
-	public String getGreeting() {
-		return "Hello World!";
-	}
+   @SentinelResource(value = "greeting", fallback = "getGreetingFallback")
+   public String getGreeting() {
+      return "Hello World!";
+   }
 
-	public String getGreetingFallback(Throwable e) {
-		e.printStackTrace();
-		return "Bye world!";
-	}
-
+   public String getGreetingFallback(Throwable e) {
+      e.printStackTrace();
+      return "Bye world!";
+   }
 }

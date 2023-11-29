@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Bean;
 
 public class RibbonConfiguration {
 
-	@Bean
-	public IPing ribbonPing() {
-		return new PingUrl();
-	}
+   @Bean
+   public IPing ribbonPing() {
+      return new PingUrl();
+   }
 
-	@Bean
-	public IRule ribbonRule() {
-		return new WeightedResponseTimeRule();
-	}
+   @Bean
+   public IRule ribbonRule() {
+      return new WeightedResponseTimeRule();
+   }
 }

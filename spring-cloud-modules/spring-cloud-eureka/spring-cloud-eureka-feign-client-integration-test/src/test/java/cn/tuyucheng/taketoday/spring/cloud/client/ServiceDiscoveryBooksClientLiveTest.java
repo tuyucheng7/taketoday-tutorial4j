@@ -27,26 +27,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = {MockBookServiceConfig.class}, initializers = {EurekaContainerConfig.Initializer.class})
 class ServiceDiscoveryBooksClientLiveTest {
 
-	@Autowired
-	private BooksClient booksClient;
+   @Autowired
+   private BooksClient booksClient;
 
-	@Lazy
-	@Autowired
-	private EurekaClient eurekaClient;
+   @Lazy
+   @Autowired
+   private EurekaClient eurekaClient;
 
-	@BeforeEach
-	void setUp() {
-		await().atMost(60, SECONDS).until(() -> eurekaClient.getApplications().size() > 0);
-	}
+   @BeforeEach
+   void setUp() {
+      await().atMost(60, SECONDS).until(() -> eurekaClient.getApplications().size() > 0);
+   }
 
-	@Test
-	public void whenGetBooks_thenTheCorrectBooksAreReturned() {
-		List<Book> books = booksClient.getBooks();
+   @Test
+   void whenGetBooks_thenTheCorrectBooksAreReturned() {
+      List<Book> books = booksClient.getBooks();
 
-		assertEquals(1, books.size());
-		assertEquals(
-			new Book("Hitchhiker's guide to the galaxy", "Douglas Adams"),
-			books.stream().findFirst().get());
-	}
-
+      assertEquals(1, books.size());
+      assertEquals(
+            new Book("Hitchhiker's guide to the galaxy", "Douglas Adams"),
+            books.stream().findFirst().get());
+   }
 }

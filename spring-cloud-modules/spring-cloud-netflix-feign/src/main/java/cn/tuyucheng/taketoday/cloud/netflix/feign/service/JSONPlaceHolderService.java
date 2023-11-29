@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface JSONPlaceHolderService {
 
-    List<Post> getPosts();
+   List<Post> getPosts();
 
-    Post getPostById(Long id);
+   Post getPostById(Long id);
 }

@@ -13,15 +13,15 @@ import org.springframework.web.client.RestTemplate;
 @RibbonClient(name = "ping-a-server", configuration = RibbonConfiguration.class)
 public class ServerLocationApp {
 
-	@Autowired
-	RestTemplate restTemplate;
+   @Autowired
+   RestTemplate restTemplate;
 
-	@RequestMapping("/server-location")
-	public String serverLocation() {
-		return this.restTemplate.getForObject("http://ping-server/locaus", String.class);
-	}
+   @RequestMapping("/server-location")
+   public String serverLocation() {
+      return this.restTemplate.getForObject("http://ping-server/locaus", String.class);
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(ServerLocationApp.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(ServerLocationApp.class, args);
+   }
 }

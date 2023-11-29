@@ -13,22 +13,22 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class KinesisSDKApplication {
 
-	@Value("${aws.access.key}")
-	private String accessKey;
+   @Value("${aws.access.key}")
+   private String accessKey;
 
-	@Value("${aws.secret.key}")
-	private String secretKey;
+   @Value("${aws.secret.key}")
+   private String secretKey;
 
-	public static void main(String[] args) {
-		SpringApplication.run(KinesisSDKApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(KinesisSDKApplication.class, args);
+   }
 
-	@Bean
-	public AmazonKinesis buildAmazonKinesis() {
-		BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
-		return AmazonKinesisClientBuilder.standard()
-			.withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
-			.withRegion(Regions.EU_CENTRAL_1)
-			.build();
-	}
+   @Bean
+   public AmazonKinesis buildAmazonKinesis() {
+      BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
+      return AmazonKinesisClientBuilder.standard()
+            .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+            .withRegion(Regions.EU_CENTRAL_1)
+            .build();
+   }
 }

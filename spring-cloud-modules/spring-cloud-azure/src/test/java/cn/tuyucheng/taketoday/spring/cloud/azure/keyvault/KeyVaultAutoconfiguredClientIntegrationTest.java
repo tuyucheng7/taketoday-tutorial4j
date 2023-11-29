@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.spring.cloud.azure.keyvault;
 
-import java.util.NoSuchElementException;
-
-import org.junit.jupiter.api.Assertions;
+import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
+import java.util.NoSuchElementException;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest(classes = Application.class)
 class KeyVaultAutoconfiguredClientIntegrationTest {
@@ -20,6 +20,6 @@ class KeyVaultAutoconfiguredClientIntegrationTest {
    @Test
    void whenANotExistingKeyIsProvided_thenShouldReturnAnError() {
       String secretKey = "mySecret";
-      Assertions.assertThrows(NoSuchElementException.class, () -> keyVaultAutoconfiguredClient.getSecret(secretKey));
+      assertThrows(NoSuchElementException.class, () -> keyVaultAutoconfiguredClient.getSecret(secretKey));
    }
 }

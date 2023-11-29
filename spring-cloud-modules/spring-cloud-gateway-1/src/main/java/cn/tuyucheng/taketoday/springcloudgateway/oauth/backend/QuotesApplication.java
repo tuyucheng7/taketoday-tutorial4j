@@ -15,22 +15,17 @@ import org.springframework.security.oauth2.server.resource.introspection.Reactiv
 @EnableWebFluxSecurity
 public class QuotesApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(QuotesApplication.class);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(QuotesApplication.class);
+   }
 
+   @Bean
+   public ReactiveOpaqueTokenIntrospector keycloakIntrospector(OAuth2ResourceServerProperties props) {
+      NimbusReactiveOpaqueTokenIntrospector delegate = new NimbusReactiveOpaqueTokenIntrospector(
+            props.getOpaquetoken().getIntrospectionUri(),
+            props.getOpaquetoken().getClientId(),
+            props.getOpaquetoken().getClientSecret());
 
-    @Bean
-    public ReactiveOpaqueTokenIntrospector keycloakIntrospector(OAuth2ResourceServerProperties props) {
-
-        NimbusReactiveOpaqueTokenIntrospector delegate = new NimbusReactiveOpaqueTokenIntrospector(
-              props.getOpaquetoken().getIntrospectionUri(),
-              props.getOpaquetoken().getClientId(),
-              props.getOpaquetoken().getClientSecret());
-
-        return new KeycloakReactiveTokenInstrospector(delegate);
-    }
-
-
+      return new KeycloakReactiveTokenInstrospector(delegate);
+   }
 }
-

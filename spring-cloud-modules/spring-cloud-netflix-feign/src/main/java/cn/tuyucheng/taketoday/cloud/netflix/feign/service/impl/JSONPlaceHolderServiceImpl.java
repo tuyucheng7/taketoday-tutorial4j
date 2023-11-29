@@ -11,16 +11,16 @@ import java.util.List;
 @Service
 public class JSONPlaceHolderServiceImpl implements JSONPlaceHolderService {
 
-    @Autowired
-    private JSONPlaceHolderClient jsonPlaceHolderClient;
+   @Autowired
+   private JSONPlaceHolderClient jsonPlaceHolderClient;
 
-    @Override
-    public List<Post> getPosts() {
-        return jsonPlaceHolderClient.getPosts();
-    }
+   @Override
+   public List<Post> getPosts() {
+      return jsonPlaceHolderClient.getPosts();
+   }
 
-    @Override
-    public Post getPostById(Long id) {
-        return jsonPlaceHolderClient.getPostById(id);
-    }
+   @Override
+   public Post getPostById(Long id) {
+      return jsonPlaceHolderClient.getPostById(id);
+   }
 }

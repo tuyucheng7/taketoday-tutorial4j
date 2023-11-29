@@ -7,10 +7,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-    @Bean
-    WebClient client() {
-        return WebClient.builder()
-              .build();
-    }
-
+   @Bean
+   WebClient client() {
+      return WebClient.builder()
+            .build();
+   }
 }

@@ -8,10 +8,10 @@ import reactor.core.publisher.Mono;
 @RestController
 public class SecondServiceRestController {
 
-    @GetMapping("/resource/language")
-    public Mono<ResponseEntity<String>> getResource() {
-        return Mono.just(ResponseEntity.ok()
-              .body("es"));
+   @GetMapping("/resource/language")
+   public Mono<ResponseEntity<String>> getResource() {
+      return Mono.just(ResponseEntity.ok()
+            .body("es"));
 
-    }
+   }
 }

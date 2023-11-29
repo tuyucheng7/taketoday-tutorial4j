@@ -10,14 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-    private static final Log log = LogFactory.getLog(TravelAgencyController.class);
+   private static final Log log = LogFactory.getLog(TravelAgencyController.class);
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 
-    public void run(String... args) throws Exception {
-        log.info("Travel Agency Started! ");
-    }
-
+   public void run(String... args) {
+      log.info("Travel Agency Started! ");
+   }
 }

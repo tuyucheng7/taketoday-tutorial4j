@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RibbonWeatherServiceApp {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RibbonWeatherServiceApp.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(RibbonWeatherServiceApp.class, args);
+   }
 }

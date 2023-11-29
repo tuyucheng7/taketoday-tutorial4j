@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 @RibbonClient(name = "travel-agency-service", configuration = RibbonConfiguration.class)
 public class Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 }

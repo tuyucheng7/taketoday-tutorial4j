@@ -13,44 +13,37 @@ import org.springframework.stereotype.Component;
 @Component
 public class ZookeeperConfigsInitializer {
 
-	private static final String CONFIG_BASE_NODE_PATH = "/config";
-	private static final String APPLICATION_BASE_NODE_PATH = CONFIG_BASE_NODE_PATH + "/application";
+   private static final String CONFIG_BASE_NODE_PATH = "/config";
+   private static final String APPLICATION_BASE_NODE_PATH = CONFIG_BASE_NODE_PATH + "/application";
 
-	@Autowired
-	CuratorFramework client;
+   @Autowired
+   CuratorFramework client;
 
-	@EventListener
-	public void appReady(ApplicationReadyEvent event) throws Exception {
-		String pathOne = APPLICATION_BASE_NODE_PATH + "/tuyucheng.archaius.properties.one";
-		String valueOne = "one FROM:zookeeper";
-		String pathThree = APPLICATION_BASE_NODE_PATH + "/tuyucheng.archaius.properties.three";
-		String valueThree = "three FROM:zookeeper";
-		createBaseNodes();
-		setValue(pathOne, valueOne);
-		setValue(pathThree, valueThree);
-	}
+   @EventListener
+   public void appReady(ApplicationReadyEvent event) throws Exception {
+      String pathOne = APPLICATION_BASE_NODE_PATH + "/tuyucheng.archaius.properties.one";
+      String valueOne = "one FROM:zookeeper";
+      String pathThree = APPLICATION_BASE_NODE_PATH + "/tuyucheng.archaius.properties.three";
+      String valueThree = "three FROM:zookeeper";
+      createBaseNodes();
+      setValue(pathOne, valueOne);
+      setValue(pathThree, valueThree);
+   }
 
-	private void setValue(String path, String value) throws Exception {
-		if (client.checkExists()
-			.forPath(path) == null) {
-			client.create()
-				.forPath(path, value.getBytes());
-		} else {
-			client.setData()
-				.forPath(path, value.getBytes());
-		}
-	}
+   private void setValue(String path, String value) throws Exception {
+      if (client.checkExists().forPath(path) == null) {
+         client.create().forPath(path, value.getBytes());
+      } else {
+         client.setData().forPath(path, value.getBytes());
+      }
+   }
 
-	private void createBaseNodes() throws Exception {
-		if (client.checkExists()
-			.forPath(CONFIG_BASE_NODE_PATH) == null) {
-			client.create()
-				.forPath(CONFIG_BASE_NODE_PATH);
-		}
-		if (client.checkExists()
-			.forPath(APPLICATION_BASE_NODE_PATH) == null) {
-			client.create()
-				.forPath(APPLICATION_BASE_NODE_PATH);
-		}
-	}
+   private void createBaseNodes() throws Exception {
+      if (client.checkExists().forPath(CONFIG_BASE_NODE_PATH) == null) {
+         client.create().forPath(CONFIG_BASE_NODE_PATH);
+      }
+      if (client.checkExists().forPath(APPLICATION_BASE_NODE_PATH) == null) {
+         client.create().forPath(APPLICATION_BASE_NODE_PATH);
+      }
+   }
 }

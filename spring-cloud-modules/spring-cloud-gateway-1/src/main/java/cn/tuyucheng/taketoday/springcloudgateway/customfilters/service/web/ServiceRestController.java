@@ -11,11 +11,11 @@ import java.util.Locale;
 @RestController
 public class ServiceRestController {
 
-    @GetMapping("/resource")
-    public Mono<ResponseEntity<String>> getResource() {
-        return Mono.just(ResponseEntity.ok()
-              .header(HttpHeaders.CONTENT_LANGUAGE, Locale.ENGLISH.getLanguage())
-              .body("Service Resource"));
+   @GetMapping("/resource")
+   public Mono<ResponseEntity<String>> getResource() {
+      return Mono.just(ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_LANGUAGE, Locale.ENGLISH.getLanguage())
+            .body("Service Resource"));
 
-    }
+   }
 }

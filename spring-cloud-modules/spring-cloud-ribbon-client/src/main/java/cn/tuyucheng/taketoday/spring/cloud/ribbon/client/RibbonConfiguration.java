@@ -10,17 +10,16 @@ import org.springframework.context.annotation.Bean;
 
 public class RibbonConfiguration {
 
-	@Autowired
-	IClientConfig ribbonClientConfig;
+   @Autowired
+   IClientConfig ribbonClientConfig;
 
-	@Bean
-	public IPing ribbonPing(IClientConfig config) {
-		return new PingUrl();
-	}
+   @Bean
+   public IPing ribbonPing(IClientConfig config) {
+      return new PingUrl();
+   }
 
-	@Bean
-	public IRule ribbonRule(IClientConfig config) {
-		return new WeightedResponseTimeRule();
-	}
-
+   @Bean
+   public IRule ribbonRule(IClientConfig config) {
+      return new WeightedResponseTimeRule();
+   }
 }

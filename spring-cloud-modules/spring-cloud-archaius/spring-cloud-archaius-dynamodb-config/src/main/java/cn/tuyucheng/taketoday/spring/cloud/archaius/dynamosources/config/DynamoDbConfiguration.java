@@ -16,28 +16,28 @@ import org.springframework.context.annotation.Configuration;
 @EnableDynamoDBRepositories(basePackages = "cn.tuyucheng.taketoday.spring.cloud.archaius.dynamosources.dynamodb")
 public class DynamoDbConfiguration {
 
-	@Value("${amazon.dynamodb.endpoint}")
-	private String amazonDynamoDBEndpoint;
+   @Value("${amazon.dynamodb.endpoint}")
+   private String amazonDynamoDBEndpoint;
 
-	@Value("${aws.accessKeyId}")
-	private String amazonDynamoDBAccessKeyId;
+   @Value("${aws.accessKeyId}")
+   private String amazonDynamoDBAccessKeyId;
 
-	@Value("${aws.secretKey}")
-	private String amazonDynamoDBSecretKey;
+   @Value("${aws.secretKey}")
+   private String amazonDynamoDBSecretKey;
 
-	@Bean
-	public AmazonDynamoDB amazonDynamoDB() {
-		return AmazonDynamoDBClientBuilder.standard()
-			.withCredentials(amazonAWSCredentials())
-			.withEndpointConfiguration(setupEndpointConfiguration())
-			.build();
-	}
+   @Bean
+   public AmazonDynamoDB amazonDynamoDB() {
+      return AmazonDynamoDBClientBuilder.standard()
+            .withCredentials(amazonAWSCredentials())
+            .withEndpointConfiguration(setupEndpointConfiguration())
+            .build();
+   }
 
-	private AWSCredentialsProvider amazonAWSCredentials() {
-		return new AWSStaticCredentialsProvider(new BasicAWSCredentials(amazonDynamoDBAccessKeyId, amazonDynamoDBSecretKey));
-	}
+   private AWSCredentialsProvider amazonAWSCredentials() {
+      return new AWSStaticCredentialsProvider(new BasicAWSCredentials(amazonDynamoDBAccessKeyId, amazonDynamoDBSecretKey));
+   }
 
-	private EndpointConfiguration setupEndpointConfiguration() {
-		return new EndpointConfiguration(amazonDynamoDBEndpoint, Regions.DEFAULT_REGION.getName());
-	}
+   private EndpointConfiguration setupEndpointConfiguration() {
+      return new EndpointConfiguration(amazonDynamoDBEndpoint, Regions.DEFAULT_REGION.getName());
+   }
 }

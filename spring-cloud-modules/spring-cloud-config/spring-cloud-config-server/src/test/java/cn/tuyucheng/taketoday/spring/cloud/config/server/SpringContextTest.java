@@ -10,7 +10,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest(classes = ConfigServer.class)
 @WebAppConfiguration
 class SpringContextTest {
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

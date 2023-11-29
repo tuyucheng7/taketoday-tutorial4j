@@ -9,125 +9,121 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.reactive.server.WebTestClient.ResponseSpec;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("webfilters")
-public class WebFilterFactoriesLiveTest {
+class WebFilterFactoriesLiveTest {
 
-    @LocalServerPort
-    String port;
+   @LocalServerPort
+   String port;
 
-    @Autowired
-    private WebTestClient client;
+   @Autowired
+   private WebTestClient client;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-    @BeforeEach
-    public void configureClient() {
-        client = WebTestClient.bindToServer()
-              .baseUrl("http://localhost:" + port)
-              .build();
-    }
+   @BeforeEach
+   void configureClient() {
+      client = WebTestClient.bindToServer()
+            .baseUrl("http://localhost:" + port)
+            .build();
+   }
 
-    @Test
-    public void whenCallGetThroughGateway_thenAllHTTPRequestHeadersParametersAreSet() throws JSONException {
-        String url = "http://localhost:" + port + "/get";
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+   @Test
+   void whenCallGetThroughGateway_thenAllHTTPRequestHeadersParametersAreSet() throws JSONException {
+      String url = "http://localhost:" + port + "/get";
+      ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        JSONObject json = new JSONObject(response.getBody());
-        JSONObject headers = json.getJSONObject("headers");
-        assertThat(headers.getString("My-Header-Good")).isEqualTo("Good");
-        assertThat(headers.getString("My-Header-Bad")).isEqualTo("Good");
-        assertThat(headers.getString("My-Header-Set")).isEqualTo("Set");
-        assertTrue(headers.isNull("My-Header-Remove"));
-        JSONObject vars = json.getJSONObject("args");
-        assertThat(vars.getString("var")).isEqualTo("good");
-    }
+      JSONObject json = new JSONObject(response.getBody());
+      JSONObject headers = json.getJSONObject("headers");
+      assertThat(headers.getString("My-Header-Good")).isEqualTo("Good");
+      assertThat(headers.getString("My-Header-Bad")).isEqualTo("Good");
+      assertThat(headers.getString("My-Header-Set")).isEqualTo("Set");
+      assertTrue(headers.isNull("My-Header-Remove"));
+      JSONObject vars = json.getJSONObject("args");
+      assertThat(vars.getString("var")).isEqualTo("good");
+   }
 
-    @Test
-    public void whenCallHeaderPostThroughGateway_thenAllHTTPResponseHeadersAreSet() {
-        ResponseSpec response = client.post()
-              .uri("/header/post")
-              .exchange();
+   @Test
+   void whenCallHeaderPostThroughGateway_thenAllHTTPResponseHeadersAreSet() {
+      ResponseSpec response = client.post()
+            .uri("/header/post")
+            .exchange();
 
-        response.expectStatus()
-              .isOk()
-              .expectHeader()
-              .valueEquals("My-Header-Rewrite", "password=***")
-              .expectHeader()
-              .valueEquals("My-Header-Set", "Set")
-              .expectHeader()
-              .valueEquals("My-Header-Good", "Good")
-              .expectHeader()
-              .doesNotExist("My-Header-Remove");
-    }
+      response.expectStatus()
+            .isOk()
+            .expectHeader()
+            .valueEquals("My-Header-Rewrite", "password=***")
+            .expectHeader()
+            .valueEquals("My-Header-Set", "Set")
+            .expectHeader()
+            .valueEquals("My-Header-Good", "Good")
+            .expectHeader()
+            .doesNotExist("My-Header-Remove");
+   }
 
-    @Test
-    public void whenCallPostThroughGateway_thenBodyIsRetrieved() throws JSONException {
-        String url = "http://localhost:" + port + "/post";
+   @Test
+   void whenCallPostThroughGateway_thenBodyIsRetrieved() throws JSONException {
+      String url = "http://localhost:" + port + "/post";
 
-        HttpEntity<String> entity = new HttpEntity<>("content", new HttpHeaders());
+      HttpEntity<String> entity = new HttpEntity<>("content", new HttpHeaders());
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+      ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        JSONObject json = new JSONObject(response.getBody());
-        JSONObject data = json.getJSONObject("json");
-        assertThat(data.getString("message")).isEqualTo("CONTENT");
-    }
+      JSONObject json = new JSONObject(response.getBody());
+      JSONObject data = json.getJSONObject("json");
+      assertThat(data.getString("message")).isEqualTo("CONTENT");
+   }
 
-    @Test
-    public void whenCallPutThroughGateway_thenBodyIsRetrieved() throws JSONException {
-        String url = "http://localhost:" + port + "/put";
+   @Test
+   void whenCallPutThroughGateway_thenBodyIsRetrieved() throws JSONException {
+      String url = "http://localhost:" + port + "/put";
 
-        HttpEntity<String> entity = new HttpEntity<>("CONTENT", new HttpHeaders());
+      HttpEntity<String> entity = new HttpEntity<>("CONTENT", new HttpHeaders());
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+      ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+      assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        JSONObject json = new JSONObject(response.getBody());
-        assertThat(json.getString("message")).isEqualTo("New Body");
-    }
+      JSONObject json = new JSONObject(response.getBody());
+      assertThat(json.getString("message")).isEqualTo("New Body");
+   }
 
-    @Test
-    public void whenCallDeleteThroughGateway_thenIsUnauthorizedCodeIsSet() {
-        ResponseSpec response = client.delete()
-              .uri("/delete")
-              .exchange();
+   @Test
+   void whenCallDeleteThroughGateway_thenIsUnauthorizedCodeIsSet() {
+      ResponseSpec response = client.delete()
+            .uri("/delete")
+            .exchange();
 
-        response.expectStatus()
-              .isUnauthorized();
-    }
+      response.expectStatus()
+            .isUnauthorized();
+   }
 
-    @Test
-    public void whenCallFakePostThroughGateway_thenIsUnauthorizedCodeIsSet() {
-        ResponseSpec response = client.post()
-              .uri("/fake/post")
-              .exchange();
+   @Test
+   void whenCallFakePostThroughGateway_thenIsUnauthorizedCodeIsSet() {
+      ResponseSpec response = client.post()
+            .uri("/fake/post")
+            .exchange();
 
-        response.expectStatus()
-              .is3xxRedirection();
-    }
+      response.expectStatus()
+            .is3xxRedirection();
+   }
 
-    @Test
-    public void whenCallStatus504ThroughGateway_thenCircuitBreakerIsExecuted() throws JSONException {
-        String url = "http://localhost:" + port + "/status/504";
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+   @Test
+   void whenCallStatus504ThroughGateway_thenCircuitBreakerIsExecuted() throws JSONException {
+      String url = "http://localhost:" + port + "/status/504";
+      ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-        JSONObject json = new JSONObject(response.getBody());
-        assertThat(json.getString("url")).contains("anything");
-    }
+      JSONObject json = new JSONObject(response.getBody());
+      assertThat(json.getString("url")).contains("anything");
+   }
 }

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GreetingControllerImpl implements GreetingController {
-    @Override
-    public String greeting(@PathVariable("username") String username) {
-        return String.format("Hello %s!\n", username);
-    }
+   @Override
+   public String greeting(@PathVariable("username") String username) {
+      return String.format("Hello %s!\n", username);
+   }
 }

@@ -6,14 +6,14 @@ import com.azure.security.keyvault.secrets.SecretClient;
 
 @Component("KeyVaultAutoconfiguredClient")
 public class KeyVaultAutoconfiguredClient implements KeyVaultClient {
-	private final SecretClient secretClient;
+   private final SecretClient secretClient;
 
-	public KeyVaultAutoconfiguredClient(SecretClient secretClient) {
-		this.secretClient = secretClient;
-	}
+   public KeyVaultAutoconfiguredClient(SecretClient secretClient) {
+      this.secretClient = secretClient;
+   }
 
-	@Override
-	public SecretClient getSecretClient() {
-		return secretClient;
-	}
+   @Override
+   public SecretClient getSecretClient() {
+      return secretClient;
+   }
 }

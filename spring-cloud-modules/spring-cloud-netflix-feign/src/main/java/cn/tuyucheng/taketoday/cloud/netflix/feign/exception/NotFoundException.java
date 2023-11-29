@@ -2,20 +2,20 @@ package cn.tuyucheng.taketoday.cloud.netflix.feign.exception;
 
 public class NotFoundException extends Exception {
 
-    public NotFoundException() {
-    }
+   public NotFoundException() {
+   }
 
-    public NotFoundException(String message) {
-        super(message);
-    }
+   public NotFoundException(String message) {
+      super(message);
+   }
 
-    public NotFoundException(Throwable cause) {
-        super(cause);
-    }
+   public NotFoundException(Throwable cause) {
+      super(cause);
+   }
 
-    @Override
-    public String toString() {
-        return "NotFoundException: " + getMessage();
-    }
+   @Override
+   public String toString() {
+      return "NotFoundException: " + getMessage();
+   }
 
 }

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-    @GetMapping("/simple")
-    public ResponseEntity<String> getSimple() {
-        return ResponseEntity.ok("Hi");
-    }
+   @GetMapping("/simple")
+   public ResponseEntity<String> getSimple() {
+      return ResponseEntity.ok("Hi");
+   }
 }

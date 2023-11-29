@@ -4,10 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class PersonserviceApplicationIntegrationTest {
+class PersonserviceApplicationIntegrationTest {
 
-	@Test
-	public void contextLoads() {
-	}
-
+   @Test
+   void contextLoads() {
+   }
 }

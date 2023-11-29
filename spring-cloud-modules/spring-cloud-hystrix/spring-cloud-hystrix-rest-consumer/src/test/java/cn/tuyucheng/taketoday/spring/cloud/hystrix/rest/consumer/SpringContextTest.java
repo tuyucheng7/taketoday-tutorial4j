@@ -6,10 +6,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 @ContextConfiguration(classes = RestConsumerApplication.class)
 @WebAppConfiguration
-public class SpringContextTest {
+class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
-
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

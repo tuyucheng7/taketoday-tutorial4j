@@ -4,36 +4,36 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Price {
 
-	@JsonProperty("productId")
-	private long productId;
+   @JsonProperty("productId")
+   private long productId;
 
-	@JsonProperty("price_amount")
-	private double priceAmount;
+   @JsonProperty("price_amount")
+   private double priceAmount;
 
-	@JsonProperty("discount")
-	private double discount;
+   @JsonProperty("discount")
+   private double discount;
 
-	public long getProductId() {
-		return productId;
-	}
+   public long getProductId() {
+      return productId;
+   }
 
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
+   public void setProductId(long productId) {
+      this.productId = productId;
+   }
 
-	public double getPriceAmount() {
-		return priceAmount;
-	}
+   public double getPriceAmount() {
+      return priceAmount;
+   }
 
-	public void setPriceAmount(double priceAmount) {
-		this.priceAmount = priceAmount;
-	}
+   public void setPriceAmount(double priceAmount) {
+      this.priceAmount = priceAmount;
+   }
 
-	public double getDiscount() {
-		return discount;
-	}
+   public double getDiscount() {
+      return discount;
+   }
 
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
+   public void setDiscount(double discount) {
+      this.discount = discount;
+   }
 }

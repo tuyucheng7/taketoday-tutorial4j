@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("native")
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

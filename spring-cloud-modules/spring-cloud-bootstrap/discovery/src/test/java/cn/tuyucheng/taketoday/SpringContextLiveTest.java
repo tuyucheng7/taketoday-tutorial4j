@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = DiscoveryApplication.class)
 public class SpringContextLiveTest {
 
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

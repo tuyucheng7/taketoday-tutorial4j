@@ -14,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = ZookeeperConfigApplication.class)
 class SpringContextLiveTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

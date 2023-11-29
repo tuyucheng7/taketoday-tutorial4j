@@ -24,37 +24,32 @@ import java.util.logging.Logger;
 @EnableBatchProcessing
 public class TaskDemo {
 
-    private final static Logger LOGGER = Logger
-          .getLogger(TaskDemo.class.getName());
+   private final static Logger LOGGER = Logger.getLogger(TaskDemo.class.getName());
 
-    @Autowired
-    private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-    @Bean
-    public HelloWorldTaskConfigurer getTaskConfigurer() {
-        return new HelloWorldTaskConfigurer(dataSource);
-    }
+   @Bean
+   public HelloWorldTaskConfigurer getTaskConfigurer() {
+      return new HelloWorldTaskConfigurer(dataSource);
+   }
 
-    @Bean
-    public TaskListener taskListener() {
-        return new TaskListener();
-    }
+   @Bean
+   public TaskListener taskListener() {
+      return new TaskListener();
+   }
 
-    public static void main(String[] args) {
-        SpringApplication.run(TaskDemo.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(TaskDemo.class, args);
+   }
 
-    @Component
-    public static class HelloWorldApplicationRunner
-          implements
-          ApplicationRunner {
+   @Component
+   public static class HelloWorldApplicationRunner implements ApplicationRunner {
 
-        @Override
-        public void run(ApplicationArguments arg0)
-              throws Exception {
-            // TODO Auto-generated method stub
-            LOGGER
-                  .info("Hello World from Spring Cloud Task!");
-        }
-    }
+      @Override
+      public void run(ApplicationArguments arg0) throws Exception {
+         // TODO Auto-generated method stub
+         LOGGER.info("Hello World from Spring Cloud Task!");
+      }
+   }
 }

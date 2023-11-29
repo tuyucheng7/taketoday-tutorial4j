@@ -1,43 +1,43 @@
 package cn.tuyucheng.taketoday.spring.cloud.apigateway.fallback;
 
 import com.netflix.hystrix.exception.HystrixTimeoutException;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class WeatherServiceFallbackUnitTest {
+class WeatherServiceFallbackUnitTest {
 
-	private static final String ROUTE = "weather-service";
+   private static final String ROUTE = "weather-service";
 
-	@Autowired
-	private WeatherServiceFallback fallback;
+   @Autowired
+   private WeatherServiceFallback fallback;
 
-	@Test
-	public void testWhenGetRouteThenReturnWeatherServiceRoute() {
-		assertEquals(ROUTE, fallback.getRoute());
-	}
+   @Test
+   void testWhenGetRouteThenReturnWeatherServiceRoute() {
+      assertEquals(ROUTE, fallback.getRoute());
+   }
 
-	@Test
-	public void testFallbackResponse_whenHystrixException_thenGatewayTimeout() throws Exception {
-		HystrixTimeoutException exception = new HystrixTimeoutException();
-		ClientHttpResponse response = fallback.fallbackResponse(ROUTE, exception);
+   @Test
+   void testFallbackResponse_whenHystrixException_thenGatewayTimeout() throws Exception {
+      HystrixTimeoutException exception = new HystrixTimeoutException();
+      ClientHttpResponse response = fallback.fallbackResponse(ROUTE, exception);
 
-		assertEquals(HttpStatus.GATEWAY_TIMEOUT, response.getStatusCode());
-	}
+      assertEquals(HttpStatus.GATEWAY_TIMEOUT, response.getStatusCode());
+   }
 
-	@Test
-	public void testFallbackResponse_whenNonHystrixException_thenInternalServerError() throws Exception {
-		RuntimeException exception = new RuntimeException("Test exception");
-		ClientHttpResponse response = fallback.fallbackResponse(ROUTE, exception);
+   @Test
+   void testFallbackResponse_whenNonHystrixException_thenInternalServerError() throws Exception {
+      RuntimeException exception = new RuntimeException("Test exception");
+      ClientHttpResponse response = fallback.fallbackResponse(ROUTE, exception);
 
-		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-	}
+      assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+   }
 }

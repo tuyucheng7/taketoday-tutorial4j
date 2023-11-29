@@ -12,10 +12,11 @@ import java.net.InetSocketAddress;
 @Primary
 @Component
 public class ProxiedClientAddressResolver implements KeyResolver {
-    @Override
-    public Mono<String> resolve(ServerWebExchange exchange) {
-        XForwardedRemoteAddressResolver resolver = XForwardedRemoteAddressResolver.maxTrustedIndex(1);
-        InetSocketAddress inetSocketAddress = resolver.resolve(exchange);
-        return Mono.just(inetSocketAddress.getAddress().getHostAddress());
-    }
+
+   @Override
+   public Mono<String> resolve(ServerWebExchange exchange) {
+      XForwardedRemoteAddressResolver resolver = XForwardedRemoteAddressResolver.maxTrustedIndex(1);
+      InetSocketAddress inetSocketAddress = resolver.resolve(exchange);
+      return Mono.just(inetSocketAddress.getAddress().getHostAddress());
+   }
 }

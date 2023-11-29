@@ -13,44 +13,35 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @Configuration
 @EnableWebSecurity
 @EnableOAuth2Client
-public class WebSecurityConfigurer
-	extends
-	WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+   @Override
+   protected void configure(HttpSecurity http) throws Exception {
+      http.authorizeRequests()
+            .antMatchers("/login**").permitAll()
+            .anyRequest().authenticated()
+            .and().csrf()
+            .and().formLogin().loginPage("/login");
+   }
 
-	@Override
-	protected void configure(HttpSecurity http)
-		throws Exception {
-		http
-			.authorizeRequests()
-			.antMatchers("/login**").permitAll()
-			.anyRequest().authenticated()
-			.and().csrf()
-			.and().formLogin().loginPage("/login");
-	}
+   @Override
+   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth.inMemoryAuthentication()
+            .withUser("user").password(passwordEncoder().encode("user"))
+            .roles("USER")
+            .and()
+            .withUser("admin").password("admin")
+            .roles("USER", "ADMIN");
+   }
 
-	@Override
-	protected void configure(
-		AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-			.withUser("user").password(passwordEncoder().encode("user"))
-			.roles("USER")
-			.and()
-			.withUser("admin").password("admin")
-			.roles("USER", "ADMIN");
-	}
+   @Override
+   @Bean(name = "userDetailsService")
+   public UserDetailsService userDetailsServiceBean() throws Exception {
+      return super.userDetailsServiceBean();
+   }
 
-	@Override
-	@Bean(name = "userDetailsService")
-	public UserDetailsService userDetailsServiceBean()
-		throws Exception {
-		return super.userDetailsServiceBean();
-	}
-
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
+   @Bean
+   public BCryptPasswordEncoder passwordEncoder() {
+      return new BCryptPasswordEncoder();
+   }
 }

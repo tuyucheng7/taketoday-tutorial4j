@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringCloudApplication
 public class ZuulRatelimitDemoApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ZuulRatelimitDemoApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(ZuulRatelimitDemoApplication.class, args);
+   }
 }

@@ -1,14 +1,13 @@
 package cn.tuyucheng.taketoday;
 
+import cn.tuyucheng.taketoday.spring.cloud.kubernetes.client.Application;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import cn.tuyucheng.taketoday.spring.cloud.kubernetes.client.Application;
-
 @SpringBootTest(classes = Application.class)
-public class SpringContextTest {
+class SpringContextTest {
 
-    @Test
-    public void contextLoads() {
-    }
+   @Test
+   void contextLoads() {
+   }
 }

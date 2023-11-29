@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableHystrixDashboard
 @EnableFeignClients
 public class RestConsumerFeignApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(RestConsumerFeignApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(RestConsumerFeignApplication.class, args);
+   }
 }

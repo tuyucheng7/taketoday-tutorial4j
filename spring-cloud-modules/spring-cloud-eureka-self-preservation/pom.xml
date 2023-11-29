@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xmlns="http://maven.apache.org/POM/4.0.0"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.tuyucheng.taketoday.spring.cloud.eureka</groupId>
-	<artifactId>spring-cloud-eureka-self-preservation</artifactId>
-	<name>spring-cloud-eureka-self-preservation</name>
-	<packaging>pom</packaging>
-	<description>Spring Cloud Eureka Server Self Preservation</description>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>cn.tuyucheng.taketoday.spring.cloud.eureka</groupId>
+   <artifactId>spring-cloud-eureka-self-preservation</artifactId>
+   <name>spring-cloud-eureka-self-preservation</name>
+   <packaging>pom</packaging>
+   <description>Spring Cloud Eureka Server Self Preservation</description>
 
-	<parent>
-		<groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
-		<artifactId>spring-cloud-modules</artifactId>
-		<version>1.0.0</version>
-	</parent>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
+      <artifactId>spring-cloud-modules</artifactId>
+      <version>1.0.0</version>
+   </parent>
 
-	<modules>
-		<module>spring-cloud-eureka-self-preservation-server</module>
-		<module>spring-cloud-eureka-self-preservation-client</module>
-	</modules>
+   <modules>
+      <module>spring-cloud-eureka-self-preservation-server</module>
+      <module>spring-cloud-eureka-self-preservation-client</module>
+   </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-bom</artifactId>
-				<version>${log4j2.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-bom</artifactId>
+            <version>${log4j2.version}</version>
+            <scope>import</scope>
+            <type>pom</type>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${spring-boot.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+   <dependencies>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <version>${spring-boot.version}</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
-	<properties>
-		<spring-boot.version>2.1.3.RELEASE</spring-boot.version>
-		<spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
-		<log4j2.version>2.17.1</log4j2.version>
-	</properties>
+   <properties>
+      <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
+      <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
+      <log4j2.version>2.17.1</log4j2.version>
+   </properties>
 </project>

@@ -7,27 +7,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-	@Value("${hello}")
-	private String hello;
+   @Value("${hello}")
+   private String hello;
 
-	@Value("${welcome}")
-	private String welcome;
+   @Value("${welcome}")
+   private String welcome;
 
-	@Value("${shared-property}")
-	private String shared;
+   @Value("${shared-property}")
+   private String shared;
 
-	@GetMapping("hello")
-	public String hello() {
-		return this.hello;
-	}
+   @GetMapping("hello")
+   public String hello() {
+      return this.hello;
+   }
 
-	@GetMapping("welcome")
-	public String welcome() {
-		return this.welcome;
-	}
+   @GetMapping("welcome")
+   public String welcome() {
+      return this.welcome;
+   }
 
-	@GetMapping("shared")
-	public String shared() {
-		return this.shared;
-	}
+   @GetMapping("shared")
+   public String shared() {
+      return this.shared;
+   }
 }

@@ -18,33 +18,33 @@ import java.util.stream.Collectors;
 public class OrderService {
 
 
-	private List<Order> orders = Arrays.asList(
+   private List<Order> orders = Arrays.asList(
 
-		new Order(1, 1, "A101", "2020/02/14"),
-		new Order(2, 1, "A101", "2020/02/14"),
-		new Order(3, 2, "A150", "2020/02/17"));
+         new Order(1, 1, "A101", "2020/02/14"),
+         new Order(2, 1, "A101", "2020/02/14"),
+         new Order(3, 2, "A150", "2020/02/17"));
 
-	@GetMapping
-	public List<Order> getAllOrders() {
-		return orders;
-	}
+   @GetMapping
+   public List<Order> getAllOrders() {
+      return orders;
+   }
 
-	@GetMapping("/{id}")
-	public List<Order> getOrdersByCustomer(@PathVariable int id) {
-		return orders.stream()
-			.filter(order -> order.getCustomerId() == id).collect(Collectors.toList());
-	}
+   @GetMapping("/{id}")
+   public List<Order> getOrdersByCustomer(@PathVariable int id) {
+      return orders.stream()
+            .filter(order -> order.getCustomerId() == id).collect(Collectors.toList());
+   }
 
-	@PostMapping("/create")
-	public OrderResponse createOrder(@RequestBody OrderDTO request) {
-		int lastIndex = orders.size();
-		Order order = new Order();
-		order.setId(lastIndex + 1);
-		order.setCustomerId(request.getCustomerId());
-		order.setItemId(request.getItemId());
-		String date = DateFormatUtils.format(new Date(), "yyyy/MM/dd");
-		order.setDate(date);
+   @PostMapping("/create")
+   public OrderResponse createOrder(@RequestBody OrderDTO request) {
+      int lastIndex = orders.size();
+      Order order = new Order();
+      order.setId(lastIndex + 1);
+      order.setCustomerId(request.getCustomerId());
+      order.setItemId(request.getItemId());
+      String date = DateFormatUtils.format(new Date(), "yyyy/MM/dd");
+      order.setDate(date);
 
-		return new OrderResponse(order.getId(), order.getItemId(), "CREATED");
-	}
+      return new OrderResponse(order.getId(), order.getItemId(), "CREATED");
+   }
 }

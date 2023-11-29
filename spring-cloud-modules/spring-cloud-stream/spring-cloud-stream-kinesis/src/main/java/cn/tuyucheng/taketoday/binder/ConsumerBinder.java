@@ -7,10 +7,8 @@ import java.util.function.Consumer;
 
 @Configuration
 public class ConsumerBinder {
-	@Bean
-	Consumer<String> input() {
-		return str -> {
-			System.out.println(str);
-		};
-	}
+   @Bean
+   Consumer<String> input() {
+      return System.out::println;
+   }
 }

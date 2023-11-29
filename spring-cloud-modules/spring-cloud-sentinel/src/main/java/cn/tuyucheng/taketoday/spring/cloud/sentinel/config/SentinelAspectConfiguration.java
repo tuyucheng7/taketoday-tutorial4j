@@ -18,48 +18,47 @@ import java.util.List;
 @Configuration
 public class SentinelAspectConfiguration {
 
-	public static final String RESOURCE_NAME = "greeting";
+   public static final String RESOURCE_NAME = "greeting";
 
-	@Bean
-	public SentinelResourceAspect sentinelResourceAspect() {
-		return new SentinelResourceAspect();
-	}
+   @Bean
+   public SentinelResourceAspect sentinelResourceAspect() {
+      return new SentinelResourceAspect();
+   }
 
-	@PostConstruct
-	public void init() {
-		initFlowRules();
-		initDegradeRules();
-		initSystemProtectionRules();
-	}
+   @PostConstruct
+   public void init() {
+      initFlowRules();
+      initDegradeRules();
+      initSystemProtectionRules();
+   }
 
-	private void initFlowRules() {
-		List<FlowRule> flowRules = new ArrayList<>();
-		FlowRule flowRule = new FlowRule();
-		// Defined resource
-		flowRule.setResource(RESOURCE_NAME);
-		flowRule.setGrade(RuleConstant.FLOW_GRADE_QPS);
-		// number of requests that QPS can pass in a second
-		flowRule.setCount(1);
-		flowRules.add(flowRule);
-		FlowRuleManager.loadRules(flowRules);
-	}
+   private void initFlowRules() {
+      List<FlowRule> flowRules = new ArrayList<>();
+      FlowRule flowRule = new FlowRule();
+      // Defined resource
+      flowRule.setResource(RESOURCE_NAME);
+      flowRule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+      // number of requests that QPS can pass in a second
+      flowRule.setCount(1);
+      flowRules.add(flowRule);
+      FlowRuleManager.loadRules(flowRules);
+   }
 
-	private void initDegradeRules() {
-		List<DegradeRule> rules = new ArrayList<DegradeRule>();
-		DegradeRule rule = new DegradeRule();
-		rule.setResource(RESOURCE_NAME);
-		rule.setCount(10);
-		rule.setTimeWindow(10);
-		rules.add(rule);
-		DegradeRuleManager.loadRules(rules);
-	}
+   private void initDegradeRules() {
+      List<DegradeRule> rules = new ArrayList<DegradeRule>();
+      DegradeRule rule = new DegradeRule();
+      rule.setResource(RESOURCE_NAME);
+      rule.setCount(10);
+      rule.setTimeWindow(10);
+      rules.add(rule);
+      DegradeRuleManager.loadRules(rules);
+   }
 
-	private void initSystemProtectionRules() {
-		List<SystemRule> rules = new ArrayList<>();
-		SystemRule rule = new SystemRule();
-		rule.setHighestSystemLoad(10);
-		rules.add(rule);
-		SystemRuleManager.loadRules(rules);
-	}
-
+   private void initSystemProtectionRules() {
+      List<SystemRule> rules = new ArrayList<>();
+      SystemRule rule = new SystemRule();
+      rule.setHighestSystemLoad(10);
+      rules.add(rule);
+      SystemRuleManager.loadRules(rules);
+   }
 }

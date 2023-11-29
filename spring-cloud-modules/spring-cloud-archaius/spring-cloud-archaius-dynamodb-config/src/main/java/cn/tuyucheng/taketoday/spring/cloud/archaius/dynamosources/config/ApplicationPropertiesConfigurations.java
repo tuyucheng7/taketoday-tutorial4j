@@ -21,31 +21,31 @@ import java.util.Arrays;
 @Configuration
 public class ApplicationPropertiesConfigurations {
 
-	@Autowired
-	AmazonDynamoDB amazonDynamoDb;
+   @Autowired
+   AmazonDynamoDB amazonDynamoDb;
 
-	@Autowired
-	private ArchaiusPropertiesRepository repository;
+   @Autowired
+   private ArchaiusPropertiesRepository repository;
 
-	@Bean
-	public AbstractConfiguration addApplicationPropertiesSource() {
-		// Normally, the DB Table would be already created and populated.
-		// In this case, we'll do it just before creating the archaius config source that uses it
-		initDatabase();
-		PolledConfigurationSource source = new DynamoDbConfigurationSource(amazonDynamoDb);
-		return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
-	}
+   @Bean
+   public AbstractConfiguration addApplicationPropertiesSource() {
+      // Normally, the DB Table would be already created and populated.
+      // In this case, we'll do it just before creating the archaius config source that uses it
+      initDatabase();
+      PolledConfigurationSource source = new DynamoDbConfigurationSource(amazonDynamoDb);
+      return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
+   }
 
-	private void initDatabase() {
-		// Create the table
-		DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDb);
-		CreateTableRequest tableRequest = mapper.generateCreateTableRequest(ArchaiusProperties.class);
-		tableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-		TableUtils.createTableIfNotExists(amazonDynamoDb, tableRequest);
+   private void initDatabase() {
+      // Create the table
+      DynamoDBMapper mapper = new DynamoDBMapper(amazonDynamoDb);
+      CreateTableRequest tableRequest = mapper.generateCreateTableRequest(ArchaiusProperties.class);
+      tableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
+      TableUtils.createTableIfNotExists(amazonDynamoDb, tableRequest);
 
-		// Populate the table
-		ArchaiusProperties property = new ArchaiusProperties("tuyucheng.archaius.properties.one", "one FROM:dynamoDB");
-		ArchaiusProperties property3 = new ArchaiusProperties("tuyucheng.archaius.properties.three", "three FROM:dynamoDB");
-		repository.saveAll(Arrays.asList(property, property3));
-	}
+      // Populate the table
+      ArchaiusProperties property = new ArchaiusProperties("tuyucheng.archaius.properties.one", "one FROM:dynamoDB");
+      ArchaiusProperties property3 = new ArchaiusProperties("tuyucheng.archaius.properties.three", "three FROM:dynamoDB");
+      repository.saveAll(Arrays.asList(property, property3));
+   }
 }

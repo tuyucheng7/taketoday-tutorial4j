@@ -9,51 +9,46 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ScrubResponseGatewayFilterFactoryUnitTest {
 
-    private static final String JSON_WITH_FIELDS_TO_SCRUB = "{\r\n"
-          + "  \"name\" : \"John Doe\",\r\n"
-          + "        \"ssn\"  : \"123-45-9999\",\r\n"
-          + "        \"account\" : \"9999888877770000\"\r\n"
-          + "}";
+   private static final String JSON_WITH_FIELDS_TO_SCRUB = "{\r\n"
+         + "  \"name\" : \"John Doe\",\r\n"
+         + "        \"ssn\"  : \"123-45-9999\",\r\n"
+         + "        \"account\" : \"9999888877770000\"\r\n"
+         + "}";
 
 
-    @Test
-    void givenJsonWithFieldsToScrub_whenApply_thenScrubFields() throws Exception {
+   @Test
+   void givenJsonWithFieldsToScrub_whenApply_thenScrubFields() throws Exception {
+      JsonFactory jf = new JsonFactory(new ObjectMapper());
+      JsonParser parser = jf.createParser(JSON_WITH_FIELDS_TO_SCRUB);
+      JsonNode root = parser.readValueAsTree();
 
-        JsonFactory jf = new JsonFactory(new ObjectMapper());
-        JsonParser parser = jf.createParser(JSON_WITH_FIELDS_TO_SCRUB);
-        JsonNode root = parser.readValueAsTree();
+      Config config = new Config();
+      config.setFields("ssn|account");
+      config.setReplacement("*");
+      Scrubber scrubber = new Scrubber(config);
 
-        Config config = new Config();
-        config.setFields("ssn|account");
-        config.setReplacement("*");
-        Scrubber scrubber = new Scrubber(config);
+      JsonNode scrubbed = Mono.from(scrubber.apply(null, root)).block();
+      assertNotNull(scrubbed);
+      assertEquals("*", scrubbed.get("ssn").asText());
+   }
 
-        JsonNode scrubbed = Mono.from(scrubber.apply(null, root)).block();
-        assertNotNull(scrubbed);
-        assertEquals("*", scrubbed.get("ssn").asText());
-    }
+   @Test
+   void givenJsonWithoutFieldsToScrub_whenApply_theBodUnchanged() throws Exception {
+      JsonFactory jf = new JsonFactory(new ObjectMapper());
+      JsonParser parser = jf.createParser(JSON_WITH_FIELDS_TO_SCRUB);
+      JsonNode root = parser.readValueAsTree();
 
-    @Test
-    void givenJsonWithoutFieldsToScrub_whenApply_theBodUnchanged() throws Exception {
+      Config config = new Config();
+      config.setFields("xxxx");
+      config.setReplacement("*");
+      Scrubber scrubber = new Scrubber(config);
 
-        JsonFactory jf = new JsonFactory(new ObjectMapper());
-        JsonParser parser = jf.createParser(JSON_WITH_FIELDS_TO_SCRUB);
-        JsonNode root = parser.readValueAsTree();
-
-        Config config = new Config();
-        config.setFields("xxxx");
-        config.setReplacement("*");
-        Scrubber scrubber = new Scrubber(config);
-
-        JsonNode scrubbed = Mono.from(scrubber.apply(null, root)).block();
-        assertNotNull(scrubbed);
-        assertNotEquals("*", scrubbed.get("ssn").asText());
-    }
-
+      JsonNode scrubbed = Mono.from(scrubber.apply(null, root)).block();
+      assertNotNull(scrubbed);
+      assertNotEquals("*", scrubbed.get("ssn").asText());
+   }
 }

@@ -8,18 +8,18 @@ import java.util.List;
 
 public class LoggerListAppender extends AppenderBase<ILoggingEvent> {
 
-    static private List<ILoggingEvent> events = new ArrayList<>();
+   static private List<ILoggingEvent> events = new ArrayList<>();
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-        events.add(eventObject);
-    }
+   @Override
+   protected void append(ILoggingEvent eventObject) {
+      events.add(eventObject);
+   }
 
-    public static List<ILoggingEvent> getEvents() {
-        return events;
-    }
+   public static List<ILoggingEvent> getEvents() {
+      return events;
+   }
 
-    public static void clearEventList() {
-        events.clear();
-    }
+   public static void clearEventList() {
+      events.clear();
+   }
 }

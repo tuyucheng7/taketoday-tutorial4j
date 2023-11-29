@@ -10,21 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class CloudSiteController {
 
-	@Autowired
-	private RestOperations restOperations;
+   @Autowired
+   private RestOperations restOperations;
 
-	@GetMapping("/")
-	@ResponseBody
-	public String helloFromBaeldung() {
-		return "Hello From Baeldung!";
-	}
+   @GetMapping("/")
+   @ResponseBody
+   public String helloFromBaeldung() {
+      return "Hello From Baeldung!";
+   }
 
-	@GetMapping("/personInfo")
-	public ModelAndView person() {
-		ModelAndView mav = new ModelAndView("personinfo");
-		String personResourceUrl = "http://localhost:9000/person";
-		mav.addObject("person", restOperations.getForObject(personResourceUrl, String.class));
-		return mav;
-	}
-
+   @GetMapping("/personInfo")
+   public ModelAndView person() {
+      ModelAndView mav = new ModelAndView("personinfo");
+      String personResourceUrl = "http://localhost:9000/person";
+      mav.addObject("person", restOperations.getForObject(personResourceUrl, String.class));
+      return mav;
+   }
 }

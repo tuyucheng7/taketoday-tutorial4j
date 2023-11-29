@@ -4,14 +4,14 @@ import cn.tuyucheng.taketoday.spring.cloud.aws.SpringCloudAwsTestUtil;
 import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.Greeting;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.CreateTopicResult;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.UUID;
 
@@ -21,44 +21,43 @@ import java.util.UUID;
  * Check the README file in this module for more information.
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @TestPropertySource("classpath:application-test.properties")
-public class SpringCloudSNSLiveTest {
+class SpringCloudSNSLiveTest {
 
-	@Autowired
-	private SNSMessageSender snsMessageSender;
+   @Autowired
+   private SNSMessageSender snsMessageSender;
 
-	private static String topicName;
-	private static String topicArn;
+   private static String topicName;
+   private static String topicArn;
 
-	@BeforeClass
-	public static void setupAwsResources() {
+   @BeforeAll
+   static void setupAwsResources() {
+      topicName = UUID.randomUUID().toString();
 
-		topicName = UUID.randomUUID().toString();
+      AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
 
-		AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
+      CreateTopicResult result = amazonSNS.createTopic(topicName);
+      topicArn = result.getTopicArn();
+   }
 
-		CreateTopicResult result = amazonSNS.createTopic(topicName);
-		topicArn = result.getTopicArn();
-	}
+   @Test
+   void whenMessagePublished_thenSuccess() {
+      String subject = "Test Message";
+      String message = "Hello World";
+      snsMessageSender.send(topicName, message, subject);
+   }
 
-	@Test
-	public void whenMessagePublished_thenSuccess() {
-		String subject = "Test Message";
-		String message = "Hello World";
-		snsMessageSender.send(topicName, message, subject);
-	}
+   @Test
+   void whenConvertedMessagePublished_thenSuccess() {
+      String subject = "Test Message";
+      Greeting message = new Greeting("Hello", "World");
+      snsMessageSender.send(topicName, message, subject);
+   }
 
-	@Test
-	public void whenConvertedMessagePublished_thenSuccess() {
-		String subject = "Test Message";
-		Greeting message = new Greeting("Hello", "World");
-		snsMessageSender.send(topicName, message, subject);
-	}
-
-	@AfterClass
-	public static void cleanupAwsResources() {
-		AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
-		amazonSNS.deleteTopic(topicArn);
-	}
+   @AfterAll
+   static void cleanupAwsResources() {
+      AmazonSNS amazonSNS = SpringCloudAwsTestUtil.amazonSNS();
+      amazonSNS.deleteTopic(topicArn);
+   }
 }

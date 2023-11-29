@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/greeting")
 public class GreetingController {
 
-    @GetMapping("/simple")
-    public ResponseEntity<String> getSimple() {
-        return ResponseEntity.ok("Hi!");
-    }
+   @GetMapping("/simple")
+   public ResponseEntity<String> getSimple() {
+      return ResponseEntity.ok("Hi!");
+   }
 
-    @GetMapping("/advanced")
-    public ResponseEntity<String> getAdvanced() {
-        return ResponseEntity.ok("Hello, how you doing?");
-    }
+   @GetMapping("/advanced")
+   public ResponseEntity<String> getAdvanced() {
+      return ResponseEntity.ok("Hello, how you doing?");
+   }
 }

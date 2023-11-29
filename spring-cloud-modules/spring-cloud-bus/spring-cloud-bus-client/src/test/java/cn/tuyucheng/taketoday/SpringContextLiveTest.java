@@ -32,7 +32,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = SpringCloudConfigClientApplication.class)
 class SpringContextLiveTest {
 
-    @Test
-    void contextLoads() {
-    }
+   @Test
+   void contextLoads() {
+   }
 }

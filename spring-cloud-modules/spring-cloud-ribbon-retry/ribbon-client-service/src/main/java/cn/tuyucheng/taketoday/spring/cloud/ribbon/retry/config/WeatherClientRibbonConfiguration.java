@@ -10,10 +10,9 @@ import org.springframework.web.client.RestTemplate;
 @RibbonClient(name = "weather-service", configuration = RibbonConfiguration.class)
 public class WeatherClientRibbonConfiguration {
 
-	@LoadBalanced
-	@Bean
-	RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
+   @LoadBalanced
+   @Bean
+   RestTemplate getRestTemplate() {
+      return new RestTemplate();
+   }
 }

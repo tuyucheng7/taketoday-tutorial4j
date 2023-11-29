@@ -9,13 +9,13 @@ import org.springframework.web.client.HttpServerErrorException;
 @RestControllerAdvice
 public class ProductControllerAdvice {
 
-	@ExceptionHandler(ProductNotFoundException.class)
-	public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException exception) {
-		return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-	}
+   @ExceptionHandler(ProductNotFoundException.class)
+   public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException exception) {
+      return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+   }
 
-	@ExceptionHandler(HttpServerErrorException.ServiceUnavailable.class)
-	public ResponseEntity<Object> handleException(HttpServerErrorException.ServiceUnavailable exception) {
-		return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+   @ExceptionHandler(HttpServerErrorException.ServiceUnavailable.class)
+   public ResponseEntity<Object> handleException(HttpServerErrorException.ServiceUnavailable exception) {
+      return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+   }
 }

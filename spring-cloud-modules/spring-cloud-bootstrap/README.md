@@ -15,10 +15,11 @@
 
 - 首先，你需要在默认端口上运行一个redis服务器
 - 运行项目：
-  - 将application-config文件夹复制到Windows上的c:\Users\\{username}\或*nix上的/home/{username}/。然后在application-config中打开一个git bash终端并运行：
-    - git init
-    - git add .
-    - git commit -m "First commit"
-  - 启动config服务器
-  - 启动discovery服务器
-  - 以任何顺序启动所有其他服务器(gateway，svc-book，svc-rating，zipkin)
+    - 将application-config文件夹复制到Windows上的c:\Users\\{username}\或*
+      nix上的/home/{username}/。然后在application-config中打开一个git bash终端并运行：
+        - git init
+        - git add .
+        - git commit -m "First commit"
+    - 启动config服务器
+    - 启动discovery服务器
+    - 以任何顺序启动所有其他服务器(gateway，svc-book，svc-rating，zipkin)

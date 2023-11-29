@@ -19,22 +19,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class ArchaiusBasicConfigurationIntegrationTest {
 
-	@Autowired
-	ConfigurableApplicationContext context;
+   @Autowired
+   ConfigurableApplicationContext context;
 
-	private DynamicStringProperty testPropertyWithDynamic = DynamicPropertyFactory.getInstance()
-		.getStringProperty("tuyucheng.archaius.test.properties.one", "not found!");
+   private DynamicStringProperty testPropertyWithDynamic = DynamicPropertyFactory.getInstance()
+         .getStringProperty("tuyucheng.archaius.test.properties.one", "not found!");
 
-	@Test
-	void givenInitialPropertyValue_whenPropertyChanges_thenArchaiusRetrievesNewValue() {
-		String initialValue = testPropertyWithDynamic.get();
+   @Test
+   void givenInitialPropertyValue_whenPropertyChanges_thenArchaiusRetrievesNewValue() {
+      String initialValue = testPropertyWithDynamic.get();
 
-		TestPropertyValues.of("tuyucheng.archaius.test.properties.one=new-value")
-			.applyTo(context);
-		context.publishEvent(new EnvironmentChangeEvent(Collections.singleton("tuyucheng.archaius.test.properties.one")));
-		String finalValue = testPropertyWithDynamic.get();
+      TestPropertyValues.of("tuyucheng.archaius.test.properties.one=new-value")
+            .applyTo(context);
+      context.publishEvent(new EnvironmentChangeEvent(Collections.singleton("tuyucheng.archaius.test.properties.one")));
+      String finalValue = testPropertyWithDynamic.get();
 
-		assertThat(initialValue).isEqualTo("test-one");
-		assertThat(finalValue).isEqualTo("new-value");
-	}
+      assertThat(initialValue).isEqualTo("test-one");
+      assertThat(finalValue).isEqualTo("new-value");
+   }
 }

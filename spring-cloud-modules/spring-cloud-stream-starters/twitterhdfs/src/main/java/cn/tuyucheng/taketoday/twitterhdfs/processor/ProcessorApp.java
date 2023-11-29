@@ -10,11 +10,11 @@ import org.springframework.integration.annotation.Transformer;
 @SpringBootApplication
 @EnableBinding(Processor.class)
 public class ProcessorApp {
-    Logger log = LoggerFactory.getLogger(ProcessorApp.class);
+   Logger log = LoggerFactory.getLogger(ProcessorApp.class);
 
-    @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-    public String processMessage(String payload) {
-        log.info("Payload received!");
-        return payload;
-    }
+   @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
+   public String processMessage(String payload) {
+      log.info("Payload received!");
+      return payload;
+   }
 }

@@ -9,7 +9,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @SpringBootApplication
 public class CustomZuulErrorApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CustomZuulErrorApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(CustomZuulErrorApplication.class, args);
+   }
 }

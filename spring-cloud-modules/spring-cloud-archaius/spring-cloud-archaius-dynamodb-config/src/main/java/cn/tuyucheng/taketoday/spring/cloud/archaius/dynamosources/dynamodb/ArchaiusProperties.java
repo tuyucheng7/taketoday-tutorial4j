@@ -13,10 +13,10 @@ import lombok.Setter;
 @DynamoDBTable(tableName = "archaiusProperties")
 public class ArchaiusProperties {
 
-	@DynamoDBHashKey
-	@DynamoDBAttribute
-	private String key;
+   @DynamoDBHashKey
+   @DynamoDBAttribute
+   private String key;
 
-	@DynamoDBAttribute
-	private String value;
+   @DynamoDBAttribute
+   private String value;
 }

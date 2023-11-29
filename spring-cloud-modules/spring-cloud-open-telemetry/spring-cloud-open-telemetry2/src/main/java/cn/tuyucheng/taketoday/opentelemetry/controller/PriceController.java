@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PriceController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PriceController.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(PriceController.class);
 
-	private final PriceRepository priceRepository;
+   private final PriceRepository priceRepository;
 
-	@Autowired
-	public PriceController(PriceRepository priceRepository) {
-		this.priceRepository = priceRepository;
-	}
+   @Autowired
+   public PriceController(PriceRepository priceRepository) {
+      this.priceRepository = priceRepository;
+   }
 
-	@GetMapping(path = "/price/{id}")
-	public Price getPrice(@PathVariable("id") long productId) {
-		LOGGER.info("Getting Price details for Product Id {}", productId);
-		return priceRepository.getPrice(productId);
-	}
+   @GetMapping(path = "/price/{id}")
+   public Price getPrice(@PathVariable("id") long productId) {
+      LOGGER.info("Getting Price details for Product Id {}", productId);
+      return priceRepository.getPrice(productId);
+   }
 }

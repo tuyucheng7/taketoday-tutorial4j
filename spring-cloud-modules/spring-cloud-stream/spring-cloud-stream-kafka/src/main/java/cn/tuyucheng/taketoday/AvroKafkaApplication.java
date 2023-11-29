@@ -11,8 +11,7 @@ import org.springframework.cloud.stream.messaging.Processor;
 // @EnableSchemaRegistryClient
 public class AvroKafkaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(AvroKafkaApplication.class, args);
-	}
-
+   public static void main(String[] args) {
+      SpringApplication.run(AvroKafkaApplication.class, args);
+   }
 }

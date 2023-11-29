@@ -8,8 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:service-application.properties")
 public class ServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ServiceApplication.class, args);
-    }
-
+   public static void main(String[] args) {
+      SpringApplication.run(ServiceApplication.class, args);
+   }
 }

@@ -11,32 +11,28 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CustomPredicatesConfig {
 
+   @Bean
+   public GoldenCustomerRoutePredicateFactory goldenCustomer(GoldenCustomerService goldenCustomerService) {
+      return new GoldenCustomerRoutePredicateFactory(goldenCustomerService);
+   }
 
-    @Bean
-    public GoldenCustomerRoutePredicateFactory goldenCustomer(GoldenCustomerService goldenCustomerService) {
-        return new GoldenCustomerRoutePredicateFactory(goldenCustomerService);
-    }
-
-
-    //@Bean
-    public RouteLocator routes(RouteLocatorBuilder builder, GoldenCustomerRoutePredicateFactory gf) {
-
-        return builder.routes()
-              .route("dsl_golden_route", r ->
-                    r.predicate(gf.apply(new Config(true, "customerId")))
-                          .and()
-                          .path("/dsl_api/**")
-                          .filters(f -> f.stripPrefix(1))
-                          .uri("https://httpbin.org")
-              )
-              .route("dsl_common_route", r ->
-                    r.predicate(gf.apply(new Config(false, "customerId")))
-                          .and()
-                          .path("/dsl_api/**")
-                          .filters(f -> f.stripPrefix(1))
-                          .uri("https://httpbin.org")
-              )
-              .build();
-    }
-
+   //@Bean
+   public RouteLocator routes(RouteLocatorBuilder builder, GoldenCustomerRoutePredicateFactory gf) {
+      return builder.routes()
+            .route("dsl_golden_route", r ->
+                  r.predicate(gf.apply(new Config(true, "customerId")))
+                        .and()
+                        .path("/dsl_api/**")
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("https://httpbin.org")
+            )
+            .route("dsl_common_route", r ->
+                  r.predicate(gf.apply(new Config(false, "customerId")))
+                        .and()
+                        .path("/dsl_api/**")
+                        .filters(f -> f.stripPrefix(1))
+                        .uri("https://httpbin.org")
+            )
+            .build();
+   }
 }

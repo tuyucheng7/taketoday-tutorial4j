@@ -6,12 +6,12 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class GreetingService {
-    @HystrixCommand(fallbackMethod = "defaultGreeting")
-    public String getGreeting(String username) {
-        return new RestTemplate().getForObject("http://localhost:9090/greeting/{username}", String.class, username);
-    }
+   @HystrixCommand(fallbackMethod = "defaultGreeting")
+   public String getGreeting(String username) {
+      return new RestTemplate().getForObject("http://localhost:9090/greeting/{username}", String.class, username);
+   }
 
-    private String defaultGreeting(String username) {
-        return "Hello User!";
-    }
+   private String defaultGreeting(String username) {
+      return "Hello User!";
+   }
 }

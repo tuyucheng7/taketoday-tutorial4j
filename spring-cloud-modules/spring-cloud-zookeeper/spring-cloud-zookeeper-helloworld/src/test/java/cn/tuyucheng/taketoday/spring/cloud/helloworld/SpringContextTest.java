@@ -1,13 +1,12 @@
 package cn.tuyucheng.taketoday.spring.cloud.helloworld;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = HelloWorldApplication.class)
-public class SpringContextTest {
+class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

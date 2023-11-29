@@ -20,108 +20,102 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ScrubResponseGatewayFilterLiveTest {
+class ScrubResponseGatewayFilterLiveTest {
 
-    private static Logger log = LoggerFactory.getLogger(ScrubResponseGatewayFilterLiveTest.class);
+   private static Logger log = LoggerFactory.getLogger(ScrubResponseGatewayFilterLiveTest.class);
 
-    private static final String JSON_WITH_FIELDS_TO_SCRUB = "{\r\n"
-          + "  \"name\" : \"John Doe\",\r\n"
-          + "        \"ssn\"  : \"123-45-9999\",\r\n"
-          + "        \"account\" : \"9999888877770000\"\r\n"
-          + "}";
+   private static final String JSON_WITH_FIELDS_TO_SCRUB = "{\r\n"
+         + "  \"name\" : \"John Doe\",\r\n"
+         + "        \"ssn\"  : \"123-45-9999\",\r\n"
+         + "        \"account\" : \"9999888877770000\"\r\n"
+         + "}";
 
-    private static final String JSON_WITH_SCRUBBED_FIELDS = "{\r\n"
-          + "  \"name\" : \"John Doe\",\r\n"
-          + "        \"ssn\"  : \"*\",\r\n"
-          + "        \"account\" : \"9999888877770000\"\r\n"
-          + "}";
+   private static final String JSON_WITH_SCRUBBED_FIELDS = "{\r\n"
+         + "  \"name\" : \"John Doe\",\r\n"
+         + "        \"ssn\"  : \"*\",\r\n"
+         + "        \"account\" : \"9999888877770000\"\r\n"
+         + "}";
 
-    @LocalServerPort
-    String port;
+   @LocalServerPort
+   String port;
 
-    @Autowired
-    private WebTestClient client;
+   @Autowired
+   private WebTestClient client;
 
-    @Autowired
-    HttpServer server;
+   @Autowired
+   HttpServer server;
 
-    @Test
-    public void givenRequestToScrubRoute_thenResponseScrubbed() {
-
-        client.get()
-              .uri("/scrub")
-              .accept(MediaType.APPLICATION_JSON)
-              .exchange()
-              .expectStatus()
-              .is2xxSuccessful()
-              .expectHeader()
-              .contentType(MediaType.APPLICATION_JSON)
-              .expectBody()
-              .json(JSON_WITH_SCRUBBED_FIELDS);
-    }
-
-
-    @TestConfiguration
-    public static class TestRoutesConfiguration {
+   @Test
+   void givenRequestToScrubRoute_thenResponseScrubbed() {
+      client.get()
+            .uri("/scrub")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus()
+            .is2xxSuccessful()
+            .expectHeader()
+            .contentType(MediaType.APPLICATION_JSON)
+            .expectBody()
+            .json(JSON_WITH_SCRUBBED_FIELDS);
+   }
 
 
-        @Bean
-        public RouteLocator scrubSsnRoute(RouteLocatorBuilder builder, ScrubResponseGatewayFilterFactory scrubFilterFactory, SetPathGatewayFilterFactory pathFilterFactory, HttpServer server) {
+   @TestConfiguration
+   public static class TestRoutesConfiguration {
 
-            log.info("[I92] Creating scrubSsnRoute...");
+      @Bean
+      public RouteLocator scrubSsnRoute(RouteLocatorBuilder builder, ScrubResponseGatewayFilterFactory scrubFilterFactory, SetPathGatewayFilterFactory pathFilterFactory, HttpServer server) {
+         log.info("[I92] Creating scrubSsnRoute...");
 
-            int mockServerPort = server.getAddress().getPort();
-            ScrubResponseGatewayFilterFactory.Config config = new ScrubResponseGatewayFilterFactory.Config();
-            config.setFields("ssn");
-            config.setReplacement("*");
+         int mockServerPort = server.getAddress().getPort();
+         ScrubResponseGatewayFilterFactory.Config config = new ScrubResponseGatewayFilterFactory.Config();
+         config.setFields("ssn");
+         config.setReplacement("*");
 
-            SetPathGatewayFilterFactory.Config pathConfig = new SetPathGatewayFilterFactory.Config();
-            pathConfig.setTemplate("/customer");
+         SetPathGatewayFilterFactory.Config pathConfig = new SetPathGatewayFilterFactory.Config();
+         pathConfig.setTemplate("/customer");
 
-            return builder.routes()
-                  .route("scrub_ssn",
-                        r -> r.path("/scrub")
-                              .filters(
-                                    f -> f
-                                          .filter(scrubFilterFactory.apply(config))
-                                          .filter(pathFilterFactory.apply(pathConfig)))
-                              .uri("http://localhost:" + mockServerPort))
-                  .build();
-        }
+         return builder.routes()
+               .route("scrub_ssn",
+                     r -> r.path("/scrub")
+                           .filters(
+                                 f -> f
+                                       .filter(scrubFilterFactory.apply(config))
+                                       .filter(pathFilterFactory.apply(pathConfig)))
+                           .uri("http://localhost:" + mockServerPort))
+               .build();
+      }
 
-        @Bean
-        public SecurityWebFilterChain testFilterChain(ServerHttpSecurity http) {
+      @Bean
+      public SecurityWebFilterChain testFilterChain(ServerHttpSecurity http) {
+         return http.authorizeExchange()
+               .anyExchange()
+               .permitAll()
+               .and()
+               .build();
+      }
 
-            // @formatter:off
-            return http.authorizeExchange()
-                  .anyExchange()
-                  .permitAll()
-                  .and()
-                  .build();
-            // @formatter:on
-        }
+      @Bean
+      public HttpServer mockServer() throws IOException {
+         log.info("[I48] Starting mock server...");
 
-        @Bean
-        public HttpServer mockServer() throws IOException {
+         HttpServer server = HttpServer.create(new InetSocketAddress(0), 0);
+         server.createContext("/customer", (exchange) -> {
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
 
-            log.info("[I48] Starting mock server...");
+            byte[] response = JSON_WITH_FIELDS_TO_SCRUB.getBytes(StandardCharsets.UTF_8);
+            exchange.sendResponseHeaders(200, response.length);
+            exchange.getResponseBody().write(response);
+         });
 
-            HttpServer server = HttpServer.create(new InetSocketAddress(0), 0);
-            server.createContext("/customer", (exchange) -> {
-                exchange.getResponseHeaders().set("Content-Type", "application/json");
+         server.setExecutor(null);
+         server.start();
 
-                byte[] response = JSON_WITH_FIELDS_TO_SCRUB.getBytes("UTF-8");
-                exchange.sendResponseHeaders(200, response.length);
-                exchange.getResponseBody().write(response);
-            });
-
-            server.setExecutor(null);
-            server.start();
-
-            log.info("[I65] Mock server started. port={}", server.getAddress().getPort());
-            return server;
-        }
-    }
+         log.info("[I65] Mock server started. port={}", server.getAddress().getPort());
+         return server;
+      }
+   }
 }

@@ -8,8 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:introduction-application.properties")
 public class IntroductionGatewayApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(IntroductionGatewayApplication.class, args);
-    }
-
+   public static void main(String[] args) {
+      SpringApplication.run(IntroductionGatewayApplication.class, args);
+   }
 }

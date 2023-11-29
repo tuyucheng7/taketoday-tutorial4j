@@ -15,10 +15,10 @@ import java.net.URL;
 @Configuration
 public class ApplicationPropertiesConfigurations {
 
-	@Bean
-	public AbstractConfiguration addApplicationPropertiesSource() throws IOException {
-		URL configPropertyURL = (new ClassPathResource("other-config.properties")).getURL();
-		PolledConfigurationSource source = new URLConfigurationSource(configPropertyURL);
-		return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
-	}
+   @Bean
+   public AbstractConfiguration addApplicationPropertiesSource() throws IOException {
+      URL configPropertyURL = (new ClassPathResource("other-config.properties")).getURL();
+      PolledConfigurationSource source = new URLConfigurationSource(configPropertyURL);
+      return new DynamicConfiguration(source, new FixedDelayPollingScheduler());
+   }
 }

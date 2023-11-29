@@ -9,14 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("my")
 public class MyProperties {
 
-	private String prop;
+   private String prop;
 
-	public String getProp() {
-		return prop;
-	}
+   public String getProp() {
+      return prop;
+   }
 
-	public void setProp(String prop) {
-		this.prop = prop;
-	}
-
+   public void setProp(String prop) {
+      this.prop = prop;
+   }
 }

@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = CloudSite.class)
-public class Springoath2ApplicationIntegrationTest {
+class Springoath2ApplicationIntegrationTest {
 
-	@Test
-	public void contextLoads() {
-	}
-
+   @Test
+   void contextLoads() {
+   }
 }

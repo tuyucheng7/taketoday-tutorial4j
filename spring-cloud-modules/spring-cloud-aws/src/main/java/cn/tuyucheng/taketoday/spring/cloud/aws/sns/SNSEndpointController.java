@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/topic-subscriber")
 public class SNSEndpointController {
 
-	private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
+   private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
 
-	@NotificationMessageMapping
-	public void receiveNotification(@NotificationMessage String message, @NotificationSubject String subject) {
-		logger.info("Received message: {}, having subject: {}", message, subject);
-	}
+   @NotificationMessageMapping
+   public void receiveNotification(@NotificationMessage String message, @NotificationSubject String subject) {
+      logger.info("Received message: {}, having subject: {}", message, subject);
+   }
 
-	@NotificationUnsubscribeConfirmationMapping
-	public void confirmSubscriptionMessage(NotificationStatus notificationStatus) {
-		logger.info("Unsubscribed from Topic");
-		notificationStatus.confirmSubscription();
-	}
+   @NotificationUnsubscribeConfirmationMapping
+   public void confirmSubscriptionMessage(NotificationStatus notificationStatus) {
+      logger.info("Unsubscribed from Topic");
+      notificationStatus.confirmSubscription();
+   }
 
-	@NotificationSubscriptionMapping
-	public void confirmUnsubscribeMessage(NotificationStatus notificationStatus) {
-		logger.info("Subscribed to Topic");
-		notificationStatus.confirmSubscription();
-	}
+   @NotificationSubscriptionMapping
+   public void confirmUnsubscribeMessage(NotificationStatus notificationStatus) {
+      logger.info("Subscribed to Topic");
+      notificationStatus.confirmSubscription();
+   }
 }

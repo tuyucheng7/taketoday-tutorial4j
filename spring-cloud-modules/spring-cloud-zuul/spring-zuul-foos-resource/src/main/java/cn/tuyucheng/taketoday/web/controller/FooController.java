@@ -14,13 +14,12 @@ import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 @RestController
 public class FooController {
 
-    @GetMapping("/foos/{id}")
-    public Foo findById(@PathVariable final long id, HttpServletRequest req, HttpServletResponse res) {
-        if (req.getHeader("Test") != null) {
-            res.addHeader("Test", req.getHeader("Test"));
-        }
+   @GetMapping("/foos/{id}")
+   public Foo findById(@PathVariable final long id, HttpServletRequest req, HttpServletResponse res) {
+      if (req.getHeader("Test") != null) {
+         res.addHeader("Test", req.getHeader("Test"));
+      }
 
-        return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
-    }
-
+      return new Foo(Long.parseLong(randomNumeric(2)), randomAlphabetic(4));
+   }
 }

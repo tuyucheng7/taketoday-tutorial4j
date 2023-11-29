@@ -13,35 +13,35 @@ import java.util.Optional;
 @Component
 public class ModifyResponseGatewayFilterFactory extends AbstractGatewayFilterFactory<ModifyResponseGatewayFilterFactory.Config> {
 
-    final Logger logger = LoggerFactory.getLogger(ModifyResponseGatewayFilterFactory.class);
+   final Logger logger = LoggerFactory.getLogger(ModifyResponseGatewayFilterFactory.class);
 
-    public ModifyResponseGatewayFilterFactory() {
-        super(Config.class);
-    }
+   public ModifyResponseGatewayFilterFactory() {
+      super(Config.class);
+   }
 
-    @Override
-    public GatewayFilter apply(Config config) {
-        return (exchange, chain) -> {
-            return chain.filter(exchange)
-                  .then(Mono.fromRunnable(() -> {
-                      ServerHttpResponse response = exchange.getResponse();
+   @Override
+   public GatewayFilter apply(Config config) {
+      return (exchange, chain) -> {
+         return chain.filter(exchange)
+               .then(Mono.fromRunnable(() -> {
+                  ServerHttpResponse response = exchange.getResponse();
 
-                      Optional.ofNullable(exchange.getRequest()
-                                  .getQueryParams()
-                                  .getFirst("locale"))
-                            .ifPresent(qp -> {
-                                String responseContentLanguage = response.getHeaders()
-                                      .getContentLanguage()
-                                      .getLanguage();
+                  Optional.ofNullable(exchange.getRequest()
+                              .getQueryParams()
+                              .getFirst("locale"))
+                        .ifPresent(qp -> {
+                           String responseContentLanguage = response.getHeaders()
+                                 .getContentLanguage()
+                                 .getLanguage();
 
-                                response.getHeaders()
-                                      .add("Bael-Custom-Language-Header", responseContentLanguage);
-                                logger.info("Added custom header to Response");
-                            });
-                  }));
-        };
-    }
+                           response.getHeaders()
+                                 .add("Bael-Custom-Language-Header", responseContentLanguage);
+                           logger.info("Added custom header to Response");
+                        });
+               }));
+      };
+   }
 
-    public static class Config {
-    }
+   public static class Config {
+   }
 }

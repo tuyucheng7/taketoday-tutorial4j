@@ -11,17 +11,17 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class CustomHealthIndicator implements HealthIndicator {
 
-    private boolean isHealthy = false;
+   private boolean isHealthy = false;
 
-    public CustomHealthIndicator() {
-        ScheduledExecutorService scheduled = Executors.newSingleThreadScheduledExecutor();
-        scheduled.schedule(() -> {
-            isHealthy = true;
-        }, 40, TimeUnit.SECONDS);
-    }
+   public CustomHealthIndicator() {
+      ScheduledExecutorService scheduled = Executors.newSingleThreadScheduledExecutor();
+      scheduled.schedule(() -> {
+         isHealthy = true;
+      }, 40, TimeUnit.SECONDS);
+   }
 
-    @Override
-    public Health health() {
-        return isHealthy ? Health.up().build() : Health.down().build();
-    }
+   @Override
+   public Health health() {
+      return isHealthy ? Health.up().build() : Health.down().build();
+   }
 }

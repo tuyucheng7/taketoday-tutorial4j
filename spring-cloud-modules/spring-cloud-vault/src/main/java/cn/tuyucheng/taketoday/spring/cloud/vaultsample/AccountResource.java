@@ -10,17 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AccountResource {
-    @Autowired
-    private AccountRepo repo;
+   @Autowired
+   private AccountRepo repo;
 
-    @GetMapping("/account/{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable("id") Long id) {
-
-        Account acc = repo.findById(id).orElse(null);
-        if (acc != null) {
-            return new ResponseEntity<Account>(acc, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+   @GetMapping("/account/{id}")
+   public ResponseEntity<Account> getAccount(@PathVariable("id") Long id) {
+      Account acc = repo.findById(id).orElse(null);
+      if (acc != null) {
+         return new ResponseEntity<>(acc, HttpStatus.OK);
+      } else {
+         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+   }
 }

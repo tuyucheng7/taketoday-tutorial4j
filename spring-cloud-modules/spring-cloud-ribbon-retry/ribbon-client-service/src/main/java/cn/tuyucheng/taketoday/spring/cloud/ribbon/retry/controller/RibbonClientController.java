@@ -8,14 +8,14 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class RibbonClientController {
 
-	private static final String WEATHER_SERVICE = "weather-service";
+   private static final String WEATHER_SERVICE = "weather-service";
 
-	@Autowired
-	private RestTemplate restTemplate;
+   @Autowired
+   private RestTemplate restTemplate;
 
-	@GetMapping("/client/weather")
-	public String weather() {
-		String result = restTemplate.getForObject("http://" + WEATHER_SERVICE + "/weather", String.class);
-		return "Weather Service Response: " + result;
-	}
+   @GetMapping("/client/weather")
+   public String weather() {
+      String result = restTemplate.getForObject("http://" + WEATHER_SERVICE + "/weather", String.class);
+      return "Weather Service Response: " + result;
+   }
 }

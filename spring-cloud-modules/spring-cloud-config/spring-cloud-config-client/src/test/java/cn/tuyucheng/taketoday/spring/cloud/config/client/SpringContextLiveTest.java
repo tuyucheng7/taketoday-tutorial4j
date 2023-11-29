@@ -13,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest(classes = ConfigClient.class)
 @WebAppConfiguration
 class SpringContextLiveTest {
-    @Test
-    void contextLoads() {
-    }
+   @Test
+   void contextLoads() {
+   }
 }

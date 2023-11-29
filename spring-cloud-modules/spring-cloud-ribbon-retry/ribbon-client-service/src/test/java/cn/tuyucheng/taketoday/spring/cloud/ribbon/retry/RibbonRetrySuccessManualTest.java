@@ -15,40 +15,39 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = RibbonClientApp.class)
-public class RibbonRetrySuccessManualTest {
+class RibbonRetrySuccessManualTest {
 
-	private static ConfigurableApplicationContext weatherServiceInstance1;
-	private static ConfigurableApplicationContext weatherServiceInstance2;
+   private static ConfigurableApplicationContext weatherServiceInstance1;
+   private static ConfigurableApplicationContext weatherServiceInstance2;
 
-	@LocalServerPort
-	private int port;
-	private TestRestTemplate restTemplate = new TestRestTemplate();
+   @LocalServerPort
+   private int port;
+   private TestRestTemplate restTemplate = new TestRestTemplate();
 
-	@BeforeAll
-	public static void setup() {
-		TomcatURLStreamHandlerFactory.disable();
-		weatherServiceInstance1 = startApp(8021);
-		weatherServiceInstance2 = startApp(8022);
-	}
+   @BeforeAll
+   static void setup() {
+      TomcatURLStreamHandlerFactory.disable();
+      weatherServiceInstance1 = startApp(8021);
+      weatherServiceInstance2 = startApp(8022);
+   }
 
-	private static ConfigurableApplicationContext startApp(int port) {
-		return SpringApplication.run(RibbonWeatherServiceApp.class, "--server.port=" + port, "--successful.call.divisor=3");
-	}
+   private static ConfigurableApplicationContext startApp(int port) {
+      return SpringApplication.run(RibbonWeatherServiceApp.class, "--server.port=" + port, "--successful.call.divisor=3");
+   }
 
-	@AfterAll
-	public static void cleanup() {
-		weatherServiceInstance1.close();
-		weatherServiceInstance2.close();
-	}
+   @AfterAll
+   static void cleanup() {
+      weatherServiceInstance1.close();
+      weatherServiceInstance2.close();
+   }
 
-	@Test
-	public void whenRibbonClientIsCalledAndServiceAvailable_thenSuccess() {
-		String url = "http://localhost:" + port + "/client/weather";
+   @Test
+   void whenRibbonClientIsCalledAndServiceAvailable_thenSuccess() {
+      String url = "http://localhost:" + port + "/client/weather";
 
-		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+      ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-		assertTrue(response.getStatusCode().is2xxSuccessful());
-		assertEquals(response.getBody(), "Weather Service Response: Today's a sunny day");
-	}
-
+      assertTrue(response.getStatusCode().is2xxSuccessful());
+      assertEquals(response.getBody(), "Weather Service Response: Today's a sunny day");
+   }
 }

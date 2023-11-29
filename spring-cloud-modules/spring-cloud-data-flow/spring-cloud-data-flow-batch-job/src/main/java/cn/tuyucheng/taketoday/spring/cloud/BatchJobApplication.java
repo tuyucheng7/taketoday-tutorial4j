@@ -8,7 +8,7 @@ import org.springframework.cloud.task.configuration.EnableTask;
 @SpringBootApplication
 public class BatchJobApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BatchJobApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(BatchJobApplication.class, args);
+   }
 }

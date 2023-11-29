@@ -8,8 +8,8 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class RequestRateLimiterResolverConfig {
 
-    @Bean
-    KeyResolver userKeyResolver() {
-        return exchange -> Mono.just("1");
-    }
+   @Bean
+   KeyResolver userKeyResolver() {
+      return exchange -> Mono.just("1");
+   }
 }

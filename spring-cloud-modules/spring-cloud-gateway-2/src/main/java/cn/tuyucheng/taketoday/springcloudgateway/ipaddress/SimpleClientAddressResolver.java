@@ -11,13 +11,12 @@ import java.util.Optional;
 
 @Component
 public class SimpleClientAddressResolver implements KeyResolver {
-    @Override
-    public Mono<String> resolve(ServerWebExchange exchange) {
-        return Optional.ofNullable(exchange.getRequest().getRemoteAddress())
-                .map(InetSocketAddress::getAddress)
-                .map(InetAddress::getHostAddress)
-                .map(Mono::just)
-                .orElse(Mono.empty());
-    }
+   @Override
+   public Mono<String> resolve(ServerWebExchange exchange) {
+      return Optional.ofNullable(exchange.getRequest().getRemoteAddress())
+            .map(InetSocketAddress::getAddress)
+            .map(InetAddress::getHostAddress)
+            .map(Mono::just)
+            .orElse(Mono.empty());
+   }
 }
-

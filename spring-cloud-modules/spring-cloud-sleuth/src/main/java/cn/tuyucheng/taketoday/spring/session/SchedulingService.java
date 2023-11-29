@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchedulingService {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final SleuthService sleuthService;
+   private final Logger logger = LoggerFactory.getLogger(this.getClass());
+   private final SleuthService sleuthService;
 
-	@Autowired
-	public SchedulingService(SleuthService sleuthService) {
-		this.sleuthService = sleuthService;
-	}
+   @Autowired
+   public SchedulingService(SleuthService sleuthService) {
+      this.sleuthService = sleuthService;
+   }
 
-	@Scheduled(fixedDelay = 30000)
-	public void scheduledWork() throws InterruptedException {
-		logger.info("Start some work from the scheduled task");
-		sleuthService.asyncMethod();
-		logger.info("End work from scheduled task");
-	}
+   @Scheduled(fixedDelay = 30000)
+   public void scheduledWork() throws InterruptedException {
+      logger.info("Start some work from the scheduled task");
+      sleuthService.asyncMethod();
+      logger.info("End work from scheduled task");
+   }
 }

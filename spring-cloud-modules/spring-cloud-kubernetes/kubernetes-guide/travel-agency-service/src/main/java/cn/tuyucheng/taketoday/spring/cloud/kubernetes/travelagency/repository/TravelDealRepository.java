@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface TravelDealRepository extends MongoRepository<TravelDeal, String> {
 
-    public List<TravelDeal> findByDestination(String destination);
-
+   List<TravelDeal> findByDestination(String destination);
 }

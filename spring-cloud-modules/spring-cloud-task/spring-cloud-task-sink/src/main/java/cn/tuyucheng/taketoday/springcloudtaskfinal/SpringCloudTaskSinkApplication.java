@@ -8,9 +8,7 @@ import org.springframework.cloud.task.launcher.annotation.EnableTaskLauncher;
 @EnableTaskLauncher
 public class SpringCloudTaskSinkApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(
-              SpringCloudTaskSinkApplication.class, args);
-    }
-
+   public static void main(String[] args) {
+      SpringApplication.run(SpringCloudTaskSinkApplication.class, args);
+   }
 }

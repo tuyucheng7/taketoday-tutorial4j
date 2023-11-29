@@ -9,19 +9,19 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @WebFluxTest(controllers = SecondServiceRestController.class,
       excludeAutoConfiguration = ReactiveSecurityAutoConfiguration.class)
-public class SecondServiceIntegrationTest {
+class SecondServiceIntegrationTest {
 
-    @Autowired
-    private WebTestClient webClient;
+   @Autowired
+   private WebTestClient webClient;
 
-    @Test
-    public void whenResourceLanguageEndpointCalled_thenRetrievesSpanishLanguageString() throws Exception {
-        this.webClient.get()
-              .uri("/resource/language")
-              .exchange()
-              .expectStatus()
-              .isOk()
-              .expectBody(String.class)
-              .isEqualTo("es");
-    }
+   @Test
+   void whenResourceLanguageEndpointCalled_thenRetrievesSpanishLanguageString() throws Exception {
+      this.webClient.get()
+            .uri("/resource/language")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(String.class)
+            .isEqualTo("es");
+   }
 }

@@ -9,13 +9,12 @@ import java.util.function.Function;
 @SpringBootApplication
 public class CloudFunctionAwsApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CloudFunctionAwsApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(CloudFunctionAwsApplication.class, args);
+   }
 
-    @Bean
-    public Function<String, String> reverseString() {
-        return value -> new StringBuilder(value).reverse().toString();
-    }
-
+   @Bean
+   public Function<String, String> reverseString() {
+      return value -> new StringBuilder(value).reverse().toString();
+   }
 }

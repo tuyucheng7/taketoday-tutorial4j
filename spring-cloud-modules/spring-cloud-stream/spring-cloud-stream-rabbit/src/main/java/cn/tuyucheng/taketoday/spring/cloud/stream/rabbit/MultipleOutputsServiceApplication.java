@@ -12,26 +12,26 @@ import org.springframework.messaging.support.MessageBuilder;
 @SpringBootApplication
 @EnableBinding(MyProcessor.class)
 public class MultipleOutputsServiceApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(MultipleOutputsServiceApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MultipleOutputsServiceApplication.class, args);
+   }
 
-	@Autowired
-	private MyProcessor processor;
+   @Autowired
+   private MyProcessor processor;
 
-	@StreamListener(MyProcessor.INPUT)
-	public void routeValues(Integer val) {
-		if (val < 10) {
-			processor.anOutput()
-				.send(message(val));
-		} else {
-			processor.anotherOutput()
-				.send(message(val));
-		}
-	}
+   @StreamListener(MyProcessor.INPUT)
+   public void routeValues(Integer val) {
+      if (val < 10) {
+         processor.anOutput()
+               .send(message(val));
+      } else {
+         processor.anotherOutput()
+               .send(message(val));
+      }
+   }
 
-	private static final <T> Message<T> message(T val) {
-		return MessageBuilder.withPayload(val)
-			.build();
-	}
+   private static final <T> Message<T> message(T val) {
+      return MessageBuilder.withPayload(val)
+            .build();
+   }
 }

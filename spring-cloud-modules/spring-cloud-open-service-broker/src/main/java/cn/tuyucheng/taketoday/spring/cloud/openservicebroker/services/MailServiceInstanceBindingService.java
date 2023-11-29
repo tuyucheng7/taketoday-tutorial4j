@@ -18,60 +18,60 @@ import reactor.core.publisher.Mono;
 @Service
 public class MailServiceInstanceBindingService implements ServiceInstanceBindingService {
 
-	private final MailService mailService;
+   private final MailService mailService;
 
-	public MailServiceInstanceBindingService(MailService mailService) {
-		this.mailService = mailService;
-	}
+   public MailServiceInstanceBindingService(MailService mailService) {
+      this.mailService = mailService;
+   }
 
-	@Override
-	public Mono<CreateServiceInstanceBindingResponse> createServiceInstanceBinding(
-		CreateServiceInstanceBindingRequest request) {
-		return Mono.just(CreateServiceInstanceAppBindingResponse.builder())
-			.flatMap(responseBuilder -> mailService.serviceBindingExists(
-					request.getServiceInstanceId(), request.getBindingId())
-				.flatMap(exists -> {
-					if (exists) {
-						return mailService.getServiceBinding(
-								request.getServiceInstanceId(), request.getBindingId())
-							.flatMap(serviceBinding -> Mono.just(responseBuilder
-								.bindingExisted(true)
-								.credentials(serviceBinding.getCredentials())
-								.build()));
-					} else {
-						return mailService.createServiceBinding(
-								request.getServiceInstanceId(), request.getBindingId())
-							.switchIfEmpty(Mono.error(
-								new ServiceInstanceDoesNotExistException(
-									request.getServiceInstanceId())))
-							.flatMap(mailServiceBinding -> Mono.just(responseBuilder
-								.bindingExisted(false)
-								.credentials(mailServiceBinding.getCredentials())
-								.build()));
-					}
-				}));
-	}
+   @Override
+   public Mono<CreateServiceInstanceBindingResponse> createServiceInstanceBinding(
+         CreateServiceInstanceBindingRequest request) {
+      return Mono.just(CreateServiceInstanceAppBindingResponse.builder())
+            .flatMap(responseBuilder -> mailService.serviceBindingExists(
+                        request.getServiceInstanceId(), request.getBindingId())
+                  .flatMap(exists -> {
+                     if (exists) {
+                        return mailService.getServiceBinding(
+                                    request.getServiceInstanceId(), request.getBindingId())
+                              .flatMap(serviceBinding -> Mono.just(responseBuilder
+                                    .bindingExisted(true)
+                                    .credentials(serviceBinding.getCredentials())
+                                    .build()));
+                     } else {
+                        return mailService.createServiceBinding(
+                                    request.getServiceInstanceId(), request.getBindingId())
+                              .switchIfEmpty(Mono.error(
+                                    new ServiceInstanceDoesNotExistException(
+                                          request.getServiceInstanceId())))
+                              .flatMap(mailServiceBinding -> Mono.just(responseBuilder
+                                    .bindingExisted(false)
+                                    .credentials(mailServiceBinding.getCredentials())
+                                    .build()));
+                     }
+                  }));
+   }
 
-	@Override
-	public Mono<GetServiceInstanceBindingResponse> getServiceInstanceBinding(GetServiceInstanceBindingRequest request) {
-		return mailService.getServiceBinding(request.getServiceInstanceId(), request.getBindingId())
-			.switchIfEmpty(Mono.error(new ServiceInstanceBindingDoesNotExistException(request.getBindingId())))
-			.flatMap(mailServiceBinding -> Mono.just(GetServiceInstanceAppBindingResponse.builder()
-				.credentials(mailServiceBinding.getCredentials())
-				.build()));
-	}
+   @Override
+   public Mono<GetServiceInstanceBindingResponse> getServiceInstanceBinding(GetServiceInstanceBindingRequest request) {
+      return mailService.getServiceBinding(request.getServiceInstanceId(), request.getBindingId())
+            .switchIfEmpty(Mono.error(new ServiceInstanceBindingDoesNotExistException(request.getBindingId())))
+            .flatMap(mailServiceBinding -> Mono.just(GetServiceInstanceAppBindingResponse.builder()
+                  .credentials(mailServiceBinding.getCredentials())
+                  .build()));
+   }
 
-	@Override
-	public Mono<DeleteServiceInstanceBindingResponse> deleteServiceInstanceBinding(
-		DeleteServiceInstanceBindingRequest request) {
-		return mailService.serviceBindingExists(request.getServiceInstanceId(), request.getBindingId())
-			.flatMap(exists -> {
-				if (exists) {
-					return mailService.deleteServiceBinding(request.getServiceInstanceId())
-						.thenReturn(DeleteServiceInstanceBindingResponse.builder().build());
-				} else {
-					return Mono.error(new ServiceInstanceBindingDoesNotExistException(request.getBindingId()));
-				}
-			});
-	}
+   @Override
+   public Mono<DeleteServiceInstanceBindingResponse> deleteServiceInstanceBinding(
+         DeleteServiceInstanceBindingRequest request) {
+      return mailService.serviceBindingExists(request.getServiceInstanceId(), request.getBindingId())
+            .flatMap(exists -> {
+               if (exists) {
+                  return mailService.deleteServiceBinding(request.getServiceInstanceId())
+                        .thenReturn(DeleteServiceInstanceBindingResponse.builder().build());
+               } else {
+                  return Mono.error(new ServiceInstanceBindingDoesNotExistException(request.getBindingId()));
+               }
+            });
+   }
 }

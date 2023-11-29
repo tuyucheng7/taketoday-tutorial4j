@@ -1,36 +1,34 @@
 package cn.tuyucheng.taketoday.spring.cloud.azure.keyvault;
 
+import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
+import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultClient;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
-import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultClient;
-import cn.tuyucheng.taketoday.spring.cloud.azure.keyvault.service.KeyVaultAutoconfiguredClient;
-
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	@Value("${database.secret.value}")
-	private String mySecret;
+   @Value("${database.secret.value}")
+   private String mySecret;
 
-	private final KeyVaultClient keyVaultClient;
+   private final KeyVaultClient keyVaultClient;
 
-	public Application(@Qualifier(value = "KeyVaultAutoconfiguredClient") KeyVaultAutoconfiguredClient keyVaultAutoconfiguredClient) {
-		this.keyVaultClient = keyVaultAutoconfiguredClient;
-	}
+   public Application(@Qualifier(value = "KeyVaultAutoconfiguredClient") KeyVaultAutoconfiguredClient keyVaultAutoconfiguredClient) {
+      this.keyVaultClient = keyVaultAutoconfiguredClient;
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class);
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class);
 
-	}
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		// KeyVaultSecret keyVaultSecret = keyVaultClient.getSecret("my-secret");
-		// System.out.println("Hey, our secret is here ->" + keyVaultSecret.getValue());
-		// System.out.println("Hey, our secret is here from application properties file ->" + mySecret);
-	}
+   @Override
+   public void run(String... args) throws Exception {
+      // KeyVaultSecret keyVaultSecret = keyVaultClient.getSecret("my-secret");
+      // System.out.println("Hey, our secret is here ->" + keyVaultSecret.getValue());
+      // System.out.println("Hey, our secret is here from application properties file ->" + mySecret);
+   }
 }

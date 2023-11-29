@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.springcloudgateway.webfilters;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,45 +18,43 @@ import redis.embedded.RedisServer;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("webfilters")
 @TestConfiguration
-public class RedisWebFilterFactoriesLiveTest {
+class RedisWebFilterFactoriesLiveTest {
+   private static final Logger LOGGER = LoggerFactory.getLogger(RedisWebFilterFactoriesLiveTest.class);
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisWebFilterFactoriesLiveTest.class);
+   private RedisServer redisServer;
 
-    private RedisServer redisServer;
+   public RedisWebFilterFactoriesLiveTest() {
+   }
 
-    public RedisWebFilterFactoriesLiveTest() {
-    }
+   @BeforeEach
+   public void postConstruct() {
+      this.redisServer = new RedisServer(6379);
+      redisServer.start();
+   }
 
-    @Before
-    public void postConstruct() {
-        this.redisServer = new RedisServer(6379);
-        redisServer.start();
-    }
+   @LocalServerPort
+   String port;
 
-    @LocalServerPort
-    String port;
+   @Autowired
+   private TestRestTemplate restTemplate;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+   @Autowired
+   TestRestTemplate template;
 
-    @Autowired
-    TestRestTemplate template;
+   @RepeatedTest(25)
+   void whenCallRedisGetThroughGateway_thenOKStatusOrIsReceived() {
+      String url = "http://localhost:" + port + "/redis/get";
 
-    @RepeatedTest(25)
-    public void whenCallRedisGetThroughGateway_thenOKStatusOrIsReceived() {
-        String url = "http://localhost:" + port + "/redis/get";
+      ResponseEntity<String> r = restTemplate.getForEntity(url, String.class);
+      // assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        ResponseEntity<String> r = restTemplate.getForEntity(url, String.class);
-        // assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+      LOGGER.info("Received: status->{}, reason->{}, remaining->{}",
+            r.getStatusCodeValue(), r.getStatusCode().getReasonPhrase(),
+            r.getHeaders().get("X-RateLimit-Remaining"));
+   }
 
-        LOGGER.info("Received: status->{}, reason->{}, remaining->{}",
-              r.getStatusCodeValue(), r.getStatusCode().getReasonPhrase(),
-              r.getHeaders().get("X-RateLimit-Remaining"));
-    }
-
-    @After
-    public void preDestroy() {
-        redisServer.stop();
-    }
-
+   @AfterEach
+   void preDestroy() {
+      redisServer.stop();
+   }
 }

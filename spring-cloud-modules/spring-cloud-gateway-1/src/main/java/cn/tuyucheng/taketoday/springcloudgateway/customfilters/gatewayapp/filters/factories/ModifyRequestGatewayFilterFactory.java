@@ -9,86 +9,80 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class ModifyRequestGatewayFilterFactory extends AbstractGatewayFilterFactory<ModifyRequestGatewayFilterFactory.Config> {
 
-    final Logger logger = LoggerFactory.getLogger(ModifyRequestGatewayFilterFactory.class);
+   final Logger logger = LoggerFactory.getLogger(ModifyRequestGatewayFilterFactory.class);
 
-    public ModifyRequestGatewayFilterFactory() {
-        super(Config.class);
-    }
+   public ModifyRequestGatewayFilterFactory() {
+      super(Config.class);
+   }
 
-    @Override
-    public List<String> shortcutFieldOrder() {
-        return Arrays.asList("defaultLocale");
-    }
+   @Override
+   public List<String> shortcutFieldOrder() {
+      return Arrays.asList("defaultLocale");
+   }
 
-    @Override
-    public GatewayFilter apply(Config config) {
-        return (exchange, chain) -> {
-            if (exchange.getRequest()
-                  .getHeaders()
-                  .getAcceptLanguage()
-                  .isEmpty()) {
+   @Override
+   public GatewayFilter apply(Config config) {
+      return (exchange, chain) -> {
+         if (exchange.getRequest()
+               .getHeaders()
+               .getAcceptLanguage()
+               .isEmpty()) {
 
-                String queryParamLocale = exchange.getRequest()
-                      .getQueryParams()
-                      .getFirst("locale");
+            String queryParamLocale = exchange.getRequest()
+                  .getQueryParams()
+                  .getFirst("locale");
 
-                Locale requestLocale = Optional.ofNullable(queryParamLocale)
-                      .map(l -> Locale.forLanguageTag(l))
-                      .orElse(config.getDefaultLocale());
+            Locale requestLocale = Optional.ofNullable(queryParamLocale)
+                  .map(Locale::forLanguageTag)
+                  .orElse(config.getDefaultLocale());
 
-                exchange.getRequest()
-                      .mutate()
-                      .headers(h -> h.setAcceptLanguageAsLocales(Collections.singletonList(requestLocale)));
-            }
+            exchange.getRequest()
+                  .mutate()
+                  .headers(h -> h.setAcceptLanguageAsLocales(Collections.singletonList(requestLocale)));
+         }
 
-            String allOutgoingRequestLanguages = exchange.getRequest()
-                  .getHeaders()
-                  .getAcceptLanguage()
-                  .stream()
-                  .map(range -> range.getRange())
-                  .collect(Collectors.joining(","));
+         String allOutgoingRequestLanguages = exchange.getRequest()
+               .getHeaders()
+               .getAcceptLanguage()
+               .stream()
+               .map(Locale.LanguageRange::getRange)
+               .collect(Collectors.joining(","));
 
-            logger.info("Modify request output - Request contains Accept-Language header: {}", allOutgoingRequestLanguages);
+         logger.info("Modify request output - Request contains Accept-Language header: {}", allOutgoingRequestLanguages);
 
-            ServerWebExchange modifiedExchange = exchange.mutate()
-                  .request(originalRequest -> originalRequest.uri(UriComponentsBuilder.fromUri(exchange.getRequest()
-                              .getURI())
-                        .replaceQueryParams(new LinkedMultiValueMap<String, String>())
-                        .build()
-                        .toUri()))
-                  .build();
+         ServerWebExchange modifiedExchange = exchange.mutate()
+               .request(originalRequest -> originalRequest.uri(UriComponentsBuilder.fromUri(exchange.getRequest()
+                           .getURI())
+                     .replaceQueryParams(new LinkedMultiValueMap<>())
+                     .build()
+                     .toUri()))
+               .build();
 
-            logger.info("Removed all query params: {}", modifiedExchange.getRequest()
-                  .getURI());
+         logger.info("Removed all query params: {}", modifiedExchange.getRequest()
+               .getURI());
 
-            return chain.filter(modifiedExchange);
-        };
-    }
+         return chain.filter(modifiedExchange);
+      };
+   }
 
-    public static class Config {
-        private Locale defaultLocale;
+   public static class Config {
+      private Locale defaultLocale;
 
-        public Config() {
-        }
+      public Config() {
+      }
 
-        public Locale getDefaultLocale() {
-            return defaultLocale;
-        }
+      public Locale getDefaultLocale() {
+         return defaultLocale;
+      }
 
-        public void setDefaultLocale(String defaultLocale) {
-            this.defaultLocale = Locale.forLanguageTag(defaultLocale);
-        }
-
-        ;
-    }
+      public void setDefaultLocale(String defaultLocale) {
+         this.defaultLocale = Locale.forLanguageTag(defaultLocale);
+      }
+   }
 }

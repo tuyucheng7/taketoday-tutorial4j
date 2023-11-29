@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = JdbcSourcesApplication.class)
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

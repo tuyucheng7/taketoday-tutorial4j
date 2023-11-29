@@ -1,19 +1,18 @@
 package cn.tuyucheng.taketoday;
 
 import cn.tuyucheng.taketoday.kclkpl.KinesisKPLApplication;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Manual Test - this test needs correct AWS Access Key and Secret to build the Amazon Kinesis and complete successfully
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = KinesisKPLApplication.class)
-public class KinesisApplicationManualTest {
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-
-	}
+class KinesisApplicationManualTest {
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

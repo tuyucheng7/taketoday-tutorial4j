@@ -1,65 +1,52 @@
 package cn.tuyucheng.taketoday.spring.cloud.vaultsample;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class VaultSampleApplicationLiveTest {
+class VaultSampleApplicationLiveTest {
 
-    @Autowired
-    Environment env;
+   @Autowired
+   Environment env;
 
-    @Autowired
-    DataSource datasource;
+   @Autowired
+   DataSource datasource;
 
+   @Test
+   void whenGenericBackendEnabled_thenEnvHasAccessToVaultSecrets() {
+      String fooValue = env.getProperty("foo");
+      assertEquals("test-bar", fooValue);
+   }
 
-    @Test
-    public void whenGenericBackendEnabled_thenEnvHasAccessToVaultSecrets() {
+   @Test
+   void whenKvBackendEnabled_thenEnvHasAccessToVaultSecrets() {
+      String fooValue = env.getProperty("foo.versioned");
+      assertEquals("bar1", fooValue);
+   }
 
-        String fooValue = env.getProperty("foo");
-        assertEquals("test-bar", fooValue);
+   @Test
+   void whenDatabaseBackendEnabled_thenDatasourceUsesVaultCredentials() {
+      try (Connection c = datasource.getConnection()) {
+         ResultSet rs = c.createStatement().executeQuery("select 1");
 
-    }
+         rs.next();
+         Long value = rs.getLong(1);
 
-    @Test
-    public void whenKvBackendEnabled_thenEnvHasAccessToVaultSecrets() {
-
-        String fooValue = env.getProperty("foo.versioned");
-        assertEquals("bar1", fooValue);
-
-
-    }
-
-
-    @Test
-    public void whenDatabaseBackendEnabled_thenDatasourceUsesVaultCredentials() {
-
-        try (Connection c = datasource.getConnection()) {
-
-            ResultSet rs = c.createStatement()
-                  .executeQuery("select 1");
-
-            rs.next();
-            Long value = rs.getLong(1);
-
-            assertEquals(Long.valueOf(1), value);
-
-        } catch (SQLException sex) {
-            throw new RuntimeException(sex);
-        }
-
-    }
-
+         assertEquals(Long.valueOf(1), value);
+      } catch (SQLException sex) {
+         throw new RuntimeException(sex);
+      }
+   }
 }

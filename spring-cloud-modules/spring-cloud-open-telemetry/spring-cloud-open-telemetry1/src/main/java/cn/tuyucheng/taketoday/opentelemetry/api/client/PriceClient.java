@@ -13,22 +13,22 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class PriceClient {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PriceClient.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(PriceClient.class);
 
-	private final RestTemplate restTemplate;
+   private final RestTemplate restTemplate;
 
-	@Autowired
-	public PriceClient(RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
-	}
+   @Autowired
+   public PriceClient(RestTemplate restTemplate) {
+      this.restTemplate = restTemplate;
+   }
 
-	@Value("${priceClient.baseUrl}")
-	private String baseUrl;
+   @Value("${priceClient.baseUrl}")
+   private String baseUrl;
 
-	public Price getPrice(@PathVariable("id") long productId) {
-		LOGGER.info("Fetching Price Details With Product Id {}", productId);
-		String url = String.format("%s/price/%d", baseUrl, productId);
-		ResponseEntity<Price> price = restTemplate.getForEntity(url, Price.class);
-		return price.getBody();
-	}
+   public Price getPrice(@PathVariable("id") long productId) {
+      LOGGER.info("Fetching Price Details With Product Id {}", productId);
+      String url = String.format("%s/price/%d", baseUrl, productId);
+      ResponseEntity<Price> price = restTemplate.getForEntity(url, Price.class);
+      return price.getBody();
+   }
 }

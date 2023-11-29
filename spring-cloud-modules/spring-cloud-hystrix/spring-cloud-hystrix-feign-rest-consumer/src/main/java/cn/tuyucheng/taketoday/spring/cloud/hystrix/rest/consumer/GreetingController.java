@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class GreetingController {
-    @Autowired
-    private GreetingClient greetingClient;
+   @Autowired
+   private GreetingClient greetingClient;
 
-    @RequestMapping("/get-greeting/{username}")
-    public String getGreeting(Model model, @PathVariable("username") String username) {
-        model.addAttribute("greeting", greetingClient.greeting(username));
-        return "greeting-view";
-    }
+   @RequestMapping("/get-greeting/{username}")
+   public String getGreeting(Model model, @PathVariable("username") String username) {
+      model.addAttribute("greeting", greetingClient.greeting(username));
+      return "greeting-view";
+   }
 }

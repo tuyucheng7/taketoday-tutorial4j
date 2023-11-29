@@ -20,40 +20,40 @@ import java.nio.file.StandardCopyOption;
 @Component
 public class SpringCloudS3 {
 
-	@Autowired
-	ResourceLoader resourceLoader;
+   @Autowired
+   ResourceLoader resourceLoader;
 
-	private ResourcePatternResolver resourcePatternResolver;
+   private ResourcePatternResolver resourcePatternResolver;
 
-	@Autowired
-	public void setupResolver(ApplicationContext applicationContext, AmazonS3 amazonS3) {
-		this.resourcePatternResolver = new PathMatchingSimpleStorageResourcePatternResolver(amazonS3, applicationContext);
-	}
+   @Autowired
+   public void setupResolver(ApplicationContext applicationContext, AmazonS3 amazonS3) {
+      this.resourcePatternResolver = new PathMatchingSimpleStorageResourcePatternResolver(amazonS3, applicationContext);
+   }
 
-	public void downloadS3Object(String s3Url) throws IOException {
-		Resource resource = resourceLoader.getResource(s3Url);
-		File downloadedS3Object = new File(resource.getFilename());
-		try (InputStream inputStream = resource.getInputStream()) {
-			Files.copy(inputStream, downloadedS3Object.toPath(), StandardCopyOption.REPLACE_EXISTING);
-		}
-	}
+   public void downloadS3Object(String s3Url) throws IOException {
+      Resource resource = resourceLoader.getResource(s3Url);
+      File downloadedS3Object = new File(resource.getFilename());
+      try (InputStream inputStream = resource.getInputStream()) {
+         Files.copy(inputStream, downloadedS3Object.toPath(), StandardCopyOption.REPLACE_EXISTING);
+      }
+   }
 
-	public void uploadFileToS3(File file, String s3Url) throws IOException {
-		WritableResource resource = (WritableResource) resourceLoader.getResource(s3Url);
-		try (OutputStream outputStream = resource.getOutputStream()) {
-			Files.copy(file.toPath(), outputStream);
-		}
-	}
+   public void uploadFileToS3(File file, String s3Url) throws IOException {
+      WritableResource resource = (WritableResource) resourceLoader.getResource(s3Url);
+      try (OutputStream outputStream = resource.getOutputStream()) {
+         Files.copy(file.toPath(), outputStream);
+      }
+   }
 
-	public void downloadMultipleS3Objects(String s3UrlPattern) throws IOException {
-		Resource[] allFileMatchingPatten = this.resourcePatternResolver.getResources(s3UrlPattern);
-		for (Resource resource : allFileMatchingPatten) {
-			String fileName = resource.getFilename();
-			fileName = fileName.substring(0, fileName.lastIndexOf("/") + 1);
-			File downloadedS3Object = new File(fileName);
-			try (InputStream inputStream = resource.getInputStream()) {
-				Files.copy(inputStream, downloadedS3Object.toPath(), StandardCopyOption.REPLACE_EXISTING);
-			}
-		}
-	}
+   public void downloadMultipleS3Objects(String s3UrlPattern) throws IOException {
+      Resource[] allFileMatchingPatten = this.resourcePatternResolver.getResources(s3UrlPattern);
+      for (Resource resource : allFileMatchingPatten) {
+         String fileName = resource.getFilename();
+         fileName = fileName.substring(0, fileName.lastIndexOf("/") + 1);
+         File downloadedS3Object = new File(fileName);
+         try (InputStream inputStream = resource.getInputStream()) {
+            Files.copy(inputStream, downloadedS3Object.toPath(), StandardCopyOption.REPLACE_EXISTING);
+         }
+      }
+   }
 }

@@ -19,36 +19,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ArchaiusAdditionalSourcesLiveTest {
 
-	private static final String BASE_URL = "http://localhost:8082";
+   private static final String BASE_URL = "http://localhost:8082";
 
-	private static final String DYNAMIC_PROPERTIES_URL = "/properties-from-dynamic";
-	private static final Map<String, String> EXPECTED_ARCHAIUS_PROPERTIES = createExpectedArchaiusProperties();
+   private static final String DYNAMIC_PROPERTIES_URL = "/properties-from-dynamic";
+   private static final Map<String, String> EXPECTED_ARCHAIUS_PROPERTIES = createExpectedArchaiusProperties();
 
-	private static Map<String, String> createExpectedArchaiusProperties() {
-		Map<String, String> map = new HashMap<>();
-		map.put("tuyucheng.archaius.properties.one", "one FROM:other-config.properties");
-		map.put("tuyucheng.archaius.properties.two", "two FROM:application.properties");
-		map.put("tuyucheng.archaius.properties.three", "three FROM:config.properties");
-		map.put("tuyucheng.archaius.properties.four", "four FROM:other-config.properties");
-		return map;
-	}
+   private static Map<String, String> createExpectedArchaiusProperties() {
+      Map<String, String> map = new HashMap<>();
+      map.put("tuyucheng.archaius.properties.one", "one FROM:other-config.properties");
+      map.put("tuyucheng.archaius.properties.two", "two FROM:application.properties");
+      map.put("tuyucheng.archaius.properties.three", "three FROM:config.properties");
+      map.put("tuyucheng.archaius.properties.four", "four FROM:other-config.properties");
+      return map;
+   }
 
-	@Autowired
-	ConfigurableApplicationContext context;
+   @Autowired
+   ConfigurableApplicationContext context;
 
-	@Autowired
-	private TestRestTemplate template;
+   @Autowired
+   private TestRestTemplate template;
 
-	private <T> Map<T, T> exchangeAsMap(String uri, ParameterizedTypeReference<Map<T, T>> responseType) {
-		return template.exchange(uri, HttpMethod.GET, null, responseType)
-			.getBody();
-	}
+   private <T> Map<T, T> exchangeAsMap(String uri, ParameterizedTypeReference<Map<T, T>> responseType) {
+      return template.exchange(uri, HttpMethod.GET, null, responseType)
+            .getBody();
+   }
 
-	@Test
-	void givenNonDefaultConfigurationFilesSetup_whenRequestProperties_thenEndpointRetrievesValuesInFiles() {
-		Map<String, String> initialResponse = this.exchangeAsMap(BASE_URL + DYNAMIC_PROPERTIES_URL, new ParameterizedTypeReference<Map<String, String>>() {
-		});
+   @Test
+   void givenNonDefaultConfigurationFilesSetup_whenRequestProperties_thenEndpointRetrievesValuesInFiles() {
+      Map<String, String> initialResponse = this.exchangeAsMap(BASE_URL + DYNAMIC_PROPERTIES_URL, new ParameterizedTypeReference<>() {
+      });
 
-		assertThat(initialResponse).containsAllEntriesOf(EXPECTED_ARCHAIUS_PROPERTIES);
-	}
+      assertThat(initialResponse).containsAllEntriesOf(EXPECTED_ARCHAIUS_PROPERTIES);
+   }
 }

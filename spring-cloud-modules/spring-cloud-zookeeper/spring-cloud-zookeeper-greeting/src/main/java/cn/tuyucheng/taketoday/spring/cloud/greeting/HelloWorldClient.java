@@ -22,19 +22,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableDiscoveryClient
 public class HelloWorldClient {
 
-    @Autowired
-    private TheClient theClient;
+   @Autowired
+   private TheClient theClient;
 
-    @FeignClient(name = "HelloWorld")
-    interface TheClient {
+   @FeignClient(name = "HelloWorld")
+   interface TheClient {
+      @RequestMapping(path = "/helloworld", method = RequestMethod.GET)
+      @ResponseBody
+      String HelloWorld();
+   }
 
-        @RequestMapping(path = "/helloworld", method = RequestMethod.GET)
-        @ResponseBody
-        String HelloWorld();
-    }
-
-    public String HelloWorld() {
-        return theClient.HelloWorld();
-    }
-
+   public String HelloWorld() {
+      return theClient.HelloWorld();
+   }
 }

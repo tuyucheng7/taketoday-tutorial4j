@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.spring.cloud.vaultsample;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * This live test requires:
@@ -13,11 +13,11 @@ import org.springframework.test.context.junit4.SpringRunner;
  * For more info on setting up the vault server:
  * https://www.baeldung.com/vault
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = VaultSampleApplication.class)
-public class SpringContextLiveTest {
+class SpringContextLiveTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DistributedPropertiesController {
 
-	@Value("${my.prop}")
-	String value;
+   @Value("${my.prop}")
+   String value;
 
-	@Autowired
-	private MyProperties properties;
+   @Autowired
+   private MyProperties properties;
 
-	@GetMapping("/getConfigFromValue")
-	public String getConfigFromValue() {
-		return value;
-	}
+   @GetMapping("/getConfigFromValue")
+   public String getConfigFromValue() {
+      return value;
+   }
 
-	@GetMapping("/getConfigFromProperty")
-	public String getConfigFromProperty() {
-		return properties.getProp();
-	}
-
+   @GetMapping("/getConfigFromProperty")
+   public String getConfigFromProperty() {
+      return properties.getProp();
+   }
 }

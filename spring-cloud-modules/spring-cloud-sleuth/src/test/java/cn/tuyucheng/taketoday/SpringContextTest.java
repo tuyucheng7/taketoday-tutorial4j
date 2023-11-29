@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = SleuthWebApp.class)
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

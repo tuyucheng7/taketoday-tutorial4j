@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestConfig {
 
-	@RequestMapping(value = "/locaus")
-	public String locationAUSDetails() {
-		return "Australia";
-	}
+   @RequestMapping(value = "/locaus")
+   public String locationAUSDetails() {
+      return "Australia";
+   }
 }

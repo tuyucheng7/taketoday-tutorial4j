@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = SpringCloudConfigServerApplication.class)
 class SpringContextTest {
 
-    @Test
-    void contextLoads() {
-    }
+   @Test
+   void contextLoads() {
+   }
 }

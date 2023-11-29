@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
 @Configuration
 class ProducerBinder {
 
-	@Bean
-	public Supplier output() {
-		return () -> IntStream.range(1, 200)
-			.mapToObj(ipSuffix -> "192.168.0." + ipSuffix)
-			.map(entry -> MessageBuilder.withPayload(entry)
-				.build());
-	}
+   @Bean
+   public Supplier output() {
+      return () -> IntStream.range(1, 200)
+            .mapToObj(ipSuffix -> "192.168.0." + ipSuffix)
+            .map(entry -> MessageBuilder.withPayload(entry)
+                  .build());
+   }
 }

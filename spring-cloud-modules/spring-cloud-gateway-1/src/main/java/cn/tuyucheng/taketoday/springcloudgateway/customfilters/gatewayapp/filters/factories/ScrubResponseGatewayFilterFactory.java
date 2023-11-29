@@ -22,87 +22,83 @@ import java.util.regex.Pattern;
 @Component
 public class ScrubResponseGatewayFilterFactory extends AbstractGatewayFilterFactory<ScrubResponseGatewayFilterFactory.Config> {
 
-    final Logger logger = LoggerFactory.getLogger(ScrubResponseGatewayFilterFactory.class);
-    private ModifyResponseBodyGatewayFilterFactory modifyResponseBodyFilterFactory;
+   final Logger logger = LoggerFactory.getLogger(ScrubResponseGatewayFilterFactory.class);
+   private ModifyResponseBodyGatewayFilterFactory modifyResponseBodyFilterFactory;
 
-    public ScrubResponseGatewayFilterFactory(ModifyResponseBodyGatewayFilterFactory modifyResponseBodyFilterFactory) {
-        super(Config.class);
-        this.modifyResponseBodyFilterFactory = modifyResponseBodyFilterFactory;
-    }
+   public ScrubResponseGatewayFilterFactory(ModifyResponseBodyGatewayFilterFactory modifyResponseBodyFilterFactory) {
+      super(Config.class);
+      this.modifyResponseBodyFilterFactory = modifyResponseBodyFilterFactory;
+   }
 
-    @Override
-    public List<String> shortcutFieldOrder() {
-        return Arrays.asList("fields", "replacement");
-    }
+   @Override
+   public List<String> shortcutFieldOrder() {
+      return Arrays.asList("fields", "replacement");
+   }
 
+   @Override
+   public GatewayFilter apply(Config config) {
+      return modifyResponseBodyFilterFactory
+            .apply(c -> c.setRewriteFunction(JsonNode.class, JsonNode.class, new Scrubber(config)));
+   }
 
-    @Override
-    public GatewayFilter apply(Config config) {
+   public static class Config {
 
-        return modifyResponseBodyFilterFactory
-              .apply(c -> c.setRewriteFunction(JsonNode.class, JsonNode.class, new Scrubber(config)));
-    }
+      private String fields;
+      private String replacement;
 
-    public static class Config {
+      public String getFields() {
+         return fields;
+      }
 
-        private String fields;
-        private String replacement;
+      public void setFields(String fields) {
+         this.fields = fields;
+      }
 
+      public String getReplacement() {
+         return replacement;
+      }
 
-        public String getFields() {
-            return fields;
-        }
+      public void setReplacement(String replacement) {
+         this.replacement = replacement;
+      }
+   }
 
-        public void setFields(String fields) {
-            this.fields = fields;
-        }
+   public static class Scrubber implements RewriteFunction<JsonNode, JsonNode> {
+      private final Pattern fields;
+      private final String replacement;
 
-        public String getReplacement() {
-            return replacement;
-        }
+      public Scrubber(Config config) {
+         this.fields = Pattern.compile(config.getFields());
+         this.replacement = config.getReplacement();
+      }
 
-        public void setReplacement(String replacement) {
-            this.replacement = replacement;
-        }
-    }
+      @Override
+      public Publisher<JsonNode> apply(ServerWebExchange t, JsonNode u) {
+         return Mono.just(scrubRecursively(u));
+      }
 
-
-    public static class Scrubber implements RewriteFunction<JsonNode, JsonNode> {
-        private final Pattern fields;
-        private final String replacement;
-
-        public Scrubber(Config config) {
-            this.fields = Pattern.compile(config.getFields());
-            this.replacement = config.getReplacement();
-        }
-
-        @Override
-        public Publisher<JsonNode> apply(ServerWebExchange t, JsonNode u) {
-            return Mono.just(scrubRecursively(u));
-        }
-
-        private JsonNode scrubRecursively(JsonNode u) {
-            if (!u.isContainerNode()) {
-                return u;
-            }
-
-            if (u.isObject()) {
-                ObjectNode node = (ObjectNode) u;
-                node.fields().forEachRemaining((f) -> {
-                    if (fields.matcher(f.getKey()).matches() && f.getValue().isTextual()) {
-                        f.setValue(TextNode.valueOf(replacement));
-                    } else {
-                        f.setValue(scrubRecursively(f.getValue()));
-                    }
-                });
-            } else if (u.isArray()) {
-                ArrayNode array = (ArrayNode) u;
-                for (int i = 0; i < array.size(); i++) {
-                    array.set(i, scrubRecursively(array.get(i)));
-                }
-            }
-
+      private JsonNode scrubRecursively(JsonNode u) {
+         if (!u.isContainerNode()) {
             return u;
-        }
-    }
+         }
+
+         if (u.isObject()) {
+            ObjectNode node = (ObjectNode) u;
+            node.fields().forEachRemaining((f) -> {
+               if (fields.matcher(f.getKey()).matches() && f.getValue().isTextual()) {
+                  f.setValue(TextNode.valueOf(replacement));
+               } else {
+                  f.setValue(scrubRecursively(f.getValue()));
+               }
+            });
+         } else if (u.isArray()) {
+            ArrayNode array = (ArrayNode) u;
+            for (int i = 0; i < array.size(); i++) {
+               array.set(i, scrubRecursively(array.get(i)));
+            }
+         }
+
+         return u;
+      }
+   }
 }

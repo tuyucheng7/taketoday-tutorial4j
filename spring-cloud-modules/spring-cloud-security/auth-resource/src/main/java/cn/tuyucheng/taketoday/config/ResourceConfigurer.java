@@ -15,14 +15,13 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableGlobalMethodSecurity(prePostEnabled = true) // Allow method annotations like @PreAuthorize
 public class ResourceConfigurer extends ResourceServerConfigurerAdapter {
 
-	@Override
-	public void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.NEVER)
-			.and()
-			.authorizeRequests()
-			.anyRequest().authenticated();
+   @Override
+   public void configure(HttpSecurity http) throws Exception {
+      http.sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            .and()
+            .authorizeRequests()
+            .anyRequest().authenticated();
 
-	}
-
+   }
 }

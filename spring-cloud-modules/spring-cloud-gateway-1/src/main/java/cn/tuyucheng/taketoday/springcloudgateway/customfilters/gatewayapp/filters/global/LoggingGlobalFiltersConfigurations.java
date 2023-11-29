@@ -10,15 +10,11 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class LoggingGlobalFiltersConfigurations {
 
-    final Logger logger = LoggerFactory.getLogger(LoggingGlobalFiltersConfigurations.class);
+   final Logger logger = LoggerFactory.getLogger(LoggingGlobalFiltersConfigurations.class);
 
-    @Bean
-    public GlobalFilter postGlobalFilter() {
-        return (exchange, chain) -> {
-            return chain.filter(exchange)
-                  .then(Mono.fromRunnable(() -> {
-                      logger.info("Global Post Filter executed");
-                  }));
-        };
-    }
+   @Bean
+   public GlobalFilter postGlobalFilter() {
+      return (exchange, chain) -> chain.filter(exchange)
+            .then(Mono.fromRunnable(() -> logger.info("Global Post Filter executed")));
+   }
 }

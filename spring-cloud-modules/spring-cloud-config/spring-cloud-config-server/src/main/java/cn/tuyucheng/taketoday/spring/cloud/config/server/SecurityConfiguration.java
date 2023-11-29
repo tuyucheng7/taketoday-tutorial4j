@@ -8,15 +8,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfiguration {
 
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf()
-			.ignoringAntMatchers("/encrypt/**")
-			.ignoringAntMatchers("/decrypt/**");
-		http.authorizeRequests((requests) -> requests.anyRequest()
-			.authenticated());
-		http.formLogin();
-		http.httpBasic();
-		return http.build();
-	}
+   @Bean
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+      http.csrf()
+            .ignoringAntMatchers("/encrypt/**")
+            .ignoringAntMatchers("/decrypt/**");
+      http.authorizeRequests((requests) -> requests.anyRequest()
+            .authenticated());
+      http.formLogin();
+      http.httpBasic();
+      return http.build();
+   }
 }

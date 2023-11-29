@@ -1,30 +1,30 @@
 package cn.tuyucheng.taketoday;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class ZuulPostFilterLiveTest {
+class ZuulPostFilterLiveTest {
 
-    @LocalServerPort
-    private int port;
-    private static final String SIMPLE_GREETING = "/api/greeting/simple";
-    private TestRestTemplate restTemplate = new TestRestTemplate();
+   @LocalServerPort
+   private int port;
+   private static final String SIMPLE_GREETING = "/api/greeting/simple";
+   private TestRestTemplate restTemplate = new TestRestTemplate();
 
-    @Test
-    public void whenClientCallApi_thenLogAndReturnResponseBody() {
-        String url = "http://localhost:" + port + SIMPLE_GREETING;
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        assertTrue(response.getStatusCode().is2xxSuccessful());
-        assertEquals(response.getBody(), "Hi");
-    }
+   @Test
+   void whenClientCallApi_thenLogAndReturnResponseBody() {
+      String url = "http://localhost:" + port + SIMPLE_GREETING;
+      ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+      assertTrue(response.getStatusCode().is2xxSuccessful());
+      assertEquals(response.getBody(), "Hi");
+   }
 }

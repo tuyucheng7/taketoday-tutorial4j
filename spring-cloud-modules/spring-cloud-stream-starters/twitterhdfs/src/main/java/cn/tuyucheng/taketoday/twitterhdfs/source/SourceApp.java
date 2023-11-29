@@ -16,11 +16,10 @@ import java.util.Date;
 @EnableBinding(Source.class)
 @Import(TwitterstreamSourceConfiguration.class)
 public class SourceApp {
-    Logger log = LoggerFactory.getLogger(SourceApp.class);
+   Logger log = LoggerFactory.getLogger(SourceApp.class);
 
-    @InboundChannelAdapter(value = Source.OUTPUT)
-    public String timerMessageSource() {
-        return new SimpleDateFormat().format(new Date());
-    }
-
+   @InboundChannelAdapter(value = Source.OUTPUT)
+   public String timerMessageSource() {
+      return new SimpleDateFormat().format(new Date());
+   }
 }

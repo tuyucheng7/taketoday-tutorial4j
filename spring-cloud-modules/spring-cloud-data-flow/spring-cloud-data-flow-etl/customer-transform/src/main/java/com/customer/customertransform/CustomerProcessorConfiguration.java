@@ -8,9 +8,8 @@ import org.springframework.integration.annotation.Transformer;
 @EnableBinding(Processor.class)
 public class CustomerProcessorConfiguration {
 
-	@Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-	public Customer convertToPojo(Customer payload) {
-
-		return payload;
-	}
+   @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
+   public Customer convertToPojo(Customer payload) {
+      return payload;
+   }
 }

@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
 @Profile("exponential-backoff")
 class ExponentialBackoffRetryFactory extends RibbonLoadBalancedRetryFactory {
 
-	public ExponentialBackoffRetryFactory(SpringClientFactory clientFactory) {
-		super(clientFactory);
-	}
+   public ExponentialBackoffRetryFactory(SpringClientFactory clientFactory) {
+      super(clientFactory);
+   }
 
-	@Override
-	public BackOffPolicy createBackOffPolicy(String service) {
-		ExponentialBackOffPolicy exponentialBackOffPolicy = new ExponentialBackOffPolicy();
-		exponentialBackOffPolicy.setInitialInterval(1000);
-		exponentialBackOffPolicy.setMultiplier(2);
-		exponentialBackOffPolicy.setMaxInterval(10000);
-		return exponentialBackOffPolicy;
-	}
+   @Override
+   public BackOffPolicy createBackOffPolicy(String service) {
+      ExponentialBackOffPolicy exponentialBackOffPolicy = new ExponentialBackOffPolicy();
+      exponentialBackOffPolicy.setInitialInterval(1000);
+      exponentialBackOffPolicy.setMultiplier(2);
+      exponentialBackOffPolicy.setMaxInterval(10000);
+      return exponentialBackOffPolicy;
+   }
 }
