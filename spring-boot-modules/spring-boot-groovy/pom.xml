@@ -9,9 +9,10 @@
    <description>Spring Boot Todo Application with Groovy</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-      <artifactId>spring-boot-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -24,7 +25,7 @@
          <artifactId>spring-boot-starter-web</artifactId>
       </dependency>
       <dependency>
-         <groupId>org.codehaus.groovy</groupId>
+         <groupId>org.apache.groovy</groupId>
          <artifactId>groovy</artifactId>
          <version>${groovy.version}</version>
       </dependency>
@@ -37,6 +38,11 @@
          <groupId>com.h2database</groupId>
          <artifactId>h2</artifactId>
          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.rest-assured</groupId>
+         <artifactId>rest-assured</artifactId>
+         <scope>test</scope>
       </dependency>
    </dependencies>
 
@@ -70,7 +76,7 @@
 
    <properties>
       <start-class>cn.tuyucheng.taketoday.springwithgroovy.SpringBootGroovyApplication</start-class>
-      <groovy.version>3.0.19</groovy.version>
+      <groovy.version>4.0.11</groovy.version>
       <gmavenplus-plugin.version>3.0.2</gmavenplus-plugin.version>
    </properties>
 </project>
