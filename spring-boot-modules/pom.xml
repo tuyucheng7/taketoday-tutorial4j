@@ -71,6 +71,7 @@
       <module>spring-boot-jsp</module>
       <module>spring-boot-kafka-1</module>
       <module>spring-boot-kafka-2</module>
+      <module>spring-boot-kafka-3</module>
       <module>spring-boot-keycloak-1</module>
       <module>spring-boot-keycloak-2</module>
       <module>spring-boot-keycloak-adapters</module>
