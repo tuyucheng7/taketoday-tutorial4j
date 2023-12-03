@@ -21,7 +21,8 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
+
 import javax.sql.DataSource;
 
 @Configuration
