@@ -33,8 +33,4 @@
          <version>${lombok.version}</version>
       </dependency>
    </dependencies>
-
-   <properties>
-      <lombok.version>1.18.30</lombok.version>
-   </properties>
 </project>
