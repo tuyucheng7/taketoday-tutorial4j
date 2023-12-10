@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spring.web.config;
 
-import cn.tuyucheng.taketoday.excel.ExcelPOIHelper;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -33,99 +32,94 @@ import java.util.List;
 @ComponentScan(basePackages = {"cn.tuyucheng.taketoday.web.controller"})
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }
+   @Override
+   public void addViewControllers(final ViewControllerRegistry registry) {
+      registry.addViewController("/").setViewName("index");
+   }
 
-    @Bean
-    public ViewResolver thymeleafViewResolver() {
-        final ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setOrder(1);
-        return viewResolver;
-    }
+   @Bean
+   public ViewResolver thymeleafViewResolver() {
+      final ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+      viewResolver.setTemplateEngine(templateEngine());
+      viewResolver.setOrder(1);
+      return viewResolver;
+   }
 
-    @Bean
-    public ViewResolver viewResolver() {
-        final InternalResourceViewResolver bean = new InternalResourceViewResolver();
-        bean.setViewClass(JstlView.class);
-        bean.setPrefix("/WEB-INF/view/");
-        bean.setSuffix(".jsp");
-        bean.setOrder(0);
-        return bean;
-    }
+   @Bean
+   public ViewResolver viewResolver() {
+      final InternalResourceViewResolver bean = new InternalResourceViewResolver();
+      bean.setViewClass(JstlView.class);
+      bean.setPrefix("/WEB-INF/view/");
+      bean.setSuffix(".jsp");
+      bean.setOrder(0);
+      return bean;
+   }
 
-    @Bean
-    @Description("Thymeleaf template resolver serving HTML 5")
-    public ITemplateResolver templateResolver() {
-        final SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode("HTML");
-        return templateResolver;
-    }
+   @Bean
+   @Description("Thymeleaf template resolver serving HTML 5")
+   public ITemplateResolver templateResolver() {
+      final SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+      templateResolver.setPrefix("/WEB-INF/templates/");
+      templateResolver.setSuffix(".html");
+      templateResolver.setTemplateMode("HTML");
+      return templateResolver;
+   }
 
-    @Bean
-    @Description("Thymeleaf template engine with Spring integration")
-    public SpringTemplateEngine templateEngine() {
-        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        return templateEngine;
-    }
+   @Bean
+   @Description("Thymeleaf template engine with Spring integration")
+   public SpringTemplateEngine templateEngine() {
+      final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+      templateEngine.setTemplateResolver(templateResolver());
+      return templateEngine;
+   }
 
-    @Bean
-    @Description("Spring message resolver")
-    public MessageSource messageSource() {
-        final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
-        return messageSource;
-    }
+   @Bean
+   @Description("Spring message resolver")
+   public MessageSource messageSource() {
+      final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+      messageSource.setBasename("messages");
+      return messageSource;
+   }
 
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
+   @Override
+   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+      registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+   }
 
-    @Override
-    public void extendMessageConverters(final List<HttpMessageConverter<?>> converters) {
-        converters.add(byteArrayHttpMessageConverter());
-    }
+   @Override
+   public void extendMessageConverters(final List<HttpMessageConverter<?>> converters) {
+      converters.add(byteArrayHttpMessageConverter());
+   }
 
-    @Bean
-    public ByteArrayHttpMessageConverter byteArrayHttpMessageConverter() {
-        final ByteArrayHttpMessageConverter arrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
-        arrayHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
+   @Bean
+   public ByteArrayHttpMessageConverter byteArrayHttpMessageConverter() {
+      final ByteArrayHttpMessageConverter arrayHttpMessageConverter = new ByteArrayHttpMessageConverter();
+      arrayHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
 
-        return arrayHttpMessageConverter;
-    }
+      return arrayHttpMessageConverter;
+   }
 
-    private List<MediaType> getSupportedMediaTypes() {
-        final List<MediaType> list = new ArrayList<>();
-        list.add(MediaType.IMAGE_JPEG);
-        list.add(MediaType.IMAGE_PNG);
-        list.add(MediaType.APPLICATION_OCTET_STREAM);
+   private List<MediaType> getSupportedMediaTypes() {
+      final List<MediaType> list = new ArrayList<>();
+      list.add(MediaType.IMAGE_JPEG);
+      list.add(MediaType.IMAGE_PNG);
+      list.add(MediaType.APPLICATION_OCTET_STREAM);
 
-        return list;
-    }
+      return list;
+   }
 
-    @Override
-    public void configurePathMatch(final PathMatchConfigurer configurer) {
-        final UrlPathHelper urlPathHelper = new UrlPathHelper();
-        urlPathHelper.setRemoveSemicolonContent(false);
+   @Override
+   public void configurePathMatch(final PathMatchConfigurer configurer) {
+      final UrlPathHelper urlPathHelper = new UrlPathHelper();
+      urlPathHelper.setRemoveSemicolonContent(false);
 
-        configurer.setUrlPathHelper(urlPathHelper);
-    }
+      configurer.setUrlPathHelper(urlPathHelper);
+   }
 
-    @Bean
-    public ExcelPOIHelper excelPOIHelper() {
-        return new ExcelPOIHelper();
-    }
-
-    @Bean(name = "multipartResolver")
-    public CommonsMultipartResolver multipartResolver() {
-        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(100000);
-        return multipartResolver;
-    }
+   @Bean(name = "multipartResolver")
+   public CommonsMultipartResolver multipartResolver() {
+      CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+      multipartResolver.setMaxUploadSize(100000);
+      return multipartResolver;
+   }
 }

@@ -21,33 +21,33 @@ import org.springframework.web.context.WebApplicationContext;
 @ContextConfiguration(classes = {TestConfig.class})
 public class HtmlUnitAndSpringLiveTest {
 
-    @Autowired
-    private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-    private WebClient webClient;
+   private WebClient webClient;
 
-    @Before
-    public void setup() {
-        webClient = MockMvcWebClientBuilder.webAppContextSetup(wac).build();
-    }
+   @Before
+   public void setup() {
+      webClient = MockMvcWebClientBuilder.webAppContextSetup(wac).build();
+   }
 
-    @Test
-    public void givenAMessage_whenSent_thenItShows() throws Exception {
-        String text = "Hello world!";
-        HtmlPage page;
+   @Test
+   public void givenAMessage_whenSent_thenItShows() throws Exception {
+      String text = "Hello world!";
+      HtmlPage page;
 
-        String url = "http://localhost/message/showForm";
-        page = webClient.getPage(url);
+      String url = "http://localhost/message/showForm";
+      page = webClient.getPage(url);
 
-        HtmlTextInput messageText = page.getHtmlElementById("message");
-        messageText.setValueAttribute(text);
+      HtmlTextInput messageText = page.getHtmlElementById("message");
+      messageText.setValueAttribute(text);
 
-        HtmlForm form = page.getForms().get(0);
-        HtmlSubmitInput submit = form.getOneHtmlElementByAttribute("input", "type", "submit");
-        HtmlPage newPage = submit.click();
+      HtmlForm form = page.getForms().get(0);
+      HtmlSubmitInput submit = form.getOneHtmlElementByAttribute("input", "type", "submit");
+      HtmlPage newPage = submit.click();
 
-        String receivedText = newPage.getHtmlElementById("received").getTextContent();
+      String receivedText = newPage.getHtmlElementById("received").getTextContent();
 
-        Assert.assertEquals(receivedText, text);
-    }
+      Assert.assertEquals(receivedText, text);
+   }
 }
