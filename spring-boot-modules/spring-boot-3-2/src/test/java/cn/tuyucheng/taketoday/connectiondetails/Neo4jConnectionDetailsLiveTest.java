@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
 @TestPropertySource(locations = {"classpath:connectiondetails/application-neo4j.properties"})
 @ActiveProfiles("neo4j")
-public class Neo4jConnectionDetailsIntegrationTest {
+public class Neo4jConnectionDetailsLiveTest {
    @Autowired
    private Neo4jTemplate neo4jTemplate;
 

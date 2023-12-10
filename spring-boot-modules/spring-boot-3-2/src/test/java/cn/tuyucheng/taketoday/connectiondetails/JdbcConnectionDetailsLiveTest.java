@@ -25,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
 @TestPropertySource(locations = {"classpath:connectiondetails/application-jdbc.properties"})
 @ActiveProfiles("jdbc")
-public class JdbcConnectionDetailsIntegrationTest {
-   private static final Logger logger = LoggerFactory.getLogger(JdbcConnectionDetailsIntegrationTest.class);
+public class JdbcConnectionDetailsLiveTest {
+   private static final Logger logger = LoggerFactory.getLogger(JdbcConnectionDetailsLiveTest.class);
    @Autowired
    private JdbcTemplate jdbcTemplate;
 

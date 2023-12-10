@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Import(RabbitMQConnectionDetailsConfiguration.class)
 @TestPropertySource(locations = {"classpath:connectiondetails/application-rabbitmq.properties"})
 @ActiveProfiles("rabbitmq")
-public class RabbitmqConnectionDetailsIntegrationTest {
+public class RabbitmqConnectionDetailsLiveTest {
 
-   private static final Logger logger = LoggerFactory.getLogger(RabbitmqConnectionDetailsIntegrationTest.class);
+   private static final Logger logger = LoggerFactory.getLogger(RabbitmqConnectionDetailsLiveTest.class);
 
    @Autowired
    private RabbitTemplate rabbitTemplate;

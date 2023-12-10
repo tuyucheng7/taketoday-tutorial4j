@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.connectiondetails;
 
-import cn.tuyucheng.taketoday.connectiondetails.configuration.CustomCouchBaseConnectionDetailsConfiguration;
-import com.couchbase.client.java.Cluster;
+import cn.tuyucheng.taketoday.connectiondetails.configuration.CustomKafkaConnectionDetailsConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,16 +16,16 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConnectionDetailsApplication.class)
-@Import(CustomCouchBaseConnectionDetailsConfiguration.class)
+@Import(CustomKafkaConnectionDetailsConfiguration.class)
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
-@TestPropertySource(locations = {"classpath:connectiondetails/application-couch.properties"})
-@ActiveProfiles("couch")
-public class CouchbaseConnectionDetailsIntegrationTest {
+@TestPropertySource(locations = {"classpath:connectiondetails/application-kafka.properties"})
+@ActiveProfiles("kafka")
+public class KafkaConnectionDetailsLiveTest {
    @Autowired
-   private Cluster cluster;
+   private KafkaTemplate<String, String> kafkaTemplate;
 
    @Test
-   public void givenSecretVault_whenConnectWithCouch_thenSuccess() {
-      assertDoesNotThrow(cluster.ping()::version);
+   public void givenSecretVault_whenPublishMsgToKafkaQueue_thenSuccess() {
+      assertDoesNotThrow(kafkaTemplate::getDefaultTopic);
    }
 }

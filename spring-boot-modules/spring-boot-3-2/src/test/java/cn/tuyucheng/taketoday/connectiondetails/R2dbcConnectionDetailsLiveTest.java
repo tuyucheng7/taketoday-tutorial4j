@@ -20,8 +20,8 @@ import java.util.List;
 @Import(R2dbcPostgresConnectionDetailsConfiguration.class)
 @TestPropertySource(locations = {"classpath:connectiondetails/application-r2dbc.properties"})
 @ActiveProfiles("r2dbc")
-public class R2dbcConnectionDetailsIntegrationTest {
-   Logger logger = LoggerFactory.getLogger(R2dbcConnectionDetailsIntegrationTest.class);
+public class R2dbcConnectionDetailsLiveTest {
+   Logger logger = LoggerFactory.getLogger(R2dbcConnectionDetailsLiveTest.class);
    @Autowired
    private R2dbcEntityTemplate r2dbcEntityTemplate;
 

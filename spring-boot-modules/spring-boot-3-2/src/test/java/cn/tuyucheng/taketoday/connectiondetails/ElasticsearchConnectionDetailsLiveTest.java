@@ -24,8 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
 @TestPropertySource(locations = {"classpath:connectiondetails/application-elastic.properties"})
 @ActiveProfiles("elastic")
-public class ElasticsearchConnectionDetailsIntegrationTest {
-   private static final Logger logger = LoggerFactory.getLogger(ElasticsearchConnectionDetailsIntegrationTest.class);
+public class ElasticsearchConnectionDetailsLiveTest {
+   private static final Logger logger = LoggerFactory.getLogger(ElasticsearchConnectionDetailsLiveTest.class);
    @Autowired
    private ElasticsearchTemplate elasticsearchTemplate;
 

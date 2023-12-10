@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Import(RedisConnectionDetailsConfiguration.class)
 @TestPropertySource(locations = {"classpath:connectiondetails/application-redis.properties"})
 @ActiveProfiles("redis")
-public class RedisCacheConnnectionDetailsIntegrationTest {
-   private static final Logger logger = LoggerFactory.getLogger(RedisCacheConnnectionDetailsIntegrationTest.class);
+public class RedisCacheConnectionDetailsLiveTest {
+   private static final Logger logger = LoggerFactory.getLogger(RedisCacheConnectionDetailsLiveTest.class);
 
    @Autowired
    RedisTemplate<String, String> redisTemplate;

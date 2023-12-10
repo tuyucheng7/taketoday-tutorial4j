@@ -22,8 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
 @TestPropertySource(locations = {"classpath:connectiondetails/application-cassandra.properties"})
 @ActiveProfiles("cassandra")
-public class CassandraConnectionDetailsIntegrationTest {
-   private static final Logger logger = LoggerFactory.getLogger(CassandraConnectionDetailsIntegrationTest.class);
+public class CassandraConnectionLiveTest {
+   private static final Logger logger = LoggerFactory.getLogger(CassandraConnectionLiveTest.class);
    @Autowired
    private CassandraTemplate cassandraTemplate;
 

@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.connectiondetails")
 @TestPropertySource(locations = {"classpath:connectiondetails/application-mongo.properties"})
 @ActiveProfiles("mongo")
-public class MongoDBConnectionDetailsIntegrationTest {
+public class MongoDBConnectionDetailsLiveTest {
 
    @Autowired
    private MongoTemplate mongoTemplate;
