@@ -5,7 +5,6 @@
 ## 相关文章
 
 + [关闭Spring Boot应用程序](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-shutdown.html)
-+ [以编程方式重新启动Spring Boot应用程序](http://tu-yucheng.github.io/springboot/2023/05/12/java-restart-spring-boot-app.html)
 + [使用Spring Boot Actuator HTTP跟踪记录HTTP请求](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-actuator-http.html)
 + [Spring Boot嵌入式Tomcat日志](http://tu-yucheng.github.io/springboot/2023/05/12/spring-boot-embedded-tomcat-logs.html)
 + [使用Spring进行项目配置](http://tu-yucheng.github.io/springboot/2023/05/12/project-configuration-with-spring.html)
