@@ -7,8 +7,6 @@
 + [Spring Data Java 8支持](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-java-8.html)
 + [使用Spring Boot和Testcontainers进行数据库集成测试](http://tu-yucheng.github.io/springdata/2023/05/18/spring-boot-testcontainers-integration-test.html)
 + [Spring的Open Session In View指南](http://tu-yucheng.github.io/springdata/2023/05/18/spring-open-session-in-view.html)
-+ [在JPA中使用惰性元素集合](http://tu-yucheng.github.io/springdata/2023/05/18/java-jpa-lazy-collections.html)
-+ [使用Spring Data JPA自定义命名约定](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-custom-naming.html)
 + [使用Spring Data进行部分数据更新](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-partial-update.html)
 + [Spring Data JPA中的@Modifying注解](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-modifying-annotation.html)
 + [Spring Data JPA多数据库](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-multiple-databases.html)
