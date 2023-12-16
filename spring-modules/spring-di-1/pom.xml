@@ -8,27 +8,11 @@
    <name>spring-di-1</name>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-modules</groupId>
-      <artifactId>spring-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
-
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-framework-bom</artifactId>
-            <version>${spring.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
 
    <dependencies>
       <dependency>
@@ -67,12 +51,6 @@
          <version>${spring-boot.version}</version>
       </dependency>
       <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-test</artifactId>
-         <version>${mockito.spring.boot.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <dependency>
          <groupId>commons-io</groupId>
          <artifactId>commons-io</artifactId>
          <version>${commons-io.version}</version>
@@ -82,22 +60,11 @@
          <artifactId>aspectjweaver</artifactId>
          <version>${aspectjweaver.version}</version>
       </dependency>
-      <!--Spring-->
-      <!--<dependency>-->
-      <!--	<groupId>org.springframework</groupId>-->
-      <!--	<artifactId>spring-context</artifactId>-->
-      <!--</dependency>-->
       <dependency>
          <groupId>javax.annotation</groupId>
          <artifactId>javax.annotation-api</artifactId>
          <version>${annotation-api.version}</version>
       </dependency>
-      <!-- test scoped -->
-      <!--<dependency>-->
-      <!--	<groupId>org.springframework</groupId>-->
-      <!--	<artifactId>spring-test</artifactId>-->
-      <!--	<scope>test</scope>-->
-      <!--</dependency>-->
    </dependencies>
 
    <build>
@@ -130,11 +97,9 @@
 
    <properties>
       <start-class>cn.tuyucheng.taketoday.sample.App</start-class>
-      <!-- Spring -->
       <annotation-api.version>1.3.2</annotation-api.version>
       <mockito.spring.boot.version>2.7.17</mockito.spring.boot.version>
       <javax.inject.version>1</javax.inject.version>
-      <spring-boot.version>2.7.17</spring-boot.version>
       <mockito.version>1.10.19</mockito.version>
       <aspectjweaver.version>1.9.20.1</aspectjweaver.version>
    </properties>

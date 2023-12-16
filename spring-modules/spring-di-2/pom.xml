@@ -8,51 +8,22 @@
    <name>spring-di-2</name>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-modules</groupId>
-      <artifactId>spring-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
-
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-bom</artifactId>
-            <version>${log4j2.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-         </dependency>
-         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring-boot.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
 
    <dependencies>
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-web</artifactId>
+         <version>${spring-boot.version}</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-data-jpa</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-aspects</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>javax.inject</groupId>
-         <artifactId>javax.inject</artifactId>
-         <version>${javax.inject.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
+         <version>${spring-boot.version}</version>
       </dependency>
    </dependencies>
 
@@ -84,7 +55,6 @@
 
    <properties>
       <java.version>1.8</java.version>
-      <spring-boot.version>2.7.17</spring-boot.version>
       <aspectj-maven-plugin.version>1.13.1</aspectj-maven-plugin.version>
       <javax.inject.version>1</javax.inject.version>
       <log4j2.version>2.17.1</log4j2.version>
