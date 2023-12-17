@@ -52,7 +52,13 @@ public class StringTemplatesUnitTest {
    @Test
    public void whenUsingMultilineStringTemplateSTR_thenReturnInterpolatedString() {
       StringTemplateExamples templateExamples = new StringTemplateExamples();
-      assertEquals("{\n" + "  \"feelsLike\": \"pleasant\",\n" + "  \"temperature\": \"25\",\n" + "  \"unit\": \"Celsius\"\n" + "}\n", templateExamples.interpolationOfJSONBlock("pleasant", "25", "Celsius"));
+      assertEquals("""
+            {
+              "feelsLike": "pleasant",
+              "temperature": "25",
+              "unit": "Celsius"
+            }
+            """, templateExamples.interpolationOfJSONBlock("pleasant", "25", "Celsius"));
    }
 
    @Test
@@ -70,7 +76,13 @@ public class StringTemplatesUnitTest {
    @Test
    public void whenUsingExpressionFMT_thenReturnInterpolatedString() {
       StringTemplateExamples templateExamples = new StringTemplateExamples();
-      assertEquals("{\n" + "  \"feelsLike\": \"pleasant\",\n" + "  \"temperature\": \"25.86\",\n" + "  \"unit\": \"Celsius\"\n" + "}\n", templateExamples.interpolationOfJSONBlockWithFMT("pleasant", 25.8636F, "Celsius"));
+      assertEquals("""
+            {
+              "feelsLike": "pleasant",
+              "temperature": "25.86",
+              "unit": "Celsius"
+            }
+            """, templateExamples.interpolationOfJSONBlockWithFMT("pleasant", 25.8636F, "Celsius"));
    }
 
    @Test
