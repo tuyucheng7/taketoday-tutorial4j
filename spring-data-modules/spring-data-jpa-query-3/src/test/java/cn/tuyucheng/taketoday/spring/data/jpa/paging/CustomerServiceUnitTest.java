@@ -1,6 +1,17 @@
 package cn.tuyucheng.taketoday.spring.data.jpa.paging;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,14 +19,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceUnitTest {
@@ -27,8 +32,9 @@ public class CustomerServiceUnitTest {
    private CustomerService customerService;
 
    private static final List<Customer> ALL_CUSTOMERS = Arrays.asList(
-         new Customer("Ali"), new Customer("Brian"), new Customer("Coddy"),
-         new Customer("Di"), new Customer("Eve"), new Customer("Fin"),
+         new Customer("Ali"), new Customer("Brian"),
+         new Customer("Coddy"), new Customer("Di"),
+         new Customer("Eve"), new Customer("Fin"),
          new Customer("Grace"), new Customer("Harry"),
          new Customer("Ivan"), new Customer("Judy"),
          new Customer("Kasim"), new Customer("Liam"),
@@ -45,27 +51,22 @@ public class CustomerServiceUnitTest {
 
    private static final List<String> PAGE_4_CONTENTS = Arrays.asList("Penny", "Queen", "Rob", "Sue", "Tammy");
 
-   private static final List<String> EMPTY_PAGE = Arrays.asList();
-
-   @BeforeEach
-   void setup() {
-      when(customerRepository.findAll()).thenReturn(ALL_CUSTOMERS);
-   }
+   private static final List<String> EMPTY_PAGE = Collections.emptyList();
 
    private static Collection<Object[]> testIO() {
-      return Arrays.asList(
-            new Object[][]{
-                  {0, 5, PAGE_1_CONTENTS, 20L, 4L},
-                  {1, 5, PAGE_2_CONTENTS, 20L, 4L},
-                  {2, 5, PAGE_3_CONTENTS, 20L, 4L},
-                  {3, 5, PAGE_4_CONTENTS, 20L, 4L},
-                  {4, 5, EMPTY_PAGE, 20L, 4L}}
+      return Arrays.asList(new Object[][]{
+            {0, 5, PAGE_1_CONTENTS, 20L, 4L},
+            {1, 5, PAGE_2_CONTENTS, 20L, 4L},
+            {2, 5, PAGE_3_CONTENTS, 20L, 4L},
+            {3, 5, PAGE_4_CONTENTS, 20L, 4L},
+            {4, 5, EMPTY_PAGE, 20L, 4L}}
       );
    }
 
    @ParameterizedTest
    @MethodSource("testIO")
    void givenAListOfCustomers_whenGetCustomers_thenReturnsDesiredDataAlongWithPagingInformation(int page, int size, List<String> expectedNames, long expectedTotalElements, long expectedTotalPages) {
+      when(customerRepository.findAll()).thenReturn(ALL_CUSTOMERS);
       Page<Customer> customers = customerService.getCustomers(page, size);
       List<String> names = customers.getContent()
             .stream()
@@ -76,5 +77,28 @@ public class CustomerServiceUnitTest {
       assertEquals(expectedNames, names);
       assertEquals(expectedTotalElements, customers.getTotalElements());
       assertEquals(expectedTotalPages, customers.getTotalPages());
+   }
+
+   @Test
+   void givenAPageOfCustomers_whenGetCustomerList_thenReturnsList() {
+      Page<Customer> pagedResponse = new PageImpl<Customer>(ALL_CUSTOMERS.subList(0, 5));
+      when(customerRepository.findAll(any(Pageable.class))).thenReturn(pagedResponse);
+
+      List<Customer> customers = customerService.getCustomerListFromPage(0, 5);
+      List<String> customerNames = customers.stream()
+            .map(Customer::getName)
+            .collect(Collectors.toList());
+
+      assertEquals(PAGE_1_CONTENTS.size(), customers.size());
+      assertEquals(PAGE_1_CONTENTS, customerNames);
+   }
+
+   @Test
+   void givenAnEmptyPageOfCustomers_whenGetCustomerList_thenReturnsEmptyList() {
+      Page<Customer> emptyPage = Page.empty();
+      when(customerRepository.findAll(any(Pageable.class))).thenReturn(emptyPage);
+      List<Customer> customers = customerService.getCustomerListFromPage(0, 5);
+
+      assertThat(customers).isEmpty();
    }
 }

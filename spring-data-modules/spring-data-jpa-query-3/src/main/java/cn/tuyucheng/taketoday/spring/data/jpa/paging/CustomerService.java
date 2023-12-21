@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -25,6 +26,13 @@ public class CustomerService {
       int end = Math.min((start + pageRequest.getPageSize()), allCustomers.size());
 
       return new PageImpl<>(allCustomers.subList(start, end), pageRequest, allCustomers.size());
+   }
+
+   public List<Customer> getCustomerListFromPage(int page, int size) {
+      Pageable pageRequest = createPageRequestUsing(page, size);
+      Page<Customer> allCustomers = customerRepository.findAll(pageRequest);
+
+      return allCustomers.hasContent() ? allCustomers.getContent() : Collections.emptyList();
    }
 
    private Pageable createPageRequestUsing(int page, int size) {
