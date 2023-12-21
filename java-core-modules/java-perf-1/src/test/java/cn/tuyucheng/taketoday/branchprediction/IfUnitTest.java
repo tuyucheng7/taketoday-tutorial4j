@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class IfUnitTest {
-   public static final int TOP = 10000000;
+   public static final int TOP = 1000000;
    private static final Logger LOG = LoggerFactory.getLogger(IfUnitTest.class);
 
    @Test

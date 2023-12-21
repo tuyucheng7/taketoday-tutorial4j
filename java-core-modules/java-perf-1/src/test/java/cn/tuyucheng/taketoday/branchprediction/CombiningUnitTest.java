@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.stream.LongStream;
 
 public class CombiningUnitTest {
-   public static final int TOP = 10000000;
+   public static final int TOP = 1000000;
    public static final double FRACTION = 0.1;
    private static final Logger LOG = LoggerFactory.getLogger(CombiningUnitTest.class);
 

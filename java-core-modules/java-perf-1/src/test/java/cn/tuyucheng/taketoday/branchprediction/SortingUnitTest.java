@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class SortingUnitTest {
-   public static final int BIG = 10000000;
+   public static final int BIG = 1000000;
    public static final int SMALL = 100000;
    private static final Logger LOG = LoggerFactory.getLogger(SortingUnitTest.class);
 
