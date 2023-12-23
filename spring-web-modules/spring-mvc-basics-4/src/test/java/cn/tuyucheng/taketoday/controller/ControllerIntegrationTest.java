@@ -20,56 +20,56 @@ import org.springframework.web.servlet.ModelAndView;
 @SpringBootTest(classes = SpringListValidationApplication.class)
 public class ControllerIntegrationTest {
 
-	private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext wac;
+   @Autowired
+   private WebApplicationContext wac;
 
-	private Student selectedStudent;
+   private Student selectedStudent;
 
-	@Before
-	public void setUp() {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+   @Before
+   public void setUp() {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 
-		selectedStudent = new Student();
-		selectedStudent.setId(1);
-		selectedStudent.setName("Peter");
-	}
+      selectedStudent = new Student();
+      selectedStudent.setId(1);
+      selectedStudent.setName("Peter");
+   }
 
-	@Test
-	public void testTestController() throws Exception {
+   @Test
+   public void testTestController() throws Exception {
 
-		ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/test/")).andReturn().getModelAndView();
+      ModelAndView mv = this.mockMvc.perform(MockMvcRequestBuilders.get("/test")).andReturn().getModelAndView();
 
-		// validate modal data
-		Assert.assertSame(mv.getModelMap().get("data").toString(), "Welcome home man");
+      // validate modal data
+      Assert.assertSame(mv.getModelMap().get("data").toString(), "Welcome home man");
 
-		// validate view name
-		Assert.assertSame(mv.getViewName(), "welcome");
-	}
+      // validate view name
+      Assert.assertSame(mv.getViewName(), "welcome");
+   }
 
-	@Test
-	public void testRestController() throws Exception {
+   @Test
+   public void testRestController() throws Exception {
 
-		String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/student/{studentId}", 1)).andReturn().getResponse().getContentAsString();
+      String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/student/{studentId}", 1)).andReturn().getResponse().getContentAsString();
 
-		ObjectMapper reader = new ObjectMapper();
+      ObjectMapper reader = new ObjectMapper();
 
-		Student studentDetails = reader.readValue(responseBody, Student.class);
+      Student studentDetails = reader.readValue(responseBody, Student.class);
 
-		Assert.assertEquals(selectedStudent, studentDetails);
+      Assert.assertEquals(selectedStudent, studentDetails);
 
-	}
+   }
 
-	@Test
-	public void testRestAnnotatedController() throws Exception {
+   @Test
+   public void testRestAnnotatedController() throws Exception {
 
-		String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/annotated/student/{studentId}", 1)).andReturn().getResponse().getContentAsString();
+      String responseBody = this.mockMvc.perform(MockMvcRequestBuilders.get("/annotated/student/{studentId}", 1)).andReturn().getResponse().getContentAsString();
 
-		ObjectMapper reader = new ObjectMapper();
+      ObjectMapper reader = new ObjectMapper();
 
-		Student studentDetails = reader.readValue(responseBody, Student.class);
+      Student studentDetails = reader.readValue(responseBody, Student.class);
 
-		Assert.assertEquals(selectedStudent, studentDetails);
-	}
+      Assert.assertEquals(selectedStudent, studentDetails);
+   }
 }

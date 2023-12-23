@@ -1,13 +1,12 @@
 package cn.tuyucheng.taketoday.config;
 
+import cn.tuyucheng.taketoday.contexts.Greeting;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-import cn.tuyucheng.taketoday.contexts.Greeting;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Web Configuration for the entire app
@@ -16,20 +15,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @EnableWebMvc
 public class WebConfig {
 
-	@Bean
-	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
-		return factory -> factory.setRegisterDefaultServlet(true);
-	}
+   @Bean
+   public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
+      return factory -> factory.setRegisterDefaultServlet(true);
+   }
 
-	@Bean
-	public Greeting greeting() {
-		Greeting greeting = new Greeting();
-		greeting.setMessage("Hello World !!");
-		return greeting;
-	}
+   @Bean
+   public Greeting greeting() {
+      Greeting greeting = new Greeting();
+      greeting.setMessage("Hello World !!");
+      return greeting;
+   }
 
-	@Bean
-	public ObjectMapper objectMapper() {
-		return new ObjectMapper();
-	}
+   @Bean
+   public ObjectMapper objectMapper() {
+      return new ObjectMapper();
+   }
 }
