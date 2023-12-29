@@ -8,23 +8,24 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <http create-session="stateless" use-expressions="true">
+   <http create-session="stateless" use-expressions="true">
 
-        <http-basic entry-point-ref="myBasicAuthenticationEntryPoint"/>
+      <http-basic entry-point-ref="myBasicAuthenticationEntryPoint"/>
 
-    </http>
+      <intercept-url pattern="/**" access="permitAll"/>
+   </http>
 
-    <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user1" password="{noop}user1Pass" authorities="ROLE_USER"/>
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+   <authentication-manager>
+      <authentication-provider>
+         <user-service>
+            <user name="user1" password="{noop}user1Pass" authorities="ROLE_USER"/>
+         </user-service>
+      </authentication-provider>
+   </authentication-manager>
 
-    <global-method-security pre-post-annotations="enabled"/>
+   <global-method-security pre-post-annotations="enabled"/>
 
-    <beans:bean id="myBasicAuthenticationEntryPoint"
-                class="cn.tuyucheng.taketoday.basic.MyBasicAuthenticationEntryPoint"/>
+   <beans:bean id="myBasicAuthenticationEntryPoint"
+               class="cn.tuyucheng.taketoday.basic.MyBasicAuthenticationEntryPoint"/>
 
 </beans:beans>

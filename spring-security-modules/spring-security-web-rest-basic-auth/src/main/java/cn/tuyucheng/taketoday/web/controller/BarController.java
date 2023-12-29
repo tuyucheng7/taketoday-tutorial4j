@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.web.controller;
 
 import cn.tuyucheng.taketoday.web.dto.Bar;
-import org.apache.commons.codec.binary.Base64;
+import org.apache.hc.client5.http.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
