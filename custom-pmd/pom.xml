@@ -34,7 +34,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
@@ -44,7 +43,6 @@
 	</build>
 
 	<properties>
-		<maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
 		<pmdVersion>6.53.0</pmdVersion>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
