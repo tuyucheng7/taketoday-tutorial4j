@@ -1,18 +1,21 @@
 package cn.tuyucheng.taketoday.springsecuredsockets.config;
 
+import static cn.tuyucheng.taketoday.springsecuredsockets.Constants.SECURED_CHAT;
+import static cn.tuyucheng.taketoday.springsecuredsockets.Constants.SECURED_CHAT_HISTORY;
+import static cn.tuyucheng.taketoday.springsecuredsockets.Constants.SECURED_CHAT_ROOM;
+import static cn.tuyucheng.taketoday.springsecuredsockets.Constants.SECURED_CHAT_SPECIFIC_USER;
+
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-
-import static cn.tuyucheng.taketoday.springsecuredsockets.Constants.*;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 @Configuration
 @EnableWebSocketMessageBroker
 @ComponentScan("cn.tuyucheng.taketoday.springsecuredsockets.controllers")
-public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer {
+public class SocketBrokerConfig implements WebSocketMessageBrokerConfigurer {
 
    @Override
    public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -27,4 +30,3 @@ public class SocketBrokerConfig extends AbstractWebSocketMessageBrokerConfigurer
       registry.addEndpoint(SECURED_CHAT).withSockJS();
    }
 }
-
