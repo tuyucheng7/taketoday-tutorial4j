@@ -11,7 +11,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -21,7 +21,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {"cn.tuyucheng.taketoday.relationships.repositories"})
 @EnableWebMvc
 @Import(SpringSecurityConfig.class)
-public class AppConfig extends WebMvcConfigurerAdapter {
+public class AppConfig implements WebMvcConfigurer {
 
    @Autowired
    private Environment env;
@@ -40,7 +40,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
       final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
       em.setDataSource(dataSource());
-      em.setPackagesToScan(new String[]{"cn.tuyucheng.taketoday.relationships.models"});
+      em.setPackagesToScan("cn.tuyucheng.taketoday.relationships.models");
       em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
       em.setJpaProperties(additionalProperties());
       return em;
@@ -59,5 +59,4 @@ public class AppConfig extends WebMvcConfigurerAdapter {
       }
       return hibernateProperties;
    }
-
 }

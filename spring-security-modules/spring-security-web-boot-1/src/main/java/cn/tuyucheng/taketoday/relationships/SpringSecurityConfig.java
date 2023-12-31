@@ -1,7 +1,9 @@
 package cn.tuyucheng.taketoday.relationships;
 
-import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
-import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
+import jakarta.annotation.PostConstruct;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
@@ -20,8 +23,8 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
+import cn.tuyucheng.taketoday.relationships.security.AuthenticationSuccessHandlerImpl;
+import cn.tuyucheng.taketoday.relationships.security.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -46,12 +49,10 @@ public class SpringSecurityConfig {
 
    @Bean
    public UserDetailsManager users(HttpSecurity http) throws Exception {
-      AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManagerBuilder.class)
-            .userDetailsService(userDetailsService)
-            .passwordEncoder(encoder())
-            .and()
-            .authenticationProvider(authenticationProvider())
-            .build();
+      AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+      authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(encoder());
+      authenticationManagerBuilder.authenticationProvider(authenticationProvider());
+      AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
       JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
       jdbcUserDetailsManager.setAuthenticationManager(authenticationManager);
@@ -60,22 +61,16 @@ public class SpringSecurityConfig {
 
    @Bean
    public WebSecurityCustomizer webSecurityCustomizer() {
-      return (web) -> web.ignoring()
-            .antMatchers("/resources/**");
+      return web -> web.ignoring().requestMatchers("/resources/**");
    }
 
    @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      http.authorizeRequests()
-            .antMatchers("/login")
-            .permitAll()
-            .and()
-            .formLogin()
-            .permitAll()
-            .successHandler(successHandler)
-            .and()
-            .csrf()
-            .disable();
+      http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
+                  authorizationManagerRequestMatcherRegistry.requestMatchers("/login").permitAll())
+            .formLogin(httpSecurityFormLoginConfigurer ->
+                  httpSecurityFormLoginConfigurer.permitAll().successHandler(successHandler))
+            .csrf(AbstractHttpConfigurer::disable);
       return http.build();
    }
 
