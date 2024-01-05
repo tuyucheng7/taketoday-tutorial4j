@@ -103,10 +103,7 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler-plugin.version}</version>
             <configuration>
-               <source>${maven.compiler.source}</source>
-               <target>${maven.compiler.target}</target>
                <compilerArgument>-parameters</compilerArgument>
             </configuration>
          </plugin>
@@ -114,8 +111,6 @@
    </build>
 
    <properties>
-      <maven.compiler.source>17</maven.compiler.source>
-      <maven.compiler.target>17</maven.compiler.target>
       <!-- testing -->
       <rx.java.version>1.2.5</rx.java.version>
       <rx.java2.version>2.2.2</rx.java2.version>

@@ -49,10 +49,7 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven-compiler-plugin.version}</version>
             <configuration>
-               <source>${maven.compiler.source}</source>
-               <target>${maven.compiler.target}</target>
                <compilerArgument>-parameters</compilerArgument>
             </configuration>
          </plugin>
@@ -64,8 +61,5 @@
       <protonpack.version>1.16</protonpack.version>
       <streamex.version>0.8.1</streamex.version>
       <throwing-function.version>1.5.1</throwing-function.version>
-
-      <maven.compiler.source>17</maven.compiler.source>
-      <maven.compiler.target>17</maven.compiler.target>
    </properties>
 </project>

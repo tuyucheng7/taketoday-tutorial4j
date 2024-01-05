@@ -58,8 +58,6 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-               <source>${maven.compiler.source}</source>
-               <target>${maven.compiler.target}</target>
                <compilerArgument>-parameters</compilerArgument>
             </configuration>
          </plugin>
@@ -69,8 +67,6 @@
    <properties>
       <!-- testing -->
       <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-      <maven.compiler.source>17</maven.compiler.source>
-      <maven.compiler.target>17</maven.compiler.target>
       <vavr.version>0.10.2</vavr.version>
    </properties>
 </project>
