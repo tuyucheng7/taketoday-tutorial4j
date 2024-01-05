@@ -3,8 +3,9 @@ package cn.tuyucheng.taketoday.customlogouthandler.services;
 import cn.tuyucheng.taketoday.customlogouthandler.user.User;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -29,5 +30,4 @@ public class UserCache {
    public int size() {
       return store.size();
    }
-
 }

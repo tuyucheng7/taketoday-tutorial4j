@@ -1,12 +1,13 @@
 package cn.tuyucheng.taketoday.customlogouthandler;
 
-import cn.tuyucheng.taketoday.customlogouthandler.services.UserCache;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,11 +17,12 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import cn.tuyucheng.taketoday.customlogouthandler.services.UserCache;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = {CustomLogoutApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@SqlGroup({@Sql(value = "classpath:customlogouthandler/before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD), @Sql(value = "classpath:customlogouthandler/after.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)})
+@SqlGroup({@Sql(value = "classpath:customlogouthandler/before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD),
+      @Sql(value = "classpath:customlogouthandler/after.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)})
 @TestPropertySource(locations = "classpath:customlogouthandler/application.properties")
 class CustomLogoutHandlerIntegrationTest {
 
@@ -36,7 +38,7 @@ class CustomLogoutHandlerIntegrationTest {
    @Test
    public void whenLogin_thenUseUserCache() {
       // User cache should be empty on start
-      assertThat(userCache.size()).isEqualTo(0);
+      assertThat(userCache.size()).isZero();
 
       // Request using first login
       ResponseEntity<String> response = restTemplate.withBasicAuth("user", "pass")
@@ -65,7 +67,7 @@ class CustomLogoutHandlerIntegrationTest {
    @Test
    public void whenLogout_thenCacheIsEmpty() {
       // User cache should be empty on start
-      assertThat(userCache.size()).isEqualTo(0);
+      assertThat(userCache.size()).isZero();
 
       // Request using first login
       ResponseEntity<String> response = restTemplate.withBasicAuth("user", "pass")
@@ -88,7 +90,7 @@ class CustomLogoutHandlerIntegrationTest {
 
       // User cache must be empty now
       // this is the reaction on custom logout filter execution
-      assertThat(userCache.size()).isEqualTo(0);
+      assertThat(userCache.size()).isZero();
 
       // Assert unauthorized request
       response = restTemplate.exchange(getLanguageUrl(), HttpMethod.GET, new HttpEntity<String>(requestHeaders), String.class);
@@ -103,5 +105,4 @@ class CustomLogoutHandlerIntegrationTest {
    private String getLogoutUrl() {
       return "http://localhost:" + port + "/user/logout";
    }
-
 }

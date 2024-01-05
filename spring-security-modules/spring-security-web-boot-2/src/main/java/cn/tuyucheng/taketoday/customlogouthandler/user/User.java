@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.customlogouthandler.user;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
