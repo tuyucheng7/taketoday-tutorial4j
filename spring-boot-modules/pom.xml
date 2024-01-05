@@ -20,6 +20,7 @@
       <module>spring-boot-3-1</module>
       <module>spring-boot-3-2</module>
       <module>spring-boot-3-container</module>
+      <module>spring-boot-3-grpc</module>
       <module>spring-boot-3-native</module>
       <module>spring-boot-3-observation</module>
       <module>spring-boot-3-test-pitfalls</module>
