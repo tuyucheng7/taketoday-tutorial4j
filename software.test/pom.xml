@@ -40,6 +40,7 @@
       <module>junit-4</module>
       <module>junit-5</module>
       <module>junit-5-advanced</module>
+      <module>junit-5-advanced-2</module>
       <module>junit-5-annotations</module>
       <module>junit-5-basics-1</module>
       <module>junit-5-basics-2</module>
