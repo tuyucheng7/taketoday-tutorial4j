@@ -3,6 +3,7 @@ package cn.tuyucheng.taketoday.methodsecurity.service;
 import cn.tuyucheng.taketoday.methodsecurity.annotation.IsViewer;
 import cn.tuyucheng.taketoday.methodsecurity.entity.CustomUser;
 import cn.tuyucheng.taketoday.methodsecurity.repository.UserRoleRepository;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -13,7 +14,6 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,5 +103,4 @@ public class UserRoleService {
    public CustomUser securedLoadUserDetail(String username) {
       return userRoleRepository.loadUserByUserName(username);
    }
-
 }
