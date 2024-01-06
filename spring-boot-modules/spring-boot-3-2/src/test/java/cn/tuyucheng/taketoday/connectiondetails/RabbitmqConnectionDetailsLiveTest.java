@@ -43,7 +43,7 @@ public class RabbitmqConnectionDetailsLiveTest {
    public void setup() {
       logger.info("create new queue");
       rabbitAdmin = new RabbitAdmin(connectionFactory);
-      logger.info("creating queue: " + rabbitAdmin.declareQueue(new Queue(queueName)));
+      logger.info(STR."creating queue: \{rabbitAdmin.declareQueue(new Queue(queueName))}");
       connectionFactory.destroy();
    }
 
@@ -55,7 +55,7 @@ public class RabbitmqConnectionDetailsLiveTest {
 
    @Test
    public void givenSecretVault_whenPublishMessageToRabbitmq_thenSuccess() {
-      logger.info("sending message to queue " + queueName);
+      logger.info(STR."sending message to queue \{queueName}");
       final String MSG = "this is a test message";
       this.rabbitTemplate.convertAndSend(queueName, MSG);
       assertEquals(MSG, this.rabbitTemplate.receiveAndConvert(queueName));

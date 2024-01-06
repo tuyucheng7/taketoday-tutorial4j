@@ -30,7 +30,7 @@ public class R2dbcConnectionDetailsLiveTest {
       String sql = "select * from information_schema.tables";
 
       List<String> result = r2dbcEntityTemplate.getDatabaseClient().sql(sql).fetch().all()
-            .map(r -> "hello " + r.get("table_name").toString()).collectList().block();
-      logger.info("count ------" + result.size());
+            .map(r -> STR."hello \{r.get("table_name").toString()}").collectList().block();
+      logger.info(STR."count ------\{result.size()}");
    }
 }

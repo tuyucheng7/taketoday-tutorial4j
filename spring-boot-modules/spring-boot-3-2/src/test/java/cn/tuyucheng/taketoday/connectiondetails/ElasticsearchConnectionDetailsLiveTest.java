@@ -39,7 +39,7 @@ public class ElasticsearchConnectionDetailsLiveTest {
    @Test
    public void givenHashicorpVault_whenCreateIndexInElastic_thenSuccess() {
       boolean result = elasticsearchTemplate.indexOps(Person.class).create();
-      logger.info("index created:" + result);
+      logger.info(STR."index created:\{result}");
       assertTrue(result);
    }
 }

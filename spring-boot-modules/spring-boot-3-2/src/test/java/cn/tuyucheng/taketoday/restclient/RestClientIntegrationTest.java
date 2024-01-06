@@ -32,13 +32,13 @@ public class RestClientIntegrationTest {
 
    @BeforeEach
    public void setup() {
-      uriBase = "http://localhost:" + port;
+      uriBase = STR."http://localhost:\{port}";
    }
 
    @AfterEach
    public void teardown() {
       restClient.delete()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .retrieve()
             .toBodilessEntity();
    }
@@ -46,7 +46,7 @@ public class RestClientIntegrationTest {
    @Test
    void shouldGetArticlesAndReturnString() {
       String articlesAsString = restClient.get()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .retrieve()
             .body(String.class);
 
@@ -57,14 +57,14 @@ public class RestClientIntegrationTest {
    void shouldPostAndGetArticles() {
       Article article = new Article(1, "How to use RestClient");
       restClient.post()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .contentType(MediaType.APPLICATION_JSON)
             .body(article)
             .retrieve()
             .toBodilessEntity();
 
       List<Article> articles = restClient.get()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .retrieve()
             .body(new ParameterizedTypeReference<>() {
             });
@@ -78,7 +78,7 @@ public class RestClientIntegrationTest {
 
       Article article = new Article(1, "How to use RestClient");
       restClient.post()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .contentType(MediaType.APPLICATION_JSON)
             .body(article)
             .retrieve()
@@ -120,7 +120,7 @@ public class RestClientIntegrationTest {
    void shouldPostAndPutAndGetArticles() {
       Article article = new Article(1, "How to use RestClient");
       restClient.post()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .contentType(MediaType.APPLICATION_JSON)
             .body(article)
             .retrieve()
@@ -128,14 +128,14 @@ public class RestClientIntegrationTest {
 
       Article articleChanged = new Article(1, "How to use RestClient even better");
       restClient.put()
-            .uri(uriBase + "/articles/1")
+            .uri(STR."\{uriBase}/articles/1")
             .contentType(MediaType.APPLICATION_JSON)
             .body(articleChanged)
             .retrieve()
             .toBodilessEntity();
 
       List<Article> articles = restClient.get()
-            .uri(uriBase + "/articles")
+            .uri(STR."\{uriBase}/articles")
             .retrieve()
             .body(new ParameterizedTypeReference<>() {
             });

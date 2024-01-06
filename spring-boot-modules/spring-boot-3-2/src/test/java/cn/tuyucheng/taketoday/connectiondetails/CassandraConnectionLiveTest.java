@@ -32,7 +32,7 @@ public class CassandraConnectionLiveTest {
       boolean result = cassandraTemplate.getCqlOperations()
             .execute("CREATE KEYSPACE IF NOT EXISTS spring_cassandra"
                   + " WITH replication = {'class':'SimpleStrategy', 'replication_factor':3}");
-      logger.info("the result -" + result);
+      logger.info(STR."the result -\{result}");
       assertTrue(result);
    }
 }
