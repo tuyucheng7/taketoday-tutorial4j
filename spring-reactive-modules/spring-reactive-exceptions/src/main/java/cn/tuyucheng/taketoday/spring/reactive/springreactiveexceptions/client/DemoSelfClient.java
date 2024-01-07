@@ -14,24 +14,24 @@ import reactor.core.scheduler.Schedulers;
 @Service
 public class DemoSelfClient {
 
-	@Autowired
-	@Qualifier("webClient")
-	private WebClient webClient;
-	@Autowired
-	private ObjectMapper objectMapper;
+   @Autowired
+   @Qualifier("webClient")
+   private WebClient webClient;
+   @Autowired
+   private ObjectMapper objectMapper;
 
-	public Mono<Users> fetch() {
-		return webClient
-			.post()
-			.uri("/1.0/process")
-			.body(BodyInserters.fromPublisher(readRequestBody(), Users.class))
-			.exchangeToMono(clientResponse -> clientResponse.bodyToMono(Users.class));
-	}
+   public Mono<Users> fetch() {
+      return webClient
+            .post()
+            .uri("/1.0/process")
+            .body(BodyInserters.fromPublisher(readRequestBody(), Users.class))
+            .exchangeToMono(clientResponse -> clientResponse.bodyToMono(Users.class));
+   }
 
-	private Mono<Users> readRequestBody() {
-		return Mono
-			.fromCallable(() -> objectMapper.readValue(new ClassPathResource("390KB.json")
-				.getURL(), Users.class))
-			.subscribeOn(Schedulers.boundedElastic());
-	}
+   private Mono<Users> readRequestBody() {
+      return Mono
+            .fromCallable(() -> objectMapper.readValue(new ClassPathResource("390KB.json")
+                  .getURL(), Users.class))
+            .subscribeOn(Schedulers.boundedElastic());
+   }
 }

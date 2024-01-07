@@ -4,5 +4,5 @@ import cn.tuyucheng.taketoday.reactorbus.domain.NotificationData;
 
 public interface NotificationService {
 
-	void initiateNotification(NotificationData notificationData) throws InterruptedException;
+   void initiateNotification(NotificationData notificationData) throws InterruptedException;
 }

@@ -1,16 +1,17 @@
 package cn.tuyucheng.taketoday;
 
-import cn.tuyucheng.taketoday.reactorbus.NotificationApplication;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@ExtendWith(SpringExtension.class)
+import cn.tuyucheng.taketoday.reactorbus.NotificationApplication;
+
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = NotificationApplication.class)
-class SpringContextTest {
+public class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

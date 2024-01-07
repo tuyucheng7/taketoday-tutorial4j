@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday;
 
 import cn.tuyucheng.taketoday.spring.amqp.SpringWebfluxAmqpApplication;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * This live test requires:
@@ -14,11 +14,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * To run rabbitmq using docker image:
  * (e.g. `docker run -d --name rabbitmq -p 5672:5672 rabbitmq:3`)
  */
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringWebfluxAmqpApplication.class)
-class SpringContextLiveTest {
+public class SpringContextLiveTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

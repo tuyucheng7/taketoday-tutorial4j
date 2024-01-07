@@ -28,7 +28,7 @@ public class UserController {
       return Mono.fromCallable(() -> {
          User user = userMap.get(userId);
          if (user == null) {
-            throw new UserNotFoundException("User not found with ID: " + userId);
+            throw new UserNotFoundException(STR."User not found with ID: \{userId}");
          }
          return new ResponseEntity<>(user, HttpStatus.OK);
       });

@@ -11,13 +11,13 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class TriggerHandler implements HandlerFunction<ServerResponse> {
-	@Autowired
-	private DemoSelfClient demoSelfClient;
+   @Autowired
+   private DemoSelfClient demoSelfClient;
 
-	@Override
-	public Mono<ServerResponse> handle(ServerRequest request) {
-		return ServerResponse
-			.ok()
-			.body(demoSelfClient.fetch(), Users.class);
-	}
+   @Override
+   public Mono<ServerResponse> handle(ServerRequest request) {
+      return ServerResponse
+            .ok()
+            .body(demoSelfClient.fetch(), Users.class);
+   }
 }

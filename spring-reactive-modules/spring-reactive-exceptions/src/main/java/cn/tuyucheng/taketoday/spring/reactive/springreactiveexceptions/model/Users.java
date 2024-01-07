@@ -6,5 +6,5 @@ import java.util.List;
 
 @Data
 public class Users {
-	private List<User> users;
+   private List<User> users;
 }
