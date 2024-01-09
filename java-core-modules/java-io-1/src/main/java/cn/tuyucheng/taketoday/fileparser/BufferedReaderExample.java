@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class BufferedReaderExample {
 
-	protected static ArrayList<String> generateArrayListFromFile(String filename) throws IOException {
+   protected static ArrayList<String> generateArrayListFromFile(String filename) throws IOException {
 
-		ArrayList<String> result = new ArrayList<>();
+      ArrayList<String> result = new ArrayList<>();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+      try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 
-			while (br.ready()) {
-				result.add(br.readLine());
-			}
-			return result;
-		}
+         while (br.ready()) {
+            result.add(br.readLine());
+         }
+         return result;
+      }
 
-	}
+   }
 
 }

@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.copydirectory;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,49 +10,51 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import cn.tuyucheng.taketoday.copydirectory.ApacheCommons;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ApacheCommonsUnitTest {
 
-	private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory3";
-	private final String subDirectoryName = "/childDirectory";
-	private final String fileName = "/file.txt";
-	private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory3";
+   private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory3";
+   private final String subDirectoryName = "/childDirectory";
+   private final String fileName = "/file.txt";
+   private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory3";
 
-	@BeforeEach
-	public void createDirectoryWithSubdirectoryAndFile() throws IOException {
-		Files.createDirectories(Paths.get(sourceDirectoryLocation));
-		Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
-		Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
-	}
+   @BeforeEach
+   public void createDirectoryWithSubdirectoryAndFile() throws IOException {
+      Files.createDirectories(Paths.get(sourceDirectoryLocation));
+      Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
+      Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
+   }
 
-	@Test
-	public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
-		ApacheCommons.copyDirectory(sourceDirectoryLocation, destinationDirectoryLocation);
+   @Test
+   public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
+      ApacheCommons.copyDirectory(sourceDirectoryLocation, destinationDirectoryLocation);
 
-		assertTrue(new File(destinationDirectoryLocation).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
-	}
+      assertTrue(new File(destinationDirectoryLocation).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
+   }
 
-	@Test
-	public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() {
-		assertThrows(Exception.class, () -> ApacheCommons.copyDirectory("nonExistingDirectory", destinationDirectoryLocation));
-	}
+   @Test
+   public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() {
+      assertThrows(Exception.class, () -> ApacheCommons.copyDirectory("nonExistingDirectory", destinationDirectoryLocation));
+   }
 
-	@AfterEach
-	public void cleanUp() throws IOException {
-		Files.walk(Paths.get(sourceDirectoryLocation))
-			.sorted(Comparator.reverseOrder())
-			.map(Path::toFile)
-			.forEach(File::delete);
-		if (new File(destinationDirectoryLocation).exists()) {
-			Files.walk(Paths.get(destinationDirectoryLocation))
-				.sorted(Comparator.reverseOrder())
-				.map(Path::toFile)
-				.forEach(File::delete);
-		}
-	}
+   @AfterEach
+   public void cleanUp() throws IOException {
+      Files.walk(Paths.get(sourceDirectoryLocation))
+            .sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .forEach(File::delete);
+      if (new File(destinationDirectoryLocation).exists()) {
+         Files.walk(Paths.get(destinationDirectoryLocation))
+               .sorted(Comparator.reverseOrder())
+               .map(Path::toFile)
+               .forEach(File::delete);
+      }
+   }
 
 }

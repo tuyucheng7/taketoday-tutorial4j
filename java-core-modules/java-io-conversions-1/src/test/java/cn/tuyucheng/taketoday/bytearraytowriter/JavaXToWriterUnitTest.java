@@ -13,48 +13,48 @@ import java.io.Writer;
 import static org.junit.Assert.assertEquals;
 
 public class JavaXToWriterUnitTest {
-	protected final Logger logger = LoggerFactory.getLogger(getClass());
+   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-	// tests - byte[] to Writer
+   // tests - byte[] to Writer
 
-	@Test
-	public void givenPlainJava_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
-		final byte[] initialArray = "With Java".getBytes();
+   @Test
+   public void givenPlainJava_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
+      final byte[] initialArray = "With Java".getBytes();
 
-		final Writer targetWriter = new StringWriter().append(new String(initialArray));
+      final Writer targetWriter = new StringWriter().append(new String(initialArray));
 
-		targetWriter.close();
+      targetWriter.close();
 
-		assertEquals("With Java", targetWriter.toString());
-	}
+      assertEquals("With Java", targetWriter.toString());
+   }
 
-	@Test
-	public void givenUsingGuava_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
-		final byte[] initialArray = "With Guava".getBytes();
+   @Test
+   public void givenUsingGuava_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
+      final byte[] initialArray = "With Guava".getBytes();
 
-		final String buffer = new String(initialArray);
-		final StringWriter stringWriter = new StringWriter();
-		final CharSink charSink = new CharSink() {
-			@Override
-			public final Writer openStream() throws IOException {
-				return stringWriter;
-			}
-		};
-		charSink.write(buffer);
+      final String buffer = new String(initialArray);
+      final StringWriter stringWriter = new StringWriter();
+      final CharSink charSink = new CharSink() {
+         @Override
+         public final Writer openStream() throws IOException {
+            return stringWriter;
+         }
+      };
+      charSink.write(buffer);
 
-		stringWriter.close();
+      stringWriter.close();
 
-		assertEquals("With Guava", stringWriter.toString());
-	}
+      assertEquals("With Guava", stringWriter.toString());
+   }
 
-	@Test
-	public void givenUsingCommonsIO_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
-		final byte[] initialArray = "With Commons IO".getBytes();
-		final Writer targetWriter = new StringBuilderWriter(new StringBuilder(new String(initialArray)));
+   @Test
+   public void givenUsingCommonsIO_whenConvertingByteArrayIntoWriter_thenCorrect() throws IOException {
+      final byte[] initialArray = "With Commons IO".getBytes();
+      final Writer targetWriter = new StringBuilderWriter(new StringBuilder(new String(initialArray)));
 
-		targetWriter.close();
+      targetWriter.close();
 
-		assertEquals("With Commons IO", targetWriter.toString());
-	}
+      assertEquals("With Commons IO", targetWriter.toString());
+   }
 
 }

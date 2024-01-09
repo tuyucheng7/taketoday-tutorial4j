@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-io-2</artifactId>
-   <version>1.0.0</version>
    <name>java-io-2</name>
    <packaging>jar</packaging>
 
@@ -51,7 +50,7 @@
    </build>
 
    <properties>
-      <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+      <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
       <wiremock.version>3.3.1</wiremock.version>
    </properties>
 </project>

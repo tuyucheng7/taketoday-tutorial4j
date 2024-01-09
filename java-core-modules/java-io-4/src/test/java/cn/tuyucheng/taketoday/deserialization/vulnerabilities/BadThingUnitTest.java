@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.deserialization.vulnerabilities;
 
+import cn.tuyucheng.taketoday.deserialization.vulnerabilities.BadThing;
+import cn.tuyucheng.taketoday.deserialization.vulnerabilities.MyCustomAttackObject;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
@@ -11,30 +13,30 @@ import java.io.ObjectOutputStream;
 
 public class BadThingUnitTest {
 
-	@Test
-	@DisplayName("When a BadThing object is deserialized, then code execution in MyCustomAttackObject is run.")
-	public void givenABadThingObject_whenItsDeserialized_thenExecutionIsRun() throws Exception {
-		BadThing bt = new BadThing();
+   @Test
+   @DisplayName("When a BadThing object is deserialized, then code execution in MyCustomAttackObject is run.")
+   public void givenABadThingObject_whenItsDeserialized_thenExecutionIsRun() throws Exception {
+      BadThing bt = new BadThing();
 
-		bt.looselyDefinedThing = new MyCustomAttackObject();
-		bt.methodName = "methodThatTriggersAttack";
+      bt.looselyDefinedThing = new MyCustomAttackObject();
+      bt.methodName = "methodThatTriggersAttack";
 
-		byte[] serializedObject = serialize(bt);
+      byte[] serializedObject = serialize(bt);
 
-		try (InputStream bis = new ByteArrayInputStream(serializedObject);
-			 ObjectInputStream ois = new ObjectInputStream(bis)) {
+      try (InputStream bis = new ByteArrayInputStream(serializedObject);
+           ObjectInputStream ois = new ObjectInputStream(bis)) {
 
-			ois.readObject(); // malicious code is run
-		}
-	}
+         ois.readObject(); // malicious code is run
+      }
+   }
 
-	private static byte[] serialize(Object object) throws Exception {
-		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			 ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+   private static byte[] serialize(Object object) throws Exception {
+      try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+           ObjectOutputStream oos = new ObjectOutputStream(bos)) {
 
-			oos.writeObject(object);
-			oos.flush();
-			return bos.toByteArray();
-		}
-	}
+         oos.writeObject(object);
+         oos.flush();
+         return bos.toByteArray();
+      }
+   }
 }

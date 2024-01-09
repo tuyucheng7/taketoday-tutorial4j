@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
+import cn.tuyucheng.taketoday.printstreamtostring.PrintStreamToStringUtil;
 import org.junit.Test;
 
 public class PrintStreamToStringUtilUnitTest {

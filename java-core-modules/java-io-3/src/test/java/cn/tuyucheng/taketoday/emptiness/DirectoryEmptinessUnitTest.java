@@ -15,50 +15,50 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DirectoryEmptinessUnitTest {
 
-	@Test
-	public void givenPath_whenInvalid_thenReturnsFalse() throws IOException {
-		assertThat(isEmpty(Paths.get("invalid-addr"))).isFalse();
-	}
+   @Test
+   public void givenPath_whenInvalid_thenReturnsFalse() throws IOException {
+      assertThat(isEmpty(Paths.get("invalid-addr"))).isFalse();
+   }
 
-	@Test
-	public void givenPath_whenNotDirectory_thenReturnsFalse() throws IOException, URISyntaxException {
-		Path aFile = Paths.get(getClass().getResource("/notDir.txt").toURI());
-		assertThat(isEmpty(aFile)).isFalse();
-	}
+   @Test
+   public void givenPath_whenNotDirectory_thenReturnsFalse() throws IOException, URISyntaxException {
+      Path aFile = Paths.get(getClass().getResource("/notDir.txt").toURI());
+      assertThat(isEmpty(aFile)).isFalse();
+   }
 
-	@Test
-	public void givenPath_whenNotEmptyDir_thenReturnsFalse() throws IOException {
-		Path currentDir = new File("").toPath().toAbsolutePath();
-		assertThat(isEmpty(currentDir)).isFalse();
-	}
+   @Test
+   public void givenPath_whenNotEmptyDir_thenReturnsFalse() throws IOException {
+      Path currentDir = new File("").toPath().toAbsolutePath();
+      assertThat(isEmpty(currentDir)).isFalse();
+   }
 
-	@Test
-	public void givenPath_whenIsEmpty_thenReturnsTrue() throws Exception {
-		Path path = Files.createTempDirectory("tuyucheng-empty");
-		assertThat(isEmpty(path)).isTrue();
-	}
+   @Test
+   public void givenPath_whenIsEmpty_thenReturnsTrue() throws Exception {
+      Path path = Files.createTempDirectory("tuyucheng-empty");
+      assertThat(isEmpty(path)).isTrue();
+   }
 
-	private static boolean isEmpty(Path path) throws IOException {
-		if (Files.isDirectory(path)) {
-			try (DirectoryStream<Path> directory = Files.newDirectoryStream(path)) {
-				return !directory.iterator().hasNext();
-			}
-		}
+   private static boolean isEmpty(Path path) throws IOException {
+      if (Files.isDirectory(path)) {
+         try (DirectoryStream<Path> directory = Files.newDirectoryStream(path)) {
+            return !directory.iterator().hasNext();
+         }
+      }
 
-		return false;
-	}
+      return false;
+   }
 
-	private static boolean isEmpty2(Path path) throws IOException {
-		if (Files.isDirectory(path)) {
-			try (Stream<Path> entries = Files.list(path)) {
-				return !entries.findFirst().isPresent();
-			}
-		}
+   private static boolean isEmpty2(Path path) throws IOException {
+      if (Files.isDirectory(path)) {
+         try (Stream<Path> entries = Files.list(path)) {
+            return !entries.findFirst().isPresent();
+         }
+      }
 
-		return false;
-	}
+      return false;
+   }
 
-	private static boolean isEmptyInefficient(Path path) {
-		return path.toFile().listFiles().length == 0;
-	}
+   private static boolean isEmptyInefficient(Path path) {
+      return path.toFile().listFiles().length == 0;
+   }
 }

@@ -44,5 +44,6 @@
 
    <properties>
       <vavr.version>0.10.4</vavr.version>
+      <modelmapper.version>3.2.0</modelmapper.version>
    </properties>
 </project>

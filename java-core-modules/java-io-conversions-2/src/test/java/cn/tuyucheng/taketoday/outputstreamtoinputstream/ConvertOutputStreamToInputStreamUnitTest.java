@@ -49,4 +49,5 @@ public class ConvertOutputStreamToInputStreamUnitTest {
          assertEquals(content, inContent);
       }
    }
+
 }

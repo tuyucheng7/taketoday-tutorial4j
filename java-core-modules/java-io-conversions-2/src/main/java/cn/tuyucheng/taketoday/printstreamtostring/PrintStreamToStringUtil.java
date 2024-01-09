@@ -51,6 +51,7 @@ public class PrintStreamToStringUtil {
    }
 
    private static class CustomOutputStream extends OutputStream {
+
       private StringBuilder stringBuilder = new StringBuilder();
 
       @Override
@@ -63,4 +64,5 @@ public class PrintStreamToStringUtil {
          return this.stringBuilder.toString();
       }
    }
+
 }

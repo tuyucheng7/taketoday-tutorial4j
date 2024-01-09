@@ -137,12 +137,13 @@
       <module>java-httpclient</module>
       <module>java-io-1</module>
       <module>java-io-2</module>
-      <!-- <module>java-io-3</module> -->
-      <!-- <module>java-io-4</module> -->
-      <!-- <module>java-io-apis-1</module> -->
-      <!-- <module>java-io-apis-2</module> -->
-      <!-- <module>java-io-conversions-1</module> -->
-      <!-- <module>java-io-conversions-2</module> -->
+      <module>java-io-3</module>
+      <module>java-io-4</module>
+      <module>java-io-5</module>
+      <module>java-io-apis-1</module>
+      <module>java-io-apis-2</module>
+      <module>java-io-conversions-1</module>
+      <module>java-io-conversions-2</module>
       <!-- <module>java-ipc</module> -->
       <!-- <module>java-jar</module> -->
       <module>java-jdi</module>

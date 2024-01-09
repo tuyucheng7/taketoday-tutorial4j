@@ -8,11 +8,11 @@ import java.util.List;
 
 public class FilesReadLinesExample {
 
-	protected static ArrayList<String> generateArrayListFromFile(String filename) throws IOException {
+   protected static ArrayList<String> generateArrayListFromFile(String filename) throws IOException {
 
-		List<String> result = Files.readAllLines(Paths.get(filename));
+      List<String> result = Files.readAllLines(Paths.get(filename));
 
-		return (ArrayList<String>) result;
-	}
+      return (ArrayList<String>) result;
+   }
 
 }

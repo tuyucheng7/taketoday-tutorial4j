@@ -36,6 +36,7 @@ public class FileSizeBenchmark {
          long result = fis.getChannel().size();
          blackhole.consume(result);
       }
+
    }
 
    @Benchmark

@@ -13,36 +13,36 @@ import java.util.stream.Collectors;
 
 public class FilenameFilterManualTest {
 
-	private static File directory;
+   private static File directory;
 
-	@BeforeClass
-	public static void setupClass() {
-		directory = new File(FilenameFilterManualTest.class.getClassLoader()
-			.getResource("fileNameFilterManualTestFolder")
-			.getFile());
-	}
+   @BeforeClass
+   public static void setupClass() {
+      directory = new File(FilenameFilterManualTest.class.getClassLoader()
+            .getResource("fileNameFilterManualTestFolder")
+            .getFile());
+   }
 
-	@Test
-	public void whenFilteringFilesEndingWithJson_thenEqualExpectedFiles() {
-		FilenameFilter filter = (dir, name) -> name.endsWith(".json");
+   @Test
+   public void whenFilteringFilesEndingWithJson_thenEqualExpectedFiles() {
+      FilenameFilter filter = (dir, name) -> name.endsWith(".json");
 
-		String[] expectedFiles = {"people.json", "students.json"};
-		String[] actualFiles = directory.list(filter);
+      String[] expectedFiles = {"people.json", "students.json"};
+      String[] actualFiles = directory.list(filter);
 
-		Assert.assertArrayEquals(expectedFiles, actualFiles);
-	}
+      Assert.assertArrayEquals(expectedFiles, actualFiles);
+   }
 
-	@Test
-	public void whenFilteringFilesEndingWithXml_thenEqualExpectedFiles() {
-		Predicate<String> predicate = (name) -> name.endsWith(".xml");
+   @Test
+   public void whenFilteringFilesEndingWithXml_thenEqualExpectedFiles() {
+      Predicate<String> predicate = (name) -> name.endsWith(".xml");
 
-		String[] expectedFiles = {"teachers.xml", "workers.xml"};
-		List<String> files = Arrays.stream(directory.list())
-			.filter(predicate)
-			.collect(Collectors.toList());
-		String[] actualFiles = files.toArray(new String[files.size()]);
+      String[] expectedFiles = {"teachers.xml", "workers.xml"};
+      List<String> files = Arrays.stream(directory.list())
+            .filter(predicate)
+            .collect(Collectors.toList());
+      String[] actualFiles = files.toArray(new String[files.size()]);
 
-		Assert.assertArrayEquals(expectedFiles, actualFiles);
-	}
+      Assert.assertArrayEquals(expectedFiles, actualFiles);
+   }
 
 }
