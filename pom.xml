@@ -43,7 +43,7 @@
       <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
       <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
       <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
-      <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
+      <maven-pmd-plugin.version>3.21.2</maven-pmd-plugin.version>
       <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
       <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
       <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
@@ -333,8 +333,8 @@
                <verbose>true</verbose>
                <linkXRef>true</linkXRef>
                <includeTests>true</includeTests>
-               <!--<sourceEncoding>UTF-8</sourceEncoding>-->
-               <targetJdk>${java.version}</targetJdk>
+               <sourceEncoding>UTF-8</sourceEncoding>
+               <targetJdk>11</targetJdk>
                <rulesets>
                   <ruleset>${tutorialsproject.basedir}/tuyucheng-pmd-rules.xml</ruleset>
                </rulesets>
@@ -584,7 +584,7 @@
          </properties>
 
          <modules>
-            <!-- <module>custom-pmd</module> -->
+            <module>custom-pmd</module>
             <module>jacoco-aggregate-report</module>
             <module>parent-java</module>
             <module>parent-spring-5</module>
