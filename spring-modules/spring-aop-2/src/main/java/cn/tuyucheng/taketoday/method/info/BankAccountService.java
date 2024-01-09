@@ -1,29 +1,29 @@
 package cn.tuyucheng.taketoday.method.info;
 
-import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BankAccountService {
 
-	@AccountOperation(operation = "deposit")
-	public void deposit(Account account, Double amount) {
-		account.setBalance(account.getBalance() + amount);
-	}
+   private final UniformRandomProvider rng = RandomSource.XO_RO_SHI_RO_128_PP.create();
 
-	@AccountOperation(operation = "withdraw")
-	public void withdraw(Account account, Double amount) throws WithdrawLimitException {
+   @AccountOperation(operation = "deposit")
+   public void deposit(Account account, Double amount) {
+      account.setBalance(account.getBalance() + amount);
+   }
 
-		if (amount > 500.0) {
-			throw new WithdrawLimitException("Withdraw limit exceeded.");
-		}
+   @AccountOperation(operation = "withdraw")
+   public void withdraw(Account account, Double amount) throws WithdrawLimitException {
+      if (amount > 500.0) {
+         throw new WithdrawLimitException("Withdraw limit exceeded.");
+      }
 
-		account.setBalance(account.getBalance() - amount);
+      account.setBalance(account.getBalance() - amount);
+   }
 
-	}
-
-	public double getBalance() {
-		return RandomUtils.nextDouble();
-	}
-
+   public double getBalance() {
+      return rng.nextDouble();
+   }
 }
