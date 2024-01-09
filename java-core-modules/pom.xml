@@ -10,10 +10,44 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-java</artifactId>
+      <artifactId>taketoday-tutorial4j</artifactId>
       <version>1.0.0</version>
-      <relativePath>../parent-java</relativePath>
    </parent>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <dependencies>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guava.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.openjdk.jmh</groupId>
+         <artifactId>jmh-core</artifactId>
+         <version>${jmh-core.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>${commons-io.version}</version>
+      </dependency>
+   </dependencies>
 
    <modules>
       <module>java-8-1</module>
@@ -196,30 +230,4 @@
       <!-- <module>java-uuid</module> -->
       <!-- <module>java-pre-jpms</module> -->
    </modules>
-
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-         </dependency>
-         <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-
-   <dependencies>
-      <dependency>
-         <groupId>org.projectlombok</groupId>
-         <artifactId>lombok</artifactId>
-         <version>${lombok.version}</version>
-         <scope>provided</scope>
-      </dependency>
-   </dependencies>
 </project>
