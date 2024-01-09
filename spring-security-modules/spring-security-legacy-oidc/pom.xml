@@ -14,18 +14,6 @@
       <version>1.0.0</version>
    </parent>
 
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-bom</artifactId>
-            <version>${log4j2.version}</version>
-            <scope>import</scope>
-            <type>pom</type>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-
    <dependencies>
       <dependency>
          <groupId>org.springframework.boot</groupId>
@@ -60,6 +48,5 @@
       <spring-security-oauth2.version>2.2.1.RELEASE</spring-security-oauth2.version>
       <spring-security-jwt.version>1.0.9.RELEASE</spring-security-jwt.version>
       <jwks-rsa.version>0.3.0</jwks-rsa.version>
-      <log4j2.version>2.17.1</log4j2.version>
    </properties>
 </project>
