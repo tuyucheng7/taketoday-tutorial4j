@@ -13,19 +13,19 @@ import java.util.logging.Logger;
 @Component
 public class PerformanceAspect {
 
-	private static final Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
+   private static final Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
 
-	@Pointcut("within(cn.tuyucheng.taketoday..*) && execution(* cn.tuyucheng.taketoday.pointcutadvice.dao.FooDao.*(..))")
-	public void repositoryClassMethods() {
-	}
+   @Pointcut("within(cn.tuyucheng.taketoday..*) && execution(* cn.tuyucheng.taketoday.pointcutadvice.dao.FooDao.*(..))")
+   public void repositoryClassMethods() {
+   }
 
-	@Around("repositoryClassMethods()")
-	public Object measureMethodExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
-		long start = System.nanoTime();
-		Object retval = pjp.proceed();
-		long end = System.nanoTime();
-		String methodName = pjp.getSignature().getName();
-		logger.info("Execution of " + methodName + " took " + TimeUnit.NANOSECONDS.toMillis(end - start) + " ms");
-		return retval;
-	}
+   @Around("repositoryClassMethods()")
+   public Object measureMethodExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
+      long start = System.nanoTime();
+      Object retval = pjp.proceed();
+      long end = System.nanoTime();
+      String methodName = pjp.getSignature().getName();
+      logger.info("Execution of " + methodName + " took " + TimeUnit.NANOSECONDS.toMillis(end - start) + " ms");
+      return retval;
+   }
 }

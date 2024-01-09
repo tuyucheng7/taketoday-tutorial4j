@@ -20,50 +20,50 @@ import java.util.regex.Pattern;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {Application.class}, loader = AnnotationConfigContextLoader.class)
 public class AopPerformanceIntegrationTest {
 
-	@Before
-	public void setUp() {
-		logEventHandler = new Handler() {
-			@Override
-			public void publish(LogRecord record) {
-				messages.add(record.getMessage());
-			}
+   @Before
+   public void setUp() {
+      logEventHandler = new Handler() {
+         @Override
+         public void publish(LogRecord record) {
+            messages.add(record.getMessage());
+         }
 
-			@Override
-			public void flush() {
-			}
+         @Override
+         public void flush() {
+         }
 
-			@Override
-			public void close() throws SecurityException {
-			}
-		};
+         @Override
+         public void close() throws SecurityException {
+         }
+      };
 
-		messages = new ArrayList<>();
-	}
+      messages = new ArrayList<>();
+   }
 
-	@Autowired
-	private FooDao dao;
+   @Autowired
+   private FooDao dao;
 
-	private Handler logEventHandler;
+   private Handler logEventHandler;
 
-	private List<String> messages;
+   private List<String> messages;
 
-	@Test
-	public void givenPerformanceAspect_whenCallDaoMethod_thenPerformanceMeasurementAdviceIsCalled() {
-		Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
-		logger.addHandler(logEventHandler);
+   @Test
+   public void givenPerformanceAspect_whenCallDaoMethod_thenPerformanceMeasurementAdviceIsCalled() {
+      Logger logger = Logger.getLogger(PerformanceAspect.class.getName());
+      logger.addHandler(logEventHandler);
 
-		final String entity = dao.findById(1L);
-		assertThat(entity, notNullValue());
-		assertThat(messages, hasSize(1));
+      final String entity = dao.findById(1L);
+      assertThat(entity, notNullValue());
+      assertThat(messages, hasSize(1));
 
-		String logMessage = messages.get(0);
-		Pattern pattern = Pattern.compile("Execution of findById took \\d+ ms");
-		assertTrue(pattern.matcher(logMessage).matches());
-	}
+      String logMessage = messages.get(0);
+      Pattern pattern = Pattern.compile("Execution of findById took \\d+ ms");
+      assertTrue(pattern.matcher(logMessage).matches());
+   }
 }
