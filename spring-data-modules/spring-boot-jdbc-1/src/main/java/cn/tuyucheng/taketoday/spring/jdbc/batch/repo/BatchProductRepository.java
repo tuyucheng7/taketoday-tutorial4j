@@ -12,22 +12,22 @@ import java.util.List;
 @Repository
 public class BatchProductRepository implements ProductRepository {
 
-	private final JdbcTemplate jdbcTemplate;
+   private final JdbcTemplate jdbcTemplate;
 
-	public BatchProductRepository(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+   public BatchProductRepository(JdbcTemplate jdbcTemplate) {
+      this.jdbcTemplate = jdbcTemplate;
+   }
 
-	@Override
-	@Transactional
-	public void saveAll(List<Product> products) {
-		jdbcTemplate.batchUpdate("INSERT INTO PRODUCT (TITLE, CREATED_TS, PRICE) VALUES (?, ?, ?)",
-			products,
-			100,
-			(PreparedStatement ps, Product product) -> {
-				ps.setString(1, product.getTitle());
-				ps.setTimestamp(2, Timestamp.valueOf(product.getCreatedTs()));
-				ps.setBigDecimal(3, product.getPrice());
-			});
-	}
+   @Override
+   @Transactional
+   public void saveAll(List<Product> products) {
+      jdbcTemplate.batchUpdate("INSERT INTO PRODUCT (TITLE, CREATED_TS, PRICE) VALUES (?, ?, ?)",
+            products,
+            100,
+            (PreparedStatement ps, Product product) -> {
+               ps.setString(1, product.getTitle());
+               ps.setTimestamp(2, Timestamp.valueOf(product.getCreatedTs()));
+               ps.setBigDecimal(3, product.getPrice());
+            });
+   }
 }

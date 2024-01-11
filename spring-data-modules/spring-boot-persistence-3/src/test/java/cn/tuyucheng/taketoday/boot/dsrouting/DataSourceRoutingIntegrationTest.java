@@ -3,23 +3,23 @@ package cn.tuyucheng.taketoday.boot.dsrouting;
 import cn.tuyucheng.taketoday.dsrouting.ClientDatabase;
 import cn.tuyucheng.taketoday.dsrouting.ClientDatabaseContextHolder;
 import cn.tuyucheng.taketoday.dsrouting.ClientService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.sql.DataSource;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = DataSourceRoutingTestConfiguration.class)
 @DirtiesContext
-public class DataSourceRoutingIntegrationTest {
+class DataSourceRoutingIntegrationTest {
 
    @Autowired
    DataSource routingDatasource;
@@ -27,8 +27,8 @@ public class DataSourceRoutingIntegrationTest {
    @Autowired
    ClientService clientService;
 
-   @Before
-   public void setup() {
+   @BeforeEach
+   void setup() {
       final String SQL_CLIENT_A = "insert into client (id, name) values (1, 'CLIENT A')";
       final String SQL_CLIENT_B = "insert into client (id, name) values (2, 'CLIENT B')";
 
@@ -45,7 +45,7 @@ public class DataSourceRoutingIntegrationTest {
    }
 
    @Test
-   public void givenClientDbs_whenContextsSwitch_thenRouteToCorrectDatabase() throws Exception {
+   void givenClientDbs_whenContextsSwitch_thenRouteToCorrectDatabase() throws Exception {
       // test ACME WIDGETS
       String clientName = clientService.getClientName(ClientDatabase.CLIENT_A);
       assertEquals(clientName, "CLIENT A");

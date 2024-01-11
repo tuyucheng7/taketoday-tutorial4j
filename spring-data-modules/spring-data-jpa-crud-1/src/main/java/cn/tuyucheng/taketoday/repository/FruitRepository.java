@@ -12,15 +12,15 @@ import java.util.List;
 @Repository
 public interface FruitRepository extends JpaRepository<Fruit, Long> {
 
-	Long deleteByName(String name);
+   Long deleteByName(String name);
 
-	List<Fruit> deleteByColor(String color);
+   List<Fruit> deleteByColor(String color);
 
-	Long removeByName(String name);
+   Long removeByName(String name);
 
-	List<Fruit> removeByColor(String color);
+   List<Fruit> removeByColor(String color);
 
-	@Modifying
-	@Query("delete from Fruit f where f.name=:name or f.color=:color")
-	int deleteFruits(@Param("name") String name, @Param("color") String color);
+   @Modifying
+   @Query("delete from Fruit f where f.name=:name or f.color=:color")
+   int deleteFruits(@Param("name") String name, @Param("color") String color);
 }

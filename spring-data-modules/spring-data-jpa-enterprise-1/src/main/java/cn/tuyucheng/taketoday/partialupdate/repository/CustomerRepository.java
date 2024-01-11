@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    Customer findById(long id);
+   Customer findById(long id);
 
-    @Modifying
-    @Query("update Customer u set u.phone = :phone where u.id = :id")
-    void updatePhone(@Param(value = "id") long id, @Param(value = "phone") String phone);
+   @Modifying
+   @Query("update Customer u set u.phone = :phone where u.id = :id")
+   void updatePhone(@Param(value = "id") long id, @Param(value = "phone") String phone);
 }

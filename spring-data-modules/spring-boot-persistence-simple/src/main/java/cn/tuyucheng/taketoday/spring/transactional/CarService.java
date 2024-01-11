@@ -12,15 +12,15 @@ import javax.persistence.EntityExistsException;
 @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.SUPPORTS, readOnly = false, timeout = 30)
 public class CarService {
 
-	@Autowired
-	private CarRepository carRepository;
+   @Autowired
+   private CarRepository carRepository;
 
-	@Transactional(
-			rollbackFor = IllegalArgumentException.class,
-			noRollbackFor = EntityExistsException.class,
-			rollbackForClassName = "IllegalArgumentException",
-			noRollbackForClassName = "EntityExistsException")
-	public Car save(Car car) {
-		return carRepository.save(car);
-	}
+   @Transactional(
+         rollbackFor = IllegalArgumentException.class,
+         noRollbackFor = EntityExistsException.class,
+         rollbackForClassName = "IllegalArgumentException",
+         noRollbackForClassName = "EntityExistsException")
+   public Car save(Car car) {
+      return carRepository.save(car);
+   }
 }

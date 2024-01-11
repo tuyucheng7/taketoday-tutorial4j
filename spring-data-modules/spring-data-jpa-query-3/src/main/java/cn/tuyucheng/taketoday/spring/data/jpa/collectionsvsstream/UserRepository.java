@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-  Stream<User> findAllByAgeGreaterThan(int age);
+   Stream<User> findAllByAgeGreaterThan(int age);
 
-  List<User> findByAgeGreaterThan(int age);
+   List<User> findByAgeGreaterThan(int age);
 }

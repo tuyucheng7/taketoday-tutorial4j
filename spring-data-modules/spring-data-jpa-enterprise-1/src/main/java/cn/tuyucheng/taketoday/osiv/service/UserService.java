@@ -5,5 +5,5 @@ import cn.tuyucheng.taketoday.osiv.model.BasicUser;
 import java.util.Optional;
 
 public interface UserService {
-    Optional<BasicUser> findOne(String username);
+   Optional<BasicUser> findOne(String username);
 }

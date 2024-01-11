@@ -11,11 +11,11 @@ import cn.tuyucheng.taketoday.boot.config.PersistenceConfiguration;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest(excludeAutoConfiguration = {
-        PersistenceConfiguration.class})
+      PersistenceConfiguration.class})
 @ContextConfiguration(classes = Application.class)
 class SpringJpaContextIntegrationTest {
 
-    @Test
-    void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

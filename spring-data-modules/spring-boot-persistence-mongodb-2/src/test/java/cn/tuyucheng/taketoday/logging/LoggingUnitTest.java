@@ -34,119 +34,119 @@ import static org.springframework.data.mongodb.core.query.Update.update;
 @TestPropertySource(properties = {"logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG"}, value = "/embedded.properties")
 class LoggingUnitTest {
 
-    private static final String CONNECTION_STRING = "mongodb://%s:%d";
+   private static final String CONNECTION_STRING = "mongodb://%s:%d";
 
-    private MongodExecutable mongodExecutable;
-    private MongoTemplate mongoTemplate;
+   private MongodExecutable mongodExecutable;
+   private MongoTemplate mongoTemplate;
 
-    @AfterEach
-    void clean() {
-        mongodExecutable.stop();
-    }
+   @AfterEach
+   void clean() {
+      mongodExecutable.stop();
+   }
 
-    @BeforeEach
-    void setup() throws Exception {
-        String ip = "localhost";
-        int port = Network.freeServerPort(Network.getLocalHost());
+   @BeforeEach
+   void setup() throws Exception {
+      String ip = "localhost";
+      int port = Network.freeServerPort(Network.getLocalHost());
 
-        ImmutableMongodConfig mongodbConfig = MongodConfig.builder()
-                .version(Version.Main.PRODUCTION)
-                .net(new Net(ip, port, Network.localhostIsIPv6()))
-                .build();
+      ImmutableMongodConfig mongodbConfig = MongodConfig.builder()
+            .version(Version.Main.PRODUCTION)
+            .net(new Net(ip, port, Network.localhostIsIPv6()))
+            .build();
 
-        MongodStarter starter = MongodStarter.getDefaultInstance();
-        mongodExecutable = starter.prepare(mongodbConfig);
-        mongodExecutable.start();
-        mongoTemplate = new MongoTemplate(MongoClients.create(String.format(CONNECTION_STRING, ip, port)), "test");
-    }
+      MongodStarter starter = MongodStarter.getDefaultInstance();
+      mongodExecutable = starter.prepare(mongodbConfig);
+      mongodExecutable.start();
+      mongoTemplate = new MongoTemplate(MongoClients.create(String.format(CONNECTION_STRING, ip, port)), "test");
+   }
 
-    @Test
-    void whenInsertDocument_thenFindByIdOk() {
-        Book book = new Book();
-        book.setBookName("Book");
-        book.setAuthorName("Author");
+   @Test
+   void whenInsertDocument_thenFindByIdOk() {
+      Book book = new Book();
+      book.setBookName("Book");
+      book.setAuthorName("Author");
 
-        mongoTemplate.insert(book);
+      mongoTemplate.insert(book);
 
-        assertThat(mongoTemplate.findById(book.getId(), Book.class)).isEqualTo(book);
-    }
+      assertThat(mongoTemplate.findById(book.getId(), Book.class)).isEqualTo(book);
+   }
 
-    @Test
-    void givenExistingDocument_whenUpdateDocument_thenFieldIsUpdatedOk() {
-        Book book = new Book();
-        book.setBookName("Book");
-        book.setAuthorName("Author");
+   @Test
+   void givenExistingDocument_whenUpdateDocument_thenFieldIsUpdatedOk() {
+      Book book = new Book();
+      book.setBookName("Book");
+      book.setAuthorName("Author");
 
-        mongoTemplate.insert(book);
+      mongoTemplate.insert(book);
 
-        String authorNameUpdate = "AuthorNameUpdate";
+      String authorNameUpdate = "AuthorNameUpdate";
 
-        book.setAuthorName(authorNameUpdate);
-        mongoTemplate.updateFirst(query(where("bookName").is("Book")), update("authorName", authorNameUpdate), Book.class);
+      book.setAuthorName(authorNameUpdate);
+      mongoTemplate.updateFirst(query(where("bookName").is("Book")), update("authorName", authorNameUpdate), Book.class);
 
-        assertThat(mongoTemplate.findById(book.getId(), Book.class)).extracting(Book::getAuthorName)
-                .isEqualTo(authorNameUpdate);
-    }
+      assertThat(mongoTemplate.findById(book.getId(), Book.class)).extracting(Book::getAuthorName)
+            .isEqualTo(authorNameUpdate);
+   }
 
-    @Test
-    void whenInsertMultipleDocuments_thenFindAllOk() {
-        Book book = new Book();
-        book.setBookName("Book");
-        book.setAuthorName("Author");
+   @Test
+   void whenInsertMultipleDocuments_thenFindAllOk() {
+      Book book = new Book();
+      book.setBookName("Book");
+      book.setAuthorName("Author");
 
-        Book book1 = new Book();
-        book1.setBookName("Book1");
-        book1.setAuthorName("Author1");
+      Book book1 = new Book();
+      book1.setBookName("Book1");
+      book1.setAuthorName("Author1");
 
-        mongoTemplate.insert(Arrays.asList(book, book1), Book.class);
+      mongoTemplate.insert(Arrays.asList(book, book1), Book.class);
 
-        assertThat(mongoTemplate.findAll(Book.class)
-                .size()).isEqualTo(2);
-    }
+      assertThat(mongoTemplate.findAll(Book.class)
+            .size()).isEqualTo(2);
+   }
 
-    @Test
-    void givenExistingDocument_whenRemoveDocument_thenDocumentIsDeleted() {
-        Book book = new Book();
-        book.setBookName("Book");
-        book.setAuthorName("Author");
+   @Test
+   void givenExistingDocument_whenRemoveDocument_thenDocumentIsDeleted() {
+      Book book = new Book();
+      book.setBookName("Book");
+      book.setAuthorName("Author");
 
-        mongoTemplate.insert(book);
+      mongoTemplate.insert(book);
 
-        mongoTemplate.remove(book);
+      mongoTemplate.remove(book);
 
-        assertThat(mongoTemplate.findAll(Book.class).size()).isZero();
-    }
+      assertThat(mongoTemplate.findAll(Book.class).size()).isZero();
+   }
 
-    @Test
-    void whenAggregateByField_thenGroupByCountIsOk() {
-        Book book = new Book();
-        book.setBookName("Book");
-        book.setAuthorName("Author");
+   @Test
+   void whenAggregateByField_thenGroupByCountIsOk() {
+      Book book = new Book();
+      book.setBookName("Book");
+      book.setAuthorName("Author");
 
-        Book book1 = new Book();
-        book1.setBookName("Book1");
-        book1.setAuthorName("Author");
+      Book book1 = new Book();
+      book1.setBookName("Book1");
+      book1.setAuthorName("Author");
 
-        Book book2 = new Book();
-        book2.setBookName("Book2");
-        book2.setAuthorName("Author");
+      Book book2 = new Book();
+      book2.setBookName("Book2");
+      book2.setAuthorName("Author");
 
-        mongoTemplate.insert(Arrays.asList(book, book1, book2), Book.class);
+      mongoTemplate.insert(Arrays.asList(book, book1, book2), Book.class);
 
-        GroupOperation groupByAuthor = group("authorName").count().as("authCount");
+      GroupOperation groupByAuthor = group("authorName").count().as("authCount");
 
-        Aggregation aggregation = newAggregation(groupByAuthor);
+      Aggregation aggregation = newAggregation(groupByAuthor);
 
-        AggregationResults<GroupByAuthor> aggregationResults = mongoTemplate.aggregate(aggregation, "book", GroupByAuthor.class);
+      AggregationResults<GroupByAuthor> aggregationResults = mongoTemplate.aggregate(aggregation, "book", GroupByAuthor.class);
 
-        List<GroupByAuthor> groupByAuthorList = StreamSupport.stream(aggregationResults.spliterator(), false)
-                .toList();
+      List<GroupByAuthor> groupByAuthorList = StreamSupport.stream(aggregationResults.spliterator(), false)
+            .toList();
 
-        assertThat(groupByAuthorList.stream()
-                .filter(l -> l.getAuthorName()
-                        .equals("Author"))
-                .findFirst()
-                .orElse(null)).extracting(GroupByAuthor::getAuthCount)
-                .isEqualTo(3);
-    }
+      assertThat(groupByAuthorList.stream()
+            .filter(l -> l.getAuthorName()
+                  .equals("Author"))
+            .findFirst()
+            .orElse(null)).extracting(GroupByAuthor::getAuthCount)
+            .isEqualTo(3);
+   }
 }

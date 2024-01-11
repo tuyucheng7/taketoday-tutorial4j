@@ -11,24 +11,24 @@ import cn.tuyucheng.taketoday.objectmapper.entity.User;
 
 public class UserQueryProvider {
 
-    private final CqlSession session;
-    private final EntityHelper<User> userHelper;
+   private final CqlSession session;
+   private final EntityHelper<User> userHelper;
 
-    public UserQueryProvider(MapperContext context, EntityHelper<User> userHelper) {
-        this.session = context.getSession();
-        this.userHelper = userHelper;
-    }
+   public UserQueryProvider(MapperContext context, EntityHelper<User> userHelper) {
+      this.session = context.getSession();
+      this.userHelper = userHelper;
+   }
 
-    public PagingIterable<User> getUsersOlderThanAge(String age) {
-        SimpleStatement statement = QueryBuilder.selectFrom("user_profile")
-          .all()
-          .whereColumn("user_age")
-          .isGreaterThan(QueryBuilder
+   public PagingIterable<User> getUsersOlderThanAge(String age) {
+      SimpleStatement statement = QueryBuilder.selectFrom("user_profile")
+            .all()
+            .whereColumn("user_age")
+            .isGreaterThan(QueryBuilder
                   .bindMarker(age))
-          .build();
-        PreparedStatement preparedSelectUser = session.prepare(statement);
-        return session
-          .execute(preparedSelectUser.getQuery())
-          .map(result -> userHelper.get(result, true));
-    }
+            .build();
+      PreparedStatement preparedSelectUser = session.prepare(statement);
+      return session
+            .execute(preparedSelectUser.getQuery())
+            .map(result -> userHelper.get(result, true));
+   }
 }

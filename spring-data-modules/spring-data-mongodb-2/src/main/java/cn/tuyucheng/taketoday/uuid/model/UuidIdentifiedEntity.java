@@ -6,20 +6,20 @@ import java.util.UUID;
 
 public abstract class UuidIdentifiedEntity {
 
-	@Id
-	protected UUID id;
+   @Id
+   protected UUID id;
 
-	public UUID getId() {
-		return id;
-	}
+   public UUID getId() {
+      return id;
+   }
 
-	public void setId(UUID id) {
+   public void setId(UUID id) {
 
-		if (this.id != null) {
+      if (this.id != null) {
 
-			throw new UnsupportedOperationException("ID is already defined");
-		}
+         throw new UnsupportedOperationException("ID is already defined");
+      }
 
-		this.id = id;
-	}
+      this.id = id;
+   }
 }

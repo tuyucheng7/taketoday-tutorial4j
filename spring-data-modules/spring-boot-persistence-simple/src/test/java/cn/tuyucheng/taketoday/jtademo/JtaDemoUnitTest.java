@@ -20,71 +20,71 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = JtaDemoApplication.class)
 class JtaDemoUnitTest {
-	@Autowired
-	TestHelper testHelper;
+   @Autowired
+   TestHelper testHelper;
 
-	@Autowired
-	TellerService tellerService;
+   @Autowired
+   TellerService tellerService;
 
-	@Autowired
-	BankAccountService accountService;
+   @Autowired
+   BankAccountService accountService;
 
-	@Autowired
-	AuditService auditService;
+   @Autowired
+   AuditService auditService;
 
-	@BeforeEach
-	void beforeTest() throws Exception {
-		testHelper.runAuditDbInit();
-		testHelper.runAccountDbInit();
-	}
+   @BeforeEach
+   void beforeTest() throws Exception {
+      testHelper.runAuditDbInit();
+      testHelper.runAccountDbInit();
+   }
 
-	@Test
-	void givenAnnotationTx_whenNoException_thenAllCommitted() {
-		tellerService.executeTransfer("a0000001", "a0000002", BigDecimal.valueOf(500));
+   @Test
+   void givenAnnotationTx_whenNoException_thenAllCommitted() {
+      tellerService.executeTransfer("a0000001", "a0000002", BigDecimal.valueOf(500));
 
-		assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(500));
-		assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2500));
+      assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(500));
+      assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2500));
 
-		TransferLog lastTransferLog = auditService.lastTransferLog();
+      TransferLog lastTransferLog = auditService.lastTransferLog();
 
-		assertThat(lastTransferLog.getFromAccountId()).isEqualTo("a0000001");
-		assertThat(lastTransferLog.getToAccountId()).isEqualTo("a0000002");
-		assertThat(lastTransferLog.getAmount()).isEqualByComparingTo(BigDecimal.valueOf(500));
-	}
+      assertThat(lastTransferLog.getFromAccountId()).isEqualTo("a0000001");
+      assertThat(lastTransferLog.getToAccountId()).isEqualTo("a0000002");
+      assertThat(lastTransferLog.getAmount()).isEqualByComparingTo(BigDecimal.valueOf(500));
+   }
 
-	@Test
-	void givenAnnotationTx_whenException_thenAllRolledBack() {
-		assertThatThrownBy(
-				() -> tellerService.executeTransfer("a0000002", "a0000001", BigDecimal.valueOf(100000))
-		).hasMessage("Insufficient fund.");
+   @Test
+   void givenAnnotationTx_whenException_thenAllRolledBack() {
+      assertThatThrownBy(
+            () -> tellerService.executeTransfer("a0000002", "a0000001", BigDecimal.valueOf(100000))
+      ).hasMessage("Insufficient fund.");
 
-		assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(1000));
-		assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2000));
-		assertThat(auditService.lastTransferLog()).isNull();
-	}
+      assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(1000));
+      assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2000));
+      assertThat(auditService.lastTransferLog()).isNull();
+   }
 
-	@Test
-	void givenProgrammaticTx_whenCommit_thenAllCommitted() throws Exception {
-		tellerService.executeTransferProgrammaticTx("a0000001", "a0000002", BigDecimal.valueOf(500));
+   @Test
+   void givenProgrammaticTx_whenCommit_thenAllCommitted() throws Exception {
+      tellerService.executeTransferProgrammaticTx("a0000001", "a0000002", BigDecimal.valueOf(500));
 
-		assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(500));
-		assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2500));
+      assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(500));
+      assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2500));
 
-		TransferLog lastTransferLog = auditService.lastTransferLog();
+      TransferLog lastTransferLog = auditService.lastTransferLog();
 
-		assertThat(lastTransferLog.getFromAccountId()).isEqualTo("a0000001");
-		assertThat(lastTransferLog.getToAccountId()).isEqualTo("a0000002");
-		assertThat(lastTransferLog.getAmount()).isEqualByComparingTo(BigDecimal.valueOf(500));
-	}
+      assertThat(lastTransferLog.getFromAccountId()).isEqualTo("a0000001");
+      assertThat(lastTransferLog.getToAccountId()).isEqualTo("a0000002");
+      assertThat(lastTransferLog.getAmount()).isEqualByComparingTo(BigDecimal.valueOf(500));
+   }
 
-	@Test
-	void givenProgrammaticTx_whenRollback_thenAllRolledBack() {
-		assertThatThrownBy(
-				() -> tellerService.executeTransferProgrammaticTx("a0000002", "a0000001", BigDecimal.valueOf(100000))
-		).hasMessage("Insufficient fund.");
+   @Test
+   void givenProgrammaticTx_whenRollback_thenAllRolledBack() {
+      assertThatThrownBy(
+            () -> tellerService.executeTransferProgrammaticTx("a0000002", "a0000001", BigDecimal.valueOf(100000))
+      ).hasMessage("Insufficient fund.");
 
-		assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(1000));
-		assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2000));
-		assertThat(auditService.lastTransferLog()).isNull();
-	}
+      assertThat(accountService.balanceOf("a0000001")).isEqualByComparingTo(BigDecimal.valueOf(1000));
+      assertThat(accountService.balanceOf("a0000002")).isEqualByComparingTo(BigDecimal.valueOf(2000));
+      assertThat(auditService.lastTransferLog()).isNull();
+   }
 }

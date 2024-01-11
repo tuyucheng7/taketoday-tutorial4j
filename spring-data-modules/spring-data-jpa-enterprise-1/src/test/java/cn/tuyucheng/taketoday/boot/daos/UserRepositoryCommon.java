@@ -24,10 +24,10 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class UserRepositoryCommon {
+class UserRepositoryCommon {
 
    final String USER_EMAIL = "email@example.com";
    final String USER_EMAIL2 = "email2@example.com";
@@ -47,7 +47,7 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenUsersWithSameNameInDB_WhenFindAllByName_ThenReturnStreamOfUsers() {
+   void givenUsersWithSameNameInDB_WhenFindAllByName_ThenReturnStreamOfUsers() {
       User user1 = new User();
       user1.setName(USER_NAME_ADAM);
       user1.setEmail(USER_EMAIL);
@@ -74,7 +74,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllWithQueryAnnotation_ThenReturnCollectionWithActiveUsers() {
+   void givenUsersInDB_WhenFindAllWithQueryAnnotation_ThenReturnCollectionWithActiveUsers() {
       User user1 = new User();
       user1.setName(USER_NAME_ADAM);
       user1.setEmail(USER_EMAIL);
@@ -99,7 +99,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllWithQueryAnnotationNative_ThenReturnCollectionWithActiveUsers() {
+   void givenUsersInDB_WhenFindAllWithQueryAnnotationNative_ThenReturnCollectionWithActiveUsers() {
       User user1 = new User();
       user1.setName(USER_NAME_ADAM);
       user1.setEmail(USER_EMAIL);
@@ -124,7 +124,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUserInDB_WhenFindUserByStatusWithQueryAnnotation_ThenReturnActiveUser() {
+   void givenUserInDB_WhenFindUserByStatusWithQueryAnnotation_ThenReturnActiveUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -137,7 +137,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUserInDB_WhenFindUserByStatusWithQueryAnnotationNative_ThenReturnActiveUser() {
+   void givenUserInDB_WhenFindUserByStatusWithQueryAnnotationNative_ThenReturnActiveUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -150,7 +150,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationIndexedParams_ThenReturnOneUser() {
+   void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationIndexedParams_ThenReturnOneUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -169,7 +169,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNamedParams_ThenReturnOneUser() {
+   void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNamedParams_ThenReturnOneUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -188,7 +188,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNativeNamedParams_ThenReturnOneUser() {
+   void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNativeNamedParams_ThenReturnOneUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -207,7 +207,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNamedParamsCustomNames_ThenReturnOneUser() {
+   void givenUsersInDB_WhenFindUserByStatusAndNameWithQueryAnnotationNamedParamsCustomNames_ThenReturnOneUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -226,7 +226,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationIndexedParams_ThenReturnUser() {
+   void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationIndexedParams_ThenReturnUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -239,7 +239,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationNamedParams_ThenReturnUser() {
+   void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationNamedParams_ThenReturnUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -252,7 +252,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationNative_ThenReturnUser() {
+   void givenUsersInDB_WhenFindUserByNameLikeWithQueryAnnotationNative_ThenReturnUser() {
       User user = new User();
       user.setName(USER_NAME_ADAM);
       user.setEmail(USER_EMAIL);
@@ -265,7 +265,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllWithSortByName_ThenReturnUsersSorted() {
+   void givenUsersInDB_WhenFindAllWithSortByName_ThenReturnUsersSorted() {
       userRepository.save(new User(USER_NAME_ADAM, LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User(USER_NAME_PETER, LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, INACTIVE_STATUS));
@@ -277,7 +277,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllSortWithFunction_ThenThrowException() {
+   void givenUsersInDB_WhenFindAllSortWithFunction_ThenThrowException() {
       userRepository.save(new User(USER_NAME_ADAM, LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User(USER_NAME_PETER, LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, INACTIVE_STATUS));
@@ -288,7 +288,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllSortWithFunctionQueryAnnotationJPQL_ThenReturnUsersSorted() {
+   void givenUsersInDB_WhenFindAllSortWithFunctionQueryAnnotationJPQL_ThenReturnUsersSorted() {
       userRepository.save(new User(USER_NAME_ADAM, LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User(USER_NAME_PETER, LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, INACTIVE_STATUS));
@@ -302,7 +302,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllWithPageRequestQueryAnnotationJPQL_ThenReturnPageOfUsers() {
+   void givenUsersInDB_WhenFindAllWithPageRequestQueryAnnotationJPQL_ThenReturnPageOfUsers() {
       userRepository.save(new User(USER_NAME_ADAM, LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User(USER_NAME_PETER, LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, INACTIVE_STATUS));
@@ -318,7 +318,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindAllWithPageRequestQueryAnnotationNative_ThenReturnPageOfUsers() {
+   void givenUsersInDB_WhenFindAllWithPageRequestQueryAnnotationNative_ThenReturnPageOfUsers() {
       userRepository.save(new User(USER_NAME_ADAM, LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User(USER_NAME_PETER, LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, INACTIVE_STATUS));
@@ -335,7 +335,7 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenUsersInDB_WhenUpdateStatusForNameModifyingQueryAnnotationJPQL_ThenModifyMatchingUsers() {
+   void givenUsersInDB_WhenUpdateStatusForNameModifyingQueryAnnotationJPQL_ThenModifyMatchingUsers() {
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE1", LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, ACTIVE_STATUS));
@@ -347,7 +347,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDB_WhenFindByEmailsWithDynamicQuery_ThenReturnCollection() {
+   void givenUsersInDB_WhenFindByEmailsWithDynamicQuery_ThenReturnCollection() {
 
       User user1 = new User();
       user1.setEmail(USER_EMAIL);
@@ -371,7 +371,7 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenUsersInDBWhenFindByNameListReturnCollection() {
+   void givenUsersInDBWhenFindByNameListReturnCollection() {
 
       User user1 = new User();
       user1.setName(USER_NAME_ADAM);
@@ -393,7 +393,7 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void whenInsertedWithQuery_ThenUserIsPersisted() {
+   void whenInsertedWithQuery_ThenUserIsPersisted() {
       userRepository.insertUser(USER_NAME_ADAM, 1, USER_EMAIL, ACTIVE_STATUS, true);
       userRepository.insertUser(USER_NAME_PETER, 1, USER_EMAIL2, ACTIVE_STATUS, true);
 
@@ -409,9 +409,9 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenFindByNameUsr01_ThenUserUsr01() {
-      User usr01 = new User("usr01", LocalDate.now(), "usr01@baeldung.com", 1);
-      User usr02 = new User("usr02", LocalDate.now(), "usr02@baeldung.com", 1);
+   void givenTwoUsers_whenFindByNameUsr01_ThenUserUsr01() {
+      User usr01 = new User("usr01", LocalDate.now(), "usr01@tuyucheng.com", 1);
+      User usr02 = new User("usr02", LocalDate.now(), "usr02@tuyucheng.com", 1);
 
       userRepository.save(usr01);
       userRepository.save(usr02);
@@ -423,9 +423,9 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenFindByNameUsr00_ThenNoUsers() {
-      User usr01 = new User("usr01", LocalDate.now(), "usr01@baeldung.com", 1);
-      User usr02 = new User("usr02", LocalDate.now(), "usr02@baeldung.com", 1);
+   void givenTwoUsers_whenFindByNameUsr00_ThenNoUsers() {
+      User usr01 = new User("usr01", LocalDate.now(), "usr01@tuyucheng.com", 1);
+      User usr02 = new User("usr02", LocalDate.now(), "usr02@tuyucheng.com", 1);
 
       userRepository.save(usr01);
       userRepository.save(usr02);
@@ -436,8 +436,8 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenTwoUsers_whenFindUsersWithGmailAddress_ThenUserUsr02() {
-      User usr01 = new User("usr01", LocalDate.now(), "usr01@baeldung.com", 1);
+   void givenTwoUsers_whenFindUsersWithGmailAddress_ThenUserUsr02() {
+      User usr01 = new User("usr01", LocalDate.now(), "usr01@tuyucheng.com", 1);
       User usr02 = new User("usr02", LocalDate.now(), "usr02@gmail.com", 1);
 
       userRepository.save(usr01);
@@ -450,9 +450,9 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenDeleteAllByCreationDateAfter_ThenOneUserRemains() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.com", 1);
+   void givenTwoUsers_whenDeleteAllByCreationDateAfter_ThenOneUserRemains() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.com", 1);
 
       userRepository.save(usr01);
       userRepository.save(usr02);
@@ -466,9 +466,9 @@ public class UserRepositoryCommon {
    }
 
    @Test
-   public void givenTwoUsers_whenFindAllUsersByPredicates_ThenUserUsr01() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.org", 1);
+   void givenTwoUsers_whenFindAllUsersByPredicates_ThenUserUsr01() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.org", 1);
 
       userRepository.save(usr01);
       userRepository.save(usr02);
@@ -485,10 +485,10 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenDeactivateUsersNotLoggedInSince_ThenUserUsr02Deactivated() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
+   void givenTwoUsers_whenDeactivateUsersNotLoggedInSince_ThenUserUsr02Deactivated() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
       usr01.setLastLoginDate(LocalDate.now());
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.org", 1);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.org", 1);
       usr02.setLastLoginDate(LocalDate.of(2018, 7, 20));
 
       userRepository.save(usr01);
@@ -503,10 +503,10 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenDeleteDeactivatedUsers_ThenUserUsr02Deleted() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
+   void givenTwoUsers_whenDeleteDeactivatedUsers_ThenUserUsr02Deleted() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
       usr01.setLastLoginDate(LocalDate.now());
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.com", 0);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.com", 0);
       usr02.setLastLoginDate(LocalDate.of(2018, 7, 20));
       usr02.setActive(false);
 
@@ -523,10 +523,10 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenDeleteDeactivatedUsersWithNoModifyingAnnotation_ThenException() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
+   void givenTwoUsers_whenDeleteDeactivatedUsersWithNoModifyingAnnotation_ThenException() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
       usr01.setLastLoginDate(LocalDate.now());
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.com", 0);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.com", 0);
       usr02.setLastLoginDate(LocalDate.of(2018, 7, 20));
       usr02.setActive(false);
 
@@ -539,10 +539,10 @@ public class UserRepositoryCommon {
 
    @Test
    @Transactional
-   public void givenTwoUsers_whenAddDeletedColumn_ThenUsersHaveDeletedColumn() {
-      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@baeldung.com", 1);
+   void givenTwoUsers_whenAddDeletedColumn_ThenUsersHaveDeletedColumn() {
+      User usr01 = new User("usr01", LocalDate.of(2018, 1, 1), "usr01@tuyucheng.com", 1);
       usr01.setLastLoginDate(LocalDate.now());
-      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@baeldung.org", 1);
+      User usr02 = new User("usr02", LocalDate.of(2018, 6, 1), "usr02@tuyucheng.org", 1);
       usr02.setLastLoginDate(LocalDate.of(2018, 7, 20));
       usr02.setActive(false);
 
@@ -556,7 +556,7 @@ public class UserRepositoryCommon {
    }
 
    @AfterEach
-   public void cleanUp() {
+   void cleanUp() {
       userRepository.deleteAll();
    }
 }

@@ -10,15 +10,15 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 @SpringBootApplication
 public class Spring5ReactiveApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Spring5ReactiveApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(Spring5ReactiveApplication.class, args);
+   }
 
-	@Autowired
-	MongoClient mongoClient;
+   @Autowired
+   MongoClient mongoClient;
 
-	@Bean
-	public ReactiveMongoTemplate reactiveMongoTemplate() {
-		return new ReactiveMongoTemplate(mongoClient, "test");
-	}
+   @Bean
+   public ReactiveMongoTemplate reactiveMongoTemplate() {
+      return new ReactiveMongoTemplate(mongoClient, "test");
+   }
 }

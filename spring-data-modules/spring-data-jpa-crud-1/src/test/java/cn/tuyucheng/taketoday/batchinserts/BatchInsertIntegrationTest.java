@@ -23,20 +23,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("stats")
 class BatchInsertIntegrationTest {
 
-	@Autowired
-	private CustomerRepository customerRepository;
-	private MockMvc mockMvc;
+   @Autowired
+   private CustomerRepository customerRepository;
+   private MockMvc mockMvc;
 
-	@BeforeEach
-	void setUp() {
-		mockMvc = MockMvcBuilders.standaloneSetup(new CustomerController(customerRepository))
-			.build();
-	}
+   @BeforeEach
+   void setUp() {
+      mockMvc = MockMvcBuilders.standaloneSetup(new CustomerController(customerRepository))
+            .build();
+   }
 
-	@Test
-	void whenInsertingCustomers_thenCustomersAreCreated() throws Exception {
-		this.mockMvc.perform(post("/customers"))
-			.andExpect(status().isOk());
+   @Test
+   void whenInsertingCustomers_thenCustomersAreCreated() throws Exception {
+      this.mockMvc.perform(post("/customers"))
+            .andExpect(status().isOk());
 
-	}
+   }
 }

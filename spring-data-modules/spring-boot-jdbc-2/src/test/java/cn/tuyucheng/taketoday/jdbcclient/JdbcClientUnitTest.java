@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql(value = "/jdbcclient/drop_student.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @SpringBootTest(classes = JdbcClientDemoApplication.class)
 @TestPropertySource(locations = {"classpath:jdbcclient/application.properties"})
-public class JdbcClientUnitTest {
+class JdbcClientUnitTest {
    private static final Logger logger = LoggerFactory.getLogger(JdbcClientUnitTest.class);
 
    @Autowired
@@ -59,7 +59,7 @@ public class JdbcClientUnitTest {
       if (optional.isPresent()) {
          assertNotNull(optional.get());
       } else {
-         assertThrows(NoSuchElementException.class, () -> optional.get());
+         assertThrows(NoSuchElementException.class, optional::get);
       }
    }
 

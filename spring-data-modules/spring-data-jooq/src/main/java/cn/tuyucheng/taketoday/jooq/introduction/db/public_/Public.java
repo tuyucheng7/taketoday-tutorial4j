@@ -22,46 +22,46 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>PUBLIC</code>
-	 */
-	public static final Public PUBLIC = new Public();
+   /**
+    * The reference instance of <code>PUBLIC</code>
+    */
+   public static final Public PUBLIC = new Public();
 
-	/**
-	 * The table <code>PUBLIC.AUTHOR</code>.
-	 */
-	public final Author AUTHOR = Author.AUTHOR;
+   /**
+    * The table <code>PUBLIC.AUTHOR</code>.
+    */
+   public final Author AUTHOR = Author.AUTHOR;
 
-	/**
-	 * The table <code>PUBLIC.AUTHOR_BOOK</code>.
-	 */
-	public final AuthorBook AUTHOR_BOOK = AuthorBook.AUTHOR_BOOK;
+   /**
+    * The table <code>PUBLIC.AUTHOR_BOOK</code>.
+    */
+   public final AuthorBook AUTHOR_BOOK = AuthorBook.AUTHOR_BOOK;
 
-	/**
-	 * The table <code>PUBLIC.BOOK</code>.
-	 */
-	public final Book BOOK = Book.BOOK;
+   /**
+    * The table <code>PUBLIC.BOOK</code>.
+    */
+   public final Book BOOK = Book.BOOK;
 
-	/**
-	 * No further instances allowed
-	 */
-	private Public() {
-		super("PUBLIC", null);
-	}
+   /**
+    * No further instances allowed
+    */
+   private Public() {
+      super("PUBLIC", null);
+   }
 
 
-	@Override
-	public Catalog getCatalog() {
-		return DefaultCatalog.DEFAULT_CATALOG;
-	}
+   @Override
+   public Catalog getCatalog() {
+      return DefaultCatalog.DEFAULT_CATALOG;
+   }
 
-	@Override
-	public final List<Table<?>> getTables() {
-		return Arrays.<Table<?>>asList(
-			Author.AUTHOR,
-			AuthorBook.AUTHOR_BOOK,
-			Book.BOOK);
-	}
+   @Override
+   public final List<Table<?>> getTables() {
+      return Arrays.<Table<?>>asList(
+            Author.AUTHOR,
+            AuthorBook.AUTHOR_BOOK,
+            Book.BOOK);
+   }
 }

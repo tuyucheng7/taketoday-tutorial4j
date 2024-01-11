@@ -8,11 +8,11 @@ import org.springframework.jdbc.support.SQLExceptionTranslator;
 
 public class ExceptionTranslator extends DefaultExecuteListener {
 
-	@Override
-	public void exception(ExecuteContext context) {
-		SQLDialect dialect = context.configuration().dialect();
-		SQLExceptionTranslator translator = new SQLErrorCodeSQLExceptionTranslator(dialect.thirdParty().springDbName());
+   @Override
+   public void exception(ExecuteContext context) {
+      SQLDialect dialect = context.configuration().dialect();
+      SQLExceptionTranslator translator = new SQLErrorCodeSQLExceptionTranslator(dialect.thirdParty().springDbName());
 
-		context.exception(translator.translate("Access database using jOOQ", context.sql(), context.sqlException()));
-	}
+      context.exception(translator.translate("Access database using jOOQ", context.sql(), context.sqlException()));
+   }
 }

@@ -21,31 +21,31 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class ProductController {
 
-    private ProductService productService;
+   private ProductService productService;
 
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+   @Autowired
+   public ProductController(ProductService productService) {
+      this.productService = productService;
+   }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Product product) {
-        productService.saveProduct(product);
-    }
+   @PostMapping
+   @ResponseStatus(HttpStatus.CREATED)
+   public void create(@RequestBody Product product) {
+      productService.saveProduct(product);
+   }
 
-    @GetMapping(value = "/{id}/category/{category}")
-    public Optional<Product> get(@PathVariable String id, @PathVariable String category) {
-        return productService.findById(id, category);
-    }
+   @GetMapping(value = "/{id}/category/{category}")
+   public Optional<Product> get(@PathVariable String id, @PathVariable String category) {
+      return productService.findById(id, category);
+   }
 
-    @DeleteMapping(value = "/{id}/category/{category}")
-    public void delete(@PathVariable String id, @PathVariable String category) {
-        productService.delete(id, category);
-    }
+   @DeleteMapping(value = "/{id}/category/{category}")
+   public void delete(@PathVariable String id, @PathVariable String category) {
+      productService.delete(id, category);
+   }
 
-    @GetMapping
-    public List<Product> getByName(@RequestParam String name) {
-        return productService.findProductByName(name);
-    }
+   @GetMapping
+   public List<Product> getByName(@RequestParam String name) {
+      return productService.findProductByName(name);
+   }
 }

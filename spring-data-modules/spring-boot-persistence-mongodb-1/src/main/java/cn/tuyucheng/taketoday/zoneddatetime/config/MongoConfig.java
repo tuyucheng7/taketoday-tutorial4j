@@ -13,17 +13,17 @@ import java.util.List;
 @EnableMongoRepositories(basePackages = {"cn.tuyucheng.taketoday"})
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-	private final List<Converter<?, ?>> converters = new ArrayList<>();
+   private final List<Converter<?, ?>> converters = new ArrayList<>();
 
-	@Override
-	protected String getDatabaseName() {
-		return "test";
-	}
+   @Override
+   protected String getDatabaseName() {
+      return "test";
+   }
 
-	@Override
-	public MongoCustomConversions customConversions() {
-		converters.add(new ZonedDateTimeReadConverter());
-		converters.add(new ZonedDateTimeWriteConverter());
-		return new MongoCustomConversions(converters);
-	}
+   @Override
+   public MongoCustomConversions customConversions() {
+      converters.add(new ZonedDateTimeReadConverter());
+      converters.add(new ZonedDateTimeWriteConverter());
+      return new MongoCustomConversions(converters);
+   }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = {"cn.tuyucheng.taketoday.boot.unique.field"})
 public class SpringBootUniqueFieldApplication {
 
-    public static void main(String... args) {
-        SpringApplication.run(SpringBootUniqueFieldApplication.class, args);
-    }
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootUniqueFieldApplication.class, args);
+   }
 }

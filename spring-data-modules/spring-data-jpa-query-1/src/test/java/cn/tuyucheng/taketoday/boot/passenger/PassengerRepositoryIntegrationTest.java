@@ -27,159 +27,159 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 class PassengerRepositoryIntegrationTest {
 
-	@PersistenceContext
-	private EntityManager entityManager;
-	@Autowired
-	private PassengerRepository repository;
+   @PersistenceContext
+   private EntityManager entityManager;
+   @Autowired
+   private PassengerRepository repository;
 
-	@BeforeEach
-	void before() {
-		entityManager.persist(Passenger.from("Jill", "Smith", 50));
-		entityManager.persist(Passenger.from("Eve", "Jackson", 95));
-		entityManager.persist(Passenger.from("Fred", "Bloggs", 22));
-		entityManager.persist(Passenger.from("Ricki", "Bobbie", 36));
-		entityManager.persist(Passenger.from("Siya", "Kolisi", 85));
-	}
+   @BeforeEach
+   void before() {
+      entityManager.persist(Passenger.from("Jill", "Smith", 50));
+      entityManager.persist(Passenger.from("Eve", "Jackson", 95));
+      entityManager.persist(Passenger.from("Fred", "Bloggs", 22));
+      entityManager.persist(Passenger.from("Ricki", "Bobbie", 36));
+      entityManager.persist(Passenger.from("Siya", "Kolisi", 85));
+   }
 
-	@Test
-	void givenSeveralPassengersWhenOrderedBySeatNumberLimitedToThenThePassengerInTheFirstFilledSeatIsReturned() {
-		Passenger expected = Passenger.from("Fred", "Bloggs", 22);
+   @Test
+   void givenSeveralPassengersWhenOrderedBySeatNumberLimitedToThenThePassengerInTheFirstFilledSeatIsReturned() {
+      Passenger expected = Passenger.from("Fred", "Bloggs", 22);
 
-		List<Passenger> passengers = repository.findOrderedBySeatNumberLimitedTo(1);
+      List<Passenger> passengers = repository.findOrderedBySeatNumberLimitedTo(1);
 
-		assertEquals(1, passengers.size());
+      assertEquals(1, passengers.size());
 
-		Passenger actual = passengers.get(0);
-		assertEquals(expected, actual);
-	}
+      Passenger actual = passengers.get(0);
+      assertEquals(expected, actual);
+   }
 
-	@Test
-	void givenSeveralPassengersWhenFindFirstByOrderBySeatNumberAscThenThePassengerInTheFirstFilledSeatIsReturned() {
-		Passenger expected = Passenger.from("Fred", "Bloggs", 22);
+   @Test
+   void givenSeveralPassengersWhenFindFirstByOrderBySeatNumberAscThenThePassengerInTheFirstFilledSeatIsReturned() {
+      Passenger expected = Passenger.from("Fred", "Bloggs", 22);
 
-		Passenger actual = repository.findFirstByOrderBySeatNumberAsc();
+      Passenger actual = repository.findFirstByOrderBySeatNumberAsc();
 
-		assertEquals(expected, actual);
-	}
+      assertEquals(expected, actual);
+   }
 
-	@Test
-	void givenSeveralPassengersWhenFindPageSortedByThenThePassengerInTheFirstFilledSeatIsReturned() {
-		Passenger expected = Passenger.from("Fred", "Bloggs", 22);
+   @Test
+   void givenSeveralPassengersWhenFindPageSortedByThenThePassengerInTheFirstFilledSeatIsReturned() {
+      Passenger expected = Passenger.from("Fred", "Bloggs", 22);
 
-		Page<Passenger> page = repository.findAll(PageRequest.of(0, 1,
-				Sort.by(Sort.Direction.ASC, "seatNumber")));
+      Page<Passenger> page = repository.findAll(PageRequest.of(0, 1,
+            Sort.by(Sort.Direction.ASC, "seatNumber")));
 
-		assertEquals(1, page.getContent().size());
+      assertEquals(1, page.getContent().size());
 
-		Passenger actual = page.getContent().get(0);
-		assertEquals(expected, actual);
-	}
+      Passenger actual = page.getContent().get(0);
+      assertEquals(expected, actual);
+   }
 
-	@Test
-	void givenPassengers_whenOrderedBySeatNumberAsc_thenCorrectOrder() {
-		Passenger fred = Passenger.from("Fred", "Bloggs", 22);
-		Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
-		Passenger jill = Passenger.from("Jill", "Smith", 50);
-		Passenger siya = Passenger.from("Siya", "Kolisi", 85);
-		Passenger eve = Passenger.from("Eve", "Jackson", 95);
+   @Test
+   void givenPassengers_whenOrderedBySeatNumberAsc_thenCorrectOrder() {
+      Passenger fred = Passenger.from("Fred", "Bloggs", 22);
+      Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
+      Passenger jill = Passenger.from("Jill", "Smith", 50);
+      Passenger siya = Passenger.from("Siya", "Kolisi", 85);
+      Passenger eve = Passenger.from("Eve", "Jackson", 95);
 
-		List<Passenger> passengers = repository.findByOrderBySeatNumberAsc();
+      List<Passenger> passengers = repository.findByOrderBySeatNumberAsc();
 
-		assertThat(passengers, contains(fred, ricki, jill, siya, eve));
-	}
+      assertThat(passengers, contains(fred, ricki, jill, siya, eve));
+   }
 
-	@Test
-	void givenPassengers_whenFindAllWithSortBySeatNumberAsc_thenCorrectOrder() {
-		Passenger fred = Passenger.from("Fred", "Bloggs", 22);
-		Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
-		Passenger jill = Passenger.from("Jill", "Smith", 50);
-		Passenger siya = Passenger.from("Siya", "Kolisi", 85);
-		Passenger eve = Passenger.from("Eve", "Jackson", 95);
+   @Test
+   void givenPassengers_whenFindAllWithSortBySeatNumberAsc_thenCorrectOrder() {
+      Passenger fred = Passenger.from("Fred", "Bloggs", 22);
+      Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
+      Passenger jill = Passenger.from("Jill", "Smith", 50);
+      Passenger siya = Passenger.from("Siya", "Kolisi", 85);
+      Passenger eve = Passenger.from("Eve", "Jackson", 95);
 
-		List<Passenger> passengers = repository.findAll(Sort.by(Sort.Direction.ASC, "seatNumber"));
+      List<Passenger> passengers = repository.findAll(Sort.by(Sort.Direction.ASC, "seatNumber"));
 
-		assertThat(passengers, contains(fred, ricki, jill, siya, eve));
-	}
+      assertThat(passengers, contains(fred, ricki, jill, siya, eve));
+   }
 
-	@Test
-	void givenPassengers_whenFindByExampleDefaultMatcher_thenExpectedReturned() {
-		Example<Passenger> example = Example.of(Passenger.from("Fred", "Bloggs", null));
+   @Test
+   void givenPassengers_whenFindByExampleDefaultMatcher_thenExpectedReturned() {
+      Example<Passenger> example = Example.of(Passenger.from("Fred", "Bloggs", null));
 
-		Optional<Passenger> actual = repository.findOne(example);
+      Optional<Passenger> actual = repository.findOne(example);
 
-		assertTrue(actual.isPresent());
-		assertEquals(Passenger.from("Fred", "Bloggs", 22), actual.get());
-	}
+      assertTrue(actual.isPresent());
+      assertEquals(Passenger.from("Fred", "Bloggs", 22), actual.get());
+   }
 
-	@Test
-	void givenPassengers_whenFindByExampleCaseInsensitiveMatcher_thenExpectedReturned() {
-		ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
-		Example<Passenger> example = Example.of(Passenger.from("fred", "bloggs", null),
-				caseInsensitiveExampleMatcher);
+   @Test
+   void givenPassengers_whenFindByExampleCaseInsensitiveMatcher_thenExpectedReturned() {
+      ExampleMatcher caseInsensitiveExampleMatcher = ExampleMatcher.matchingAll().withIgnoreCase();
+      Example<Passenger> example = Example.of(Passenger.from("fred", "bloggs", null),
+            caseInsensitiveExampleMatcher);
 
-		Optional<Passenger> actual = repository.findOne(example);
+      Optional<Passenger> actual = repository.findOne(example);
 
-		assertTrue(actual.isPresent());
-		assertEquals(Passenger.from("Fred", "Bloggs", 22), actual.get());
-	}
+      assertTrue(actual.isPresent());
+      assertEquals(Passenger.from("Fred", "Bloggs", 22), actual.get());
+   }
 
-	@Test
-	void givenPassengers_whenFindByExampleCustomMatcher_thenExpectedReturned() {
-		Passenger jill = Passenger.from("Jill", "Smith", 50);
-		Passenger eve = Passenger.from("Eve", "Jackson", 95);
-		Passenger fred = Passenger.from("Fred", "Bloggs", 22);
-		Passenger siya = Passenger.from("Siya", "Kolisi", 85);
-		Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
+   @Test
+   void givenPassengers_whenFindByExampleCustomMatcher_thenExpectedReturned() {
+      Passenger jill = Passenger.from("Jill", "Smith", 50);
+      Passenger eve = Passenger.from("Eve", "Jackson", 95);
+      Passenger fred = Passenger.from("Fred", "Bloggs", 22);
+      Passenger siya = Passenger.from("Siya", "Kolisi", 85);
+      Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
 
-		ExampleMatcher customExampleMatcher = ExampleMatcher.matchingAny().withMatcher("firstName",
-				ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("lastName",
-				ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+      ExampleMatcher customExampleMatcher = ExampleMatcher.matchingAny().withMatcher("firstName",
+            ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("lastName",
+            ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
 
-		Example<Passenger> example = Example.of(Passenger.from("e", "s", null),
-				customExampleMatcher);
+      Example<Passenger> example = Example.of(Passenger.from("e", "s", null),
+            customExampleMatcher);
 
-		List<Passenger> passengers = repository.findAll(example);
+      List<Passenger> passengers = repository.findAll(example);
 
-		assertThat(passengers, contains(jill, eve, fred, siya));
-		assertThat(passengers, not(contains(ricki)));
-	}
+      assertThat(passengers, contains(jill, eve, fred, siya));
+      assertThat(passengers, not(contains(ricki)));
+   }
 
-	@Test
-	void givenPassengers_whenFindByIgnoringMatcher_thenExpectedReturned() {
-		Passenger jill = Passenger.from("Jill", "Smith", 50);
-		Passenger eve = Passenger.from("Eve", "Jackson", 95);
-		Passenger fred = Passenger.from("Fred", "Bloggs", 22);
-		Passenger siya = Passenger.from("Siya", "Kolisi", 85);
-		Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
+   @Test
+   void givenPassengers_whenFindByIgnoringMatcher_thenExpectedReturned() {
+      Passenger jill = Passenger.from("Jill", "Smith", 50);
+      Passenger eve = Passenger.from("Eve", "Jackson", 95);
+      Passenger fred = Passenger.from("Fred", "Bloggs", 22);
+      Passenger siya = Passenger.from("Siya", "Kolisi", 85);
+      Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
 
-		ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAny().withMatcher("lastName",
-				ExampleMatcher.GenericPropertyMatchers.startsWith().ignoreCase()).withIgnorePaths("firstName", "seatNumber");
+      ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAny().withMatcher("lastName",
+            ExampleMatcher.GenericPropertyMatchers.startsWith().ignoreCase()).withIgnorePaths("firstName", "seatNumber");
 
-		Example<Passenger> example = Example.of(Passenger.from(null, "b", null),
-				ignoringExampleMatcher);
+      Example<Passenger> example = Example.of(Passenger.from(null, "b", null),
+            ignoringExampleMatcher);
 
-		List<Passenger> passengers = repository.findAll(example);
+      List<Passenger> passengers = repository.findAll(example);
 
-		assertThat(passengers, contains(fred, ricki));
-		assertThat(passengers, not(contains(jill)));
-		assertThat(passengers, not(contains(eve)));
-		assertThat(passengers, not(contains(siya)));
-	}
+      assertThat(passengers, contains(fred, ricki));
+      assertThat(passengers, not(contains(jill)));
+      assertThat(passengers, not(contains(eve)));
+      assertThat(passengers, not(contains(siya)));
+   }
 
-	@Test
-	void givenPassengers_whenMatchingIgnoreCase_thenExpectedReturned() {
-		Passenger jill = Passenger.from("Jill", "Smith", 50);
-		Passenger eve = Passenger.from("Eve", "Jackson", 95);
-		Passenger fred = Passenger.from("Fred", "Bloggs", 22);
-		Passenger siya = Passenger.from("Siya", "Kolisi", 85);
-		Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
+   @Test
+   void givenPassengers_whenMatchingIgnoreCase_thenExpectedReturned() {
+      Passenger jill = Passenger.from("Jill", "Smith", 50);
+      Passenger eve = Passenger.from("Eve", "Jackson", 95);
+      Passenger fred = Passenger.from("Fred", "Bloggs", 22);
+      Passenger siya = Passenger.from("Siya", "Kolisi", 85);
+      Passenger ricki = Passenger.from("Ricki", "Bobbie", 36);
 
-		List<Passenger> passengers = repository.findByFirstNameIgnoreCase("FRED");
+      List<Passenger> passengers = repository.findByFirstNameIgnoreCase("FRED");
 
-		assertThat(passengers, contains(fred));
-		assertThat(passengers, not(contains(eve)));
-		assertThat(passengers, not(contains(siya)));
-		assertThat(passengers, not(contains(jill)));
-		assertThat(passengers, not(contains(ricki)));
-	}
+      assertThat(passengers, contains(fred));
+      assertThat(passengers, not(contains(eve)));
+      assertThat(passengers, not(contains(siya)));
+      assertThat(passengers, not(contains(jill)));
+      assertThat(passengers, not(contains(ricki)));
+   }
 }

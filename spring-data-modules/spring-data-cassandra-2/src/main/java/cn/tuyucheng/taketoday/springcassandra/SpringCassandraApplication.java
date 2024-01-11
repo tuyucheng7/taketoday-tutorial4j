@@ -8,7 +8,7 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 @EnableCassandraRepositories(basePackages = "cn.tuyucheng.taketoday.springcassandra.repository")
 public class SpringCassandraApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringCassandraApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(SpringCassandraApplication.class, args);
+   }
 }

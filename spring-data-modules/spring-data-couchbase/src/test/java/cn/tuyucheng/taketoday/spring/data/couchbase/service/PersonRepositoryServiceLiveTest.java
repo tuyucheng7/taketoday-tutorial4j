@@ -3,11 +3,11 @@ package cn.tuyucheng.taketoday.spring.data.couchbase.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-public class PersonRepositoryServiceLiveTest extends PersonServiceLiveTest {
+class PersonRepositoryServiceLiveTest extends PersonServiceLiveTest {
 
-    @Autowired
-    @Qualifier("PersonRepositoryService")
-    public void setPersonService(PersonService service) {
-        this.personService = service;
-    }
+   @Autowired
+   @Qualifier("PersonRepositoryService")
+   void setPersonService(PersonService service) {
+      this.personService = service;
+   }
 }

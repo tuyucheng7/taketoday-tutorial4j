@@ -15,30 +15,30 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-	@Autowired
-	private BookRepository books;
+   @Autowired
+   private BookRepository books;
 
-	@Autowired
-	private ImportJsonService service;
+   @Autowired
+   private ImportJsonService service;
 
-	@PostMapping
-	public Book postBook(@RequestBody Book book) throws IOException {
-		return books.insert(book);
-	}
+   @PostMapping
+   public Book postBook(@RequestBody Book book) throws IOException {
+      return books.insert(book);
+   }
 
-	@GetMapping
-	public List<Book> getBooks() {
-		return books.findAll();
-	}
+   @GetMapping
+   public List<Book> getBooks() {
+      return books.findAll();
+   }
 
-	@GetMapping("/{id}")
-	public Optional<Book> getBook(@PathVariable String id) {
-		return books.findById(id);
-	}
+   @GetMapping("/{id}")
+   public Optional<Book> getBook(@PathVariable String id) {
+      return books.findById(id);
+   }
 
-	@PostMapping("/import/file")
-	public String postJsonFile(@RequestPart("parts") MultipartFile jsonStringsFile) throws IOException {
-		List<String> jsonLines = ImportUtils.lines(jsonStringsFile);
-		return service.importTo(Book.class, jsonLines);
-	}
+   @PostMapping("/import/file")
+   public String postJsonFile(@RequestPart("parts") MultipartFile jsonStringsFile) throws IOException {
+      List<String> jsonLines = ImportUtils.lines(jsonStringsFile);
+      return service.importTo(Book.class, jsonLines);
+   }
 }

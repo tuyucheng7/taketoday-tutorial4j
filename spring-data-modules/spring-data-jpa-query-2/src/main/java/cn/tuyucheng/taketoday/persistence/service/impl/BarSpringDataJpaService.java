@@ -11,15 +11,15 @@ import java.io.Serializable;
 
 public class BarSpringDataJpaService extends AbstractSpringDataJpaService<Bar> implements IBarService {
 
-    @Autowired
-    private IBarCrudRepository dao;
+   @Autowired
+   private IBarCrudRepository dao;
 
-    public BarSpringDataJpaService() {
-        super();
-    }
+   public BarSpringDataJpaService() {
+      super();
+   }
 
-    @Override
-    protected CrudRepository<Bar, Serializable> getDao() {
-        return dao;
-    }
+   @Override
+   protected CrudRepository<Bar, Serializable> getDao() {
+      return dao;
+   }
 }

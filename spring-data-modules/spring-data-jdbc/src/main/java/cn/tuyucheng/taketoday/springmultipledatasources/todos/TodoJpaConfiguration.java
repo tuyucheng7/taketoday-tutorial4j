@@ -16,24 +16,24 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		basePackageClasses = Todo.class,
-		entityManagerFactoryRef = "todosEntityManagerFactory",
-		transactionManagerRef = "todosTransactionManager"
+      basePackageClasses = Todo.class,
+      entityManagerFactoryRef = "todosEntityManagerFactory",
+      transactionManagerRef = "todosTransactionManager"
 )
 public class TodoJpaConfiguration {
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean todosEntityManagerFactory(
-			@Qualifier("todosDataSource") DataSource dataSource, EntityManagerFactoryBuilder builder) {
-		return builder
-				.dataSource(dataSource)
-				.packages(Todo.class)
-				.build();
-	}
+   @Bean
+   public LocalContainerEntityManagerFactoryBean todosEntityManagerFactory(
+         @Qualifier("todosDataSource") DataSource dataSource, EntityManagerFactoryBuilder builder) {
+      return builder
+            .dataSource(dataSource)
+            .packages(Todo.class)
+            .build();
+   }
 
-	@Bean
-	public PlatformTransactionManager todosTransactionManager(
-			@Qualifier("todosEntityManagerFactory") LocalContainerEntityManagerFactoryBean todosEntityManagerFactory) {
-		return new JpaTransactionManager(Objects.requireNonNull(todosEntityManagerFactory.getObject()));
-	}
+   @Bean
+   public PlatformTransactionManager todosTransactionManager(
+         @Qualifier("todosEntityManagerFactory") LocalContainerEntityManagerFactoryBean todosEntityManagerFactory) {
+      return new JpaTransactionManager(Objects.requireNonNull(todosEntityManagerFactory.getObject()));
+   }
 }

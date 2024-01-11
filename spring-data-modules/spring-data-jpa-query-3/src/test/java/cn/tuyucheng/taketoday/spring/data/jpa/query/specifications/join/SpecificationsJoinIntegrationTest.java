@@ -18,59 +18,59 @@ import static cn.tuyucheng.taketoday.spring.data.jpa.query.specifications.join.A
 @DataJpaTest
 class SpecificationsJoinIntegrationTest {
 
-    @Autowired
-    private AuthorsRepository repository;
+   @Autowired
+   private AuthorsRepository repository;
 
-    @BeforeEach
-    void beforeEach() {
-        saveTestData();
-    }
+   @BeforeEach
+   void beforeEach() {
+      saveTestData();
+   }
 
-    @Test
-    void whenSearchingByLastName_thenOneAuthorIsReturned() {
-        List<Author> authors = repository.findAll(hasLastName("Martin"));
+   @Test
+   void whenSearchingByLastName_thenOneAuthorIsReturned() {
+      List<Author> authors = repository.findAll(hasLastName("Martin"));
 
-        Assertions.assertThat(authors).hasSize(1);
-    }
+      Assertions.assertThat(authors).hasSize(1);
+   }
 
-    @Test
-    void whenSearchingByLastNameAndFirstNameLike_thenOneAuthorIsReturned() {
-        Specification<Author> specification = hasLastName("Martin").and(hasFirstNameLike("Robert"));
+   @Test
+   void whenSearchingByLastNameAndFirstNameLike_thenOneAuthorIsReturned() {
+      Specification<Author> specification = hasLastName("Martin").and(hasFirstNameLike("Robert"));
 
-        List<Author> authors = repository.findAll(specification);
+      List<Author> authors = repository.findAll(specification);
 
-        Assertions.assertThat(authors).hasSize(1);
-    }
+      Assertions.assertThat(authors).hasSize(1);
+   }
 
-    @Test
-    void whenSearchingByBookTitle_thenOneAuthorIsReturned() {
-        Specification<Author> specification = hasBookWithTitle("Clean Code");
+   @Test
+   void whenSearchingByBookTitle_thenOneAuthorIsReturned() {
+      Specification<Author> specification = hasBookWithTitle("Clean Code");
 
-        List<Author> authors = repository.findAll(specification);
+      List<Author> authors = repository.findAll(specification);
 
-        Assertions.assertThat(authors).hasSize(1);
-    }
+      Assertions.assertThat(authors).hasSize(1);
+   }
 
-    @Test
-    void whenSearchingByBookTitleAndAuthorName_thenOneAuthorIsReturned() {
-        Specification<Author> specification = hasLastName("Martin").and(hasBookWithTitle("Clean Code"));
+   @Test
+   void whenSearchingByBookTitleAndAuthorName_thenOneAuthorIsReturned() {
+      Specification<Author> specification = hasLastName("Martin").and(hasBookWithTitle("Clean Code"));
 
-        List<Author> authors = repository.findAll(specification);
+      List<Author> authors = repository.findAll(specification);
 
-        Assertions.assertThat(authors).hasSize(1);
-    }
+      Assertions.assertThat(authors).hasSize(1);
+   }
 
-    private void saveTestData() {
-        Author uncleBob = new Author();
-        uncleBob.setFirstName("Robert");
-        uncleBob.setLastName("Martin");
+   private void saveTestData() {
+      Author uncleBob = new Author();
+      uncleBob.setFirstName("Robert");
+      uncleBob.setLastName("Martin");
 
-        Book book1 = new Book();
-        book1.setTitle("Clean Code");
-        Book book2 = new Book();
-        book2.setTitle("Clean Architecture");
+      Book book1 = new Book();
+      book1.setTitle("Clean Code");
+      Book book2 = new Book();
+      book2.setTitle("Clean Architecture");
 
-        uncleBob.setBooks(Arrays.asList(book1, book2));
-        repository.save(uncleBob);
-    }
+      uncleBob.setBooks(Arrays.asList(book1, book2));
+      repository.save(uncleBob);
+   }
 }

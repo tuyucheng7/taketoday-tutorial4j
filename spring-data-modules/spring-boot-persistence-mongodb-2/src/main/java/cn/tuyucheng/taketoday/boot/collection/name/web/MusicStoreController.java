@@ -13,46 +13,46 @@ import java.util.List;
 @RestController
 @RequestMapping("/music")
 public class MusicStoreController {
-	@Autowired
-	private MusicStoreService service;
+   @Autowired
+   private MusicStoreService service;
 
-	@PostMapping("/album")
-	public MusicAlbum post(@RequestBody MusicAlbum item) {
-		return service.add(item);
-	}
+   @PostMapping("/album")
+   public MusicAlbum post(@RequestBody MusicAlbum item) {
+      return service.add(item);
+   }
 
-	@GetMapping("/album")
-	public List<MusicAlbum> getAlbumList() {
-		return service.getAlbumList();
-	}
+   @GetMapping("/album")
+   public List<MusicAlbum> getAlbumList() {
+      return service.getAlbumList();
+   }
 
-	@PostMapping("/compilation")
-	public Compilation post(@RequestBody Compilation item) {
-		return service.add(item);
-	}
+   @PostMapping("/compilation")
+   public Compilation post(@RequestBody Compilation item) {
+      return service.add(item);
+   }
 
-	@GetMapping("/compilation")
-	public List<Compilation> getCompilationList() {
-		return service.getCompilationList();
-	}
+   @GetMapping("/compilation")
+   public List<Compilation> getCompilationList() {
+      return service.getCompilationList();
+   }
 
-	@PostMapping("/store")
-	public Store post(@RequestBody Store item) {
-		return service.add(item);
-	}
+   @PostMapping("/store")
+   public Store post(@RequestBody Store item) {
+      return service.add(item);
+   }
 
-	@GetMapping("/store")
-	public List<Store> getStoreList() {
-		return service.getStoreList();
-	}
+   @GetMapping("/store")
+   public List<Store> getStoreList() {
+      return service.getStoreList();
+   }
 
-	@PostMapping("/track")
-	public MusicTrack post(@RequestBody MusicTrack item) {
-		return service.add(item);
-	}
+   @PostMapping("/track")
+   public MusicTrack post(@RequestBody MusicTrack item) {
+      return service.add(item);
+   }
 
-	@GetMapping("/track")
-	public List<MusicTrack> getTrackList() {
-		return service.getTrackList();
-	}
+   @GetMapping("/track")
+   public List<MusicTrack> getTrackList() {
+      return service.getTrackList();
+   }
 }

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "cn.tuyucheng.taketoday")
 public class SpringBootPersistenceApplication {
 
-	public static void main(String... args) {
-		SpringApplication.run(SpringBootPersistenceApplication.class, args);
-	}
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootPersistenceApplication.class, args);
+   }
 }

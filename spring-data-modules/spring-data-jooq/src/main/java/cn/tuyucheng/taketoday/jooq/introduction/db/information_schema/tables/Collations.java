@@ -26,101 +26,101 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Collations extends TableImpl<CollationsRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.COLLATIONS</code>
-	 */
-	public static final Collations COLLATIONS = new Collations();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.COLLATIONS</code>
+    */
+   public static final Collations COLLATIONS = new Collations();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<CollationsRecord> getRecordType() {
-		return CollationsRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<CollationsRecord> getRecordType() {
+      return CollationsRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
-	 */
-	public final TableField<CollationsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
+    */
+   public final TableField<CollationsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
-	 */
-	public final TableField<CollationsRecord, String> KEY = createField(DSL.name("KEY"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
+    */
+   public final TableField<CollationsRecord, String> KEY = createField(DSL.name("KEY"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	private Collations(Name alias, Table<CollationsRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private Collations(Name alias, Table<CollationsRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private Collations(Name alias, Table<CollationsRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private Collations(Name alias, Table<CollationsRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
-	 */
-	public Collations(String alias) {
-		this(DSL.name(alias), COLLATIONS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
+    */
+   public Collations(String alias) {
+      this(DSL.name(alias), COLLATIONS);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
-	 */
-	public Collations(Name alias) {
-		this(alias, COLLATIONS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
+    */
+   public Collations(Name alias) {
+      this(alias, COLLATIONS);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
-	 */
-	public Collations() {
-		this(DSL.name("COLLATIONS"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.COLLATIONS</code> table reference
+    */
+   public Collations() {
+      this(DSL.name("COLLATIONS"), null);
+   }
 
-	public <O extends Record> Collations(Table<O> child, ForeignKey<O, CollationsRecord> key) {
-		super(child, key, COLLATIONS);
-	}
+   public <O extends Record> Collations(Table<O> child, ForeignKey<O, CollationsRecord> key) {
+      super(child, key, COLLATIONS);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public Collations as(String alias) {
-		return new Collations(DSL.name(alias), this);
-	}
+   @Override
+   public Collations as(String alias) {
+      return new Collations(DSL.name(alias), this);
+   }
 
-	@Override
-	public Collations as(Name alias) {
-		return new Collations(alias, this);
-	}
+   @Override
+   public Collations as(Name alias) {
+      return new Collations(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Collations rename(String name) {
-		return new Collations(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Collations rename(String name) {
+      return new Collations(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Collations rename(Name name) {
-		return new Collations(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Collations rename(Name name) {
+      return new Collations(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row2 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row2 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row2<String, String> fieldsRow() {
-		return (Row2) super.fieldsRow();
-	}
+   @Override
+   public Row2<String, String> fieldsRow() {
+      return (Row2) super.fieldsRow();
+   }
 }

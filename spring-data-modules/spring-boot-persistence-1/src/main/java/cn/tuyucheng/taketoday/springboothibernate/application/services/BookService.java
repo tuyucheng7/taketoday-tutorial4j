@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class BookService {
 
-	@Autowired
-	private BookRepository bookRepository;
+   @Autowired
+   private BookRepository bookRepository;
 
-	public List<Book> list() {
-		return bookRepository.findAll();
-	}
+   public List<Book> list() {
+      return bookRepository.findAll();
+   }
 }

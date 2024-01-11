@@ -20,50 +20,50 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(
-		basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product",
-		entityManagerFactoryRef = "productEntityManager",
-		transactionManagerRef = "productTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.product",
+      entityManagerFactoryRef = "productEntityManager",
+      transactionManagerRef = "productTransactionManager"
 )
 @Profile("!tc")
 public class PersistenceProductConfiguration {
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	public PersistenceProductConfiguration() {
-		super();
-	}
+   public PersistenceProductConfiguration() {
+      super();
+   }
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean productEntityManager() {
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(productDataSource());
-		em.setPackagesToScan("cn.tuyucheng.taketoday.multipledb.model.product");
+   @Bean
+   public LocalContainerEntityManagerFactoryBean productEntityManager() {
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(productDataSource());
+      em.setPackagesToScan("cn.tuyucheng.taketoday.multipledb.model.product");
 
-		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		final HashMap<String, Object> properties = new HashMap<String, Object>();
-		properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		em.setJpaPropertyMap(properties);
+      final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      em.setJpaVendorAdapter(vendorAdapter);
+      final HashMap<String, Object> properties = new HashMap<String, Object>();
+      properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+      properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+      em.setJpaPropertyMap(properties);
 
-		return em;
-	}
+      return em;
+   }
 
-	@Bean
-	public DataSource productDataSource() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-		dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("product.jdbc.url")));
-		dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
-		dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
+   @Bean
+   public DataSource productDataSource() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+      dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("product.jdbc.url")));
+      dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
+      dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean
-	public PlatformTransactionManager productTransactionManager() {
-		final JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(productEntityManager().getObject());
-		return transactionManager;
-	}
+   @Bean
+   public PlatformTransactionManager productTransactionManager() {
+      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(productEntityManager().getObject());
+      return transactionManager;
+   }
 }

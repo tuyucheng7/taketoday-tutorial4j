@@ -15,23 +15,23 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "cn.tuyucheng.taketoday.uuid.repository")
 public class EventMongoConfig {
 
-	@Bean
-	public MongoClient mongo() throws Exception {
-		final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
-		final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-			.uuidRepresentation(UuidRepresentation.STANDARD)
-			.applyConnectionString(connectionString).build();
-		return MongoClients.create(mongoClientSettings);
-	}
+   @Bean
+   public MongoClient mongo() throws Exception {
+      final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+      final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+            .uuidRepresentation(UuidRepresentation.STANDARD)
+            .applyConnectionString(connectionString).build();
+      return MongoClients.create(mongoClientSettings);
+   }
 
-	@Bean
-	public MongoTemplate mongoTemplate() throws Exception {
-		return new MongoTemplate(mongo(), "test");
-	}
+   @Bean
+   public MongoTemplate mongoTemplate() throws Exception {
+      return new MongoTemplate(mongo(), "test");
+   }
 
-	@Bean
-	public UuidIdentifiedEntityEventListener uuidIdentifiedEntityEventListener() {
+   @Bean
+   public UuidIdentifiedEntityEventListener uuidIdentifiedEntityEventListener() {
 
-		return new UuidIdentifiedEntityEventListener();
-	}
+      return new UuidIdentifiedEntityEventListener();
+   }
 }

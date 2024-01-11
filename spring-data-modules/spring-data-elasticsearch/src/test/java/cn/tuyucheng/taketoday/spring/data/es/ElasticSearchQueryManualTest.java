@@ -1,23 +1,9 @@
 package cn.tuyucheng.taketoday.spring.data.es;
 
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.toList;
-import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchPhraseQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.nestedQuery;
-import static org.elasticsearch.index.query.QueryBuilders.termQuery;
-import static org.junit.Assert.assertEquals;
-
-import java.util.List;
-import java.util.Map;
-
 import cn.tuyucheng.taketoday.spring.data.es.config.Config;
 import cn.tuyucheng.taketoday.spring.data.es.model.Article;
 import cn.tuyucheng.taketoday.spring.data.es.model.Author;
 import cn.tuyucheng.taketoday.spring.data.es.repository.ArticleRepository;
-
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -34,10 +20,10 @@ import org.elasticsearch.search.aggregations.bucket.MultiBucketsAggregation;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.client.erhlc.NativeSearchQuery;
 import org.springframework.data.elasticsearch.client.erhlc.NativeSearchQueryBuilder;
@@ -45,7 +31,20 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+import java.util.Map;
+
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toList;
+import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
+import static org.elasticsearch.index.query.QueryBuilders.matchPhraseQuery;
+import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.multiMatchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.nestedQuery;
+import static org.elasticsearch.index.query.QueryBuilders.termQuery;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This Manual test requires: Elasticsearch instance running on localhost:9200.
@@ -53,9 +52,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * The following docker command can be used: docker run -d --name es762 -p
  * 9200:9200 -e "discovery.type=single-node" elasticsearch:7.6.2
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Config.class)
-public class ElasticSearchQueryManualTest {
+class ElasticSearchQueryManualTest {
 
    @Autowired
    private ElasticsearchOperations elasticsearchOperations;
@@ -69,8 +68,8 @@ public class ElasticSearchQueryManualTest {
    private final Author johnSmith = new Author("John Smith");
    private final Author johnDoe = new Author("John Doe");
 
-   @Before
-   public void before() {
+   @BeforeEach
+   void before() {
       Article article = new Article("Spring Data Elasticsearch");
       article.setAuthors(asList(johnSmith, johnDoe));
       article.setTags("elasticsearch", "spring data");
@@ -92,13 +91,13 @@ public class ElasticSearchQueryManualTest {
       articleRepository.save(article);
    }
 
-   @After
-   public void after() {
+   @AfterEach
+   void after() {
       articleRepository.deleteAll();
    }
 
    @Test
-   public void givenFullTitle_whenRunMatchQuery_thenDocIsFound() {
+   void givenFullTitle_whenRunMatchQuery_thenDocIsFound() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", "Search engines").operator(Operator.AND))
             .build();
       final SearchHits<Article> articles = elasticsearchOperations.search(searchQuery, Article.class, IndexCoordinates.of("blog"));
@@ -106,7 +105,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenOneTermFromTitle_whenRunMatchQuery_thenDocIsFound() {
+   void givenOneTermFromTitle_whenRunMatchQuery_thenDocIsFound() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", "Engines Solutions"))
             .build();
 
@@ -119,7 +118,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenPartTitle_whenRunMatchQuery_thenDocIsFound() {
+   void givenPartTitle_whenRunMatchQuery_thenDocIsFound() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", "elasticsearch data"))
             .build();
 
@@ -129,7 +128,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenFullTitle_whenRunMatchQueryOnVerbatimField_thenDocIsFound() {
+   void givenFullTitle_whenRunMatchQueryOnVerbatimField_thenDocIsFound() {
       NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title.verbatim", "Second Article About Elasticsearch"))
             .build();
 
@@ -145,7 +144,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenNestedObject_whenQueryByAuthorsName_thenFoundArticlesByThatAuthor() {
+   void givenNestedObject_whenQueryByAuthorsName_thenFoundArticlesByThatAuthor() {
       final QueryBuilder builder = nestedQuery("authors", boolQuery().must(termQuery("authors.name", "smith")), ScoreMode.None);
 
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(builder)
@@ -156,7 +155,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenAnalyzedQuery_whenMakeAggregationOnTermCount_thenEachTokenCountsSeparately() throws Exception {
+   void givenAnalyzedQuery_whenMakeAggregationOnTermCount_thenEachTokenCountsSeparately() throws Exception {
       final TermsAggregationBuilder aggregation = AggregationBuilders.terms("top_tags")
             .field("title");
 
@@ -178,7 +177,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenNotAnalyzedQuery_whenMakeAggregationOnTermCount_thenEachTermCountsIndividually() throws Exception {
+   void givenNotAnalyzedQuery_whenMakeAggregationOnTermCount_thenEachTermCountsIndividually() throws Exception {
       final TermsAggregationBuilder aggregation = AggregationBuilders.terms("top_tags")
             .field("tags")
             .order(BucketOrder.count(false));
@@ -201,7 +200,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenNotExactPhrase_whenUseSlop_thenQueryMatches() {
+   void givenNotExactPhrase_whenUseSlop_thenQueryMatches() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchPhraseQuery("title", "spring elasticsearch").slop(1))
             .build();
 
@@ -211,7 +210,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenPhraseWithType_whenUseFuzziness_thenQueryMatches() {
+   void givenPhraseWithType_whenUseFuzziness_thenQueryMatches() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", "spring date elasticserch").operator(Operator.AND)
                   .fuzziness(Fuzziness.ONE)
                   .prefixLength(3))
@@ -223,7 +222,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenMultimatchQuery_whenDoSearch_thenAllProvidedFieldsMatch() {
+   void givenMultimatchQuery_whenDoSearch_thenAllProvidedFieldsMatch() {
       final NativeSearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery("tutorial").field("title")
                   .field("tags")
                   .type(MultiMatchQueryBuilder.Type.BEST_FIELDS))
@@ -235,7 +234,7 @@ public class ElasticSearchQueryManualTest {
    }
 
    @Test
-   public void givenBoolQuery_whenQueryByAuthorsName_thenFoundArticlesByThatAuthorAndFilteredTag() {
+   void givenBoolQuery_whenQueryByAuthorsName_thenFoundArticlesByThatAuthorAndFilteredTag() {
       final QueryBuilder builder = boolQuery().must(nestedQuery("authors", boolQuery().must(termQuery("authors.name", "doe")), ScoreMode.None))
             .filter(termQuery("tags", "elasticsearch"));
 

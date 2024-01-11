@@ -8,35 +8,35 @@ import javax.persistence.Transient;
 
 @Entity
 class Aggregate {
-	@Transient
-	private ApplicationEventPublisher eventPublisher;
-	@Id
-	private long id;
+   @Transient
+   private ApplicationEventPublisher eventPublisher;
+   @Id
+   private long id;
 
-	private Aggregate() {
-	}
+   private Aggregate() {
+   }
 
-	Aggregate(long id, ApplicationEventPublisher eventPublisher) {
-		this.id = id;
-		this.eventPublisher = eventPublisher;
-	}
+   Aggregate(long id, ApplicationEventPublisher eventPublisher) {
+      this.id = id;
+      this.eventPublisher = eventPublisher;
+   }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "DomainEntity [id=" + id + "]";
-	}
+   /* (non-Javadoc)
+    * @see java.lang.Object#toString()
+    */
+   @Override
+   public String toString() {
+      return "DomainEntity [id=" + id + "]";
+   }
 
-	void domainOperation() {
-		// some business logic
-		if (eventPublisher != null) {
-			eventPublisher.publishEvent(new DomainEvent());
-		}
-	}
+   void domainOperation() {
+      // some business logic
+      if (eventPublisher != null) {
+         eventPublisher.publishEvent(new DomainEvent());
+      }
+   }
 
-	long getId() {
-		return id;
-	}
+   long getId() {
+      return id;
+   }
 }

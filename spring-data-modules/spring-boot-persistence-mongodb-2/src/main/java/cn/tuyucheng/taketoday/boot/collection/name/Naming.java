@@ -7,29 +7,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Naming {
-    public static void main(String[] args) {
-        String r = new Naming().fix(args[0]);
-        System.out.println(r);
-    }
+   public static void main(String[] args) {
+      String r = new Naming().fix(args[0]);
+      System.out.println(r);
+   }
 
-    public String fix(String name) {
-        List<String> parts = ParsingUtils.splitCamelCaseToLower(name);
-        List<String> result = new ArrayList<>();
+   public String fix(String name) {
+      List<String> parts = ParsingUtils.splitCamelCaseToLower(name);
+      List<String> result = new ArrayList<>();
 
-        for (String part : parts) {
-            if (StringUtils.hasText(part)) {
-                result.add(part);
-            }
-        }
+      for (String part : parts) {
+         if (StringUtils.hasText(part)) {
+            result.add(part);
+         }
+      }
 
-        return StringUtils.collectionToDelimitedString(result, "_");
-    }
+      return StringUtils.collectionToDelimitedString(result, "_");
+   }
 
-    public String convert(Class<?> type) {
-        return fix(type.getSimpleName());
-    }
+   public String convert(Class<?> type) {
+      return fix(type.getSimpleName());
+   }
 
-    public String convert(Object instance) {
-        return convert(instance.getClass());
-    }
+   public String convert(Object instance) {
+      return convert(instance.getClass());
+   }
 }

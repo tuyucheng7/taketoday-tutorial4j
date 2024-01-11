@@ -11,18 +11,18 @@ import java.util.List;
 @Repository
 public class SimpleProductRepository implements ProductRepository {
 
-	private final JdbcTemplate jdbcTemplate;
+   private final JdbcTemplate jdbcTemplate;
 
-	public SimpleProductRepository(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+   public SimpleProductRepository(JdbcTemplate jdbcTemplate) {
+      this.jdbcTemplate = jdbcTemplate;
+   }
 
-	@Override
-	@Transactional
-	public void saveAll(List<Product> products) {
-		for (Product product : products) {
-			jdbcTemplate.update("INSERT INTO PRODUCT (TITLE, CREATED_TS, PRICE) VALUES (?, ?, ?)",
-				product.getTitle(), Timestamp.valueOf(product.getCreatedTs()), product.getPrice());
-		}
-	}
+   @Override
+   @Transactional
+   public void saveAll(List<Product> products) {
+      for (Product product : products) {
+         jdbcTemplate.update("INSERT INTO PRODUCT (TITLE, CREATED_TS, PRICE) VALUES (?, ?, ?)",
+               product.getTitle(), Timestamp.valueOf(product.getCreatedTs()), product.getPrice());
+      }
+   }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BookListRepository extends ListCrudRepository<Book, Long> {
 
-	List<Book> findBooksByAuthor(String author);
+   List<Book> findBooksByAuthor(String author);
 }

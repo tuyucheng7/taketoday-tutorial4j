@@ -9,21 +9,21 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 class FileLocationService {
 
-	@Autowired
-	FileSystemRepository fileSystemRepository;
-	@Autowired
-	ImageDbRepository imageDbRepository;
+   @Autowired
+   FileSystemRepository fileSystemRepository;
+   @Autowired
+   ImageDbRepository imageDbRepository;
 
-	Long save(byte[] bytes, String imageName) throws Exception {
-		String location = fileSystemRepository.save(bytes, imageName);
+   Long save(byte[] bytes, String imageName) throws Exception {
+      String location = fileSystemRepository.save(bytes, imageName);
 
-		return imageDbRepository.save(new Image(imageName, location)).getId();
-	}
+      return imageDbRepository.save(new Image(imageName, location)).getId();
+   }
 
-	FileSystemResource find(Long imageId) {
-		Image image = imageDbRepository.findById(imageId)
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+   FileSystemResource find(Long imageId) {
+      Image image = imageDbRepository.findById(imageId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-		return fileSystemRepository.findInFileSystem(image.getLocation());
-	}
+      return fileSystemRepository.findInFileSystem(image.getLocation());
+   }
 }

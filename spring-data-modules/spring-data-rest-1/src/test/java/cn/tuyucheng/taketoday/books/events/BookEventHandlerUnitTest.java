@@ -10,19 +10,19 @@ import static org.mockito.Mockito.mock;
 
 class BookEventHandlerUnitTest {
 
-	@Test
-	void whenCreateBookThenSuccess() {
-		Book book = mock(Book.class);
-		BookEventHandler bookEventHandler = new BookEventHandler();
-		bookEventHandler.handleBookBeforeCreate(book);
-		Mockito.verify(book, Mockito.times(1)).getAuthors();
-	}
+   @Test
+   void whenCreateBookThenSuccess() {
+      Book book = mock(Book.class);
+      BookEventHandler bookEventHandler = new BookEventHandler();
+      bookEventHandler.handleBookBeforeCreate(book);
+      Mockito.verify(book, Mockito.times(1)).getAuthors();
+   }
 
-	@Test
-	void whenCreateAuthorThenSuccess() {
-		Author author = mock(Author.class);
-		BookEventHandler bookEventHandler = new BookEventHandler();
-		bookEventHandler.handleAuthorBeforeCreate(author);
-		Mockito.verify(author, Mockito.times(1)).getBooks();
-	}
+   @Test
+   void whenCreateAuthorThenSuccess() {
+      Author author = mock(Author.class);
+      BookEventHandler bookEventHandler = new BookEventHandler();
+      bookEventHandler.handleAuthorBeforeCreate(author);
+      Mockito.verify(author, Mockito.times(1)).getBooks();
+   }
 }

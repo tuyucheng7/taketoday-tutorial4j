@@ -9,13 +9,13 @@ import java.util.List;
 
 @Projection(name = "customBook", types = {Book.class})
 public interface CustomBook {
-	@Value("#{target.id}")
-	long getId();
+   @Value("#{target.id}")
+   long getId();
 
-	String getTitle();
+   String getTitle();
 
-	List<Author> getAuthors();
+   List<Author> getAuthors();
 
-	@Value("#{target.getAuthors().size()}")
-	int getAuthorCount();
+   @Value("#{target.getAuthors().size()}")
+   int getAuthorCount();
 }

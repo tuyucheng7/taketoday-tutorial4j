@@ -12,9 +12,9 @@ import cn.tuyucheng.taketoday.books.models.WebsiteUser;
 @Configuration
 public class RestConfig implements RepositoryRestConfigurer {
 
-	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration repositoryRestConfiguration, CorsRegistry cors) {
-		ExposureConfiguration config = repositoryRestConfiguration.getExposureConfiguration();
-		config.forDomainType(WebsiteUser.class).withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.PATCH));
-	}
+   @Override
+   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration repositoryRestConfiguration, CorsRegistry cors) {
+      ExposureConfiguration config = repositoryRestConfiguration.getExposureConfiguration();
+      config.forDomainType(WebsiteUser.class).withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.PATCH));
+   }
 }

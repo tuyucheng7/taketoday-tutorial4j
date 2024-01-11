@@ -15,53 +15,53 @@ import java.util.Optional;
 @Service
 public class CountCarService {
 
-    @Autowired
-    private CarRepository repo;
+   @Autowired
+   private CarRepository repo;
 
-    @Autowired
-    private MongoTemplate mongo;
+   @Autowired
+   private MongoTemplate mongo;
 
-    public List<Car> findCars() {
-        return repo.findAll();
-    }
+   public List<Car> findCars() {
+      return repo.findAll();
+   }
 
-    public Optional<Car> findCar(String id) {
-        return repo.findById(id);
-    }
+   public Optional<Car> findCar(String id) {
+      return repo.findById(id);
+   }
 
-    public Car insertCar(Car item) {
-        return repo.insert(item);
-    }
+   public Car insertCar(Car item) {
+      return repo.insert(item);
+   }
 
-    public long getCountWithQueryAnnotation() {
-        return repo.countWithAnnotation();
-    }
+   public long getCountWithQueryAnnotation() {
+      return repo.countWithAnnotation();
+   }
 
-    public long getCountWithCrudRepository() {
-        return repo.count();
-    }
+   public long getCountWithCrudRepository() {
+      return repo.count();
+   }
 
-    public long getCountBrandWithQueryMethod(String brand) {
-        return repo.countByBrand(brand);
-    }
+   public long getCountBrandWithQueryMethod(String brand) {
+      return repo.countByBrand(brand);
+   }
 
-    public long getCountWithExample(Car item) {
-        return repo.count(Example.of(item));
-    }
+   public long getCountWithExample(Car item) {
+      return repo.count(Example.of(item));
+   }
 
-    public long getCountWithExampleCriteria(Car item) {
-        Query query = new Query();
-        query.addCriteria(Criteria.byExample(item));
-        return mongo.count(query, Car.class);
-    }
+   public long getCountWithExampleCriteria(Car item) {
+      Query query = new Query();
+      query.addCriteria(Criteria.byExample(item));
+      return mongo.count(query, Car.class);
+   }
 
-    public long getCountBrandWithQueryAnnotation(String brand) {
-        return repo.countBrand(brand);
-    }
+   public long getCountBrandWithQueryAnnotation(String brand) {
+      return repo.countBrand(brand);
+   }
 
-    public long getCountBrandWithCriteria(String brand) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("brand").is(brand));
-        return mongo.count(query, Car.class);
-    }
+   public long getCountBrandWithCriteria(String brand) {
+      Query query = new Query();
+      query.addCriteria(Criteria.where("brand").is(brand));
+      return mongo.count(query, Car.class);
+   }
 }

@@ -11,39 +11,39 @@ import java.util.Optional;
 @Service("employeeServicesWithRepository")
 public class EmployeeServicesWithRepository implements EmployeeService {
 
-	@Autowired
-	EmployeeRepository employeeRepository;
+   @Autowired
+   EmployeeRepository employeeRepository;
 
 
-	@Override
-	public void save(Employee employee) {
-		employeeRepository.save(employee);
-	}
+   @Override
+   public void save(Employee employee) {
+      employeeRepository.save(employee);
+   }
 
-	@Override
-	public Iterable<Employee> fetchAll() {
-		return employeeRepository.findAll();
+   @Override
+   public Iterable<Employee> fetchAll() {
+      return employeeRepository.findAll();
 
-	}
+   }
 
-	@Override
-	public Optional<Employee> get(Integer id) {
-		return employeeRepository.findById(id);
-	}
+   @Override
+   public Optional<Employee> get(Integer id) {
+      return employeeRepository.findById(id);
+   }
 
-	@Override
-	public void update(Employee employee) {
-		employeeRepository.save(employee);
+   @Override
+   public void update(Employee employee) {
+      employeeRepository.save(employee);
 
-	}
+   }
 
-	@Override
-	public void delete(Integer id) {
-		employeeRepository.deleteById(id);
-	}
+   @Override
+   public void delete(Integer id) {
+      employeeRepository.deleteById(id);
+   }
 
-	public Iterable<Employee> getSortedListOfEmployeesBySalary() {
-		throw new RuntimeException("Method not supported by CRUDRepository");
-	}
+   public Iterable<Employee> getSortedListOfEmployeesBySalary() {
+      throw new RuntimeException("Method not supported by CRUDRepository");
+   }
 
 }

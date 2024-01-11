@@ -54,9 +54,9 @@ class FileSystemImageIntegrationTest {
    }
 
    @Test
-   void givenBaeldungImage_whenDownloadIt_thenReturnTheImage() throws Exception {
+   void givenTuyuchengImage_whenDownloadIt_thenReturnTheImage() throws Exception {
       given(fileLocationService.find(1L))
-            .willReturn(baeldungJpegResource());
+            .willReturn(tuyuchengJpegResource());
 
       mockMvc.perform(MockMvcRequestBuilders
                   .get("/file-system/image/1")
@@ -64,7 +64,7 @@ class FileSystemImageIntegrationTest {
             .andExpect(status().isOk());
    }
 
-   private FileSystemResource baeldungJpegResource() {
+   private FileSystemResource tuyuchengJpegResource() {
       ClassLoader classLoader = ClassLoader.getSystemClassLoader();
       try {
          final URL resource = classLoader.getResource("taketoday.jpeg");

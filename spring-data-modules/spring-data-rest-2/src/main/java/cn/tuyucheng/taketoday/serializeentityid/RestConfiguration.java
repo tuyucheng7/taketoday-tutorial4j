@@ -12,16 +12,16 @@ import javax.persistence.metamodel.Type;
 @Configuration
 public class RestConfiguration implements RepositoryRestConfigurer {
 
-	@Autowired
-	private EntityManager entityManager;
+   @Autowired
+   private EntityManager entityManager;
 
-	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-		final Class<?>[] classes = this.entityManager.getMetamodel()
-				.getEntities()
-				.stream()
-				.map(Type::getJavaType)
-				.toArray(Class[]::new);
-		config.exposeIdsFor(classes);
-	}
+   @Override
+   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+      final Class<?>[] classes = this.entityManager.getMetamodel()
+            .getEntities()
+            .stream()
+            .map(Type::getJavaType)
+            .toArray(Class[]::new);
+      config.exposeIdsFor(classes);
+   }
 }

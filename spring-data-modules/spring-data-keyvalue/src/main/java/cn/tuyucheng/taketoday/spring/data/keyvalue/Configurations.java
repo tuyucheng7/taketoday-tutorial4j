@@ -12,16 +12,16 @@ import java.util.concurrent.ConcurrentHashMap;
 @Configuration
 public class Configurations {
 
-	// To be used only if @EnableMapRepositories is not used.
-	// Else @EnableMapRepositories gives us a template as well.
-	@Bean("keyValueTemplate")
-	public KeyValueOperations keyValueTemplate() {
-		return new KeyValueTemplate(keyValueAdapter());
+   // To be used only if @EnableMapRepositories is not used.
+   // Else @EnableMapRepositories gives us a template as well.
+   @Bean("keyValueTemplate")
+   public KeyValueOperations keyValueTemplate() {
+      return new KeyValueTemplate(keyValueAdapter());
 
-	}
+   }
 
-	@Bean
-	public KeyValueAdapter keyValueAdapter() {
-		return new MapKeyValueAdapter(ConcurrentHashMap.class);
-	}
+   @Bean
+   public KeyValueAdapter keyValueAdapter() {
+      return new MapKeyValueAdapter(ConcurrentHashMap.class);
+   }
 }

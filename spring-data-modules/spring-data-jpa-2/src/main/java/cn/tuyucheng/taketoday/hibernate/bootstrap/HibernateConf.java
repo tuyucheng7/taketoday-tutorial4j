@@ -20,42 +20,42 @@ import java.util.Properties;
 @PropertySource({"classpath:persistence-h2.properties"})
 public class HibernateConf {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("cn.tuyucheng.taketoday.hibernate.bootstrap.model");
-		sessionFactory.setHibernateProperties(hibernateProperties());
+   @Bean
+   public LocalSessionFactoryBean sessionFactory() {
+      final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+      sessionFactory.setDataSource(dataSource());
+      sessionFactory.setPackagesToScan("cn.tuyucheng.taketoday.hibernate.bootstrap.model");
+      sessionFactory.setHibernateProperties(hibernateProperties());
 
-		return sessionFactory;
-	}
+      return sessionFactory;
+   }
 
-	@Bean
-	public DataSource dataSource() {
-		final BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-		dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
-		dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
-		dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
+   @Bean
+   public DataSource dataSource() {
+      final BasicDataSource dataSource = new BasicDataSource();
+      dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+      dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
+      dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
+      dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean
-	public PlatformTransactionManager hibernateTransactionManager() {
-		final HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-		transactionManager.setSessionFactory(sessionFactory().getObject());
-		return transactionManager;
-	}
+   @Bean
+   public PlatformTransactionManager hibernateTransactionManager() {
+      final HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+      transactionManager.setSessionFactory(sessionFactory().getObject());
+      return transactionManager;
+   }
 
-	private Properties hibernateProperties() {
-		final Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+   private Properties hibernateProperties() {
+      final Properties hibernateProperties = new Properties();
+      hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+      hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
-		return hibernateProperties;
-	}
+      return hibernateProperties;
+   }
 }

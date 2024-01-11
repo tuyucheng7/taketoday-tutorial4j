@@ -20,24 +20,24 @@ import java.io.IOException;
 @Slf4j
 class ImageController {
 
-	@Autowired
-	ImageDbRepository imageDbRepository;
+   @Autowired
+   ImageDbRepository imageDbRepository;
 
-	@PostMapping("/image")
-	long uploadImage(@RequestParam MultipartFile multipartImage) throws IOException {
-		Image dbImage = new Image();
-		dbImage.setName(multipartImage.getOriginalFilename());
-		dbImage.setContent(multipartImage.getBytes());
+   @PostMapping("/image")
+   long uploadImage(@RequestParam MultipartFile multipartImage) throws IOException {
+      Image dbImage = new Image();
+      dbImage.setName(multipartImage.getOriginalFilename());
+      dbImage.setContent(multipartImage.getBytes());
 
-		return imageDbRepository.save(dbImage).getId();
-	}
+      return imageDbRepository.save(dbImage).getId();
+   }
 
-	@GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
-	Resource downloadImage(@PathVariable Long imageId) {
-		byte[] image = imageDbRepository.findById(imageId)
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
-			.getContent();
+   @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
+   Resource downloadImage(@PathVariable Long imageId) {
+      byte[] image = imageDbRepository.findById(imageId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+            .getContent();
 
-		return new ByteArrayResource(image);
-	}
+      return new ByteArrayResource(image);
+   }
 }

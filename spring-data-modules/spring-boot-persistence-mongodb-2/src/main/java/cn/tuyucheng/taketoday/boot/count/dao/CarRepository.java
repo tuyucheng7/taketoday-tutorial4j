@@ -6,11 +6,11 @@ import org.springframework.data.mongodb.repository.Query;
 import cn.tuyucheng.taketoday.boot.count.data.Car;
 
 public interface CarRepository extends MongoRepository<Car, String> {
-    @Query(value = "{brand: ?0}", count = true)
-    public long countBrand(String brand);
+   @Query(value = "{brand: ?0}", count = true)
+   public long countBrand(String brand);
 
-    Long countByBrand(String brand);
+   Long countByBrand(String brand);
 
-    @Query(value = "{}", count = true)
-    Long countWithAnnotation();
+   @Query(value = "{}", count = true)
+   Long countWithAnnotation();
 }

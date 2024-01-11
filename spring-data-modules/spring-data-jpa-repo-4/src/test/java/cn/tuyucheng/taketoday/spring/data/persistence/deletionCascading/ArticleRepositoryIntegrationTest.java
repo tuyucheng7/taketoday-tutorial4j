@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = CascadingDeleteApplication.class)
 @Transactional
-public class ArticleRepositoryIntegrationTest {
+class ArticleRepositoryIntegrationTest {
 
    @Autowired
    private ArticleRepository articleRepository;
@@ -35,7 +35,7 @@ public class ArticleRepositoryIntegrationTest {
 
    @Test
    @Transactional
-   public void givenAnArticleAndItsComments_whenDeleteArticle_thenCommentsDeletedAutomatically() {
+   void givenAnArticleAndItsComments_whenDeleteArticle_thenCommentsDeletedAutomatically() {
       Set<Comment> comments = new HashSet<>();
       Article article = new Article();
       article.setName("introduction to Spring");

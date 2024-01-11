@@ -9,9 +9,9 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table("vehicles")
 @AllArgsConstructor
 public class Vehicle {
-    @Id
-    private String vin;
-    private Integer year;
-    private String make;
-    private String model;
+   @Id
+   private String vin;
+   private Integer year;
+   private String make;
+   private String model;
 }

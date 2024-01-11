@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BarDao extends AbstractHibernateDao<Bar> implements IBarDao {
 
-    public BarDao() {
-        super();
-        setClazz(Bar.class);
-    }
+   public BarDao() {
+      super();
+      setClazz(Bar.class);
+   }
 }

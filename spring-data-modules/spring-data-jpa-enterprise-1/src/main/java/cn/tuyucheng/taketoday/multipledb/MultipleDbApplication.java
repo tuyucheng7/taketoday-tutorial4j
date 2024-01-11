@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MultipleDbApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MultipleDbApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(MultipleDbApplication.class, args);
+   }
 }

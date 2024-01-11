@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-	@EntityGraph(value = "Item.characteristics", type = EntityGraphType.FETCH)
-	Item findByName(String name);
+   @EntityGraph(value = "Item.characteristics", type = EntityGraphType.FETCH)
+   Item findByName(String name);
 }

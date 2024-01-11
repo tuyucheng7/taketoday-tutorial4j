@@ -7,7 +7,7 @@ import cn.tuyucheng.taketoday.partialupdate.model.ContactPhone;
 
 @Repository
 public interface ContactPhoneRepository extends CrudRepository<ContactPhone, Long> {
-    ContactPhone findById(long id);
+   ContactPhone findById(long id);
 
-    ContactPhone findByCustomerId(long id);
+   ContactPhone findByCustomerId(long id);
 }

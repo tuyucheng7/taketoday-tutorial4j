@@ -22,61 +22,61 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @TestPropertySource("/embedded.properties")
 class CustomerServiceIntegrationTest {
-    @Autowired
-    private CustomerService service;
+   @Autowired
+   private CustomerService service;
 
-    @Test
-    void givenCompositeId_whenObjectSaved_thenIdMatches() {
-        TicketId ticketId = new TicketId();
-        ticketId.setDate("2020-01-01");
-        ticketId.setVenue("Venue A");
+   @Test
+   void givenCompositeId_whenObjectSaved_thenIdMatches() {
+      TicketId ticketId = new TicketId();
+      ticketId.setDate("2020-01-01");
+      ticketId.setVenue("Venue A");
 
-        Ticket ticket = new Ticket(ticketId, "Event A");
-        Ticket savedTicket = service.insert(ticket);
+      Ticket ticket = new Ticket(ticketId, "Event A");
+      Ticket savedTicket = service.insert(ticket);
 
-        assertEquals(savedTicket.getId(), ticket.getId());
-    }
+      assertEquals(savedTicket.getId(), ticket.getId());
+   }
 
-    @Test
-    void givenCompositeId_whenSearchingByIdObject_thenFound() {
-        TicketId ticketId = new TicketId();
-        ticketId.setDate("2020-01-01");
-        ticketId.setVenue("Venue B");
+   @Test
+   void givenCompositeId_whenSearchingByIdObject_thenFound() {
+      TicketId ticketId = new TicketId();
+      ticketId.setDate("2020-01-01");
+      ticketId.setVenue("Venue B");
 
-        service.insert(new Ticket(ticketId, "Event B"));
+      service.insert(new Ticket(ticketId, "Event B"));
 
-        Optional<Ticket> optionalTicket = service.find(ticketId);
+      Optional<Ticket> optionalTicket = service.find(ticketId);
 
-        assertThat(optionalTicket.isPresent());
-        Ticket savedTicket = optionalTicket.get();
+      assertThat(optionalTicket.isPresent());
+      Ticket savedTicket = optionalTicket.get();
 
-        assertEquals(savedTicket.getId(), ticketId);
-    }
+      assertEquals(savedTicket.getId(), ticketId);
+   }
 
-    @Test
-    void givenCompositeId_whenDupeInsert_thenExceptionIsThrown() {
-        TicketId ticketId = new TicketId();
-        ticketId.setDate("2020-01-01");
-        ticketId.setVenue("V");
+   @Test
+   void givenCompositeId_whenDupeInsert_thenExceptionIsThrown() {
+      TicketId ticketId = new TicketId();
+      ticketId.setDate("2020-01-01");
+      ticketId.setVenue("V");
 
-        Ticket ticket = new Ticket(ticketId, "Event C");
-        service.insert(ticket);
+      Ticket ticket = new Ticket(ticketId, "Event C");
+      service.insert(ticket);
 
-        assertThrows(DuplicateKeyException.class, () -> service.insert(ticket));
-    }
+      assertThrows(DuplicateKeyException.class, () -> service.insert(ticket));
+   }
 
-    @Test
-    void givenCompositeId_whenDupeSave_thenObjectUpdated() {
-        TicketId ticketId = new TicketId();
-        ticketId.setDate("2020-01-01");
-        ticketId.setVenue("Venue");
+   @Test
+   void givenCompositeId_whenDupeSave_thenObjectUpdated() {
+      TicketId ticketId = new TicketId();
+      ticketId.setDate("2020-01-01");
+      ticketId.setVenue("Venue");
 
-        Ticket ticketA = new Ticket(ticketId, "A");
-        service.save(ticketA);
+      Ticket ticketA = new Ticket(ticketId, "A");
+      service.save(ticketA);
 
-        Ticket ticketB = new Ticket(ticketId, "B");
-        Ticket savedTicket = service.save(ticketB);
+      Ticket ticketB = new Ticket(ticketId, "B");
+      Ticket savedTicket = service.save(ticketB);
 
-        assertEquals(savedTicket.getEvent(), ticketB.getEvent());
-    }
+      assertEquals(savedTicket.getEvent(), ticketB.getEvent());
+   }
 }

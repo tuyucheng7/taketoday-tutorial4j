@@ -1,30 +1,30 @@
 package cn.tuyucheng.taketoday.partialupdate.model;
 
 public class CustomerDto {
-    private long id;
-    public String name;
-    public String phone;
-    private String phone99;
+   private long id;
+   public String name;
+   public String phone;
+   private String phone99;
 
-    public CustomerDto(long id) {
-        this.id = id;
-    }
+   public CustomerDto(long id) {
+      this.id = id;
+   }
 
-    public CustomerDto(Customer c) {
-        this.id = c.id;
-        this.name = c.name;
-        this.phone = c.phone;
-    }
+   public CustomerDto(Customer c) {
+      this.id = c.id;
+      this.name = c.name;
+      this.phone = c.phone;
+   }
 
-    public long getId() {
-        return this.id;
-    }
+   public long getId() {
+      return this.id;
+   }
 
-    public Customer convertToEntity() {
-        Customer c = new Customer();
-        c.id = id;
-        c.name = name;
-        c.phone = phone;
-        return c;
-    }
+   public Customer convertToEntity() {
+      Customer c = new Customer();
+      c.id = id;
+      c.name = name;
+      c.phone = phone;
+      return c;
+   }
 }

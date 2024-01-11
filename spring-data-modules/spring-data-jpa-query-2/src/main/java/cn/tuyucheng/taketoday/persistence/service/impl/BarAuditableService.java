@@ -14,25 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class BarAuditableService extends AbstractHibernateAuditableService<Bar> implements IBarAuditableService {
 
-    @Autowired
-    @Qualifier("barHibernateDao")
-    private IBarDao dao;
+   @Autowired
+   @Qualifier("barHibernateDao")
+   private IBarDao dao;
 
-    @Autowired
-    @Qualifier("barHibernateAuditableDao")
-    private IBarAuditableDao auditDao;
+   @Autowired
+   @Qualifier("barHibernateAuditableDao")
+   private IBarAuditableDao auditDao;
 
-    public BarAuditableService() {
-        super();
-    }
+   public BarAuditableService() {
+      super();
+   }
 
-    @Override
-    protected IOperations<Bar> getDao() {
-        return dao;
-    }
+   @Override
+   protected IOperations<Bar> getDao() {
+      return dao;
+   }
 
-    @Override
-    protected IAuditOperations<Bar> getAuditableDao() {
-        return auditDao;
-    }
+   @Override
+   protected IAuditOperations<Bar> getAuditableDao() {
+      return auditDao;
+   }
 }

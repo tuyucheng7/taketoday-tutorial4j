@@ -13,13 +13,13 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 @ComponentScan
 public class SolrConfig {
 
-    @Bean
-    public SolrClient solrClient() {
-        return new HttpSolrClient.Builder("http://localhost:8983/solr").build();
-    }
+   @Bean
+   public SolrClient solrClient() {
+      return new HttpSolrClient.Builder("http://localhost:8983/solr").build();
+   }
 
-    @Bean
-    public SolrTemplate solrTemplate(SolrClient client) throws Exception {
-        return new SolrTemplate(client);
-    }
+   @Bean
+   public SolrTemplate solrTemplate(SolrClient client) throws Exception {
+      return new SolrTemplate(client);
+   }
 }

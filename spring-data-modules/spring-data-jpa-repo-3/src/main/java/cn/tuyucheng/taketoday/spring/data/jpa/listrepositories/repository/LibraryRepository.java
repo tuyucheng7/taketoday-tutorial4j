@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LibraryRepository extends CrudRepository<Library, Long> {
-	@Query("SELECT l FROM library l JOIN FETCH l.books WHERE l.id = (:id)")
-	Library findById(@Param("id") long id);
+   @Query("SELECT l FROM library l JOIN FETCH l.books WHERE l.id = (:id)")
+   Library findById(@Param("id") long id);
 }

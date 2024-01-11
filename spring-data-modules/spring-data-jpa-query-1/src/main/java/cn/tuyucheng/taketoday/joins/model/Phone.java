@@ -9,36 +9,36 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Phone {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private long id;
 
-	private String number;
+   private String number;
 
-	@ManyToOne
-	private Employee employee;
+   @ManyToOne
+   private Employee employee;
 
-	public long getId() {
-		return id;
-	}
+   public long getId() {
+      return id;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public void setId(long id) {
+      this.id = id;
+   }
 
-	public String getNumber() {
-		return number;
-	}
+   public String getNumber() {
+      return number;
+   }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+   public void setNumber(String number) {
+      this.number = number;
+   }
 
-	public Employee getEmployee() {
-		return employee;
-	}
+   public Employee getEmployee() {
+      return employee;
+   }
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+   public void setEmployee(Employee employee) {
+      this.employee = employee;
+   }
 }

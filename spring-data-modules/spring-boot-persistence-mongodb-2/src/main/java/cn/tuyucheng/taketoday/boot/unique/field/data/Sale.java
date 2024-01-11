@@ -5,32 +5,32 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Sale {
-	@Indexed(unique = true)
-	private SaleId saleId;
+   @Indexed(unique = true)
+   private SaleId saleId;
 
-	private Double value;
+   private Double value;
 
-	public Sale() {
-	}
+   public Sale() {
+   }
 
-	public Sale(SaleId saleId) {
-		super();
-		this.saleId = saleId;
-	}
+   public Sale(SaleId saleId) {
+      super();
+      this.saleId = saleId;
+   }
 
-	public SaleId getSaleId() {
-		return saleId;
-	}
+   public SaleId getSaleId() {
+      return saleId;
+   }
 
-	public void setSaleId(SaleId saleId) {
-		this.saleId = saleId;
-	}
+   public void setSaleId(SaleId saleId) {
+      this.saleId = saleId;
+   }
 
-	public Double getValue() {
-		return value;
-	}
+   public Double getValue() {
+      return value;
+   }
 
-	public void setValue(Double value) {
-		this.value = value;
-	}
+   public void setValue(Double value) {
+      this.value = value;
+   }
 }

@@ -18,25 +18,25 @@ import java.io.IOException;
 @Service
 public class VideoService {
 
-	@Autowired
-	private GridFsTemplate gridFsTemplate;
+   @Autowired
+   private GridFsTemplate gridFsTemplate;
 
-	@Autowired
-	private GridFsOperations operations;
+   @Autowired
+   private GridFsOperations operations;
 
-	public Video getVideo(String id) throws IllegalStateException, IOException {
-		GridFSFile file = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
-		Video video = new Video();
-		video.setTitle(file.getMetadata().get("title").toString());
-		video.setStream(operations.getResource(file).getInputStream());
-		return video;
-	}
+   public Video getVideo(String id) throws IllegalStateException, IOException {
+      GridFSFile file = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(id)));
+      Video video = new Video();
+      video.setTitle(file.getMetadata().get("title").toString());
+      video.setStream(operations.getResource(file).getInputStream());
+      return video;
+   }
 
-	public String addVideo(String title, MultipartFile file) throws IOException {
-		DBObject metaData = new BasicDBObject();
-		metaData.put("type", "video");
-		metaData.put("title", title);
-		ObjectId id = gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType(), metaData);
-		return id.toString();
-	}
+   public String addVideo(String title, MultipartFile file) throws IOException {
+      DBObject metaData = new BasicDBObject();
+      metaData.put("type", "video");
+      metaData.put("title", title);
+      ObjectId id = gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType(), metaData);
+      return id.toString();
+   }
 }

@@ -17,7 +17,7 @@ import cn.tuyucheng.taketoday.spring.data.es.config.Config;
 @ContextConfiguration(classes = Config.class)
 class SpringContextManualTest {
 
-    @Test
-    void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

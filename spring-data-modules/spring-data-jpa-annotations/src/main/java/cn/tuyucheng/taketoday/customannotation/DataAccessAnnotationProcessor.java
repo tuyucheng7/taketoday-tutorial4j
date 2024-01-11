@@ -11,27 +11,27 @@ import org.springframework.util.ReflectionUtils.FieldCallback;
 @Component
 public class DataAccessAnnotationProcessor implements BeanPostProcessor {
 
-	private ConfigurableListableBeanFactory configurableListableBeanFactory;
+   private ConfigurableListableBeanFactory configurableListableBeanFactory;
 
-	@Autowired
-	public DataAccessAnnotationProcessor(ConfigurableListableBeanFactory bf) {
-		configurableListableBeanFactory = bf;
-	}
+   @Autowired
+   public DataAccessAnnotationProcessor(ConfigurableListableBeanFactory bf) {
+      configurableListableBeanFactory = bf;
+   }
 
-	@Override
-	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		scanDataAccessAnnotation(bean, beanName);
-		return bean;
-	}
+   @Override
+   public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+      scanDataAccessAnnotation(bean, beanName);
+      return bean;
+   }
 
-	@Override
-	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		return bean;
-	}
+   @Override
+   public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+      return bean;
+   }
 
-	protected void scanDataAccessAnnotation(Object bean, String beanName) {
-		Class<?> managedBeanClass = bean.getClass();
-		FieldCallback fcb = new DataAccessFieldCallback(configurableListableBeanFactory, bean);
-		ReflectionUtils.doWithFields(managedBeanClass, fcb);
-	}
+   protected void scanDataAccessAnnotation(Object bean, String beanName) {
+      Class<?> managedBeanClass = bean.getClass();
+      FieldCallback fcb = new DataAccessFieldCallback(configurableListableBeanFactory, bean);
+      ReflectionUtils.doWithFields(managedBeanClass, fcb);
+   }
 }

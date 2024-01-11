@@ -9,43 +9,43 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-    @Column
-    private String name;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-    private Address address;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id", unique = true, nullable = false)
+   private Long id;
+   @Column
+   private String name;
+   @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+   private Address address;
 
-    public User() {
-    }
+   public User() {
+   }
 
-    public User(String name) {
-        this.name = name;
-    }
+   public User(String name) {
+      this.name = name;
+   }
 
-    public Long getId() {
-        return id;
-    }
+   public Long getId() {
+      return id;
+   }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public Address getAddress() {
-        return address;
-    }
+   public Address getAddress() {
+      return address;
+   }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+   public void setAddress(Address address) {
+      this.address = address;
+   }
 }

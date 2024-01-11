@@ -11,18 +11,18 @@ import javax.sql.DataSource;
 @Configuration
 public class TodoDatasourceConfiguration {
 
-	@Bean
-	@ConfigurationProperties("spring.datasource.todos")
-	public DataSourceProperties todosDataSourceProperties() {
-		return new DataSourceProperties();
-	}
+   @Bean
+   @ConfigurationProperties("spring.datasource.todos")
+   public DataSourceProperties todosDataSourceProperties() {
+      return new DataSourceProperties();
+   }
 
-	@Bean
-	@Primary
-	@ConfigurationProperties("spring.datasource.todos.hikari")
-	public DataSource todosDataSource() {
-		return todosDataSourceProperties()
-				.initializeDataSourceBuilder()
-				.build();
-	}
+   @Bean
+   @Primary
+   @ConfigurationProperties("spring.datasource.todos.hikari")
+   public DataSource todosDataSource() {
+      return todosDataSourceProperties()
+            .initializeDataSourceBuilder()
+            .build();
+   }
 }

@@ -23,7 +23,7 @@ class FindByVsFindAllByIntegrationTest {
    private PlayerRepository playerRepository;
 
    @BeforeEach
-   public void setup() {
+   void setup() {
       Player player1 = new Player(600);
       Player player2 = new Player(500);
       Player player3 = new Player(300);

@@ -18,30 +18,30 @@ import java.util.UUID;
 @EnableMongoRepositories(basePackages = "cn.tuyucheng.taketoday.uuid.repository")
 public class EntityCallbackMongoConfig {
 
-	@Bean
-	public MongoClient mongo() throws Exception {
-		final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
-		final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-			.uuidRepresentation(UuidRepresentation.STANDARD)
-			.applyConnectionString(connectionString).build();
-		return MongoClients.create(mongoClientSettings);
-	}
+   @Bean
+   public MongoClient mongo() throws Exception {
+      final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+      final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+            .uuidRepresentation(UuidRepresentation.STANDARD)
+            .applyConnectionString(connectionString).build();
+      return MongoClients.create(mongoClientSettings);
+   }
 
-	@Bean
-	public MongoTemplate mongoTemplate() throws Exception {
-		return new MongoTemplate(mongo(), "test");
-	}
+   @Bean
+   public MongoTemplate mongoTemplate() throws Exception {
+      return new MongoTemplate(mongo(), "test");
+   }
 
-	@Bean
-	public BeforeConvertCallback<UuidIdentifiedEntity> beforeSaveCallback() {
+   @Bean
+   public BeforeConvertCallback<UuidIdentifiedEntity> beforeSaveCallback() {
 
-		return (entity, collection) -> {
+      return (entity, collection) -> {
 
-			if (entity.getId() == null) {
-				entity.setId(UUID.randomUUID());
-			}
-			return entity;
-		};
-	}
+         if (entity.getId() == null) {
+            entity.setId(UUID.randomUUID());
+         }
+         return entity;
+      };
+   }
 
 }

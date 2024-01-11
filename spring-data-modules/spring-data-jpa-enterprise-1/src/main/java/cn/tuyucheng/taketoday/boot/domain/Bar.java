@@ -21,192 +21,192 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Bar implements Serializable {
 
-    private static final Logger logger = Logger.getLogger(Bar.class);
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+   private static final Logger logger = Logger.getLogger(Bar.class);
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "id")
+   private int id;
 
-    @Column(name = "name")
-    private String name;
-    @OneToMany(mappedBy = "bar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OrderBy(clause = "NAME DESC")
-    // @NotAudited
-    private Set<Foo> fooSet = Sets.newHashSet();
-    @Column(name = "operation")
-    private String operation;
-    @Column(name = "timestamp")
-    private long timestamp;
-    @Column(name = "created_date", updatable = false, nullable = false)
-    @CreatedDate
-    private long createdDate;
-    @Column(name = "modified_date")
-    @LastModifiedDate
-    private long modifiedDate;
-    @Column(name = "created_by")
-    @CreatedBy
-    private String createdBy;
-    @Column(name = "modified_by")
-    @LastModifiedBy
-    private String modifiedBy;
+   @Column(name = "name")
+   private String name;
+   @OneToMany(mappedBy = "bar", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @OrderBy(clause = "NAME DESC")
+   // @NotAudited
+   private Set<Foo> fooSet = Sets.newHashSet();
+   @Column(name = "operation")
+   private String operation;
+   @Column(name = "timestamp")
+   private long timestamp;
+   @Column(name = "created_date", updatable = false, nullable = false)
+   @CreatedDate
+   private long createdDate;
+   @Column(name = "modified_date")
+   @LastModifiedDate
+   private long modifiedDate;
+   @Column(name = "created_by")
+   @CreatedBy
+   private String createdBy;
+   @Column(name = "modified_by")
+   @LastModifiedBy
+   private String modifiedBy;
 
-    public Bar() {
-        super();
-    }
+   public Bar() {
+      super();
+   }
 
-    public Bar(final String name) {
-        super();
+   public Bar(final String name) {
+      super();
 
-        this.name = name;
-    }
+      this.name = name;
+   }
 
-    public Set<Foo> getFooSet() {
-        return fooSet;
-    }
+   public Set<Foo> getFooSet() {
+      return fooSet;
+   }
 
-    public void setFooSet(final Set<Foo> fooSet) {
-        this.fooSet = fooSet;
-    }
+   public void setFooSet(final Set<Foo> fooSet) {
+      this.fooSet = fooSet;
+   }
 
-    public int getId() {
-        return id;
-    }
+   public int getId() {
+      return id;
+   }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
+   public void setId(final int id) {
+      this.id = id;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+   public void setName(final String name) {
+      this.name = name;
+   }
 
-    public OPERATION getOperation() {
-        return OPERATION.parse(operation);
-    }
+   public OPERATION getOperation() {
+      return OPERATION.parse(operation);
+   }
 
-    public void setOperation(final String operation) {
-        this.operation = operation;
-    }
+   public void setOperation(final String operation) {
+      this.operation = operation;
+   }
 
-    public void setOperation(final OPERATION operation) {
-        this.operation = operation.getValue();
-    }
+   public void setOperation(final OPERATION operation) {
+      this.operation = operation.getValue();
+   }
 
-    public long getTimestamp() {
-        return timestamp;
-    }
+   public long getTimestamp() {
+      return timestamp;
+   }
 
-    public void setTimestamp(final long timestamp) {
-        this.timestamp = timestamp;
-    }
+   public void setTimestamp(final long timestamp) {
+      this.timestamp = timestamp;
+   }
 
-    public long getCreatedDate() {
-        return createdDate;
-    }
+   public long getCreatedDate() {
+      return createdDate;
+   }
 
-    public void setCreatedDate(final long createdDate) {
-        this.createdDate = createdDate;
-    }
+   public void setCreatedDate(final long createdDate) {
+      this.createdDate = createdDate;
+   }
 
-    public long getModifiedDate() {
-        return modifiedDate;
-    }
+   public long getModifiedDate() {
+      return modifiedDate;
+   }
 
-    public void setModifiedDate(final long modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
+   public void setModifiedDate(final long modifiedDate) {
+      this.modifiedDate = modifiedDate;
+   }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
+   public String getCreatedBy() {
+      return createdBy;
+   }
 
-    public void setCreatedBy(final String createdBy) {
-        this.createdBy = createdBy;
-    }
+   public void setCreatedBy(final String createdBy) {
+      this.createdBy = createdBy;
+   }
 
-    public String getModifiedBy() {
-        return modifiedBy;
-    }
+   public String getModifiedBy() {
+      return modifiedBy;
+   }
 
-    public void setModifiedBy(final String modifiedBy) {
-        this.modifiedBy = modifiedBy;
-    }
+   public void setModifiedBy(final String modifiedBy) {
+      this.modifiedBy = modifiedBy;
+   }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        return result;
-    }
+   @Override
+   public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((name == null) ? 0 : name.hashCode());
+      return result;
+   }
 
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final Bar other = (Bar) obj;
-        if (name == null) {
-            return other.name == null;
-        } else return name.equals(other.name);
-    }
+   @Override
+   public boolean equals(final Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      final Bar other = (Bar) obj;
+      if (name == null) {
+         return other.name == null;
+      } else return name.equals(other.name);
+   }
 
-    @Override
-    public String toString() {
-        return "Bar [name=" + name + "]";
-    }
+   @Override
+   public String toString() {
+      return "Bar [name=" + name + "]";
+   }
 
-    @PrePersist
-    public void onPrePersist() {
-        logger.info("@PrePersist");
-        audit(OPERATION.INSERT);
-    }
+   @PrePersist
+   public void onPrePersist() {
+      logger.info("@PrePersist");
+      audit(OPERATION.INSERT);
+   }
 
-    @PreUpdate
-    public void onPreUpdate() {
-        logger.info("@PreUpdate");
-        audit(OPERATION.UPDATE);
-    }
+   @PreUpdate
+   public void onPreUpdate() {
+      logger.info("@PreUpdate");
+      audit(OPERATION.UPDATE);
+   }
 
-    @PreRemove
-    public void onPreRemove() {
-        logger.info("@PreRemove");
-        audit(OPERATION.DELETE);
-    }
+   @PreRemove
+   public void onPreRemove() {
+      logger.info("@PreRemove");
+      audit(OPERATION.DELETE);
+   }
 
-    private void audit(final OPERATION operation) {
-        setOperation(operation);
-        setTimestamp((new Date()).getTime());
-    }
+   private void audit(final OPERATION operation) {
+      setOperation(operation);
+      setTimestamp((new Date()).getTime());
+   }
 
-    public enum OPERATION {
-        INSERT, UPDATE, DELETE;
-        private String value;
+   public enum OPERATION {
+      INSERT, UPDATE, DELETE;
+      private String value;
 
-        OPERATION() {
-            value = toString();
-        }
+      OPERATION() {
+         value = toString();
+      }
 
-        public static OPERATION parse(final String value) {
-            OPERATION operation = null;
-            for (final OPERATION op : OPERATION.values()) {
-                if (op.getValue().equals(value)) {
-                    operation = op;
-                    break;
-                }
+      public static OPERATION parse(final String value) {
+         OPERATION operation = null;
+         for (final OPERATION op : OPERATION.values()) {
+            if (op.getValue().equals(value)) {
+               operation = op;
+               break;
             }
-            return operation;
-        }
+         }
+         return operation;
+      }
 
-        public String getValue() {
-            return value;
-        }
-    }
+      public String getValue() {
+         return value;
+      }
+   }
 }

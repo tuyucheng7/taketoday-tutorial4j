@@ -9,24 +9,24 @@ import cn.tuyucheng.taketoday.books.models.WebsiteUser;
 @Component("beforeCreateWebsiteUserValidator")
 public class WebsiteUserValidator implements Validator {
 
-	@Override
-	public boolean supports(Class<?> clazz) {
-		return WebsiteUser.class.equals(clazz);
-	}
+   @Override
+   public boolean supports(Class<?> clazz) {
+      return WebsiteUser.class.equals(clazz);
+   }
 
-	@Override
-	public void validate(Object obj, Errors errors) {
-		WebsiteUser user = (WebsiteUser) obj;
-		if (checkInputString(user.getName())) {
-			errors.rejectValue("name", "name.empty");
-		}
+   @Override
+   public void validate(Object obj, Errors errors) {
+      WebsiteUser user = (WebsiteUser) obj;
+      if (checkInputString(user.getName())) {
+         errors.rejectValue("name", "name.empty");
+      }
 
-		if (checkInputString(user.getEmail())) {
-			errors.rejectValue("email", "email.empty");
-		}
-	}
+      if (checkInputString(user.getEmail())) {
+         errors.rejectValue("email", "email.empty");
+      }
+   }
 
-	private boolean checkInputString(String input) {
-		return (input == null || input.trim().length() == 0);
-	}
+   private boolean checkInputString(String input) {
+      return (input == null || input.trim().length() == 0);
+   }
 }

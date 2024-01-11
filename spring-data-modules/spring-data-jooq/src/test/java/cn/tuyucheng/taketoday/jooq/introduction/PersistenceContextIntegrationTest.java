@@ -24,55 +24,55 @@ import javax.sql.DataSource;
 @PropertySource("classpath:intro_config.properties")
 public class PersistenceContextIntegrationTest {
 
-	@Autowired
-	private Environment environment;
+   @Autowired
+   private Environment environment;
 
-	@Bean
-	public DataSource dataSource() {
-		JdbcDataSource dataSource = new JdbcDataSource();
+   @Bean
+   public DataSource dataSource() {
+      JdbcDataSource dataSource = new JdbcDataSource();
 
-		dataSource.setUrl(environment.getRequiredProperty("db.url"));
-		dataSource.setUser(environment.getRequiredProperty("db.username"));
-		dataSource.setPassword(environment.getRequiredProperty("db.password"));
+      dataSource.setUrl(environment.getRequiredProperty("db.url"));
+      dataSource.setUser(environment.getRequiredProperty("db.username"));
+      dataSource.setPassword(environment.getRequiredProperty("db.password"));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean
-	public TransactionAwareDataSourceProxy transactionAwareDataSource() {
-		return new TransactionAwareDataSourceProxy(dataSource());
-	}
+   @Bean
+   public TransactionAwareDataSourceProxy transactionAwareDataSource() {
+      return new TransactionAwareDataSourceProxy(dataSource());
+   }
 
-	@Bean
-	public DataSourceTransactionManager transactionManager() {
-		return new DataSourceTransactionManager(dataSource());
-	}
+   @Bean
+   public DataSourceTransactionManager transactionManager() {
+      return new DataSourceTransactionManager(dataSource());
+   }
 
-	@Bean
-	public DataSourceConnectionProvider connectionProvider() {
-		return new DataSourceConnectionProvider(transactionAwareDataSource());
-	}
+   @Bean
+   public DataSourceConnectionProvider connectionProvider() {
+      return new DataSourceConnectionProvider(transactionAwareDataSource());
+   }
 
-	@Bean
-	public ExceptionTranslator exceptionTransformer() {
-		return new ExceptionTranslator();
-	}
+   @Bean
+   public ExceptionTranslator exceptionTransformer() {
+      return new ExceptionTranslator();
+   }
 
-	@Bean
-	public DefaultDSLContext dsl() {
-		return new DefaultDSLContext(configuration());
-	}
+   @Bean
+   public DefaultDSLContext dsl() {
+      return new DefaultDSLContext(configuration());
+   }
 
-	@Bean
-	public DefaultConfiguration configuration() {
-		DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
-		jooqConfiguration.set(connectionProvider());
-		jooqConfiguration.set(new DefaultExecuteListenerProvider(exceptionTransformer()));
+   @Bean
+   public DefaultConfiguration configuration() {
+      DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
+      jooqConfiguration.set(connectionProvider());
+      jooqConfiguration.set(new DefaultExecuteListenerProvider(exceptionTransformer()));
 
-		String sqlDialectName = environment.getRequiredProperty("jooq.sql.dialect");
-		SQLDialect dialect = SQLDialect.valueOf(sqlDialectName);
-		jooqConfiguration.set(dialect);
+      String sqlDialectName = environment.getRequiredProperty("jooq.sql.dialect");
+      SQLDialect dialect = SQLDialect.valueOf(sqlDialectName);
+      jooqConfiguration.set(dialect);
 
-		return jooqConfiguration;
-	}
+      return jooqConfiguration;
+   }
 }

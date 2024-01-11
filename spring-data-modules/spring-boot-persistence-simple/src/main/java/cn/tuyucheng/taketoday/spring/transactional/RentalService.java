@@ -10,11 +10,11 @@ import javax.transaction.Transactional;
 @Transactional(Transactional.TxType.SUPPORTS)
 public class RentalService {
 
-	@Autowired
-	private CarRepository carRepository;
+   @Autowired
+   private CarRepository carRepository;
 
-	@Transactional(rollbackOn = IllegalArgumentException.class, dontRollbackOn = EntityExistsException.class)
-	public Car rent(Car car) {
-		return carRepository.save(car);
-	}
+   @Transactional(rollbackOn = IllegalArgumentException.class, dontRollbackOn = EntityExistsException.class)
+   public Car rent(Car car) {
+      return carRepository.save(car);
+   }
 }

@@ -17,126 +17,126 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class AuthorBookRecord extends UpdatableRecordImpl<AuthorBookRecord> implements Record2<Integer, Integer> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * Setter for <code>PUBLIC.AUTHOR_BOOK.AUTHOR_ID</code>.
-	 */
-	public void setAuthorId(Integer value) {
-		set(0, value);
-	}
+   /**
+    * Setter for <code>PUBLIC.AUTHOR_BOOK.AUTHOR_ID</code>.
+    */
+   public void setAuthorId(Integer value) {
+      set(0, value);
+   }
 
-	/**
-	 * Getter for <code>PUBLIC.AUTHOR_BOOK.AUTHOR_ID</code>.
-	 */
-	public Integer getAuthorId() {
-		return (Integer) get(0);
-	}
+   /**
+    * Getter for <code>PUBLIC.AUTHOR_BOOK.AUTHOR_ID</code>.
+    */
+   public Integer getAuthorId() {
+      return (Integer) get(0);
+   }
 
-	/**
-	 * Setter for <code>PUBLIC.AUTHOR_BOOK.BOOK_ID</code>.
-	 */
-	public void setBookId(Integer value) {
-		set(1, value);
-	}
+   /**
+    * Setter for <code>PUBLIC.AUTHOR_BOOK.BOOK_ID</code>.
+    */
+   public void setBookId(Integer value) {
+      set(1, value);
+   }
 
-	/**
-	 * Getter for <code>PUBLIC.AUTHOR_BOOK.BOOK_ID</code>.
-	 */
-	public Integer getBookId() {
-		return (Integer) get(1);
-	}
+   /**
+    * Getter for <code>PUBLIC.AUTHOR_BOOK.BOOK_ID</code>.
+    */
+   public Integer getBookId() {
+      return (Integer) get(1);
+   }
 
-	// -------------------------------------------------------------------------
-	// Primary key information
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Primary key information
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Record2<Integer, Integer> key() {
-		return (Record2) super.key();
-	}
+   @Override
+   public Record2<Integer, Integer> key() {
+      return (Record2) super.key();
+   }
 
-	// -------------------------------------------------------------------------
-	// Record2 type implementation
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Record2 type implementation
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row2<Integer, Integer> fieldsRow() {
-		return (Row2) super.fieldsRow();
-	}
+   @Override
+   public Row2<Integer, Integer> fieldsRow() {
+      return (Row2) super.fieldsRow();
+   }
 
-	@Override
-	public Row2<Integer, Integer> valuesRow() {
-		return (Row2) super.valuesRow();
-	}
+   @Override
+   public Row2<Integer, Integer> valuesRow() {
+      return (Row2) super.valuesRow();
+   }
 
-	@Override
-	public Field<Integer> field1() {
-		return AuthorBook.AUTHOR_BOOK.AUTHOR_ID;
-	}
+   @Override
+   public Field<Integer> field1() {
+      return AuthorBook.AUTHOR_BOOK.AUTHOR_ID;
+   }
 
-	@Override
-	public Field<Integer> field2() {
-		return AuthorBook.AUTHOR_BOOK.BOOK_ID;
-	}
+   @Override
+   public Field<Integer> field2() {
+      return AuthorBook.AUTHOR_BOOK.BOOK_ID;
+   }
 
-	@Override
-	public Integer component1() {
-		return getAuthorId();
-	}
+   @Override
+   public Integer component1() {
+      return getAuthorId();
+   }
 
-	@Override
-	public Integer component2() {
-		return getBookId();
-	}
+   @Override
+   public Integer component2() {
+      return getBookId();
+   }
 
-	@Override
-	public Integer value1() {
-		return getAuthorId();
-	}
+   @Override
+   public Integer value1() {
+      return getAuthorId();
+   }
 
-	@Override
-	public Integer value2() {
-		return getBookId();
-	}
+   @Override
+   public Integer value2() {
+      return getBookId();
+   }
 
-	@Override
-	public AuthorBookRecord value1(Integer value) {
-		setAuthorId(value);
-		return this;
-	}
+   @Override
+   public AuthorBookRecord value1(Integer value) {
+      setAuthorId(value);
+      return this;
+   }
 
-	@Override
-	public AuthorBookRecord value2(Integer value) {
-		setBookId(value);
-		return this;
-	}
+   @Override
+   public AuthorBookRecord value2(Integer value) {
+      setBookId(value);
+      return this;
+   }
 
-	@Override
-	public AuthorBookRecord values(Integer value1, Integer value2) {
-		value1(value1);
-		value2(value2);
-		return this;
-	}
+   @Override
+   public AuthorBookRecord values(Integer value1, Integer value2) {
+      value1(value1);
+      value2(value2);
+      return this;
+   }
 
-	// -------------------------------------------------------------------------
-	// Constructors
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Constructors
+   // -------------------------------------------------------------------------
 
-	/**
-	 * Create a detached AuthorBookRecord
-	 */
-	public AuthorBookRecord() {
-		super(AuthorBook.AUTHOR_BOOK);
-	}
+   /**
+    * Create a detached AuthorBookRecord
+    */
+   public AuthorBookRecord() {
+      super(AuthorBook.AUTHOR_BOOK);
+   }
 
-	/**
-	 * Create a detached, initialised AuthorBookRecord
-	 */
-	public AuthorBookRecord(Integer authorId, Integer bookId) {
-		super(AuthorBook.AUTHOR_BOOK);
+   /**
+    * Create a detached, initialised AuthorBookRecord
+    */
+   public AuthorBookRecord(Integer authorId, Integer bookId) {
+      super(AuthorBook.AUTHOR_BOOK);
 
-		setAuthorId(authorId);
-		setBookId(bookId);
-	}
+      setAuthorId(authorId);
+      setBookId(bookId);
+   }
 }

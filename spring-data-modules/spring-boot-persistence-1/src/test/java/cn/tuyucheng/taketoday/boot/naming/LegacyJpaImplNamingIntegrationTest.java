@@ -4,27 +4,27 @@ import org.assertj.core.api.SoftAssertions;
 import org.hibernate.boot.Metadata;
 import org.hibernate.mapping.PersistentClass;
 import org.hibernate.mapping.Table;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import cn.tuyucheng.taketoday.boot.naming.NamingConfig.Config;
 import cn.tuyucheng.taketoday.boot.naming.entity.Account;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 @TestPropertySource(properties = {
       "spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl",
       "spring.jpa.hibernate.naming.implicit-strategy=org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl"
 })
 @Import(Config.class)
-public class LegacyJpaImplNamingIntegrationTest extends NamingConfig {
+class LegacyJpaImplNamingIntegrationTest extends NamingConfig {
 
    @Test
-   public void givenLegacyJpaImplNamingStrategy_whenCreateDatabase_thenGetStrategyNames() {
+   void givenLegacyJpaImplNamingStrategy_whenCreateDatabase_thenGetStrategyNames() {
       Metadata metadata = MetadataExtractorIntegrator.INSTANCE.getMetadata();
       String entity = Account.class.getCanonicalName();
       PersistentClass persistentClass = metadata.getEntityBinding(entity);

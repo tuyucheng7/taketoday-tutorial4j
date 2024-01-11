@@ -12,14 +12,14 @@ import cn.tuyucheng.taketoday.spring.data.solr.model.Product;
 
 public interface ProductRepository extends SolrCrudRepository<Product, String> {
 
-    public Optional<Product> findById(String id);
+   public Optional<Product> findById(String id);
 
-    public List<Product> findByName(String name);
+   public List<Product> findByName(String name);
 
-    @Query("id:*?0* OR name:*?0*")
-    public Page<Product> findByCustomQuery(String searchTerm, Pageable pageable);
+   @Query("id:*?0* OR name:*?0*")
+   public Page<Product> findByCustomQuery(String searchTerm, Pageable pageable);
 
-    @Query(name = "Product.findByNamedQuery")
-    public Page<Product> findByNamedQuery(String searchTerm, Pageable pageable);
+   @Query(name = "Product.findByNamedQuery")
+   public Page<Product> findByNamedQuery(String searchTerm, Pageable pageable);
 
 }

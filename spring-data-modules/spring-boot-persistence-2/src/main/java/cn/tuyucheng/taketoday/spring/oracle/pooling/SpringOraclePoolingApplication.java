@@ -12,16 +12,16 @@ import javax.sql.DataSource;
 @Slf4j
 public class SpringOraclePoolingApplication implements CommandLineRunner {
 
-	@Autowired
-	private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringOraclePoolingApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringOraclePoolingApplication.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		LOGGER.info("Connection Polling datasource : " + dataSource);
+   @Override
+   public void run(String... args) throws Exception {
+      LOGGER.info("Connection Polling datasource : " + dataSource);
 
-	}
+   }
 }

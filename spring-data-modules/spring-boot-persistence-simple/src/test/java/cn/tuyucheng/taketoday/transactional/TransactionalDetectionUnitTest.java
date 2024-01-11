@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 class TransactionalDetectionUnitTest {
 
-	@Test
-	@Transactional
-	void givenTransactional_whenCheckingForActiveTransaction_thenReceiveTrue() {
-		assertTrue(TransactionSynchronizationManager.isActualTransactionActive());
-	}
+   @Test
+   @Transactional
+   void givenTransactional_whenCheckingForActiveTransaction_thenReceiveTrue() {
+      assertTrue(TransactionSynchronizationManager.isActualTransactionActive());
+   }
 
-	@Test
-	void givenNoTransactional_whenCheckingForActiveTransaction_thenReceiveFalse() {
-		assertFalse(TransactionSynchronizationManager.isActualTransactionActive());
-	}
+   @Test
+   void givenNoTransactional_whenCheckingForActiveTransaction_thenReceiveFalse() {
+      assertFalse(TransactionSynchronizationManager.isActualTransactionActive());
+   }
 }

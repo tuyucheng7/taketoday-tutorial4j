@@ -15,42 +15,42 @@ import static org.mockito.Mockito.verify;
 @SpringJUnitConfig
 @SpringBootTest
 class Aggregate2EventsIntegrationTest {
-	@MockBean
-	private TestEventHandler eventHandler;
-	@Autowired
-	private Aggregate2Repository repository;
+   @MockBean
+   private TestEventHandler eventHandler;
+   @Autowired
+   private Aggregate2Repository repository;
 
-	@DisplayName("given aggregate with @AfterDomainEventPublication, when do domain operation and save twice, then an event is published only for the first time")
-	@Test
-	void afterDomainEvents() {
-		// given
-		Aggregate2 aggregate = new Aggregate2();
+   @DisplayName("given aggregate with @AfterDomainEventPublication, when do domain operation and save twice, then an event is published only for the first time")
+   @Test
+   void afterDomainEvents() {
+      // given
+      Aggregate2 aggregate = new Aggregate2();
 
-		// when
-		aggregate.domainOperation();
-		repository.save(aggregate);
-		repository.save(aggregate);
+      // when
+      aggregate.domainOperation();
+      repository.save(aggregate);
+      repository.save(aggregate);
 
-		// then
-		verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
-	}
+      // then
+      verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
+   }
 
-	@BeforeEach
-	void beforeEach() {
-		repository.deleteAll();
-	}
+   @BeforeEach
+   void beforeEach() {
+      repository.deleteAll();
+   }
 
-	@DisplayName("given aggregate with @DomainEvents, when do domain operation and save, then an event is published")
-	@Test
-	void domainEvents() {
-		// given
-		Aggregate2 aggregate = new Aggregate2();
+   @DisplayName("given aggregate with @DomainEvents, when do domain operation and save, then an event is published")
+   @Test
+   void domainEvents() {
+      // given
+      Aggregate2 aggregate = new Aggregate2();
 
-		// when
-		aggregate.domainOperation();
-		repository.save(aggregate);
+      // when
+      aggregate.domainOperation();
+      repository.save(aggregate);
 
-		// then
-		verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
-	}
+      // then
+      verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
+   }
 }

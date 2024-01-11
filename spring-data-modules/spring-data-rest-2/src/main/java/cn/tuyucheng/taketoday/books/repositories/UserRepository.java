@@ -12,22 +12,22 @@ import cn.tuyucheng.taketoday.books.models.WebsiteUser;
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface UserRepository extends CrudRepository<WebsiteUser, Long> {
 
-	@Override
-	@RestResource(exported = false)
-	void delete(WebsiteUser entity);
+   @Override
+   @RestResource(exported = false)
+   void delete(WebsiteUser entity);
 
-	@Override
-	@RestResource(exported = false)
-	void deleteAll();
+   @Override
+   @RestResource(exported = false)
+   void deleteAll();
 
-	@Override
-	@RestResource(exported = false)
-	void deleteAll(Iterable<? extends WebsiteUser> entities);
+   @Override
+   @RestResource(exported = false)
+   void deleteAll(Iterable<? extends WebsiteUser> entities);
 
-	@Override
-	@RestResource(exported = false)
-	void deleteById(Long aLong);
+   @Override
+   @RestResource(exported = false)
+   void deleteById(Long aLong);
 
-	@RestResource(path = "byEmail", rel = "customFindMethod")
-	WebsiteUser findByEmail(@Param("email") String email);
+   @RestResource(path = "byEmail", rel = "customFindMethod")
+   WebsiteUser findByEmail(@Param("email") String email);
 }

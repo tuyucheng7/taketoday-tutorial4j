@@ -1,9 +1,9 @@
 CREATE
-KEYSPACE inventory
-WITH replication = {
-	'class' : 'NetworkTopologyStrategy',
-	'datacenter1' : 3
-};
+    KEYSPACE inventory
+    WITH replication = {
+        'class' : 'NetworkTopologyStrategy',
+        'datacenter1' : 3
+        };
 
 use inventory;
 

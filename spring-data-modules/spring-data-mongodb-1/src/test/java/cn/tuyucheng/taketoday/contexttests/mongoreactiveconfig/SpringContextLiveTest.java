@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.contexttests.mongoreactiveconfig;
 
 import cn.tuyucheng.taketoday.config.MongoReactiveConfig;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * This Live test requires:
@@ -12,12 +12,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * <p>
  * (e.g. `docker run -d -p 27017:27017 --name bael-mongo mongo`)
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MongoReactiveConfig.class)
-public class SpringContextLiveTest {
+class SpringContextLiveTest {
 
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
-
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

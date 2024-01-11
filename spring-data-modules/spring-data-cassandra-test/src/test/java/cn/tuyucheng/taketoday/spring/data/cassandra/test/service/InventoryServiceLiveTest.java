@@ -3,14 +3,14 @@ package cn.tuyucheng.taketoday.spring.data.cassandra.test.service;
 import cn.tuyucheng.taketoday.spring.data.cassandra.test.config.CassandraConfig;
 import cn.tuyucheng.taketoday.spring.data.cassandra.test.domain.Vehicle;
 import cn.tuyucheng.taketoday.spring.data.cassandra.test.repository.InventoryRepository;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.ClassRule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.containers.DockerComposeContainer;
 
 import java.io.File;
@@ -19,52 +19,52 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataCassandraTest
 @Import(CassandraConfig.class)
 public class InventoryServiceLiveTest {
-    @Autowired
-    private InventoryRepository repository;
+   @Autowired
+   private InventoryRepository repository;
 
-    private InventoryService inventoryService;
+   private InventoryService inventoryService;
 
-    @ClassRule
-    public static DockerComposeContainer environment =
-          new DockerComposeContainer(new File("src/test/resources/compose-test.yml"));
+   @ClassRule
+   public static DockerComposeContainer environment =
+         new DockerComposeContainer(new File("src/test/resources/compose-test.yml"));
 
-    @Before
-    public void setUp() {
-        inventoryService = new InventoryService(this.repository);
-    }
+   @BeforeEach
+   public void setUp() {
+      inventoryService = new InventoryService(this.repository);
+   }
 
-    @Test
-    public void givenVehiclesInDBInitially_whenRetrieved_thenReturnAllVehiclesFromDB() {
-        List<Vehicle> vehicles = inventoryService.getVehicles();
-        assertThat(vehicles).isNotNull();
-        assertThat(vehicles).isNotEmpty();
-    }
+   @Test
+   public void givenVehiclesInDBInitially_whenRetrieved_thenReturnAllVehiclesFromDB() {
+      List<Vehicle> vehicles = inventoryService.getVehicles();
+      assertThat(vehicles).isNotNull();
+      assertThat(vehicles).isNotEmpty();
+   }
 
-    @Test
-    public void whenAddMoreVehiclesToDB_thenRetrievalReturnsAllVehicles() {
-        String vin1 = "ABC123";
-        String vin2 = "XYZ123";
-        List<Vehicle> vehicles = Arrays.asList(
-              new Vehicle(vin1, 2020, "Toyota", "Camry"),
-              new Vehicle(vin2, 2019, "Honda", "Prius")
-        );
-        inventoryService.addVehicles(vehicles);
+   @Test
+   public void whenAddMoreVehiclesToDB_thenRetrievalReturnsAllVehicles() {
+      String vin1 = "ABC123";
+      String vin2 = "XYZ123";
+      List<Vehicle> vehicles = Arrays.asList(
+            new Vehicle(vin1, 2020, "Toyota", "Camry"),
+            new Vehicle(vin2, 2019, "Honda", "Prius")
+      );
+      inventoryService.addVehicles(vehicles);
 
-        vehicles = inventoryService.getVehicles();
-        assertThat(vehicles).isNotNull();
-        assertThat(vehicles).isNotEmpty();
-        assertThat(vehicles.size()).isEqualTo(5);
+      vehicles = inventoryService.getVehicles();
+      assertThat(vehicles).isNotNull();
+      assertThat(vehicles).isNotEmpty();
+      assertThat(vehicles.size()).isEqualTo(5);
 
-        Vehicle vehicle = inventoryService.getVehicle(vin1);
-        assertThat(vehicle).isNotNull();
-        assertThat(vehicle.getVin()).isEqualTo(vin1);
+      Vehicle vehicle = inventoryService.getVehicle(vin1);
+      assertThat(vehicle).isNotNull();
+      assertThat(vehicle.getVin()).isEqualTo(vin1);
 
-        vehicle = inventoryService.getVehicle(vin2);
-        assertThat(vehicle).isNotNull();
-        assertThat(vehicle.getVin()).isEqualTo(vin2);
-    }
+      vehicle = inventoryService.getVehicle(vin2);
+      assertThat(vehicle).isNotNull();
+      assertThat(vehicle.getVin()).isEqualTo(vin2);
+   }
 }

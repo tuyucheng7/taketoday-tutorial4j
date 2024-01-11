@@ -20,52 +20,52 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {Application.class})
 class DeleteFromRepositoryUnitTest {
 
-	@Autowired
-	private BookRepository repository;
+   @Autowired
+   private BookRepository repository;
 
-	Book book1;
-	Book book2;
+   Book book1;
+   Book book2;
 
-	@BeforeEach
-	void setup() {
-		book1 = new Book("The Hobbit");
-		book2 = new Book("All Quiet on the Western Front");
+   @BeforeEach
+   void setup() {
+      book1 = new Book("The Hobbit");
+      book2 = new Book("All Quiet on the Western Front");
 
-		repository.saveAll(Arrays.asList(book1, book2));
-	}
+      repository.saveAll(Arrays.asList(book1, book2));
+   }
 
-	@AfterEach
-	void teardown() {
-		repository.deleteAll();
-	}
+   @AfterEach
+   void teardown() {
+      repository.deleteAll();
+   }
 
-	@Test
-	void whenDeleteByIdFromRepository_thenDeletingShouldBeSuccessful() {
-		repository.deleteById(book1.getId());
+   @Test
+   void whenDeleteByIdFromRepository_thenDeletingShouldBeSuccessful() {
+      repository.deleteById(book1.getId());
 
-		assertThat(repository.count()).isEqualTo(1);
-	}
+      assertThat(repository.count()).isEqualTo(1);
+   }
 
-	@Test
-	void whenDeleteAllFromRepository_thenRepositoryShouldBeEmpty() {
-		repository.deleteAll();
+   @Test
+   void whenDeleteAllFromRepository_thenRepositoryShouldBeEmpty() {
+      repository.deleteAll();
 
-		assertThat(repository.count()).isEqualTo(0);
-	}
+      assertThat(repository.count()).isEqualTo(0);
+   }
 
-	@Test
-	@Transactional
-	void whenDeleteFromDerivedQuery_thenDeletingShouldBeSuccessful() {
-		long deletedRecords = repository.deleteByTitle("The Hobbit");
+   @Test
+   @Transactional
+   void whenDeleteFromDerivedQuery_thenDeletingShouldBeSuccessful() {
+      long deletedRecords = repository.deleteByTitle("The Hobbit");
 
-		assertThat(deletedRecords).isEqualTo(1);
-	}
+      assertThat(deletedRecords).isEqualTo(1);
+   }
 
-	@Test
-	@Transactional
-	void whenDeleteFromCustomQuery_thenDeletingShouldBeSuccessful() {
-		repository.deleteBooks("The Hobbit");
+   @Test
+   @Transactional
+   void whenDeleteFromCustomQuery_thenDeletingShouldBeSuccessful() {
+      repository.deleteBooks("The Hobbit");
 
-		assertThat(repository.count()).isEqualTo(1);
-	}
+      assertThat(repository.count()).isEqualTo(1);
+   }
 }

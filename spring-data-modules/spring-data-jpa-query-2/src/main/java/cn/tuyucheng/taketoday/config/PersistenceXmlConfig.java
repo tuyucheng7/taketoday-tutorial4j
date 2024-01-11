@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ImportResource({"classpath:hibernate4Config.xml"})
 public class PersistenceXmlConfig {
 
-    public PersistenceXmlConfig() {
-        super();
-    }
+   public PersistenceXmlConfig() {
+      super();
+   }
 }

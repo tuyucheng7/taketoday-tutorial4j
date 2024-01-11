@@ -11,12 +11,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = {"cn.tuyucheng.taketoday.boot.collection.name"})
 public class SpringBootCollectionNameApplication {
 
-    public static void main(String... args) {
-        SpringApplication.run(SpringBootCollectionNameApplication.class, args);
-    }
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootCollectionNameApplication.class, args);
+   }
 
-    @Bean
-    public Naming naming() {
-        return new Naming();
-    }
+   @Bean
+   public Naming naming() {
+      return new Naming();
+   }
 }

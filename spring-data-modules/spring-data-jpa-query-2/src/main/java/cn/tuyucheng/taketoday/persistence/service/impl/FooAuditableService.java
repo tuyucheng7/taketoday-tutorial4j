@@ -14,25 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class FooAuditableService extends AbstractHibernateAuditableService<Foo> implements IFooAuditableService {
 
-    @Autowired
-    @Qualifier("fooHibernateDao")
-    private IFooDao dao;
+   @Autowired
+   @Qualifier("fooHibernateDao")
+   private IFooDao dao;
 
-    @Autowired
-    @Qualifier("fooHibernateAuditableDao")
-    private IFooAuditableDao auditDao;
+   @Autowired
+   @Qualifier("fooHibernateAuditableDao")
+   private IFooAuditableDao auditDao;
 
-    public FooAuditableService() {
-        super();
-    }
+   public FooAuditableService() {
+      super();
+   }
 
-    @Override
-    protected IOperations<Foo> getDao() {
-        return dao;
-    }
+   @Override
+   protected IOperations<Foo> getDao() {
+      return dao;
+   }
 
-    @Override
-    protected IAuditOperations<Foo> getAuditableDao() {
-        return auditDao;
-    }
+   @Override
+   protected IAuditOperations<Foo> getAuditableDao() {
+      return auditDao;
+   }
 }

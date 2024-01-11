@@ -12,17 +12,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserModelListener extends AbstractMongoEventListener<User> {
 
-	private SequenceGeneratorService sequenceGenerator;
+   private SequenceGeneratorService sequenceGenerator;
 
-	@Autowired
-	public UserModelListener(SequenceGeneratorService sequenceGenerator) {
-		this.sequenceGenerator = sequenceGenerator;
-	}
+   @Autowired
+   public UserModelListener(SequenceGeneratorService sequenceGenerator) {
+      this.sequenceGenerator = sequenceGenerator;
+   }
 
-	@Override
-	public void onBeforeConvert(BeforeConvertEvent<User> event) {
-		if (event.getSource().getId() < 1) {
-			event.getSource().setId(sequenceGenerator.generateSequence(User.SEQUENCE_NAME));
-		}
-	}
+   @Override
+   public void onBeforeConvert(BeforeConvertEvent<User> event) {
+      if (event.getSource().getId() < 1) {
+         event.getSource().setId(sequenceGenerator.generateSequence(User.SEQUENCE_NAME));
+      }
+   }
 }

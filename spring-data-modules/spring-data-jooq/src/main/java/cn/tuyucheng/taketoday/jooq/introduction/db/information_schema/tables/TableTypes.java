@@ -26,96 +26,96 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class TableTypes extends TableImpl<TableTypesRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.TABLE_TYPES</code>
-	 */
-	public static final TableTypes TABLE_TYPES = new TableTypes();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.TABLE_TYPES</code>
+    */
+   public static final TableTypes TABLE_TYPES = new TableTypes();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<TableTypesRecord> getRecordType() {
-		return TableTypesRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<TableTypesRecord> getRecordType() {
+      return TableTypesRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
-	 */
-	public final TableField<TableTypesRecord, String> TYPE = createField(DSL.name("TYPE"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
+    */
+   public final TableField<TableTypesRecord, String> TYPE = createField(DSL.name("TYPE"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	private TableTypes(Name alias, Table<TableTypesRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private TableTypes(Name alias, Table<TableTypesRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private TableTypes(Name alias, Table<TableTypesRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private TableTypes(Name alias, Table<TableTypesRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
-	 */
-	public TableTypes(String alias) {
-		this(DSL.name(alias), TABLE_TYPES);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
+    */
+   public TableTypes(String alias) {
+      this(DSL.name(alias), TABLE_TYPES);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
-	 */
-	public TableTypes(Name alias) {
-		this(alias, TABLE_TYPES);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
+    */
+   public TableTypes(Name alias) {
+      this(alias, TABLE_TYPES);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
-	 */
-	public TableTypes() {
-		this(DSL.name("TABLE_TYPES"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.TABLE_TYPES</code> table reference
+    */
+   public TableTypes() {
+      this(DSL.name("TABLE_TYPES"), null);
+   }
 
-	public <O extends Record> TableTypes(Table<O> child, ForeignKey<O, TableTypesRecord> key) {
-		super(child, key, TABLE_TYPES);
-	}
+   public <O extends Record> TableTypes(Table<O> child, ForeignKey<O, TableTypesRecord> key) {
+      super(child, key, TABLE_TYPES);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public TableTypes as(String alias) {
-		return new TableTypes(DSL.name(alias), this);
-	}
+   @Override
+   public TableTypes as(String alias) {
+      return new TableTypes(DSL.name(alias), this);
+   }
 
-	@Override
-	public TableTypes as(Name alias) {
-		return new TableTypes(alias, this);
-	}
+   @Override
+   public TableTypes as(Name alias) {
+      return new TableTypes(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public TableTypes rename(String name) {
-		return new TableTypes(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public TableTypes rename(String name) {
+      return new TableTypes(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public TableTypes rename(Name name) {
-		return new TableTypes(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public TableTypes rename(Name name) {
+      return new TableTypes(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row1 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row1 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row1<String> fieldsRow() {
-		return (Row1) super.fieldsRow();
-	}
+   @Override
+   public Row1<String> fieldsRow() {
+      return (Row1) super.fieldsRow();
+   }
 }

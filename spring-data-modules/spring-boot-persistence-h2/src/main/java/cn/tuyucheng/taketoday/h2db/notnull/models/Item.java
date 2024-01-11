@@ -4,16 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 @Entity
 public class Item {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
-	@NotNull
-	// @Column(nullable = false)
-	private BigDecimal price;
+   @NotNull
+   // @Column(nullable = false)
+   private BigDecimal price;
 }

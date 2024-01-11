@@ -10,29 +10,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CarMakerService {
 
-	private CarMakerDao carMakerDao;
-	private CarModelDao carModelDao;
+   private CarMakerDao carMakerDao;
+   private CarModelDao carModelDao;
 
-	@Autowired
-	public CarMakerService(CarMakerDao carMakerDao, CarModelDao carModelDao) {
-		this.carMakerDao = carMakerDao;
-		this.carModelDao = carModelDao;
-	}
+   @Autowired
+   public CarMakerService(CarMakerDao carMakerDao, CarModelDao carModelDao) {
+      this.carMakerDao = carMakerDao;
+      this.carModelDao = carModelDao;
+   }
 
-	@Transactional
-	public int bulkInsert(CarMaker carMaker) {
-		Long carMakerId;
-		if (carMaker.getId() == null) {
-			carMakerId = carMakerDao.insert(carMaker);
-			carMaker.setId(carMakerId);
-		}
+   @Transactional
+   public int bulkInsert(CarMaker carMaker) {
+      Long carMakerId;
+      if (carMaker.getId() == null) {
+         carMakerId = carMakerDao.insert(carMaker);
+         carMaker.setId(carMakerId);
+      }
 
-		// Make sure all models belong to the same maker
-		carMaker.getModels().forEach(m -> {
-			m.setMakerId(carMaker.getId());
-			carModelDao.insert(m);
-		});
+      // Make sure all models belong to the same maker
+      carMaker.getModels().forEach(m -> {
+         m.setMakerId(carMaker.getId());
+         carModelDao.insert(m);
+      });
 
-		return carMaker.getModels().size();
-	}
+      return carMaker.getModels().size();
+   }
 }

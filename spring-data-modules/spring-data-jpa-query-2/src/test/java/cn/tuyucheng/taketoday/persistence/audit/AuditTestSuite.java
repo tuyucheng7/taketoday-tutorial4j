@@ -5,10 +5,10 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        EnversFooBarAuditIntegrationTest.class,
-        JPABarAuditIntegrationTest.class,
-        SpringDataJPABarAuditIntegrationTest.class
+      EnversFooBarAuditIntegrationTest.class,
+      JPABarAuditIntegrationTest.class,
+      SpringDataJPABarAuditIntegrationTest.class
 })
 public class AuditTestSuite {
-    //
+   //
 }

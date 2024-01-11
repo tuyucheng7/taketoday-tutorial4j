@@ -8,7 +8,7 @@ import org.springframework.data.map.repository.config.EnableMapRepositories;
 @EnableMapRepositories
 public class SpringDataKeyValueApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringDataKeyValueApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringDataKeyValueApplication.class, args);
+   }
 }

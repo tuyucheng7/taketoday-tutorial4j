@@ -6,8 +6,8 @@ import cn.tuyucheng.taketoday.persistence.dao.common.AbstractHibernateAuditableD
 
 public class FooAuditableDao extends AbstractHibernateAuditableDao<Foo> implements IFooAuditableDao {
 
-    public FooAuditableDao() {
-        super();
-        setClazz(Foo.class);
-    }
+   public FooAuditableDao() {
+      super();
+      setClazz(Foo.class);
+   }
 }

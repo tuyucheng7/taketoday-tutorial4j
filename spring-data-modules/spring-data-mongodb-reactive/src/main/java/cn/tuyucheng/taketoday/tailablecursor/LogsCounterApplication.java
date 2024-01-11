@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LogsCounterApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(LogsCounterApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(LogsCounterApplication.class, args);
+   }
 }

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @JdbcTest
 @Sql(value = "student.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value = "drop_student.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class StudentDaoWithJdbcTemplateMethodsUnitTest {
+class StudentDaoWithJdbcTemplateMethodsUnitTest {
    private static final Logger logger = LoggerFactory.getLogger(StudentDaoWithJdbcTemplateMethodsUnitTest.class);
    @Autowired
    StudentDaoWithDeprecatedJdbcTemplateMethods studentDaoWithDeprecatedJdbcTemplateMethods;
@@ -23,7 +23,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    StudentDaoWithPreferredJdbcTemplateMethods studentDaoWithPreferredJdbcTemplateMethods;
 
    @Test
-   public void givenPreferredMethodQuery_whenArgsAgeAndGender_thenReturnStudents() {
+   void givenPreferredMethodQuery_whenArgsAgeAndGender_thenReturnStudents() {
       List<Student> students = studentDaoWithPreferredJdbcTemplateMethods.getStudentsOfAgeAndGender(4, "Female");
 
       for (Student student : students) {
@@ -33,7 +33,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenPreferredMethodQuery_whenArgsAgeGenderAndGrade_thenReturnStudents() {
+   void givenPreferredMethodQuery_whenArgsAgeGenderAndGrade_thenReturnStudents() {
       List<Student> students = studentDaoWithPreferredJdbcTemplateMethods.getStudentsOfAgeGenderAndGrade(4, "Female", 2);
 
       for (Student student : students) {
@@ -44,7 +44,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenDeprecatedMethodQuery_whenArgsAgeGenderAndGrade_thenReturnStudents() {
+   void givenDeprecatedMethodQuery_whenArgsAgeGenderAndGrade_thenReturnStudents() {
       List<Student> students = studentDaoWithDeprecatedJdbcTemplateMethods.getStudentsOfAgeGenderAndGrade(4, "Female", 2);
 
       for (Student student : students) {
@@ -55,7 +55,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenDeprecatedMethodQuery_whenArgsAgeAndGender_thenReturnStudents() {
+   void givenDeprecatedMethodQuery_whenArgsAgeAndGender_thenReturnStudents() {
       List<Student> students = studentDaoWithDeprecatedJdbcTemplateMethods.getStudentsOfAgeAndGender(4, "Female");
       for (Student student : students) {
          logger.info("Student Name: " + student.getStudentName() + " Student gender: " + student.getStudentGender());
@@ -64,7 +64,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenDeprecatedMethodQuery_whenArgsGradeAndState_thenReturnStudents() {
+   void givenDeprecatedMethodQuery_whenArgsGradeAndState_thenReturnStudents() {
       List<Student> students = studentDaoWithDeprecatedJdbcTemplateMethods.getStudentsOfGradeAndState(1, "New York");
       for (Student student : students) {
          logger.info("Student Name: " + student.getStudentName()
@@ -75,7 +75,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenPreferredMethodQuery_whenArgsGradeAndState_thenReturnStudents() {
+   void givenPreferredMethodQuery_whenArgsGradeAndState_thenReturnStudents() {
       List<Student> students = studentDaoWithPreferredJdbcTemplateMethods.getStudentsOfGradeAndState(1, "New York");
       for (Student student : students) {
          logger.info("Student Name: " + student.getStudentName()
@@ -86,21 +86,21 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenDeprecatedMethodQuery_whenArgsGradeAndState_thenReturnCount() {
+   void givenDeprecatedMethodQuery_whenArgsGradeAndState_thenReturnCount() {
       Integer count = studentDaoWithDeprecatedJdbcTemplateMethods.getCountOfStudentsInAGradeFromAState(1, "New York");
       logger.info("Total students of grade 1 from New York: " + count);
       assertEquals(6, count);
    }
 
    @Test
-   public void givenPreferredMethodQuery_whenArgsGradeAndState_thenReturnCount() {
+   void givenPreferredMethodQuery_whenArgsGradeAndState_thenReturnCount() {
       Integer count = studentDaoWithPreferredJdbcTemplateMethods.getCountOfStudentsInAGradeFromAState(1, "New York");
       logger.info("Total students of grade 1 from New York: " + count);
       assertEquals(6, count);
    }
 
    @Test
-   public void givenDeprecatedMethodQueryForObject_whenArgsStudentIDAndGrade_thenReturnStudent() {
+   void givenDeprecatedMethodQueryForObject_whenArgsStudentIDAndGrade_thenReturnStudent() {
       Student student = studentDaoWithDeprecatedJdbcTemplateMethods.getStudentOfStudentIDAndGrade(4, 1);
       assertEquals(1, student.getGrade());
       assertEquals(4, student.getStudentId());
@@ -109,7 +109,7 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenPreferredMethodQueryForObject_whenArgsStudentIDAndGrade_thenReturnStudent() {
+   void givenPreferredMethodQueryForObject_whenArgsStudentIDAndGrade_thenReturnStudent() {
       Student student = studentDaoWithPreferredJdbcTemplateMethods.getStudentOfStudentIDAndGrade(4, 1);
       assertEquals(1, student.getGrade());
       assertEquals(4, student.getStudentId());
@@ -118,14 +118,14 @@ public class StudentDaoWithJdbcTemplateMethodsUnitTest {
    }
 
    @Test
-   public void givenPreferredMethodQueryForObject_whenArgsGenderAndGrade_thenReturnCount() {
+   void givenPreferredMethodQueryForObject_whenArgsGenderAndGrade_thenReturnCount() {
       Integer count = studentDaoWithPreferredJdbcTemplateMethods.getCountOfGenderInAGrade("Female", 2);
       assertEquals(6, count);
       logger.info("Total number of Female Students: " + count);
    }
 
    @Test
-   public void givenDeprecatedMethodQueryForObject_whenArgsGenderAndGrade_thenReturnCount() {
+   void givenDeprecatedMethodQueryForObject_whenArgsGenderAndGrade_thenReturnCount() {
       Integer count = studentDaoWithPreferredJdbcTemplateMethods.getCountOfGenderInAGrade("Female", 2);
       assertEquals(6, count);
       logger.info("Total number of Female Students: " + count);

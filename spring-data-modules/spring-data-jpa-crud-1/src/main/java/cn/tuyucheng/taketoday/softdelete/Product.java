@@ -17,48 +17,48 @@ import java.io.Serializable;
 @Filter(name = "deletedProductFilter", condition = "deleted = :isDeleted")
 public class Product implements Serializable {
 
-	@Serial
-	private static final long serialVersionUID = 1L;
+   @Serial
+   private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
 
-	private String name;
+   private String name;
 
-	private double price;
+   private double price;
 
-	private boolean deleted = Boolean.FALSE;
+   private boolean deleted = Boolean.FALSE;
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public double getPrice() {
-		return price;
-	}
+   public double getPrice() {
+      return price;
+   }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+   public void setPrice(double price) {
+      this.price = price;
+   }
 
-	public boolean isDeleted() {
-		return deleted;
-	}
+   public boolean isDeleted() {
+      return deleted;
+   }
 
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
+   public void setDeleted(boolean deleted) {
+      this.deleted = deleted;
+   }
 }

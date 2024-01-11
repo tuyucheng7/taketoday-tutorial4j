@@ -17,10 +17,10 @@ import jakarta.persistence.Id;
 @Immutable
 public class Document {
 
-	@Id
-	private Long id;
+   @Id
+   private Long id;
 
-	private String title;
+   private String title;
 
-	private Long userId;
+   private Long userId;
 }

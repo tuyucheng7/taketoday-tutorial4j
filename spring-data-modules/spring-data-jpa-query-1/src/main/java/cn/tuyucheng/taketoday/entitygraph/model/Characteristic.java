@@ -9,35 +9,35 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Characteristic {
 
-	@Id
-	private Long id;
-	private String type;
+   @Id
+   private Long id;
+   private String type;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn
-	private Item item;
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn
+   private Item item;
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public String getType() {
-		return type;
-	}
+   public String getType() {
+      return type;
+   }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+   public void setType(String type) {
+      this.type = type;
+   }
 
-	public Item getItem() {
-		return item;
-	}
+   public Item getItem() {
+      return item;
+   }
 
-	public void setItem(Item item) {
-		this.item = item;
-	}
+   public void setItem(Item item) {
+      this.item = item;
+   }
 }

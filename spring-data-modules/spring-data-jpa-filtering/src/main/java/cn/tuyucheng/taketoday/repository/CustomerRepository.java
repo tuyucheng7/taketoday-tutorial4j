@@ -10,12 +10,12 @@ import java.util.UUID;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-	List<Customer> findByName(String name);
+   List<Customer> findByName(String name);
 
-	List<Customer> findByNameAndEmail(String name, String email);
+   List<Customer> findByNameAndEmail(String name, String email);
 
-	@Query("SELECT c FROM Customer c WHERE (:name is null or c.name = :name) and (:email is null or c.email = :email)")
-	List<Customer> findCustomerByNameAndEmail(@Param("name") String name, @Param("email") String email);
+   @Query("SELECT c FROM Customer c WHERE (:name is null or c.name = :name) and (:email is null or c.email = :email)")
+   List<Customer> findCustomerByNameAndEmail(@Param("name") String name, @Param("email") String email);
 
-	List<Customer> findCustomerByUuid(@Param("uuid") UUID uuid);
+   List<Customer> findCustomerByUuid(@Param("uuid") UUID uuid);
 }

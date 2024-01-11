@@ -9,18 +9,18 @@ import java.util.Optional;
 @RestController
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeRepository empRepository;
+   @Autowired
+   private EmployeeRepository empRepository;
 
-	@GetMapping("/employee/{empId}")
-	public Employee get(@PathVariable(name = "empId") Integer empId) {
-		Optional<Employee> emp = empRepository.findById(empId);
-		return emp.orElse(null);
-	}
+   @GetMapping("/employee/{empId}")
+   public Employee get(@PathVariable(name = "empId") Integer empId) {
+      Optional<Employee> emp = empRepository.findById(empId);
+      return emp.orElse(null);
+   }
 
-	@PostMapping("/employee")
-	public Employee createUser(@RequestBody Employee employee) {
-		empRepository.save(employee);
-		return employee;
-	}
+   @PostMapping("/employee")
+   public Employee createUser(@RequestBody Employee employee) {
+      empRepository.save(employee);
+      return employee;
+   }
 }

@@ -4,5 +4,5 @@ import java.util.List;
 
 interface CustomPassengerRepository {
 
-	List<Passenger> findOrderedBySeatNumberLimitedTo(int limit);
+   List<Passenger> findOrderedBySeatNumberLimitedTo(int limit);
 }

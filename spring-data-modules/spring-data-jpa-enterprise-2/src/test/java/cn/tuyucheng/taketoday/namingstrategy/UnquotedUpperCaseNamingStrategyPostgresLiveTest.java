@@ -25,61 +25,61 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @TestPropertySource("unquoted-upper-case-naming-strategy-on-postgres.properties")
 class UnquotedUpperCaseNamingStrategyPostgresLiveTest {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-    @Autowired
-    private PersonRepository personRepository;
+   @Autowired
+   private PersonRepository personRepository;
 
-    @BeforeEach
-    void insertPeople() {
-        personRepository.saveAll(Arrays.asList(
-                new Person(1L, "John", "Doe"),
-                new Person(2L, "Jane", "Doe"),
-                new Person(3L, "Ted", "Mosby")
-        ));
-    }
+   @BeforeEach
+   void insertPeople() {
+      personRepository.saveAll(Arrays.asList(
+            new Person(1L, "John", "Doe"),
+            new Person(2L, "Jane", "Doe"),
+            new Person(3L, "Ted", "Mosby")
+      ));
+   }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"person", "PERSON", "Person"})
-    void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonUnquoted_thenResult(String tableName) {
-        Query query = entityManager.createNativeQuery("select * from " + tableName);
+   @ParameterizedTest
+   @ValueSource(strings = {"person", "PERSON", "Person"})
+   void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonUnquoted_thenResult(String tableName) {
+      Query query = entityManager.createNativeQuery("select * from " + tableName);
 
-        // Expected result
-        List<Person> result = (List<Person>) query.getResultStream()
-                .map(this::fromDatabase)
-                .collect(Collectors.toList());
+      // Expected result
+      List<Person> result = (List<Person>) query.getResultStream()
+            .map(this::fromDatabase)
+            .collect(Collectors.toList());
 
-        Assertions.assertThat(result).isNotEmpty();
-    }
+      Assertions.assertThat(result).isNotEmpty();
+   }
 
-    @Test
-    void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonQuotedUpperCase_thenException() {
-        Query query = entityManager.createNativeQuery("select * from \"PERSON\"");
+   @Test
+   void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonQuotedUpperCase_thenException() {
+      Query query = entityManager.createNativeQuery("select * from \"PERSON\"");
 
-        // Unexpected result
-        assertThrows(SQLGrammarException.class, query::getResultStream);
-    }
+      // Unexpected result
+      assertThrows(SQLGrammarException.class, query::getResultStream);
+   }
 
-    @Test
-    void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonQuotedLowerCase_thenResult() {
-        Query query = entityManager.createNativeQuery("select * from \"person\"");
+   @Test
+   void givenPeopleAndUpperCaseNamingStrategy_whenQueryPersonQuotedLowerCase_thenResult() {
+      Query query = entityManager.createNativeQuery("select * from \"person\"");
 
-        // Unexpected result
-        List<Person> result = (List<Person>) query.getResultStream()
-                .map(this::fromDatabase)
-                .collect(Collectors.toList());
+      // Unexpected result
+      List<Person> result = (List<Person>) query.getResultStream()
+            .map(this::fromDatabase)
+            .collect(Collectors.toList());
 
-        Assertions.assertThat(result).isNotEmpty();
-    }
+      Assertions.assertThat(result).isNotEmpty();
+   }
 
-    public Person fromDatabase(Object databaseRow) {
-        Object[] typedDatabaseRow = (Object[]) databaseRow;
+   public Person fromDatabase(Object databaseRow) {
+      Object[] typedDatabaseRow = (Object[]) databaseRow;
 
-        return new Person(
-                ((BigInteger) typedDatabaseRow[0]).longValue(),
-                (String) typedDatabaseRow[1],
-                (String) typedDatabaseRow[2]
-        );
-    }
+      return new Person(
+            ((BigInteger) typedDatabaseRow[0]).longValue(),
+            (String) typedDatabaseRow[1],
+            (String) typedDatabaseRow[2]
+      );
+   }
 }

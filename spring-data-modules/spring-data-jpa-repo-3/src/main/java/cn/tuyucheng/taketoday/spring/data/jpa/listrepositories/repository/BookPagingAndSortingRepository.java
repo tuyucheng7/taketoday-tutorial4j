@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface BookPagingAndSortingRepository extends PagingAndSortingRepository<Book, Long>, ListCrudRepository<Book, Long> {
 
-	List<Book> findBooksByAuthor(String author, Pageable pageable);
+   List<Book> findBooksByAuthor(String author, Pageable pageable);
 }

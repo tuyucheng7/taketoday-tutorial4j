@@ -14,13 +14,13 @@ import java.util.Random;
 @PropertySource("classpath:cn/tuyucheng/taketoday/spring/jdbc/batch/application.properties")
 public class AppConfig {
 
-	@Bean
-	public ProductService simpleProductService(SimpleProductRepository simpleProductRepository) {
-		return new ProductService(simpleProductRepository, new Random(), Clock.systemUTC());
-	}
+   @Bean
+   public ProductService simpleProductService(SimpleProductRepository simpleProductRepository) {
+      return new ProductService(simpleProductRepository, new Random(), Clock.systemUTC());
+   }
 
-	@Bean
-	public ProductService batchProductService(BatchProductRepository batchProductRepository) {
-		return new ProductService(batchProductRepository, new Random(), Clock.systemUTC());
-	}
+   @Bean
+   public ProductService batchProductService(BatchProductRepository batchProductRepository) {
+      return new ProductService(batchProductRepository, new Random(), Clock.systemUTC());
+   }
 }

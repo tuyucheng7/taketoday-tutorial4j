@@ -12,8 +12,8 @@ import org.springframework.data.querydsl.binding.SingleValueBinding;
 
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User>, QuerydslBinderCustomizer<QUser> {
 
-    @Override
-    default void customize(final QuerydslBindings bindings, final QUser root) {
-        bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::eq);
-    }
+   @Override
+   default void customize(final QuerydslBindings bindings, final QUser root) {
+      bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::eq);
+   }
 }

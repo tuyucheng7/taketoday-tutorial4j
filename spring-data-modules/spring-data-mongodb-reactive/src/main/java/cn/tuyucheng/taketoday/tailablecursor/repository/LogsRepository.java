@@ -7,6 +7,6 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 
 public interface LogsRepository extends ReactiveCrudRepository<Log, String> {
-	@Tailable
-	Flux<Log> findByLevel(LogLevel level);
+   @Tailable
+   Flux<Log> findByLevel(LogLevel level);
 }

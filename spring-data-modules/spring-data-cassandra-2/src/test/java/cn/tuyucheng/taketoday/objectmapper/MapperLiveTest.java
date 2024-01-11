@@ -22,7 +22,7 @@ import com.datastax.oss.driver.api.core.CqlSession;
 @SpringBootTest
 public class MapperLiveTest {
 
-   private static final String KEYSPACE_NAME = "baeldung";
+   private static final String KEYSPACE_NAME = "tuyucheng";
 
    @Container
    private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:3.11.2").withExposedPorts(9042);
@@ -44,8 +44,8 @@ public class MapperLiveTest {
             .addContactPoint(cassandraEndpoint)
             .build();
 
-      String createKeyspace = "CREATE KEYSPACE IF NOT EXISTS baeldung " + "WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};";
-      String useKeyspace = "USE baeldung;";
+      String createKeyspace = "CREATE KEYSPACE IF NOT EXISTS tuyucheng " + "WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};";
+      String useKeyspace = "USE tuyucheng;";
       String createUserTable = "CREATE TABLE IF NOT EXISTS user_profile " + "(id int, username text, user_age int, writetime bigint, PRIMARY KEY (id, user_age)) " + "WITH CLUSTERING ORDER BY (user_age DESC);";
       String createAdminTable = "CREATE TABLE IF NOT EXISTS admin_profile " + "(id int, username text, user_age int, role text, writetime bigint, department text, " + "PRIMARY KEY (id, user_age)) " + "WITH CLUSTERING ORDER BY (user_age DESC);";
       String createCounter = "CREATE TABLE IF NOT EXISTS counter " + "(id text, count counter, PRIMARY KEY (id));";
@@ -57,8 +57,8 @@ public class MapperLiveTest {
       session.execute(createCounter);
 
       DaoMapper mapper = new DaoMapperBuilder(session).build();
-      userDao = mapper.getUserDao(CqlIdentifier.fromCql("baeldung"));
-      counterDao = mapper.getUserCounterDao(CqlIdentifier.fromCql("baeldung"));
+      userDao = mapper.getUserDao(CqlIdentifier.fromCql("tuyucheng"));
+      counterDao = mapper.getUserCounterDao(CqlIdentifier.fromCql("tuyucheng"));
    }
 
    @Test

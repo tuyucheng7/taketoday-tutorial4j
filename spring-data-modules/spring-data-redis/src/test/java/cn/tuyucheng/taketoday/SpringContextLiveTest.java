@@ -13,21 +13,22 @@ import redis.embedded.RedisServerBuilder;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = SpringRedisApplication.class)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-public class SpringContextLiveTest {
+class SpringContextLiveTest {
 
-	private static redis.embedded.RedisServer redisServer;
+   private static redis.embedded.RedisServer redisServer;
 
-	@BeforeAll
-	public static void startRedisServer() {
-		redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 256M").build();
-		redisServer.start();
-	}
+   @BeforeAll
+   static void startRedisServer() {
+      redisServer = new RedisServerBuilder().port(6379).setting("maxmemory 256M").build();
+      redisServer.start();
+   }
 
-	@AfterAll
-	public static void stopRedisServer() {
-		redisServer.stop();
-	}
-	@Test
-	public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @AfterAll
+   static void stopRedisServer() {
+      redisServer.stop();
+   }
+
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

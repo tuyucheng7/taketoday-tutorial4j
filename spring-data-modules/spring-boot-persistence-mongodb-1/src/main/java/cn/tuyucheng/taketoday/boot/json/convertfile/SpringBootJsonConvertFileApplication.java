@@ -14,42 +14,42 @@ import java.util.List;
 
 @SpringBootApplication
 public class SpringBootJsonConvertFileApplication implements ApplicationRunner {
-	private final Logger log = LogManager.getLogger(this.getClass());
-	private static final String RESOURCE_PREFIX = "classpath:";
+   private final Logger log = LogManager.getLogger(this.getClass());
+   private static final String RESOURCE_PREFIX = "classpath:";
 
-	@Autowired
-	private ImportJsonService importService;
+   @Autowired
+   private ImportJsonService importService;
 
-	public static void main(String... args) {
-		SpringApplication.run(SpringBootJsonConvertFileApplication.class, args);
-	}
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootJsonConvertFileApplication.class, args);
+   }
 
-	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		if (args.containsOption("import")) {
-			if (!args.containsOption("collection"))
-				throw new IllegalArgumentException("required option: --collection with collection name when using --import");
+   @Override
+   public void run(ApplicationArguments args) throws Exception {
+      if (args.containsOption("import")) {
+         if (!args.containsOption("collection"))
+            throw new IllegalArgumentException("required option: --collection with collection name when using --import");
 
-			String collection = args.getOptionValues("collection").get(0);
+         String collection = args.getOptionValues("collection").get(0);
 
-			List<String> sources = args.getOptionValues("import");
-			for (String source : sources) {
-				List<String> jsonLines;
-				if (source.startsWith(RESOURCE_PREFIX)) {
-					String resource = source.substring(RESOURCE_PREFIX.length());
-					jsonLines = ImportUtils.linesFromResource(resource);
-				} else {
-					jsonLines = ImportUtils.lines(new File(source));
-				}
+         List<String> sources = args.getOptionValues("import");
+         for (String source : sources) {
+            List<String> jsonLines;
+            if (source.startsWith(RESOURCE_PREFIX)) {
+               String resource = source.substring(RESOURCE_PREFIX.length());
+               jsonLines = ImportUtils.linesFromResource(resource);
+            } else {
+               jsonLines = ImportUtils.lines(new File(source));
+            }
 
-				if (jsonLines == null || jsonLines.isEmpty()) {
-					log.warn(source + " - no input to import");
-				} else {
-					// ImportJsonService importService = context.getBean(ImportJsonService.class);
-					String result = importService.importTo(collection, jsonLines);
-					log.info(source + " - import result: " + result);
-				}
-			}
-		}
-	}
+            if (jsonLines == null || jsonLines.isEmpty()) {
+               log.warn(source + " - no input to import");
+            } else {
+               // ImportJsonService importService = context.getBean(ImportJsonService.class);
+               String result = importService.importTo(collection, jsonLines);
+               log.info(source + " - import result: " + result);
+            }
+         }
+      }
+   }
 }

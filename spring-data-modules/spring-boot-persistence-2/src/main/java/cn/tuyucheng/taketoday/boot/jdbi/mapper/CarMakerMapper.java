@@ -13,12 +13,12 @@ import java.util.ArrayList;
 @Component
 public class CarMakerMapper implements RowMapper<CarMaker> {
 
-	@Override
-	public CarMaker map(ResultSet rs, StatementContext ctx) throws SQLException {
-		return CarMaker.builder()
-			.id(rs.getLong("id"))
-			.name(rs.getString("name"))
-			.models(new ArrayList<CarModel>())
-			.build();
-	}
+   @Override
+   public CarMaker map(ResultSet rs, StatementContext ctx) throws SQLException {
+      return CarMaker.builder()
+            .id(rs.getLong("id"))
+            .name(rs.getString("name"))
+            .models(new ArrayList<CarModel>())
+            .build();
+   }
 }

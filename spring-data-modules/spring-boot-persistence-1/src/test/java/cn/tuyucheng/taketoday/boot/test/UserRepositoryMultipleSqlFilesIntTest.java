@@ -19,15 +19,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("multiplesqlfiles")
 class UserRepositoryMultipleSqlFilesIntTest {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Test
-	@Disabled("Faild to load multiple sql files")
-		// TODO Fix this test
-	void givenTwoImportFilesWhenFindAllShouldReturnSixUsers() {
-		Collection<User> users = userRepository.findAll();
+   @Test
+   @Disabled("Faild to load multiple sql files")
+      // TODO Fix this test
+   void givenTwoImportFilesWhenFindAllShouldReturnSixUsers() {
+      Collection<User> users = userRepository.findAll();
 
-		assertThat(users).hasSize(6); // expect 6 users but got 0
-	}
+      assertThat(users).hasSize(6); // expect 6 users but got 0
+   }
 }

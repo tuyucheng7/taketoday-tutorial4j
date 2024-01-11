@@ -23,40 +23,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class QuerydslIntegrationTest {
 
-    final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype());
+   final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype());
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @BeforeEach
-    void setupMockMvc() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+   @BeforeEach
+   void setupMockMvc() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+   }
 
-    @Test
-    void givenRequest_whenQueryUserFilteringByCountrySpain_thenGetJohn() throws Exception {
-        mockMvc.perform(get("/users?address.country=Spain"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("John")))
-                .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
-                .andExpect(jsonPath("$[0].address.country", is("Spain")));
-    }
+   @Test
+   void givenRequest_whenQueryUserFilteringByCountrySpain_thenGetJohn() throws Exception {
+      mockMvc.perform(get("/users?address.country=Spain"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].name", is("John")))
+            .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
+            .andExpect(jsonPath("$[0].address.country", is("Spain")));
+   }
 
-    @Test
-    void givenRequest_whenQueryUserWithoutFilter_thenGetJohnAndLisa() throws Exception {
-        mockMvc.perform(get("/users"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].name", is("John")))
-                .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
-                .andExpect(jsonPath("$[0].address.country", is("Spain")))
-                .andExpect(jsonPath("$[1].name", is("Lisa")))
-                .andExpect(jsonPath("$[1].address.address", is("Real Street 1")))
-                .andExpect(jsonPath("$[1].address.country", is("Germany")));
-    }
+   @Test
+   void givenRequest_whenQueryUserWithoutFilter_thenGetJohnAndLisa() throws Exception {
+      mockMvc.perform(get("/users"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$", hasSize(2)))
+            .andExpect(jsonPath("$[0].name", is("John")))
+            .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
+            .andExpect(jsonPath("$[0].address.country", is("Spain")))
+            .andExpect(jsonPath("$[1].name", is("Lisa")))
+            .andExpect(jsonPath("$[1].address.address", is("Real Street 1")))
+            .andExpect(jsonPath("$[1].address.country", is("Germany")));
+   }
 }

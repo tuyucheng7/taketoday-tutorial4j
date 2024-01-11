@@ -19,44 +19,44 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Slf4j
 public class ErrorLogsCounter implements LogsCounter {
 
-	private static final String LEVEL_FIELD_NAME = "level";
+   private static final String LEVEL_FIELD_NAME = "level";
 
-	private final String collectionName;
-	private final MessageListenerContainer container;
+   private final String collectionName;
+   private final MessageListenerContainer container;
 
-	private final AtomicInteger counter = new AtomicInteger();
+   private final AtomicInteger counter = new AtomicInteger();
 
-	public ErrorLogsCounter(MongoTemplate mongoTemplate,
-							String collectionName) {
-		this.collectionName = collectionName;
-		this.container = new DefaultMessageListenerContainer(mongoTemplate);
+   public ErrorLogsCounter(MongoTemplate mongoTemplate,
+                           String collectionName) {
+      this.collectionName = collectionName;
+      this.container = new DefaultMessageListenerContainer(mongoTemplate);
 
-		container.start();
-		TailableCursorRequest<Log> request = getTailableCursorRequest();
-		container.register(request, Log.class);
-	}
+      container.start();
+      TailableCursorRequest<Log> request = getTailableCursorRequest();
+      container.register(request, Log.class);
+   }
 
-	@SuppressWarnings("unchecked")
-	private TailableCursorRequest<Log> getTailableCursorRequest() {
-		MessageListener<Document, Log> listener = message -> {
-			LOGGER.info("ERROR log received: {}", message.getBody());
-			counter.incrementAndGet();
-		};
+   @SuppressWarnings("unchecked")
+   private TailableCursorRequest<Log> getTailableCursorRequest() {
+      MessageListener<Document, Log> listener = message -> {
+         LOGGER.info("ERROR log received: {}", message.getBody());
+         counter.incrementAndGet();
+      };
 
-		return TailableCursorRequest.builder()
-			.collection(collectionName)
-			.filter(query(where(LEVEL_FIELD_NAME).is(LogLevel.ERROR)))
-			.publishTo(listener)
-			.build();
-	}
+      return TailableCursorRequest.builder()
+            .collection(collectionName)
+            .filter(query(where(LEVEL_FIELD_NAME).is(LogLevel.ERROR)))
+            .publishTo(listener)
+            .build();
+   }
 
-	@Override
-	public int count() {
-		return counter.get();
-	}
+   @Override
+   public int count() {
+      return counter.get();
+   }
 
-	@PreDestroy
-	public void close() {
-		container.stop();
-	}
+   @PreDestroy
+   public void close() {
+      container.stop();
+   }
 }

@@ -4,11 +4,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FooDao extends AbstractHibernateDao<Foo> implements IFooDao {
-	public FooDao() {
-		super();
+   public FooDao() {
+      super();
 
-		setClazz(Foo.class);
-	}
+      setClazz(Foo.class);
+   }
 
-	// API
+   // API
 }

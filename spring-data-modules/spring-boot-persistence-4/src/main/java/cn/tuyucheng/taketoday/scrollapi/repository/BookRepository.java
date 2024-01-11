@@ -10,7 +10,7 @@ import cn.tuyucheng.taketoday.scrollapi.entity.BookReview;
 
 public interface BookRepository extends JpaRepository<BookReview, Long> {
 
-    Window<BookReview> findFirst5ByBookRating(String bookRating, OffsetScrollPosition position);
+   Window<BookReview> findFirst5ByBookRating(String bookRating, OffsetScrollPosition position);
 
-    Window<BookReview> findFirst5ByBookRating(String bookRating, KeysetScrollPosition position);
+   Window<BookReview> findFirst5ByBookRating(String bookRating, KeysetScrollPosition position);
 }

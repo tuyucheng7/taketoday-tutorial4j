@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler({RepositoryConstraintViolationException.class})
-	public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
-		RepositoryConstraintViolationException nevEx = (RepositoryConstraintViolationException) ex;
+   @ExceptionHandler({RepositoryConstraintViolationException.class})
+   public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
+      RepositoryConstraintViolationException nevEx = (RepositoryConstraintViolationException) ex;
 
-		String errors = nevEx.getErrors().getAllErrors().stream().map(ObjectError::toString).collect(Collectors.joining("\n"));
-		return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
-	}
+      String errors = nevEx.getErrors().getAllErrors().stream().map(ObjectError::toString).collect(Collectors.joining("\n"));
+      return new ResponseEntity<>(errors, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
+   }
 }

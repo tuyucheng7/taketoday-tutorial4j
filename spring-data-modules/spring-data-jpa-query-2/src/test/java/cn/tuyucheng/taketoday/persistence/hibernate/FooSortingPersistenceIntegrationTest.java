@@ -1,36 +1,34 @@
 package cn.tuyucheng.taketoday.persistence.hibernate;
 
-import static org.junit.Assert.assertNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
+import cn.tuyucheng.taketoday.persistence.model.Bar;
+import cn.tuyucheng.taketoday.persistence.model.Foo;
+import cn.tuyucheng.taketoday.spring.config.PersistenceTestConfig;
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NullPrecedence;
 import org.hibernate.query.Order;
 import org.hibernate.query.Query;
 import org.hibernate.query.SortDirection;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import cn.tuyucheng.taketoday.persistence.model.Bar;
-import cn.tuyucheng.taketoday.persistence.model.Foo;
-import cn.tuyucheng.taketoday.spring.config.PersistenceTestConfig;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.criteria.CriteriaQuery;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {PersistenceTestConfig.class}, loader = AnnotationConfigContextLoader.class)
 @SuppressWarnings("unchecked")
 public class FooSortingPersistenceIntegrationTest {
@@ -42,8 +40,8 @@ public class FooSortingPersistenceIntegrationTest {
 
    private Session session;
 
-   @Before
-   public void before() {
+   @BeforeEach
+   void before() {
       session = sessionFactory.openSession();
 
       session.beginTransaction();
@@ -52,14 +50,14 @@ public class FooSortingPersistenceIntegrationTest {
       fooData.createBars();
    }
 
-   @After
-   public void after() {
+   @AfterEach
+   void after() {
       session.getTransaction().commit();
       session.close();
    }
 
    @Test
-   public final void whenHQlSortingByOneAttribute_thenPrintSortedResults() {
+   final void whenHQlSortingByOneAttribute_thenPrintSortedResults() {
       final String hql = "FROM Foo f ORDER BY f.name";
       final Query query = session.createQuery(hql);
       final List<Foo> fooList = query.list();
@@ -69,7 +67,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQlSortingByStringNullLast_thenLastNull() {
+   final void whenHQlSortingByStringNullLast_thenLastNull() {
       final String hql = "FROM Foo f ORDER BY f.name NULLS LAST";
       final Query query = session.createQuery(hql);
       final List<Foo> fooList = query.list();
@@ -81,7 +79,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenSortingByStringNullsFirst_thenReturnNullsFirst() {
+   final void whenSortingByStringNullsFirst_thenReturnNullsFirst() {
       final String hql = "FROM Foo f ORDER BY f.name NULLS FIRST";
       final Query query = session.createQuery(hql);
       final List<Foo> fooList = query.list();
@@ -92,7 +90,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQlSortingByOneAttribute_andOrderDirection_thenPrintSortedResults() {
+   final void whenHQlSortingByOneAttribute_andOrderDirection_thenPrintSortedResults() {
       final String hql = "FROM Foo f ORDER BY f.name ASC";
       Query<Foo> query = session.createQuery(hql, Foo.class);
       final List<Foo> fooList = query.list();
@@ -102,7 +100,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQlSortingByMultipleAttributes_thenSortedResults() {
+   final void whenHQlSortingByMultipleAttributes_thenSortedResults() {
       final String hql = "FROM Foo f ORDER BY f.name, f.id";
       Query<Foo> query = session.createQuery(hql, Foo.class);
       final List<Foo> fooList = query.list();
@@ -112,7 +110,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQlSortingByMultipleAttributes_andOrderDirection_thenPrintSortedResults() {
+   final void whenHQlSortingByMultipleAttributes_andOrderDirection_thenPrintSortedResults() {
       final String hql = "FROM Foo f ORDER BY f.name DESC, f.id ASC";
       Query<Foo> query = session.createQuery(hql, Foo.class);
       final List<Foo> fooList = query.list();
@@ -122,7 +120,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQLCriteriaSortingByOneAttr_thenPrintSortedResults() {
+   final void whenHQLCriteriaSortingByOneAttr_thenPrintSortedResults() {
       CriteriaQuery<Foo> selectQuery = session.getCriteriaBuilder().createQuery(Foo.class);
       selectQuery.from(Foo.class);
       Query<Foo> query = session.createQuery(selectQuery);
@@ -135,7 +133,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenHQLCriteriaSortingByMultipAttr_thenSortedResults() {
+   final void whenHQLCriteriaSortingByMultipAttr_thenSortedResults() {
       CriteriaQuery<Foo> selectQuery = session.getCriteriaBuilder().createQuery(Foo.class);
       selectQuery.from(Foo.class);
       Query<Foo> query = session.createQuery(selectQuery);
@@ -151,7 +149,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenCriteriaSortingStringNullsLastAsc_thenNullsLast() {
+   final void whenCriteriaSortingStringNullsLastAsc_thenNullsLast() {
       CriteriaQuery<Foo> selectQuery = session.getCriteriaBuilder().createQuery(Foo.class);
       selectQuery.from(Foo.class);
       Query<Foo> query = session.createQuery(selectQuery);
@@ -168,7 +166,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenCriteriaSortingStringNullsFirstDesc_thenNullsFirst() {
+   final void whenCriteriaSortingStringNullsFirstDesc_thenNullsFirst() {
       CriteriaQuery<Foo> selectQuery = session.getCriteriaBuilder().createQuery(Foo.class);
       selectQuery.from(Foo.class);
       Query<Foo> query = session.createQuery(selectQuery);
@@ -185,7 +183,7 @@ public class FooSortingPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenSortingBars_thenBarsWithSortedFoos() {
+   final void whenSortingBars_thenBarsWithSortedFoos() {
       final String hql = "FROM Bar b ORDER BY b.id";
       final Query<Bar> query = session.createQuery(hql, Bar.class);
       final List<Bar> barList = query.list();

@@ -5,51 +5,51 @@ import javax.persistence.*;
 @Entity
 public class Payment {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
-	private Long amount;
+   private Long amount;
 
-	@Column(unique = true)
-	private String referenceNumber;
+   @Column(unique = true)
+   private String referenceNumber;
 
-	@Enumerated(EnumType.STRING)
-	private State state;
+   @Enumerated(EnumType.STRING)
+   private State state;
 
-	public Long getId() {
-		return id;
-	}
+   public Long getId() {
+      return id;
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public Long getAmount() {
-		return amount;
-	}
+   public Long getAmount() {
+      return amount;
+   }
 
-	public void setAmount(Long amount) {
-		this.amount = amount;
-	}
+   public void setAmount(Long amount) {
+      this.amount = amount;
+   }
 
-	public String getReferenceNumber() {
-		return referenceNumber;
-	}
+   public String getReferenceNumber() {
+      return referenceNumber;
+   }
 
-	public void setReferenceNumber(String referenceNumber) {
-		this.referenceNumber = referenceNumber;
-	}
+   public void setReferenceNumber(String referenceNumber) {
+      this.referenceNumber = referenceNumber;
+   }
 
-	public State getState() {
-		return state;
-	}
+   public State getState() {
+      return state;
+   }
 
-	public void setState(State state) {
-		this.state = state;
-	}
+   public void setState(State state) {
+      this.state = state;
+   }
 
-	public enum State {
-		STARTED, FAILED, SUCCESSFUL
-	}
+   public enum State {
+      STARTED, FAILED, SUCCESSFUL
+   }
 }

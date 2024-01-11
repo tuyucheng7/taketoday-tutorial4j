@@ -16,31 +16,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-	private final UserRepository userRepository;
+   private final UserRepository userRepository;
 
-	@Autowired
-	public UserController(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+   @Autowired
+   public UserController(UserRepository userRepository) {
+      this.userRepository = userRepository;
+   }
 
-	@GetMapping("/users/{id}")
-	public User findUserById(@PathVariable("id") User user) {
-		return user;
-	}
+   @GetMapping("/users/{id}")
+   public User findUserById(@PathVariable("id") User user) {
+      return user;
+   }
 
-	@GetMapping("/users")
-	public Page<User> findAllUsers(Pageable pageable) {
-		return userRepository.findAll(pageable);
-	}
+   @GetMapping("/users")
+   public Page<User> findAllUsers(Pageable pageable) {
+      return userRepository.findAll(pageable);
+   }
 
-	@GetMapping("/sortedusers")
-	public Page<User> findAllUsersSortedByName() {
-		Pageable pageable = PageRequest.of(0, 5, Sort.by("name"));
-		return userRepository.findAll(pageable);
-	}
+   @GetMapping("/sortedusers")
+   public Page<User> findAllUsersSortedByName() {
+      Pageable pageable = PageRequest.of(0, 5, Sort.by("name"));
+      return userRepository.findAll(pageable);
+   }
 
-	@GetMapping("/filteredusers")
-	public Iterable<User> getUsersByQuerydslPredicate(@QuerydslPredicate(root = User.class) Predicate predicate) {
-		return userRepository.findAll(predicate);
-	}
+   @GetMapping("/filteredusers")
+   public Iterable<User> getUsersByQuerydslPredicate(@QuerydslPredicate(root = User.class) Predicate predicate) {
+      return userRepository.findAll(predicate);
+   }
 }

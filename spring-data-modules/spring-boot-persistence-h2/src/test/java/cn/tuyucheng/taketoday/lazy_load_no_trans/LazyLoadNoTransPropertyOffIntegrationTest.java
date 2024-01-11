@@ -19,24 +19,24 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ActiveProfiles("lazy-load-no-trans-off")
 class LazyLoadNoTransPropertyOffIntegrationTest {
 
-	@Autowired
-	private ServiceLayer serviceLayer;
+   @Autowired
+   private ServiceLayer serviceLayer;
 
-	private static final long EXPECTED_DOCS_COLLECTION_SIZE = 6;
+   private static final long EXPECTED_DOCS_COLLECTION_SIZE = 6;
 
-	@Test
-	void whenCallNonTransactionalMethodWithPropertyOff_thenThrowException() {
-		assertThrows(LazyInitializationException.class, () -> serviceLayer.countAllDocsNonTransactional());
-	}
+   @Test
+   void whenCallNonTransactionalMethodWithPropertyOff_thenThrowException() {
+      assertThrows(LazyInitializationException.class, () -> serviceLayer.countAllDocsNonTransactional());
+   }
 
-	@Test
-	void whenCallTransactionalMethodWithPropertyOff_thenTestPass() {
-		SQLStatementCountValidator.reset();
+   @Test
+   void whenCallTransactionalMethodWithPropertyOff_thenTestPass() {
+      SQLStatementCountValidator.reset();
 
-		long docsCount = serviceLayer.countAllDocsTransactional();
+      long docsCount = serviceLayer.countAllDocsTransactional();
 
-		assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
+      assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
 
-		SQLStatementCountValidator.assertSelectCount(2);
-	}
+      SQLStatementCountValidator.assertSelectCount(2);
+   }
 }

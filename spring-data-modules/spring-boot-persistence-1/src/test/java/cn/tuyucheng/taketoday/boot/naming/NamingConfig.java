@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Bean;
 
 public class NamingConfig {
 
-	@TestConfiguration
-	static class Config {
-		@Bean
-		public HibernatePropertiesCustomizer customizer() {
-			return new HibernateConfig();
-		}
-	}
+   @TestConfiguration
+   static class Config {
+      @Bean
+      public HibernatePropertiesCustomizer customizer() {
+         return new HibernateConfig();
+      }
+   }
 }

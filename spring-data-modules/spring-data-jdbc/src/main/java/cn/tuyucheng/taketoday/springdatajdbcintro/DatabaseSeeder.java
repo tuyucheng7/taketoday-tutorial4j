@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseSeeder {
 
-	private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(DatabaseSeeder.class);
+   private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(DatabaseSeeder.class);
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+   @Autowired
+   private JdbcTemplate jdbcTemplate;
 
-	public void insertData() {
-		LOGGER.info("> Inserting data...");
-		jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Victor', 'Hygo')");
-		jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Dante', 'Alighieri')");
-		jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Stefan', 'Zweig')");
-		jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Oscar', 'Wilde')");
-	}
+   public void insertData() {
+      LOGGER.info("> Inserting data...");
+      jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Victor', 'Hygo')");
+      jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Dante', 'Alighieri')");
+      jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Stefan', 'Zweig')");
+      jdbcTemplate.execute("INSERT INTO Person(first_name,last_name) VALUES('Oscar', 'Wilde')");
+   }
 }

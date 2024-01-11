@@ -36,137 +36,137 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = {"cn.tuyucheng.taketoday.persistence"},
-        transactionManagerRef = "jpaTransactionManager",
-        entityManagerFactoryRef = "jpaEntityManager"
+      basePackages = {"cn.tuyucheng.taketoday.persistence"},
+      transactionManagerRef = "jpaTransactionManager",
+      entityManagerFactoryRef = "jpaEntityManager"
 )
 @EnableJpaAuditing
 @PropertySource({"classpath:persistence-h2.properties"})
 @ComponentScan({"cn.tuyucheng.taketoday.persistence"})
 public class PersistenceTestConfig {
 
-    @Autowired
-    private Environment env;
+   @Autowired
+   private Environment env;
 
-    public PersistenceTestConfig() {
-        super();
-    }
+   public PersistenceTestConfig() {
+      super();
+   }
 
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(restDataSource());
-        sessionFactory.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
-        sessionFactory.setHibernateProperties(hibernateProperties());
+   @Bean
+   public LocalSessionFactoryBean sessionFactory() {
+      final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+      sessionFactory.setDataSource(restDataSource());
+      sessionFactory.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
+      sessionFactory.setHibernateProperties(hibernateProperties());
 
-        return sessionFactory;
-    }
+      return sessionFactory;
+   }
 
-    @Bean("jpaEntityManager")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-        emf.setDataSource(restDataSource());
-        emf.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
+   @Bean("jpaEntityManager")
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+      final LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+      emf.setDataSource(restDataSource());
+      emf.setPackagesToScan("cn.tuyucheng.taketoday.persistence.model");
 
-        final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        emf.setJpaVendorAdapter(vendorAdapter);
-        emf.setJpaProperties(hibernateProperties());
+      final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      emf.setJpaVendorAdapter(vendorAdapter);
+      emf.setJpaProperties(hibernateProperties());
 
-        return emf;
-    }
+      return emf;
+   }
 
-    @Bean
-    public DataSource restDataSource() {
-        final BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-        dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
-        dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
-        dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
+   @Bean
+   public DataSource restDataSource() {
+      final BasicDataSource dataSource = new BasicDataSource();
+      dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+      dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("jdbc.url")));
+      dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
+      dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
 
-        return dataSource;
-    }
+      return dataSource;
+   }
 
-    @Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
-        final HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
-    }
+   @Bean
+   public PlatformTransactionManager hibernateTransactionManager() {
+      final HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+      transactionManager.setSessionFactory(sessionFactory().getObject());
+      return transactionManager;
+   }
 
-    @Bean
-    public PlatformTransactionManager jpaTransactionManager() {
-        final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        return transactionManager;
-    }
+   @Bean
+   public PlatformTransactionManager jpaTransactionManager() {
+      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+      return transactionManager;
+   }
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
+   @Bean
+   public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+      return new PersistenceExceptionTranslationPostProcessor();
+   }
 
-    @Bean
-    public IBarService barJpaService() {
-        return new BarJpaService();
-    }
+   @Bean
+   public IBarService barJpaService() {
+      return new BarJpaService();
+   }
 
-    @Bean
-    public IBarService barSpringDataJpaService() {
-        return new BarSpringDataJpaService();
-    }
+   @Bean
+   public IBarService barSpringDataJpaService() {
+      return new BarSpringDataJpaService();
+   }
 
-    @Bean
-    public IFooService fooHibernateService() {
-        return new FooService();
-    }
+   @Bean
+   public IFooService fooHibernateService() {
+      return new FooService();
+   }
 
-    @Bean
-    public IBarAuditableService barHibernateAuditableService() {
-        return new BarAuditableService();
-    }
+   @Bean
+   public IBarAuditableService barHibernateAuditableService() {
+      return new BarAuditableService();
+   }
 
-    @Bean
-    public IFooAuditableService fooHibernateAuditableService() {
-        return new FooAuditableService();
-    }
+   @Bean
+   public IFooAuditableService fooHibernateAuditableService() {
+      return new FooAuditableService();
+   }
 
-    @Bean
-    public IBarDao barJpaDao() {
-        return new BarJpaDao();
-    }
+   @Bean
+   public IBarDao barJpaDao() {
+      return new BarJpaDao();
+   }
 
-    @Bean
-    public IBarDao barHibernateDao() {
-        return new BarDao();
-    }
+   @Bean
+   public IBarDao barHibernateDao() {
+      return new BarDao();
+   }
 
-    @Bean
-    public IBarAuditableDao barHibernateAuditableDao() {
-        return new BarAuditableDao();
-    }
+   @Bean
+   public IBarAuditableDao barHibernateAuditableDao() {
+      return new BarAuditableDao();
+   }
 
-    @Bean
-    public IFooDao fooHibernateDao() {
-        return new FooDao();
-    }
+   @Bean
+   public IFooDao fooHibernateDao() {
+      return new FooDao();
+   }
 
-    @Bean
-    public IFooAuditableDao fooHibernateAuditableDao() {
-        return new FooAuditableDao();
-    }
+   @Bean
+   public IFooAuditableDao fooHibernateAuditableDao() {
+      return new FooAuditableDao();
+   }
 
-    private final Properties hibernateProperties() {
-        final Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+   private final Properties hibernateProperties() {
+      final Properties hibernateProperties = new Properties();
+      hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+      hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
-        hibernateProperties.setProperty("hibernate.show_sql", "false");
-        // hibernateProperties.setProperty("hibernate.format_sql", "true");
-        // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
+      hibernateProperties.setProperty("hibernate.show_sql", "false");
+      // hibernateProperties.setProperty("hibernate.format_sql", "true");
+      // hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
 
-        // Envers properties
-        hibernateProperties.setProperty("org.hibernate.envers.audit_table_suffix", env.getProperty("envers.audit_table_suffix"));
+      // Envers properties
+      hibernateProperties.setProperty("org.hibernate.envers.audit_table_suffix", env.getProperty("envers.audit_table_suffix"));
 
-        return hibernateProperties;
-    }
+      return hibernateProperties;
+   }
 }

@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class BarService extends AbstractHibernateService<Bar> implements IBarService {
 
-    @Autowired
-    @Qualifier("barHibernateDao")
-    private IBarDao dao;
+   @Autowired
+   @Qualifier("barHibernateDao")
+   private IBarDao dao;
 
-    public BarService() {
-        super();
-    }
+   public BarService() {
+      super();
+   }
 
-    @Override
-    protected IOperations<Bar> getDao() {
-        return dao;
-    }
+   @Override
+   protected IOperations<Bar> getDao() {
+      return dao;
+   }
 }

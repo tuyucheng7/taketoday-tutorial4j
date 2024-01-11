@@ -19,107 +19,107 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = {Application.class})
 class EmbeddableIntegrationTest {
 
-	@Autowired
-	private CompanyRepository companyRepository;
+   @Autowired
+   private CompanyRepository companyRepository;
 
-	@Test
-	@Transactional
-	void whenInsertingCompany_thenEmbeddedContactPersonDetailsAreMapped() {
-		ContactPerson contactPerson = new ContactPerson();
-		contactPerson.setFirstName("First");
-		contactPerson.setLastName("Last");
-		contactPerson.setPhone("123-456-789");
+   @Test
+   @Transactional
+   void whenInsertingCompany_thenEmbeddedContactPersonDetailsAreMapped() {
+      ContactPerson contactPerson = new ContactPerson();
+      contactPerson.setFirstName("First");
+      contactPerson.setLastName("Last");
+      contactPerson.setPhone("123-456-789");
 
-		Company company = new Company();
-		company.setName("Company");
-		company.setAddress("1st street");
-		company.setPhone("987-654-321");
-		company.setContactPerson(contactPerson);
+      Company company = new Company();
+      company.setName("Company");
+      company.setAddress("1st street");
+      company.setPhone("987-654-321");
+      company.setContactPerson(contactPerson);
 
-		companyRepository.save(company);
+      companyRepository.save(company);
 
-		Company result = companyRepository.getOne(company.getId());
+      Company result = companyRepository.getOne(company.getId());
 
-		assertEquals("Company", result.getName());
-		assertEquals("1st street", result.getAddress());
-		assertEquals("987-654-321", result.getPhone());
-		assertEquals("First", result.getContactPerson().getFirstName());
-		assertEquals("Last", result.getContactPerson().getLastName());
-		assertEquals("123-456-789", result.getContactPerson().getPhone());
-	}
+      assertEquals("Company", result.getName());
+      assertEquals("1st street", result.getAddress());
+      assertEquals("987-654-321", result.getPhone());
+      assertEquals("First", result.getContactPerson().getFirstName());
+      assertEquals("Last", result.getContactPerson().getLastName());
+      assertEquals("123-456-789", result.getContactPerson().getPhone());
+   }
 
-	@Test
-	@Transactional
-	void whenFindingCompanyByContactPersonAttribute_thenCompanyIsReturnedProperly() {
-		ContactPerson contactPerson = new ContactPerson();
-		contactPerson.setFirstName("Name");
-		contactPerson.setLastName("Last");
-		contactPerson.setPhone("123-456-789");
+   @Test
+   @Transactional
+   void whenFindingCompanyByContactPersonAttribute_thenCompanyIsReturnedProperly() {
+      ContactPerson contactPerson = new ContactPerson();
+      contactPerson.setFirstName("Name");
+      contactPerson.setLastName("Last");
+      contactPerson.setPhone("123-456-789");
 
-		Company company = new Company();
-		company.setName("Company");
-		company.setAddress("1st street");
-		company.setPhone("987-654-321");
-		company.setContactPerson(contactPerson);
+      Company company = new Company();
+      company.setName("Company");
+      company.setAddress("1st street");
+      company.setPhone("987-654-321");
+      company.setContactPerson(contactPerson);
 
-		companyRepository.save(company);
+      companyRepository.save(company);
 
-		List<Company> result = companyRepository.findByContactPersonFirstName("Name");
+      List<Company> result = companyRepository.findByContactPersonFirstName("Name");
 
-		assertEquals(1, result.size());
+      assertEquals(1, result.size());
 
-		result = companyRepository.findByContactPersonFirstName("FirstName");
+      result = companyRepository.findByContactPersonFirstName("FirstName");
 
-		assertEquals(0, result.size());
-	}
+      assertEquals(0, result.size());
+   }
 
-	@Test
-	@Transactional
-	void whenFindingCompanyByContactPersonAttributeWithJPQL_thenCompanyIsReturnedProperly() {
-		ContactPerson contactPerson = new ContactPerson();
-		contactPerson.setFirstName("@QueryName");
-		contactPerson.setLastName("Last");
-		contactPerson.setPhone("123-456-789");
+   @Test
+   @Transactional
+   void whenFindingCompanyByContactPersonAttributeWithJPQL_thenCompanyIsReturnedProperly() {
+      ContactPerson contactPerson = new ContactPerson();
+      contactPerson.setFirstName("@QueryName");
+      contactPerson.setLastName("Last");
+      contactPerson.setPhone("123-456-789");
 
-		Company company = new Company();
-		company.setName("Company");
-		company.setAddress("1st street");
-		company.setPhone("987-654-321");
-		company.setContactPerson(contactPerson);
+      Company company = new Company();
+      company.setName("Company");
+      company.setAddress("1st street");
+      company.setPhone("987-654-321");
+      company.setContactPerson(contactPerson);
 
-		companyRepository.save(company);
+      companyRepository.save(company);
 
-		List<Company> result = companyRepository.findByContactPersonFirstNameWithJPQL("@QueryName");
+      List<Company> result = companyRepository.findByContactPersonFirstNameWithJPQL("@QueryName");
 
-		assertEquals(1, result.size());
+      assertEquals(1, result.size());
 
-		result = companyRepository.findByContactPersonFirstNameWithJPQL("FirstName");
+      result = companyRepository.findByContactPersonFirstNameWithJPQL("FirstName");
 
-		assertEquals(0, result.size());
-	}
+      assertEquals(0, result.size());
+   }
 
-	@Test
-	@Transactional
-	void whenFindingCompanyByContactPersonAttributeWithNativeQuery_thenCompanyIsReturnedProperly() {
-		ContactPerson contactPerson = new ContactPerson();
-		contactPerson.setFirstName("NativeQueryName");
-		contactPerson.setLastName("Last");
-		contactPerson.setPhone("123-456-789");
+   @Test
+   @Transactional
+   void whenFindingCompanyByContactPersonAttributeWithNativeQuery_thenCompanyIsReturnedProperly() {
+      ContactPerson contactPerson = new ContactPerson();
+      contactPerson.setFirstName("NativeQueryName");
+      contactPerson.setLastName("Last");
+      contactPerson.setPhone("123-456-789");
 
-		Company company = new Company();
-		company.setName("Company");
-		company.setAddress("1st street");
-		company.setPhone("987-654-321");
-		company.setContactPerson(contactPerson);
+      Company company = new Company();
+      company.setName("Company");
+      company.setAddress("1st street");
+      company.setPhone("987-654-321");
+      company.setContactPerson(contactPerson);
 
-		companyRepository.save(company);
+      companyRepository.save(company);
 
-		List<Company> result = companyRepository.findByContactPersonFirstNameWithNativeQuery("NativeQueryName");
+      List<Company> result = companyRepository.findByContactPersonFirstNameWithNativeQuery("NativeQueryName");
 
-		assertEquals(1, result.size());
+      assertEquals(1, result.size());
 
-		result = companyRepository.findByContactPersonFirstNameWithNativeQuery("FirstName");
+      result = companyRepository.findByContactPersonFirstNameWithNativeQuery("FirstName");
 
-		assertEquals(0, result.size());
-	}
+      assertEquals(0, result.size());
+   }
 }

@@ -24,7 +24,7 @@ import org.springframework.data.gemfire.repository.config.EnableGemfireRepositor
 @EnableContinuousQueries
 public class ClientCacheApp {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ClientCacheApp.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(ClientCacheApp.class, args);
+   }
 }

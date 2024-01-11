@@ -17,14 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class BookServiceUnitTest {
 
-	@Autowired
-	private BookService bookService;
+   @Autowired
+   private BookService bookService;
 
-	@Test
-	@Sql(scripts = "classpath:import_books.sql")
-	void whenApplicationStarts_thenHibernateCreatesInitialRecords() {
-		List<Book> books = bookService.list();
+   @Test
+   @Sql(scripts = "classpath:import_books.sql")
+   void whenApplicationStarts_thenHibernateCreatesInitialRecords() {
+      List<Book> books = bookService.list();
 
-		assertEquals(books.size(), 3);
-	}
+      assertEquals(books.size(), 3);
+   }
 }

@@ -26,101 +26,101 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Settings extends TableImpl<SettingsRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.SETTINGS</code>
-	 */
-	public static final Settings SETTINGS = new Settings();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.SETTINGS</code>
+    */
+   public static final Settings SETTINGS = new Settings();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<SettingsRecord> getRecordType() {
-		return SettingsRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<SettingsRecord> getRecordType() {
+      return SettingsRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
-	 */
-	public final TableField<SettingsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
+    */
+   public final TableField<SettingsRecord, String> NAME = createField(DSL.name("NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
-	 */
-	public final TableField<SettingsRecord, String> VALUE = createField(DSL.name("VALUE"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
+    */
+   public final TableField<SettingsRecord, String> VALUE = createField(DSL.name("VALUE"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	private Settings(Name alias, Table<SettingsRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private Settings(Name alias, Table<SettingsRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private Settings(Name alias, Table<SettingsRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private Settings(Name alias, Table<SettingsRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
-	 */
-	public Settings(String alias) {
-		this(DSL.name(alias), SETTINGS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
+    */
+   public Settings(String alias) {
+      this(DSL.name(alias), SETTINGS);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
-	 */
-	public Settings(Name alias) {
-		this(alias, SETTINGS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
+    */
+   public Settings(Name alias) {
+      this(alias, SETTINGS);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
-	 */
-	public Settings() {
-		this(DSL.name("SETTINGS"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.SETTINGS</code> table reference
+    */
+   public Settings() {
+      this(DSL.name("SETTINGS"), null);
+   }
 
-	public <O extends Record> Settings(Table<O> child, ForeignKey<O, SettingsRecord> key) {
-		super(child, key, SETTINGS);
-	}
+   public <O extends Record> Settings(Table<O> child, ForeignKey<O, SettingsRecord> key) {
+      super(child, key, SETTINGS);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public Settings as(String alias) {
-		return new Settings(DSL.name(alias), this);
-	}
+   @Override
+   public Settings as(String alias) {
+      return new Settings(DSL.name(alias), this);
+   }
 
-	@Override
-	public Settings as(Name alias) {
-		return new Settings(alias, this);
-	}
+   @Override
+   public Settings as(Name alias) {
+      return new Settings(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Settings rename(String name) {
-		return new Settings(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Settings rename(String name) {
+      return new Settings(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Settings rename(Name name) {
-		return new Settings(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Settings rename(Name name) {
+      return new Settings(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row2 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row2 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row2<String, String> fieldsRow() {
-		return (Row2) super.fieldsRow();
-	}
+   @Override
+   public Row2<String, String> fieldsRow() {
+      return (Row2) super.fieldsRow();
+   }
 }

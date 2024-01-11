@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @Configuration
 public class RestConfig implements RepositoryRestConfigurer {
 
-    @Override
-    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration repositoryRestConfiguration, CorsRegistry cors) {
-        repositoryRestConfiguration.getProjectionConfiguration().addProjection(CustomBook.class);
-    }
+   @Override
+   public void configureRepositoryRestConfiguration(RepositoryRestConfiguration repositoryRestConfiguration, CorsRegistry cors) {
+      repositoryRestConfiguration.getProjectionConfiguration().addProjection(CustomBook.class);
+   }
 }

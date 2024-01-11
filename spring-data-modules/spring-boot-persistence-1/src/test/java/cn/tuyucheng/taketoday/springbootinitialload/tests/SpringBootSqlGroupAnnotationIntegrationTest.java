@@ -17,16 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class)
 @SqlGroup({
-	@Sql(scripts = "/employees_schema.sql", config = @SqlConfig(transactionMode = TransactionMode.ISOLATED)),
-	@Sql("/import_employees.sql")}
+      @Sql(scripts = "/employees_schema.sql", config = @SqlConfig(transactionMode = TransactionMode.ISOLATED)),
+      @Sql("/import_employees.sql")}
 )
 class SpringBootSqlGroupAnnotationIntegrationTest {
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+   @Autowired
+   private EmployeeRepository employeeRepository;
 
-	@Test
-	void testLoadDataForTestCase() {
-		assertEquals(3, employeeRepository.findAll().size());
-	}
+   @Test
+   void testLoadDataForTestCase() {
+      assertEquals(3, employeeRepository.findAll().size());
+   }
 }

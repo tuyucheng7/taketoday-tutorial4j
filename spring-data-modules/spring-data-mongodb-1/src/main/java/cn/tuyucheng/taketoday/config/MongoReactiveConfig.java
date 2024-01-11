@@ -10,13 +10,13 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @EnableReactiveMongoRepositories(basePackages = "cn.tuyucheng.taketoday.reactive.repository")
 public class MongoReactiveConfig extends AbstractReactiveMongoConfiguration {
 
-	@Override
-	public MongoClient reactiveMongoClient() {
-		return MongoClients.create();
-	}
+   @Override
+   public MongoClient reactiveMongoClient() {
+      return MongoClients.create();
+   }
 
-	@Override
-	protected String getDatabaseName() {
-		return "reactive";
-	}
+   @Override
+   protected String getDatabaseName() {
+      return "reactive";
+   }
 }

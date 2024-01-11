@@ -17,117 +17,117 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class SettingsRecord extends TableRecordImpl<SettingsRecord> implements Record2<String, String> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * Setter for <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
-	 */
-	public void setName(String value) {
-		set(0, value);
-	}
+   /**
+    * Setter for <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
+    */
+   public void setName(String value) {
+      set(0, value);
+   }
 
-	/**
-	 * Getter for <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
-	 */
-	public String getName() {
-		return (String) get(0);
-	}
+   /**
+    * Getter for <code>INFORMATION_SCHEMA.SETTINGS.NAME</code>.
+    */
+   public String getName() {
+      return (String) get(0);
+   }
 
-	/**
-	 * Setter for <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
-	 */
-	public void setValue(String value) {
-		set(1, value);
-	}
+   /**
+    * Setter for <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
+    */
+   public void setValue(String value) {
+      set(1, value);
+   }
 
-	/**
-	 * Getter for <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
-	 */
-	public String getValue() {
-		return (String) get(1);
-	}
+   /**
+    * Getter for <code>INFORMATION_SCHEMA.SETTINGS.VALUE</code>.
+    */
+   public String getValue() {
+      return (String) get(1);
+   }
 
-	// -------------------------------------------------------------------------
-	// Record2 type implementation
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Record2 type implementation
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row2<String, String> fieldsRow() {
-		return (Row2) super.fieldsRow();
-	}
+   @Override
+   public Row2<String, String> fieldsRow() {
+      return (Row2) super.fieldsRow();
+   }
 
-	@Override
-	public Row2<String, String> valuesRow() {
-		return (Row2) super.valuesRow();
-	}
+   @Override
+   public Row2<String, String> valuesRow() {
+      return (Row2) super.valuesRow();
+   }
 
-	@Override
-	public Field<String> field1() {
-		return Settings.SETTINGS.NAME;
-	}
+   @Override
+   public Field<String> field1() {
+      return Settings.SETTINGS.NAME;
+   }
 
-	@Override
-	public Field<String> field2() {
-		return Settings.SETTINGS.VALUE;
-	}
+   @Override
+   public Field<String> field2() {
+      return Settings.SETTINGS.VALUE;
+   }
 
-	@Override
-	public String component1() {
-		return getName();
-	}
+   @Override
+   public String component1() {
+      return getName();
+   }
 
-	@Override
-	public String component2() {
-		return getValue();
-	}
+   @Override
+   public String component2() {
+      return getValue();
+   }
 
-	@Override
-	public String value1() {
-		return getName();
-	}
+   @Override
+   public String value1() {
+      return getName();
+   }
 
-	@Override
-	public String value2() {
-		return getValue();
-	}
+   @Override
+   public String value2() {
+      return getValue();
+   }
 
-	@Override
-	public SettingsRecord value1(String value) {
-		setName(value);
-		return this;
-	}
+   @Override
+   public SettingsRecord value1(String value) {
+      setName(value);
+      return this;
+   }
 
-	@Override
-	public SettingsRecord value2(String value) {
-		setValue(value);
-		return this;
-	}
+   @Override
+   public SettingsRecord value2(String value) {
+      setValue(value);
+      return this;
+   }
 
-	@Override
-	public SettingsRecord values(String value1, String value2) {
-		value1(value1);
-		value2(value2);
-		return this;
-	}
+   @Override
+   public SettingsRecord values(String value1, String value2) {
+      value1(value1);
+      value2(value2);
+      return this;
+   }
 
-	// -------------------------------------------------------------------------
-	// Constructors
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Constructors
+   // -------------------------------------------------------------------------
 
-	/**
-	 * Create a detached SettingsRecord
-	 */
-	public SettingsRecord() {
-		super(Settings.SETTINGS);
-	}
+   /**
+    * Create a detached SettingsRecord
+    */
+   public SettingsRecord() {
+      super(Settings.SETTINGS);
+   }
 
-	/**
-	 * Create a detached, initialised SettingsRecord
-	 */
-	public SettingsRecord(String name, String value) {
-		super(Settings.SETTINGS);
+   /**
+    * Create a detached, initialised SettingsRecord
+    */
+   public SettingsRecord(String name, String value) {
+      super(Settings.SETTINGS);
 
-		setName(name);
-		setValue(value);
-	}
+      setName(name);
+      setValue(value);
+   }
 }

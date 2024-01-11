@@ -6,19 +6,19 @@ import org.assertj.core.api.SoftAssertions;
 import org.hibernate.boot.Metadata;
 import org.hibernate.mapping.PersistentClass;
 import org.hibernate.mapping.Table;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Import(Config.class)
-public class SpringBootDefaultNamingIntegrationTest extends NamingConfig {
+class SpringBootDefaultNamingIntegrationTest extends NamingConfig {
 
    @Test
-   public void givenDefaultBootNamingStrategy_whenCreateDatabase_thenGetStrategyNames() {
+   void givenDefaultBootNamingStrategy_whenCreateDatabase_thenGetStrategyNames() {
       Metadata metadata = MetadataExtractorIntegrator.INSTANCE.getMetadata();
       String entity = Account.class.getCanonicalName();
       PersistentClass persistentClass = metadata.getEntityBinding(entity);

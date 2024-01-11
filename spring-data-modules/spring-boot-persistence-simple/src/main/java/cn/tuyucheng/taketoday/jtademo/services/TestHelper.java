@@ -14,29 +14,29 @@ import java.sql.SQLException;
 
 @Component
 public class TestHelper {
-	final JdbcTemplate jdbcTemplateAccount;
+   final JdbcTemplate jdbcTemplateAccount;
 
-	final JdbcTemplate jdbcTemplateAudit;
+   final JdbcTemplate jdbcTemplateAudit;
 
-	@Autowired
-	public TestHelper(@Qualifier("jdbcTemplateAccount") JdbcTemplate jdbcTemplateAccount, @Qualifier("jdbcTemplateAudit") JdbcTemplate jdbcTemplateAudit) {
-		this.jdbcTemplateAccount = jdbcTemplateAccount;
-		this.jdbcTemplateAudit = jdbcTemplateAudit;
-	}
+   @Autowired
+   public TestHelper(@Qualifier("jdbcTemplateAccount") JdbcTemplate jdbcTemplateAccount, @Qualifier("jdbcTemplateAudit") JdbcTemplate jdbcTemplateAudit) {
+      this.jdbcTemplateAccount = jdbcTemplateAccount;
+      this.jdbcTemplateAudit = jdbcTemplateAudit;
+   }
 
-	public void runAccountDbInit() throws SQLException {
-		runScript("account.sql", jdbcTemplateAccount.getDataSource());
-	}
+   public void runAccountDbInit() throws SQLException {
+      runScript("account.sql", jdbcTemplateAccount.getDataSource());
+   }
 
-	public void runAuditDbInit() throws SQLException {
-		runScript("audit.sql", jdbcTemplateAudit.getDataSource());
-	}
+   public void runAuditDbInit() throws SQLException {
+      runScript("audit.sql", jdbcTemplateAudit.getDataSource());
+   }
 
-	private void runScript(String scriptName, DataSource dataSource) throws SQLException {
-		DefaultResourceLoader resourceLoader = new DefaultResourceLoader();
-		Resource script = resourceLoader.getResource(scriptName);
-		try (Connection con = dataSource.getConnection()) {
-			ScriptUtils.executeSqlScript(con, script);
-		}
-	}
+   private void runScript(String scriptName, DataSource dataSource) throws SQLException {
+      DefaultResourceLoader resourceLoader = new DefaultResourceLoader();
+      Resource script = resourceLoader.getResource(scriptName);
+      try (Connection con = dataSource.getConnection()) {
+         ScriptUtils.executeSqlScript(con, script);
+      }
+   }
 }

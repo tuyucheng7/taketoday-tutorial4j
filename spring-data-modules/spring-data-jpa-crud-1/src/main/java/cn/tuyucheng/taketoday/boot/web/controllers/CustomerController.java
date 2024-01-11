@@ -12,20 +12,20 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-	CustomerRepository customerRepository;
+   CustomerRepository customerRepository;
 
-	public CustomerController(CustomerRepository customerRepository2) {
-		this.customerRepository = customerRepository2;
-	}
+   public CustomerController(CustomerRepository customerRepository2) {
+      this.customerRepository = customerRepository2;
+   }
 
-	@PostMapping("/customers")
-	public ResponseEntity<List<Customer>> insertCustomers() {
-		Customer c1 = new Customer("James", "Gosling");
-		Customer c2 = new Customer("Doug", "Lea");
-		Customer c3 = new Customer("Martin", "Fowler");
-		Customer c4 = new Customer("Brian", "Goetz");
-		List<Customer> customers = Arrays.asList(c1, c2, c3, c4);
-		customerRepository.saveAll(customers);
-		return ResponseEntity.ok(customers);
-	}
+   @PostMapping("/customers")
+   public ResponseEntity<List<Customer>> insertCustomers() {
+      Customer c1 = new Customer("James", "Gosling");
+      Customer c2 = new Customer("Doug", "Lea");
+      Customer c3 = new Customer("Martin", "Fowler");
+      Customer c4 = new Customer("Brian", "Goetz");
+      List<Customer> customers = Arrays.asList(c1, c2, c3, c4);
+      customerRepository.saveAll(customers);
+      return ResponseEntity.ok(customers);
+   }
 }

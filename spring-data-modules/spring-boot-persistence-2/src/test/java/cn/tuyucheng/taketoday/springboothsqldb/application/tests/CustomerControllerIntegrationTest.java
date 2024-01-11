@@ -5,37 +5,35 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import java.nio.charset.Charset;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CustomerControllerIntegrationTest {
+class CustomerControllerIntegrationTest {
 
    private static MediaType MEDIA_TYPE_JSON;
 
    @Autowired
    private MockMvc mockMvc;
 
-   @Before
-   public void setUpJsonMediaType() {
+   @BeforeEach
+   void setUpJsonMediaType() {
       MEDIA_TYPE_JSON = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype());
    }
 
    @Test
-   public void whenPostHttpRequesttoCustomers_thenStatusOK() throws Exception {
+   void whenPostHttpRequesttoCustomers_thenStatusOK() throws Exception {
       Customer customer = new Customer("John", "john@domain.com");
       ObjectMapper mapper = new ObjectMapper();
       mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
@@ -52,7 +50,7 @@ public class CustomerControllerIntegrationTest {
    }
 
    @Test
-   public void whenGetHttpRequesttoCustomers_thenStatusOK() throws Exception {
+   void whenGetHttpRequesttoCustomers_thenStatusOK() throws Exception {
       this.mockMvc
             .perform(MockMvcRequestBuilders.get("/customers"))
 

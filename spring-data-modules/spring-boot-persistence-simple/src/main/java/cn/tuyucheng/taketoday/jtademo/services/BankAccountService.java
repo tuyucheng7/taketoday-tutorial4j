@@ -10,25 +10,25 @@ import java.math.BigDecimal;
 @Service
 public class BankAccountService {
 
-	final JdbcTemplate jdbcTemplate;
+   final JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	public BankAccountService(@Qualifier("jdbcTemplateAccount") JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+   @Autowired
+   public BankAccountService(@Qualifier("jdbcTemplateAccount") JdbcTemplate jdbcTemplate) {
+      this.jdbcTemplate = jdbcTemplate;
+   }
 
-	public void transfer(String fromAccountId, String toAccountId, BigDecimal amount) {
-		jdbcTemplate.update("update ACCOUNT set BALANCE=BALANCE-? where ID=?", amount, fromAccountId);
-		jdbcTemplate.update("update ACCOUNT set BALANCE=BALANCE+? where ID=?", amount, toAccountId);
-	}
+   public void transfer(String fromAccountId, String toAccountId, BigDecimal amount) {
+      jdbcTemplate.update("update ACCOUNT set BALANCE=BALANCE-? where ID=?", amount, fromAccountId);
+      jdbcTemplate.update("update ACCOUNT set BALANCE=BALANCE+? where ID=?", amount, toAccountId);
+   }
 
-	public BigDecimal balanceOf(String accountId) {
-		return jdbcTemplate.query(
-				"select BALANCE from ACCOUNT where ID=?",
-				new Object[]{accountId},
-				rs -> {
-					rs.next();
-					return BigDecimal.valueOf(rs.getDouble(1));
-				});
-	}
+   public BigDecimal balanceOf(String accountId) {
+      return jdbcTemplate.query(
+            "select BALANCE from ACCOUNT where ID=?",
+            new Object[]{accountId},
+            rs -> {
+               rs.next();
+               return BigDecimal.valueOf(rs.getDouble(1));
+            });
+   }
 }

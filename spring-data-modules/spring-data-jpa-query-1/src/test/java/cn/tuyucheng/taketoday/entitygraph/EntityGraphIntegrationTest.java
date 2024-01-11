@@ -18,21 +18,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Sql(scripts = "/entitygraph-data.sql")
 class EntityGraphIntegrationTest {
 
-	@Autowired
-	private ItemRepository itemRepo;
+   @Autowired
+   private ItemRepository itemRepo;
 
-	@Autowired
-	private CharacteristicsRepository characteristicsRepo;
+   @Autowired
+   private CharacteristicsRepository characteristicsRepo;
 
-	@Test
-	void givenEntityGraph_whenCalled_shouldReturnDefinedFields() {
-		Item item = itemRepo.findByName("Table");
-		assertThat(item.getId()).isEqualTo(1L);
-	}
+   @Test
+   void givenEntityGraph_whenCalled_shouldReturnDefinedFields() {
+      Item item = itemRepo.findByName("Table");
+      assertThat(item.getId()).isEqualTo(1L);
+   }
 
-	@Test
-	void givenAdhocEntityGraph_whenCalled_shouldReturnDefinedFields() {
-		Characteristic characteristic = characteristicsRepo.findByType("Rigid");
-		assertThat(characteristic.getId()).isEqualTo(1L);
-	}
+   @Test
+   void givenAdhocEntityGraph_whenCalled_shouldReturnDefinedFields() {
+      Characteristic characteristic = characteristicsRepo.findByType("Rigid");
+      assertThat(characteristic.getId()).isEqualTo(1L);
+   }
 }

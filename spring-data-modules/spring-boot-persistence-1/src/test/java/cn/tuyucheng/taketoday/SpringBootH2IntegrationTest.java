@@ -13,20 +13,19 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {Application.class, H2JpaConfig.class})
 class SpringBootH2IntegrationTest {
 
-	@Autowired
-	private GenericEntityRepository genericEntityRepository;
+   @Autowired
+   private GenericEntityRepository genericEntityRepository;
 
-	@Test
-	void givenGenericEntityRepository_whenSaveAndRetrieveEntity_thenOK() {
-		GenericEntity genericEntity = genericEntityRepository.save(new GenericEntity("test"));
-		GenericEntity foundEntity = genericEntityRepository.findById(genericEntity.getId()).orElse(null);
+   @Test
+   void givenGenericEntityRepository_whenSaveAndRetrieveEntity_thenOK() {
+      GenericEntity genericEntity = genericEntityRepository.save(new GenericEntity("test"));
+      GenericEntity foundEntity = genericEntityRepository.findById(genericEntity.getId()).orElse(null);
 
-		assertNotNull(foundEntity);
-		assertEquals(genericEntity.getValue(), foundEntity.getValue());
-	}
+      assertNotNull(foundEntity);
+      assertEquals(genericEntity.getValue(), foundEntity.getValue());
+   }
 }

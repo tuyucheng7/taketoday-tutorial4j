@@ -6,16 +6,16 @@ import java.util.Optional;
 
 public interface EmployeeService {
 
-	void save(Employee employee);
+   void save(Employee employee);
 
-	Optional<Employee> get(Integer id);
+   Optional<Employee> get(Integer id);
 
-	Iterable<Employee> fetchAll();
+   Iterable<Employee> fetchAll();
 
-	void update(Employee employee);
+   void update(Employee employee);
 
-	void delete(Integer id);
+   void delete(Integer id);
 
-	Iterable<Employee> getSortedListOfEmployeesBySalary();
+   Iterable<Employee> getSortedListOfEmployeesBySalary();
 
 }

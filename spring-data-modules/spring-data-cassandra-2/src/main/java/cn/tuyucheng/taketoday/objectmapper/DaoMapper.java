@@ -10,9 +10,9 @@ import cn.tuyucheng.taketoday.objectmapper.dao.UserDao;
 @Mapper
 public interface DaoMapper {
 
-    @DaoFactory
-    UserDao getUserDao(@DaoKeyspace CqlIdentifier keyspace);
+   @DaoFactory
+   UserDao getUserDao(@DaoKeyspace CqlIdentifier keyspace);
 
-    @DaoFactory
-    CounterDao getUserCounterDao(@DaoKeyspace CqlIdentifier keyspace);
+   @DaoFactory
+   CounterDao getUserCounterDao(@DaoKeyspace CqlIdentifier keyspace);
 }

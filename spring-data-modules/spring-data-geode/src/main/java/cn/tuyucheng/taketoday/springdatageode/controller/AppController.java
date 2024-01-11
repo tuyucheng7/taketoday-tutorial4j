@@ -18,18 +18,18 @@ import java.util.Optional;
 @CrossOrigin
 public class AppController {
 
-    @Autowired
-    private AuthorRepository authorRepositoryImpl;
+   @Autowired
+   private AuthorRepository authorRepositoryImpl;
 
-    @PostMapping(path = "/author")
-    public ResponseEntity<String> addAuthor(@RequestBody Author author) throws Exception {
-        authorRepositoryImpl.save(author);
-        return new ResponseEntity<>("OK", HttpStatus.OK);
-    }
+   @PostMapping(path = "/author")
+   public ResponseEntity<String> addAuthor(@RequestBody Author author) throws Exception {
+      authorRepositoryImpl.save(author);
+      return new ResponseEntity<>("OK", HttpStatus.OK);
+   }
 
-    @GetMapping(path = "/author")
-    public ResponseEntity<Author> getAuthor(@RequestParam("id") String id) throws Exception {
-        Optional<Author> author = authorRepositoryImpl.findById(Long.parseLong(id));
-        return new ResponseEntity<>(author.isPresent() ? author.get() : null, HttpStatus.OK);
-    }
+   @GetMapping(path = "/author")
+   public ResponseEntity<Author> getAuthor(@RequestParam("id") String id) throws Exception {
+      Optional<Author> author = authorRepositoryImpl.findById(Long.parseLong(id));
+      return new ResponseEntity<>(author.isPresent() ? author.get() : null, HttpStatus.OK);
+   }
 }

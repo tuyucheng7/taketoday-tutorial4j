@@ -9,6 +9,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 public interface SubjectRepository extends PagingAndSortingRepository<Subject, Long> {
 
-	@RestResource(path = "nameContains")
-	Page<Subject> findByNameContaining(@Param("name") String name, Pageable p);
+   @RestResource(path = "nameContains")
+   Page<Subject> findByNameContaining(@Param("name") String name, Pageable p);
 }

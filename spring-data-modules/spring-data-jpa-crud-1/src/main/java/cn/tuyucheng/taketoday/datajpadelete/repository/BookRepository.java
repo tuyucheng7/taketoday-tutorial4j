@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
 
-	long deleteByTitle(String title);
+   long deleteByTitle(String title);
 
-	@Modifying
-	@Query("delete from Book b where b.title=:title")
-	void deleteBooks(@Param("title") String title);
+   @Modifying
+   @Query("delete from Book b where b.title=:title")
+   void deleteBooks(@Param("title") String title);
 }

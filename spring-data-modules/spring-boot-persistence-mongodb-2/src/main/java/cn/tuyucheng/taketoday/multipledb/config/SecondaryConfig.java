@@ -24,34 +24,34 @@ import static java.util.Collections.singletonList;
 @EnableConfigurationProperties
 public class SecondaryConfig {
 
-    @Bean(name = "secondaryProperties")
-    @ConfigurationProperties(prefix = "mongodb.secondary")
-    public MongoProperties secondaryProperties() {
-        return new MongoProperties();
-    }
+   @Bean(name = "secondaryProperties")
+   @ConfigurationProperties(prefix = "mongodb.secondary")
+   public MongoProperties secondaryProperties() {
+      return new MongoProperties();
+   }
 
-    @Bean(name = "secondaryMongoClient")
-    public MongoClient mongoClient(@Qualifier("secondaryProperties") MongoProperties mongoProperties) {
+   @Bean(name = "secondaryMongoClient")
+   public MongoClient mongoClient(@Qualifier("secondaryProperties") MongoProperties mongoProperties) {
 
-        MongoCredential credential = MongoCredential.createCredential(
-                mongoProperties.getUsername(),
-                mongoProperties.getAuthenticationDatabase(),
-                mongoProperties.getPassword());
+      MongoCredential credential = MongoCredential.createCredential(
+            mongoProperties.getUsername(),
+            mongoProperties.getAuthenticationDatabase(),
+            mongoProperties.getPassword());
 
-        return MongoClients.create(MongoClientSettings.builder()
-                .applyToClusterSettings(builder -> builder.hosts(singletonList(new ServerAddress(mongoProperties.getHost(), mongoProperties.getPort()))))
-                .credential(credential)
-                .build());
-    }
+      return MongoClients.create(MongoClientSettings.builder()
+            .applyToClusterSettings(builder -> builder.hosts(singletonList(new ServerAddress(mongoProperties.getHost(), mongoProperties.getPort()))))
+            .credential(credential)
+            .build());
+   }
 
-    @Bean(name = "secondaryMongoDBFactory")
-    public MongoDatabaseFactory mongoDatabaseFactory(@Qualifier("secondaryMongoClient") MongoClient mongoClient,
-                                                     @Qualifier("secondaryProperties") MongoProperties mongoProperties) {
-        return new SimpleMongoClientDatabaseFactory(mongoClient, mongoProperties.getDatabase());
-    }
+   @Bean(name = "secondaryMongoDBFactory")
+   public MongoDatabaseFactory mongoDatabaseFactory(@Qualifier("secondaryMongoClient") MongoClient mongoClient,
+                                                    @Qualifier("secondaryProperties") MongoProperties mongoProperties) {
+      return new SimpleMongoClientDatabaseFactory(mongoClient, mongoProperties.getDatabase());
+   }
 
-    @Bean(name = "secondaryMongoTemplate")
-    public MongoTemplate mongoTemplate(@Qualifier("secondaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {
-        return new MongoTemplate(mongoDatabaseFactory);
-    }
+   @Bean(name = "secondaryMongoTemplate")
+   public MongoTemplate mongoTemplate(@Qualifier("secondaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {
+      return new MongoTemplate(mongoDatabaseFactory);
+   }
 }

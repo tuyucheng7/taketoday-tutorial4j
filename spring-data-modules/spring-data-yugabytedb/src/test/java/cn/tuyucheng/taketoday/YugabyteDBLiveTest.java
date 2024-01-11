@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
  To run this test we need to run the databases first.
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig
 @SpringBootTest
 @TestPropertySource("classpath:application.properties")
-public class YugabyteDBLiveTest {
+class YugabyteDBLiveTest {
 
    @Autowired
    private UserRepository userRepository;

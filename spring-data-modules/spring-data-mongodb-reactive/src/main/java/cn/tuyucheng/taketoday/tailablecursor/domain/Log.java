@@ -13,9 +13,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Log {
-	@Id
-	private String id;
-	private String service;
-	private LogLevel level;
-	private String message;
+   @Id
+   private String id;
+   private String service;
+   private LogLevel level;
+   private String message;
 }

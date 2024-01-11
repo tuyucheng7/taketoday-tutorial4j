@@ -11,7 +11,7 @@ import cn.tuyucheng.taketoday.boot.Application;
 @SpringBootTest(classes = Application.class)
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

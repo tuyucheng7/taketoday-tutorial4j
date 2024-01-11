@@ -7,5 +7,5 @@ import cn.tuyucheng.taketoday.boot.domain.Bar;
 import java.io.Serializable;
 
 public interface BarCrudRepository extends CrudRepository<Bar, Serializable> {
-	//
+   //
 }

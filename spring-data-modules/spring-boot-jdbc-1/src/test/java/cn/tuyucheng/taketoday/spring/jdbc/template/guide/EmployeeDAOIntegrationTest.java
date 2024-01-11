@@ -1,23 +1,23 @@
 package cn.tuyucheng.taketoday.spring.jdbc.template.guide;
 
 import cn.tuyucheng.taketoday.spring.jdbc.template.guide.config.SpringJdbcConfig;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {SpringJdbcConfig.class}, loader = AnnotationConfigContextLoader.class)
-public class EmployeeDAOIntegrationTest {
+class EmployeeDAOIntegrationTest {
 
    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDAOIntegrationTest.class);
 
@@ -25,60 +25,60 @@ public class EmployeeDAOIntegrationTest {
    private EmployeeDAO employeeDao;
 
    @Test
-   public void testGetCountOfEmployees() {
-      Assert.assertEquals(employeeDao.getCountOfEmployees(), 9);
+   void testGetCountOfEmployees() {
+      Assertions.assertEquals(employeeDao.getCountOfEmployees(), 9);
    }
 
    @Test
-   public void testQueryMethod() {
-      Assert.assertEquals(employeeDao.getAllEmployees().size(), 4);
+   void testQueryMethod() {
+      Assertions.assertEquals(employeeDao.getAllEmployees().size(), 4);
    }
 
    @Test
-   public void testUpdateMethod() {
-      Assert.assertEquals(employeeDao.addEmplyee(5), 1);
+   void testUpdateMethod() {
+      Assertions.assertEquals(employeeDao.addEmplyee(5), 1);
    }
 
    @Test
-   public void testAddEmployeeUsingSimpelJdbcInsert() {
+   void testAddEmployeeUsingSimpelJdbcInsert() {
       final Employee emp = new Employee();
       emp.setId(11);
       emp.setFirstName("testFirstName");
       emp.setLastName("testLastName");
       emp.setAddress("testAddress");
 
-      Assert.assertEquals(employeeDao.addEmplyeeUsingSimpelJdbcInsert(emp), 1);
+      Assertions.assertEquals(employeeDao.addEmplyeeUsingSimpelJdbcInsert(emp), 1);
    }
 
    @Test
-   public void testExecuteMethod() {
+   void testExecuteMethod() {
       employeeDao.addEmplyeeUsingExecuteMethod();
    }
 
    @Test
-   public void testMapSqlParameterSource() {
-      Assert.assertEquals("James", employeeDao.getEmployeeUsingMapSqlParameterSource());
+   void testMapSqlParameterSource() {
+      Assertions.assertEquals("James", employeeDao.getEmployeeUsingMapSqlParameterSource());
    }
 
    @Test
-   public void testBeanPropertySqlParameterSource() {
-      Assert.assertEquals(1, employeeDao.getEmployeeUsingBeanPropertySqlParameterSource());
+   void testBeanPropertySqlParameterSource() {
+      Assertions.assertEquals(1, employeeDao.getEmployeeUsingBeanPropertySqlParameterSource());
    }
 
    @Test
-   public void testCustomExceptionTranslator() {
+   void testCustomExceptionTranslator() {
       employeeDao.addEmplyee(7);
 
       try {
          employeeDao.addEmplyee(7);
       } catch (final DuplicateKeyException e) {
          LOGGER.error(e.getMessage(), e);
-         Assert.assertTrue(e.getMessage().contains("Custome Exception translator - Integrity contraint voilation."));
+         Assertions.assertTrue(e.getMessage().contains("Custome Exception translator - Integrity contraint voilation."));
       }
    }
 
    @Test
-   public void testBatchUpdateUsingJDBCTemplate() {
+   void testBatchUpdateUsingJDBCTemplate() {
       final List<Employee> employees = new ArrayList<>();
       final Employee emp1 = new Employee();
       emp1.setId(10);
@@ -104,13 +104,13 @@ public class EmployeeDAOIntegrationTest {
 
       employeeDao.batchUpdateUsingJDBCTemplate(employees);
 
-      Assert.assertTrue(employeeDao.getEmployee(10) != null);
-      Assert.assertTrue(employeeDao.getEmployee(20) != null);
-      Assert.assertTrue(employeeDao.getEmployee(30) != null);
+      Assertions.assertNotNull(employeeDao.getEmployee(10));
+      Assertions.assertNotNull(employeeDao.getEmployee(20));
+      Assertions.assertNotNull(employeeDao.getEmployee(30));
    }
 
    @Test
-   public void testBatchUpdateUsingNamedParameterJDBCTemplate() {
+   void testBatchUpdateUsingNamedParameterJDBCTemplate() {
       final List<Employee> employees = new ArrayList<>();
       final Employee emp1 = new Employee();
       emp1.setId(40);
@@ -136,8 +136,8 @@ public class EmployeeDAOIntegrationTest {
 
       employeeDao.batchUpdateUsingNamedParameterJDBCTemplate(employees);
 
-      Assert.assertTrue(employeeDao.getEmployee(40) != null);
-      Assert.assertTrue(employeeDao.getEmployee(50) != null);
-      Assert.assertTrue(employeeDao.getEmployee(60) != null);
+      Assertions.assertNotNull(employeeDao.getEmployee(40));
+      Assertions.assertNotNull(employeeDao.getEmployee(50));
+      Assertions.assertNotNull(employeeDao.getEmployee(60));
    }
 }

@@ -26,31 +26,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = OsivApplication.class)
 class UserControllerIntegrationTest {
 
-    @Autowired
-    private BasicUserRepository userRepository;
+   @Autowired
+   private BasicUserRepository userRepository;
 
-    @Autowired
-    private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-        BasicUser user = new BasicUser();
-        user.setUsername("root");
-        user.setPermissions(new HashSet<>(Arrays.asList("PERM_READ", "PERM_WRITE")));
+   @BeforeEach
+   void setUp() {
+      BasicUser user = new BasicUser();
+      user.setUsername("root");
+      user.setPermissions(new HashSet<>(Arrays.asList("PERM_READ", "PERM_WRITE")));
 
-        userRepository.save(user);
-    }
+      userRepository.save(user);
+   }
 
-    @Test
-    void givenTheUserExists_WhenOsivIsEnabled_ThenLazyInitWorkEverywhere() throws Exception {
-        mockMvc.perform(get("/users/root"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.username").value("root"))
-                .andExpect(jsonPath("$.permissions", containsInAnyOrder("PERM_READ", "PERM_WRITE")));
-    }
+   @Test
+   void givenTheUserExists_WhenOsivIsEnabled_ThenLazyInitWorkEverywhere() throws Exception {
+      mockMvc.perform(get("/users/root"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.username").value("root"))
+            .andExpect(jsonPath("$.permissions", containsInAnyOrder("PERM_READ", "PERM_WRITE")));
+   }
 
-    @AfterEach
-    void flushDb() {
-        userRepository.deleteAll();
-    }
+   @AfterEach
+   void flushDb() {
+      userRepository.deleteAll();
+   }
 }

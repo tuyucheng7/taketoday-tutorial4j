@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @JdbcTest
 @Sql({"schema.sql", "test-data.sql"})
 class EmployeeDAOIntegrationTest {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+   @Autowired
+   private JdbcTemplate jdbcTemplate;
 
-	@Test
-	void whenInjectInMemoryDataSource_thenReturnCorrectEmployeeCount() {
-		EmployeeDAO employeeDAO = new EmployeeDAO();
-		employeeDAO.setJdbcTemplate(jdbcTemplate);
+   @Test
+   void whenInjectInMemoryDataSource_thenReturnCorrectEmployeeCount() {
+      EmployeeDAO employeeDAO = new EmployeeDAO();
+      employeeDAO.setJdbcTemplate(jdbcTemplate);
 
-		assertEquals(4, employeeDAO.getCountOfEmployees());
-	}
+      assertEquals(4, employeeDAO.getCountOfEmployees());
+   }
 }

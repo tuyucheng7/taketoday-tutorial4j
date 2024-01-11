@@ -12,16 +12,16 @@ import javax.sql.DataSource;
 @Configuration
 public class PersistenceConfig {
 
-	@Bean
-	public DataSource dataSource(Environment env) {
-		return new EmbeddedDatabaseBuilder()
-			.setType(EmbeddedDatabaseType.H2)
-			.addScript("cn/tuyucheng/taketoday/spring/jdbc/autogenkey/autogenkey-schema.sql")
-			.build();
-	}
+   @Bean
+   public DataSource dataSource(Environment env) {
+      return new EmbeddedDatabaseBuilder()
+            .setType(EmbeddedDatabaseType.H2)
+            .addScript("cn/tuyucheng/taketoday/spring/jdbc/autogenkey/autogenkey-schema.sql")
+            .build();
+   }
 
-	@Bean
-	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-		return new JdbcTemplate(dataSource);
-	}
+   @Bean
+   public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+      return new JdbcTemplate(dataSource);
+   }
 }

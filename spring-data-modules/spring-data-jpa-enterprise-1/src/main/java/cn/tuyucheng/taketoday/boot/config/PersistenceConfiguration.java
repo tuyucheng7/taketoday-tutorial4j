@@ -15,8 +15,8 @@ import cn.tuyucheng.taketoday.boot.services.impl.BarSpringDataJpaService;
 @EnableJpaAuditing
 public class PersistenceConfiguration {
 
-    @Bean
-    public BarService barSpringDataJpaService() {
-        return new BarSpringDataJpaService();
-    }
+   @Bean
+   public BarService barSpringDataJpaService() {
+      return new BarSpringDataJpaService();
+   }
 }

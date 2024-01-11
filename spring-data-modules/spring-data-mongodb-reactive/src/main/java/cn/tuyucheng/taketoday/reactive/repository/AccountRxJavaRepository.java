@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRxJavaRepository extends RxJava2CrudRepository<Account, String> {
 
-	public Observable<Account> findAllByValue(Double value);
+   public Observable<Account> findAllByValue(Double value);
 
-	public Single<Account> findFirstByOwner(Single<String> owner);
+   public Single<Account> findFirstByOwner(Single<String> owner);
 }

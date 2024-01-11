@@ -13,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/collection")
 public class CollectionController {
-	@Autowired
-	private MongoTemplate mongo;
+   @Autowired
+   private MongoTemplate mongo;
 
-	@GetMapping("/{name}")
-	public List<DBObject> get(@PathVariable String name) {
-		return mongo.findAll(DBObject.class, name);
-	}
+   @GetMapping("/{name}")
+   public List<DBObject> get(@PathVariable String name) {
+      return mongo.findAll(DBObject.class, name);
+   }
 }

@@ -25,48 +25,48 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext
 class DbRefIntegrationTest {
 
-	@Autowired
-	PersonRepository personRepository;
+   @Autowired
+   PersonRepository personRepository;
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
+   @Autowired
+   private MongoTemplate mongoTemplate;
 
-	@Test
-	void givenPetsAndPersonInDatabase_whenListPersons_thenReferenceIsFetched() {
-		// given
-		DBObject catInDatabase = BasicDBObjectBuilder.start()
-				.add("name", "Loki")
-				.get();
+   @Test
+   void givenPetsAndPersonInDatabase_whenListPersons_thenReferenceIsFetched() {
+      // given
+      DBObject catInDatabase = BasicDBObjectBuilder.start()
+            .add("name", "Loki")
+            .get();
 
-		DBObject dogInDatabase = BasicDBObjectBuilder.start()
-				.add("name", "Max")
-				.get();
+      DBObject dogInDatabase = BasicDBObjectBuilder.start()
+            .add("name", "Max")
+            .get();
 
-		mongoTemplate.save(catInDatabase, "Cat");
-		mongoTemplate.save(dogInDatabase, "Dog");
+      mongoTemplate.save(catInDatabase, "Cat");
+      mongoTemplate.save(dogInDatabase, "Dog");
 
-		List<DBRef> petsReference = new ArrayList<>();
-		petsReference.add(new DBRef("Cat", catInDatabase.get("_id")));
-		petsReference.add(new DBRef("Dog", dogInDatabase.get("_id")));
+      List<DBRef> petsReference = new ArrayList<>();
+      petsReference.add(new DBRef("Cat", catInDatabase.get("_id")));
+      petsReference.add(new DBRef("Dog", dogInDatabase.get("_id")));
 
-		DBObject personInDatabase = BasicDBObjectBuilder.start()
-				.add("name", "Bob")
-				.add("pets", petsReference)
-				.get();
+      DBObject personInDatabase = BasicDBObjectBuilder.start()
+            .add("name", "Bob")
+            .add("pets", petsReference)
+            .get();
 
-		mongoTemplate.save(personInDatabase, "Person");
+      mongoTemplate.save(personInDatabase, "Person");
 
-		// when
-		List<Person> persons = personRepository.findAll();
+      // when
+      List<Person> persons = personRepository.findAll();
 
-		// then
-		assertThat(persons).hasSize(1);
-		Person person = persons.get(0);
-		assertEquals("Bob", person.getName());
+      // then
+      assertThat(persons).hasSize(1);
+      Person person = persons.get(0);
+      assertEquals("Bob", person.getName());
 
-		List<Pet> pets = person.getPets();
-		assertThat(pets).hasSize(2);
-		assertThat(pets).anyMatch(pet -> "Loki".equals(pet.getName()));
-		assertThat(pets).anyMatch(pet -> "Max".equals(pet.getName()));
-	}
+      List<Pet> pets = person.getPets();
+      assertThat(pets).hasSize(2);
+      assertThat(pets).anyMatch(pet -> "Loki".equals(pet.getName()));
+      assertThat(pets).anyMatch(pet -> "Max".equals(pet.getName()));
+   }
 }

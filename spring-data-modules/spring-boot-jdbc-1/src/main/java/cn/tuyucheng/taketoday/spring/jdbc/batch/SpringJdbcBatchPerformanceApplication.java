@@ -14,33 +14,33 @@ import java.util.Collections;
 @ComponentScan(basePackages = "cn.tuyucheng.taketoday.spring.jdbc.batch")
 public class SpringJdbcBatchPerformanceApplication implements CommandLineRunner {
 
-	@Autowired
-	@Qualifier("batchProductService")
-	private ProductService batchProductService;
-	@Autowired
-	@Qualifier("simpleProductService")
-	private ProductService simpleProductService;
+   @Autowired
+   @Qualifier("batchProductService")
+   private ProductService batchProductService;
+   @Autowired
+   @Qualifier("simpleProductService")
+   private ProductService simpleProductService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringJdbcBatchPerformanceApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringJdbcBatchPerformanceApplication.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		int[] recordCounts = {1, 10, 100, 1000, 10_000, 100_000, 1000_000};
+   @Override
+   public void run(String... args) throws Exception {
+      int[] recordCounts = {1, 10, 100, 1000, 10_000, 100_000, 1000_000};
 
-		for (int recordCount : recordCounts) {
-			long regularElapsedTime = simpleProductService.createProducts(recordCount);
-			long batchElapsedTime = batchProductService.createProducts(recordCount);
+      for (int recordCount : recordCounts) {
+         long regularElapsedTime = simpleProductService.createProducts(recordCount);
+         long batchElapsedTime = batchProductService.createProducts(recordCount);
 
-			System.out.println(String.join("", Collections.nCopies(50, "-")));
-			System.out.format("%-20s%-5s%-10s%-5s%8sms\n", "Regular inserts", "|", recordCount, "|", regularElapsedTime);
-			System.out.format("%-20s%-5s%-10s%-5s%8sms\n", "Batch inserts", "|", recordCount, "|", batchElapsedTime);
-			System.out.printf("Total gain: %d %s\n", calculateGainInPercent(regularElapsedTime, batchElapsedTime), "%");
-		}
-	}
+         System.out.println(String.join("", Collections.nCopies(50, "-")));
+         System.out.format("%-20s%-5s%-10s%-5s%8sms\n", "Regular inserts", "|", recordCount, "|", regularElapsedTime);
+         System.out.format("%-20s%-5s%-10s%-5s%8sms\n", "Batch inserts", "|", recordCount, "|", batchElapsedTime);
+         System.out.printf("Total gain: %d %s\n", calculateGainInPercent(regularElapsedTime, batchElapsedTime), "%");
+      }
+   }
 
-	int calculateGainInPercent(long before, long after) {
-		return (int) Math.floor(100D * (before - after) / before);
-	}
+   int calculateGainInPercent(long before, long after) {
+      return (int) Math.floor(100D * (before - after) / before);
+   }
 }

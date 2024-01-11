@@ -9,36 +9,36 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Student {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
+   private long id;
 
-	private String name;
+   private String name;
 
-	@ManyToOne
-	private School school;
+   @ManyToOne
+   private School school;
 
-	public long getId() {
-		return id;
-	}
+   public long getId() {
+      return id;
+   }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+   public void setId(long id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public School getSchool() {
-		return school;
-	}
+   public School getSchool() {
+      return school;
+   }
 
-	public void setSchool(School school) {
-		this.school = school;
-	}
+   public void setSchool(School school) {
+      this.school = school;
+   }
 }

@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface ArticleMapper {
-	@Select("SELECT * FROM ARTICLES WHERE id = #{id}")
-	Article getArticle(@Param("id") Long id);
+   @Select("SELECT * FROM ARTICLES WHERE id = #{id}")
+   Article getArticle(@Param("id") Long id);
 }

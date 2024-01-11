@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoCo
 @SpringBootApplication(exclude = EmbeddedMongoAutoConfiguration.class)
 public class SpringBootMultipleDbApplication {
 
-	public static void main(String... args) {
-		SpringApplication.run(SpringBootMultipleDbApplication.class, args);
-	}
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootMultipleDbApplication.class, args);
+   }
 }

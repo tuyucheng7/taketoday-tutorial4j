@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @EnableScan
 public interface ProductInfoRepository extends CrudRepository<ProductInfo, String> {
-    Optional<ProductInfo> findById(String id);
+   Optional<ProductInfo> findById(String id);
 }

@@ -2,10 +2,10 @@ package cn.tuyucheng.taketoday.transaction;
 
 import cn.tuyucheng.taketoday.config.MongoConfig;
 import cn.tuyucheng.taketoday.model.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.SessionSynchronization;
@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -21,16 +21,16 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * This test requires:
  * mongodb instance running on the environment
  * Run the src/live-test/resources/live-test-setup.sh
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MongoConfig.class)
-public class MongoTransactionTemplateLiveTest {
+class MongoTransactionTemplateLiveTest {
 
    @Autowired
    private MongoTemplate mongoTemplate;
@@ -38,20 +38,20 @@ public class MongoTransactionTemplateLiveTest {
    @Autowired
    private MongoTransactionManager mongoTransactionManager;
 
-   @Before
-   public void testSetup() {
+   @BeforeEach
+   void testSetup() {
       if (!mongoTemplate.collectionExists(User.class)) {
          mongoTemplate.createCollection(User.class);
       }
    }
 
-   @After
-   public void tearDown() {
+   @AfterEach
+   void tearDown() {
       mongoTemplate.dropCollection(User.class);
    }
 
    @Test
-   public void givenTransactionTemplate_whenPerformTransaction_thenSuccess() {
+   void givenTransactionTemplate_whenPerformTransaction_thenSuccess() {
       mongoTemplate.setSessionSynchronization(SessionSynchronization.ALWAYS);
       TransactionTemplate transactionTemplate = new TransactionTemplate(mongoTransactionManager);
       transactionTemplate.execute(new TransactionCallbackWithoutResult() {
@@ -59,7 +59,9 @@ public class MongoTransactionTemplateLiveTest {
          protected void doInTransactionWithoutResult(TransactionStatus status) {
             mongoTemplate.insert(new User("Kim", 20));
             mongoTemplate.insert(new User("Jack", 45));
-         };
+         }
+
+         ;
       });
 
       Query query = new Query().addCriteria(Criteria.where("name")

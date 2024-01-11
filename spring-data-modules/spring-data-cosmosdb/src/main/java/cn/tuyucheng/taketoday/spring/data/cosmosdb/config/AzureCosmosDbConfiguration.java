@@ -9,28 +9,28 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableCosmosRepositories(basePackages = "com.baeldung.spring.data.cosmosdb.repository")
+@EnableCosmosRepositories(basePackages = "cn.tuyucheng.taketoday.spring.data.cosmosdb.repository")
 public class AzureCosmosDbConfiguration extends AbstractCosmosConfiguration {
 
-    @Value("${azure.cosmosdb.uri}")
-    private String uri;
+   @Value("${azure.cosmosdb.uri}")
+   private String uri;
 
-    @Value("${azure.cosmosdb.key}")
-    private String key;
+   @Value("${azure.cosmosdb.key}")
+   private String key;
 
-    @Value("${azure.cosmosdb.secondaryKey}")
-    private String secondaryKey;
+   @Value("${azure.cosmosdb.secondaryKey}")
+   private String secondaryKey;
 
-    @Value("${azure.cosmosdb.database}")
-    private String dbName;
+   @Value("${azure.cosmosdb.database}")
+   private String dbName;
 
-    private CosmosKeyCredential cosmosKeyCredential;
+   private CosmosKeyCredential cosmosKeyCredential;
 
-    @Bean
-    public CosmosDBConfig getConfig() {
-        this.cosmosKeyCredential = new CosmosKeyCredential(key);
-        CosmosDBConfig cosmosdbConfig = CosmosDBConfig.builder(uri, this.cosmosKeyCredential, dbName)
-              .build();
-        return cosmosdbConfig;
-    }
+   @Bean
+   public CosmosDBConfig getConfig() {
+      this.cosmosKeyCredential = new CosmosKeyCredential(key);
+      CosmosDBConfig cosmosdbConfig = CosmosDBConfig.builder(uri, this.cosmosKeyCredential, dbName)
+            .build();
+      return cosmosdbConfig;
+   }
 }

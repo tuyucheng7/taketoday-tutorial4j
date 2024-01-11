@@ -3,29 +3,29 @@ package cn.tuyucheng.taketoday.hibernate.bootstrap;
 import cn.tuyucheng.taketoday.hibernate.bootstrap.model.TestEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HibernateConf.class})
 @Transactional
-public class HibernateBootstrapIntegrationTest {
+class HibernateBootstrapIntegrationTest {
 
    @Autowired
    private SessionFactory sessionFactory;
 
    @Test
-   public void whenBootstrapHibernateSession_thenNoException() {
+   void whenBootstrapHibernateSession_thenNoException() {
       Session session = sessionFactory.getCurrentSession();
 
       TestEntity newEntity = new TestEntity();
@@ -34,11 +34,11 @@ public class HibernateBootstrapIntegrationTest {
 
       TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
    }
 
    @Test
-   public void whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
+   void whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
       assertTrue(TestTransaction.isActive());
 
       // Save an entity and commit.
@@ -50,7 +50,7 @@ public class HibernateBootstrapIntegrationTest {
 
       TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
       assertTrue(TestTransaction.isFlaggedForRollback());
 
       TestTransaction.flagForCommit();
@@ -69,7 +69,7 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
 
       session.remove(searchEntity);
       session.flush();
@@ -85,7 +85,7 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
 
       session.remove(searchEntity);
       session.flush();
@@ -105,12 +105,12 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNull(searchEntity);
+      Assertions.assertNull(searchEntity);
    }
 
    @Test
    @Commit
-   public void givenTransactionCommitDefault_whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
+   void givenTransactionCommitDefault_whenProgrammaticTransactionCommit_thenEntityIsInDatabase() {
       assertTrue(TestTransaction.isActive());
 
       // Save an entity and commit.
@@ -122,7 +122,7 @@ public class HibernateBootstrapIntegrationTest {
 
       TestEntity searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
       assertFalse(TestTransaction.isFlaggedForRollback());
 
       TestTransaction.end();
@@ -140,7 +140,7 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
 
       session.remove(searchEntity);
       session.flush();
@@ -157,7 +157,7 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNotNull(searchEntity);
+      Assertions.assertNotNull(searchEntity);
 
       session.remove(searchEntity);
       session.flush();
@@ -176,6 +176,6 @@ public class HibernateBootstrapIntegrationTest {
       session = sessionFactory.getCurrentSession();
       searchEntity = session.find(TestEntity.class, 1);
 
-      Assert.assertNull(searchEntity);
+      Assertions.assertNull(searchEntity);
    }
 }

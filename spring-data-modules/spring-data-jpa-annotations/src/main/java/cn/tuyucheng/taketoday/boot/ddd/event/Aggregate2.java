@@ -12,28 +12,28 @@ import java.util.Collection;
 
 @Entity
 public class Aggregate2 {
-	@Transient
-	private final Collection<DomainEvent> domainEvents;
-	@Id
-	@GeneratedValue
-	private long id;
+   @Transient
+   private final Collection<DomainEvent> domainEvents;
+   @Id
+   @GeneratedValue
+   private long id;
 
-	public Aggregate2() {
-		domainEvents = new ArrayList<>();
-	}
+   public Aggregate2() {
+      domainEvents = new ArrayList<>();
+   }
 
-	@AfterDomainEventPublication
-	public void clearEvents() {
-		domainEvents.clear();
-	}
+   @AfterDomainEventPublication
+   public void clearEvents() {
+      domainEvents.clear();
+   }
 
-	public void domainOperation() {
-		// some domain operation
-		domainEvents.add(new DomainEvent());
-	}
+   public void domainOperation() {
+      // some domain operation
+      domainEvents.add(new DomainEvent());
+   }
 
-	@DomainEvents
-	public Collection<DomainEvent> events() {
-		return domainEvents;
-	}
+   @DomainEvents
+   public Collection<DomainEvent> events() {
+      return domainEvents;
+   }
 }

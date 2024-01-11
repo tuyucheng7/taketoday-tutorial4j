@@ -31,20 +31,20 @@ class AccountStatsUnitTest {
    private AccountStatsLogic accountStatsLogic;
 
    @AfterEach
-   public void afterEach() {
+   void afterEach() {
       accountRepository.deleteAll();
       permissionRepository.deleteAll();
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCount_returnsAppropriateCount() {
+   void givenAccountInTable_whenPerformCount_returnsAppropriateCount() {
       savePermissions();
       saveAccount();
       assertThat(accountStatsLogic.getAccountCount()).isEqualTo(1);
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByUsernameOrPermission_returnsAppropriateCount() {
+   void givenAccountInTable_whenPerformCountByUsernameOrPermission_returnsAppropriateCount() {
       savePermissions();
       Account account = saveAccount();
       assertThat(accountStatsLogic.getAccountCountByUsername(account.getUsername())).isEqualTo(1);
@@ -52,7 +52,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByPermissionAndCreatedOn_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountByPermissionAndCreatedOn_returnsAppropriateCount() throws ParseException {
       savePermissions();
       Account account = saveAccount();
       long count = accountStatsLogic.getAccountCountByPermissionAndCreatedOn(account.getPermission(), account.getCreatedOn());
@@ -60,7 +60,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountUsingCQ_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountUsingCQ_returnsAppropriateCount() throws ParseException {
       savePermissions();
       saveAccount();
       long count = accountStatsLogic.getAccountsUsingCQ();
@@ -68,7 +68,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByPermissionUsingCQ_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountByPermissionUsingCQ_returnsAppropriateCount() throws ParseException {
       savePermissions();
       Account account = saveAccount();
       long count = accountStatsLogic.getAccountsByPermissionUsingCQ(account.getPermission());
@@ -76,7 +76,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByPermissionAndCreatedOnUsingCQ_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountByPermissionAndCreatedOnUsingCQ_returnsAppropriateCount() throws ParseException {
       savePermissions();
       Account account = saveAccount();
       long count = accountStatsLogic.getAccountsByPermissionAndCreateOnUsingCQ(account.getPermission(), account.getCreatedOn());
@@ -84,7 +84,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountUsingJPQL_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountUsingJPQL_returnsAppropriateCount() throws ParseException {
       savePermissions();
       saveAccount();
       long count = accountStatsLogic.getAccountsUsingJPQL();
@@ -92,7 +92,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByPermissionUsingJPQL_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountByPermissionUsingJPQL_returnsAppropriateCount() throws ParseException {
       savePermissions();
       Account account = saveAccount();
       long count = accountStatsLogic.getAccountsByPermissionUsingJPQL(account.getPermission());
@@ -100,7 +100,7 @@ class AccountStatsUnitTest {
    }
 
    @Test
-   public void givenAccountInTable_whenPerformCountByPermissionAndCreatedOnUsingJPQL_returnsAppropriateCount() throws ParseException {
+   void givenAccountInTable_whenPerformCountByPermissionAndCreatedOnUsingJPQL_returnsAppropriateCount() throws ParseException {
       savePermissions();
       Account account = saveAccount();
       long count = accountStatsLogic.getAccountsByPermissionAndCreatedOnUsingJPQL(account.getPermission(), account.getCreatedOn());

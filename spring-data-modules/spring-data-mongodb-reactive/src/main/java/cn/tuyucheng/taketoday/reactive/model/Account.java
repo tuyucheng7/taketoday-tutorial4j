@@ -14,8 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Account {
 
-	@Id
-	private String id;
-	private String owner;
-	private Double value;
+   @Id
+   private String id;
+   private String owner;
+   private Double value;
 }

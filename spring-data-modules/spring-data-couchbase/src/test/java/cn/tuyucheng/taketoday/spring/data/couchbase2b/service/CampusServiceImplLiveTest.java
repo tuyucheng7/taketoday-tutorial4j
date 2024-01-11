@@ -4,7 +4,7 @@ import cn.tuyucheng.taketoday.spring.data.couchbase.model.Campus;
 import cn.tuyucheng.taketoday.spring.data.couchbase2b.MultiBucketLiveTest;
 import cn.tuyucheng.taketoday.spring.data.couchbase2b.repos.CampusRepository;
 import jakarta.annotation.PostConstruct;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
@@ -13,12 +13,12 @@ import org.springframework.data.geo.Point;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CampusServiceImplLiveTest extends MultiBucketLiveTest {
+class CampusServiceImplLiveTest extends MultiBucketLiveTest {
 
    @Autowired
    private CampusServiceImpl campusService;
@@ -58,7 +58,7 @@ public class CampusServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public final void givenNameHarvard_whenFindByName_thenReturnsHarvard() {
+   final void givenNameHarvard_whenFindByName_thenReturnsHarvard() {
       Set<Campus> campuses = campusService.findByName(Harvard.getName());
       assertNotNull(campuses);
       assertFalse(campuses.isEmpty());
@@ -67,14 +67,14 @@ public class CampusServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public final void givenHarvardId_whenFind_thenReturnsHarvard() {
+   final void givenHarvardId_whenFind_thenReturnsHarvard() {
       Optional<Campus> actual = campusService.find(Harvard.getId());
       assertTrue(actual.isPresent());
       assertEquals(Harvard, actual.get());
    }
 
    @Test
-   public final void whenFindAll_thenReturnsAll() {
+   final void whenFindAll_thenReturnsAll() {
       Set<Campus> campuses = campusService.findAll();
       assertTrue(campuses.contains(Brown));
       assertTrue(campuses.contains(Columbia));
@@ -87,7 +87,7 @@ public class CampusServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public final void whenFindByLocationNearBoston_thenResultContainsHarvard() {
+   final void whenFindByLocationNearBoston_thenResultContainsHarvard() {
       Set<Campus> campuses = campusService.findByLocationNear(Boston, new Distance(1, Metrics.NEUTRAL));
       assertFalse(campuses.isEmpty());
       assertTrue(campuses.contains(Harvard));
@@ -95,7 +95,7 @@ public class CampusServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public final void whenFindByLocationNearNewYorkCity_thenResultContainsColumbia() {
+   final void whenFindByLocationNearNewYorkCity_thenResultContainsColumbia() {
       Set<Campus> campuses = campusService.findByLocationNear(NewYorkCity, new Distance(1, Metrics.NEUTRAL));
       assertFalse(campuses.isEmpty());
       assertTrue(campuses.contains(Columbia));

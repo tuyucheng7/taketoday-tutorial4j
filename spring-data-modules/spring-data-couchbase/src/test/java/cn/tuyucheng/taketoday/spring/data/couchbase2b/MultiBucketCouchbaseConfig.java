@@ -21,16 +21,16 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 public class MultiBucketCouchbaseConfig extends AbstractCouchbaseConfiguration {
 
    public static final String NODE_LIST = "localhost";
-   public static final String DEFAULT_BUCKET_NAME = "baeldung";
-   public static final String DEFAULT_BUCKET_USERNAME = "baeldung";
-   public static final String DEFAULT_BUCKET_PASSWORD = "baeldung";
+   public static final String DEFAULT_BUCKET_NAME = "tuyucheng";
+   public static final String DEFAULT_BUCKET_USERNAME = "tuyucheng";
+   public static final String DEFAULT_BUCKET_PASSWORD = "tuyucheng";
 
    @Autowired
    private MappingCouchbaseConverter mappingCouchbaseConverter;
 
    @Bean
    public Bucket campusBucket() {
-      return couchbaseCluster(ClusterEnvironment.create()).bucket("baeldung2");
+      return couchbaseCluster(ClusterEnvironment.create()).bucket("tuyucheng2");
    }
 
    @Bean(name = "campusTemplate")

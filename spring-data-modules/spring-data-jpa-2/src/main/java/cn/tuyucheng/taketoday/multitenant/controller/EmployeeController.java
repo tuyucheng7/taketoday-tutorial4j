@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Transactional
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+   @Autowired
+   private EmployeeRepository employeeRepository;
 
-	@PostMapping(path = "/employee")
-	public ResponseEntity<?> createEmployee() {
-		Employee newEmployee = new Employee();
-		newEmployee.setName("Baeldung");
-		employeeRepository.save(newEmployee);
-		return ResponseEntity.ok(newEmployee);
-	}
+   @PostMapping(path = "/employee")
+   public ResponseEntity<?> createEmployee() {
+      Employee newEmployee = new Employee();
+      newEmployee.setName("Tuyucheng");
+      employeeRepository.save(newEmployee);
+      return ResponseEntity.ok(newEmployee);
+   }
 }

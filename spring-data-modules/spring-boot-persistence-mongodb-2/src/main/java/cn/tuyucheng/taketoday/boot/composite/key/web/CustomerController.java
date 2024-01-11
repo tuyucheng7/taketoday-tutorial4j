@@ -11,21 +11,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-    @Autowired
-    private CustomerService customerService;
+   @Autowired
+   private CustomerService customerService;
 
-    @GetMapping("/ticket")
-    public Optional<Ticket> getTicket(TicketId id) {
-        return customerService.find(id);
-    }
+   @GetMapping("/ticket")
+   public Optional<Ticket> getTicket(TicketId id) {
+      return customerService.find(id);
+   }
 
-    @PostMapping("/ticket")
-    public Ticket postTicket(@RequestBody Ticket ticket) {
-        return customerService.insert(ticket);
-    }
+   @PostMapping("/ticket")
+   public Ticket postTicket(@RequestBody Ticket ticket) {
+      return customerService.insert(ticket);
+   }
 
-    @PutMapping("/ticket")
-    public Ticket putTicket(@RequestBody Ticket ticket) {
-        return customerService.save(ticket);
-    }
+   @PutMapping("/ticket")
+   public Ticket putTicket(@RequestBody Ticket ticket) {
+      return customerService.save(ticket);
+   }
 }

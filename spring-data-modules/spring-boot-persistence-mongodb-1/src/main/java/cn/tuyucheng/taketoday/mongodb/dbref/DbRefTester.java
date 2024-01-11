@@ -11,14 +11,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DbRefTester implements ApplicationRunner {
 
-	private static final Logger logger = LoggerFactory.getLogger(DbRefTester.class);
+   private static final Logger logger = LoggerFactory.getLogger(DbRefTester.class);
 
-	@Autowired
-	private PersonRepository personRepository;
+   @Autowired
+   private PersonRepository personRepository;
 
-	@Override
-	public void run(ApplicationArguments args) throws Exception {
-		logger.info("{}", personRepository.findAll());
+   @Override
+   public void run(ApplicationArguments args) throws Exception {
+      logger.info("{}", personRepository.findAll());
 
-	}
+   }
 }
