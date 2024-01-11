@@ -9,5 +9,5 @@ import java.util.List;
 @NoRepositoryBean
 public interface ExtendedRepository<T, ID extends Serializable> extends JpaRepository<T, ID> {
 
-	List<T> findByAttributeContainsText(String attributeName, String text);
+   List<T> findByAttributeContainsText(String attributeName, String text);
 }

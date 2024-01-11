@@ -8,7 +8,7 @@ import java.util.Optional;
 @org.springframework.stereotype.Repository
 public interface ReadOnlyLocationRepository extends Repository<Location, Long> {
 
-	Optional<Location> findById(Long id);
+   Optional<Location> findById(Long id);
 
-	Location save(Location location);
+   Location save(Location location);
 }

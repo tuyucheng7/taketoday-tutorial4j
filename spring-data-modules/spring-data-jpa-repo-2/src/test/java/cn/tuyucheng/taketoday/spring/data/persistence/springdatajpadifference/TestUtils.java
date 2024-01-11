@@ -4,12 +4,12 @@ import cn.tuyucheng.taketoday.spring.data.persistence.springdatajpadifference.mo
 
 public class TestUtils {
 
-    public static Employee employee(String firstName, String lastname) {
-        Employee employee = new Employee();
-        employee.setFirstName(firstName);
-        employee.setLastName(lastname);
-        employee.setEmail(firstName + lastname + "@baeldung.com");
+   public static Employee employee(String firstName, String lastname) {
+      Employee employee = new Employee();
+      employee.setFirstName(firstName);
+      employee.setLastName(lastname);
+      employee.setEmail(firstName + lastname + "@tuyucheng.com");
 
-        return employee;
-    }
+      return employee;
+   }
 }

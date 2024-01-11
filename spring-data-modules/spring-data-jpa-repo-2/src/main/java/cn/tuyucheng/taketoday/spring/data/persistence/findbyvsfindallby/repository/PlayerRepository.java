@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Long> {
-    List<Player> findByScoreGreaterThan(Integer target);
+   List<Player> findByScoreGreaterThan(Integer target);
 
-    List<Player> findAllByScoreGreaterThan(Integer target);
+   List<Player> findAllByScoreGreaterThan(Integer target);
 
-    Optional<Player> findFirstByScoreGreaterThan(Integer target);
+   Optional<Player> findFirstByScoreGreaterThan(Integer target);
 }

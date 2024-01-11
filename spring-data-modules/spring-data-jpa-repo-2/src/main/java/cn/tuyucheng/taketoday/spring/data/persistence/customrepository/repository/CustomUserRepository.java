@@ -4,6 +4,5 @@ import cn.tuyucheng.taketoday.spring.data.persistence.customrepository.model.Use
 
 public interface CustomUserRepository {
 
-    User customFindMethod(Long id);
-
+   User customFindMethod(Long id);
 }

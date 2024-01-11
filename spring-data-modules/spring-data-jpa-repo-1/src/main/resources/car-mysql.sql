@@ -2,10 +2,10 @@ DROP TABLE IF EXISTS car;
 
 CREATE TABLE car
 (
-    id    int(10) NOT NULL AUTO_INCREMENT,
-    model varchar(50) NOT NULL,
-    year  int(4) NOT NULL,
-    PRIMARY KEY (id)
+   id    int(10) NOT NULL AUTO_INCREMENT,
+   model varchar(50) NOT NULL,
+   year  int(4) NOT NULL,
+   PRIMARY KEY (id)
 );
 
 INSERT INTO car (model, year)

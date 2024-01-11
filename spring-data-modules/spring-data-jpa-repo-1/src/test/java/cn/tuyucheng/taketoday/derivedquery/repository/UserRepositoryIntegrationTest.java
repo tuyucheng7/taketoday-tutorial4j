@@ -2,23 +2,23 @@ package cn.tuyucheng.taketoday.derivedquery.repository;
 
 import cn.tuyucheng.taketoday.derivedquery.QueryApplication;
 import cn.tuyucheng.taketoday.derivedquery.entity.User;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = QueryApplication.class)
-public class UserRepositoryIntegrationTest {
+class UserRepositoryIntegrationTest {
 
    private static final String USER_NAME_ADAM = "Adam";
    private static final String USER_NAME_EVE = "Eve";
@@ -27,8 +27,8 @@ public class UserRepositoryIntegrationTest {
    @Autowired
    private UserRepository userRepository;
 
-   @Before
-   public void setUp() {
+   @BeforeEach
+   void setUp() {
       User user1 = new User(USER_NAME_ADAM, 25, BIRTHDATE, true);
       User user2 = new User(USER_NAME_ADAM, 20, BIRTHDATE, false);
       User user3 = new User(USER_NAME_EVE, 20, BIRTHDATE, true);
@@ -37,111 +37,112 @@ public class UserRepositoryIntegrationTest {
       userRepository.saveAll(Arrays.asList(user1, user2, user3, user4));
    }
 
-   @After
-   public void tearDown() {
+   @AfterEach
+   void tearDown() {
       userRepository.deleteAll();
    }
 
    @Test
-   public void whenFindByName_thenReturnsCorrectResult() {
+   void whenFindByName_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByName(USER_NAME_ADAM).size());
    }
 
    @Test
-   public void whenFindByNameIsNull_thenReturnsCorrectResult() {
+   void whenFindByNameIsNull_thenReturnsCorrectResult() {
       assertEquals(1, userRepository.findByNameIsNull().size());
    }
 
    @Test
-   public void whenFindByNameNot_thenReturnsCorrectResult() {
+   void whenFindByNameNot_thenReturnsCorrectResult() {
       assertEquals(USER_NAME_EVE, userRepository.findByNameNot(USER_NAME_ADAM).get(0).getName());
    }
 
    @Test
-   public void whenFindByNameStartingWith_thenReturnsCorrectResult() {
+   void whenFindByNameStartingWith_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByNameStartingWith("A").size());
    }
 
    @Test
-   public void whenFindByNameEndingWith_thenReturnsCorrectResult() {
+   void whenFindByNameEndingWith_thenReturnsCorrectResult() {
       assertEquals(1, userRepository.findByNameEndingWith("e").size());
    }
 
    @Test
-   public void whenByNameContaining_thenReturnsCorrectResult() {
+   void whenByNameContaining_thenReturnsCorrectResult() {
       assertEquals(1, userRepository.findByNameContaining("v").size());
    }
 
    @Test
-   public void whenByNameLike_thenReturnsCorrectResult() {
+   void whenByNameLike_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByNameEndingWith("m").size());
    }
 
    @Test
-   public void whenByAgeLessThan_thenReturnsCorrectResult() {
+   void whenByAgeLessThan_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByAgeLessThan(25).size());
    }
 
    @Test
-   public void whenByAgeLessThanEqual_thenReturnsCorrectResult() {
+   void whenByAgeLessThanEqual_thenReturnsCorrectResult() {
       assertEquals(3, userRepository.findByAgeLessThanEqual(25).size());
    }
 
    @Test
-   public void whenByAgeGreaterThan_thenReturnsCorrectResult() {
+   void whenByAgeGreaterThan_thenReturnsCorrectResult() {
       assertEquals(1, userRepository.findByAgeGreaterThan(25).size());
    }
 
    @Test
-   public void whenByAgeGreaterThanEqual_thenReturnsCorrectResult() {
+   void whenByAgeGreaterThanEqual_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByAgeGreaterThanEqual(25).size());
    }
 
    @Test
-   public void whenByAgeBetween_thenReturnsCorrectResult() {
+   void whenByAgeBetween_thenReturnsCorrectResult() {
       assertEquals(4, userRepository.findByAgeBetween(20, 30).size());
    }
 
    @Test
-   public void whenByBirthDateAfter_thenReturnsCorrectResult() {
+   void whenByBirthDateAfter_thenReturnsCorrectResult() {
       final ZonedDateTime yesterday = BIRTHDATE.minusDays(1);
       assertEquals(4, userRepository.findByBirthDateAfter(yesterday).size());
    }
 
    @Test
-   public void whenByBirthDateBefore_thenReturnsCorrectResult() {
+   void whenByBirthDateBefore_thenReturnsCorrectResult() {
       final ZonedDateTime yesterday = BIRTHDATE.minusDays(1);
       assertEquals(0, userRepository.findByBirthDateBefore(yesterday).size());
    }
 
    @Test
-   public void whenByActiveTrue_thenReturnsCorrectResult() {
+   void whenByActiveTrue_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByActiveTrue().size());
    }
 
    @Test
-   public void whenByActiveFalse_thenReturnsCorrectResult() {
+   void whenByActiveFalse_thenReturnsCorrectResult() {
       assertEquals(2, userRepository.findByActiveFalse().size());
    }
 
+
    @Test
-   public void whenByAgeIn_thenReturnsCorrectResult() {
+   void whenByAgeIn_thenReturnsCorrectResult() {
       final List<Integer> ages = Arrays.asList(20, 25);
       assertEquals(3, userRepository.findByAgeIn(ages).size());
    }
 
    @Test
-   public void whenByNameOrAge() {
+   void whenByNameOrAge() {
       assertEquals(3, userRepository.findByNameOrAge(USER_NAME_ADAM, 20).size());
    }
 
    @Test
-   public void whenByNameOrAgeAndActive() {
+   void whenByNameOrAgeAndActive() {
       assertEquals(2, userRepository.findByNameOrAgeAndActive(USER_NAME_ADAM, 20, false).size());
    }
 
    @Test
-   public void whenByNameOrderByName() {
+   void whenByNameOrderByName() {
       assertEquals(2, userRepository.findByNameOrderByName(USER_NAME_ADAM).size());
    }
 }

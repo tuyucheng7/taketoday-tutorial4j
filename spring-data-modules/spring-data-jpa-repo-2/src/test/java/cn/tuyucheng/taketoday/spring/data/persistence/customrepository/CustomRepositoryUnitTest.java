@@ -11,17 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = CustomRepositoryApplication.class)
 class CustomRepositoryUnitTest {
 
-    @Autowired
-    private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-    @Test
-    void givenCustomRepository_whenInvokeCustomFindMethod_thenEntityIsFound() {
-        User user = new User();
-        user.setEmail("foo@gmail.com");
-        user.setName("userName");
+   @Test
+   void givenCustomRepository_whenInvokeCustomFindMethod_thenEntityIsFound() {
+      User user = new User();
+      user.setEmail("foo@gmail.com");
+      user.setName("userName");
 
-        User persistedUser = userRepository.save(user);
+      User persistedUser = userRepository.save(user);
 
-        assertEquals(persistedUser, userRepository.customFindMethod(user.getId()));
-    }
+      assertEquals(persistedUser, userRepository.customFindMethod(user.getId()));
+   }
 }
