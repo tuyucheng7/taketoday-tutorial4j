@@ -8,10 +8,11 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +24,15 @@ import java.util.List;
 @Immutable
 public class User {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
-	private String name;
+   private String name;
 
-	private String comment;
+   private String comment;
 
-	@OneToMany(mappedBy = "userId")
-	@Fetch(FetchMode.SUBSELECT)
-	private List<Document> docs = new ArrayList<>();
+   @OneToMany(mappedBy = "userId")
+   @Fetch(FetchMode.SUBSELECT)
+   private List<Document> docs = new ArrayList<>();
 }
