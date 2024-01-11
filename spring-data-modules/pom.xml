@@ -22,7 +22,7 @@
       <!--<module>spring-data-jpa-repo-3</module> &lt;!&ndash;build fails&ndash;&gt;-->
       <!--<module>spring-data-mongodb-2</module> &lt;!&ndash;fails on CI&ndash;&gt;-->
 
-      <module>spring-boot-jdbc</module>
+      <module>spring-boot-jdbc-1</module>
       <module>spring-boot-jdbc-2</module>
       <module>spring-boot-mybatis</module>
       <module>spring-boot-mysql</module>
