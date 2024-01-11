@@ -10,9 +10,9 @@ import java.util.stream.Stream;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-	Slice<Student> findAllByFirstName(String firstName, Pageable page);
+   Slice<Student> findAllByFirstName(String firstName, Pageable page);
 
-	Page<Student> findAllByLastName(String firstName, Pageable page);
+   Page<Student> findAllByLastName(String firstName, Pageable page);
 
-	Stream<Student> findAllByFirstName(String firstName);
+   Stream<Student> findAllByFirstName(String firstName);
 }

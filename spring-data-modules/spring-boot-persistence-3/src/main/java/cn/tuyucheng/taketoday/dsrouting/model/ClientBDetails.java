@@ -7,22 +7,22 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "client-b.datasource")
 public class ClientBDetails {
 
-	private String name;
-	private String script;
+   private String name;
+   private String script;
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public String getScript() {
-		return script;
-	}
+   public String getScript() {
+      return script;
+   }
 
-	public void setScript(String script) {
-		this.script = script;
-	}
+   public void setScript(String script) {
+      this.script = script;
+   }
 }
