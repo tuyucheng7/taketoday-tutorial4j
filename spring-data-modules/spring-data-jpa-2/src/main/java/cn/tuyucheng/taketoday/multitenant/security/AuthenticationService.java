@@ -2,10 +2,11 @@ package cn.tuyucheng.taketoday.multitenant.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.Collections;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class AuthenticationService {
       if (token != null) {
          String user = Jwts.parser()
                .setSigningKey(SIGNINGKEY)
-               .parseClaimsJws(token.replace(PREFIX, ""))
+               .build().parseClaimsJws(token.replace(PREFIX, ""))
                .getBody()
                .getSubject();
          if (user != null) {
@@ -46,10 +47,13 @@ public class AuthenticationService {
       if (token == null) {
          return null;
       }
-      return Jwts.parser()
+      String tenant = Jwts.parser()
             .setSigningKey(SIGNINGKEY)
-            .parseClaimsJws(token.replace(PREFIX, ""))
+            .build().parseClaimsJws(token.replace(PREFIX, ""))
             .getBody()
-            .getAudience();
+            .getAudience()
+            .iterator()
+            .next();
+      return tenant;
    }
 }
