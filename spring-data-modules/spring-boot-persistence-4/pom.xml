@@ -8,24 +8,12 @@
    <version>1.0.0</version>
    <name>spring-boot-persistence-4</name>
 
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.junit</groupId>
-            <artifactId>junit-bom</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring.boot.dependencies}</version>
-            <type>pom</type>
-            <scope>import</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
+   <parent>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
+      <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
+   </parent>
 
    <dependencies>
       <dependency>
@@ -54,9 +42,7 @@
    </build>
 
    <properties>
-      <spring.boot.dependencies>3.1.0</spring.boot.dependencies>
-      <junit-jupiter.version>5.9.2</junit-jupiter.version>
-      <maven.compiler.source>17</maven.compiler.source>
-      <maven.compiler.target>17</maven.compiler.target>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
    </properties>
 </project>
