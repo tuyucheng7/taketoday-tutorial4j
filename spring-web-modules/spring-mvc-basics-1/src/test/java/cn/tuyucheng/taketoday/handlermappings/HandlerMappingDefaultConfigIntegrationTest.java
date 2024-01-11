@@ -24,18 +24,18 @@ import cn.tuyucheng.taketoday.config.HandlerMappingDefaultConfig;
 @ContextConfiguration(classes = HandlerMappingDefaultConfig.class)
 public class HandlerMappingDefaultConfigIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext webAppContext;
-    private MockMvc mockMvc;
+   @Autowired
+   private WebApplicationContext webAppContext;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
-    }
+   @Before
+   public void setup() {
+      MockitoAnnotations.openMocks(this);
+      mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+   }
 
-    @Test
-    public void whenDefaultConfig_thenMappedOK() throws Exception {
-        mockMvc.perform(get("/welcome")).andExpect(status().isOk()).andExpect(view().name("bean-name-handler-mapping")).andDo(print());
-    }
+   @Test
+   public void whenDefaultConfig_thenMappedOK() throws Exception {
+      mockMvc.perform(get("/welcome")).andExpect(status().isOk()).andExpect(view().name("bean-name-handler-mapping")).andDo(print());
+   }
 }

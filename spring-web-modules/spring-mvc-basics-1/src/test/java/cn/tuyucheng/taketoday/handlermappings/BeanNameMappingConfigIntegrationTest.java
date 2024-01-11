@@ -18,24 +18,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = BeanNameUrlHandlerMappingConfig.class)
 public class BeanNameMappingConfigIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext webAppContext;
-    private MockMvc mockMvc;
+   @Autowired
+   private WebApplicationContext webAppContext;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
-    }
+   @Before
+   public void setup() {
+      MockitoAnnotations.openMocks(this);
+      mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+   }
 
-    @Test
-    public void whenBeanNameMapping_thenMappedOK() throws Exception {
-        mockMvc.perform(get("/beanNameUrl")).andExpect(status().isOk()).andExpect(view().name("welcome")).andDo(print());
-    }
+   @Test
+   public void whenBeanNameMapping_thenMappedOK() throws Exception {
+      mockMvc.perform(get("/beanNameUrl")).andExpect(status().isOk()).andExpect(view().name("welcome")).andDo(print());
+   }
 }
