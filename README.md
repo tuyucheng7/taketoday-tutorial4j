@@ -11,17 +11,13 @@ Taketoday Tutorial4j
 
 这个项目是**一个小型和重点教程的集合**，每个教程都涵盖了Java生态系统中一个明确定义的开发领域。当然，其中一个重点在于Spring框架、Spring Data、Spring Boot、Spring Cloud和Spring Security。除了Spring之外，这里的模块还涵盖了Java的许多方面。
 
-**项目博客**：[tu-yucheng.github.io](https://tu-yucheng.github.io/)。
+> **项目博客**：[tu-yucheng.github.io](https://tu-yucheng.github.io/)。
 
 ## 多版本JDK构建
 
 就目前而言，大多数模块都是基于JDK 21(JAVA_HOME)才能正确构建和运行。此外，还有一些模块基于JDK 8，我们通过Maven工具链来保证这些模块能够使用单独的JDK构建。
 
-首先，你需要同时下载这些版本的JDK。然后配置Maven工具链，在你用户目录下的.m2文件夹中创建一个toolchains.xml文件：
-
-<img src=".mvn/img.png" align="left">
-
-在该文件中添加以下内容(务必将每个工具链的<jdkHome\>指向你本地该JDK版本的位置)：
+首先，你需要同时下载这些版本的JDK，然后配置Maven工具链。在你用户目录下的.m2文件夹中创建一个toolchains.xml文件，在该文件中添加以下内容(务必将每个工具链的<jdkHome\>指向你本地该JDK版本的位置)：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -99,8 +95,6 @@ Taketoday Tutorial4j
 该仓库包含大量模块，当你使用单个模块时，无需导入所有模块(或构建所有模块) - 你只需在Eclipse或IntelliJ中导入该特定模块即可。
 
 当你将项目导入到Intellij IDEA中时，默认不会加载任何子模块。你需要在IDE中转到Maven -> Profiles，然后选择你想要构建的子模块所属的profile，最后刷新等待IDE索引构建完成：
-
-<img src=".mvn/img_1.png">
 
 ## 运行测试
 
