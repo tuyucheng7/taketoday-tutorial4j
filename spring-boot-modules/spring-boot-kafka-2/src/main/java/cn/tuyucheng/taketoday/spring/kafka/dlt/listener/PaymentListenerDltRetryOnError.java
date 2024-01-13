@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.spring.kafka.dlt.listener;
 
-import cn.tuyucheng.taketoday.spring.kafka.dlt.Payment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.DltHandler;
@@ -11,12 +10,14 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
+import cn.tuyucheng.taketoday.spring.kafka.dlt.Payment;
+
 @Service
 public class PaymentListenerDltRetryOnError {
    private final Logger log = LoggerFactory.getLogger(PaymentListenerDltRetryOnError.class);
 
    @RetryableTopic(attempts = "1", kafkaTemplate = "retryableTopicKafkaTemplate", dltStrategy = DltStrategy.ALWAYS_RETRY_ON_ERROR)
-   @KafkaListener(topics = {"payments-retry-on-error-dlt"}, groupId = "payments")
+   @KafkaListener(topics = {"payments-retry-on-error-dlt"}, groupId = "payments", containerFactory = "containerFactory")
    public void handlePayment(Payment payment, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
       log.info("Event on main topic={}, payload={}", topic, payment);
    }
