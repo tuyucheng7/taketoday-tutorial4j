@@ -4,6 +4,7 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 public class CountingTask extends RecursiveTask<Integer> {
+
    private final TreeNode node;
 
    CountingTask(TreeNode node) {
@@ -17,4 +18,5 @@ public class CountingTask extends RecursiveTask<Integer> {
             .mapToInt(ForkJoinTask::join)
             .sum();
    }
+
 }

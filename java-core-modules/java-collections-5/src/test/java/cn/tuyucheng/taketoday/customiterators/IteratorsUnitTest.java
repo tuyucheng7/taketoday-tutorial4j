@@ -1,20 +1,19 @@
 package cn.tuyucheng.taketoday.customiterators;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IteratorsUnitTest {
-
    @Test
    public void givenListOfStrings_whenIteratedWithDefaultIterator() {
       List<String> listOfStrings = List.of("hello", "world", "this", "is", "a", "test");
       Iterator<String> iterator = listOfStrings.iterator();
-      Assert.assertTrue(iterator.hasNext());
+      Assertions.assertTrue(iterator.hasNext());
       assertEquals(iterator.next(), "hello");
    }
 
@@ -50,4 +49,5 @@ public class IteratorsUnitTest {
       Movie movie4 = new Movie("Extraction", "Hargrave", 5);
       return List.of(movie1, movie2, movie3, movie4);
    }
+
 }

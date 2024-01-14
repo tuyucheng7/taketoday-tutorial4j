@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.scopedvalues.scoped.inheriting;
 import cn.tuyucheng.taketoday.scopedvalues.data.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jdk.incubator.concurrent.ScopedValue;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,4 +36,5 @@ public class Server {
       return user.name().equals(request.getParameter("user_name"))
             && user.password().equals(request.getParameter("user_pw"));
    }
+
 }

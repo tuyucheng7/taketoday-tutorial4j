@@ -58,4 +58,5 @@ public class ListAndSetAddBenchmark {
       public List<Integer> arrayList = new ArrayList<>();
       public Set<Integer> hashSet = new HashSet<>();
    }
+
 }

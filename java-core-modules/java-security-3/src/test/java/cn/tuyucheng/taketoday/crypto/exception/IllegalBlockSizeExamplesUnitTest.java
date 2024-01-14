@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.crypto.exception;
 
 import cn.tuyucheng.taketoday.crypto.utils.CryptoUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -19,7 +19,7 @@ public class IllegalBlockSizeExamplesUnitTest {
    private byte[] plainTextBytes;
    private String plainText;
 
-   @Before
+   @BeforeEach
    public void before() throws GeneralSecurityException {
       key = CryptoUtils.getFixedKey();
 
@@ -31,14 +31,14 @@ public class IllegalBlockSizeExamplesUnitTest {
    public void whenEncryptingPlainTextWithoutPadding_thenIllegalBlockSizeExceptionIsThrown()
          throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
          BadPaddingException {
-      Assert.assertThrows(IllegalBlockSizeException.class,
+      Assertions.assertThrows(IllegalBlockSizeException.class,
             () -> IllegalBlockSizeExamples.encryptWithoutPadding(key, plainTextBytes));
    }
 
    @Test
    public void whenDecryptingCipherTextThatWasNotEncrypted_thenIllegalBlockSizeExceptionIsThrown()
          throws GeneralSecurityException {
-      Assert.assertThrows(IllegalBlockSizeException.class,
+      Assertions.assertThrows(IllegalBlockSizeException.class,
             () -> IllegalBlockSizeExamples.decryptTextThatIsNotEncrypted(key));
    }
 
@@ -49,6 +49,6 @@ public class IllegalBlockSizeExamplesUnitTest {
 
       byte[] decryptedBytes = CryptoUtils.decryptWithPadding(key, cipherTextBytes);
 
-      Assert.assertEquals(plainText, new String(decryptedBytes));
+      Assertions.assertEquals(plainText, new String(decryptedBytes));
    }
 }

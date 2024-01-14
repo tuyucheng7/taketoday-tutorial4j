@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.nestedclass;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 abstract class SimpleAbstractClass {
    abstract void run();

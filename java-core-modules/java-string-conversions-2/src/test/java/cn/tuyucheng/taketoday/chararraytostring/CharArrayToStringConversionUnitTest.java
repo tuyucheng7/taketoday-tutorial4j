@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.chararraytostring;
 
 import com.google.common.base.Joiner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class CharArrayToStringConversionUnitTest {
 

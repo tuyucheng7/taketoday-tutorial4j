@@ -1,20 +1,20 @@
 package cn.tuyucheng.taketoday.filepath;
 
-import org.junit.AfterClass;
 import org.junit.Assume;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JavaFilePathUnitTest {
 
    private static String userDir;
 
-   @BeforeClass
+   @BeforeAll
    public static void createFilesAndFolders() throws IOException {
       userDir = System.getProperty("user.dir");
 
@@ -75,7 +75,7 @@ public class JavaFilePathUnitTest {
       new File("*").getCanonicalPath();
    }
 
-   @AfterClass
+   @AfterAll
    public static void deleteFilesAndFolders() {
       File tuyuchengDir = new File(userDir + "/tuyucheng");
       deleteRecursively(tuyuchengDir);

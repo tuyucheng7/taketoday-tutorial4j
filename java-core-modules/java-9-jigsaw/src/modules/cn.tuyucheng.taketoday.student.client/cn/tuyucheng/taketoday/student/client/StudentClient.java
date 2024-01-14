@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.student.client;
 
-import cn.tuyucheng.taketoday.student.model.Student;
 import cn.tuyucheng.taketoday.student.service.StudentService;
 import cn.tuyucheng.taketoday.student.service.dbimpl.StudentDbService;
+import cn.tuyucheng.taketoday.student.model.Student;
 
 public class StudentClient {
 

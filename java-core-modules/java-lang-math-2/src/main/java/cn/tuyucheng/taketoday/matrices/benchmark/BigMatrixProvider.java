@@ -7,6 +7,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.infra.BenchmarkParams;
 
 import java.util.Random;
+import java.util.stream.DoubleStream;
 
 @State(Scope.Benchmark)
 public class BigMatrixProvider {

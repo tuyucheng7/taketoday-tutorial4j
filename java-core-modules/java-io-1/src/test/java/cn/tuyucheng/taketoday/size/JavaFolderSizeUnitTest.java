@@ -1,6 +1,8 @@
 package cn.tuyucheng.taketoday.size;
 
-import static org.junit.Assert.assertEquals;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,15 +16,13 @@ import java.text.DecimalFormat;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.StreamSupport;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JavaFolderSizeUnitTest {
    private final long EXPECTED_SIZE = 24;
    private String path;
 
-   @Before
+   @BeforeEach
    public void init() {
       final String separator = File.separator;
       path = String.format("src%stest%sresources%ssize", separator, separator, separator);

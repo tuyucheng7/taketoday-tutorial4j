@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.userinput;
 
 
-import cn.tuyucheng.taketoday.userinput.UserInputHandler;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

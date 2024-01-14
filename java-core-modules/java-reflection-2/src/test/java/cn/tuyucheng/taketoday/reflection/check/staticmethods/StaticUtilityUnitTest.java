@@ -25,4 +25,5 @@ class StaticUtilityUnitTest {
             .collect(Collectors.toList());
       Assertions.assertEquals(3, methodList.size());
    }
+
 }

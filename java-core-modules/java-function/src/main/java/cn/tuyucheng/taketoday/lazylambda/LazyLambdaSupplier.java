@@ -17,4 +17,5 @@ public class LazyLambdaSupplier<T> extends LambdaSupplier<T> {
       }
       return data = expensiveData.get();
    }
+
 }

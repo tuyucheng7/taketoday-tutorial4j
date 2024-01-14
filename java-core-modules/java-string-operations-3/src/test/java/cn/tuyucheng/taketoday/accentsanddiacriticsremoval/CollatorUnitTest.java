@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.accentsanddiacriticsremoval;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Setup;
 
 import java.text.Collator;
 
 import static java.lang.Character.toChars;
 import static java.lang.String.valueOf;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CollatorUnitTest {
 

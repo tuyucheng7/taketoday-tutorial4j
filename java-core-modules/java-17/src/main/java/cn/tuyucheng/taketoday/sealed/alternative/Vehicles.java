@@ -13,6 +13,7 @@ public class Vehicles {
       public String getRegistrationNumber() {
          return registrationNumber;
       }
+
    }
 
    public static final class Car extends Vehicle {
@@ -27,6 +28,7 @@ public class Vehicles {
       public int getNumberOfSeats() {
          return numberOfSeats;
       }
+
    }
 
    public static final class Truck extends Vehicle {
@@ -41,5 +43,7 @@ public class Vehicles {
       public int getLoadCapacity() {
          return loadCapacity;
       }
+
    }
+
 }

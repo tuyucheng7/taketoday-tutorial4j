@@ -50,4 +50,5 @@ public class RectangleUnitTest {
       Rectangle rectangle2 = new Rectangle(new Point(5, 0), new Point(17, 14));
       assertFalse(rectangle1.isOverlappingWithoutBorders(rectangle2));
    }
+
 }

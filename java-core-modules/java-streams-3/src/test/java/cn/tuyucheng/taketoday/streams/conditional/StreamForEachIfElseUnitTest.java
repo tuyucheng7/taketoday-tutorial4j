@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.streams.conditional;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,9 +16,9 @@ public class StreamForEachIfElseUnitTest {
       ints.stream()
             .forEach(i -> {
                if (i.intValue() % 2 == 0) {
-                  Assert.assertTrue(i.intValue() + " is not even", i.intValue() % 2 == 0);
+                  Assertions.assertTrue(i.intValue() + " is not even", i.intValue() % 2 == 0);
                } else {
-                  Assert.assertTrue(i.intValue() + " is not odd", i.intValue() % 2 != 0);
+                  Assertions.assertTrue(i.intValue() + " is not odd", i.intValue() % 2 != 0);
                }
             });
 
@@ -33,8 +33,8 @@ public class StreamForEachIfElseUnitTest {
       Stream<Integer> oddIntegers = ints.stream()
             .filter(i -> i.intValue() % 2 != 0);
 
-      evenIntegers.forEach(i -> Assert.assertTrue(i.intValue() + " is not even", i.intValue() % 2 == 0));
-      oddIntegers.forEach(i -> Assert.assertTrue(i.intValue() + " is not odd", i.intValue() % 2 != 0));
+      evenIntegers.forEach(i -> Assertions.assertTrue(i.intValue() + " is not even", i.intValue() % 2 == 0));
+      oddIntegers.forEach(i -> Assertions.assertTrue(i.intValue() + " is not odd", i.intValue() % 2 != 0));
 
    }
 

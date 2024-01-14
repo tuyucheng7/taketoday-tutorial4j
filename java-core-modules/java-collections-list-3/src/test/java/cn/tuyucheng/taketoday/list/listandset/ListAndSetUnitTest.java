@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.list.listandset;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListAndSetUnitTest {
 
@@ -43,6 +43,6 @@ public class ListAndSetUnitTest {
       set2.add(2);
       set2.add(3);
       set2.add(4);
-      Assert.assertArrayEquals(set1.toArray(), set2.toArray());
+      Assertions.assertArrayEquals(set1.toArray(), set2.toArray());
    }
 }

@@ -12,8 +12,9 @@ import java.util.concurrent.locks.StampedLock;
 import static java.lang.Thread.sleep;
 
 public class StampedLockDemo {
-   private final Map<String, String> map = new HashMap<>();
-   private final Logger logger = LoggerFactory.getLogger(StampedLockDemo.class);
+   private Map<String, String> map = new HashMap<>();
+   private Logger logger = LoggerFactory.getLogger(StampedLockDemo.class);
+
    private final StampedLock lock = new StampedLock();
 
    public void put(String key, String value) throws InterruptedException {
@@ -38,7 +39,9 @@ public class StampedLockDemo {
       } finally {
          lock.unlockRead(stamp);
          logger.info(Thread.currentThread().getName() + " unlocked the read lock with stamp " + stamp);
+
       }
+
    }
 
    private String readWithOptimisticLock(String key) throws InterruptedException {
@@ -66,24 +69,27 @@ public class StampedLockDemo {
       StampedLockDemo object = new StampedLockDemo();
 
       Runnable writeTask = () -> {
+
          try {
             object.put("key1", "value1");
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       };
       Runnable readTask = () -> {
+
          try {
             object.get("key1");
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       };
       Runnable readOptimisticTask = () -> {
+
          try {
             object.readWithOptimisticLock("key1");
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       };
       service.submit(writeTask);
@@ -92,5 +98,7 @@ public class StampedLockDemo {
       service.submit(readOptimisticTask);
 
       service.shutdown();
+
    }
+
 }

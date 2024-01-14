@@ -4,15 +4,24 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.function.Consumer;
 
-class Java8ForEachUnitTest {
+public class Java8ForEachUnitTest {
 
    private static final Logger LOG = LoggerFactory.getLogger(Java8ForEachUnitTest.class);
 
    @Test
-   void compareForEachMethods_thenPrintResults() {
+   public void compareForEachMethods_thenPrintResults() {
+
       List<String> names = new ArrayList<>();
       names.add("Larry");
       names.add("Steve");
@@ -27,13 +36,17 @@ class Java8ForEachUnitTest {
       }
 
       // Java 8 - forEach
-      names.forEach(System.out::println);
+      names.forEach(name -> {
+         System.out.println(name);
+      });
 
       LOG.debug("--- Print Consumer ---");
       Consumer<String> printConsumer = new Consumer<String>() {
          public void accept(String name) {
             System.out.println(name);
          }
+
+         ;
       };
 
       names.forEach(printConsumer);
@@ -56,38 +69,39 @@ class Java8ForEachUnitTest {
    }
 
    @Test
-   void givenList_thenIterateAndPrintResults() {
+   public void givenList_thenIterateAndPrintResults() {
       List<String> names = Arrays.asList("Larry", "Steve", "James");
 
       names.forEach(System.out::println);
    }
 
    @Test
-   void givenSet_thenIterateAndPrintResults() {
+   public void givenSet_thenIterateAndPrintResults() {
       Set<String> uniqueNames = new HashSet<>(Arrays.asList("Larry", "Steve", "James"));
 
       uniqueNames.forEach(System.out::println);
    }
 
    @Test
-   void givenQueue_thenIterateAndPrintResults() {
+   public void givenQueue_thenIterateAndPrintResults() {
       Queue<String> namesQueue = new ArrayDeque<>(Arrays.asList("Larry", "Steve", "James"));
 
       namesQueue.forEach(System.out::println);
    }
 
    @Test
-   void givenMap_thenIterateAndPrintResults() {
+   public void givenMap_thenIterateAndPrintResults() {
       Map<Integer, String> namesMap = new HashMap<>();
       namesMap.put(1, "Larry");
       namesMap.put(2, "Steve");
       namesMap.put(3, "James");
 
-      namesMap.forEach((key, value) -> System.out.println(key + " " + value));
+      namesMap.entrySet()
+            .forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
    }
 
    @Test
-   void givenMap_whenUsingBiConsumer_thenIterateAndPrintResults2() {
+   public void givenMap_whenUsingBiConsumer_thenIterateAndPrintResults2() {
       Map<Integer, String> namesMap = new HashMap<>();
       namesMap.put(1, "Larry");
       namesMap.put(2, "Steve");
@@ -95,4 +109,5 @@ class Java8ForEachUnitTest {
 
       namesMap.forEach((key, value) -> System.out.println(key + " " + value));
    }
+
 }

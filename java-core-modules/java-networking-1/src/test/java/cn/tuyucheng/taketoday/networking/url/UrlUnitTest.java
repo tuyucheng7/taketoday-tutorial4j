@@ -1,8 +1,11 @@
 package cn.tuyucheng.taketoday.networking.url;
 
-import static java.util.stream.Collectors.toList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import com.google.common.collect.ImmutableMap;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,105 +16,108 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.message.BasicNameValuePair;
-import org.junit.Test;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import com.google.common.collect.ImmutableMap;
+import static java.util.stream.Collectors.toList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UrlUnitTest {
 
    @Test
-   public void givenUrl_whenCanIdentifyProtocol_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com");
+   public void givenUrl_whenCanIdentifyProtocol_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com").toURL();
       assertEquals("http", url.getProtocol());
    }
 
    @Test
-   public void givenUrl_whenCanGetHost_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com");
+   public void givenUrl_whenCanGetHost_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com").toURL();
       assertEquals("tuyucheng.com", url.getHost());
    }
 
    @Test
-   public void givenUrl_whenCanGetFileName_thenCorrect2() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com/articles?topic=java&version=8");
+   public void givenUrl_whenCanGetFileName_thenCorrect2() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com/articles?topic=java&version=8").toURL();
       assertEquals("/articles?topic=java&version=8", url.getFile());
    }
 
    @Test
-   public void givenUrl_whenCanGetFileName_thenCorrect1() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com/guidelines.txt");
+   public void givenUrl_whenCanGetFileName_thenCorrect1() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com/guidelines.txt").toURL();
       assertEquals("/guidelines.txt", url.getFile());
    }
 
    @Test
-   public void givenUrl_whenCanGetPathParams_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com/articles?topic=java&version=8");
+   public void givenUrl_whenCanGetPathParams_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com/articles?topic=java&version=8").toURL();
       assertEquals("/articles", url.getPath());
    }
 
    @Test
-   public void givenUrl_whenCanGetQueryParams_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com/articles?topic=java");
-      assertEquals("topic=java", url.getQuery());
+   public void givenUrl_whenCanGetQueryParams_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com/articles?topic=java&amp;version=8").toURL();
+      assertEquals("topic=java&amp;version=8", url.getQuery());
    }
 
    @Test
-   public void givenUrl_whenGetsDefaultPort_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com");
+   public void givenUrl_whenGetsDefaultPort_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com").toURL();
       assertEquals(-1, url.getPort());
       assertEquals(80, url.getDefaultPort());
    }
 
    @Test
-   public void givenUrl_whenGetsPort_thenCorrect() throws MalformedURLException {
-      final URL url = new URL("http://tuyucheng.com:8090");
+   public void givenUrl_whenGetsPort_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URL url = new URI("http://tuyucheng.com:8090").toURL();
       assertEquals(8090, url.getPort());
       assertEquals(80, url.getDefaultPort());
    }
 
    @Test
-   public void givenBaseUrl_whenCreatesRelativeUrl_thenCorrect() throws MalformedURLException {
-      final URL baseUrl = new URL("http://tuyucheng.com");
-      final URL relativeUrl = new URL(baseUrl, "a-guide-to-java-sockets");
-      assertEquals("http://tuyucheng.com/a-guide-to-java-sockets", relativeUrl.toString());
+   public void givenHomeUrlAndFullUrl_whenRelativize_thenCorrect() throws MalformedURLException, URISyntaxException {
+      final URI homeUri = new URI("http://tuyucheng.com");
+      final URI fullUri = new URI("http://tuyucheng.com" + "/a-guide-to-java-sockets");
+      final URI relativeUri = homeUri.relativize(fullUri);
+      assertEquals("a-guide-to-java-sockets", relativeUri.toString());
    }
 
    @Test
-   public void givenAbsoluteUrl_whenIgnoresBaseUrl_thenCorrect() throws MalformedURLException {
-      final URL baseUrl = new URL("http://tuyucheng.com");
-      final URL relativeUrl = new URL(baseUrl, "http://tuyucheng.com/a-guide-to-java-sockets");
-      assertEquals("http://tuyucheng.com/a-guide-to-java-sockets", relativeUrl.toString());
-   }
-
-   @Test
-   public void givenUrlComponents_whenConstructsCompleteUrl_thenCorrect() throws MalformedURLException {
+   public void givenUrlComponents_whenConstructsCompleteUrl_thenCorrect() throws MalformedURLException, URISyntaxException {
       final String protocol = "http";
       final String host = "tuyucheng.com";
       final String file = "/guidelines.txt";
-      final URL url = new URL(protocol, host, file);
-      assertEquals("http://tuyucheng.com/guidelines.txt", url.toString());
+      final String fragment = "myImage";
+      final URL url = new URI(protocol, host, file, fragment).toURL();
+      assertEquals("http://tuyucheng.com/guidelines.txt#myImage", url.toString());
    }
 
    @Test
-   public void givenUrlComponents_whenConstructsCompleteUrl_thenCorrect2() throws MalformedURLException {
+   public void givenUrlComponents_whenConstructsCompleteUrl_thenCorrect2() throws MalformedURLException, URISyntaxException {
       final String protocol = "http";
+      final String username = "admin";
       final String host = "tuyucheng.com";
-      final String file = "/articles?topic=java&version=8";
-      final URL url = new URL(protocol, host, file);
-      assertEquals("http://tuyucheng.com/articles?topic=java&version=8", url.toString());
+      final String file = "/articles";
+      final String query = "topic=java&version=8";
+      final String fragment = "myImage";
+      final URL url = new URI(protocol, username, host, -1, file, query, fragment).toURL();
+      assertEquals("http://admin@tuyucheng.com/articles?topic=java&version=8#myImage", url.toString());
    }
 
    @Test
-   public void givenUrlComponentsWithPort_whenConstructsCompleteUrl_thenCorrect() throws MalformedURLException {
+   public void givenRelativeUrl_whenCreatesRelativeUrl_thenThrows() throws URISyntaxException, MalformedURLException {
+      final URI uri = new URI("/a-guide-to-java-sockets");
+      Assertions.assertThrows(IllegalArgumentException.class, () -> uri.toURL());
+   }
+
+   @Test
+   public void givenUrlComponentsWithPort_whenConstructsCompleteUrl_thenCorrect() throws MalformedURLException, URISyntaxException {
       final String protocol = "http";
+      final String username = "admin";
       final String host = "tuyucheng.com";
       final int port = 9000;
       final String file = "/guidelines.txt";
-      final URL url = new URL(protocol, host, port, file);
-      assertEquals("http://tuyucheng.com:9000/guidelines.txt", url.toString());
+      final String fragment = "myImage";
+      final URL url = new URI(protocol, username, host, port, file, null, fragment).toURL();
+      assertEquals("http://admin@tuyucheng.com:9000/guidelines.txt#myImage", url.toString());
    }
 
    @Test
@@ -120,7 +126,8 @@ public class UrlUnitTest {
       uriBuilder.setPort(9090);
       uriBuilder.addParameter("topic", "java");
       uriBuilder.addParameter("version", "8");
-      URL url = uriBuilder.build().toURL();
+      URL url = uriBuilder.build()
+            .toURL();
       assertEquals("http://tuyucheng.com:9090/articles?topic=java&version=8", url.toString());
    }
 
@@ -134,7 +141,8 @@ public class UrlUnitTest {
             .map(entry -> new BasicNameValuePair(entry.getKey(), entry.getValue()))
             .collect(toList()));
 
-      URL url = uriBuilder.build().toURL();
+      URL url = uriBuilder.build()
+            .toURL();
       assertEquals("http://tuyucheng.com:9090/articles?topic=java&version=8", url.toString());
    }
 
@@ -173,4 +181,5 @@ public class UrlUnitTest {
       // Adapt the finalPath value to match your own path
       // assertEquals(finalPath, url.toString());
    }
+
 }

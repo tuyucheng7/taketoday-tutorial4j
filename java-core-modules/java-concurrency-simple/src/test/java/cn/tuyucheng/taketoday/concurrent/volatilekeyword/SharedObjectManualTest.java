@@ -2,15 +2,15 @@ package cn.tuyucheng.taketoday.concurrent.volatilekeyword;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SharedObjectManualTest {
+public class SharedObjectManualTest {
 
    @Test
-   void whenOneThreadWrites_thenVolatileReadsFromMainMemory() throws InterruptedException {
+   public void whenOneThreadWrites_thenVolatileReadsFromMainMemory() throws InterruptedException {
       SharedObject sharedObject = new SharedObject();
 
-      Thread writer = new Thread(sharedObject::incrementCount);
+      Thread writer = new Thread(() -> sharedObject.incrementCount());
       writer.start();
       Thread.sleep(100);
 
@@ -29,13 +29,13 @@ class SharedObjectManualTest {
    }
 
    @Test
-   void whenTwoThreadWrites_thenVolatileReadsFromMainMemory() throws InterruptedException {
+   public void whenTwoThreadWrites_thenVolatileReadsFromMainMemory() throws InterruptedException {
       SharedObject sharedObject = new SharedObject();
-      Thread writerOne = new Thread(sharedObject::incrementCount);
+      Thread writerOne = new Thread(() -> sharedObject.incrementCount());
       writerOne.start();
       Thread.sleep(100);
 
-      Thread writerTwo = new Thread(sharedObject::incrementCount);
+      Thread writerTwo = new Thread(() -> sharedObject.incrementCount());
       writerTwo.start();
       Thread.sleep(100);
 
@@ -50,5 +50,6 @@ class SharedObjectManualTest {
          assertEquals(2, valueReadByThread3);
       });
       readerTwo.start();
+
    }
 }

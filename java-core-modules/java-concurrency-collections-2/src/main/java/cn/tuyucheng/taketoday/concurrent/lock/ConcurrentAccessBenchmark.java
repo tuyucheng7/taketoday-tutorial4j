@@ -28,27 +28,27 @@ public class ConcurrentAccessBenchmark {
    @BenchmarkMode(Mode.Throughput)
    @OutputTimeUnit(TimeUnit.MILLISECONDS)
    public Map<String, String> singleLockHashMap() throws InterruptedException {
-      return singleLock.doWork(new HashMap<>(), TASKS, SLOTS);
+      return singleLock.doWork(new HashMap<String, String>(), TASKS, SLOTS);
    }
 
    @Benchmark
    @BenchmarkMode(Mode.Throughput)
    @OutputTimeUnit(TimeUnit.MILLISECONDS)
    public Map<String, String> stripedLockHashMap() throws InterruptedException {
-      return stripedLock.doWork(new HashMap<>(), TASKS, SLOTS);
+      return stripedLock.doWork(new HashMap<String, String>(), TASKS, SLOTS);
    }
 
    @Benchmark
    @BenchmarkMode(Mode.Throughput)
    @OutputTimeUnit(TimeUnit.MILLISECONDS)
    public Map<String, String> singleLockConcurrentHashMap() throws InterruptedException {
-      return singleLock.doWork(new ConcurrentHashMap<>(), TASKS, SLOTS);
+      return singleLock.doWork(new ConcurrentHashMap<String, String>(), TASKS, SLOTS);
    }
 
    @Benchmark
    @BenchmarkMode(Mode.Throughput)
    @OutputTimeUnit(TimeUnit.MILLISECONDS)
    public Map<String, String> stripedLockConcurrentHashMap() throws InterruptedException {
-      return stripedLock.doWork(new ConcurrentHashMap<>(), TASKS, SLOTS);
+      return stripedLock.doWork(new ConcurrentHashMap<String, String>(), TASKS, SLOTS);
    }
 }

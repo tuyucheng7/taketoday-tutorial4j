@@ -1,19 +1,15 @@
-package cn.tuyucheng.taketoday.writehashmaptocsvfile;
+package cn.tuyucheng.taketoday.map.writehashmaptocsvfile;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WriteHashmaptoCVSFileUnitTest {
@@ -29,6 +25,7 @@ public class WriteHashmaptoCVSFileUnitTest {
 
    @Test
    public void givenEmployeeData_whenWriteToCSVUsingFileWriter_thenCSVFileIsCreated() {
+
       try (FileWriter csvWriter = new FileWriter("employee_data.csv")) {
          // Write header row
          csvWriter.append("Name,Title,Department,Salary\n");
@@ -48,6 +45,7 @@ public class WriteHashmaptoCVSFileUnitTest {
 
    @Test
    public void givenCSVFile_whenWriteToCSVUsingApacheCommons_thenContentsMatchExpected() {
+
       try (CSVPrinter csvPrinter = new CSVPrinter(new FileWriter("employee_data2.csv"), CSVFormat.DEFAULT)) {
          // Write header row
          csvPrinter.printRecord("Name", "Title", "Department", "Salary");

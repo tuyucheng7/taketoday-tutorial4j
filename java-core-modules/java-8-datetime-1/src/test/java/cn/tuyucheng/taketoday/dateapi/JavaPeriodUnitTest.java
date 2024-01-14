@@ -1,19 +1,20 @@
 package cn.tuyucheng.taketoday.dateapi;
 
-import org.apache.log4j.Logger;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class JavaPeriodUnitTest {
 
-   private static final Logger LOG = Logger.getLogger(JavaPeriodUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(JavaPeriodUnitTest.class);
 
    @Test
    public void givenADatePlus5Days_whenRequestingPeriod_thenExpectFive() {

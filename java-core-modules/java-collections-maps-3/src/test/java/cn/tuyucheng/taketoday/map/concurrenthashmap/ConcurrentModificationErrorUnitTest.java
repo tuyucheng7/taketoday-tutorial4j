@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.map.concurrenthashmap;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
@@ -65,6 +65,6 @@ public class ConcurrentModificationErrorUnitTest {
          iterator.next();
       }
 
-      Assert.assertEquals(3, map.size());
+      Assertions.assertEquals(3, map.size());
    }
 }

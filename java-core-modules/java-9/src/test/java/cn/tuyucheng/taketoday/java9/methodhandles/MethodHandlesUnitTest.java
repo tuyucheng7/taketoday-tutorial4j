@@ -11,16 +11,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class MethodHandlesUnitTest {
+/**
+ * Test case for the {@link MethodHandles} API
+ */
+public class MethodHandlesUnitTest {
 
    @Test
-   void givenConcatMethodHandle_whenInvoked_thenCorrectlyConcatenated() throws Throwable {
+   public void givenConcatMethodHandle_whenInvoked_thenCorrectlyConcatenated() throws Throwable {
 
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(String.class, String.class);
@@ -32,7 +34,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenAsListMethodHandle_whenInvokingWithArguments_thenCorrectlyInvoked() throws Throwable {
+   public void givenAsListMethodHandle_whenInvokingWithArguments_thenCorrectlyInvoked() throws Throwable {
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(List.class, Object[].class);
       MethodHandle asListMH = publicLookup.findStatic(Arrays.class, "asList", mt);
@@ -43,7 +45,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenConstructorMethodHandle_whenInvoked_thenObjectCreatedCorrectly() throws Throwable {
+   public void givenConstructorMethodHandle_whenInvoked_thenObjectCreatedCorrectly() throws Throwable {
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(void.class, String.class);
       MethodHandle newIntegerMH = publicLookup.findConstructor(Integer.class, mt);
@@ -54,7 +56,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenAFieldWithoutGetter_whenCreatingAGetter_thenCorrectlyInvoked() throws Throwable {
+   public void givenAFieldWithoutGetter_whenCreatingAGetter_thenCorrectlyInvoked() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       MethodHandle getTitleMH = lookup.findGetter(Book.class, "title", String.class);
 
@@ -64,7 +66,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenPrivateMethod_whenCreatingItsMethodHandle_thenCorrectlyInvoked() throws Throwable {
+   public void givenPrivateMethod_whenCreatingItsMethodHandle_thenCorrectlyInvoked() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       Method formatBookMethod = Book.class.getDeclaredMethod("formatBook");
       formatBookMethod.setAccessible(true);
@@ -77,7 +79,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenReplaceMethod_whenUsingReflectionAndInvoked_thenCorrectlyReplaced() throws Throwable {
+   public void givenReplaceMethod_whenUsingReflectionAndInvoked_thenCorrectlyReplaced() throws Throwable {
       Method replaceMethod = String.class.getMethod("replace", char.class, char.class);
 
       String string = (String) replaceMethod.invoke("jovo", 'o', 'a');
@@ -86,7 +88,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenReplaceMethodHandle_whenInvoked_thenCorrectlyReplaced() throws Throwable {
+   public void givenReplaceMethodHandle_whenInvoked_thenCorrectlyReplaced() throws Throwable {
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(String.class, char.class, char.class);
       MethodHandle replaceMH = publicLookup.findVirtual(String.class, "replace", mt);
@@ -97,7 +99,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenReplaceMethodHandle_whenInvokingExact_thenCorrectlyReplaced() throws Throwable {
+   public void givenReplaceMethodHandle_whenInvokingExact_thenCorrectlyReplaced() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       MethodType mt = MethodType.methodType(String.class, char.class, char.class);
       MethodHandle replaceMH = lookup.findVirtual(String.class, "replace", mt);
@@ -108,7 +110,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenSumMethodHandle_whenInvokingExact_thenSumIsCorrect() throws Throwable {
+   public void givenSumMethodHandle_whenInvokingExact_thenSumIsCorrect() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       MethodType mt = MethodType.methodType(int.class, int.class, int.class);
       MethodHandle sumMH = lookup.findStatic(Integer.class, "sum", mt);
@@ -118,17 +120,17 @@ class MethodHandlesUnitTest {
       assertEquals(12, sum);
    }
 
-   @Test
-   void givenSumMethodHandleAndIncompatibleArguments_whenInvokingExact_thenException() throws Throwable {
+   @Test(expected = WrongMethodTypeException.class)
+   public void givenSumMethodHandleAndIncompatibleArguments_whenInvokingExact_thenException() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       MethodType mt = MethodType.methodType(int.class, int.class, int.class);
       MethodHandle sumMH = lookup.findStatic(Integer.class, "sum", mt);
 
-      assertThrows(WrongMethodTypeException.class, () -> sumMH.invokeExact(Integer.valueOf(1), 11));
+      sumMH.invokeExact(Integer.valueOf(1), 11);
    }
 
    @Test
-   void givenSpreadedEqualsMethodHandle_whenInvokedOnArray_thenCorrectlyEvaluated() throws Throwable {
+   public void givenSpreadedEqualsMethodHandle_whenInvokedOnArray_thenCorrectlyEvaluated() throws Throwable {
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(boolean.class, Object.class);
       MethodHandle equalsMH = publicLookup.findVirtual(String.class, "equals", mt);
@@ -140,7 +142,7 @@ class MethodHandlesUnitTest {
    }
 
    @Test
-   void givenConcatMethodHandle_whenBindToAString_thenCorrectlyConcatenated() throws Throwable {
+   public void givenConcatMethodHandle_whenBindToAString_thenCorrectlyConcatenated() throws Throwable {
       MethodHandles.Lookup publicLookup = MethodHandles.publicLookup();
       MethodType mt = MethodType.methodType(String.class, String.class);
       MethodHandle concatMH = publicLookup.findVirtual(String.class, "concat", mt);

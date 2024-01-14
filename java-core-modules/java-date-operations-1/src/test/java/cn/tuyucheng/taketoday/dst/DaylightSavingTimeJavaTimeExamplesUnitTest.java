@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.dst;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
@@ -38,10 +38,10 @@ public class DaylightSavingTimeJavaTimeExamplesUnitTest {
       //@formatter:off
         System.out.println(String.format(
               " ZonedDateTime = %s\n"
-                    + "       Zone ID = %s (%s)\n"
-                    + "     RawOffset = %s minutes\n"
-                    + "  -----------------------------------------",
-              zdt, zdt.getZone(), zdt.getZone().getId(), zdt.getOffset().getTotalSeconds() / 60));
+            + "       Zone ID = %s (%s)\n"
+            + "     RawOffset = %s minutes\n"
+            + "  -----------------------------------------",
+            zdt, zdt.getZone(), zdt.getZone().getId(), zdt.getOffset().getTotalSeconds()/60));
         //@formatter:on
    }
 

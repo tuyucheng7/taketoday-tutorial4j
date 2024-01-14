@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.jmxterm;
 
-import static cn.tuyucheng.taketoday.jmxterm.RandomNumbergenerator.generateRandomNumber;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static cn.tuyucheng.taketoday.jmxterm.RandomNumbergenerator.generateRandomNumber;
 
 public class GuessGame extends BroadcastingGuessGame {
 
@@ -76,4 +76,5 @@ public class GuessGame extends BroadcastingGuessGame {
          e.printStackTrace();
       }
    }
+
 }

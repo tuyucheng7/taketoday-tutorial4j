@@ -1,7 +1,8 @@
 package cn.tuyucheng.taketoday.outputtofile;
 
-import static org.junit.jupiter.api.Assertions.assertLinesMatch;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.google.common.collect.Lists;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -9,11 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import cn.tuyucheng.taketoday.outputtofile.DualPrintStream;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import com.google.common.collect.Lists;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConsoleOutputToFileUnitTest {
 

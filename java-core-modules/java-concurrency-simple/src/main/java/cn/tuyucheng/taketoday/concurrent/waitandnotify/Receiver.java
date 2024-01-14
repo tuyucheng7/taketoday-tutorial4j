@@ -1,29 +1,27 @@
 package cn.tuyucheng.taketoday.concurrent.waitandnotify;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.ThreadLocalRandom;
 
-import java.security.SecureRandom;
-
-@Slf4j
 public class Receiver implements Runnable {
-   private final Data data;
+   private Data load;
 
-   public Receiver(Data data) {
-      this.data = data;
+   public Receiver(Data load) {
+      this.load = load;
    }
 
-   @Override
    public void run() {
-      for (String receivedMessage = data.receive(); !"End".equals(receivedMessage); receivedMessage = data.receive()) {
-         LOGGER.info(receivedMessage);
+      for (String receivedMessage = load.receive(); !"End".equals(receivedMessage); receivedMessage = load.receive()) {
+
+         System.out.println(receivedMessage);
 
          // Thread.sleep() to mimic heavy server-side processing
          try {
-            SecureRandom random = new SecureRandom();
-            Thread.sleep(random.nextInt(1000, 5000));
+            Thread.sleep(ThreadLocalRandom.current()
+                  .nextInt(1000, 5000));
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            LOGGER.error("context ", e);
+            Thread.currentThread()
+                  .interrupt();
+            System.err.println("Thread Interrupted");
          }
       }
    }

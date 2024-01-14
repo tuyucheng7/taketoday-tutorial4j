@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.formatduration;
 
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.joda.time.Period;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;

@@ -27,4 +27,5 @@ class HandlingNullValuesUnitTest {
    void givenNullCaseInSwitch_whenUsingNullArgument_thenDoubleIsReturned() {
       assertEquals(0d, getDoubleUsingSwitchTotalType(null));
    }
+
 }

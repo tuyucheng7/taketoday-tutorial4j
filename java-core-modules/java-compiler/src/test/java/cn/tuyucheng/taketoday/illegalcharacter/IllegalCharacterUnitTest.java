@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.illegalcharacter;
 import com.google.gdata.util.io.base.UnicodeReader;
 import org.apache.commons.io.ByteOrderMark;
 import org.apache.commons.io.input.BOMInputStream;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;

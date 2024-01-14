@@ -3,8 +3,6 @@ package cn.tuyucheng.taketoday.stringbuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class RemoveLastCharUnitTest {
 
    private static final String STRING_WITH_CHAR = "Spring Boot,Quarkus,Micronaut,";
@@ -30,22 +28,22 @@ class RemoveLastCharUnitTest {
 
    @Test
    void whenForLoopJoinWithPrefix_thenLastCharIsNotPresent() {
-      assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinStringsWithoutLastCharAsDelimiter()
+      Assertions.assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinStringsWithoutLastCharAsDelimiter()
             .toString());
    }
 
    @Test
    void whenJoiningStringsUsingJoin_thenLastCharIsNotPresent() {
-      assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinStringsUsingJoin());
+      Assertions.assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinStringsUsingJoin());
    }
 
    @Test
    void whenJoiningStringsUsingStringJoiner_thenLastCharIsNotPresent() {
-      assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinUsingStringJoiner());
+      Assertions.assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinUsingStringJoiner());
    }
 
    @Test
    void whenJoiningStringsUsingStringUtils_thenLastCharIsNotPresent() {
-      assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinUsingStringUtils());
+      Assertions.assertEquals(STRING_WITHOUT_CHAR, RemoveLastChar.joinUsingStringUtils());
    }
 }

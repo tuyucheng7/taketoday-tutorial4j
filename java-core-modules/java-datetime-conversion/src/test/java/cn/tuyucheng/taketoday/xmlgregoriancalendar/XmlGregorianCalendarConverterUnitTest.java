@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.xmlgregoriancalendar;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;

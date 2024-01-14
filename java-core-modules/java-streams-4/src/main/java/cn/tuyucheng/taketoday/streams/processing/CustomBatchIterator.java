@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.streams.processing;
 
-import static java.util.Spliterator.ORDERED;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterators;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
+
+import static java.util.Spliterator.ORDERED;
 
 public class CustomBatchIterator<T> implements Iterator<List<T>> {
    private final int batchSize;

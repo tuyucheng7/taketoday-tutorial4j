@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.bytebuffertostring;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
@@ -39,6 +39,15 @@ public class ByteArrayToStringUnitTest {
       String newContent = charset.decode(byteBuffer)
             .toString();
       assertEquals(content, newContent);
+   }
+
+   @Test
+   public void convertStringToByteBuffer_thenOk() {
+      byte[] expectedBytes = content.getBytes(Charset.forName(charset.toString()));
+      ByteBuffer byteBuffer = ByteBuffer.wrap(expectedBytes);
+
+      // Test the conversion from string to ByteBuffer
+      assertEquals(expectedBytes, byteBuffer.array());
    }
 
 }

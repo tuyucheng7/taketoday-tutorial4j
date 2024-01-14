@@ -7,24 +7,27 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java8ForkJoinIntegrationTest {
-   private int[] array;
+public class Java8ForkJoinIntegrationTest {
+
+   private int[] arr;
    private CustomRecursiveTask customRecursiveTask;
 
    @BeforeEach
-   void init() {
+   public void init() {
       Random random = new Random();
-      array = new int[50];
-      for (int i = 0; i < array.length; i++) {
-         array[i] = random.nextInt(35);
+      arr = new int[50];
+      for (int i = 0; i < arr.length; i++) {
+         arr[i] = random.nextInt(35);
       }
-      customRecursiveTask = new CustomRecursiveTask(array);
+      customRecursiveTask = new CustomRecursiveTask(arr);
    }
 
    @Test
-   void callPoolUtil_whenExistsAndExpectedType_thenCorrect() {
+   public void callPoolUtil_whenExistsAndExpectedType_thenCorrect() {
       ForkJoinPool forkJoinPool = PoolUtil.forkJoinPool;
       ForkJoinPool forkJoinPoolTwo = PoolUtil.forkJoinPool;
 
@@ -34,7 +37,7 @@ class Java8ForkJoinIntegrationTest {
    }
 
    @Test
-   void callCommonPool_whenExistsAndExpectedType_thenCorrect() {
+   public void callCommonPool_whenExistsAndExpectedType_thenCorrect() {
       ForkJoinPool commonPool = ForkJoinPool.commonPool();
       ForkJoinPool commonPoolTwo = ForkJoinPool.commonPool();
 
@@ -43,7 +46,7 @@ class Java8ForkJoinIntegrationTest {
    }
 
    @Test
-   void executeRecursiveAction_whenExecuted_thenCorrect() {
+   public void executeRecursiveAction_whenExecuted_thenCorrect() {
 
       CustomRecursiveAction myRecursiveAction = new CustomRecursiveAction("ddddffffgggghhhh");
       ForkJoinPool.commonPool().invoke(myRecursiveAction);
@@ -53,7 +56,7 @@ class Java8ForkJoinIntegrationTest {
    }
 
    @Test
-   void executeRecursiveTask_whenExecuted_thenCorrect() {
+   public void executeRecursiveTask_whenExecuted_thenCorrect() {
       ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
       forkJoinPool.execute(customRecursiveTask);
@@ -66,10 +69,10 @@ class Java8ForkJoinIntegrationTest {
    }
 
    @Test
-   void executeRecursiveTaskWithFJ_whenExecuted_thenCorrect() {
-      CustomRecursiveTask customRecursiveTaskFirst = new CustomRecursiveTask(array);
-      CustomRecursiveTask customRecursiveTaskSecond = new CustomRecursiveTask(array);
-      CustomRecursiveTask customRecursiveTaskLast = new CustomRecursiveTask(array);
+   public void executeRecursiveTaskWithFJ_whenExecuted_thenCorrect() {
+      CustomRecursiveTask customRecursiveTaskFirst = new CustomRecursiveTask(arr);
+      CustomRecursiveTask customRecursiveTaskSecond = new CustomRecursiveTask(arr);
+      CustomRecursiveTask customRecursiveTaskLast = new CustomRecursiveTask(arr);
 
       customRecursiveTaskFirst.fork();
       customRecursiveTaskSecond.fork();
@@ -84,4 +87,5 @@ class Java8ForkJoinIntegrationTest {
       assertTrue(customRecursiveTaskLast.isDone());
       assertTrue(result != 0);
    }
+
 }

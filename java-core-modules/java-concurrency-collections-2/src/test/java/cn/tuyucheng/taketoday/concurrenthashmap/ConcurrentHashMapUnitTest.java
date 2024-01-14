@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ConcurrentHashMapUnitTest {
+public class ConcurrentHashMapUnitTest {
 
-   private final Map<Integer, Integer> frequencyMap = new ConcurrentHashMap<>();
+   private Map<Integer, Integer> frequencyMap = new ConcurrentHashMap<>();
 
    @BeforeEach
    public void setup() {
@@ -34,7 +34,7 @@ class ConcurrentHashMapUnitTest {
    }
 
    @Test
-   void givenOneThreadIsWriting_whenAnotherThreadReads_thenGetCorrectValue() throws Exception {
+   public void givenOneThreadIsWriting_whenAnotherThreadReads_thenGetCorrectValue() throws Exception {
       ExecutorService threadExecutor = Executors.newFixedThreadPool(3);
 
       Runnable writeAfter1Sec = () -> frequencyMap.computeIfPresent(1, (k, v) -> {
@@ -58,7 +58,7 @@ class ConcurrentHashMapUnitTest {
    }
 
    @Test
-   void givenOneThreadIsWriting_whenAnotherThreadWritesAtSameKey_thenWaitAndGetCorrectValue() throws Exception {
+   public void givenOneThreadIsWriting_whenAnotherThreadWritesAtSameKey_thenWaitAndGetCorrectValue() throws Exception {
       ExecutorService threadExecutor = Executors.newFixedThreadPool(2);
 
       Callable<Integer> writeAfter5Sec = () -> frequencyMap.computeIfPresent(1, (k, v) -> {
@@ -82,7 +82,7 @@ class ConcurrentHashMapUnitTest {
    }
 
    @Test
-   void givenOneThreadIsWriting_whenAnotherThreadWritesAtDifferentKey_thenNotWait() throws InterruptedException {
+   public void givenOneThreadIsWriting_whenAnotherThreadWritesAtDifferentKey_thenNotWait() throws InterruptedException {
       ExecutorService threadExecutor = Executors.newFixedThreadPool(2);
 
       Callable<Integer> writeAfter5Sec = () -> frequencyMap.computeIfPresent(1, (k, v) -> {

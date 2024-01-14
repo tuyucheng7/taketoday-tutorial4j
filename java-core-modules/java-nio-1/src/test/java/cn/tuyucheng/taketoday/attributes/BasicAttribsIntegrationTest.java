@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.attributes;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +13,8 @@ import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasicAttribsIntegrationTest {
 
@@ -23,7 +23,7 @@ public class BasicAttribsIntegrationTest {
    private static final String HOME = System.getProperty("user.home");
    private static BasicFileAttributes basicAttribs;
 
-   @BeforeClass
+   @BeforeAll
    public static void setup() throws IOException {
       Path home = Paths.get(HOME);
       BasicFileAttributeView basicView = Files.getFileAttributeView(home, BasicFileAttributeView.class);

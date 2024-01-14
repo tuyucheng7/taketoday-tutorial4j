@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.maths;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
@@ -17,8 +17,8 @@ public class FloatingPointArithmeticUnitTest {
       double abc = a + b + c;
       double acb = a + c + b;
 
-      Assert.assertEquals(result, abc, 0);
-      Assert.assertNotEquals(result, acb, 0);
+      Assertions.assertEquals(result, abc, 0);
+      Assertions.assertNotEquals(result, acb, 0);
 
       double ab = 18.1;
       double ac = 34.67;
@@ -26,8 +26,8 @@ public class FloatingPointArithmeticUnitTest {
       double ab_c = ab + c;
       double ac_b = ac + b;
 
-      Assert.assertEquals(result, ab_c, 0);
-      Assert.assertNotEquals(result, ac_b, 0);
+      Assertions.assertEquals(result, ab_c, 0);
+      Assertions.assertNotEquals(result, ac_b, 0);
 
       BigDecimal d = new BigDecimal(String.valueOf(a));
       BigDecimal e = new BigDecimal(String.valueOf(b));
@@ -37,9 +37,9 @@ public class FloatingPointArithmeticUnitTest {
       BigDecimal def = d.add(e).add(f);
       BigDecimal dfe = d.add(f).add(e);
 
-      Assert.assertEquals(0, def.compareTo(sum));
-      Assert.assertEquals(0, dfe.compareTo(sum));
+      Assertions.assertEquals(0, def.compareTo(sum));
+      Assertions.assertEquals(0, dfe.compareTo(sum));
 
-      Assert.assertNotEquals(0, sum.compareTo(new BigDecimal(String.valueOf(acb))));
+      Assertions.assertNotEquals(0, sum.compareTo(new BigDecimal(String.valueOf(acb))));
    }
 }

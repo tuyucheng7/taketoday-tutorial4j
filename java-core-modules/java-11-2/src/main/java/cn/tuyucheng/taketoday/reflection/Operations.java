@@ -17,4 +17,5 @@ public class Operations {
    protected int protectedMax(int a, int b) {
       return a > b ? a : b;
    }
+
 }

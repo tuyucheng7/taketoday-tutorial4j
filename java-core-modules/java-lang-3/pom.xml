@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-lang-3</artifactId>
-   <version>1.0.0</version>
    <name>java-lang-3</name>
    <packaging>jar</packaging>
 
@@ -36,4 +35,5 @@
    <properties>
       <commons-math3.version>3.6.1</commons-math3.version>
    </properties>
+
 </project>

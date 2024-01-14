@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.java14.recordsCustomConstructors;
 
-import java.util.Comparator;
-import java.util.List;
-
 public record StudentRecord(String name, int rollNo, int marks) {
    public StudentRecord(String name) {
       this(name, 0, 0);
@@ -17,3 +14,4 @@ public record StudentRecord(String name, int rollNo, int marks) {
       }
    }
 }
+

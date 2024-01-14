@@ -9,4 +9,5 @@ class CarScenario {
          new Car<>("Toyota", "red", new ElectricEngine()),
          new Car<>("Jaguar", "white", new HybridEngine())
    );
+
 }

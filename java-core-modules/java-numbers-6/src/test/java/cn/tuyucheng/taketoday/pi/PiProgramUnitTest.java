@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.pi;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PiProgramUnitTest {
 
@@ -28,4 +28,5 @@ public class PiProgramUnitTest {
 
       assertEquals(Math.PI, pi, 0.01);
    }
+
 }

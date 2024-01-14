@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.concurrent;
 
 import edu.umd.cs.mtc.MultithreadedTestCase;
 import edu.umd.cs.mtc.TestFramework;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions

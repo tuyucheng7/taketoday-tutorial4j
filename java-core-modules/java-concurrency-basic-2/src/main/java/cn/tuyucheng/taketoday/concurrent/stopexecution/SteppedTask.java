@@ -8,7 +8,7 @@ import java.util.List;
 public class SteppedTask implements Runnable {
    private static final Logger LOG = LoggerFactory.getLogger(SteppedTask.class);
 
-   private final List<Step> steps;
+   private List<Step> steps;
 
    public SteppedTask(List<Step> steps) {
       this.steps = steps;
@@ -22,7 +22,6 @@ public class SteppedTask implements Runnable {
          try {
             step.perform();
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             LOG.info("interrupting task");
             return;
          }

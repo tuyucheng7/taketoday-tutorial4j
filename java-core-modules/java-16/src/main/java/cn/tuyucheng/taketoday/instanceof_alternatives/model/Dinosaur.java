@@ -5,4 +5,5 @@ public class Dinosaur {
    public String move() {
       return "default movement";
    }
+
 }

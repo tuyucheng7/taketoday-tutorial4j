@@ -7,10 +7,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CurrentExecutingMethodUnitTest {
+public class CurrentExecutingMethodUnitTest {
 
    @Test
-   void givenJava9_whenWalkingTheStack_thenFindMethod() {
+   public void givenJava9_whenWalkingTheStack_thenFindMethod() {
       StackWalker walker = StackWalker.getInstance();
       Optional<String> methodName = walker.walk(frames -> frames
             .findFirst()

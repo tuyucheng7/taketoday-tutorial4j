@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.map.hashmapcopy;
 
-import java.util.Map;
-
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+
+import java.util.Map;
 
 public class CopyingAHashMapToAnother {
    public Map<String, String> copyByIteration(Map<String, String> sourceMap, Map<String, String> targetMap) {

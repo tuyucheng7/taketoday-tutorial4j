@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.keystorealias;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class KeystoreCertificateNameAliasUnitTest {
    private static final String KEYSTORE_FILE = "my-keystore.jks";

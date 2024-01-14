@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.exception.exceptions_vs_errors;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 // Unit test for the RuntimeExceptionExample class.
 public class RuntimeExceptionExampleUnitTest {

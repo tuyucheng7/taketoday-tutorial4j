@@ -7,7 +7,7 @@ import java.util.List;
 @SuppressWarnings({"serial", "unchecked"})
 public class ClassWithSuppressWarningsNames implements Serializable {
 
-   // private static final long serialVersionUID = -1166032307853492833L;
+//    private static final long serialVersionUID = -1166032307853492833L;
 
    @SuppressWarnings("unused")
    public static void suppressBoxingWarning() {
@@ -29,10 +29,10 @@ public class ClassWithSuppressWarningsNames implements Serializable {
       switch (day) {
          case 5:
             return "This is day 5";
-         // break; // no warning here
+//            break; // no warning here
          case 10:
             return "This is day 10";
-         // break;
+//            break;
          default:
             return "This default day";
       }
@@ -42,4 +42,5 @@ public class ClassWithSuppressWarningsNames implements Serializable {
    String deprecatedMethod() {
       return "deprecated method";
    }
+
 }

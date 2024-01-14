@@ -3,8 +3,7 @@ package cn.tuyucheng.taketoday.stackreversal;
 import cn.tuyucheng.taketoday.collections.sorting.Employee;
 import cn.tuyucheng.taketoday.collections.stackreversal.ReverseStackUsingQueue;
 import cn.tuyucheng.taketoday.collections.stackreversal.ReverseStackUsingRecursion;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +13,15 @@ import java.util.List;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class StackReversalUnitTest {
    @Test
    public void whenIntegerStack_thenReturnReversedIntegerStack() {
       ReverseStackUsingQueue reverseStack = new ReverseStackUsingQueue();
       Stack<Integer> originalStack = generateStackFromGivenList(Arrays.stream(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}).boxed().collect(Collectors.toList()), new Stack<Integer>());
       Stack<Integer> reverseList = generateStackFromGivenList(Arrays.stream(new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}).boxed().collect(Collectors.toList()), new Stack<Integer>());
-      Assert.assertEquals(reverseStack.reverseIntegerStack(originalStack), reverseList);
+      assertEquals(reverseStack.reverseIntegerStack(originalStack), reverseList);
    }
 
    @Test
@@ -31,7 +32,7 @@ public class StackReversalUnitTest {
       Collections.reverse(listOfWordsReversed);
       Stack<String> originalStack = generateStackFromGivenList(listOfWords, new Stack<String>());
       Stack<String> reversedStack = generateStackFromGivenList(listOfWordsReversed, new Stack<String>());
-      Assert.assertEquals(stackReversal.reverseStringStack(originalStack), reversedStack);
+      assertEquals(stackReversal.reverseStringStack(originalStack), reversedStack);
    }
 
    @Test
@@ -48,7 +49,7 @@ public class StackReversalUnitTest {
       Collections.reverse(employeeReversed);
       Stack<Employee> originalStack = generateStackFromGivenList(employeeList, new Stack<Employee>());
       Stack<Employee> reverseStack = generateStackFromGivenList(employeeReversed, new Stack<Employee>());
-      Assert.assertEquals(stackReversal.reverseEmployeeStack(originalStack), reverseStack);
+      assertEquals(stackReversal.reverseEmployeeStack(originalStack), reverseStack);
    }
 
    @Test
@@ -56,7 +57,7 @@ public class StackReversalUnitTest {
       ReverseStackUsingRecursion reverseStack = new ReverseStackUsingRecursion();
       Stack<Integer> originalStack = generateStackFromGivenList(Arrays.stream(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}).boxed().collect(Collectors.toList()), new Stack<Integer>());
       Stack<Integer> reversedStack = generateStackFromGivenList(Arrays.stream(new int[]{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}).boxed().collect(Collectors.toList()), new Stack<Integer>());
-      Assert.assertEquals(reverseStack.reverseIntegerStack(originalStack), reversedStack);
+      assertEquals(reverseStack.reverseIntegerStack(originalStack), reversedStack);
    }
 
    private Stack generateStackFromGivenList(List elements, Stack stack) {

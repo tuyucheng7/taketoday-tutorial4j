@@ -3,9 +3,8 @@ package cn.tuyucheng.taketoday.defaultstaticinterfacemethods;
 import cn.tuyucheng.taketoday.defaultstaticinterfacemethods.model.Car;
 import cn.tuyucheng.taketoday.defaultstaticinterfacemethods.model.Motorbike;
 import cn.tuyucheng.taketoday.defaultstaticinterfacemethods.model.Vehicle;
-import org.assertj.core.api.Assertions;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,12 +13,12 @@ public class StaticDefaulInterfaceMethodUnitTest {
    private static Car car;
    private static Motorbike motorbike;
 
-   @BeforeClass
+   @BeforeAll
    public static void setUpCarInstance() {
       car = new Car("BMW");
    }
 
-   @BeforeClass
+   @BeforeAll
    public static void setUpMotorbikeInstance() {
       motorbike = new Motorbike("Yamaha");
    }
@@ -51,7 +50,7 @@ public class StaticDefaulInterfaceMethodUnitTest {
 
    @Test
    public void givenVehicleInterface_whenCallinggetHorsePower_thenOneAssertion() {
-      Assertions.assertThat(Vehicle.getHorsePower(2500, 480)).isEqualTo(228);
+      assertThat(Vehicle.getHorsePower(2500, 480)).isEqualTo(228);
    }
 
    @Test

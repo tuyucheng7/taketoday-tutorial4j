@@ -41,6 +41,7 @@ public class LdapConnectionTool {
             context.close();
          } catch (NamingException e) {
             System.out.println(e.getMessage());
+
             if (DEBUG_MODE)
                throw e;
          }

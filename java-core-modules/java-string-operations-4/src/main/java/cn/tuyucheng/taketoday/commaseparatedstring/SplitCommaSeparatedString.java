@@ -5,6 +5,7 @@ import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -50,7 +51,7 @@ public class SplitCommaSeparatedString {
       return splitter.splitToList(input);
    }
 
-   public static List<String[]> splitMultiLineWithOpenCSV(String input) throws IOException {
+   public static List<String[]> splitMultiLineWithOpenCSV(String input) throws IOException, CsvException {
       CSVParser parser = new CSVParserBuilder().withSeparator(',')
             .build();
 

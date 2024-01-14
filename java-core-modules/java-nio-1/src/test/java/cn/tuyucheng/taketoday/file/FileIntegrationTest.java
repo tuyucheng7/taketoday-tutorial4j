@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.file;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,18 +16,18 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileIntegrationTest {
    private static final String TEMP_DIR = String.format("%s/temp%s", System.getProperty("user.home"), UUID.randomUUID().toString());
 
-   @BeforeClass
+   @BeforeAll
    public static void setup() throws IOException {
       Files.createDirectory(Paths.get(TEMP_DIR));
    }
 
-   @AfterClass
+   @AfterAll
    public static void cleanup() throws IOException {
       FileUtils.deleteDirectory(new File(TEMP_DIR));
    }

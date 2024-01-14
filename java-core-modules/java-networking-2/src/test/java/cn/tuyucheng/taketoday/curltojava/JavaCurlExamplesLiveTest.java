@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.curltojava;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class JavaCurlExamplesLiveTest {
       JavaCurlExamples.consumeInputStream(inputStream);
       int exitCode = process.exitValue();
 
-      Assert.assertEquals(0, exitCode);
+      Assertions.assertEquals(0, exitCode);
    }
 
    @Test
@@ -33,7 +33,7 @@ public class JavaCurlExamplesLiveTest {
       // Re-use processBuilder
       processBuilder.command(new String[]{"newCommand", "arguments"});
 
-      Assert.assertEquals(true, process.isAlive());
+      Assertions.assertEquals(true, process.isAlive());
    }
 
    @Test
@@ -44,7 +44,7 @@ public class JavaCurlExamplesLiveTest {
       // Get the POST result
       String content = JavaCurlExamples.inputStreamToString(process.getInputStream());
 
-      Assert.assertTrue(null != content && !content.isEmpty());
+      Assertions.assertTrue(null != content && !content.isEmpty());
    }
 
 }

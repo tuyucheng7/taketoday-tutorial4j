@@ -34,4 +34,5 @@ public class AddMinuteStringTimeUnitTest {
       String result = newTime.toString();
       assertEquals("23:55", result);
    }
+
 }

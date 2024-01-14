@@ -11,15 +11,18 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class GuavaThreadPoolIntegrationTest {
+public class GuavaThreadPoolIntegrationTest {
 
    @Test
-   void whenExecutingTaskWithDirectExecutor_thenTheTaskIsExecutedInTheCurrentThread() {
+   public void whenExecutingTaskWithDirectExecutor_thenTheTaskIsExecutedInTheCurrentThread() {
+
       Executor executor = MoreExecutors.directExecutor();
+
       AtomicBoolean executed = new AtomicBoolean();
 
       executor.execute(() -> {
@@ -35,14 +38,17 @@ class GuavaThreadPoolIntegrationTest {
    }
 
    @Test
-   void whenJoiningFuturesWithAllAsList_thenCombinedFutureCompletesAfterAllFuturesComplete() throws ExecutionException, InterruptedException {
+   public void whenJoiningFuturesWithAllAsList_thenCombinedFutureCompletesAfterAllFuturesComplete() throws ExecutionException, InterruptedException {
+
       ExecutorService executorService = Executors.newCachedThreadPool();
       ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(executorService);
 
       ListenableFuture<String> future1 = listeningExecutorService.submit(() -> "Hello");
       ListenableFuture<String> future2 = listeningExecutorService.submit(() -> "World");
 
-      String greeting = String.join(" ", Futures.allAsList(future1, future2).get());
+      String greeting = Futures.allAsList(future1, future2).get().stream().collect(Collectors.joining(" "));
       assertEquals("Hello World", greeting);
+
    }
+
 }

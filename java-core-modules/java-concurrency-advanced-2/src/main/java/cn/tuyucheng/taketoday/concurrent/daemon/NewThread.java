@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.concurrent.daemon;
 
 public class NewThread extends Thread {
-
    public void run() {
       long startTime = System.currentTimeMillis();
       while (true) {
@@ -11,7 +10,7 @@ public class NewThread extends Thread {
                // Wait for one sec so it doesn't print too fast
                Thread.sleep(1000);
             } catch (InterruptedException e) {
-               Thread.currentThread().interrupt();
+               e.printStackTrace();
             }
          }
          // prevent the Thread to run forever. It will finish it's execution after 2 seconds

@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.recursion;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class RecursionExampleUnitTest {
 
@@ -13,9 +13,9 @@ public class RecursionExampleUnitTest {
       int p1 = recursion.powerOf10(1);
       int p4 = recursion.powerOf10(4);
 
-      Assert.assertEquals(1, p0);
-      Assert.assertEquals(10, p1);
-      Assert.assertEquals(10000, p4);
+      Assertions.assertEquals(1, p0);
+      Assertions.assertEquals(10, p1);
+      Assertions.assertEquals(10000, p4);
    }
 
    @Test
@@ -24,9 +24,9 @@ public class RecursionExampleUnitTest {
       int n1 = recursion.fibonacci(1);
       int n7 = recursion.fibonacci(7);
 
-      Assert.assertEquals(0, n0);
-      Assert.assertEquals(1, n1);
-      Assert.assertEquals(13, n7);
+      Assertions.assertEquals(0, n0);
+      Assertions.assertEquals(1, n1);
+      Assertions.assertEquals(13, n7);
    }
 
    @Test
@@ -35,9 +35,9 @@ public class RecursionExampleUnitTest {
       String b1 = recursion.toBinary(1);
       String b10 = recursion.toBinary(10);
 
-      Assert.assertEquals("0", b0);
-      Assert.assertEquals("1", b1);
-      Assert.assertEquals("1010", b10);
+      Assertions.assertEquals("0", b0);
+      Assertions.assertEquals("1", b1);
+      Assertions.assertEquals("1010", b10);
    }
 
    @Test
@@ -55,7 +55,7 @@ public class RecursionExampleUnitTest {
 
       int height = recursion.calculateTreeHeight(root);
 
-      Assert.assertEquals(4, height);
+      Assertions.assertEquals(4, height);
    }
 
 }

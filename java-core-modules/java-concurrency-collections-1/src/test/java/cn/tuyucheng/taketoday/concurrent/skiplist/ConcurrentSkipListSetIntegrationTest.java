@@ -13,15 +13,14 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentSkipListSetIntegrationTest {
+public class ConcurrentSkipListSetIntegrationTest {
 
    @Test
-   void givenThreadsProducingEvents_whenGetForEventsFromLastMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
+   public void givenThreadsProducingEvents_whenGetForEventsFromLastMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
       // given
       ExecutorService executorService = Executors.newFixedThreadPool(3);
       EventWindowSort eventWindowSort = new EventWindowSort();
       int numberOfThreads = 2;
-
       // when
       Runnable producer = () -> IntStream
             .rangeClosed(0, 100)
@@ -48,9 +47,9 @@ class ConcurrentSkipListSetIntegrationTest {
                         .now()
                         .minusMinutes(1)))
             .count();
-      assertEquals(0, eventsOlderThanOneMinute);
+      assertEquals(eventsOlderThanOneMinute, 0);
 
-      long eventsYoungerThanOneMinute = eventsFromLastMinute
+      long eventYoungerThanOneMinute = eventsFromLastMinute
             .entrySet()
             .stream()
             .filter(e -> e
@@ -61,14 +60,14 @@ class ConcurrentSkipListSetIntegrationTest {
             .count();
 
       // then
-      assertTrue(eventsYoungerThanOneMinute > 0);
+      assertTrue(eventYoungerThanOneMinute > 0);
 
       executorService.awaitTermination(1, TimeUnit.SECONDS);
       executorService.shutdown();
    }
 
    @Test
-   void givenThreadsProducingEvents_whenGetForEventsOlderThanOneMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
+   public void givenThreadsProducingEvents_whenGetForEventsOlderThanOneMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
       // given
       ExecutorService executorService = Executors.newFixedThreadPool(3);
       EventWindowSort eventWindowSort = new EventWindowSort();
@@ -112,9 +111,10 @@ class ConcurrentSkipListSetIntegrationTest {
             .count();
 
       // then
-      assertEquals(0, eventYoungerThanOneMinute);
+      assertEquals(eventYoungerThanOneMinute, 0);
 
       executorService.awaitTermination(1, TimeUnit.SECONDS);
       executorService.shutdown();
    }
+
 }

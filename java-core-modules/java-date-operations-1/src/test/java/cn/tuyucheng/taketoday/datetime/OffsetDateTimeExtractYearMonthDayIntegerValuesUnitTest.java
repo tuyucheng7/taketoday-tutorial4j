@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.datetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class OffsetDateTimeExtractYearMonthDayIntegerValuesUnitTest {
 

@@ -5,18 +5,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EnumUnitTest {
+public class EnumUnitTest {
    @Test
-   void givenADinosaurSpecie_whenUsingEnum_thenGetMovementOfEuraptor() {
+   public void givenADinosaurSpecie_whenUsingEnum_thenGetMovementOfEuraptor() {
+
       assertEquals("flying", moveDinosaurUsingEnum(DinosaurEnum.Euraptor));
    }
 
    @Test
-   void givenADinosaurSpecie_whenUsingEnum_thenGetMovementOfAnatotitan() {
+   public void givenADinosaurSpecie_whenUsingEnum_thenGetMovementOfAnatotitan() {
       assertEquals("running", moveDinosaurUsingEnum(DinosaurEnum.Anatotitan));
    }
 
-   static String moveDinosaurUsingEnum(DinosaurEnum dinosaurenum) {
+   public static String moveDinosaurUsingEnum(DinosaurEnum dinosaurenum) {
       return dinosaurenum.move();
+
    }
 }

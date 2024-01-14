@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.datetime.dayofweek;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;

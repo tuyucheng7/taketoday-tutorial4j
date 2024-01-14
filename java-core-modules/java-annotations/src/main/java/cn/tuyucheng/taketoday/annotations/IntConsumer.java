@@ -4,4 +4,5 @@ package cn.tuyucheng.taketoday.annotations;
 interface IntConsumer {
 
    void accept(Integer number);
+
 }

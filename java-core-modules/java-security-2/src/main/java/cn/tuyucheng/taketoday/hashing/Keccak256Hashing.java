@@ -9,16 +9,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.Security;
 
-import static cn.tuyucheng.taketoday.hashing.DigestAlgorithms.KECCAK_256;
-import static cn.tuyucheng.taketoday.hashing.SHACommonUtils.bytesToHex;
-
 public class Keccak256Hashing {
 
    public static String hashWithJavaMessageDigest(final String originalString) throws NoSuchAlgorithmException {
       Security.addProvider(new BouncyCastleProvider());
-      final MessageDigest digest = MessageDigest.getInstance(KECCAK_256);
+      final MessageDigest digest = MessageDigest.getInstance(DigestAlgorithms.KECCAK_256);
       final byte[] encodedhash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
-      return bytesToHex(encodedhash);
+      return SHACommonUtils.bytesToHex(encodedhash);
    }
 
    public static String hashWithBouncyCastle(final String originalString) {

@@ -46,14 +46,12 @@ public class FutureVsCompletableFutureVsRxJavaUnitTest {
    public void givenAnObservable_whenPushedData_thenItIsReceived() {
       PublishSubject<Integer> source = PublishSubject.create();
       Observable<Integer> observable = source.observeOn(Schedulers.computation());
-      observable.subscribe(
-            System.out::println,
-            (throwable) -> System.out.println("Error"),
-            () -> System.out.println("Done"));
+      observable.subscribe(System.out::println, (throwable) -> System.out.println("Error"), () -> System.out.println("Done"));
 
       source.onNext(1);
       source.onNext(2);
       source.onNext(3);
       source.onComplete();
    }
+
 }

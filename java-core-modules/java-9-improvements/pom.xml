@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-9-improvements</artifactId>
-   <version>1.0.0</version>
    <name>java-9-improvements</name>
 
    <parent>
@@ -29,6 +28,12 @@
          <groupId>commons-io</groupId>
          <artifactId>commons-io</artifactId>
          <version>${commons-io.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-runner</artifactId>
+         <version>${junit-platform.version}</version>
+         <scope>test</scope>
       </dependency>
    </dependencies>
 
@@ -59,4 +64,5 @@
       <maven.compiler.source>1.9</maven.compiler.source>
       <maven.compiler.target>1.9</maven.compiler.target>
    </properties>
+
 </project>

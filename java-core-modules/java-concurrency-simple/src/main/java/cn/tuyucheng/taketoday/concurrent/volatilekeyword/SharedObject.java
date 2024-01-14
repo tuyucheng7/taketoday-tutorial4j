@@ -1,15 +1,14 @@
 package cn.tuyucheng.taketoday.concurrent.volatilekeyword;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SharedObject {
-   private final AtomicInteger count = new AtomicInteger(0);
+   private volatile int count = 0;
 
    void incrementCount() {
-      count.incrementAndGet();
+      count++;
    }
 
    public int getCount() {
-      return count.get();
+      return count;
    }
 }

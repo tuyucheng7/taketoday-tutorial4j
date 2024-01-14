@@ -12,10 +12,10 @@ import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class StreamToArrayUnitTest {
+public class StreamToArrayUnitTest {
 
    @Test
-   void givenAStream_thenCanGetArrayOfObject() {
+   public void givenAStream_thenCanGetArrayOfObject() {
       Object[] strings = Stream.of("A", "AAA", "B", "AAB", "C")
             .filter(string -> string.startsWith("A"))
             .toArray();
@@ -25,7 +25,7 @@ class StreamToArrayUnitTest {
    }
 
    @Test
-   void givenAStream_thenCanGetArrayOfString() {
+   public void givenAStream_thenCanGetArrayOfString() {
       String[] strings = Stream.of("A", "AAA", "B", "AAB", "C")
             .filter(string -> string.startsWith("A"))
             .toArray(String[]::new);
@@ -36,7 +36,7 @@ class StreamToArrayUnitTest {
 
    @SuppressWarnings("unchecked")
    @Test
-   void givenAStream_whenConvertToOptional_thenCanGetArrayOfOptional() {
+   public void givenAStream_whenConvertToOptional_thenCanGetArrayOfOptional() {
       Stream<Optional<String>> stream = Stream.of("A", "AAA", "B", "AAB", "C")
             .filter(string -> string.startsWith("A"))
             .map(Optional::of);
@@ -50,7 +50,7 @@ class StreamToArrayUnitTest {
    }
 
    @Test
-   void givenAStream_whenConvertToOptional_thenCanGetArrayOfOptionalWithHelper() {
+   public void givenAStream_whenConvertToOptional_thenCanGetArrayOfOptionalWithHelper() {
       Optional<String>[] strings = Stream.of("A", "AAA", "B", "AAB", "C")
             .filter(string -> string.startsWith("A"))
             .map(Optional::of)
@@ -63,7 +63,7 @@ class StreamToArrayUnitTest {
    }
 
    @Test
-   void whenInvalidUseOfGenericArray_thenIllegalCast() {
+   public void whenInvalidUseOfGenericArray_thenIllegalCast() {
       assertThatThrownBy(() -> {
          ArrayList<String>[] lists = Stream.of(singletonList("A"))
                .toArray(genericArray(List[]::new));

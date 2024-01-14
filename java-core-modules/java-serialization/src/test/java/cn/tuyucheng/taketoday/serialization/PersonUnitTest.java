@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.serialization;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PersonUnitTest {
 
@@ -23,7 +23,7 @@ public class PersonUnitTest {
 
    private File outputFile2;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       outputFile = tempFolder.newFile("yourfile.txt");
       outputFile2 = tempFolder.newFile("yourfile2.txt");

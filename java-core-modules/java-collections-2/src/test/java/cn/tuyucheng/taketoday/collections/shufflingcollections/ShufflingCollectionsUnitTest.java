@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.collections.shufflingcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

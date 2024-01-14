@@ -3,13 +3,14 @@ package cn.tuyucheng.taketoday.concurrent.daemon;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DaemonThreadUnitTest {
+public class DaemonThreadUnitTest {
 
    @Test
    @Disabled
-   void whenCallIsDaemon_thenCorrect() {
+   public void whenCallIsDaemon_thenCorrect() {
       NewThread daemonThread = new NewThread();
       NewThread userThread = new NewThread();
       daemonThread.setDaemon(true);
@@ -20,11 +21,11 @@ class DaemonThreadUnitTest {
       assertFalse(userThread.isDaemon());
    }
 
-   @Test
+   @Test(expected = IllegalThreadStateException.class)
    @Disabled
-   void givenUserThread_whenSetDaemonWhileRunning_thenIllegalThreadStateException() {
+   public void givenUserThread_whenSetDaemonWhileRunning_thenIllegalThreadStateException() {
       NewThread daemonThread = new NewThread();
       daemonThread.start();
-      assertThrows(IllegalThreadStateException.class, () -> daemonThread.setDaemon(true));
+      daemonThread.setDaemon(true);
    }
 }

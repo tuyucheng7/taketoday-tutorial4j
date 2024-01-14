@@ -2,8 +2,8 @@ package cn.tuyucheng.taketoday.collections.sorting;
 
 import com.google.common.primitives.Ints;
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JavaSortingUnitTest {
 
@@ -29,7 +29,7 @@ public class JavaSortingUnitTest {
    private Employee[] employeesSortedByAge;
    private HashMap<Integer, String> map;
 
-   @Before
+   @BeforeEach
    public void initVariables() {
 
       toSort = new int[]{5, 1, 89, 255, 7, 88, 200, 123, 66};

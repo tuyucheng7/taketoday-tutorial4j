@@ -1,9 +1,12 @@
 package cn.tuyucheng.taketoday.concurrent.prioritytaskexecution;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Job implements Runnable {
 
-   private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Job.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(Job.class);
+
    private final String jobName;
    private final JobPriority jobPriority;
 
@@ -19,7 +22,7 @@ public class Job implements Runnable {
    @Override
    public void run() {
       try {
-         log.debug("Job:{} Priority:{}", jobName, jobPriority);
+         LOGGER.debug("Job:{} Priority:{}", jobName, jobPriority);
          Thread.sleep(1000);
       } catch (InterruptedException ignored) {
       }

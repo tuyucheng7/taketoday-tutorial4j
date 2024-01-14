@@ -12,12 +12,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Java8PredicateChainUnitTest {
+public class Java8PredicateChainUnitTest {
 
    private List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
 
    @Test
-   void whenFilterList_thenSuccess() {
+   public void whenFilterList_thenSuccess() {
       List<String> result = names.stream()
             .filter(name -> name.startsWith("A"))
             .collect(Collectors.toList());
@@ -27,7 +27,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithMultipleFilters_thenSuccess() {
+   public void whenFilterListWithMultipleFilters_thenSuccess() {
       List<String> result = names.stream()
             .filter(name -> name.startsWith("A"))
             .filter(name -> name.length() < 5)
@@ -38,7 +38,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithComplexPredicate_thenSuccess() {
+   public void whenFilterListWithComplexPredicate_thenSuccess() {
       List<String> result = names.stream()
             .filter(name -> name.startsWith("A") && name.length() < 5)
             .collect(Collectors.toList());
@@ -48,7 +48,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCombinedPredicatesInline_thenSuccess() {
+   public void whenFilterListWithCombinedPredicatesInline_thenSuccess() {
       List<String> result = names.stream()
             .filter(((Predicate<String>) name -> name.startsWith("A")).and(name -> name.length() < 5))
             .collect(Collectors.toList());
@@ -58,7 +58,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCombinedPredicatesUsingAnd_thenSuccess() {
+   public void whenFilterListWithCombinedPredicatesUsingAnd_thenSuccess() {
       Predicate<String> predicate1 = str -> str.startsWith("A");
       Predicate<String> predicate2 = str -> str.length() < 5;
 
@@ -71,7 +71,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCombinedPredicatesUsingOr_thenSuccess() {
+   public void whenFilterListWithCombinedPredicatesUsingOr_thenSuccess() {
       Predicate<String> predicate1 = str -> str.startsWith("J");
       Predicate<String> predicate2 = str -> str.length() < 4;
 
@@ -84,7 +84,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCombinedPredicatesUsingOrAndNegate_thenSuccess() {
+   public void whenFilterListWithCombinedPredicatesUsingOrAndNegate_thenSuccess() {
       Predicate<String> predicate1 = str -> str.startsWith("J");
       Predicate<String> predicate2 = str -> str.length() < 4;
 
@@ -97,7 +97,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCollectionOfPredicatesUsingAnd_thenSuccess() {
+   public void whenFilterListWithCollectionOfPredicatesUsingAnd_thenSuccess() {
       List<Predicate<String>> allPredicates = new ArrayList<Predicate<String>>();
       allPredicates.add(str -> str.startsWith("A"));
       allPredicates.add(str -> str.contains("d"));
@@ -113,7 +113,7 @@ class Java8PredicateChainUnitTest {
    }
 
    @Test
-   void whenFilterListWithCollectionOfPredicatesUsingOr_thenSuccess() {
+   public void whenFilterListWithCollectionOfPredicatesUsingOr_thenSuccess() {
       List<Predicate<String>> allPredicates = new ArrayList<Predicate<String>>();
       allPredicates.add(str -> str.startsWith("A"));
       allPredicates.add(str -> str.contains("d"));
@@ -127,4 +127,5 @@ class Java8PredicateChainUnitTest {
       assertEquals(2, result.size());
       assertThat(result, contains("Adam", "Alexander"));
    }
+
 }

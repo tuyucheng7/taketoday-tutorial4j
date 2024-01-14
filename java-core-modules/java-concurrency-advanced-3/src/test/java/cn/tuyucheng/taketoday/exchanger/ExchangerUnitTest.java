@@ -4,14 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Exchanger;
+import java.util.concurrent.ExecutionException;
 
 import static java.util.concurrent.CompletableFuture.runAsync;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ExchangerUnitTest {
+public class ExchangerUnitTest {
+
 
    @Test
-   void givenThreads_whenMessageExchanged_thenCorrect() {
+   public void givenThreads_whenMessageExchanged_thenCorrect() {
       Exchanger<String> exchanger = new Exchanger<>();
 
       Runnable taskA = () -> {
@@ -38,7 +40,7 @@ class ExchangerUnitTest {
    }
 
    @Test
-   void givenThread_whenExchangedMessage_thenCorrect() throws InterruptedException {
+   public void givenThread_WhenExchangedMessage_thenCorrect() throws InterruptedException, ExecutionException {
       Exchanger<String> exchanger = new Exchanger<>();
 
       Runnable runner = () -> {
@@ -51,9 +53,10 @@ class ExchangerUnitTest {
          }
       };
 
-      CompletableFuture<Void> result = runAsync(runner);
+      CompletableFuture<Void> result = CompletableFuture.runAsync(runner);
       String msg = exchanger.exchange("to runner");
       assertEquals("from runner", msg);
       result.join();
    }
+
 }

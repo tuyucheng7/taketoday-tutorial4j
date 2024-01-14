@@ -41,4 +41,5 @@ public class NotificationsForCompleteTasksUnitTest {
       ExecutorService executor = Executors.newSingleThreadExecutor();
       executor.submit(future);
    }
+
 }

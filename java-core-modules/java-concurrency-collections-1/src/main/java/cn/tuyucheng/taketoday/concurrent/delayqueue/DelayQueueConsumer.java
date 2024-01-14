@@ -3,8 +3,9 @@ package cn.tuyucheng.taketoday.concurrent.delayqueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 public class DelayQueueConsumer implements Runnable {
-   private final BlockingQueue<DelayObject> queue;
+   private BlockingQueue<DelayObject> queue;
    private final Integer numberOfElementsToTake;
    final AtomicInteger numberOfConsumedElements = new AtomicInteger();
 
@@ -12,6 +13,7 @@ public class DelayQueueConsumer implements Runnable {
       this.queue = queue;
       this.numberOfElementsToTake = numberOfElementsToTake;
    }
+
 
    @Override
    public void run() {
@@ -21,7 +23,7 @@ public class DelayQueueConsumer implements Runnable {
             numberOfConsumedElements.incrementAndGet();
             System.out.println("Consumer take: " + object);
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       }
    }

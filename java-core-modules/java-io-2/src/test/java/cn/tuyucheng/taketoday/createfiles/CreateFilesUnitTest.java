@@ -1,19 +1,18 @@
 package cn.tuyucheng.taketoday.createfiles;
 
 import com.google.common.io.Files;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.BeforeClass;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreateFilesUnitTest {
 
-   @BeforeClass
+   @BeforeAll
    public static void clean() {
       File tempDirectory = new File(System.getProperty("java.io.tmpdir"));
       File file1 = new File(tempDirectory.getAbsolutePath() + "/testFile.txt");

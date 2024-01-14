@@ -10,10 +10,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-class InputStreamToByteArrayUnitTest {
+public class InputStreamToByteArrayUnitTest {
 
    @Test
-   final void givenUsingPlainJavaOnFixedSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public final void givenUsingPlainJavaOnFixedSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream is = new ByteArrayInputStream(new byte[]{0, 1, 2});
       final byte[] targetArray = new byte[is.available()];
 
@@ -21,7 +21,7 @@ class InputStreamToByteArrayUnitTest {
    }
 
    @Test
-   final void givenUsingPlainJavaOnUnknownSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public final void givenUsingPlainJavaOnUnknownSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream is = new ByteArrayInputStream(new byte[]{0, 1, 2, 3, 4, 5, 6});
       final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
@@ -37,7 +37,7 @@ class InputStreamToByteArrayUnitTest {
    }
 
    @Test
-   final void givenUsingPlainJava9OnUnknownSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public final void givenUsingPlainJava9OnUnknownSizeStream_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream is = new ByteArrayInputStream(new byte[]{0, 1, 2, 3, 4, 5, 6});
       final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
@@ -54,21 +54,21 @@ class InputStreamToByteArrayUnitTest {
    }
 
    @Test
-   void givenUsingPlainJava9_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public void givenUsingPlainJava9_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream is = new ByteArrayInputStream(new byte[]{0, 1, 2});
 
       byte[] data = is.readAllBytes();
    }
 
    @Test
-   final void givenUsingGuava_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public final void givenUsingGuava_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream initialStream = ByteSource.wrap(new byte[]{0, 1, 2})
             .openStream();
       final byte[] targetArray = ByteStreams.toByteArray(initialStream);
    }
 
    @Test
-   final void givenUsingCommonsIO_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
+   public final void givenUsingCommonsIO_whenConvertingAnInputStreamToAByteArray_thenCorrect() throws IOException {
       final InputStream initialStream = new ByteArrayInputStream(new byte[]{0, 1, 2});
       final byte[] targetArray = IOUtils.toByteArray(initialStream);
    }

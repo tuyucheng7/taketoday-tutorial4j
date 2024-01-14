@@ -5,17 +5,30 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java8ExecutorServiceIntegrationTest {
+public class Java8ExecutorServiceIntegrationTest {
+
    private Runnable runnableTask;
    private Callable<String> callableTask;
    private List<Callable<String>> callableTasks;
 
    @BeforeEach
-   void init() {
+   public void init() {
+
       runnableTask = () -> {
          try {
             TimeUnit.MILLISECONDS.sleep(300);
@@ -36,7 +49,8 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    @Test
-   void creationSubmittingTaskShuttingDown_whenShutDown_thenCorrect() {
+   public void creationSubmittingTaskShuttingDown_whenShutDown_thenCorrect() {
+
       ExecutorService executorService = Executors.newFixedThreadPool(10);
       executorService.submit(runnableTask);
       executorService.submit(callableTask);
@@ -46,7 +60,8 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    @Test
-   void creationSubmittingTasksShuttingDownNow_whenShutDownAfterAwating_thenCorrect() {
+   public void creationSubmittingTasksShuttingDownNow_whenShutDownAfterAwating_thenCorrect() {
+
       ExecutorService threadPoolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
 
       for (int i = 0; i < 100; i++) {
@@ -61,6 +76,7 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    private List<Runnable> smartShutdown(ExecutorService executorService) {
+
       List<Runnable> notExecutedTasks = new ArrayList<>();
       executorService.shutdown();
       try {
@@ -74,7 +90,8 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    @Test
-   void submittingTasks_whenExecutedOneAndAll_thenCorrect() {
+   public void submittingTasks_whenExecutedOneAndAll_thenCorrect() {
+
       ExecutorService executorService = Executors.newFixedThreadPool(10);
 
       String result = null;
@@ -87,11 +104,12 @@ class Java8ExecutorServiceIntegrationTest {
       }
 
       assertEquals("Task's execution", result);
-      assertEquals(3, futures.size());
+      assertTrue(futures.size() == 3);
    }
 
    @Test
-   void submittingTaskShuttingDown_whenGetExpectedResult_thenCorrect() {
+   public void submittingTaskShuttingDown_whenGetExpectedResult_thenCorrect() {
+
       ExecutorService executorService = Executors.newFixedThreadPool(10);
 
       Future<String> future = executorService.submit(callableTask);
@@ -109,7 +127,8 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    @Test
-   void submittingTask_whenCanceled_thenCorrect() {
+   public void submittingTask_whenCanceled_thenCorrect() {
+
       ExecutorService executorService = Executors.newFixedThreadPool(10);
 
       Future<String> future = executorService.submit(callableTask);
@@ -124,7 +143,8 @@ class Java8ExecutorServiceIntegrationTest {
    }
 
    @Test
-   void submittingTaskScheduling_whenExecuted_thenCorrect() {
+   public void submittingTaskScheduling_whenExecuted_thenCorrect() {
+
       ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
       Future<String> resultFuture = executorService.schedule(callableTask, 1, TimeUnit.SECONDS);

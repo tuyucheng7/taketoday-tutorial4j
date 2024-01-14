@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class CyclicBarrierCountExampleUnitTest {
+public class CyclicBarrierCountExampleUnitTest {
 
    @Test
-   void whenCyclicBarrier_notCompleted() {
+   public void whenCyclicBarrier_notCompleted() {
       CyclicBarrierCountExample ex = new CyclicBarrierCountExample(2);
       boolean isCompleted = ex.callTwiceInSameThread();
       assertFalse(isCompleted);

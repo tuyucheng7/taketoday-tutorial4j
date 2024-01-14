@@ -15,10 +15,10 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentMapPerformanceManualTest {
+public class ConcurrentMapPerformanceManualTest {
 
    @Test
-   void givenMaps_whenGetPut500KTimes_thenConcurrentMapFaster() throws Exception {
+   public void givenMaps_whenGetPut500KTimes_thenConcurrentMapFaster() throws Exception {
       final Map<String, Object> hashtable = new Hashtable<>();
       final Map<String, Object> synchronizedHashMap = Collections.synchronizedMap(new HashMap<>());
       final Map<String, Object> concurrentHashMap = new ConcurrentHashMap<>();
@@ -27,10 +27,11 @@ class ConcurrentMapPerformanceManualTest {
       final long syncHashMapAvgRuntime = timeElapseForGetPut(synchronizedHashMap);
       final long concurrentHashMapAvgRuntime = timeElapseForGetPut(concurrentHashMap);
 
-      System.out.printf("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s%n", hashtableAvgRuntime, syncHashMapAvgRuntime, concurrentHashMapAvgRuntime);
+      System.out.println(String.format("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s", hashtableAvgRuntime, syncHashMapAvgRuntime, concurrentHashMapAvgRuntime));
 
       assertTrue(hashtableAvgRuntime > concurrentHashMapAvgRuntime);
       assertTrue(syncHashMapAvgRuntime > concurrentHashMapAvgRuntime);
+
    }
 
    private long timeElapseForGetPut(Map<String, Object> map) throws InterruptedException {
@@ -52,7 +53,7 @@ class ConcurrentMapPerformanceManualTest {
    }
 
    @Test
-   void givenConcurrentMap_whenKeyWithSameHashCode_thenPerformanceDegrades() throws InterruptedException {
+   public void givenConcurrentMap_whenKeyWithSameHashCode_thenPerformanceDegrades() throws InterruptedException {
       class SameHash {
          @Override
          public int hashCode() {
@@ -91,7 +92,8 @@ class ConcurrentMapPerformanceManualTest {
       final long mapOfDefaultHashDuration = System.currentTimeMillis() - defaultHashStartTime;
       assertEquals(executeTimes * 2, mapOfDefaultHash.size());
       assertEquals(executeTimes * 2, mapOfSameHash.size());
-      System.out.printf("same-hash: %s, default-hash: %s%n", mapOfSameHashDuration, mapOfDefaultHashDuration);
-      assertTrue(mapOfSameHashDuration > (mapOfDefaultHashDuration * 10), "same hashCode() should greatly degrade performance");
+      System.out.println(String.format("same-hash: %s, default-hash: %s", mapOfSameHashDuration, mapOfDefaultHashDuration));
+      assertTrue("same hashCode() should greatly degrade performance", mapOfSameHashDuration > (mapOfDefaultHashDuration * 10));
    }
+
 }

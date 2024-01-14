@@ -3,12 +3,11 @@ package cn.tuyucheng.taketoday.genericarrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MyStackUnitTest {
+public class MyStackUnitTest {
 
    @Test
-   void givenStackWithTwoItems_whenPop_thenReturnLastAdded() {
+   public void givenStackWithTwoItems_whenPop_thenReturnLastAdded() {
       MyStack<String> myStack = new MyStack<>(String.class, 2);
       myStack.push("hello");
       myStack.push("example");
@@ -16,24 +15,24 @@ class MyStackUnitTest {
       assertEquals("example", myStack.pop());
    }
 
-   @Test
-   void givenStackWithFixedCapacity_whenExceedCapacity_thenThrowException() {
+   @Test(expected = RuntimeException.class)
+   public void givenStackWithFixedCapacity_whenExceedCapacity_thenThrowException() {
       MyStack<Integer> myStack = new MyStack<>(Integer.class, 2);
       myStack.push(100);
       myStack.push(200);
-      assertThrows(RuntimeException.class, () -> myStack.push(300));
+      myStack.push(300);
    }
 
-   @Test
-   void givenStack_whenPopOnEmptyStack_thenThrowException() {
+   @Test(expected = RuntimeException.class)
+   public void givenStack_whenPopOnEmptyStack_thenThrowException() {
       MyStack<Integer> myStack = new MyStack<>(Integer.class, 1);
       myStack.push(100);
       myStack.pop();
-      assertThrows(RuntimeException.class, myStack::pop);
+      myStack.pop();
    }
 
    @Test
-   void givenStackWithItems_whenGetAllElements_thenSizeShouldEqualTotal() {
+   public void givenStackWithItems_whenGetAllElements_thenSizeShouldEqualTotal() {
       MyStack<String> myStack = new MyStack<>(String.class, 2);
       myStack.push("hello");
       myStack.push("example");

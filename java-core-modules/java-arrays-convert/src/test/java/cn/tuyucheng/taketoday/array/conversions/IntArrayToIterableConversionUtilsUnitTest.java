@@ -1,12 +1,6 @@
 package cn.tuyucheng.taketoday.array.conversions;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static cn.tuyucheng.taketoday.array.conversions.IntArrayToIterableConversionUtils.convertWithApacheCommonsAndJavaAsList;
-import static cn.tuyucheng.taketoday.array.conversions.IntArrayToIterableConversionUtils.convertWithGuava;
-import static cn.tuyucheng.taketoday.array.conversions.IntArrayToIterableConversionUtils.convertWithStreamIterator;
-import static cn.tuyucheng.taketoday.array.conversions.IntArrayToIterableConversionUtils.convertWithStreamToList;
 
 
 class IntArrayToIterableConversionUtilsUnitTest {
@@ -16,24 +10,24 @@ class IntArrayToIterableConversionUtilsUnitTest {
    @Test
    void whenConvertWithStreamToList_thenGetIterable() {
       Iterable<Integer> integers = convertWithStreamToList(ints);
-      Assertions.assertTrue(integers instanceof Iterable, "should be Iterable");
+      assertTrue("should be Iterable", integers instanceof Iterable);
    }
 
    @Test
    void whenConvertWithStreamIterator_thenGetIterable() {
       Iterable<Integer> integers = convertWithStreamIterator(ints);
-      Assertions.assertTrue(integers instanceof Iterable, "should be Iterable");
+      assertTrue("should be Iterable", integers instanceof Iterable);
    }
 
    @Test
    void whenConvertWithApacheCommonsAndJavaAsList_thenGetIterable() {
       Iterable<Integer> integers = convertWithApacheCommonsAndJavaAsList(ints);
-      Assertions.assertTrue(integers instanceof Iterable, "should be Iterable");
+      assertTrue("should be Iterable", integers instanceof Iterable);
    }
 
    @Test
    void whenConvertWithGuava_thenGetIterable() {
       Iterable<Integer> integers = convertWithGuava(ints);
-      Assertions.assertTrue(integers instanceof Iterable, "should be Iterable");
+      assertTrue("should be Iterable", integers instanceof Iterable);
    }
 }

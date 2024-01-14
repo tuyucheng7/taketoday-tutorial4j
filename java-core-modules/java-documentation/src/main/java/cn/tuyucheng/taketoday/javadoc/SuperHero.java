@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.javadoc;
 /**
  * Hero is the main entity we will be using to . . .
  *
- * @author Tuyucheng
+ * @author Captain America
  */
 public class SuperHero extends Person {
 
@@ -67,4 +67,5 @@ public class SuperHero extends Person {
    public void setDefense(int defense) {
       this.defense = defense;
    }
+
 }

@@ -13,22 +13,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentHashSetUnitTest {
+public class ConcurrentHashSetUnitTest {
 
    @Test
-   void whenCreateConcurrentHashSetWithStaticMethod_thenSetIsCreated() {
+   public void whenCreateConcurrentHashSetWithStaticMethod_thenSetIsCreated() {
       // when
       Set<Integer> threadSafeUniqueNumbers = ConcurrentHashMap.newKeySet();
       threadSafeUniqueNumbers.add(23);
       threadSafeUniqueNumbers.add(45);
 
       // then
-      assertTrue(threadSafeUniqueNumbers.stream().anyMatch(entry -> entry.equals(23)));
-      assertTrue(threadSafeUniqueNumbers.stream().anyMatch(entry -> entry.equals(45)));
+      assertTrue(threadSafeUniqueNumbers.stream()
+            .anyMatch(entry -> entry.equals(23)));
+      assertTrue(threadSafeUniqueNumbers.stream()
+            .anyMatch(entry -> entry.equals(45)));
    }
 
    @Test
-   void whenCreateConcurrentHashSetWithKeySetMethod_thenSetIsSyncedWithMapped() {
+   public void whenCreateConcurrentHashSetWithKeySetMethod_thenSetIsSyncedWithMapped() {
       // when
       ConcurrentHashMap<Integer, String> numbersMap = new ConcurrentHashMap<>();
       Set<Integer> numbersSet = numbersMap.keySet();
@@ -50,7 +52,7 @@ class ConcurrentHashSetUnitTest {
    }
 
    @Test
-   void whenCreateConcurrentHashSetWithKeySetMethodDefaultValue_thenSetIsSyncedWithMapped() {
+   public void whenCreateConcurrentHashSetWithKeySetMethodDefaultValue_thenSetIsSyncedWithMapped() {
       // when
       ConcurrentHashMap<Integer, String> numbersMap = new ConcurrentHashMap<>();
       Set<Integer> numbersSet = numbersMap.keySet("SET-ENTRY");
@@ -74,22 +76,25 @@ class ConcurrentHashSetUnitTest {
    }
 
    @Test
-   void whenSynchronizedSetIsCreated_thenSetIsCreated() {
+   public void whenSynchronizedSetIsCreated_thenSetIsCreated() {
       // when
       Set<Integer> syncNumbers = Collections.synchronizedSet(new HashSet<>());
       syncNumbers.add(1);
 
       // then
-      assertTrue(syncNumbers.stream().anyMatch(entry -> entry.equals(1)));
+      assertTrue(syncNumbers.stream()
+            .anyMatch(entry -> entry.equals(1)));
    }
 
    @Test
-   void whenCopyOnWriteArraySetIsCreated_thenSetIsCreated() {
+   public void whenCopyOnWriteArraySetIsCreated_thenSetIsCreated() {
       // when
       Set<Integer> copyOnArraySet = new CopyOnWriteArraySet<>();
       copyOnArraySet.add(1);
 
       // then
-      assertTrue(copyOnArraySet.stream().anyMatch(entry -> entry.equals(1)));
+      assertTrue(copyOnArraySet.stream()
+            .anyMatch(entry -> entry.equals(1)));
    }
+
 }

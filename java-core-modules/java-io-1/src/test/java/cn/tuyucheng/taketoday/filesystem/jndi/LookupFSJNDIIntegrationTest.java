@@ -1,13 +1,10 @@
 package cn.tuyucheng.taketoday.filesystem.jndi;
 
-import cn.tuyucheng.taketoday.filesystem.jndi.LookupFSJNDI;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.io.File;
-
-import static org.junit.Assert.assertNotNull;
 
 public class LookupFSJNDIIntegrationTest {
    LookupFSJNDI fsjndi;

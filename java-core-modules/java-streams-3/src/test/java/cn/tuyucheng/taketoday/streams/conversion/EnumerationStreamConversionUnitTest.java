@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.streams.conversion;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class EnumerationStreamConversionUnitTest {
 
       Stream<Integer> resultingStream = EnumerationStreamConversion.convert(input.elements());
 
-      Assert.assertNotNull(resultingStream);
+      Assertions.assertNotNull(resultingStream);
    }
 
    @Test

@@ -1,16 +1,17 @@
 package cn.tuyucheng.taketoday.collections.convertarrayprimitives;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConvertPrimitivesArrayToListUnitTest {
 
    @Test
    public void givenArrayWithPrimitives_whenIterativeConvert_thenArrayGetsConverted() {
-      assertEquals(Arrays.asList(1, 2, 3, 4), ConvertPrimitivesArrayToList.iterateConvert(new int[]{1, 2, 3, 4}));
+      Assertions.assertEquals(Arrays.asList(1, 2, 3, 4), ConvertPrimitivesArrayToList.iterateConvert(new int[]{1, 2, 3, 4}));
    }
 
    @Test

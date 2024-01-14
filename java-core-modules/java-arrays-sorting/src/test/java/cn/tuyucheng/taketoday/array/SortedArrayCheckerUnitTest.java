@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.array;
 
 import cn.tuyucheng.taketoday.sort.Employee;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 
@@ -37,7 +37,7 @@ public class SortedArrayCheckerUnitTest {
 
    private SortedArrayChecker sortedArrayChecker;
 
-   @Before
+   @BeforeEach
    public void setup() {
       sortedArrayChecker = new SortedArrayChecker();
    }
@@ -62,17 +62,18 @@ public class SortedArrayCheckerUnitTest {
 
    @Test
    public void givenEmployeeArray_thenReturnIfItIsSortedOrNot() {
-      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_SORTED_BY_NAME, Comparator.comparing(Employee::getName))).isTrue();
-      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_NOT_SORTED_BY_NAME, Comparator.comparing(Employee::getName))).isFalse();
+      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_SORTED_BY_NAME, Comparator.comparing(Employee::getName))).isEqualTo(true);
+      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_NOT_SORTED_BY_NAME, Comparator.comparing(Employee::getName))).isEqualTo(false);
 
-      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge))).isTrue();
-      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_NOT_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge))).isFalse();
+      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge))).isEqualTo(true);
+      assertThat(sortedArrayChecker.isSorted(EMPLOYEES_NOT_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge))).isEqualTo(false);
 
       assertThat(sortedArrayChecker
             .isSorted(EMPLOYEES_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge), EMPLOYEES_SORTED_BY_AGE.length))
-            .isTrue();
+            .isEqualTo(true);
       assertThat(sortedArrayChecker
             .isSorted(EMPLOYEES_NOT_SORTED_BY_AGE, Comparator.comparingInt(Employee::getAge), EMPLOYEES_NOT_SORTED_BY_AGE.length))
-            .isFalse();
+            .isEqualTo(false);
    }
+
 }

@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.utilities.lombok;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +9,7 @@ class StringUtilsWithNoArgsConstructorUnitTest {
 
    @Test
    void givenAnEmptyString_whenCallingIsEmpty_thenResultIsTrue() {
-      assertThat(StringUtilsWithNoArgsConstructor.isEmpty("")).isTrue();
+      Assertions.assertThat(StringUtilsWithNoArgsConstructor.isEmpty("")).isTrue();
    }
 
    @Test

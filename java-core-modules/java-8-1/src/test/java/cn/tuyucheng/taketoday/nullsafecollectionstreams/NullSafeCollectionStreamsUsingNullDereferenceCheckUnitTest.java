@@ -1,4 +1,3 @@
-
 package cn.tuyucheng.taketoday.nullsafecollectionstreams;
 
 import org.junit.jupiter.api.Test;
@@ -10,25 +9,29 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NullSafeCollectionStreamsUsingNullDereferenceCheckUnitTest {
+/**
+ * @author Kwaje Anthony <kwajeanthony@gmail.com>
+ */
+public class NullSafeCollectionStreamsUsingNullDereferenceCheckUnitTest {
 
-   private final NullSafeCollectionStreamsUsingNullDereferenceCheck instance = new NullSafeCollectionStreamsUsingNullDereferenceCheck();
+   private final NullSafeCollectionStreamsUsingNullDereferenceCheck instance =
+         new NullSafeCollectionStreamsUsingNullDereferenceCheck();
 
    @Test
-   void whenCollectionIsNull_thenExpectAnEmptyStream() {
+   public void whenCollectionIsNull_thenExpectAnEmptyStream() {
       Collection<String> collection = null;
       Stream<String> expResult = Stream.empty();
       Stream<String> result = instance.collectionAsStream(collection);
-
       assertStreamEquals(expResult, result);
+
    }
 
    @Test
-   void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
+   public void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
+
       Collection<String> collection = Arrays.asList("a", "b", "c");
       Stream<String> expResult = Arrays.stream(new String[]{"a", "b", "c"});
       Stream<String> result = instance.collectionAsStream(collection);
-
       assertStreamEquals(expResult, result);
    }
 
@@ -38,4 +41,5 @@ class NullSafeCollectionStreamsUsingNullDereferenceCheckUnitTest {
          assertEquals(iter1.next(), iter2.next());
       assert !iter1.hasNext() && !iter2.hasNext();
    }
+
 }

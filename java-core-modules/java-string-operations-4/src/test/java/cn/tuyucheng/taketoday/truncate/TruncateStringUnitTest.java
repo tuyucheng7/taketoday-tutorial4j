@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.truncate;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TruncateStringUnitTest {
 
@@ -11,7 +12,7 @@ public class TruncateStringUnitTest {
    @Test
    public void givenStringAndLength_whenUsingSubstringMethod_thenTruncate() {
 
-      assertEquals(TruncateString.usingSubstringMethod(TEXT, 10), "Welcome to");
+      Assertions.assertEquals(TruncateString.usingSubstringMethod(TEXT, 10), "Welcome to");
    }
 
    @Test

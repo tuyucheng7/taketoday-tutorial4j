@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.suppliercallable.service.callable;
 
+import cn.tuyucheng.taketoday.suppliercallable.data.User;
+import cn.tuyucheng.taketoday.suppliercallable.service.Service;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import cn.tuyucheng.taketoday.suppliercallable.data.User;
-import cn.tuyucheng.taketoday.suppliercallable.service.Service;
 
 public class CallableServiceImpl implements Service {
 

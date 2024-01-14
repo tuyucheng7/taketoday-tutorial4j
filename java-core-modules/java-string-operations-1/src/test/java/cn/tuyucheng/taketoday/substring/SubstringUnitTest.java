@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.substring;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -14,23 +14,23 @@ public class SubstringUnitTest {
 
    @Test
    public void givenAString_whenUsedStringUtils_ShouldReturnProperSubstring() {
-      Assert.assertEquals("United States of America", StringUtils.substringBetween(text, "(", ")"));
-      Assert.assertEquals("the USA (United States of America).", StringUtils.substringAfter(text, "living in "));
-      Assert.assertEquals("Julia Evans", StringUtils.substringBefore(text, " was born"));
+      Assertions.assertEquals("United States of America", StringUtils.substringBetween(text, "(", ")"));
+      Assertions.assertEquals("the USA (United States of America).", StringUtils.substringAfter(text, "living in "));
+      Assertions.assertEquals("Julia Evans", StringUtils.substringBefore(text, " was born"));
    }
 
    @Test
    public void givenAString_whenUsedScanner_ShouldReturnProperSubstring() {
       try (Scanner scanner = new Scanner(text)) {
          scanner.useDelimiter("\\.");
-         Assert.assertEquals("Julia Evans was born on 25-09-1984", scanner.next());
+         Assertions.assertEquals("Julia Evans was born on 25-09-1984", scanner.next());
       }
    }
 
    @Test
    public void givenAString_whenUsedSplit_ShouldReturnProperSubstring() {
       String[] sentences = text.split("\\.");
-      Assert.assertEquals("Julia Evans was born on 25-09-1984", sentences[0]);
+      Assertions.assertEquals("Julia Evans was born on 25-09-1984", sentences[0]);
    }
 
    @Test
@@ -39,34 +39,34 @@ public class SubstringUnitTest {
       Matcher matcher = pattern.matcher(text);
 
       if (matcher.find()) {
-         Assert.assertEquals("25-09-1984", matcher.group());
+         Assertions.assertEquals("25-09-1984", matcher.group());
       }
    }
 
    @Test
    public void givenAString_whenUsedSubSequence_ShouldReturnProperSubstring() {
-      Assert.assertEquals("USA (United States of America)", text.subSequence(67, text.length() - 1));
+      Assertions.assertEquals("USA (United States of America)", text.subSequence(67, text.length() - 1));
    }
 
    @Test
    public void givenAString_whenUsedSubstring_ShouldReturnProperSubstring() {
-      Assert.assertEquals("USA (United States of America).", text.substring(67));
-      Assert.assertEquals("USA (United States of America)", text.substring(67, text.length() - 1));
+      Assertions.assertEquals("USA (United States of America).", text.substring(67));
+      Assertions.assertEquals("USA (United States of America)", text.substring(67, text.length() - 1));
    }
 
    @Test
    public void givenAString_whenUsedSubstringWithIndexOf_ShouldReturnProperSubstring() {
-      Assert.assertEquals("United States of America", text.substring(text.indexOf('(') + 1, text.indexOf(')')));
+      Assertions.assertEquals("United States of America", text.substring(text.indexOf('(') + 1, text.indexOf(')')));
    }
 
    @Test
    public void givenAString_whenUsedSubstringWithLastIndexOf_ShouldReturnProperSubstring() {
-      Assert.assertEquals("1984", text.substring(text.lastIndexOf('-') + 1, text.indexOf('.')));
+      Assertions.assertEquals("1984", text.substring(text.lastIndexOf('-') + 1, text.indexOf('.')));
    }
 
    @Test
    public void givenAString_whenUsedSubstringWithIndexOfAString_ShouldReturnProperSubstring() {
-      Assert.assertEquals("USA (United States of America)", text.substring(text.indexOf("USA"), text.indexOf(')') + 1));
+      Assertions.assertEquals("USA (United States of America)", text.substring(text.indexOf("USA"), text.indexOf(')') + 1));
    }
 
 }

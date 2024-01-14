@@ -16,8 +16,10 @@ public class Word {
          return true;
       if (!(o instanceof Word))
          return false;
+
       Word word = (Word) o;
       return word.getName().equals(this.name) ? true : false;
+
    }
 
    public int hashCode() {

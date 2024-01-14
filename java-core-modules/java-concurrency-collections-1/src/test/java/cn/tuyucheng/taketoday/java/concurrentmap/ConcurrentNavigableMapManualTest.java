@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentNavigableMapManualTest {
+public class ConcurrentNavigableMapManualTest {
 
    @Test
-   void givenSkipListMap_whenAccessInMultiThreads_thenOrderingStable() throws InterruptedException {
+   public void givenSkipListMap_whenAccessInMultiThreads_thenOrderingStable() throws InterruptedException {
       NavigableMap<Integer, String> skipListMap = new ConcurrentSkipListMap<>();
 
       updateMapConcurrently(skipListMap);
@@ -47,18 +47,16 @@ class ConcurrentNavigableMapManualTest {
    }
 
    @Test
-   void givenSkipListMap_whenNavConcurrently_thenCountCorrect() throws InterruptedException {
+   public void givenSkipListMap_whenNavConcurrently_thenCountCorrect() throws InterruptedException {
       NavigableMap<Integer, Integer> skipListMap = new ConcurrentSkipListMap<>();
       int count = countMapElementByPollingFirstEntry(skipListMap);
-
       assertEquals(10000 * 4, count);
    }
 
    @Test
-   void givenTreeMap_whenNavConcurrently_thenCountError() throws InterruptedException {
+   public void givenTreeMap_whenNavConcurrently_thenCountError() throws InterruptedException {
       NavigableMap<Integer, Integer> treeMap = new TreeMap<>();
       int count = countMapElementByPollingFirstEntry(treeMap);
-
       assertNotEquals(10000 * 4, count);
    }
 
@@ -81,4 +79,5 @@ class ConcurrentNavigableMapManualTest {
       executorService.awaitTermination(1, TimeUnit.MINUTES);
       return counter.get();
    }
+
 }

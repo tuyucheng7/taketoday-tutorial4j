@@ -10,9 +10,12 @@ public class Human {
 
    public Human(final String name, final int age) {
       super();
+
       this.name = name;
       this.age = age;
    }
+
+   // API
 
    public String getName() {
       return name;
@@ -30,6 +33,8 @@ public class Human {
       this.age = age;
    }
 
+   // compare
+
    public static int compareByNameThenAge(final Human lhs, final Human rhs) {
       if (lhs.name.equals(rhs.name)) {
          return Integer.compare(lhs.age, rhs.age);
@@ -37,6 +42,8 @@ public class Human {
          return lhs.name.compareTo(rhs.name);
       }
    }
+
+   //
 
    @Override
    public int hashCode() {
@@ -63,12 +70,20 @@ public class Human {
          return false;
       }
       if (name == null) {
-         return other.name == null;
-      } else return name.equals(other.name);
+         if (other.name != null) {
+            return false;
+         }
+      } else if (!name.equals(other.name)) {
+         return false;
+      }
+      return true;
    }
 
    @Override
    public String toString() {
-      return "Human [name=" + name + ", age=" + age + "]";
+      final StringBuilder builder = new StringBuilder();
+      builder.append("Human [name=").append(name).append(", age=").append(age).append("]");
+      return builder.toString();
    }
+
 }

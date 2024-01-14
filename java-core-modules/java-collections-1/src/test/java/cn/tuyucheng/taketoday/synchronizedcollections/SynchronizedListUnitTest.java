@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.synchronizedcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class SynchronizedListUnitTest {
       thread1.join();
       thread2.join();
 
-      assertThat(syncList).hasSize(12);
+      assertThat(syncList.size()).isEqualTo(12);
    }
 
    @Test

@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.innerinterfaces;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(JUnit4.class)
 public class InnerInterfaceUnitTest {

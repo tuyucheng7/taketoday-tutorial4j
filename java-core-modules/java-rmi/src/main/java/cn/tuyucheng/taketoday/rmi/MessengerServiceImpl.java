@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class MessengerServiceImpl implements MessengerService {
 
    public String sendMessage(String clientMessage) {
+
       String serverMessage = null;
       if (clientMessage.equals("Client Message")) {
          serverMessage = "Server Message";
@@ -17,12 +18,14 @@ public class MessengerServiceImpl implements MessengerService {
    }
 
    public void createStubAndBind() throws RemoteException {
+
       MessengerService stub = (MessengerService) UnicastRemoteObject.exportObject((MessengerService) this, 0);
       Registry registry = LocateRegistry.createRegistry(1099);
       registry.rebind("MessengerService", stub);
    }
 
    public Message sendMessage(Message clientMessage) throws RemoteException {
+
       Message serverMessage = null;
       if (clientMessage.getMessageText().equals("Client Message")) {
          serverMessage = new Message("Server Message", "text/plain");
@@ -30,4 +33,5 @@ public class MessengerServiceImpl implements MessengerService {
 
       return serverMessage;
    }
+
 }

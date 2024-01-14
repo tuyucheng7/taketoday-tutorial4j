@@ -1,25 +1,25 @@
 package cn.tuyucheng.taketoday.map;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.google.common.collect.ImmutableMap;
+import org.hamcrest.collection.IsMapContaining;
+import org.junit.jupiter.api.Test;
 
 import java.util.AbstractMap;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.hamcrest.collection.IsMapContaining;
-import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableMap;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ImmutableMapUnitTest {
 
    @Test
    void whenCollectionsUnModifiableMapMethod_thenOriginalCollectionChangesReflectInUnmodifiableMap() {
+
       Map<String, String> mutableMap = new HashMap<>();
       mutableMap.put("USA", "North America");
 
@@ -36,6 +36,7 @@ class ImmutableMapUnitTest {
    @Test
    @SuppressWarnings("deprecation")
    void whenGuavaImmutableMapFromCopyOfMethod_thenOriginalCollectionChangesDoNotReflectInImmutableMap() {
+
       Map<String, String> mutableMap = new HashMap<>();
       mutableMap.put("USA", "North America");
 
@@ -54,6 +55,7 @@ class ImmutableMapUnitTest {
    @Test
    @SuppressWarnings("deprecation")
    void whenGuavaImmutableMapFromBuilderMethod_thenOriginalCollectionChangesDoNotReflectInImmutableMap() {
+
       Map<String, String> mutableMap = new HashMap<>();
       mutableMap.put("USA", "North America");
 
@@ -76,6 +78,7 @@ class ImmutableMapUnitTest {
    @Test
    @SuppressWarnings("deprecation")
    void whenGuavaImmutableMapFromOfMethod_thenOriginalCollectionChangesDoNotReflectInImmutableMap() {
+
       ImmutableMap<String, String> immutableMap = ImmutableMap.of("USA", "North America", "Costa Rica", "North America");
       assertTrue(immutableMap.containsKey("USA"));
       assertTrue(immutableMap.containsKey("Costa Rica"));
@@ -86,6 +89,7 @@ class ImmutableMapUnitTest {
    @Test
    @SuppressWarnings("deprecation")
    void givenGuavaImmutableMapFromOfEntriesMethodwhenModifyEntry_thenThrowUnsupportedOperationException() {
+
       ImmutableMap<Integer, String> immutableMap = ImmutableMap.ofEntries(new AbstractMap.SimpleEntry<>(1, "USA"), new AbstractMap.SimpleEntry<>(2, "Canada"));
 
       assertThrows(UnsupportedOperationException.class, () -> immutableMap.put(2, "Mexico"));
@@ -93,6 +97,7 @@ class ImmutableMapUnitTest {
 
    @Test
    void givenEntrieswhenCreatingGuavaImmutableMapFromOfEntriesMethod_thenCorrect() {
+
       ImmutableMap<Integer, String> immutableMap = ImmutableMap.ofEntries(new AbstractMap.SimpleEntry<>(1, "USA"));
 
       assertEquals(1, immutableMap.size());
@@ -101,16 +106,20 @@ class ImmutableMapUnitTest {
 
    @Test
    void givenGuavaImmutableMapFromOfEntriesMethodwhenEntryKeyExists_thenThrowIllegalArgumentException() {
+
       assertThrows(IllegalArgumentException.class, () -> ImmutableMap.ofEntries(new AbstractMap.SimpleEntry<>(1, "USA"), new AbstractMap.SimpleEntry<>(1, "Canada")));
    }
 
    @Test
    void givenGuavaImmutableMapFromOfEntriesMethodwhenEntryKeyIsNull_thenThrowNullPointerException() {
+
       assertThrows(NullPointerException.class, () -> ImmutableMap.ofEntries(new AbstractMap.SimpleEntry<>(null, "USA")));
    }
 
    @Test
    void givenGuavaImmutableMapFromOfEntriesMethodwhenEntryValueIsNull_thenThrowNullPointerException() {
+
       assertThrows(NullPointerException.class, () -> ImmutableMap.ofEntries(new AbstractMap.SimpleEntry<>(1, null)));
    }
+
 }

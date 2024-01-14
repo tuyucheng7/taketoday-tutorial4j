@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-streams-1</artifactId>
-   <version>1.0.0</version>
    <name>java-streams-1</name>
    <packaging>jar</packaging>
 
@@ -29,11 +28,6 @@
          <groupId>one.util</groupId>
          <artifactId>streamex</artifactId>
          <version>${streamex.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>com.pivovarit</groupId>
-         <artifactId>throwing-function</artifactId>
-         <version>${throwing-function.version}</version>
       </dependency>
    </dependencies>
 
@@ -60,6 +54,5 @@
       <vavr.version>0.10.4</vavr.version>
       <protonpack.version>1.16</protonpack.version>
       <streamex.version>0.8.1</streamex.version>
-      <throwing-function.version>1.5.1</throwing-function.version>
    </properties>
 </project>

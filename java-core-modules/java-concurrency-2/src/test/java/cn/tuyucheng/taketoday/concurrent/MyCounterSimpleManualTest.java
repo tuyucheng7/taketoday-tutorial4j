@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.concurrent;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions
@@ -58,4 +58,5 @@ public class MyCounterSimpleManualTest {
       latch.await();
       assertEquals(numberOfThreads, counter.getCount());
    }
+
 }

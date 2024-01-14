@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 public class WaitingWorker implements Runnable {
+
    private final List<String> outputScraper;
    private final CountDownLatch readyThreadCounter;
    private final CountDownLatch callingThreadBlocker;
    private final CountDownLatch completedThreadCounter;
 
-   public WaitingWorker(List<String> outputScraper, CountDownLatch readyThreadCounter, CountDownLatch callingThreadBlocker, CountDownLatch completedThreadCounter) {
+   WaitingWorker(final List<String> outputScraper, final CountDownLatch readyThreadCounter, final CountDownLatch callingThreadBlocker, CountDownLatch completedThreadCounter) {
+
       this.outputScraper = outputScraper;
       this.readyThreadCounter = readyThreadCounter;
       this.callingThreadBlocker = callingThreadBlocker;
@@ -24,8 +26,9 @@ public class WaitingWorker implements Runnable {
          callingThreadBlocker.await();
          outputScraper.add("Counted down");
       } catch (InterruptedException e) {
-         Thread.currentThread().interrupt();
+         e.printStackTrace();
+      } finally {
+         completedThreadCounter.countDown();
       }
-      completedThreadCounter.countDown();
    }
 }

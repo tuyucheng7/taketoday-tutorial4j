@@ -1,10 +1,13 @@
 package cn.tuyucheng.taketoday.collections.iterators;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ConcurrentModificationException;
 
+import static cn.tuyucheng.taketoday.collections.iterators.Iterators.failFast1;
+import static cn.tuyucheng.taketoday.collections.iterators.Iterators.failFast2;
+import static cn.tuyucheng.taketoday.collections.iterators.Iterators.failSafe1;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
@@ -18,20 +21,20 @@ public class IteratorsUnitTest {
    @Test
    public void whenFailFast_ThenThrowsException() {
       assertThatThrownBy(() -> {
-         Iterators.failFast1();
+         failFast1();
       }).isInstanceOf(ConcurrentModificationException.class);
    }
 
    @Test
    public void whenFailFast_ThenThrowsExceptionInSecondIteration() {
       assertThatThrownBy(() -> {
-         Iterators.failFast2();
+         failFast2();
       }).isInstanceOf(ConcurrentModificationException.class);
    }
 
    @Test
    public void whenFailSafe_ThenDoesNotThrowException() {
-      Assertions.assertThat(Iterators.failSafe1()).isGreaterThanOrEqualTo(0);
+      assertThat(failSafe1()).isGreaterThanOrEqualTo(0);
    }
 
 }

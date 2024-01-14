@@ -21,4 +21,5 @@ public class GuardedPatterns {
             default -> 0d;
       };
    }
+
 }

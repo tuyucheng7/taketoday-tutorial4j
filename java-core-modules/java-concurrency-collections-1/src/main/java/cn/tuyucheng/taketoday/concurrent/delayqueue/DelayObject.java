@@ -6,8 +6,8 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 public class DelayObject implements Delayed {
-   private final String data;
-   private final long startTime;
+   private String data;
+   private long startTime;
 
    DelayObject(String data, long delayInMilliseconds) {
       this.data = data;

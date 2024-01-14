@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.java9.streams.reactive.flowvsrx;
 
 class VideoFrame {
-   private final long number;
+   private long number;
 
    public VideoFrame(long number) {
       this.number = number;

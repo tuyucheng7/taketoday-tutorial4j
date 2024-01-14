@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.datetime;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class DateExtractYearMonthDayIntegerValuesUnitTest {
 
@@ -16,7 +16,7 @@ public class DateExtractYearMonthDayIntegerValuesUnitTest {
 
    Date date;
 
-   @Before
+   @BeforeEach
    public void setup() throws ParseException {
       date = new SimpleDateFormat("dd-MM-yyyy").parse("01-03-2018");
    }

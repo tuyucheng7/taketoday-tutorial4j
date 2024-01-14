@@ -10,14 +10,14 @@ import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ObjectLockCounterUnitTest {
+public class ObjectLockCounterUnitTest {
 
    @Test
-   void whenCalledIncrementCounter_thenCorrect() throws Exception {
+   public void whenCalledIncrementCounter_thenCorrect() throws Exception {
       ExecutorService executorService = Executors.newFixedThreadPool(2);
       ObjectLockCounter counter = new ObjectLockCounter();
-      Future<Integer> future1 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
-      Future<Integer> future2 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
+      Future<Integer> future1 = (Future<Integer>) executorService.submit(new ExtrinsicLockCounterCallable(counter));
+      Future<Integer> future2 = (Future<Integer>) executorService.submit(new ExtrinsicLockCounterCallable(counter));
 
       // Just to make sure both are completed
       future1.get();

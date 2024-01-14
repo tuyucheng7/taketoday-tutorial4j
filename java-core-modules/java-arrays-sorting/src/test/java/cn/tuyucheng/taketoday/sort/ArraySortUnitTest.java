@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.sort;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class ArraySortUnitTest {
    private Employee[] employees;
@@ -18,7 +18,7 @@ public class ArraySortUnitTest {
    private Employee mary = new Employee(3, "Mary");
    private Employee david = new Employee(4, "David");
 
-   @Before
+   @BeforeEach
    public void setup() {
       createEmployeesArray();
       createNumbersArray();
@@ -55,14 +55,14 @@ public class ArraySortUnitTest {
    public void givenStringArray_whenSortingAscending_thenCorrectlySorted() {
       Arrays.sort(strings);
 
-      assertArrayEquals(new String[]{"java", "learning", "tuyucheng", "with"}, strings);
+      assertArrayEquals(new String[]{"tuyucheng", "java", "learning", "with"}, strings);
    }
 
    @Test
    public void givenStringArray_whenSortingDescending_thenCorrectlySorted() {
       Arrays.sort(strings, Comparator.reverseOrder());
 
-      assertArrayEquals(new String[]{"with", "tuyucheng", "learning", "java"}, strings);
+      assertArrayEquals(new String[]{"with", "learning", "java", "tuyucheng"}, strings);
    }
 
    @Test

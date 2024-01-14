@@ -7,6 +7,7 @@ import java.util.Date;
 public class RangeDatesIteration {
 
    public void iterateBetweenDatesJava9(LocalDate startDate, LocalDate endDate) {
+
       startDate.datesUntil(endDate)
             .forEach(this::processDate);
    }

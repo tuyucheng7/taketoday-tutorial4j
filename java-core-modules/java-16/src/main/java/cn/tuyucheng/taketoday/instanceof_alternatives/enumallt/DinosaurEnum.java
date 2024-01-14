@@ -15,4 +15,5 @@ public enum DinosaurEnum {
    };
 
    public abstract String move();
+
 }

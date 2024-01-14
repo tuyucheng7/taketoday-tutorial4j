@@ -1,6 +1,10 @@
 package cn.tuyucheng.taketoday.concurrent.anonymousthread;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -41,7 +45,7 @@ public class AnonymousThreadUnitTest {
    }
 
    @Test
-   void givenAnonymousThreadSubclassOverridingRunMethod_whenStart_thenRunAsExpected() {
+   public void givenAnonymousThreadSubclassOverridingRunMethod_whenStart_thenRunAsExpected() {
       Thread anonymousThread = new Thread() {
          @Override
          public void run() {
@@ -57,7 +61,7 @@ public class AnonymousThreadUnitTest {
    }
 
    @Test
-   void givenAnonymousThreadWithLambdaExpression_whenStart_thenRunAsExpected() {
+   public void givenAnonymousThreadWithLambdaExpression_whenStart_thenRunAsExpected() {
       Thread anonymousThread = new Thread(() -> {
          printNumbersFrom1To10();
       });
@@ -71,7 +75,7 @@ public class AnonymousThreadUnitTest {
    }
 
    @Test
-   void givenAnonymousThreadWithRunnableObject_whenStart_thenRunAsExpected() {
+   public void givenAnonymousThreadWithRunnableObject_whenStart_thenRunAsExpected() {
       Thread anonymousThread = new Thread(new Runnable() {
          @Override
          public void run() {

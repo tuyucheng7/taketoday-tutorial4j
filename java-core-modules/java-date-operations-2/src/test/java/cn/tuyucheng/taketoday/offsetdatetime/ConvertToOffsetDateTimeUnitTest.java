@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.offsetdatetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.TimeZone;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConvertToOffsetDateTimeUnitTest {
 

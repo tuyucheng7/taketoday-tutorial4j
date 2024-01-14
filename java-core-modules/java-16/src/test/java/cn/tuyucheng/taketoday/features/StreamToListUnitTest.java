@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StreamToListUnitTest {
+public class StreamToListUnitTest {
 
    @Test
    void givenAStream_whenCreatingANewListFromStream_thenCollectorsOrInbuiltFunctionAreEquivalent() {

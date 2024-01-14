@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.streams.multiplefilters;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
@@ -12,7 +12,7 @@ public class MultipleFiltersVsComplexConditionFilterOrderUnitTest {
 
    AtomicInteger numberOfOperations = new AtomicInteger();
 
-   @Before
+   @BeforeEach
    public void beforeEach() {
       numberOfOperations.set(0);
    }

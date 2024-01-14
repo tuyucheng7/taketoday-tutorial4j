@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.intnullorzero;
 
+import org.junit.jupiter.api.Test;
+
 import static cn.tuyucheng.taketoday.IntegerNullOrZero.usingObjectUtils;
 import static cn.tuyucheng.taketoday.IntegerNullOrZero.usingOptional;
 import static cn.tuyucheng.taketoday.IntegerNullOrZero.usingStandardWay;
 import static cn.tuyucheng.taketoday.IntegerNullOrZero.usingTernaryOperator;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 public class IntegerNullOrZeroUnitTest {
 

@@ -4,7 +4,8 @@ import org.apache.commons.lang3.concurrent.TimedSemaphore;
 
 import java.util.concurrent.TimeUnit;
 
-public class DelayQueueUsingTimedSemaphore {
+class DelayQueueUsingTimedSemaphore {
+
    private final TimedSemaphore semaphore;
 
    DelayQueueUsingTimedSemaphore(long period, int slotLimit) {
@@ -18,4 +19,5 @@ public class DelayQueueUsingTimedSemaphore {
    int availableSlots() {
       return semaphore.getAvailablePermits();
    }
+
 }

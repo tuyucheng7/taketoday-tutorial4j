@@ -16,7 +16,7 @@ public record Person(String name, String address) {
       this(name, UNKNOWN_ADDRESS);
    }
 
-   public static Person unnamed(String address) {
+   public static Person unnamed (String address){
       return new Person(UNNAMED, address);
    }
 }

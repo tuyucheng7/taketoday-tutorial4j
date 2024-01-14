@@ -1,14 +1,13 @@
 package cn.tuyucheng.taketoday.equalshashcode;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TeamUnitTest {
 
@@ -39,7 +38,6 @@ public class TeamUnitTest {
    }
 
    @Test
-   @Ignore
    public void equalsHashCodeContracts() {
       EqualsVerifier.forClass(Team.class).verify();
    }

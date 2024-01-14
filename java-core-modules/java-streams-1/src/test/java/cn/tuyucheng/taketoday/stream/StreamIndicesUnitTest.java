@@ -8,10 +8,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StreamIndicesUnitTest {
+public class StreamIndicesUnitTest {
 
    @Test
-   void whenCalled_thenReturnListOfEvenIndexedStrings() {
+   public void whenCalled_thenReturnListOfEvenIndexedStrings() {
       String[] names = {"Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim"};
       List<String> expectedResult = Arrays.asList("Afrim", "Besim", "Durim");
       List<String> actualResult = StreamIndices.getEvenIndexedStrings(names);
@@ -20,7 +20,7 @@ class StreamIndicesUnitTest {
    }
 
    @Test
-   void whenCalled_thenReturnListOfEvenIndexedStringsVersionTwo() {
+   public void whenCalled_thenReturnListOfEvenIndexedStringsVersionTwo() {
       String[] names = {"Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim"};
       List<String> expectedResult = Arrays.asList("Afrim", "Besim", "Durim");
       List<String> actualResult = StreamIndices.getEvenIndexedStrings(names);
@@ -29,7 +29,7 @@ class StreamIndicesUnitTest {
    }
 
    @Test
-   void whenCalled_thenReturnListOfOddStrings() {
+   public void whenCalled_thenReturnListOfOddStrings() {
       String[] names = {"Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim"};
       List<String> expectedResult = Arrays.asList("Bashkim", "Lulzim", "Shpetim");
       List<String> actualResult = StreamIndices.getOddIndexedStrings(names);
@@ -38,19 +38,18 @@ class StreamIndicesUnitTest {
    }
 
    @Test
-   void givenList_whenCalled_thenReturnListOfEvenIndexedStrings() {
+   public void givenList_whenCalled_thenReturnListOfEvenIndexedStrings() {
       List<String> names = Arrays.asList("Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim");
-      List<Indexed<String>> expectedResult = Arrays.asList(
-            Indexed.index(0, "Afrim"),
-            Indexed.index(2, "Besim"),
-            Indexed.index(4, "Durim"));
+      List<Indexed<String>> expectedResult = Arrays
+            .asList(Indexed.index(0, "Afrim"), Indexed.index(2, "Besim"), Indexed
+                  .index(4, "Durim"));
       List<Indexed<String>> actualResult = StreamIndices.getEvenIndexedStrings(names);
 
       assertEquals(expectedResult, actualResult);
    }
 
    @Test
-   void givenList_whenCalled_thenReturnListOfOddIndexedStrings() {
+   public void givenList_whenCalled_thenReturnListOfOddIndexedStrings() {
       List<String> names = Arrays.asList("Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim");
       List<Indexed<String>> expectedResult = Arrays
             .asList(Indexed.index(1, "Bashkim"), Indexed.index(3, "Lulzim"), Indexed
@@ -61,7 +60,7 @@ class StreamIndicesUnitTest {
    }
 
    @Test
-   void whenCalled_thenReturnListOfOddStringsVersionTwo() {
+   public void whenCalled_thenReturnListOfOddStringsVersionTwo() {
       String[] names = {"Afrim", "Bashkim", "Besim", "Lulzim", "Durim", "Shpetim"};
       List<String> expectedResult = Arrays.asList("Bashkim", "Lulzim", "Shpetim");
       List<String> actualResult = StreamIndices.getOddIndexedStringsVersionTwo(names);

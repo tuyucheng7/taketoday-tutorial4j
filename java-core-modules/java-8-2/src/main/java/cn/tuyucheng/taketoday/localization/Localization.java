@@ -14,4 +14,5 @@ public class Localization {
    public static void run(List<Locale> locales) {
       locales.forEach(locale -> System.out.println(getLabel(locale)));
    }
+
 }

@@ -14,13 +14,16 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import static java.lang.Thread.sleep;
 
 public class SynchronizedHashMapWithRWLock {
-   private static final Map<String, String> syncHashMap = new HashMap<>();
-   private final Logger logger = LoggerFactory.getLogger(SynchronizedHashMapWithRWLock.class);
+
+   private static Map<String, String> syncHashMap = new HashMap<>();
+   private Logger logger = LoggerFactory.getLogger(SynchronizedHashMapWithRWLock.class);
+
    private final ReadWriteLock lock = new ReentrantReadWriteLock();
    private final Lock readLock = lock.readLock();
    private final Lock writeLock = lock.writeLock();
 
    public void put(String key, String value) throws InterruptedException {
+
       try {
          writeLock.lock();
          logger.info(Thread.currentThread().getName() + " writing");
@@ -29,6 +32,7 @@ public class SynchronizedHashMapWithRWLock {
       } finally {
          writeLock.unlock();
       }
+
    }
 
    public String get(String key) {
@@ -64,6 +68,7 @@ public class SynchronizedHashMapWithRWLock {
    }
 
    public static void main(String[] args) throws InterruptedException {
+
       final int threadCount = 3;
       final ExecutorService service = Executors.newFixedThreadPool(threadCount);
       SynchronizedHashMapWithRWLock object = new SynchronizedHashMapWithRWLock();
@@ -76,6 +81,7 @@ public class SynchronizedHashMapWithRWLock {
    }
 
    private static class Reader implements Runnable {
+
       SynchronizedHashMapWithRWLock object;
 
       Reader(SynchronizedHashMapWithRWLock object) {
@@ -91,6 +97,7 @@ public class SynchronizedHashMapWithRWLock {
    }
 
    private static class Writer implements Runnable {
+
       SynchronizedHashMapWithRWLock object;
 
       public Writer(SynchronizedHashMapWithRWLock object) {
@@ -104,9 +111,10 @@ public class SynchronizedHashMapWithRWLock {
                object.put("key" + i, "value" + i);
                sleep(1000);
             } catch (InterruptedException e) {
-               Thread.currentThread().interrupt();
+               e.printStackTrace();
             }
          }
       }
    }
+
 }

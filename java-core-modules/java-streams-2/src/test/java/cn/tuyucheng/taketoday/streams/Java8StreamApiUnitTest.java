@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.streams;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,9 +30,9 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Java8StreamApiUnitTest {
 
@@ -42,7 +42,7 @@ public class Java8StreamApiUnitTest {
 
    private List<Product> productList;
 
-   @Before
+   @BeforeEach
    public void init() {
       productList = Arrays.asList(new Product(23, "potatoes"), new Product(14, "orange"), new Product(13, "lemon"), new Product(23, "bread"), new Product(13, "sugar"));
    }
@@ -55,9 +55,10 @@ public class Java8StreamApiUnitTest {
       assertEquals(list.size() - 1, size);
    }
 
+   @Disabled
    @Test
-   @Ignore
    public void checkOrder_whenChangeQuantityOfMethodCalls_thenCorrect() {
+
       List<String> list = Arrays.asList("abc1", "abc2", "abc3");
 
       counter = 0;

@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.datetime.modify;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DateIncrementerUnitTest {
    private final static String DATE_TO_INCREMENT = "2018-07-03";

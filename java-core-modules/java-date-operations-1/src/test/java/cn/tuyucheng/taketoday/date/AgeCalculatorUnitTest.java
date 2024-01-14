@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AgeCalculatorUnitTest {
    AgeCalculator ageCalculator = new AgeCalculator();

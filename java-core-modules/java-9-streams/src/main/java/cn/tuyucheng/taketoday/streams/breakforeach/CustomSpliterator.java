@@ -7,8 +7,8 @@ import java.util.function.Predicate;
 
 public class CustomSpliterator<T> extends Spliterators.AbstractSpliterator<T> {
 
-   private final Spliterator<T> splitr;
-   private final Predicate<T> predicate;
+   private Spliterator<T> splitr;
+   private Predicate<T> predicate;
    private boolean isMatched = true;
 
    public CustomSpliterator(Spliterator<T> splitr, Predicate<T> predicate) {

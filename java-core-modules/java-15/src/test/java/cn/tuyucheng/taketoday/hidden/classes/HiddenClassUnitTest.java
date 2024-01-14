@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.hidden.classes;
 
+
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,7 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodHandles.Lookup.ClassOption;
 import java.lang.reflect.Method;
 
-class HiddenClassUnitTest {
+public class HiddenClassUnitTest {
 
    private static final Logger LOG = LoggerFactory.getLogger(HiddenClassUnitTest.class);
 
@@ -38,14 +39,14 @@ class HiddenClassUnitTest {
          Method method = hiddenClassObject.getClass()
                .getDeclaredMethod("convertToUpperCase", String.class);
 
-         Assertions.assertTrue(hiddenClass.isHidden());
+         Assertions.assertEquals(true, hiddenClass.isHidden());
 
          Assertions.assertEquals("HELLO", method.invoke(hiddenClassObject, "Hello"));
 
          Assertions.assertEquals(this.getClass()
                .getClassLoader(), hiddenClass.getClassLoader());
 
-         Assertions.assertNull(hiddenClass.getCanonicalName());
+         Assertions.assertEquals(null, hiddenClass.getCanonicalName());
 
          Assertions.assertThrows(ClassNotFoundException.class, () -> Class.forName(hiddenClass.getName()));
 
@@ -55,4 +56,5 @@ class HiddenClassUnitTest {
          LOG.error("Couldn't instantiate hidden class" + e);
       }
    }
+
 }

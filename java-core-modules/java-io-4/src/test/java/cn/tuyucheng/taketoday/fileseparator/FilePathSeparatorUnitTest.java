@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.fileseparator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.StringJoiner;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilePathSeparatorUnitTest {
 

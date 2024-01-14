@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.isnumeric;
 
+
 import java.util.logging.Logger;
 
 public class IsNumericDriver {

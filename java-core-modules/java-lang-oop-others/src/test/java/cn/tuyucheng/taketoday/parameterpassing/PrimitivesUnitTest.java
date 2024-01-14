@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.parameterpassing;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class PrimitivesUnitTest {
    @Test
@@ -11,14 +11,14 @@ public class PrimitivesUnitTest {
       int y = 2;
 
       // Before Modification
-      Assert.assertEquals(x, 1);
-      Assert.assertEquals(y, 2);
+      Assertions.assertEquals(x, 1);
+      Assertions.assertEquals(y, 2);
 
       modify(x, y);
 
       // After Modification
-      Assert.assertEquals(x, 1);
-      Assert.assertEquals(y, 2);
+      Assertions.assertEquals(x, 1);
+      Assertions.assertEquals(y, 2);
    }
 
    public static void modify(int x1, int y1) {

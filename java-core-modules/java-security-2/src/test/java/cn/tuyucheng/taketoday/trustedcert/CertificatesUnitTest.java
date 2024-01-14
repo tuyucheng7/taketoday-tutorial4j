@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.trustedcert;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.TrustManager;
@@ -25,9 +24,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CertificatesUnitTest {
 
@@ -63,7 +62,6 @@ public class CertificatesUnitTest {
    }
 
    @Test
-   @Disabled("Fails On CI")
    public void whenLoadingKeyStore_thenGoDaddyCALabelIsPresent() throws Exception {
       KeyStore keyStore = loadKeyStore();
 
@@ -74,7 +72,6 @@ public class CertificatesUnitTest {
    }
 
    @Test
-   @Disabled("Fails On CI")
    public void whenLoadingKeyStore_thenGoDaddyCertificateIsPresent() throws Exception {
       KeyStore keyStore = loadKeyStore();
 

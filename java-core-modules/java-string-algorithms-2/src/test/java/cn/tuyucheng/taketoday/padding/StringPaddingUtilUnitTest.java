@@ -2,9 +2,10 @@ package cn.tuyucheng.taketoday.padding;
 
 import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringPaddingUtilUnitTest {
 
@@ -15,7 +16,7 @@ public class StringPaddingUtilUnitTest {
 
    @Test
    public void givenString_whenPaddingWithSpaces_thenStringPaddedMatches() {
-      assertEquals(expectedPaddedStringSpaces, StringPaddingUtil.padLeftSpaces(inputString, minPaddedStringLength));
+      Assertions.assertEquals(expectedPaddedStringSpaces, StringPaddingUtil.padLeftSpaces(inputString, minPaddedStringLength));
    }
 
    @Test

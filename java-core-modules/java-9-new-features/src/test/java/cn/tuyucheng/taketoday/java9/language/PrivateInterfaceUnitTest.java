@@ -2,12 +2,13 @@ package cn.tuyucheng.taketoday.java9.language;
 
 import org.junit.jupiter.api.Test;
 
-class PrivateInterfaceUnitTest {
+public class PrivateInterfaceUnitTest {
 
    @Test
-   void test() {
+   public void test() {
       PrivateInterface piClass = new PrivateInterface() {
       };
       piClass.check();
    }
+
 }

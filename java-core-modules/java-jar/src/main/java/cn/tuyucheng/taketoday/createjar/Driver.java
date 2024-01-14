@@ -11,7 +11,7 @@ public class Driver {
       tool.addToManifest("Main-Class", "cn.tuyucheng.taketoday.createjar.HelloWorld");
       JarOutputStream target = tool.openJar("HelloWorld.jar");
 
-      tool.addFile(target, System.getProperty("user.dir") + "\\src\\main\\java", System.getProperty("user.dir") + "\\src\\main\\java\\cn\\tuyucheng\\taketoday\\createjar\\HelloWorld.class");
+      tool.addFile(target, System.getProperty("user.dir") + "\\src\\main\\java", System.getProperty("user.dir") + "\\src\\main\\java\\com\\tuyucheng\\createjar\\HelloWorld.class");
       target.close();
    }
 }

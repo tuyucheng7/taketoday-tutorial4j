@@ -43,8 +43,7 @@ public class StackWalkerDemo {
       System.out.println("---------------------------------------------");
 
       Runnable r = () -> {
-         List<StackFrame> stackTrace2 = StackWalker
-               .getInstance(StackWalker.Option.SHOW_HIDDEN_FRAMES)
+         List<StackFrame> stackTrace2 = StackWalker.getInstance(StackWalker.Option.SHOW_HIDDEN_FRAMES)
                .walk(this::walkExample);
          printStackTrace(stackTrace2);
       };
@@ -62,24 +61,24 @@ public class StackWalkerDemo {
    }
 
    public String walkExample3(Stream<StackFrame> stackFrameStream) {
-      return stackFrameStream
-            .filter(frame -> frame.getClassName().contains("cn.tuyucheng.taketoday")
-                  && frame.getClassName().endsWith("Test"))
+      return stackFrameStream.filter(frame -> frame.getClassName()
+                  .contains("cn.tuyucheng.taketoday")
+                  && frame.getClassName()
+                  .endsWith("Test"))
             .findFirst()
             .map(frame -> frame.getClassName() + "#" + frame.getMethodName() + ", Line " + frame.getLineNumber())
             .orElse("Unknown caller");
    }
 
    public void findCaller() {
-      Class<?> caller = StackWalker
-            .getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-            .getCallerClass();
+      Class<?> caller = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
       System.out.println(caller.getCanonicalName());
    }
 
    public void printStackTrace(List<StackFrame> stackTrace) {
       for (StackFrame stackFrame : stackTrace) {
-         System.out.println(stackFrame.getClassName() + "#" + stackFrame.getMethodName() + ", Line " + stackFrame.getLineNumber());
+         System.out.println(stackFrame.getClassName()
+               .toString() + "#" + stackFrame.getMethodName() + ", Line " + stackFrame.getLineNumber());
       }
    }
 }

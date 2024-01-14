@@ -38,4 +38,5 @@ public class ArrayInverter {
       List<Object> reverted = Lists.reverse(list);
       return reverted.toArray();
    }
+
 }

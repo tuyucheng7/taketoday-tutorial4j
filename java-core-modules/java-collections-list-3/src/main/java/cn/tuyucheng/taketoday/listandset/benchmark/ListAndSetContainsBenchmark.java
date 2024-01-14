@@ -35,16 +35,21 @@ public class ListAndSetContainsBenchmark {
             .addProfiler("gc")
             .build();
       new Runner(opt).run();
+
    }
+
 
    @Benchmark
    public void searchElementInArrayList(Params param, Blackhole blackhole) {
+
       blackhole.consume(param.arrayList.contains(param.searchElement));
    }
 
    @Benchmark
    public void searchElementInHashSet(Params param, Blackhole blackhole) {
+
       blackhole.consume(param.hashSet.contains(param.searchElement));
+
    }
 
    @State(Scope.Benchmark)
@@ -68,4 +73,5 @@ public class ListAndSetContainsBenchmark {
          }
       }
    }
+
 }

@@ -12,43 +12,50 @@ import java.util.stream.IntStream;
 public class StreamIndices {
 
    public static List<String> getEvenIndexedStrings(String[] names) {
-      return IntStream.range(0, names.length)
+      List<String> evenIndexedNames = IntStream.range(0, names.length)
             .filter(i -> i % 2 == 0)
             .mapToObj(i -> names[i])
             .collect(Collectors.toList());
+      return evenIndexedNames;
    }
 
    public List<String> getEvenIndexedStringsVersionTwo(List<String> names) {
-      return EntryStream.of(names)
+      List<String> evenIndexedNames = EntryStream.of(names)
             .filterKeyValue((index, name) -> index % 2 == 0)
             .values()
             .toList();
+      return evenIndexedNames;
    }
 
    public static List<Indexed<String>> getEvenIndexedStrings(List<String> names) {
-      return StreamUtils.zipWithIndex(names.stream())
+      List<Indexed<String>> list = StreamUtils.zipWithIndex(names.stream())
             .filter(i -> i.getIndex() % 2 == 0)
             .collect(Collectors.toList());
+      return list;
    }
 
    public static List<Indexed<String>> getOddIndexedStrings(List<String> names) {
-      return StreamUtils.zipWithIndex(names.stream())
+      List<Indexed<String>> list = StreamUtils.zipWithIndex(names.stream())
             .filter(i -> i.getIndex() % 2 == 1)
             .collect(Collectors.toList());
+      return list;
    }
 
    public static List<String> getOddIndexedStrings(String[] names) {
-      return IntStream.range(0, names.length)
+      List<String> oddIndexedNames = IntStream.range(0, names.length)
             .filter(i -> i % 2 == 1)
             .mapToObj(i -> names[i])
             .collect(Collectors.toList());
+      return oddIndexedNames;
    }
 
    public static List<String> getOddIndexedStringsVersionTwo(String[] names) {
-      return Stream.of(names)
+      List<String> oddIndexedNames = Stream.of(names)
             .zipWithIndex()
             .filter(tuple -> tuple._2 % 2 == 1)
             .map(tuple -> tuple._1)
             .toJavaList();
+      return oddIndexedNames;
    }
+
 }

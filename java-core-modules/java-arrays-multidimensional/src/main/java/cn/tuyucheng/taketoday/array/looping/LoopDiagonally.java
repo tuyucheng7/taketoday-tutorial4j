@@ -4,6 +4,7 @@ public class LoopDiagonally {
 
 
    public String loopDiagonally(String[][] twoDArray) {
+
       int length = twoDArray.length;
       int diagonalLines = (length + length) - 1;
       int itemsInDiagonal = 0;

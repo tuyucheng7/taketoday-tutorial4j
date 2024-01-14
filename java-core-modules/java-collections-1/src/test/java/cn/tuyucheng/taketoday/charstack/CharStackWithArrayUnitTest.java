@@ -4,17 +4,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CharStackWithArrayUnitTest {
+public class CharStackWithArrayUnitTest {
 
    @Test
-   void whenCharStackIsCreated_thenItHasSize0() {
+   public void whenCharStackIsCreated_thenItHasSize0() {
+
       CharStackWithArray charStack = new CharStackWithArray();
 
       assertEquals(0, charStack.size());
    }
 
    @Test
-   void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
+   public void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
+
       CharStackWithArray charStack = new CharStackWithArray();
 
       charStack.push('A');
@@ -23,7 +25,8 @@ class CharStackWithArrayUnitTest {
    }
 
    @Test
-   void givenEmptyCharStack_when5ElementIsPushed_thenStackSizeis() {
+   public void givenEmptyCharStack_when5ElementIsPushed_thenStackSizeis() {
+
       CharStackWithArray charStack = new CharStackWithArray();
 
       charStack.push('A');
@@ -36,7 +39,8 @@ class CharStackWithArrayUnitTest {
    }
 
    @Test
-   void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
+   public void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
+
       CharStackWithArray charStack = new CharStackWithArray();
       charStack.push('A');
 
@@ -47,7 +51,8 @@ class CharStackWithArrayUnitTest {
    }
 
    @Test
-   void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+   public void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+
       CharStackWithArray charStack = new CharStackWithArray();
       charStack.push('A');
 
@@ -56,4 +61,5 @@ class CharStackWithArrayUnitTest {
       assertEquals('A', element);
       assertEquals(1, charStack.size());
    }
+
 }

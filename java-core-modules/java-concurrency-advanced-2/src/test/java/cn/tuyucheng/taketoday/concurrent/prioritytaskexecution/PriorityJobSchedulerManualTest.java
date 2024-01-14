@@ -8,7 +8,7 @@ public class PriorityJobSchedulerManualTest {
    private static final int QUEUE_SIZE = 10;
 
    @Test
-   void whenMultiplePriorityJobsQueued_thenHighestPriorityJobIsPicked() {
+   public void whenMultiplePriorityJobsQueued_thenHighestPriorityJobIsPicked() {
       Job job1 = new Job("Job1", JobPriority.LOW);
       Job job2 = new Job("Job2", JobPriority.MEDIUM);
       Job job3 = new Job("Job3", JobPriority.HIGH);

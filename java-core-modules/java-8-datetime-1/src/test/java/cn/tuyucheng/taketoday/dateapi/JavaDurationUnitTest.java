@@ -1,9 +1,6 @@
 package cn.tuyucheng.taketoday.dateapi;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -11,7 +8,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JavaDurationUnitTest {
 
@@ -83,4 +83,5 @@ public class JavaDurationUnitTest {
       Duration fromChar1 = Duration.parse("P1DT1H10M10.5S");
       Duration fromChar2 = Duration.parse("PT10M");
    }
+
 }

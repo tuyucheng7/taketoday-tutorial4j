@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.hextorgb;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HexToRgbUnitTest {
 
    @Test
-   void givenHexCode_whenConvertedToRgb_thenCorrectRgbValuesAreReturned() {
+   public void givenHexCode_whenConvertedToRgb_thenCorrectRgbValuesAreReturned() {
       String hexCode = "FF9933";
       int red = 255;
       int green = 153;
@@ -21,4 +21,5 @@ class HexToRgbUnitTest {
       assertEquals(green, resultGreen);
       assertEquals(blue, resultBlue);
    }
+
 }

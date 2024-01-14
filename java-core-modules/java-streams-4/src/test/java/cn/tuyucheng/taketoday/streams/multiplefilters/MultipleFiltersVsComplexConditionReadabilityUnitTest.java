@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.streams.multiplefilters;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +14,7 @@ public class MultipleFiltersVsComplexConditionReadabilityUnitTest {
    private List<Student> students;
    private Student mathStudent;
 
-   @Before
+   @BeforeEach
    public void beforeEach() {
       this.mathStudent = new Student();
       mathStudent.setName("John Doe");

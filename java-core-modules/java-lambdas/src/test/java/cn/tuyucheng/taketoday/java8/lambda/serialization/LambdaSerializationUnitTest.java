@@ -14,45 +14,43 @@ import java.nio.file.Files;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LambdaSerializationUnitTest {
-
-   @Test
-   void givenRunnable_whenNoCapturing_thenSerializationFailed() throws IOException, ClassNotFoundException {
+public class LambdaSerializationUnitTest {
+   @Test(expected = NotSerializableException.class)
+   public void givenRunnable_whenNoCapturing_thenSerializationFailed() throws IOException, ClassNotFoundException {
       Object obj = NotSerializableLambdaExpression.getLambdaExpressionObject();
-      assertThrows(NotSerializableException.class, () -> writeAndReadObject(obj, Runnable.class));
+      writeAndReadObject(obj, Runnable.class);
    }
 
    @Test
-   void givenIntersectionType_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
+   public void givenIntersectionType_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
       Object obj = SerializableLambdaExpression.getLambdaExpressionObject();
       writeAndReadObject(obj, Runnable.class);
    }
 
    @Test
-   void givenSerializableRunnable_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
+   public void givenSerializableRunnable_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
       SerializableRunnable obj = () -> System.out.println("please serialize this message");
       writeAndReadObject(obj, SerializableRunnable.class);
    }
 
    @Test
-   void givenSerializableFunction_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
+   public void givenSerializableFunction_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
       SerializableFunction<String, String> obj = message -> String.format("Hello %s", message);
       writeAndReadObject(obj, SerializableFunction.class);
    }
 
    @Test
-   void givenSerializableConsumer_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
-      SerializableConsumer<String> obj = System.out::println;
-      assertThrows(NotSerializableException.class, () -> writeAndReadObject(obj, SerializableConsumer.class));
+   public void givenSerializableConsumer_whenNoCapturing_thenSerializationSuccess() throws IOException, ClassNotFoundException {
+      SerializableConsumer<String> obj = message -> System.out.println(message);
+      writeAndReadObject(obj, SerializableConsumer.class);
    }
 
-   @Test
-   void givenSerializableConsumer_whenCapturingNotSerializable_thenSerializationFailed() throws IOException, ClassNotFoundException {
+   @Test(expected = NotSerializableException.class)
+   public void givenSerializableConsumer_whenCapturingNotSerializable_thenSerializationFailed() throws IOException, ClassNotFoundException {
       SerializableConsumer<String> obj = System.out::println;
-      assertThrows(NotSerializableException.class, () -> writeAndReadObject(obj, SerializableConsumer.class));
+      writeAndReadObject(obj, SerializableConsumer.class);
    }
 
    private <T> void writeAndReadObject(Object obj, Class<T> clazz) throws IOException, ClassNotFoundException {

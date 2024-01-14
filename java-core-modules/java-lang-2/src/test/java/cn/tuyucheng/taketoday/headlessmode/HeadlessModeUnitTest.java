@@ -1,8 +1,11 @@
 package cn.tuyucheng.taketoday.headlessmode;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import org.assertj.core.api.Assertions;
+import org.junit.Assume;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -13,11 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.imageio.ImageIO;
-
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class HeadlessModeUnitTest {
 
@@ -25,7 +25,7 @@ public class HeadlessModeUnitTest {
    private static final String OUT_FILE = System.getProperty("java.io.tmpdir") + "/product.jpg";
    private static final String FORMAT = "jpg";
 
-   @Before
+   @BeforeEach
    public void setUpHeadlessMode() {
       System.setProperty("java.awt.headless", "true");
    }
@@ -74,7 +74,7 @@ public class HeadlessModeUnitTest {
 
    @Test
    public void whenHeadless_thenFlexibleAppAdjustsItsBehavior() {
-      assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADLESS);
+      Assertions.assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADLESS);
    }
 
    @Test

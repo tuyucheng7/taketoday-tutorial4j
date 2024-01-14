@@ -78,7 +78,7 @@ public class ExtractJavaLiveTest {
    }
 
    private static CompilationUnitTree parseFile() throws IOException {
-      String filename = "src/test/java/cn/tuyucheng/taketoday/extractjava/ExtractJavaUnitTest.java";
+      String filename = "src/test/java/com/tuyucheng/extractjava/ExtractJavaUnitTest.java";
 
       JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 

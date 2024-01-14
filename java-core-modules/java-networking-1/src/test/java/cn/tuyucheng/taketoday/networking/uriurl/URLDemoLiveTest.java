@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.networking.uriurl;
 
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,9 +14,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @FixMethodOrder
 public class URLDemoLiveTest {
@@ -40,7 +39,7 @@ public class URLDemoLiveTest {
    BufferedReader in = null;
    String urlContent = "";
 
-   @BeforeClass
+   @BeforeAll
    public static void givenEmplyURL_whenInitializeURL_thenSuccess() throws MalformedURLException {
       url = new URL(URLCOMPOUND);
    }

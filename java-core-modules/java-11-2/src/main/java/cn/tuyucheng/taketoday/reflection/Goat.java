@@ -20,4 +20,5 @@ public class Goat extends Animal implements Locomotion {
    public String eats() {
       return "grass";
    }
+
 }

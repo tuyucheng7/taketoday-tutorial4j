@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.bigdecimaltimesint;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BigDecimalxIntegerUnitTest {
    private static final BigDecimal BIG = new BigDecimal("42.42");

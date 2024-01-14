@@ -2,6 +2,10 @@ package cn.tuyucheng.taketoday.reverse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class ReverseStringExamples {
 
    public static String reverse(String input) {
@@ -51,6 +55,38 @@ public class ReverseStringExamples {
 
    public static String reverseTheOrderOfWordsUsingApacheCommons(String sentence) {
       return StringUtils.reverseDelimited(sentence, ' ');
+   }
+
+   public static String reverseUsingIntStreamRangeMethod(String str) {
+      if (str == null) {
+         return null;
+      }
+
+      char[] charArray = str.toCharArray();
+      return IntStream.range(0, str.length())
+            .mapToObj(i -> charArray[str.length() - i - 1])
+            .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+            .toString();
+   }
+
+   public static String reverseUsingStreamOfMethod(String str) {
+      if (str == null) {
+         return null;
+      }
+
+      return Stream.of(str)
+            .map(string -> new StringBuilder(string).reverse())
+            .collect(Collectors.joining());
+   }
+
+   public static String reverseUsingCharsMethod(String str) {
+      if (str == null) {
+         return null;
+      }
+
+      return str.chars()
+            .mapToObj(c -> (char) c)
+            .reduce("", (a, b) -> b + a, (a2, b2) -> b2 + a2);
    }
 
 }

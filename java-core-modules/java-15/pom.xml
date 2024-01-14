@@ -8,10 +8,11 @@
    <packaging>jar</packaging>
 
    <parent>
-      <artifactId>java-core-modules</artifactId>
       <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <artifactId>java-core-modules</artifactId>
       <version>1.0.0</version>
    </parent>
+
 
    <dependencies>
       <dependency>
@@ -25,4 +26,26 @@
          <version>${commons-io.version}</version>
       </dependency>
    </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <release>${maven.compiler.release}</release>
+               <source>${maven.compiler.source.version}</source>
+               <target>${maven.compiler.target.version}</target>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <properties>
+      <maven.compiler.source.version>17</maven.compiler.source.version>
+      <maven.compiler.target.version>17</maven.compiler.target.version>
+      <maven.compiler.release>17</maven.compiler.release>
+      <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
+   </properties>
+
 </project>

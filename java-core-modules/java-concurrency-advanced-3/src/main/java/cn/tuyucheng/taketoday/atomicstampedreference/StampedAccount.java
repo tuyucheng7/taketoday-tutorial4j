@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 public class StampedAccount {
+
    private final AtomicInteger stamp = new AtomicInteger(0);
    private final AtomicStampedReference<Integer> account = new AtomicStampedReference<>(0, 0);
 

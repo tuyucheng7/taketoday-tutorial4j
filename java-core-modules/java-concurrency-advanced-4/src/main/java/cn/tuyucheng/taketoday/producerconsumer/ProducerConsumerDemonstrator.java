@@ -3,7 +3,8 @@ package cn.tuyucheng.taketoday.producerconsumer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.*;
+import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.sleep;
+import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.waitForAllThreadsToComplete;
 
 public class ProducerConsumerDemonstrator {
    private static final int MAX_QUEUE_CAPACITY = 5;

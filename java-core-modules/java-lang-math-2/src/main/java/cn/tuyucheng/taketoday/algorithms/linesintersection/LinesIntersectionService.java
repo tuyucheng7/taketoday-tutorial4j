@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.algorithms.linesintersection;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Optional;
 
 public class LinesIntersectionService {

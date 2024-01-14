@@ -11,10 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-class MultiResultionImageUnitTest {
+public class MultiResultionImageUnitTest {
 
    @Test
-   void baseMultiResImageTest() {
+   public void baseMultiResImageTest() {
       int baseIndex = 1;
       int length = 4;
       BufferedImage[] resolutionVariants = new BufferedImage[length];
@@ -40,4 +40,5 @@ class MultiResultionImageUnitTest {
    private static BufferedImage createImage(int i) {
       return new BufferedImage(getSize(i), getSize(i), BufferedImage.TYPE_INT_RGB);
    }
+
 }

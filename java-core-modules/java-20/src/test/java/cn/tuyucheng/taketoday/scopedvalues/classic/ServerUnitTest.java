@@ -49,4 +49,5 @@ public class ServerUnitTest {
 
       assertThat(writer.toString()).isEqualTo("");
    }
+
 }

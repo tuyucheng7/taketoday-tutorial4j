@@ -1,10 +1,6 @@
 package cn.tuyucheng.taketoday.javac;
 
-import javax.tools.FileObject;
-import javax.tools.ForwardingJavaFileManager;
-import javax.tools.JavaCompiler;
-import javax.tools.JavaFileObject;
-import javax.tools.StandardJavaFileManager;
+import javax.tools.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;

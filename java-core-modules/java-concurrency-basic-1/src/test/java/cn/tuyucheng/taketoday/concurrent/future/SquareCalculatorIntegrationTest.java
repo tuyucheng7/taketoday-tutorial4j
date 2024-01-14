@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.concurrent.future;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TestName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +15,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SquareCalculatorIntegrationTest {
 
@@ -86,12 +85,12 @@ public class SquareCalculatorIntegrationTest {
       result.get();
    }
 
-   @Before
+   @BeforeEach
    public void start() {
       start = System.currentTimeMillis();
    }
 
-   @After
+   @AfterEach
    public void end() {
       LOG.debug(String.format("Test %s took %s ms \n", name.getMethodName(), System.currentTimeMillis() - start));
    }

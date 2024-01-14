@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.collections.bitset;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.info.GraphLayout;
 import org.slf4j.Logger;

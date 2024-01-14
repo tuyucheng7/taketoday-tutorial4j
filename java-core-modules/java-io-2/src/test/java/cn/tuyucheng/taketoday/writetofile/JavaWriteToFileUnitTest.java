@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.writetofile;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -24,7 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JavaWriteToFileUnitTest {
 

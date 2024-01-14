@@ -1,11 +1,10 @@
 package cn.tuyucheng.taketoday.subclassinnerclass;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SubClassUnitTest {
-
    @Test
    public void givenSubclassWhenInstantiatedThenSubclassObjectIsPossible() {
       Notifier emailNotifier = new EmailNotifier();

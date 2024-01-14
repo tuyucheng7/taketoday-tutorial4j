@@ -1,16 +1,17 @@
 package cn.tuyucheng.taketoday.consoletableoutput;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.vandermeer.asciitable.AsciiTable;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BodyMassIndexApplication {
 
    public static void main(String[] args) {
       stringFormat();
       asciiTable();
+
    }
 
    public static void stringFormat() {
@@ -30,6 +31,7 @@ public class BodyMassIndexApplication {
          System.out.format(leftAlignment, bodyMassIndex.getName(), bodyMassIndex.getHeight(), bodyMassIndex.getWeight(), bodyMassIndex.calculate());
          System.out.format("+---------+---------+---------+-------+%n");
       }
+
    }
 
    public static void asciiTable() {
@@ -45,12 +47,16 @@ public class BodyMassIndexApplication {
       asciiTable.addRule();
 
       for (BodyMassIndex bodyMassIndex : bodyMassIndices) {
+
          asciiTable.addRow(bodyMassIndex.getName(), bodyMassIndex.getHeight(), bodyMassIndex.getWeight(), bodyMassIndex.calculate());
          asciiTable.addRule();
+
       }
 
       asciiTable.setTextAlignment(TextAlignment.CENTER);
       String render = asciiTable.render();
       System.out.println(render);
+
    }
+
 }

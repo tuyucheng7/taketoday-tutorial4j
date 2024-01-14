@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.crypto.exception;
 
 import cn.tuyucheng.taketoday.crypto.utils.CryptoUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -16,7 +16,7 @@ public class InvalidAlgorithmParameterExamplesUnitTest {
    private SecretKey key;
    private String plainText;
 
-   @Before
+   @BeforeEach
    public void before() throws GeneralSecurityException {
       key = CryptoUtils.getFixedKey();
 
@@ -27,7 +27,7 @@ public class InvalidAlgorithmParameterExamplesUnitTest {
    public void givenIvIsTooShort_whenEncryptingUsingCBC_thenInvalidAlgorithmParameterExceptionIsThrown()
          throws GeneralSecurityException {
       byte[] ivBytes = new byte[]{'B', 'a', 'e', 'l', 'd', 'u', 'n', 'g', 'I', 's', 'G', 'r', 'e', 'a', 't'};
-      Assert.assertThrows(InvalidAlgorithmParameterException.class,
+      Assertions.assertThrows(InvalidAlgorithmParameterException.class,
             () -> InvalidAlgorithmParameterExamples.encryptUsingIv(key, ivBytes, plainText));
    }
 
@@ -36,7 +36,7 @@ public class InvalidAlgorithmParameterExamplesUnitTest {
          throws GeneralSecurityException {
       byte[] ivBytes = new byte[]{'B', 'a', 'e', 'l', 'd', 'u', 'n', 'g', 'I', 's', 'G', 'r', 'e', 'a', 't', '!',
             '?'};
-      Assert.assertThrows(InvalidAlgorithmParameterException.class,
+      Assertions.assertThrows(InvalidAlgorithmParameterException.class,
             () -> InvalidAlgorithmParameterExamples.encryptUsingIv(key, ivBytes, plainText));
    }
 
@@ -52,6 +52,6 @@ public class InvalidAlgorithmParameterExamplesUnitTest {
 
       byte[] decryptedBytes = cipher.doFinal(cipherTextBytes);
 
-      Assert.assertEquals(plainText, new String(decryptedBytes));
+      Assertions.assertEquals(plainText, new String(decryptedBytes));
    }
 }

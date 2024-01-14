@@ -8,4 +8,5 @@ public class SequenceGenerator {
       currentValue = currentValue + 1;
       return currentValue;
    }
+
 }

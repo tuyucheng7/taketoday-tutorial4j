@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Producer implements Runnable {
    private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
+
    private final TransferQueue<String> transferQueue;
    private final String name;
    final Integer numberOfMessagesToProduce;
@@ -23,17 +24,17 @@ public class Producer implements Runnable {
    @Override
    public void run() {
       for (int i = 0; i < numberOfMessagesToProduce; i++) {
-         LOG.debug("Producer: " + name + " is waiting to transfer...");
          try {
+            LOG.debug("Producer: " + name + " is waiting to transfer...");
             boolean added = transferQueue.tryTransfer("A" + i, 4000, TimeUnit.MILLISECONDS);
             if (added) {
                numberOfProducedMessages.incrementAndGet();
-               LOG.debug("Producer: " + name + " transferred element : A" + i);
+               LOG.debug("Producer: " + name + " transferred element: A" + i);
             } else {
                LOG.debug("can not add an element due to the timeout");
             }
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       }
    }

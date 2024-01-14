@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.parameterpassing;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class NonPrimitivesUnitTest {
    @Test
@@ -10,14 +10,14 @@ public class NonPrimitivesUnitTest {
       Foo b = new Foo(1);
 
       // Before Modification
-      Assert.assertEquals(a.num, 1);
-      Assert.assertEquals(b.num, 1);
+      Assertions.assertEquals(a.num, 1);
+      Assertions.assertEquals(b.num, 1);
 
       modify(a, b);
 
       // After Modification
-      Assert.assertEquals(a.num, 2);
-      Assert.assertEquals(b.num, 1);
+      Assertions.assertEquals(a.num, 2);
+      Assertions.assertEquals(b.num, 1);
    }
 
    public static void modify(Foo a1, Foo b1) {

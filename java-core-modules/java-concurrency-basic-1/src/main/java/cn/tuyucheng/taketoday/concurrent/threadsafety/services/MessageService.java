@@ -8,7 +8,7 @@ public class MessageService {
       this.message = message;
    }
 
-   public String getMessage() {
+   public String getMesssage() {
       return message;
    }
 }

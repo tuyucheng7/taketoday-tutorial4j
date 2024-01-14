@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.directories;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NewDirectoryUnitTest {
 
    private static final File TEMP_DIRECTORY = new File(System.getProperty("java.io.tmpdir"));
 
-   @Before
+   @BeforeEach
    public void beforeEach() {
       File newDirectory = new File(TEMP_DIRECTORY, "new_directory");
       File nestedInNewDirectory = new File(newDirectory, "nested_directory");

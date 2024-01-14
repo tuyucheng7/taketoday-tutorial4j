@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.hashtable;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ConcurrentModificationException;
 import java.util.Enumeration;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class HashtableUnitTest {
 
@@ -57,6 +57,7 @@ public class HashtableUnitTest {
 
    @Test(expected = ConcurrentModificationException.class)
    public void whenIterate_thenFailFast() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "an animal");
       table.put(new Word("dog"), "another animal");
@@ -75,6 +76,7 @@ public class HashtableUnitTest {
 
    @Test
    public void whenEnumerate_thenNotFailFast() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("1"), "one");
       table.put(new Word("2"), "two");
@@ -97,6 +99,7 @@ public class HashtableUnitTest {
 
    @Test
    public void whenAddElements_thenIterationOrderUnpredicable() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("1"), "one");
       table.put(new Word("2"), "two");
@@ -116,17 +119,18 @@ public class HashtableUnitTest {
 
    @Test
    public void whenGetOrDefault_thenDefaultGot() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
       Word key = new Word("dog");
       String definition;
 
       // old way
-      // if (table.containsKey(key)) {
-      //     definition = table.get(key);
-      // } else {
-      //     definition = "not found";
-      // }
+        /* if (table.containsKey(key)) {
+            definition = table.get(key);
+        } else {
+            definition = "not found";
+        }*/
 
       // new way
       definition = table.getOrDefault(key, "not found");
@@ -142,9 +146,9 @@ public class HashtableUnitTest {
 
       String definition = "an animal";
       // old way
-      // if (!table.containsKey(new Word("cat"))) {
-      //     table.put(new Word("cat"), definition);
-      // }
+        /* if (!table.containsKey(new Word("cat"))) {
+            table.put(new Word("cat"), definition);
+        }*/
       // new way
       table.putIfAbsent(new Word("cat"), definition);
 
@@ -153,13 +157,14 @@ public class HashtableUnitTest {
 
    @Test
    public void whenRemovePair_thenCheckKeyAndValue() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
 
       // old way
-      // if (table.get(new Word("cat")).equals("an animal")) {
-      //     table.remove(new Word("cat"));
-      // }
+        /* if (table.get(new Word("cat")).equals("an animal")) {
+            table.remove(new Word("cat"));
+        }*/
 
       // new way
       boolean result = table.remove(new Word("cat"), "an animal");
@@ -169,67 +174,77 @@ public class HashtableUnitTest {
 
    @Test
    public void whenReplacePair_thenValueChecked() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
 
       String definition = "an animal";
 
       // old way
-      // if (table.containsKey(new Word("cat")) && table.get(new Word("cat")).equals("a small domesticated carnivorous mammal")) {
-      //     table.put(new Word("cat"), definition);
-      // }
+        /* if (table.containsKey(new Word("cat")) && table.get(new Word("cat")).equals("a small domesticated carnivorous mammal")) {
+            table.put(new Word("cat"), definition);
+        }*/
       // new way
       table.replace(new Word("cat"), "a small domesticated carnivorous mammal", definition);
 
       assertThat(table.get(new Word("cat")), is("an animal"));
+
    }
 
    @Test
    public void whenKeyIsAbsent_thenNotRewritten() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
 
       // old way
-      // if (!table.containsKey(cat)) {
-      //     String definition = "an animal";// calculate
-      //     table.put(new Word("cat"), definition);
-      // }
+        /* if (!table.containsKey(cat)) {
+            String definition = "an animal";// calculate
+            table.put(new Word("cat"), definition);
+        }
+        */
       // new way
 
       table.computeIfAbsent(new Word("cat"), key -> "an animal");
       assertThat(table.get(new Word("cat")), is("a small domesticated carnivorous mammal"));
+
    }
 
    @Test
    public void whenKeyIsPresent_thenComputeIfPresent() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
 
       Word cat = new Word("cat");
       // old way
-      // if (table.containsKey(cat)) {
-      //     String concatination = cat.getName() + " - " + table.get(cat);
-      //     table.put(cat, concatination);
-      // }
+        /* if (table.containsKey(cat)) {
+            String concatination = cat.getName() + " - " + table.get(cat);
+            table.put(cat, concatination);
+        }*/
 
       // new way
       table.computeIfPresent(cat, (key, value) -> key.getName() + " - " + value);
 
       assertThat(table.get(cat), is("cat - a small domesticated carnivorous mammal"));
+
    }
 
    @Test
    public void whenCompute_thenForAllKeys() {
+
       Hashtable<String, Integer> table = new Hashtable<String, Integer>();
       String[] animals = {"cat", "dog", "dog", "cat", "bird", "mouse", "mouse"};
       for (String animal : animals) {
          table.compute(animal, (key, value) -> (value == null ? 1 : value + 1));
       }
       assertThat(table.values(), hasItems(2, 2, 2, 1));
+
    }
 
    @Test
    public void whenInsteadOfCompute_thenMerge() {
+
       Hashtable<String, Integer> table = new Hashtable<String, Integer>();
       String[] animals = {"cat", "dog", "dog", "cat", "bird", "mouse", "mouse"};
       for (String animal : animals) {
@@ -240,15 +255,18 @@ public class HashtableUnitTest {
 
    @Test
    public void whenForeach_thenIterate() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
       table.put(new Word("dog"), "another animal");
       table.forEach((k, v) -> System.out.println(k.getName() + " - " + v)
+
       );
    }
 
    @Test
    public void whenReplaceall_thenNoIterationNeeded() {
+
       Hashtable<Word, String> table = new Hashtable<Word, String>();
       table.put(new Word("cat"), "a small domesticated carnivorous mammal");
       table.put(new Word("dog"), "another animal");

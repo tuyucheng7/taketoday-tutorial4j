@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.numberofdigits;
 
+
 import java.util.logging.Logger;
 
 public class NumberOfDigitsDriver {

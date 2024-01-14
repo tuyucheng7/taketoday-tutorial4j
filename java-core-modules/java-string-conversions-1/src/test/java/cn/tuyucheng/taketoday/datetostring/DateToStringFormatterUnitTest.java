@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.datetostring;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,9 +14,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.Ignore;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DateToStringFormatterUnitTest {
 
@@ -23,7 +22,7 @@ public class DateToStringFormatterUnitTest {
    private static final String EXPECTED_STRING_DATE = "Aug 1, 2018 12:00 PM";
    private static Date date;
 
-   @BeforeClass
+   @BeforeAll
    public static void setUp() {
       TimeZone.setDefault(TimeZone.getTimeZone("CET"));
       Calendar calendar = Calendar.getInstance();
@@ -40,7 +39,6 @@ public class DateToStringFormatterUnitTest {
    }
 
    @Test
-   @Ignore("fails test")
    public void whenDateConvertedUsingDateFormatToString_thenCorrect() {
       String formattedDate = DateFormat
             .getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, Locale.US)

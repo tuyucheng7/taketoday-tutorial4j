@@ -6,8 +6,8 @@ import java.util.concurrent.CountDownLatch;
 
 public class DelayedCallable implements Callable<String> {
 
-   private final String name;
-   private final long period;
+   private String name;
+   private long period;
    private CountDownLatch latch;
 
    public DelayedCallable(String name, long period, CountDownLatch latch) {
@@ -21,8 +21,10 @@ public class DelayedCallable implements Callable<String> {
    }
 
    public String call() {
+
       try {
          Thread.sleep(period);
+
          if (latch != null) {
             latch.countDown();
          }

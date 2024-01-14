@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.scanner;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.*;
-import java.util.regex.*;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

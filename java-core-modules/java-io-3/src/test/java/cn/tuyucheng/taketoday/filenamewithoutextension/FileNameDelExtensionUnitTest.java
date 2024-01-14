@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.filenamewithoutextension;
 
-import cn.tuyucheng.taketoday.filenamewithoutextension.MyFilenameUtil;
 import com.google.common.io.Files;
 import org.apache.commons.io.FilenameUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class FileNameDelExtensionUnitTest {
 
@@ -36,7 +36,7 @@ public class FileNameDelExtensionUnitTest {
 
    @Test
    public void givenFilenameNoExt_whenCallFilenameUtilMethod_thenGetExpectedFilename() {
-      assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng", true));
+      Assertions.assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng", true));
       assertEquals("tuyucheng", MyFilenameUtil.removeFileExtension("tuyucheng", false));
    }
 

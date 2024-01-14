@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.streams.streamtoiterable;
 
+import joptsimple.internal.Strings;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import joptsimple.internal.Strings;
 
 public class StreamToIterable {
    public String streamToIterableLambda(List<String> listOfStrings) {

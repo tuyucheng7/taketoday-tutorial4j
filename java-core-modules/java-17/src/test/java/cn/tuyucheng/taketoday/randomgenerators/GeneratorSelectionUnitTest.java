@@ -21,4 +21,5 @@ class GeneratorSelectionUnitTest {
       int number = generator.nextInt(10);
       assertThat(number).isNotNegative().isLessThan(10);
    }
+
 }

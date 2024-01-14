@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.concurrent.threadreturnvalue.task.callable;
 
+import cn.tuyucheng.taketoday.concurrent.threadreturnvalue.task.FactorialCalculator;
+
 import java.math.BigInteger;
 import java.util.concurrent.Callable;
-
-import static cn.tuyucheng.taketoday.concurrent.threadreturnvalue.task.FactorialCalculator.factorial;
 
 public class CallableFactorialTask implements Callable<BigInteger> {
 
@@ -15,6 +15,6 @@ public class CallableFactorialTask implements Callable<BigInteger> {
 
    @Override
    public BigInteger call() {
-      return factorial(BigInteger.valueOf(value));
+      return FactorialCalculator.factorial(BigInteger.valueOf(value));
    }
 }

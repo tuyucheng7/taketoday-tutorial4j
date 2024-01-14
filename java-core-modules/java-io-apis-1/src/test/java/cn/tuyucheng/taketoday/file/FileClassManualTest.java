@@ -1,13 +1,20 @@
 package cn.tuyucheng.taketoday.file;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Manual tests for data reading and writing
@@ -77,7 +84,7 @@ public class FileClassManualTest {
       assertFalse(writable);
    }
 
-   @Ignore
+   @Disabled
    @Test
    public void givenWriteOnlyFile_whenCreateNewFile_thenCantReadFile() {
       File parentDir = makeDir("writeDir");

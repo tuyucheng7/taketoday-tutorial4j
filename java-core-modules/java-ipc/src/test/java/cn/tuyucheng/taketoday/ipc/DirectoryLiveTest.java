@@ -6,12 +6,12 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchKey;
 import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
-public class DirectoryLiveTest {
 
+public class DirectoryLiveTest {
    @Test
    public void consumer() throws Exception {
       WatchService watchService = FileSystems.getDefault().newWatchService();

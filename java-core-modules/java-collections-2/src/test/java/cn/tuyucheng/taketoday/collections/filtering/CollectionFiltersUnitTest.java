@@ -40,4 +40,5 @@ public class CollectionFiltersUnitTest {
             .hasSameElementsAs(filteredWithGuava)
             .hasSameElementsAs(EXPECTED_EVEN_FILTERED_COLLECTION);
    }
+
 }

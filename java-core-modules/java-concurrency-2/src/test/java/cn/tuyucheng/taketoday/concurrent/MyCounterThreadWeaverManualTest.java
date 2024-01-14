@@ -5,9 +5,9 @@ import com.google.testing.threadtester.ThreadedAfter;
 import com.google.testing.threadtester.ThreadedBefore;
 import com.google.testing.threadtester.ThreadedMain;
 import com.google.testing.threadtester.ThreadedSecondary;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions
@@ -42,4 +42,5 @@ public class MyCounterThreadWeaverManualTest {
    public void testCounter() {
       new AnnotatedTestRunner().runTests(this.getClass(), MyCounter.class);
    }
+
 }

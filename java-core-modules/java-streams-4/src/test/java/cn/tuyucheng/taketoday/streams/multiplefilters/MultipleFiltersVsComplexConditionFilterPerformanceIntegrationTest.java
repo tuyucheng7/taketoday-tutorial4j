@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.streams.multiplefilters;
 
 import org.apache.commons.lang3.time.StopWatch;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.MessageFormat;
 import java.util.function.Function;

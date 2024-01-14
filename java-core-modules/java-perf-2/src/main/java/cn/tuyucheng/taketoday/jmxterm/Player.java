@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.jmxterm;
 
-import static cn.tuyucheng.taketoday.jmxterm.RandomNumbergenerator.*;
+import static cn.tuyucheng.taketoday.jmxterm.RandomNumbergenerator.generateRandomNumber;
 
 public class Player extends AbstractPlayerMBean {
    private final String name;
@@ -29,4 +29,5 @@ public class Player extends AbstractPlayerMBean {
    public String getName() {
       return name;
    }
+
 }

@@ -1,13 +1,11 @@
 package cn.tuyucheng.taketoday.streams.processing.vavr;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-
 import cn.tuyucheng.taketoday.streams.processing.StreamProcessingUnitTest;
-
 import io.vavr.collection.List;
 import io.vavr.collection.Stream;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StreamProcessingWithVavrUnitTest extends StreamProcessingUnitTest {
 

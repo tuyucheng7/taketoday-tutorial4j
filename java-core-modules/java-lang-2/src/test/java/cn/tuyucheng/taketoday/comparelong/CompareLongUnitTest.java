@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.comparelong;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
 

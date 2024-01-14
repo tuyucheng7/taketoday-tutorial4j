@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.algorithms.combination;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Test;
 
 public class CombinationUnitTest {
 

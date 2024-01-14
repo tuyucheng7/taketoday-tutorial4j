@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.optional;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OptionalChainingUnitTest {
 
@@ -17,7 +17,7 @@ public class OptionalChainingUnitTest {
    private boolean getHelloEvaluated;
    private boolean getByeEvaluated;
 
-   @Before
+   @BeforeEach
    public void setUp() {
       getEmptyEvaluated = false;
       getHelloEvaluated = false;

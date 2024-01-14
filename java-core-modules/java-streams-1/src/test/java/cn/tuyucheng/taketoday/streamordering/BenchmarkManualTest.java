@@ -44,6 +44,8 @@ public class BenchmarkManualTest {
             .build();
 
       new Runner(opt).run();
+
+
    }
 
    @Benchmark
@@ -89,6 +91,7 @@ public class BenchmarkManualTest {
    @Benchmark
    public void
    benchmark1(BenchmarkState state, Blackhole bh) {
+
       List<Integer> list = state.list;
 
       for (int i = 0; i < 1000; i++)

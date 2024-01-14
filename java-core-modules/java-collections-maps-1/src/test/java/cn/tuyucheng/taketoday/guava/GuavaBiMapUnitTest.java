@@ -4,12 +4,12 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumHashBiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableBiMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GuavaBiMapUnitTest {
    @Test

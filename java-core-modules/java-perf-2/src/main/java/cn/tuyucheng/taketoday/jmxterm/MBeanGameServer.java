@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.jmxterm;
 
-import java.lang.management.ManagementFactory;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
+import java.lang.management.ManagementFactory;
 
 public class MBeanGameServer {
 
@@ -33,4 +33,5 @@ public class MBeanGameServer {
          throw new RuntimeException(e);
       }
    }
+
 }

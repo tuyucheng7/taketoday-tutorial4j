@@ -9,10 +9,10 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StreamSumUnitTest {
+public class StreamSumUnitTest {
 
    @Test
-   void givenListOfIntegersWhenSummingUsingCustomizedAccumulatorThenCorrectValueReturned() {
+   public void givenListOfIntegersWhenSummingUsingCustomizedAccumulatorThenCorrectValueReturned() {
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       Integer sum = StreamSumCalculator.getSumUsingCustomizedAccumulator(integers);
       assertEquals(15, sum.intValue());
@@ -20,35 +20,35 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenListOfIntegersWhenSummingUsingJavaAccumulatorThenCorrectValueReturned() {
+   public void givenListOfIntegersWhenSummingUsingJavaAccumulatorThenCorrectValueReturned() {
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       Integer sum = StreamSumCalculator.getSumUsingJavaAccumulator(integers);
       assertEquals(15, sum.intValue());
    }
 
    @Test
-   void givenListOfIntegersWhenSummingUsingReduceThenCorrectValueReturned() {
+   public void givenListOfIntegersWhenSummingUsingReduceThenCorrectValueReturned() {
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       Integer sum = StreamSumCalculator.getSumUsingReduce(integers);
       assertEquals(15, sum.intValue());
    }
 
    @Test
-   void givenListOfIntegersWhenSummingUsingCollectThenCorrectValueReturned() {
+   public void givenListOfIntegersWhenSummingUsingCollectThenCorrectValueReturned() {
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       Integer sum = StreamSumCalculator.getSumUsingCollect(integers);
       assertEquals(15, sum.intValue());
    }
 
    @Test
-   void givenListOfIntegersWhenSummingUsingSumThenCorrectValueReturned() {
+   public void givenListOfIntegersWhenSummingUsingSumThenCorrectValueReturned() {
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       Integer sum = StreamSumCalculator.getSumUsingSum(integers);
       assertEquals(15, sum.intValue());
    }
 
    @Test
-   void givenListOfItemsWhenSummingUsingCustomizedAccumulatorThenCorrectValueReturned() {
+   public void givenListOfItemsWhenSummingUsingCustomizedAccumulatorThenCorrectValueReturned() {
       Item item1 = new Item(1, 10);
       Item item2 = new Item(2, 15);
       Item item3 = new Item(3, 25);
@@ -62,7 +62,7 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenListOfItemsWhenSummingUsingJavaAccumulatorThenCorrectValueReturned() {
+   public void givenListOfItemsWhenSummingUsingJavaAccumulatorThenCorrectValueReturned() {
       Item item1 = new Item(1, 10);
       Item item2 = new Item(2, 15);
       Item item3 = new Item(3, 25);
@@ -75,7 +75,7 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenListOfItemsWhenSummingUsingReduceThenCorrectValueReturned() {
+   public void givenListOfItemsWhenSummingUsingReduceThenCorrectValueReturned() {
       Item item1 = new Item(1, 10);
       Item item2 = new Item(2, 15);
       Item item3 = new Item(3, 25);
@@ -88,7 +88,7 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenListOfItemsWhenSummingUsingCollectThenCorrectValueReturned() {
+   public void givenListOfItemsWhenSummingUsingCollectThenCorrectValueReturned() {
       Item item1 = new Item(1, 10);
       Item item2 = new Item(2, 15);
       Item item3 = new Item(3, 25);
@@ -101,7 +101,7 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenListOfItemsWhenSummingUsingSumThenCorrectValueReturned() {
+   public void givenListOfItemsWhenSummingUsingSumThenCorrectValueReturned() {
       Item item1 = new Item(1, 10);
       Item item2 = new Item(2, 15);
       Item item3 = new Item(3, 25);
@@ -114,7 +114,7 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenMapWhenSummingThenCorrectValueReturned() {
+   public void givenMapWhenSummingThenCorrectValueReturned() {
       Map<Object, Integer> map = new HashMap<Object, Integer>();
       map.put(1, 10);
       map.put(2, 15);
@@ -126,10 +126,11 @@ class StreamSumUnitTest {
    }
 
    @Test
-   void givenStringWhenSummingThenCorrectValueReturned() {
+   public void givenStringWhenSummingThenCorrectValueReturned() {
       String string = "Item1 10 Item2 25 Item3 30 Item4 45";
 
       Integer sum = StreamSumCalculator.getSumIntegersFromString(string);
       assertEquals(110, sum.intValue());
    }
+
 }

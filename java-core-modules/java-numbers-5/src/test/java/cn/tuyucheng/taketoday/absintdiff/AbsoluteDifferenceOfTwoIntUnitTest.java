@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.absintdiff;
 
+import org.junit.jupiter.api.Test;
+
 import static cn.tuyucheng.taketoday.absintdiff.IntDiffUtil.absDiff;
 import static cn.tuyucheng.taketoday.absintdiff.IntDiffUtil.absDiff2;
 import static cn.tuyucheng.taketoday.absintdiff.IntDiffUtil.absDiffAsLong;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 class IntDiffUtil {
    static int absDiff(int num1, int num2) {

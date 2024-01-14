@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.removeduplicates;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RemoveDuplicateFromStringUnitTest {
 
@@ -12,7 +12,7 @@ public class RemoveDuplicateFromStringUnitTest {
 
    private RemoveDuplicateFromString removeDuplicateFromString;
 
-   @Before
+   @BeforeEach
    public void executedBeforeEach() {
       removeDuplicateFromString = new RemoveDuplicateFromString();
    }
@@ -23,9 +23,9 @@ public class RemoveDuplicateFromStringUnitTest {
       String str1 = removeDuplicateFromString.removeDuplicatesUsingCharArray(STR1);
       String str2 = removeDuplicateFromString.removeDuplicatesUsingCharArray(STR2);
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsingCharArray(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("ecar", str1);
-      Assert.assertEquals("J2e poraming", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("ecar", str1);
+      Assertions.assertEquals("J2e poraming", str2);
    }
 
    @Test
@@ -34,9 +34,9 @@ public class RemoveDuplicateFromStringUnitTest {
       String str2 = removeDuplicateFromString.removeDuplicatesUsinglinkedHashSet(STR2);
 
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsinglinkedHashSet(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("race", str1);
-      Assert.assertEquals("J2e progamin", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("race", str1);
+      Assertions.assertEquals("J2e progamin", str2);
    }
 
    @Test
@@ -45,9 +45,9 @@ public class RemoveDuplicateFromStringUnitTest {
       String str2 = removeDuplicateFromString.removeDuplicatesUsingSorting(STR2);
 
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsingSorting(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("acer", str1);
-      Assert.assertEquals(" 2Jaegimnopr", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("acer", str1);
+      Assertions.assertEquals(" 2Jaegimnopr", str2);
    }
 
    @Test
@@ -55,9 +55,9 @@ public class RemoveDuplicateFromStringUnitTest {
       String str1 = removeDuplicateFromString.removeDuplicatesUsingHashSet(STR1);
       String str2 = removeDuplicateFromString.removeDuplicatesUsingHashSet(STR2);
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsingHashSet(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("arce", str1);
-      Assert.assertEquals(" pa2regiJmno", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("arce", str1);
+      Assertions.assertEquals(" pa2regiJmno", str2);
    }
 
    @Test
@@ -65,9 +65,9 @@ public class RemoveDuplicateFromStringUnitTest {
       String str1 = removeDuplicateFromString.removeDuplicatesUsingIndexOf(STR1);
       String str2 = removeDuplicateFromString.removeDuplicatesUsingIndexOf(STR2);
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsingIndexOf(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("ecar", str1);
-      Assert.assertEquals("J2e poraming", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("ecar", str1);
+      Assertions.assertEquals("J2e poraming", str2);
    }
 
    @Test
@@ -75,8 +75,8 @@ public class RemoveDuplicateFromStringUnitTest {
       String str1 = removeDuplicateFromString.removeDuplicatesUsingDistinct(STR1);
       String str2 = removeDuplicateFromString.removeDuplicatesUsingDistinct(STR2);
       String strEmpty = removeDuplicateFromString.removeDuplicatesUsingDistinct(STR_EMPTY);
-      Assert.assertEquals("", strEmpty);
-      Assert.assertEquals("race", str1);
-      Assert.assertEquals("J2e progamin", str2);
+      Assertions.assertEquals("", strEmpty);
+      Assertions.assertEquals("race", str1);
+      Assertions.assertEquals("J2e progamin", str2);
    }
 }

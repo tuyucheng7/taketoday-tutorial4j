@@ -14,4 +14,5 @@ public class ColorData {
    public String getHexString() {
       return String.format("#%02X%02X%02X", red, green, blue);
    }
+
 }

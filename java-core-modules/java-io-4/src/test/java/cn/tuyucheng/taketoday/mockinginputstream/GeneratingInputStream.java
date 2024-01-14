@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.mockinginputstream;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class GeneratingInputStream extends InputStream {

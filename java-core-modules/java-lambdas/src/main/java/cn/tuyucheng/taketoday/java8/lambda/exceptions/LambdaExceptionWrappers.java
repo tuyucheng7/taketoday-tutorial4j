@@ -14,7 +14,7 @@ public class LambdaExceptionWrappers {
          try {
             consumer.accept(i);
          } catch (ArithmeticException e) {
-            LOGGER.error("ArithmeticException occurred", e);
+            LOGGER.error("Arithmetic Exception occurred.", e);
          }
       };
    }
@@ -58,4 +58,5 @@ public class LambdaExceptionWrappers {
          }
       };
    }
+
 }

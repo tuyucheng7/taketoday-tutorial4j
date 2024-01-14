@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.utilities.alternatives;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +9,7 @@ class StringUtilsInterfaceUnitTest {
 
    @Test
    void givenAnEmptyString_whenCallingIsEmpty_thenResultIsTrue() {
-      assertThat(StringUtilsInterface.isEmpty("")).isTrue();
+      Assertions.assertThat(StringUtilsInterface.isEmpty("")).isTrue();
    }
 
    @Test

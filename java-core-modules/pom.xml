@@ -6,6 +6,7 @@
    <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
    <artifactId>java-core-modules</artifactId>
    <name>java-core-modules</name>
+   <version>1.0.0</version>
    <packaging>pom</packaging>
 
    <parent>
@@ -13,41 +14,6 @@
       <artifactId>taketoday-tutorial4j</artifactId>
       <version>1.0.0</version>
    </parent>
-
-   <dependencyManagement>
-      <dependencies>
-         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-         </dependency>
-         <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-         </dependency>
-      </dependencies>
-   </dependencyManagement>
-
-   <dependencies>
-      <dependency>
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.openjdk.jmh</groupId>
-         <artifactId>jmh-core</artifactId>
-         <version>${jmh-core.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>commons-io</groupId>
-         <artifactId>commons-io</artifactId>
-         <version>${commons-io.version}</version>
-      </dependency>
-   </dependencies>
 
    <modules>
       <module>java-8-1</module>
@@ -74,13 +40,14 @@
       <module>java-20</module>
       <module>java-21</module>
       <module>java-annotations</module>
-      <module>java-arrays-sorting</module>
+      <module>java-arrays-convert</module>
       <module>java-arrays-guides</module>
       <module>java-arrays-multidimensional</module>
-      <module>java-arrays-convert</module>
-      <module>java-arrays-operations-basic</module>
-      <module>java-arrays-operations-advanced</module>
-      <module>java-blockchain</module>
+      <module>java-arrays-operations-advanced-1</module>
+      <module>java-arrays-operations-advanced-2</module>
+      <module>java-arrays-operations-basic-1</module>
+      <module>java-arrays-operations-basic-2</module>
+      <module>java-arrays-sorting</module>
       <module>java-booleans</module>
       <module>java-char</module>
       <module>java-collections-1</module>
@@ -88,25 +55,28 @@
       <module>java-collections-3</module>
       <module>java-collections-4</module>
       <module>java-collections-5</module>
-      <module>java-collections-array-list</module>
+      <module>java-collections-array-list-1</module>
+      <module>java-collections-array-list-2</module>
       <module>java-collections-conversions-1</module>
       <module>java-collections-conversions-2</module>
-      <module>java-collections-set-1</module>
-      <module>java-collections-set-2</module>
+      <module>java-collections-conversions-3</module>
       <module>java-collections-list-1</module>
       <module>java-collections-list-2</module>
       <module>java-collections-list-3</module>
       <module>java-collections-list-4</module>
       <module>java-collections-list-5</module>
+      <module>java-collections-list-6</module>
       <module>java-collections-maps-1</module>
       <module>java-collections-maps-2</module>
       <module>java-collections-maps-3</module>
       <module>java-collections-maps-4</module>
+      <module>java-collections-maps-6</module>
       <module>java-collections-maps-5</module>
       <module>java-collections-maps-6</module>
       <module>java-collections-maps-7</module>
+      <module>java-collections-set-1</module>
+      <module>java-collections-set-2</module>
       <module>java-compiler</module>
-      <module>java-concurrency-1</module>
       <module>java-concurrency-2</module>
       <module>java-concurrency-advanced-1</module>
       <module>java-concurrency-advanced-2</module>
@@ -119,13 +89,14 @@
       <module>java-concurrency-collections-1</module>
       <module>java-concurrency-collections-2</module>
       <module>java-concurrency-simple</module>
+      <module>java-conditionals</module>
       <module>java-console</module>
-      <!-- <module>java-date-operations-1</module> -->
-      <!-- <module>java-date-operations-2</module> -->
-      <!-- <module>java-date-operations-3</module> -->
-      <!-- <module>java-datetime-conversion</module> -->
-      <!-- <module>java-datetime-string-1</module> -->
-      <!-- <module>java-datetime-string-2</module> -->
+      <module>java-date-operations-1</module>
+      <module>java-date-operations-2</module>
+      <module>java-date-operations-3</module>
+      <module>java-datetime-conversion</module>
+      <module>java-datetime-string-1</module>
+      <module>java-datetime-string-2</module>
       <module>java-documentation</module>
       <module>java-exceptions-1</module>
       <module>java-exceptions-2</module>
@@ -144,61 +115,69 @@
       <module>java-io-apis-2</module>
       <module>java-io-conversions-1</module>
       <module>java-io-conversions-2</module>
-      <!-- <module>java-ipc</module> -->
-      <!-- <module>java-jar</module> -->
-      <module>java-jdi</module>
+      <module>java-ipc</module>
+      <module>java-jar</module>
       <module>java-jndi</module>
       <module>java-jpms</module>
       <module>java-jvm-1</module>
       <module>java-jvm-2</module>
       <module>java-jvm-3</module>
-      <module>java-jvm-theory</module>
       <module>java-lambdas</module>
       <module>java-lang-1</module>
       <module>java-lang-2</module>
       <module>java-lang-3</module>
       <module>java-lang-4</module>
       <module>java-lang-5</module>
+      <module>java-lang-6</module>
       <module>java-lang-math-1</module>
-      <module>java-lang-math-2</module>
+      <!-- &lt;!&ndash; <module>java-lang-math-2</module> &ndash;&gt; -->
       <module>java-lang-math-3</module>
-      <module>java-lang-oop-constructors</module>
-      <module>java-lang-oop-patterns</module>
+      <module>java-lang-oop-constructors-1</module>
+      <module>java-lang-oop-constructors-2</module>
       <module>java-lang-oop-generics</module>
-      <module>java-lang-oop-modifiers</module>
-      <module>java-lang-oop-types-1</module>
-      <module>java-lang-oop-types-2</module>
       <module>java-lang-oop-inheritance</module>
       <module>java-lang-oop-methods</module>
+      <module>java-lang-oop-modifiers</module>
       <module>java-lang-oop-others</module>
+      <module>java-lang-oop-patterns</module>
+      <module>java-lang-oop-types-1</module>
+      <module>java-lang-oop-types-2</module>
       <module>java-lang-operators-1</module>
       <module>java-lang-operators-2</module>
       <module>java-lang-syntax-1</module>
       <module>java-lang-syntax-2</module>
+      <module>java-locale</module>
+      <module>java-loops</module>
+      <module>java-methods</module>
+      <module>java-native</module>
       <module>java-networking-1</module>
       <module>java-networking-2</module>
       <module>java-networking-3</module>
       <module>java-networking-4</module>
       <module>java-nio-1</module>
       <module>java-nio-2</module>
-      <!-- <module>java-numbers-1</module> -->
-      <!-- <module>java-numbers-2</module> -->
-      <!-- <module>java-numbers-3</module> -->
-      <!-- <module>java-numbers-4</module> -->
-      <!-- <module>java-numbers-5</module> -->
-      <!-- <module>java-numbers-conversions</module> -->
+      <module>java-numbers-1</module>
+      <module>java-numbers-2</module>
+      <module>java-numbers-3</module>
+      <module>java-numbers-4</module>
+      <module>java-numbers-5</module>
+      <module>java-numbers-6</module>
+      <module>java-numbers-7</module>
+      <module>java-numbers-conversions</module>
       <module>java-optional</module>
-      <module>java-os</module>
+      <module>java-os-1</module>
       <module>java-os-2</module>
-      <module>java-panama</module>
       <module>java-perf-1</module>
       <module>java-perf-2</module>
-      <module>java-pre-jpms</module>
+      <module>java-properties</module>
+      <module>java-records</module>
       <module>java-reflection-1</module>
       <module>java-reflection-2</module>
-      <!-- <module>java-regex-1</module> -->
-      <!-- <module>java-regex-2</module> -->
+      <module>java-reflection-3</module>
+      <module>java-regex-1</module>
+      <module>java-regex-2</module>
       <module>java-rmi</module>
+      <module>java-scanner</module>
       <module>java-security-1</module>
       <module>java-security-2</module>
       <module>java-security-3</module>
@@ -211,24 +190,71 @@
       <module>java-streams-3</module>
       <module>java-streams-4</module>
       <module>java-streams-5</module>
+      <module>java-streams-6</module>
       <module>java-streams-collect</module>
       <module>java-streams-maps</module>
+      <module>java-streams-simple</module>
       <module>java-string-algorithms-1</module>
       <module>java-string-algorithms-2</module>
       <module>java-string-algorithms-3</module>
+      <module>java-string-algorithms-4</module>
       <module>java-string-apis-1</module>
       <module>java-string-apis-2</module>
       <module>java-string-conversions-1</module>
       <module>java-string-conversions-2</module>
+      <module>java-string-conversions-3</module>
       <module>java-string-operations-1</module>
       <module>java-string-operations-2</module>
+      <module>java-string-operations-6</module>
+      <module>java-string-operations-7</module>
       <module>java-string-operations-3</module>
       <module>java-string-operations-4</module>
       <module>java-string-operations-5</module>
       <module>java-strings</module>
       <!-- <module>java-sun</module> -->
-      <!-- <module>java-swing</module> -->
-      <!-- <module>java-uuid</module> -->
-      <!-- <module>java-pre-jpms</module> -->
+      <module>java-swing</module>
+      <module>java-time-measurements</module>
+      <module>java-websocket</module>
+      <module>java-uuid</module>
    </modules>
+
+   <dependencies>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guava.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.openjdk.jmh</groupId>
+         <artifactId>jmh-core</artifactId>
+         <version>${jmh-core.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>commons-io</groupId>
+         <artifactId>commons-io</artifactId>
+         <version>${commons-io.version}</version>
+      </dependency>
+   </dependencies>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+         </dependency>
+         <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <properties>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
+   </properties>
 </project>

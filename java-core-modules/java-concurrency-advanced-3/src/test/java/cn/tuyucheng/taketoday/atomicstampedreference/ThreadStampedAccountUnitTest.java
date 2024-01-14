@@ -6,18 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ThreadStampedAccountUnitTest {
+public class ThreadStampedAccountUnitTest {
 
    @Test
-   void givenMultiThread_whenStampedAccount_thenSetBalance() throws InterruptedException {
+   public void givenMultiThread_whenStampedAccount_thenSetBalance() throws InterruptedException {
       StampedAccount account = new StampedAccount();
 
-      Thread t1 = new Thread(() -> {
+      Thread t = new Thread(() -> {
          while (!account.deposit(100)) {
             Thread.yield();
          }
       });
-      t1.start();
+      t.start();
 
       Thread t2 = new Thread(() -> {
          while (!account.withdrawal(100)) {
@@ -26,10 +26,10 @@ class ThreadStampedAccountUnitTest {
       });
       t2.start();
 
-      t1.join(10_000);
+      t.join(10_000);
       t2.join(10_000);
 
-      assertFalse(t1.isAlive());
+      assertFalse(t.isAlive());
       assertFalse(t2.isAlive());
 
       assertEquals(0, account.getBalance());

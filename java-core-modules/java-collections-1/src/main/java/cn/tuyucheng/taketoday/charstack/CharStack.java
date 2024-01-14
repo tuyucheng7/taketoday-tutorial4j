@@ -8,7 +8,7 @@ public class CharStack {
    private LinkedList<Character> items;
 
    public CharStack() {
-      this.items = new LinkedList<>();
+      this.items = new LinkedList<Character>();
    }
 
    public void push(Character item) {
@@ -20,6 +20,7 @@ public class CharStack {
    }
 
    public Character pop() {
+
       Iterator<Character> iter = items.iterator();
       Character item = iter.next();
       if (item != null) {
@@ -32,4 +33,5 @@ public class CharStack {
    public int size() {
       return items.size();
    }
+
 }

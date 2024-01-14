@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.random;
 
 import org.apache.commons.math3.random.RandomDataGenerator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

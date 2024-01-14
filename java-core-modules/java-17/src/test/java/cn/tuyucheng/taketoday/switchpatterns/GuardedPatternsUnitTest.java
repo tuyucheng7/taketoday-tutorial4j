@@ -27,4 +27,5 @@ class GuardedPatternsUnitTest {
    void givenPatternsImplementation_whenUsingNonEmptyString_thenDoubleIsReturned() {
       assertEquals(10d, getDoubleValueUsingGuardedPatterns("10"));
    }
+
 }

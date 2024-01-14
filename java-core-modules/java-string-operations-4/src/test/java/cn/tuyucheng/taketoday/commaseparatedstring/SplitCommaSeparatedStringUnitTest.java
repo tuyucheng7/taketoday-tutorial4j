@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.commaseparatedstring;
 
-import org.junit.Test;
+import com.opencsv.exceptions.CsvException;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,7 @@ import static cn.tuyucheng.taketoday.commaseparatedstring.SplitCommaSeparatedStr
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SplitCommaSeparatedStringUnitTest {
 
@@ -27,7 +28,7 @@ public class SplitCommaSeparatedStringUnitTest {
    }
 
    @Test
-   public void givenMultiLineInput_whenParsing_shouldIgnoreCommasInsideDoubleQuotes() throws IOException {
+   public void givenMultiLineInput_whenParsing_shouldIgnoreCommasInsideDoubleQuotes() throws IOException, CsvException {
       String input = "tuyucheng,tutorial,splitting,text,\"ignoring this comma,\"" + System.lineSeparator()
             + "splitting,a,regular,line,no double quotes";
 

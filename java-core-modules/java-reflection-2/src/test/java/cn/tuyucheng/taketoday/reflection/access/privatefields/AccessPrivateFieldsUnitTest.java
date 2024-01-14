@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 
-class AccessPrivateFieldsUnitTest {
+public class AccessPrivateFieldsUnitTest {
 
    @Test
-   void whenGetIntegerFields_thenSuccess() throws Exception {
+   public void whenGetIntegerFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field ageField = person.getClass()
@@ -38,10 +38,11 @@ class AccessPrivateFieldsUnitTest {
 
       long contactNumber = contactNumberField.getLong(person);
       Assertions.assertEquals(123456789L, contactNumber);
+
    }
 
    @Test
-   void whenDoAutoboxing_thenSuccess() throws Exception {
+   public void whenDoAutoboxing_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field pinCodeField = person.getClass()
@@ -53,7 +54,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenDoWidening_thenSuccess() throws Exception {
+   public void whenDoWidening_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field pinCodeField = person.getClass()
@@ -65,7 +66,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenGetFloatingTypeFields_thenSuccess() throws Exception {
+   public void whenGetFloatingTypeFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field heightField = person.getClass()
@@ -84,7 +85,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenGetCharacterFields_thenSuccess() throws Exception {
+   public void whenGetCharacterFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field genderField = person.getClass()
@@ -96,7 +97,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenGetBooleanFields_thenSuccess() throws Exception {
+   public void whenGetBooleanFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field activeField = person.getClass()
@@ -108,7 +109,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenGetObjectFields_thenSuccess() throws Exception {
+   public void whenGetObjectFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field nameField = person.getClass()
@@ -120,7 +121,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void givenInt_whenGetStringField_thenIllegalArgumentException() throws Exception {
+   public void givenInt_whenGetStringField_thenIllegalArgumentException() throws Exception {
       Person person = new Person();
       Field nameField = person.getClass()
             .getDeclaredField("name");
@@ -130,7 +131,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void givenInt_whenGetLongField_thenIllegalArgumentException() throws Exception {
+   public void givenInt_whenGetLongField_thenIllegalArgumentException() throws Exception {
       Person person = new Person();
       Field contactNumberField = person.getClass()
             .getDeclaredField("contactNumber");
@@ -140,7 +141,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
+   public void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
       Person person = new Person();
       Field nameField = person.getClass()
             .getDeclaredField("name");
@@ -149,7 +150,7 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
+   public void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
       Person person = new Person();
 
       Assertions.assertThrows(NoSuchFieldException.class, () -> person.getClass()
@@ -157,10 +158,11 @@ class AccessPrivateFieldsUnitTest {
    }
 
    @Test
-   void whenAccessingNullProperty_thenNullPointerException() throws Exception {
+   public void whenAccessingNullProperty_thenNullPointerException() throws Exception {
       Person person = new Person();
 
       Assertions.assertThrows(NullPointerException.class, () -> person.getClass()
             .getDeclaredField(null));
    }
+
 }

@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.regexp.datepattern.gregorian;
 
 import cn.tuyucheng.taketoday.regexp.datepattern.DateMatcher;
 import cn.tuyucheng.taketoday.regexp.datepattern.gregorian.testhelper.GregorianDateTestHelper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MonthsOf31DaysMatcherUnitTest {
 

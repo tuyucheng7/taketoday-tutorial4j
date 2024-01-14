@@ -20,21 +20,26 @@ public class CombiningLists {
    }
 
    public static List<Object> usingJava8ObjectStream(List<Object> first, List<Object> second) {
-      return Stream.concat(first.stream(), second.stream()).collect(Collectors.toList());
+      List<Object> combined = Stream.concat(first.stream(), second.stream()).collect(Collectors.toList());
+      return combined;
    }
 
    public static List<Object> usingJava8FlatMaps(List<Object> first, List<Object> second) {
-      return Stream.of(first, second).flatMap(Collection::stream).collect(Collectors.toList());
+      List<Object> combined = Stream.of(first, second).flatMap(Collection::stream).collect(Collectors.toList());
+      return combined;
    }
 
    public static List<Object> usingApacheCommons(List<Object> first, List<Object> second) {
-      return ListUtils.union(first, second);
+      List<Object> combined = ListUtils.union(first, second);
+      return combined;
    }
 
    public static List<Object> usingGuava(List<Object> first, List<Object> second) {
       Iterable<Object> combinedIterables = Iterables.unmodifiableIterable(
             Iterables.concat(first, second));
 
-      return Lists.newArrayList(combinedIterables);
+      List<Object> combined = Lists.newArrayList(combinedIterables);
+      return combined;
    }
+
 }

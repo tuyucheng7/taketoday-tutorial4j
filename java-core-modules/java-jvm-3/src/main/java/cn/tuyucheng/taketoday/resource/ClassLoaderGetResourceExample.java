@@ -11,7 +11,7 @@ public class ClassLoaderGetResourceExample {
 
    public static void main(String[] args) {
       URL resourceAbsolutePath = ClassLoaderGetResourceExample.class.getClassLoader()
-            .getResource("cn/tuyucheng/taketoday/resource/example.txt");
+            .getResource("com/tuyucheng/resource/example.txt");
       logger.info("Resource with absolute path = {}", resourceAbsolutePath);
 
       URL resourceRelativePath = ClassLoaderGetResourceExample.class.getClassLoader()

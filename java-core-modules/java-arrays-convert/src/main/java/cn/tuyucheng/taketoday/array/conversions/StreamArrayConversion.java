@@ -23,7 +23,7 @@ public class StreamArrayConversion {
    }
 
    public static String[] stringStreamToStringArrayUsingLambda(Stream<String> stringStream) {
-      return stringStream.toArray(String[]::new);
+      return stringStream.toArray(value -> new String[value]);
    }
 
    public static Integer[] integerStreamToIntegerArray(Stream<Integer> integerStream) {

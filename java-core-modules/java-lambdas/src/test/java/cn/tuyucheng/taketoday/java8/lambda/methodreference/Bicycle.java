@@ -30,4 +30,5 @@ public class Bicycle {
    public void setFrameSize(Integer frameSize) {
       this.frameSize = frameSize;
    }
+
 }

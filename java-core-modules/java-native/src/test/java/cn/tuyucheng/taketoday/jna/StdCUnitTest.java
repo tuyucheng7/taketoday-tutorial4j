@@ -3,14 +3,14 @@ package cn.tuyucheng.taketoday.jna;
 import com.sun.jna.Native;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class StdCUnitTest {
 
-   @BeforeClass
+   @BeforeAll
    public static void setupProtectedMode() {
       Native.setProtected(true);
    }

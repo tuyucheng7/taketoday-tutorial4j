@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public class CollectionUtilsCollectionFilter {
 
-   public static Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
+   static public Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
       Predicate<Integer> apacheEventNumberPredicate = item -> item % 2 == 0;
 
       CollectionUtils.filter(baseCollection, apacheEventNumberPredicate);

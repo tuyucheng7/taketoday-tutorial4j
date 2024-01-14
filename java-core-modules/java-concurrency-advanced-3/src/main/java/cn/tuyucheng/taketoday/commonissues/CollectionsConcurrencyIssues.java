@@ -49,4 +49,5 @@ public class CollectionsConcurrencyIssues {
       Map<String, String> map = new ConcurrentHashMap<>();
       map.computeIfAbsent("foo", key -> key + "bar");
    }
+
 }

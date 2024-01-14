@@ -9,5 +9,7 @@ public class SwitchStatement {
          case b -> System.out.println("Parameter is b");
          default -> System.out.println("Parameter is unknown");
       }
+      ;
    }
+
 }

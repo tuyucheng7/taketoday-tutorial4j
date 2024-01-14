@@ -1,21 +1,24 @@
 package cn.tuyucheng.taketoday.arraysort;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 /**
  * Time taken by JUnit test cases can be seen in JUnit Runner
+ *
+ * @author rchaudhary23
  */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SortComparisonUnitTest {
 
@@ -26,8 +29,9 @@ public class SortComparisonUnitTest {
    private int[] _100000_elements_array;
    private int[] _1000000_elements_array;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
+
       _1000_elements_array = new int[sizeOfArrays[0]];
       _10000_elements_array = new int[sizeOfArrays[1]];
       _100000_elements_array = new int[sizeOfArrays[2]];
@@ -49,16 +53,19 @@ public class SortComparisonUnitTest {
       for (int i = 0; i < sizeOfArrays[3]; i++) {
          _1000000_elements_array[i] = random.nextInt(sizeOfArrays[3]) + random.nextInt(sizeOfArrays[3]);
       }
+
    }
 
    @Test
    public void givenArrayOfIntegers_whenUsingArraysSortMethod_thenSortFullArrayInAscendingOrder() {
+
       int[] array = {10, 4, 6, 2, 1, 9, 7, 8, 3, 5};
       int[] expected = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
       Arrays.sort(array);
 
       assertArrayEquals(expected, array);
+
    }
 
    @Test
@@ -98,6 +105,7 @@ public class SortComparisonUnitTest {
 
       assertNotNull(sequentialDataSet);
       assertNotSame(Arrays.copyOf(_1000_elements_array, _1000_elements_array.length), sequentialDataSet);
+
    }
 
    @Test
@@ -107,6 +115,7 @@ public class SortComparisonUnitTest {
 
       assertNotNull(parallelDataSet);
       assertNotSame(Arrays.copyOf(_1000_elements_array, _1000_elements_array.length), parallelDataSet);
+
    }
 
    @Test
@@ -163,7 +172,7 @@ public class SortComparisonUnitTest {
       assertNotSame(Arrays.copyOf(_1000000_elements_array, _1000000_elements_array.length), parallelDataSet);
    }
 
-   @After
+   @AfterEach
    public void tearDown() throws Exception {
       sizeOfArrays = null;
       _1000_elements_array = null;
@@ -172,3 +181,5 @@ public class SortComparisonUnitTest {
       _1000000_elements_array = null;
    }
 }
+
+

@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.internationalization;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -9,12 +10,10 @@ import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class NumbersCurrenciesFormattingUnitTest {
+public class NumbersCurrenciesFormattingUnitTest {
 
    @Test
-   void givenDifferentLocalesAndDoubleNumber_whenNumberInstance_thenDifferentOutput() {
+   public void givenDifferentLocalesAndDoubleNumber_whenNumberInstance_thenDifferentOutput() {
       Locale usLocale = Locale.US;
       Locale plLocale = new Locale("pl", "PL");
       Locale deLocale = Locale.GERMANY;
@@ -24,13 +23,13 @@ class NumbersCurrenciesFormattingUnitTest {
       NumberFormat plNumberFormat = NumberFormat.getInstance(plLocale);
       NumberFormat deNumberFormat = NumberFormat.getInstance(deLocale);
 
-      assertEquals("102,300.456", usNumberFormat.format(number));
-      assertEquals("102 300,456", plNumberFormat.format(number));
-      assertEquals("102.300,456", deNumberFormat.format(number));
+      Assertions.assertEquals(usNumberFormat.format(number), "102,300.456");
+      Assertions.assertEquals(plNumberFormat.format(number), "102 300,456");
+      Assertions.assertEquals(deNumberFormat.format(number), "102.300,456");
    }
 
    @Test
-   void givenDifferentLocalesAndDoubleAmount_whenCurrencyInstance_thenDifferentOutput() {
+   public void givenDifferentLocalesAndDoubleAmount_whenCurrencyInstance_thenDifferentOutput() {
       Locale usLocale = Locale.US;
       Locale plLocale = new Locale("pl", "PL");
       Locale deLocale = Locale.GERMANY;
@@ -40,13 +39,13 @@ class NumbersCurrenciesFormattingUnitTest {
       NumberFormat plNumberFormat = NumberFormat.getCurrencyInstance(plLocale);
       NumberFormat deNumberFormat = NumberFormat.getCurrencyInstance(deLocale);
 
-      assertEquals("$102,300.46", usNumberFormat.format(number));
-      assertEquals("102 300,46 zł", plNumberFormat.format(number));
-      assertEquals("102.300,46 €", deNumberFormat.format(number));
+      Assertions.assertEquals(usNumberFormat.format(number), "$102,300.46");
+      Assertions.assertEquals(plNumberFormat.format(number), "102 300,46 zł");
+      Assertions.assertEquals(deNumberFormat.format(number), "102.300,46 €");
    }
 
    @Test
-   void givenLocaleAndNumber_whenSpecificDecimalFormat_thenSpecificOutput() {
+   public void givenLocaleAndNumber_whenSpecificDecimalFormat_thenSpecificOutput() {
       Locale.setDefault(Locale.FRANCE);
       BigDecimal number = new BigDecimal(102_300.456d);
 
@@ -54,13 +53,13 @@ class NumbersCurrenciesFormattingUnitTest {
       DecimalFormat hashDecimalFormat = new DecimalFormat("###,###.#");
       DecimalFormat dollarDecimalFormat = new DecimalFormat("$###,###.##");
 
-      assertEquals("000102300,4560", zeroDecimalFormat.format(number));
-      assertEquals("102 300,5", hashDecimalFormat.format(number));
-      assertEquals("$102 300,46", dollarDecimalFormat.format(number));
+      Assertions.assertEquals(zeroDecimalFormat.format(number), "000102300,4560");
+      Assertions.assertEquals(hashDecimalFormat.format(number), "102 300,5");
+      Assertions.assertEquals(dollarDecimalFormat.format(number), "$102 300,46");
    }
 
    @Test
-   void givenLocaleAndNumber_whenSpecificDecimalFormatSymbols_thenSpecificOutput() {
+   public void givenLocaleAndNumber_whenSpecificDecimalFormatSymbols_thenSpecificOutput() {
       Locale.setDefault(Locale.FRANCE);
       BigDecimal number = new BigDecimal(102_300.456d);
 
@@ -72,6 +71,6 @@ class NumbersCurrenciesFormattingUnitTest {
       separatorsDecimalFormat.setCurrency(Currency.getInstance(Locale.JAPAN));
       separatorsDecimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
 
-      assertEquals("$10^2300@46", separatorsDecimalFormat.format(number));
+      Assertions.assertEquals(separatorsDecimalFormat.format(number), "$10^2300@46");
    }
 }

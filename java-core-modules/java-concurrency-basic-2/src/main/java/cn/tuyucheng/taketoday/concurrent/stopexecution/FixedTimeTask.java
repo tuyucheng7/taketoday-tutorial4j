@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 public class FixedTimeTask implements Runnable {
+
    private static final Logger LOG = LoggerFactory.getLogger(FixedTimeTask.class);
 
    final int fixedTime; // milliseconds

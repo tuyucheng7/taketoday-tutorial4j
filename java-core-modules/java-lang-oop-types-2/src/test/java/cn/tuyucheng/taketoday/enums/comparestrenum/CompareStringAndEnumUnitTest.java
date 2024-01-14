@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.enums.comparestrenum;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -7,7 +8,8 @@ import java.util.Optional;
 
 import static cn.tuyucheng.taketoday.enums.comparestrenum.Weekday.Fri;
 import static cn.tuyucheng.taketoday.enums.comparestrenum.Weekday.Sat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 enum Weekday {
    Mon("Monday"),
@@ -59,7 +61,7 @@ public class CompareStringAndEnumUnitTest {
    void givenAString_whenFindEnumByName_thenGetExpectedResult() {
       Optional<Weekday> optResult = Weekday.byNameIgnoreCase(SAT);
       assertTrue(optResult.isPresent());
-      assertEquals(Sat, optResult.get());
+      Assertions.assertEquals(Sat, optResult.get());
 
       Optional<Weekday> optResult2 = Weekday.byNameIgnoreCase(TYPO_FRI);
       assertFalse(optResult2.isPresent());
@@ -69,9 +71,10 @@ public class CompareStringAndEnumUnitTest {
    void givenAString_whenFindEnumByProperty_thenGetExpectedResult() {
       Optional<Weekday> optResult = Weekday.byFullNameIgnoreCase(SATURDAY);
       assertTrue(optResult.isPresent());
-      assertEquals(Sat, optResult.get());
+      Assertions.assertEquals(Sat, optResult.get());
 
       Optional<Weekday> optResult2 = Weekday.byFullNameIgnoreCase(TYPO_FRIDAY);
       assertFalse(optResult2.isPresent());
    }
+
 }

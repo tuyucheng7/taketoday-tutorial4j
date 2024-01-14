@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.date;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -8,8 +8,8 @@ import java.time.OffsetDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DateWithoutTimeUnitTest {
 

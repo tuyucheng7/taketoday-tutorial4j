@@ -3,6 +3,7 @@ package cn.tuyucheng.taketoday.async;
 import com.ea.async.Async;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static com.ea.async.Async.await;
 
@@ -17,10 +18,10 @@ public class EAAsyncExample {
       usingAsyncAwait();
    }
 
-   public static void usingCompletableFuture() throws Exception {
+   public static void usingCompletableFuture() throws InterruptedException, ExecutionException, Exception {
       CompletableFuture<Void> completableFuture = hello()
-            .thenComposeAsync(EAAsyncExample::mergeWorld)
-            .thenAcceptAsync(EAAsyncExample::print)
+            .thenComposeAsync(hello -> mergeWorld(hello))
+            .thenAcceptAsync(helloWorld -> print(helloWorld))
             .exceptionally(throwable -> {
                System.out.println(throwable.getCause());
                return null;
@@ -29,11 +30,15 @@ public class EAAsyncExample {
    }
 
    public static CompletableFuture<String> hello() {
-      return CompletableFuture.supplyAsync(() -> "Hello");
+      CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> "Hello");
+      return completableFuture;
    }
 
    public static CompletableFuture<String> mergeWorld(String s) {
-      return CompletableFuture.supplyAsync(() -> s + " World!");
+      CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+         return s + " World!";
+      });
+      return completableFuture;
    }
 
    public static void print(String str) {
@@ -49,4 +54,5 @@ public class EAAsyncExample {
          e.printStackTrace();
       }
    }
+
 }

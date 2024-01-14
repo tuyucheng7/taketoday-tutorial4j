@@ -14,4 +14,5 @@ public class Service {
       String id = request.getParameter("data_id");
       return repository.getData(id, loggedInUser);
    }
+
 }

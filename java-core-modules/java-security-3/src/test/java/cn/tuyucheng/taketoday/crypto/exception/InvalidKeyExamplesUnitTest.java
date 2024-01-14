@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.crypto.exception;
 
 import cn.tuyucheng.taketoday.crypto.utils.CryptoUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -17,7 +17,7 @@ public class InvalidKeyExamplesUnitTest {
    private String plainText;
    private byte[] cipherTextBytes;
 
-   @Before
+   @BeforeEach
    public void before() throws GeneralSecurityException {
       key = CryptoUtils.getFixedKey();
 
@@ -35,7 +35,7 @@ public class InvalidKeyExamplesUnitTest {
 
    @Test
    public void givenTextEncryptedWithCBC_whenDecryptingWithNoIv_thenInvalidKeyExceptionIsThrown() {
-      Assert.assertThrows(InvalidKeyException.class,
+      Assertions.assertThrows(InvalidKeyException.class,
             () -> InvalidKeyExamples.decryptUsingCBCWithNoIV(key, cipherTextBytes));
    }
 
@@ -44,17 +44,17 @@ public class InvalidKeyExamplesUnitTest {
          throws InvalidKeyException, GeneralSecurityException {
       byte[] decryptedBytes = InvalidKeyExamples.decryptUsingCBCWithIV(key, cipherTextBytes);
 
-      Assert.assertEquals(plainText, new String(decryptedBytes));
+      Assertions.assertEquals(plainText, new String(decryptedBytes));
    }
 
    @Test
    public void whenKeyIsTooShort_thenInvalidKeyExceptionIsThrown() {
-      Assert.assertThrows(InvalidKeyException.class, () -> InvalidKeyExamples.encryptWithKeyTooShort());
+      Assertions.assertThrows(InvalidKeyException.class, () -> InvalidKeyExamples.encryptWithKeyTooShort());
    }
 
    @Test
    public void whenKeyIsTooLong_thenInvalidKeyExceptionIsThrown() {
-      Assert.assertThrows(InvalidKeyException.class, () -> InvalidKeyExamples.encryptWithKeyTooLong());
+      Assertions.assertThrows(InvalidKeyException.class, () -> InvalidKeyExamples.encryptWithKeyTooLong());
    }
 
 }

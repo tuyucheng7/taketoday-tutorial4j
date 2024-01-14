@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.modulo;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModuloUnitTest {
 
@@ -39,6 +40,27 @@ public class ModuloUnitTest {
    @Test
    public void whenDivisorIsEvenAndModulusIs2_thenResultIs0() {
       assertThat(4 % 2).isEqualTo(0);
+   }
+
+   @Test
+   public void whenDividendIsNegativeAndModulusIs2_thenResultIsNegative() {
+      assertEquals(-1, -9 % 2);
+   }
+
+   @Test
+   public void whenDividendIsNegativeAndRemainderIsCheckedForNegativeValue_thenResultIsPositive() {
+      int remainder = -9 % 2;
+
+      if (remainder < 0) {
+         remainder += 2;
+      }
+      assertEquals(1, remainder);
+   }
+
+   @Test
+   public void whenDividendIsNegativeAndUsesMathClass_thenResultIsPositive() {
+      int remainder = Math.floorMod(-9, 2);
+      assertEquals(1, remainder);
    }
 
    @Test

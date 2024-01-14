@@ -29,6 +29,6 @@ public class OrElseAndOrElseGet {
 
    public String getNameUsingOrElseGet(String name) {
       return Optional.ofNullable(name)
-            .orElseGet(this::getRandomName);
+            .orElseGet(() -> getRandomName());
    }
 }

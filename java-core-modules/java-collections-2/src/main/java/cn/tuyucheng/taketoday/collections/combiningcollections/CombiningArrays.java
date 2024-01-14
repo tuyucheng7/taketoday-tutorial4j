@@ -16,18 +16,23 @@ public class CombiningArrays {
    }
 
    public static Object[] usingJava8ObjectStream(Object[] first, Object[] second) {
-      return Stream.concat(Arrays.stream(first), Arrays.stream(second)).toArray();
+      Object[] combined = Stream.concat(Arrays.stream(first), Arrays.stream(second)).toArray();
+      return combined;
    }
 
    public static Object[] usingJava8FlatMaps(Object[] first, Object[] second) {
-      return Stream.of(first, second).flatMap(Stream::of).toArray(String[]::new);
+      Object[] combined = Stream.of(first, second).flatMap(Stream::of).toArray(String[]::new);
+      return combined;
    }
 
    public static Object[] usingApacheCommons(Object[] first, Object[] second) {
-      return ArrayUtils.addAll(first, second);
+      Object[] combined = ArrayUtils.addAll(first, second);
+      return combined;
    }
 
    public static Object[] usingGuava(Object[] first, Object[] second) {
-      return ObjectArrays.concat(first, second, Object.class);
+      Object[] combined = ObjectArrays.concat(first, second, Object.class);
+      return combined;
    }
+
 }

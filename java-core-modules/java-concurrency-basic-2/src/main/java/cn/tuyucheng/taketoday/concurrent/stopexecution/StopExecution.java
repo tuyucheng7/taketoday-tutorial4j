@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class StopExecution {
    private static final Logger LOG = LoggerFactory.getLogger(StopExecution.class);
@@ -40,15 +45,18 @@ public class StopExecution {
    }
 
    public static void testThreads() {
-      Thread thread = new Thread(() -> {
-         LOG.info("inside run");
+      Thread thread = new Thread(new Runnable() {
+         @Override
+         public void run() {
+            LOG.info("inside run");
 
-         try {
-            Thread.sleep(10000);
-         } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+               Thread.sleep(10000);
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+            LOG.info("exit run");
          }
-         LOG.info("exit run");
       });
       thread.start();
       while (thread.getState() != Thread.State.TERMINATED) {
@@ -143,7 +151,7 @@ public class StopExecution {
       t.start();
    }
 
-   static class MyRunnableTask implements Runnable {
+   class MyRunnableTask implements Runnable {
       public void run() {
          try {
             LOG.info("MyRunnable...");
@@ -154,7 +162,7 @@ public class StopExecution {
       }
    }
 
-   static class TimeOutTask extends TimerTask {
+   class TimeOutTask extends TimerTask {
       private Thread t;
       private Timer timer;
 
@@ -171,7 +179,7 @@ public class StopExecution {
       }
    }
 
-   static class LongRunningTask implements Runnable {
+   class LongRunningTask implements Runnable {
       @Override
       public void run() {
          longRunningSort();
@@ -214,4 +222,7 @@ public class StopExecution {
          }
       }
    }
+
 }
+
+

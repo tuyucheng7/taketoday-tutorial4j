@@ -1,7 +1,10 @@
 package cn.tuyucheng.taketoday.download;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -10,11 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 
-import javax.xml.bind.DatatypeConverter;
-
-import org.junit.After;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileDownloadIntegrationTest {
 
@@ -74,14 +73,14 @@ public class FileDownloadIntegrationTest {
       return myChecksum.equalsIgnoreCase(FILE_MD5_HASH);
    }
 
-   @BeforeClass
+   @BeforeAll
    public static void setup() throws IOException {
       if (Files.exists(Paths.get(FILE_NAME))) {
          Files.delete(Paths.get(FILE_NAME));
       }
    }
 
-   @After
+   @AfterEach
    public void cleanup() throws IOException {
       if (Files.exists(Paths.get(FILE_NAME))) {
          Files.delete(Paths.get(FILE_NAME));

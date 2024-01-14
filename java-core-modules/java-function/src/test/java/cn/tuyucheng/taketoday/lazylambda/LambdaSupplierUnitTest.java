@@ -5,10 +5,10 @@ import org.mockito.Mockito;
 
 import java.util.function.Supplier;
 
-class LambdaSupplierUnitTest {
+public class LambdaSupplierUnitTest {
 
    @Test
-   void whenCalledMultipleTimes_thenShouldBeCalledMultipleTimes() {
+   public void whenCalledMultipleTimes_thenShouldBeCalledMultipleTimes() {
       @SuppressWarnings("unchecked") Supplier<String> mockedExpensiveFunction = Mockito.mock(Supplier.class);
       Mockito.when(mockedExpensiveFunction.get())
             .thenReturn("expensive call");
@@ -20,4 +20,5 @@ class LambdaSupplierUnitTest {
       Mockito.verify(mockedExpensiveFunction, Mockito.times(2))
             .get();
    }
+
 }

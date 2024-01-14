@@ -36,6 +36,7 @@ public class GetTextAfterTheRegexMatchUnitTest {
       assertEquals("Java is cool. some other text", afterFirstReplace);
       String result2 = afterFirstReplace.replaceAll("[.].*", "");
       assertEquals("Java is cool", result2);
+
    }
 
    @Test

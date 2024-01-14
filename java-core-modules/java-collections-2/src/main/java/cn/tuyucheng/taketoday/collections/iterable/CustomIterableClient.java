@@ -3,6 +3,7 @@ package cn.tuyucheng.taketoday.collections.iterable;
 class CustomIterableClient {
 
    public static void main(String[] args) {
+
       ShoppingCart<Product> shoppingCart = new ShoppingCart<>();
       shoppingCart.add(new Product("Tuna", 42));
       shoppingCart.add(new Product("Eggplant", 65));

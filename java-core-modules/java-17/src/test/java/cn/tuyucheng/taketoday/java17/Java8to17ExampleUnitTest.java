@@ -1,17 +1,16 @@
 package cn.tuyucheng.taketoday.java17;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThrows;
-
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Test;
-
 import cn.tuyucheng.taketoday.java8to17.Address;
 import cn.tuyucheng.taketoday.java8to17.Circle;
 import cn.tuyucheng.taketoday.java8to17.Person;
 import cn.tuyucheng.taketoday.java8to17.Rectangle;
 import cn.tuyucheng.taketoday.java8to17.Student;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Java8to17ExampleUnitTest {
 
@@ -83,4 +82,5 @@ public class Java8to17ExampleUnitTest {
 
       assertThat(circumference).isEqualTo(60);
    }
+
 }

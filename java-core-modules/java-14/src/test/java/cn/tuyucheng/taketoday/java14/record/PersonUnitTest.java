@@ -1,52 +1,54 @@
 package cn.tuyucheng.taketoday.java14.record;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import org.junit.jupiter.api.Test;
 
 public class PersonUnitTest {
 
    @Test
    public void givenSameNameAndAddress_whenEquals_thenPersonsEqual() {
+
       String name = "John Doe";
       String address = "100 Linda Ln.";
 
       Person person1 = new Person(name, address);
       Person person2 = new Person(name, address);
 
-      assertEquals(person1, person2);
+      assertTrue(person1.equals(person2));
    }
 
    @Test
    public void givenDifferentObject_whenEquals_thenNotEqual() {
+
       Person person = new Person("John Doe", "100 Linda Ln.");
 
-      assertNotEquals(person, new Object());
+      assertFalse(person.equals(new Object()));
    }
 
    @Test
    public void givenDifferentName_whenEquals_thenPersonsNotEqual() {
+
       String address = "100 Linda Ln.";
 
       Person person1 = new Person("Jane Doe", address);
       Person person2 = new Person("John Doe", address);
 
-      assertNotEquals(person1, person2);
+      assertFalse(person1.equals(person2));
    }
 
    @Test
    public void givenDifferentAddress_whenEquals_thenPersonsNotEqual() {
+
       String name = "John Doe";
 
       Person person1 = new Person(name, "100 Linda Ln.");
       Person person2 = new Person(name, "200 London Ave.");
 
-      assertNotEquals(person1, person2);
+      assertFalse(person1.equals(person2));
    }
 
    @Test
    public void givenSameNameAndAddress_whenHashCode_thenPersonsEqual() {
+
       String name = "John Doe";
       String address = "100 Linda Ln.";
 
@@ -58,6 +60,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenDifferentObject_whenHashCode_thenNotEqual() {
+
       Person person = new Person("John Doe", "100 Linda Ln.");
 
       assertNotEquals(person.hashCode(), new Object().hashCode());
@@ -65,6 +68,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenDifferentName_whenHashCode_thenPersonsNotEqual() {
+
       String address = "100 Linda Ln.";
 
       Person person1 = new Person("Jane Doe", address);
@@ -75,6 +79,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenDifferentAddress_whenHashCode_thenPersonsNotEqual() {
+
       String name = "John Doe";
 
       Person person1 = new Person(name, "100 Linda Ln.");
@@ -85,6 +90,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenValidNameAndAddress_whenGetNameAndAddress_thenExpectedValuesReturned() {
+
       String name = "John Doe";
       String address = "100 Linda Ln.";
 
@@ -96,6 +102,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenValidNameAndAddress_whenToString_thenCorrectStringReturned() {
+
       String name = "John Doe";
       String address = "100 Linda Ln.";
 
@@ -116,6 +123,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenUnknownAddress_whenConstructing_thenAddressPopulated() {
+
       String name = "John Doe";
 
       Person person = new Person(name);
@@ -126,6 +134,7 @@ public class PersonUnitTest {
 
    @Test
    public void givenUnnamed_whenConstructingThroughFactory_thenNamePopulated() {
+
       String address = "100 Linda Ln.";
 
       Person person = Person.unnamed(address);

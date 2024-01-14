@@ -17,6 +17,7 @@ public class ThreadsStartAtSameTime {
       Thread.sleep(30);
 
       usingPhaser();
+
    }
 
    private static void usingCountDownLatch() throws InterruptedException {

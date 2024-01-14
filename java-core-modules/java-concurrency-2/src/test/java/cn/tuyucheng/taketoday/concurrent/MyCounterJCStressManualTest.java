@@ -37,4 +37,5 @@ public class MyCounterJCStressManualTest {
    public void arbiter(I_Result r) {
       r.r1 = counter.getCount();
    }
+
 }

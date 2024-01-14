@@ -9,4 +9,5 @@ public class BicycleComparator implements Comparator<Bicycle> {
       return a.getFrameSize()
             .compareTo(b.getFrameSize());
    }
+
 }

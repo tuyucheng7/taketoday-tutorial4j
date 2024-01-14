@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.rejection;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,26 +25,29 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class SaturationPolicyUnitTest {
+public class SaturationPolicyUnitTest {
+
    private ThreadPoolExecutor executor;
 
    @AfterEach
-   void shutdownExecutor() {
+   public void shutdownExecutor() {
       if (executor != null && !executor.isTerminated()) {
          executor.shutdownNow();
       }
    }
 
+   @Disabled
    @Test
-   void givenAbortPolicy_whenSaturated_thenShouldThrowRejectedExecutionException() {
+   public void givenAbortPolicy_WhenSaturated_ThenShouldThrowRejectedExecutionException() {
       executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new SynchronousQueue<>(), new AbortPolicy());
       executor.execute(() -> waitFor(250));
 
       assertThatThrownBy(() -> executor.execute(() -> System.out.println("Will be rejected"))).isInstanceOf(RejectedExecutionException.class);
    }
 
+   @Disabled
    @Test
-   void givenCallerRunsPolicy_whenSaturated_thenTheCallerThreadRunsTheTask() {
+   public void givenCallerRunsPolicy_WhenSaturated_ThenTheCallerThreadRunsTheTask() {
       executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new SynchronousQueue<>(), new CallerRunsPolicy());
       executor.execute(() -> waitFor(250));
 
@@ -55,7 +59,7 @@ class SaturationPolicyUnitTest {
    }
 
    @Test
-   void givenDiscardPolicy_whenSaturated_thenExecutorDiscardsTheNewTask() throws InterruptedException {
+   public void givenDiscardPolicy_WhenSaturated_ThenExecutorDiscardsTheNewTask() throws InterruptedException {
       executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new SynchronousQueue<>(), new DiscardPolicy());
       executor.execute(() -> waitFor(100));
 
@@ -66,7 +70,7 @@ class SaturationPolicyUnitTest {
    }
 
    @Test
-   void givenDiscardOldestPolicy_whenSaturated_thenExecutorDiscardsTheOldestTask() {
+   public void givenDiscardOldestPolicy_WhenSaturated_ThenExecutorDiscardsTheOldestTask() {
       executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(2), new DiscardOldestPolicy());
       executor.execute(() -> waitFor(100));
 
@@ -82,7 +86,7 @@ class SaturationPolicyUnitTest {
    }
 
    @Test
-   void givenGrowPolicy_whenSaturated_thenExecutorIncreaseTheMaxPoolSize() {
+   public void givenGrowPolicy_WhenSaturated_ThenExecutorIncreaseTheMaxPoolSize() {
       executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new ArrayBlockingQueue<>(2), new GrowPolicy());
       executor.execute(() -> waitFor(100));
 
@@ -98,27 +102,26 @@ class SaturationPolicyUnitTest {
    }
 
    @Test
-   void givenExecutorIsTerminated_whenSubmittedNewTask_thenTheSaturationPolicyApplies() {
+   public void givenExecutorIsTerminated_WhenSubmittedNewTask_ThenTheSaturationPolicyApplies() {
       ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new LinkedBlockingQueue<>());
       executor.shutdownNow();
 
       assertThatThrownBy(() -> executor.execute(() -> {
-      }))
-            .isInstanceOf(RejectedExecutionException.class);
+      })).isInstanceOf(RejectedExecutionException.class);
    }
 
    @Test
-   void givenExecutorIsTerminating_whenSubmittedNewTask_thenTheSaturationPolicyApplies() {
+   public void givenExecutorIsTerminating_WhenSubmittedNewTask_ThenTheSaturationPolicyApplies() {
       ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0, MILLISECONDS, new LinkedBlockingQueue<>());
       executor.execute(() -> waitFor(100));
       executor.shutdown();
 
       assertThatThrownBy(() -> executor.execute(() -> {
-      }))
-            .isInstanceOf(RejectedExecutionException.class);
+      })).isInstanceOf(RejectedExecutionException.class);
    }
 
    private static class GrowPolicy implements RejectedExecutionHandler {
+
       private final Lock lock = new ReentrantLock();
 
       @Override

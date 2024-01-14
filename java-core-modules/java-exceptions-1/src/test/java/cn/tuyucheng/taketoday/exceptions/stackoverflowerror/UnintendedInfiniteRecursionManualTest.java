@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.exceptions.stackoverflowerror;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnintendedInfiniteRecursionManualTest {
    @Test(expected = StackOverflowError.class)

@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.collection;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -13,34 +13,34 @@ public class WhenUsingHashSet {
    @Test
    public void whenAddingElement_shouldAddElement() {
       Set<String> hashset = new HashSet<>();
-      Assert.assertTrue(hashset.add("String Added"));
+      Assertions.assertTrue(hashset.add("String Added"));
    }
 
    @Test
    public void whenCheckingForElement_shouldSearchForElement() {
       Set<String> hashsetContains = new HashSet<>();
       hashsetContains.add("String Added");
-      Assert.assertTrue(hashsetContains.contains("String Added"));
+      Assertions.assertTrue(hashsetContains.contains("String Added"));
    }
 
    @Test
    public void whenCheckingTheSizeOfHashSet_shouldReturnThesize() {
       Set<String> hashSetSize = new HashSet<>();
       hashSetSize.add("String Added");
-      Assert.assertEquals(1, hashSetSize.size());
+      Assertions.assertEquals(1, hashSetSize.size());
    }
 
    @Test
    public void whenCheckingForEmptyHashSet_shouldCheckForEmpty() {
       Set<String> emptyHashSet = new HashSet<>();
-      Assert.assertTrue(emptyHashSet.isEmpty());
+      Assertions.assertTrue(emptyHashSet.isEmpty());
    }
 
    @Test
    public void whenRemovingElement_shouldRemoveElement() {
       Set<String> removeFromHashSet = new HashSet<>();
       removeFromHashSet.add("String Added");
-      Assert.assertTrue(removeFromHashSet.remove("String Added"));
+      Assertions.assertTrue(removeFromHashSet.remove("String Added"));
    }
 
    @Test
@@ -48,7 +48,7 @@ public class WhenUsingHashSet {
       Set<String> clearHashSet = new HashSet<>();
       clearHashSet.add("String Added");
       clearHashSet.clear();
-      Assert.assertTrue(clearHashSet.isEmpty());
+      Assertions.assertTrue(clearHashSet.isEmpty());
    }
 
    @Test
@@ -88,6 +88,6 @@ public class WhenUsingHashSet {
          if (element.equals("Second"))
             itr.remove();
       }
-      Assert.assertEquals(2, hashset.size());
+      Assertions.assertEquals(2, hashset.size());
    }
 }

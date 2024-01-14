@@ -4,7 +4,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class BlockingQueueUsage {
-
    public static void main(String[] args) {
       int BOUND = 10;
       int N_PRODUCERS = 4;
@@ -23,5 +22,6 @@ public class BlockingQueueUsage {
       }
 
       new Thread(new NumbersProducer(queue, poisonPill, poisonPillPerProducer + mod)).start();
+
    }
 }

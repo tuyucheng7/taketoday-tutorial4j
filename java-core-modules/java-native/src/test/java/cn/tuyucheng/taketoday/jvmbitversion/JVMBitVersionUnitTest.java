@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.jvmbitversion;
 
 import com.sun.jna.Platform;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,7 +10,7 @@ public class JVMBitVersionUnitTest {
 
    private JVMBitVersion jvmVersion;
 
-   @Before
+   @BeforeEach
    public void setup() {
       jvmVersion = new JVMBitVersion();
    }

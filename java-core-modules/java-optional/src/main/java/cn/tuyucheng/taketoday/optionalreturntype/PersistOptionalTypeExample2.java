@@ -12,11 +12,11 @@ public class PersistOptionalTypeExample2 {
 
    public static void main(String[] args) {
       UserOptional user1 = new UserOptional();
-      user1.setUserId(1L);
-      user1.setFirstName("Tu Yucheng");
+      user1.setUserId(1l);
+      user1.setFirstName("Bael Dung");
       em.persist(user1);
 
-      UserOptional user2 = em.find(UserOptional.class, 1L);
+      UserOptional user2 = em.find(UserOptional.class, 1l);
       System.out.print("User2.firstName:" + user2.getFirstName());
    }
 }

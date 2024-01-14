@@ -2,6 +2,8 @@ package cn.tuyucheng.taketoday.synthetic;
 
 /**
  * Wrapper for a class which contains a synthetic constructor.
+ *
+ * @author Donato Rimenti
  */
 public class SyntheticConstructorDemo {
 
@@ -14,6 +16,8 @@ public class SyntheticConstructorDemo {
 
    /**
     * Class which contains a synthetic constructor.
+    *
+    * @author Donato Rimenti
     */
    class NestedClass {
 

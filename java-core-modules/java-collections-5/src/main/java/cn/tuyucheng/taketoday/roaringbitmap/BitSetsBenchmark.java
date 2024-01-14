@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.roaringbitmap;
 
-import java.util.BitSet;
-
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.roaringbitmap.RoaringBitmap;
+
+import java.util.BitSet;
 
 @State(Scope.Thread)
 public class BitSetsBenchmark {

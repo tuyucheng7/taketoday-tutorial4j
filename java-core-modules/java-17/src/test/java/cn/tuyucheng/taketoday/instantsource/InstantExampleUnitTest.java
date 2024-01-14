@@ -22,7 +22,7 @@ class InstantExampleUnitTest {
       Instant returnedInstant = tested.getCurrentInstantFromWrapper();
 
       // then
-      assertTrue(returnedInstant.isAfter(currentInstant) || returnedInstant.equals(currentInstant));
+      assertTrue(returnedInstant.isAfter(currentInstant));
    }
 
    @Test
@@ -49,7 +49,7 @@ class InstantExampleUnitTest {
       Instant returnedInstant = tested.getCurrentInstantFromInstantSource();
 
       // then
-      assertTrue(returnedInstant.isAfter(currentInstant) || returnedInstant.equals(currentInstant));
+      assertTrue(returnedInstant.isAfter(currentInstant));
    }
 
    @Test
@@ -60,7 +60,7 @@ class InstantExampleUnitTest {
       InstantExample tested = new InstantExample(null, instantSource);
       Instant currentInstant = instantSource.instant();
 
-      LocalDateTime fixed = LocalDateTime.of(2022, 1, 1, 0, 0);
+      LocalDateTime fixed = LocalDateTime.of(2022, 01, 01, 00, 00);
       Instant i = InstantSource.fixed(fixed.toInstant(ZoneOffset.UTC)).instant();
       System.out.println(i);
 

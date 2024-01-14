@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.zipentries;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

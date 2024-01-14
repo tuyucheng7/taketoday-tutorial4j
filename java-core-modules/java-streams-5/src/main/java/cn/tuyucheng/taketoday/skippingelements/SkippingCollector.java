@@ -6,6 +6,7 @@ import java.util.function.BinaryOperator;
 import java.util.stream.Collector;
 
 class SkippingCollector {
+
    private static final BinaryOperator<SkippingCollector> IGNORE_COMBINE = (a, b) -> a;
    private final int skip;
    private final List<String> list = new ArrayList<>();
@@ -17,8 +18,9 @@ class SkippingCollector {
 
    private void accept(String item) {
       final int index = ++currentIndex % skip;
-      if (index == 0)
+      if (index == 0) {
          list.add(item);
+      }
    }
 
    private List<String> getResult() {

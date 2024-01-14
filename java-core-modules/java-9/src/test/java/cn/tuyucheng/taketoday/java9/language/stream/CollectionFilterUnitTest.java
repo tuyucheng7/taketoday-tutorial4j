@@ -1,6 +1,8 @@
 package cn.tuyucheng.taketoday.java9.language.stream;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,8 +13,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-// @RunWith(JUnitPlatform.class)
-class CollectionFilterUnitTest {
+@RunWith(JUnitPlatform.class)
+public class CollectionFilterUnitTest {
 
    private static final Collection<Integer> BASE_INTEGER_COLLECTION = Arrays.asList(9, 12, 55, 56, 101, 115, 8002, 223, 2668, 19, 8);
    private static final Map<Integer, List<Integer>> EXPECTED_EVEN_FILTERED_AFTER_GROUPING_MAP = createExpectedFilterAfterGroupingMap();
@@ -39,7 +41,7 @@ class CollectionFilterUnitTest {
    }
 
    @Test
-   void givenAStringCollection_whenFilteringFourLetterWords_thenObtainTheFilteredCollection() {
+   public void givenAStringCollection_whenFilteringFourLetterWords_thenObtainTheFilteredCollection() {
       Map<Integer, List<Integer>> filteredAfterGroupingMap = StreamsGroupingCollectionFilter.findEvenNumbersAfterGroupingByQuantityOfDigits(BASE_INTEGER_COLLECTION);
       Map<Integer, List<Integer>> filteredBeforeGroupingMap = StreamsGroupingCollectionFilter.findEvenNumbersBeforeGroupingByQuantityOfDigits(BASE_INTEGER_COLLECTION);
 
@@ -47,4 +49,5 @@ class CollectionFilterUnitTest {
       assertThat(filteredBeforeGroupingMap).doesNotContainKey(3)
             .containsAllEntriesOf(EXPECTED_EVEN_FILTERED_BEFORE_GROUPING_MAP);
    }
+
 }

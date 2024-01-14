@@ -17,10 +17,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static junit.framework.TestCase.assertTrue;
 
-class WaitingForThreadsToFinishManualTest {
+public class WaitingForThreadsToFinishManualTest {
 
    private static final Logger LOG = LoggerFactory.getLogger(WaitingForThreadsToFinishManualTest.class);
    private final static ExecutorService WORKER_THREAD_POOL = Executors.newFixedThreadPool(10);
@@ -38,11 +37,13 @@ class WaitingForThreadsToFinishManualTest {
    }
 
    @Test
-   void givenMultipleThreads_whenUsingCountDownLatch_thenMainShoudWaitForAllToFinish() {
+   public void givenMultipleThreads_whenUsingCountDownLatch_thenMainShoudWaitForAllToFinish() {
+
       ExecutorService WORKER_THREAD_POOL = Executors.newFixedThreadPool(10);
 
       try {
          long startTime = System.currentTimeMillis();
+
          // create a CountDownLatch that waits for the 2 threads to finish
          CountDownLatch latch = new CountDownLatch(2);
 
@@ -63,6 +64,7 @@ class WaitingForThreadsToFinishManualTest {
 
          long processingTime = System.currentTimeMillis() - startTime;
          assertTrue(processingTime >= 1000);
+
       } catch (InterruptedException e) {
          e.printStackTrace();
       }
@@ -71,7 +73,8 @@ class WaitingForThreadsToFinishManualTest {
    }
 
    @Test
-   void givenMultipleThreads_whenInvokeAll_thenMainThreadShouldWaitForAllToFinish() {
+   public void givenMultipleThreads_whenInvokeAll_thenMainThreadShouldWaitForAllToFinish() {
+
       ExecutorService WORKER_THREAD_POOL = Executors.newFixedThreadPool(10);
 
       List<Callable<String>> callables = Arrays.asList(
@@ -98,18 +101,20 @@ class WaitingForThreadsToFinishManualTest {
 
          String firstThreadResponse = futures.get(0)
                .get();
-         assertEquals("fast thread", firstThreadResponse, "First response should be from the fast thread");
+         assertTrue("First response should be from the fast thread", "fast thread".equals(firstThreadResponse));
 
          String secondThreadResponse = futures.get(1)
                .get();
-         assertEquals("slow thread", secondThreadResponse, "Last response should be from the slow thread");
+         assertTrue("Last response should be from the slow thread", "slow thread".equals(secondThreadResponse));
+
       } catch (ExecutionException | InterruptedException ex) {
          ex.printStackTrace();
       }
    }
 
    @Test
-   void givenMultipleThreads_whenUsingCompletionService_thenMainThreadShouldWaitForAllToFinish() {
+   public void givenMultipleThreads_whenUsingCompletionService_thenMainThreadShouldWaitForAllToFinish() {
+
       CompletionService<String> service = new ExecutorCompletionService<>(WORKER_THREAD_POOL);
 
       List<Callable<String>> callables = Arrays.asList(
@@ -121,13 +126,14 @@ class WaitingForThreadsToFinishManualTest {
       }
 
       try {
+
          long startProcessingTime = System.currentTimeMillis();
 
          Future<String> future = service.take();
          String firstThreadResponse = future.get();
          long totalProcessingTime = System.currentTimeMillis() - startProcessingTime;
 
-         assertEquals("fast thread", firstThreadResponse, "First response should be from the fast thread");
+         assertTrue("First response should be from the fast thread", "fast thread".equals(firstThreadResponse));
          assertTrue(totalProcessingTime >= 100 && totalProcessingTime < 1000);
          LOG.debug("Thread finished after: " + totalProcessingTime + " milliseconds");
 
@@ -135,9 +141,10 @@ class WaitingForThreadsToFinishManualTest {
          String secondThreadResponse = future.get();
          totalProcessingTime = System.currentTimeMillis() - startProcessingTime;
 
-         assertEquals("slow thread", secondThreadResponse, "Last response should be from the slow thread");
+         assertTrue("Last response should be from the slow thread", "slow thread".equals(secondThreadResponse));
          assertTrue(totalProcessingTime >= 3000 && totalProcessingTime < 4000);
          LOG.debug("Thread finished after: " + totalProcessingTime + " milliseconds");
+
       } catch (ExecutionException | InterruptedException ex) {
          ex.printStackTrace();
       } finally {

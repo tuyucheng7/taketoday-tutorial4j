@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.partitioning;
 
-import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionList;
-import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionStream;
-import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionUsingGuava;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.atIndex;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Test;
+import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionList;
+import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionStream;
+import static cn.tuyucheng.taketoday.streams.partitioning.PartitionStream.partitionUsingGuava;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.atIndex;
 
 public class PartitionStreamsUnitTest {
 

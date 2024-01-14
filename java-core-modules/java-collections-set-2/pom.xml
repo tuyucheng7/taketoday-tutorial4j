@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-collections-set-2</artifactId>
-   <version>1.0.0</version>
    <name>java-collections-set-2</name>
    <packaging>jar</packaging>
 
@@ -16,9 +15,27 @@
 
    <dependencies>
       <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-runner</artifactId>
+         <version>${junit-platform.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
          <groupId>org.apache.commons</groupId>
          <artifactId>commons-collections4</artifactId>
          <version>4.4</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <version>7.7.0</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>32.1.1-jre</version>
       </dependency>
    </dependencies>
 
@@ -30,4 +47,5 @@
          </plugin>
       </plugins>
    </build>
+
 </project>

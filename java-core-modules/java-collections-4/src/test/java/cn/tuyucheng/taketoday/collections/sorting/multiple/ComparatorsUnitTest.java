@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.collections.sorting.multiple;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;

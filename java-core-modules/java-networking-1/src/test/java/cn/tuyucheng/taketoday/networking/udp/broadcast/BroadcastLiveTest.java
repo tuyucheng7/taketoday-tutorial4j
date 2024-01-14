@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.networking.udp.broadcast;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BroadcastLiveTest {
    private BroadcastingClient client;
@@ -27,7 +27,7 @@ public class BroadcastLiveTest {
       client = new BroadcastingClient(expectedServers);
    }
 
-   @After
+   @AfterEach
    public void tearDown() throws IOException {
       stopEchoServer();
       client.close();

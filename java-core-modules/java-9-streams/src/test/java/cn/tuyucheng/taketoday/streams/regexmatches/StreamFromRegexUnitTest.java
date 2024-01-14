@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.streams.regexmatches;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StreamFromRegexUnitTest {
 

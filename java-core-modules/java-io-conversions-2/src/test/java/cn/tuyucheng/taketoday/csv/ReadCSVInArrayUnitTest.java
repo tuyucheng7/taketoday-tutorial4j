@@ -1,11 +1,19 @@
 package cn.tuyucheng.taketoday.csv;
 
 import com.opencsv.CSVReader;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class ReadCSVInArrayUnitTest {
    public static final String COMMA_DELIMITER = ",";
@@ -40,7 +48,7 @@ public class ReadCSVInArrayUnitTest {
          e.printStackTrace();
       }
       for (int i = 0; i < EXPECTED_ARRAY.size(); i++) {
-         Assert.assertArrayEquals(EXPECTED_ARRAY.get(i)
+         Assertions.assertArrayEquals(EXPECTED_ARRAY.get(i)
                      .toArray(),
                records.get(i)
                      .toArray());
@@ -58,7 +66,7 @@ public class ReadCSVInArrayUnitTest {
          e.printStackTrace();
       }
       for (int i = 0; i < EXPECTED_ARRAY.size(); i++) {
-         Assert.assertArrayEquals(EXPECTED_ARRAY.get(i)
+         Assertions.assertArrayEquals(EXPECTED_ARRAY.get(i)
                      .toArray(),
                records.get(i)
                      .toArray());
@@ -88,7 +96,7 @@ public class ReadCSVInArrayUnitTest {
          e.printStackTrace();
       }
       for (int i = 0; i < EXPECTED_ARRAY.size(); i++) {
-         Assert.assertArrayEquals(EXPECTED_ARRAY.get(i)
+         Assertions.assertArrayEquals(EXPECTED_ARRAY.get(i)
                      .toArray(),
                records.get(i)
                      .toArray());

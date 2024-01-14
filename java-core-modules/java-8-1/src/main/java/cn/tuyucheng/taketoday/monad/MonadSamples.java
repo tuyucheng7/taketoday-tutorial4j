@@ -20,6 +20,7 @@ class MonadBaseExample {
    public double subtract1(double n) {
       return n - 1;
    }
+
 }
 
 class MonadSample1 extends MonadBaseExample {
@@ -69,6 +70,7 @@ class MonadSample4 extends MonadBaseExample {
       Optional<Integer> rightSide = Optional.of(3).flatMap(v -> mapping.apply(v).flatMap(Optional::of));
       return leftSide.equals(rightSide);
    }
+
 }
 
 class MonadSample5 extends MonadBaseExample {
@@ -77,3 +79,4 @@ class MonadSample5 extends MonadBaseExample {
       return Optional.ofNullable((Integer) null).flatMap(mapping).equals(mapping.apply(null));
    }
 }
+

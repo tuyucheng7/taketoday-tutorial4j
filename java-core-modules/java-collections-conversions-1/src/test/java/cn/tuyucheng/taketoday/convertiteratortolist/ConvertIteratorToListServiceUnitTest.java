@@ -3,8 +3,8 @@ package cn.tuyucheng.taketoday.convertiteratortolist;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.IteratorUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class ConvertIteratorToListServiceUnitTest {
 
    Iterator<Integer> iterator;
 
-   @Before
+   @BeforeEach
    public void setUp() {
       iterator = Arrays.asList(1, 2, 3)
             .iterator();

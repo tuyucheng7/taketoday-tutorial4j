@@ -11,6 +11,7 @@ public class ComputerUtils {
    static final ComputerPredicate blackPredicate = (c) -> "black".equals(c.getColor());
 
    public static List<Computer> filter(final List<Computer> inventory, final ComputerPredicate p) {
+
       final List<Computer> result = new ArrayList<>();
       inventory.stream().filter(p::filter).forEach(result::add);
 
@@ -22,4 +23,5 @@ public class ComputerUtils {
          computer.setHealty(100);
       }
    }
+
 }

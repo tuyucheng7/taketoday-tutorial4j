@@ -1,26 +1,28 @@
 package cn.tuyucheng.taketoday.instanceof_alternative_test;
 
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Anatotitan;
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Dinosaur;
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Euraptor;
+import cn.tuyucheng.taketoday.instanceofalternative.model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GetClassUnitTest {
+public class GetClassUnitTest {
 
    @Test
-   void givenADinosaurSpecie_whenUsingGetClass_thenGetMovementOfAnatotitan() {
+   public void givenADinosaurSpecie_whenUsingGetClass_thenGetMovementOfAnatotitan() {
+
       assertEquals("running", moveDinosaurUsingGetClass(new Anatotitan()));
    }
 
    @Test
-   void givenADinosaurSpecie_whenUsingGetClass_thenGetMovementOfEuraptor() {
+   public void givenADinosaurSpecie_whenUsingGetClass_thenGetMovementOfEuraptor() {
       assertEquals("flying", moveDinosaurUsingGetClass(new Euraptor()));
    }
 
-   static String moveDinosaurUsingGetClass(Dinosaur dinosaur) {
-      if (dinosaur.getClass().equals(Anatotitan.class)) {
+   public static String moveDinosaurUsingGetClass(Dinosaur dinosaur) {
+
+      if (dinosaur.getClass()
+            .equals(Anatotitan.class)) {
+
          Anatotitan anatotitan = (Anatotitan) dinosaur;
          return anatotitan.run();
       } else if (dinosaur.getClass()
@@ -30,4 +32,5 @@ class GetClassUnitTest {
       }
       return "";
    }
+
 }

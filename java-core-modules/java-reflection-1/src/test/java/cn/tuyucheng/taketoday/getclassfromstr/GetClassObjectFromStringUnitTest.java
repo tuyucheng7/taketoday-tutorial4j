@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class GetClassObjectFromStringUnitTest {
+public class GetClassObjectFromStringUnitTest {
    @Test
    void givenQualifiedClsName_whenUsingClassForName_shouldGetExpectedClassObject() throws ReflectiveOperationException {
       Class cls = Class.forName("cn.tuyucheng.taketoday.getclassfromstr.MyNiceClass");

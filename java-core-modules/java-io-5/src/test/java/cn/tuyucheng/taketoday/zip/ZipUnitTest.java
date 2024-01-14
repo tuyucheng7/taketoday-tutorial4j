@@ -1,21 +1,33 @@
 package cn.tuyucheng.taketoday.zip;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
-
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
-
-import cn.tuyucheng.taketoday.zip.ZipBenchmark;
-import cn.tuyucheng.taketoday.zip.ZipSampleFileStore;
-import org.junit.*;
 
 public class ZipUnitTest {
 
    private static File compressedFile;
    private static List<String> dataList = new ArrayList<>();
 
-   @BeforeClass
+   @BeforeAll
    public static void prepareData() throws IOException {
       ZipSampleFileStore sampleFileStore = new ZipSampleFileStore(ZipBenchmark.NUM_OF_FILES, ZipBenchmark.DATA_SIZE);
       compressedFile = sampleFileStore.getFile();
@@ -74,7 +86,7 @@ public class ZipUnitTest {
       }
    }
 
-   @AfterClass
+   @AfterAll
    public static void cleanup() {
       if (compressedFile.exists()) {
          compressedFile.delete();

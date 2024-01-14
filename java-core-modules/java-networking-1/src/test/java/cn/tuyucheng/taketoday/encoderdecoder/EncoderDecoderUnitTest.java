@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.encoderdecoder;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.util.UriUtils;
@@ -48,9 +48,9 @@ public class EncoderDecoderUnitTest {
    public void givenURL_whenAnalyze_thenCorrect() throws Exception {
       URL url = new URL(testUrl);
 
-      Assert.assertThat(url.getProtocol(), is("http"));
-      Assert.assertThat(url.getHost(), is("www.tuyucheng.com"));
-      Assert.assertThat(url.getQuery(), is("key1=value+1&key2=value%40%21%242&key3=value%253"));
+      Assertions.assertThat(url.getProtocol(), is("http"));
+      Assertions.assertThat(url.getHost(), is("www.tuyucheng.com"));
+      Assertions.assertThat(url.getQuery(), is("key1=value+1&key2=value%40%21%242&key3=value%253"));
    }
 
    @Test
@@ -62,7 +62,7 @@ public class EncoderDecoderUnitTest {
 
       String encodedURL = requestParams.keySet().stream().map(key -> key + "=" + encodeValue(requestParams.get(key))).collect(joining("&", "http://www.tuyucheng.com?", ""));
 
-      Assert.assertThat(testUrl, is(encodedURL));
+      Assertions.assertThat(testUrl, is(encodedURL));
    }
 
    @Test
@@ -73,11 +73,15 @@ public class EncoderDecoderUnitTest {
 
       String decodedQuery = Arrays.stream(query.split("&")).map(param -> param.split("=")[0] + "=" + decode(param.split("=")[1])).collect(joining("&"));
 
-      Assert.assertEquals("http://www.tuyucheng.com?key1=value 1&key2=value@!$2&key3=value%3", url.getProtocol() + "://" + url.getHost() + "?" + decodedQuery);
+      Assertions.assertEquals("http://www.tuyucheng.com?key1=value 1&key2=value@!$2&key3=value%3", url.getProtocol() + "://" + url.getHost() + "?" + decodedQuery);
    }
 
-   private String encodePath(String path) throws UnsupportedEncodingException {
-      path = UriUtils.encodePath(path, "UTF-8");
+   private String encodePath(String path) {
+      try {
+         path = UriUtils.encodePath(path, "UTF-8");
+      } catch (UnsupportedEncodingException e) {
+         LOGGER.error("Error encoding parameter {}", e.getMessage(), e);
+      }
       return path;
    }
 
@@ -86,8 +90,8 @@ public class EncoderDecoderUnitTest {
       String pathSegment = "/Path 1/Path+2";
       String encodedPathSegment = encodePath(pathSegment);
       String decodedPathSegment = UriUtils.decode(encodedPathSegment, "UTF-8");
-      Assert.assertEquals("/Path%201/Path+2", encodedPathSegment);
-      Assert.assertEquals("/Path 1/Path+2", decodedPathSegment);
+      Assertions.assertEquals("/Path%201/Path+2", encodedPathSegment);
+      Assertions.assertEquals("/Path 1/Path+2", decodedPathSegment);
    }
 
    @Test
@@ -101,7 +105,7 @@ public class EncoderDecoderUnitTest {
 
       String encodedURL = requestParams.keySet().stream().map(key -> key + "=" + encodeValue(requestParams.get(key))).collect(joining("&", "http://www.tuyucheng.com/" + encodePath(path) + "?", ""));
 
-      Assert.assertThat(testUrlWithPath, is(encodedURL));
+      Assertions.assertThat(testUrlWithPath, is(encodedURL));
    }
 
 }

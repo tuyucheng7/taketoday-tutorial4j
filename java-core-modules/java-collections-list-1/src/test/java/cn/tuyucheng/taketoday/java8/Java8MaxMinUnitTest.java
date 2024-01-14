@@ -2,8 +2,7 @@ package cn.tuyucheng.taketoday.java8;
 
 import cn.tuyucheng.taketoday.java_8_features.Car;
 import cn.tuyucheng.taketoday.java_8_features.Person;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Java8MaxMinUnitTest {
 

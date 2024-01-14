@@ -9,13 +9,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ThreeBooleansUnitTest {
    // @formatter:off
-	private static final Map<boolean[], Boolean> TEST_CASES_AND_EXPECTED = ImmutableMap.of(
-		new boolean[]{true, true, true}, true,
-		new boolean[]{true, true, false}, true,
-		new boolean[]{true, false, false}, false,
-		new boolean[]{false, false, false}, false
-	);
-	// @formatter:on
+    private static final Map<boolean[], Boolean> TEST_CASES_AND_EXPECTED = ImmutableMap.of(
+        new boolean[]{true, true, true}, true,
+        new boolean[]{true, true, false}, true,
+        new boolean[]{true, false, false}, false,
+        new boolean[]{false, false, false}, false
+        );
+    // @formatter:on
 
    @Test
    void given3Booleans_whenCallingTwoOrMoreAreTrueByLoop_thenGetExpectedResult() {

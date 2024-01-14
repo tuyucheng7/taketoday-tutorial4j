@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TypeInferenceUnitTest {
+public class TypeInferenceUnitTest {
 
    @Test
-   void givenNoTypeInference_whenInvokingGenericMethodsWithTypeParameters_ObjectsAreCreated() {
+   public void givenNoTypeInference_whenInvokingGenericMethodsWithTypeParameters_ObjectsAreCreated() {
       // Without type inference. code is verbose.
       Map<String, Map<String, String>> mapOfMaps = new HashMap<String, Map<String, String>>();
       List<String> strList = Collections.<String>emptyList();
@@ -28,7 +28,7 @@ class TypeInferenceUnitTest {
    }
 
    @Test
-   void givenTypeInference_whenInvokingGenericMethodsWithoutTypeParameters_ObjectsAreCreated() {
+   public void givenTypeInference_whenInvokingGenericMethodsWithoutTypeParameters_ObjectsAreCreated() {
       // With type inference. code is concise.
       List<String> strListInferred = Collections.emptyList();
       List<Integer> intListInferred = Collections.emptyList();
@@ -38,7 +38,7 @@ class TypeInferenceUnitTest {
    }
 
    @Test
-   void givenJava7_whenInvokingConstructorWithoutTypeParameters_ObjectsAreCreated() {
+   public void givenJava7_whenInvokingCostructorWithoutTypeParameters_ObjectsAreCreated() {
       // Type Inference for constructor using diamond operator.
       Map<String, Map<String, String>> mapOfMapsInferred = new HashMap<>();
 
@@ -47,14 +47,14 @@ class TypeInferenceUnitTest {
             .toGenericString());
    }
 
-   public static <T> List<T> add(List<T> list, T a, T b) {
+   static <T> List<T> add(List<T> list, T a, T b) {
       list.add(a);
       list.add(b);
       return list;
    }
 
    @Test
-   void givenGenericMethod_WhenInvokedWithoutExplicitTypes_TypesAreInferred() {
+   public void givenGenericMethod_WhenInvokedWithoutExplicitTypes_TypesAreInferred() {
       // Generalized target-type inference
       List<String> strListGeneralized = add(new ArrayList<>(), "abc", "def");
       List<Integer> intListGeneralized = add(new ArrayList<>(), 1, 2);
@@ -67,7 +67,7 @@ class TypeInferenceUnitTest {
    }
 
    @Test
-   void givenLambdaExpressions_whenParameterTypesNotSpecified_ParameterTypesAreInferred() {
+   public void givenLambdaExpressions_whenParameterTypesNotSpecified_ParameterTypesAreInferred() {
       // Type Inference and Lambda Expressions.
       List<Integer> intList = Arrays.asList(5, 3, 4, 2, 1);
       Collections.sort(intList, (a, b) -> {
@@ -83,4 +83,5 @@ class TypeInferenceUnitTest {
       });
       assertEquals("[Blue, Green, Red]", Arrays.toString(strList.toArray()));
    }
+
 }

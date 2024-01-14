@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.breakcontinue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static cn.tuyucheng.taketoday.breakcontinue.BreakContinue.labeledBreak;
 import static cn.tuyucheng.taketoday.breakcontinue.BreakContinue.labeledContinue;
 import static cn.tuyucheng.taketoday.breakcontinue.BreakContinue.unlabeledBreak;
 import static cn.tuyucheng.taketoday.breakcontinue.BreakContinue.unlabeledBreakNestedLoops;
 import static cn.tuyucheng.taketoday.breakcontinue.BreakContinue.unlabeledContinue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BreakContinueUnitTest {
 

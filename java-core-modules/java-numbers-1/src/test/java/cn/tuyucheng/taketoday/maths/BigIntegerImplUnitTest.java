@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.maths;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 
@@ -15,7 +15,7 @@ public class BigIntegerImplUnitTest {
       BigInteger totalStars = numStarsMilkyWay.add(numStarsAndromeda);
       BigInteger result = new BigInteger("14110718640342675608722521633212952");
 
-      Assert.assertEquals(result, totalStars);
+      Assertions.assertEquals(result, totalStars);
    }
 
 }

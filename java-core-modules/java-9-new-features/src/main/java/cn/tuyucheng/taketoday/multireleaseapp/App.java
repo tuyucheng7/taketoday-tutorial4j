@@ -12,4 +12,5 @@ public class App {
       boolean isLeapYear = DateHelper.checkIfLeapYear(dateToCheck);
       logger.info("Date given " + dateToCheck + " is leap year: " + isLeapYear);
    }
+
 }

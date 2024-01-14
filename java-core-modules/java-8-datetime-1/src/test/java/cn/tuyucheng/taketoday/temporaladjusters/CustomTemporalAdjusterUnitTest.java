@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.temporaladjusters;
 
 import cn.tuyucheng.taketoday.temporaladjuster.CustomTemporalAdjuster;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.TemporalAdjuster;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CustomTemporalAdjusterUnitTest {
 

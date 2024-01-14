@@ -25,4 +25,5 @@ public class ParenthesizedPatterns {
             default -> 0d;
       };
    }
+
 }

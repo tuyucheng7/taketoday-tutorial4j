@@ -47,4 +47,5 @@ class TypePatternsUnitTest {
    void givenSwitchImplementation_whenUsingCharAsArgument_thenDoubleIsReturned() {
       assertEquals(0d, getDoubleUsingSwitch('c'));
    }
+
 }

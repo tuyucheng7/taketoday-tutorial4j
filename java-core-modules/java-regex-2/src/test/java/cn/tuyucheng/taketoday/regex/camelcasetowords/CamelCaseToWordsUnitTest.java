@@ -1,37 +1,39 @@
 package cn.tuyucheng.taketoday.regex.camelcasetowords;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static cn.tuyucheng.taketoday.regex.camelcasetowords.CamelCaseToWords.findWordsInMixedCase;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class CamelCaseToWordsUnitTest {
 
    @Test
    void givenPlainStringWithNonLetters_thenFindsWords() {
-      Assertions.assertThat(CamelCaseToWords.findWordsInMixedCase("some words"))
+      assertThat(findWordsInMixedCase("some words"))
             .containsExactly("some", "words");
    }
 
    @Test
    void givenWordsInCamelCase_thenFindsWords() {
-      Assertions.assertThat(CamelCaseToWords.findWordsInMixedCase("thisIsCamelCaseText"))
+      assertThat(findWordsInMixedCase("thisIsCamelCaseText"))
             .containsExactly("this", "Is", "Camel", "Case", "Text");
    }
 
    @Test
    void givenWordsInTitleCase_thenFindsWords() {
-      Assertions.assertThat(CamelCaseToWords.findWordsInMixedCase("ThisIsTitleCaseText"))
+      assertThat(findWordsInMixedCase("ThisIsTitleCaseText"))
             .containsExactly("This", "Is", "Title", "Case", "Text");
    }
 
    @Test
    void givenWordsAcrossMultipleTexts_thenFindsWords() {
-      Assertions.assertThat(CamelCaseToWords.findWordsInMixedCase("ThisIsTitleCaseText --- andSoIsThis"))
+      assertThat(findWordsInMixedCase("ThisIsTitleCaseText --- andSoIsThis"))
             .containsExactly("This", "Is", "Title", "Case", "Text", "and", "So", "Is", "This");
    }
 
    @Test
    void givenCamelCaseHasASingleLetterWord_thenItCanBeSplit() {
-      Assertions.assertThat(CamelCaseToWords.findWordsInMixedCase("thisHasASingleLetterWord"))
+      assertThat(findWordsInMixedCase("thisHasASingleLetterWord"))
             .containsExactly("this", "Has", "A", "Single", "Letter", "Word");
    }
 }

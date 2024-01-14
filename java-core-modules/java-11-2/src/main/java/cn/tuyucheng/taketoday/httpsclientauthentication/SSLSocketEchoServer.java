@@ -13,6 +13,7 @@ import java.net.Socket;
 public class SSLSocketEchoServer {
 
    static void startServer(int port) throws IOException {
+
       ServerSocketFactory factory = SSLServerSocketFactory.getDefault();
 
       try (SSLServerSocket listener = (SSLServerSocket) factory.createServerSocket(port)) {

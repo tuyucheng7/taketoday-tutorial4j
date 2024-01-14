@@ -7,4 +7,5 @@ public sealed interface Service permits Car, Truck {
    default int getMaxDistanceBetweenServicesInKilometers() {
       return 100000;
    }
+
 }

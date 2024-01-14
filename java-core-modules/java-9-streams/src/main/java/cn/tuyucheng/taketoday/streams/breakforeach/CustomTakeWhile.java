@@ -10,4 +10,5 @@ public class CustomTakeWhile {
       CustomSpliterator<T> customSpliterator = new CustomSpliterator<>(stream.spliterator(), predicate);
       return StreamSupport.stream(customSpliterator, false);
    }
+
 }

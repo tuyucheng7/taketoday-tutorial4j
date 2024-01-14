@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.threadlocal;
 
+
 public class Context {
    private final String userName;
 
@@ -9,6 +10,8 @@ public class Context {
 
    @Override
    public String toString() {
-      return "Context{" + "userNameSecret='" + userName + '\'' + '}';
+      return "Context{" +
+            "userNameSecret='" + userName + '\'' +
+            '}';
    }
 }

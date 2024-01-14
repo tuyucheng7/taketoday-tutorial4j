@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ParameterizedThreadUnitTest {
+public class ParameterizedThreadUnitTest {
 
    @Test
-   void whenSendingParameterToCallable_thenSuccessful() throws Exception {
+   public void whenSendingParameterToCallable_thenSuccessful() throws Exception {
       ExecutorService executorService = Executors.newSingleThreadExecutor();
       Future<Double> result = executorService.submit(new AverageCalculator(1, 2, 3));
       try {
@@ -23,11 +23,12 @@ class ParameterizedThreadUnitTest {
    }
 
    @Test
-   void whenParametersToThreadWithLambda_thenParametersPassedCorrectly() throws Exception {
+   public void whenParametersToThreadWithLamda_thenParametersPassedCorrectly() throws Exception {
       ExecutorService executorService = Executors.newFixedThreadPool(2);
       int[] numbers = new int[]{4, 5, 6};
       try {
-         Future<Integer> sumResult = executorService.submit(() -> IntStream.of(numbers).sum());
+         Future<Integer> sumResult = executorService.submit(() -> IntStream.of(numbers)
+               .sum());
          Future<Double> averageResult = executorService.submit(() -> IntStream.of(numbers)
                .average()
                .orElse(0d));
@@ -37,4 +38,5 @@ class ParameterizedThreadUnitTest {
          executorService.shutdown();
       }
    }
+
 }

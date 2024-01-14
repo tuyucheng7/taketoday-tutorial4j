@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.stack_tests;
 
 import cn.tuyucheng.taketoday.thread_safe_lifo.DequeBasedSynchronizedStack;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -16,6 +16,7 @@ public class MultithreadingCorrectnessStackUnitTest {
 
    @Test
    public void givenSynchronizedDeque_whenExecutedParallel_thenWorkRight() {
+
       DequeBasedSynchronizedStack<Integer> deque = new DequeBasedSynchronizedStack<>();
 
       // Serial execution of push on ConcurrentLinkedQueue will always result in correct execution.
@@ -26,7 +27,7 @@ public class MultithreadingCorrectnessStackUnitTest {
          sum += deque.pop();
       }
 
-      Assert.assertEquals(49995000, sum);
+      Assertions.assertEquals(49995000, sum);
 
       // Parallel execution of push on ConcurrentLinkedQueue will always result in correct execution.
       range(1, 10000).parallel().forEach(value -> deque.push(value));
@@ -36,11 +37,12 @@ public class MultithreadingCorrectnessStackUnitTest {
          sum += deque.pop();
       }
 
-      Assert.assertEquals(49995000, sum);
+      Assertions.assertEquals(49995000, sum);
    }
 
    @Test
    public void givenConcurrentLinkedQueue_whenExecutedParallel_thenWorkRight() {
+
       ConcurrentLinkedDeque<Integer> deque = new ConcurrentLinkedDeque<>();
 
       // Serial execution of push on ConcurrentLinkedQueue will always result in correct execution.
@@ -51,7 +53,7 @@ public class MultithreadingCorrectnessStackUnitTest {
          sum += deque.pop();
       }
 
-      Assert.assertEquals(49995000, sum);
+      Assertions.assertEquals(49995000, sum);
 
       // Parallel execution of push on ConcurrentLinkedQueue will always result in correct execution.
       range(1, 10000).parallel().forEach(value -> deque.push(value));
@@ -61,11 +63,12 @@ public class MultithreadingCorrectnessStackUnitTest {
          sum += deque.pop();
       }
 
-      Assert.assertEquals(49995000, sum);
+      Assertions.assertEquals(49995000, sum);
    }
 
    @Test
    public void givenArrayDeque_whenExecutedParallel_thenShouldFail() {
+
       ArrayDeque<Integer> deque = new ArrayDeque<>();
 
       // Serial execution of push on ArrayDeque will always result in correct execution.
@@ -76,7 +79,7 @@ public class MultithreadingCorrectnessStackUnitTest {
          sum += deque.pop();
       }
 
-      Assert.assertEquals(49995000, sum);
+      Assertions.assertEquals(49995000, sum);
 
       // Parallel execution of push on ArrayDeque will not result in correct execution.
       range(1, 10000).parallel().forEach(value -> deque.push(value));
@@ -93,6 +96,6 @@ public class MultithreadingCorrectnessStackUnitTest {
          return;
       }
 
-      Assert.assertNotEquals(49995000, sum);
+      Assertions.assertNotEquals(49995000, sum);
    }
 }

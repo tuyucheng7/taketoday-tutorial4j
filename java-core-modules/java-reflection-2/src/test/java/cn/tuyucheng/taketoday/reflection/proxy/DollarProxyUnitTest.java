@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DollarProxyUnitTest {
+public class DollarProxyUnitTest {
    @Test
-   void givenProxy_whenInvokingGetProxyClass_thenGeneratingProxyClass() {
+   public void givenProxy_whenInvokingGetProxyClass_thenGeneratingProxyClass() {
       // Java 8: -Dsun.misc.ProxyGenerator.saveGeneratedFiles=true
       // Java 9 or later: -Djdk.proxy.ProxyGenerator.saveGeneratedFiles=true
       // Note: System.setProperty() doesn't work here
@@ -25,7 +25,7 @@ class DollarProxyUnitTest {
    }
 
    @Test
-   void givenReflection_whenReadingAnnotation_thenGeneratingProxyClass() {
+   public void givenReflection_whenReadingAnnotation_thenGeneratingProxyClass() {
       FunctionalInterface instance = Consumer.class.getDeclaredAnnotation(FunctionalInterface.class);
       Class<?> clazz = instance.getClass();
 

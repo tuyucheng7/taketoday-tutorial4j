@@ -47,4 +47,5 @@ public class RunnableCompletionCheckerWithThreadPoolExecutor {
    public static boolean isEveryRunnableDone(ThreadPoolExecutor executor, int timeout) throws InterruptedException {
       return executor.awaitTermination(timeout, TimeUnit.MILLISECONDS);
    }
+
 }

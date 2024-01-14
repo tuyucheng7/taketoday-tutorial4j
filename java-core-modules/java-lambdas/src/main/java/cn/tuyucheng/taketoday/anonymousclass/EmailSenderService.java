@@ -6,4 +6,5 @@ public class EmailSenderService implements SenderService {
    public String callSender(Sender sender) {
       return sender.send("Email Notification");
    }
+
 }

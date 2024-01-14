@@ -1,13 +1,12 @@
 package cn.tuyucheng.taketoday.charfreq;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.google.common.collect.ImmutableSet;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
-
-import com.google.common.collect.ImmutableSet;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CharacterWithHighestFrequencyUnitTest {
    private static final String INPUT1 = "aaaaaaaaaa(10) bbbbbbb ccccc dddd eee ff";

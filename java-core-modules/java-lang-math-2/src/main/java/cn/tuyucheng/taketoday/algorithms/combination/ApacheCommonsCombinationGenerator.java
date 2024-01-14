@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.algorithms.combination;
 
-import org.apache.commons.math3.util.CombinatoricsUtils;
-
 import java.util.Arrays;
 import java.util.Iterator;
+
+import org.apache.commons.math3.util.CombinatoricsUtils;
 
 public class ApacheCommonsCombinationGenerator {
 

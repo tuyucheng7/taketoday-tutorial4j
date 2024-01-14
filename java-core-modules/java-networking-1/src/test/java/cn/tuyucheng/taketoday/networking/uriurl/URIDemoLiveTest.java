@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.networking.uriurl;
 
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,8 +11,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @FixMethodOrder
 public class URIDemoLiveTest {
@@ -36,7 +35,7 @@ public class URIDemoLiveTest {
    BufferedReader in = null;
    String URIContent = "";
 
-   @BeforeClass
+   @BeforeAll
    public static void givenEmplyURL_whenInitializeURL_thenSuccess() throws URISyntaxException {
       uri = new URI(URICOMPOUND);
    }

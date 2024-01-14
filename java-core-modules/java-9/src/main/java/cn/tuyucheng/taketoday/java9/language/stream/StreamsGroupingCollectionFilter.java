@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.java9.language.stream;
 
-import static java.util.stream.Collectors.filtering;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
+import static java.util.stream.Collectors.filtering;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 public class StreamsGroupingCollectionFilter {
 

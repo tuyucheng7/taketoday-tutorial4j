@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BreakFromStreamForEachUnitTest {
+public class BreakFromStreamForEachUnitTest {
 
    @Test
-   void whenCustomTakeWhileIsCalled_ThenCorrectItemsAreReturned() {
+   public void whenCustomTakeWhileIsCalled_ThenCorrectItemsAreReturned() {
       Stream<String> initialStream = Stream.of("cat", "dog", "elephant", "fox", "rabbit", "duck");
 
       List<String> result = CustomTakeWhile.takeWhile(initialStream, x -> x.length() % 2 != 0)
@@ -23,7 +23,7 @@ class BreakFromStreamForEachUnitTest {
    }
 
    @Test
-   void whenCustomForEachIsCalled_ThenCorrectItemsAreReturned() {
+   public void whenCustomForEachIsCalled_ThenCorrectItemsAreReturned() {
       Stream<String> initialStream = Stream.of("cat", "dog", "elephant", "fox", "rabbit", "duck");
       List<String> result = new ArrayList<>();
 

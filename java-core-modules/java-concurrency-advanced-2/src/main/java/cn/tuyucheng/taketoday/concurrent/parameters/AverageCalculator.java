@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.stream.IntStream;
 
 public class AverageCalculator implements Callable<Double> {
+
    int[] numbers;
 
    public AverageCalculator(int... parameter) {

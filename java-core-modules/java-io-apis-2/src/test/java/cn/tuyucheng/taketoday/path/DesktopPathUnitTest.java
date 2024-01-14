@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday.path;
 
-import java.io.File;
+import org.junit.jupiter.api.Test;
 
 import javax.swing.filechooser.FileSystemView;
-
-import org.junit.jupiter.api.Test;
+import java.io.File;
 
 public class DesktopPathUnitTest {
    // Adapt DESKTOP_PATH variable to your own system path

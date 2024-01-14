@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.copyonwrite;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -9,12 +10,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 public class CopyOnWriteArrayListUnitTest {
 
    @Test
    public void givenCopyOnWriteList_whenIterateAndAddElementToUnderneathList_thenShouldNotChangeIterator() {
       // given
-      final CopyOnWriteArrayList<Integer> numbers = new CopyOnWriteArrayList<>(new Integer[]{1, 3, 5, 8});
+      final CopyOnWriteArrayList<Integer> numbers =
+            new CopyOnWriteArrayList<>(new Integer[]{1, 3, 5, 8});
 
       // when
       Iterator<Integer> iterator = numbers.iterator();
@@ -32,12 +35,14 @@ public class CopyOnWriteArrayListUnitTest {
 
       // then
       assertThat(result2).containsOnly(1, 3, 5, 8, 10);
+
    }
 
    @Test(expected = UnsupportedOperationException.class)
    public void givenCopyOnWriteList_whenIterateOverItAndTryToRemoveElement_thenShouldThrowException() {
       // given
-      final CopyOnWriteArrayList<Integer> numbers = new CopyOnWriteArrayList<>(new Integer[]{1, 3, 5, 8});
+      final CopyOnWriteArrayList<Integer> numbers =
+            new CopyOnWriteArrayList<>(new Integer[]{1, 3, 5, 8});
 
       // when
       Iterator<Integer> iterator = numbers.iterator();

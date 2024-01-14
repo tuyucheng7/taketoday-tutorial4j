@@ -1,4 +1,3 @@
-
 public class BinarySearch {
 
    public int search(int[] list, int item) {
@@ -23,4 +22,5 @@ public class BinarySearch {
 
       return index;
    }
+
 }

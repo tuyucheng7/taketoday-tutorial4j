@@ -6,8 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CountdownLatchResetExample {
-   private final int count;
-   private final int threadCount;
+
+   private int count;
+   private int threadCount;
    private final AtomicInteger updateCount;
 
    CountdownLatchResetExample(int count, int threadCount) {
@@ -18,9 +19,9 @@ public class CountdownLatchResetExample {
 
    public int countWaits() {
       CountDownLatch countDownLatch = new CountDownLatch(count);
-      ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+      ExecutorService es = Executors.newFixedThreadPool(threadCount);
       for (int i = 0; i < threadCount; i++) {
-         executor.execute(() -> {
+         es.execute(() -> {
             long prevValue = countDownLatch.getCount();
             countDownLatch.countDown();
             if (countDownLatch.getCount() != prevValue) {
@@ -29,12 +30,12 @@ public class CountdownLatchResetExample {
          });
       }
 
-      executor.shutdown();
+      es.shutdown();
       return updateCount.get();
    }
 
    public static void main(String[] args) {
-      CountdownLatchResetExample ex = new CountdownLatchResetExample(7, 20);
+      CountdownLatchResetExample ex = new CountdownLatchResetExample(5, 20);
       System.out.println("Count : " + ex.countWaits());
    }
 }

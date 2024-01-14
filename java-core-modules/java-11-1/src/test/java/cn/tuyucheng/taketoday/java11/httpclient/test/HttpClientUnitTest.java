@@ -31,10 +31,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-class HttpClientUnitTest {
+public class HttpClientUnitTest {
 
    @Test
-   void shouldReturnSampleDataContentWhenConnectViaSystemProxy() throws IOException, InterruptedException, URISyntaxException {
+   public void shouldReturnSampleDataContentWhenConnectViaSystemProxy() throws IOException, InterruptedException, URISyntaxException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/post"))
             .headers("Content-Type", "text/plain;charset=UTF-8")
@@ -52,7 +52,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldNotFollowRedirectWhenSetToDefaultNever() throws IOException, InterruptedException, URISyntaxException {
+   public void shouldNotFollowRedirectWhenSetToDefaultNever() throws IOException, InterruptedException, URISyntaxException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("http://stackoverflow.com"))
             .version(HttpClient.Version.HTTP_1_1)
@@ -67,7 +67,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldFollowRedirectWhenSetToAlways() throws IOException, InterruptedException, URISyntaxException {
+   public void shouldFollowRedirectWhenSetToAlways() throws IOException, InterruptedException, URISyntaxException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("http://stackoverflow.com"))
             .version(HttpClient.Version.HTTP_1_1)
@@ -85,7 +85,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldReturnOKStatusForAuthenticatedAccess() throws URISyntaxException, IOException, InterruptedException {
+   public void shouldReturnOKStatusForAuthenticatedAccess() throws URISyntaxException, IOException, InterruptedException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/basic-auth"))
             .GET()
@@ -104,7 +104,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldSendRequestAsync() throws URISyntaxException, InterruptedException, ExecutionException {
+   public void shouldSendRequestAsync() throws URISyntaxException, InterruptedException, ExecutionException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/post"))
             .headers("Content-Type", "text/plain;charset=UTF-8")
@@ -119,7 +119,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldUseJustTwoThreadWhenProcessingSendAsyncRequest() throws URISyntaxException, InterruptedException, ExecutionException {
+   public void shouldUseJustTwoThreadWhenProcessingSendAsyncRequest() throws URISyntaxException, InterruptedException, ExecutionException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/get"))
             .GET()
@@ -154,7 +154,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldNotStoreCookieWhenPolicyAcceptNone() throws URISyntaxException, IOException, InterruptedException {
+   public void shouldNotStoreCookieWhenPolicyAcceptNone() throws URISyntaxException, IOException, InterruptedException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/get"))
             .GET()
@@ -171,7 +171,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldStoreCookieWhenPolicyAcceptAll() throws URISyntaxException, IOException, InterruptedException {
+   public void shouldStoreCookieWhenPolicyAcceptAll() throws URISyntaxException, IOException, InterruptedException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/get"))
             .GET()
@@ -188,7 +188,7 @@ class HttpClientUnitTest {
    }
 
    @Test
-   void shouldProcessMultipleRequestViaStream() throws URISyntaxException, ExecutionException, InterruptedException {
+   public void shouldProcessMultipleRequestViaStream() throws URISyntaxException, ExecutionException, InterruptedException {
       List<URI> targets = Arrays.asList(new URI("https://postman-echo.com/get?foo1=bar1"), new URI("https://postman-echo.com/get?foo2=bar2"));
 
       HttpClient client = HttpClient.newHttpClient();
@@ -197,7 +197,7 @@ class HttpClientUnitTest {
             .map(target -> client.sendAsync(HttpRequest.newBuilder(target)
                         .GET()
                         .build(), HttpResponse.BodyHandlers.ofString())
-                  .thenApply(HttpResponse::body))
+                  .thenApply(response -> response.body()))
             .collect(Collectors.toList());
 
       CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
@@ -216,10 +216,11 @@ class HttpClientUnitTest {
          assertThat(futures.get(1)
                .get(), containsString("bar1"));
       }
+
    }
 
    @Test
-   void completeExceptionallyExample() {
+   public void completeExceptionallyExample() {
       CompletableFuture<String> cf = CompletableFuture.completedFuture("message").thenApplyAsync(String::toUpperCase,
             CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
       CompletableFuture<String> exceptionHandler = cf.handle((s, th) -> {
@@ -236,4 +237,5 @@ class HttpClientUnitTest {
 
       assertEquals("message upon cancel", exceptionHandler.join());
    }
+
 }

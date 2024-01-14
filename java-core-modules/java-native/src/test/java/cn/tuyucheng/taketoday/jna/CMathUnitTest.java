@@ -13,4 +13,5 @@ class CMathUnitTest {
       double result = lib.cosh(0);
       assertEquals(1.0, result);
    }
+
 }

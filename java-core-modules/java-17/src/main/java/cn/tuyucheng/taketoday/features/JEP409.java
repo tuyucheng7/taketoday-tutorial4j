@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.features;
 
 public class JEP409 {
+
    sealed interface Shape permits Rectangle, Circle, Square, Triangle {
       int getNumberOfSides();
    }
@@ -27,9 +28,11 @@ public class JEP409 {
    }
 
    static non-sealed class Triangle implements Shape {
+
       @Override
       public int getNumberOfSides() {
          return 3;
       }
    }
+
 }

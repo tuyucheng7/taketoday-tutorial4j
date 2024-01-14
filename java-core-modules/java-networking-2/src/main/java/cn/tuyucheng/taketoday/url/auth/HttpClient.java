@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.url.auth;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.IOException;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
@@ -8,8 +10,6 @@ import java.net.PasswordAuthentication;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-
-import org.apache.commons.codec.binary.Base64;
 
 public class HttpClient {
 

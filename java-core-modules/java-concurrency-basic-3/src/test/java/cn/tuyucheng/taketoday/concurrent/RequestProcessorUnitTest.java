@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.concurrent;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.concurrent.TimeUnit;
-
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.not;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Request processor")
 public class RequestProcessorUnitTest {
@@ -39,4 +39,5 @@ public class RequestProcessorUnitTest {
 
       assertEquals("DONE", requestProcessor.getStatus(requestId));
    }
+
 }

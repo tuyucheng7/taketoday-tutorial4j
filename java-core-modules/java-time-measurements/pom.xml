@@ -3,9 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>cn.tuyucheng.taketoday.exception.numberformat</groupId>
    <artifactId>java-time-measurements</artifactId>
-   <version>1.0.0</version>
    <name>java-time-measurements</name>
    <packaging>jar</packaging>
 
@@ -80,4 +78,5 @@
       <jmockit.version>1.44</jmockit.version>
       <mockito-inline.version>4.1.0</mockito-inline.version>
    </properties>
+
 </project>

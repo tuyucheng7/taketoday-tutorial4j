@@ -14,15 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Unit tests for collectors additions in Java 12.
  */
-class CollectorsUnitTest {
+public class CollectorsUnitTest {
 
    @Test
-   void whenTeeing_ItShouldCombineTheResultsAsExpected() {
+   public void whenTeeing_ItShouldCombineTheResultsAsExpected() {
       List<Integer> numbers = Arrays.asList(42, 4, 2, 24);
       Range range = numbers.stream()
-            .collect(teeing(minBy(Integer::compareTo),
-                  maxBy(Integer::compareTo),
-                  (min, max) -> new Range(min.orElse(null), max.orElse(null))));
+            .collect(teeing(minBy(Integer::compareTo), maxBy(Integer::compareTo), (min, max) -> new Range(min.orElse(null), max.orElse(null))));
 
       assertThat(range).isEqualTo(new Range(2, 42));
    }

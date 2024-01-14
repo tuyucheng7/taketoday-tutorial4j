@@ -6,7 +6,7 @@ import cn.tuyucheng.taketoday.inheritancecomposition.model.Processor;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.StandardMemory;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.StandardProcessor;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.StandardSoundCard;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 

@@ -5,11 +5,11 @@ import com.vdurmont.semver4j.Semver;
 import com.vdurmont.semver4j.Semver.VersionDiff;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.gradle.util.VersionNumber;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class VersionComparisonUnitTest {
 
@@ -130,4 +130,5 @@ public class VersionComparisonUnitTest {
       assertTrue(VersionCompare.compareVersions("1.1.2", "1.2") < 0);
       assertEquals(0, VersionCompare.compareVersions("1.3.0", "1.3"));
    }
+
 }

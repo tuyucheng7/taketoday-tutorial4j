@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.set;
 
 import com.google.common.collect.Sets;
 import org.apache.commons.collections4.SetUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SetOperationsUnitTest {
 

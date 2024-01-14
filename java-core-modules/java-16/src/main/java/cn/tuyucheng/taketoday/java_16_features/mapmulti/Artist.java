@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Artist {
 
    private final String name;
-   private final boolean associatedMajorLabels;
-   private final List<String> majorLabels;
+   private boolean associatedMajorLabels;
+   private List<String> majorLabels;
 
    Artist(String name, boolean associatedMajorLabels, List<String> majorLabels) {
       this.name = name;

@@ -10,12 +10,15 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockWithCondition {
-   private static final Logger LOG = LoggerFactory.getLogger(ReentrantLockWithCondition.class);
-   private final Stack<String> stack = new Stack<>();
+
+   private static Logger LOG = LoggerFactory.getLogger(ReentrantLockWithCondition.class);
+
+   private Stack<String> stack = new Stack<>();
    private static final int CAPACITY = 5;
-   private final ReentrantLock lock = new ReentrantLock();
-   private final Condition stackEmptyCondition = lock.newCondition();
-   private final Condition stackFullCondition = lock.newCondition();
+
+   private ReentrantLock lock = new ReentrantLock();
+   private Condition stackEmptyCondition = lock.newCondition();
+   private Condition stackFullCondition = lock.newCondition();
 
    private void pushToStack(String item) throws InterruptedException {
       try {
@@ -30,6 +33,7 @@ public class ReentrantLockWithCondition {
       } finally {
          lock.unlock();
       }
+
    }
 
    private String popFromStack() throws InterruptedException {
@@ -69,7 +73,9 @@ public class ReentrantLockWithCondition {
                e.printStackTrace();
             }
          }
+
       });
+
       service.shutdown();
    }
 }

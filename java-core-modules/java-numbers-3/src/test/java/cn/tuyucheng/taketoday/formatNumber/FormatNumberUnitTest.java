@@ -1,11 +1,20 @@
 package cn.tuyucheng.taketoday.formatNumber;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.*;
-import static org.assertj.core.api.Assertions.*;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.byPaddingZeros;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.currencyWithChosenLocalisation;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.forPercentages;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withBigDecimal;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withDecimalFormatLocal;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withDecimalFormatPattern;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withLargeIntegers;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withMathRound;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withStringFormat;
+import static cn.tuyucheng.taketoday.formatNumber.FormatNumber.withTwoDecimalPlaces;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormatNumberUnitTest {
    private static final double D = 4.2352989244d;
@@ -78,4 +87,5 @@ public class FormatNumberUnitTest {
       assertThat(currencyWithChosenLocalisation(value, new Locale("zh", "CN"))).isEqualTo("¥23,500.00");
       assertThat(currencyWithChosenLocalisation(value, new Locale("pl", "PL"))).isEqualTo("23 500,00 zł");
    }
+
 }

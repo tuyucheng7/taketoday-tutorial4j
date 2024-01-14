@@ -1,6 +1,13 @@
 package cn.tuyucheng.taketoday.mimetype;
 
-import static org.junit.Assert.assertEquals;
+import jakarta.activation.MimetypesFileTypeMap;
+import net.sf.jmimemagic.Magic;
+import net.sf.jmimemagic.MagicException;
+import net.sf.jmimemagic.MagicMatch;
+import net.sf.jmimemagic.MagicMatchNotFoundException;
+import net.sf.jmimemagic.MagicParseException;
+import org.apache.tika.Tika;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,16 +17,7 @@ import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import jakarta.activation.MimetypesFileTypeMap;
-
-import org.apache.tika.Tika;
-import org.junit.Test;
-
-import net.sf.jmimemagic.Magic;
-import net.sf.jmimemagic.MagicException;
-import net.sf.jmimemagic.MagicMatch;
-import net.sf.jmimemagic.MagicMatchNotFoundException;
-import net.sf.jmimemagic.MagicParseException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test class demonstrating various strategies to resolve MIME type of a file.

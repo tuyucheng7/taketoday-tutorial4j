@@ -1,10 +1,5 @@
 package cn.tuyucheng.taketoday.mail.mailwithattachment;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Properties;
-
 import jakarta.mail.Authenticator;
 import jakarta.mail.BodyPart;
 import jakarta.mail.Message;
@@ -17,6 +12,11 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Properties;
 
 public class MailWithAttachmentService {
 

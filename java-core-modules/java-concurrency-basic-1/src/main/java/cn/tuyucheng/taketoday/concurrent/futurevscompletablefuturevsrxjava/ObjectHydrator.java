@@ -6,4 +6,5 @@ public class ObjectHydrator {
       testObject.setDataPointTwo(20);
       return testObject;
    }
+
 }

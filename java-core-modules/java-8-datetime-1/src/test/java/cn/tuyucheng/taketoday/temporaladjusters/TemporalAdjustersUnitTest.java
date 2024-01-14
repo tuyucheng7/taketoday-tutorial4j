@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.temporaladjusters;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -16,7 +16,7 @@ public class TemporalAdjustersUnitTest {
 
       String expected = "2017-07-09";
 
-      Assert.assertEquals(expected, nextSunday.toString());
+      Assertions.assertEquals(expected, nextSunday.toString());
    }
 
 }

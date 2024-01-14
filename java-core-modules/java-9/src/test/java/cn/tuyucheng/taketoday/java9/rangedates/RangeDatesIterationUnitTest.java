@@ -7,10 +7,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
-class RangeDatesIterationUnitTest {
+public class RangeDatesIterationUnitTest {
 
    @Test
-   void givenIterateBetweenDatesJava9_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
+   public void givenIterateBetweenDatesJava9_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
       LocalDate start = LocalDate.now();
       LocalDate end = start.plus(10L, ChronoUnit.DAYS);
 
@@ -20,7 +20,7 @@ class RangeDatesIterationUnitTest {
    }
 
    @Test
-   void givenIterateBetweenDatesJava8_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
+   public void givenIterateBetweenDatesJava8_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
       LocalDate start = LocalDate.now();
       LocalDate end = start.plus(10L, ChronoUnit.DAYS);
 
@@ -30,7 +30,7 @@ class RangeDatesIterationUnitTest {
    }
 
    @Test
-   void givenIterateBetweenDatesJava7_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
+   public void givenIterateBetweenDatesJava7_WhenStartDateAsTodayAndEndDateAs10DaysAhead() {
       Calendar today = Calendar.getInstance();
       Calendar calendar = Calendar.getInstance();
       calendar.clear();
@@ -44,4 +44,5 @@ class RangeDatesIterationUnitTest {
 
       iteration.iterateBetweenDatesJava7(start, end);
    }
+
 }

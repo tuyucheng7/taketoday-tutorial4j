@@ -10,4 +10,5 @@ public class PatternMatching {
          System.out.printf("Object is a number %n", n);
       }
    }
+
 }

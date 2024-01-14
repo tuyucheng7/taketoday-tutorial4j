@@ -1,9 +1,9 @@
 package callbackFunctions;
 
-import org.junit.jupiter.api.Test;
 import cn.tuyucheng.taketoday.callbackfunctions.EventListener;
 import cn.tuyucheng.taketoday.callbackfunctions.synchronous.SynchronousEventConsumer;
 import cn.tuyucheng.taketoday.callbackfunctions.synchronous.SynchronousEventListenerImpl;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

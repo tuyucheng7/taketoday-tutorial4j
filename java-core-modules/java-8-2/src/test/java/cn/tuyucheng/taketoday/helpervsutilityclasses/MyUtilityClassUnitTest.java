@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.helpervsutilityclasses;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MyUtilityClassUnitTest {
 
@@ -11,4 +11,5 @@ class MyUtilityClassUnitTest {
       assertEquals("INIUBONG", MyUtilityClass.returnUpperCase("iniubong"));
       assertEquals("accra", MyUtilityClass.returnLowerCase("AcCrA"));
    }
+
 }

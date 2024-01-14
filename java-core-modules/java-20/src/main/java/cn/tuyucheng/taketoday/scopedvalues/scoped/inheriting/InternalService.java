@@ -13,4 +13,5 @@ public class InternalService {
       String id = request.getParameter("data_id");
       return repository.getData(id);
    }
+
 }

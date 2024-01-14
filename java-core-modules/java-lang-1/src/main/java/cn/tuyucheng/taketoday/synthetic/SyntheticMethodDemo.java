@@ -3,11 +3,15 @@ package cn.tuyucheng.taketoday.synthetic;
 /**
  * Wrapper for a class which contains two synthetic methods accessors to a
  * private field.
+ *
+ * @author Donato Rimenti
  */
 public class SyntheticMethodDemo {
 
    /**
     * Class which contains two synthetic methods accessors to a private field.
+    *
+    * @author Donato Rimenti
     */
    class NestedClass {
 

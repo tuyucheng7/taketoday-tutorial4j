@@ -111,4 +111,5 @@ public class BenchmarkRunner {
       generator.nextFloat();
       generator.nextDouble();
    }
+
 }

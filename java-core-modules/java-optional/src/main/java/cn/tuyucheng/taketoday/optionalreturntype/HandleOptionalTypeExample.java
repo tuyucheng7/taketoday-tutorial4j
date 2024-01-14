@@ -9,7 +9,7 @@ public class HandleOptionalTypeExample {
 
    static {
       User user1 = new User();
-      user1.setUserId(1L);
+      user1.setUserId(1l);
       user1.setFirstName("tuyucheng");
       usersByName.put("tuyucheng", user1);
    }
@@ -35,7 +35,8 @@ public class HandleOptionalTypeExample {
    public static Optional<User> findUserByName(String name) {
       // look up the user in the database, the user object below could be null
       User user = usersByName.get(name);
+      Optional<User> opt = Optional.ofNullable(user);
 
-      return Optional.ofNullable(user);
+      return opt;
    }
 }

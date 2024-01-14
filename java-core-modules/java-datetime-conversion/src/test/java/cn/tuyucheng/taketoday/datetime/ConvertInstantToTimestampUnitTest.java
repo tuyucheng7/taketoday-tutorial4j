@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.datetime;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;

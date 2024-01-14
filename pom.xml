@@ -519,7 +519,7 @@
             <!-- <module>docker-modules</module> -->
             <!-- <module>graphql.modules</module> -->
             <!-- <module>grpc</module> -->
-            <!-- <module>java-core-modules</module> -->
+            <module>java-core-modules</module>
             <!-- <module>javafx</module> -->
             <!-- <module>kotlin-modules</module> -->
             <!-- <module>maven.modules</module> -->

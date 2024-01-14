@@ -1,5 +1,9 @@
 package cn.tuyucheng.taketoday.multiple_truststores;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -11,14 +15,10 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
-
 public class SslContextConfigurer {
 
-   public static X509TrustManager addAdditionalTrustStore(String trustStoreLocation, String trustStorePassword) throws NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException, KeyManagementException {
+   public static X509TrustManager addAdditionalTrustStore(String trustStoreLocation, String trustStorePassword)
+         throws NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException, KeyManagementException {
       TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
       trustManagerFactory.init((KeyStore) null);
 
@@ -48,6 +48,7 @@ public class SslContextConfigurer {
          final X509TrustManager finalMyTm = myTrustManager;
 
          X509TrustManager wrapper = new X509TrustManager() {
+
             private X509Certificate[] mergeCertificates() {
                ArrayList<X509Certificate> resultingCerts = new ArrayList<>();
                resultingCerts.addAll(Arrays.asList(finalDefaultTm.getAcceptedIssuers()));

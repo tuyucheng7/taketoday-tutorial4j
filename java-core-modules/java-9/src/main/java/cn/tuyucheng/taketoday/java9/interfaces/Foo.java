@@ -2,12 +2,12 @@ package cn.tuyucheng.taketoday.java9.interfaces;
 
 public interface Foo {
 
-   default void bar() {
+   public default void bar() {
       System.out.print("Hello");
       baz();
    }
 
-   static void buzz() {
+   public static void buzz() {
       System.out.print("Hello");
       staticBaz();
    }

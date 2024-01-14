@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.concurrent.sleepwait;
 
-/**
+/***
  * Example of waking up a waiting thread
  */
 class ThreadB extends Thread {

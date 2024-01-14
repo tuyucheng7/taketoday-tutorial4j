@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.exceptions.stackoverflowerror;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CyclicDependancyManualTest {
    @Test(expected = StackOverflowError.class)

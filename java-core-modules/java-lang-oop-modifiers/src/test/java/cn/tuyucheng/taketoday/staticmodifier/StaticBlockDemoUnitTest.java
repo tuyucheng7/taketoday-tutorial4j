@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.staticmodifier;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class StaticBlockDemoUnitTest {
 

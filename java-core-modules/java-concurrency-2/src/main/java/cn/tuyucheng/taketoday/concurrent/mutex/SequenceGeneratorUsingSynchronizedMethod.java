@@ -6,4 +6,5 @@ public class SequenceGeneratorUsingSynchronizedMethod extends SequenceGenerator 
    public synchronized int getNextSequence() {
       return super.getNextSequence();
    }
+
 }

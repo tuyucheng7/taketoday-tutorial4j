@@ -68,10 +68,28 @@
 
    <build>
       <finalName>java-networking-3</finalName>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>16</source>
+               <target>16</target>
+            </configuration>
+         </plugin>
+      </plugins>
    </build>
 
    <properties>
-      <spring.core.version>5.3.25</spring.core.version>
+      <spring.core.version>5.2.8.RELEASE</spring.core.version>
       <jetty.embeded.version>9.4.31.v20200723</jetty.embeded.version>
       <tomcat.embeded.version>10.0.0-M7</tomcat.embeded.version>
       <seancfoley.ipaddress.version>5.3.3</seancfoley.ipaddress.version>
@@ -80,4 +98,5 @@
       <angus.mail.version>2.0.1</angus.mail.version>
       <apache.commons-validator.version>1.7</apache.commons-validator.version>
    </properties>
+
 </project>

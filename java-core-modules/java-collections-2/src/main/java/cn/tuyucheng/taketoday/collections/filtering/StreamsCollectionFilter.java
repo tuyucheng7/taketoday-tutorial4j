@@ -12,11 +12,11 @@ public class StreamsCollectionFilter {
             .collect(Collectors.toList());
    }
 
-   public static Collection<Integer> findEvenNumbersUsingHelperMethod(Collection<Integer> baseCollection) {
+   static public Collection<Integer> findEvenNumbersUsingHelperMethod(Collection<Integer> baseCollection) {
       return filterCollectionHelperMethod(baseCollection, item -> item % 2 == 0);
    }
 
-   public static Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
+   static public Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
       Predicate<Integer> streamsPredicate = item -> item % 2 == 0;
 
       return baseCollection.stream()

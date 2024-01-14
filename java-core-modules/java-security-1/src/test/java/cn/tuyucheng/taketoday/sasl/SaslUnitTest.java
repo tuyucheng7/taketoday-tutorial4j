@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.sasl;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.security.sasl.Sasl;
 import javax.security.sasl.SaslClient;
@@ -12,8 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SaslUnitTest {
 
@@ -26,7 +26,7 @@ public class SaslUnitTest {
    private SaslServer saslServer;
    private SaslClient saslClient;
 
-   @Before
+   @BeforeEach
    public void setUp() throws SaslException {
 
       ServerCallbackHandler serverHandler = new ServerCallbackHandler();
@@ -66,7 +66,7 @@ public class SaslUnitTest {
       assertEquals("Tuyucheng", new String(incoming, StandardCharsets.UTF_8));
    }
 
-   @After
+   @AfterEach
    public void tearDown() throws SaslException {
       saslClient.dispose();
       saslServer.dispose();

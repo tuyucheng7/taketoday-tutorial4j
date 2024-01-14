@@ -9,11 +9,11 @@ import static java.time.Month.AUGUST;
 import static java.time.Month.JUNE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwitchExpressionsUnitTest {
+public class SwitchExpressionsUnitTest {
 
    @Test
-   @SuppressWarnings("preview")
-   void whenSwitchingOverMonthJune_thenWillReturn3() {
+   public void whenSwitchingOverMonthJune_thenWillReturn3() {
+
       var month = JUNE;
 
       var result = switch (month) {
@@ -27,8 +27,7 @@ class SwitchExpressionsUnitTest {
    }
 
    @Test
-   @SuppressWarnings("preview")
-   void whenSwitchingOverMonthAugust_thenWillReturn24() {
+   public void whenSwitchingOverMonthAugust_thenWillReturn24() {
       var month = AUGUST;
 
       var result = switch (month) {
@@ -45,8 +44,8 @@ class SwitchExpressionsUnitTest {
    }
 
    @Test
-   @SuppressWarnings("preview")
-   void whenSwitchingOverMonthJanuary_thenWillReturn3() {
+   public void whenSwitchingOverMonthJanuary_thenWillReturn3() {
+
       Function<Month, Integer> func = (month) -> {
          switch (month) {
             case JANUARY, JUNE, JULY -> {
@@ -62,8 +61,7 @@ class SwitchExpressionsUnitTest {
    }
 
    @Test
-   @SuppressWarnings("preview")
-   void whenSwitchingOverMonthAugust_thenWillReturn2() {
+   public void whenSwitchingOverMonthAugust_thenWillReturn2() {
       var month = AUGUST;
 
       var result = switch (month) {

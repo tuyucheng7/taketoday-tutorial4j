@@ -4,13 +4,15 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DeadlockExample {
-   private final Lock lock1 = new ReentrantLock(true);
-   private final Lock lock2 = new ReentrantLock(true);
+
+   private Lock lock1 = new ReentrantLock(true);
+   private Lock lock2 = new ReentrantLock(true);
 
    public static void main(String[] args) {
       DeadlockExample deadlock = new DeadlockExample();
       new Thread(deadlock::operation1, "T1").start();
       new Thread(deadlock::operation2, "T2").start();
+
    }
 
    public void operation1() {
@@ -25,6 +27,7 @@ public class DeadlockExample {
 
       lock2.unlock();
       lock1.unlock();
+
    }
 
    public void operation2() {
@@ -42,7 +45,8 @@ public class DeadlockExample {
    }
 
    public void print(String message) {
-      System.out.println("Thread " + Thread.currentThread().getName() + ": " + message);
+      System.out.println("Thread " + Thread.currentThread()
+            .getName() + ": " + message);
    }
 
    public void sleep(long millis) {
@@ -52,4 +56,5 @@ public class DeadlockExample {
          e.printStackTrace();
       }
    }
+
 }

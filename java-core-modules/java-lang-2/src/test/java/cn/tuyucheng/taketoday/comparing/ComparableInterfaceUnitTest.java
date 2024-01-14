@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.comparing;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.SortedSet;
@@ -67,7 +66,7 @@ class ComparableInterfaceUnitTest {
       people.add(richard);
       people.add(mike);
 
-      Assertions.assertThat(people).containsExactly(richard);
+      assertThat(people).containsExactly(richard);
    }
 
    @Test
@@ -103,6 +102,6 @@ class ComparableInterfaceUnitTest {
       people.add(richard);
       people.add(mike);
 
-      Assertions.assertThat(people).containsExactly(mike, richard);
+      assertThat(people).containsExactly(mike, richard);
    }
 }

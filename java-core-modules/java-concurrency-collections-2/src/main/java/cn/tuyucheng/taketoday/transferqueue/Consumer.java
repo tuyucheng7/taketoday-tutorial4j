@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Consumer implements Runnable {
    private static final Logger LOG = LoggerFactory.getLogger(Consumer.class);
+
    private final TransferQueue<String> transferQueue;
    private final String name;
    final int numberOfMessagesToConsume;
@@ -28,7 +29,7 @@ public class Consumer implements Runnable {
             longProcessing(element);
             LOG.debug("Consumer: " + name + " received element: " + element);
          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       }
    }

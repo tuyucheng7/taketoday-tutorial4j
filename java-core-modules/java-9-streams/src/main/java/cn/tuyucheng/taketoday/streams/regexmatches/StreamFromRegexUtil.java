@@ -12,4 +12,5 @@ public class StreamFromRegexUtil {
       Matcher matcher = pattern.matcher(input);
       return matcher.results().map(MatchResult::group);
    }
+
 }

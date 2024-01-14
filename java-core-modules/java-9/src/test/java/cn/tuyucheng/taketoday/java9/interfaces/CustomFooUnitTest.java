@@ -10,8 +10,8 @@ import java.io.PrintStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CustomFooUnitTest {
-   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-   private final PrintStream originalOut = System.out;
+   private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+   private PrintStream originalOut = System.out;
 
    @BeforeEach
    void setup() {

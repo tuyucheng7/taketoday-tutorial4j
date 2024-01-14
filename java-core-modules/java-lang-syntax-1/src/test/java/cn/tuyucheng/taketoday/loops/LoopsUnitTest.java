@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.loops;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +22,7 @@ public class LoopsUnitTest {
    private static Set<String> set = new HashSet<>();
    private static Map<String, Integer> map = new HashMap<>();
 
-   @BeforeClass
+   @BeforeAll
    public static void setUp() {
       list.add("One");
       list.add("Two");
@@ -41,28 +41,28 @@ public class LoopsUnitTest {
    public void shouldRunForLoop() {
       int[] expected = {0, 1, 2, 3, 4};
       int[] actual = loops.simple_for_loop();
-      Assert.assertArrayEquals(expected, actual);
+      Assertions.assertArrayEquals(expected, actual);
    }
 
    @Test
    public void shouldRunEnhancedForeachLoop() {
       int[] expected = {0, 1, 2, 3, 4};
       int[] actual = loops.enhanced_for_each_loop();
-      Assert.assertArrayEquals(expected, actual);
+      Assertions.assertArrayEquals(expected, actual);
    }
 
    @Test
    public void shouldRunWhileLoop() {
       int[] expected = {0, 1, 2, 3, 4};
       int[] actual = loops.while_loop();
-      Assert.assertArrayEquals(expected, actual);
+      Assertions.assertArrayEquals(expected, actual);
    }
 
    @Test
    public void shouldRunDoWhileLoop() {
       int[] expected = {0, 1, 2, 3, 4};
       int[] actual = loops.do_while_loop();
-      Assert.assertArrayEquals(expected, actual);
+      Assertions.assertArrayEquals(expected, actual);
    }
 
    @Test

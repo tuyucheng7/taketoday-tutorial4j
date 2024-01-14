@@ -1,7 +1,17 @@
 package cn.tuyucheng.taketoday.readertox;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.google.common.base.Charsets;
+import com.google.common.io.CharSink;
+import com.google.common.io.CharSource;
+import com.google.common.io.CharStreams;
+import com.google.common.io.FileWriteMode;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.CharSequenceReader;
+import org.apache.commons.io.input.ReaderInputStream;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -14,19 +24,8 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.CharSequenceReader;
-import org.apache.commons.io.input.ReaderInputStream;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.CharSink;
-import com.google.common.io.CharSource;
-import com.google.common.io.CharStreams;
-import com.google.common.io.FileWriteMode;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @SuppressWarnings("unused")
 public class JavaReaderToXUnitTest {

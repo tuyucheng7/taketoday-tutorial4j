@@ -1,19 +1,17 @@
 package cn.tuyucheng.taketoday.mail;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.IOException;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-
 import com.icegreen.greenmail.junit.GreenMailRule;
 import com.icegreen.greenmail.util.ServerSetupTest;
-
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+import org.junit.Rule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EmailServiceLiveTest {
 
@@ -22,7 +20,7 @@ public class EmailServiceLiveTest {
 
    private EmailService emailService;
 
-   @Before
+   @BeforeEach
    public void setup() {
       emailService = new EmailService("localhost", greenMail.getSmtp().getPort());
    }

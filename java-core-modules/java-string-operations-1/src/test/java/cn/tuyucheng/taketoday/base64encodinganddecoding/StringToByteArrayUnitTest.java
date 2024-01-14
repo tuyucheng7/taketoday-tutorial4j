@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.base64encodinganddecoding;
 
-import org.junit.Test;
+import jakarta.xml.bind.DatatypeConverter;
+import org.junit.jupiter.api.Test;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StringToByteArrayUnitTest {
 

@@ -1,11 +1,9 @@
 package cn.tuyucheng.taketoday.fileparser;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
-
-import org.junit.Test;
 
 public class FileReaderUnitTest {
 

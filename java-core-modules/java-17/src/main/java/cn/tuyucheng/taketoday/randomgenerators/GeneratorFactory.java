@@ -32,4 +32,5 @@ public class GeneratorFactory {
             .map(RandomGeneratorFactory::create)
             .orElseThrow(() -> new RuntimeException("Error creating a generator"));
    }
+
 }

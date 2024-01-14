@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.nestedhashmaps;
 
 import org.hamcrest.collection.IsMapContaining;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class NestedHashMapExamplesClassUnitTest {
    private MapsUtil mUtil = new MapsUtil();
@@ -31,8 +31,8 @@ public class NestedHashMapExamplesClassUnitTest {
    @Test
    public void whenCreateNestedHashMap_thenNestedMap() {
       assertThat(mUtil.buildInnerMap(batterList), is(notNullValue()));
-      Assert.assertEquals(actualBakedGoodsMap.keySet().size(), 2);
-      Assert.assertThat(actualBakedGoodsMap, IsMapContaining.hasValue(equalTo(mUtil.buildInnerMap(batterList))));
+      Assertions.assertEquals(actualBakedGoodsMap.keySet().size(), 2);
+      Assertions.assertThat(actualBakedGoodsMap, IsMapContaining.hasValue(equalTo(mUtil.buildInnerMap(batterList))));
    }
 
    private Map<Integer, Map<String, String>> setup() {
@@ -184,7 +184,7 @@ public class NestedHashMapExamplesClassUnitTest {
       assertThat(flattenedEmployeeAddressMap, IsMapContaining.hasKey("200.Bag End"));
    }
 
-   @Before
+   @BeforeEach
    public void buildMaps() {
 
       batterList = Arrays.asList("Mulberry", "Cranberry", "Blackberry", "Mixed fruit", "Orange");

@@ -3,6 +3,7 @@ package cn.tuyucheng.taketoday.concurrent.semaphores;
 import java.util.concurrent.Semaphore;
 
 class CounterUsingMutex {
+
    private final Semaphore mutex;
    private int count;
 
@@ -16,6 +17,7 @@ class CounterUsingMutex {
       this.count = this.count + 1;
       Thread.sleep(1000);
       mutex.release();
+
    }
 
    int getCount() {
@@ -25,4 +27,5 @@ class CounterUsingMutex {
    boolean hasQueuedThreads() {
       return mutex.hasQueuedThreads();
    }
+
 }

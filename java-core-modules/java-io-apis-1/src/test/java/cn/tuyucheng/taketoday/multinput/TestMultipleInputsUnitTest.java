@@ -1,12 +1,11 @@
 package cn.tuyucheng.taketoday.multinput;
 
+import org.junit.jupiter.api.Assertions;
+import org.testng.annotations.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.InputMismatchException;
-
-import cn.tuyucheng.taketoday.multinput.MultiInputs;
-import org.junit.jupiter.api.Assertions;
-import org.testng.annotations.Test;
 
 public class TestMultipleInputsUnitTest {
    @Test

@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.passwordhashing;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by PhysicsSam on 06-Sep-18.
@@ -18,7 +18,7 @@ public class SHA512HasherUnitTest {
    private SHA512Hasher hasher;
    private SecureRandom secureRandom;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       hasher = new SHA512Hasher();
       secureRandom = new SecureRandom();

@@ -17,12 +17,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java8OptionalUnitTest {
+public class Java8OptionalUnitTest {
 
    private List<String> list;
 
    @BeforeEach
-   void init() {
+   public void init() {
       list = new ArrayList<>();
       list.add("One");
       list.add("OneAndOnly");
@@ -38,7 +38,7 @@ class Java8OptionalUnitTest {
    }
 
    @Test
-   void checkOptional_whenAsExpected_thenCorrect() {
+   public void checkOptional_whenAsExpected_thenCorrect() {
       Optional<String> optionalEmpty = Optional.empty();
       assertFalse(optionalEmpty.isPresent());
 
@@ -72,10 +72,11 @@ class Java8OptionalUnitTest {
       Optional<OptionalUser> optionalUserNull = Optional.ofNullable(getOptionalUserNull());
       String resultOptNull = optionalUserNull.flatMap(OptionalUser::getAddress).flatMap(OptionalAddress::getStreet).orElse("not specified");
       assertEquals(resultOptNull, "not specified");
+
    }
 
    @Test
-   void callMethod_whenCustomException_thenCorrect() {
+   public void callMethod_whenCustomException_thenCorrect() {
       User user = new User();
       assertThrows(CustomException.class, user::getOrThrow);
    }

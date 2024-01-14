@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.networking.udp;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class UDPLiveTest {
    private EchoClient client;
 
-   @Before
+   @BeforeEach
    public void setup() throws IOException {
       new EchoServer().start();
       client = new EchoClient();
@@ -26,7 +26,7 @@ public class UDPLiveTest {
       assertFalse(echo.equals("hello server"));
    }
 
-   @After
+   @AfterEach
    public void tearDown() {
       stopEchoServer();
       client.close();

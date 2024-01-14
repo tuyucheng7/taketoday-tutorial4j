@@ -17,4 +17,5 @@ class GeneratorFactoryUnitTest {
       int number = GeneratorFactory.getRandomInt(GeneratorFactory.getJumpableGenerator(), 10);
       assertThat(number).isNotNegative().isLessThan(10);
    }
+
 }

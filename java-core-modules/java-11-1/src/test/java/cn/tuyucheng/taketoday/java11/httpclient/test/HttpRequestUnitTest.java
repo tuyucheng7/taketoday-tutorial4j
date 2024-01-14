@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.java11.httpclient.test;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -53,9 +53,8 @@ public class HttpRequestUnitTest {
     * This test will fail as soon as the given URL returns a HTTP 2 response.
     * Therefore, let's leave it ignored.
     * */
-
    @Test
-   @Ignore
+   @Disabled
    public void shouldFallbackToHttp1_1WhenWebsiteDoesNotUseHttp2() throws IOException, InterruptedException, URISyntaxException, NoSuchAlgorithmException {
       HttpRequest request = HttpRequest.newBuilder()
             .uri(new URI("https://postman-echo.com/get"))
@@ -171,4 +170,5 @@ public class HttpRequestUnitTest {
       assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
       assertThat(response.body(), containsString("Sample file content"));
    }
+
 }

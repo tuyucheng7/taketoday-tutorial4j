@@ -5,7 +5,6 @@ import com.fathzer.soft.javaluator.StaticVariableSet;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.script.ScriptEngine;
@@ -70,7 +69,6 @@ public class EvalauteMathExpressionsUnitTest {
    }
 
    @Test
-   @Disabled
    public void givenJavaScriptingApiAndSimpleExpression_whenCallEvalMethod_thenSuccess() throws ScriptException {
       ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
       ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");
@@ -80,7 +78,6 @@ public class EvalauteMathExpressionsUnitTest {
    }
 
    @Test
-   @Disabled
    public void givenJavaScriptingApi_whenCallEvalMethod_thenSuccess() throws ScriptException {
       ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
       ScriptEngine scriptEngine = scriptEngineManager.getEngineByName("JavaScript");

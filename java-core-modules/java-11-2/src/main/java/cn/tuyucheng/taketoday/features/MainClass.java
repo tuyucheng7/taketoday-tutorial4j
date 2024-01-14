@@ -7,9 +7,11 @@ public class MainClass {
    }
 
    public static class NestedClass {
+
       boolean nestedPublicMethod() {
          return mainPrivateMethod();
       }
 
    }
+
 }

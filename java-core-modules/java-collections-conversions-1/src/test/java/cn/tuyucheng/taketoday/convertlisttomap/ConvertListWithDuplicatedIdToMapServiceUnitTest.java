@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.convertlisttomap;
 
-import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
 
 public class ConvertListWithDuplicatedIdToMapServiceUnitTest {
@@ -16,7 +16,7 @@ public class ConvertListWithDuplicatedIdToMapServiceUnitTest {
 
    private ConvertListToMapService convertListService = new ConvertListToMapService();
 
-   @Before
+   @BeforeEach
    public void init() {
 
       this.duplicatedIdList = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ConvertListWithDuplicatedIdToMapServiceUnitTest {
       Map<Integer, Animal> map = convertListService.convertListBeforeJava8(duplicatedIdList);
 
       assertThat(map.values(), hasSize(4));
-      assertThat(map.values(), Matchers.hasItem(duplicatedIdList.get(4)));
+      assertThat(map.values(), hasItem(duplicatedIdList.get(4)));
    }
 
    @Test
@@ -49,7 +49,7 @@ public class ConvertListWithDuplicatedIdToMapServiceUnitTest {
       Map<Integer, Animal> map = convertListService.convertListWithApacheCommons(duplicatedIdList);
 
       assertThat(map.values(), hasSize(4));
-      assertThat(map.values(), Matchers.hasItem(duplicatedIdList.get(4)));
+      assertThat(map.values(), hasItem(duplicatedIdList.get(4)));
    }
 
    @Test(expected = IllegalStateException.class)

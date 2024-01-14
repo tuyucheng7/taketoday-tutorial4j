@@ -30,6 +30,7 @@ public class JEP412 {
    }
 
    public String getPrintNameFormat(String name) {
+
       var printMethod = libLookup.lookup("printName");
 
       if (printMethod.isPresent()) {
@@ -52,3 +53,5 @@ public class JEP412 {
       throw new RuntimeException("printName function not found.");
    }
 }
+
+

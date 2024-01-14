@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.probability;
 
 import org.assertj.core.data.Offset;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.stream.Stream;
 

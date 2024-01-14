@@ -19,4 +19,5 @@ public class Service {
       User loggedInUser = Server.LOGGED_IN_USER.get();
       assert loggedInUser == null;
    }
+
 }

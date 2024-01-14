@@ -1,17 +1,15 @@
 package cn.tuyucheng.taketoday.zip;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import static java.util.stream.Collectors.toList;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ZipAppendFile {
    public static void main(final String[] args) throws IOException {

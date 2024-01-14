@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HelloWorldUnitTest {
 
    @Test
-   void givenAnInterfaceWithDefaulMethod_whenCreatingProxyInstance_thenCanInvokeDefaultMethod() throws Exception {
+   public void givenAnInterfaceWithDefaulMethod_whenCreatingProxyInstance_thenCanInvokeDefaultMethod() throws Exception {
       Object proxy = Proxy.newProxyInstance(getSystemClassLoader(), new Class<?>[]{HelloWorld.class},
             (prox, method, args) -> {
                if (method.isDefault()) {

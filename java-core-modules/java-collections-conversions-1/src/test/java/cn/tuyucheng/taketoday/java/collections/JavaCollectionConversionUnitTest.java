@@ -5,7 +5,7 @@ import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

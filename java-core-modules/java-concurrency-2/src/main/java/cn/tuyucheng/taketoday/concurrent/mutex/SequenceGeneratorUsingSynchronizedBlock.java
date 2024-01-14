@@ -10,4 +10,5 @@ public class SequenceGeneratorUsingSynchronizedBlock extends SequenceGenerator {
          return super.getNextSequence();
       }
    }
+
 }

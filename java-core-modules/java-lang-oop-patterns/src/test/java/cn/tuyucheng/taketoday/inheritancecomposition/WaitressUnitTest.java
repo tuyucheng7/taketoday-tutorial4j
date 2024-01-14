@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.inheritancecomposition;
 
 import cn.tuyucheng.taketoday.inheritancecomposition.model.Waitress;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,7 @@ public class WaitressUnitTest {
 
    private static Waitress waitress;
 
-   @BeforeClass
+   @BeforeAll
    public static void setUpWaitressInstance() {
       waitress = new Waitress("Mary", "mary@domain.com", 22);
    }

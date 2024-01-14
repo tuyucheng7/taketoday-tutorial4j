@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.stringfilenamevalidaiton;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.assertj.core.api.InstanceOfAssertFactories;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -24,7 +23,6 @@ import static cn.tuyucheng.taketoday.stringfilenamevalidaiton.StringFilenameVali
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@Disabled
 public class StringFilenameValidationUnitTest {
 
    private static final String CORRECT_FILENAME_PATTERN = "tuyucheng.txt";

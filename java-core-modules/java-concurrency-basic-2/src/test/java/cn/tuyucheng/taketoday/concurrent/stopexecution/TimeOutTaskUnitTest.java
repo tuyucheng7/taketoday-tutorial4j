@@ -6,10 +6,10 @@ import java.util.Timer;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TimeOutTaskUnitTest {
+public class TimeOutTaskUnitTest {
 
    @Test
-   void run() {
+   public void run() {
       Thread thread = new Thread(new LongRunningTask());
       Timer timer = new Timer();
       TimeOutTask timeOutTask = new TimeOutTask(thread, timer);

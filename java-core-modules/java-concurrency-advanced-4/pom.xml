@@ -4,18 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-concurrency-advanced-4</artifactId>
-   <version>1.0.0</version>
    <name>java-concurrency-advanced-4</name>
    <packaging>jar</packaging>
 
    <parent>
-      <artifactId>java-core-modules</artifactId>
       <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <artifactId>java-core-modules</artifactId>
       <version>1.0.0</version>
    </parent>
 
    <build>
       <finalName>java-concurrency-advanced-4</finalName>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>${maven.compiler.source}</source>
+               <target>${maven.compiler.target}</target>
+            </configuration>
+         </plugin>
+      </plugins>
       <resources>
          <resource>
             <directory>src/main/resources</directory>
@@ -23,4 +32,10 @@
          </resource>
       </resources>
    </build>
+
+   <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+   </properties>
+
 </project>

@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.synchronizedcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,6 +27,6 @@ public class SynchronizedMapUnitTest {
       thread1.join();
       thread2.join();
 
-      assertThat(syncMap).hasSize(3);
+      assertThat(syncMap.size()).isEqualTo(3);
    }
 }

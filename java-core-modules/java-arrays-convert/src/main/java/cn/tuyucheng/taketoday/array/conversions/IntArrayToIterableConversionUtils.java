@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.array.conversions;
 
+
 import com.google.common.primitives.Ints;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -23,4 +24,5 @@ public class IntArrayToIterableConversionUtils {
    public static Iterable<Integer> convertWithGuava(int[] array) {
       return Ints.asList(array);
    }
+
 }

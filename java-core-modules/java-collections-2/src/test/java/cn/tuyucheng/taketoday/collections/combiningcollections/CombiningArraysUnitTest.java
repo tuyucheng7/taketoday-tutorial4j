@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.collections.combiningcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class CombiningArraysUnitTest {
    private static final String first[] = {
@@ -28,7 +29,7 @@ public class CombiningArraysUnitTest {
 
    @Test
    public void givenTwoArrays_whenUsingNativeJava_thenArraysCombined() {
-      assertArrayEquals(expected, CombiningArrays.usingNativeJava(first, second));
+      Assertions.assertArrayEquals(expected, CombiningArrays.usingNativeJava(first, second));
    }
 
    @Test

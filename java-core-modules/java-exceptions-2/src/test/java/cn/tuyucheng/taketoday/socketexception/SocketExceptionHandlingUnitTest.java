@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.socketexception;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLServerSocketFactory;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 public class SocketExceptionHandlingUnitTest {
    private static final int PORT = 6699;
 
-   @BeforeClass
+   @BeforeAll
    public static void runServer() throws IOException, InterruptedException {
       Executors.newSingleThreadExecutor()
             .submit(() -> new SocketServer().start(PORT));
@@ -52,4 +52,5 @@ public class SocketExceptionHandlingUnitTest {
       verify(mockServerSocket).setEnabledProtocols(enabledProtocols);
       verify(mockServerSocket).close();
    }
+
 }

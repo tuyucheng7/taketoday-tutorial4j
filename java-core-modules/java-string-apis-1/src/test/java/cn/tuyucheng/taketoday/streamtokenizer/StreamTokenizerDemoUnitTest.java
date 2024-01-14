@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.streamtokenizer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class StreamTokenizerDemoUnitTest {
 

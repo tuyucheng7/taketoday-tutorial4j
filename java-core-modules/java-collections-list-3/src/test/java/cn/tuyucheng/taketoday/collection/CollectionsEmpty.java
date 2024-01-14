@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.collection;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,8 +14,8 @@ public class CollectionsEmpty {
       ArrayList<String> mutableList = new ArrayList<>();
       mutableList.add("test");
 
-      Assert.assertEquals(mutableList.size(), 1);
-      Assert.assertEquals(mutableList.get(0), "test");
+      Assertions.assertEquals(mutableList.size(), 1);
+      Assertions.assertEquals(mutableList.get(0), "test");
    }
 
    @Test(expected = UnsupportedOperationException.class)

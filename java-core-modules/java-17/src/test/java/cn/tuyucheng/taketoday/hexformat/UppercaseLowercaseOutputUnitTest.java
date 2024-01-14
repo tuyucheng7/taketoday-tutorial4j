@@ -6,17 +6,17 @@ import java.util.HexFormat;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class UppercaseLowercaseOutputUnitTest {
+public class UppercaseLowercaseOutputUnitTest {
 
    @Test
-   void givenInitialisedHexFormat_whenByteArrayIsPassed_thenLowerCaseHexStringRepresentationIsReturned() {
+   public void givenInitialisedHexFormat_whenByteArrayIsPassed_thenLowerCaseHexStringRepresentationIsReturned() {
       HexFormat hexFormat = HexFormat.of();
       String bytesAsString = hexFormat.formatHex(new byte[]{-85, -51, -17, 1, 35, 69, 103, -119});
       assertTrue(isLowerCase(bytesAsString));
    }
 
    @Test
-   void givenInitialisedHexFormatWithUpperCaseOption_whenByteArrayIsPassed_thenLowerCaseHexStringRepresentationIsReturned() {
+   public void givenInitialisedHexFormatWithUpperCaseOption_whenByteArrayIsPassed_thenLowerCaseHexStringRepresentationIsReturned() {
       HexFormat hexFormat = HexFormat.of().withUpperCase();
       String bytesAsString = hexFormat.formatHex(new byte[]{-85, -51, -17, 1, 35, 69, 103, -119});
       assertTrue(isUpperCase(bytesAsString));
@@ -24,8 +24,8 @@ class UppercaseLowercaseOutputUnitTest {
 
    private boolean isLowerCase(String str) {
       char[] charArray = str.toCharArray();
-      for (char c : charArray) {
-         if (Character.isUpperCase(c))
+      for (int i = 0; i < charArray.length; i++) {
+         if (Character.isUpperCase(charArray[i]))
             return false;
       }
       return true;
@@ -33,8 +33,8 @@ class UppercaseLowercaseOutputUnitTest {
 
    private boolean isUpperCase(String str) {
       char[] charArray = str.toCharArray();
-      for (char c : charArray) {
-         if (Character.isLowerCase(c))
+      for (int i = 0; i < charArray.length; i++) {
+         if (Character.isLowerCase(charArray[i]))
             return false;
       }
       return true;

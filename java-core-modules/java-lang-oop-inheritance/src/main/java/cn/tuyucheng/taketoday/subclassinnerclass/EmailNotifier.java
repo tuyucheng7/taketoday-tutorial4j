@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.subclassinnerclass;
 
 public class EmailNotifier extends Notifier {
-
    @Override
    void notify(Message e) {
       // connect to the email connector

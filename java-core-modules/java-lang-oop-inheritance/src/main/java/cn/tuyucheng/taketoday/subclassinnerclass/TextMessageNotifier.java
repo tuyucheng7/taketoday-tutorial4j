@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.subclassinnerclass;
 
 public class TextMessageNotifier extends Notifier {
-
    @Override
    void notify(Message e) {
       // Provide text message specific implementation here

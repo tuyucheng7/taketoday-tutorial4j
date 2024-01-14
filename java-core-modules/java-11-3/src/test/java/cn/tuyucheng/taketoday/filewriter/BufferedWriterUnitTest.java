@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BufferedWriterUnitTest {
+public class BufferedWriterUnitTest {
 
    private static final List<String> stringList = Arrays.asList("Hello", "World");
 
    @Test
-   void givenUsingBufferedWriter_whenStringList_thenGetTextFile() throws IOException {
+   public void givenUsingBufferedWriter_whenStringList_thenGetTextFile() throws IOException {
       String fileName = BufferedWriterExample.generateFileFromStringList(stringList);
       long count = Files.lines(Paths.get(fileName)).count();
       assertEquals(((int) count), stringList.size(), "No. of lines in file should be equal to no. of Strings in List");

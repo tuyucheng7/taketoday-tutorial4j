@@ -9,4 +9,5 @@ public class YahooFinanceExchangeRateProvider implements ExchangeRateProvider {
    public QuoteManager create() {
       return new YahooQuoteManagerImpl();
    }
+
 }

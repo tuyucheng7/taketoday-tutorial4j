@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.bytearraytowriter;
 
 import com.google.common.io.CharSink;
 import org.apache.commons.io.output.StringBuilderWriter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JavaXToWriterUnitTest {
    protected final Logger logger = LoggerFactory.getLogger(getClass());

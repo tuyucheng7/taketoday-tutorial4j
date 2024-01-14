@@ -7,13 +7,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CompletableFutureUnitTest {
-
+public class CompletableFutureUnitTest {
    @Test
-   void testDelay() throws Exception {
-
+   public void testDelay() throws Exception {
       Object input = new Object();
       CompletableFuture<Object> future = new CompletableFuture<>();
       future.completeAsync(() -> input, CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
@@ -28,7 +28,7 @@ class CompletableFutureUnitTest {
    }
 
    @Test
-   void testTimeoutTriggered() throws Exception {
+   public void testTimeoutTriggered() throws Exception {
       CompletableFuture<Object> future = new CompletableFuture<>();
       future.orTimeout(1, TimeUnit.SECONDS);
 
@@ -44,7 +44,7 @@ class CompletableFutureUnitTest {
    }
 
    @Test
-   void testTimeoutNotTriggered() throws Exception {
+   public void testTimeoutNotTriggered() throws Exception {
       Object input = new Object();
       CompletableFuture<Object> future = new CompletableFuture<>();
 
@@ -62,7 +62,7 @@ class CompletableFutureUnitTest {
 
 
    @Test
-   void completeOnTimeout() throws Exception {
+   public void completeOnTimeout() throws Exception {
       Object input = new Object();
       CompletableFuture<Object> future = new CompletableFuture<>();
       future.completeOnTimeout(input, 1, TimeUnit.SECONDS);

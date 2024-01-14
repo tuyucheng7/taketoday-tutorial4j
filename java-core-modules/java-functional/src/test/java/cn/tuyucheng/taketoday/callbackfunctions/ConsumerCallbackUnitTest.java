@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.callbackfunctions;
 
 import org.junit.jupiter.api.Test;
-import cn.tuyucheng.taketoday.callbackfunctions.ConsumerCallback;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

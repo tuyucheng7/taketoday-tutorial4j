@@ -4,8 +4,8 @@ import com.google.common.base.Equivalence;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.collection.IsMapContaining.hasKey;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HashMapComparisonUnitTest {
 
@@ -29,7 +29,7 @@ public class HashMapComparisonUnitTest {
    Map<String, String[]> asiaCity2;
    Map<String, String[]> asiaCity3;
 
-   @Before
+   @BeforeEach
    public void setup() {
       asiaCapital1 = new HashMap<String, String>();
       asiaCapital1.put("Japan", "Tokyo");

@@ -10,4 +10,5 @@ public record Truck(int loadCapacity, String registrationNumber) implements Vehi
    public int getLoadCapacity() {
       return loadCapacity;
    }
+
 }

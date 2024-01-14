@@ -4,6 +4,7 @@ import cern.colt.matrix.DoubleFactory2D;
 import cern.colt.matrix.DoubleMatrix2D;
 import cern.colt.matrix.linalg.Algebra;
 import org.junit.jupiter.api.Test;
+import org.openjdk.jmh.annotations.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

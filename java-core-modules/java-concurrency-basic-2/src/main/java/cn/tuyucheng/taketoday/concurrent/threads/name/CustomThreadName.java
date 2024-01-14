@@ -1,27 +1,34 @@
 package cn.tuyucheng.taketoday.concurrent.threads.name;
 
 public class CustomThreadName {
+
    public int currentNumber = 1;
 
    public int N = 5;
 
    public static void main(String[] args) {
+
       CustomThreadName test = new CustomThreadName();
 
-      // Uncomment below to set thread name using setName() Method
-      // Thread.currentThread().setName("ODD");
-      Thread oddThread = new Thread(test::printOddNumber, "ODD");
+      Thread oddThread = new Thread(() -> {
+         test.printOddNumber();
+         // Uncomment below to set thread name using setName() Method
+         // Thread.currentThread().setName("ODD");
+      }, "ODD");
       // or Uncomment below to set thread name using setName() Method
       // oddThread.setName("ODD");
 
-      // Uncomment below to set thread name using setName() Method
-      // Thread.currentThread().setName("EVEN");
-      Thread evenThread = new Thread(test::printEvenNumber, "EVEN");
+      Thread evenThread = new Thread(() -> {
+         test.printEvenNumber();
+         // Uncomment below to set thread name using setName() Method
+         // Thread.currentThread().setName("EVEN");
+      }, "EVEN");
 
       // evenThread.setName("EVEN");
 
       evenThread.start();
       oddThread.start();
+
    }
 
    public void printEvenNumber() {
@@ -31,10 +38,11 @@ public class CustomThreadName {
                try {
                   wait();
                } catch (InterruptedException e) {
-                  Thread.currentThread().interrupt();
+                  e.printStackTrace();
                }
             }
-            System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
+            System.out.println(Thread.currentThread()
+                  .getName() + " --> " + currentNumber);
             currentNumber++;
             notify();
          }
@@ -48,13 +56,15 @@ public class CustomThreadName {
                try {
                   wait();
                } catch (InterruptedException e) {
-                  Thread.currentThread().interrupt();
+                  e.printStackTrace();
                }
             }
-            System.out.println(Thread.currentThread().getName() + " --> " + currentNumber);
+            System.out.println(Thread.currentThread()
+                  .getName() + " --> " + currentNumber);
             currentNumber++;
             notify();
          }
       }
    }
+
 }

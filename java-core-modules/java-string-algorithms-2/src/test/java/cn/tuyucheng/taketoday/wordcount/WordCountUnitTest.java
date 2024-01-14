@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.wordcount;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.StringTokenizer;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WordCountUnitTest {
    private String string1 = "This is a test sentence with eight words";
@@ -12,7 +13,7 @@ public class WordCountUnitTest {
 
    @Test
    public void givenStringWith8Words_whenUsingRegexCount_ThenResultEqual8() {
-      assertEquals(8, WordCounter.countWordsUsingRegex(string2));
+      Assertions.assertEquals(8, WordCounter.countWordsUsingRegex(string2));
       assertEquals(9, WordCounter.countWordsUsingRegex("no&one#should%ever-write-like,this;but:well"));
       assertEquals(7, WordCounter.countWordsUsingRegex("the farmer's wife--she was from Albuquerque"));
    }

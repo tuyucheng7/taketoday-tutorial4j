@@ -1,15 +1,13 @@
 package cn.tuyucheng.taketoday.staticmethod;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.AfterClass;
-import org.junit.Test;
-
 import cn.tuyucheng.taketoday.staticmodifier.Car;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CallNonStaticMethodUnitTest {
-
-   @AfterClass
+   @AfterAll
    public static void setUpCarInstance() {
       Car.setNumberOfCars(0);
    }
@@ -19,4 +17,5 @@ public class CallNonStaticMethodUnitTest {
       Car car = new Car("Jaguar", "V8");
       assertEquals("Jaguar-V8", Car.getCarsInformation(car));
    }
+
 }

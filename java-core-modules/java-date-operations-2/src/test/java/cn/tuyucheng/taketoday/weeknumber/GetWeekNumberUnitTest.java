@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.weeknumber;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
@@ -8,7 +8,7 @@ import java.time.temporal.WeekFields;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetWeekNumberUnitTest {
 

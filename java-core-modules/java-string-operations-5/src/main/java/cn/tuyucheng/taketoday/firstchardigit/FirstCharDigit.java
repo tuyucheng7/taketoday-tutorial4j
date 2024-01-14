@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.firstchardigit;
 
-import java.util.regex.Pattern;
-
 import com.google.common.base.CharMatcher;
+
+import java.util.regex.Pattern;
 
 public class FirstCharDigit {
 
@@ -58,4 +58,5 @@ public class FirstCharDigit {
       return CharMatcher.forPredicate(Character::isDigit)
             .matches(str.charAt(0));
    }
+
 }

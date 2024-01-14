@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.java9.language;
 
 import org.junit.jupiter.api.Test;
 
-class DiamondUnitTest {
+public class DiamondUnitTest {
 
    static class FooClass<X> {
       FooClass(X x) {
@@ -13,7 +13,7 @@ class DiamondUnitTest {
    }
 
    @Test
-   void diamondTest() {
+   public void diamondTest() {
       FooClass<Integer> fc = new FooClass<>(1) {
       };
       FooClass<? extends Integer> fc0 = new FooClass<>(1) {
@@ -31,5 +31,6 @@ class DiamondUnitTest {
       };
       FooClass<? super Integer> fc6 = new FooClass<>(1, "") {
       };
+
    }
 }

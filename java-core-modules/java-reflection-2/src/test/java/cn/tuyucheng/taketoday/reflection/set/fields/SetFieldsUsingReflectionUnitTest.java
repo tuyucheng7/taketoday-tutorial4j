@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 
-class SetFieldsUsingReflectionUnitTest {
+public class SetFieldsUsingReflectionUnitTest {
 
    @Test
-   void whenSetIntegerFields_thenSuccess() throws Exception {
+   public void whenSetIntegerFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field ageField = person.getClass()
@@ -43,10 +43,11 @@ class SetFieldsUsingReflectionUnitTest {
       long contactNumber = 123456789L;
       contactNumberField.setLong(person, contactNumber);
       Assertions.assertEquals(contactNumber, person.getContactNumber());
+
    }
 
    @Test
-   void whenDoUnboxing_thenSuccess() throws Exception {
+   public void whenDoUnboxing_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field pinCodeField = person.getClass()
@@ -59,7 +60,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenDoNarrowing_thenSuccess() throws Exception {
+   public void whenDoNarrowing_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field pinCodeField = person.getClass()
@@ -72,7 +73,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenSetFloatingTypeFields_thenSuccess() throws Exception {
+   public void whenSetFloatingTypeFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field heightField = person.getClass()
@@ -93,7 +94,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenSetCharacterFields_thenSuccess() throws Exception {
+   public void whenSetCharacterFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field genderField = person.getClass()
@@ -106,7 +107,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenSetBooleanFields_thenSuccess() throws Exception {
+   public void whenSetBooleanFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field activeField = person.getClass()
@@ -118,7 +119,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenSetObjectFields_thenSuccess() throws Exception {
+   public void whenSetObjectFields_thenSuccess() throws Exception {
       Person person = new Person();
 
       Field nameField = person.getClass()
@@ -131,7 +132,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void givenInt_whenSetStringField_thenIllegalArgumentException() throws Exception {
+   public void givenInt_whenSetStringField_thenIllegalArgumentException() throws Exception {
       Person person = new Person();
       Field nameField = person.getClass()
             .getDeclaredField("name");
@@ -141,7 +142,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void givenInt_whenSetLongField_thenIllegalArgumentException() throws Exception {
+   public void givenInt_whenSetLongField_thenIllegalArgumentException() throws Exception {
       Person person = new Person();
 
       Field pinCodeField = person.getClass()
@@ -154,7 +155,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
+   public void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
       Person person = new Person();
       Field nameField = person.getClass()
             .getDeclaredField("name");
@@ -163,7 +164,7 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
+   public void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
       Person person = new Person();
 
       Assertions.assertThrows(NoSuchFieldException.class, () -> person.getClass()
@@ -171,10 +172,11 @@ class SetFieldsUsingReflectionUnitTest {
    }
 
    @Test
-   void whenAccessingNullProperty_thenNullPointerException() throws Exception {
+   public void whenAccessingNullProperty_thenNullPointerException() throws Exception {
       Person person = new Person();
 
       Assertions.assertThrows(NullPointerException.class, () -> person.getClass()
             .getDeclaredField(null));
    }
+
 }

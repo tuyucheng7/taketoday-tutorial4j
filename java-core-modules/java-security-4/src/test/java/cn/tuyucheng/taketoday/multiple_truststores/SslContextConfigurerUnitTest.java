@@ -1,5 +1,9 @@
 package cn.tuyucheng.taketoday.multiple_truststores;
 
+import org.junit.jupiter.api.Test;
+import sun.security.x509.X509CertImpl;
+
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -7,13 +11,6 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
-import javax.net.ssl.X509TrustManager;
-
-import org.junit.jupiter.api.Test;
-
-import cn.tuyucheng.taketoday.multiple_truststores.SslContextConfigurer;
-import sun.security.x509.X509CertImpl;
 
 public class SslContextConfigurerUnitTest {
 

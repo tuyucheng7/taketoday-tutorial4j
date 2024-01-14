@@ -10,14 +10,14 @@ import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ReentrantReadWriteLockCounterUnitTest {
+public class ReentrantReadWriteLockCounterUnitTest {
 
    @Test
-   void whenCalledIncrementCounter_thenCorrect() throws Exception {
+   public void whenCalledIncrementCounter_thenCorrect() throws Exception {
       ExecutorService executorService = Executors.newFixedThreadPool(2);
       ReentrantReadWriteLockCounter counter = new ReentrantReadWriteLockCounter();
-      Future<Integer> future1 = executorService.submit(new ReentranReadWriteLockCounterCallable(counter));
-      Future<Integer> future2 = executorService.submit(new ReentranReadWriteLockCounterCallable(counter));
+      Future<Integer> future1 = (Future<Integer>) executorService.submit(new ReentranReadWriteLockCounterCallable(counter));
+      Future<Integer> future2 = (Future<Integer>) executorService.submit(new ReentranReadWriteLockCounterCallable(counter));
 
       // Just to make sure both are completed
       future1.get();
@@ -25,4 +25,5 @@ class ReentrantReadWriteLockCounterUnitTest {
 
       assertThat(counter.getCounter()).isEqualTo(2);
    }
+
 }

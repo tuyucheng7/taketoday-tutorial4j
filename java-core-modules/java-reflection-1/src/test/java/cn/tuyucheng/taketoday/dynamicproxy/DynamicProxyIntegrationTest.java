@@ -9,17 +9,17 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-class DynamicProxyIntegrationTest {
+public class DynamicProxyIntegrationTest {
 
    @Test
-   void givenDynamicProxy_thenPutWorks() {
+   public void givenDynamicProxy_thenPutWorks() {
       Map proxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, new DynamicInvocationHandler());
 
       proxyInstance.put("hello", "world");
    }
 
    @Test
-   void givenInlineDynamicProxy_thenGetWorksOtherMethodsDoNot() {
+   public void givenInlineDynamicProxy_thenGetWorksOtherMethodsDoNot() {
       Map proxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, (proxy, method, methodArgs) -> {
 
          if (method.getName().equals("get")) {
@@ -42,7 +42,7 @@ class DynamicProxyIntegrationTest {
    }
 
    @Test
-   void givenTimingDynamicProxy_thenMethodInvokationsProduceTiming() {
+   public void givenTimingDynamicProxy_thenMethodInvokationsProduceTiming() {
       Map mapProxyInstance = (Map) Proxy.newProxyInstance(DynamicProxyIntegrationTest.class.getClassLoader(), new Class[]{Map.class}, new TimingDynamicInvocationHandler(new HashMap<>()));
 
       mapProxyInstance.put("hello", "world");
@@ -53,4 +53,5 @@ class DynamicProxyIntegrationTest {
       assertEquals('l', csProxyInstance.charAt(2));
       assertEquals(11, csProxyInstance.length());
    }
+
 }

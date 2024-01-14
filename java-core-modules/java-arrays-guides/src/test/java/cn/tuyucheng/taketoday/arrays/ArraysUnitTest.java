@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.arrays;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ArraysUnitTest {
    private String[] intro;
@@ -25,7 +25,7 @@ public class ArraysUnitTest {
    @Rule
    public final ExpectedException exception = ExpectedException.none();
 
-   @Before
+   @BeforeEach
    public void setup() {
       intro = new String[]{"once", "upon", "a", "time"};
    }
@@ -205,4 +205,5 @@ public class ArraysUnitTest {
    private int nonassociativeFunc(int left, int right) {
       return left + right * left;
    }
+
 }

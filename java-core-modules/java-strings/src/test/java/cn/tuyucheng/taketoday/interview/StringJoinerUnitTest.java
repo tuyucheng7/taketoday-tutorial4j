@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.interview;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.StringJoiner;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringJoinerUnitTest {
    @Test

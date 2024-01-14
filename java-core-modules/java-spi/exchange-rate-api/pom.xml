@@ -8,7 +8,7 @@
    <packaging>jar</packaging>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
       <artifactId>java-spi</artifactId>
       <version>1.0.0</version>
    </parent>

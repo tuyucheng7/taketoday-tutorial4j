@@ -7,16 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import static cn.tuyucheng.taketoday.strategy.Discounter.national;
+import static cn.tuyucheng.taketoday.strategy.Discounter.christmas;
+import static cn.tuyucheng.taketoday.strategy.Discounter.easter;
 import static cn.tuyucheng.taketoday.strategy.Discounter.newYear;
-import static cn.tuyucheng.taketoday.strategy.Discounter.springFestival;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StrategyDesignPatternUnitTest {
-
+public class StrategyDesignPatternUnitTest {
    @Test
-   void shouldDivideByTwo_WhenApplyingStaffDiscounter() {
-      Discounter staffDiscounter = new NationalDiscounter();
+   public void shouldDivideByTwo_WhenApplyingStaffDiscounter() {
+      Discounter staffDiscounter = new EasterDiscounter();
 
       final BigDecimal discountedValue = staffDiscounter
             .apply(BigDecimal.valueOf(100));
@@ -26,7 +25,7 @@ class StrategyDesignPatternUnitTest {
    }
 
    @Test
-   void shouldDivideByTwo_WhenApplyingStaffDiscounterWithAnonymousTypes() {
+   public void shouldDivideByTwo_WhenApplyingStaffDiscounterWithAnonyousTypes() {
       Discounter staffDiscounter = new Discounter() {
          @Override
          public BigDecimal apply(BigDecimal amount) {
@@ -42,7 +41,7 @@ class StrategyDesignPatternUnitTest {
    }
 
    @Test
-   void shouldDivideByTwo_WhenApplyingStaffDiscounterWithLambda() {
+   public void shouldDivideByTwo_WhenApplyingStaffDiscounterWithLamda() {
       Discounter staffDiscounter = amount -> amount.multiply(BigDecimal.valueOf(0.5));
 
       final BigDecimal discountedValue = staffDiscounter
@@ -53,8 +52,8 @@ class StrategyDesignPatternUnitTest {
    }
 
    @Test
-   void shouldApplyAllDiscounts() {
-      List<Discounter> discounters = Arrays.asList(springFestival(), newYear(), national());
+   public void shouldApplyAllDiscounts() {
+      List<Discounter> discounters = Arrays.asList(christmas(), newYear(), easter());
 
       BigDecimal amount = BigDecimal.valueOf(100);
 
@@ -66,9 +65,9 @@ class StrategyDesignPatternUnitTest {
    }
 
    @Test
-   void shouldChainDiscounters() {
+   public void shouldChainDiscounters() {
       final Function<BigDecimal, BigDecimal> combinedDiscounters = Discounter
-            .springFestival()
+            .christmas()
             .andThen(newYear());
 
       combinedDiscounters.apply(BigDecimal.valueOf(100));

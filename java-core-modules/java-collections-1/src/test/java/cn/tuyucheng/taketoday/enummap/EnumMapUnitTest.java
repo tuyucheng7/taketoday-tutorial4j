@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.enummap;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.EnumMap;
@@ -33,7 +33,7 @@ public class EnumMapUnitTest {
       activityMap.put(DayOfWeek.TUESDAY, "Basketball");
 
       EnumMap<DayOfWeek, String> activityMapCopy = new EnumMap<>(activityMap);
-      assertThat(activityMapCopy).hasSize(2);
+      assertThat(activityMapCopy.size()).isEqualTo(2);
       assertThat(activityMapCopy.get(DayOfWeek.MONDAY))
             .isEqualTo("Soccer");
       assertThat(activityMapCopy.get(DayOfWeek.TUESDAY))
@@ -83,14 +83,14 @@ public class EnumMapUnitTest {
       assertThat(activityMap.containsKey(DayOfWeek.WEDNESDAY)).isFalse();
       assertThat(activityMap.containsValue("Hiking")).isFalse();
       activityMap.put(DayOfWeek.WEDNESDAY, "Hiking");
-      assertThat(activityMap).containsKey(DayOfWeek.WEDNESDAY);
-      assertThat(activityMap).containsValue("Hiking");
+      assertThat(activityMap.containsKey(DayOfWeek.WEDNESDAY)).isTrue();
+      assertThat(activityMap.containsValue("Hiking")).isTrue();
 
       assertThat(activityMap.containsKey(DayOfWeek.SATURDAY)).isFalse();
       assertThat(activityMap.containsValue(null)).isFalse();
       activityMap.put(DayOfWeek.SATURDAY, null);
-      assertThat(activityMap).containsKey(DayOfWeek.SATURDAY);
-      assertThat(activityMap).containsValue(null);
+      assertThat(activityMap.containsKey(DayOfWeek.SATURDAY)).isTrue();
+      assertThat(activityMap.containsValue(null)).isTrue();
    }
 
    @Test
@@ -102,8 +102,8 @@ public class EnumMapUnitTest {
       assertThat(activityMap.containsKey(DayOfWeek.MONDAY)).isFalse();
 
       activityMap.put(DayOfWeek.MONDAY, "Soccer");
-      assertThat(activityMap.remove(DayOfWeek.MONDAY, "Hiking")).isFalse();
-      assertThat(activityMap.remove(DayOfWeek.MONDAY, "Soccer")).isTrue();
+      assertThat(activityMap.remove(DayOfWeek.MONDAY, "Hiking")).isEqualTo(false);
+      assertThat(activityMap.remove(DayOfWeek.MONDAY, "Soccer")).isEqualTo(true);
    }
 
    @Test
@@ -143,6 +143,6 @@ public class EnumMapUnitTest {
 
       values.remove("Hiking");
       assertThat(activityMap.containsKey(DayOfWeek.WEDNESDAY)).isFalse();
-      assertThat(activityMap).hasSize(3);
+      assertThat(activityMap.size()).isEqualTo(3);
    }
 }

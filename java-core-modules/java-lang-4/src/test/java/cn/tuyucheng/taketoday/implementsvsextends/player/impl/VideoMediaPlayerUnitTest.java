@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.implementsvsextends.player.impl;
 
 import cn.tuyucheng.taketoday.implementsvsextends.media.player.impl.VideoMediaPlayer;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class VideoMediaPlayerUnitTest {
    public void givenVideoMediaPlayer_whenPlay_thenPrintsPlayingString() {
       VideoMediaPlayer videoMediaPlayer = new VideoMediaPlayer();
       videoMediaPlayer.play();
-      Assert.assertEquals("VideoMediaPlayer is Playing", outputStreamCaptor.toString()
+      Assertions.assertEquals("VideoMediaPlayer is Playing", outputStreamCaptor.toString()
             .trim());
    }
 
@@ -36,7 +36,7 @@ public class VideoMediaPlayerUnitTest {
    public void givenVideoMediaPlayer_whenPause_thenPrintsPausedString() {
       VideoMediaPlayer videoMediaPlayer = new VideoMediaPlayer();
       videoMediaPlayer.pause();
-      Assert.assertEquals("VideoMediaPlayer is Paused", outputStreamCaptor.toString()
+      Assertions.assertEquals("VideoMediaPlayer is Paused", outputStreamCaptor.toString()
             .trim());
    }
 }

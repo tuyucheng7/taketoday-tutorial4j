@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.dst;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -50,16 +50,16 @@ public class DaylightSavingTimeExamplesUnitTest {
 
       //@formatter:off
         System.out.println(String.format(
-              "    Zone ID = %s (%s)\n"
-                    + "  RawOffset = %s minutes\n"
-                    + "        DST = %s minutes\n"
-                    + "  -----------------------------------------",
-              tz.getID(), tz.getDisplayName(), tz.getRawOffset() / 60000, tz.getDSTSavings() / 60000));
+               "    Zone ID = %s (%s)\n"
+             + "  RawOffset = %s minutes\n"
+             + "        DST = %s minutes\n"
+             + "  -----------------------------------------",
+             tz.getID(), tz.getDisplayName(), tz.getRawOffset()/60000, tz.getDSTSavings()/60000));
         //@formatter:on
    }
 
    @Test
-   @Ignore
+   @Disabled
    public void whenIterating_ThenPrintAllTimeZones() {
       for (String id : TimeZone.getAvailableIDs()) {
          TimeZone tz = TimeZone.getTimeZone(id);

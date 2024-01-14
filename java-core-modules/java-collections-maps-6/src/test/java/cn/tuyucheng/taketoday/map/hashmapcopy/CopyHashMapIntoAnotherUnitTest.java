@@ -1,43 +1,41 @@
 package cn.tuyucheng.taketoday.map.hashmapcopy;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import cn.tuyucheng.taketoday.map.hashmapcopy.CopyingAHashMapToAnother;
 
 public class CopyHashMapIntoAnotherUnitTest {
    @Test
    public void givenSourceAndTargetMapsWhenIteratedOverThenCopyingSuccess() {
       CopyingAHashMapToAnother obj = new CopyingAHashMapToAnother();
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyByIteration(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyByIteration(generateSourceMap(), generateTargetMap()));
    }
 
    @Test
    public void givenSourceAndTargetMapsWhenUsedPutAllThenCopyingSuccess() {
       CopyingAHashMapToAnother obj = new CopyingAHashMapToAnother();
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyUsingPutAll(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyUsingPutAll(generateSourceMap(), generateTargetMap()));
    }
 
    @Test
    public void givenSourceAndTargetMapsWhenUsedPutIfAbsentThenCopyingSuccess() {
       CopyingAHashMapToAnother obj = new CopyingAHashMapToAnother();
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyUsingPutIfAbsent(generateSourceMap(), generateTargetMap()));
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyUsingPutIfAbsentForEach(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyUsingPutIfAbsent(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyUsingPutIfAbsentForEach(generateSourceMap(), generateTargetMap()));
    }
 
    @Test
    public void givenSourceAndTargetMapsWhenUsedMapMergeThenCopyingSuccess() {
       CopyingAHashMapToAnother obj = new CopyingAHashMapToAnother();
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyUsingMapMerge(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyUsingMapMerge(generateSourceMap(), generateTargetMap()));
    }
 
    @Test
    public void givenSourceAndTargetMapsWhenMapDifferenceUsedThenCopyingSuccess() {
       CopyingAHashMapToAnother obj = new CopyingAHashMapToAnother();
-      Assert.assertEquals(generateExpectedResultMap(), obj.copyUsingGuavaMapDifference(generateSourceMap(), generateTargetMap()));
+      Assertions.assertEquals(generateExpectedResultMap(), obj.copyUsingGuavaMapDifference(generateSourceMap(), generateTargetMap()));
    }
 
    private Map<String, String> generateSourceMap() {

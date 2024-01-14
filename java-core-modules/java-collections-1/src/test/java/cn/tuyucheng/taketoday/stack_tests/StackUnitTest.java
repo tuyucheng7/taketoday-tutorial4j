@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.stack_tests;
 
 import cn.tuyucheng.taketoday.thread_safe_lifo.DequeBasedSynchronizedStack;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Stack;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -19,11 +19,11 @@ public class StackUnitTest {
       namesStack.push("Bill Gates");
       namesStack.push("Elon Musk");
 
-      Assert.assertEquals("Elon Musk", namesStack.peek());
-      Assert.assertEquals("Elon Musk", namesStack.pop());
-      Assert.assertEquals("Bill Gates", namesStack.pop());
+      Assertions.assertEquals("Elon Musk", namesStack.peek());
+      Assertions.assertEquals("Elon Musk", namesStack.pop());
+      Assertions.assertEquals("Bill Gates", namesStack.pop());
 
-      Assert.assertEquals(0, namesStack.size());
+      Assertions.assertEquals(0, namesStack.size());
    }
 
    @Test
@@ -33,11 +33,11 @@ public class StackUnitTest {
       namesStack.push("Bill Gates");
       namesStack.push("Elon Musk");
 
-      Assert.assertEquals("Elon Musk", namesStack.peek());
-      Assert.assertEquals("Elon Musk", namesStack.pop());
-      Assert.assertEquals("Bill Gates", namesStack.pop());
+      Assertions.assertEquals("Elon Musk", namesStack.peek());
+      Assertions.assertEquals("Elon Musk", namesStack.pop());
+      Assertions.assertEquals("Bill Gates", namesStack.pop());
 
-      Assert.assertEquals(0, namesStack.size());
+      Assertions.assertEquals(0, namesStack.size());
    }
 
    @Test
@@ -47,10 +47,10 @@ public class StackUnitTest {
       namesStack.push("Bill Gates");
       namesStack.push("Elon Musk");
 
-      Assert.assertEquals("Elon Musk", namesStack.peek());
-      Assert.assertEquals("Elon Musk", namesStack.pop());
-      Assert.assertEquals("Bill Gates", namesStack.pop());
+      Assertions.assertEquals("Elon Musk", namesStack.peek());
+      Assertions.assertEquals("Elon Musk", namesStack.pop());
+      Assertions.assertEquals("Bill Gates", namesStack.pop());
 
-      Assert.assertEquals(0, namesStack.size());
+      Assertions.assertEquals(0, namesStack.size());
    }
 }

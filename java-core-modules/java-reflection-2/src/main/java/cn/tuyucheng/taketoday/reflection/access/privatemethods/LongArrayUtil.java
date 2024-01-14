@@ -14,4 +14,5 @@ public class LongArrayUtil {
       }
       return -1;
    }
+
 }

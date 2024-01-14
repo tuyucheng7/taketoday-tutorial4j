@@ -27,13 +27,15 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Before running the test ensure that the file is present.
  * If not, please run mvn install on the module.
  */
+
 public class PrimeNumbersManualTest {
-   private static final Logger logger = Logger.getAnonymousLogger();
+
+   private static Logger logger = Logger.getAnonymousLogger();
 
    @Test
-   void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
+   public void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
       Options opt = new OptionsBuilder()
-            .include(Benchmarked.class.getSimpleName())
+            .include(Benchmarker.class.getSimpleName())
             .forks(1)
             .build();
 
@@ -45,27 +47,28 @@ public class PrimeNumbersManualTest {
    }
 
    @Test
-   void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
+   public void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
       StringBuilder info = new StringBuilder();
 
       for (int granularity : PrimeNumbers.GRANULARITIES) {
          int parallelism = ForkJoinPool.getCommonPoolParallelism();
-         ForkJoinPool pool = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
+         ForkJoinPool pool =
+               (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
 
          stealCountInfo(info, granularity, pool);
       }
-      logger.info("\nExecutors.newWorkStealingPool ->" + info);
+      logger.info("\nExecutors.newWorkStealingPool ->" + info.toString());
    }
 
    @Test
-   void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
+   public void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
       StringBuilder info = new StringBuilder();
 
       for (int granularity : PrimeNumbers.GRANULARITIES) {
          ForkJoinPool pool = ForkJoinPool.commonPool();
          stealCountInfo(info, granularity, pool);
       }
-      logger.info("\nForkJoinPool.commonPool ->" + info);
+      logger.info("\nForkJoinPool.commonPool ->" + info.toString());
    }
 
    private void stealCountInfo(StringBuilder info, int granularity, ForkJoinPool forkJoinPool) {
@@ -83,7 +86,7 @@ public class PrimeNumbersManualTest {
    @OutputTimeUnit(TimeUnit.MILLISECONDS)
    @State(Scope.Benchmark)
    @Fork(value = 2, warmups = 1, jvmArgs = {"-Xms2G", "-Xmx2G"})
-   public static class Benchmarked {
+   public static class Benchmarker {
 
       @Benchmark
       public void singleThread() {

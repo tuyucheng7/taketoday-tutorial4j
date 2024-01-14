@@ -6,17 +6,19 @@ import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CharStackUsingJavaUnitTest {
+public class CharStackUsingJavaUnitTest {
 
    @Test
-   void whenCharStackIsCreated_thenItHasSize0() {
+   public void whenCharStackIsCreated_thenItHasSize0() {
+
       Stack<Character> charStack = new Stack<>();
 
       assertEquals(0, charStack.size());
    }
 
    @Test
-   void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
+   public void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
+
       Stack<Character> charStack = new Stack<>();
 
       charStack.push('A');
@@ -25,7 +27,8 @@ class CharStackUsingJavaUnitTest {
    }
 
    @Test
-   void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
+   public void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
+
       Stack<Character> charStack = new Stack<>();
       charStack.push('A');
 
@@ -36,7 +39,8 @@ class CharStackUsingJavaUnitTest {
    }
 
    @Test
-   void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+   public void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+
       Stack<Character> charStack = new Stack<>();
       charStack.push('A');
 
@@ -45,4 +49,5 @@ class CharStackUsingJavaUnitTest {
       assertEquals('A', element);
       assertEquals(1, charStack.size());
    }
+
 }

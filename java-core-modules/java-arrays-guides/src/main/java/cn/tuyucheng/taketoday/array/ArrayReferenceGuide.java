@@ -102,7 +102,7 @@ public class ArrayReferenceGuide {
       }
 
       int[] anotherArray = new int[]{1, 2, 3, 4, 5};
-      // List<Integer> anotherList = Arrays.asList(anotherArray);
+//        List<Integer> anotherList = Arrays.asList(anotherArray);
    }
 
    private static void transformIntoStream() {
@@ -155,4 +155,5 @@ public class ArrayReferenceGuide {
          System.out.println(element);
       }
    }
+
 }

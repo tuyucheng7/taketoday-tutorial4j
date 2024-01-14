@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.synchronizedcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,6 +27,6 @@ public class SynchronizedSortedSetUnitTest {
       thread1.join();
       thread2.join();
 
-      assertThat(syncSortedSet).hasSize(6);
+      assertThat(syncSortedSet.size()).isEqualTo(6);
    }
 }

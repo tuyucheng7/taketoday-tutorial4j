@@ -15,10 +15,10 @@ public class MapsInitializer {
 
    public void createMapWithMapEntries() {
       Map<String, String> map = Map.ofEntries(
-            new AbstractMap.SimpleEntry<>("name", "John"),
-            new AbstractMap.SimpleEntry<>("city", "budapest"),
-            new AbstractMap.SimpleEntry<>("zip", "000000"),
-            new AbstractMap.SimpleEntry<>("home", "1231231231")
+            new AbstractMap.SimpleEntry<String, String>("name", "John"),
+            new AbstractMap.SimpleEntry<String, String>("city", "budapest"),
+            new AbstractMap.SimpleEntry<String, String>("zip", "000000"),
+            new AbstractMap.SimpleEntry<String, String>("home", "1231231231")
       );
    }
 

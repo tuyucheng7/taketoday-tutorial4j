@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-optional</artifactId>
-   <version>1.0.0</version>
    <name>java-optional</name>
    <packaging>jar</packaging>
 
@@ -57,4 +56,5 @@
       <hibernate.core.version>5.4.0.Final</hibernate.core.version>
       <json-path.version>5.3.2</json-path.version>
    </properties>
+
 </project>

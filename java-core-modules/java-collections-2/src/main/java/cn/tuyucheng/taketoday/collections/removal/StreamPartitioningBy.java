@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class StreamPartitioningBy {
 
-   public static void main(String[] args) {
+   public static void main(String args[]) {
       Collection<String> names = new ArrayList<>();
       names.add("John");
       names.add("Ana");

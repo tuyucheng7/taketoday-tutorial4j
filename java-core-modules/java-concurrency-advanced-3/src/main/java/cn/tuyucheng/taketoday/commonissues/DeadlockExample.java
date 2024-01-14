@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.commonissues;
 
 public class DeadlockExample {
+
    public static Object lock1 = new Object();
    public static Object lock2 = new Object();
 
-   public static void main(String[] args) {
+   public static void main(String args[]) {
       Thread threadA = new Thread(() -> {
          synchronized (lock1) {
             System.out.println("ThreadA: Holding lock 1...");

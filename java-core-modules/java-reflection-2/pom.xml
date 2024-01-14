@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-reflection-2</artifactId>
-   <version>1.0.0</version>
    <name>java-reflection-2</name>
    <packaging>jar</packaging>
 
@@ -47,6 +46,25 @@
                <compilerArgument>-parameters</compilerArgument>
             </configuration>
          </plugin>
+         <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.8</version>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>prepare-agent</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>report</id>
+                  <phase>prepare-package</phase>
+                  <goals>
+                     <goal>report</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
       </plugins>
    </build>
 
@@ -54,6 +72,7 @@
       <reflections.version>0.9.12</reflections.version>
       <source.version>1.8</source.version>
       <target.version>1.8</target.version>
-      <spring.version>5.3.25</spring.version>
+      <spring.version>5.3.4</spring.version>
    </properties>
+
 </project>

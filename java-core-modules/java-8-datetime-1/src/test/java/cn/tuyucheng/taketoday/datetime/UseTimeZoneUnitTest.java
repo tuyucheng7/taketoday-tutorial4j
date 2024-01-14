@@ -2,8 +2,8 @@ package cn.tuyucheng.taketoday.datetime;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -36,8 +36,8 @@ public class UseTimeZoneUnitTest {
       System.out.println(String.format("Java7: Time now in '%s' is '%s'", nowAsiaSingapore.getTimeZone()
             .getID(), simpleDateFormat.format(nowAsiaSingapore.getTime())));
 
-      Assert.assertEquals(nowUtc.toInstant().getEpochSecond(), nowAsiaSingapore.toInstant().getEpochSecond());
-      Assert.assertEquals(asiaSingapore, nowAsiaSingapore.getTimeZone());
+      Assertions.assertEquals(nowUtc.toInstant().getEpochSecond(), nowAsiaSingapore.toInstant().getEpochSecond());
+      Assertions.assertEquals(asiaSingapore, nowAsiaSingapore.getTimeZone());
 
    }
 
@@ -51,8 +51,8 @@ public class UseTimeZoneUnitTest {
       System.out.println(String.format("Java8: Time now in '%s' is '%s'", nowAsiaSingapore.getZone(),
             nowAsiaSingapore.format(DateTimeFormatter.ofPattern(PATTERN))));
 
-      Assert.assertEquals(nowUtc.getEpochSecond(), nowAsiaSingapore.toEpochSecond());
-      Assert.assertEquals(asiaSingapore, nowAsiaSingapore.getZone());
+      Assertions.assertEquals(nowUtc.getEpochSecond(), nowAsiaSingapore.toEpochSecond());
+      Assertions.assertEquals(asiaSingapore, nowAsiaSingapore.getZone());
    }
 
    @Test
@@ -65,8 +65,8 @@ public class UseTimeZoneUnitTest {
       System.out.println(String.format("Joda-time: Time now in '%s' is '%s'", nowAsiaSingapore.getZone(),
             nowAsiaSingapore.toString(PATTERN)));
 
-      Assert.assertEquals(nowUtc.toInstant().getMillis(), nowAsiaSingapore.toInstant().getMillis());
-      Assert.assertEquals(asiaSingapore, nowAsiaSingapore.getZone());
+      Assertions.assertEquals(nowUtc.toInstant().getMillis(), nowAsiaSingapore.toInstant().getMillis());
+      Assertions.assertEquals(asiaSingapore, nowAsiaSingapore.getZone());
    }
 
 }

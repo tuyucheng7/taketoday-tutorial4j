@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.isnumeric;
 
 import org.apache.commons.lang3.math.NumberUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

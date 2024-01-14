@@ -11,4 +11,5 @@ public abstract sealed class Vehicle permits Car, Truck {
    public String getRegistrationNumber() {
       return registrationNumber;
    }
+
 }

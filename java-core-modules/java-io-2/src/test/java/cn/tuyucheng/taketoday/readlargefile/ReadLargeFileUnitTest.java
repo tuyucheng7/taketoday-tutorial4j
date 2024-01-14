@@ -1,5 +1,14 @@
 package cn.tuyucheng.taketoday.readlargefile;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,17 +21,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
-
-@Ignore("need large file for testing")
+@Disabled("need large file for testing")
 public class ReadLargeFileUnitTest {
    protected final Logger logger = LoggerFactory.getLogger(getClass());
 

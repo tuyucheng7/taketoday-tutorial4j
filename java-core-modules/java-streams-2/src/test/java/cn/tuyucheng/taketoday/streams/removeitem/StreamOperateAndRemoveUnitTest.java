@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.streams.removeitem;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ public class StreamOperateAndRemoveUnitTest {
 
    private List<Item> itemList;
 
-   @Before
+   @BeforeEach
    public void setup() {
 
       itemList = new ArrayList<>();
@@ -30,7 +30,7 @@ public class StreamOperateAndRemoveUnitTest {
       final List<Item> filteredList = itemList.stream().filter(item -> item.isQualified())
             .collect(Collectors.toList());
 
-      Assert.assertEquals(5, filteredList.size());
+      Assertions.assertEquals(5, filteredList.size());
    }
 
    @Test
@@ -40,7 +40,7 @@ public class StreamOperateAndRemoveUnitTest {
       itemList.stream().filter(isQualified).forEach(item -> item.operate());
       itemList.removeIf(isQualified);
 
-      Assert.assertEquals(5, itemList.size());
+      Assertions.assertEquals(5, itemList.size());
    }
 
    @Test
@@ -53,7 +53,7 @@ public class StreamOperateAndRemoveUnitTest {
       });
       itemList.removeAll(operatedList);
 
-      Assert.assertEquals(5, itemList.size());
+      Assertions.assertEquals(5, itemList.size());
    }
 
    class Item {

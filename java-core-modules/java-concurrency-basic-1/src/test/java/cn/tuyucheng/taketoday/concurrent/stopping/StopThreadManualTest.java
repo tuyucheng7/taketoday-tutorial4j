@@ -9,10 +9,11 @@ import static com.jayway.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class StopThreadManualTest {
+public class StopThreadManualTest {
 
    @Test
-   void whenStoppedThreadIsStopped() throws InterruptedException {
+   public void whenStoppedThreadIsStopped() throws InterruptedException {
+
       int interval = 5;
 
       ControlSubThread controlSubThread = new ControlSubThread(interval);
@@ -25,11 +26,13 @@ class StopThreadManualTest {
 
       // Stop it and make sure the flags have been reversed
       controlSubThread.stop();
-      await().until(() -> assertTrue(controlSubThread.isStopped()));
+      await()
+            .until(() -> assertTrue(controlSubThread.isStopped()));
    }
 
    @Test
-   void whenInterruptedThreadIsStopped() throws InterruptedException {
+   public void whenInterruptedThreadIsStopped() throws InterruptedException {
+
       int interval = 50;
 
       ControlSubThread controlSubThread = new ControlSubThread(interval);

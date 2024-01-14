@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.java9.reactive;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.Stopwatch;
 
 import java.util.concurrent.ForkJoinPool;
@@ -10,8 +10,8 @@ import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TuyuchengBatchSubscriberImplIntegrationTest {
 
@@ -19,10 +19,10 @@ public class TuyuchengBatchSubscriberImplIntegrationTest {
    private SubmissionPublisher<String> publisher;
    private TuyuchengBatchSubscriberImpl<String> subscriber;
 
-   @Before
+   @BeforeEach
    public void initialize() {
-      this.publisher = new SubmissionPublisher<>(ForkJoinPool.commonPool(), 6);
-      this.subscriber = new TuyuchengBatchSubscriberImpl<>();
+      this.publisher = new SubmissionPublisher<String>(ForkJoinPool.commonPool(), 6);
+      this.subscriber = new TuyuchengBatchSubscriberImpl<String>();
       publisher.subscribe(subscriber);
    }
 
@@ -71,4 +71,5 @@ public class TuyuchengBatchSubscriberImplIntegrationTest {
       // The runtime in seconds should be equal to the number of items in each batch.
       assertTrue(stopwatch.runtime(TimeUnit.SECONDS) >= (ITEM_SIZE / subscriber.BUFFER_SIZE));
    }
+
 }

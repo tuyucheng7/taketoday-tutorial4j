@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ObjectToJsonConverterUnitTest {
+public class ObjectToJsonConverterUnitTest {
 
    @Test
-   void givenObjectNotSerializedThenExceptionThrown() throws JsonSerializationException {
+   public void givenObjectNotSerializedThenExceptionThrown() throws JsonSerializationException {
       Object object = new Object();
       ObjectToJsonConverter serializer = new ObjectToJsonConverter();
       assertThrows(JsonSerializationException.class, () -> {
@@ -17,7 +17,7 @@ class ObjectToJsonConverterUnitTest {
    }
 
    @Test
-   void givenObjectSerializedThenTrueReturned() throws JsonSerializationException {
+   public void givenObjectSerializedThenTrueReturned() throws JsonSerializationException {
       Person person = new Person("soufiane", "cheouati", "34");
       ObjectToJsonConverter serializer = new ObjectToJsonConverter();
       String jsonString = serializer.convertToJson(person);

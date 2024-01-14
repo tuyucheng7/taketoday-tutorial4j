@@ -11,4 +11,5 @@ public class DinoVisitorImpl implements Visitor {
    public String visit(Euraptor euraptor) {
       return euraptor.flies();
    }
+
 }

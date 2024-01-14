@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TryWithResourcesUnitTest {
+public class TryWithResourcesUnitTest {
 
    static int closeCount = 0;
 
@@ -16,7 +16,7 @@ class TryWithResourcesUnitTest {
       }
 
       static class FinalWrapper {
-         final AutoCloseable finalCloseable = new AutoCloseable() {
+         public final AutoCloseable finalCloseable = new AutoCloseable() {
             @Override
             public void close() throws Exception {
                closeCount++;
@@ -26,7 +26,7 @@ class TryWithResourcesUnitTest {
    }
 
    @Test
-   void tryWithResourcesTest() {
+   public void tryWithResourcesTest() {
       MyAutoCloseable mac = new MyAutoCloseable();
 
       try (mac) {
@@ -65,4 +65,5 @@ class TryWithResourcesUnitTest {
          closeCount++;
       }
    }
+
 }

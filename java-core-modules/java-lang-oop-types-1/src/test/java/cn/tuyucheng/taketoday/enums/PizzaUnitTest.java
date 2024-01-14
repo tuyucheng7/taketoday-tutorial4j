@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.enums;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

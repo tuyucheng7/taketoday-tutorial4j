@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
-class PriorityBlockingQueueIntegrationTest {
+public class PriorityBlockingQueueIntegrationTest {
+
    private static final Logger LOG = LoggerFactory.getLogger(PriorityBlockingQueueIntegrationTest.class);
 
+
    @Test
-   void givenUnorderedValues_whenPolling_thenShouldOrderQueue() {
+   public void givenUnorderedValues_whenPolling_thenShouldOrderQueue() throws InterruptedException {
       PriorityBlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
       ArrayList<Integer> polledElements = new ArrayList<>();
 
@@ -31,23 +33,23 @@ class PriorityBlockingQueueIntegrationTest {
    }
 
    @Test
-   void whenPollingEmptyQueue_thenShouldBlockThread() throws InterruptedException {
+   public void whenPollingEmptyQueue_thenShouldBlockThread() throws InterruptedException {
       PriorityBlockingQueue<Integer> queue = new PriorityBlockingQueue<>();
 
       final Thread thread = new Thread(() -> {
-         LOG.info("Polling...");
+         LOG.debug("Polling...");
          while (true) {
             try {
                Integer poll = queue.take();
-               LOG.info("Polled: " + poll);
+               LOG.debug("Polled: " + poll);
             } catch (InterruptedException ignored) {
             }
          }
       });
-
       thread.start();
+
       Thread.sleep(TimeUnit.SECONDS.toMillis(5));
-      LOG.info("Adding to queue");
+      LOG.debug("Adding to queue");
 
       queue.addAll(newArrayList(1, 5, 6, 1, 2, 6, 7));
       Thread.sleep(TimeUnit.SECONDS.toMillis(1));

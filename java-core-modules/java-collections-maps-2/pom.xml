@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-collections-maps-2</artifactId>
-   <version>1.0.0</version>
    <name>java-collections-maps-2</name>
    <packaging>jar</packaging>
 
@@ -60,4 +59,5 @@
       <hppc.version>0.7.2</hppc.version>
       <fastutil.version>8.1.0</fastutil.version>
    </properties>
+
 </project>

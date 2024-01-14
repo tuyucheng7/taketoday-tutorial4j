@@ -9,39 +9,35 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-class LambdaExceptionWrappersUnitTest {
+public class LambdaExceptionWrappersUnitTest {
 
    private static final Logger LOG = LoggerFactory.getLogger(LambdaExceptionWrappersUnitTest.class);
 
    private List<Integer> integers;
 
    @BeforeEach
-   void init() {
+   public void init() {
       integers = Arrays.asList(3, 9, 7, 0, 10, 20);
    }
 
    @Test
-   void whenNoExceptionFromLambdaWrapper_thenSuccess() {
-      integers.forEach(LambdaExceptionWrappers.lambdaWrapper(i -> LOG.debug("{}", 50 / i)));
+   public void whenNoExceptionFromLambdaWrapper_thenSuccess() {
+      integers.forEach(lambdaWrapper(i -> LOG.debug("{}", 50 / i)));
    }
 
    @Test
-   void whenNoExceptionFromConsumerWrapper_thenSuccess() {
-      integers.forEach(LambdaExceptionWrappers.consumerWrapper(i -> LOG.debug("{}", 50 / i), ArithmeticException.class));
+   public void whenNoExceptionFromConsumerWrapper_thenSuccess() {
+      integers.forEach(consumerWrapper(i -> LOG.debug("{}", 50 / i), ArithmeticException.class));
+   }
+
+   @Test(expected = RuntimeException.class)
+   public void whenExceptionFromThrowingConsumerWrapper_thenSuccess() {
+      integers.forEach(throwingConsumerWrapper(i -> writeToFile(i)));
    }
 
    @Test
-   void whenExceptionFromThrowingConsumerWrapper_thenSuccess() {
-      assertThrows(RuntimeException.class, () -> integers.forEach(
-            LambdaExceptionWrappers.throwingConsumerWrapper(this::writeToFile)
-      ));
-   }
-
-   @Test
-   void whenNoExceptionFromHandlingConsumerWrapper_thenSuccess() {
-      integers.forEach(LambdaExceptionWrappers.handlingConsumerWrapper(this::writeToFile, IOException.class));
+   public void whenNoExceptionFromHandlingConsumerWrapper_thenSuccess() {
+      integers.forEach(handlingConsumerWrapper(i -> writeToFile(i), IOException.class));
    }
 
    private void writeToFile(Integer i) throws IOException {

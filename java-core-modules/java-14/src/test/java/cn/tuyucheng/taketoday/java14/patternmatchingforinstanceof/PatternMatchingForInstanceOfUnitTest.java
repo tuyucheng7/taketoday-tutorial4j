@@ -28,4 +28,5 @@ class PatternMatchingForInstanceOfUnitTest {
 
       verify(animal).woof();
    }
+
 }

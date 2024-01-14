@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ByteHexadecimalConversionUnitTest {
 
-   private final HexFormat hexFormat = HexFormat.of();
+   private HexFormat hexFormat = HexFormat.of();
 
    @Test
    void givenInitialisedHexFormat_whenHexStringIsPassed_thenByteArrayRepresentationIsReturned() {

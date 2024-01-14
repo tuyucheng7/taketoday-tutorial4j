@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.inheritancecomposition;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.Actress;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.Person;
 import cn.tuyucheng.taketoday.inheritancecomposition.model.Waitress;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

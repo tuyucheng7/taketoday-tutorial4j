@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-regex-2</artifactId>
-   <version>1.0.0</version>
    <name>java-regex-2</name>
    <packaging>jar</packaging>
 
@@ -13,4 +12,5 @@
       <artifactId>java-core-modules</artifactId>
       <version>1.0.0</version>
    </parent>
+
 </project>

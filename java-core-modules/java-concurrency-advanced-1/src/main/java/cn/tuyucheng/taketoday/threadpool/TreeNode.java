@@ -5,9 +5,10 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 
 public class TreeNode {
-   private final int value;
 
-   private final Set<TreeNode> children;
+   private int value;
+
+   private Set<TreeNode> children;
 
    TreeNode(int value, TreeNode... children) {
       this.value = value;

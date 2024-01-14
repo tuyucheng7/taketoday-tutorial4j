@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-jvm-1</artifactId>
-   <version>1.0.0</version>
    <name>java-jvm-1</name>
    <packaging>jar</packaging>
 
@@ -115,8 +114,7 @@
 
                            <includes>
                               <include>cn/tuyucheng/taketoday/instrumentation/application/MyAtm.class</include>
-                              <include>cn/tuyucheng/taketoday/instrumentation/application/MyAtmApplication.class
-                              </include>
+                              <include>cn/tuyucheng/taketoday/instrumentation/application/MyAtmApplication.class</include>
                               <include>cn/tuyucheng/taketoday/instrumentation/application/Launcher.class</include>
                            </includes>
                         </configuration>
@@ -149,10 +147,10 @@
                               </manifest>
                               <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                            </archive>
+
                            <includes>
                               <include>cn/tuyucheng/taketoday/instrumentation/agent/AtmTransformer.class</include>
-                              <include>cn/tuyucheng/taketoday/instrumentation/agent/MyInstrumentationAgent.class
-                              </include>
+                              <include>cn/tuyucheng/taketoday/instrumentation/agent/MyInstrumentationAgent.class</include>
                            </includes>
                         </configuration>
                      </execution>

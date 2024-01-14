@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.mutex;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -20,42 +20,42 @@ public class MutexUnitTest {
    public void givenUnsafeSequenceGenerator_whenRaceCondition_thenUnexpectedBehavior() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGenerator(), count);
-      Assert.assertNotEquals(count, uniqueSequences.size());
+      Assertions.assertNotEquals(count, uniqueSequences.size());
    }
 
    @Test
    public void givenSequenceGeneratorUsingSynchronizedMethod_whenRaceCondition_thenSuccess() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGeneratorUsingSynchronizedMethod(), count);
-      Assert.assertEquals(count, uniqueSequences.size());
+      Assertions.assertEquals(count, uniqueSequences.size());
    }
 
    @Test
    public void givenSequenceGeneratorUsingSynchronizedBlock_whenRaceCondition_thenSuccess() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGeneratorUsingSynchronizedBlock(), count);
-      Assert.assertEquals(count, uniqueSequences.size());
+      Assertions.assertEquals(count, uniqueSequences.size());
    }
 
    @Test
    public void givenSequenceGeneratorUsingReentrantLock_whenRaceCondition_thenSuccess() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGeneratorUsingReentrantLock(), count);
-      Assert.assertEquals(count, uniqueSequences.size());
+      Assertions.assertEquals(count, uniqueSequences.size());
    }
 
    @Test
    public void givenSequenceGeneratorUsingSemaphore_whenRaceCondition_thenSuccess() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGeneratorUsingSemaphore(), count);
-      Assert.assertEquals(count, uniqueSequences.size());
+      Assertions.assertEquals(count, uniqueSequences.size());
    }
 
    @Test
    public void givenSequenceGeneratorUsingMonitor_whenRaceCondition_thenSuccess() throws Exception {
       int count = 1000;
       Set<Integer> uniqueSequences = getUniqueSequences(new SequenceGeneratorUsingMonitor(), count);
-      Assert.assertEquals(count, uniqueSequences.size());
+      Assertions.assertEquals(count, uniqueSequences.size());
    }
 
    private Set<Integer> getUniqueSequences(SequenceGenerator generator, int count) throws Exception {
@@ -76,4 +76,5 @@ public class MutexUnitTest {
 
       return uniqueSequences;
    }
+
 }

@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.streams.debug;
 
 import cn.tuyucheng.taketoday.streams.debug.entity.Customer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;

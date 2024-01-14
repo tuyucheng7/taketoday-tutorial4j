@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.roaringbitmap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 import org.roaringbitmap.RoaringBitmap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoaringBitmapBenchmarkUnitTest {
    @Test

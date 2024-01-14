@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.objectsize;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.info.GraphLayout;
 import org.openjdk.jol.vm.VM;

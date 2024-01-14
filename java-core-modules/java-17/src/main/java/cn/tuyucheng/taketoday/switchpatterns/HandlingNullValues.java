@@ -16,4 +16,5 @@ public class HandlingNullValues {
          case Object ob -> 0d;
       };
    }
+
 }

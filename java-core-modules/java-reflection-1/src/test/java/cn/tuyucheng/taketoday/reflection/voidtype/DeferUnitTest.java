@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.reflection.voidtype;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Callable;
@@ -21,7 +22,7 @@ class DeferUnitTest {
          }
       };
 
-      assertThat(Defer.defer(callable)).isNull();
+      Assertions.assertThat(Defer.defer(callable)).isNull();
    }
 
    @Test

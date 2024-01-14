@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.integerToBinary;
 
-import org.junit.Test;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IntegerToBinaryUnitTest {
    @Test
@@ -24,5 +25,19 @@ public class IntegerToBinaryUnitTest {
       int n = 7;
       String binaryString = Integer.toString(n, 2);
       assertEquals("111", binaryString);
+   }
+
+   @Test
+   public void givenAnInteger_whenFormatAndReplaceCalled_thenZeroPaddedBinaryString() {
+      int n = 7;
+      String binaryString = String.format("%8s", Integer.toBinaryString(n)).replace(" ", "0");
+      assertEquals("00000111", binaryString);
+   }
+
+   @Test
+   public void givenAnInteger_whenUsingApacheStringUtils_thenZeroPaddedBinaryString() {
+      int n = 7;
+      String binaryString = StringUtils.leftPad(Integer.toBinaryString(n), 8, "0");
+      assertEquals("00000111", binaryString);
    }
 }

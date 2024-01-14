@@ -4,4 +4,5 @@ package cn.tuyucheng.taketoday.functionalinterface;
 public interface ShortToByteFunction {
 
    byte applyAsByte(short s);
+
 }

@@ -11,10 +11,9 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BiFunctionalInterfacesUnitTest {
-
+public class BiFunctionalInterfacesUnitTest {
    @Test
-   void givenStreamValues_whenMappedToNewValues() {
+   public void givenStreamValues_whenMappedToNewValues() {
       List<String> mapped = Stream.of("hello", "world")
             .map(word -> word + "!")
             .collect(Collectors.toList());
@@ -23,7 +22,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenStreamValues_whenReducedWithPrefixingOperation() {
+   public void givenStreamValues_whenReducedWithPrefixingOperation() {
       String result = Stream.of("hello", "world")
             .reduce("", (a, b) -> b + "-" + a);
 
@@ -31,7 +30,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenStreamValues_whenReducedWithPrefixingLambda_thenHasNoTrailingDash() {
+   public void givenStreamValues_whenReducedWithPrefixingLambda_thenHasNoTrailingDash() {
       String result = Stream.of("hello", "world")
             .reduce("", (a, b) -> combineWithoutTrailingDash(a, b));
 
@@ -46,7 +45,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenStreamValues_whenReducedWithPrefixingMethodReference_thenHasNoTrailingDash() {
+   public void givenStreamValues_whenReducedWithPrefixingMethodReference_thenHasNoTrailingDash() {
       String result = Stream.of("hello", "world")
             .reduce("", this::combineWithoutTrailingDash);
 
@@ -54,7 +53,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenCombined() {
+   public void givenTwoLists_whenCombined() {
       List<String> list1 = Arrays.asList("a", "b", "c");
       List<Integer> list2 = Arrays.asList(1, 2, 3);
 
@@ -67,7 +66,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenCombinedWithGeneralPurposeCombiner() {
+   public void givenTwoLists_whenCombinedWithGeneralPurposeCombiner() {
       List<String> list1 = Arrays.asList("a", "b", "c");
       List<Integer> list2 = Arrays.asList(1, 2, 3);
 
@@ -87,7 +86,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedWithCombiningFunction() {
+   public void givenTwoLists_whenComparedWithCombiningFunction() {
       List<Double> list1 = Arrays.asList(1.0d, 2.1d, 3.3d);
       List<Float> list2 = Arrays.asList(0.1f, 0.2f, 4f);
 
@@ -98,7 +97,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedWithCombiningFunctionByMethodReference() {
+   public void givenTwoLists_whenComparedWithCombiningFunctionByMethodReference() {
       List<Double> list1 = Arrays.asList(1.0d, 2.1d, 3.3d);
       List<Float> list2 = Arrays.asList(0.1f, 0.2f, 4f);
 
@@ -113,7 +112,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedForEqualityByCombiningFunction() {
+   public void givenTwoLists_whenComparedForEqualityByCombiningFunction() {
       List<Float> list1 = Arrays.asList(0.1f, 0.2f, 4f);
       List<Float> list2 = Arrays.asList(0.1f, 0.2f, 4f);
 
@@ -123,7 +122,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedForEqualityByCombiningFunctionWithMethodReference() {
+   public void givenTwoLists_whenComparedForEqualityByCombiningFunctionWithMethodReference() {
       List<Float> list1 = Arrays.asList(0.1f, 0.2f, 4f);
       List<Float> list2 = Arrays.asList(0.1f, 0.2f, 4f);
 
@@ -133,7 +132,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedWithCombiningFunctionWithCompareTo() {
+   public void givenTwoLists_whenComparedWithCombiningFunctionWithCompareTo() {
       List<Double> list1 = Arrays.asList(1.0d, 2.1d, 3.3d);
       List<Double> list2 = Arrays.asList(0.1d, 0.2d, 4d);
 
@@ -151,7 +150,7 @@ class BiFunctionalInterfacesUnitTest {
    }
 
    @Test
-   void givenTwoLists_whenComparedWithCombiningFunctionWithComposedBiFunction() {
+   public void givenTwoLists_whenComparedWithCombiningFunctionWithComposedBiFunction() {
       List<Double> list1 = Arrays.asList(1.0d, 2.1d, 3.3d);
       List<Double> list2 = Arrays.asList(0.1d, 0.2d, 4d);
 

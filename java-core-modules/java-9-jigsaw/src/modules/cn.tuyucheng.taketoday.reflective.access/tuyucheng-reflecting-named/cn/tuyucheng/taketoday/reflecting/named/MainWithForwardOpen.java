@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.reflecting.named;
 
+import cn.tuyucheng.taketoday.intermedium.ForwardOpen;
+
 import java.lang.reflect.Method;
 
 public class MainWithForwardOpen {

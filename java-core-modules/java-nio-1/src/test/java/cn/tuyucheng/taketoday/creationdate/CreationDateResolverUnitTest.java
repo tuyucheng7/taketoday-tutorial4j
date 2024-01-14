@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.creationdate;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.Optional;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreationDateResolverUnitTest {
 

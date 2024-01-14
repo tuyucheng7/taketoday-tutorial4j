@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.objects;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ObjectsUnitTest {
 
    private Car car;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       car = new Car("Ford", "Focus", "red");
    }

@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.removelastchar;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class RemoveLastCharUnitTest {
 
@@ -18,7 +19,7 @@ public class RemoveLastCharUnitTest {
 
    @Test
    public void givenTestString_whenSubstring_thenGetStingWithoutLastChar() {
-      assertEquals("abcde", StringHelper.removeLastChar(TEST_STRING));
+      Assertions.assertEquals("abcde", StringHelper.removeLastChar(TEST_STRING));
       assertEquals("abcde", StringUtils.substring(TEST_STRING, 0, TEST_STRING.length() - 1));
       assertEquals("abcde", StringUtils.chop(TEST_STRING));
       assertEquals("abcde", TEST_STRING.replaceAll(".$", ""));

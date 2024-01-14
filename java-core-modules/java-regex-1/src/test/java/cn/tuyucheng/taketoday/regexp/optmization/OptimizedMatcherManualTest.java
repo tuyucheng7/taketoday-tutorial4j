@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.regexp.optmization;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OptimizedMatcherManualTest {
 
@@ -23,7 +23,7 @@ public class OptimizedMatcherManualTest {
       private long mstimeNotPreCompiled;
    }
 
-   @Before
+   @BeforeEach
    public void setup() {
       Random random = new Random();
       items = new ArrayList<String>();

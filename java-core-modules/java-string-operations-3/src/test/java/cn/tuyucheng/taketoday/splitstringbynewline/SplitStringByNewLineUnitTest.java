@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.splitstringbynewline;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
 

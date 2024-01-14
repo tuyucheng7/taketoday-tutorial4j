@@ -42,7 +42,7 @@
    </build>
 
    <properties>
-      <icu4j.version>64.2</icu4j.version>
+      <icu4j.version>61.1</icu4j.version>
       <argLine>-Djava.locale.providers=COMPAT</argLine>
    </properties>
 </project>

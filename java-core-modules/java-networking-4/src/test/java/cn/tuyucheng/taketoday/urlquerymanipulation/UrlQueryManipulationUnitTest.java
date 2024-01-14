@@ -1,16 +1,14 @@
 package cn.tuyucheng.taketoday.urlquerymanipulation;
 
-import static junit.framework.TestCase.assertEquals;
+import org.apache.http.client.utils.URIBuilder;
+import org.junit.jupiter.api.Test;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import javax.ws.rs.core.UriBuilder;
-
-import org.apache.http.client.utils.URIBuilder;
-
-import org.junit.Test;
-import org.springframework.web.util.UriComponentsBuilder;
+import static junit.framework.TestCase.assertEquals;
 
 public class UrlQueryManipulationUnitTest {
 
@@ -49,4 +47,5 @@ public class UrlQueryManipulationUnitTest {
 
       assertEquals("tuyucheng.com?article=charlie", uri.toString());
    }
+
 }

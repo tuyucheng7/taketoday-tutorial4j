@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.regexp.datepattern;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class FormattedDateMatcherUnitTest {
 
@@ -9,16 +9,16 @@ public class FormattedDateMatcherUnitTest {
 
    @Test
    public void whenUsingFormattedDateMatcher_thenFormatConstraintsSatisfied() {
-      Assert.assertTrue(matcher.matches("2017-12-31"));
-      Assert.assertTrue(matcher.matches("2018-01-01"));
-      Assert.assertTrue(matcher.matches("0000-00-00"));
-      Assert.assertTrue(matcher.matches("1029-99-72"));
+      Assertions.assertTrue(matcher.matches("2017-12-31"));
+      Assertions.assertTrue(matcher.matches("2018-01-01"));
+      Assertions.assertTrue(matcher.matches("0000-00-00"));
+      Assertions.assertTrue(matcher.matches("1029-99-72"));
 
-      Assert.assertFalse(matcher.matches("2018-01"));
-      Assert.assertFalse(matcher.matches("2018-01-01-01"));
-      Assert.assertFalse(matcher.matches("2018-01-XX"));
-      Assert.assertFalse(matcher.matches(" 2018-01-01"));
-      Assert.assertFalse(matcher.matches("2018-01-01 "));
-      Assert.assertFalse(matcher.matches("2018/01/01"));
+      Assertions.assertFalse(matcher.matches("2018-01"));
+      Assertions.assertFalse(matcher.matches("2018-01-01-01"));
+      Assertions.assertFalse(matcher.matches("2018-01-XX"));
+      Assertions.assertFalse(matcher.matches(" 2018-01-01"));
+      Assertions.assertFalse(matcher.matches("2018-01-01 "));
+      Assertions.assertFalse(matcher.matches("2018/01/01"));
    }
 }

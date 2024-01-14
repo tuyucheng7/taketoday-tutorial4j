@@ -8,4 +8,5 @@ public interface Processor {
    String processWithCallable(Callable<String> c) throws Exception;
 
    String processWithSupplier(Supplier<String> s);
+
 }

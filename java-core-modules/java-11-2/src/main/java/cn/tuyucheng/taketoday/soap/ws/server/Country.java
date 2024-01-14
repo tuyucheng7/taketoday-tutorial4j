@@ -37,4 +37,5 @@ public class Country {
    public void setCurrency(Currency currency) {
       this.currency = currency;
    }
+
 }

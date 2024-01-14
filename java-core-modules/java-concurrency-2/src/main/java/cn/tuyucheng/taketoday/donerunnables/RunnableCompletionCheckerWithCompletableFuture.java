@@ -42,4 +42,5 @@ public class RunnableCompletionCheckerWithCompletableFuture {
       return CompletableFuture.allOf(completableFutures)
             .isDone();
    }
+
 }

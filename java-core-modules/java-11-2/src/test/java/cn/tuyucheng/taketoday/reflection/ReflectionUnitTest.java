@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.reflection;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReflectionUnitTest {
 
@@ -112,15 +112,15 @@ public class ReflectionUnitTest {
       assertTrue(actualFields.containsAll(Arrays.asList("name", "CATEGORY")));
    }
 
-   // @Test
-   // public void givenClass_whenGetsMethods_thenCorrect() throws ClassNotFoundException {
-   // 	final Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
-   // 	final Method[] methods = animalClass.getDeclaredMethods();
-   // 	final List<String> actualMethods = getMethodNames(methods);
-   //
-   // 	assertEquals(3, actualMethods.size());
-   // 	assertTrue(actualMethods.containsAll(Arrays.asList("getName", "setName", "getSound")));
-   // }
+   @Test
+   public void givenClass_whenGetsMethods_thenCorrect() throws ClassNotFoundException {
+      final Class<?> animalClass = Class.forName("cn.tuyucheng.taketoday.reflection.Animal");
+      final Method[] methods = animalClass.getDeclaredMethods();
+      final List<String> actualMethods = getMethodNames(methods);
+
+      assertEquals(3, actualMethods.size());
+      assertTrue(actualMethods.containsAll(Arrays.asList("getName", "setName", "getSound")));
+   }
 
    @Test
    public void givenClass_whenGetsAllConstructors_thenCorrect() throws ClassNotFoundException {
@@ -230,19 +230,21 @@ public class ReflectionUnitTest {
       final List<String> methodNames = getMethodNames(methods);
 
       assertTrue(methodNames.containsAll(Arrays.asList("equals", "notifyAll", "hashCode", "walks", "eats", "toString")));
+
    }
 
-   // @Test
-   // public void givenClass_whenGetsOnlyDeclaredMethods_thenCorrect() throws ClassNotFoundException {
-   // 	final Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
-   // 	final List<String> actualMethodNames = getMethodNames(birdClass.getDeclaredMethods());
-   //
-   // 	final List<String> expectedMethodNames = Arrays.asList("setWalks", "walks", "getSound", "eats");
-   //
-   // 	assertEquals(expectedMethodNames.size(), actualMethodNames.size());
-   // 	assertTrue(expectedMethodNames.containsAll(actualMethodNames));
-   // 	assertTrue(actualMethodNames.containsAll(expectedMethodNames));
-   // }
+   @Test
+   public void givenClass_whenGetsOnlyDeclaredMethods_thenCorrect() throws ClassNotFoundException {
+      final Class<?> birdClass = Class.forName("cn.tuyucheng.taketoday.reflection.Bird");
+      final List<String> actualMethodNames = getMethodNames(birdClass.getDeclaredMethods());
+
+      final List<String> expectedMethodNames = Arrays.asList("setWalks", "walks", "getSound", "eats");
+
+      assertEquals(expectedMethodNames.size(), actualMethodNames.size());
+      assertTrue(expectedMethodNames.containsAll(actualMethodNames));
+      assertTrue(actualMethodNames.containsAll(expectedMethodNames));
+
+   }
 
    @Test
    public void givenMethodName_whenGetsMethod_thenCorrect() throws Exception {
@@ -270,6 +272,7 @@ public class ReflectionUnitTest {
 
       assertTrue(walks2);
       assertTrue(bird.walks());
+
    }
 
    private static List<String> getFieldNames(Field[] fields) {
@@ -278,6 +281,7 @@ public class ReflectionUnitTest {
          fieldNames.add(field.getName());
       }
       return fieldNames;
+
    }
 
    private static List<String> getMethodNames(Method[] methods) {
@@ -287,4 +291,5 @@ public class ReflectionUnitTest {
       }
       return methodNames;
    }
+
 }

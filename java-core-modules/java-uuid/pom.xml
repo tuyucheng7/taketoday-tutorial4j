@@ -32,7 +32,7 @@
    </dependencies>
 
    <build>
-      <finalName>core-java-uuid</finalName>
+      <finalName>java-uuid</finalName>
       <resources>
          <resource>
             <directory>src/main/resources</directory>
@@ -144,6 +144,7 @@
    </profiles>
 
    <properties>
-      <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+      <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
    </properties>
+
 </project>

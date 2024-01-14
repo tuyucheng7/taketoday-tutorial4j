@@ -10,5 +10,5 @@ grant codebase "file:./target/core-java-security-2-0.1.0-SNAPSHOT.jar" {
 };
 
 grant principal com.sun.security.auth.UserPrincipal "testuser" {
-    permission jaas.cn.tuyucheng.taketoday.ResourcePermission "test_resource";
+    permission cn.tuyucheng.taketoday.jaas.ResourcePermission "test_resource";
 };

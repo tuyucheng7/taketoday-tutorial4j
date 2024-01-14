@@ -1,23 +1,23 @@
 package cn.tuyucheng.taketoday.jvmtimezone;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ModifyTimezonePropertyUnitTest {
 
-   @Before
+   @BeforeEach
    public void setup() {
       System.setProperty("user.timezone", "Asia/Kolkata");
       TimeZone.setDefault(null);
    }
 
-   @After
+   @AfterEach
    public void teardown() {
       System.clearProperty("user.timezone");
    }

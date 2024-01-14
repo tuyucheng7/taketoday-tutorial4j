@@ -24,19 +24,23 @@ public class CombiningMaps {
    }
 
    public static Map<String, String> usingJava8FlatMaps(Map<String, String> first, Map<String, String> second) {
-      return Stream.of(first, second).map(Map::entrySet).flatMap(Collection::stream)
+      Map<String, String> combined = Stream.of(first, second).map(Map::entrySet).flatMap(Collection::stream)
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, String::concat));
+      return combined;
 
    }
 
    public static Map<String, String> usingApacheCommons(Map<String, String> first, Map<String, String> second) {
-      return MapUtils.merge(first, second);
+      Map<String, String> combined = MapUtils.merge(first, second);
+      return combined;
    }
 
    public static Map<String, String> usingGuava(Map<String, String> first, Map<String, String> second) {
-      return ImmutableMap.<String, String>builder()
+      Map<String, String> combined = ImmutableMap.<String, String>builder()
             .putAll(first)
             .putAll(second)
             .build();
+      return combined;
    }
+
 }

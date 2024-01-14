@@ -19,4 +19,5 @@ public class DynamicGreeter implements Greeter {
    public String greet() {
       return greet;
    }
+
 }

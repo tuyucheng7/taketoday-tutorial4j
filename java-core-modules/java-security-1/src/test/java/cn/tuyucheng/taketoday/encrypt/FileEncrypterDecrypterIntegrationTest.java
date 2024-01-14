@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.encrypt;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
@@ -12,7 +12,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class FileEncrypterDecrypterIntegrationTest {
 

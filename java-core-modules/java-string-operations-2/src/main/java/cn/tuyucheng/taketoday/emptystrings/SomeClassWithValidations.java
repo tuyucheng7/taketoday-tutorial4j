@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.emptystrings;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 class SomeClassWithValidations {
 

@@ -15,4 +15,6 @@ public class NullSafeCollectionStreamsUsingNullDereferenceCheck {
    public Stream<String> collectionAsStream(Collection<String> collection) {
       return collection == null ? Stream.empty() : collection.stream();
    }
+
+
 }

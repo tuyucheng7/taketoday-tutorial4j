@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.list.listoflist;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ListOfListsUnitTest {
 
@@ -16,7 +16,7 @@ public class ListOfListsUnitTest {
    private List<Rubber> rubberList = new ArrayList<>();
 
    @SuppressWarnings("unchecked")
-   @Before
+   @BeforeEach
    public void init() {
       listOfLists.add(penList);
       listOfLists.add(pencilList);

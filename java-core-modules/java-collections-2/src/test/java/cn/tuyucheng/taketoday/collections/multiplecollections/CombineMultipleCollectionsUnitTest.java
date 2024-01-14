@@ -4,8 +4,8 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.IterableUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class CombineMultipleCollectionsUnitTest {
       Stream<String> combinedStream = Stream.concat(Stream.concat(collectionA.stream(), collectionB.stream()), collectionC.stream());
       Collection<String> collectionCombined = combinedStream.collect(Collectors.toList());
 
-      Assert.assertEquals(asList("S", "T", "U", "V", "W", "X"), collectionCombined);
+      Assertions.assertEquals(asList("S", "T", "U", "V", "W", "X"), collectionCombined);
    }
 
    @Test
@@ -40,7 +40,7 @@ public class CombineMultipleCollectionsUnitTest {
       Stream<String> combinedStream = Stream.of(collectionA, collectionB).flatMap(Collection::stream);
       Collection<String> collectionCombined = combinedStream.collect(Collectors.toList());
 
-      Assert.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
+      Assertions.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
    }
 
    @Test
@@ -51,7 +51,7 @@ public class CombineMultipleCollectionsUnitTest {
       Iterable<String> combinedIterables = Iterables.unmodifiableIterable(Iterables.concat(collectionA, collectionB));
       Collection<String> collectionCombined = Lists.newArrayList(combinedIterables);
 
-      Assert.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
+      Assertions.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
    }
 
    @Test
@@ -61,7 +61,7 @@ public class CombineMultipleCollectionsUnitTest {
 
       Iterable<String> combinedIterables = concat(collectionA, collectionB);
       Collection<String> collectionCombined = makeListFromIterable(combinedIterables);
-      Assert.assertEquals(Arrays.asList("S", "T", "U", "V"), collectionCombined);
+      Assertions.assertEquals(Arrays.asList("S", "T", "U", "V"), collectionCombined);
    }
 
    public static <E> Iterable<E> concat(Iterable<? extends E> i1, Iterable<? extends E> i2) {
@@ -123,7 +123,7 @@ public class CombineMultipleCollectionsUnitTest {
       Iterable<String> combinedIterables = CollectionUtils.union(collectionA, collectionB);
       Collection<String> collectionCombined = Lists.newArrayList(combinedIterables);
 
-      Assert.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
+      Assertions.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
    }
 
    @Test
@@ -134,6 +134,6 @@ public class CombineMultipleCollectionsUnitTest {
       Iterable<String> combinedIterables = IterableUtils.chainedIterable(collectionA, collectionB);
       Collection<String> collectionCombined = Lists.newArrayList(combinedIterables);
 
-      Assert.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
+      Assertions.assertEquals(asList("S", "T", "U", "V"), collectionCombined);
    }
 }

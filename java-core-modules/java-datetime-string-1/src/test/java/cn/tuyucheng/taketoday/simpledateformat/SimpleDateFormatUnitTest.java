@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.simpledateformat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -9,8 +9,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class SimpleDateFormatUnitTest {

@@ -8,8 +8,8 @@
    <packaging>jar</packaging>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
       <artifactId>java-core-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
       <version>1.0.0</version>
    </parent>
 
@@ -27,6 +27,6 @@
    </dependencies>
 
    <properties>
-      <commons-codec.version>1.15</commons-codec.version>
+      <commons-codec.version>1.16.0</commons-codec.version>
    </properties>
 </project>

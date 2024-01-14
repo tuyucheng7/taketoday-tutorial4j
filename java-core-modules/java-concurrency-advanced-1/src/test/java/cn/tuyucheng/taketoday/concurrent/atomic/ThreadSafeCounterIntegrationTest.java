@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ThreadSafeCounterIntegrationTest {
+public class ThreadSafeCounterIntegrationTest {
 
    @Test
-   void givenMultiThread_whenSafeCounterWithLockIncrement() throws InterruptedException {
+   public void givenMultiThread_whenSafeCounterWithLockIncrement() throws InterruptedException {
       ExecutorService service = Executors.newFixedThreadPool(3);
       SafeCounterWithLock safeCounter = new SafeCounterWithLock();
 
@@ -24,7 +24,7 @@ class ThreadSafeCounterIntegrationTest {
    }
 
    @Test
-   void givenMultiThread_whenSafeCounterWithoutLockIncrement() throws InterruptedException {
+   public void givenMultiThread_whenSafeCounterWithoutLockIncrement() throws InterruptedException {
       ExecutorService service = Executors.newFixedThreadPool(3);
       SafeCounterWithoutLock safeCounter = new SafeCounterWithoutLock();
 
@@ -54,4 +54,5 @@ class ThreadSafeCounterIntegrationTest {
          Thread.currentThread().interrupt();
       }
    }
+
 }

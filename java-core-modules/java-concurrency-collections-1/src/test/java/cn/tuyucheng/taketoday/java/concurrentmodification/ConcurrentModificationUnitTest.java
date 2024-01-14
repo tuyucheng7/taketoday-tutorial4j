@@ -1,20 +1,20 @@
 package cn.tuyucheng.taketoday.java.concurrentmodification;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Lists.newArrayList;
 
 public class ConcurrentModificationUnitTest {
-
    @Test(expected = ConcurrentModificationException.class)
-   public void givenIterating_whenRemoving_thenThrowException() {
+   public void givenIterating_whenRemoving_thenThrowException() throws InterruptedException {
+
       List<Integer> integers = newArrayList(1, 2, 3);
 
       for (Integer integer : integers) {
@@ -23,7 +23,8 @@ public class ConcurrentModificationUnitTest {
    }
 
    @Test
-   public void givenIterating_whenUsingIteratorRemove_thenNoError() {
+   public void givenIterating_whenUsingIteratorRemove_thenNoError() throws InterruptedException {
+
       List<Integer> integers = newArrayList(1, 2, 3);
 
       for (Iterator<Integer> iterator = integers.iterator(); iterator.hasNext(); ) {
@@ -37,7 +38,8 @@ public class ConcurrentModificationUnitTest {
    }
 
    @Test
-   public void givenIterating_whenUsingRemovalList_thenNoError() {
+   public void givenIterating_whenUsingRemovalList_thenNoError() throws InterruptedException {
+
       List<Integer> integers = newArrayList(1, 2, 3);
       List<Integer> toRemove = newArrayList();
 
@@ -52,7 +54,8 @@ public class ConcurrentModificationUnitTest {
    }
 
    @Test
-   public void whenUsingRemoveIf_thenRemoveElements() {
+   public void whenUsingRemoveIf_thenRemoveElements() throws InterruptedException {
+
       Collection<Integer> integers = newArrayList(1, 2, 3);
 
       integers.removeIf(i -> i == 2);
@@ -72,4 +75,5 @@ public class ConcurrentModificationUnitTest {
 
       assertThat(collected).containsExactly("1", "3");
    }
+
 }

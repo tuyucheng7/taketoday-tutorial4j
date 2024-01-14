@@ -12,23 +12,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AccountManualTest {
+public class AccountManualTest {
+
    private Account account;
 
    @BeforeEach
-   void setUp() {
+   public void setUp() {
       account = new Account();
    }
 
    @Test
-   void zeroBalanceInitializationTest() {
+   public void zeroBalanceInitializationTest() {
       assertEquals(0, account.getBalance());
       assertEquals(0, account.getTransactionCount());
       assertEquals(0, account.getCurrentThreadCASFailureCount());
    }
 
    @Test
-   void depositTest() {
+   public void depositTest() {
       final int moneyToDeposit = 50;
 
       assertTrue(account.deposit(moneyToDeposit));
@@ -38,7 +39,7 @@ class AccountManualTest {
    }
 
    @Test
-   void withdrawTest() {
+   public void withdrawTest() {
       final int defaultBalance = 50;
       final int moneyToWithdraw = 20;
 
@@ -49,7 +50,7 @@ class AccountManualTest {
    }
 
    @Test
-   void abaProblemTest() throws Exception {
+   public void abaProblemTest() throws Exception {
       final int defaultBalance = 50;
 
       final int amountToWithdrawByThread1 = 20;

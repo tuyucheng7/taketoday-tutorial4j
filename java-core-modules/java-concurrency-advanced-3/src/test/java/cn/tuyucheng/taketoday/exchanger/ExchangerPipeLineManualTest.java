@@ -11,12 +11,14 @@ import java.util.concurrent.ExecutionException;
 
 import static java.util.concurrent.CompletableFuture.runAsync;
 
-class ExchangerPipeLineManualTest {
+
+public class ExchangerPipeLineManualTest {
 
    private static final int BUFFER_SIZE = 100;
 
    @Test
-   void givenData_whenPassedThrough_thenCorrect() throws InterruptedException, ExecutionException {
+   public void givenData_whenPassedThrough_thenCorrect() throws InterruptedException, ExecutionException {
+
       Exchanger<Queue<String>> readerExchanger = new Exchanger<>();
       Exchanger<Queue<String>> writerExchanger = new Exchanger<>();
       int counter = 0;
@@ -77,4 +79,5 @@ class ExchangerPipeLineManualTest {
 
       CompletableFuture.allOf(runAsync(reader), runAsync(processor), runAsync(writer)).get();
    }
+
 }

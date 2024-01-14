@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.datetime;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,9 +28,9 @@ public class DateTimeFormatterUnitTest {
       DateTimeFormatter plTimeFormatter = DateTimeFormatter.ofPattern(pattern, new Locale("pl", "PL"));
       DateTimeFormatter deTimeFormatter = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.GERMANY);
 
-      Assert.assertEquals("01-January-2018 10:15:50.000", defaultTimeFormatter.format(localDateTime));
-      Assert.assertEquals("01-stycznia-2018 10:15:50.000", plTimeFormatter.format(localDateTime));
-      Assert.assertEquals("01-Januar-2018 10:15:50.000", deTimeFormatter.format(localDateTime));
+      Assertions.assertEquals("01-January-2018 10:15:50.000", defaultTimeFormatter.format(localDateTime));
+      Assertions.assertEquals("01-stycznia-2018 10:15:50.000", plTimeFormatter.format(localDateTime));
+      Assertions.assertEquals("01-Januar-2018 10:15:50.000", deTimeFormatter.format(localDateTime));
    }
 
    @Test
@@ -47,8 +47,8 @@ public class DateTimeFormatterUnitTest {
       System.out.println(formattedDateTime);
       System.out.println(frFormattedDateTime);
 
-      Assert.assertEquals("Monday, January 01, 2018 PST", formattedDateTime);
-      Assert.assertEquals("lundi, janvier 01, 2018 PST", frFormattedDateTime);
+      Assertions.assertEquals("Monday, January 01, 2018 PST", formattedDateTime);
+      Assertions.assertEquals("lundi, janvier 01, 2018 PST", frFormattedDateTime);
    }
 
    @Test
@@ -56,7 +56,7 @@ public class DateTimeFormatterUnitTest {
       String europeanDatePattern = "dd.MM.yyyy";
       DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern(europeanDatePattern);
       LocalDate summerDay = LocalDate.of(2016, 7, 31);
-      Assert.assertEquals("31.07.2016", europeanDateFormatter.format(summerDay));
+      Assertions.assertEquals("31.07.2016", europeanDateFormatter.format(summerDay));
    }
 
    @Test
@@ -64,7 +64,7 @@ public class DateTimeFormatterUnitTest {
       String timeColonPattern = "HH:mm:ss";
       DateTimeFormatter timeColonFormatter = DateTimeFormatter.ofPattern(timeColonPattern);
       LocalTime colonTime = LocalTime.of(17, 35, 50);
-      Assert.assertEquals("17:35:50", timeColonFormatter.format(colonTime));
+      Assertions.assertEquals("17:35:50", timeColonFormatter.format(colonTime));
    }
 
    @Test
@@ -72,7 +72,7 @@ public class DateTimeFormatterUnitTest {
       String timeColonPattern = "HH:mm:ss SSS";
       DateTimeFormatter timeColonFormatter = DateTimeFormatter.ofPattern(timeColonPattern);
       LocalTime colonTime = LocalTime.of(17, 35, 50).plus(329, ChronoUnit.MILLIS);
-      Assert.assertEquals("17:35:50 329", timeColonFormatter.format(colonTime));
+      Assertions.assertEquals("17:35:50 329", timeColonFormatter.format(colonTime));
    }
 
    @Test
@@ -80,7 +80,7 @@ public class DateTimeFormatterUnitTest {
       String timeColonPattern = "hh:mm:ss a";
       DateTimeFormatter timeColonFormatter = DateTimeFormatter.ofPattern(timeColonPattern);
       LocalTime colonTime = LocalTime.of(17, 35, 50);
-      Assert.assertEquals("05:35:50 PM", timeColonFormatter.format(colonTime));
+      Assertions.assertEquals("05:35:50 PM", timeColonFormatter.format(colonTime));
    }
 
    @Test
@@ -88,7 +88,7 @@ public class DateTimeFormatterUnitTest {
       String newYorkDateTimePattern = "dd.MM.yyyy HH:mm z";
       DateTimeFormatter newYorkDateFormatter = DateTimeFormatter.ofPattern(newYorkDateTimePattern);
       LocalDateTime summerDay = LocalDateTime.of(2016, 7, 31, 14, 15);
-      Assert.assertEquals("31.07.2016 14:15 UTC-04:00", newYorkDateFormatter.format(ZonedDateTime.of(summerDay, ZoneId.of("UTC-4"))));
+      Assertions.assertEquals("31.07.2016 14:15 UTC-04:00", newYorkDateFormatter.format(ZonedDateTime.of(summerDay, ZoneId.of("UTC-4"))));
    }
 
    @Test
@@ -96,16 +96,17 @@ public class DateTimeFormatterUnitTest {
       String newYorkDateTimePattern = "dd.MM.yyyy HH:mm z";
       DateTimeFormatter newYorkDateFormatter = DateTimeFormatter.ofPattern(newYorkDateTimePattern);
       LocalDateTime summerDay = LocalDateTime.of(2016, 7, 31, 14, 15);
-      Assert.assertEquals("31.07.2016 14:15 EDT", newYorkDateFormatter.format(ZonedDateTime.of(summerDay, ZoneId.of("America/New_York"))));
+      Assertions.assertEquals("31.07.2016 14:15 EDT",
+            newYorkDateFormatter.format(ZonedDateTime.of(summerDay, ZoneId.of("America/New_York"))));
    }
 
    @Test
    public void shouldPrintStyledDate() {
       LocalDate anotherSummerDay = LocalDate.of(2016, 8, 23);
-      Assert.assertEquals("Tuesday, August 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(anotherSummerDay));
-      Assert.assertEquals("August 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(anotherSummerDay));
-      Assert.assertEquals("Aug 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(anotherSummerDay));
-      Assert.assertEquals("8/23/16", DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(anotherSummerDay));
+      Assertions.assertEquals("Tuesday, August 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(anotherSummerDay));
+      Assertions.assertEquals("August 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(anotherSummerDay));
+      Assertions.assertEquals("Aug 23, 2016", DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(anotherSummerDay));
+      Assertions.assertEquals("8/23/16", DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(anotherSummerDay));
    }
 
    // Note: The exact output format using the different FormatStyle constants differs by JVM/Java version
@@ -120,14 +121,16 @@ public class DateTimeFormatterUnitTest {
 
    @Test
    public void shouldPrintFormattedDateTimeWithPredefined() {
-      Assert.assertEquals("2018-03-09", DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.of(2018, 3, 9)));
-      Assert.assertEquals("2018-03-09-03:00", DateTimeFormatter.ISO_OFFSET_DATE.format(LocalDate.of(2018, 3, 9).atStartOfDay(ZoneId.of("UTC-3"))));
-      Assert.assertEquals("Fri, 9 Mar 2018 00:00:00 -0300", DateTimeFormatter.RFC_1123_DATE_TIME.format(LocalDate.of(2018, 3, 9).atStartOfDay(ZoneId.of("UTC-3"))));
+      Assertions.assertEquals("2018-03-09", DateTimeFormatter.ISO_LOCAL_DATE.format(LocalDate.of(2018, 3, 9)));
+      Assertions.assertEquals("2018-03-09-03:00",
+            DateTimeFormatter.ISO_OFFSET_DATE.format(LocalDate.of(2018, 3, 9).atStartOfDay(ZoneId.of("UTC-3"))));
+      Assertions.assertEquals("Fri, 9 Mar 2018 00:00:00 -0300",
+            DateTimeFormatter.RFC_1123_DATE_TIME.format(LocalDate.of(2018, 3, 9).atStartOfDay(ZoneId.of("UTC-3"))));
    }
 
    @Test
    public void shouldParseDateTime() {
-      Assert.assertEquals(LocalDate.of(2018, 3, 12), LocalDate.from(DateTimeFormatter.ISO_LOCAL_DATE.parse("2018-03-09")).plusDays(3));
+      Assertions.assertEquals(LocalDate.of(2018, 3, 12), LocalDate.from(DateTimeFormatter.ISO_LOCAL_DATE.parse("2018-03-09")).plusDays(3));
    }
 
    // Note: The exact output format using the different FormatStyle constants differs by JVM/Java version
@@ -140,19 +143,19 @@ public class DateTimeFormatterUnitTest {
    @Test
    public void shouldParseDateWithCustomFormatter() {
       DateTimeFormatter europeanDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-      Assert.assertFalse(LocalDate.from(europeanDateFormatter.parse("15.08.2014")).isLeapYear());
+      Assertions.assertFalse(LocalDate.from(europeanDateFormatter.parse("15.08.2014")).isLeapYear());
    }
 
    @Test
    public void shouldParseTimeWithCustomFormatter() {
       DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
-      Assert.assertTrue(LocalTime.from(timeFormatter.parse("12:25:30 AM")).isBefore(LocalTime.NOON));
+      Assertions.assertTrue(LocalTime.from(timeFormatter.parse("12:25:30 AM")).isBefore(LocalTime.NOON));
    }
 
    @Test
    public void shouldParseZonedDateTimeWithCustomFormatter() {
       DateTimeFormatter zonedFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm z");
-      Assert.assertEquals(7200, ZonedDateTime.from(zonedFormatter.parse("31.07.2016 14:15 GMT+02:00")).getOffset().getTotalSeconds());
+      Assertions.assertEquals(7200, ZonedDateTime.from(zonedFormatter.parse("31.07.2016 14:15 GMT+02:00")).getOffset().getTotalSeconds());
    }
 
    @Test(expected = DateTimeParseException.class)
@@ -166,7 +169,7 @@ public class DateTimeFormatterUnitTest {
       ZonedDateTime zonedDateTime = ZonedDateTime.of(2021, 02, 15, 0, 0, 0, 0, ZoneId.of("Europe/Paris"));
       String formattedZonedDateTime = DateTimeFormatter.ISO_INSTANT.format(zonedDateTime);
 
-      Assert.assertEquals("2021-02-14T23:00:00Z", formattedZonedDateTime);
+      Assertions.assertEquals("2021-02-14T23:00:00Z", formattedZonedDateTime);
    }
 
    @Test(expected = UnsupportedTemporalTypeException.class)
@@ -179,7 +182,7 @@ public class DateTimeFormatterUnitTest {
       DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT.withZone(ZoneId.systemDefault());
       ZonedDateTime zonedDateTime = ZonedDateTime.parse("2021-10-01T05:06:20Z", formatter);
 
-      Assert.assertEquals("2021-10-01T05:06:20Z", DateTimeFormatter.ISO_INSTANT.format(zonedDateTime));
+      Assertions.assertEquals("2021-10-01T05:06:20Z", DateTimeFormatter.ISO_INSTANT.format(zonedDateTime));
    }
 
    @Test(expected = DateTimeParseException.class)
@@ -190,5 +193,37 @@ public class DateTimeFormatterUnitTest {
    @Test(expected = DateTimeParseException.class)
    public void shouldExpectAnExceptionIfSecondIsMissing() {
       ZonedDateTime zonedDateTime = ZonedDateTime.parse("2021-12-02T08:06Z", DateTimeFormatter.ISO_INSTANT);
+   }
+
+   @Test
+   public void testUSShortFormatting() {
+      LocalDate date = LocalDate.of(2023, 9, 18);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yy: EEE").withLocale(Locale.US);
+      String formattedDate = date.format(formatter);
+      Assertions.assertEquals("Sep 18, 23: Mon", formattedDate);
+   }
+
+   @Test
+   public void testUSFullFormatting() {
+      LocalDate date = LocalDate.of(2023, 9, 18);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy: EEEE").withLocale(Locale.US);
+      String formattedDate = date.format(formatter);
+      Assertions.assertEquals("September 18, 2023: Monday", formattedDate);
+   }
+
+   @Test
+   public void testKoreanShortFormatting() {
+      LocalDate date = LocalDate.of(2023, 9, 18);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yy: EEE").withLocale(Locale.KOREA);
+      String formattedDate = date.format(formatter);
+      Assertions.assertEquals("9월 18, 23: 월", formattedDate);
+   }
+
+   @Test
+   public void testKoreanFullFormatting() {
+      LocalDate date = LocalDate.of(2023, 9, 18);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy: EEEE").withLocale(Locale.KOREA);
+      String formattedDate = date.format(formatter);
+      Assertions.assertEquals("9월 18, 2023: 월요일", formattedDate);
    }
 }

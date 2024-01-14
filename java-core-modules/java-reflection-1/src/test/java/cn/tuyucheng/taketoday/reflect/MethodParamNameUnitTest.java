@@ -9,10 +9,11 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MethodParamNameUnitTest {
+public class MethodParamNameUnitTest {
 
    @Test
-   void whenGetConstructorParams_thenOk() throws NoSuchMethodException, SecurityException {
+   public void whenGetConstructorParams_thenOk()
+         throws NoSuchMethodException, SecurityException {
       List<Parameter> parameters
             = Arrays.asList(Person.class.getConstructor(String.class).getParameters());
       Optional<Parameter> parameter
@@ -21,7 +22,8 @@ class MethodParamNameUnitTest {
    }
 
    @Test
-   void whenGetMethodParams_thenOk() throws NoSuchMethodException, SecurityException {
+   public void whenGetMethodParams_thenOk()
+         throws NoSuchMethodException, SecurityException {
       List<Parameter> parameters
             = Arrays.asList(
             Person.class.getMethod("setFullName", String.class).getParameters());

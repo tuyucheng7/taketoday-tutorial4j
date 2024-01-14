@@ -13,9 +13,11 @@ public class InfiniteStreams {
       doWhileOldWay();
 
       doWhileStreamWay();
+
    }
 
    private static void doWhileOldWay() {
+
       int i = 0;
       while (i < 10) {
          LOG.debug("{}", i);

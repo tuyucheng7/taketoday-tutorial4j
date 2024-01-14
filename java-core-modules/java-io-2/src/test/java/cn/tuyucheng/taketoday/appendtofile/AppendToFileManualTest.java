@@ -1,6 +1,12 @@
 package cn.tuyucheng.taketoday.appendtofile;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.google.common.base.Charsets;
+import com.google.common.io.CharSink;
+import com.google.common.io.FileWriteMode;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,20 +20,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharSink;
-import com.google.common.io.FileWriteMode;
-import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppendToFileManualTest {
 
    public static final String fileName = "src/main/resources/countries.properties";
 
-   @Before
-   @After
+   @BeforeEach
+   @AfterEach
    public void setup() throws Exception {
       PrintWriter writer = new PrintWriter(fileName);
       writer.print("UK\r\n" + "US\r\n" + "Germany\r\n");

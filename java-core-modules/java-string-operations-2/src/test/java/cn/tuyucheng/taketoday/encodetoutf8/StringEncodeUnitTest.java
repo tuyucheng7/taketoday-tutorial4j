@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.encodetoutf8;
 
 import org.apache.commons.codec.binary.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class StringEncodeUnitTest {
 

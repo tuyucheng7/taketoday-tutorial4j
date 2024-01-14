@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.java.listInitialization;
 
 import lombok.extern.java.Log;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,14 +23,14 @@ public class ListInitializationUnitTest {
          }
       };
 
-      Assert.assertTrue(cities.contains("New York"));
+      Assertions.assertTrue(cities.contains("New York"));
    }
 
    @Test
    public void givenArraysAsList_thenInitialiseList() {
       List<String> list = Arrays.asList("foo", "bar");
 
-      Assert.assertTrue(list.contains("foo"));
+      Assertions.assertTrue(list.contains("foo"));
    }
 
    @Test(expected = UnsupportedOperationException.class)
@@ -45,7 +45,7 @@ public class ListInitializationUnitTest {
       String[] array = {"foo", "bar"};
       List<String> list = Arrays.asList(array);
       array[0] = "baz";
-      Assert.assertEquals("baz", list.get(0));
+      Assertions.assertEquals("baz", list.get(0));
    }
 
    @Test
@@ -53,6 +53,6 @@ public class ListInitializationUnitTest {
       List<String> list = Stream.of("foo", "bar")
             .collect(Collectors.toList());
 
-      Assert.assertTrue(list.contains("foo"));
+      Assertions.assertTrue(list.contains("foo"));
    }
 }

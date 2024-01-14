@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.humanreadablebytes;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,27 +30,27 @@ public class FileSizeFormatUtilUnitTest {
 
    @Test
    public void givenBytes_whenCalltoHumanReadableBinaryPrefixesMethod_thenGetExpectedResults() {
-      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assert.assertEquals(expected, FileSizeFormatUtil.toHumanReadableBinaryPrefixes(in)));
+      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assertions.assertEquals(expected, FileSizeFormatUtil.toHumanReadableBinaryPrefixes(in)));
    }
 
    @Test
    public void givenBytes_whenCalltoHumanReadableSIPrefixesMethod_thenGetExpectedResults() {
-      DATA_MAP_SI_PREFIXES.forEach((in, expected) -> Assert.assertEquals(expected, FileSizeFormatUtil.toHumanReadableSIPrefixes(in)));
+      DATA_MAP_SI_PREFIXES.forEach((in, expected) -> Assertions.assertEquals(expected, FileSizeFormatUtil.toHumanReadableSIPrefixes(in)));
    }
 
    @Test
    public void givenBytes_whenCalltoHumanReadableBinaryPrefixesWithEnumMethod_thenGetExpectedResults() {
-      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assert.assertEquals(expected, FileSizeFormatUtil.toHumanReadableBinaryPrefixesWithEnum(in)));
+      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assertions.assertEquals(expected, FileSizeFormatUtil.toHumanReadableBinaryPrefixesWithEnum(in)));
    }
 
    @Test
    public void givenBytes_whenCalltoHumanReadableSIPrefixesWithEnumMethod_thenGetExpectedResults() {
-      DATA_MAP_SI_PREFIXES.forEach((in, expected) -> Assert.assertEquals(expected, FileSizeFormatUtil.toHumanReadableSIPrefixesWithEnum(in)));
+      DATA_MAP_SI_PREFIXES.forEach((in, expected) -> Assertions.assertEquals(expected, FileSizeFormatUtil.toHumanReadableSIPrefixesWithEnum(in)));
    }
 
    @Test
    public void givenBytes_whenCalltoHumanReadableByLeadingZeros_thenGetExpectedResults() {
-      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assert.assertEquals(expected, FileSizeFormatUtil.toHumanReadableByNumOfLeadingZeros(in)));
+      DATA_MAP_BINARY_PREFIXES.forEach((in, expected) -> Assertions.assertEquals(expected, FileSizeFormatUtil.toHumanReadableByNumOfLeadingZeros(in)));
    }
 
    @Test

@@ -6,21 +6,21 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
-class SupplierStreamUnitTest {
+public class SupplierStreamUnitTest {
 
-   @Test
-   void givenStream_whenStreamUsedTwice_thenThrowException() {
+   @Test(expected = IllegalStateException.class)
+   public void givenStream_whenStreamUsedTwice_thenThrowException() {
       Stream<String> stringStream = Stream.of("A", "B", "C", "D");
       Optional<String> result1 = stringStream.findAny();
       System.out.println(result1.get());
-      assertThrows(IllegalStateException.class, () -> stringStream.findFirst().get());
+      Optional<String> result2 = stringStream.findFirst();
+      System.out.println(result2.get());
    }
 
    @Test
-   void givenStream_whenUsingSupplier_thenNoExceptionIsThrown() {
+   public void givenStream_whenUsingSupplier_thenNoExceptionIsThrown() {
       try {
          Supplier<Stream<String>> streamSupplier = () -> Stream.of("A", "B", "C", "D");
          Optional<String> result1 = streamSupplier.get().findAny();
@@ -31,4 +31,5 @@ class SupplierStreamUnitTest {
          fail();
       }
    }
+
 }

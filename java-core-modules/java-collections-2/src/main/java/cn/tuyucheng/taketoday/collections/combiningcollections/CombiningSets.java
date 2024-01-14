@@ -19,18 +19,23 @@ public class CombiningSets {
    }
 
    public static Set<Object> usingJava8ObjectStream(Set<Object> first, Set<Object> second) {
-      return Stream.concat(first.stream(), second.stream()).collect(Collectors.toSet());
+      Set<Object> combined = Stream.concat(first.stream(), second.stream()).collect(Collectors.toSet());
+      return combined;
    }
 
    public static Set<Object> usingJava8FlatMaps(Set<Object> first, Set<Object> second) {
-      return Stream.of(first, second).flatMap(Collection::stream).collect(Collectors.toSet());
+      Set<Object> combined = Stream.of(first, second).flatMap(Collection::stream).collect(Collectors.toSet());
+      return combined;
    }
 
    public static Set<Object> usingApacheCommons(Set<Object> first, Set<Object> second) {
-      return SetUtils.union(first, second);
+      Set<Object> combined = SetUtils.union(first, second);
+      return combined;
    }
 
    public static Set<Object> usingGuava(Set<Object> first, Set<Object> second) {
-      return Sets.union(first, second);
+      Set<Object> combined = Sets.union(first, second);
+      return combined;
    }
+
 }

@@ -12,10 +12,10 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InfiniteStreamUnitTest {
+public class InfiniteStreamUnitTest {
 
    @Test
-   void givenInfiniteStream_whenUseIntermediateLimitMethod_thenShouldTerminateInFiniteTime() {
+   public void givenInfiniteStream_whenUseIntermediateLimitMethod_thenShouldTerminateInFiniteTime() {
       // given
       Stream<Integer> infiniteStream = Stream.iterate(0, i -> i + 2);
 
@@ -25,11 +25,11 @@ class InfiniteStreamUnitTest {
             .collect(Collectors.toList());
 
       // then
-      assertEquals(Arrays.asList(0, 2, 4, 6, 8, 10, 12, 14, 16, 18), collect);
+      assertEquals(collect, Arrays.asList(0, 2, 4, 6, 8, 10, 12, 14, 16, 18));
    }
 
    @Test
-   void givenInfiniteStreamOfRandomInts_whenUseLimit_shouldTerminateInFiniteTime() {
+   public void givenInfiniteStreamOfRandomInts_whenUseLimit_shouldTerminateInFiniteTime() {
       // given
       Supplier<UUID> randomUUIDSupplier = UUID::randomUUID;
       Stream<UUID> infiniteStreamOfRandomUUID = Stream.generate(randomUUIDSupplier);
@@ -41,6 +41,7 @@ class InfiniteStreamUnitTest {
             .collect(Collectors.toList());
 
       // then
-      assertEquals(10, randomInts.size());
+      assertEquals(randomInts.size(), 10);
    }
+
 }

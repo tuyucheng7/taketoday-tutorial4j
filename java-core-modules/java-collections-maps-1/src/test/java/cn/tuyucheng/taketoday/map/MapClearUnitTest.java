@@ -1,13 +1,12 @@
 package cn.tuyucheng.taketoday.map;
 
-import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MapClearUnitTest {
-
    @Test
    public void givenMap_returnEntryAndClearContent() {
       Map entry = MapClear.returnCopyAndClearMap();

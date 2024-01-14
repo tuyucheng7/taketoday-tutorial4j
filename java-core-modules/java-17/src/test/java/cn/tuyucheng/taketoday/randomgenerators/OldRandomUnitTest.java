@@ -11,4 +11,5 @@ class OldRandomUnitTest {
       int number = OldRandom.getRandomInt(10);
       assertThat(number).isNotNegative().isLessThan(10);
    }
+
 }

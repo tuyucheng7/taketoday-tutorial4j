@@ -16,6 +16,7 @@ public class ProducerApp {
 
 
    public static void main(String[] args) throws Exception {
+
       MessageDigest digest = MessageDigest.getInstance("SHA1");
       digest.digest(new byte[256]);
       byte[] dummy = digest.digest();
@@ -50,6 +51,7 @@ public class ProducerApp {
       System.out.printf("%d iterations run\n", iterations);
       System.out.println("Press <enter> to exit");
       System.console().readLine();
+
    }
 
    private static long getBufferAddress(MappedByteBuffer shm) {
@@ -81,4 +83,5 @@ public class ProducerApp {
          throw new RuntimeException(ioe);
       }
    }
+
 }

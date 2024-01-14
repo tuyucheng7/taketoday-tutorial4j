@@ -16,6 +16,7 @@ import java.util.Random;
 public class ConsumerApp {
 
    public static void main(String[] args) throws Exception {
+
       MessageDigest digest = MessageDigest.getInstance("SHA1");
       digest.digest(new byte[256]);
       byte[] dummy = digest.digest();
@@ -60,6 +61,7 @@ public class ConsumerApp {
    }
 
    private static MappedByteBuffer createSharedMemory(String path, long size) {
+
       try (FileChannel fc = (FileChannel) Files.newByteChannel(
             new File(path).toPath(),
             EnumSet.of(
@@ -88,4 +90,5 @@ public class ConsumerApp {
          throw new RuntimeException(ex);
       }
    }
+
 }

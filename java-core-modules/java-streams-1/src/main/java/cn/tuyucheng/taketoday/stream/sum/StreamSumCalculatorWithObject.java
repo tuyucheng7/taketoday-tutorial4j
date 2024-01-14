@@ -34,4 +34,5 @@ public class StreamSumCalculatorWithObject {
             .mapToInt(x -> x.getPrice())
             .sum();
    }
+
 }

@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.utilities.lombok;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -8,7 +9,7 @@ class StringUtilsWithUtilityClassUnitTest {
 
    @Test
    void givenAnEmptyString_whenCallingIsEmpty_thenResultIsTrue() {
-      assertThat(StringUtilsWithUtilityClass.isEmpty("")).isTrue();
+      Assertions.assertThat(StringUtilsWithUtilityClass.isEmpty("")).isTrue();
    }
 
    @Test

@@ -5,7 +5,7 @@ import com.google.common.primitives.Chars;
 import com.google.common.primitives.Ints;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.CharBuffer;
 import java.util.Arrays;

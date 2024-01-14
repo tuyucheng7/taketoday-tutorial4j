@@ -1,19 +1,18 @@
 package cn.tuyucheng.taketoday.outputstream;
 
-import cn.tuyucheng.taketoday.outputstream.OutputStreamExamples;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OutputStreamExamplesUnitTest {
 
    StringBuilder filePath = new StringBuilder();
 
-   @Before
+   @BeforeEach
    public void init() {
       filePath.append("src");
       filePath.append(File.separator);

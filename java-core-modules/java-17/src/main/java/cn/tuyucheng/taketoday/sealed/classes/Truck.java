@@ -17,4 +17,5 @@ public final class Truck extends Vehicle implements Service {
    public int getMaxServiceIntervalInMonths() {
       return 18;
    }
+
 }

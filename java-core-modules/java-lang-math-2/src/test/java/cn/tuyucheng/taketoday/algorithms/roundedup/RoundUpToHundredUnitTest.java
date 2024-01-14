@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.algorithms.roundedup;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 public class RoundUpToHundredUnitTest {
    @Test

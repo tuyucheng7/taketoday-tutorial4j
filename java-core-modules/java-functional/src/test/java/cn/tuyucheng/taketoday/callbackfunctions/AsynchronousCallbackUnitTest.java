@@ -1,14 +1,12 @@
 package cn.tuyucheng.taketoday.callbackfunctions;
 
-import org.junit.Test;
-import org.mockito.Mockito;
-import cn.tuyucheng.taketoday.callbackfunctions.EventListener;
 import cn.tuyucheng.taketoday.callbackfunctions.asynchronous.AsynchronousEventConsumer;
 import cn.tuyucheng.taketoday.callbackfunctions.asynchronous.AsynchronousEventListenerImpl;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
 
 public class AsynchronousCallbackUnitTest {
 

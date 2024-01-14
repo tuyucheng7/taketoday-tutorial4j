@@ -33,4 +33,5 @@ class NestedClassesUnitTest {
             .collect(Collectors.toSet());
       assertThat(nestedMembers).contains(MainClass.class.getName(), MainClass.NestedClass.class.getName());
    }
+
 }

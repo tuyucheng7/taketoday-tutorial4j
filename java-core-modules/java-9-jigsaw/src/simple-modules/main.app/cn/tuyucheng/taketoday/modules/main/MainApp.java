@@ -6,7 +6,6 @@ import cn.tuyucheng.taketoday.modules.hello.HelloModules;
 import java.util.ServiceLoader;
 
 public class MainApp {
-
    public static void main(String[] args) {
       HelloModules.doSomething();
 

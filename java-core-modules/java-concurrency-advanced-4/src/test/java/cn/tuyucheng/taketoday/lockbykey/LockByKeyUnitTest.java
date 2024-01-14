@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LockByKeyUnitTest {
+public class LockByKeyUnitTest {
 
    @Test
    void givenNoLockedKey_WhenLock_ThenSuccess() throws InterruptedException {
@@ -102,4 +102,5 @@ class LockByKeyUnitTest {
          assertTrue(anotherThreadWasExecuted.get());
       }
    }
+
 }

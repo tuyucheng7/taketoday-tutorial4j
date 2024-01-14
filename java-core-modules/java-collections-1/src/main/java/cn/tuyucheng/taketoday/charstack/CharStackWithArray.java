@@ -44,4 +44,5 @@ public class CharStackWithArray {
          elements = newBiggerArray;
       }
    }
+
 }

@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.list.listvsarraylist;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ArrayListDemoUnitTest {
 
@@ -33,7 +32,7 @@ class ArrayListDemoUnitTest {
       ArrayList<Passenger> list = application.addPassenger(new Passenger("David", 54, "Milan", "Paris"));
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(4);
+      assertThat(list).hasSize(4);
    }
 
    @Test
@@ -41,7 +40,7 @@ class ArrayListDemoUnitTest {
       ArrayList<Passenger> list = application.removePassenger(passenger3);
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(2);
+      assertThat(list).hasSize(2);
    }
 
    @Test
@@ -49,7 +48,7 @@ class ArrayListDemoUnitTest {
       ArrayList<Passenger> list = application.getPassengersBySource("Singapore");
       ArrayList<Passenger> list2 = application.getPassengersBySource("London");
 
-      Assertions.assertThat(list).isEmpty();
+      assertThat(list).isEmpty();
       assertThat(list2.get(0)).isEqualTo(passenger1);
    }
 
@@ -58,7 +57,7 @@ class ArrayListDemoUnitTest {
       ArrayList<Passenger> list = application.getPassengersByDestination("Singapore");
       ArrayList<Passenger> list2 = application.getPassengersByDestination("London");
 
-      Assertions.assertThat(list).isEmpty();
+      assertThat(list).isEmpty();
       assertThat(list2.get(0)).isEqualTo(passenger2);
    }
 
@@ -78,7 +77,7 @@ class ArrayListDemoUnitTest {
       ArrayList<Passenger> list = application.getFinalPassengersList();
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(3);
+      assertThat(list).hasSize(3);
    }
 
    @Test

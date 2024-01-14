@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.collections.nullsafecollectionstreams;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NullSafeCollectionStreamsUsingCommonsEmptyIfNullUnitTest {
 

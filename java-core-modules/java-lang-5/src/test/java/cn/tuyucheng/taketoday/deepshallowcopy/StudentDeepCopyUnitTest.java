@@ -1,8 +1,9 @@
 package cn.tuyucheng.taketoday.deepshallowcopy;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 class StudentDeepCopyUnitTest {
 

@@ -17,7 +17,7 @@ public class ConvertPrimitivesArrayToList {
    }
 
    public static List<Integer> iterateConvert(int[] input) {
-      List<Integer> output = new ArrayList<>();
+      List<Integer> output = new ArrayList<Integer>();
       for (int value : input) {
          output.add(value);
       }
@@ -25,19 +25,24 @@ public class ConvertPrimitivesArrayToList {
    }
 
    public static List<Integer> streamConvert(int[] input) {
-      return Arrays.stream(input).boxed().collect(Collectors.toList());
+      List<Integer> output = Arrays.stream(input).boxed().collect(Collectors.toList());
+      return output;
    }
 
    public static List<Integer> streamConvertIntStream(int[] input) {
-      return IntStream.of(input).boxed().collect(Collectors.toList());
+      List<Integer> output = IntStream.of(input).boxed().collect(Collectors.toList());
+      return output;
    }
 
    public static List<Integer> guavaConvert(int[] input) {
-      return Ints.asList(input);
+      List<Integer> output = Ints.asList(input);
+      return output;
    }
 
    public static List<Integer> apacheCommonConvert(int[] input) {
       Integer[] outputBoxed = ArrayUtils.toObject(input);
-      return Arrays.asList(outputBoxed);
+      List<Integer> output = Arrays.asList(outputBoxed);
+      return output;
    }
+
 }

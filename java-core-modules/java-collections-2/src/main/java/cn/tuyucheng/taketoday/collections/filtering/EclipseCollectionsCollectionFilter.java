@@ -8,15 +8,16 @@ import java.util.Collection;
 
 public class EclipseCollectionsCollectionFilter {
 
-   public static Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
+   static public Collection<Integer> findEvenNumbers(Collection<Integer> baseCollection) {
       Predicate<Integer> eclipsePredicate = item -> item % 2 == 0;
-
-      return Lists.mutable.ofAll(baseCollection)
+      Collection<Integer> filteredList = Lists.mutable.ofAll(baseCollection)
             .select(eclipsePredicate);
+
+      return filteredList;
    }
 
-   public static Collection<Integer> findEvenNumbersUsingIterate(Collection<Integer> baseCollection) {
-      Predicate<Integer> eclipsePredicate = new Predicate<>() {
+   static public Collection<Integer> findEvenNumbersUsingIterate(Collection<Integer> baseCollection) {
+      Predicate<Integer> eclipsePredicate = new Predicate<Integer>() {
          private static final long serialVersionUID = 1L;
 
          @Override
@@ -24,7 +25,8 @@ public class EclipseCollectionsCollectionFilter {
             return arg0 % 2 == 0;
          }
       };
+      Collection<Integer> filteredList = Iterate.select(baseCollection, eclipsePredicate);
 
-      return Iterate.select(baseCollection, eclipsePredicate);
+      return filteredList;
    }
 }

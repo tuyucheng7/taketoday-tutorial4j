@@ -5,9 +5,9 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -27,7 +27,7 @@ public class GlobalExceptionHandlerUnitTest {
    @Captor
    private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
 
-   @Before
+   @BeforeEach
    public void setup() {
       final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
       logger.addAppender(mockAppender);
@@ -36,7 +36,7 @@ public class GlobalExceptionHandlerUnitTest {
       Thread.setDefaultUncaughtExceptionHandler(globalExceptionHandler);
    }
 
-   @After
+   @AfterEach
    public void teardown() {
       final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
       logger.detachAppender(mockAppender);

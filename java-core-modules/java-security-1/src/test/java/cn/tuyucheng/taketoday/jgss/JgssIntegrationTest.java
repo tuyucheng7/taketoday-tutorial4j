@@ -7,17 +7,17 @@ import org.ietf.jgss.GSSManager;
 import org.ietf.jgss.GSSName;
 import org.ietf.jgss.MessageProp;
 import org.ietf.jgss.Oid;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import javax.security.sasl.SaslException;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Ignore
+@Disabled
 public class JgssIntegrationTest {
 
    private static final String SERVER_PRINCIPAL = "HTTP/localhost@EXAMPLE.COM";
@@ -26,7 +26,7 @@ public class JgssIntegrationTest {
    GSSContext serverContext;
    GSSContext clientContext;
 
-   @Before
+   @BeforeEach
    public void setUp() throws SaslException, GSSException {
       GSSManager manager = GSSManager.getInstance();
       serverContext = manager.createContext((GSSCredential) null);
@@ -75,7 +75,7 @@ public class JgssIntegrationTest {
       assertEquals("Tuyucheng", string);
    }
 
-   @After
+   @AfterEach
    public void tearDown() throws SaslException, GSSException {
       serverContext.dispose();
       clientContext.dispose();

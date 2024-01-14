@@ -53,4 +53,5 @@ public class Consumer implements Runnable {
                Thread.currentThread().getName(), message.getId(), message.getData()));
       }
    }
+
 }

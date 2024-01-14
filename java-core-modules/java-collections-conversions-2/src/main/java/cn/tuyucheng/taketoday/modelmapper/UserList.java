@@ -4,8 +4,11 @@ import java.util.Collection;
 
 /**
  * UserList class that contain collection of users
+ *
+ * @author Sasa Milenkovic
  */
 public class UserList {
+
    public UserList() {
    }
 

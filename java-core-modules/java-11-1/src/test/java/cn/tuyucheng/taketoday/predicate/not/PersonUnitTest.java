@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.predicate.not;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.function.Predicate.not;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PersonUnitTest {
    private List<Person> people;
@@ -28,7 +28,7 @@ class PersonUnitTest {
             .filter(Person::isAdult)
             .collect(Collectors.toList());
 
-      Assertions.assertThat(adults).size().isEqualTo(1);
+      assertThat(adults).size().isEqualTo(1);
    }
 
    @Test
@@ -37,7 +37,7 @@ class PersonUnitTest {
             .filter(person -> !person.isAdult())
             .collect(Collectors.toList());
 
-      Assertions.assertThat(nonAdults).size().isEqualTo(2);
+      assertThat(nonAdults).size().isEqualTo(2);
    }
 
    @Test
@@ -46,7 +46,7 @@ class PersonUnitTest {
             .filter(Person::isNotAdult)
             .collect(Collectors.toList());
 
-      Assertions.assertThat(nonAdults).size().isEqualTo(2);
+      assertThat(nonAdults).size().isEqualTo(2);
    }
 
    @Test
@@ -55,6 +55,6 @@ class PersonUnitTest {
             .filter(not(Person::isAdult))
             .collect(Collectors.toList());
 
-      Assertions.assertThat(nonAdults).size().isEqualTo(2);
+      assertThat(nonAdults).size().isEqualTo(2);
    }
 }

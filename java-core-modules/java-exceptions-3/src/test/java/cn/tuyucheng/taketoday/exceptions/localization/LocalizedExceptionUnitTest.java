@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.exceptions.localization;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
@@ -12,12 +12,12 @@ public class LocalizedExceptionUnitTest {
 
    private Locale originalDefaultLocale;
 
-   @Before
+   @BeforeEach
    public void saveOriginalDefaultLocale() {
       originalDefaultLocale = Locale.getDefault();
    }
 
-   @After
+   @AfterEach
    public void restoreOriginalDefaultLocale() {
       Locale.setDefault(originalDefaultLocale);
    }

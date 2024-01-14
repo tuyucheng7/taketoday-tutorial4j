@@ -10,14 +10,15 @@ import java.util.concurrent.TimeoutException;
 public class FutureDemo {
 
    public String invoke() {
+
       String str = null;
 
       ExecutorService executorService = Executors.newFixedThreadPool(10);
 
       Future<String> future = executorService.submit(() -> {
          // Task
-         Thread.sleep(10000L);
-         return "Hello world";
+         Thread.sleep(10000l);
+         return "Hellow world";
       });
 
       future.cancel(false);
@@ -37,5 +38,7 @@ public class FutureDemo {
       }
 
       return str;
+
    }
+
 }

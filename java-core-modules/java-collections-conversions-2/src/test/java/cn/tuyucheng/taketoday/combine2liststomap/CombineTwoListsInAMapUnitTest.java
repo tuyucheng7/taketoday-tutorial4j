@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.combine2liststomap;
 
-import static java.lang.Math.min;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +10,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.junit.jupiter.api.Test;
+import static java.lang.Math.min;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CombineTwoListsInAMapUnitTest {
    private static final List<String> KEY_LIST = Arrays.asList("Number One", "Number Two", "Number Three", "Number Four", "Number Five");

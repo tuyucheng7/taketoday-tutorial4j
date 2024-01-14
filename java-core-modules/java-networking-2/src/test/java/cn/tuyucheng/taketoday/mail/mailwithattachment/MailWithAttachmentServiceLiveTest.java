@@ -1,20 +1,18 @@
 package cn.tuyucheng.taketoday.mail.mailwithattachment;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-
 import com.icegreen.greenmail.configuration.GreenMailConfiguration;
 import com.icegreen.greenmail.junit.GreenMailRule;
 import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetupTest;
-
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+import org.junit.Rule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MailWithAttachmentServiceLiveTest {
 
@@ -31,7 +29,7 @@ public class MailWithAttachmentServiceLiveTest {
 
    private MailWithAttachmentService emailService;
 
-   @Before
+   @BeforeEach
    public void setup() {
       emailService = new MailWithAttachmentService(
             USERNAME, PASSWORD, HOSTNAME, greenMail.getSmtp().getPort()

@@ -13,13 +13,14 @@ public class PatternMatchingForInstanceOf {
    abstract class Animal {
    }
 
-   class Cat extends Animal {
+   final class Cat extends Animal {
       void meow() {
       }
    }
 
-   class Dog extends Animal {
+   final class Dog extends Animal {
       void woof() {
       }
    }
+
 }

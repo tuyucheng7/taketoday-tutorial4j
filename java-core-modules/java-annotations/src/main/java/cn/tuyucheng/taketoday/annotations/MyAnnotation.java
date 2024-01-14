@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.LOCAL_VARIABLE, ElementType.FIELD})
 @interface MyAnnotation {
+
 }

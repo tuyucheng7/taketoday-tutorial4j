@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.branchprediction;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class IfUnitTest {
-   public static final int TOP = 1000000;
    private static final Logger LOG = LoggerFactory.getLogger(IfUnitTest.class);
+
+   public static final int TOP = 1000000;
 
    @Test
    public void majorBranchSorted() {

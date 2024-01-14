@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.features;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JEP412UnitTest {
 
    @Test
-   @Disabled("Need C Language Environment")
    void getPrintNameFormat_whenPassingAName_shouldReceiveItFormatted() {
       var jep412 = new JEP412();
 

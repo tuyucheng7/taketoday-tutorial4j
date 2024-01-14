@@ -1,6 +1,9 @@
 package cn.tuyucheng.taketoday.deletecontents;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,17 +18,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilesClearDataUnitTest {
 
    public static final String FILE_PATH = "src/test/resources/fileexample.txt";
 
-   @Before
-   @After
+   @BeforeEach
+   @AfterEach
    public void setup() throws IOException {
       PrintWriter writer = new PrintWriter(FILE_PATH);
       writer.print("This example shows how we can delete the file contents without deleting the file");

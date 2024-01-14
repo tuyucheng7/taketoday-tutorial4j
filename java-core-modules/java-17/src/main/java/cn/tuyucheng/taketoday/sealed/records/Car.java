@@ -10,4 +10,5 @@ public record Car(int numberOfSeats, String registrationNumber) implements Vehic
    public int getNumberOfSeats() {
       return numberOfSeats;
    }
+
 }

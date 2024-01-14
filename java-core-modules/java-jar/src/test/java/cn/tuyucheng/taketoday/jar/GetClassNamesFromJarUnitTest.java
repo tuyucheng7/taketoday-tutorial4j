@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.jar;
 
 import com.google.common.collect.Sets;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class GetClassNamesFromJarUnitTest {
    public void givenJarFilePath_whenLoadClassNames_thenGetClassNames() throws IOException, URISyntaxException {
       File jarFile = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(JAR_PATH)).toURI());
       Set<String> classNames = GetClassNamesFromJar.getClassNamesFromJarFile(jarFile);
-      Assert.assertEquals(EXPECTED_CLASS_NAMES, classNames);
+      Assertions.assertEquals(EXPECTED_CLASS_NAMES, classNames);
    }
 
    @Test
@@ -33,6 +33,6 @@ public class GetClassNamesFromJarUnitTest {
       File jarFile = new File(Objects.requireNonNull(getClass().getClassLoader().getResource(JAR_PATH)).toURI());
       Set<Class> classes = GetClassNamesFromJar.getClassesFromJarFile(jarFile);
       Set<String> names = classes.stream().map(Class::getName).collect(Collectors.toSet());
-      Assert.assertEquals(EXPECTED_CLASS_NAMES, names);
+      Assertions.assertEquals(EXPECTED_CLASS_NAMES, names);
    }
 }

@@ -277,4 +277,5 @@ class ByteArrayToNumericRepresentation {
       ArrayUtils.reverse(bytes);
       return bytes;
    }
+
 }

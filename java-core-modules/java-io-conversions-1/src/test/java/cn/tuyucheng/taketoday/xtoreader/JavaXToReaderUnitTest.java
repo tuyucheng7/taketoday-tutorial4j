@@ -1,5 +1,15 @@
 package cn.tuyucheng.taketoday.xtoreader;
 
+import com.google.common.io.ByteSource;
+import com.google.common.io.ByteStreams;
+import com.google.common.io.CharSource;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.CharSequenceReader;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
@@ -9,17 +19,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.Charset;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.input.CharSequenceReader;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.io.ByteSource;
-import com.google.common.io.ByteStreams;
-import com.google.common.io.CharSource;
 
 public class JavaXToReaderUnitTest {
    protected final Logger logger = LoggerFactory.getLogger(getClass());

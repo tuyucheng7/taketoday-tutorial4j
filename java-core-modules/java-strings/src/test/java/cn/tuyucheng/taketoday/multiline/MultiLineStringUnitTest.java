@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.multiline;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MultiLineStringUnitTest {
 
@@ -16,7 +16,7 @@ public class MultiLineStringUnitTest {
       assertEquals(ms.stringJoin(), ms.stringBuilder());
       assertEquals(ms.stringBuilder(), ms.guavaJoiner());
       assertEquals(ms.guavaJoiner(), ms.loadFromFile());
-      // assertEquals(ms.loadFromFile(), ms.textBlocks());
+      assertEquals(ms.loadFromFile(), ms.textBlocks());
    }
 
 }

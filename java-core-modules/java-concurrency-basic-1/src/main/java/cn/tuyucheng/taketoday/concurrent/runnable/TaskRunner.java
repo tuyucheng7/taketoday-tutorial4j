@@ -17,6 +17,7 @@ public class TaskRunner {
       executorService = Executors.newSingleThreadExecutor();
 
       EventLoggingTask task = new EventLoggingTask();
+
       Future future = executorService.submit(task);
 
       executorService.shutdown();

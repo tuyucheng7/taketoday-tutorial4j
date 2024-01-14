@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.mappedbytebuffer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.CharBuffer;
 import java.nio.MappedByteBuffer;
@@ -13,8 +13,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.EnumSet;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MappedByteBufferUnitTest {
 

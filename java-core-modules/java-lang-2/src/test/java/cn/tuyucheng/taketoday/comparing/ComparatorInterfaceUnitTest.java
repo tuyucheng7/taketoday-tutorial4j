@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.comparing;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ class ComparatorInterfaceUnitTest {
       };
       people.sort(compareByFirstNames);
 
-      Assertions.assertThat(people).containsExactly(allan, joe);
+      assertThat(people).containsExactly(allan, joe);
    }
 
    @Test
@@ -45,7 +44,7 @@ class ComparatorInterfaceUnitTest {
       Comparator<PersonWithEquals> compareByFirstNames = Comparator.comparing(PersonWithEquals::getFirstName);
       people.sort(compareByFirstNames);
 
-      Assertions.assertThat(people).containsExactly(allan, joe);
+      assertThat(people).containsExactly(allan, joe);
    }
 
    @Test
@@ -81,6 +80,6 @@ class ComparatorInterfaceUnitTest {
       people.add(richard);
       people.add(mike);
 
-      Assertions.assertThat(people).containsExactly(mike, richard);
+      assertThat(people).containsExactly(mike, richard);
    }
 }

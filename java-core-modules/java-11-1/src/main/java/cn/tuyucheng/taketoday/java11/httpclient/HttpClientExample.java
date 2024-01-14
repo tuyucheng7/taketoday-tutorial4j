@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cn.tuyucheng.taketoday.java11.httpclient;
 
 import java.io.IOException;
@@ -68,6 +73,7 @@ public class HttpClientExample {
                System.out.println("Response body: " + resp.body());
             });
       System.out.println("futureResponse" + futureResponse);
+
    }
 
    public static void asynchronousMultipleRequests() throws URISyntaxException {
@@ -97,7 +103,7 @@ public class HttpClientExample {
             .build();
 
       // Interface HttpResponse.PushPromiseHandler<T>
-      // void applyPushPromise(HttpRequest initiatingRequest, HttpRequest pushPromiseRequest, Function<HttpResponse.BodyHandler<T>, CompletableFuture<HttpResponse<T>>> acceptor)
+      // void applyPushPromise​(HttpRequest initiatingRequest, HttpRequest pushPromiseRequest, Function<HttpResponse.BodyHandler<T>,​CompletableFuture<HttpResponse<T>>> acceptor)
       httpClient.sendAsync(pageRequest, BodyHandlers.ofString(), pushPromiseHandler())
             .thenAccept(pageResponse -> {
                System.out.println("Page response status code: " + pageResponse.statusCode());
@@ -122,4 +128,5 @@ public class HttpClientExample {
          System.out.println("Promise request: " + pushPromiseRequest.headers());
       };
    }
+
 }

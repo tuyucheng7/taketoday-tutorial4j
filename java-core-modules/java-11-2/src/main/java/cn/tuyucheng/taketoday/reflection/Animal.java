@@ -19,4 +19,5 @@ public abstract class Animal implements Eating {
    }
 
    protected abstract String getSound();
+
 }

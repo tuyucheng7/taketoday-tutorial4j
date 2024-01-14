@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.externalizable;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ExternalizableUnitTest {
 
@@ -24,7 +24,7 @@ public class ExternalizableUnitTest {
 
    private File outputFile;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       outputFile = tempFolder.newFile(OUTPUT_FILE_NAME);
    }

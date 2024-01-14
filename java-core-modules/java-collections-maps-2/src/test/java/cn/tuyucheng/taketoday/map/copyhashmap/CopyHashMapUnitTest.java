@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.map.copyhashmap;
 
 import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;

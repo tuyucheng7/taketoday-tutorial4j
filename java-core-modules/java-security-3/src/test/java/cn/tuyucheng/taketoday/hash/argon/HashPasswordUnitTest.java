@@ -1,19 +1,15 @@
 package cn.tuyucheng.taketoday.hash.argon;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.nio.charset.StandardCharsets;
-import java.security.SecureRandom;
-
 import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
 import org.bouncycastle.crypto.params.Argon2Parameters;
-import org.bouncycastle.util.encoders.Hex;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Base64;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HashPasswordUnitTest {
 
@@ -61,4 +57,5 @@ public class HashPasswordUnitTest {
       secureRandom.nextBytes(salt);
       return salt;
    }
+
 }

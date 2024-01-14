@@ -73,6 +73,7 @@ public class Computer {
       final Computer computer = (Computer) o;
 
       return (age != null ? age.equals(computer.age) : computer.age == null) && (color != null ? color.equals(computer.color) : computer.color == null);
+
    }
 
    @Override

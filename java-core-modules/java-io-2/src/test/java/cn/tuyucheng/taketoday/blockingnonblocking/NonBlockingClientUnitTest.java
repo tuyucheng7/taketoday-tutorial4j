@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.blockingnonblocking;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,9 +14,12 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.StandardCharsets;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NonBlockingClientUnitTest {
    private String REQUESTED_RESOURCE = "/test.json";
@@ -24,7 +27,7 @@ public class NonBlockingClientUnitTest {
    @Rule
    public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
 
-   @Before
+   @BeforeEach
    public void setup() {
       stubFor(get(urlEqualTo(REQUESTED_RESOURCE)).willReturn(aResponse()
             .withStatus(200)

@@ -37,4 +37,5 @@ class ParenthesizedPatternsUnitTest {
    void givenPatternsImplementation_whenStringContainsSpecialChar_thenDoubleIsReturned() {
       assertEquals(0d, getDoubleValueUsingParenthesizedPatterns("@10"));
    }
+
 }

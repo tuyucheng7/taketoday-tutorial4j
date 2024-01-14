@@ -3,20 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
+   <artifactId>library-core</artifactId>
 
    <parent>
       <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
       <artifactId>java-9-jigsaw</artifactId>
       <version>1.0.0</version>
    </parent>
-
-   <artifactId>library-core</artifactId>
-
-   <properties>
-      <maven.compiler.source>19</maven.compiler.source>
-      <maven.compiler.target>19</maven.compiler.target>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-   </properties>
 
    <dependencies>
       <dependency>
@@ -53,4 +46,10 @@
          </plugin>
       </plugins>
    </build>
+
+   <properties>
+      <maven.compiler.source>19</maven.compiler.source>
+      <maven.compiler.target>19</maven.compiler.target>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
 </project>

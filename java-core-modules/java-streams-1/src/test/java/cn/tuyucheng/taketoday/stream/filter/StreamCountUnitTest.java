@@ -8,12 +8,12 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StreamCountUnitTest {
+public class StreamCountUnitTest {
 
    private List<Customer> customers;
 
    @BeforeEach
-   void setUp() {
+   public void setUp() {
       Customer john = new Customer("John P.", 15, "https://images.unsplash.com/photo-1543320485-d0d5a49c2b2e");
       Customer sarah = new Customer("Sarah M.", 200);
       Customer charles = new Customer("Charles B.", 150);
@@ -22,7 +22,7 @@ class StreamCountUnitTest {
    }
 
    @Test
-   void givenListOfCustomers_whenCount_thenGetListSize() {
+   public void givenListOfCustomers_whenCount_thenGetListSize() {
       long count = customers
             .stream()
             .count();
@@ -31,7 +31,7 @@ class StreamCountUnitTest {
    }
 
    @Test
-   void givenListOfCustomers_whenFilterByPointsOver100AndCount_thenGetTwo() {
+   public void givenListOfCustomers_whenFilterByPointsOver100AndCount_thenGetTwo() {
       long countBigCustomers = customers
             .stream()
             .filter(c -> c.getPoints() > 100)
@@ -41,7 +41,7 @@ class StreamCountUnitTest {
    }
 
    @Test
-   void givenListOfCustomers_whenFilterByPointsAndNameAndCount_thenGetOne() {
+   public void givenListOfCustomers_whenFilterByPointsAndNameAndCount_thenGetOne() {
       long count = customers
             .stream()
             .filter(c -> c.getPoints() > 10 && c.getName().startsWith("Charles"))
@@ -51,7 +51,7 @@ class StreamCountUnitTest {
    }
 
    @Test
-   void givenListOfCustomers_whenNoneMatchesFilterAndCount_thenGetZero() {
+   public void givenListOfCustomers_whenNoneMatchesFilterAndCount_thenGetZero() {
       long count = customers
             .stream()
             .filter(c -> c.getPoints() > 500)
@@ -61,7 +61,7 @@ class StreamCountUnitTest {
    }
 
    @Test
-   void givenListOfCustomers_whenUsingMethodOverHundredPointsAndCount_thenGetTwo() {
+   public void givenListOfCustomers_whenUsingMethodOverHundredPointsAndCount_thenGetTwo() {
       long count = customers
             .stream()
             .filter(Customer::hasOverHundredPoints)

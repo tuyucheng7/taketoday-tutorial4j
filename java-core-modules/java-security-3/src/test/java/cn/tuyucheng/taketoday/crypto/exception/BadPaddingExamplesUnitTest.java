@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday.crypto.exception;
 
 import cn.tuyucheng.taketoday.crypto.utils.CryptoUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.SecretKey;
@@ -18,7 +17,7 @@ public class BadPaddingExamplesUnitTest {
    private String plainText;
    private byte[] plainTextBytes;
 
-   @Before
+   @BeforeEach
    public void before() throws GeneralSecurityException {
       key = CryptoUtils.getFixedKey();
 
@@ -32,21 +31,20 @@ public class BadPaddingExamplesUnitTest {
    @Test
    public void givenTwoDifferentAlgorithmPaddings_whenDecrypting_thenBadPaddingExceptionIsThrown()
          throws GeneralSecurityException {
-      Assert.assertThrows(BadPaddingException.class,
+      Assertions.assertThrows(BadPaddingException.class,
             () -> BadPaddingExamples.encryptAndDecryptUsingDifferentPaddings(key, plainTextBytes));
    }
 
    @Test
-   @Ignore
    public void givenTwoDifferentKeys_whenDecrypting_thenBadPaddingExceptionIsThrown() throws GeneralSecurityException {
-      Assert.assertThrows(BadPaddingException.class,
+      Assertions.assertThrows(BadPaddingException.class,
             () -> BadPaddingExamples.encryptAndDecryptUsingDifferentKeys(plainTextBytes));
    }
 
    @Test
    public void givenTwoDifferentAlgorithms_whenDecrypting_thenBadPaddingExceptionIsThrown()
          throws GeneralSecurityException {
-      Assert.assertThrows(BadPaddingException.class, () -> BadPaddingExamples
+      Assertions.assertThrows(BadPaddingException.class, () -> BadPaddingExamples
             .encryptAndDecryptUsingDifferentAlgorithms(key, ivParameterSpec, plainTextBytes));
    }
 
@@ -56,6 +54,6 @@ public class BadPaddingExamplesUnitTest {
       byte[] decryptedBytes = BadPaddingExamples.encryptAndDecryptUsingSamePaddingKeyAndAlgorithm(key,
             plainTextBytes);
 
-      Assert.assertEquals(plainText, new String(decryptedBytes));
+      Assertions.assertEquals(plainText, new String(decryptedBytes));
    }
 }

@@ -6,7 +6,6 @@ import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 class EventWindowSort {
-
    private final ConcurrentSkipListMap<ZonedDateTime, String> events
          = new ConcurrentSkipListMap<>(Comparator.comparingLong(value -> value.toInstant().toEpochMilli()));
 
@@ -25,4 +24,6 @@ class EventWindowSort {
             .now()
             .minusMinutes(1));
    }
+
 }
+

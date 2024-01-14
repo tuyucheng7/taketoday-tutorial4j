@@ -19,6 +19,7 @@ public class LockByKey {
       private int removeThreadFromQueue() {
          return numberOfThreadsInQueue.decrementAndGet();
       }
+
    }
 
    private static ConcurrentHashMap<String, LockWrapper> locks = new ConcurrentHashMap<String, LockWrapper>();
@@ -36,4 +37,5 @@ public class LockByKey {
          locks.remove(key, lockWrapper);
       }
    }
+
 }

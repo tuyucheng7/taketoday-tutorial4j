@@ -8,4 +8,5 @@ public class OldRandom {
       Random random = new Random();
       return random.nextInt(bound);
    }
+
 }

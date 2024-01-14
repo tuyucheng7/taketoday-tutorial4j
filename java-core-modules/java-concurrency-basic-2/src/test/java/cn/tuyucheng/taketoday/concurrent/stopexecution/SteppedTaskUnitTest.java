@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class SteppedTaskUnitTest {
+public class SteppedTaskUnitTest {
 
    @Test
-   void run() throws InterruptedException {
+   public void run() throws InterruptedException {
       List<Step> steps = Stream.of(
                   new Step(1),
                   new Step(2),

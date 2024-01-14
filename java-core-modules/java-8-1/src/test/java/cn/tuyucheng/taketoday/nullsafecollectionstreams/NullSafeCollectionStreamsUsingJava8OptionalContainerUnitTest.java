@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cn.tuyucheng.taketoday.nullsafecollectionstreams;
 
 import org.junit.jupiter.api.Test;
@@ -9,25 +14,28 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NullSafeCollectionStreamsUsingJava8OptionalContainerUnitTest {
+/**
+ * @author Kwaje Anthony <kwajeanthony@gmail.com>
+ */
+public class NullSafeCollectionStreamsUsingJava8OptionalContainerUnitTest {
 
    private final NullSafeCollectionStreamsUsingJava8OptionalContainer instance = new NullSafeCollectionStreamsUsingJava8OptionalContainer();
 
    @Test
-   void whenCollectionIsNull_thenExpectAnEmptyStream() {
+   public void whenCollectionIsNull_thenExpectAnEmptyStream() {
       Collection<String> collection = null;
       Stream<String> expResult = Stream.empty();
       Stream<String> result = instance.collectionAsStream(collection);
-
       assertStreamEquals(expResult, result);
+
    }
 
    @Test
-   void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
+   public void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
+
       Collection<String> collection = Arrays.asList("a", "b", "c");
       Stream<String> expResult = Arrays.stream(new String[]{"a", "b", "c"});
       Stream<String> result = instance.collectionAsStream(collection);
-
       assertStreamEquals(expResult, result);
    }
 
@@ -37,4 +45,5 @@ class NullSafeCollectionStreamsUsingJava8OptionalContainerUnitTest {
          assertEquals(iter1.next(), iter2.next());
       assert !iter1.hasNext() && !iter2.hasNext();
    }
+
 }

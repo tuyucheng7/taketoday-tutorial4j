@@ -24,6 +24,7 @@ public class Producer implements Runnable {
    }
 
    public void produce() {
+
       while (running) {
 
          if (dataQueue.isFull()) {
@@ -58,4 +59,5 @@ public class Producer implements Runnable {
 
       return message;
    }
+
 }

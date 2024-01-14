@@ -14,7 +14,6 @@
    </parent>
 
    <dependencies>
-      <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
       <dependency>
          <groupId>commons-validator</groupId>
          <artifactId>commons-validator</artifactId>
@@ -59,4 +58,5 @@
       <apache.commons-validator.version>1.7</apache.commons-validator.version>
       <jsoup.version>1.16.2</jsoup.version>
    </properties>
+
 </project>

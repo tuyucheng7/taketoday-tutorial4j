@@ -16,6 +16,7 @@ public class AnimalSolution {
       return owner;
    }
 
+
    public void setName(String name) {
       synchronized (objLock1) {
          this.name = name;
@@ -29,10 +30,13 @@ public class AnimalSolution {
    }
 
    public AnimalSolution() {
+
    }
 
    public AnimalSolution(String name, String owner) {
       this.name = name;
       this.owner = owner;
    }
+
+
 }

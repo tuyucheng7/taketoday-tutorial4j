@@ -1,28 +1,28 @@
 package cn.tuyucheng.taketoday.reflection;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OperationsUnitTest {
 
    public OperationsUnitTest() {
    }
 
-   @Test(expected = IllegalAccessException.class)
+   @Test
    public void givenObject_whenInvokePrivateMethod_thenFail() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
       Method andPrivateMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
 
       Operations operationsInstance = new Operations();
-      Boolean result = (Boolean) andPrivateMethod.invoke(operationsInstance, true, false);
+      assertThrows(IllegalAccessException.class, () -> andPrivateMethod.invoke(operationsInstance, true, false));
 
-      assertFalse(result);
    }
 
    @Test
@@ -73,4 +73,5 @@ public class OperationsUnitTest {
 
       assertThat(result, equalTo(7.0));
    }
+
 }

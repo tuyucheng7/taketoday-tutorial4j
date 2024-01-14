@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.interview;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LocaleUnitTest {
    @Test

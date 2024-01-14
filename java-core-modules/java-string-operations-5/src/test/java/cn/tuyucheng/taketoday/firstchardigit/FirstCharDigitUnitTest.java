@@ -1,15 +1,16 @@
 package cn.tuyucheng.taketoday.firstchardigit;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
 
 class FirstCharDigitUnitTest {
 
    @Test
    void givenString_whenUsingCharAtMethod_thenSuccess() {
-      assertTrue(FirstCharDigit.checkUsingCharAtMethod("12 years"));
+      Assertions.assertTrue(FirstCharDigit.checkUsingCharAtMethod("12 years"));
       assertFalse(FirstCharDigit.checkUsingCharAtMethod("years"));
       assertFalse(FirstCharDigit.checkUsingCharAtMethod(""));
       assertFalse(FirstCharDigit.checkUsingCharAtMethod(null));
@@ -54,4 +55,5 @@ class FirstCharDigitUnitTest {
       assertFalse(FirstCharDigit.checkUsingCharMatcherForPredicateMethod(""));
       assertFalse(FirstCharDigit.checkUsingCharMatcherForPredicateMethod(null));
    }
+
 }

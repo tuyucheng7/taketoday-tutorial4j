@@ -1,6 +1,12 @@
 package cn.tuyucheng.taketoday.writebytearray;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.google.common.io.ByteSink;
+import com.google.common.io.MoreFiles;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,14 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
-import com.google.common.io.ByteSink;
-import com.google.common.io.MoreFiles;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class WriteByteArrayUnitTest {
    private static byte[] dataForWriting;
@@ -24,7 +23,7 @@ public class WriteByteArrayUnitTest {
    @Rule
    public TemporaryFolder tempFolder = new TemporaryFolder();
 
-   @BeforeClass
+   @BeforeAll
    public static void setup() throws IOException {
       dataForWriting = Files.readAllBytes(Paths.get("src/test/resources/example-image.jpg"));
    }

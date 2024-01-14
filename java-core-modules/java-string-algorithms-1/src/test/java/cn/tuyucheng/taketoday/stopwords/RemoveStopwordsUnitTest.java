@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.stopwords;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RemoveStopwordsUnitTest {
    final String original = "The quick brown fox jumps over the lazy dog";
    final String target = "quick brown fox jumps lazy dog";
    static List<String> stopwords;
 
-   @BeforeClass
+   @BeforeAll
    public static void loadStopwords() throws IOException {
       stopwords = Files.readAllLines(Paths.get("src/main/resources/english_stopwords.txt"));
    }

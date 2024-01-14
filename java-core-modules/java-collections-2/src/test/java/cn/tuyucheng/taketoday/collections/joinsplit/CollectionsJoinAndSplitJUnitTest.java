@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.collections.joinsplit;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class CollectionsJoinAndSplitJUnitTest {
 
    private ArrayList<ArrayList<String>> ingredients = new ArrayList<>();
 
-   @Before
+   @BeforeEach
    public void init() {
       sauces.add("Olive Oil");
       sauces.add("Marinara");
@@ -40,10 +40,10 @@ public class CollectionsJoinAndSplitJUnitTest {
       toppings.add(cheeses);
       toppings.add(vegetables);
 
-      Assert.assertTrue(toppings.size() == 3);
-      Assert.assertTrue(toppings.contains(sauces));
-      Assert.assertTrue(toppings.contains(cheeses));
-      Assert.assertTrue(toppings.contains(vegetables));
+      Assertions.assertTrue(toppings.size() == 3);
+      Assertions.assertTrue(toppings.contains(sauces));
+      Assertions.assertTrue(toppings.contains(cheeses));
+      Assertions.assertTrue(toppings.contains(vegetables));
    }
 
    @Test
@@ -52,10 +52,10 @@ public class CollectionsJoinAndSplitJUnitTest {
       ArrayList<ArrayList<String>> removedToppings = new ArrayList<>();
       removedToppings.add(ingredients.remove(ingredients.indexOf(vegetables)));
 
-      Assert.assertTrue(removedToppings.contains(vegetables));
-      Assert.assertTrue(removedToppings.size() == 1);
-      Assert.assertTrue(ingredients.size() == 2);
-      Assert.assertTrue(ingredients.contains(sauces));
-      Assert.assertTrue(ingredients.contains(cheeses));
+      Assertions.assertTrue(removedToppings.contains(vegetables));
+      Assertions.assertTrue(removedToppings.size() == 1);
+      Assertions.assertTrue(ingredients.size() == 2);
+      Assertions.assertTrue(ingredients.contains(sauces));
+      Assertions.assertTrue(ingredients.contains(cheeses));
    }
 }

@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwitchExpressionsWithYieldUnitTest {
+public class SwitchExpressionsWithYieldUnitTest {
 
    @Test
-   void whenSwitchingOnOperationSquareMe_thenWillReturnSquare() {
+   public void whenSwitchingOnOperationSquareMe_thenWillReturnSquare() {
       var me = 4;
       var operation = "squareMe";
       var result = switch (operation) {
@@ -22,4 +22,5 @@ class SwitchExpressionsWithYieldUnitTest {
 
       assertEquals(16, result);
    }
+
 }

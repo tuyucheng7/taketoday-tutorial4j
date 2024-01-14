@@ -31,4 +31,5 @@ public class AnimalBadPractice {
       this.name = name;
       this.owner = owner;
    }
+
 }

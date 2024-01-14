@@ -12,21 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class JavaStreamMapMultiUnitTest {
+public class JavaStreamMapMultiUnitTest {
 
-   private static final List<Album> albums = Arrays.asList(
-         new Album("album1", 10, Arrays.asList(
-               new Artist("bob", true, Arrays.asList("label1", "label3")),
-               new Artist("tom", true, Arrays.asList("label2", "label3")))
-         ),
-         new Album("album2", 20, Arrays.asList(
-               new Artist("bill", true, Arrays.asList("label2", "label3")),
-               new Artist("tom", true, Arrays.asList("label2", "label4")))
-         )
-   );
+   private static final List<Album> albums = Arrays.asList(new Album("album1", 10, Arrays.asList(new Artist("bob", true, Arrays.asList("label1", "label3")), new Artist("tom", true, Arrays.asList("label2", "label3")))),
+         new Album("album2", 20, Arrays.asList(new Artist("bill", true, Arrays.asList("label2", "label3")), new Artist("tom", true, Arrays.asList("label2", "label4")))));
 
    @Test
-   void givenAListOfintegers_whenMapMulti_thenGetListOfOfEvenDoublesPlusPercentage() {
+   public void givenAListOfintegers_whenMapMulti_thenGetListOfOfEvenDoublesPlusPercentage() {
+
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       double percentage = .01;
       List<Double> evenDoubles = integers.stream()
@@ -41,19 +34,21 @@ class JavaStreamMapMultiUnitTest {
    }
 
    @Test
-   void givenAListOfintegers_whenFilterMap_thenGetListOfOfEvenDoublesPlusPercentage() {
+   public void givenAListOfintegers_whenFilterMap_thenGetListOfOfEvenDoublesPlusPercentage() {
+
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
       double percentage = .01;
       List<Double> evenDoubles = integers.stream()
             .filter(integer -> integer % 2 == 0)
-            .map(integer -> ((double) integer * (1 + percentage)))
+            .<Double>map(integer -> ((double) integer * (1 + percentage)))
             .collect(toList());
 
       assertThat(evenDoubles).containsAll(Arrays.asList(2.02D, 4.04D));
    }
 
    @Test
-   void givenAListOfintegers_whenMapMultiToDouble_thenGetSumOfEvenNumbersAfterApplyPercentage() {
+   public void givenAListOfintegers_whenMapMultiToDouble_thenGetSumOfEvenNumbersAfterApplyPercentage() {
+
       List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
       double percentage = .01;
       double sum = integers.stream()
@@ -68,76 +63,72 @@ class JavaStreamMapMultiUnitTest {
    }
 
    @Test
-   void givenAListOfAlbums_whenFlatMap_thenGetListOfArtistAlbumPairs() {
+   public void givenAListOfAlbums_whenFlatMap_thenGetListOfArtistAlbumPairs() {
+
       List<Pair<String, String>> artistAlbum = albums.stream()
             .flatMap(album -> album.getArtists()
                   .stream()
-                  .map(artist -> new ImmutablePair<>(artist.getName(), album.getAlbumName())))
+                  .map(artist -> new ImmutablePair<String, String>(artist.getName(), album.getAlbumName())))
             .collect(toList());
 
-      assertThat(artistAlbum).contains(
-            new ImmutablePair<>("bob", "album1"),
-            new ImmutablePair<>("tom", "album1"),
-            new ImmutablePair<>("bill", "album2"),
-            new ImmutablePair<>("tom", "album2"));
+      assertThat(artistAlbum).contains(new ImmutablePair<String, String>("bob", "album1"), new ImmutablePair<String,
+            String>("tom", "album1"), new ImmutablePair<String, String>("bill", "album2"), new ImmutablePair<String, String>("tom", "album2"));
    }
 
    @Test
-   void givenAListOfAlbums_whenMapMulti_thenGetListOfPairsOfArtistAlbum() {
+   public void givenAListOfAlbums_whenMapMulti_thenGetListOfPairsOfArtistAlbum() {
+
       List<Pair<String, String>> artistAlbum = albums.stream()
             .<Pair<String, String>>mapMulti((album, consumer) -> {
                for (Artist artist : album.getArtists()) {
-                  consumer.accept(new ImmutablePair<>(artist.getName(), album.getAlbumName()));
+                  consumer.accept(new ImmutablePair<String, String>(artist.getName(), album.getAlbumName()));
                }
             })
             .collect(toList());
 
-      assertThat(artistAlbum).contains(
-            new ImmutablePair<>("bob", "album1"),
-            new ImmutablePair<>("tom", "album1"),
-            new ImmutablePair<>("bill", "album2"),
-            new ImmutablePair<>("tom", "album2"));
+      assertThat(artistAlbum).contains(new ImmutablePair<String, String>("bob", "album1"), new ImmutablePair<String, String>("tom", "album1"),
+            new ImmutablePair<String, String>("bill", "album2"), new ImmutablePair<String, String>("tom", "album2"));
    }
 
    @Test
-   void givenAListOfAlbums_whenFlatMap_thenGetListOfArtistAlbumjPairsBelowGivenCost() {
+   public void givenAListOfAlbums_whenFlatMap_thenGetListOfArtistAlbumjPairsBelowGivenCost() {
+
       int upperCost = 9;
       List<Pair<String, String>> artistAlbum = albums.stream()
             .flatMap(album -> album.getArtists()
                   .stream()
                   .filter(artist -> upperCost > album.getAlbumCost())
-                  .map(artist -> new ImmutablePair<>(artist.getName(), album.getAlbumName())))
+                  .map(artist -> new ImmutablePair<String, String>(artist.getName(), album.getAlbumName())))
             .collect(toList());
 
       assertTrue(artistAlbum.isEmpty());
    }
 
    @Test
-   void givenAListOfAlbums_whenMapMulti_thenGetListOfArtistAlbumPairsBelowGivenCost() {
+   public void givenAListOfAlbums_whenMapMulti_thenGetListOfArtistAlbumPairsBelowGivenCost() {
+
       int upperCost = 9;
       List<Pair<String, String>> artistAlbum = albums.stream()
             .<Pair<String, String>>mapMulti((album, consumer) -> {
                if (album.getAlbumCost() < upperCost) {
                   for (Artist artist : album.getArtists()) {
-                     consumer.accept(new ImmutablePair<>(artist.getName(), album.getAlbumName()));
+                     consumer.accept(new ImmutablePair<String, String>(artist.getName(), album.getAlbumName()));
                   }
                }
             })
-            .toList();
+            .collect(toList());
 
       assertTrue(artistAlbum.isEmpty());
    }
 
    @Test
-   void givenAListOfAlbums_whenMapMulti_thenGetPairsOfArtistMajorLabelsUsingMethodReference() {
+   public void givenAListOfAlbums_whenMapMulti_thenGetPairsOfArtistMajorLabelsUsingMethodReference() {
+
       List<Pair<String, String>> artistLabels = albums.stream()
             .mapMulti(Album::artistAlbumPairsToMajorLabels)
             .collect(toList());
 
-      assertThat(artistLabels).contains(
-            new ImmutablePair<>("bob:album1", "label1,label3"),
-            new ImmutablePair<>("tom:album1", "label2,label3"),
-            new ImmutablePair<>("bill:album2", "label2,label3"),
-            new ImmutablePair<>("tom:album2", "label2,label4"));
+      assertThat(artistLabels).contains(new ImmutablePair<String, String>("bob:album1", "label1,label3"), new ImmutablePair<String, String>("tom:album1", "label2,label3"),
+            new ImmutablePair<String, String>("bill:album2", "label2,label3"), new ImmutablePair<String, String>("tom:album2", "label2,label4"));
    }
 }

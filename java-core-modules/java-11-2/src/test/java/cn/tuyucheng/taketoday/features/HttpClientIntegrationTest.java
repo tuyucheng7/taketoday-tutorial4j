@@ -50,4 +50,5 @@ class HttpClientIntegrationTest {
       HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
       assertThat(httpResponse.body()).isEqualTo("Hello from the server!");
    }
+
 }

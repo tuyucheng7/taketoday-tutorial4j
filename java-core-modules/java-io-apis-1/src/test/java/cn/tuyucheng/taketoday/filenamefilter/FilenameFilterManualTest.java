@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.filenamefilter;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -15,7 +15,7 @@ public class FilenameFilterManualTest {
 
    private static File directory;
 
-   @BeforeClass
+   @BeforeAll
    public static void setupClass() {
       directory = new File(FilenameFilterManualTest.class.getClassLoader()
             .getResource("fileNameFilterManualTestFolder")
@@ -29,7 +29,7 @@ public class FilenameFilterManualTest {
       String[] expectedFiles = {"people.json", "students.json"};
       String[] actualFiles = directory.list(filter);
 
-      Assert.assertArrayEquals(expectedFiles, actualFiles);
+      Assertions.assertArrayEquals(expectedFiles, actualFiles);
    }
 
    @Test
@@ -42,7 +42,7 @@ public class FilenameFilterManualTest {
             .collect(Collectors.toList());
       String[] actualFiles = files.toArray(new String[files.size()]);
 
-      Assert.assertArrayEquals(expectedFiles, actualFiles);
+      Assertions.assertArrayEquals(expectedFiles, actualFiles);
    }
 
 }

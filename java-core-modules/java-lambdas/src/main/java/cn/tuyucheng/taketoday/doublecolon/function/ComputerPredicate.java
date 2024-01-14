@@ -6,4 +6,5 @@ import cn.tuyucheng.taketoday.doublecolon.Computer;
 public interface ComputerPredicate {
 
    boolean filter(Computer c);
+
 }

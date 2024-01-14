@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.compareto;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FootballPlayerUnitTest {
 
@@ -22,8 +23,8 @@ public class FootballPlayerUnitTest {
       set.add(messi);
       set.add(ronaldo);
 
-      Assertions.assertThat(set).hasSize(1);
-      Assertions.assertThat(set).doesNotContain(ronaldo);
+      assertThat(set).hasSize(1);
+      assertThat(set).doesNotContain(ronaldo);
    }
 
    @Test
@@ -36,7 +37,7 @@ public class FootballPlayerUnitTest {
       Comparator<FootballPlayer> nameComparator = Comparator.comparing(FootballPlayer::getName);
       Collections.sort(players, nameComparator);
 
-      Assertions.assertThat(players).containsExactly(messi, modric, ronaldo);
+      assertThat(players).containsExactly(messi, modric, ronaldo);
    }
 
    @Test
@@ -50,7 +51,7 @@ public class FootballPlayerUnitTest {
       players.put(messi, "forward");
       players.put(modric, "midfielder");
 
-      Assertions.assertThat(players.keySet()).containsExactly(modric, messi, ronaldo);
+      assertThat(players.keySet()).containsExactly(modric, messi, ronaldo);
    }
 
 }

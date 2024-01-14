@@ -21,7 +21,6 @@ public class Server {
    private final ExecutorService executor = Executors.newFixedThreadPool(5);
 
    public void serve(HttpServletRequest request, HttpServletResponse response) throws InterruptedException, ExecutionException {
-      String s = "hello world";
       Optional<User> user = authenticateUser(request);
       if (user.isPresent()) {
          Future<?> future = executor.submit(() ->
@@ -42,4 +41,5 @@ public class Server {
       return user.name().equals(request.getParameter("user_name"))
             && user.password().equals(request.getParameter("user_pw"));
    }
+
 }

@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.integertohex;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.apache.commons.codec.binary.Hex;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class IntegerToHexUnitTest {
 

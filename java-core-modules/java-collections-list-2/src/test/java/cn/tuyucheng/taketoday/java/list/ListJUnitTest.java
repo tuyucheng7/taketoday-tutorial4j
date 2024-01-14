@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.java.list;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -17,9 +17,9 @@ public class ListJUnitTest {
 
    @Test
    public void whenTestingForEquality_ShouldBeEqual() throws Exception {
-      Assert.assertEquals(list1, list2);
-      Assert.assertNotSame(list1, list2);
-      Assert.assertNotEquals(list1, list3);
+      Assertions.assertEquals(list1, list2);
+      Assertions.assertNotSame(list1, list2);
+      Assertions.assertNotEquals(list1, list3);
    }
 
    @Test
@@ -34,13 +34,13 @@ public class ListJUnitTest {
             .filter(otherList::contains)
             .collect(Collectors.toSet());
 
-      Assert.assertEquals(commonElements, result);
+      Assertions.assertEquals(commonElements, result);
 
       Set<String> inverseResult = otherList.stream()
             .distinct()
             .filter(list::contains)
             .collect(Collectors.toSet());
 
-      Assert.assertEquals(commonElements, inverseResult);
+      Assertions.assertEquals(commonElements, inverseResult);
    }
 }

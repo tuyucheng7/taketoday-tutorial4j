@@ -8,11 +8,13 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeNumbers extends RecursiveAction {
-   private final int lowerBound;
-   private final int upperBound;
-   private final int granularity;
-   static final List<Integer> GRANULARITIES = Arrays.asList(1, 10, 100, 1000, 10000);
-   private final AtomicInteger noOfPrimeNumbers;
+
+   private int lowerBound;
+   private int upperBound;
+   private int granularity;
+   static final List<Integer> GRANULARITIES
+         = Arrays.asList(1, 10, 100, 1000, 10000);
+   private AtomicInteger noOfPrimeNumbers;
 
    PrimeNumbers(int lowerBound, int upperBound, int granularity, AtomicInteger noOfPrimeNumbers) {
       this.lowerBound = lowerBound;
@@ -42,30 +44,37 @@ public class PrimeNumbers extends RecursiveAction {
 
    @Override
    protected void compute() {
-      if (((upperBound + 1) - lowerBound) > granularity)
+      if (((upperBound + 1) - lowerBound) > granularity) {
          ForkJoinTask.invokeAll(subTasks());
-      else
+      } else {
          findPrimeNumbers();
+      }
    }
 
    void findPrimeNumbers() {
-      for (int num = lowerBound; num <= upperBound; num++)
-         if (isPrime(num))
+      for (int num = lowerBound; num <= upperBound; num++) {
+         if (isPrime(num)) {
             noOfPrimeNumbers.getAndIncrement();
+         }
+      }
    }
 
    private boolean isPrime(int number) {
-      if (number == 2)
+      if (number == 2) {
          return true;
+      }
 
-      if (number == 1 || number % 2 == 0)
+      if (number == 1 || number % 2 == 0) {
          return false;
+      }
 
       int noOfNaturalNumbers = 0;
 
-      for (int i = 1; i <= number; i++)
-         if (number % i == 0)
+      for (int i = 1; i <= number; i++) {
+         if (number % i == 0) {
             noOfNaturalNumbers++;
+         }
+      }
 
       return noOfNaturalNumbers == 2;
    }

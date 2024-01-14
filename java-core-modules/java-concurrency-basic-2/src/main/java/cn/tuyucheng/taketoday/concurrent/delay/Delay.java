@@ -7,7 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Delay {
 
-   public static void main(String[] args) throws InterruptedException {
+   public static void main(String args[]) throws InterruptedException {
+
       threadSleep(4, 1);
 
       timeunitSleep(4, 1);
@@ -17,37 +18,54 @@ public class Delay {
       fixedRateServiceTask(5);
 
       System.out.println("Done.");
+
+      return;
+
    }
 
    private static void threadSleep(Integer iterations, Integer secondsToSleep) {
-      for (int i = 0; i < iterations; i++) {
-         System.out.println("This is loop iteration number " + i);
+
+      for (Integer i = 0; i < iterations; i++) {
+
+         System.out.println("This is loop iteration number " + i.toString());
+
          try {
             Thread.sleep(secondsToSleep * 1000);
          } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
          }
+
       }
+
    }
 
    private static void timeunitSleep(Integer iterations, Integer secondsToSleep) {
-      for (int i = 0; i < iterations; i++) {
-         System.out.println("This is loop iteration number " + i);
+
+      for (Integer i = 0; i < iterations; i++) {
+
+         System.out.println("This is loop iteration number " + i.toString());
+
          try {
             TimeUnit.SECONDS.sleep(secondsToSleep);
          } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
          }
+
       }
+
    }
 
    private static void delayedServiceTask(Integer delayInSeconds) {
+
       ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
       executorService.schedule(Delay::someTask1, delayInSeconds, TimeUnit.SECONDS);
+
       executorService.shutdown();
    }
 
    private static void fixedRateServiceTask(Integer delayInSeconds) {
+
       ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
       ScheduledFuture<?> sf = executorService.scheduleAtFixedRate(Delay::someTask2, 0, delayInSeconds,
@@ -60,6 +78,7 @@ public class Delay {
       }
 
       sf.cancel(true);
+
       executorService.shutdown();
    }
 
@@ -70,4 +89,5 @@ public class Delay {
    private static void someTask2() {
       System.out.println("Task 2 completed.");
    }
+
 }

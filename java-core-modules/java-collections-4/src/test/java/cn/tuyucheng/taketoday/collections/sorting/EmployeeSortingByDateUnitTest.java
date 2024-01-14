@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.collections.sorting;
 
-import org.apache.commons.lang.time.DateUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +18,7 @@ public class EmployeeSortingByDateUnitTest {
    private List<Employee> employeesSortedByDateAsc = new ArrayList<>();
    private List<Employee> employeesSortedByDateDesc = new ArrayList<>();
 
-   @Before
+   @BeforeEach
    public void initVariables() {
 
       Collections.addAll(employees,

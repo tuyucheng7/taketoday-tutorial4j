@@ -1,6 +1,12 @@
 package cn.tuyucheng.taketoday.threadlocalrandom;
 
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Warmup;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -20,6 +26,9 @@ public class ThreadLocalRandomBenchMarker {
 
    @Benchmark
    public int randomValuesUsingThreadLocalRandom() {
-      return ThreadLocalRandom.current().nextInt();
+      return ThreadLocalRandom
+            .current()
+            .nextInt();
    }
+
 }

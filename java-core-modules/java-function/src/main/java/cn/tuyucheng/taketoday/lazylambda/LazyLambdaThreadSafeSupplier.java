@@ -22,4 +22,5 @@ public class LazyLambdaThreadSafeSupplier<T> extends LambdaSupplier<T> {
       }
       return data.get();
    }
+
 }

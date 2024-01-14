@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.timeago.version8;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -20,12 +20,12 @@ public class TimeAgoCalculatorUnitTest {
 
    @Test
    public void calculateTimeAgoWithPeriodAndDurationTest() {
-      Assert.assertEquals("moments ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime(), ZoneId.systemDefault()));
-      Assert.assertEquals("several seconds ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofSeconds(5)), ZoneId.systemDefault()));
-      Assert.assertEquals("several minutes ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofMinutes(5)), ZoneId.systemDefault()));
-      Assert.assertEquals("several hours ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofHours(5)), ZoneId.systemDefault()));
-      Assert.assertEquals("several days ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofDays(5)), ZoneId.systemDefault()));
-      Assert.assertEquals("several months ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofMonths(5)), ZoneId.systemDefault()));
-      Assert.assertEquals("several years ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofYears(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("moments ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime(), ZoneId.systemDefault()));
+      Assertions.assertEquals("several seconds ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofSeconds(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("several minutes ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofMinutes(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("several hours ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Duration.ofHours(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("several days ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofDays(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("several months ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofMonths(5)), ZoneId.systemDefault()));
+      Assertions.assertEquals("several years ago", TimeAgoCalculator.calculateTimeAgoWithPeriodAndDuration(getCurrentTime().minus(Period.ofYears(5)), ZoneId.systemDefault()));
    }
 }

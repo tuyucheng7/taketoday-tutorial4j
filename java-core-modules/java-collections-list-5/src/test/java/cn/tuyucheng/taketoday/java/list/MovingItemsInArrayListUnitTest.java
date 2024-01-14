@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.java.list;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovingItemsInArrayListUnitTest {
 

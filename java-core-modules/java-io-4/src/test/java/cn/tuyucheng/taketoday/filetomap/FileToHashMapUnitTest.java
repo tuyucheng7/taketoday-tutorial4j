@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.filetomap;
 
-import cn.tuyucheng.taketoday.filetomap.FileToHashMap;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
@@ -36,7 +35,7 @@ public class FileToHashMapUnitTest {
          {"actor", "Sean Astin", "Ian McKellen"}
    }).collect(Collectors.toMap(arr -> arr[0], arr -> Arrays.asList(Arrays.copyOfRange(arr, 1, arr.length))));
 
-   @Before
+   @BeforeEach
    public void setPath() throws URISyntaxException {
       if (filePath == null) {
          filePath = Paths.get(ClassLoader.getSystemResource("filetomap/theLordOfRings.txt").toURI()).toString();

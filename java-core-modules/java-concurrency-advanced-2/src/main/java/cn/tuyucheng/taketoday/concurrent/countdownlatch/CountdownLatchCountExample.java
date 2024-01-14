@@ -3,7 +3,8 @@ package cn.tuyucheng.taketoday.concurrent.countdownlatch;
 import java.util.concurrent.CountDownLatch;
 
 public class CountdownLatchCountExample {
-   private final int count;
+
+   private int count;
 
    public CountdownLatchCountExample(int count) {
       this.count = count;
@@ -20,7 +21,7 @@ public class CountdownLatchCountExample {
       try {
          countDownLatch.await();
       } catch (InterruptedException e) {
-         Thread.currentThread().interrupt();
+         e.printStackTrace();
       }
       return countDownLatch.getCount() == 0;
    }

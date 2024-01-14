@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.volatilekeyword;
 
 public class TaskRunner {
+
    private static int number;
    private volatile static boolean ready;
 
@@ -11,6 +12,7 @@ public class TaskRunner {
          while (!ready) {
             Thread.yield();
          }
+
          System.out.println(number);
       }
    }

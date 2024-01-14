@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.ignore.pattern.metacharacters;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IgnoringPatternMetacharactersUnitTest {
    private static final String dollarAmounts = "$100.25, $100.50, $150.50, $100.50, $100.75";

@@ -57,4 +57,5 @@ class JavaElevenFeaturesUnitTest {
             .collect(Collectors.toList());
       assertThat(withoutBlanks).containsExactly("Java", "Kotlin");
    }
+
 }

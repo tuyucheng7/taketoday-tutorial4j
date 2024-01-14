@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.synchronousqueue;
 
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,22 +14,24 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
-class SynchronousQueueIntegrationTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class SynchronousQueueIntegrationTest {
+
    private static final Logger LOG = LoggerFactory.getLogger(SynchronousQueueIntegrationTest.class);
 
+
    @Test
-   void givenTwoThreads_whenWantToExchangeUsingLockGuardedVariable_thenItSucceed() throws InterruptedException {
+   public void givenTwoThreads_whenWantToExchangeUsingLockGuardedVariable_thenItSucceed() throws InterruptedException {
       // given
       ExecutorService executor = Executors.newFixedThreadPool(2);
       AtomicInteger sharedState = new AtomicInteger();
       CountDownLatch countDownLatch = new CountDownLatch(1);
 
       Runnable producer = () -> {
-         int producedElement = ThreadLocalRandom.current().nextInt();
-         LOG.info("Saving an element: " + producedElement + " to the exchange point");
+         Integer producedElement = ThreadLocalRandom.current().nextInt();
+         LOG.debug("Saving an element: " + producedElement + " to the exchange point");
          sharedState.set(producedElement);
          countDownLatch.countDown();
       };
@@ -37,10 +39,10 @@ class SynchronousQueueIntegrationTest {
       Runnable consumer = () -> {
          try {
             countDownLatch.await();
-            int consumedElement = sharedState.get();
-            LOG.info("consumed an element: " + consumedElement + " from the exchange point");
-         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Integer consumedElement = sharedState.get();
+            LOG.debug("consumed an element: " + consumedElement + " from the exchange point");
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
          }
       };
 
@@ -51,31 +53,31 @@ class SynchronousQueueIntegrationTest {
       // then
       executor.awaitTermination(500, TimeUnit.MILLISECONDS);
       executor.shutdown();
-      assertEquals(0, countDownLatch.getCount());
+      assertEquals(countDownLatch.getCount(), 0);
    }
 
    @Test
-   void givenTwoThreads_whenWantToExchangeUsingSynchronousQueue_thenItSucceed() throws InterruptedException {
+   public void givenTwoThreads_whenWantToExchangeUsingSynchronousQueue_thenItSucceed() throws InterruptedException {
       // given
       ExecutorService executor = Executors.newFixedThreadPool(2);
       final SynchronousQueue<Integer> queue = new SynchronousQueue<>();
 
       Runnable producer = () -> {
-         int producedElement = ThreadLocalRandom.current().nextInt();
+         Integer producedElement = ThreadLocalRandom.current().nextInt();
          try {
-            LOG.info("Saving an element: " + producedElement + " to the exchange point");
+            LOG.debug("Saving an element: " + producedElement + " to the exchange point");
             queue.put(producedElement);
-         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
          }
       };
 
       Runnable consumer = () -> {
          try {
             Integer consumedElement = queue.take();
-            LOG.info("consumed an element: " + consumedElement + " from the exchange point");
-         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            LOG.debug("consumed an element: " + consumedElement + " from the exchange point");
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
          }
       };
 
@@ -86,6 +88,6 @@ class SynchronousQueueIntegrationTest {
       // then
       executor.awaitTermination(500, TimeUnit.MILLISECONDS);
       executor.shutdown();
-      assertEquals(0, queue.size());
+      assertEquals(queue.size(), 0);
    }
 }

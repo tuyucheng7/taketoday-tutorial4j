@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.httpclient.ssl;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.SSLContext;
@@ -19,8 +20,6 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class HttpClientSSLBypassUnitTest {
 
    @Test
@@ -38,7 +37,7 @@ public class HttpClientSSLBypassUnitTest {
       HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
       props.setProperty("jdk.internal.httpclient.disableHostnameVerification", Boolean.FALSE.toString());
 
-      assertEquals(200, response.statusCode());
+      Assertions.assertEquals(200, response.statusCode());
    }
 
    @Test
@@ -50,7 +49,7 @@ public class HttpClientSSLBypassUnitTest {
             .uri(new URI("https://wrong.host.badssl.com/"))
             .build();
       HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-      assertEquals(200, response.statusCode());
+      Assertions.assertEquals(200, response.statusCode());
    }
 
 

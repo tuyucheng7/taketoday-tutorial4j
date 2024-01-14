@@ -63,4 +63,5 @@ class DelimiterDemoUnitTest {
    void whenBaseScanner_ThenWhitespacesAreUsedAsDelimiters() {
       assertEquals(List.of("Welcome", "at", "Tuyucheng"), DelimiterDemo.baseScanner("Welcome at Tuyucheng"));
    }
+
 }

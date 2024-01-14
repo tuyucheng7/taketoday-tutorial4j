@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class InstanceOfPatternMatchingUnitTest {
+public class InstanceOfPatternMatchingUnitTest {
 
    @Test
    void givenTheNewPatternMatchingAbility_whenComparingAgainstTheTradiationalApproach_thenBothVariablesAreEqual() {

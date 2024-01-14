@@ -1,7 +1,8 @@
 package cn.tuyucheng.taketoday.extension;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import com.j256.simplemagic.ContentType;
+import org.apache.tika.mime.MimeTypeException;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,9 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.tika.mime.MimeTypeException;
-import com.j256.simplemagic.ContentType;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExtensionFromMimeTypeUnitTest {
    private static final String IMAGE_JPEG_MIME_TYPE = "image/jpeg";

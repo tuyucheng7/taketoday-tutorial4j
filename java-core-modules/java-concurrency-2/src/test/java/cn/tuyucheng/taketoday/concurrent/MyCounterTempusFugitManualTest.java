@@ -4,11 +4,11 @@ import com.google.code.tempusfugit.concurrency.ConcurrentRule;
 import com.google.code.tempusfugit.concurrency.RepeatingRule;
 import com.google.code.tempusfugit.concurrency.annotations.Concurrent;
 import com.google.code.tempusfugit.concurrency.annotations.Repeating;
-import org.junit.AfterClass;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * This is defined as a manual test because it tries to simulate the race conditions
@@ -31,8 +31,9 @@ public class MyCounterTempusFugitManualTest {
       counter.increment();
    }
 
-   @AfterClass
+   @AfterAll
    public static void annotatedTestRunsMultipleTimes() throws InterruptedException {
       assertEquals(counter.getCount(), 20);
    }
+
 }

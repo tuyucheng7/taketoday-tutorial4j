@@ -22,7 +22,7 @@ public class FactorialTask implements Callable<Integer> {
       return fact;
    }
 
-   private static class InvalidParamaterException extends Exception {
+   private class InvalidParamaterException extends Exception {
       public InvalidParamaterException(String message) {
          super(message);
       }

@@ -1,11 +1,10 @@
 package cn.tuyucheng.taketoday.enums;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class EnumSearcherUnitTest {
@@ -13,43 +12,43 @@ public class EnumSearcherUnitTest {
    @Test
    public void givenWeekdays_whenValidDirectionNameProvided_directionIsFound() {
       Direction result = Direction.findByName("EAST");
-      assertThat(result).isEqualTo(Direction.EAST);
+      Assertions.assertThat(result).isEqualTo(Direction.EAST);
    }
 
    @Test
    public void givenWeekdays_whenValidDirectionNameLowerCaseProvided_directionIsFound() {
       Direction result = Direction.findByName("east");
-      assertThat(result).isEqualTo(Direction.EAST);
+      Assertions.assertThat(result).isEqualTo(Direction.EAST);
    }
 
    @Test
    public void givenWeekdays_whenInvalidDirectionNameProvided_nullIsReturned() {
       Direction result = Direction.findByName("E");
-      assertThat(result).isNull();
+      Assertions.assertThat(result).isNull();
    }
 
    @Test
    public void givenWeekdays_whenValidWeekdayNameProvided_weekdayIsFound() {
       Weekday result = Weekday.findByName("MONDAY");
-      assertThat(result).isEqualTo(Weekday.MONDAY);
+      Assertions.assertThat(result).isEqualTo(Weekday.MONDAY);
    }
 
    @Test
    public void givenWeekdays_whenInvalidWeekdayNameProvided_nullIsReturned() {
       Weekday result = Weekday.findByName("MON");
-      assertThat(result).isNull();
+      Assertions.assertThat(result).isNull();
    }
 
    @Test
    public void givenWeekdays_whenValidWeekdayValueProvided_weekdayIsFound() {
       Weekday result = Weekday.findByValue("Monday");
-      assertThat(result).isEqualTo(Weekday.MONDAY);
+      Assertions.assertThat(result).isEqualTo(Weekday.MONDAY);
    }
 
    @Test
    public void givenWeekdays_whenInvalidWeekdayValueProvided_nullIsReturned() {
       Weekday result = Weekday.findByValue("mon");
-      assertThat(result).isNull();
+      Assertions.assertThat(result).isNull();
    }
 
    @Test
@@ -79,7 +78,7 @@ public class EnumSearcherUnitTest {
    @Test
    public void givenMonths_whenValidMonthValueProvided_monthIsReturned() {
       Month result = Month.findByValue("January");
-      assertThat(result).isEqualTo(Month.JANUARY);
+      Assertions.assertThat(result).isEqualTo(Month.JANUARY);
    }
 
    @Test

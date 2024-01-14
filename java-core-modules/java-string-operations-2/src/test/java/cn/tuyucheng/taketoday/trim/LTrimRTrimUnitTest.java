@@ -2,8 +2,8 @@ package cn.tuyucheng.taketoday.trim;
 
 import com.google.common.base.CharMatcher;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * BAEL-3755: LTrim and RTrim examples.
@@ -20,9 +20,9 @@ public class LTrimRTrimUnitTest {
       String rtrim = LTrimRTrim.whileRtrim(src);
 
       // Compare the Strings obtained and the expected
-      Assert.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
+      Assertions.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
 
-      Assert.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
+      Assertions.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
    }
 
    @Test
@@ -32,9 +32,9 @@ public class LTrimRTrimUnitTest {
       String rtrim = src.replaceAll("\\s+$", "");
 
       // Compare the Strings obtained and the expected
-      Assert.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
+      Assertions.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
 
-      Assert.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
+      Assertions.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
    }
 
    @Test
@@ -44,9 +44,9 @@ public class LTrimRTrimUnitTest {
       String rtrim = LTrimRTrim.patternRtrim(src);
 
       // Compare the Strings obtained and the expected
-      Assert.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
+      Assertions.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
 
-      Assert.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
+      Assertions.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
    }
 
    @Test
@@ -57,9 +57,9 @@ public class LTrimRTrimUnitTest {
       String rtrim = CharMatcher.whitespace().trimTrailingFrom(src);
 
       // Compare the Strings obtained and the expected
-      Assert.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
+      Assertions.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
 
-      Assert.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
+      Assertions.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
    }
 
    @Test
@@ -69,8 +69,8 @@ public class LTrimRTrimUnitTest {
       String rtrim = StringUtils.stripEnd(src, null);
 
       // Compare the Strings obtained and the expected
-      Assert.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
-      Assert.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
+      Assertions.assertTrue(ltrimResult.equalsIgnoreCase(ltrim));
+      Assertions.assertTrue(rtrimResult.equalsIgnoreCase(rtrim));
    }
 
 }

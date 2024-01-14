@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.java9.reactive;
 
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.Stopwatch;
 
 import java.util.concurrent.ForkJoinPool;
@@ -10,8 +10,8 @@ import java.util.concurrent.SubmissionPublisher;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TuyuchengSubscriberImplIntegrationTest {
 
@@ -19,7 +19,7 @@ public class TuyuchengSubscriberImplIntegrationTest {
    private SubmissionPublisher<String> publisher;
    private TuyuchengSubscriberImpl<String> subscriber;
 
-   @Before
+   @BeforeEach
    public void initialize() {
       // create Publisher with max buffer capacity 3.
       this.publisher = new SubmissionPublisher<String>(ForkJoinPool.commonPool(), 3);
@@ -96,4 +96,5 @@ public class TuyuchengSubscriberImplIntegrationTest {
       // Because 10 items were offered and the buffer capacity was 3, few items will not be processed.
       assertTrue(ITEM_SIZE > count);
    }
+
 }

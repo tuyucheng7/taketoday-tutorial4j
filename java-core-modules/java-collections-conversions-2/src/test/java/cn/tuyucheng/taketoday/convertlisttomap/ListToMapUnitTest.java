@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.convertlisttomap;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,14 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ListToMapUnitTest {
 
    private ListToMapConverter converter;
    private List<String> source;
 
-   @Before
+   @BeforeEach
    public void setUp() {
       converter = new ListToMapConverter();
       source = Arrays.asList("List", "Map", "Set", "Tree");

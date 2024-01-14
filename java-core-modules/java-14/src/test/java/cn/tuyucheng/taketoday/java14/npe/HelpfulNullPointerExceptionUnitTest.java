@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.java14.npe;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static cn.tuyucheng.taketoday.java14.npe.HelpfulNullPointerException.Employee;
-import static cn.tuyucheng.taketoday.java14.npe.HelpfulNullPointerException.PersonalDetails;
+import static cn.tuyucheng.taketoday.java14.helpfulnullpointerexceptions.HelpfulNullPointerException.Employee;
+import static cn.tuyucheng.taketoday.java14.helpfulnullpointerexceptions.HelpfulNullPointerException.PersonalDetails;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HelpfulNullPointerExceptionUnitTest {
@@ -33,4 +33,5 @@ public class HelpfulNullPointerExceptionUnitTest {
 
       assertThat(helpfulNPE.getEmployeeEmailAddress(employee)).isEqualTo(emailAddress);
    }
+
 }

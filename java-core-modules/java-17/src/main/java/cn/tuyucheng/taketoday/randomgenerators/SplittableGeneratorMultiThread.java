@@ -26,4 +26,5 @@ public class SplittableGeneratorMultiThread {
 
       return numbers;
    }
+
 }

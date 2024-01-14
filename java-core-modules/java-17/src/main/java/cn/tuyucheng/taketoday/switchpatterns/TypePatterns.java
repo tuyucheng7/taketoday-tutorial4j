@@ -18,7 +18,7 @@ public class TypePatterns {
       return result;
    }
 
-   static Double getDoubleUsingSwitch(Object o) {
+   static double getDoubleUsingSwitch(Object o) {
       return switch (o) {
          case Integer i -> i.doubleValue();
          case Float f -> f.doubleValue();
@@ -26,4 +26,5 @@ public class TypePatterns {
          default -> 0d;
       };
    }
+
 }

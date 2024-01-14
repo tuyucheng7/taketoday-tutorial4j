@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.array;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ public class ArrayInverterUnitTest {
       ArrayInverter inverter = new ArrayInverter();
       inverter.invertUsingFor(fruits);
 
-      assertThat(fruits).isEqualTo(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"});
+      assertThat(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"}).isEqualTo(fruits);
    }
 
    @Test
@@ -21,14 +21,14 @@ public class ArrayInverterUnitTest {
       ArrayInverter inverter = new ArrayInverter();
       inverter.invertUsingCollectionsReverse(fruits);
 
-      assertThat(fruits).isEqualTo(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"});
+      assertThat(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"}).isEqualTo(fruits);
    }
 
    @Test
    public void invertArrayWithStreams() {
       ArrayInverter inverter = new ArrayInverter();
 
-      assertThat(inverter.invertUsingStreams(fruits)).isEqualTo(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"});
+      assertThat(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"}).isEqualTo(inverter.invertUsingStreams(fruits));
    }
 
    @Test
@@ -36,13 +36,14 @@ public class ArrayInverterUnitTest {
       ArrayInverter inverter = new ArrayInverter();
       inverter.invertUsingCommonsLang(fruits);
 
-      assertThat(fruits).isEqualTo(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"});
+      assertThat(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"}).isEqualTo(fruits);
    }
 
    @Test
    public void invertArrayWithGuava() {
       ArrayInverter inverter = new ArrayInverter();
 
-      assertThat(inverter.invertUsingGuava(fruits)).isEqualTo(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"});
+      assertThat(new String[]{"oranges", "pineapples", "guavas", "bananas", "tomatoes", "apples"}).isEqualTo(inverter.invertUsingGuava(fruits));
    }
+
 }

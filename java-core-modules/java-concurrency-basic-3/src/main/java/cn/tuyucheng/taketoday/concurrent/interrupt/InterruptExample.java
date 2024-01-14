@@ -26,6 +26,7 @@ public class InterruptExample extends Thread {
    }
 
    public static void throwCustomException() throws Exception {
+
       Thread.sleep(1000);
       Thread.currentThread().interrupt();
       if (Thread.interrupted()) {

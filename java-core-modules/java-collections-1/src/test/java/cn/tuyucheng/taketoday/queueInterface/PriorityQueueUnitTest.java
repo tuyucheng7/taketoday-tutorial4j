@@ -1,15 +1,17 @@
 package cn.tuyucheng.taketoday.queueInterface;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.PriorityQueue;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PriorityQueueUnitTest {
 
+
    @Test
    public void givenIntegerQueue_whenIntegersOutOfOrder_checkRetrievalOrderIsNatural() {
+
       PriorityQueue<Integer> integerQueue = new PriorityQueue<>();
 
       integerQueue.add(9);
@@ -23,10 +25,13 @@ public class PriorityQueueUnitTest {
       assertEquals(2, first);
       assertEquals(4, second);
       assertEquals(9, third);
+
+
    }
 
    @Test
    public void givenStringQueue_whenStringsAddedOutOfNaturalOrder_checkRetrievalOrderNatural() {
+
       PriorityQueue<String> stringQueue = new PriorityQueue<>();
 
       stringQueue.add("banana");
@@ -40,5 +45,7 @@ public class PriorityQueueUnitTest {
       assertEquals("apple", first);
       assertEquals("banana", second);
       assertEquals("cherry", third);
+
+
    }
 }

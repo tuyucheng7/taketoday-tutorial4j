@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-9-new-features</artifactId>
-   <version>1.0.0</version>
    <name>java-9-new-features</name>
 
    <parent>
@@ -18,6 +17,12 @@
          <groupId>io.reactivex.rxjava3</groupId>
          <artifactId>rxjava</artifactId>
          <version>${rxjava.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-runner</artifactId>
+         <version>${junit-platform.version}</version>
+         <scope>test</scope>
       </dependency>
       <dependency>
          <groupId>org.awaitility</groupId>
@@ -106,8 +111,7 @@
                            <compileSourceRoots>
                               <compileSourceRoot>${project.basedir}/src/main/java9</compileSourceRoot>
                            </compileSourceRoots>
-                           <outputDirectory>${project.build.outputDirectory}/META-INF/versions/9
-                           </outputDirectory>
+                           <outputDirectory>${project.build.outputDirectory}/META-INF/versions/9</outputDirectory>
                         </configuration>
                      </execution>
                      <execution>
@@ -143,10 +147,10 @@
    </profiles>
 
    <properties>
-      <rxjava.version>3.1.5</rxjava.version>
+      <rxjava.version>3.0.0</rxjava.version>
       <awaitility.version>4.0.2</awaitility.version>
       <maven.compiler.source>1.9</maven.compiler.source>
       <maven.compiler.target>1.9</maven.compiler.target>
-      <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
    </properties>
+
 </project>

@@ -19,3 +19,4 @@ public interface StdC extends Library {
 
    int close(int fd) throws LastErrorException;
 }
+

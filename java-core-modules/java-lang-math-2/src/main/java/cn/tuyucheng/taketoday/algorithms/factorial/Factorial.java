@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.algorithms.factorial;
 
-import com.google.common.math.BigIntegerMath;
-import org.apache.commons.math3.util.CombinatoricsUtils;
-
 import java.math.BigInteger;
 import java.util.stream.LongStream;
+
+import org.apache.commons.math3.util.CombinatoricsUtils;
+
+import com.google.common.math.BigIntegerMath;
 
 public class Factorial {
 

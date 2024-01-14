@@ -68,4 +68,5 @@ public class ArraySortingBenchmark {
       Arrays.sort(arr);
       b.consume(arr);
    }
+
 }

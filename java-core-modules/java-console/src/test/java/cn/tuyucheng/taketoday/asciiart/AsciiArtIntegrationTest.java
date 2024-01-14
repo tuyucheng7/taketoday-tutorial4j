@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.asciiart;
 
 import cn.tuyucheng.taketoday.asciiart.AsciiArt.Settings;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 

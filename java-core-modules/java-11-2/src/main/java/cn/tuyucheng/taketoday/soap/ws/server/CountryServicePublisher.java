@@ -4,6 +4,7 @@ import jakarta.xml.ws.Endpoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class CountryServicePublisher {
 
    private static final Logger logger = LoggerFactory.getLogger(CountryServicePublisher.class);

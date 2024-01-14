@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.rawtypes;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Test;
 
 public class RawTypesUnitTest {
    @Test

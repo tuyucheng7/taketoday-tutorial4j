@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.switchstatement;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SwitchStatementUnitTest {
    private SwitchStatement s = new SwitchStatement();
@@ -11,26 +11,26 @@ public class SwitchStatementUnitTest {
    public void whenDog_thenDomesticAnimal() {
 
       String animal = "DOG";
-      Assert.assertEquals("domestic animal", s.exampleOfSwitch(animal));
+      Assertions.assertEquals("domestic animal", s.exampleOfSwitch(animal));
    }
 
    @Test
    public void whenNoBreaks_thenGoThroughBlocks() {
       String animal = "DOG";
-      Assert.assertEquals("unknown animal", s.forgetBreakInSwitch(animal));
+      Assertions.assertEquals("unknown animal", s.forgetBreakInSwitch(animal));
    }
 
    @Test(expected = NullPointerException.class)
    public void whenSwitchAgumentIsNull_thenNullPointerException() {
       String animal = null;
-      Assert.assertEquals("domestic animal", s.exampleOfSwitch(animal));
+      Assertions.assertEquals("domestic animal", s.exampleOfSwitch(animal));
    }
 
 
    @Test
    public void whenCompareStrings_thenByEqual() {
       String animal = new String("DOG");
-      Assert.assertEquals("domestic animal", s.exampleOfSwitch(animal));
+      Assertions.assertEquals("domestic animal", s.exampleOfSwitch(animal));
    }
 
 

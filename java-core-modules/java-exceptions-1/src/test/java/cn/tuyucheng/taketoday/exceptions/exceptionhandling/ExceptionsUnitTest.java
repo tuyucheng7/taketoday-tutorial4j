@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.exceptions.exceptionhandling;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

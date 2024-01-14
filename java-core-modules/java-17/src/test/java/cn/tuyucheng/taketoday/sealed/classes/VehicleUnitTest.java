@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.lang.constant.ClassDesc;
-
 public class VehicleUnitTest {
 
    private static Vehicle car;
@@ -72,4 +70,5 @@ public class VehicleUnitTest {
          throw new RuntimeException("Unknown instance of Vehicle");
       }
    }
+
 }

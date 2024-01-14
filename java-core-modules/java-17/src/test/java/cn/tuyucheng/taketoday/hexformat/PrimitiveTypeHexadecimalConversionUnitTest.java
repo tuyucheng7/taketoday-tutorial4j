@@ -6,9 +6,9 @@ import java.util.HexFormat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PrimitiveTypeHexadecimalConversionUnitTest {
+public class PrimitiveTypeHexadecimalConversionUnitTest {
 
-   private final HexFormat hexFormat = HexFormat.of();
+   private HexFormat hexFormat = HexFormat.of();
 
    @Test
    void givenInitialisedHexFormat_whenPrimitiveByteIsPassed_thenHexStringRepresentationIsReturned() {

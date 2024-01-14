@@ -30,7 +30,8 @@ public class User {
    public String getOrThrow() {
       String value = null;
       Optional<String> valueOpt = Optional.ofNullable(value);
-      return valueOpt.orElseThrow(CustomException::new).toUpperCase();
+      String result = valueOpt.orElseThrow(CustomException::new).toUpperCase();
+      return result;
    }
 
    public boolean isLegalName(String name) {

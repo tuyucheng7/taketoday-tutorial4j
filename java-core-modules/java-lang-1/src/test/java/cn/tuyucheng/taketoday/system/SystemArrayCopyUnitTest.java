@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.system;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SystemArrayCopyUnitTest {
 
@@ -12,7 +12,7 @@ public class SystemArrayCopyUnitTest {
 
       // copy all elements from a to b
       System.arraycopy(a, 0, b, 0, a.length);
-      Assert.assertArrayEquals(a, b);
+      Assertions.assertArrayEquals(a, b);
    }
 
    @Test
@@ -22,6 +22,6 @@ public class SystemArrayCopyUnitTest {
 
       // copy 2 elements from a, starting at a[1] to b, starting at b[3]
       System.arraycopy(a, 1, b, 3, 2);
-      Assert.assertArrayEquals(new int[]{0, 0, 0, 22, 44, 0}, b);
+      Assertions.assertArrayEquals(new int[]{0, 0, 0, 22, 44, 0}, b);
    }
 }

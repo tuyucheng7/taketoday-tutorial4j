@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.maths;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,7 +19,7 @@ public class BigDecimalImplUnitTest {
       BigDecimal totalTax = serviceTax.add(entertainmentTax);
       BigDecimal result = BigDecimal.valueOf(79.01);
 
-      Assert.assertEquals(result, totalTax);
+      Assertions.assertEquals(result, totalTax);
 
    }
 }

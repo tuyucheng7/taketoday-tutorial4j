@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.methodoverloadingoverriding;
 
 import cn.tuyucheng.taketoday.methodoverloadingoverriding.util.Multiplier;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,7 @@ public class MethodOverloadingUnitTest {
 
    private static Multiplier multiplier;
 
-   @BeforeClass
+   @BeforeAll
    public static void setUpMultiplierInstance() {
       multiplier = new Multiplier();
    }

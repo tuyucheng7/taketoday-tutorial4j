@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.map.hashmap.loadfactor;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class HashMapLoadFactorUnitTest {
       mapWithDefaultParams.put("4", "four");
       mapWithDefaultParams.put("5", "five");
 
-      Assert.assertEquals(5, mapWithDefaultParams.size());
+      Assertions.assertEquals(5, mapWithDefaultParams.size());
    }
 
    @Test
@@ -27,7 +27,7 @@ public class HashMapLoadFactorUnitTest {
       mapWithInitialCapacity.put("2", "two");
       mapWithInitialCapacity.put("3", "three");
 
-      Assert.assertEquals(3, mapWithInitialCapacity.size());
+      Assertions.assertEquals(3, mapWithInitialCapacity.size());
    }
 
    @Test
@@ -44,6 +44,6 @@ public class HashMapLoadFactorUnitTest {
       mapWithInitialCapacityAndLF.put("9", "nine");
       mapWithInitialCapacityAndLF.put("10", "ten");
 
-      Assert.assertEquals(10, mapWithInitialCapacityAndLF.size());
+      Assertions.assertEquals(10, mapWithInitialCapacityAndLF.size());
    }
 }

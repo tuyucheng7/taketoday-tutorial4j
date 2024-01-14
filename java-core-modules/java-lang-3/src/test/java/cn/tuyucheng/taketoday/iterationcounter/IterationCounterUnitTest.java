@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.iterationcounter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static cn.tuyucheng.taketoday.iterationcounter.IterationCounter.IMDB_TOP_MOVIES;
 import static cn.tuyucheng.taketoday.iterationcounter.IterationCounter.getRankingsWithForEachLoop;

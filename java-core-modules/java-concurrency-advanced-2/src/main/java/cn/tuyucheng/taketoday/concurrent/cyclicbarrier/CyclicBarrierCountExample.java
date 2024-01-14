@@ -4,7 +4,8 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierCountExample {
-   private final int count;
+
+   private int count;
 
    public CyclicBarrierCountExample(int count) {
       this.count = count;
@@ -17,7 +18,7 @@ public class CyclicBarrierCountExample {
             cyclicBarrier.await();
             cyclicBarrier.await();
          } catch (InterruptedException | BrokenBarrierException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
          }
       });
       t.start();
@@ -25,7 +26,7 @@ public class CyclicBarrierCountExample {
    }
 
    public static void main(String[] args) {
-      CyclicBarrierCountExample ex = new CyclicBarrierCountExample(2);
+      CyclicBarrierCountExample ex = new CyclicBarrierCountExample(7);
       System.out.println("Count : " + ex.callTwiceInSameThread());
    }
 }

@@ -9,7 +9,8 @@ public class Application {
          try {
             mainLock.lock();
 
-            // synchronized block here allows us to wait for other thread to lock, in order to simulate a deadlock
+            // synchronized block here allows us to wait for other thread to lock,
+            // in order to simulate a deadlock
             synchronized (Application.class) {
                Application.class.notify();
                if (!otherLock.isLocked()) {

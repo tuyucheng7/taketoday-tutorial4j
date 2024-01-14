@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.lines;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLinesUsingApacheCommonsIO;
 import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLinesUsingBufferedReader;
@@ -10,7 +10,7 @@ import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLi
 import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLinesUsingNIOFiles;
 import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLinesUsingNIOFilesReadAllLines;
 import static cn.tuyucheng.taketoday.lines.NumberOfLineFinder.getTotalNumberOfLinesUsingScanner;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberOfLineFinderUnitTest {
    private static final String INPUT_FILE_NAME = "src/main/resources/input.txt";

@@ -1,17 +1,17 @@
 package cn.tuyucheng.taketoday.value_based_class;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class ValueBasedClassUnitTest {
    @Test
    public void givenAutoboxedAndPrimitive_whenCompared_thenReturnEquals() {
       List<Integer> list = new ArrayList<>();
       list.add(1); // this is autoboxed
-      Assert.assertEquals(list.get(0), Integer.valueOf(1));
+      Assertions.assertEquals(list.get(0), Integer.valueOf(1));
    }
 
    @Test
@@ -19,7 +19,7 @@ public class ValueBasedClassUnitTest {
       Point p1 = Point.valueOfPoint(1, 2, 3);
       Point p2 = Point.valueOfPoint(2, 3, 4);
 
-      Assert.assertNotEquals(p1, p2);
+      Assertions.assertNotEquals(p1, p2);
    }
 
    @Test
@@ -27,7 +27,7 @@ public class ValueBasedClassUnitTest {
       Point p1 = Point.valueOfPoint(1, 2, 3);
       Point p2 = Point.valueOfPoint(1, 2, 3);
 
-      Assert.assertEquals(p1, p2);
+      Assertions.assertEquals(p1, p2);
    }
 
    @Test
@@ -38,7 +38,7 @@ public class ValueBasedClassUnitTest {
 
       // the following should not be assumed for value-based classes
 
-      Assert.assertSame(p1, p2);
-      Assert.assertNotSame(p1, p3);
+      Assertions.assertTrue(p1 == p2);
+      Assertions.assertFalse(p1 == p3);
    }
 }

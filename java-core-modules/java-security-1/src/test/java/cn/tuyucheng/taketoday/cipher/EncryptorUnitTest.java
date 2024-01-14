@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.cipher;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ public class EncryptorUnitTest {
    private String certificateString;
    private Encryptor encryptor;
 
-   @Before
+   @BeforeEach
    public void init() {
       encKeyString = "1234567890123456";
       message = "This is a secret message";

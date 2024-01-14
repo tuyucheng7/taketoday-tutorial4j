@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-class MethodReferenceUnitTest {
+public class MethodReferenceUnitTest {
 
    private static final Logger LOGGER = LoggerFactory.getLogger(MethodReferenceUnitTest.class);
 
@@ -18,14 +18,14 @@ class MethodReferenceUnitTest {
    }
 
    @Test
-   void referenceToStaticMethod() {
+   public void referenceToStaticMethod() {
       List<String> messages = Arrays.asList("Hello", "Tuyucheng", "readers!");
       messages.forEach(word -> StringUtils.capitalize(word));
       messages.forEach(StringUtils::capitalize);
    }
 
    @Test
-   void referenceToInstanceMethodOfParticularObject() {
+   public void referenceToInstanceMethodOfParticularObject() {
       BicycleComparator bikeFrameSizeComparator = new BicycleComparator();
       createBicyclesList().stream()
             .sorted((a, b) -> bikeFrameSizeComparator.compare(a, b));
@@ -34,7 +34,7 @@ class MethodReferenceUnitTest {
    }
 
    @Test
-   void referenceToInstanceMethodOfArbitratyObjectOfParticularType() {
+   public void referenceToInstanceMethodOfArbitratyObjectOfParticularType() {
       List<Integer> numbers = Arrays.asList(5, 3, 50, 24, 40, 2, 9, 18);
       numbers.stream()
             .sorted((a, b) -> a.compareTo(b));
@@ -43,7 +43,7 @@ class MethodReferenceUnitTest {
    }
 
    @Test
-   void referenceToConstructor() {
+   public void referenceToConstructor() {
       BiFunction<String, Integer, Bicycle> bikeCreator = (brand, frameSize) -> new Bicycle(brand, frameSize);
       BiFunction<String, Integer, Bicycle> bikeCreatorMethodReference = Bicycle::new;
       List<Bicycle> bikes = new ArrayList<>();
@@ -54,7 +54,7 @@ class MethodReferenceUnitTest {
    }
 
    @Test
-   void referenceToConstructorSimpleExample() {
+   public void referenceToConstructorSimpleExample() {
       List<String> bikeBrands = Arrays.asList("Giant", "Scott", "Trek", "GT");
       bikeBrands.stream()
             .map(Bicycle::new)
@@ -62,9 +62,9 @@ class MethodReferenceUnitTest {
    }
 
    @Test
-   void limitationsAndAdditionalExamples() {
+   public void limitationsAndAdditionalExamples() {
       createBicyclesList().forEach(b -> LOGGER.debug("Bike brand is '{}' and frame size is '{}'", b.getBrand(), b.getFrameSize()));
-      createBicyclesList().forEach((o) -> doNothingAtAll(o));
+      createBicyclesList().forEach((o) -> MethodReferenceUnitTest.doNothingAtAll(o));
    }
 
    private List<Bicycle> createBicyclesList() {
@@ -75,4 +75,5 @@ class MethodReferenceUnitTest {
       bikes.add(new Bicycle("GT", 40));
       return bikes;
    }
+
 }

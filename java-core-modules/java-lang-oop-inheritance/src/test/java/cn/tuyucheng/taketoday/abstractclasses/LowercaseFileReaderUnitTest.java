@@ -2,7 +2,7 @@ package cn.tuyucheng.taketoday.abstractclasses;
 
 import cn.tuyucheng.taketoday.abstractclasses.filereaders.BaseFileReader;
 import cn.tuyucheng.taketoday.abstractclasses.filereaders.LowercaseFileReader;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

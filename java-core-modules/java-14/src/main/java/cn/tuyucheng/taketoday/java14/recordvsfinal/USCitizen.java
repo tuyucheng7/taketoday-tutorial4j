@@ -8,11 +8,11 @@ public record USCitizen(String firstName, String lastName, String address) {
       countryCode = 1;
    }
 
-   public static int getCountryCode() {
+   public static int getCountryCode () {
       return countryCode;
    }
 
-   public String getFullName() {
+   public String getFullName () {
       return firstName + " " + lastName;
    }
 }

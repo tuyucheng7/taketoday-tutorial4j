@@ -3,7 +3,8 @@ package cn.tuyucheng.taketoday.concurrent.stopexecution;
 import java.util.Random;
 
 public class Step {
-   private static final int MAX = Integer.MAX_VALUE / 2;
+
+   private static int MAX = Integer.MAX_VALUE / 2;
    int number;
 
    public Step(int number) {

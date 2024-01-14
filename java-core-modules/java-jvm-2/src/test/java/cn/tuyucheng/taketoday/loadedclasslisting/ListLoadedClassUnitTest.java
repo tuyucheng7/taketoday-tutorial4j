@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.loadedclasslisting;
 
 import com.google.common.reflect.ClassPath.ClassInfo;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Set;

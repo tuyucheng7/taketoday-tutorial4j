@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class JEP356UnitTest {
+public class JEP356UnitTest {
 
    @Test
    void getPseudoInts_whenUsingAlgorithmXoroshiro128PlusPlus_shouldReturnStreamOfRandomInteger() {

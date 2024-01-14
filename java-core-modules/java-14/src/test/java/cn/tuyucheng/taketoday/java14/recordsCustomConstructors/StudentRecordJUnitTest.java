@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.java14.recordsCustomConstructors;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.example.StudentRecord;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Comparator;

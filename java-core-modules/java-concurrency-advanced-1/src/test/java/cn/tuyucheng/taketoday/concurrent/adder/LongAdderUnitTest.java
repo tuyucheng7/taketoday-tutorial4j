@@ -9,26 +9,28 @@ import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.IntStream;
 
 import static com.jayway.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-class LongAdderUnitTest {
-
+public class LongAdderUnitTest {
    @Test
-   void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
+   public void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
+      // given
       LongAdder counter = new LongAdder();
       ExecutorService executorService = Executors.newFixedThreadPool(8);
 
       int numberOfThreads = 4;
       int numberOfIncrements = 100;
 
+      // when
       Runnable incrementAction = () -> IntStream
             .range(0, numberOfIncrements)
-            .forEach(x -> counter.increment());
+            .forEach((i) -> counter.increment());
 
       for (int i = 0; i < numberOfThreads; i++) {
-         executorService.submit(incrementAction);
+         executorService.execute(incrementAction);
       }
 
+      // then
       executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
       executorService.shutdown();
 
@@ -37,25 +39,29 @@ class LongAdderUnitTest {
    }
 
    @Test
-   void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
+   public void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
+      // given
       LongAdder counter = new LongAdder();
       ExecutorService executorService = Executors.newFixedThreadPool(8);
 
       int numberOfThreads = 4;
       int numberOfIncrements = 100;
 
+      // when
       Runnable incrementAction = () -> IntStream
             .range(0, numberOfIncrements)
-            .forEach(i -> counter.increment());
+            .forEach((i) -> counter.increment());
 
       for (int i = 0; i < numberOfThreads; i++) {
          executorService.execute(incrementAction);
       }
 
+      // then
       executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
       executorService.shutdown();
 
       assertEquals(counter.sumThenReset(), numberOfIncrements * numberOfThreads);
+
       await().until(() -> assertEquals(counter.sum(), 0));
    }
 }

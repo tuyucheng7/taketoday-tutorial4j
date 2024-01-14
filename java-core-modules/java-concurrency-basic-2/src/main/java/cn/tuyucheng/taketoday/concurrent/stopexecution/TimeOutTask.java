@@ -4,8 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimeOutTask extends TimerTask {
-   private final Thread thread;
-   private final Timer timer;
+   private Thread thread;
+   private Timer timer;
 
    public TimeOutTask(Thread thread, Timer timer) {
       this.thread = thread;

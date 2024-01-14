@@ -1,19 +1,20 @@
 package cn.tuyucheng.taketoday.emptystrings;
 
 import com.google.common.base.Strings;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.springframework.util.ObjectUtils;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.iterableWithSize;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EmptyStringsUnitTest {
 
@@ -109,6 +110,24 @@ public class EmptyStringsUnitTest {
    @Test
    public void givenSomeBlankString_thenStringsIsNullOrEmptyStringReturnsFalse() {
       assertFalse(Strings.isNullOrEmpty(blankString));
+   }
+
+   /*
+    * Spring Core ObjectUtils
+    */
+   @Test
+   public void givenSomeEmptyString_thenObjectUtilsIsEmptyReturnsTrue() {
+      assertTrue(ObjectUtils.isEmpty(emptyString));
+   }
+
+   @Test
+   public void givenSomeNonEmptyString_thenObjectUtilsIsEmptyReturnsFalse() {
+      assertFalse(ObjectUtils.isEmpty(nonEmptyString));
+   }
+
+   @Test
+   public void givenSomeBlankString_thenObjectUtilsIsEmptyReturnsFalse() {
+      assertFalse(ObjectUtils.isEmpty(blankString));
    }
 
    /*

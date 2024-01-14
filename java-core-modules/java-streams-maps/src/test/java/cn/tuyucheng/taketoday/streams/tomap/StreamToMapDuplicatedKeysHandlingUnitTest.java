@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.streams.tomap;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toMap;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.junit.jupiter.api.Test;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toMap;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class City {
    private String name;
@@ -93,4 +93,5 @@ public class StreamToMapDuplicatedKeysHandlingUnitTest {
       assertEquals(4, resultMap2.size());
       assertEquals(new City("Paris", "France and Texas, USA"), resultMap3.get("Paris"));
    }
+
 }

@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.stringtocamelcase;
 
 import com.google.common.base.CaseFormat;
 import org.apache.commons.text.CaseUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static cn.tuyucheng.taketoday.stringtocamelcase.StringToCamelCase.toCamelCaseByIteration;
 import static cn.tuyucheng.taketoday.stringtocamelcase.StringToCamelCase.toCamelCaseByRegex;

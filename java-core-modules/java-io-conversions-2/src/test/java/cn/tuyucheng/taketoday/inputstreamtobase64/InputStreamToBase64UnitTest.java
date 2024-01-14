@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.inputstreamtobase64;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.apache.commons.io.IOUtils;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.util.Base64;
 
-import org.apache.commons.io.IOUtils;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test the Stream to base64 conversion

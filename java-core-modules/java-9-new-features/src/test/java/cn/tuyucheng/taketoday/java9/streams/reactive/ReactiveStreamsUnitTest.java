@@ -1,5 +1,6 @@
 package cn.tuyucheng.taketoday.java9.streams.reactive;
 
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -9,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-class ReactiveStreamsUnitTest {
+public class ReactiveStreamsUnitTest {
 
    @Test
-   void givenPublisher_whenSubscribeToIt_thenShouldConsumeAllElements() throws InterruptedException {
+   public void givenPublisher_whenSubscribeToIt_thenShouldConsumeAllElements() throws InterruptedException {
       // given
       SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
       EndSubscriber<String> subscriber = new EndSubscriber<>(6);
@@ -25,12 +26,14 @@ class ReactiveStreamsUnitTest {
       publisher.close();
 
       // then
+
       await().atMost(1000, TimeUnit.MILLISECONDS).untilAsserted(
-            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(items));
+            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(items)
+      );
    }
 
    @Test
-   void givenPublisher_whenSubscribeAndTransformElements_thenShouldConsumeAllElements() throws InterruptedException {
+   public void givenPublisher_whenSubscribeAndTransformElements_thenShouldConsumeAllElements() throws InterruptedException {
       // given
       SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
       TransformProcessor<String, Integer> transformProcessor = new TransformProcessor<>(Integer::parseInt);
@@ -46,11 +49,12 @@ class ReactiveStreamsUnitTest {
 
       // then
       await().atMost(1000, TimeUnit.MILLISECONDS).untilAsserted(
-            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(expectedResult));
+            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(expectedResult)
+      );
    }
 
    @Test
-   void givenPublisher_whenRequestForOnlyOneElement_thenShouldConsumeOnlyThatOne() throws InterruptedException {
+   public void givenPublisher_whenRequestForOnlyOneElement_thenShouldConsumeOnlyThatOne() throws InterruptedException {
       // given
       SubmissionPublisher<String> publisher = new SubmissionPublisher<>();
       EndSubscriber<String> subscriber = new EndSubscriber<>(1);
@@ -65,6 +69,7 @@ class ReactiveStreamsUnitTest {
 
       // then
       await().atMost(1000, TimeUnit.MILLISECONDS).untilAsserted(
-            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(expected));
+            () -> assertThat(subscriber.consumedElements).containsExactlyElementsOf(expected)
+      );
    }
 }

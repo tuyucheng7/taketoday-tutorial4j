@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.delpunctuation;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
-import org.junit.jupiter.api.Test;
 
 public class RemovePunctuationUnitTest {
    private static final String INPUT = "Its 1 W o r d (!@#$%^&*{}[];':\")<>,.";
@@ -39,4 +39,5 @@ public class RemovePunctuationUnitTest {
       String result3 = UNICODE_INPUT.replaceAll("[^\\s\\p{L}0-9]", "");
       assertEquals(UNICODE_EXPECTED, result3);
    }
+
 }

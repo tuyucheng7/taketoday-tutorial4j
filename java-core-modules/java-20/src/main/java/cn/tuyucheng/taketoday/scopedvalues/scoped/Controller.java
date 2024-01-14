@@ -3,7 +3,6 @@ package cn.tuyucheng.taketoday.scopedvalues.scoped;
 import cn.tuyucheng.taketoday.scopedvalues.data.Data;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jdk.incubator.concurrent.ScopedValue;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,4 +32,5 @@ public class Controller {
          response.setStatus(400);
       }
    }
+
 }

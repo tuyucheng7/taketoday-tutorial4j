@@ -29,4 +29,5 @@ class JEP406UnitTest {
 
       assertEquals("Just a normal shape", checkResult);
    }
+
 }

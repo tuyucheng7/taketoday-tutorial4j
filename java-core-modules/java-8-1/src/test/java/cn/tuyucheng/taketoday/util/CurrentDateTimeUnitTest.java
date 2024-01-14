@@ -11,12 +11,12 @@ import java.time.temporal.ChronoField;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CurrentDateTimeUnitTest {
+public class CurrentDateTimeUnitTest {
 
    private static final Clock clock = Clock.fixed(Instant.parse("2016-10-09T15:10:30.00Z"), ZoneId.of("UTC"));
 
    @Test
-   void shouldReturnCurrentDate() {
+   public void shouldReturnCurrentDate() {
       final LocalDate now = LocalDate.now(clock);
 
       assertEquals(9, now.get(ChronoField.DAY_OF_MONTH));
@@ -25,7 +25,7 @@ class CurrentDateTimeUnitTest {
    }
 
    @Test
-   void shouldReturnCurrentTime() {
+   public void shouldReturnCurrentTime() {
       final LocalTime now = LocalTime.now(clock);
 
       assertEquals(15, now.get(ChronoField.HOUR_OF_DAY));
@@ -34,7 +34,7 @@ class CurrentDateTimeUnitTest {
    }
 
    @Test
-   void shouldReturnCurrentTimestamp() {
+   public void shouldReturnCurrentTimestamp() {
       final Instant now = Instant.now(clock);
 
       assertEquals(clock.instant().getEpochSecond(), now.getEpochSecond());

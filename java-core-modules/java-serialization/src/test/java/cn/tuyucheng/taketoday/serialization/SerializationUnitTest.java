@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.serialization;
 
 import cn.tuyucheng.taketoday.util.MySerializationUtils;
 import org.apache.commons.lang3.SerializationUtils;
-import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -16,8 +16,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SerializationUnitTest {
@@ -29,7 +29,7 @@ public class SerializationUnitTest {
 
    private File outputFile;
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       outputFile = tempFolder.newFile(OUTPUT_FILE_NAME);
    }

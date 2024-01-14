@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class DatesCollectionIterationUnitTest {
+public class DatesCollectionIterationUnitTest {
 
    private Collection<LocalDate> localDates = LocalDate.now()
          .datesUntil(LocalDate.now()
@@ -25,7 +25,7 @@ class DatesCollectionIterationUnitTest {
          .collect(Collectors.toList());
 
    @Test
-   void givenIteratingListOfDatesJava7_WhenStartTodayAndEnding10DaysAhead() {
+   public void givenIteratingListOfDatesJava7_WhenStartTodayAndEnding10DaysAhead() {
       DatesCollectionIteration iterateInColleciton = new DatesCollectionIteration();
       Calendar today = Calendar.getInstance();
       Calendar next10Ahead = (Calendar) today.clone();
@@ -35,10 +35,10 @@ class DatesCollectionIterationUnitTest {
    }
 
    @Test
-   void givenIteratingListOfDatesJava8_WhenStartTodayAndEnd10DaysAhead() {
-      DatesCollectionIteration iterateInCollection = new DatesCollectionIteration();
+   public void givenIteratingListOfDatesJava8_WhenStartTodayAndEnd10DaysAhead() {
+      DatesCollectionIteration iterateInColleciton = new DatesCollectionIteration();
 
-      iterateInCollection.iteratingRangeOfDatesJava8(dates);
+      iterateInColleciton.iteratingRangeOfDatesJava8(dates);
    }
 
    private List<Date> createRangeDates(Date start, Date end) {

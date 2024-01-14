@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.charfreq;
 
-import static java.util.Map.Entry.comparingByValue;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toSet;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
 
 public class CharacterWithHighestFrequency {
    public static Character byStream(String input) {

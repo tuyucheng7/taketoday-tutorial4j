@@ -1,19 +1,19 @@
 package cn.tuyucheng.taketoday.selector;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NioEchoLiveTest {
 
    private Process server;
    private EchoClient client;
 
-   @Before
+   @BeforeEach
    public void setup() throws IOException, InterruptedException {
       server = EchoServer.start();
       client = EchoClient.start();
@@ -27,7 +27,7 @@ public class NioEchoLiveTest {
       assertEquals("world", resp2);
    }
 
-   @After
+   @AfterEach
    public void teardown() throws IOException {
       server.destroy();
       EchoClient.stop();

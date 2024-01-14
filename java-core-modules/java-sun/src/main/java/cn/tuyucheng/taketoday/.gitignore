@@ -1,13 +1,13 @@
-.class
+*.class
 
 #folders#
 /target
-/neoDb
+/neoDb*
 /data
 /src/main/webapp/WEB-INF/classes
-/META-INF/
+*/META-INF/*
 
 # Packaged files #
-.jar
-.war
-.ear
+*.jar
+*.war
+*.ear

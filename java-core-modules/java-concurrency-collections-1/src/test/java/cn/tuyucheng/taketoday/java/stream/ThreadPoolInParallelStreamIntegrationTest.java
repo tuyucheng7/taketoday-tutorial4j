@@ -6,20 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ThreadPoolInParallelStreamIntegrationTest {
+public class ThreadPoolInParallelStreamIntegrationTest {
 
    @Test
-   void giveRangeOfLongs_whenSummedInParallel_shouldBeEqualToExpectedTotal() throws InterruptedException, ExecutionException {
+   public void giveRangeOfLongs_whenSummedInParallel_shouldBeEqualToExpectedTotal() throws InterruptedException, ExecutionException {
       long firstNum = 1;
       long lastNum = 1_000_000;
 
-      List<Long> aList = LongStream.rangeClosed(firstNum, lastNum).boxed().toList();
+      List<Long> aList = LongStream.rangeClosed(firstNum, lastNum).boxed().collect(Collectors.toList());
       ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
       try {
@@ -33,7 +34,7 @@ class ThreadPoolInParallelStreamIntegrationTest {
    }
 
    @Test
-   void givenList_whenCallingParallelStream_shouldBeParallelStream() {
+   public void givenList_whenCallingParallelStream_shouldBeParallelStream() {
       List<Long> aList = new ArrayList<>();
       Stream<Long> parallelStream = aList.parallelStream();
 

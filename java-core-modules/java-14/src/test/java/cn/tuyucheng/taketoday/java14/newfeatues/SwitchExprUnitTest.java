@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.java14.newfeatues;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SwitchExprUnitTest {
 
@@ -46,4 +46,5 @@ public class SwitchExprUnitTest {
          default -> throw new IllegalArgumentException("What's a " + day);
       };
    }
+
 }

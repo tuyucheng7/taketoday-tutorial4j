@@ -10,21 +10,26 @@ public class StreamSumCalculator {
    public static Integer getSumUsingCustomizedAccumulator(List<Integer> integers) {
       return integers.stream()
             .reduce(0, ArithmeticUtils::add);
+
    }
 
    public static Integer getSumUsingJavaAccumulator(List<Integer> integers) {
       return integers.stream()
             .reduce(0, Integer::sum);
+
    }
 
    public static Integer getSumUsingReduce(List<Integer> integers) {
       return integers.stream()
             .reduce(0, (a, b) -> a + b);
+
    }
 
    public static Integer getSumUsingCollect(List<Integer> integers) {
+
       return integers.stream()
             .collect(Collectors.summingInt(Integer::intValue));
+
    }
 
    public static Integer getSumUsingSum(List<Integer> integers) {
@@ -35,6 +40,7 @@ public class StreamSumCalculator {
    }
 
    public static Integer getSumOfMapValues(Map<Object, Integer> map) {
+
       return map.values()
             .stream()
             .mapToInt(Integer::valueOf)
@@ -42,9 +48,12 @@ public class StreamSumCalculator {
    }
 
    public static Integer getSumIntegersFromString(String str) {
-      return Arrays.stream(str.split(" "))
-            .filter(s -> s.matches("\\d+"))
+
+      Integer sum = Arrays.stream(str.split(" "))
+            .filter((s) -> s.matches("\\d+"))
             .mapToInt(Integer::valueOf)
             .sum();
+
+      return sum;
    }
 }

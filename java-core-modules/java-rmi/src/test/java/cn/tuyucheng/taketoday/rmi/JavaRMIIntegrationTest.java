@@ -1,21 +1,21 @@
 package cn.tuyucheng.taketoday.rmi;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class JavaRMIIntegrationTest {
 
    private MessengerServiceImpl messengerService;
 
-   @Before
+   @BeforeEach
    public void init() {
       try {
          messengerService = new MessengerServiceImpl();
@@ -38,4 +38,5 @@ public class JavaRMIIntegrationTest {
          fail("Exception Occurred: " + e);
       }
    }
+
 }

@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.indexawareset;
 
+import org.apache.commons.collections4.set.ListOrderedSet;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.apache.commons.collections4.set.ListOrderedSet;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class IndexOfSetElementsUsingListUnitTest {
    @Test
@@ -22,9 +22,9 @@ public class IndexOfSetElementsUsingListUnitTest {
 
       IndexOfElementsInSet<Integer> integerIndexOfElementsInSet = new IndexOfElementsInSet<>();
       int index100 = integerIndexOfElementsInSet.getIndexUsingIterator(set, 100);
-      Assert.assertEquals(index100, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
+      Assertions.assertEquals(index100, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
 
-      Assert.assertEquals(-1, integerIndexOfElementsInSet.getIndexUsingIterator(set, 12));
+      Assertions.assertEquals(-1, integerIndexOfElementsInSet.getIndexUsingIterator(set, 12));
    }
 
    @Test
@@ -38,7 +38,7 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add(300);
 
       IndexOfElementsInSet<Integer> integerIndexOfElementsInSet = new IndexOfElementsInSet<>();
-      Assert.assertEquals(0, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
+      Assertions.assertEquals(0, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
    }
 
    @Test
@@ -52,8 +52,8 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add(300);
 
       IndexOfElementsInSet<Integer> integerIndexOfElementsInSet = new IndexOfElementsInSet<>();
-      Assert.assertEquals(0, integerIndexOfElementsInSet.getIndexUsingIterator(set, -1));
-      Assert.assertEquals(3, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
+      Assertions.assertEquals(0, integerIndexOfElementsInSet.getIndexUsingIterator(set, -1));
+      Assertions.assertEquals(3, integerIndexOfElementsInSet.getIndexUsingIterator(set, 100));
    }
 
    @Test
@@ -62,9 +62,9 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add(100);
       set.add(20);
       set.add(300);
-      Assert.assertEquals(0, set.getIndexOf(100));
-      Assert.assertEquals(2, set.getIndexOf(300));
-      Assert.assertEquals(-1, set.getIndexOf(0));
+      Assertions.assertEquals(0, set.getIndexOf(100));
+      Assertions.assertEquals(2, set.getIndexOf(300));
+      Assertions.assertEquals(-1, set.getIndexOf(0));
    }
 
    @Test
@@ -74,9 +74,9 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add("Java");
       set.add("Scala");
       set.add("Python");
-      Assert.assertEquals(0, set.getIndexOf("Go"));
-      Assert.assertEquals(2, set.getIndexOf("Scala"));
-      Assert.assertEquals(-1, set.getIndexOf("C++"));
+      Assertions.assertEquals(0, set.getIndexOf("Go"));
+      Assertions.assertEquals(2, set.getIndexOf("Scala"));
+      Assertions.assertEquals(-1, set.getIndexOf("C++"));
    }
 
    @Test
@@ -87,9 +87,9 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add(-1);
       set.add(50);
 
-      Assert.assertEquals(0, set.indexOf(12));
-      Assert.assertEquals(2, set.indexOf(-1));
-      Assert.assertEquals(-1, set.indexOf(100));
+      Assertions.assertEquals(0, set.indexOf(12));
+      Assertions.assertEquals(2, set.indexOf(-1));
+      Assertions.assertEquals(-1, set.indexOf(100));
    }
 
    @Test
@@ -103,6 +103,6 @@ public class IndexOfSetElementsUsingListUnitTest {
       set.add(300);
 
       IndexOfElementsInSet<Integer> integerIndexOfElementsInSet = new IndexOfElementsInSet<>();
-      Assert.assertEquals(-1, integerIndexOfElementsInSet.getIndexUsingForEach(set, 150));
+      Assertions.assertEquals(-1, integerIndexOfElementsInSet.getIndexUsingForEach(set, 150));
    }
 }

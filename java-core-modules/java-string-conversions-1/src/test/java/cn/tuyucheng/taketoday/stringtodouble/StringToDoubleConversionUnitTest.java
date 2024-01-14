@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.stringtodouble;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringToDoubleConversionUnitTest {
 

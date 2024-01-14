@@ -3,11 +3,13 @@ package cn.tuyucheng.taketoday.concurrent.sleepwait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
+/***
  * Example of wait() and sleep() methods
  */
 public class WaitSleepExample {
+
    private static final Logger LOG = LoggerFactory.getLogger(WaitSleepExample.class);
+
    private static final Object LOCK = new Object();
 
    public static void main(String... args) throws InterruptedException {
@@ -23,4 +25,5 @@ public class WaitSleepExample {
          LOG.debug("Object '" + LOCK + "' is woken after waiting for 1 second");
       }
    }
+
 }

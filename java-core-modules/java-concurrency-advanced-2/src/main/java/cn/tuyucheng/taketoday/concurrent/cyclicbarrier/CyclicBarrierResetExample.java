@@ -1,11 +1,16 @@
 package cn.tuyucheng.taketoday.concurrent.cyclicbarrier;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CyclicBarrierResetExample {
-   private final int count;
-   private final int threadCount;
+
+   private int count;
+   private int threadCount;
    private final AtomicInteger updateCount;
 
    CyclicBarrierResetExample(int count, int threadCount) {
@@ -15,6 +20,7 @@ public class CyclicBarrierResetExample {
    }
 
    public int countWaits() {
+
       CyclicBarrier cyclicBarrier = new CyclicBarrier(count);
 
       ExecutorService es = Executors.newFixedThreadPool(threadCount);
@@ -26,7 +32,7 @@ public class CyclicBarrierResetExample {
                }
                cyclicBarrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
-               Thread.currentThread().interrupt();
+               e.printStackTrace();
             }
          });
       }
@@ -34,7 +40,7 @@ public class CyclicBarrierResetExample {
       try {
          es.awaitTermination(1, TimeUnit.SECONDS);
       } catch (InterruptedException e) {
-         Thread.currentThread().interrupt();
+         e.printStackTrace();
       }
       return updateCount.get();
    }

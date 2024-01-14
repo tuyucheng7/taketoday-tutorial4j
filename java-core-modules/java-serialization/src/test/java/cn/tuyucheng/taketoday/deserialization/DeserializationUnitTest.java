@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.deserialization;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InvalidClassException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeserializationUnitTest {
 
@@ -57,7 +57,7 @@ public class DeserializationUnitTest {
     * @throws ClassNotFoundException
     * @throws IOException
     */
-   @Ignore
+   @Disabled
    @Test(expected = InvalidClassException.class)
    public void testDeserializeObj_incompatible() throws ClassNotFoundException, IOException {
 

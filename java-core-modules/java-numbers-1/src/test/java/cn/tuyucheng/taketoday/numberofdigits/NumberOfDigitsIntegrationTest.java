@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.numberofdigits;
 
-import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 
 @RunWith(Theories.class)
@@ -67,37 +67,37 @@ public class NumberOfDigitsIntegrationTest {
    @Theory
    public void givenDataPoints_whenStringBasedSolutionInvoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.stringBasedSolution(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.stringBasedSolution(entry[1]));
    }
 
    @Theory
    public void givenDataPoints_whenLogarithmicApproachInvoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.logarithmicApproach(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.logarithmicApproach(entry[1]));
    }
 
    @Theory
    public void givenDataPoints_whenRepeatedMultiplicationInvoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.repeatedMultiplication(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.repeatedMultiplication(entry[1]));
    }
 
    @Theory
    public void givenDataPoints_whenShiftOperatorsInvoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.shiftOperators(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.shiftOperators(entry[1]));
    }
 
    @Theory
    public void givenDataPoints_whenDividingWithPowersOf2Invoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.dividingWithPowersOf2(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.dividingWithPowersOf2(entry[1]));
    }
 
    @Theory
    public void givenDataPoints_whenDivideAndConquerInvoked_thenAllPointsMatch(final int[] entry) {
       Assume.assumeTrue(entry[0] > 0 && entry[1] > 0);
-      Assert.assertEquals(entry[0], numberOfDigits.divideAndConquer(entry[1]));
+      Assertions.assertEquals(entry[0], numberOfDigits.divideAndConquer(entry[1]));
    }
 
 }

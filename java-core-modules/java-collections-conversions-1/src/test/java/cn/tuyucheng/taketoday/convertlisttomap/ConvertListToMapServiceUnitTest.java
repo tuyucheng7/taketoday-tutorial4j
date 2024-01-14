@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.convertlisttomap;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class ConvertListToMapServiceUnitTest {
 
    private ConvertListToMapService convertListService;
 
-   @Before
+   @BeforeEach
    public void init() {
       this.convertListService = new ConvertListToMapService();
       this.list = new ArrayList<>();

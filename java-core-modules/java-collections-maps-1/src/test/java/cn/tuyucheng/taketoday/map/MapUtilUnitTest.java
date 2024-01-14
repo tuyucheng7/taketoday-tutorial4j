@@ -6,7 +6,8 @@ package cn.tuyucheng.taketoday.map;
 import com.google.common.collect.HashBiMap;
 import org.apache.commons.collections4.BidiMap;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author swpraman
@@ -27,7 +28,7 @@ public class MapUtilUnitTest {
       Map<String, String> capitalCountryMap = new HashMap<>();
       capitalCountryMap.put("Tokyo", "Japan");
       capitalCountryMap.put("New Delhi", "India");
-      assertEquals("New Delhi", MapUtil.getKey(capitalCountryMap, "India"));
+      Assertions.assertEquals("New Delhi", MapUtil.getKey(capitalCountryMap, "India"));
    }
 
    @Test

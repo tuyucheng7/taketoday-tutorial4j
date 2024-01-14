@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.google.common.util.concurrent.Uninterruptibles.sleepUninterruptibly;
 
 public class Account {
+
    private final AtomicInteger balance;
    private final AtomicInteger transactionCount;
    private final ThreadLocal<Integer> currentThreadCASFailureCount;
@@ -58,4 +59,5 @@ public class Account {
       }
       return result;
    }
+
 }

@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.size;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,14 +13,14 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class JavaFileSizeUnitTest {
    private static final long EXPECTED_FILE_SIZE_IN_BYTES = 11;
    private String filePath;
 
-   @Before
+   @BeforeEach
    public void init() {
       final String separator = File.separator;
       filePath = String.join(separator, new String[]{"src", "test", "resources", "size", "sample_file_1.in"});

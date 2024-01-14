@@ -1,5 +1,8 @@
 package cn.tuyucheng.taketoday.lines;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,9 +18,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.LineIterator;
 
 public class NumberOfLineFinder {
 
@@ -119,4 +119,5 @@ public class NumberOfLineFinder {
       }
       return lines;
    }
+
 }

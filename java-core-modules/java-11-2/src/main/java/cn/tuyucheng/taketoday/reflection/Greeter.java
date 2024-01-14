@@ -6,5 +6,5 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Greeter {
 
-   String greet() default "";
+   public String greet() default "";
 }

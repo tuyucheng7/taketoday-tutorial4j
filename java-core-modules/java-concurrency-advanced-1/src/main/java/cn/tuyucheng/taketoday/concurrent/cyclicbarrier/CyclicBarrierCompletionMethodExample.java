@@ -8,8 +8,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CyclicBarrierCompletionMethodExample {
-   private final int count;
-   private final int threadCount;
+
+   private int count;
+   private int threadCount;
    private final AtomicInteger updateCount;
 
    CyclicBarrierCompletionMethodExample(int count, int threadCount) {
@@ -19,7 +20,10 @@ public class CyclicBarrierCompletionMethodExample {
    }
 
    public int countTrips() {
-      CyclicBarrier cyclicBarrier = new CyclicBarrier(count, updateCount::incrementAndGet);
+
+      CyclicBarrier cyclicBarrier = new CyclicBarrier(count, () -> {
+         updateCount.incrementAndGet();
+      });
 
       ExecutorService es = Executors.newFixedThreadPool(threadCount);
       for (int i = 0; i < threadCount; i++) {

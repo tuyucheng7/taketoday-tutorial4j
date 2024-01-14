@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.lang.Integer.*;
-import static org.junit.Assert.assertEquals;
+import static java.lang.Integer.valueOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StreamFeaturesUnitTest {
 
@@ -45,6 +45,7 @@ public class StreamFeaturesUnitTest {
          assertEquals("sssssss", list.get(2));
          assertEquals("sssssssss", list.get(list.size() - 1));
       }
+
    }
 
    public static class IterateTest {
@@ -100,7 +101,11 @@ public class StreamFeaturesUnitTest {
 
       @Test
       public void testOfNullable() {
+
          assertEquals(testOfNullableFrom(getStream()), testOfNullableFrom(getStreamWithOfNullable()));
+
       }
+
    }
+
 }

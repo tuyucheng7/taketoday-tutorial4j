@@ -10,11 +10,11 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SynchronizedMethodsUnitTest {
+public class SynchronizedMethodsUnitTest {
 
    @Test
-   @Disabled("randomly failed")
-   void givenMultiThread_whenNonSyncMethod() throws InterruptedException {
+   @Disabled
+   public void givenMultiThread_whenNonSyncMethod() throws InterruptedException {
       ExecutorService service = Executors.newFixedThreadPool(3);
       SynchronizedMethods method = new SynchronizedMethods();
 
@@ -26,7 +26,7 @@ class SynchronizedMethodsUnitTest {
    }
 
    @Test
-   void givenMultiThread_whenMethodSync() throws InterruptedException {
+   public void givenMultiThread_whenMethodSync() throws InterruptedException {
       ExecutorService service = Executors.newFixedThreadPool(3);
       SynchronizedMethods method = new SynchronizedMethods();
 
@@ -38,7 +38,7 @@ class SynchronizedMethodsUnitTest {
    }
 
    @Test
-   void givenMultiThread_whenStaticSyncMethod() throws InterruptedException {
+   public void givenMultiThread_whenStaticSyncMethod() throws InterruptedException {
       ExecutorService service = Executors.newCachedThreadPool();
 
       IntStream.range(0, 1000)
@@ -47,4 +47,5 @@ class SynchronizedMethodsUnitTest {
 
       assertEquals(1000, SynchronizedMethods.staticSum);
    }
+
 }

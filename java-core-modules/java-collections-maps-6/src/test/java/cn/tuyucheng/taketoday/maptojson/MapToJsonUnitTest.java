@@ -3,30 +3,17 @@ package cn.tuyucheng.taketoday.maptojson;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MapToJsonUnitTest {
-   final TypeAdapter<JsonElement> strictAdapter = new Gson().getAdapter(JsonElement.class);
-
-   public boolean isValid(String json) {
-      try {
-         strictAdapter.fromJson(json);
-      } catch (JsonSyntaxException | IOException e) {
-         return false;
-      }
-      return true;
-   }
+   String originalJsonData = "{\"CS\":\"Post1\",\"Linux\":\"Post1\",\"Kotlin\":\"Post1\"}";
 
    @Test
    public void given_HashMapData_whenUsingJackson_thenConvertToJson() throws JsonProcessingException {
@@ -36,7 +23,7 @@ public class MapToJsonUnitTest {
       data.put("Kotlin", "Post1");
       ObjectMapper objectMapper = new ObjectMapper();
       String jacksonData = objectMapper.writeValueAsString(data);
-      Assertions.assertTrue(isValid(jacksonData));
+      Assertions.assertEquals(originalJsonData, jacksonData);
    }
 
    @Test
@@ -49,7 +36,7 @@ public class MapToJsonUnitTest {
       Type typeObject = new TypeToken<HashMap>() {
       }.getType();
       String gsonData = gson.toJson(data, typeObject);
-      Assertions.assertTrue(isValid(gsonData));
+      Assertions.assertEquals(originalJsonData, gsonData);
    }
 
    @Test
@@ -60,6 +47,6 @@ public class MapToJsonUnitTest {
       data.put("Kotlin", "Post1");
       JSONObject jsonObject = new JSONObject(data);
       String orgJsonData = jsonObject.toString();
-      Assertions.assertTrue(isValid(orgJsonData));
+      Assertions.assertEquals(originalJsonData, orgJsonData);
    }
 }

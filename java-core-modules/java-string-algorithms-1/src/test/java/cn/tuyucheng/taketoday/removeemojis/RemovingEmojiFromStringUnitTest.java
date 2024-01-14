@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.removeemojis;
 
 import com.vdurmont.emoji.EmojiParser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RemovingEmojiFromStringUnitTest {
    String text = "la conférence, commencera à 10 heures 😅";

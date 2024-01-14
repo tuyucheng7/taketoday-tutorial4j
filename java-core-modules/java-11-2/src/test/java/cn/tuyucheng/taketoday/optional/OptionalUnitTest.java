@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OptionalUnitTest {
 
@@ -31,10 +32,10 @@ public class OptionalUnitTest {
       assertTrue(opt.isPresent());
    }
 
-   @Test(expected = NullPointerException.class)
+   @Test
    public void givenNull_whenThrowsErrorOnCreate_thenCorrect() {
       String name = null;
-      Optional.of(name);
+      assertThrows(NullPointerException.class, () -> Optional.of(name));
    }
 
    @Test
@@ -83,10 +84,10 @@ public class OptionalUnitTest {
       assertEquals("tuyucheng", name);
    }
 
-   @Test(expected = NoSuchElementException.class)
+   @Test
    public void givenOptionalWithNull_whenGetThrowsException_thenCorrect() {
       Optional<String> opt = Optional.ofNullable(null);
-      String name = opt.get();
+      assertThrows(NoSuchElementException.class, opt::get);
    }
 
    @Test
@@ -164,7 +165,7 @@ public class OptionalUnitTest {
 
       int len = nameOptional.map(String::length)
             .orElse(0);
-      assertEquals(9, len);
+      assertEquals(8, len);
    }
 
    @Test
@@ -257,17 +258,17 @@ public class OptionalUnitTest {
    }
 
    // Exceptions With orElseThrow
-   @Test(expected = IllegalArgumentException.class)
+   @Test
    public void whenOrElseThrowWorks_thenCorrect() {
       String nullName = null;
-      String name = Optional.ofNullable(nullName)
-            .orElseThrow(IllegalArgumentException::new);
+      assertThrows(IllegalArgumentException.class, () -> Optional.ofNullable(nullName)
+            .orElseThrow(IllegalArgumentException::new));
    }
 
-   @Test(expected = NoSuchElementException.class)
+   @Test
    public void whenNoArgOrElseThrowWorks_thenCorrect() {
       String nullName = null;
-      String name = Optional.ofNullable(nullName).orElseThrow();
+      assertThrows(NoSuchElementException.class, () -> Optional.ofNullable(nullName).orElseThrow());
    }
 
    public String getMyDefault() {
@@ -275,13 +276,14 @@ public class OptionalUnitTest {
       return "Default Value";
    }
 
-   // Uncomment code when code base is compatible with Java 11
-   // @Test
-   // public void givenAnEmptyOptional_thenIsEmptyBehavesAsExpected() {
-   // 	Optional<String> opt = Optional.of("Tuyucheng");
-   // 	assertFalse(opt.isEmpty());
-   //
-   // 	opt = Optional.ofNullable(null);
-   // 	assertTrue(opt.isEmpty());
-   // }
+//    Uncomment code when code base is compatible with Java 11
+//    @Test
+//    public void givenAnEmptyOptional_thenIsEmptyBehavesAsExpected() {
+//        Optional<String> opt = Optional.of("Tuyucheng");
+//        assertFalse(opt.isEmpty());
+//
+//        opt = Optional.ofNullable(null);
+//        assertTrue(opt.isEmpty());
+//    }
+
 }

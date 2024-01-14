@@ -1,8 +1,6 @@
 package cn.tuyucheng.taketoday.password;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  * Examples of passwords conforming to various specifications, using different libraries.

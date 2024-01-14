@@ -29,9 +29,11 @@ public class MacbookPro extends Computer {
 
    @Override
    public Double calculateValue(Double initialValue) {
+
       Function<Double, Double> function = super::calculateValue;
       final Double pcValue = function.apply(initialValue);
       LOG.debug("First value is:" + pcValue);
       return pcValue + (initialValue / 10);
+
    }
 }

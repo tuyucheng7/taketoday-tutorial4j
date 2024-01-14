@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.list.listvsarraylist;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ListDemoUnitTest {
 
@@ -34,7 +33,7 @@ class ListDemoUnitTest {
       List<Passenger> list = application.addPassenger(new Passenger("David", 54, "Milan", "Paris"));
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(4);
+      assertThat(list).hasSize(4);
    }
 
    @Test
@@ -42,7 +41,7 @@ class ListDemoUnitTest {
       List<Passenger> list = application.removePassenger(passenger3);
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(2);
+      assertThat(list).hasSize(2);
    }
 
    @Test
@@ -50,7 +49,7 @@ class ListDemoUnitTest {
       List<Passenger> list = application.getPassengersBySource("Singapore");
       List<Passenger> list2 = application.getPassengersBySource("London");
 
-      Assertions.assertThat(list).isEmpty();
+      assertThat(list).isEmpty();
       assertThat(list2.get(0)).isEqualTo(passenger1);
    }
 
@@ -59,7 +58,7 @@ class ListDemoUnitTest {
       List<Passenger> list = application.getPassengersByDestination("Singapore");
       List<Passenger> list2 = application.getPassengersByDestination("London");
 
-      Assertions.assertThat(list).isEmpty();
+      assertThat(list).isEmpty();
       assertThat(list2.get(0)).isEqualTo(passenger2);
    }
 
@@ -79,7 +78,7 @@ class ListDemoUnitTest {
       List<Passenger> list = application.getFinalPassengersList();
 
       assertNotNull(list);
-      Assertions.assertThat(list).hasSize(3);
+      assertThat(list).hasSize(3);
    }
 
    @Test

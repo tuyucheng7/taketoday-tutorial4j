@@ -12,6 +12,7 @@ public class Message implements Serializable {
    }
 
    public Message(String messageText, String contentType) {
+
       this.messageText = messageText;
       this.contentType = contentType;
    }
@@ -31,4 +32,5 @@ public class Message implements Serializable {
    public void setContentType(String contentType) {
       this.contentType = contentType;
    }
+
 }

@@ -14,10 +14,10 @@ import java.nio.channels.ReadableByteChannel;
 import static java.nio.channels.Channels.newChannel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InputStreamToByteBufferUnitTest {
+public class InputStreamToByteBufferUnitTest {
 
    @Test
-   void givenUsingCoreClasses_whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
+   public void givenUsingCoreClasses_whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
       byte[] input = new byte[]{0, 1, 2};
       InputStream initialStream = new ByteArrayInputStream(input);
       ByteBuffer byteBuffer = ByteBuffer.allocate(3);
@@ -29,7 +29,7 @@ class InputStreamToByteBufferUnitTest {
    }
 
    @Test
-   void givenUsingGuava__whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
+   public void givenUsingGuava__whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
       InputStream initialStream = ByteSource
             .wrap(new byte[]{0, 1, 2})
             .openStream();
@@ -43,7 +43,7 @@ class InputStreamToByteBufferUnitTest {
    }
 
    @Test
-   void givenUsingCommonsIo_whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
+   public void givenUsingCommonsIo_whenByteArrayInputStreamToAByteBuffer_thenLengthMustMatch() throws IOException {
       byte[] input = new byte[]{0, 1, 2};
       InputStream initialStream = new ByteArrayInputStream(input);
       ByteBuffer byteBuffer = ByteBuffer.allocate(3);
@@ -52,4 +52,5 @@ class InputStreamToByteBufferUnitTest {
 
       assertEquals(byteBuffer.position(), input.length);
    }
+
 }

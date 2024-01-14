@@ -34,4 +34,5 @@ public class UseFoo {
 
       return "Results: resultIC = " + resultIC + ", resultLambda = " + resultLambda;
    }
+
 }

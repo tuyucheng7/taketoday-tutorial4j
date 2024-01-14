@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.collection;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
@@ -38,21 +38,21 @@ public class WhenUsingTreeSet {
    @Test
    public void whenAddingElement_shouldAddElement() {
       Set<String> treeSet = new TreeSet<>();
-      Assert.assertTrue(treeSet.add("String Added"));
+      Assertions.assertTrue(treeSet.add("String Added"));
    }
 
    @Test
    public void whenCheckingForElement_shouldSearchForElement() {
       Set<String> treeSetContains = new TreeSet<>();
       treeSetContains.add("String Added");
-      Assert.assertTrue(treeSetContains.contains("String Added"));
+      Assertions.assertTrue(treeSetContains.contains("String Added"));
    }
 
    @Test
    public void whenRemovingElement_shouldRemoveElement() {
       Set<String> removeFromTreeSet = new TreeSet<>();
       removeFromTreeSet.add("String Added");
-      Assert.assertTrue(removeFromTreeSet.remove("String Added"));
+      Assertions.assertTrue(removeFromTreeSet.remove("String Added"));
    }
 
    @Test
@@ -60,20 +60,20 @@ public class WhenUsingTreeSet {
       Set<String> clearTreeSet = new TreeSet<>();
       clearTreeSet.add("String Added");
       clearTreeSet.clear();
-      Assert.assertTrue(clearTreeSet.isEmpty());
+      Assertions.assertTrue(clearTreeSet.isEmpty());
    }
 
    @Test
    public void whenCheckingTheSizeOfTreeSet_shouldReturnThesize() {
       Set<String> treeSetSize = new TreeSet<>();
       treeSetSize.add("String Added");
-      Assert.assertEquals(1, treeSetSize.size());
+      Assertions.assertEquals(1, treeSetSize.size());
    }
 
    @Test
    public void whenCheckingForEmptyTreeSet_shouldCheckForEmpty() {
       Set<String> emptyTreeSet = new TreeSet<>();
-      Assert.assertTrue(emptyTreeSet.isEmpty());
+      Assertions.assertTrue(emptyTreeSet.isEmpty());
    }
 
    @Test
@@ -125,7 +125,7 @@ public class WhenUsingTreeSet {
          if (element.equals("Second"))
             itr.remove();
       }
-      Assert.assertEquals(2, treeSet.size());
+      Assertions.assertEquals(2, treeSet.size());
    }
 
    @Test(expected = NullPointerException.class)
@@ -139,7 +139,7 @@ public class WhenUsingTreeSet {
    public void whenCheckingFirstElement_shouldReturnFirstElement() {
       TreeSet<String> treeSet = new TreeSet<>();
       treeSet.add("First");
-      Assert.assertEquals("First", treeSet.first());
+      Assertions.assertEquals("First", treeSet.first());
    }
 
    @Test
@@ -147,7 +147,7 @@ public class WhenUsingTreeSet {
       TreeSet<String> treeSet = new TreeSet<>();
       treeSet.add("First");
       treeSet.add("Last");
-      Assert.assertEquals("Last", treeSet.last());
+      Assertions.assertEquals("Last", treeSet.last());
    }
 
    @Test
@@ -195,7 +195,7 @@ public class WhenUsingTreeSet {
       expectedSet.add(5);
 
       Set<Integer> subSet = treeSet.subSet(2, 6);
-      Assert.assertEquals(expectedSet, subSet);
+      Assertions.assertEquals(expectedSet, subSet);
    }
 
    @Test
@@ -209,7 +209,7 @@ public class WhenUsingTreeSet {
       treeSet.add(6);
 
       Set<Integer> subSet = treeSet.headSet(6);
-      Assert.assertEquals(subSet, treeSet.subSet(1, 6));
+      Assertions.assertEquals(subSet, treeSet.subSet(1, 6));
    }
 
    @Test
@@ -223,6 +223,6 @@ public class WhenUsingTreeSet {
       treeSet.add(6);
 
       Set<Integer> subSet = treeSet.tailSet(3);
-      Assert.assertEquals(subSet, treeSet.subSet(3, true, 6, true));
+      Assertions.assertEquals(subSet, treeSet.subSet(3, true, 6, true));
    }
 }

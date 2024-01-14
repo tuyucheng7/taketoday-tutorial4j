@@ -4,7 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.primitives.Doubles;
 import io.vavr.control.Try;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 

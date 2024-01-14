@@ -1,17 +1,16 @@
 package cn.tuyucheng.taketoday.java.list;
 
-import static java.util.stream.Collectors.toSet;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import cn.tuyucheng.taketoday.list.Country;
+import org.apache.commons.collections4.CollectionUtils;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.junit.Test;
-
-import cn.tuyucheng.taketoday.list.Country;
+import static java.util.stream.Collectors.toSet;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ListContainsElementFromOtherListUnitTest {
 
@@ -50,18 +49,19 @@ public class ListContainsElementFromOtherListUnitTest {
 
    @Test
    public void givenPropertiesInObjectsToCompare_whenUsingStreams_thenDetectElementsInTwoLists() {
-      Country france = new Country("France", "Paris");
-      Country belgium = new Country("Belgium", "Brussels");
-      Country spain = new Country("Spain", "Madrid");
-      List<Country> franceAndBelgium = Arrays.asList(france, belgium);
-      List<Country> belgiumAndSpain = Arrays.asList(belgium, spain);
+      Country france = new Country("France", "French");
+      Country mexico = new Country("Mexico", "Spanish");
+      Country spain = new Country("Spain", "Spanish");
+      List<Country> franceAndMexico = Arrays.asList(france, mexico);
+      List<Country> franceAndSpain = Arrays.asList(france, spain);
 
-      boolean shouldBeTrue = franceAndBelgium.stream()
-            .map(Country::getCapital)
-            .anyMatch(belgiumAndSpain.stream()
-                  .map(Country::getCapital)
+      boolean shouldBeTrue = franceAndMexico.stream()
+            .map(Country::getLanguage)
+            .anyMatch(franceAndSpain.stream()
+                  .map(Country::getLanguage)
                   .collect(toSet())::contains);
 
       assertTrue(shouldBeTrue);
    }
+
 }

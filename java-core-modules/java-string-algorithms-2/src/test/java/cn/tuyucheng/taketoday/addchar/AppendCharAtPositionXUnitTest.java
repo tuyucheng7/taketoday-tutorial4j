@@ -1,9 +1,15 @@
+/**
+ *
+ */
 package cn.tuyucheng.taketoday.addchar;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author swpraman
+ */
 public class AppendCharAtPositionXUnitTest {
 
    private AppendCharAtPositionX appendCharAtPosition = new AppendCharAtPositionX();

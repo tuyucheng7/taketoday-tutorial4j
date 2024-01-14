@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.java.md5;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.File;

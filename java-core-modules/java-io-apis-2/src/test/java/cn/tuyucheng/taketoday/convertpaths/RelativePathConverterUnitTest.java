@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.convertpaths;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RelativePathConverterUnitTest {
 

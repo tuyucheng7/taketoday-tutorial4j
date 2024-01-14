@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.collections.combiningcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class CombiningSetsUnitTest {
    private static final Set<Object> first = new HashSet<Object>(Arrays.asList(new Object[]{"One", "Two", "Three"}));

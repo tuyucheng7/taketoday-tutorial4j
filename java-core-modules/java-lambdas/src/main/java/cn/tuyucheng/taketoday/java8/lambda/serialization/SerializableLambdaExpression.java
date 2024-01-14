@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class SerializableLambdaExpression {
    public static Object getLambdaExpressionObject() {
-      return (Runnable & Serializable) () -> System.out.println("please serialize this message");
+      Runnable r = (Runnable & Serializable) () -> System.out.println("please serialize this message");
+      return r;
    }
 }

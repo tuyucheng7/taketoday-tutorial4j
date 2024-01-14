@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-streams-4</artifactId>
-   <version>1.0.0</version>
    <name>java-streams-4</name>
    <packaging>jar</packaging>
 
@@ -35,7 +34,7 @@
       <dependency>
          <groupId>org.assertj</groupId>
          <artifactId>assertj-core</artifactId>
-         <version>3.23.1</version>
+         <version>${assertj.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -51,7 +50,7 @@
       <dependency>
          <groupId>org.apache.commons</groupId>
          <artifactId>commons-lang3</artifactId>
-         <version>3.12.0</version>
+         <version>${commons-lang3.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
@@ -77,7 +76,7 @@
       <dependency>
          <groupId>com.google.guava</groupId>
          <artifactId>guava</artifactId>
-         <version>${google.guava.version}</version>
+         <version>${guava.version}</version>
       </dependency>
       <dependency>
          <groupId>com.oath.cyclops</groupId>
@@ -107,13 +106,14 @@
 
    <properties>
       <!-- testing -->
+      <assertj.version>3.23.1</assertj.version>
       <rx.java.version>1.2.5</rx.java.version>
       <rx.java2.version>2.2.2</rx.java2.version>
       <rx.java3.version>3.1.5</rx.java3.version>
       <io.varv.version>1.0.0-alpha-4</io.varv.version>
       <reactor-core.version>3.6.0</reactor-core.version>
       <apache.commons.collection4.version>4.4</apache.commons.collection4.version>
-      <google.guava.version>31.1-jre</google.guava.version>
       <cyclops.version>10.4.1</cyclops.version>
    </properties>
+
 </project>

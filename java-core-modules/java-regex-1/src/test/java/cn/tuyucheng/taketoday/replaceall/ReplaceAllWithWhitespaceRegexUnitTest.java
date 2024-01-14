@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.replaceall;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReplaceAllWithWhitespaceRegexUnitTest {
    private static final String INPUT_STR = "Text   With     Whitespaces!   ";

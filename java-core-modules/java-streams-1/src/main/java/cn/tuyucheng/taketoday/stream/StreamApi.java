@@ -16,8 +16,9 @@ public class StreamApi {
    }
 
    public static String getLastElementUsingSkip(List<String> valueList) {
-      long count = valueList.size();
+      long count = (long) valueList.size();
       Stream<String> stream = valueList.stream();
       return stream.skip(count - 1).findFirst().orElse(null);
    }
+
 }

@@ -63,4 +63,5 @@ public class HttpClientBasicAuthentication {
       return "Basic " + Base64.getEncoder()
             .encodeToString(valueToEncode.getBytes());
    }
+
 }

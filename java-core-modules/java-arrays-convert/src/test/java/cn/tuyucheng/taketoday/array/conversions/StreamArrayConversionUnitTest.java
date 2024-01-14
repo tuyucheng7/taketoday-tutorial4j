@@ -6,57 +6,66 @@ import org.junit.jupiter.api.Test;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.intStreamToPrimitiveIntArray;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.integerStreamToIntegerArray;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.primitiveIntArrayToStreamUsingArraysStream;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.primitiveIntArrayToStreamUsingStreamOf;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.stringArrayToStreamUsingArraysStream;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.stringArrayToStreamUsingStreamOf;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.stringStreamToStringArrayUsingFunctionalInterface;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.stringStreamToStringArrayUsingLambda;
+import static cn.tuyucheng.taketoday.array.conversions.StreamArrayConversion.stringStreamToStringArrayUsingMethodReference;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class StreamArrayConversionUnitTest {
+public class StreamArrayConversionUnitTest {
 
    private String[] stringArray = new String[]{"tuyucheng", "convert", "to", "string", "array"};
    private Integer[] integerArray = new Integer[]{1, 2, 3, 4, 5, 6, 7};
    private int[] intPrimitiveArray = new int[]{1, 2, 3, 4, 5, 6, 7};
 
    @Test
-   void givenStringStream_thenConvertToStringArrayUsingFunctionalInterface() {
+   public void givenStringStream_thenConvertToStringArrayUsingFunctionalInterface() {
       Stream<String> stringStream = Stream.of("tuyucheng", "convert", "to", "string", "array");
-      assertArrayEquals(stringArray, StreamArrayConversion.stringStreamToStringArrayUsingFunctionalInterface(stringStream));
+      assertArrayEquals(stringArray, stringStreamToStringArrayUsingFunctionalInterface(stringStream));
    }
 
    @Test
-   void givenStringStream_thenConvertToStringArrayUsingMethodReference() {
+   public void givenStringStream_thenConvertToStringArrayUsingMethodReference() {
       Stream<String> stringStream = Stream.of("tuyucheng", "convert", "to", "string", "array");
-      assertArrayEquals(stringArray, StreamArrayConversion.stringStreamToStringArrayUsingMethodReference(stringStream));
+      assertArrayEquals(stringArray, stringStreamToStringArrayUsingMethodReference(stringStream));
    }
 
    @Test
-   void givenStringStream_thenConvertToStringArrayUsingLambda() {
+   public void givenStringStream_thenConvertToStringArrayUsingLambda() {
       Stream<String> stringStream = Stream.of("tuyucheng", "convert", "to", "string", "array");
-      assertArrayEquals(stringArray, StreamArrayConversion.stringStreamToStringArrayUsingLambda(stringStream));
+      assertArrayEquals(stringArray, stringStreamToStringArrayUsingLambda(stringStream));
    }
 
    @Test
-   void givenIntegerStream_thenConvertToIntegerArray() {
+   public void givenIntegerStream_thenConvertToIntegerArray() {
       Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6, 7);
-      assertArrayEquals(integerArray, StreamArrayConversion.integerStreamToIntegerArray(integerStream));
+      assertArrayEquals(integerArray, integerStreamToIntegerArray(integerStream));
    }
 
    @Test
-   void givenIntStream_thenConvertToIntegerArray() {
+   public void givenIntStream_thenConvertToIntegerArray() {
       Stream<Integer> integerStream = IntStream.rangeClosed(1, 7).boxed();
-      assertArrayEquals(intPrimitiveArray, StreamArrayConversion.intStreamToPrimitiveIntArray(integerStream));
+      assertArrayEquals(intPrimitiveArray, intStreamToPrimitiveIntArray(integerStream));
    }
 
    @Test
-   void givenStringArray_whenConvertedTwoWays_thenConvertedStreamsAreEqual() {
+   public void givenStringArray_whenConvertedTwoWays_thenConvertedStreamsAreEqual() {
       assertTrue(Iterators
-            .elementsEqual(StreamArrayConversion.stringArrayToStreamUsingArraysStream(stringArray).iterator(),
-                  StreamArrayConversion.stringArrayToStreamUsingStreamOf(stringArray).iterator()));
+            .elementsEqual(stringArrayToStreamUsingArraysStream(stringArray).iterator(),
+                  stringArrayToStreamUsingStreamOf(stringArray).iterator()));
    }
 
    @Test
-   void givenPrimitiveArray_whenConvertedTwoWays_thenConvertedStreamsAreNotEqual() {
+   public void givenPrimitiveArray_whenConvertedTwoWays_thenConvertedStreamsAreNotEqual() {
       assertFalse(Iterators.elementsEqual(
-            StreamArrayConversion.primitiveIntArrayToStreamUsingArraysStream(intPrimitiveArray).iterator(),
-            StreamArrayConversion.primitiveIntArrayToStreamUsingStreamOf(intPrimitiveArray).iterator()));
+            primitiveIntArrayToStreamUsingArraysStream(intPrimitiveArray).iterator(),
+            primitiveIntArrayToStreamUsingStreamOf(intPrimitiveArray).iterator()));
    }
 }

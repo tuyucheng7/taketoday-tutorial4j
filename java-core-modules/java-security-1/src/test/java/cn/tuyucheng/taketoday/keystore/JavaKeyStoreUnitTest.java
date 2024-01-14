@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.keystore;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import sun.security.util.DerOutputStream;
 import sun.security.x509.AlgorithmId;
 import sun.security.x509.CertificateAlgorithmId;
@@ -55,13 +55,13 @@ public class JavaKeyStoreUnitTest {
    private static final String MY_PRIVATE_KEY = "myPrivateKey";
    private static final String MY_CERTIFICATE = "myCertificate";
 
-   @Before
+   @BeforeEach
    public void setUp() throws Exception {
       // using java cryptography extension keyStore instead of Keystore.getDefaultType
       keyStore = new JavaKeyStore(KEY_STORE_TYPE, KEYSTORE_PWD, KEYSTORE_NAME);
    }
 
-   @After
+   @AfterEach
    public void tearDown() throws Exception {
       if (keyStore.getKeyStore() != null) {
          keyStore.deleteKeyStore();
@@ -72,7 +72,7 @@ public class JavaKeyStoreUnitTest {
    public void givenNoKeyStore_whenCreateEmptyKeyStore_thenGetKeyStoreNotNull() throws Exception {
       keyStore.createEmptyKeyStore();
       KeyStore result = keyStore.getKeyStore();
-      Assert.assertNotNull(result);
+      Assertions.assertNotNull(result);
    }
 
    @Test
@@ -80,8 +80,8 @@ public class JavaKeyStoreUnitTest {
       keyStore.createEmptyKeyStore();
       keyStore.loadKeyStore();
       KeyStore result = keyStore.getKeyStore();
-      Assert.assertNotNull(result);
-      Assert.assertTrue(result.size() == 0);
+      Assertions.assertNotNull(result);
+      Assertions.assertTrue(result.size() == 0);
    }
 
    @Test
@@ -97,9 +97,9 @@ public class JavaKeyStoreUnitTest {
       keyStore.setEntry(MY_SECRET_ENTRY, secretKeyEntry, protParam);
 
       KeyStore result = keyStore.getKeyStore();
-      Assert.assertTrue(result.size() == 1);
+      Assertions.assertTrue(result.size() == 1);
       KeyStore.Entry entry = keyStore.getEntry(MY_SECRET_ENTRY);
-      Assert.assertTrue(entry != null);
+      Assertions.assertTrue(entry != null);
    }
 
    @Test
@@ -120,9 +120,9 @@ public class JavaKeyStoreUnitTest {
       keyStore.setKeyEntry(MY_PRIVATE_KEY, keyPair.getPrivate(), KEYSTORE_PWD, certificateChain);
 
       KeyStore result = keyStore.getKeyStore();
-      Assert.assertTrue(result.size() == 1);
+      Assertions.assertTrue(result.size() == 1);
       KeyStore.Entry entry = keyStore.getEntry(MY_PRIVATE_KEY);
-      Assert.assertTrue(entry != null);
+      Assertions.assertTrue(entry != null);
    }
 
    @Test
@@ -141,9 +141,9 @@ public class JavaKeyStoreUnitTest {
       keyStore.setCertificateEntry(MY_CERTIFICATE, certificate);
 
       KeyStore result = this.keyStore.getKeyStore();
-      Assert.assertTrue(result.size() == 1);
+      Assertions.assertTrue(result.size() == 1);
       java.security.cert.Certificate resultCertificate = keyStore.getCertificate(MY_CERTIFICATE);
-      Assert.assertNotNull(resultCertificate);
+      Assertions.assertNotNull(resultCertificate);
    }
 
    @Test
@@ -161,7 +161,7 @@ public class JavaKeyStoreUnitTest {
       keyStore.deleteEntry(MY_SECRET_ENTRY);
 
       KeyStore result = this.keyStore.getKeyStore();
-      Assert.assertTrue(result.size() == 0);
+      Assertions.assertTrue(result.size() == 0);
    }
 
    @Test
@@ -172,7 +172,7 @@ public class JavaKeyStoreUnitTest {
       keyStore.deleteKeyStore();
 
       KeyStore result = this.keyStore.getKeyStore();
-      Assert.assertTrue(result == null);
+      Assertions.assertTrue(result == null);
    }
 
    private X509Certificate generateSelfSignedCertificate(KeyPair keyPair) throws CertificateException, IOException, NoSuchProviderException, NoSuchAlgorithmException, InvalidKeyException, SignatureException {
@@ -188,8 +188,7 @@ public class JavaKeyStoreUnitTest {
 
       // Key and algorithm
       certInfo.set(X509CertInfo.KEY, new CertificateX509Key(keyPair.getPublic()));
-      // sha1WithRSAEncryption_oid
-      AlgorithmId algorithm = new AlgorithmId(AlgorithmId.RSAEncryption_oid);
+      AlgorithmId algorithm = new AlgorithmId(AlgorithmId.sha1WithRSAEncryption_oid);
       certInfo.set(X509CertInfo.ALGORITHM_ID, new CertificateAlgorithmId(algorithm));
 
       // Validity

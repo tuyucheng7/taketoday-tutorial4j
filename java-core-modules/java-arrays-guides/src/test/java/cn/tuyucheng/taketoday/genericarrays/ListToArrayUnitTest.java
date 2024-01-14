@@ -7,10 +7,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ListToArrayUnitTest {
+public class ListToArrayUnitTest {
 
    @Test
-   void givenListOfItems_whenToArray_thenReturnArrayOfItems() {
+   public void givenListOfItems_whenToArray_thenReturnArrayOfItems() {
       List<String> items = new LinkedList<>();
       items.add("first item");
       items.add("second item");
