@@ -5,14 +5,14 @@ import org.slf4j.LoggerFactory;
 
 public class IllegalArgument {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(IllegalArgument.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(IllegalArgument.class);
 
-    public static void main(String[] args) {
-        try {
-            Thread.sleep(-1000);
-        } catch (InterruptedException e) {
-            LOGGER.error("IllegalArgumentException caught!");
-        }
-    }
+   public static void main(String[] args) {
+      try {
+         Thread.sleep(-1000);
+      } catch (InterruptedException e) {
+         LOGGER.error("IllegalArgumentException caught!");
+      }
+   }
 
 }

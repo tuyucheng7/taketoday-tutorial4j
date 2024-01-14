@@ -4,31 +4,31 @@ import java.io.Serializable;
 
 public class Message implements Serializable {
 
-	private String messageText;
+   private String messageText;
 
-	private String contentType;
+   private String contentType;
 
-	public Message() {
-	}
+   public Message() {
+   }
 
-	public Message(String messageText, String contentType) {
-		this.messageText = messageText;
-		this.contentType = contentType;
-	}
+   public Message(String messageText, String contentType) {
+      this.messageText = messageText;
+      this.contentType = contentType;
+   }
 
-	public String getMessageText() {
-		return messageText;
-	}
+   public String getMessageText() {
+      return messageText;
+   }
 
-	public void setMessageText(String messageText) {
-		this.messageText = messageText;
-	}
+   public void setMessageText(String messageText) {
+      this.messageText = messageText;
+   }
 
-	public String getContentType() {
-		return contentType;
-	}
+   public String getContentType() {
+      return contentType;
+   }
 
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
+   public void setContentType(String contentType) {
+      this.contentType = contentType;
+   }
 }

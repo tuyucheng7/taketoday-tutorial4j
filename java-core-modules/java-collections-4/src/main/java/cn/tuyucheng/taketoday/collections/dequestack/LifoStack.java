@@ -4,9 +4,9 @@ import java.util.Collection;
 
 public interface LifoStack<E> extends Collection<E> {
 
-    E peek();
+   E peek();
 
-    E pop();
+   E pop();
 
-    void push(E item);
+   void push(E item);
 }

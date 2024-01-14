@@ -15,40 +15,40 @@ import java.security.NoSuchAlgorithmException;
 
 public class IllegalBlockSizeExamplesUnitTest {
 
-	private SecretKey key;
-	private byte[] plainTextBytes;
-	private String plainText;
+   private SecretKey key;
+   private byte[] plainTextBytes;
+   private String plainText;
 
-	@Before
-	public void before() throws GeneralSecurityException {
-		key = CryptoUtils.getFixedKey();
+   @Before
+   public void before() throws GeneralSecurityException {
+      key = CryptoUtils.getFixedKey();
 
-		plainText = "https://www.baeldung.com/";
-		plainTextBytes = plainText.getBytes();
-	}
+      plainText = "https://www.tuyucheng.com/";
+      plainTextBytes = plainText.getBytes();
+   }
 
-	@Test
-	public void whenEncryptingPlainTextWithoutPadding_thenIllegalBlockSizeExceptionIsThrown()
-		throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
-		BadPaddingException {
-		Assert.assertThrows(IllegalBlockSizeException.class,
-			() -> IllegalBlockSizeExamples.encryptWithoutPadding(key, plainTextBytes));
-	}
+   @Test
+   public void whenEncryptingPlainTextWithoutPadding_thenIllegalBlockSizeExceptionIsThrown()
+         throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
+         BadPaddingException {
+      Assert.assertThrows(IllegalBlockSizeException.class,
+            () -> IllegalBlockSizeExamples.encryptWithoutPadding(key, plainTextBytes));
+   }
 
-	@Test
-	public void whenDecryptingCipherTextThatWasNotEncrypted_thenIllegalBlockSizeExceptionIsThrown()
-		throws GeneralSecurityException {
-		Assert.assertThrows(IllegalBlockSizeException.class,
-			() -> IllegalBlockSizeExamples.decryptTextThatIsNotEncrypted(key));
-	}
+   @Test
+   public void whenDecryptingCipherTextThatWasNotEncrypted_thenIllegalBlockSizeExceptionIsThrown()
+         throws GeneralSecurityException {
+      Assert.assertThrows(IllegalBlockSizeException.class,
+            () -> IllegalBlockSizeExamples.decryptTextThatIsNotEncrypted(key));
+   }
 
-	@Test
-	public void whenEncryptingAndDecryptingWithPadding_thenNoExceptionThrown() throws NoSuchAlgorithmException,
-		NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-		byte[] cipherTextBytes = CryptoUtils.encryptWithPadding(key, plainTextBytes);
+   @Test
+   public void whenEncryptingAndDecryptingWithPadding_thenNoExceptionThrown() throws NoSuchAlgorithmException,
+         NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+      byte[] cipherTextBytes = CryptoUtils.encryptWithPadding(key, plainTextBytes);
 
-		byte[] decryptedBytes = CryptoUtils.decryptWithPadding(key, cipherTextBytes);
+      byte[] decryptedBytes = CryptoUtils.decryptWithPadding(key, cipherTextBytes);
 
-		Assert.assertEquals(plainText, new String(decryptedBytes));
-	}
+      Assert.assertEquals(plainText, new String(decryptedBytes));
+   }
 }

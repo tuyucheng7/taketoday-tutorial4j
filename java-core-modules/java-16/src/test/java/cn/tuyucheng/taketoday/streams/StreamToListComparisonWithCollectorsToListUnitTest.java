@@ -10,96 +10,96 @@ import java.util.stream.Stream;
 
 class StreamToListComparisonWithCollectorsToListUnitTest {
 
-	@Test
-	void whenAddingtoCollectToList_thenSuccess() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toList());
+   @Test
+   void whenAddingtoCollectToList_thenSuccess() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toList());
 
-		Assertions.assertDoesNotThrow(() -> {
-			result.add("test");
-		});
-	}
+      Assertions.assertDoesNotThrow(() -> {
+         result.add("test");
+      });
+   }
 
-	@Test
-	void whenSortingtoCollectToList_thenSuccess() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toList());
+   @Test
+   void whenSortingtoCollectToList_thenSuccess() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toList());
 
-		Assertions.assertDoesNotThrow(() -> result.sort(String::compareToIgnoreCase));
-	}
+      Assertions.assertDoesNotThrow(() -> result.sort(String::compareToIgnoreCase));
+   }
 
-	@Test
-	void whenAddingCollectUnmodifiableToList_thenException() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toUnmodifiableList());
+   @Test
+   void whenAddingCollectUnmodifiableToList_thenException() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toUnmodifiableList());
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test"));
-	}
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test"));
+   }
 
-	@Test
-	void whenSortingCollectUnmodifiableToList_thenSortException() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toUnmodifiableList());
+   @Test
+   void whenSortingCollectUnmodifiableToList_thenSortException() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toUnmodifiableList());
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> result.sort(String::compareToIgnoreCase));
-	}
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> result.sort(String::compareToIgnoreCase));
+   }
 
-	@Test
-	void whenAddingStreamToList_thenException() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.toList();
+   @Test
+   void whenAddingStreamToList_thenException() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .toList();
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test"));
-	}
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> result.add("test"));
+   }
 
-	@Test
-	void whenSortingStreamToList_thenException() {
-		List<String> result = Stream.of(Locale.getISOCountries())
-			.toList();
+   @Test
+   void whenSortingStreamToList_thenException() {
+      List<String> result = Stream.of(Locale.getISOCountries())
+            .toList();
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> result.sort(String::compareToIgnoreCase));
-	}
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> result.sort(String::compareToIgnoreCase));
+   }
 
-	@Test
-	void whenComparingStreamToList_withCollectToList_thenEqual() {
-		List<String> streamToList = Stream.of(Locale.getISOCountries())
-			.toList();
-		List<String> collectToList = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toList());
+   @Test
+   void whenComparingStreamToList_withCollectToList_thenEqual() {
+      List<String> streamToList = Stream.of(Locale.getISOCountries())
+            .toList();
+      List<String> collectToList = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toList());
 
-		Assertions.assertEquals(streamToList, collectToList);
-	}
+      Assertions.assertEquals(streamToList, collectToList);
+   }
 
-	@Test
-	void whenComparingStreamToList_withUnmodifiedCollectToList_thenEqual() {
+   @Test
+   void whenComparingStreamToList_withUnmodifiedCollectToList_thenEqual() {
 
-		List<String> streamToList = Stream.of(Locale.getISOCountries())
-			.toList();
-		List<String> collectToUnmodifiableList = Stream.of(Locale.getISOCountries())
-			.collect(Collectors.toUnmodifiableList());
+      List<String> streamToList = Stream.of(Locale.getISOCountries())
+            .toList();
+      List<String> collectToUnmodifiableList = Stream.of(Locale.getISOCountries())
+            .collect(Collectors.toUnmodifiableList());
 
-		Assertions.assertEquals(streamToList, collectToUnmodifiableList);
-	}
+      Assertions.assertEquals(streamToList, collectToUnmodifiableList);
+   }
 
-	@Test
-	void whenNullCollectorsToList_thenSuccess() {
-		Assertions.assertDoesNotThrow(() -> {
-			Stream.of(null, null)
-				.collect(Collectors.toList());
-		});
-	}
+   @Test
+   void whenNullCollectorsToList_thenSuccess() {
+      Assertions.assertDoesNotThrow(() -> {
+         Stream.of(null, null)
+               .collect(Collectors.toList());
+      });
+   }
 
-	@Test
-	void whenNullCollectorsUnmodifiableToList_thenException() {
-		Assertions.assertThrows(NullPointerException.class, () -> Stream.of(null, null)
-			.collect(Collectors.toUnmodifiableList()));
-	}
+   @Test
+   void whenNullCollectorsUnmodifiableToList_thenException() {
+      Assertions.assertThrows(NullPointerException.class, () -> Stream.of(null, null)
+            .collect(Collectors.toUnmodifiableList()));
+   }
 
-	@Test
-	void whenNullStreamToList_thenSuccess() {
-		Assertions.assertDoesNotThrow(() -> {
-			Stream.of(null, null)
-				.toList();
-		});
-	}
+   @Test
+   void whenNullStreamToList_thenSuccess() {
+      Assertions.assertDoesNotThrow(() -> {
+         Stream.of(null, null)
+               .toList();
+      });
+   }
 }

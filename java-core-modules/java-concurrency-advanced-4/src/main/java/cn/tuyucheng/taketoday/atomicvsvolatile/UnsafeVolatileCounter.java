@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.atomicvsvolatile;
 
 public class UnsafeVolatileCounter {
 
-	private volatile int counter;
+   private volatile int counter;
 
-	public int getValue() {
-		return counter;
-	}
+   public int getValue() {
+      return counter;
+   }
 
-	public void increment() {
-		counter++;
-	}
+   public void increment() {
+      counter++;
+   }
 }

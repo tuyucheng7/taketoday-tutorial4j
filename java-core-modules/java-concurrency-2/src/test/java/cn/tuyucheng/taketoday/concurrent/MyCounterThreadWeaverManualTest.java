@@ -16,30 +16,30 @@ import static org.junit.Assert.assertEquals;
  */
 public class MyCounterThreadWeaverManualTest {
 
-	private MyCounter counter;
+   private MyCounter counter;
 
-	@ThreadedBefore
-	public void before() {
-		counter = new MyCounter();
-	}
+   @ThreadedBefore
+   public void before() {
+      counter = new MyCounter();
+   }
 
-	@ThreadedMain
-	public void mainThread() {
-		counter.increment();
-	}
+   @ThreadedMain
+   public void mainThread() {
+      counter.increment();
+   }
 
-	@ThreadedSecondary
-	public void secondThread() {
-		counter.increment();
-	}
+   @ThreadedSecondary
+   public void secondThread() {
+      counter.increment();
+   }
 
-	@ThreadedAfter
-	public void after() {
-		assertEquals(2, counter.getCount());
-	}
+   @ThreadedAfter
+   public void after() {
+      assertEquals(2, counter.getCount());
+   }
 
-	@Test
-	public void testCounter() {
-		new AnnotatedTestRunner().runTests(this.getClass(), MyCounter.class);
-	}
+   @Test
+   public void testCounter() {
+      new AnnotatedTestRunner().runTests(this.getClass(), MyCounter.class);
+   }
 }

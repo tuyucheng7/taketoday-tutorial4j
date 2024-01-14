@@ -11,19 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class VisitorsPatternUnitTest {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfAnatotitan() {
-		assertEquals("running", moveDinosaurUsingVisitorPattern((Dino) new Anatotitan()));
-	}
+   @Test
+   void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfAnatotitan() {
+      assertEquals("running", moveDinosaurUsingVisitorPattern((Dino) new Anatotitan()));
+   }
 
-	@Test
-	void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfEuraptor() {
-		assertEquals("flying", moveDinosaurUsingVisitorPattern((Dino) new Euraptor()));
-	}
+   @Test
+   void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfEuraptor() {
+      assertEquals("flying", moveDinosaurUsingVisitorPattern((Dino) new Euraptor()));
+   }
 
-	static String moveDinosaurUsingVisitorPattern(Dino dinosaur) {
-		Visitor visitor = new DinoVisitorImpl();
+   static String moveDinosaurUsingVisitorPattern(Dino dinosaur) {
+      Visitor visitor = new DinoVisitorImpl();
 
-		return dinosaur.move(visitor);
-	}
+      return dinosaur.move(visitor);
+   }
 }

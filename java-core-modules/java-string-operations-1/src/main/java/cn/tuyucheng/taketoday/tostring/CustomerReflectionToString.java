@@ -6,36 +6,36 @@ import java.util.List;
 
 public class CustomerReflectionToString extends Customer {
 
-	private Integer score;
-	private List<String> orders;
-	private StringBuffer fullname;
+   private Integer score;
+   private List<String> orders;
+   private StringBuffer fullname;
 
-	public Integer getScore() {
-		return score;
-	}
+   public Integer getScore() {
+      return score;
+   }
 
-	public void setScore(Integer score) {
-		this.score = score;
-	}
+   public void setScore(Integer score) {
+      this.score = score;
+   }
 
-	public List<String> getOrders() {
-		return orders;
-	}
+   public List<String> getOrders() {
+      return orders;
+   }
 
-	public void setOrders(List<String> orders) {
-		this.orders = orders;
-	}
+   public void setOrders(List<String> orders) {
+      this.orders = orders;
+   }
 
-	public StringBuffer getFullname() {
-		return fullname;
-	}
+   public StringBuffer getFullname() {
+      return fullname;
+   }
 
-	public void setFullname(StringBuffer fullname) {
-		this.fullname = fullname;
-	}
+   public void setFullname(StringBuffer fullname) {
+      this.fullname = fullname;
+   }
 
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
-	}
+   @Override
+   public String toString() {
+      return ReflectionToStringBuilder.toString(this);
+   }
 }

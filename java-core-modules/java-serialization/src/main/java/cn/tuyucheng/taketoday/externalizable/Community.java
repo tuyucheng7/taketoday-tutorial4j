@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 public class Community implements Serializable {
 
-	private int id;
+   private int id;
 
-	public int getId() {
-		return id;
-	}
+   public int getId() {
+      return id;
+   }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+   public void setId(int id) {
+      this.id = id;
+   }
 
-	@Override
-	public String toString() {
-		return "Community{" +
-			"id=" + id +
-			'}';
-	}
+   @Override
+   public String toString() {
+      return "Community{" +
+            "id=" + id +
+            '}';
+   }
 }

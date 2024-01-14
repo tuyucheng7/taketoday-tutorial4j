@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CurrentExecutingMethodUnitTest {
 
-	@Test
-	void givenJava9_whenWalkingTheStack_thenFindMethod() {
-		StackWalker walker = StackWalker.getInstance();
-		Optional<String> methodName = walker.walk(frames -> frames
-				.findFirst()
-				.map(StackWalker.StackFrame::getMethodName)
-		);
+   @Test
+   void givenJava9_whenWalkingTheStack_thenFindMethod() {
+      StackWalker walker = StackWalker.getInstance();
+      Optional<String> methodName = walker.walk(frames -> frames
+            .findFirst()
+            .map(StackWalker.StackFrame::getMethodName)
+      );
 
-		assertTrue(methodName.isPresent());
-		assertEquals("givenJava9_whenWalkingTheStack_thenFindMethod", methodName.get());
-	}
+      assertTrue(methodName.isPresent());
+      assertEquals("givenJava9_whenWalkingTheStack_thenFindMethod", methodName.get());
+   }
 }

@@ -10,27 +10,27 @@ import java.util.Locale;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UseDateTimeFormatterUnitTest {
-	private final UseDateTimeFormatter subject = new UseDateTimeFormatter();
-	private final LocalDateTime localDateTime = LocalDateTime.of(2015, Month.JANUARY, 25, 6, 30);
+   private final UseDateTimeFormatter subject = new UseDateTimeFormatter();
+   private final LocalDateTime localDateTime = LocalDateTime.of(2015, Month.JANUARY, 25, 6, 30);
 
-	@Test
-	public void givenALocalDate_whenFormattingAsIso_thenPass() {
-		String result = subject.formatAsIsoDate(localDateTime);
+   @Test
+   public void givenALocalDate_whenFormattingAsIso_thenPass() {
+      String result = subject.formatAsIsoDate(localDateTime);
 
-		assertThat(result).isEqualTo("2015-01-25");
-	}
+      assertThat(result).isEqualTo("2015-01-25");
+   }
 
-	@Test
-	public void givenALocalDate_whenFormattingWithPattern_thenPass() {
-		String result = subject.formatCustom(localDateTime, "yyyy/MM/dd");
+   @Test
+   public void givenALocalDate_whenFormattingWithPattern_thenPass() {
+      String result = subject.formatCustom(localDateTime, "yyyy/MM/dd");
 
-		assertThat(result).isEqualTo("2015/01/25");
-	}
+      assertThat(result).isEqualTo("2015/01/25");
+   }
 
-	@Test
-	public void givenALocalDate_whenFormattingWithStyleAndLocale_thenPass() {
-		String result = subject.formatWithStyleAndLocale(localDateTime, FormatStyle.MEDIUM, Locale.UK);
+   @Test
+   public void givenALocalDate_whenFormattingWithStyleAndLocale_thenPass() {
+      String result = subject.formatWithStyleAndLocale(localDateTime, FormatStyle.MEDIUM, Locale.UK);
 
-		assertThat(result).isEqualTo("25-Jan-2015 06:30:00");
-	}
+      assertThat(result).isEqualTo("25-Jan-2015 06:30:00");
+   }
 }

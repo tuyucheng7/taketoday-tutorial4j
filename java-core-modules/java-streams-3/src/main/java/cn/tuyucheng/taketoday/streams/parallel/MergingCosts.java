@@ -13,40 +13,40 @@ import java.util.stream.IntStream;
 
 public class MergingCosts {
 
-	private static final List<Integer> arrayListOfNumbers = new ArrayList<>();
+   private static final List<Integer> arrayListOfNumbers = new ArrayList<>();
 
-	static {
-		IntStream.rangeClosed(1, 1_000_000).forEach(i -> {
-			arrayListOfNumbers.add(i);
-		});
-	}
+   static {
+      IntStream.rangeClosed(1, 1_000_000).forEach(i -> {
+         arrayListOfNumbers.add(i);
+      });
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void mergingCostsSumSequential() {
-		arrayListOfNumbers.stream().reduce(0, Integer::sum);
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void mergingCostsSumSequential() {
+      arrayListOfNumbers.stream().reduce(0, Integer::sum);
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void mergingCostsSumParallel() {
-		arrayListOfNumbers.stream().parallel().reduce(0, Integer::sum);
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void mergingCostsSumParallel() {
+      arrayListOfNumbers.stream().parallel().reduce(0, Integer::sum);
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void mergingCostsGroupingSequential() {
-		arrayListOfNumbers.stream().collect(Collectors.toSet());
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void mergingCostsGroupingSequential() {
+      arrayListOfNumbers.stream().collect(Collectors.toSet());
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void mergingCostsGroupingParallel() {
-		arrayListOfNumbers.stream().parallel().collect(Collectors.toSet());
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void mergingCostsGroupingParallel() {
+      arrayListOfNumbers.stream().parallel().collect(Collectors.toSet());
+   }
 
 }

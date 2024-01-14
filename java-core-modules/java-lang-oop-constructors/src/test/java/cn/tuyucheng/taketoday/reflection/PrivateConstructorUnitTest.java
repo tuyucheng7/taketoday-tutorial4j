@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PrivateConstructorUnitTest {
 
-    @Test
-    void whenConstructorIsPrivate_thenInstanceSuccess() throws Exception {
-        Constructor<PrivateConstructorClass> pcc = PrivateConstructorClass.class.getDeclaredConstructor();
-        pcc.setAccessible(true);
-        PrivateConstructorClass privateConstructorInstance = pcc.newInstance();
-        assertTrue(privateConstructorInstance instanceof PrivateConstructorClass);
-    }
+   @Test
+   void whenConstructorIsPrivate_thenInstanceSuccess() throws Exception {
+      Constructor<PrivateConstructorClass> pcc = PrivateConstructorClass.class.getDeclaredConstructor();
+      pcc.setAccessible(true);
+      PrivateConstructorClass privateConstructorInstance = pcc.newInstance();
+      assertTrue(privateConstructorInstance instanceof PrivateConstructorClass);
+   }
 }

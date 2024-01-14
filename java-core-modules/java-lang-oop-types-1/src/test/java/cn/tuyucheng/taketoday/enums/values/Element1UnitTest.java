@@ -14,36 +14,36 @@ import static org.junit.Assert.assertSame;
  */
 public class Element1UnitTest {
 
-	public Element1UnitTest() {
-	}
+   public Element1UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeClass
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterClass
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @Before
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @After
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenAccessingToString_thenItShouldEqualName() {
-		for (Element1 e1 : Element1.values()) {
-			assertEquals(e1.name(), e1.toString());
-		}
-	}
+   @Test
+   public void whenAccessingToString_thenItShouldEqualName() {
+      for (Element1 e1 : Element1.values()) {
+         assertEquals(e1.name(), e1.toString());
+      }
+   }
 
-	@Test
-	public void whenCallingValueOf_thenReturnTheCorrectEnum() {
-		for (Element1 e1 : Element1.values()) {
-			assertSame(e1, Element1.valueOf(e1.name()));
-		}
-	}
+   @Test
+   public void whenCallingValueOf_thenReturnTheCorrectEnum() {
+      for (Element1 e1 : Element1.values()) {
+         assertSame(e1, Element1.valueOf(e1.name()));
+      }
+   }
 }

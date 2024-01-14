@@ -2,12 +2,12 @@ package cn.tuyucheng.taketoday.typeerasure;
 
 public class IntegerStack extends Stack<Integer> {
 
-	public IntegerStack(int capacity) {
-		super(capacity);
-	}
+   public IntegerStack(int capacity) {
+      super(capacity);
+   }
 
-	public void push(Integer value) {
-		System.out.println("Pushing into my integerStack");
-		super.push(value);
-	}
+   public void push(Integer value) {
+      System.out.println("Pushing into my integerStack");
+      super.push(value);
+   }
 }

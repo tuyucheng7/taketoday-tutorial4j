@@ -2,18 +2,18 @@ package cn.tuyucheng.taketoday.core.modifiers;
 
 public class FirstClass {
 
-	protected String name;
+   protected String name;
 
-	protected FirstClass(String name) {
-		this.name = name;
-	}
+   protected FirstClass(String name) {
+      this.name = name;
+   }
 
-	protected String getName() {
-		return name;
-	}
+   protected String getName() {
+      return name;
+   }
 
-	protected static class InnerClass {
-		public InnerClass() {
-		}
-	}
+   protected static class InnerClass {
+      public InnerClass() {
+      }
+   }
 }

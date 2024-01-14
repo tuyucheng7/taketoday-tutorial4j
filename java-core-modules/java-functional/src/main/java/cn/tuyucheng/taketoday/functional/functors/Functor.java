@@ -3,21 +3,21 @@ package cn.tuyucheng.taketoday.functional.functors;
 import java.util.function.Function;
 
 public class Functor<T> {
-    private final T value;
+   private final T value;
 
-    public Functor(T value) {
-        this.value = value;
-    }
+   public Functor(T value) {
+      this.value = value;
+   }
 
-    public <R> Functor<R> map(Function<T, R> mapper) {
-        return new Functor<>(mapper.apply(value));
-    }
+   public <R> Functor<R> map(Function<T, R> mapper) {
+      return new Functor<>(mapper.apply(value));
+   }
 
-    boolean eq(T other) {
-        return value.equals(other);
-    }
+   boolean eq(T other) {
+      return value.equals(other);
+   }
 
-    public T getValue() {
-        return value;
-    }
+   public T getValue() {
+      return value;
+   }
 }

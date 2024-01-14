@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.reflected.internal;
 
 public class InternalPublicClass {
-	public static void testPublicStaticMethod() {
-		System.out.println("InternalPublicClass.testPublicStaticMethod()");
-	}
+   public static void testPublicStaticMethod() {
+      System.out.println("InternalPublicClass.testPublicStaticMethod()");
+   }
 
-	private static void testPrivateStaticMethod() {
-		System.out.println("InternalPublicClass.testPrivateStaticMethod()");
-	}
+   private static void testPrivateStaticMethod() {
+      System.out.println("InternalPublicClass.testPrivateStaticMethod()");
+   }
 }

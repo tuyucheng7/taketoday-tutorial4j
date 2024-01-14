@@ -7,21 +7,21 @@ import java.util.Date;
 
 public class DateUnitTest {
 
-	@Test
-	public void whenUsingFullyQualifiedClassNames() {
+   @Test
+   public void whenUsingFullyQualifiedClassNames() {
 
-		java.util.Date javaDate = new java.util.Date();
-		cn.tuyucheng.taketoday.date.Date baeldungDate = new cn.tuyucheng.taketoday.date.Date(javaDate.getTime());
+      java.util.Date javaDate = new java.util.Date();
+      cn.tuyucheng.taketoday.date.Date tuyuchengDate = new cn.tuyucheng.taketoday.date.Date(javaDate.getTime());
 
-		Assert.assertEquals(javaDate.getTime(), baeldungDate.getTime());
-	}
+      Assert.assertEquals(javaDate.getTime(), tuyuchengDate.getTime());
+   }
 
-	@Test
-	public void whenImportTheMostUsedOne() {
+   @Test
+   public void whenImportTheMostUsedOne() {
 
-		Date javaDate = new Date();
-		cn.tuyucheng.taketoday.date.Date baeldungDate = new cn.tuyucheng.taketoday.date.Date(javaDate.getTime());
+      Date javaDate = new Date();
+      cn.tuyucheng.taketoday.date.Date tuyuchengDate = new cn.tuyucheng.taketoday.date.Date(javaDate.getTime());
 
-		Assert.assertEquals(javaDate.getTime(), baeldungDate.getTime());
-	}
+      Assert.assertEquals(javaDate.getTime(), tuyuchengDate.getTime());
+   }
 }

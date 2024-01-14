@@ -13,27 +13,27 @@ import static org.junit.Assert.assertEquals;
 
 public class HttpClientSSLUnitTest {
 
-	// @Test
-	// public void whenValidHttpsRequest_thenCorrect() throws URISyntaxException, IOException, InterruptedException {
-	// 	HttpClient httpClient = HttpClient.newHttpClient();
-	// 	HttpRequest request = HttpRequest.newBuilder()
-	// 		.uri(new URI("https://www.google.com/"))
-	// 		.build();
-	//
-	// 	HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-	//
-	// 	assertEquals(200, response.statusCode());
-	// }
+   // @Test
+   // public void whenValidHttpsRequest_thenCorrect() throws URISyntaxException, IOException, InterruptedException {
+   // 	HttpClient httpClient = HttpClient.newHttpClient();
+   // 	HttpRequest request = HttpRequest.newBuilder()
+   // 		.uri(new URI("https://www.google.com/"))
+   // 		.build();
+   //
+   // 	HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+   //
+   // 	assertEquals(200, response.statusCode());
+   // }
 
-	@Test(expected = SSLHandshakeException.class)
-	public void whenInvalidHttpsRequest_thenInCorrect() throws IOException, InterruptedException {
-		HttpClient httpClient = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://expired.badssl.com/"))
-			.build();
+   @Test(expected = SSLHandshakeException.class)
+   public void whenInvalidHttpsRequest_thenInCorrect() throws IOException, InterruptedException {
+      HttpClient httpClient = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://expired.badssl.com/"))
+            .build();
 
-		HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertEquals(200, response.statusCode());
-	}
+      assertEquals(200, response.statusCode());
+   }
 }

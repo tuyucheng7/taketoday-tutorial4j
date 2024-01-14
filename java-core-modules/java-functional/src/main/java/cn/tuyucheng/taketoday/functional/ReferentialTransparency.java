@@ -5,35 +5,35 @@ import java.util.logging.Logger;
 
 public class ReferentialTransparency {
 
-    private static Logger logger = Logger.getGlobal();
+   private static Logger logger = Logger.getGlobal();
 
-    public void main() {
+   public void main() {
 
-        String data = new SimpleData().setData("Baeldung")
+      String data = new SimpleData().setData("Tuyucheng")
             .getData();
-        logger.log(Level.INFO, new SimpleData().setData("Baeldung")
+      logger.log(Level.INFO, new SimpleData().setData("Tuyucheng")
             .getData());
-        logger.log(Level.INFO, data);
-        logger.log(Level.INFO, "Baeldung");
-    }
+      logger.log(Level.INFO, data);
+      logger.log(Level.INFO, "Tuyucheng");
+   }
 
-    public class SimpleData {
+   public class SimpleData {
 
-        private Logger logger = Logger.getGlobal();
+      private Logger logger = Logger.getGlobal();
 
-        private String data;
+      private String data;
 
-        public String getData() {
-            logger.log(Level.INFO, "Get data called for SimpleData");
-            return data;
-        }
+      public String getData() {
+         logger.log(Level.INFO, "Get data called for SimpleData");
+         return data;
+      }
 
-        public SimpleData setData(String data) {
-            logger.log(Level.INFO, "Set data called for SimpleData");
-            this.data = data;
-            return this;
-        }
+      public SimpleData setData(String data) {
+         logger.log(Level.INFO, "Set data called for SimpleData");
+         this.data = data;
+         return this;
+      }
 
-    }
+   }
 
 }

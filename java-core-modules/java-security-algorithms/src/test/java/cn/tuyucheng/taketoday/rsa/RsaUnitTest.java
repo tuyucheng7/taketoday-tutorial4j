@@ -18,75 +18,75 @@ import java.security.PublicKey;
 
 public class RsaUnitTest {
 
-	@Test
-	public void givenRsaKeyPair_whenEncryptAndDecryptString_thenCompareResults() throws Exception {
-		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-		generator.initialize(2048);
-		KeyPair pair = generator.generateKeyPair();
-		PrivateKey privateKey = pair.getPrivate();
-		PublicKey publicKey = pair.getPublic();
+   @Test
+   public void givenRsaKeyPair_whenEncryptAndDecryptString_thenCompareResults() throws Exception {
+      KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+      generator.initialize(2048);
+      KeyPair pair = generator.generateKeyPair();
+      PrivateKey privateKey = pair.getPrivate();
+      PublicKey publicKey = pair.getPublic();
 
-		String secretMessage = "Baeldung secret message";
-		Cipher encryptCipher = Cipher.getInstance("RSA");
-		encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
-		byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
-		byte[] encryptedMessageBytes = encryptCipher.doFinal(secretMessageBytes);
+      String secretMessage = "Tuyucheng secret message";
+      Cipher encryptCipher = Cipher.getInstance("RSA");
+      encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
+      byte[] secretMessageBytes = secretMessage.getBytes(StandardCharsets.UTF_8);
+      byte[] encryptedMessageBytes = encryptCipher.doFinal(secretMessageBytes);
 
-		Cipher decryptCipher = Cipher.getInstance("RSA");
-		decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
-		byte[] decryptedMessageBytes = decryptCipher.doFinal(encryptedMessageBytes);
-		String decryptedMessage = new String(decryptedMessageBytes, StandardCharsets.UTF_8);
+      Cipher decryptCipher = Cipher.getInstance("RSA");
+      decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
+      byte[] decryptedMessageBytes = decryptCipher.doFinal(encryptedMessageBytes);
+      String decryptedMessage = new String(decryptedMessageBytes, StandardCharsets.UTF_8);
 
-		Assertions.assertEquals(secretMessage, decryptedMessage);
-	}
+      Assertions.assertEquals(secretMessage, decryptedMessage);
+   }
 
-	@Test
-	public void givenRsaKeyPair_whenEncryptAndDecryptFile_thenCompareResults() throws Exception {
-		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-		generator.initialize(2048);
-		KeyPair pair = generator.generateKeyPair();
-		PrivateKey privateKey = pair.getPrivate();
-		PublicKey publicKey = pair.getPublic();
+   @Test
+   public void givenRsaKeyPair_whenEncryptAndDecryptFile_thenCompareResults() throws Exception {
+      KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+      generator.initialize(2048);
+      KeyPair pair = generator.generateKeyPair();
+      PrivateKey privateKey = pair.getPrivate();
+      PublicKey publicKey = pair.getPublic();
 
-		String originalContent = "some secret message";
-		Path tempFile = Files.createTempFile("temp", "txt");
-		writeString(tempFile, originalContent);
+      String originalContent = "some secret message";
+      Path tempFile = Files.createTempFile("temp", "txt");
+      writeString(tempFile, originalContent);
 
-		byte[] fileBytes = Files.readAllBytes(tempFile);
-		Cipher encryptCipher = Cipher.getInstance("RSA");
-		encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
-		byte[] encryptedFileBytes = encryptCipher.doFinal(fileBytes);
-		try (FileOutputStream stream = new FileOutputStream(tempFile.toFile())) {
-			stream.write(encryptedFileBytes);
-		}
+      byte[] fileBytes = Files.readAllBytes(tempFile);
+      Cipher encryptCipher = Cipher.getInstance("RSA");
+      encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
+      byte[] encryptedFileBytes = encryptCipher.doFinal(fileBytes);
+      try (FileOutputStream stream = new FileOutputStream(tempFile.toFile())) {
+         stream.write(encryptedFileBytes);
+      }
 
-		encryptedFileBytes = Files.readAllBytes(tempFile);
-		Cipher decryptCipher = Cipher.getInstance("RSA");
-		decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
-		byte[] decryptedFileBytes = decryptCipher.doFinal(encryptedFileBytes);
-		try (FileOutputStream stream = new FileOutputStream(tempFile.toFile())) {
-			stream.write(decryptedFileBytes);
-		}
+      encryptedFileBytes = Files.readAllBytes(tempFile);
+      Cipher decryptCipher = Cipher.getInstance("RSA");
+      decryptCipher.init(Cipher.DECRYPT_MODE, privateKey);
+      byte[] decryptedFileBytes = decryptCipher.doFinal(encryptedFileBytes);
+      try (FileOutputStream stream = new FileOutputStream(tempFile.toFile())) {
+         stream.write(decryptedFileBytes);
+      }
 
-		String fileContent = readString(tempFile);
+      String fileContent = readString(tempFile);
 
-		Assertions.assertEquals(originalContent, fileContent);
-	}
+      Assertions.assertEquals(originalContent, fileContent);
+   }
 
-	private void writeString(Path path, String content) throws Exception {
-		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-			writer.write(content);
-		}
-	}
+   private void writeString(Path path, String content) throws Exception {
+      try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+         writer.write(content);
+      }
+   }
 
-	private String readString(Path path) throws Exception {
-		StringBuilder resultStringBuilder = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				resultStringBuilder.append(line);
-			}
-		}
-		return resultStringBuilder.toString();
-	}
+   private String readString(Path path) throws Exception {
+      StringBuilder resultStringBuilder = new StringBuilder();
+      try (BufferedReader br = new BufferedReader(new FileReader(path.toFile()))) {
+         String line;
+         while ((line = br.readLine()) != null) {
+            resultStringBuilder.append(line);
+         }
+      }
+      return resultStringBuilder.toString();
+   }
 }

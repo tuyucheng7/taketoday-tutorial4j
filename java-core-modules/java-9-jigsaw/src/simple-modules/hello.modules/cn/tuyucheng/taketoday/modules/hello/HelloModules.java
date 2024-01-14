@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.modules.hello;
 
 public class HelloModules implements HelloInterface {
-	public static void doSomething() {
-		System.out.println("Hello, Modules!");
-	}
+   public static void doSomething() {
+      System.out.println("Hello, Modules!");
+   }
 
-	public void sayHello() {
-		System.out.println("Hello!");
-	}
+   public void sayHello() {
+      System.out.println("Hello!");
+   }
 }

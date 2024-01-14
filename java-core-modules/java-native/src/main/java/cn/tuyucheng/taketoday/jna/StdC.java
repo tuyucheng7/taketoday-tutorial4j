@@ -7,15 +7,15 @@ import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
 
 public interface StdC extends Library {
-	StdC INSTANCE = Native.load(Platform.isWindows() ? "msvcrt" : "c", StdC.class);
+   StdC INSTANCE = Native.load(Platform.isWindows() ? "msvcrt" : "c", StdC.class);
 
-	Pointer malloc(long n);
+   Pointer malloc(long n);
 
-	void free(Pointer p);
+   void free(Pointer p);
 
-	Pointer memset(Pointer p, int c, long n);
+   Pointer memset(Pointer p, int c, long n);
 
-	int open(String path, int flags) throws LastErrorException;
+   int open(String path, int flags) throws LastErrorException;
 
-	int close(int fd) throws LastErrorException;
+   int close(int fd) throws LastErrorException;
 }

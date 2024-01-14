@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MultipleReturnValuesUsingContainerUnitTest {
 
-	@Test
-	void whenUsingContainerClass_thenMultipleFieldsAreReturned() {
+   @Test
+   void whenUsingContainerClass_thenMultipleFieldsAreReturned() {
 
-		Coordinates coordinates = MultipleReturnValuesUsingContainer.getCoordinates();
+      Coordinates coordinates = MultipleReturnValuesUsingContainer.getCoordinates();
 
-		assertEquals(10, coordinates.getLongitude());
-		assertEquals(12.5, coordinates.getLatitude());
-		assertEquals("home", coordinates.getPlaceName());
-	}
+      assertEquals(10, coordinates.getLongitude());
+      assertEquals(12.5, coordinates.getLatitude());
+      assertEquals("home", coordinates.getPlaceName());
+   }
 }

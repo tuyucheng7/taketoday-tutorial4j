@@ -17,22 +17,22 @@ import static org.junit.Assert.assertEquals;
  */
 public class MyCounterTempusFugitManualTest {
 
-	@Rule
-	public ConcurrentRule concurrently = new ConcurrentRule();
-	@Rule
-	public RepeatingRule rule = new RepeatingRule();
+   @Rule
+   public ConcurrentRule concurrently = new ConcurrentRule();
+   @Rule
+   public RepeatingRule rule = new RepeatingRule();
 
-	private static MyCounter counter = new MyCounter();
+   private static MyCounter counter = new MyCounter();
 
-	@Test
-	@Concurrent(count = 2)
-	@Repeating(repetition = 10)
-	public void runsMultipleTimes() {
-		counter.increment();
-	}
+   @Test
+   @Concurrent(count = 2)
+   @Repeating(repetition = 10)
+   public void runsMultipleTimes() {
+      counter.increment();
+   }
 
-	@AfterClass
-	public static void annotatedTestRunsMultipleTimes() throws InterruptedException {
-		assertEquals(counter.getCount(), 20);
-	}
+   @AfterClass
+   public static void annotatedTestRunsMultipleTimes() throws InterruptedException {
+      assertEquals(counter.getCount(), 20);
+   }
 }

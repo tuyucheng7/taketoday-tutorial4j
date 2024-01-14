@@ -2,35 +2,35 @@ package cn.tuyucheng.taketoday.functional;
 
 public class ImmutableData {
 
-    private final String someData;
+   private final String someData;
 
-    private final AnotherImmutableData anotherImmutableData;
+   private final AnotherImmutableData anotherImmutableData;
 
-    public ImmutableData(final String someData, final AnotherImmutableData anotherImmutableData) {
-        this.someData = someData;
-        this.anotherImmutableData = anotherImmutableData;
-    }
+   public ImmutableData(final String someData, final AnotherImmutableData anotherImmutableData) {
+      this.someData = someData;
+      this.anotherImmutableData = anotherImmutableData;
+   }
 
-    public String getSomeData() {
-        return someData;
-    }
+   public String getSomeData() {
+      return someData;
+   }
 
-    public AnotherImmutableData getAnotherImmutableData() {
-        return anotherImmutableData;
-    }
+   public AnotherImmutableData getAnotherImmutableData() {
+      return anotherImmutableData;
+   }
 
-    public class AnotherImmutableData {
+   public class AnotherImmutableData {
 
-        private final Integer someOtherData;
+      private final Integer someOtherData;
 
-        public AnotherImmutableData(final Integer someData) {
-            this.someOtherData = someData;
-        }
+      public AnotherImmutableData(final Integer someData) {
+         this.someOtherData = someData;
+      }
 
-        public Integer getSomeOtherData() {
-            return someOtherData;
-        }
+      public Integer getSomeOtherData() {
+         return someOtherData;
+      }
 
-    }
+   }
 
 }

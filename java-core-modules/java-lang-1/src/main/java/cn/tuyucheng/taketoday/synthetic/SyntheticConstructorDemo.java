@@ -5,24 +5,24 @@ package cn.tuyucheng.taketoday.synthetic;
  */
 public class SyntheticConstructorDemo {
 
-	/**
-	 * We need to instantiate the {@link NestedClass} using a private
-	 * constructor from the enclosing instance in order to generate a synthetic
-	 * constructor.
-	 */
-	private NestedClass nestedClass = new NestedClass();
+   /**
+    * We need to instantiate the {@link NestedClass} using a private
+    * constructor from the enclosing instance in order to generate a synthetic
+    * constructor.
+    */
+   private NestedClass nestedClass = new NestedClass();
 
-	/**
-	 * Class which contains a synthetic constructor.
-	 */
-	class NestedClass {
+   /**
+    * Class which contains a synthetic constructor.
+    */
+   class NestedClass {
 
-		/**
-		 * In order to generate a synthetic constructor, this class must have a
-		 * private constructor.
-		 */
-		private NestedClass() {
-		}
-	}
+      /**
+       * In order to generate a synthetic constructor, this class must have a
+       * private constructor.
+       */
+      private NestedClass() {
+      }
+   }
 
 }

@@ -6,10 +6,10 @@ import java.util.logging.Logger;
 
 public class ChildProcess {
 
-	public static void main(String[] args) {
-		@SuppressWarnings("resource")
-		Scanner input = new Scanner(System.in);
-		Logger log = Logger.getLogger(ChildProcess.class.getName());
-		log.log(Level.INFO, input.nextLine());
-	}
+   public static void main(String[] args) {
+      @SuppressWarnings("resource")
+      Scanner input = new Scanner(System.in);
+      Logger log = Logger.getLogger(ChildProcess.class.getName());
+      log.log(Level.INFO, input.nextLine());
+   }
 }

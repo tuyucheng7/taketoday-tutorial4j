@@ -2,21 +2,21 @@ package cn.tuyucheng.taketoday.generics;
 
 abstract class Animal {
 
-	protected final String type;
-	protected final String name;
+   protected final String type;
+   protected final String name;
 
-	protected Animal(String type, String name) {
-		this.type = type;
-		this.name = name;
-	}
+   protected Animal(String type, String name) {
+      this.type = type;
+      this.name = name;
+   }
 
-	abstract String makeSound();
+   abstract String makeSound();
 
-	public String getType() {
-		return type;
-	}
+   public String getType() {
+      return type;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 }

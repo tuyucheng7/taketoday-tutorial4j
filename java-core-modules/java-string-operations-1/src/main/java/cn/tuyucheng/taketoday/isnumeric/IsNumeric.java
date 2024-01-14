@@ -6,43 +6,43 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.regex.Pattern;
 
 public class IsNumeric {
-	private final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+   private final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-	public boolean usingCoreJava(String strNum) {
-		if (strNum == null) {
-			return false;
-		}
+   public boolean usingCoreJava(String strNum) {
+      if (strNum == null) {
+         return false;
+      }
 
-		try {
-			Double.parseDouble(strNum);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
-	}
+      try {
+         Double.parseDouble(strNum);
+      } catch (NumberFormatException nfe) {
+         return false;
+      }
+      return true;
+   }
 
-	public boolean usingPreCompiledRegularExpressions(String strNum) {
-		if (strNum == null) {
-			return false;
-		}
+   public boolean usingPreCompiledRegularExpressions(String strNum) {
+      if (strNum == null) {
+         return false;
+      }
 
-		return pattern.matcher(strNum)
-			.matches();
-	}
+      return pattern.matcher(strNum)
+            .matches();
+   }
 
-	public boolean usingNumberUtils_isCreatable(String strNum) {
-		return NumberUtils.isCreatable(strNum);
-	}
+   public boolean usingNumberUtils_isCreatable(String strNum) {
+      return NumberUtils.isCreatable(strNum);
+   }
 
-	public boolean usingNumberUtils_isParsable(String strNum) {
-		return NumberUtils.isParsable(strNum);
-	}
+   public boolean usingNumberUtils_isParsable(String strNum) {
+      return NumberUtils.isParsable(strNum);
+   }
 
-	public boolean usingStringUtils_isNumeric(String strNum) {
-		return StringUtils.isNumeric(strNum);
-	}
+   public boolean usingStringUtils_isNumeric(String strNum) {
+      return StringUtils.isNumeric(strNum);
+   }
 
-	public boolean usingStringUtils_isNumericSpace(String strNum) {
-		return StringUtils.isNumericSpace(strNum);
-	}
+   public boolean usingStringUtils_isNumericSpace(String strNum) {
+      return StringUtils.isNumericSpace(strNum);
+   }
 }

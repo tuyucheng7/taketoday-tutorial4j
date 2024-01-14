@@ -12,19 +12,19 @@ import static org.junit.Assert.assertTrue;
 
 public class EntrySetExampleUnitTest {
 
-    @Test
-    public void givenHashMap_whenEntrySetApplied_thenShouldReturnSetOfEntries() {
+   @Test
+   public void givenHashMap_whenEntrySetApplied_thenShouldReturnSetOfEntries() {
 
-        Map<String, Integer> map = new HashMap<>();
-        map.put("one", 1);
-        map.put("two", 2);
+      Map<String, Integer> map = new HashMap<>();
+      map.put("one", 1);
+      map.put("two", 2);
 
-        Set<Map.Entry<String, Integer>> actualValues = map.entrySet();
+      Set<Map.Entry<String, Integer>> actualValues = map.entrySet();
 
-        assertEquals(2, actualValues.size());
-        assertTrue(actualValues.contains(new SimpleEntry<>("one", 1)));
-        assertTrue(actualValues.contains(new SimpleEntry<>("two", 2)));
+      assertEquals(2, actualValues.size());
+      assertTrue(actualValues.contains(new SimpleEntry<>("one", 1)));
+      assertTrue(actualValues.contains(new SimpleEntry<>("two", 2)));
 
-    }
+   }
 
 }

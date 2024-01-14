@@ -17,20 +17,20 @@ class Lion extends Animal {
 
 public class ClassCast {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(ClassCast.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(ClassCast.class);
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
 
-        try {
-            Animal animalOne = new Dog(); // At runtime the instance is dog
-            Dog bruno = (Dog) animalOne; // Downcasting
+      try {
+         Animal animalOne = new Dog(); // At runtime the instance is dog
+         Dog bruno = (Dog) animalOne; // Downcasting
 
-            Animal animalTwo = new Lion(); // At runtime the instance is animal
-            Dog tommy = (Dog) animalTwo; // Downcasting
-        } catch (ClassCastException e) {
-            LOGGER.error("ClassCastException caught!");
-        }
+         Animal animalTwo = new Lion(); // At runtime the instance is animal
+         Dog tommy = (Dog) animalTwo; // Downcasting
+      } catch (ClassCastException e) {
+         LOGGER.error("ClassCastException caught!");
+      }
 
-    }
+   }
 
 }

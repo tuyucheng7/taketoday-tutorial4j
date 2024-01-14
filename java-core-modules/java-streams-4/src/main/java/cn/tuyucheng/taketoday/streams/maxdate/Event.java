@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Event {
 
-	Date date;
+   Date date;
 
-	public Event(Date date) {
-		this.date = date;
-	}
+   public Event(Date date) {
+      this.date = date;
+   }
 
-	public Date getDate() {
-		return date;
-	}
+   public Date getDate() {
+      return date;
+   }
 
 }

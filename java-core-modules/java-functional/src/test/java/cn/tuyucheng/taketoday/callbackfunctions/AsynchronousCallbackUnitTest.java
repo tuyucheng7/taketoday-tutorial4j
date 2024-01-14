@@ -12,12 +12,12 @@ import static org.mockito.Mockito.timeout;
 
 public class AsynchronousCallbackUnitTest {
 
-	@Test
-	public void whenCallbackIsInvokedAsynchronously_shouldRunAsynchronousOperation() {
-		EventListener listener = Mockito.mock(AsynchronousEventListenerImpl.class);
-		AsynchronousEventConsumer asynchronousEventListenerConsumer = new AsynchronousEventConsumer(listener);
-		asynchronousEventListenerConsumer.doAsynchronousOperation();
+   @Test
+   public void whenCallbackIsInvokedAsynchronously_shouldRunAsynchronousOperation() {
+      EventListener listener = Mockito.mock(AsynchronousEventListenerImpl.class);
+      AsynchronousEventConsumer asynchronousEventListenerConsumer = new AsynchronousEventConsumer(listener);
+      asynchronousEventListenerConsumer.doAsynchronousOperation();
 
-		verify(listener, timeout(1000).times(1)).onTrigger();
-	}
+      verify(listener, timeout(1000).times(1)).onTrigger();
+   }
 }

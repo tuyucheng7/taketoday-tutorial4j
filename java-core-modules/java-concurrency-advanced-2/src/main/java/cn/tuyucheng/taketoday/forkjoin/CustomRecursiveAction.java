@@ -10,39 +10,39 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
 
 public class CustomRecursiveAction extends RecursiveAction {
-	final Logger logger = LoggerFactory.getLogger(CustomRecursiveAction.class);
+   final Logger logger = LoggerFactory.getLogger(CustomRecursiveAction.class);
 
-	private final String workLoad;
-	private static final int THRESHOLD = 4;
+   private final String workLoad;
+   private static final int THRESHOLD = 4;
 
-	public CustomRecursiveAction(String workLoad) {
-		this.workLoad = workLoad;
-	}
+   public CustomRecursiveAction(String workLoad) {
+      this.workLoad = workLoad;
+   }
 
-	@Override
-	protected void compute() {
+   @Override
+   protected void compute() {
 
-		if (workLoad.length() > THRESHOLD) {
-			ForkJoinTask.invokeAll(createSubtasks());
-		} else {
-			processing(workLoad);
-		}
-	}
+      if (workLoad.length() > THRESHOLD) {
+         ForkJoinTask.invokeAll(createSubtasks());
+      } else {
+         processing(workLoad);
+      }
+   }
 
-	private Collection<CustomRecursiveAction> createSubtasks() {
-		List<CustomRecursiveAction> subtasks = new ArrayList<>();
+   private Collection<CustomRecursiveAction> createSubtasks() {
+      List<CustomRecursiveAction> subtasks = new ArrayList<>();
 
-		String partOne = workLoad.substring(0, workLoad.length() / 2);
-		String partTwo = workLoad.substring(workLoad.length() / 2);
+      String partOne = workLoad.substring(0, workLoad.length() / 2);
+      String partTwo = workLoad.substring(workLoad.length() / 2);
 
-		subtasks.add(new CustomRecursiveAction(partOne));
-		subtasks.add(new CustomRecursiveAction(partTwo));
+      subtasks.add(new CustomRecursiveAction(partOne));
+      subtasks.add(new CustomRecursiveAction(partTwo));
 
-		return subtasks;
-	}
+      return subtasks;
+   }
 
-	private void processing(String work) {
-		String result = work.toUpperCase();
-		logger.debug("This result - (" + result + ") - was processed by " + Thread.currentThread().getName());
-	}
+   private void processing(String work) {
+      String result = work.toUpperCase();
+      logger.debug("This result - (" + result + ") - was processed by " + Thread.currentThread().getName());
+   }
 }

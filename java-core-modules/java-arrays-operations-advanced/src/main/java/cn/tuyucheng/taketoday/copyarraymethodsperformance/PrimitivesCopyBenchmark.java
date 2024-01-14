@@ -24,30 +24,30 @@ import java.util.concurrent.TimeUnit;
 @Measurement(iterations = 100)
 public class PrimitivesCopyBenchmark {
 
-    @Param({"10", "1000000"})
-    public int SIZE;
+   @Param({"10", "1000000"})
+   public int SIZE;
 
-    int[] src;
+   int[] src;
 
-    @Setup
-    public void setup() {
-        Random r = new Random();
-        src = new int[SIZE];
+   @Setup
+   public void setup() {
+      Random r = new Random();
+      src = new int[SIZE];
 
-        for (int i = 0; i < SIZE; i++) {
-            src[i] = r.nextInt();
-        }
-    }
+      for (int i = 0; i < SIZE; i++) {
+         src[i] = r.nextInt();
+      }
+   }
 
-    @Benchmark
-    public int[] systemArrayCopyBenchmark() {
-        int[] target = new int[SIZE];
-        System.arraycopy(src, 0, target, 0, SIZE);
-        return target;
-    }
+   @Benchmark
+   public int[] systemArrayCopyBenchmark() {
+      int[] target = new int[SIZE];
+      System.arraycopy(src, 0, target, 0, SIZE);
+      return target;
+   }
 
-    @Benchmark
-    public int[] arraysCopyOfBenchmark() {
-        return Arrays.copyOf(src, SIZE);
-    }
+   @Benchmark
+   public int[] arraysCopyOfBenchmark() {
+      return Arrays.copyOf(src, SIZE);
+   }
 }

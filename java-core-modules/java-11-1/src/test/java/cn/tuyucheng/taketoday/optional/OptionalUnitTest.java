@@ -13,12 +13,12 @@ import static org.junit.Assert.assertTrue;
 
 public class OptionalUnitTest {
 
-	@Test
-	public void givenAnEmptyOptional_isEmpty_thenBehavesAsExpected() {
-		Optional<String> opt = Optional.of("Baeldung");
-		assertFalse(opt.isEmpty());
+   @Test
+   public void givenAnEmptyOptional_isEmpty_thenBehavesAsExpected() {
+      Optional<String> opt = Optional.of("Tuyucheng");
+      assertFalse(opt.isEmpty());
 
-		opt = Optional.ofNullable(null);
-		assertTrue(opt.isEmpty());
-	}
+      opt = Optional.ofNullable(null);
+      assertTrue(opt.isEmpty());
+   }
 }

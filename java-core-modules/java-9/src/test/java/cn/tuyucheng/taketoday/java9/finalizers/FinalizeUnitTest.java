@@ -11,20 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FinalizeUnitTest {
 
-	@Test
-	void givenFilename_whenGetLineNumber_thenReturnCorrectNumber() throws IOException {
-		final File tmpFile = File.createTempFile("test", ".tmp");
-		final BufferedWriter writer = new BufferedWriter(new FileWriter(tmpFile));
-		writer.write("Tuyucheng");
-		writer.close();
+   @Test
+   void givenFilename_whenGetLineNumber_thenReturnCorrectNumber() throws IOException {
+      final File tmpFile = File.createTempFile("test", ".tmp");
+      final BufferedWriter writer = new BufferedWriter(new FileWriter(tmpFile));
+      writer.write("Tuyucheng");
+      writer.close();
 
-		long lineNumber = 0;
-		try (Resource resource = new Resource(tmpFile.getAbsolutePath())) {
-			lineNumber = resource.getLineNumber();
-		} catch (Exception e) {
-			System.err.println("Error " + e);
-		}
+      long lineNumber = 0;
+      try (Resource resource = new Resource(tmpFile.getAbsolutePath())) {
+         lineNumber = resource.getLineNumber();
+      } catch (Exception e) {
+         System.err.println("Error " + e);
+      }
 
-		assertEquals(1, lineNumber);
-	}
+      assertEquals(1, lineNumber);
+   }
 }

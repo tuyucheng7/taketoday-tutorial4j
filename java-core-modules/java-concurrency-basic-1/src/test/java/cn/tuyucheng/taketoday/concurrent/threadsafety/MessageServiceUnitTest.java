@@ -12,14 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MessageServiceUnitTest {
 
-	@Test
-	void whenCalledgetMessage_thenCorrect() throws Exception {
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		MessageService messageService = new MessageService("Welcome to Tuyucheng!");
-		Future<String> future1 = executorService.submit(new MessageServiceCallable(messageService));
-		Future<String> future2 = executorService.submit(new MessageServiceCallable(messageService));
+   @Test
+   void whenCalledgetMessage_thenCorrect() throws Exception {
+      ExecutorService executorService = Executors.newFixedThreadPool(2);
+      MessageService messageService = new MessageService("Welcome to Tuyucheng!");
+      Future<String> future1 = executorService.submit(new MessageServiceCallable(messageService));
+      Future<String> future2 = executorService.submit(new MessageServiceCallable(messageService));
 
-		assertThat(future1.get()).isEqualTo("Welcome to Tuyucheng!");
-		assertThat(future2.get()).isEqualTo("Welcome to Tuyucheng!");
-	}
+      assertThat(future1.get()).isEqualTo("Welcome to Tuyucheng!");
+      assertThat(future2.get()).isEqualTo("Welcome to Tuyucheng!");
+   }
 }

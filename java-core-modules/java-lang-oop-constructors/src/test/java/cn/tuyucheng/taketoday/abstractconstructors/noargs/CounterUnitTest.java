@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CounterUnitTest {
 
-	@Test
-	void givenNoArgAbstractConstructor_whenSubclassCreation_thenCalled() {
-		Counter counter = new SimpleCounter(1);
-		assertNotNull(counter);
-		assertEquals(1, counter.value);
-	}
+   @Test
+   void givenNoArgAbstractConstructor_whenSubclassCreation_thenCalled() {
+      Counter counter = new SimpleCounter(1);
+      assertNotNull(counter);
+      assertEquals(1, counter.value);
+   }
 }

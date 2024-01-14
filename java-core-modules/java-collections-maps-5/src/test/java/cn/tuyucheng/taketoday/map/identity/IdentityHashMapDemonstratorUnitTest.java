@@ -30,7 +30,7 @@ public class IdentityHashMapDemonstratorUnitTest {
       IdentityHashMap<Book, String> identityHashMap = new IdentityHashMap<>(10);
       identityHashMap.put(book, "A great work of fiction");
       identityHashMap.remove(book, new String("A great work of fiction"));
-       assertNull(identityHashMap.get(book));
+      assertNull(identityHashMap.get(book));
    }
 
    @Test

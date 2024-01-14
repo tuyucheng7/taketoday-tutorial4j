@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 
 class StreamToImmutableUnitTest {
 
-	@Test
-	void whenUsingStreamToList_thenReturnImmutableList() {
-		List<String> immutableList = Stream.of("a", "b", "c", "d")
-			.toList();
+   @Test
+   void whenUsingStreamToList_thenReturnImmutableList() {
+      List<String> immutableList = Stream.of("a", "b", "c", "d")
+            .toList();
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> immutableList.add("e"));
-	}
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> immutableList.add("e"));
+   }
 }

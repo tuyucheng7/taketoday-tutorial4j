@@ -11,11 +11,11 @@ import static org.junit.Assert.assertEquals;
 
 public class MacAddressUnitTest {
 
-    @Test
-    public void givenNetworkInterface_whenUsingLocalHost_thenGetMacAddress() throws UnknownHostException, SocketException {
-        InetAddress localHost = InetAddress.getLocalHost();
-        NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
-        byte[] macAddress = ni.getHardwareAddress();
-        assertEquals(6, macAddress.length);
-    }
+   @Test
+   public void givenNetworkInterface_whenUsingLocalHost_thenGetMacAddress() throws UnknownHostException, SocketException {
+      InetAddress localHost = InetAddress.getLocalHost();
+      NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
+      byte[] macAddress = ni.getHardwareAddress();
+      assertEquals(6, macAddress.length);
+   }
 }

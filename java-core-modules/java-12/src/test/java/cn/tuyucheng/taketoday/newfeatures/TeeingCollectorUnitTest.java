@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TeeingCollectorUnitTest {
 
-	@Test
-	void givenSetOfNumbers_thenCalculateAverage() {
-		double mean = Stream.of(1, 2, 3, 4, 5)
-			.collect(Collectors.teeing(Collectors.summingDouble(i -> i),
-				Collectors.counting(), (sum, count) -> sum / count));
-		assertEquals(3.0, mean, 0);
-	}
+   @Test
+   void givenSetOfNumbers_thenCalculateAverage() {
+      double mean = Stream.of(1, 2, 3, 4, 5)
+            .collect(Collectors.teeing(Collectors.summingDouble(i -> i),
+                  Collectors.counting(), (sum, count) -> sum / count));
+      assertEquals(3.0, mean, 0);
+   }
 }

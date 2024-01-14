@@ -9,57 +9,57 @@ import java.util.Iterator;
 import java.util.List;
 
 public class FullResponseBuilder {
-    public static String getFullResponse(HttpURLConnection con) throws IOException {
-        StringBuilder fullResponseBuilder = new StringBuilder();
+   public static String getFullResponse(HttpURLConnection con) throws IOException {
+      StringBuilder fullResponseBuilder = new StringBuilder();
 
-        fullResponseBuilder.append(con.getResponseCode())
-              .append(" ")
-              .append(con.getResponseMessage())
-              .append("\n");
+      fullResponseBuilder.append(con.getResponseCode())
+            .append(" ")
+            .append(con.getResponseMessage())
+            .append("\n");
 
-        con.getHeaderFields()
-              .entrySet()
-              .stream()
-              .filter(entry -> entry.getKey() != null)
-              .forEach(entry -> {
+      con.getHeaderFields()
+            .entrySet()
+            .stream()
+            .filter(entry -> entry.getKey() != null)
+            .forEach(entry -> {
 
-                  fullResponseBuilder.append(entry.getKey())
-                        .append(": ");
+               fullResponseBuilder.append(entry.getKey())
+                     .append(": ");
 
-                  List<String> headerValues = entry.getValue();
-                  Iterator<String> it = headerValues.iterator();
-                  if (it.hasNext()) {
-                      fullResponseBuilder.append(it.next());
+               List<String> headerValues = entry.getValue();
+               Iterator<String> it = headerValues.iterator();
+               if (it.hasNext()) {
+                  fullResponseBuilder.append(it.next());
 
-                      while (it.hasNext()) {
-                          fullResponseBuilder.append(", ")
-                                .append(it.next());
-                      }
+                  while (it.hasNext()) {
+                     fullResponseBuilder.append(", ")
+                           .append(it.next());
                   }
+               }
 
-                  fullResponseBuilder.append("\n");
-              });
+               fullResponseBuilder.append("\n");
+            });
 
-        Reader streamReader = null;
+      Reader streamReader = null;
 
-        if (con.getResponseCode() > 299) {
-            streamReader = new InputStreamReader(con.getErrorStream());
-        } else {
-            streamReader = new InputStreamReader(con.getInputStream());
-        }
+      if (con.getResponseCode() > 299) {
+         streamReader = new InputStreamReader(con.getErrorStream());
+      } else {
+         streamReader = new InputStreamReader(con.getInputStream());
+      }
 
-        BufferedReader in = new BufferedReader(streamReader);
-        String inputLine;
-        StringBuilder content = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
-        }
+      BufferedReader in = new BufferedReader(streamReader);
+      String inputLine;
+      StringBuilder content = new StringBuilder();
+      while ((inputLine = in.readLine()) != null) {
+         content.append(inputLine);
+      }
 
-        in.close();
+      in.close();
 
-        fullResponseBuilder.append("Response: ")
-              .append(content);
+      fullResponseBuilder.append("Response: ")
+            .append(content);
 
-        return fullResponseBuilder.toString();
-    }
+      return fullResponseBuilder.toString();
+   }
 }

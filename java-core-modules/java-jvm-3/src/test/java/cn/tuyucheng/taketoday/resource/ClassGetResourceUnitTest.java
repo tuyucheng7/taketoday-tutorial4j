@@ -7,15 +7,15 @@ import java.net.URL;
 
 class ClassGetResourceUnitTest {
 
-	@Test
-	void givenRelativeResourcePath_whenGetResource_thenReturnResource() {
-		URL resourceRelativePath = ClassGetResourceExample.class.getResource("example.txt");
-		Assertions.assertNotNull(resourceRelativePath);
-	}
+   @Test
+   void givenRelativeResourcePath_whenGetResource_thenReturnResource() {
+      URL resourceRelativePath = ClassGetResourceExample.class.getResource("example.txt");
+      Assertions.assertNotNull(resourceRelativePath);
+   }
 
-	@Test
-	void givenAbsoluteResourcePath_whenGetResource_thenReturnResource() {
-		URL resourceAbsolutePath = ClassGetResourceExample.class.getResource("/cn/tuyucheng/taketoday/resource/example.txt");
-		Assertions.assertNotNull(resourceAbsolutePath);
-	}
+   @Test
+   void givenAbsoluteResourcePath_whenGetResource_thenReturnResource() {
+      URL resourceAbsolutePath = ClassGetResourceExample.class.getResource("/cn/tuyucheng/taketoday/resource/example.txt");
+      Assertions.assertNotNull(resourceAbsolutePath);
+   }
 }

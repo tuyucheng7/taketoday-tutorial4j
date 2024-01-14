@@ -8,29 +8,29 @@ import java.util.stream.LongStream;
 
 public interface SecureRandomDemo {
 
-	public static void generateSecureRandomValues() {
-		SecureRandom sr = new SecureRandom();
+   public static void generateSecureRandomValues() {
+      SecureRandom sr = new SecureRandom();
 
-		int randomInt = sr.nextInt();
-		long randomLong = sr.nextLong();
-		float randomFloat = sr.nextFloat();
-		double randomDouble = sr.nextDouble();
-		boolean randomBoolean = sr.nextBoolean();
+      int randomInt = sr.nextInt();
+      long randomLong = sr.nextLong();
+      float randomFloat = sr.nextFloat();
+      double randomDouble = sr.nextDouble();
+      boolean randomBoolean = sr.nextBoolean();
 
-		IntStream randomIntStream = sr.ints();
-		LongStream randomLongStream = sr.longs();
-		DoubleStream randomDoubleStream = sr.doubles();
+      IntStream randomIntStream = sr.ints();
+      LongStream randomLongStream = sr.longs();
+      DoubleStream randomDoubleStream = sr.doubles();
 
-		byte[] values = new byte[124];
-		sr.nextBytes(values);
-	}
+      byte[] values = new byte[124];
+      sr.nextBytes(values);
+   }
 
-	public static SecureRandom getSecureRandomForAlgorithm(String algorithm) throws NoSuchAlgorithmException {
-		if (algorithm == null || algorithm.isEmpty()) {
-			return new SecureRandom();
-		}
+   public static SecureRandom getSecureRandomForAlgorithm(String algorithm) throws NoSuchAlgorithmException {
+      if (algorithm == null || algorithm.isEmpty()) {
+         return new SecureRandom();
+      }
 
-		return SecureRandom.getInstance(algorithm);
-	}
+      return SecureRandom.getInstance(algorithm);
+   }
 
 }

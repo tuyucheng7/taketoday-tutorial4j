@@ -6,14 +6,14 @@ import static org.junit.Assert.assertEquals;
 
 public class LoopDiagonallyUnitTest {
 
-    @Test
-    public void twoArrayIsLoopedDiagonallyAsExpected() {
-        LoopDiagonally loopDiagonally = new LoopDiagonally();
-        String[][] twoDArray = {{"a", "b", "c"},
-              {"d", "e", "f"},
-              {"g", "h", "i"}};
+   @Test
+   public void twoArrayIsLoopedDiagonallyAsExpected() {
+      LoopDiagonally loopDiagonally = new LoopDiagonally();
+      String[][] twoDArray = {{"a", "b", "c"},
+            {"d", "e", "f"},
+            {"g", "h", "i"}};
 
-        String output = loopDiagonally.loopDiagonally(twoDArray);
-        assertEquals("a db gec hf i", output);
-    }
+      String output = loopDiagonally.loopDiagonally(twoDArray);
+      assertEquals("a db gec hf i", output);
+   }
 }

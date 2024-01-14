@@ -6,34 +6,34 @@ import static org.fusesource.jansi.Ansi.ansi;
 
 public class PrintColor {
 
-    public static void main(String[] args) {
-        logColorUsingANSICodes();
+   public static void main(String[] args) {
+      logColorUsingANSICodes();
 
-        logColorUsingLogger();
+      logColorUsingLogger();
 
-        logColorUsingJANSI();
-    }
+      logColorUsingJANSI();
+   }
 
-    private static void logColorUsingANSICodes() {
-        System.out.println("Here's some text");
-        System.out.println("\u001B[31m" + "and now the text is red" + "\u001B[0m");
-        System.out.println("and now back to the default");
-    }
+   private static void logColorUsingANSICodes() {
+      System.out.println("Here's some text");
+      System.out.println("\u001B[31m" + "and now the text is red" + "\u001B[0m");
+      System.out.println("and now back to the default");
+   }
 
-    private static void logColorUsingLogger() {
-        ColorLogger colorLogger = new ColorLogger();
-        colorLogger.logDebug("Some debug logging");
-        colorLogger.logInfo("Some info logging");
-        colorLogger.logError("Some error logging");
-    }
+   private static void logColorUsingLogger() {
+      ColorLogger colorLogger = new ColorLogger();
+      colorLogger.logDebug("Some debug logging");
+      colorLogger.logInfo("Some info logging");
+      colorLogger.logError("Some error logging");
+   }
 
-    private static void logColorUsingJANSI() {
-        AnsiConsole.systemInstall();
+   private static void logColorUsingJANSI() {
+      AnsiConsole.systemInstall();
 
-        System.out.println(ansi().fgRed().a("Some red text").fgYellow().a(" and some yellow text").reset());
+      System.out.println(ansi().fgRed().a("Some red text").fgYellow().a(" and some yellow text").reset());
 
-        AnsiConsole.systemUninstall();
-    }
+      AnsiConsole.systemUninstall();
+   }
 }
 
 /*

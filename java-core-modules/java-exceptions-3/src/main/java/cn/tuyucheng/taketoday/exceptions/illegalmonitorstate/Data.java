@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.exceptions.illegalmonitorstate;
 
 public class Data {
-    private String message;
+   private String message;
 
-    public void send(String message) {
-        this.message = message;
-    }
+   public void send(String message) {
+      this.message = message;
+   }
 
-    public String receive() {
-        return message;
-    }
+   public String receive() {
+      return message;
+   }
 }
 

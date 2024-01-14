@@ -6,13 +6,13 @@ import java.util.ResourceBundle;
 
 public class Localization {
 
-	public static String getLabel(Locale locale) {
-		final ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
-		return bundle.getString("label");
-	}
+   public static String getLabel(Locale locale) {
+      final ResourceBundle bundle = ResourceBundle.getBundle("messages", locale);
+      return bundle.getString("label");
+   }
 
-	public static void run(List<Locale> locales) {
-		locales.forEach(locale -> System.out.println(getLabel(locale)));
-	}
+   public static void run(List<Locale> locales) {
+      locales.forEach(locale -> System.out.println(getLabel(locale)));
+   }
 
 }

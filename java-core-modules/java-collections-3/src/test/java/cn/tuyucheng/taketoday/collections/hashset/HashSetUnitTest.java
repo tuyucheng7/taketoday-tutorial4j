@@ -12,23 +12,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HashSetUnitTest {
 
-    @Test
-    void whenRemoveAllFromHashset_thenRemovesAllElementsFromHashsetThatArePresentInCollection() {
-        Set<Integer> set = new HashSet<>();
-        Collection<Integer> collection = new ArrayList<>();
-        set.add(1);
-        set.add(2);
-        set.add(3);
-        set.add(4);
-        collection.add(1);
-        collection.add(3);
+   @Test
+   void whenRemoveAllFromHashset_thenRemovesAllElementsFromHashsetThatArePresentInCollection() {
+      Set<Integer> set = new HashSet<>();
+      Collection<Integer> collection = new ArrayList<>();
+      set.add(1);
+      set.add(2);
+      set.add(3);
+      set.add(4);
+      collection.add(1);
+      collection.add(3);
 
-        set.removeAll(collection);
+      set.removeAll(collection);
 
-        assertEquals(2, set.size());
-        Integer[] actualElements = new Integer[set.size()];
-        Integer[] expectedElements = new Integer[]{2, 4};
-        assertArrayEquals(expectedElements, set.toArray(actualElements));
-    }
+      assertEquals(2, set.size());
+      Integer[] actualElements = new Integer[set.size()];
+      Integer[] expectedElements = new Integer[]{2, 4};
+      assertArrayEquals(expectedElements, set.toArray(actualElements));
+   }
 
 }

@@ -7,16 +7,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MyOwnDeferUnitTest {
-	@Test
-	void defer() throws Exception {
-		AtomicBoolean run = new AtomicBoolean(false);
-		Runnable runnable = () -> {
-			System.out.println("Hello!");
-			run.set(true);
-		};
+   @Test
+   void defer() throws Exception {
+      AtomicBoolean run = new AtomicBoolean(false);
+      Runnable runnable = () -> {
+         System.out.println("Hello!");
+         run.set(true);
+      };
 
-		MyOwnDefer.defer(runnable);
+      MyOwnDefer.defer(runnable);
 
-		assertTrue(run.get());
-	}
+      assertTrue(run.get());
+   }
 }

@@ -6,18 +6,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecursionUnitTest {
 
-    @Test
-    public void testHeadRecursion() {
+   @Test
+   public void testHeadRecursion() {
 
-        assertEquals(120, Recursion.headRecursion(5));
+      assertEquals(120, Recursion.headRecursion(5));
 
-    }
+   }
 
-    @Test
-    public void testTailRecursion() {
+   @Test
+   public void testTailRecursion() {
 
-        assertEquals(120, Recursion.tailRecursion(5, 1));
+      assertEquals(120, Recursion.tailRecursion(5, 1));
 
-    }
+   }
 
 }

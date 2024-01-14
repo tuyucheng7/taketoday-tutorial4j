@@ -4,5 +4,5 @@ import cn.tuyucheng.taketoday.suppliercallable.data.User;
 
 public interface Service {
 
-    User execute(User user);
+   User execute(User user);
 }

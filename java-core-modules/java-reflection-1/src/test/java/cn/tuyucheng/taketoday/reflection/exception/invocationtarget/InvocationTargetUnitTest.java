@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InvocationTargetUnitTest {
 
-	@Test
-	void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
-		InvocationTargetExample targetExample = new InvocationTargetExample();
-		Method method = InvocationTargetExample.class.getMethod("divideByZeroExample");
+   @Test
+   void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
+      InvocationTargetExample targetExample = new InvocationTargetExample();
+      Method method = InvocationTargetExample.class.getMethod("divideByZeroExample");
 
-		Exception exception = assertThrows(InvocationTargetException.class, () -> method.invoke(targetExample));
+      Exception exception = assertThrows(InvocationTargetException.class, () -> method.invoke(targetExample));
 
-		assertEquals(ArithmeticException.class, exception.getCause().getClass());
-	}
+      assertEquals(ArithmeticException.class, exception.getCause().getClass());
+   }
 }

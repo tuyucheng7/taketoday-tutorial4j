@@ -32,7 +32,7 @@ public class RequestProcessorUnitTest {
       String requestId = requestProcessor.processRequest();
 
       Awaitility.await()
-            //The timeout value should exceed the maximum time the request takes to complete, for the time amount of a poll (500 ms)
+            // The timeout value should exceed the maximum time the request takes to complete, for the time amount of a poll (500 ms)
             .atMost(2501, TimeUnit.MILLISECONDS)
             .pollDelay(500, TimeUnit.MILLISECONDS)
             .until(() -> requestProcessor.getStatus(requestId), not(equalTo("PROCESSING")));

@@ -4,53 +4,53 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ReverseStringExamples {
 
-	public static String reverse(String input) {
-		if (input == null) {
-			return null;
-		}
+   public static String reverse(String input) {
+      if (input == null) {
+         return null;
+      }
 
-		String output = "";
+      String output = "";
 
-		for (int i = input.length() - 1; i >= 0; i--) {
-			output = output + input.charAt(i);
-		}
+      for (int i = input.length() - 1; i >= 0; i--) {
+         output = output + input.charAt(i);
+      }
 
-		return output;
-	}
+      return output;
+   }
 
-	public static String reverseUsingStringBuilder(String input) {
-		if (input == null) {
-			return null;
-		}
+   public static String reverseUsingStringBuilder(String input) {
+      if (input == null) {
+         return null;
+      }
 
-		StringBuilder output = new StringBuilder(input).reverse();
+      StringBuilder output = new StringBuilder(input).reverse();
 
-		return output.toString();
-	}
+      return output.toString();
+   }
 
-	public static String reverseUsingApacheCommons(String input) {
-		return StringUtils.reverse(input);
-	}
+   public static String reverseUsingApacheCommons(String input) {
+      return StringUtils.reverse(input);
+   }
 
-	public static String reverseTheOrderOfWords(String sentence) {
-		if (sentence == null) {
-			return null;
-		}
+   public static String reverseTheOrderOfWords(String sentence) {
+      if (sentence == null) {
+         return null;
+      }
 
-		StringBuilder output = new StringBuilder();
-		String[] words = sentence.split(" ");
+      StringBuilder output = new StringBuilder();
+      String[] words = sentence.split(" ");
 
-		for (int i = words.length - 1; i >= 0; i--) {
-			output.append(words[i]);
-			output.append(" ");
-		}
+      for (int i = words.length - 1; i >= 0; i--) {
+         output.append(words[i]);
+         output.append(" ");
+      }
 
-		return output.toString()
-			.trim();
-	}
+      return output.toString()
+            .trim();
+   }
 
-	public static String reverseTheOrderOfWordsUsingApacheCommons(String sentence) {
-		return StringUtils.reverseDelimited(sentence, ' ');
-	}
+   public static String reverseTheOrderOfWordsUsingApacheCommons(String sentence) {
+      return StringUtils.reverseDelimited(sentence, ' ');
+   }
 
 }

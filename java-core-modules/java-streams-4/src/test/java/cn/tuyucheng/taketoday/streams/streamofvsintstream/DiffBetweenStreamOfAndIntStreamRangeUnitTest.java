@@ -12,55 +12,55 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 public class DiffBetweenStreamOfAndIntStreamRangeUnitTest {
-    @Test
-    void givenStreamOfAndIntStreamRange_whenPeekSortAndFirst_shouldResultDifferent() {
-        Stream<Integer> normalStream = Stream.of(1, 2, 3, 4, 5);
-        IntStream intStreamByRange = IntStream.range(1, 6);
-        List<Integer> normalStreamPeekResult = new ArrayList<>();
-        List<Integer> intStreamPeekResult = new ArrayList<>();
+   @Test
+   void givenStreamOfAndIntStreamRange_whenPeekSortAndFirst_shouldResultDifferent() {
+      Stream<Integer> normalStream = Stream.of(1, 2, 3, 4, 5);
+      IntStream intStreamByRange = IntStream.range(1, 6);
+      List<Integer> normalStreamPeekResult = new ArrayList<>();
+      List<Integer> intStreamPeekResult = new ArrayList<>();
 
-        // First, the regular Stream
-        normalStream.peek(normalStreamPeekResult::add)
-          .sorted()
-          .findFirst();
-        assertEquals(Arrays.asList(1, 2, 3, 4, 5), normalStreamPeekResult);
+      // First, the regular Stream
+      normalStream.peek(normalStreamPeekResult::add)
+            .sorted()
+            .findFirst();
+      assertEquals(Arrays.asList(1, 2, 3, 4, 5), normalStreamPeekResult);
 
-        // Then, the IntStream
-        intStreamByRange.peek(intStreamPeekResult::add)
-          .sorted()
-          .findFirst();
-        assertEquals(Arrays.asList(1), intStreamPeekResult);
-    }
+      // Then, the IntStream
+      intStreamByRange.peek(intStreamPeekResult::add)
+            .sorted()
+            .findFirst();
+      assertEquals(Arrays.asList(1), intStreamPeekResult);
+   }
 
-    @Test
-    void givenStream_whenPeekAndFirst_shouldHaveOnlyFirstElement() {
-        Stream<Integer> normalStream = Stream.of(1, 2, 3, 4, 5);
-        IntStream intStreamByRange = IntStream.range(1, 6);
-        List<Integer> normalStreamPeekResult = new ArrayList<>();
-        List<Integer> intStreamPeekResult = new ArrayList<>();
+   @Test
+   void givenStream_whenPeekAndFirst_shouldHaveOnlyFirstElement() {
+      Stream<Integer> normalStream = Stream.of(1, 2, 3, 4, 5);
+      IntStream intStreamByRange = IntStream.range(1, 6);
+      List<Integer> normalStreamPeekResult = new ArrayList<>();
+      List<Integer> intStreamPeekResult = new ArrayList<>();
 
-        // First, the regular Stream
-        normalStream.peek(normalStreamPeekResult::add)
-          .findFirst();
-        assertEquals(Arrays.asList(1), normalStreamPeekResult);
+      // First, the regular Stream
+      normalStream.peek(normalStreamPeekResult::add)
+            .findFirst();
+      assertEquals(Arrays.asList(1), normalStreamPeekResult);
 
-        // Then, the IntStream
-        intStreamByRange.peek(intStreamPeekResult::add)
-          .findFirst();
-        assertEquals(Arrays.asList(1), intStreamPeekResult);
-    }
+      // Then, the IntStream
+      intStreamByRange.peek(intStreamPeekResult::add)
+            .findFirst();
+      assertEquals(Arrays.asList(1), intStreamPeekResult);
+   }
 
-    @Test
-    void givenSortedStream_whenPeekSortAndFirst_shouldOnlyHaveOneElement() {
-        List<String> peekResult = new ArrayList<>();
+   @Test
+   void givenSortedStream_whenPeekSortAndFirst_shouldOnlyHaveOneElement() {
+      List<String> peekResult = new ArrayList<>();
 
-        TreeSet<String> treeSet = new TreeSet<>(Arrays.asList("CCC", "BBB", "AAA", "DDD", "KKK"));
+      TreeSet<String> treeSet = new TreeSet<>(Arrays.asList("CCC", "BBB", "AAA", "DDD", "KKK"));
 
-        treeSet.stream()
-          .peek(peekResult::add)
-          .sorted()
-          .findFirst();
+      treeSet.stream()
+            .peek(peekResult::add)
+            .sorted()
+            .findFirst();
 
-        assertEquals(Arrays.asList("AAA"), peekResult);
-    }
+      assertEquals(Arrays.asList("AAA"), peekResult);
+   }
 }

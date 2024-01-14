@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.java14.recordvsfinal;
 
 public record USCitizen(String firstName, String lastName, String address) {
-    static int countryCode;
+   static int countryCode;
 
-    // static initializer
-    static {
-        countryCode = 1;
-    }
+   // static initializer
+   static {
+      countryCode = 1;
+   }
 
-    public static int getCountryCode() {
-        return countryCode;
-    }
+   public static int getCountryCode() {
+      return countryCode;
+   }
 
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
+   public String getFullName() {
+      return firstName + " " + lastName;
+   }
 }

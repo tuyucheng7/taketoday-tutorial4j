@@ -5,23 +5,23 @@ import java.util.logging.Logger;
 
 public class RethrowSameExceptionDemo {
 
-    private final static Logger LOGGER = Logger.getLogger(RethrowDifferentExceptionDemo.class.getName());
+   private final static Logger LOGGER = Logger.getLogger(RethrowDifferentExceptionDemo.class.getName());
 
-    public static void main(String[] args) throws Exception {
-        String name = null;
+   public static void main(String[] args) throws Exception {
+      String name = null;
 
-        try {
+      try {
 
-            // Below line will throw NullPointerException
-            if (name.equals("Joe")) {
-                // Do blah blah..
-            }
+         // Below line will throw NullPointerException
+         if (name.equals("Joe")) {
+            // Do blah blah..
+         }
 
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Exception occurred due to invalid name");
-            throw e;
-        }
+      } catch (Exception e) {
+         LOGGER.log(Level.WARNING, "Exception occurred due to invalid name");
+         throw e;
+      }
 
-    }
+   }
 
 }

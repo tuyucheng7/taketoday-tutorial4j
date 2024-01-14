@@ -13,46 +13,46 @@ import java.lang.reflect.Method;
 
 class HiddenClassUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(HiddenClassUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(HiddenClassUnitTest.class);
 
-	@Test
-	void whenInvokeMethodOnHiddenClass_thenSuccess() {
-		// Initiate lookup class
-		MethodHandles.Lookup lookup = MethodHandles.lookup();
+   @Test
+   void whenInvokeMethodOnHiddenClass_thenSuccess() {
+      // Initiate lookup class
+      MethodHandles.Lookup lookup = MethodHandles.lookup();
 
-		// Create a byte code of a class
+      // Create a byte code of a class
 
-		Class<?> clazz = HiddenClass.class;
-		String className = clazz.getName();
-		String classAsPath = className.replace('.', '/') + ".class";
-		InputStream stream = clazz.getClassLoader()
-			.getResourceAsStream(classAsPath);
+      Class<?> clazz = HiddenClass.class;
+      String className = clazz.getName();
+      String classAsPath = className.replace('.', '/') + ".class";
+      InputStream stream = clazz.getClassLoader()
+            .getResourceAsStream(classAsPath);
 
-		try {
-			// Define hidden class with byte code
-			Class<?> hiddenClass = lookup.defineHiddenClass(IOUtils.toByteArray(stream), true, ClassOption.NESTMATE)
-				.lookupClass();
-			Object hiddenClassObject = hiddenClass.getConstructor()
-				.newInstance();
+      try {
+         // Define hidden class with byte code
+         Class<?> hiddenClass = lookup.defineHiddenClass(IOUtils.toByteArray(stream), true, ClassOption.NESTMATE)
+               .lookupClass();
+         Object hiddenClassObject = hiddenClass.getConstructor()
+               .newInstance();
 
-			Method method = hiddenClassObject.getClass()
-				.getDeclaredMethod("convertToUpperCase", String.class);
+         Method method = hiddenClassObject.getClass()
+               .getDeclaredMethod("convertToUpperCase", String.class);
 
-			Assertions.assertTrue(hiddenClass.isHidden());
+         Assertions.assertTrue(hiddenClass.isHidden());
 
-			Assertions.assertEquals("HELLO", method.invoke(hiddenClassObject, "Hello"));
+         Assertions.assertEquals("HELLO", method.invoke(hiddenClassObject, "Hello"));
 
-			Assertions.assertEquals(this.getClass()
-				.getClassLoader(), hiddenClass.getClassLoader());
+         Assertions.assertEquals(this.getClass()
+               .getClassLoader(), hiddenClass.getClassLoader());
 
-			Assertions.assertNull(hiddenClass.getCanonicalName());
+         Assertions.assertNull(hiddenClass.getCanonicalName());
 
-			Assertions.assertThrows(ClassNotFoundException.class, () -> Class.forName(hiddenClass.getName()));
+         Assertions.assertThrows(ClassNotFoundException.class, () -> Class.forName(hiddenClass.getName()));
 
-			Assertions.assertThrows(ClassNotFoundException.class, () -> lookup.findClass(hiddenClass.getName()));
+         Assertions.assertThrows(ClassNotFoundException.class, () -> lookup.findClass(hiddenClass.getName()));
 
-		} catch (Exception e) {
-			LOG.error("Couldn't instantiate hidden class" + e);
-		}
-	}
+      } catch (Exception e) {
+         LOG.error("Couldn't instantiate hidden class" + e);
+      }
+   }
 }

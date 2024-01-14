@@ -18,57 +18,57 @@ import static org.junit.Assert.assertTrue;
 
 public class BasicAttribsIntegrationTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BasicAttribsIntegrationTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(BasicAttribsIntegrationTest.class);
 
-    private static final String HOME = System.getProperty("user.home");
-    private static BasicFileAttributes basicAttribs;
+   private static final String HOME = System.getProperty("user.home");
+   private static BasicFileAttributes basicAttribs;
 
-    @BeforeClass
-    public static void setup() throws IOException {
-        Path home = Paths.get(HOME);
-        BasicFileAttributeView basicView = Files.getFileAttributeView(home, BasicFileAttributeView.class);
-        basicAttribs = basicView.readAttributes();
-    }
+   @BeforeClass
+   public static void setup() throws IOException {
+      Path home = Paths.get(HOME);
+      BasicFileAttributeView basicView = Files.getFileAttributeView(home, BasicFileAttributeView.class);
+      basicAttribs = basicView.readAttributes();
+   }
 
-    @Test
-    public void givenFileTimes_whenComparesThem_ThenCorrect() {
-        FileTime created = basicAttribs.creationTime();
-        FileTime modified = basicAttribs.lastModifiedTime();
-        FileTime accessed = basicAttribs.lastAccessTime();
+   @Test
+   public void givenFileTimes_whenComparesThem_ThenCorrect() {
+      FileTime created = basicAttribs.creationTime();
+      FileTime modified = basicAttribs.lastModifiedTime();
+      FileTime accessed = basicAttribs.lastAccessTime();
 
-        LOG.debug("Created: " + created);
-        LOG.debug("Modified: " + modified);
-        LOG.debug("Accessed: " + accessed);
+      LOG.debug("Created: " + created);
+      LOG.debug("Modified: " + modified);
+      LOG.debug("Accessed: " + accessed);
 
-    }
+   }
 
-    @Test
-    public void givenPath_whenGetsFileSize_thenCorrect() {
-        long size = basicAttribs.size();
-        assertTrue(size > 0);
-    }
+   @Test
+   public void givenPath_whenGetsFileSize_thenCorrect() {
+      long size = basicAttribs.size();
+      assertTrue(size > 0);
+   }
 
-    @Test
-    public void givenPath_whenChecksIfDirectory_thenCorrect() {
-        boolean isDir = basicAttribs.isDirectory();
-        assertTrue(isDir);
-    }
+   @Test
+   public void givenPath_whenChecksIfDirectory_thenCorrect() {
+      boolean isDir = basicAttribs.isDirectory();
+      assertTrue(isDir);
+   }
 
-    @Test
-    public void givenPath_whenChecksIfFile_thenCorrect() {
-        boolean isFile = basicAttribs.isRegularFile();
-        assertFalse(isFile);
-    }
+   @Test
+   public void givenPath_whenChecksIfFile_thenCorrect() {
+      boolean isFile = basicAttribs.isRegularFile();
+      assertFalse(isFile);
+   }
 
-    @Test
-    public void givenPath_whenChecksIfSymLink_thenCorrect() {
-        boolean isSymLink = basicAttribs.isSymbolicLink();
-        assertFalse(isSymLink);
-    }
+   @Test
+   public void givenPath_whenChecksIfSymLink_thenCorrect() {
+      boolean isSymLink = basicAttribs.isSymbolicLink();
+      assertFalse(isSymLink);
+   }
 
-    @Test
-    public void givenPath_whenChecksIfOther_thenCorrect() {
-        boolean isOther = basicAttribs.isOther();
-        assertFalse(isOther);
-    }
+   @Test
+   public void givenPath_whenChecksIfOther_thenCorrect() {
+      boolean isOther = basicAttribs.isOther();
+      assertFalse(isOther);
+   }
 }

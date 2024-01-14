@@ -3,25 +3,25 @@ package cn.tuyucheng.taketoday.methodmultiplereturnvalues;
 class MultipleReturnValuesUsingArrays {
 
 
-	static double[] getCoordinatesDoubleArray() {
+   static double[] getCoordinatesDoubleArray() {
 
-		double[] coordinates = new double[2];
+      double[] coordinates = new double[2];
 
-		coordinates[0] = 10;
-		coordinates[1] = 12.5;
+      coordinates[0] = 10;
+      coordinates[1] = 12.5;
 
-		return coordinates;
-	}
+      return coordinates;
+   }
 
 
-	static Number[] getCoordinatesNumberArray() {
+   static Number[] getCoordinatesNumberArray() {
 
-		Number[] coordinates = new Number[2];
+      Number[] coordinates = new Number[2];
 
-		coordinates[0] = 10; // Integer
-		coordinates[1] = 12.5; // Double
+      coordinates[0] = 10; // Integer
+      coordinates[1] = 12.5; // Double
 
-		return coordinates;
-	}
+      return coordinates;
+   }
 
 }

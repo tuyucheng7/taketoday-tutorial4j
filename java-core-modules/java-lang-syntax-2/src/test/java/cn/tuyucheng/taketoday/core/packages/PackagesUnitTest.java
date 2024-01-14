@@ -9,14 +9,14 @@ import static org.junit.Assert.assertEquals;
 
 public class PackagesUnitTest {
 
-	@Test
-	public void whenTodoItemAdded_ThenSizeIncreases() {
-		TodoItem todoItem = new TodoItem();
-		todoItem.setId(1L);
-		todoItem.setDescription("Test the Todo List");
-		todoItem.setDueDate(LocalDate.now());
-		TodoList todoList = new TodoList();
-		todoList.addTodoItem(todoItem);
-		assertEquals(1, todoList.getTodoItems().size());
-	}
+   @Test
+   public void whenTodoItemAdded_ThenSizeIncreases() {
+      TodoItem todoItem = new TodoItem();
+      todoItem.setId(1L);
+      todoItem.setDescription("Test the Todo List");
+      todoItem.setDueDate(LocalDate.now());
+      TodoList todoList = new TodoList();
+      todoList.addTodoItem(todoItem);
+      assertEquals(1, todoList.getTodoItems().size());
+   }
 }

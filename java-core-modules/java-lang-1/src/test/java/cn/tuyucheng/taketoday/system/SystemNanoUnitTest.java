@@ -5,12 +5,12 @@ import org.junit.Test;
 
 public class SystemNanoUnitTest {
 
-	@Test
-	public void givenSystem_whenCalledNanoTime_thenGivesTimeinResult() {
-		long startTime = System.nanoTime();
-		// do something that takes time
-		long endTime = System.nanoTime();
+   @Test
+   public void givenSystem_whenCalledNanoTime_thenGivesTimeinResult() {
+      long startTime = System.nanoTime();
+      // do something that takes time
+      long endTime = System.nanoTime();
 
-		Assert.assertTrue(endTime - startTime < 10000);
-	}
+      Assert.assertTrue(endTime - startTime < 10000);
+   }
 }

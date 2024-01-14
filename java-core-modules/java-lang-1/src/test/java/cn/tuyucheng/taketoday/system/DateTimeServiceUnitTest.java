@@ -5,11 +5,11 @@ import org.junit.Test;
 
 public class DateTimeServiceUnitTest {
 
-	@Test
-	public void givenClass_whenCalledMethods_thenNotNullInResult() {
-		DateTimeService dateTimeService = new DateTimeService();
+   @Test
+   public void givenClass_whenCalledMethods_thenNotNullInResult() {
+      DateTimeService dateTimeService = new DateTimeService();
 
-		Assert.assertNotNull(dateTimeService.nowPlusOneHour());
-		Assert.assertNotNull(dateTimeService.nowPrettyPrinted());
-	}
+      Assert.assertNotNull(dateTimeService.nowPlusOneHour());
+      Assert.assertNotNull(dateTimeService.nowPrettyPrinted());
+   }
 }

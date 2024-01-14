@@ -11,15 +11,15 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @State(Scope.Benchmark)
 public class ThreadLocalRandomBenchMarker {
-	private final Random random = new Random();
+   private final Random random = new Random();
 
-	@Benchmark
-	public int randomValuesUsingRandom() {
-		return random.nextInt();
-	}
+   @Benchmark
+   public int randomValuesUsingRandom() {
+      return random.nextInt();
+   }
 
-	@Benchmark
-	public int randomValuesUsingThreadLocalRandom() {
-		return ThreadLocalRandom.current().nextInt();
-	}
+   @Benchmark
+   public int randomValuesUsingThreadLocalRandom() {
+      return ThreadLocalRandom.current().nextInt();
+   }
 }

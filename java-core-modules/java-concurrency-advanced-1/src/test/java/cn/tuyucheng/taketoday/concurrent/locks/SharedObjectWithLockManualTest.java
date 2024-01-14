@@ -10,62 +10,62 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SharedObjectWithLockManualTest {
 
-	@Test
-	void whenLockAcquired_ThenLockedIsTrue() {
-		final SharedObjectWithLock object = new SharedObjectWithLock();
+   @Test
+   void whenLockAcquired_ThenLockedIsTrue() {
+      final SharedObjectWithLock object = new SharedObjectWithLock();
 
-		final int threadCount = 2;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+      final int threadCount = 2;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
 
-		executeThreads(object, threadCount, service);
+      executeThreads(object, threadCount, service);
 
-		assertTrue(object.isLocked());
+      assertTrue(object.isLocked());
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	@Test
-	void whenLocked_ThenQueuedThread() {
-		final int threadCount = 4;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
-		final SharedObjectWithLock object = new SharedObjectWithLock();
+   @Test
+   void whenLocked_ThenQueuedThread() {
+      final int threadCount = 4;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+      final SharedObjectWithLock object = new SharedObjectWithLock();
 
-		executeThreads(object, threadCount, service);
+      executeThreads(object, threadCount, service);
 
-		assertTrue(object.hasQueuedThreads());
+      assertTrue(object.hasQueuedThreads());
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	void whenTryLock_ThenQueuedThread() {
-		final SharedObjectWithLock object = new SharedObjectWithLock();
+   void whenTryLock_ThenQueuedThread() {
+      final SharedObjectWithLock object = new SharedObjectWithLock();
 
-		final int threadCount = 2;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+      final int threadCount = 2;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
 
-		executeThreads(object, threadCount, service);
+      executeThreads(object, threadCount, service);
 
-		assertTrue(object.isLocked());
+      assertTrue(object.isLocked());
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	@Test
-	void whenGetCount_ThenCorrectCount() throws InterruptedException {
-		final int threadCount = 4;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
-		final SharedObjectWithLock object = new SharedObjectWithLock();
+   @Test
+   void whenGetCount_ThenCorrectCount() throws InterruptedException {
+      final int threadCount = 4;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+      final SharedObjectWithLock object = new SharedObjectWithLock();
 
-		executeThreads(object, threadCount, service);
-		Thread.sleep(1000);
-		assertEquals(object.getCounter(), 4);
+      executeThreads(object, threadCount, service);
+      Thread.sleep(1000);
+      assertEquals(object.getCounter(), 4);
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	private void executeThreads(SharedObjectWithLock object, int threadCount, ExecutorService service) {
-		for (int i = 0; i < threadCount; i++) {
-			service.execute(object::perform);
-		}
-	}
+   private void executeThreads(SharedObjectWithLock object, int threadCount, ExecutorService service) {
+      for (int i = 0; i < threadCount; i++) {
+         service.execute(object::perform);
+      }
+   }
 }

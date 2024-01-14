@@ -9,10 +9,10 @@ import static org.hamcrest.core.Is.is;
 
 class AnnotatedClassUnitTest {
 
-    @Test
-    void whenAnnotationRetentionPolicyRuntime_shouldAccess() {
-        AnnotatedClass anAnnotatedClass = new AnnotatedClass();
-        Annotation[] annotations = anAnnotatedClass.getClass().getAnnotations();
-        assertThat(annotations.length, is(1));
-    }
+   @Test
+   void whenAnnotationRetentionPolicyRuntime_shouldAccess() {
+      AnnotatedClass anAnnotatedClass = new AnnotatedClass();
+      Annotation[] annotations = anAnnotatedClass.getClass().getAnnotations();
+      assertThat(annotations.length, is(1));
+   }
 }

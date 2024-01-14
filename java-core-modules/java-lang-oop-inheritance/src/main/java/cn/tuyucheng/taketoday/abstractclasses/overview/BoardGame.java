@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.abstractclasses.overview;
 
 public abstract class BoardGame {
-	//... field declarations, constructors
+   //... field declarations, constructors
 
-	public abstract void play();
+   public abstract void play();
 
-	//... concrete methods
+   //... concrete methods
 }

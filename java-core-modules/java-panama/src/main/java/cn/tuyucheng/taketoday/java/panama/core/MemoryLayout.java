@@ -14,35 +14,35 @@ import java.lang.invoke.VarHandle;
 
 public class MemoryLayout {
 
-	public static void main(String[] args) {
-		GroupLayout pointLayout = structLayout(JAVA_DOUBLE.withName("x"), JAVA_DOUBLE.withName("y"));
+   public static void main(String[] args) {
+      GroupLayout pointLayout = structLayout(JAVA_DOUBLE.withName("x"), JAVA_DOUBLE.withName("y"));
 
-		SequenceLayout ptsLayout = sequenceLayout(10, pointLayout);
+      SequenceLayout ptsLayout = sequenceLayout(10, pointLayout);
 
-		VarHandle xvarHandle = pointLayout.varHandle(PathElement.groupElement("x"));
-		VarHandle yvarHandle = pointLayout.varHandle(PathElement.groupElement("y"));
+      VarHandle xvarHandle = pointLayout.varHandle(PathElement.groupElement("x"));
+      VarHandle yvarHandle = pointLayout.varHandle(PathElement.groupElement("y"));
 
-		try (MemorySession memorySession = MemorySession.openConfined()) {
+      try (MemorySession memorySession = MemorySession.openConfined()) {
 
-			MemorySegment pointSegment = memorySession.allocate(pointLayout);
-			xvarHandle.set(pointSegment, 3d);
-			yvarHandle.set(pointSegment, 4d);
+         MemorySegment pointSegment = memorySession.allocate(pointLayout);
+         xvarHandle.set(pointSegment, 3d);
+         yvarHandle.set(pointSegment, 4d);
 
-			System.out.println(pointSegment.toString());
-		}
-	}
+         System.out.println(pointSegment.toString());
+      }
+   }
 
-	static class ValueLayout {
-		public static void main(String[] args) {
-			try (MemorySession memorySession = MemorySession.openConfined()) {
-				int byteSize = 5;
-				int index = 3;
-				float value = 6;
-				MemorySegment segment = MemorySegment.allocateNative(byteSize, memorySession);
-				segment.setAtIndex(JAVA_FLOAT, index, value);
-				float result = segment.getAtIndex(JAVA_FLOAT, index);
-				System.out.println("Float value is:" + result);
-			}
-		}
-	}
+   static class ValueLayout {
+      public static void main(String[] args) {
+         try (MemorySession memorySession = MemorySession.openConfined()) {
+            int byteSize = 5;
+            int index = 3;
+            float value = 6;
+            MemorySegment segment = MemorySegment.allocateNative(byteSize, memorySession);
+            segment.setAtIndex(JAVA_FLOAT, index, value);
+            float result = segment.getAtIndex(JAVA_FLOAT, index);
+            System.out.println("Float value is:" + result);
+         }
+      }
+   }
 }

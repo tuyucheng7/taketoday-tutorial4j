@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.thisescape;
 
 public class LoggerRunnable implements Runnable {
 
-	public LoggerRunnable() {
-		Thread thread = new Thread(this); // this escapes
-		thread.start();
-	}
+   public LoggerRunnable() {
+      Thread thread = new Thread(this); // this escapes
+      thread.start();
+   }
 
-	@Override
-	public void run() {
-		System.out.println("Started...");
-	}
+   @Override
+   public void run() {
+      System.out.println("Started...");
+   }
 }

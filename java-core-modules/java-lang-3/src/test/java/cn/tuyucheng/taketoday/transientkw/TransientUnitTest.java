@@ -10,45 +10,45 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TransientUnitTest {
 
-	@Test
-	void givenTransient_whenSerDe_thenVerifyValues() throws Exception {
-		Book book = new Book();
-		book.setBookName("Java Reference");
-		book.setDescription("will not be saved");
-		book.setCopies(25);
+   @Test
+   void givenTransient_whenSerDe_thenVerifyValues() throws Exception {
+      Book book = new Book();
+      book.setBookName("Java Reference");
+      book.setDescription("will not be saved");
+      book.setCopies(25);
 
-		BookSerDe.serialize(book);
-		Book book2 = BookSerDe.deserialize();
+      BookSerDe.serialize(book);
+      Book book2 = BookSerDe.deserialize();
 
-		assertEquals("Java Reference", book2.getBookName());
-		assertNull(book2.getDescription());
-		assertEquals(0, book2.getCopies());
-	}
+      assertEquals("Java Reference", book2.getBookName());
+      assertNull(book2.getDescription());
+      assertEquals(0, book2.getCopies());
+   }
 
-	@Test
-	void givenFinalTransient_whenSerDe_thenValuePersisted() throws Exception {
-		Book book = new Book();
+   @Test
+   void givenFinalTransient_whenSerDe_thenValuePersisted() throws Exception {
+      Book book = new Book();
 
-		BookSerDe.serialize(book);
-		Book book2 = BookSerDe.deserialize();
+      BookSerDe.serialize(book);
+      Book book2 = BookSerDe.deserialize();
 
-		assertEquals("Fiction", book2.getBookCategory());
-	}
+      assertEquals("Fiction", book2.getBookCategory());
+   }
 
-	@Test
-	void givenFinalTransientWithNewOperator_whenSerDe_thenValuePersisted() throws Exception {
-		Book book = new Book();
+   @Test
+   void givenFinalTransientWithNewOperator_whenSerDe_thenValuePersisted() throws Exception {
+      Book book = new Book();
 
-		BookSerDe.serialize(book);
-		Book book2 = BookSerDe.deserialize();
+      BookSerDe.serialize(book);
+      Book book2 = BookSerDe.deserialize();
 
-		assertNull(book2.getBookCategoryNewOperator());
-	}
+      assertNull(book2.getBookCategoryNewOperator());
+   }
 
-	@AfterAll
-	public static void cleanup() {
-		File file = new File(BookSerDe.fileName);
-		file.deleteOnExit();
-	}
+   @AfterAll
+   public static void cleanup() {
+      File file = new File(BookSerDe.fileName);
+      file.deleteOnExit();
+   }
 
 }

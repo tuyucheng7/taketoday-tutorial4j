@@ -12,14 +12,14 @@ import java.io.PrintStream;
  */
 public class SystemOutDemo {
 
-	public static void main(String[] args) throws FileNotFoundException {
-		// Print without 'hitting' return
-		System.out.print("some inline message");
+   public static void main(String[] args) throws FileNotFoundException {
+      // Print without 'hitting' return
+      System.out.print("some inline message");
 
-		// Print and then 'hit' return
-		System.out.println("a message having new line at the end");
+      // Print and then 'hit' return
+      System.out.println("a message having new line at the end");
 
-		// Changes output stream to send messages to file.
-		System.setOut(new PrintStream("file.txt"));
-	}
+      // Changes output stream to send messages to file.
+      System.setOut(new PrintStream("file.txt"));
+   }
 }

@@ -19,33 +19,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JavaHttpClientTimeoutOnRequestIntegrationTest {
 
-    private HttpClient httpClient;
-    private HttpRequest httpRequest;
+   private HttpClient httpClient;
+   private HttpRequest httpRequest;
 
-    @BeforeEach
-    public void setUp() {
-        httpClient = getHttpClientWithTimeout(3);
-        httpClient.connectTimeout().map(Duration::toSeconds)
-              .ifPresent(sec -> System.out.println("Timeout in seconds: " + sec));
+   @BeforeEach
+   public void setUp() {
+      httpClient = getHttpClientWithTimeout(3);
+      httpClient.connectTimeout().map(Duration::toSeconds)
+            .ifPresent(sec -> System.out.println("Timeout in seconds: " + sec));
 
-        httpRequest = HttpRequest.newBuilder()
-              .uri(URI.create("http://10.255.255.1"))
-              .timeout(Duration.ofSeconds(1))
-              .GET()
-              .build();
-    }
+      httpRequest = HttpRequest.newBuilder()
+            .uri(URI.create("http://10.255.255.1"))
+            .timeout(Duration.ofSeconds(1))
+            .GET()
+            .build();
+   }
 
-    @Test
-    void shouldThrowExceptionWhithin1SecondWhenMakingSyncCall() {
-        LocalTime beforeHttpCall = now();
-        HttpConnectTimeoutException thrown = assertThrows(
-              HttpConnectTimeoutException.class,
-              () -> httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()),
-              "Expected doThing() to throw, but it didn't"
-        );
-        LocalTime afterHttpCall = now();
-        assertTrue(thrown.getMessage().contains("timed out"));
-        assertEquals(1, Duration.between(beforeHttpCall, afterHttpCall).getSeconds());
-    }
+   @Test
+   void shouldThrowExceptionWhithin1SecondWhenMakingSyncCall() {
+      LocalTime beforeHttpCall = now();
+      HttpConnectTimeoutException thrown = assertThrows(
+            HttpConnectTimeoutException.class,
+            () -> httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()),
+            "Expected doThing() to throw, but it didn't"
+      );
+      LocalTime afterHttpCall = now();
+      assertTrue(thrown.getMessage().contains("timed out"));
+      assertEquals(1, Duration.between(beforeHttpCall, afterHttpCall).getSeconds());
+   }
 
 }

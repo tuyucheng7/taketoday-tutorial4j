@@ -14,48 +14,48 @@ import java.util.stream.Collectors;
 
 class DatesCollectionIterationUnitTest {
 
-	private Collection<LocalDate> localDates = LocalDate.now()
-		.datesUntil(LocalDate.now()
-			.plus(10L, ChronoUnit.DAYS))
-		.collect(Collectors.toList());
+   private Collection<LocalDate> localDates = LocalDate.now()
+         .datesUntil(LocalDate.now()
+               .plus(10L, ChronoUnit.DAYS))
+         .collect(Collectors.toList());
 
-	private Collection<Date> dates = localDates.stream()
-		.map(localDate -> Date.from(localDate.atStartOfDay(ZoneId.systemDefault())
-			.toInstant()))
-		.collect(Collectors.toList());
+   private Collection<Date> dates = localDates.stream()
+         .map(localDate -> Date.from(localDate.atStartOfDay(ZoneId.systemDefault())
+               .toInstant()))
+         .collect(Collectors.toList());
 
-	@Test
-	void givenIteratingListOfDatesJava7_WhenStartTodayAndEnding10DaysAhead() {
-		DatesCollectionIteration iterateInColleciton = new DatesCollectionIteration();
-		Calendar today = Calendar.getInstance();
-		Calendar next10Ahead = (Calendar) today.clone();
-		next10Ahead.add(Calendar.DATE, 10);
+   @Test
+   void givenIteratingListOfDatesJava7_WhenStartTodayAndEnding10DaysAhead() {
+      DatesCollectionIteration iterateInColleciton = new DatesCollectionIteration();
+      Calendar today = Calendar.getInstance();
+      Calendar next10Ahead = (Calendar) today.clone();
+      next10Ahead.add(Calendar.DATE, 10);
 
-		iterateInColleciton.iteratingRangeOfDatesJava7(createRangeDates(today.getTime(), next10Ahead.getTime()));
-	}
+      iterateInColleciton.iteratingRangeOfDatesJava7(createRangeDates(today.getTime(), next10Ahead.getTime()));
+   }
 
-	@Test
-	void givenIteratingListOfDatesJava8_WhenStartTodayAndEnd10DaysAhead() {
-		DatesCollectionIteration iterateInCollection = new DatesCollectionIteration();
+   @Test
+   void givenIteratingListOfDatesJava8_WhenStartTodayAndEnd10DaysAhead() {
+      DatesCollectionIteration iterateInCollection = new DatesCollectionIteration();
 
-		iterateInCollection.iteratingRangeOfDatesJava8(dates);
-	}
+      iterateInCollection.iteratingRangeOfDatesJava8(dates);
+   }
 
-	private List<Date> createRangeDates(Date start, Date end) {
+   private List<Date> createRangeDates(Date start, Date end) {
 
-		List<Date> dates = new ArrayList<>();
-		Date current = start;
+      List<Date> dates = new ArrayList<>();
+      Date current = start;
 
-		while (current.before(end)) {
-			dates.add(current);
+      while (current.before(end)) {
+         dates.add(current);
 
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(current);
-			calendar.add(Calendar.DATE, 1);
+         Calendar calendar = Calendar.getInstance();
+         calendar.setTime(current);
+         calendar.add(Calendar.DATE, 1);
 
-			current = calendar.getTime();
-		}
+         current = calendar.getTime();
+      }
 
-		return dates;
-	}
+      return dates;
+   }
 }

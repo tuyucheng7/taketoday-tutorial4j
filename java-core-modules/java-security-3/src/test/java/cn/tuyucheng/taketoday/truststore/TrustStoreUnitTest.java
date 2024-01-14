@@ -13,17 +13,17 @@ import java.security.cert.PKIXParameters;
 
 public class TrustStoreUnitTest {
 
-	@Test
-	public void whenOpeningTrustStore_thenExceptionIsThrown() throws Exception {
-		KeyStore keyStore = getKeyStore();
-		InvalidAlgorithmParameterException invalidAlgorithmParameterException =
-			Assertions.assertThrows(InvalidAlgorithmParameterException.class, () -> new PKIXParameters(keyStore));
-		Assertions.assertEquals("the trustAnchors parameter must be non-empty", invalidAlgorithmParameterException.getMessage());
-	}
+   @Test
+   public void whenOpeningTrustStore_thenExceptionIsThrown() throws Exception {
+      KeyStore keyStore = getKeyStore();
+      InvalidAlgorithmParameterException invalidAlgorithmParameterException =
+            Assertions.assertThrows(InvalidAlgorithmParameterException.class, () -> new PKIXParameters(keyStore));
+      Assertions.assertEquals("the trustAnchors parameter must be non-empty", invalidAlgorithmParameterException.getMessage());
+   }
 
-	private KeyStore getKeyStore() throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException {
-		KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-		ks.load(null, "changeIt".toCharArray());
-		return ks;
-	}
+   private KeyStore getKeyStore() throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException {
+      KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+      ks.load(null, "changeIt".toCharArray());
+      return ks;
+   }
 }

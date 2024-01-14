@@ -6,44 +6,44 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CharStackUnitTest {
 
-    @Test
-    void whenCharStackIsCreated_thenItHasSize0() {
+   @Test
+   void whenCharStackIsCreated_thenItHasSize0() {
 
-        CharStack charStack = new CharStack();
+      CharStack charStack = new CharStack();
 
-        assertEquals(0, charStack.size());
-    }
+      assertEquals(0, charStack.size());
+   }
 
-    @Test
-    void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
+   @Test
+   void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
 
-        CharStack charStack = new CharStack();
+      CharStack charStack = new CharStack();
 
-        charStack.push('A');
+      charStack.push('A');
 
-        assertEquals(1, charStack.size());
-    }
+      assertEquals(1, charStack.size());
+   }
 
-    @Test
-    void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
+   @Test
+   void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
 
-        CharStack charStack = new CharStack();
-        charStack.push('A');
+      CharStack charStack = new CharStack();
+      charStack.push('A');
 
-        char element = charStack.pop();
+      char element = charStack.pop();
 
-        assertEquals('A', element);
-        assertEquals(0, charStack.size());
-    }
+      assertEquals('A', element);
+      assertEquals(0, charStack.size());
+   }
 
-    @Test
-    void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
-        CharStack charStack = new CharStack();
-        charStack.push('A');
+   @Test
+   void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+      CharStack charStack = new CharStack();
+      charStack.push('A');
 
-        char element = charStack.peek();
+      char element = charStack.peek();
 
-        assertEquals('A', element);
-        assertEquals(1, charStack.size());
-    }
+      assertEquals('A', element);
+      assertEquals(1, charStack.size());
+   }
 }

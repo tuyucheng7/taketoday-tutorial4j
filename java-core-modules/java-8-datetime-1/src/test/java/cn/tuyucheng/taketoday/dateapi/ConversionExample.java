@@ -8,12 +8,12 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class ConversionExample {
-	public static void main(String[] args) {
-		Instant instantFromCalendar = GregorianCalendar.getInstance().toInstant();
-		ZonedDateTime zonedDateTimeFromCalendar = new GregorianCalendar().toZonedDateTime();
-		Date dateFromInstant = Date.from(Instant.now());
-		GregorianCalendar calendarFromZonedDateTime = GregorianCalendar.from(ZonedDateTime.now());
-		Instant instantFromDate = new Date().toInstant();
-		ZoneId zoneIdFromTimeZone = TimeZone.getTimeZone("PST").toZoneId();
-	}
+   public static void main(String[] args) {
+      Instant instantFromCalendar = GregorianCalendar.getInstance().toInstant();
+      ZonedDateTime zonedDateTimeFromCalendar = new GregorianCalendar().toZonedDateTime();
+      Date dateFromInstant = Date.from(Instant.now());
+      GregorianCalendar calendarFromZonedDateTime = GregorianCalendar.from(ZonedDateTime.now());
+      Instant instantFromDate = new Date().toInstant();
+      ZoneId zoneIdFromTimeZone = TimeZone.getTimeZone("PST").toZoneId();
+   }
 }

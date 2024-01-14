@@ -11,71 +11,71 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DeferUnitTest {
-	@Test
-	void givenVoidCallable_whenDiffer_thenReturnNull() throws Exception {
-		Callable<Void> callable = new Callable<Void>() {
-			@Override
-			public Void call() {
-				System.out.println("Hello!");
-				return null;
-			}
-		};
+   @Test
+   void givenVoidCallable_whenDiffer_thenReturnNull() throws Exception {
+      Callable<Void> callable = new Callable<Void>() {
+         @Override
+         public Void call() {
+            System.out.println("Hello!");
+            return null;
+         }
+      };
 
-		assertThat(Defer.defer(callable)).isNull();
-	}
+      assertThat(Defer.defer(callable)).isNull();
+   }
 
-	@Test
-	void givenVoidRunnable_whenDiffer_thenNoReturn() {
-		AtomicBoolean run = new AtomicBoolean(false);
+   @Test
+   void givenVoidRunnable_whenDiffer_thenNoReturn() {
+      AtomicBoolean run = new AtomicBoolean(false);
 
-		Runnable runnable = new Runnable() {
-			@Override
-			public void run() {
-				System.out.println("Hello!");
-				run.set(true);
-			}
-		};
+      Runnable runnable = new Runnable() {
+         @Override
+         public void run() {
+            System.out.println("Hello!");
+            run.set(true);
+         }
+      };
 
-		Defer.defer(runnable);
+      Defer.defer(runnable);
 
-		assertTrue(run.get());
-	}
+      assertTrue(run.get());
+   }
 
-	@Test
-	void givenVoidFunction_whenDiffer_thenReturnNull() {
-		Function<String, Void> function = s -> {
-			System.out.println("Hello " + s + "!");
-			return null;
-		};
+   @Test
+   void givenVoidFunction_whenDiffer_thenReturnNull() {
+      Function<String, Void> function = s -> {
+         System.out.println("Hello " + s + "!");
+         return null;
+      };
 
-		assertThat(Defer.defer(function, "World")).isNull();
-	}
+      assertThat(Defer.defer(function, "World")).isNull();
+   }
 
-	@Test
-	void givenVoidConsumer_whenDiffer_thenReturnNull() {
-		AtomicBoolean run = new AtomicBoolean(false);
+   @Test
+   void givenVoidConsumer_whenDiffer_thenReturnNull() {
+      AtomicBoolean run = new AtomicBoolean(false);
 
-		Consumer<String> function = s -> {
-			System.out.println("Hello " + s + "!");
-			run.set(true);
-		};
+      Consumer<String> function = s -> {
+         System.out.println("Hello " + s + "!");
+         run.set(true);
+      };
 
-		Defer.defer(function, "World");
+      Defer.defer(function, "World");
 
-		assertTrue(run.get());
-	}
+      assertTrue(run.get());
+   }
 
-	@Test
-	void givenAction_whenDiffer_thenNoReturn() {
-		AtomicBoolean run = new AtomicBoolean(false);
+   @Test
+   void givenAction_whenDiffer_thenNoReturn() {
+      AtomicBoolean run = new AtomicBoolean(false);
 
-		Action action = () -> {
-			System.out.println("Hello!");
-			run.set(true);
-		};
+      Action action = () -> {
+         System.out.println("Hello!");
+         run.set(true);
+      };
 
-		Defer.defer(action);
+      Defer.defer(action);
 
-		assertTrue(run.get());
-	}
+      assertTrue(run.get());
+   }
 }

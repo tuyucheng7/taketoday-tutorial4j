@@ -8,27 +8,27 @@ import java.util.Optional;
 
 @Entity
 public class UserOptional implements Serializable {
-	@Id
-	private long userId;
+   @Id
+   private long userId;
 
-	@Column(nullable = true)
-	private String firstName;
+   @Column(nullable = true)
+   private String firstName;
 
-	public long getUserId() {
-		return userId;
-	}
+   public long getUserId() {
+      return userId;
+   }
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+   public void setUserId(long userId) {
+      this.userId = userId;
+   }
 
-	public Optional<String> getFirstName() {
-		return Optional.ofNullable(firstName);
-	}
+   public Optional<String> getFirstName() {
+      return Optional.ofNullable(firstName);
+   }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-		Optional.ofNullable(firstName);
-	}
+   public void setFirstName(String firstName) {
+      this.firstName = firstName;
+      Optional.ofNullable(firstName);
+   }
 
 }

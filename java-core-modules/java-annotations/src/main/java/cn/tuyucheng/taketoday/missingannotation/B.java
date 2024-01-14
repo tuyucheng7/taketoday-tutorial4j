@@ -4,7 +4,7 @@ package cn.tuyucheng.taketoday.missingannotation;
 @C(D.class)
 public class B {
 
-    public static void main(String[] args) {
-        System.out.println("It worked");
-    }
+   public static void main(String[] args) {
+      System.out.println("It worked");
+   }
 }

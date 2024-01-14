@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.callbackfunctions;
 
 public interface EventListener {
 
-	String onTrigger();
+   String onTrigger();
 
-	void respondToTrigger();
+   void respondToTrigger();
 }
 
 

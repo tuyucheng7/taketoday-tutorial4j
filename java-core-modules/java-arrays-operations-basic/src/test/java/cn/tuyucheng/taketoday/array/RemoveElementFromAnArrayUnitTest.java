@@ -11,74 +11,74 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RemoveElementFromAnArrayUnitTest {
 
-    private final RemoveElementFromAnArray sut = new RemoveElementFromAnArray();
-    private final int[] inputArray = new int[]{40, 10, 20, 30, 40, 50};
+   private final RemoveElementFromAnArray sut = new RemoveElementFromAnArray();
+   private final int[] inputArray = new int[]{40, 10, 20, 30, 40, 50};
 
-    @Test
-    void testRemoveAnElementWithAGivenIndex() {
-        int index = 2;
-        int[] modifiedArray = sut.removeAnElementWithAGivenIndex(inputArray, index);
+   @Test
+   void testRemoveAnElementWithAGivenIndex() {
+      int index = 2;
+      int[] modifiedArray = sut.removeAnElementWithAGivenIndex(inputArray, index);
 
-        assertFalse(ArrayUtils.contains(modifiedArray, inputArray[index]));
-    }
+      assertFalse(ArrayUtils.contains(modifiedArray, inputArray[index]));
+   }
 
-    @Test
-    void testRemoveAllElementsWithGivenIndices() {
-        int first = 0;
-        int last = inputArray.length - 1;
-        int[] modifiedArray = sut.removeAllElementsWithGivenIndices(inputArray, first, last);
+   @Test
+   void testRemoveAllElementsWithGivenIndices() {
+      int first = 0;
+      int last = inputArray.length - 1;
+      int[] modifiedArray = sut.removeAllElementsWithGivenIndices(inputArray, first, last);
 
-        assertFalse(ArrayUtils.contains(modifiedArray, inputArray[first]) && ArrayUtils.contains(modifiedArray, inputArray[last]));
-    }
+      assertFalse(ArrayUtils.contains(modifiedArray, inputArray[first]) && ArrayUtils.contains(modifiedArray, inputArray[last]));
+   }
 
-    @Test
-    void testRemoveElement_WhenArrayIsNull_ThrowsIndexOutOfBoundEx() {
-        int index = 2;
+   @Test
+   void testRemoveElement_WhenArrayIsNull_ThrowsIndexOutOfBoundEx() {
+      int index = 2;
 
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            sut.removeAnElementWithAGivenIndex(null, index);
-        });
+      assertThrows(IndexOutOfBoundsException.class, () -> {
+         sut.removeAnElementWithAGivenIndex(null, index);
+      });
 
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            sut.removeAllElementsWithGivenIndices(null, index);
-        });
-    }
+      assertThrows(IndexOutOfBoundsException.class, () -> {
+         sut.removeAllElementsWithGivenIndices(null, index);
+      });
+   }
 
-    @Test
-    void testRemoveFirstOccurrenceOfGivenElement() {
-        int element = 40;
-        int[] modifiedArray = sut.removeFirstOccurrenceOfGivenElement(inputArray, element);
+   @Test
+   void testRemoveFirstOccurrenceOfGivenElement() {
+      int element = 40;
+      int[] modifiedArray = sut.removeFirstOccurrenceOfGivenElement(inputArray, element);
 
-        int indexInInputArray = ArrayUtils.indexOf(inputArray, element);
-        int indexInModifiedArray = ArrayUtils.indexOf(modifiedArray, element);
-        assertNotEquals(indexInInputArray, indexInModifiedArray);
-    }
+      int indexInInputArray = ArrayUtils.indexOf(inputArray, element);
+      int indexInModifiedArray = ArrayUtils.indexOf(modifiedArray, element);
+      assertNotEquals(indexInInputArray, indexInModifiedArray);
+   }
 
-    @Test
-    void testRemoveAllGivenElements() {
-        int duplicateElement = 40;
-        int[] elements = new int[]{duplicateElement, 10, 50};
-        int[] modifiedArray = sut.removeAllGivenElements(inputArray, elements);
+   @Test
+   void testRemoveAllGivenElements() {
+      int duplicateElement = 40;
+      int[] elements = new int[]{duplicateElement, 10, 50};
+      int[] modifiedArray = sut.removeAllGivenElements(inputArray, elements);
 
-        assertTrue(ArrayUtils.contains(modifiedArray, duplicateElement));
-        assertFalse(ArrayUtils.contains(modifiedArray, elements[1]));
-        assertFalse(ArrayUtils.contains(modifiedArray, elements[2]));
-    }
+      assertTrue(ArrayUtils.contains(modifiedArray, duplicateElement));
+      assertFalse(ArrayUtils.contains(modifiedArray, elements[1]));
+      assertFalse(ArrayUtils.contains(modifiedArray, elements[2]));
+   }
 
-    @Test
-    void testRemoveAllOccurrencesOfAGivenElement() {
-        int element = 40;
-        int[] modifiedArray = sut.removeAllOccurrencesOfAGivenElement(inputArray, element);
+   @Test
+   void testRemoveAllOccurrencesOfAGivenElement() {
+      int element = 40;
+      int[] modifiedArray = sut.removeAllOccurrencesOfAGivenElement(inputArray, element);
 
-        assertFalse(ArrayUtils.contains(modifiedArray, element));
-    }
+      assertFalse(ArrayUtils.contains(modifiedArray, element));
+   }
 
-    @Test
-    void testRemoveElement_WhenArrayIsNull_ReturnsNull() {
-        int element = 20;
+   @Test
+   void testRemoveElement_WhenArrayIsNull_ReturnsNull() {
+      int element = 20;
 
-        assertNull(sut.removeFirstOccurrenceOfGivenElement(null, element));
-        assertNull(sut.removeAllGivenElements(null, element));
-        assertNull(sut.removeAllOccurrencesOfAGivenElement(null, element));
-    }
+      assertNull(sut.removeFirstOccurrenceOfGivenElement(null, element));
+      assertNull(sut.removeAllGivenElements(null, element));
+      assertNull(sut.removeAllOccurrencesOfAGivenElement(null, element));
+   }
 }

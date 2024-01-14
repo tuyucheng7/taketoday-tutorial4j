@@ -8,18 +8,18 @@ import java.net.URL;
 
 public class MalformedURL {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(MalformedURL.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(MalformedURL.class);
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
 
-        URL baeldungURL = null;
+      URL tuyuchengURL = null;
 
-        try {
-            baeldungURL = new URL("malformedurl");
-        } catch (MalformedURLException e) {
-            LOGGER.error("MalformedURLException caught!");
-        }
+      try {
+         tuyuchengURL = new URL("malformedurl");
+      } catch (MalformedURLException e) {
+         LOGGER.error("MalformedURLException caught!");
+      }
 
-    }
+   }
 
 }

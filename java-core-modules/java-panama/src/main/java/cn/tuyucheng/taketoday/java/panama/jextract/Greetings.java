@@ -7,13 +7,13 @@ import java.lang.foreign.MemorySession;
 // import static foreign.c.stdio_h.printf;
 public class Greetings {
 
-	public static void main(String[] args) {
-		String greeting = "Hello World from Project Panama Tuyucheng Article, using JExtract!";
+   public static void main(String[] args) {
+      String greeting = "Hello World from Project Panama Tuyucheng Article, using JExtract!";
 
-		try (MemorySession memorySession = MemorySession.openConfined()) {
-			MemorySegment greetingSegment = memorySession.allocateUtf8String(greeting);
-			// Generate JExtract bingings before uncommenting
-			//  printf(greetingSegment);
-		}
-	}
+      try (MemorySession memorySession = MemorySession.openConfined()) {
+         MemorySegment greetingSegment = memorySession.allocateUtf8String(greeting);
+         // Generate JExtract bingings before uncommenting
+         //  printf(greetingSegment);
+      }
+   }
 }

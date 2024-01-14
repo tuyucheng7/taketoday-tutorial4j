@@ -24,39 +24,39 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class DogUnitTest {
 
-	@Mock
-	private Appender mockAppender;
+   @Mock
+   private Appender mockAppender;
 
-	@Captor
-	private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
+   @Captor
+   private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
 
-	@Before
-	public void setup() {
-		final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-		logger.addAppender(mockAppender);
-	}
+   @Before
+   public void setup() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.addAppender(mockAppender);
+   }
 
-	@After
-	public void teardown() {
-		final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-		logger.detachAppender(mockAppender);
-	}
+   @After
+   public void teardown() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.detachAppender(mockAppender);
+   }
 
-	@Test
-	public void makeNoiseTest() {
+   @Test
+   public void makeNoiseTest() {
 
-		Dog dog = new Dog();
+      Dog dog = new Dog();
 
-		dog.makeNoise();
+      dog.makeNoise();
 
-		verify(mockAppender).doAppend(captorLoggingEvent.capture());
+      verify(mockAppender).doAppend(captorLoggingEvent.capture());
 
-		final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+      final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
 
-		assertThat(loggingEvent.getLevel(), is(Level.INFO));
+      assertThat(loggingEvent.getLevel(), is(Level.INFO));
 
-		assertThat(loggingEvent.getFormattedMessage(),
-			is("meow"));
+      assertThat(loggingEvent.getFormattedMessage(),
+            is("meow"));
 
-	}
+   }
 }

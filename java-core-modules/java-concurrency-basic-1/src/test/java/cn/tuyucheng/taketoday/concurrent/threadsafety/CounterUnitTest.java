@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CounterUnitTest {
 
-	@Test
-	void whenCalledIncrementCounter_thenCorrect() throws Exception {
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		Counter counter = new Counter();
-		Future<Integer> future1 = executorService.submit(new CounterCallable(counter));
-		Future<Integer> future2 = executorService.submit(new CounterCallable(counter));
+   @Test
+   void whenCalledIncrementCounter_thenCorrect() throws Exception {
+      ExecutorService executorService = Executors.newFixedThreadPool(2);
+      Counter counter = new Counter();
+      Future<Integer> future1 = executorService.submit(new CounterCallable(counter));
+      Future<Integer> future2 = executorService.submit(new CounterCallable(counter));
 
-		// Just to make sure both are completed
-		future1.get();
-		future2.get();
+      // Just to make sure both are completed
+      future1.get();
+      future2.get();
 
-		assertThat(counter.getCounter()).isEqualTo(2);
-	}
+      assertThat(counter.getCounter()).isEqualTo(2);
+   }
 }

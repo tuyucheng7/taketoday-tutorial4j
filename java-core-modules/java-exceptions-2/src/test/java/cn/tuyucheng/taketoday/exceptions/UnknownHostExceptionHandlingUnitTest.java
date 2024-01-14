@@ -7,9 +7,9 @@ import java.net.UnknownHostException;
 
 public class UnknownHostExceptionHandlingUnitTest {
 
-    @Test(expected = UnknownHostException.class)
-    public void givenUnknownHost_whenResolve_thenUnknownHostException() throws IOException {
-        UnknownHostExceptionHandling.getResponseCodeUnhandled("http://locaihost");
-    }
+   @Test(expected = UnknownHostException.class)
+   public void givenUnknownHost_whenResolve_thenUnknownHostException() throws IOException {
+      UnknownHostExceptionHandling.getResponseCodeUnhandled("http://locaihost");
+   }
 
 }

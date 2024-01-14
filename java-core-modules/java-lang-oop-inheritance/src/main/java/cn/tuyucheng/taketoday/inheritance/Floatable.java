@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.inheritance;
 
 public interface Floatable {
-	int duration = 10;
+   int duration = 10;
 
-	void floatOnWater();
+   void floatOnWater();
 
-	default void repair() {
-		System.out.println("Repairing Floatable object");
-	}
+   default void repair() {
+      System.out.println("Repairing Floatable object");
+   }
 }

@@ -8,13 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TimeOutTaskUnitTest {
 
-	@Test
-	void run() {
-		Thread thread = new Thread(new LongRunningTask());
-		Timer timer = new Timer();
-		TimeOutTask timeOutTask = new TimeOutTask(thread, timer);
-		thread.start();
-		timeOutTask.run();
-		assertTrue(thread.isInterrupted());
-	}
+   @Test
+   void run() {
+      Thread thread = new Thread(new LongRunningTask());
+      Timer timer = new Timer();
+      TimeOutTask timeOutTask = new TimeOutTask(thread, timer);
+      thread.start();
+      timeOutTask.run();
+      assertTrue(thread.isInterrupted());
+   }
 }

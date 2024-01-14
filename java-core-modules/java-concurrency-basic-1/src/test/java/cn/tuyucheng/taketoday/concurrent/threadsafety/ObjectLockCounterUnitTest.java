@@ -12,17 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ObjectLockCounterUnitTest {
 
-	@Test
-	void whenCalledIncrementCounter_thenCorrect() throws Exception {
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		ObjectLockCounter counter = new ObjectLockCounter();
-		Future<Integer> future1 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
-		Future<Integer> future2 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
+   @Test
+   void whenCalledIncrementCounter_thenCorrect() throws Exception {
+      ExecutorService executorService = Executors.newFixedThreadPool(2);
+      ObjectLockCounter counter = new ObjectLockCounter();
+      Future<Integer> future1 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
+      Future<Integer> future2 = executorService.submit(new ExtrinsicLockCounterCallable(counter));
 
-		// Just to make sure both are completed
-		future1.get();
-		future2.get();
+      // Just to make sure both are completed
+      future1.get();
+      future2.get();
 
-		assertThat(counter.getCounter()).isEqualTo(2);
-	}
+      assertThat(counter.getCounter()).isEqualTo(2);
+   }
 }

@@ -17,138 +17,138 @@ import org.reflections.Reflections;
 
 public class CheckInterfaceUnitTest {
 
-    protected static Reflections reflections;
+   protected static Reflections reflections;
 
-    @BeforeAll
-    public static void initializeReflectionsLibrary() {
+   @BeforeAll
+   public static void initializeReflectionsLibrary() {
 
-        reflections = new Reflections("cn.tuyucheng.taketoday.checkinterface");
-    }
+      reflections = new Reflections("cn.tuyucheng.taketoday.checkinterface");
+   }
 
-    @Test
-    public void whenUsingReflectionGetInterfaces_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionGetInterfaces_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        List<Class<?>> interfaces = Arrays.asList(childClass2.getClass().getInterfaces());
+      ChildClass2 childClass2 = new ChildClass2();
+      List<Class<?>> interfaces = Arrays.asList(childClass2.getClass().getInterfaces());
 
-        assertEquals(1, interfaces.size());
-        assertTrue(interfaces.contains(ChildInterface2.class));
-    }
+      assertEquals(1, interfaces.size());
+      assertTrue(interfaces.contains(ChildInterface2.class));
+   }
 
-    @Test
-    public void whenUsingReflectionGetInterfaces_thenParentInterfaceIsNotFound() {
+   @Test
+   public void whenUsingReflectionGetInterfaces_thenParentInterfaceIsNotFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        List<Class<?>> interfaces = Arrays.asList(childClass2.getClass().getInterfaces());
+      ChildClass2 childClass2 = new ChildClass2();
+      List<Class<?>> interfaces = Arrays.asList(childClass2.getClass().getInterfaces());
 
-        assertFalse(interfaces.contains(MasterInterface.class));
-    }
+      assertFalse(interfaces.contains(MasterInterface.class));
+   }
 
-    @Test
-    public void whenUsingReflectionGetInterfacesRecursively_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionGetInterfacesRecursively_thenParentInterfaceIsFound() {
 
-        Set<Class<?>> interfaces = getAllExtendedOrImplementedInterfacesRecursively(ChildClass2.class);
+      Set<Class<?>> interfaces = getAllExtendedOrImplementedInterfacesRecursively(ChildClass2.class);
 
-        assertTrue(interfaces.contains(ChildInterface2.class));
-        assertTrue(interfaces.contains(MasterInterface.class));
-    }
+      assertTrue(interfaces.contains(ChildInterface2.class));
+      assertTrue(interfaces.contains(MasterInterface.class));
+   }
 
-    @Test
-    public void whenUsingReflectionIsAssignableFrom_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionIsAssignableFrom_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(ChildInterface2.class.isAssignableFrom(childClass2.getClass()));
-    }
+      assertTrue(ChildInterface2.class.isAssignableFrom(childClass2.getClass()));
+   }
 
-    @Test
-    public void whenUsingReflectionIsAssignableFrom_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionIsAssignableFrom_thenParentInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(MasterInterface.class.isAssignableFrom(childClass2.getClass()));
-    }
+      assertTrue(MasterInterface.class.isAssignableFrom(childClass2.getClass()));
+   }
 
-    @Test
-    public void whenUsingReflectionIsInstance_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionIsInstance_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(ChildInterface2.class.isInstance(childClass2));
-    }
+      assertTrue(ChildInterface2.class.isInstance(childClass2));
+   }
 
-    @Test
-    public void whenUsingReflectionIsInstance_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionIsInstance_thenParentInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(MasterInterface.class.isInstance(childClass2));
-    }
+      assertTrue(MasterInterface.class.isInstance(childClass2));
+   }
 
-    @Test
-    public void whenUsingReflectionInstanceOf_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionInstanceOf_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(childClass2 instanceof ChildInterface2);
-    }
+      assertTrue(childClass2 instanceof ChildInterface2);
+   }
 
-    @Test
-    public void whenUsingReflectionInstanceOf_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingReflectionInstanceOf_thenParentInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
+      ChildClass2 childClass2 = new ChildClass2();
 
-        assertTrue(childClass2 instanceof MasterInterface);
-    }
+      assertTrue(childClass2 instanceof MasterInterface);
+   }
 
-    @Test
-    public void whenUsingCommons_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingCommons_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        List<Class<?>> interfaces = ClassUtils.getAllInterfaces(childClass2.getClass());
+      ChildClass2 childClass2 = new ChildClass2();
+      List<Class<?>> interfaces = ClassUtils.getAllInterfaces(childClass2.getClass());
 
-        assertTrue(interfaces.contains(ChildInterface2.class));
-    }
+      assertTrue(interfaces.contains(ChildInterface2.class));
+   }
 
-    @Test
-    public void whenUsingCommons_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingCommons_thenParentInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        List<Class<?>> interfaces = ClassUtils.getAllInterfaces(childClass2.getClass());
+      ChildClass2 childClass2 = new ChildClass2();
+      List<Class<?>> interfaces = ClassUtils.getAllInterfaces(childClass2.getClass());
 
-        assertTrue(interfaces.contains(MasterInterface.class));
-    }
+      assertTrue(interfaces.contains(MasterInterface.class));
+   }
 
-    @Test
-    public void whenUsingReflections_thenDirectlyImplementedInterfaceIsFound() {
+   @Test
+   public void whenUsingReflections_thenDirectlyImplementedInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        Set<Class<?>> interfaces = reflections.get(ReflectionUtils.Interfaces.of(childClass2.getClass()));
+      ChildClass2 childClass2 = new ChildClass2();
+      Set<Class<?>> interfaces = reflections.get(ReflectionUtils.Interfaces.of(childClass2.getClass()));
 
-        assertTrue(interfaces.contains(ChildInterface2.class));
-    }
+      assertTrue(interfaces.contains(ChildInterface2.class));
+   }
 
-    @Test
-    public void whenUsingReflections_thenParentInterfaceIsFound() {
+   @Test
+   public void whenUsingReflections_thenParentInterfaceIsFound() {
 
-        ChildClass2 childClass2 = new ChildClass2();
-        Set<Class<?>> interfaces = reflections.get(ReflectionUtils.Interfaces.of(childClass2.getClass()));
+      ChildClass2 childClass2 = new ChildClass2();
+      Set<Class<?>> interfaces = reflections.get(ReflectionUtils.Interfaces.of(childClass2.getClass()));
 
-        assertTrue(interfaces.contains(MasterInterface.class));
-    }
+      assertTrue(interfaces.contains(MasterInterface.class));
+   }
 
-    static Set<Class<?>> getAllExtendedOrImplementedInterfacesRecursively(Class<?> clazz) {
+   static Set<Class<?>> getAllExtendedOrImplementedInterfacesRecursively(Class<?> clazz) {
 
-        Set<Class<?>> res = new HashSet<Class<?>>();
-        Class<?>[] interfaces = clazz.getInterfaces();
+      Set<Class<?>> res = new HashSet<Class<?>>();
+      Class<?>[] interfaces = clazz.getInterfaces();
 
-        if (interfaces.length > 0) {
-            res.addAll(Arrays.asList(interfaces));
-            for (Class<?> interfaze : interfaces) {
-                res.addAll(getAllExtendedOrImplementedInterfacesRecursively(interfaze));
-                }
-            }
+      if (interfaces.length > 0) {
+         res.addAll(Arrays.asList(interfaces));
+         for (Class<?> interfaze : interfaces) {
+            res.addAll(getAllExtendedOrImplementedInterfacesRecursively(interfaze));
+         }
+      }
 
-        return res;
-       }
+      return res;
+   }
 }

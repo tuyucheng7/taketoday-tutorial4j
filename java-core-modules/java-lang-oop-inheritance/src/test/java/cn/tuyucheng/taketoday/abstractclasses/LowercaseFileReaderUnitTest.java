@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LowercaseFileReaderUnitTest {
 
-	@Test
-	public void givenLowercaseFileReaderInstance_whenCalledreadFile_thenCorrect() throws Exception {
-		Path path = Paths.get(getClass().getClassLoader().getResource("files/test.txt").toURI());
-		BaseFileReader lowercaseFileReader = new LowercaseFileReader(path);
+   @Test
+   public void givenLowercaseFileReaderInstance_whenCalledreadFile_thenCorrect() throws Exception {
+      Path path = Paths.get(getClass().getClassLoader().getResource("files/test.txt").toURI());
+      BaseFileReader lowercaseFileReader = new LowercaseFileReader(path);
 
-		assertThat(lowercaseFileReader.readFile()).isInstanceOf(List.class);
-	}
+      assertThat(lowercaseFileReader.readFile()).isInstanceOf(List.class);
+   }
 }

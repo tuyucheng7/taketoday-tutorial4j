@@ -8,15 +8,15 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 public class BigDecimalxIntegerUnitTest {
-	private static final BigDecimal BIG = new BigDecimal("42.42");
-	private static final int INT = 10;
-	private static final BigDecimal EXPECTED = new BigDecimal("424.2");
+   private static final BigDecimal BIG = new BigDecimal("42.42");
+   private static final int INT = 10;
+   private static final BigDecimal EXPECTED = new BigDecimal("424.2");
 
-	@Test
-	void givenBigDecimalAndInt_whenTimes_thenGetExpectedResult() {
-		BigDecimal result = BIG.multiply(BigDecimal.valueOf(INT));
+   @Test
+   void givenBigDecimalAndInt_whenTimes_thenGetExpectedResult() {
+      BigDecimal result = BIG.multiply(BigDecimal.valueOf(INT));
 
-		assertEquals(0, EXPECTED.compareTo(result));
-		assertThat(result).isEqualByComparingTo(EXPECTED);
-	}
+      assertEquals(0, EXPECTED.compareTo(result));
+      assertThat(result).isEqualByComparingTo(EXPECTED);
+   }
 }

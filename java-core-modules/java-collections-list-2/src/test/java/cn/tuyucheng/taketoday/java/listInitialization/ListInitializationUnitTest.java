@@ -13,46 +13,46 @@ import java.util.stream.Stream;
 @Log
 public class ListInitializationUnitTest {
 
-    @Test
-    public void givenAnonymousInnerClass_thenInitialiseList() {
-        List<String> cities = new ArrayList() {
-            {
-                add("New York");
-                add("Rio");
-                add("Tokyo");
-            }
-        };
+   @Test
+   public void givenAnonymousInnerClass_thenInitialiseList() {
+      List<String> cities = new ArrayList() {
+         {
+            add("New York");
+            add("Rio");
+            add("Tokyo");
+         }
+      };
 
-        Assert.assertTrue(cities.contains("New York"));
-    }
+      Assert.assertTrue(cities.contains("New York"));
+   }
 
-    @Test
-    public void givenArraysAsList_thenInitialiseList() {
-        List<String> list = Arrays.asList("foo", "bar");
+   @Test
+   public void givenArraysAsList_thenInitialiseList() {
+      List<String> list = Arrays.asList("foo", "bar");
 
-        Assert.assertTrue(list.contains("foo"));
-    }
+      Assert.assertTrue(list.contains("foo"));
+   }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void givenArraysAsList_whenAdd_thenUnsupportedException() {
-        List<String> list = Arrays.asList("foo", "bar");
+   @Test(expected = UnsupportedOperationException.class)
+   public void givenArraysAsList_whenAdd_thenUnsupportedException() {
+      List<String> list = Arrays.asList("foo", "bar");
 
-        list.add("baz");
-    }
+      list.add("baz");
+   }
 
-    @Test
-    public void givenArraysAsList_whenCreated_thenShareReference() {
-        String[] array = {"foo", "bar"};
-        List<String> list = Arrays.asList(array);
-        array[0] = "baz";
-        Assert.assertEquals("baz", list.get(0));
-    }
+   @Test
+   public void givenArraysAsList_whenCreated_thenShareReference() {
+      String[] array = {"foo", "bar"};
+      List<String> list = Arrays.asList(array);
+      array[0] = "baz";
+      Assert.assertEquals("baz", list.get(0));
+   }
 
-    @Test
-    public void givenStream_thenInitializeList() {
-        List<String> list = Stream.of("foo", "bar")
-              .collect(Collectors.toList());
+   @Test
+   public void givenStream_thenInitializeList() {
+      List<String> list = Stream.of("foo", "bar")
+            .collect(Collectors.toList());
 
-        Assert.assertTrue(list.contains("foo"));
-    }
+      Assert.assertTrue(list.contains("foo"));
+   }
 }

@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
  */
 public class Dog extends Animal {
 
-	final static Logger logger = LoggerFactory.getLogger(Dog.class);
+   final static Logger logger = LoggerFactory.getLogger(Dog.class);
 
-	public void makeNoise() {
+   public void makeNoise() {
 
-		logger.info("meow");
-	}
+      logger.info("meow");
+   }
 
 }

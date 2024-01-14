@@ -12,43 +12,43 @@ import java.util.Date;
 
 public class AddHoursToDate {
 
-    public Date addHoursToJavaUtilDate(Date date, int hours) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.add(Calendar.HOUR_OF_DAY, hours);
-        return calendar.getTime();
-    }
+   public Date addHoursToJavaUtilDate(Date date, int hours) {
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
+      calendar.add(Calendar.HOUR_OF_DAY, hours);
+      return calendar.getTime();
+   }
 
-    public Date addHoursToDateUsingInstant(Date date, int hours) {
-        return Date.from(date.toInstant()
-              .plus(Duration.ofHours(hours)));
-    }
+   public Date addHoursToDateUsingInstant(Date date, int hours) {
+      return Date.from(date.toInstant()
+            .plus(Duration.ofHours(hours)));
+   }
 
-    public LocalDateTime addHoursToLocalDateTime(LocalDateTime localDateTime, int hours) {
-        return localDateTime.plusHours(hours);
-    }
+   public LocalDateTime addHoursToLocalDateTime(LocalDateTime localDateTime, int hours) {
+      return localDateTime.plusHours(hours);
+   }
 
-    public LocalDateTime subtractHoursToLocalDateTime(LocalDateTime localDateTime, int hours) {
-        return localDateTime.minusHours(hours);
-    }
+   public LocalDateTime subtractHoursToLocalDateTime(LocalDateTime localDateTime, int hours) {
+      return localDateTime.minusHours(hours);
+   }
 
-    public ZonedDateTime addHoursToZonedDateTime(ZonedDateTime zonedDateTime, int hours) {
-        return zonedDateTime.plusHours(hours);
-    }
+   public ZonedDateTime addHoursToZonedDateTime(ZonedDateTime zonedDateTime, int hours) {
+      return zonedDateTime.plusHours(hours);
+   }
 
-    public ZonedDateTime subtractHoursToZonedDateTime(ZonedDateTime zonedDateTime, int hours) {
-        return zonedDateTime.minusHours(hours);
-    }
+   public ZonedDateTime subtractHoursToZonedDateTime(ZonedDateTime zonedDateTime, int hours) {
+      return zonedDateTime.minusHours(hours);
+   }
 
-    public Instant addHoursToInstant(Instant instant, int hours) {
-        return instant.plus(hours, ChronoUnit.HOURS);
-    }
+   public Instant addHoursToInstant(Instant instant, int hours) {
+      return instant.plus(hours, ChronoUnit.HOURS);
+   }
 
-    public Instant subtractHoursToInstant(Instant instant, int hours) {
-        return instant.minus(hours, ChronoUnit.HOURS);
-    }
+   public Instant subtractHoursToInstant(Instant instant, int hours) {
+      return instant.minus(hours, ChronoUnit.HOURS);
+   }
 
-    public Date addHoursWithApacheCommons(Date date, int hours) {
-        return DateUtils.addHours(date, hours);
-    }
+   public Date addHoursWithApacheCommons(Date date, int hours) {
+      return DateUtils.addHours(date, hours);
+   }
 }

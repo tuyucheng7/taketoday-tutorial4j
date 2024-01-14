@@ -5,29 +5,29 @@ import java.util.Arrays;
 
 public class AddElementToEndOfArray {
 
-    public Integer[] addElementUsingArraysCopyOf(Integer[] srcArray, int elementToAdd) {
-        Integer[] destArray = Arrays.copyOf(srcArray, srcArray.length + 1);
+   public Integer[] addElementUsingArraysCopyOf(Integer[] srcArray, int elementToAdd) {
+      Integer[] destArray = Arrays.copyOf(srcArray, srcArray.length + 1);
 
-        destArray[destArray.length - 1] = elementToAdd;
-        return destArray;
-    }
+      destArray[destArray.length - 1] = elementToAdd;
+      return destArray;
+   }
 
-    public Integer[] addElementUsingArrayList(Integer[] srcArray, int elementToAdd) {
-        Integer[] destArray = new Integer[srcArray.length + 1];
+   public Integer[] addElementUsingArrayList(Integer[] srcArray, int elementToAdd) {
+      Integer[] destArray = new Integer[srcArray.length + 1];
 
-        ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(srcArray));
-        arrayList.add(elementToAdd);
+      ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(srcArray));
+      arrayList.add(elementToAdd);
 
-        return arrayList.toArray(destArray);
-    }
+      return arrayList.toArray(destArray);
+   }
 
-    public Integer[] addElementUsingSystemArrayCopy(Integer[] srcArray, int elementToAdd) {
-        Integer[] destArray = new Integer[srcArray.length + 1];
+   public Integer[] addElementUsingSystemArrayCopy(Integer[] srcArray, int elementToAdd) {
+      Integer[] destArray = new Integer[srcArray.length + 1];
 
-        System.arraycopy(srcArray, 0, destArray, 0, srcArray.length);
+      System.arraycopy(srcArray, 0, destArray, 0, srcArray.length);
 
-        destArray[destArray.length - 1] = elementToAdd;
+      destArray[destArray.length - 1] = elementToAdd;
 
-        return destArray;
-    }
+      return destArray;
+   }
 }

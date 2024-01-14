@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CountdownLatchResetExampleManualTest {
 
-	@Test
-	void whenCountDownLatch_noReset() {
-		CountdownLatchResetExample ex = new CountdownLatchResetExample(7, 20);
-		int lineCount = ex.countWaits();
-		assertTrue(lineCount <= 7);
-	}
+   @Test
+   void whenCountDownLatch_noReset() {
+      CountdownLatchResetExample ex = new CountdownLatchResetExample(7, 20);
+      int lineCount = ex.countWaits();
+      assertTrue(lineCount <= 7);
+   }
 }

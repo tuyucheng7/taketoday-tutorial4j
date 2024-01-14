@@ -14,22 +14,22 @@ import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
 public class EnumerationStreamConversionUnitTest {
 
-	@Test
-	public void givenEnumeration_whenConvertedToStream_thenNotNull() {
-		Vector<Integer> input = new Vector<>(Arrays.asList(1, 2, 3, 4, 5));
+   @Test
+   public void givenEnumeration_whenConvertedToStream_thenNotNull() {
+      Vector<Integer> input = new Vector<>(Arrays.asList(1, 2, 3, 4, 5));
 
-		Stream<Integer> resultingStream = EnumerationStreamConversion.convert(input.elements());
+      Stream<Integer> resultingStream = EnumerationStreamConversion.convert(input.elements());
 
-		Assert.assertNotNull(resultingStream);
-	}
+      Assert.assertNotNull(resultingStream);
+   }
 
-	@Test
-	public void whenConvertedToList_thenCorrect() {
-		Vector<Integer> input = new Vector<>(Arrays.asList(1, 2, 3, 4, 5));
+   @Test
+   public void whenConvertedToList_thenCorrect() {
+      Vector<Integer> input = new Vector<>(Arrays.asList(1, 2, 3, 4, 5));
 
-		Stream<Integer> stream = EnumerationStreamConversion.convert(input.elements());
-		List<Integer> list = stream.filter(e -> e >= 3)
-			.collect(Collectors.toList());
-		assertThat(list, contains(3, 4, 5));
-	}
+      Stream<Integer> stream = EnumerationStreamConversion.convert(input.elements());
+      List<Integer> list = stream.filter(e -> e >= 3)
+            .collect(Collectors.toList());
+      assertThat(list, contains(3, 4, 5));
+   }
 }

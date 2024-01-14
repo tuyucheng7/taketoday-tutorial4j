@@ -10,16 +10,16 @@ import java.io.FileReader;
 
 public class FileNotFound {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(FileNotFound.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(FileNotFound.class);
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
 
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(new File("/invalid/file/location")));
-        } catch (FileNotFoundException e) {
-            LOGGER.error("FileNotFoundException caught!");
-        }
-    }
+      BufferedReader reader = null;
+      try {
+         reader = new BufferedReader(new FileReader(new File("/invalid/file/location")));
+      } catch (FileNotFoundException e) {
+         LOGGER.error("FileNotFoundException caught!");
+      }
+   }
 
 }

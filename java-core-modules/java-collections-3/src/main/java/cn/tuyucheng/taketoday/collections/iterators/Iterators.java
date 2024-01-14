@@ -9,71 +9,71 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Iterators {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Iterators.class);
+   private static final Logger LOG = LoggerFactory.getLogger(Iterators.class);
 
-    public static int failFast1() {
-        ArrayList<Integer> numbers = new ArrayList<>();
+   public static int failFast1() {
+      ArrayList<Integer> numbers = new ArrayList<>();
 
-        numbers.add(10);
-        numbers.add(20);
-        numbers.add(30);
-        numbers.add(40);
+      numbers.add(10);
+      numbers.add(20);
+      numbers.add(30);
+      numbers.add(40);
 
-        Iterator<Integer> iterator = numbers.iterator();
-        while (iterator.hasNext()) {
-            Integer number = iterator.next();
-            numbers.add(50);
-        }
+      Iterator<Integer> iterator = numbers.iterator();
+      while (iterator.hasNext()) {
+         Integer number = iterator.next();
+         numbers.add(50);
+      }
 
-        return numbers.size();
-    }
+      return numbers.size();
+   }
 
-    public static int failFast2() {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        numbers.add(10);
-        numbers.add(20);
-        numbers.add(30);
-        numbers.add(40);
+   public static int failFast2() {
+      ArrayList<Integer> numbers = new ArrayList<>();
+      numbers.add(10);
+      numbers.add(20);
+      numbers.add(30);
+      numbers.add(40);
 
-        Iterator<Integer> iterator = numbers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() == 30) {
-                // will not throw Exception
-                iterator.remove();
-            }
-        }
+      Iterator<Integer> iterator = numbers.iterator();
+      while (iterator.hasNext()) {
+         if (iterator.next() == 30) {
+            // will not throw Exception
+            iterator.remove();
+         }
+      }
 
-        LOG.debug("using iterator's remove method = {}", numbers);
+      LOG.debug("using iterator's remove method = {}", numbers);
 
-        iterator = numbers.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() == 40) {
-                // will throw Exception on
-                // next call of next() method
-                numbers.remove(2);
-            }
-        }
+      iterator = numbers.iterator();
+      while (iterator.hasNext()) {
+         if (iterator.next() == 40) {
+            // will throw Exception on
+            // next call of next() method
+            numbers.remove(2);
+         }
+      }
 
-        return numbers.size();
-    }
+      return numbers.size();
+   }
 
-    public static int failSafe1() {
-        ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+   public static int failSafe1() {
+      ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
 
-        map.put("First", 10);
-        map.put("Second", 20);
-        map.put("Third", 30);
-        map.put("Fourth", 40);
+      map.put("First", 10);
+      map.put("Second", 20);
+      map.put("Third", 30);
+      map.put("Fourth", 40);
 
-        Iterator<String> iterator = map.keySet()
-              .iterator();
+      Iterator<String> iterator = map.keySet()
+            .iterator();
 
-        while (iterator.hasNext()) {
-            String key = iterator.next();
-            map.put("Fifth", 50);
-        }
+      while (iterator.hasNext()) {
+         String key = iterator.next();
+         map.put("Fifth", 50);
+      }
 
-        return map.size();
-    }
+      return map.size();
+   }
 
 }

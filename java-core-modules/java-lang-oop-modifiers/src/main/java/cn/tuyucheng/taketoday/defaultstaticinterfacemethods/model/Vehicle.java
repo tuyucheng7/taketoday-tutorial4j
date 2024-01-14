@@ -2,27 +2,27 @@ package cn.tuyucheng.taketoday.defaultstaticinterfacemethods.model;
 
 public interface Vehicle {
 
-	String getBrand();
+   String getBrand();
 
-	String speedUp();
+   String speedUp();
 
-	String slowDown();
+   String slowDown();
 
-	default String turnAlarmOn() {
-		return "Turning the vehice alarm on.";
-	}
+   default String turnAlarmOn() {
+      return "Turning the vehice alarm on.";
+   }
 
-	default String turnAlarmOff() {
-		return "Turning the vehicle alarm off.";
-	}
+   default String turnAlarmOff() {
+      return "Turning the vehicle alarm off.";
+   }
 
-	static int getHorsePower(int rpm, int torque) {
-		return (rpm * torque) / 5252;
-	}
+   static int getHorsePower(int rpm, int torque) {
+      return (rpm * torque) / 5252;
+   }
 
-	double getSpeed();
+   double getSpeed();
 
-	default double getSpeedInKMH(double speed) {
-		return speed * 1.60934;
-	}
+   default double getSpeedInKMH(double speed) {
+      return speed * 1.60934;
+   }
 }

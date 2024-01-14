@@ -9,9 +9,9 @@ import static org.junit.Assert.assertThat;
 
 public class StaticBlockDemoUnitTest {
 
-	@Test
-	public void whenAddedListElementsThroughStaticBlock_thenEnsureCorrectOrder() {
-		List<String> actualList = StaticBlockDemo.getRanks();
-		assertThat(actualList, contains("Lieutenant", "Captain", "Major", "Colonel", "General"));
-	}
+   @Test
+   public void whenAddedListElementsThroughStaticBlock_thenEnsureCorrectOrder() {
+      List<String> actualList = StaticBlockDemo.getRanks();
+      assertThat(actualList, contains("Lieutenant", "Captain", "Major", "Colonel", "General"));
+   }
 }

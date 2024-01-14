@@ -7,13 +7,13 @@ import java.net.URL;
 
 public class ClassGetResourceExample {
 
-	private static Logger logger = LoggerFactory.getLogger(ClassGetResourceExample.class);
+   private static Logger logger = LoggerFactory.getLogger(ClassGetResourceExample.class);
 
-	public static void main(String[] args) {
-		URL resourceAbsolutePath = ClassGetResourceExample.class.getResource("/cn/tuyucheng/taketoday/resource/example.txt");
-		logger.info("Resource with absolute path = {}", resourceAbsolutePath);
+   public static void main(String[] args) {
+      URL resourceAbsolutePath = ClassGetResourceExample.class.getResource("/cn/tuyucheng/taketoday/resource/example.txt");
+      logger.info("Resource with absolute path = {}", resourceAbsolutePath);
 
-		URL resourceRelativePath = ClassGetResourceExample.class.getResource("example.txt");
-		logger.info("Resource with relative path = {}", resourceRelativePath);
-	}
+      URL resourceRelativePath = ClassGetResourceExample.class.getResource("example.txt");
+      logger.info("Resource with relative path = {}", resourceRelativePath);
+   }
 }

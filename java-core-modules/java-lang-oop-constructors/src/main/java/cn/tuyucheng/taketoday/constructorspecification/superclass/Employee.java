@@ -2,14 +2,14 @@ package cn.tuyucheng.taketoday.constructorspecification.superclass;
 
 class Employee extends Person {
 
-	String name;
+   String name;
 
-	public Employee(int id) {
-		super(id);   // ExplicitConstructorInvocation
-	}
+   public Employee(int id) {
+      super(id);   // ExplicitConstructorInvocation
+   }
 
-	public Employee(int id, String name) {
-		super(id);
-		this.name = name;
-	}
+   public Employee(int id, String name) {
+      super(id);
+      this.name = name;
+   }
 }

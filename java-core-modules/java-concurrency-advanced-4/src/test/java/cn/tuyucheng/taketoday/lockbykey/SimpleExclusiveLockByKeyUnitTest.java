@@ -11,41 +11,41 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SimpleExclusiveLockByKeyUnitTest {
 
-	@BeforeEach
-	void cleanUpLocks() throws Exception {
-		Field field = SimpleExclusiveLockByKey.class.getDeclaredField("usedKeys");
-		field.setAccessible(true);
-		field.set(null, ConcurrentHashMap.newKeySet());
-	}
+   @BeforeEach
+   void cleanUpLocks() throws Exception {
+      Field field = SimpleExclusiveLockByKey.class.getDeclaredField("usedKeys");
+      field.setAccessible(true);
+      field.set(null, ConcurrentHashMap.newKeySet());
+   }
 
-	@Test
-	void givenNoLockedKey_WhenTryLock_ThenSuccess() {
-		SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
-		assertTrue(lockByKey.tryLock("key"));
-	}
+   @Test
+   void givenNoLockedKey_WhenTryLock_ThenSuccess() {
+      SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
+      assertTrue(lockByKey.tryLock("key"));
+   }
 
-	@Test
-	void givenLockedKey_WhenTryLock_ThenFailure() {
-		String key = "key";
-		SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
-		lockByKey.tryLock(key);
-		assertFalse(lockByKey.tryLock(key));
-	}
+   @Test
+   void givenLockedKey_WhenTryLock_ThenFailure() {
+      String key = "key";
+      SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
+      lockByKey.tryLock(key);
+      assertFalse(lockByKey.tryLock(key));
+   }
 
-	@Test
-	void givenAnotherKeyLocked_WhenTryLock_ThenSuccess() {
-		SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
-		lockByKey.tryLock("other");
-		assertTrue(lockByKey.tryLock("key"));
-	}
+   @Test
+   void givenAnotherKeyLocked_WhenTryLock_ThenSuccess() {
+      SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
+      lockByKey.tryLock("other");
+      assertTrue(lockByKey.tryLock("key"));
+   }
 
-	@Test
-	void givenUnlockedKey_WhenTryLock_ThenSuccess() {
-		String key = "key";
-		SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
-		lockByKey.tryLock(key);
-		lockByKey.unlock(key);
-		assertTrue(lockByKey.tryLock(key));
-	}
+   @Test
+   void givenUnlockedKey_WhenTryLock_ThenSuccess() {
+      String key = "key";
+      SimpleExclusiveLockByKey lockByKey = new SimpleExclusiveLockByKey();
+      lockByKey.tryLock(key);
+      lockByKey.unlock(key);
+      assertTrue(lockByKey.tryLock(key));
+   }
 
 }

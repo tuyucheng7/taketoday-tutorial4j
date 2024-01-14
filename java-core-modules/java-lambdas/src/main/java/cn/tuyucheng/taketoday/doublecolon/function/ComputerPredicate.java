@@ -5,5 +5,5 @@ import cn.tuyucheng.taketoday.doublecolon.Computer;
 @FunctionalInterface
 public interface ComputerPredicate {
 
-    boolean filter(Computer c);
+   boolean filter(Computer c);
 }

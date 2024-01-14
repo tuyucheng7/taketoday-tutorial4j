@@ -8,39 +8,39 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class BookSerDe {
-	static String fileName = "book.ser";
+   static String fileName = "book.ser";
 
-	/**
-	 * Method to serialize Book objects to the file
-	 *
-	 * @throws FileNotFoundException
-	 */
-	public static void serialize(Book book) throws Exception {
-		FileOutputStream file = new FileOutputStream(fileName);
-		ObjectOutputStream out = new ObjectOutputStream(file);
+   /**
+    * Method to serialize Book objects to the file
+    *
+    * @throws FileNotFoundException
+    */
+   public static void serialize(Book book) throws Exception {
+      FileOutputStream file = new FileOutputStream(fileName);
+      ObjectOutputStream out = new ObjectOutputStream(file);
 
-		out.writeObject(book);
+      out.writeObject(book);
 
-		out.close();
-		file.close();
-	}
+      out.close();
+      file.close();
+   }
 
-	/**
-	 * Method to deserialize the person object
-	 *
-	 * @return book
-	 * @throws IOException, ClassNotFoundException
-	 */
-	public static Book deserialize() throws Exception {
-		FileInputStream file = new FileInputStream(fileName);
-		ObjectInputStream in = new ObjectInputStream(file);
+   /**
+    * Method to deserialize the person object
+    *
+    * @return book
+    * @throws IOException, ClassNotFoundException
+    */
+   public static Book deserialize() throws Exception {
+      FileInputStream file = new FileInputStream(fileName);
+      ObjectInputStream in = new ObjectInputStream(file);
 
-		Book book = (Book) in.readObject();
+      Book book = (Book) in.readObject();
 
-		in.close();
-		file.close();
+      in.close();
+      file.close();
 
-		return book;
-	}
+      return book;
+   }
 
 }

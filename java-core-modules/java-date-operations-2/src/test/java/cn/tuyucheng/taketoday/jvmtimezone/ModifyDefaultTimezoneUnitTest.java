@@ -9,11 +9,11 @@ import static org.junit.Assert.assertEquals;
 
 public class ModifyDefaultTimezoneUnitTest {
 
-    @Test
-    public void givenDefaultTimezoneSet_thenDateTimezoneIsCorrect() {
-        TimeZone.setDefault(TimeZone.getTimeZone("Portugal"));
-        Calendar calendar = Calendar.getInstance();
-        assertEquals(calendar.getTimeZone(), TimeZone.getTimeZone("Portugal"));
-    }
+   @Test
+   public void givenDefaultTimezoneSet_thenDateTimezoneIsCorrect() {
+      TimeZone.setDefault(TimeZone.getTimeZone("Portugal"));
+      Calendar calendar = Calendar.getInstance();
+      assertEquals(calendar.getTimeZone(), TimeZone.getTimeZone("Portugal"));
+   }
 
 }

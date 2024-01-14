@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.exceptions.customexception;
 
 public class IncorrectFileExtensionException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-    public IncorrectFileExtensionException(String errorMessage, Throwable err) {
-        super(errorMessage, err);
-    }
+   public IncorrectFileExtensionException(String errorMessage, Throwable err) {
+      super(errorMessage, err);
+   }
 }

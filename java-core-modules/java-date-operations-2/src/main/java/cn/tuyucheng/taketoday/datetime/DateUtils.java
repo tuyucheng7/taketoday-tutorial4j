@@ -6,15 +6,15 @@ import java.util.Date;
 
 public class DateUtils {
 
-    public static Date getNow() {
-        return new Date();
-    }
+   public static Date getNow() {
+      return new Date();
+   }
 
-    public static Date getDate(long millis) {
-        return new Date(millis);
-    }
+   public static Date getDate(long millis) {
+      return new Date(millis);
+   }
 
-    public static Date getDate(String dateAsString, String pattern) throws ParseException {
-        return new SimpleDateFormat(pattern).parse(dateAsString);
-    }
+   public static Date getDate(String dateAsString, String pattern) throws ParseException {
+      return new SimpleDateFormat(pattern).parse(dateAsString);
+   }
 }

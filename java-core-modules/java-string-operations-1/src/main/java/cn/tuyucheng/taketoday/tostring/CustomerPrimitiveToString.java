@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.tostring;
 
 public class CustomerPrimitiveToString extends Customer {
-	private long balance;
+   private long balance;
 
-	public long getBalance() {
-		return balance;
-	}
+   public long getBalance() {
+      return balance;
+   }
 
-	public void setBalance(long balance) {
-		this.balance = balance;
-	}
+   public void setBalance(long balance) {
+      this.balance = balance;
+   }
 
-	@Override
-	public String toString() {
-		return "Customer [balance=" + balance + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + "]";
-	}
+   @Override
+   public String toString() {
+      return "Customer [balance=" + balance + ", getFirstName()=" + getFirstName() + ", getLastName()=" + getLastName() + "]";
+   }
 }

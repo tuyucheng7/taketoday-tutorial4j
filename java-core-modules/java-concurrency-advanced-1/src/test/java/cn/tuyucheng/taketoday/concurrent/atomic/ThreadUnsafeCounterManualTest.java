@@ -18,14 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 class ThreadUnsafeCounterManualTest {
 
-	@Test
-	void givenMultiThread_whenUnsafeCounterIncrement() throws InterruptedException {
-		ExecutorService service = Executors.newFixedThreadPool(3);
-		UnsafeCounter unsafeCounter = new UnsafeCounter();
+   @Test
+   void givenMultiThread_whenUnsafeCounterIncrement() throws InterruptedException {
+      ExecutorService service = Executors.newFixedThreadPool(3);
+      UnsafeCounter unsafeCounter = new UnsafeCounter();
 
-		IntStream.range(0, 1000).forEach(count -> service.submit(unsafeCounter::increment));
-		service.awaitTermination(100, TimeUnit.MILLISECONDS);
+      IntStream.range(0, 1000).forEach(count -> service.submit(unsafeCounter::increment));
+      service.awaitTermination(100, TimeUnit.MILLISECONDS);
 
-		assertEquals(1000, unsafeCounter.getValue());
-	}
+      assertEquals(1000, unsafeCounter.getValue());
+   }
 }

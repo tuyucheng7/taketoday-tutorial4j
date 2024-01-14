@@ -19,54 +19,54 @@ import static org.junit.Assert.assertSame;
  */
 public class Element4UnitTest {
 
-	public Element4UnitTest() {
-	}
+   public Element4UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeClass
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterClass
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @Before
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @After
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenLocatebyLabel_thenReturnCorrectValue() {
-		for (Element4 e4 : Element4.values()) {
-			assertSame(e4, Element4.valueOfLabel(e4.label));
-		}
-	}
+   @Test
+   public void whenLocatebyLabel_thenReturnCorrectValue() {
+      for (Element4 e4 : Element4.values()) {
+         assertSame(e4, Element4.valueOfLabel(e4.label));
+      }
+   }
 
-	@Test
-	public void whenLocatebyAtmNum_thenReturnCorrectValue() {
-		for (Element4 e4 : Element4.values()) {
-			assertSame(e4, Element4.valueOfAtomicNumber(e4.atomicNumber));
-		}
-	}
+   @Test
+   public void whenLocatebyAtmNum_thenReturnCorrectValue() {
+      for (Element4 e4 : Element4.values()) {
+         assertSame(e4, Element4.valueOfAtomicNumber(e4.atomicNumber));
+      }
+   }
 
-	@Test
-	public void whenLocatebyAtmWt_thenReturnCorrectValue() {
-		for (Element4 e4 : Element4.values()) {
-			assertSame(e4, Element4.valueOfAtomicWeight(e4.atomicWeight));
-		}
-	}
+   @Test
+   public void whenLocatebyAtmWt_thenReturnCorrectValue() {
+      for (Element4 e4 : Element4.values()) {
+         assertSame(e4, Element4.valueOfAtomicWeight(e4.atomicWeight));
+      }
+   }
 
-	/**
-	 * Test of toString method, of class Element4.
-	 */
-	@Test
-	public void whenCallingToString_thenReturnLabel() {
-		for (Element4 e4 : Element4.values()) {
-			assertEquals(e4.label, e4.toString());
-		}
-	}
+   /**
+    * Test of toString method, of class Element4.
+    */
+   @Test
+   public void whenCallingToString_thenReturnLabel() {
+      for (Element4 e4 : Element4.values()) {
+         assertEquals(e4.label, e4.toString());
+      }
+   }
 
 }

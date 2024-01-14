@@ -10,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TuyuchengReflectionUtilsUnitTest {
 
-	@Test
-	void givenCustomer_whenAFieldIsNull_thenFieldNameInResult() throws Exception {
-		Customer customer = new Customer(1, "Himanshu", null, null);
+   @Test
+   void givenCustomer_whenAFieldIsNull_thenFieldNameInResult() throws Exception {
+      Customer customer = new Customer(1, "Himanshu", null, null);
 
-		List<String> result = TuyuchengReflectionUtils.getNullPropertiesList(customer);
-		List<String> expectedFieldNames = Arrays.asList("emailId", "phoneNumber");
+      List<String> result = TuyuchengReflectionUtils.getNullPropertiesList(customer);
+      List<String> expectedFieldNames = Arrays.asList("emailId", "phoneNumber");
 
-		assertEquals(result.size(), expectedFieldNames.size());
-		assertTrue(result.containsAll(expectedFieldNames));
-	}
+      assertEquals(result.size(), expectedFieldNames.size());
+      assertTrue(result.containsAll(expectedFieldNames));
+   }
 }

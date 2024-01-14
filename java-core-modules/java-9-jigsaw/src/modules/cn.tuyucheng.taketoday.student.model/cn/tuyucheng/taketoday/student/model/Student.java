@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.student.model;
 
 public class Student {
-	private String registrationId;
+   private String registrationId;
 
-	public String getRegistrationId() {
-		return registrationId;
-	}
+   public String getRegistrationId() {
+      return registrationId;
+   }
 
-	public void setRegistrationId(String registrationId) {
-		this.registrationId = registrationId;
-	}
+   public void setRegistrationId(String registrationId) {
+      this.registrationId = registrationId;
+   }
 }

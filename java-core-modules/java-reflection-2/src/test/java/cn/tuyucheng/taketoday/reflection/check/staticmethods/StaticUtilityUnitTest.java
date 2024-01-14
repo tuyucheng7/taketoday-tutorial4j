@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 
 class StaticUtilityUnitTest {
 
-	@Test
-	void whenCheckStaticMethod_ThenSuccess() throws Exception {
-		Method method = StaticUtility.class.getMethod("getAuthorName", null);
-		Assertions.assertTrue(Modifier.isStatic(method.getModifiers()));
-	}
+   @Test
+   void whenCheckStaticMethod_ThenSuccess() throws Exception {
+      Method method = StaticUtility.class.getMethod("getAuthorName", null);
+      Assertions.assertTrue(Modifier.isStatic(method.getModifiers()));
+   }
 
-	@Test
-	void whenCheckAllStaticMethods_thenSuccess() {
-		List<Method> methodList = Arrays.asList(StaticUtility.class.getMethods())
-			.stream()
-			.filter(method -> Modifier.isStatic(method.getModifiers()))
-			.collect(Collectors.toList());
-		Assertions.assertEquals(3, methodList.size());
-	}
+   @Test
+   void whenCheckAllStaticMethods_thenSuccess() {
+      List<Method> methodList = Arrays.asList(StaticUtility.class.getMethods())
+            .stream()
+            .filter(method -> Modifier.isStatic(method.getModifiers()))
+            .collect(Collectors.toList());
+      Assertions.assertEquals(3, methodList.size());
+   }
 }

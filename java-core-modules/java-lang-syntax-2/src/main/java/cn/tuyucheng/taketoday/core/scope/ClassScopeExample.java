@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.core.scope;
 
 public class ClassScopeExample {
 
-	Integer amount = 0;
+   Integer amount = 0;
 
-	public void exampleMethod() {
-		amount++;
-	}
+   public void exampleMethod() {
+      amount++;
+   }
 
-	public void anotherExampleMethod() {
-		Integer anotherAmount = amount + 4;
-	}
+   public void anotherExampleMethod() {
+      Integer anotherAmount = amount + 4;
+   }
 }

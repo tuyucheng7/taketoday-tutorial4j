@@ -10,18 +10,18 @@ import java.util.stream.IntStream;
 
 public class SplittingCosts {
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void sourceSplittingIntStreamSequential() {
-		IntStream.rangeClosed(1, 100).reduce(0, Integer::sum);
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void sourceSplittingIntStreamSequential() {
+      IntStream.rangeClosed(1, 100).reduce(0, Integer::sum);
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void sourceSplittingIntStreamParallel() {
-		IntStream.rangeClosed(1, 100).parallel().reduce(0, Integer::sum);
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void sourceSplittingIntStreamParallel() {
+      IntStream.rangeClosed(1, 100).parallel().reduce(0, Integer::sum);
+   }
 
 }

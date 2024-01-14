@@ -7,24 +7,24 @@ import java.util.Optional;
 
 @Entity
 public class UserOptionalField implements Serializable {
-	@Id
-	private long userId;
+   @Id
+   private long userId;
 
-	private Optional<String> firstName;
+   private Optional<String> firstName;
 
-	public long getUserId() {
-		return userId;
-	}
+   public long getUserId() {
+      return userId;
+   }
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+   public void setUserId(long userId) {
+      this.userId = userId;
+   }
 
-	public Optional<String> getFirstName() {
-		return firstName;
-	}
+   public Optional<String> getFirstName() {
+      return firstName;
+   }
 
-	public void setFirstName(Optional<String> firstName) {
-		this.firstName = firstName;
-	}
+   public void setFirstName(Optional<String> firstName) {
+      this.firstName = firstName;
+   }
 }

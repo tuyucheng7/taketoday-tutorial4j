@@ -10,50 +10,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExchangerUnitTest {
 
-	@Test
-	void givenThreads_whenMessageExchanged_thenCorrect() {
-		Exchanger<String> exchanger = new Exchanger<>();
+   @Test
+   void givenThreads_whenMessageExchanged_thenCorrect() {
+      Exchanger<String> exchanger = new Exchanger<>();
 
-		Runnable taskA = () -> {
-			try {
-				String message = exchanger.exchange("from A");
-				assertEquals("from B", message);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				throw new RuntimeException(e);
-			}
-		};
+      Runnable taskA = () -> {
+         try {
+            String message = exchanger.exchange("from A");
+            assertEquals("from B", message);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
+         }
+      };
 
-		Runnable taskB = () -> {
-			try {
-				String message = exchanger.exchange("from B");
-				assertEquals("from A", message);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				throw new RuntimeException(e);
-			}
-		};
+      Runnable taskB = () -> {
+         try {
+            String message = exchanger.exchange("from B");
+            assertEquals("from A", message);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
+         }
+      };
 
-		CompletableFuture.allOf(runAsync(taskA), runAsync(taskB)).join();
-	}
+      CompletableFuture.allOf(runAsync(taskA), runAsync(taskB)).join();
+   }
 
-	@Test
-	void givenThread_whenExchangedMessage_thenCorrect() throws InterruptedException {
-		Exchanger<String> exchanger = new Exchanger<>();
+   @Test
+   void givenThread_whenExchangedMessage_thenCorrect() throws InterruptedException {
+      Exchanger<String> exchanger = new Exchanger<>();
 
-		Runnable runner = () -> {
-			try {
-				String message = exchanger.exchange("from runner");
-				assertEquals("to runner", message);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				throw new RuntimeException(e);
-			}
-		};
+      Runnable runner = () -> {
+         try {
+            String message = exchanger.exchange("from runner");
+            assertEquals("to runner", message);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
+         }
+      };
 
-		CompletableFuture<Void> result = runAsync(runner);
-		String msg = exchanger.exchange("to runner");
-		assertEquals("from runner", msg);
-		result.join();
-	}
+      CompletableFuture<Void> result = runAsync(runner);
+      String msg = exchanger.exchange("to runner");
+      assertEquals("from runner", msg);
+      result.join();
+   }
 }

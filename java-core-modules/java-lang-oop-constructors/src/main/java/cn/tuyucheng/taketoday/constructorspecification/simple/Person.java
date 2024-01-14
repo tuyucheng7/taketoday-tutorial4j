@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.constructorspecification.simple;
 
 class Person {
 
-	String name;
+   String name;
 
-	public Person() {
-		this("Arash");   // ExplicitConstructorInvocation
-	}
+   public Person() {
+      this("Arash");   // ExplicitConstructorInvocation
+   }
 
-	public Person(String name) {
-		this.name = name;
-	}
+   public Person(String name) {
+      this.name = name;
+   }
 }

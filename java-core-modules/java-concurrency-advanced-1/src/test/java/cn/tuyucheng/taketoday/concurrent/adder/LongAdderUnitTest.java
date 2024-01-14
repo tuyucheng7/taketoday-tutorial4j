@@ -13,49 +13,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LongAdderUnitTest {
 
-	@Test
-	void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
-		LongAdder counter = new LongAdder();
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
+   @Test
+   void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
+      LongAdder counter = new LongAdder();
+      ExecutorService executorService = Executors.newFixedThreadPool(8);
 
-		int numberOfThreads = 4;
-		int numberOfIncrements = 100;
+      int numberOfThreads = 4;
+      int numberOfIncrements = 100;
 
-		Runnable incrementAction = () -> IntStream
-				.range(0, numberOfIncrements)
-				.forEach(x -> counter.increment());
+      Runnable incrementAction = () -> IntStream
+            .range(0, numberOfIncrements)
+            .forEach(x -> counter.increment());
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.submit(incrementAction);
-		}
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.submit(incrementAction);
+      }
 
-		executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executorService.shutdown();
+      executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
 
-		assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
-		assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
-	}
+      assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
+      assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
+   }
 
-	@Test
-	void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
-		LongAdder counter = new LongAdder();
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
+   @Test
+   void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
+      LongAdder counter = new LongAdder();
+      ExecutorService executorService = Executors.newFixedThreadPool(8);
 
-		int numberOfThreads = 4;
-		int numberOfIncrements = 100;
+      int numberOfThreads = 4;
+      int numberOfIncrements = 100;
 
-		Runnable incrementAction = () -> IntStream
-				.range(0, numberOfIncrements)
-				.forEach(i -> counter.increment());
+      Runnable incrementAction = () -> IntStream
+            .range(0, numberOfIncrements)
+            .forEach(i -> counter.increment());
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.execute(incrementAction);
-		}
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(incrementAction);
+      }
 
-		executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executorService.shutdown();
+      executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
 
-		assertEquals(counter.sumThenReset(), numberOfIncrements * numberOfThreads);
-		await().until(() -> assertEquals(counter.sum(), 0));
-	}
+      assertEquals(counter.sumThenReset(), numberOfIncrements * numberOfThreads);
+      await().until(() -> assertEquals(counter.sum(), 0));
+   }
 }

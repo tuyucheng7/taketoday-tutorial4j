@@ -13,46 +13,46 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ZonedDateTimeUnitTest {
 
-    private static final Logger log = Logger.getLogger(ZonedDateTimeUnitTest.class.getName());
+   private static final Logger log = Logger.getLogger(ZonedDateTimeUnitTest.class.getName());
 
-    @Test
-    public void givenZonedDateTime_whenConvertToString_thenOk() {
+   @Test
+   public void givenZonedDateTime_whenConvertToString_thenOk() {
 
-        ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("UTC"));
-        ZonedDateTime zonedDateTimeOf = ZonedDateTime.of(2018, 01, 01, 0, 0, 0, 0, ZoneId.of("UTC"));
+      ZonedDateTime zonedDateTimeNow = ZonedDateTime.now(ZoneId.of("UTC"));
+      ZonedDateTime zonedDateTimeOf = ZonedDateTime.of(2018, 01, 01, 0, 0, 0, 0, ZoneId.of("UTC"));
 
-        LocalDateTime localDateTime = LocalDateTime.now();
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("UTC"));
+      LocalDateTime localDateTime = LocalDateTime.now();
+      ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.of("UTC"));
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss Z");
-        String formattedString = zonedDateTime.format(formatter);
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss Z");
+      String formattedString = zonedDateTime.format(formatter);
 
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss z");
-        String formattedString2 = zonedDateTime.format(formatter2);
+      DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM/dd/yyyy - HH:mm:ss z");
+      String formattedString2 = zonedDateTime.format(formatter2);
 
-        log.info(formattedString);
-        log.info(formattedString2);
+      log.info(formattedString);
+      log.info(formattedString2);
 
-    }
+   }
 
-    @Test
-    public void givenString_whenParseZonedDateTime_thenOk() {
-        ZonedDateTime zonedDateTime = ZonedDateTime.parse("2011-12-03T10:15:30+01:00");
+   @Test
+   public void givenString_whenParseZonedDateTime_thenOk() {
+      ZonedDateTime zonedDateTime = ZonedDateTime.parse("2011-12-03T10:15:30+01:00");
 
-        log.info(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
-    }
+      log.info(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
+   }
 
-    @Test
-    public void givenString_whenParseZonedDateTimeWithoutZone_thenException() {
-        assertThrows(DateTimeParseException.class, () -> ZonedDateTime.parse("2011-12-03T10:15:30", DateTimeFormatter.ISO_DATE_TIME));
-    }
+   @Test
+   public void givenString_whenParseZonedDateTimeWithoutZone_thenException() {
+      assertThrows(DateTimeParseException.class, () -> ZonedDateTime.parse("2011-12-03T10:15:30", DateTimeFormatter.ISO_DATE_TIME));
+   }
 
-    @Test
-    public void givenString_whenParseLocalDateTimeAtZone_thenOk() {
-        ZoneId timeZone = ZoneId.systemDefault();
-        ZonedDateTime zonedDateTime = LocalDateTime.parse("2011-12-03T10:15:30", DateTimeFormatter.ISO_DATE_TIME).atZone(timeZone);
+   @Test
+   public void givenString_whenParseLocalDateTimeAtZone_thenOk() {
+      ZoneId timeZone = ZoneId.systemDefault();
+      ZonedDateTime zonedDateTime = LocalDateTime.parse("2011-12-03T10:15:30", DateTimeFormatter.ISO_DATE_TIME).atZone(timeZone);
 
-        log.info(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
-    }
+      log.info(zonedDateTime.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
+   }
 
 }

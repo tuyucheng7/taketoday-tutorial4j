@@ -14,65 +14,65 @@ import static org.junit.Assert.assertNotNull;
 
 public class URIvsURLUnitTest {
 
-    @Test
-    public void whenCreatingURIs_thenSameInfo() throws URISyntaxException {
-        URI firstURI = new URI("somescheme://theuser:thepassword@someauthority:80/some/path?thequery#somefragment");
-        URI secondURI = new URI("somescheme", "theuser:thepassword", "someuthority", 80, "/some/path", "thequery", "somefragment");
+   @Test
+   public void whenCreatingURIs_thenSameInfo() throws URISyntaxException {
+      URI firstURI = new URI("somescheme://theuser:thepassword@someauthority:80/some/path?thequery#somefragment");
+      URI secondURI = new URI("somescheme", "theuser:thepassword", "someuthority", 80, "/some/path", "thequery", "somefragment");
 
-        assertEquals(firstURI.getScheme(), secondURI.getScheme());
-        assertEquals(firstURI.getPath(), secondURI.getPath());
-    }
+      assertEquals(firstURI.getScheme(), secondURI.getScheme());
+      assertEquals(firstURI.getPath(), secondURI.getPath());
+   }
 
-    @Test
-    public void whenCreatingURLs_thenSameInfo() throws MalformedURLException {
-        URL firstURL = new URL("http://theuser:thepassword@somehost:80/path/to/file?thequery#somefragment");
-        URL secondURL = new URL("http", "somehost", 80, "/path/to/file");
+   @Test
+   public void whenCreatingURLs_thenSameInfo() throws MalformedURLException {
+      URL firstURL = new URL("http://theuser:thepassword@somehost:80/path/to/file?thequery#somefragment");
+      URL secondURL = new URL("http", "somehost", 80, "/path/to/file");
 
-        assertEquals(firstURL.getHost(), secondURL.getHost());
-        assertEquals(firstURL.getPath(), secondURL.getPath());
-    }
+      assertEquals(firstURL.getHost(), secondURL.getHost());
+      assertEquals(firstURL.getPath(), secondURL.getPath());
+   }
 
-    @Test
-    public void whenCreatingURI_thenCorrect() {
-        URI uri = URI.create("urn:isbn:1234567890");
+   @Test
+   public void whenCreatingURI_thenCorrect() {
+      URI uri = URI.create("urn:isbn:1234567890");
 
-        assertNotNull(uri);
-    }
+      assertNotNull(uri);
+   }
 
-    @Test(expected = MalformedURLException.class)
-    public void whenCreatingURLs_thenException() throws MalformedURLException {
-        URL theURL = new URL("otherprotocol://somehost/path/to/file");
+   @Test(expected = MalformedURLException.class)
+   public void whenCreatingURLs_thenException() throws MalformedURLException {
+      URL theURL = new URL("otherprotocol://somehost/path/to/file");
 
-        assertNotNull(theURL);
-    }
+      assertNotNull(theURL);
+   }
 
-    @Test
-    public void givenObjects_whenConverting_thenCorrect() throws MalformedURLException, URISyntaxException {
-        String aURIString = "http://somehost:80/path?thequery";
-        URI uri = new URI(aURIString);
-        URL url = new URL(aURIString);
+   @Test
+   public void givenObjects_whenConverting_thenCorrect() throws MalformedURLException, URISyntaxException {
+      String aURIString = "http://somehost:80/path?thequery";
+      URI uri = new URI(aURIString);
+      URL url = new URL(aURIString);
 
-        URL toURL = uri.toURL();
-        URI toURI = url.toURI();
+      URL toURL = uri.toURL();
+      URI toURI = url.toURI();
 
-        assertNotNull(url);
-        assertNotNull(uri);
-        assertEquals(toURL.toString(), toURI.toString());
-    }
+      assertNotNull(url);
+      assertNotNull(uri);
+      assertEquals(toURL.toString(), toURI.toString());
+   }
 
-    @Test(expected = MalformedURLException.class)
-    public void givenURI_whenConvertingToURL_thenException() throws MalformedURLException, URISyntaxException {
-        URI uri = new URI("somescheme://someauthority/path?thequery");
+   @Test(expected = MalformedURLException.class)
+   public void givenURI_whenConvertingToURL_thenException() throws MalformedURLException, URISyntaxException {
+      URI uri = new URI("somescheme://someauthority/path?thequery");
 
-        URL url = uri.toURL();
+      URL url = uri.toURL();
 
-        assertNotNull(url);
-    }
+      assertNotNull(url);
+   }
 
-    @Test
-    public void givenURL_whenGettingContents_thenCorrect() throws MalformedURLException, IOException {
-        URL url = new URL("http://courses.baeldung.com");
+   @Test
+   public void givenURL_whenGettingContents_thenCorrect() throws MalformedURLException, IOException {
+      URL url = new URL("http://courses.tuyucheng.com");
 
-        String contents = IOUtils.toString(url.openStream());
-    }
+      String contents = IOUtils.toString(url.openStream());
+   }
 }

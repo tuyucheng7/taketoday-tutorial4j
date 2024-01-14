@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNotNull;
 
 class MainMenuUnitTest {
 
-    @Test
-    void whenGetSpecials_thenNotNull() {
-        assertNotNull(MainMenu.getSpecials());
-    }
+   @Test
+   void whenGetSpecials_thenNotNull() {
+      assertNotNull(MainMenu.getSpecials());
+   }
 }

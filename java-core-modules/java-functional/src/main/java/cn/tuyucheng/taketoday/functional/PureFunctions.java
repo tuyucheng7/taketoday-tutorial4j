@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 
 public class PureFunctions {
 
-    public static Integer sum(List<Integer> numbers) {
-        return numbers.stream()
+   public static Integer sum(List<Integer> numbers) {
+      return numbers.stream()
             .collect(Collectors.summingInt(Integer::intValue));
-    }
+   }
 
 }

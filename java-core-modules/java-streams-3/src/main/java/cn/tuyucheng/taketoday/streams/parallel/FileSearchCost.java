@@ -22,39 +22,39 @@ import java.util.stream.Collectors;
 @State(Scope.Benchmark)
 public class FileSearchCost {
 
-	private final static String FILE_NAME = "src/main/resources/Test";
+   private final static String FILE_NAME = "src/main/resources/Test";
 
-	@Setup(Level.Trial)
-	public void setup() throws IOException {
-		for (int i = 0; i < 1500; i++) {
-			File targetFile = new File(FILE_NAME + i);
-			FileUtils.writeStringToFile(targetFile, "Test", "UTF8");
-		}
-	}
+   @Setup(Level.Trial)
+   public void setup() throws IOException {
+      for (int i = 0; i < 1500; i++) {
+         File targetFile = new File(FILE_NAME + i);
+         FileUtils.writeStringToFile(targetFile, "Test", "UTF8");
+      }
+   }
 
-	@TearDown(Level.Trial)
-	public void tearDown() {
-		for (int i = 0; i < 1500; i++) {
-			File fileToDelete = new File(FILE_NAME + i);
-			fileToDelete.delete();
-		}
-	}
+   @TearDown(Level.Trial)
+   public void tearDown() {
+      for (int i = 0; i < 1500; i++) {
+         File fileToDelete = new File(FILE_NAME + i);
+         fileToDelete.delete();
+      }
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void textFileSearchSequential() throws IOException {
-		Files.walk(Paths.get("src/main/resources/")).map(Path::normalize).filter(Files::isRegularFile)
-			.filter(path -> path.getFileName().toString().endsWith(".txt")).collect(Collectors.toList());
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void textFileSearchSequential() throws IOException {
+      Files.walk(Paths.get("src/main/resources/")).map(Path::normalize).filter(Files::isRegularFile)
+            .filter(path -> path.getFileName().toString().endsWith(".txt")).collect(Collectors.toList());
+   }
 
-	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public static void textFileSearchParallel() throws IOException {
-		Files.walk(Paths.get("src/main/resources/")).parallel().map(Path::normalize).filter(Files::isRegularFile)
-			.filter(path -> path.getFileName().toString().endsWith(".txt")).collect(Collectors.toList());
-	}
+   @Benchmark
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.NANOSECONDS)
+   public static void textFileSearchParallel() throws IOException {
+      Files.walk(Paths.get("src/main/resources/")).parallel().map(Path::normalize).filter(Files::isRegularFile)
+            .filter(path -> path.getFileName().toString().endsWith(".txt")).collect(Collectors.toList());
+   }
 
 }
 

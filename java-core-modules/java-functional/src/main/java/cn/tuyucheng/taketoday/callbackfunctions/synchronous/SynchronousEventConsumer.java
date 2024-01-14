@@ -4,17 +4,17 @@ import cn.tuyucheng.taketoday.callbackfunctions.EventListener;
 
 public class SynchronousEventConsumer {
 
-	private final EventListener eventListener;
+   private final EventListener eventListener;
 
-	public SynchronousEventConsumer(EventListener listener) {
-		this.eventListener = listener;
-	}
+   public SynchronousEventConsumer(EventListener listener) {
+      this.eventListener = listener;
+   }
 
-	public String doSynchronousOperation() {
-		System.out.println("Performing callback before synchronous Task");
+   public String doSynchronousOperation() {
+      System.out.println("Performing callback before synchronous Task");
 
-		return eventListener.onTrigger();
-	}
+      return eventListener.onTrigger();
+   }
 
 
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FactorsOfIntegerUnitTest {
-	//@formatter:off
+   //@formatter:off
 	private final static Map<Integer, Set<Integer>> FACTOR_MAP = ImmutableMap.of(
 		0, ImmutableSet.of(),
 		1, ImmutableSet.of(1),
@@ -22,18 +22,18 @@ class FactorsOfIntegerUnitTest {
 	);
 	//@formatter:on
 
-	@Test
-	void givenAnInteger_whenCallingFindAllFactorsTheDraftVersion_shouldGetExpectedResult() {
-		FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer1(number)));
-	}
+   @Test
+   void givenAnInteger_whenCallingFindAllFactorsTheDraftVersion_shouldGetExpectedResult() {
+      FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer1(number)));
+   }
 
-	@Test
-	void givenAnInteger_whenCallingFindAllFactorsVer2_shouldGetExpectedResult() {
-		FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer2(number)));
-	}
+   @Test
+   void givenAnInteger_whenCallingFindAllFactorsVer2_shouldGetExpectedResult() {
+      FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer2(number)));
+   }
 
-	@Test
-	void givenAnInteger_whenCallingFindAllFactorsVer3_shouldGetExpectedResult() {
-		FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer3(number)));
-	}
+   @Test
+   void givenAnInteger_whenCallingFindAllFactorsVer3_shouldGetExpectedResult() {
+      FACTOR_MAP.forEach((number, expected) -> assertEquals(expected, FactorsOfInteger.getAllFactorsVer3(number)));
+   }
 }

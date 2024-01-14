@@ -44,13 +44,13 @@ class SignedCertificateUnitTest {
 
    @Test
    void whenCertificateIsCASigned_thenItCantBeVerifiedWithItsOwnPublicKey() throws Exception {
-      X509Certificate certificate = (X509Certificate) keyStore.getCertificate("baeldung");
+      X509Certificate certificate = (X509Certificate) keyStore.getCertificate("tuyucheng");
       assertThrows(SignatureException.class, () -> certificate.verify(certificate.getPublicKey()));
    }
 
    @Test
    void whenCertificateIsCASigned_thenRootCanBeFoundInTruststore() throws Exception {
-      X509Certificate endEntityCertificate = (X509Certificate) keyStore.getCertificate("baeldung");
+      X509Certificate endEntityCertificate = (X509Certificate) keyStore.getCertificate("tuyucheng");
       X509Certificate rootCertificate = RootCertificateUtil.getRootCertificate(endEntityCertificate, trustStore);
       assertNotNull(rootCertificate);
    }

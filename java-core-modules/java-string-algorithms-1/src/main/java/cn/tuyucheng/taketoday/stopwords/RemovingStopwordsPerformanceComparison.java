@@ -25,49 +25,49 @@ import java.util.stream.Stream;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class RemovingStopwordsPerformanceComparison {
 
-	private String data;
+   private String data;
 
-	private List<String> stopwords;
+   private List<String> stopwords;
 
-	private String stopwordsRegex;
+   private String stopwordsRegex;
 
 
-	public static void main(String[] args) throws Exception {
-		org.openjdk.jmh.Main.main(args);
-	}
+   public static void main(String[] args) throws Exception {
+      org.openjdk.jmh.Main.main(args);
+   }
 
-	@Setup
-	public void setup() throws IOException {
-		data = new String(Files.readAllBytes(Paths.get("src/main/resources/shakespeare-hamlet.txt")));
-		data = data.toLowerCase();
-		stopwords = Files.readAllLines(Paths.get("src/main/resources/english_stopwords.txt"));
-		stopwordsRegex = stopwords.stream().collect(Collectors.joining("|", "\\b(", ")\\b\\s?"));
-	}
+   @Setup
+   public void setup() throws IOException {
+      data = new String(Files.readAllBytes(Paths.get("src/main/resources/shakespeare-hamlet.txt")));
+      data = data.toLowerCase();
+      stopwords = Files.readAllLines(Paths.get("src/main/resources/english_stopwords.txt"));
+      stopwordsRegex = stopwords.stream().collect(Collectors.joining("|", "\\b(", ")\\b\\s?"));
+   }
 
-	@Benchmark
-	public String removeManually() {
-		String[] allWords = data.split(" ");
-		StringBuilder builder = new StringBuilder();
-		for (String word : allWords) {
-			if (!stopwords.contains(word)) {
-				builder.append(word);
-				builder.append(' ');
-			}
-		}
-		return builder.toString().trim();
-	}
+   @Benchmark
+   public String removeManually() {
+      String[] allWords = data.split(" ");
+      StringBuilder builder = new StringBuilder();
+      for (String word : allWords) {
+         if (!stopwords.contains(word)) {
+            builder.append(word);
+            builder.append(' ');
+         }
+      }
+      return builder.toString().trim();
+   }
 
-	@Benchmark
-	public String removeAll() {
-		ArrayList<String> allWords = Stream.of(data.split(" "))
-			.collect(Collectors.toCollection(ArrayList<String>::new));
-		allWords.removeAll(stopwords);
-		return allWords.stream().collect(Collectors.joining(" "));
-	}
+   @Benchmark
+   public String removeAll() {
+      ArrayList<String> allWords = Stream.of(data.split(" "))
+            .collect(Collectors.toCollection(ArrayList<String>::new));
+      allWords.removeAll(stopwords);
+      return allWords.stream().collect(Collectors.joining(" "));
+   }
 
-	@Benchmark
-	public String replaceRegex() {
-		return data.replaceAll(stopwordsRegex, "");
-	}
+   @Benchmark
+   public String replaceRegex() {
+      return data.replaceAll(stopwordsRegex, "");
+   }
 
 }

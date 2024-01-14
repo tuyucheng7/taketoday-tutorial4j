@@ -2,30 +2,30 @@ package cn.tuyucheng.taketoday.inheritancecomposition.model;
 
 public class Person {
 
-	private final String name;
-	private final String email;
-	private final int age;
+   private final String name;
+   private final String email;
+   private final int age;
 
-	public Person(String name, String email, int age) {
-		this.name = name;
-		this.email = email;
-		this.age = age;
-	}
+   public Person(String name, String email, int age) {
+      this.name = name;
+      this.email = email;
+      this.age = age;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public String getEmail() {
-		return email;
-	}
+   public String getEmail() {
+      return email;
+   }
 
-	public int getAge() {
-		return age;
-	}
+   public int getAge() {
+      return age;
+   }
 
-	@Override
-	public String toString() {
-		return "Person{" + "name=" + name + ", email=" + email + ", age=" + age + "}";
-	}
+   @Override
+   public String toString() {
+      return "Person{" + "name=" + name + ", email=" + email + ", age=" + age + "}";
+   }
 }

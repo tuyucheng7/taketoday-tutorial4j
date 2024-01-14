@@ -15,23 +15,23 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class IteratorsUnitTest {
 
-    @Test
-    public void whenFailFast_ThenThrowsException() {
-        assertThatThrownBy(() -> {
-            Iterators.failFast1();
-        }).isInstanceOf(ConcurrentModificationException.class);
-    }
+   @Test
+   public void whenFailFast_ThenThrowsException() {
+      assertThatThrownBy(() -> {
+         Iterators.failFast1();
+      }).isInstanceOf(ConcurrentModificationException.class);
+   }
 
-    @Test
-    public void whenFailFast_ThenThrowsExceptionInSecondIteration() {
-        assertThatThrownBy(() -> {
-            Iterators.failFast2();
-        }).isInstanceOf(ConcurrentModificationException.class);
-    }
+   @Test
+   public void whenFailFast_ThenThrowsExceptionInSecondIteration() {
+      assertThatThrownBy(() -> {
+         Iterators.failFast2();
+      }).isInstanceOf(ConcurrentModificationException.class);
+   }
 
-    @Test
-    public void whenFailSafe_ThenDoesNotThrowException() {
-        Assertions.assertThat(Iterators.failSafe1()).isGreaterThanOrEqualTo(0);
-    }
+   @Test
+   public void whenFailSafe_ThenDoesNotThrowException() {
+      Assertions.assertThat(Iterators.failSafe1()).isGreaterThanOrEqualTo(0);
+   }
 
 }

@@ -2,9 +2,9 @@ package cn.tuyucheng.taketoday.jmxterm;
 
 public interface PlayerMBean {
 
-    int guessNumber();
+   int guessNumber();
 
-    int getScore();
+   int getScore();
 
-    String getName();
+   String getName();
 }

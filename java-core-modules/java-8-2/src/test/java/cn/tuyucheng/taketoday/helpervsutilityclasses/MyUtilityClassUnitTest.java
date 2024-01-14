@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class MyUtilityClassUnitTest {
 
-	@Test
-	void whenUsingUtilityMethods_thenAccessMethodsViaClassName() {
-		assertEquals("INIUBONG", MyUtilityClass.returnUpperCase("iniubong"));
-		assertEquals("accra", MyUtilityClass.returnLowerCase("AcCrA"));
-	}
+   @Test
+   void whenUsingUtilityMethods_thenAccessMethodsViaClassName() {
+      assertEquals("INIUBONG", MyUtilityClass.returnUpperCase("iniubong"));
+      assertEquals("accra", MyUtilityClass.returnLowerCase("AcCrA"));
+   }
 }

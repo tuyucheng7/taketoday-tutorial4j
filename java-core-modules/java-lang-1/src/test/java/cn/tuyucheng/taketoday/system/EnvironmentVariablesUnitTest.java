@@ -5,10 +5,10 @@ import org.junit.Test;
 
 public class EnvironmentVariablesUnitTest {
 
-	@Test
-	public void givenEnvVars_whenReadPath_thenGetValueinResult() {
-		EnvironmentVariables environmentVariables = new EnvironmentVariables();
+   @Test
+   public void givenEnvVars_whenReadPath_thenGetValueinResult() {
+      EnvironmentVariables environmentVariables = new EnvironmentVariables();
 
-		Assert.assertNotNull(environmentVariables.getPath());
-	}
+      Assert.assertNotNull(environmentVariables.getPath());
+   }
 }

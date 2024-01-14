@@ -8,13 +8,13 @@ import java.util.List;
 
 class MultipleReturnValuesUsingApacheCommonsPair {
 
-	static ImmutablePair<Coordinates, Double> getMostDistantPoint(
-		List<Coordinates> coordinatesList,
-		Coordinates target) {
-		return coordinatesList.stream()
-			.map(coordinates -> ImmutablePair.of(coordinates, coordinates.calculateDistance(target)))
-			.max(Comparator.comparingDouble(Pair::getRight))
-			.get();
+   static ImmutablePair<Coordinates, Double> getMostDistantPoint(
+         List<Coordinates> coordinatesList,
+         Coordinates target) {
+      return coordinatesList.stream()
+            .map(coordinates -> ImmutablePair.of(coordinates, coordinates.calculateDistance(target)))
+            .max(Comparator.comparingDouble(Pair::getRight))
+            .get();
 
-	}
+   }
 }

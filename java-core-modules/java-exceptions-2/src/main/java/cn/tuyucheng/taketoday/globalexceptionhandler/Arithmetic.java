@@ -5,16 +5,16 @@ import org.slf4j.LoggerFactory;
 
 public class Arithmetic {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(Arithmetic.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(Arithmetic.class);
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
 
-        try {
-            int result = 30 / 0; // Trying to divide by zero
-        } catch (ArithmeticException e) {
-            LOGGER.error("ArithmeticException caught!");
-        }
+      try {
+         int result = 30 / 0; // Trying to divide by zero
+      } catch (ArithmeticException e) {
+         LOGGER.error("ArithmeticException caught!");
+      }
 
-    }
+   }
 
 }

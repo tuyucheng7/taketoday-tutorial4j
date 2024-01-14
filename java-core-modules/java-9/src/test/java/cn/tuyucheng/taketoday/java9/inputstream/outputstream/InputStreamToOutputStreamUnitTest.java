@@ -15,71 +15,71 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InputStreamToOutputStreamUnitTest {
 
-	void copy(InputStream source, OutputStream target) throws IOException {
-		byte[] buf = new byte[8192];
-		int length;
-		while ((length = source.read(buf)) != -1) {
-			target.write(buf, 0, length);
-		}
-	}
+   void copy(InputStream source, OutputStream target) throws IOException {
+      byte[] buf = new byte[8192];
+      int length;
+      while ((length = source.read(buf)) != -1) {
+         target.write(buf, 0, length);
+      }
+   }
 
-	@Test
-	void givenUsingJavaEight_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
-		String initialString = "Hello World!";
+   @Test
+   void givenUsingJavaEight_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
+      String initialString = "Hello World!";
 
-		try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
-			 ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
-			copy(inputStream, targetStream);
+      try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
+           ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
+         copy(inputStream, targetStream);
 
-			assertEquals(initialString, targetStream.toString());
-		}
-	}
+         assertEquals(initialString, targetStream.toString());
+      }
+   }
 
-	@Test
-	void givenUsingJavaEight_whenCopyingLongInputStreamToOutputStream_thenCorrect() throws IOException {
-		String initialString = randomAlphabetic(20480);
+   @Test
+   void givenUsingJavaEight_whenCopyingLongInputStreamToOutputStream_thenCorrect() throws IOException {
+      String initialString = randomAlphabetic(20480);
 
-		try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
-			 ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
-			copy(inputStream, targetStream);
+      try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
+           ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
+         copy(inputStream, targetStream);
 
-			assertEquals(initialString, targetStream.toString());
-		}
-	}
+         assertEquals(initialString, targetStream.toString());
+      }
+   }
 
-	@Test
-	void givenUsingJavaNine_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
-		String initialString = "Hello World!";
+   @Test
+   void givenUsingJavaNine_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
+      String initialString = "Hello World!";
 
-		try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
-			 ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
-			inputStream.transferTo(targetStream);
+      try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
+           ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
+         inputStream.transferTo(targetStream);
 
-			assertEquals(initialString, targetStream.toString());
-		}
-	}
+         assertEquals(initialString, targetStream.toString());
+      }
+   }
 
-	@Test
-	void givenUsingGuava_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
-		String initialString = "Hello World!";
+   @Test
+   void givenUsingGuava_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
+      String initialString = "Hello World!";
 
-		try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
-			 ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
-			ByteStreams.copy(inputStream, targetStream);
+      try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
+           ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
+         ByteStreams.copy(inputStream, targetStream);
 
-			assertEquals(initialString, targetStream.toString());
-		}
-	}
+         assertEquals(initialString, targetStream.toString());
+      }
+   }
 
-	@Test
-	void givenUsingCommonsIO_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
-		String initialString = "Hello World!";
+   @Test
+   void givenUsingCommonsIO_whenCopyingInputStreamToOutputStream_thenCorrect() throws IOException {
+      String initialString = "Hello World!";
 
-		try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
-			 ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
-			IOUtils.copy(inputStream, targetStream);
+      try (InputStream inputStream = new ByteArrayInputStream(initialString.getBytes());
+           ByteArrayOutputStream targetStream = new ByteArrayOutputStream()) {
+         IOUtils.copy(inputStream, targetStream);
 
-			assertEquals(initialString, targetStream.toString());
-		}
-	}
+         assertEquals(initialString, targetStream.toString());
+      }
+   }
 }

@@ -21,84 +21,84 @@ import static org.junit.Assert.assertThat;
 
 public class JavaCollectionCleanupUnitTest {
 
-    // tests - removing nulls
+   // tests - removing nulls
 
-    @Test
-    public void givenListContainsNulls_whenRemovingNullsWithPlainJava_thenCorrect() {
-        final List<Integer> list = Lists.newArrayList(null, 1, null);
-        while (list.remove(null))
-            ;
+   @Test
+   public void givenListContainsNulls_whenRemovingNullsWithPlainJava_thenCorrect() {
+      final List<Integer> list = Lists.newArrayList(null, 1, null);
+      while (list.remove(null))
+         ;
 
-        assertThat(list, hasSize(1));
-    }
+      assertThat(list, hasSize(1));
+   }
 
-    @Test
-    public void givenListContainsNulls_whenRemovingNullsWithPlainJavaAlternative_thenCorrect() {
-        final List<Integer> list = Lists.newArrayList(null, 1, null);
-        list.removeAll(Collections.singleton(null));
+   @Test
+   public void givenListContainsNulls_whenRemovingNullsWithPlainJavaAlternative_thenCorrect() {
+      final List<Integer> list = Lists.newArrayList(null, 1, null);
+      list.removeAll(Collections.singleton(null));
 
-        assertThat(list, hasSize(1));
-    }
+      assertThat(list, hasSize(1));
+   }
 
-    @Test
-    public void givenListContainsNulls_whenRemovingNullsWithGuavaV1_thenCorrect() {
-        final List<Integer> list = Lists.newArrayList(null, 1, null);
-        Iterables.removeIf(list, Predicates.isNull());
+   @Test
+   public void givenListContainsNulls_whenRemovingNullsWithGuavaV1_thenCorrect() {
+      final List<Integer> list = Lists.newArrayList(null, 1, null);
+      Iterables.removeIf(list, Predicates.isNull());
 
-        assertThat(list, hasSize(1));
-    }
+      assertThat(list, hasSize(1));
+   }
 
-    @Test
-    public void givenListContainsNulls_whenRemovingNullsWithGuavaV2_thenCorrect() {
-        final List<Integer> list = Lists.newArrayList(null, 1, null, 2, 3);
-        final List<Integer> listWithoutNulls = Lists.newArrayList(Iterables.filter(list, Predicates.notNull()));
+   @Test
+   public void givenListContainsNulls_whenRemovingNullsWithGuavaV2_thenCorrect() {
+      final List<Integer> list = Lists.newArrayList(null, 1, null, 2, 3);
+      final List<Integer> listWithoutNulls = Lists.newArrayList(Iterables.filter(list, Predicates.notNull()));
 
-        assertThat(listWithoutNulls, hasSize(3));
-    }
+      assertThat(listWithoutNulls, hasSize(3));
+   }
 
-    @Test
-    public void givenListContainsNulls_whenRemovingNullsWithCommonsCollections_thenCorrect() {
-        final List<Integer> list = Lists.newArrayList(null, 1, 2, null, 3, null);
-        CollectionUtils.filter(list, PredicateUtils.notNullPredicate());
+   @Test
+   public void givenListContainsNulls_whenRemovingNullsWithCommonsCollections_thenCorrect() {
+      final List<Integer> list = Lists.newArrayList(null, 1, 2, null, 3, null);
+      CollectionUtils.filter(list, PredicateUtils.notNullPredicate());
 
-        assertThat(list, hasSize(3));
-    }
+      assertThat(list, hasSize(3));
+   }
 
-    // tests - remove duplicates
+   // tests - remove duplicates
 
-    @Test
-    public void givenListContainsDuplicates_whenRemovingDuplicatesWithPlainJava_thenCorrect() {
-        final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
-        final List<Integer> listWithoutDuplicates = new ArrayList<>(new HashSet<>(listWithDuplicates));
+   @Test
+   public void givenListContainsDuplicates_whenRemovingDuplicatesWithPlainJava_thenCorrect() {
+      final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
+      final List<Integer> listWithoutDuplicates = new ArrayList<>(new HashSet<>(listWithDuplicates));
 
-        assertThat(listWithoutDuplicates, hasSize(5));
-        assertThat(listWithoutDuplicates, containsInAnyOrder(5, 0, 3, 1, 2));
-    }
+      assertThat(listWithoutDuplicates, hasSize(5));
+      assertThat(listWithoutDuplicates, containsInAnyOrder(5, 0, 3, 1, 2));
+   }
 
-    @Test
-    public void givenListContainsDuplicates_whenRemovingDuplicatesPreservingOrderWithPlainJava_thenCorrect() {
-        final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
-        final List<Integer> listWithoutDuplicates = new ArrayList<>(new LinkedHashSet<>(listWithDuplicates));
+   @Test
+   public void givenListContainsDuplicates_whenRemovingDuplicatesPreservingOrderWithPlainJava_thenCorrect() {
+      final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
+      final List<Integer> listWithoutDuplicates = new ArrayList<>(new LinkedHashSet<>(listWithDuplicates));
 
-        assertThat(listWithoutDuplicates, hasSize(5));
-        assertThat(listWithoutDuplicates, containsInRelativeOrder(5, 0, 3, 1, 2));
-    }
+      assertThat(listWithoutDuplicates, hasSize(5));
+      assertThat(listWithoutDuplicates, containsInRelativeOrder(5, 0, 3, 1, 2));
+   }
 
-    @Test
-    public void givenListContainsDuplicates_whenRemovingDuplicatesWithGuava_thenCorrect() {
-        final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
-        final List<Integer> listWithoutDuplicates = Lists.newArrayList(Sets.newHashSet(listWithDuplicates));
+   @Test
+   public void givenListContainsDuplicates_whenRemovingDuplicatesWithGuava_thenCorrect() {
+      final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
+      final List<Integer> listWithoutDuplicates = Lists.newArrayList(Sets.newHashSet(listWithDuplicates));
 
-        assertThat(listWithoutDuplicates, hasSize(5));
-        assertThat(listWithoutDuplicates, containsInAnyOrder(5, 0, 3, 1, 2));
-    }
+      assertThat(listWithoutDuplicates, hasSize(5));
+      assertThat(listWithoutDuplicates, containsInAnyOrder(5, 0, 3, 1, 2));
+   }
 
-    @Test
-    public void givenListContainsDuplicates_whenRemovingDuplicatesPreservingOrderWithGuava_thenCorrect() {
-        final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
-        final List<Integer> listWithoutDuplicates = Lists.newArrayList(Sets.newLinkedHashSet(listWithDuplicates));
+   @Test
+   public void givenListContainsDuplicates_whenRemovingDuplicatesPreservingOrderWithGuava_thenCorrect() {
+      final List<Integer> listWithDuplicates = Lists.newArrayList(5, 0, 3, 1, 2, 3, 0, 0);
+      final List<Integer> listWithoutDuplicates = Lists.newArrayList(Sets.newLinkedHashSet(listWithDuplicates));
 
-        assertThat(listWithoutDuplicates, hasSize(5));
-        assertThat(listWithoutDuplicates, containsInRelativeOrder(5, 0, 3, 1, 2));
-    }
+      assertThat(listWithoutDuplicates, hasSize(5));
+      assertThat(listWithoutDuplicates, containsInRelativeOrder(5, 0, 3, 1, 2));
+   }
 }

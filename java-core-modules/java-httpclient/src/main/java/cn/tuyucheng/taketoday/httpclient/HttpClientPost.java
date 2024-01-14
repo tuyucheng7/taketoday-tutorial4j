@@ -68,7 +68,7 @@ public class HttpClientPost {
             .uri(URI.create(serviceUrl))
             .POST(HttpRequest.BodyPublishers.noBody())
             .header("Authorization", "Basic " + Base64.getEncoder()
-                  .encodeToString(("baeldung:123456").getBytes()))
+                  .encodeToString(("tuyucheng:123456").getBytes()))
             .build();
 
       HttpResponse<String> response = client
@@ -83,7 +83,7 @@ public class HttpClientPost {
                @Override
                protected PasswordAuthentication getPasswordAuthentication() {
                   return new PasswordAuthentication(
-                        "baeldung",
+                        "tuyucheng",
                         "123456".toCharArray());
                }
             })
@@ -118,7 +118,7 @@ public class HttpClientPost {
       HttpClient client = HttpClient.newHttpClient();
 
       Map<String, String> formData = new HashMap<>();
-      formData.put("username", "baeldung");
+      formData.put("username", "tuyucheng");
       formData.put("message", "hello");
 
       HttpRequest request = HttpRequest.newBuilder()

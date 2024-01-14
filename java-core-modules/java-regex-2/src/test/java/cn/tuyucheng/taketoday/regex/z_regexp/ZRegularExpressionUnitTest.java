@@ -20,8 +20,8 @@ public class ZRegularExpressionUnitTest {
 
    @Test
    public void givenEmailMessage_thenReturnIfMatched() {
-      String myMessage = "Hello HR, I hope i can write to Baeldung\n";
-      String pattern = ".*Baeldung\\s*\\Z";
+      String myMessage = "Hello HR, I hope i can write to Tuyucheng\n";
+      String pattern = ".*Tuyucheng\\s*\\Z";
       Assertions.assertTrue(myMessage.matches(pattern));
    }
 

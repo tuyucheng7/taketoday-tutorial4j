@@ -2,19 +2,19 @@ package cn.tuyucheng.taketoday.privateconstructors;
 
 public final class SingletonClass {
 
-	private static SingletonClass INSTANCE;
-	private String info = "Initial info class";
+   private static SingletonClass INSTANCE;
+   private String info = "Initial info class";
 
-	private SingletonClass() {
-	}
+   private SingletonClass() {
+   }
 
-	public static SingletonClass getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new SingletonClass();
-		}
+   public static SingletonClass getInstance() {
+      if (INSTANCE == null) {
+         INSTANCE = new SingletonClass();
+      }
 
-		return INSTANCE;
-	}
+      return INSTANCE;
+   }
 
-	// getters and setters
+   // getters and setters
 }

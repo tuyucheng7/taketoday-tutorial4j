@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PolymorphismUnitTest {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfAnatotitan() {
-		assertEquals("running", moveDinosaurUsingPolymorphism(new Anatotitan()));
-	}
+   @Test
+   void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfAnatotitan() {
+      assertEquals("running", moveDinosaurUsingPolymorphism(new Anatotitan()));
+   }
 
-	@Test
-	void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfEuraptor() {
-		assertEquals("flying", moveDinosaurUsingPolymorphism(new Euraptor()));
-	}
+   @Test
+   void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfEuraptor() {
+      assertEquals("flying", moveDinosaurUsingPolymorphism(new Euraptor()));
+   }
 
-	static String moveDinosaurUsingPolymorphism(Dinosaur dinosaur) {
-		return dinosaur.move();
-	}
+   static String moveDinosaurUsingPolymorphism(Dinosaur dinosaur) {
+      return dinosaur.move();
+   }
 }

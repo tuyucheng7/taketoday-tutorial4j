@@ -21,45 +21,45 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GlobalExceptionHandlerUnitTest {
 
-    @Mock
-    private Appender<ILoggingEvent> mockAppender;
+   @Mock
+   private Appender<ILoggingEvent> mockAppender;
 
-    @Captor
-    private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
+   @Captor
+   private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
 
-    @Before
-    public void setup() {
-        final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        logger.addAppender(mockAppender);
+   @Before
+   public void setup() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.addAppender(mockAppender);
 
-        Handler globalExceptionHandler = new Handler();
-        Thread.setDefaultUncaughtExceptionHandler(globalExceptionHandler);
-    }
+      Handler globalExceptionHandler = new Handler();
+      Thread.setDefaultUncaughtExceptionHandler(globalExceptionHandler);
+   }
 
-    @After
-    public void teardown() {
-        final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-        logger.detachAppender(mockAppender);
-    }
+   @After
+   public void teardown() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.detachAppender(mockAppender);
+   }
 
-    @Test
-    public void whenArithmeticException_thenUseUncaughtExceptionHandler() throws InterruptedException {
+   @Test
+   public void whenArithmeticException_thenUseUncaughtExceptionHandler() throws InterruptedException {
 
-        Thread globalExceptionHandlerThread = new Thread() {
-            public void run() {
-                GlobalExceptionHandler globalExceptionHandlerObj = new GlobalExceptionHandler();
-                globalExceptionHandlerObj.performArithmeticOperation(99, 0);
-            }
-        };
+      Thread globalExceptionHandlerThread = new Thread() {
+         public void run() {
+            GlobalExceptionHandler globalExceptionHandlerObj = new GlobalExceptionHandler();
+            globalExceptionHandlerObj.performArithmeticOperation(99, 0);
+         }
+      };
 
-        globalExceptionHandlerThread.start();
-        globalExceptionHandlerThread.join();
+      globalExceptionHandlerThread.start();
+      globalExceptionHandlerThread.join();
 
-        verify(mockAppender).doAppend(captorLoggingEvent.capture());
-        LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+      verify(mockAppender).doAppend(captorLoggingEvent.capture());
+      LoggingEvent loggingEvent = captorLoggingEvent.getValue();
 
-        assertThat(loggingEvent.getLevel()).isEqualTo(Level.INFO);
-        assertThat(loggingEvent.getFormattedMessage()).isEqualTo("Unhandled exception caught!");
-    }
+      assertThat(loggingEvent.getLevel()).isEqualTo(Level.INFO);
+      assertThat(loggingEvent.getFormattedMessage()).isEqualTo("Unhandled exception caught!");
+   }
 
 }

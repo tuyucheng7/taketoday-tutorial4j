@@ -11,17 +11,17 @@ import static org.junit.Assert.assertTrue;
 
 public class ValuesExampleUnitTest {
 
-    @Test
-    public void givenHashMap_whenValuesApplied_thenShouldReturnCollectionOfValues() {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("one", 1);
-        map.put("two", 2);
+   @Test
+   public void givenHashMap_whenValuesApplied_thenShouldReturnCollectionOfValues() {
+      Map<String, Integer> map = new HashMap<>();
+      map.put("one", 1);
+      map.put("two", 2);
 
-        Collection<Integer> actualValues = map.values();
+      Collection<Integer> actualValues = map.values();
 
-        assertEquals(2, actualValues.size());
-        assertTrue(actualValues.contains(1));
-        assertTrue(actualValues.contains(2));
-    }
+      assertEquals(2, actualValues.size());
+      assertTrue(actualValues.contains(1));
+      assertTrue(actualValues.contains(2));
+   }
 
 }

@@ -4,15 +4,15 @@ package cn.tuyucheng.taketoday.variableandmethodhiding.variable;
  * Created by Gebruiker on 5/6/2018.
  */
 public class VariableHidingDemo {
-	public static void main(String[] args) {
-		HideVariable variable = new HideVariable();
-		variable.printLocalVariable();
-		variable.printInstanceVariable();
+   public static void main(String[] args) {
+      HideVariable variable = new HideVariable();
+      variable.printLocalVariable();
+      variable.printInstanceVariable();
 
-		ParentVariable parentVariable = new ParentVariable();
-		ParentVariable childVariable = new ChildVariable();
+      ParentVariable parentVariable = new ParentVariable();
+      ParentVariable childVariable = new ChildVariable();
 
-		parentVariable.printInstanceVariable();
-		childVariable.printInstanceVariable();
-	}
+      parentVariable.printInstanceVariable();
+      childVariable.printInstanceVariable();
+   }
 }

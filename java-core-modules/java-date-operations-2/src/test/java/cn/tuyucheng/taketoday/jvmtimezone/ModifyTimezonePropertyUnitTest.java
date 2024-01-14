@@ -11,21 +11,21 @@ import static org.junit.Assert.assertEquals;
 
 public class ModifyTimezonePropertyUnitTest {
 
-    @Before
-    public void setup() {
-        System.setProperty("user.timezone", "Asia/Kolkata");
-        TimeZone.setDefault(null);
-    }
+   @Before
+   public void setup() {
+      System.setProperty("user.timezone", "Asia/Kolkata");
+      TimeZone.setDefault(null);
+   }
 
-    @After
-    public void teardown() {
-        System.clearProperty("user.timezone");
-    }
+   @After
+   public void teardown() {
+      System.clearProperty("user.timezone");
+   }
 
-    @Test
-    public void givenTimezonePropertySet_thenDateTimezoneIsCorrect() {
-        Calendar calendar = Calendar.getInstance();
-        assertEquals(calendar.getTimeZone(), TimeZone.getTimeZone("Asia/Kolkata"));
-    }
+   @Test
+   public void givenTimezonePropertySet_thenDateTimezoneIsCorrect() {
+      Calendar calendar = Calendar.getInstance();
+      assertEquals(calendar.getTimeZone(), TimeZone.getTimeZone("Asia/Kolkata"));
+   }
 
 }

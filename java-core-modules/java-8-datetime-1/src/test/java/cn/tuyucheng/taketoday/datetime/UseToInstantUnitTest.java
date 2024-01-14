@@ -12,24 +12,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UseToInstantUnitTest {
 
-	private UseToInstant subject = new UseToInstant();
+   private UseToInstant subject = new UseToInstant();
 
-	@Test
-	public void givenAGregorianCalenderDate_whenConvertingToLocalDate_thenAsExpected() {
-		GregorianCalendar givenCalender = new GregorianCalendar(2018, Calendar.JULY, 28);
+   @Test
+   public void givenAGregorianCalenderDate_whenConvertingToLocalDate_thenAsExpected() {
+      GregorianCalendar givenCalender = new GregorianCalendar(2018, Calendar.JULY, 28);
 
-		LocalDateTime localDateTime = subject.convertDateToLocalDate(givenCalender);
+      LocalDateTime localDateTime = subject.convertDateToLocalDate(givenCalender);
 
-		assertThat(localDateTime).isEqualTo("2018-07-28T00:00:00");
-	}
+      assertThat(localDateTime).isEqualTo("2018-07-28T00:00:00");
+   }
 
-	@Test
-	public void givenADate_whenConvertingToLocalDate_thenAsExpected() {
-		LocalDateTime currentDateTime = LocalDateTime.now();
-		Date givenDate = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
+   @Test
+   public void givenADate_whenConvertingToLocalDate_thenAsExpected() {
+      LocalDateTime currentDateTime = LocalDateTime.now();
+      Date givenDate = Date.from(currentDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
-		LocalDateTime localDateTime = subject.convertDateToLocalDate(givenDate);
+      LocalDateTime localDateTime = subject.convertDateToLocalDate(givenDate);
 
-		assertThat(localDateTime).isEqualTo(currentDateTime);
-	}
+      assertThat(localDateTime).isEqualTo(currentDateTime);
+   }
 }

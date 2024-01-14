@@ -2,12 +2,12 @@ package cn.tuyucheng.taketoday.constructors.exception;
 
 public class Bird extends Animal {
 
-	// Note that we are throwing parent exception
-	public Bird() throws ReflectiveOperationException {
-		super();
-	}
+   // Note that we are throwing parent exception
+   public Bird() throws ReflectiveOperationException {
+      super();
+   }
 
-	public Bird(String id, int age) {
-		super(id, age);
-	}
+   public Bird(String id, int age) {
+      super(id, age);
+   }
 }

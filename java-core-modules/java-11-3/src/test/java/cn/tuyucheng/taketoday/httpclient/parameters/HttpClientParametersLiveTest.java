@@ -13,32 +13,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HttpClientParametersLiveTest {
 
-	private static HttpClient client;
+   private static HttpClient client;
 
-	@BeforeAll
-	static void setUp() {
-		client = HttpClient.newHttpClient();
-	}
+   @BeforeAll
+   static void setUp() {
+      client = HttpClient.newHttpClient();
+   }
 
-	@Test
-	void givenQueryParams_whenGetRequest_thenResponseOk() throws IOException, InterruptedException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.version(HttpClient.Version.HTTP_2)
-			.uri(URI.create("https://postman-echo.com/get?param1=value1&param2=value2"))
-			.GET()
-			.build();
-		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void givenQueryParams_whenGetRequest_thenResponseOk() throws IOException, InterruptedException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .uri(URI.create("https://postman-echo.com/get?param1=value1&param2=value2"))
+            .GET()
+            .build();
+      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertEquals(200, response.statusCode());
-	}
+      assertEquals(200, response.statusCode());
+   }
 
-	@Test
-	void givenQueryParams_whenGetRequestWithDefaultConfiguration_thenResponseOk() throws IOException, InterruptedException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://postman-echo.com/get?param1=value1&param2=value2"))
-			.build();
-		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void givenQueryParams_whenGetRequestWithDefaultConfiguration_thenResponseOk() throws IOException, InterruptedException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://postman-echo.com/get?param1=value1&param2=value2"))
+            .build();
+      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertEquals(200, response.statusCode());
-	}
+      assertEquals(200, response.statusCode());
+   }
 }

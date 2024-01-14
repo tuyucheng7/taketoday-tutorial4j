@@ -8,54 +8,54 @@ import java.util.ArrayList;
 
 public class CollectionsJoinAndSplitJUnitTest {
 
-    private ArrayList<String> sauces = new ArrayList<>();
-    private ArrayList<String> cheeses = new ArrayList<>();
-    private ArrayList<String> vegetables = new ArrayList<>();
+   private ArrayList<String> sauces = new ArrayList<>();
+   private ArrayList<String> cheeses = new ArrayList<>();
+   private ArrayList<String> vegetables = new ArrayList<>();
 
-    private ArrayList<ArrayList<String>> ingredients = new ArrayList<>();
+   private ArrayList<ArrayList<String>> ingredients = new ArrayList<>();
 
-    @Before
-    public void init() {
-        sauces.add("Olive Oil");
-        sauces.add("Marinara");
+   @Before
+   public void init() {
+      sauces.add("Olive Oil");
+      sauces.add("Marinara");
 
-        cheeses.add("Mozzarella");
-        cheeses.add("Feta");
-        cheeses.add("Parmesan");
+      cheeses.add("Mozzarella");
+      cheeses.add("Feta");
+      cheeses.add("Parmesan");
 
-        vegetables.add("Olives");
-        vegetables.add("Spinach");
-        vegetables.add("Green Peppers");
+      vegetables.add("Olives");
+      vegetables.add("Spinach");
+      vegetables.add("Green Peppers");
 
-        ingredients.add(sauces);
-        ingredients.add(cheeses);
-        ingredients.add(vegetables);
-    }
+      ingredients.add(sauces);
+      ingredients.add(cheeses);
+      ingredients.add(vegetables);
+   }
 
-    @Test
-    public void givenThreeArrayLists_whenJoiningIntoOneArrayList_shouldSucceed() {
-        ArrayList<ArrayList<String>> toppings = new ArrayList<>();
+   @Test
+   public void givenThreeArrayLists_whenJoiningIntoOneArrayList_shouldSucceed() {
+      ArrayList<ArrayList<String>> toppings = new ArrayList<>();
 
-        toppings.add(sauces);
-        toppings.add(cheeses);
-        toppings.add(vegetables);
+      toppings.add(sauces);
+      toppings.add(cheeses);
+      toppings.add(vegetables);
 
-        Assert.assertTrue(toppings.size() == 3);
-        Assert.assertTrue(toppings.contains(sauces));
-        Assert.assertTrue(toppings.contains(cheeses));
-        Assert.assertTrue(toppings.contains(vegetables));
-    }
+      Assert.assertTrue(toppings.size() == 3);
+      Assert.assertTrue(toppings.contains(sauces));
+      Assert.assertTrue(toppings.contains(cheeses));
+      Assert.assertTrue(toppings.contains(vegetables));
+   }
 
-    @Test
-    public void givenOneArrayList_whenSplittingIntoTwoArrayLists_shouldSucceed() {
+   @Test
+   public void givenOneArrayList_whenSplittingIntoTwoArrayLists_shouldSucceed() {
 
-        ArrayList<ArrayList<String>> removedToppings = new ArrayList<>();
-        removedToppings.add(ingredients.remove(ingredients.indexOf(vegetables)));
+      ArrayList<ArrayList<String>> removedToppings = new ArrayList<>();
+      removedToppings.add(ingredients.remove(ingredients.indexOf(vegetables)));
 
-        Assert.assertTrue(removedToppings.contains(vegetables));
-        Assert.assertTrue(removedToppings.size() == 1);
-        Assert.assertTrue(ingredients.size() == 2);
-        Assert.assertTrue(ingredients.contains(sauces));
-        Assert.assertTrue(ingredients.contains(cheeses));
-    }
+      Assert.assertTrue(removedToppings.contains(vegetables));
+      Assert.assertTrue(removedToppings.size() == 1);
+      Assert.assertTrue(ingredients.size() == 2);
+      Assert.assertTrue(ingredients.contains(sauces));
+      Assert.assertTrue(ingredients.contains(cheeses));
+   }
 }

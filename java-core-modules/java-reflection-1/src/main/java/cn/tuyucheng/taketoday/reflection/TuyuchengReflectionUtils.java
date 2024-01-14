@@ -13,27 +13,27 @@ import java.util.stream.Collectors;
 
 class TuyuchengReflectionUtils {
 
-	private static final Logger LOG = LoggerFactory.getLogger(TuyuchengReflectionUtils.class);
+   private static final Logger LOG = LoggerFactory.getLogger(TuyuchengReflectionUtils.class);
 
-	static List<String> getNullPropertiesList(Customer customer) throws Exception {
-		PropertyDescriptor[] propDescArr = Introspector.getBeanInfo(Customer.class, Object.class).getPropertyDescriptors();
+   static List<String> getNullPropertiesList(Customer customer) throws Exception {
+      PropertyDescriptor[] propDescArr = Introspector.getBeanInfo(Customer.class, Object.class).getPropertyDescriptors();
 
-		return Arrays.stream(propDescArr)
-			.filter(nulls(customer))
-			.map(PropertyDescriptor::getName)
-			.collect(Collectors.toList());
-	}
+      return Arrays.stream(propDescArr)
+            .filter(nulls(customer))
+            .map(PropertyDescriptor::getName)
+            .collect(Collectors.toList());
+   }
 
-	private static Predicate<PropertyDescriptor> nulls(Customer customer) {
-		return pd -> {
-			boolean result = false;
-			try {
-				Method getterMethod = pd.getReadMethod();
-				result = (getterMethod != null && getterMethod.invoke(customer) == null);
-			} catch (Exception e) {
-				LOG.error("error invoking getter method");
-			}
-			return result;
-		};
-	}
+   private static Predicate<PropertyDescriptor> nulls(Customer customer) {
+      return pd -> {
+         boolean result = false;
+         try {
+            Method getterMethod = pd.getReadMethod();
+            result = (getterMethod != null && getterMethod.invoke(customer) == null);
+         } catch (Exception e) {
+            LOG.error("error invoking getter method");
+         }
+         return result;
+      };
+   }
 }

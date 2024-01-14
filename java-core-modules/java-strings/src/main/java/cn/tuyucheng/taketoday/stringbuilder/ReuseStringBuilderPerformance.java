@@ -18,7 +18,7 @@ public class ReuseStringBuilderPerformance {
    public void benchmarkStringBuilder() {
       for (int i = 0; i < 100; i++) {
          StringBuilder stringBuilder = new StringBuilder();
-         stringBuilder.append("baeldung");
+         stringBuilder.append("tuyucheng");
          stringBuilder.toString();
       }
    }
@@ -27,7 +27,7 @@ public class ReuseStringBuilderPerformance {
    public void benchmarkStringBuilderReuseWithSetLength() {
       StringBuilder stringBuilder = new StringBuilder();
       for (int i = 0; i < 100; i++) {
-         stringBuilder.append("baeldung");
+         stringBuilder.append("tuyucheng");
          stringBuilder.toString();
          stringBuilder.setLength(0);
       }
@@ -37,7 +37,7 @@ public class ReuseStringBuilderPerformance {
    public void benchmarkStringBuilderReuseWithDelete() {
       StringBuilder stringBuilder = new StringBuilder();
       for (int i = 0; i < 100; i++) {
-         stringBuilder.append("baeldung");
+         stringBuilder.append("tuyucheng");
          stringBuilder.toString();
          stringBuilder.delete(0, stringBuilder.length());
       }

@@ -14,14 +14,14 @@ import java.util.Date;
  */
 public class LocalDateToDateConverter {
 
-    public static Date convertToDateViaSqlDate(LocalDate dateToConvert) {
-        return java.sql.Date.valueOf(dateToConvert);
-    }
+   public static Date convertToDateViaSqlDate(LocalDate dateToConvert) {
+      return java.sql.Date.valueOf(dateToConvert);
+   }
 
-    public static Date convertToDateViaInstant(LocalDate dateToConvert) {
-        return java.util.Date.from(dateToConvert.atStartOfDay()
-              .atZone(ZoneId.systemDefault())
-              .toInstant());
-    }
+   public static Date convertToDateViaInstant(LocalDate dateToConvert) {
+      return java.util.Date.from(dateToConvert.atStartOfDay()
+            .atZone(ZoneId.systemDefault())
+            .toInstant());
+   }
 
 }

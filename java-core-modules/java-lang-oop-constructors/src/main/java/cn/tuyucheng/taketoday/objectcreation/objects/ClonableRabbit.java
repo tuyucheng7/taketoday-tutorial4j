@@ -2,17 +2,17 @@ package cn.tuyucheng.taketoday.objectcreation.objects;
 
 public class ClonableRabbit implements Cloneable {
 
-	String name = "";
+   String name = "";
 
-	public ClonableRabbit(String name) {
-		this.name = name;
-	}
+   public ClonableRabbit(String name) {
+      this.name = name;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
+   public Object clone() throws CloneNotSupportedException {
+      return super.clone();
+   }
 }

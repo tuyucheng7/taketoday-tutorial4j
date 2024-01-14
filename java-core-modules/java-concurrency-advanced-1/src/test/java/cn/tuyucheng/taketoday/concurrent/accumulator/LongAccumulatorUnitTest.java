@@ -13,24 +13,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LongAccumulatorUnitTest {
 
-	@Test
-	void givenLongAccumulator_whenApplyActionOnItFromMultipleThreads_thenShouldProduceProperResult() throws InterruptedException {
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
-		LongBinaryOperator sum = Long::sum;
-		LongAccumulator accumulator = new LongAccumulator(sum, 0L);
-		int numberOfThreads = 4;
-		int numberOfIncrements = 100;
+   @Test
+   void givenLongAccumulator_whenApplyActionOnItFromMultipleThreads_thenShouldProduceProperResult() throws InterruptedException {
+      ExecutorService executorService = Executors.newFixedThreadPool(8);
+      LongBinaryOperator sum = Long::sum;
+      LongAccumulator accumulator = new LongAccumulator(sum, 0L);
+      int numberOfThreads = 4;
+      int numberOfIncrements = 100;
 
-		Runnable accumulateAction = () -> IntStream
-				.rangeClosed(0, numberOfIncrements)
-				.forEach(accumulator::accumulate);
+      Runnable accumulateAction = () -> IntStream
+            .rangeClosed(0, numberOfIncrements)
+            .forEach(accumulator::accumulate);
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.execute(accumulateAction);
-		}
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(accumulateAction);
+      }
 
-		executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executorService.shutdown();
-		assertEquals(accumulator.get(), 20200);
-	}
+      executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
+      assertEquals(accumulator.get(), 20200);
+   }
 }

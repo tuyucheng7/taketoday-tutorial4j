@@ -10,20 +10,20 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ArrayListCreatorUnitTest {
 
-    @Test
-    void givenValidCapacityOfList_whenCreateListInvoked_thenCreateNewArrayListWithGivenCapacity() {
-        ArrayList<Integer> list = new ArrayList<>(100);
+   @Test
+   void givenValidCapacityOfList_whenCreateListInvoked_thenCreateNewArrayListWithGivenCapacity() {
+      ArrayList<Integer> list = new ArrayList<>(100);
 
-        assertNotNull(list);
-    }
+      assertNotNull(list);
+   }
 
-    @Test
-    void givenInvalidCapacityOfList_whenCreateListInvoked_thenThrowException() {
-        assertThrows(IllegalArgumentException.class, () -> new ArrayList<>(-1));
-    }
+   @Test
+   void givenInvalidCapacityOfList_whenCreateListInvoked_thenThrowException() {
+      assertThrows(IllegalArgumentException.class, () -> new ArrayList<>(-1));
+   }
 
-    @Test
-    void givenValidCapacityOfList_whenCreateListInvoked_thenCreateNewArrayListWithSizeZero() {
-        assertEquals(0, new ArrayList<Integer>(100).size());
-    }
+   @Test
+   void givenValidCapacityOfList_whenCreateListInvoked_thenCreateNewArrayListWithSizeZero() {
+      assertEquals(0, new ArrayList<Integer>(100).size());
+   }
 }

@@ -8,21 +8,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DefaultArrayListCapacityUnitTest {
 
-    @Test
-    void givenEmptyArrayList_whenGetDefaultCapacity_thenReturnZero() throws Exception {
-        ArrayList<Integer> myList = new ArrayList<>();
-        int defaultCapacity = DefaultArrayListCapacity.getDefaultCapacity(myList);
+   @Test
+   void givenEmptyArrayList_whenGetDefaultCapacity_thenReturnZero() throws Exception {
+      ArrayList<Integer> myList = new ArrayList<>();
+      int defaultCapacity = DefaultArrayListCapacity.getDefaultCapacity(myList);
 
-        assertEquals(0, defaultCapacity);
-    }
+      assertEquals(0, defaultCapacity);
+   }
 
-    @Test
-    void givenEmptyArrayList_whenAddItemAndGetDefaultCapacity_thenReturn10() throws Exception {
-        ArrayList<String> myList = new ArrayList<>();
-        myList.add("ITEM 1");
+   @Test
+   void givenEmptyArrayList_whenAddItemAndGetDefaultCapacity_thenReturn10() throws Exception {
+      ArrayList<String> myList = new ArrayList<>();
+      myList.add("ITEM 1");
 
-        int defaultCapacity = DefaultArrayListCapacity.getDefaultCapacity(myList);
+      int defaultCapacity = DefaultArrayListCapacity.getDefaultCapacity(myList);
 
-        assertEquals(10, defaultCapacity);
-    }
+      assertEquals(10, defaultCapacity);
+   }
 }

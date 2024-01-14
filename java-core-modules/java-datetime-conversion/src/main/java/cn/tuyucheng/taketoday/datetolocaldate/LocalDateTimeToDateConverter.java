@@ -14,13 +14,13 @@ import java.util.Date;
  */
 public class LocalDateTimeToDateConverter {
 
-    public static Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
-        return java.sql.Timestamp.valueOf(dateToConvert);
-    }
+   public static Date convertToDateViaSqlTimestamp(LocalDateTime dateToConvert) {
+      return java.sql.Timestamp.valueOf(dateToConvert);
+   }
 
-    public static Date convertToDateViaInstant(LocalDateTime dateToConvert) {
-        return java.util.Date.from(dateToConvert.atZone(ZoneId.systemDefault())
-              .toInstant());
-    }
+   public static Date convertToDateViaInstant(LocalDateTime dateToConvert) {
+      return java.util.Date.from(dateToConvert.atZone(ZoneId.systemDefault())
+            .toInstant());
+   }
 
 }

@@ -22,107 +22,107 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SerializationUnitTest {
 
-	private final static String OUTPUT_FILE_NAME = "yourfile.txt";
+   private final static String OUTPUT_FILE_NAME = "yourfile.txt";
 
-	@Rule
-	public TemporaryFolder tempFolder = new TemporaryFolder();
+   @Rule
+   public TemporaryFolder tempFolder = new TemporaryFolder();
 
-	private File outputFile;
+   private File outputFile;
 
-	@Before
-	public void setUp() throws Exception {
-		outputFile = tempFolder.newFile(OUTPUT_FILE_NAME);
-	}
+   @Before
+   public void setUp() throws Exception {
+      outputFile = tempFolder.newFile(OUTPUT_FILE_NAME);
+   }
 
-	@Test(expected = NotSerializableException.class)
-	public void whenSerializing_ThenThrowsError() throws IOException {
-		Address address = new Address();
-		address.setHouseNumber(10);
-		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-			objectOutputStream.writeObject(address);
-		}
-	}
+   @Test(expected = NotSerializableException.class)
+   public void whenSerializing_ThenThrowsError() throws IOException {
+      Address address = new Address();
+      address.setHouseNumber(10);
+      FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+      try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+         objectOutputStream.writeObject(address);
+      }
+   }
 
-	@Test
-	public void whenSerializingAndDeserializing_ThenObjectIsTheSame() throws IOException, ClassNotFoundException {
-		Person p = new Person();
-		p.setAge(20);
-		p.setName("Joe");
+   @Test
+   public void whenSerializingAndDeserializing_ThenObjectIsTheSame() throws IOException, ClassNotFoundException {
+      Person p = new Person();
+      p.setAge(20);
+      p.setName("Joe");
 
-		FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
-		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-			objectOutputStream.writeObject(p);
-		}
+      FileOutputStream fileOutputStream = new FileOutputStream(outputFile);
+      try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+         objectOutputStream.writeObject(p);
+      }
 
-		FileInputStream fileInputStream = new FileInputStream(outputFile);
-		try (ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-			Person p2 = (Person) objectInputStream.readObject();
-			assertEquals(p2.getAge(), p.getAge());
-			assertEquals(p2.getName(), p.getName());
-		}
-	}
+      FileInputStream fileInputStream = new FileInputStream(outputFile);
+      try (ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+         Person p2 = (Person) objectInputStream.readObject();
+         assertEquals(p2.getAge(), p.getAge());
+         assertEquals(p2.getName(), p.getName());
+      }
+   }
 
-	@Test(expected = ClassCastException.class)
-	public void whenSerializingUsingApacheCommons_ThenThrowsError() {
-		Address address = new Address();
-		address.setHouseNumber(10);
-		SerializationUtils.serialize((Serializable) address);
-	}
+   @Test(expected = ClassCastException.class)
+   public void whenSerializingUsingApacheCommons_ThenThrowsError() {
+      Address address = new Address();
+      address.setHouseNumber(10);
+      SerializationUtils.serialize((Serializable) address);
+   }
 
-	@Test
-	public void whenSerializingAndDeserializingUsingApacheCommons_ThenObjectIsTheSame() {
-		Person p = new Person();
-		p.setAge(20);
-		p.setName("Joe");
-		byte[] serialize = SerializationUtils.serialize(p);
-		Person p2 = (Person) SerializationUtils.deserialize(serialize);
-		assertEquals(p2.getAge(), p.getAge());
-		assertEquals(p2.getName(), p.getName());
-	}
+   @Test
+   public void whenSerializingAndDeserializingUsingApacheCommons_ThenObjectIsTheSame() {
+      Person p = new Person();
+      p.setAge(20);
+      p.setName("Joe");
+      byte[] serialize = SerializationUtils.serialize(p);
+      Person p2 = (Person) SerializationUtils.deserialize(serialize);
+      assertEquals(p2.getAge(), p.getAge());
+      assertEquals(p2.getName(), p.getName());
+   }
 
-	@Test(expected = ClassCastException.class)
-	public void whenSerializingUsingSpringSerializationUtils_ThenThrowsError() {
-		Address address = new Address();
-		address.setHouseNumber(10);
-		org.springframework.util.SerializationUtils.serialize((Serializable) address);
-	}
+   @Test(expected = ClassCastException.class)
+   public void whenSerializingUsingSpringSerializationUtils_ThenThrowsError() {
+      Address address = new Address();
+      address.setHouseNumber(10);
+      org.springframework.util.SerializationUtils.serialize((Serializable) address);
+   }
 
-	@Test
-	public void whenSerializingAndDeserializingUsingSpringSerializationUtils_ThenObjectIsTheSame() {
-		Person p = new Person();
-		p.setAge(20);
-		p.setName("Joe");
-		byte[] serialize = org.springframework.util.SerializationUtils.serialize(p);
-		Person p2 = (Person) org.springframework.util.SerializationUtils.deserialize(serialize);
-		assertEquals(p2.getAge(), p.getAge());
-		assertEquals(p2.getName(), p.getName());
-	}
+   @Test
+   public void whenSerializingAndDeserializingUsingSpringSerializationUtils_ThenObjectIsTheSame() {
+      Person p = new Person();
+      p.setAge(20);
+      p.setName("Joe");
+      byte[] serialize = org.springframework.util.SerializationUtils.serialize(p);
+      Person p2 = (Person) org.springframework.util.SerializationUtils.deserialize(serialize);
+      assertEquals(p2.getAge(), p.getAge());
+      assertEquals(p2.getName(), p.getName());
+   }
 
-	@Test(expected = ClassCastException.class)
-	public void whenSerializingUsingCustomSerializationUtils_ThenThrowsError() throws IOException {
-		Address address = new Address();
-		address.setHouseNumber(10);
-		MySerializationUtils.serialize((Serializable) address);
-	}
+   @Test(expected = ClassCastException.class)
+   public void whenSerializingUsingCustomSerializationUtils_ThenThrowsError() throws IOException {
+      Address address = new Address();
+      address.setHouseNumber(10);
+      MySerializationUtils.serialize((Serializable) address);
+   }
 
-	@Test
-	public void whenSerializingAndDeserializingUsingCustomSerializationUtils_ThenObjectIsTheSame() throws IOException, ClassNotFoundException {
-		Person p = new Person();
-		p.setAge(20);
-		p.setName("Joe");
-		byte[] serialize = MySerializationUtils.serialize(p);
-		Person p2 = MySerializationUtils.deserialize(serialize, Person.class);
-		assertEquals(p2.getAge(), p.getAge());
-		assertEquals(p2.getName(), p.getName());
-	}
+   @Test
+   public void whenSerializingAndDeserializingUsingCustomSerializationUtils_ThenObjectIsTheSame() throws IOException, ClassNotFoundException {
+      Person p = new Person();
+      p.setAge(20);
+      p.setName("Joe");
+      byte[] serialize = MySerializationUtils.serialize(p);
+      Person p2 = MySerializationUtils.deserialize(serialize, Person.class);
+      assertEquals(p2.getAge(), p.getAge());
+      assertEquals(p2.getName(), p.getName());
+   }
 
-	@Test
-	public void whenSerializingUsingCustomSerializationUtils_ThanOk() {
-		assertFalse(MySerializationUtils.isSerializable(Address.class));
-		assertTrue(MySerializationUtils.isSerializable(Person.class));
-		assertTrue(MySerializationUtils.isSerializable(Integer.class));
-		assertFalse(MySerializationUtils.isSerializable(Customer.class));
-		assertTrue(MySerializationUtils.isSerializable(Employee.class));
-	}
+   @Test
+   public void whenSerializingUsingCustomSerializationUtils_ThanOk() {
+      assertFalse(MySerializationUtils.isSerializable(Address.class));
+      assertTrue(MySerializationUtils.isSerializable(Person.class));
+      assertTrue(MySerializationUtils.isSerializable(Integer.class));
+      assertFalse(MySerializationUtils.isSerializable(Customer.class));
+      assertTrue(MySerializationUtils.isSerializable(Employee.class));
+   }
 }

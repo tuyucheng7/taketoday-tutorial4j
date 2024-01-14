@@ -9,19 +9,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomDatesUnitTest {
 
-	@RepeatedTest(100)
-	void givenNoRange_WhenGenDate_ShouldGenerateRandomDates() {
-		LocalDate randomDay = RandomDates.date();
+   @RepeatedTest(100)
+   void givenNoRange_WhenGenDate_ShouldGenerateRandomDates() {
+      LocalDate randomDay = RandomDates.date();
 
-		assertThat(randomDay).isAfter(LocalDate.MIN).isBefore(LocalDate.MAX);
-	}
+      assertThat(randomDay).isAfter(LocalDate.MIN).isBefore(LocalDate.MAX);
+   }
 
-	@RepeatedTest(100)
-	void givenARange_WhenGenDate_ShouldBeInRange() {
-		LocalDate start = LocalDate.of(1989, Month.OCTOBER, 14);
-		LocalDate end = LocalDate.now();
+   @RepeatedTest(100)
+   void givenARange_WhenGenDate_ShouldBeInRange() {
+      LocalDate start = LocalDate.of(1989, Month.OCTOBER, 14);
+      LocalDate end = LocalDate.now();
 
-		LocalDate random = RandomDates.between(start, end);
-		assertThat(random).isAfterOrEqualTo(start).isBefore(end);
-	}
+      LocalDate random = RandomDates.between(start, end);
+      assertThat(random).isAfterOrEqualTo(start).isBefore(end);
+   }
 }

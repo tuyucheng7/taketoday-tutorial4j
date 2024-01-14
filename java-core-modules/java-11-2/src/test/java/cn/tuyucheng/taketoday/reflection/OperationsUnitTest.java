@@ -12,65 +12,65 @@ import static org.junit.Assert.assertTrue;
 
 public class OperationsUnitTest {
 
-	public OperationsUnitTest() {
-	}
+   public OperationsUnitTest() {
+   }
 
-	@Test(expected = IllegalAccessException.class)
-	public void givenObject_whenInvokePrivateMethod_thenFail() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method andPrivateMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
+   @Test(expected = IllegalAccessException.class)
+   public void givenObject_whenInvokePrivateMethod_thenFail() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+      Method andPrivateMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
 
-		Operations operationsInstance = new Operations();
-		Boolean result = (Boolean) andPrivateMethod.invoke(operationsInstance, true, false);
+      Operations operationsInstance = new Operations();
+      Boolean result = (Boolean) andPrivateMethod.invoke(operationsInstance, true, false);
 
-		assertFalse(result);
-	}
+      assertFalse(result);
+   }
 
-	@Test
-	public void givenObject_whenInvokePrivateMethod_thenCorrect() throws Exception {
-		Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
-		andPrivatedMethod.setAccessible(true);
+   @Test
+   public void givenObject_whenInvokePrivateMethod_thenCorrect() throws Exception {
+      Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
+      andPrivatedMethod.setAccessible(true);
 
-		Operations operationsInstance = new Operations();
-		Boolean result = (Boolean) andPrivatedMethod.invoke(operationsInstance, true, false);
+      Operations operationsInstance = new Operations();
+      Boolean result = (Boolean) andPrivatedMethod.invoke(operationsInstance, true, false);
 
-		assertFalse(result);
-	}
+      assertFalse(result);
+   }
 
-	@Test
-	public void givenObject_whenInvokePrivateMethod_thenCheckAccess() throws Exception {
-		Operations operationsInstance = new Operations();
-		Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
-		boolean isAccessEnabled = andPrivatedMethod.canAccess(operationsInstance);
+   @Test
+   public void givenObject_whenInvokePrivateMethod_thenCheckAccess() throws Exception {
+      Operations operationsInstance = new Operations();
+      Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
+      boolean isAccessEnabled = andPrivatedMethod.canAccess(operationsInstance);
 
-		assertFalse(isAccessEnabled);
-	}
+      assertFalse(isAccessEnabled);
+   }
 
-	@Test
-	public void givenObject_whenInvokePublicMethod_thenEnableAccess() throws Exception {
-		Operations operationsInstance = new Operations();
-		Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
-		andPrivatedMethod.trySetAccessible();
-		boolean isAccessEnabled = andPrivatedMethod.canAccess(operationsInstance);
+   @Test
+   public void givenObject_whenInvokePublicMethod_thenEnableAccess() throws Exception {
+      Operations operationsInstance = new Operations();
+      Method andPrivatedMethod = Operations.class.getDeclaredMethod("privateAnd", boolean.class, boolean.class);
+      andPrivatedMethod.trySetAccessible();
+      boolean isAccessEnabled = andPrivatedMethod.canAccess(operationsInstance);
 
-		assertTrue(isAccessEnabled);
-	}
+      assertTrue(isAccessEnabled);
+   }
 
-	@Test
-	public void givenObject_whenInvokePublicMethod_thenCorrect() throws Exception {
-		Method sumInstanceMethod = Operations.class.getMethod("publicSum", int.class, double.class);
+   @Test
+   public void givenObject_whenInvokePublicMethod_thenCorrect() throws Exception {
+      Method sumInstanceMethod = Operations.class.getMethod("publicSum", int.class, double.class);
 
-		Operations operationsInstance = new Operations();
-		Double result = (Double) sumInstanceMethod.invoke(operationsInstance, 1, 3);
+      Operations operationsInstance = new Operations();
+      Double result = (Double) sumInstanceMethod.invoke(operationsInstance, 1, 3);
 
-		assertThat(result, equalTo(4.0));
-	}
+      assertThat(result, equalTo(4.0));
+   }
 
-	@Test
-	public void givenObject_whenInvokeStaticMethod_thenCorrect() throws Exception {
-		Method multiplyStaticMethod = Operations.class.getDeclaredMethod("publicStaticMultiply", float.class, long.class);
+   @Test
+   public void givenObject_whenInvokeStaticMethod_thenCorrect() throws Exception {
+      Method multiplyStaticMethod = Operations.class.getDeclaredMethod("publicStaticMultiply", float.class, long.class);
 
-		Double result = (Double) multiplyStaticMethod.invoke(null, 3.5f, 2);
+      Double result = (Double) multiplyStaticMethod.invoke(null, 3.5f, 2);
 
-		assertThat(result, equalTo(7.0));
-	}
+      assertThat(result, equalTo(7.0));
+   }
 }

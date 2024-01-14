@@ -8,16 +8,16 @@ import org.slf4j.LoggerFactory;
  */
 public class Animal {
 
-	final static Logger logger = LoggerFactory.getLogger(Animal.class);
+   final static Logger logger = LoggerFactory.getLogger(Animal.class);
 
-	public void makeNoise() {
-		logger.info("generic animal noise");
-	}
+   public void makeNoise() {
+      logger.info("generic animal noise");
+   }
 
-	public void makeNoise(Integer repetitions) {
-		while (repetitions != 0) {
-			logger.info("generic animal noise countdown " + repetitions);
-			repetitions -= 1;
-		}
-	}
+   public void makeNoise(Integer repetitions) {
+      while (repetitions != 0) {
+         logger.info("generic animal noise countdown " + repetitions);
+         repetitions -= 1;
+      }
+   }
 }

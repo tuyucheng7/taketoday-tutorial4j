@@ -6,11 +6,11 @@ package cn.tuyucheng.taketoday.synthetic;
  */
 public class SyntheticFieldDemo {
 
-	/**
-	 * Class which contains a synthetic field reference to the outer class.
-	 */
-	class NestedClass {
+   /**
+    * Class which contains a synthetic field reference to the outer class.
+    */
+   class NestedClass {
 
-	}
+   }
 
 }

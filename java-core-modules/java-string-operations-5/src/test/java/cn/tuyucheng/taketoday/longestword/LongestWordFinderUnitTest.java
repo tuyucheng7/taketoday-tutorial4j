@@ -30,8 +30,8 @@ class LongestWordFinderUnitTest {
 
    @Test
    void givenAPhraseWithVariousWordsOfMaxLength_whenFindLongestWord_thenAnyOfTheLongestsWordsOfThePhrase() {
-      assertThat(longestWordFinder.findLongestWord("Baeldung is another word of size eight in this sentence")
-            .get()).isIn("Baeldung", "sentence");
+      assertThat(longestWordFinder.findLongestWord("Tuyucheng is another word of size eight in this sentence")
+            .get()).isIn("Tuyucheng", "sentence");
    }
 
    @Test
@@ -56,6 +56,6 @@ class LongestWordFinderUnitTest {
 
    @Test
    void givenAPhraseWithVariousWordsOfMaxLength_whenFindLongestWords_thenAllLongestsWords() {
-      assertThat(longestWordFinder.findLongestWords("Baeldung is another word of size eight in this sentence")).containsExactly("Baeldung", "sentence");
+      assertThat(longestWordFinder.findLongestWords("Tuyucheng is another word of size eight in this sentence")).containsExactly("Tuyucheng", "sentence");
    }
 }

@@ -12,28 +12,28 @@ import java.lang.invoke.MethodHandle;
 
 public class Greetings {
 
-	public static void main(String[] args) throws Throwable {
-		String symbolName = "printf";
-		String greeting = "Hello World from Project Panama Tuyucheng Article";
+   public static void main(String[] args) throws Throwable {
+      String symbolName = "printf";
+      String greeting = "Hello World from Project Panama Tuyucheng Article";
 
-		Linker nativeLinker = Linker.nativeLinker();
-		SymbolLookup stdlibLookup = nativeLinker.defaultLookup();
-		SymbolLookup loaderLookup = SymbolLookup.loaderLookup();
+      Linker nativeLinker = Linker.nativeLinker();
+      SymbolLookup stdlibLookup = nativeLinker.defaultLookup();
+      SymbolLookup loaderLookup = SymbolLookup.loaderLookup();
 
-		FunctionDescriptor descriptor = FunctionDescriptor.of(JAVA_INT, ADDRESS);
+      FunctionDescriptor descriptor = FunctionDescriptor.of(JAVA_INT, ADDRESS);
 
-		MethodHandle methodHandle = loaderLookup.lookup(symbolName)
-			.or(() -> stdlibLookup.lookup(symbolName))
-			.map(symbolSegment -> nativeLinker.downcallHandle(symbolSegment, descriptor))
-			.orElse(null);
+      MethodHandle methodHandle = loaderLookup.lookup(symbolName)
+            .or(() -> stdlibLookup.lookup(symbolName))
+            .map(symbolSegment -> nativeLinker.downcallHandle(symbolSegment, descriptor))
+            .orElse(null);
 
-		if (methodHandle == null) {
-			throw new NoSuchMethodError("Method Handle was not found");
-		}
+      if (methodHandle == null) {
+         throw new NoSuchMethodError("Method Handle was not found");
+      }
 
-		try (MemorySession memorySession = MemorySession.openConfined()) {
-			MemorySegment greetingSegment = memorySession.allocateUtf8String(greeting);
-			methodHandle.invoke(greetingSegment);
-		}
-	}
+      try (MemorySession memorySession = MemorySession.openConfined()) {
+         MemorySegment greetingSegment = memorySession.allocateUtf8String(greeting);
+         methodHandle.invoke(greetingSegment);
+      }
+   }
 }

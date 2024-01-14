@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 class StackWalkerDemoUnitTest {
 
-	@Test
-	void giveStalkWalker_whenWalkingTheStack_thenShowStackFrames() {
-		new StackWalkerDemo().methodOne();
-	}
+   @Test
+   void giveStalkWalker_whenWalkingTheStack_thenShowStackFrames() {
+      new StackWalkerDemo().methodOne();
+   }
 
-	@Test
-	void giveStalkWalker_whenInvokingFindCaller_thenFindCallingClass() {
-		new StackWalkerDemo().findCaller();
-	}
+   @Test
+   void giveStalkWalker_whenInvokingFindCaller_thenFindCallingClass() {
+      new StackWalkerDemo().findCaller();
+   }
 }

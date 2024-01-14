@@ -5,7 +5,7 @@ import com.sun.jna.Native;
 import com.sun.jna.Platform;
 
 public interface CMath extends Library {
-	CMath INSTANCE = Native.load(Platform.isWindows() ? "msvcrt" : "c", CMath.class);
+   CMath INSTANCE = Native.load(Platform.isWindows() ? "msvcrt" : "c", CMath.class);
 
-	double cosh(double value);
+   double cosh(double value);
 }

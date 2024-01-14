@@ -19,40 +19,40 @@ import static org.junit.Assert.assertSame;
  */
 public class Element3UnitTest {
 
-	public Element3UnitTest() {
-	}
+   public Element3UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeClass
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterClass
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @Before
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @After
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenLocatebyLabel_thenReturnCorrectValue() {
-		for (Element3 e3 : Element3.values()) {
-			assertSame(e3, Element3.valueOfLabel(e3.label));
-		}
-	}
+   @Test
+   public void whenLocatebyLabel_thenReturnCorrectValue() {
+      for (Element3 e3 : Element3.values()) {
+         assertSame(e3, Element3.valueOfLabel(e3.label));
+      }
+   }
 
-	/**
-	 * Test of toString method, of class Element3.
-	 */
-	@Test
-	public void whenCallingToString_thenReturnLabel() {
-		for (Element3 e3 : Element3.values()) {
-			assertEquals(e3.label, e3.toString());
-		}
-	}
+   /**
+    * Test of toString method, of class Element3.
+    */
+   @Test
+   public void whenCallingToString_thenReturnLabel() {
+      for (Element3 e3 : Element3.values()) {
+         assertEquals(e3.label, e3.toString());
+      }
+   }
 
 }

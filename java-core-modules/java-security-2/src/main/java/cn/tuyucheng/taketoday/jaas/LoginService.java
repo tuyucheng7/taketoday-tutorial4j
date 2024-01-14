@@ -6,9 +6,9 @@ import javax.security.auth.login.LoginException;
 
 public class LoginService {
 
-	public Subject login() throws LoginException {
-		LoginContext loginContext = new LoginContext("jaasApplication", new ConsoleCallbackHandler());
-		loginContext.login();
-		return loginContext.getSubject();
-	}
+   public Subject login() throws LoginException {
+      LoginContext loginContext = new LoginContext("jaasApplication", new ConsoleCallbackHandler());
+      loginContext.login();
+      return loginContext.getSubject();
+   }
 }

@@ -15,42 +15,42 @@ import static org.unix4j.unix.cut.CutOption.fields;
 
 public class GrepWithUnix4JIntegrationTest {
 
-	private File fileToGrep;
+   private File fileToGrep;
 
-	@Before
-	public void init() {
-		final String separator = File.separator;
-		final String filePath = String.join(separator, new String[]{"src", "test", "resources", "dictionary.in"});
-		fileToGrep = new File(filePath);
-	}
+   @Before
+   public void init() {
+      final String separator = File.separator;
+      final String filePath = String.join(separator, new String[]{"src", "test", "resources", "dictionary.in"});
+      fileToGrep = new File(filePath);
+   }
 
-	@Test
-	public void whenGrepWithSimpleString_thenCorrect() {
-		int expectedLineCount = 5;
+   @Test
+   public void whenGrepWithSimpleString_thenCorrect() {
+      int expectedLineCount = 5;
 
-		// grep "NINETEEN" dictionary.in
-		List<Line> lines = Unix4j.grep("NINETEEN", fileToGrep).toLineList();
+      // grep "NINETEEN" dictionary.in
+      List<Line> lines = Unix4j.grep("NINETEEN", fileToGrep).toLineList();
 
-		assertEquals(expectedLineCount, lines.size());
-	}
+      assertEquals(expectedLineCount, lines.size());
+   }
 
-	@Test
-	public void whenInverseGrepWithSimpleString_thenCorrect() {
-		int expectedLineCount = 8;
+   @Test
+   public void whenInverseGrepWithSimpleString_thenCorrect() {
+      int expectedLineCount = 8;
 
-		// grep -v "NINETEEN" dictionary.in
-		List<Line> lines = grep(Options.v, "NINETEEN", fileToGrep).toLineList();
+      // grep -v "NINETEEN" dictionary.in
+      List<Line> lines = grep(Options.v, "NINETEEN", fileToGrep).toLineList();
 
-		assertEquals(expectedLineCount, lines.size());
-	}
+      assertEquals(expectedLineCount, lines.size());
+   }
 
-	@Test
-	public void whenGrepWithRegex_thenCorrect() {
-		int expectedLineCount = 5;
+   @Test
+   public void whenGrepWithRegex_thenCorrect() {
+      int expectedLineCount = 5;
 
-		// grep -c ".*?NINE.*?" dictionary.in
-		String patternCount = grep(Options.c, ".*?NINE.*?", fileToGrep).cut(fields, ":", 1).toStringResult();
+      // grep -c ".*?NINE.*?" dictionary.in
+      String patternCount = grep(Options.c, ".*?NINE.*?", fileToGrep).cut(fields, ":", 1).toStringResult();
 
-		assertEquals(expectedLineCount, Integer.parseInt(patternCount));
-	}
+      assertEquals(expectedLineCount, Integer.parseInt(patternCount));
+   }
 }

@@ -19,7 +19,7 @@ public class HashPasswordUnitTest {
 
    @Test
    public void givenRawPassword_whenEncodedWithArgon2_thenMatchesEncodedPassword() {
-      String rawPassword = "Baeldung";
+      String rawPassword = "Tuyucheng";
 
       Argon2PasswordEncoder arg2SpringSecurity = new Argon2PasswordEncoder(16, 32, 1, 60000, 10);
       String hashPassword = arg2SpringSecurity.encode(rawPassword);
@@ -30,7 +30,7 @@ public class HashPasswordUnitTest {
    @Test
    public void givenRawPasswordAndSalt_whenArgon2AlgorithmIsUsed_thenHashIsCorrect() {
       byte[] salt = generateSalt16Byte();
-      String password = "Baeldung";
+      String password = "Tuyucheng";
 
       int iterations = 2;
       int memLimit = 66536;

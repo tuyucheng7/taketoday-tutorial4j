@@ -2,11 +2,11 @@ package cn.tuyucheng.taketoday.exceptions.exceptionhandling;
 
 public class Player {
 
-    public int id;
-    public String name;
+   public int id;
+   public String name;
 
-    public Player(String name) {
-        this.name = name;
-    }
+   public Player(String name) {
+      this.name = name;
+   }
 
 }

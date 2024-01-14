@@ -15,60 +15,60 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ListOfListsUnitTest {
 
-    private List<List<String>> getListOfListsFromCsv() throws URISyntaxException, IOException {
+   private List<List<String>> getListOfListsFromCsv() throws URISyntaxException, IOException {
 
-        List<String> lines = Files.readAllLines(Paths.get(getClass().getResource("/listoflists/example.csv")
-              .toURI()));
-        List<List<String>> listOfLists = new ArrayList<>();
+      List<String> lines = Files.readAllLines(Paths.get(getClass().getResource("/listoflists/example.csv")
+            .toURI()));
+      List<List<String>> listOfLists = new ArrayList<>();
 
-        lines.forEach(line -> {
-            List<String> innerList = new ArrayList<>(Arrays.asList(line.split(", ")));
-            listOfLists.add(innerList);
-        });
-        return listOfLists;
-    }
+      lines.forEach(line -> {
+         List<String> innerList = new ArrayList<>(Arrays.asList(line.split(", ")));
+         listOfLists.add(innerList);
+      });
+      return listOfLists;
+   }
 
-    private void printListOfLists(List<List<String>> listOfLists) {
-        System.out.println("\n           List of Lists           ");
-        System.out.println("-------------------------------------");
-        listOfLists.forEach(innerList -> {
-            String line = String.join(", ", innerList);
-            System.out.println(line);
-        });
-    }
+   private void printListOfLists(List<List<String>> listOfLists) {
+      System.out.println("\n           List of Lists           ");
+      System.out.println("-------------------------------------");
+      listOfLists.forEach(innerList -> {
+         String line = String.join(", ", innerList);
+         System.out.println(line);
+      });
+   }
 
-    @Test
-    void givenCsv_whenInitListOfLists_thenGetExpectedResults() throws URISyntaxException, IOException {
-        List<List<String>> listOfLists = getListOfListsFromCsv();
-        assertThat(listOfLists).hasSize(3);
-        assertThat(listOfLists.stream()
-              .map(List::size)
-              .collect(Collectors.toSet())).hasSize(1)
-              .containsExactly(4);
-        printListOfLists(listOfLists);
-    }
+   @Test
+   void givenCsv_whenInitListOfLists_thenGetExpectedResults() throws URISyntaxException, IOException {
+      List<List<String>> listOfLists = getListOfListsFromCsv();
+      assertThat(listOfLists).hasSize(3);
+      assertThat(listOfLists.stream()
+            .map(List::size)
+            .collect(Collectors.toSet())).hasSize(1)
+            .containsExactly(4);
+      printListOfLists(listOfLists);
+   }
 
-    @Test
-    void givenListOfLists_whenRemoveElementFromInnerLists_thenGetExpectedResults() throws URISyntaxException, IOException {
-        List<List<String>> listOfLists = getListOfListsFromCsv();
+   @Test
+   void givenListOfLists_whenRemoveElementFromInnerLists_thenGetExpectedResults() throws URISyntaxException, IOException {
+      List<List<String>> listOfLists = getListOfListsFromCsv();
 
-        listOfLists.forEach(innerList -> innerList.remove("Delete Me"));
-        assertThat(listOfLists.stream()
-              .map(List::size)
-              .collect(Collectors.toSet())).hasSize(1)
-              .containsExactly(3);
+      listOfLists.forEach(innerList -> innerList.remove("Delete Me"));
+      assertThat(listOfLists.stream()
+            .map(List::size)
+            .collect(Collectors.toSet())).hasSize(1)
+            .containsExactly(3);
 
-        printListOfLists(listOfLists);
-    }
+      printListOfLists(listOfLists);
+   }
 
-    @Test
-    void givenListOfLists_whenAddNewInnerList_thenGetExpectedResults() throws URISyntaxException, IOException {
-        List<List<String>> listOfLists = getListOfListsFromCsv();
-        List<String> newList = new ArrayList<>(Arrays.asList("Slack", "Zoom", "Microsoft Teams", "Telegram"));
-        listOfLists.add(2, newList);
+   @Test
+   void givenListOfLists_whenAddNewInnerList_thenGetExpectedResults() throws URISyntaxException, IOException {
+      List<List<String>> listOfLists = getListOfListsFromCsv();
+      List<String> newList = new ArrayList<>(Arrays.asList("Slack", "Zoom", "Microsoft Teams", "Telegram"));
+      listOfLists.add(2, newList);
 
-        assertThat(listOfLists).hasSize(4);
-        assertThat(listOfLists.get(2)).containsExactly("Slack", "Zoom", "Microsoft Teams", "Telegram");
-        printListOfLists(listOfLists);
-    }
+      assertThat(listOfLists).hasSize(4);
+      assertThat(listOfLists.get(2)).containsExactly("Slack", "Zoom", "Microsoft Teams", "Telegram");
+      printListOfLists(listOfLists);
+   }
 }

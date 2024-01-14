@@ -15,121 +15,121 @@ import static org.junit.Assert.assertEquals;
 
 public class ArrayToStringUnitTest {
 
-    // convert with Java
+   // convert with Java
 
-    @Test
-    public void givenAStringArray_whenConvertBeforeJava8_thenReturnString() {
+   @Test
+   public void givenAStringArray_whenConvertBeforeJava8_thenReturnString() {
 
-        String[] strArray = {"Convert", "Array", "With", "Java"};
-        StringBuilder stringBuilder = new StringBuilder();
+      String[] strArray = {"Convert", "Array", "With", "Java"};
+      StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < strArray.length; i++) {
-            stringBuilder.append(strArray[i]);
-        }
-        String joinedString = stringBuilder.toString();
+      for (int i = 0; i < strArray.length; i++) {
+         stringBuilder.append(strArray[i]);
+      }
+      String joinedString = stringBuilder.toString();
 
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("ConvertArrayWithJava", joinedString);
-    }
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("ConvertArrayWithJava", joinedString);
+   }
 
-    @Test
-    public void givenAString_whenConvertBeforeJava8_thenReturnStringArray() {
+   @Test
+   public void givenAString_whenConvertBeforeJava8_thenReturnStringArray() {
 
-        String input = "lorem ipsum dolor sit amet";
-        String[] strArray = input.split(" ");
+      String input = "lorem ipsum dolor sit amet";
+      String[] strArray = input.split(" ");
 
-        assertThat(strArray, instanceOf(String[].class));
-        assertEquals(5, strArray.length);
+      assertThat(strArray, instanceOf(String[].class));
+      assertEquals(5, strArray.length);
 
-        input = "loremipsum";
-        strArray = input.split("");
-        assertThat(strArray, instanceOf(String[].class));
-        assertEquals(10, strArray.length);
-    }
+      input = "loremipsum";
+      strArray = input.split("");
+      assertThat(strArray, instanceOf(String[].class));
+      assertEquals(10, strArray.length);
+   }
 
-    @Test
-    public void givenAnIntArray_whenConvertBeforeJava8_thenReturnString() {
+   @Test
+   public void givenAnIntArray_whenConvertBeforeJava8_thenReturnString() {
 
-        int[] strArray = {1, 2, 3, 4, 5};
-        StringBuilder stringBuilder = new StringBuilder();
+      int[] strArray = {1, 2, 3, 4, 5};
+      StringBuilder stringBuilder = new StringBuilder();
 
-        for (int i = 0; i < strArray.length; i++) {
-            stringBuilder.append(Integer.valueOf(strArray[i]));
-        }
-        String joinedString = stringBuilder.toString();
+      for (int i = 0; i < strArray.length; i++) {
+         stringBuilder.append(Integer.valueOf(strArray[i]));
+      }
+      String joinedString = stringBuilder.toString();
 
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("12345", joinedString);
-    }
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("12345", joinedString);
+   }
 
-    // convert with Java Stream API
+   // convert with Java Stream API
 
-    @Test
-    public void givenAStringArray_whenConvertWithJavaStream_thenReturnString() {
+   @Test
+   public void givenAStringArray_whenConvertWithJavaStream_thenReturnString() {
 
-        String[] strArray = {"Convert", "With", "Java", "Streams"};
-        String joinedString = Arrays.stream(strArray)
-              .collect(Collectors.joining());
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("ConvertWithJavaStreams", joinedString);
+      String[] strArray = {"Convert", "With", "Java", "Streams"};
+      String joinedString = Arrays.stream(strArray)
+            .collect(Collectors.joining());
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("ConvertWithJavaStreams", joinedString);
 
-        joinedString = Arrays.stream(strArray)
-              .collect(Collectors.joining(","));
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("Convert,With,Java,Streams", joinedString);
-    }
-
-
-    // convert with Apache Commons
-
-    @Test
-    public void givenAStringArray_whenConvertWithApacheCommons_thenReturnString() {
-
-        String[] strArray = {"Convert", "With", "Apache", "Commons"};
-        String joinedString = StringUtils.join(strArray);
-
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("ConvertWithApacheCommons", joinedString);
-    }
-
-    @Test
-    public void givenAString_whenConvertWithApacheCommons_thenReturnStringArray() {
-
-        String input = "lorem ipsum dolor sit amet";
-        String[] strArray = StringUtils.split(input, " ");
-
-        assertThat(strArray, instanceOf(String[].class));
-        assertEquals(5, strArray.length);
-    }
+      joinedString = Arrays.stream(strArray)
+            .collect(Collectors.joining(","));
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("Convert,With,Java,Streams", joinedString);
+   }
 
 
-    // convert with Guava
+   // convert with Apache Commons
 
-    @Test
-    public void givenAStringArray_whenConvertWithGuava_thenReturnString() {
+   @Test
+   public void givenAStringArray_whenConvertWithApacheCommons_thenReturnString() {
 
-        String[] strArray = {"Convert", "With", "Guava", null};
-        String joinedString = Joiner.on("")
-              .skipNulls()
-              .join(strArray);
+      String[] strArray = {"Convert", "With", "Apache", "Commons"};
+      String joinedString = StringUtils.join(strArray);
 
-        assertThat(joinedString, instanceOf(String.class));
-        assertEquals("ConvertWithGuava", joinedString);
-    }
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("ConvertWithApacheCommons", joinedString);
+   }
+
+   @Test
+   public void givenAString_whenConvertWithApacheCommons_thenReturnStringArray() {
+
+      String input = "lorem ipsum dolor sit amet";
+      String[] strArray = StringUtils.split(input, " ");
+
+      assertThat(strArray, instanceOf(String[].class));
+      assertEquals(5, strArray.length);
+   }
 
 
-    @Test
-    public void givenAString_whenConvertWithGuava_thenReturnStringArray() {
+   // convert with Guava
 
-        String input = "lorem ipsum dolor sit amet";
+   @Test
+   public void givenAStringArray_whenConvertWithGuava_thenReturnString() {
 
-        List<String> resultList = Splitter.on(' ')
-              .trimResults()
-              .omitEmptyStrings()
-              .splitToList(input);
-        String[] strArray = resultList.toArray(new String[0]);
+      String[] strArray = {"Convert", "With", "Guava", null};
+      String joinedString = Joiner.on("")
+            .skipNulls()
+            .join(strArray);
 
-        assertThat(strArray, instanceOf(String[].class));
-        assertEquals(5, strArray.length);
-    }
+      assertThat(joinedString, instanceOf(String.class));
+      assertEquals("ConvertWithGuava", joinedString);
+   }
+
+
+   @Test
+   public void givenAString_whenConvertWithGuava_thenReturnStringArray() {
+
+      String input = "lorem ipsum dolor sit amet";
+
+      List<String> resultList = Splitter.on(' ')
+            .trimResults()
+            .omitEmptyStrings()
+            .splitToList(input);
+      String[] strArray = resultList.toArray(new String[0]);
+
+      assertThat(strArray, instanceOf(String[].class));
+      assertEquals(5, strArray.length);
+   }
 }

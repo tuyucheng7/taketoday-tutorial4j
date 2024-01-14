@@ -22,153 +22,153 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class HttpRequestUnitTest {
 
-	@Test
-	public void shouldReturnStatusOKWhenSendGetRequest() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.GET()
-			.build();
+   @Test
+   public void shouldReturnStatusOKWhenSendGetRequest() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .GET()
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	public void shouldUseHttp2WhenWebsiteUsesHttp2() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://stackoverflow.com"))
-			.version(HttpClient.Version.HTTP_2)
-			.GET()
-			.build();
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   public void shouldUseHttp2WhenWebsiteUsesHttp2() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://stackoverflow.com"))
+            .version(HttpClient.Version.HTTP_2)
+            .GET()
+            .build();
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.version(), equalTo(HttpClient.Version.HTTP_2));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.version(), equalTo(HttpClient.Version.HTTP_2));
+   }
 
-	/*
-	 * This test will fail as soon as the given URL returns a HTTP 2 response.
-	 * Therefore, let's leave it ignored.
-	 * */
+   /*
+    * This test will fail as soon as the given URL returns a HTTP 2 response.
+    * Therefore, let's leave it ignored.
+    * */
 
-	@Test
-	@Ignore
-	public void shouldFallbackToHttp1_1WhenWebsiteDoesNotUseHttp2() throws IOException, InterruptedException, URISyntaxException, NoSuchAlgorithmException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.version(HttpClient.Version.HTTP_2)
-			.GET()
-			.build();
+   @Test
+   @Ignore
+   public void shouldFallbackToHttp1_1WhenWebsiteDoesNotUseHttp2() throws IOException, InterruptedException, URISyntaxException, NoSuchAlgorithmException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .version(HttpClient.Version.HTTP_2)
+            .GET()
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.version(), equalTo(HttpClient.Version.HTTP_1_1));
-	}
+      assertThat(response.version(), equalTo(HttpClient.Version.HTTP_1_1));
+   }
 
-	@Test
-	public void shouldReturnStatusOKWhenSendGetRequestWithDummyHeaders() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.headers("key1", "value1", "key2", "value2")
-			.GET()
-			.build();
+   @Test
+   public void shouldReturnStatusOKWhenSendGetRequestWithDummyHeaders() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .headers("key1", "value1", "key2", "value2")
+            .GET()
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	public void shouldReturnStatusOKWhenSendGetRequestTimeoutSet() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.timeout(Duration.of(10, SECONDS))
-			.GET()
-			.build();
+   @Test
+   public void shouldReturnStatusOKWhenSendGetRequestTimeoutSet() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .timeout(Duration.of(10, SECONDS))
+            .GET()
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	public void shouldReturnNoContentWhenPostWithNoBody() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.POST(HttpRequest.BodyPublishers.noBody())
-			.build();
+   @Test
+   public void shouldReturnNoContentWhenPostWithNoBody() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .POST(HttpRequest.BodyPublishers.noBody())
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	public void shouldReturnSampleDataContentWhenPostWithBodyText() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofString("Sample request body"))
-			.build();
+   @Test
+   public void shouldReturnSampleDataContentWhenPostWithBodyText() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofString("Sample request body"))
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.body(), containsString("Sample request body"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.body(), containsString("Sample request body"));
+   }
 
-	@Test
-	public void shouldReturnSampleDataContentWhenPostWithInputStream() throws IOException, InterruptedException, URISyntaxException {
-		byte[] sampleData = "Sample request body".getBytes();
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofInputStream(() -> new ByteArrayInputStream(sampleData)))
-			.build();
+   @Test
+   public void shouldReturnSampleDataContentWhenPostWithInputStream() throws IOException, InterruptedException, URISyntaxException {
+      byte[] sampleData = "Sample request body".getBytes();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofInputStream(() -> new ByteArrayInputStream(sampleData)))
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.body(), containsString("Sample request body"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.body(), containsString("Sample request body"));
+   }
 
-	@Test
-	public void shouldReturnSampleDataContentWhenPostWithByteArrayProcessorStream() throws IOException, InterruptedException, URISyntaxException {
-		byte[] sampleData = "Sample request body".getBytes();
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofByteArray(sampleData))
-			.build();
+   @Test
+   public void shouldReturnSampleDataContentWhenPostWithByteArrayProcessorStream() throws IOException, InterruptedException, URISyntaxException {
+      byte[] sampleData = "Sample request body".getBytes();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofByteArray(sampleData))
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.body(), containsString("Sample request body"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.body(), containsString("Sample request body"));
+   }
 
-	@Test
-	public void shouldReturnSampleDataContentWhenPostWithFileProcessorStream() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofFile(Paths.get("src/test/resources/sample.txt")))
-			.build();
+   @Test
+   public void shouldReturnSampleDataContentWhenPostWithFileProcessorStream() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofFile(Paths.get("src/test/resources/sample.txt")))
+            .build();
 
-		HttpResponse<String> response = HttpClient.newHttpClient()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.body(), containsString("Sample file content"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.body(), containsString("Sample file content"));
+   }
 }

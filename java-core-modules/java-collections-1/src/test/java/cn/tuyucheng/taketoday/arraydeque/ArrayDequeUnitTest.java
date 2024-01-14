@@ -9,43 +9,43 @@ import static org.junit.Assert.assertEquals;
 
 public class ArrayDequeUnitTest {
 
-    @Test
-    public void whenOffer_addsAtLast() {
-        final Deque<String> deque = new ArrayDeque<>();
+   @Test
+   public void whenOffer_addsAtLast() {
+      final Deque<String> deque = new ArrayDeque<>();
 
-        deque.offer("first");
-        deque.offer("second");
+      deque.offer("first");
+      deque.offer("second");
 
-        assertEquals("second", deque.getLast());
-    }
+      assertEquals("second", deque.getLast());
+   }
 
-    @Test
-    public void whenPoll_removesFirst() {
-        final Deque<String> deque = new ArrayDeque<>();
+   @Test
+   public void whenPoll_removesFirst() {
+      final Deque<String> deque = new ArrayDeque<>();
 
-        deque.offer("first");
-        deque.offer("second");
+      deque.offer("first");
+      deque.offer("second");
 
-        assertEquals("first", deque.poll());
-    }
+      assertEquals("first", deque.poll());
+   }
 
-    @Test
-    public void whenPush_addsAtFirst() {
-        final Deque<String> deque = new ArrayDeque<>();
+   @Test
+   public void whenPush_addsAtFirst() {
+      final Deque<String> deque = new ArrayDeque<>();
 
-        deque.push("first");
-        deque.push("second");
+      deque.push("first");
+      deque.push("second");
 
-        assertEquals("second", deque.getFirst());
-    }
+      assertEquals("second", deque.getFirst());
+   }
 
-    @Test
-    public void whenPop_removesLast() {
-        final Deque<String> deque = new ArrayDeque<>();
+   @Test
+   public void whenPop_removesLast() {
+      final Deque<String> deque = new ArrayDeque<>();
 
-        deque.push("first");
-        deque.push("second");
+      deque.push("first");
+      deque.push("second");
 
-        assertEquals("second", deque.pop());
-    }
+      assertEquals("second", deque.pop());
+   }
 }

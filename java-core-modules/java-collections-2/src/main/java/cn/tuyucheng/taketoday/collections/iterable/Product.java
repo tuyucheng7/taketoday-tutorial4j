@@ -2,27 +2,27 @@ package cn.tuyucheng.taketoday.collections.iterable;
 
 class Product {
 
-    private String name;
-    private double price;
+   private String name;
+   private double price;
 
-    public Product(String code, double price) {
-        this.name = code;
-        this.price = price;
-    }
+   public Product(String code, double price) {
+      this.name = code;
+      this.price = price;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public double getPrice() {
-        return price;
-    }
+   public double getPrice() {
+      return price;
+   }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+   public void setPrice(double price) {
+      this.price = price;
+   }
 }

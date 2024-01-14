@@ -13,29 +13,29 @@ import static org.junit.Assert.fail;
 
 public class JavaRMIIntegrationTest {
 
-	private MessengerServiceImpl messengerService;
+   private MessengerServiceImpl messengerService;
 
-	@Before
-	public void init() {
-		try {
-			messengerService = new MessengerServiceImpl();
-			messengerService.createStubAndBind();
-		} catch (RemoteException e) {
-			fail("Exception Occurred: " + e);
-		}
-	}
+   @Before
+   public void init() {
+      try {
+         messengerService = new MessengerServiceImpl();
+         messengerService.createStubAndBind();
+      } catch (RemoteException e) {
+         fail("Exception Occurred: " + e);
+      }
+   }
 
-	@Test
-	public void whenClientSendsMessageToServer_thenServerSendsResponseMessage() {
-		try {
-			Registry registry = LocateRegistry.getRegistry();
-			MessengerService server = (MessengerService) registry.lookup("MessengerService");
-			String responseMessage = server.sendMessage("Client Message");
+   @Test
+   public void whenClientSendsMessageToServer_thenServerSendsResponseMessage() {
+      try {
+         Registry registry = LocateRegistry.getRegistry();
+         MessengerService server = (MessengerService) registry.lookup("MessengerService");
+         String responseMessage = server.sendMessage("Client Message");
 
-			String expectedMessage = "Server Message";
-			assertEquals(responseMessage, expectedMessage);
-		} catch (RemoteException | NotBoundException e) {
-			fail("Exception Occurred: " + e);
-		}
-	}
+         String expectedMessage = "Server Message";
+         assertEquals(responseMessage, expectedMessage);
+      } catch (RemoteException | NotBoundException e) {
+         fail("Exception Occurred: " + e);
+      }
+   }
 }

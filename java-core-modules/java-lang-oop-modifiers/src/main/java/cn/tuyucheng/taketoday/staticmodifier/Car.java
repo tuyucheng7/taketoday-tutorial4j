@@ -6,7 +6,7 @@ package cn.tuyucheng.taketoday.staticmodifier;
  * each and every object whereas static/class variable numberOfCars
  * is unique and is shared across all objects of this class.
  *
- * @author baeldung
+ * @author tuyucheng
  */
 public class Car {
    private String name;

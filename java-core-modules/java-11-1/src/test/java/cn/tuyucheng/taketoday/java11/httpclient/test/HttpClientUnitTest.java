@@ -33,207 +33,207 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class HttpClientUnitTest {
 
-	@Test
-	void shouldReturnSampleDataContentWhenConnectViaSystemProxy() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofString("Sample body"))
-			.build();
+   @Test
+   void shouldReturnSampleDataContentWhenConnectViaSystemProxy() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofString("Sample body"))
+            .build();
 
 
-		HttpResponse<String> response = HttpClient.newBuilder()
-			.proxy(ProxySelector.getDefault())
-			.build()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+      HttpResponse<String> response = HttpClient.newBuilder()
+            .proxy(ProxySelector.getDefault())
+            .build()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.body(), containsString("Sample body"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.body(), containsString("Sample body"));
+   }
 
-	@Test
-	void shouldNotFollowRedirectWhenSetToDefaultNever() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("http://stackoverflow.com"))
-			.version(HttpClient.Version.HTTP_1_1)
-			.GET()
-			.build();
-		HttpResponse<String> response = HttpClient.newBuilder()
-			.build()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void shouldNotFollowRedirectWhenSetToDefaultNever() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("http://stackoverflow.com"))
+            .version(HttpClient.Version.HTTP_1_1)
+            .GET()
+            .build();
+      HttpResponse<String> response = HttpClient.newBuilder()
+            .build()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_MOVED_PERM));
-		assertTrue(response.headers().map().get("location").stream().anyMatch("https://stackoverflow.com/"::equals));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_MOVED_PERM));
+      assertTrue(response.headers().map().get("location").stream().anyMatch("https://stackoverflow.com/"::equals));
+   }
 
-	@Test
-	void shouldFollowRedirectWhenSetToAlways() throws IOException, InterruptedException, URISyntaxException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("http://stackoverflow.com"))
-			.version(HttpClient.Version.HTTP_1_1)
-			.GET()
-			.build();
-		HttpResponse<String> response = HttpClient.newBuilder()
-			.followRedirects(HttpClient.Redirect.ALWAYS)
-			.build()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void shouldFollowRedirectWhenSetToAlways() throws IOException, InterruptedException, URISyntaxException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("http://stackoverflow.com"))
+            .version(HttpClient.Version.HTTP_1_1)
+            .GET()
+            .build();
+      HttpResponse<String> response = HttpClient.newBuilder()
+            .followRedirects(HttpClient.Redirect.ALWAYS)
+            .build()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response.request()
-			.uri()
-			.toString(), equalTo("https://stackoverflow.com/"));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response.request()
+            .uri()
+            .toString(), equalTo("https://stackoverflow.com/"));
+   }
 
-	@Test
-	void shouldReturnOKStatusForAuthenticatedAccess() throws URISyntaxException, IOException, InterruptedException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/basic-auth"))
-			.GET()
-			.build();
-		HttpResponse<String> response = HttpClient.newBuilder()
-			.authenticator(new Authenticator() {
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("postman", "password".toCharArray());
-				}
-			})
-			.build()
-			.send(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void shouldReturnOKStatusForAuthenticatedAccess() throws URISyntaxException, IOException, InterruptedException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/basic-auth"))
+            .GET()
+            .build();
+      HttpResponse<String> response = HttpClient.newBuilder()
+            .authenticator(new Authenticator() {
+               @Override
+               protected PasswordAuthentication getPasswordAuthentication() {
+                  return new PasswordAuthentication("postman", "password".toCharArray());
+               }
+            })
+            .build()
+            .send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	void shouldSendRequestAsync() throws URISyntaxException, InterruptedException, ExecutionException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/post"))
-			.headers("Content-Type", "text/plain;charset=UTF-8")
-			.POST(HttpRequest.BodyPublishers.ofString("Sample body"))
-			.build();
-		CompletableFuture<HttpResponse<String>> response = HttpClient.newBuilder()
-			.build()
-			.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+   @Test
+   void shouldSendRequestAsync() throws URISyntaxException, InterruptedException, ExecutionException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/post"))
+            .headers("Content-Type", "text/plain;charset=UTF-8")
+            .POST(HttpRequest.BodyPublishers.ofString("Sample body"))
+            .build();
+      CompletableFuture<HttpResponse<String>> response = HttpClient.newBuilder()
+            .build()
+            .sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
-		assertThat(response.get()
-			.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response.get()
+            .statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	void shouldUseJustTwoThreadWhenProcessingSendAsyncRequest() throws URISyntaxException, InterruptedException, ExecutionException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.GET()
-			.build();
+   @Test
+   void shouldUseJustTwoThreadWhenProcessingSendAsyncRequest() throws URISyntaxException, InterruptedException, ExecutionException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .GET()
+            .build();
 
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
+      ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-		CompletableFuture<HttpResponse<String>> response1 = HttpClient.newBuilder()
-			.executor(executorService)
-			.build()
-			.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+      CompletableFuture<HttpResponse<String>> response1 = HttpClient.newBuilder()
+            .executor(executorService)
+            .build()
+            .sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
-		CompletableFuture<HttpResponse<String>> response2 = HttpClient.newBuilder()
-			.executor(executorService)
-			.build()
-			.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+      CompletableFuture<HttpResponse<String>> response2 = HttpClient.newBuilder()
+            .executor(executorService)
+            .build()
+            .sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
-		CompletableFuture<HttpResponse<String>> response3 = HttpClient.newBuilder()
-			.executor(executorService)
-			.build()
-			.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+      CompletableFuture<HttpResponse<String>> response3 = HttpClient.newBuilder()
+            .executor(executorService)
+            .build()
+            .sendAsync(request, HttpResponse.BodyHandlers.ofString());
 
-		CompletableFuture.allOf(response1, response2, response3)
-			.join();
+      CompletableFuture.allOf(response1, response2, response3)
+            .join();
 
-		assertThat(response1.get()
-			.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response2.get()
-			.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-		assertThat(response3.get()
-			.statusCode(), equalTo(HttpURLConnection.HTTP_OK));
-	}
+      assertThat(response1.get()
+            .statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response2.get()
+            .statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+      assertThat(response3.get()
+            .statusCode(), equalTo(HttpURLConnection.HTTP_OK));
+   }
 
-	@Test
-	void shouldNotStoreCookieWhenPolicyAcceptNone() throws URISyntaxException, IOException, InterruptedException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.GET()
-			.build();
+   @Test
+   void shouldNotStoreCookieWhenPolicyAcceptNone() throws URISyntaxException, IOException, InterruptedException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .GET()
+            .build();
 
-		HttpClient httpClient = HttpClient.newBuilder()
-			.cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_NONE))
-			.build();
+      HttpClient httpClient = HttpClient.newBuilder()
+            .cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_NONE))
+            .build();
 
-		httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+      httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertTrue(httpClient.cookieHandler()
-			.isPresent());
-	}
+      assertTrue(httpClient.cookieHandler()
+            .isPresent());
+   }
 
-	@Test
-	void shouldStoreCookieWhenPolicyAcceptAll() throws URISyntaxException, IOException, InterruptedException {
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(new URI("https://postman-echo.com/get"))
-			.GET()
-			.build();
+   @Test
+   void shouldStoreCookieWhenPolicyAcceptAll() throws URISyntaxException, IOException, InterruptedException {
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("https://postman-echo.com/get"))
+            .GET()
+            .build();
 
-		HttpClient httpClient = HttpClient.newBuilder()
-			.cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL))
-			.build();
+      HttpClient httpClient = HttpClient.newBuilder()
+            .cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL))
+            .build();
 
-		httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+      httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-		assertTrue(httpClient.cookieHandler()
-			.isPresent());
-	}
+      assertTrue(httpClient.cookieHandler()
+            .isPresent());
+   }
 
-	@Test
-	void shouldProcessMultipleRequestViaStream() throws URISyntaxException, ExecutionException, InterruptedException {
-		List<URI> targets = Arrays.asList(new URI("https://postman-echo.com/get?foo1=bar1"), new URI("https://postman-echo.com/get?foo2=bar2"));
+   @Test
+   void shouldProcessMultipleRequestViaStream() throws URISyntaxException, ExecutionException, InterruptedException {
+      List<URI> targets = Arrays.asList(new URI("https://postman-echo.com/get?foo1=bar1"), new URI("https://postman-echo.com/get?foo2=bar2"));
 
-		HttpClient client = HttpClient.newHttpClient();
+      HttpClient client = HttpClient.newHttpClient();
 
-		List<CompletableFuture<String>> futures = targets.stream()
-			.map(target -> client.sendAsync(HttpRequest.newBuilder(target)
-					.GET()
-					.build(), HttpResponse.BodyHandlers.ofString())
-				.thenApply(HttpResponse::body))
-			.collect(Collectors.toList());
+      List<CompletableFuture<String>> futures = targets.stream()
+            .map(target -> client.sendAsync(HttpRequest.newBuilder(target)
+                        .GET()
+                        .build(), HttpResponse.BodyHandlers.ofString())
+                  .thenApply(HttpResponse::body))
+            .collect(Collectors.toList());
 
-		CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
-			.join();
+      CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
+            .join();
 
-		if (futures.get(0)
-			.get()
-			.contains("foo1")) {
-			assertThat(futures.get(0)
-				.get(), containsString("bar1"));
-			assertThat(futures.get(1)
-				.get(), containsString("bar2"));
-		} else {
-			assertThat(futures.get(1)
-				.get(), containsString("bar2"));
-			assertThat(futures.get(1)
-				.get(), containsString("bar1"));
-		}
-	}
+      if (futures.get(0)
+            .get()
+            .contains("foo1")) {
+         assertThat(futures.get(0)
+               .get(), containsString("bar1"));
+         assertThat(futures.get(1)
+               .get(), containsString("bar2"));
+      } else {
+         assertThat(futures.get(1)
+               .get(), containsString("bar2"));
+         assertThat(futures.get(1)
+               .get(), containsString("bar1"));
+      }
+   }
 
-	@Test
-	void completeExceptionallyExample() {
-		CompletableFuture<String> cf = CompletableFuture.completedFuture("message").thenApplyAsync(String::toUpperCase,
-			CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
-		CompletableFuture<String> exceptionHandler = cf.handle((s, th) -> {
-			return (th != null) ? "message upon cancel" : "";
-		});
-		cf.completeExceptionally(new RuntimeException("completed exceptionally"));
-		assertTrue(cf.isCompletedExceptionally(), "Was not completed exceptionally");
-		try {
-			cf.join();
-			fail("Should have thrown an exception");
-		} catch (CompletionException ex) { // just for testing
-			assertEquals("completed exceptionally", ex.getCause().getMessage());
-		}
+   @Test
+   void completeExceptionallyExample() {
+      CompletableFuture<String> cf = CompletableFuture.completedFuture("message").thenApplyAsync(String::toUpperCase,
+            CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
+      CompletableFuture<String> exceptionHandler = cf.handle((s, th) -> {
+         return (th != null) ? "message upon cancel" : "";
+      });
+      cf.completeExceptionally(new RuntimeException("completed exceptionally"));
+      assertTrue(cf.isCompletedExceptionally(), "Was not completed exceptionally");
+      try {
+         cf.join();
+         fail("Should have thrown an exception");
+      } catch (CompletionException ex) { // just for testing
+         assertEquals("completed exceptionally", ex.getCause().getMessage());
+      }
 
-		assertEquals("message upon cancel", exceptionHandler.join());
-	}
+      assertEquals("message upon cancel", exceptionHandler.join());
+   }
 }

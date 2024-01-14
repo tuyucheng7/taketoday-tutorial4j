@@ -6,12 +6,12 @@ import java.security.PrivilegedAction;
 
 public class JaasAuthorization {
 
-	public static void main(String[] args) throws LoginException {
+   public static void main(String[] args) throws LoginException {
 
-		LoginService loginService = new LoginService();
-		Subject subject = loginService.login();
+      LoginService loginService = new LoginService();
+      Subject subject = loginService.login();
 
-		PrivilegedAction privilegedAction = new ResourceAction();
-		Subject.doAsPrivileged(subject, privilegedAction, null);
-	}
+      PrivilegedAction privilegedAction = new ResourceAction();
+      Subject.doAsPrivileged(subject, privilegedAction, null);
+   }
 }

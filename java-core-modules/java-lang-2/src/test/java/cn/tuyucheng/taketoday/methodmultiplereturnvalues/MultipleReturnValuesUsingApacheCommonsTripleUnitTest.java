@@ -12,24 +12,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MultipleReturnValuesUsingApacheCommonsTripleUnitTest {
 
-	@Test
-	void whenUsingTriple_thenMultipleFieldsAreReturned() {
+   @Test
+   void whenUsingTriple_thenMultipleFieldsAreReturned() {
 
-		List<Coordinates> coordinatesList = new ArrayList<>();
-		coordinatesList.add(new Coordinates(1, 1, "home"));
-		coordinatesList.add(new Coordinates(2, 2, "school"));
-		coordinatesList.add(new Coordinates(3, 3, "hotel"));
+      List<Coordinates> coordinatesList = new ArrayList<>();
+      coordinatesList.add(new Coordinates(1, 1, "home"));
+      coordinatesList.add(new Coordinates(2, 2, "school"));
+      coordinatesList.add(new Coordinates(3, 3, "hotel"));
 
-		Coordinates target = new Coordinates(5, 5, "gym");
+      Coordinates target = new Coordinates(5, 5, "gym");
 
-		ImmutableTriple<Double, Double, Double> minAvgMax = MultipleReturnValuesUsingApacheCommonsTriple.getMinAvgMaxTriple(coordinatesList, target);
+      ImmutableTriple<Double, Double, Double> minAvgMax = MultipleReturnValuesUsingApacheCommonsTriple.getMinAvgMaxTriple(coordinatesList, target);
 
-		assertEquals(2.83, scaleDouble(minAvgMax.left));   // min
-		assertEquals(4.24, scaleDouble(minAvgMax.middle)); // avg
-		assertEquals(5.66, scaleDouble(minAvgMax.right));  // max
-	}
+      assertEquals(2.83, scaleDouble(minAvgMax.left));   // min
+      assertEquals(4.24, scaleDouble(minAvgMax.middle)); // avg
+      assertEquals(5.66, scaleDouble(minAvgMax.right));  // max
+   }
 
-	private double scaleDouble(Double d) {
-		return BigDecimal.valueOf(d).setScale(2, RoundingMode.HALF_UP).doubleValue();
-	}
+   private double scaleDouble(Double d) {
+      return BigDecimal.valueOf(d).setScale(2, RoundingMode.HALF_UP).doubleValue();
+   }
 }

@@ -8,9 +8,9 @@ import org.junit.Test;
 
 public class AudioMediaUnitTest {
 
-	@Test
-	public void givenAudioMediaInstance_whenCheckedType_thenIsInstanceOfMedia() {
-		AudioMedia audioMedia = new AudioMedia();
-		Assert.assertThat(audioMedia, CoreMatchers.<AudioMedia>instanceOf(Media.class));
-	}
+   @Test
+   public void givenAudioMediaInstance_whenCheckedType_thenIsInstanceOfMedia() {
+      AudioMedia audioMedia = new AudioMedia();
+      Assert.assertThat(audioMedia, CoreMatchers.<AudioMedia>instanceOf(Media.class));
+   }
 }

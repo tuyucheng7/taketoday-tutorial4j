@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
  */
 public class UsersListConverter extends AbstractConverter<List<User>, List<String>> {
 
-    @Override
-    protected List<String> convert(List<User> users) {
+   @Override
+   protected List<String> convert(List<User> users) {
 
-        return users
-              .stream()
-              .map(User::getUsername)
-              .collect(Collectors.toList());
-    }
+      return users
+            .stream()
+            .map(User::getUsername)
+            .collect(Collectors.toList());
+   }
 }

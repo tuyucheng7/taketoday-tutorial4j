@@ -12,40 +12,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChecksumUtilsUnitTest {
 
-	byte[] arr;
+   byte[] arr;
 
-	@Before
-	public void setUp() {
-		arr = new byte[]{0, 10, 21, 20, 35, 40, 120, 56, 72, 22};
-	}
+   @Before
+   public void setUp() {
+      arr = new byte[]{0, 10, 21, 20, 35, 40, 120, 56, 72, 22};
+   }
 
-	@Test
-	public void givenByteArray_whenChecksumCreated_checkCorrect() {
+   @Test
+   public void givenByteArray_whenChecksumCreated_checkCorrect() {
 
-		long checksum = ChecksumUtils.getChecksumCRC32(arr);
+      long checksum = ChecksumUtils.getChecksumCRC32(arr);
 
-		assertEquals(3915397664L, checksum);
-	}
+      assertEquals(3915397664L, checksum);
+   }
 
-	@Test
-	public void givenTwoDifferentStrings_whenChecksumCreated_checkCollision() {
+   @Test
+   public void givenTwoDifferentStrings_whenChecksumCreated_checkCollision() {
 
-		String plumless = "plumless";
-		String buckeroo = "buckeroo";
+      String plumless = "plumless";
+      String buckeroo = "buckeroo";
 
-		long plumlessChecksum = ChecksumUtils.getChecksumCRC32(plumless.getBytes());
-		long buckerooChecksum = ChecksumUtils.getChecksumCRC32(buckeroo.getBytes());
+      long plumlessChecksum = ChecksumUtils.getChecksumCRC32(plumless.getBytes());
+      long buckerooChecksum = ChecksumUtils.getChecksumCRC32(buckeroo.getBytes());
 
-		assertEquals(plumlessChecksum, buckerooChecksum);
-	}
+      assertEquals(plumlessChecksum, buckerooChecksum);
+   }
 
-	@Test
-	public void givenInputString_whenChecksumCreated_checkCorrect() throws IOException {
+   @Test
+   public void givenInputString_whenChecksumCreated_checkCorrect() throws IOException {
 
-		InputStream inputStream = new ByteArrayInputStream(arr);
-		long checksum = ChecksumUtils.getChecksumCRC32(inputStream, 10);
+      InputStream inputStream = new ByteArrayInputStream(arr);
+      long checksum = ChecksumUtils.getChecksumCRC32(inputStream, 10);
 
-		assertEquals(3915397664L, checksum);
+      assertEquals(3915397664L, checksum);
 
-	}
+   }
 }

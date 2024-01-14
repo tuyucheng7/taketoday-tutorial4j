@@ -18,36 +18,36 @@ import java.util.List;
 @BenchmarkMode(Mode.AverageTime)
 public class JMHStreamReduceBenchMark {
 
-	private final List<User> userList = createUsers();
+   private final List<User> userList = createUsers();
 
-	public static void main(String[] args) throws RunnerException {
+   public static void main(String[] args) throws RunnerException {
 
-		Options options = new OptionsBuilder()
-			.include(JMHStreamReduceBenchMark.class.getSimpleName()).threads(1)
-			.forks(1).shouldFailOnError(true).shouldDoGC(true)
-			.jvmArgs("-server").build();
-		new Runner(options).run();
-	}
+      Options options = new OptionsBuilder()
+            .include(JMHStreamReduceBenchMark.class.getSimpleName()).threads(1)
+            .forks(1).shouldFailOnError(true).shouldDoGC(true)
+            .jvmArgs("-server").build();
+      new Runner(options).run();
+   }
 
-	private List<User> createUsers() {
-		List<User> users = new ArrayList<>();
-		for (int i = 0; i <= 1000000; i++) {
-			users.add(new User("John" + i, i));
-		}
-		return users;
-	}
+   private List<User> createUsers() {
+      List<User> users = new ArrayList<>();
+      for (int i = 0; i <= 1000000; i++) {
+         users.add(new User("John" + i, i));
+      }
+      return users;
+   }
 
-	@Benchmark
-	public Integer executeReduceOnParallelizedStream() {
-		return this.userList
-			.parallelStream()
-			.reduce(0, (partialAgeResult, user) -> partialAgeResult + user.getAge(), Integer::sum);
-	}
+   @Benchmark
+   public Integer executeReduceOnParallelizedStream() {
+      return this.userList
+            .parallelStream()
+            .reduce(0, (partialAgeResult, user) -> partialAgeResult + user.getAge(), Integer::sum);
+   }
 
-	@Benchmark
-	public Integer executeReduceOnSequentialStream() {
-		return this.userList
-			.stream()
-			.reduce(0, (partialAgeResult, user) -> partialAgeResult + user.getAge(), Integer::sum);
-	}
+   @Benchmark
+   public Integer executeReduceOnSequentialStream() {
+      return this.userList
+            .stream()
+            .reduce(0, (partialAgeResult, user) -> partialAgeResult + user.getAge(), Integer::sum);
+   }
 }

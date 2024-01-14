@@ -17,32 +17,32 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GuavaThreadPoolIntegrationTest {
 
-	@Test
-	void whenExecutingTaskWithDirectExecutor_thenTheTaskIsExecutedInTheCurrentThread() {
-		Executor executor = MoreExecutors.directExecutor();
-		AtomicBoolean executed = new AtomicBoolean();
+   @Test
+   void whenExecutingTaskWithDirectExecutor_thenTheTaskIsExecutedInTheCurrentThread() {
+      Executor executor = MoreExecutors.directExecutor();
+      AtomicBoolean executed = new AtomicBoolean();
 
-		executor.execute(() -> {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			executed.set(true);
-		});
+      executor.execute(() -> {
+         try {
+            Thread.sleep(500);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         executed.set(true);
+      });
 
-		assertTrue(executed.get());
-	}
+      assertTrue(executed.get());
+   }
 
-	@Test
-	void whenJoiningFuturesWithAllAsList_thenCombinedFutureCompletesAfterAllFuturesComplete() throws ExecutionException, InterruptedException {
-		ExecutorService executorService = Executors.newCachedThreadPool();
-		ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(executorService);
+   @Test
+   void whenJoiningFuturesWithAllAsList_thenCombinedFutureCompletesAfterAllFuturesComplete() throws ExecutionException, InterruptedException {
+      ExecutorService executorService = Executors.newCachedThreadPool();
+      ListeningExecutorService listeningExecutorService = MoreExecutors.listeningDecorator(executorService);
 
-		ListenableFuture<String> future1 = listeningExecutorService.submit(() -> "Hello");
-		ListenableFuture<String> future2 = listeningExecutorService.submit(() -> "World");
+      ListenableFuture<String> future1 = listeningExecutorService.submit(() -> "Hello");
+      ListenableFuture<String> future2 = listeningExecutorService.submit(() -> "World");
 
-		String greeting = String.join(" ", Futures.allAsList(future1, future2).get());
-		assertEquals("Hello World", greeting);
-	}
+      String greeting = String.join(" ", Futures.allAsList(future1, future2).get());
+      assertEquals("Hello World", greeting);
+   }
 }

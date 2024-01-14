@@ -2,24 +2,24 @@ package cn.tuyucheng.taketoday.reduce.entities;
 
 public class User {
 
-	private final String name;
-	private final int age;
+   private final String name;
+   private final int age;
 
-	public User(String name, int age) {
-		this.name = name;
-		this.age = age;
-	}
+   public User(String name, int age) {
+      this.name = name;
+      this.age = age;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public int getAge() {
-		return age;
-	}
+   public int getAge() {
+      return age;
+   }
 
-	@Override
-	public String toString() {
-		return "User{" + "name=" + name + ", age=" + age + '}';
-	}
+   @Override
+   public String toString() {
+      return "User{" + "name=" + name + ", age=" + age + '}';
+   }
 }

@@ -2,19 +2,19 @@ package cn.tuyucheng.taketoday.exceptions.nosuchfielderror;
 
 public class FieldErrorExample {
 
-    public static void main(String... args) {
+   public static void main(String... args) {
 
-        fetchAndPrint();
-    }
+      fetchAndPrint();
+   }
 
-    public static String getDependentMessage() {
+   public static String getDependentMessage() {
 
-        return Dependency.message;
-    }
+      return Dependency.message;
+   }
 
-    public static void fetchAndPrint() {
+   public static void fetchAndPrint() {
 
-        System.out.println(getDependentMessage());
-    }
+      System.out.println(getDependentMessage());
+   }
 
 }

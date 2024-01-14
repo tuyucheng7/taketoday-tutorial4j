@@ -11,36 +11,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ReverseArrayListUnitTest {
 
-    private static final List<Integer> EXPECTED = new ArrayList<>(Arrays.asList(7, 6, 5, 4, 3, 2, 1));
+   private static final List<Integer> EXPECTED = new ArrayList<>(Arrays.asList(7, 6, 5, 4, 3, 2, 1));
 
-    @Test
-    void givenArrayList_whenCallReverseMethod_thenListReversedInPlace() {
-        List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-        Collections.reverse(aList);
-        assertThat(aList).isEqualTo(EXPECTED);
-    }
+   @Test
+   void givenArrayList_whenCallReverseMethod_thenListReversedInPlace() {
+      List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+      Collections.reverse(aList);
+      assertThat(aList).isEqualTo(EXPECTED);
+   }
 
-    @Test
-    void givenArrayList_whenCallReverseMethod_thenListReversedAsaNewList() {
-        List<Integer> originalList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-        List<Integer> aNewList = new ArrayList<>(originalList);
-        Collections.reverse(aNewList);
+   @Test
+   void givenArrayList_whenCallReverseMethod_thenListReversedAsaNewList() {
+      List<Integer> originalList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+      List<Integer> aNewList = new ArrayList<>(originalList);
+      Collections.reverse(aNewList);
 
-        assertThat(aNewList).isNotEqualTo(originalList)
-              .isEqualTo(EXPECTED);
-    }
+      assertThat(aNewList).isNotEqualTo(originalList)
+            .isEqualTo(EXPECTED);
+   }
 
-    @Test
-    void givenArrayList_whenCallReverseWithRecur_thenListReversedInPlace() {
-        List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-        ReverseArrayList.reverseWithRecursion(aList);
-        assertThat(aList).isEqualTo(EXPECTED);
-    }
+   @Test
+   void givenArrayList_whenCallReverseWithRecur_thenListReversedInPlace() {
+      List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+      ReverseArrayList.reverseWithRecursion(aList);
+      assertThat(aList).isEqualTo(EXPECTED);
+   }
 
-    @Test
-    void givenArrayList_whenCallReverseWithLoop_thenListReversedInPlace() {
-        List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-        ReverseArrayList.reverseWithLoop(aList);
-        assertThat(aList).isEqualTo(EXPECTED);
-    }
+   @Test
+   void givenArrayList_whenCallReverseWithLoop_thenListReversedInPlace() {
+      List<Integer> aList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
+      ReverseArrayList.reverseWithLoop(aList);
+      assertThat(aList).isEqualTo(EXPECTED);
+   }
 }

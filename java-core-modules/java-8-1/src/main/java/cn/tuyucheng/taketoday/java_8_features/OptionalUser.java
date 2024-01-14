@@ -4,13 +4,13 @@ import java.util.Optional;
 
 public class OptionalUser {
 
-	private OptionalAddress address;
+   private OptionalAddress address;
 
-	public Optional<OptionalAddress> getAddress() {
-		return Optional.of(address);
-	}
+   public Optional<OptionalAddress> getAddress() {
+      return Optional.of(address);
+   }
 
-	public void setAddress(OptionalAddress address) {
-		this.address = address;
-	}
+   public void setAddress(OptionalAddress address) {
+      this.address = address;
+   }
 }

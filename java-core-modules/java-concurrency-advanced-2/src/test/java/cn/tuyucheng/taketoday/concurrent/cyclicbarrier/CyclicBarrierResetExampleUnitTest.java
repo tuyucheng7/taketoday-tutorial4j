@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CyclicBarrierResetExampleUnitTest {
 
-	@Test
-	void whenCyclicBarrier_reset() {
-		CyclicBarrierResetExample ex = new CyclicBarrierResetExample(7, 20);
-		int lineCount = ex.countWaits();
-		assertTrue(lineCount > 7);
-	}
+   @Test
+   void whenCyclicBarrier_reset() {
+      CyclicBarrierResetExample ex = new CyclicBarrierResetExample(7, 20);
+      int lineCount = ex.countWaits();
+      assertTrue(lineCount > 7);
+   }
 }

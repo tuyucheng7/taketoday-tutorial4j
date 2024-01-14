@@ -1,3 +1,3 @@
 module jlinkModule {
-	requires java.logging;
+   requires java.logging;
 }

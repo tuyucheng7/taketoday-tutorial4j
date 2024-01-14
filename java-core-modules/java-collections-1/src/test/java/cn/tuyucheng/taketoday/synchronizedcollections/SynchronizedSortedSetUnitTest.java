@@ -11,22 +11,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SynchronizedSortedSetUnitTest {
 
-    @Test
-    public void givenSynchronizedSortedSet_whenTwoThreadsAddElements_thenCorrectSortedSetSize() throws InterruptedException {
-        SortedSet<Integer> syncSortedSet = Collections.synchronizedSortedSet(new TreeSet<>());
+   @Test
+   public void givenSynchronizedSortedSet_whenTwoThreadsAddElements_thenCorrectSortedSetSize() throws InterruptedException {
+      SortedSet<Integer> syncSortedSet = Collections.synchronizedSortedSet(new TreeSet<>());
 
-        Runnable sortedSetOperations = () -> {
-            syncSortedSet.addAll(Arrays.asList(1, 2, 3, 4, 5, 6));
-        };
-        sortedSetOperations.run();
-        sortedSetOperations.run();
-        Thread thread1 = new Thread(sortedSetOperations);
-        Thread thread2 = new Thread(sortedSetOperations);
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
+      Runnable sortedSetOperations = () -> {
+         syncSortedSet.addAll(Arrays.asList(1, 2, 3, 4, 5, 6));
+      };
+      sortedSetOperations.run();
+      sortedSetOperations.run();
+      Thread thread1 = new Thread(sortedSetOperations);
+      Thread thread2 = new Thread(sortedSetOperations);
+      thread1.start();
+      thread2.start();
+      thread1.join();
+      thread2.join();
 
-        assertThat(syncSortedSet).hasSize(6);
-    }
+      assertThat(syncSortedSet).hasSize(6);
+   }
 }

@@ -17,91 +17,91 @@ import com.google.gson.reflect.TypeToken;
 
 public class TodoAppClient {
 
-	ObjectMapper objectMapper = new ObjectMapper();
+   ObjectMapper objectMapper = new ObjectMapper();
 
-	Gson gson = new GsonBuilder().create();
+   Gson gson = new GsonBuilder().create();
 
-	public String sampleApiRequest() throws Exception {
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
-			.build();
+   public String sampleApiRequest() throws Exception {
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
+            .build();
 
-		HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+      HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 
-		return response.body();
+      return response.body();
 
-	}
+   }
 
-	public Todo syncGson() throws Exception {
-		String response = sampleApiRequest();
+   public Todo syncGson() throws Exception {
+      String response = sampleApiRequest();
 
-		List<Todo> todo = gson.fromJson(response, new TypeToken<List<Todo>>() {
-		}.getType());
+      List<Todo> todo = gson.fromJson(response, new TypeToken<List<Todo>>() {
+      }.getType());
 
-		return todo.get(1);
+      return todo.get(1);
 
-	}
+   }
 
-	public Todo syncJackson() throws Exception {
-		String response = sampleApiRequest();
+   public Todo syncJackson() throws Exception {
+      String response = sampleApiRequest();
 
-		Todo[] todo = objectMapper.readValue(response, Todo[].class);
+      Todo[] todo = objectMapper.readValue(response, Todo[].class);
 
-		return todo[1];
+      return todo[1];
 
-	}
+   }
 
-	public Todo asyncJackson() throws Exception {
+   public Todo asyncJackson() throws Exception {
 
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
-			.build();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
+            .build();
 
-		TodoAppClient todoAppClient = new TodoAppClient();
+      TodoAppClient todoAppClient = new TodoAppClient();
 
-		List<Todo> todo = HttpClient.newHttpClient()
-			.sendAsync(request, BodyHandlers.ofString())
-			.thenApply(HttpResponse::body)
-			.thenApply(todoAppClient::readValueJackson)
-			.get();
+      List<Todo> todo = HttpClient.newHttpClient()
+            .sendAsync(request, BodyHandlers.ofString())
+            .thenApply(HttpResponse::body)
+            .thenApply(todoAppClient::readValueJackson)
+            .get();
 
-		return todo.get(1);
+      return todo.get(1);
 
-	}
+   }
 
-	public Todo asyncGson() throws Exception {
+   public Todo asyncGson() throws Exception {
 
-		HttpRequest request = HttpRequest.newBuilder()
-			.uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
-			.build();
-		TodoAppClient todoAppClient = new TodoAppClient();
+      HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://jsonplaceholder.typicode.com/todos"))
+            .build();
+      TodoAppClient todoAppClient = new TodoAppClient();
 
-		List<Todo> todo = HttpClient.newHttpClient()
-			.sendAsync(request, BodyHandlers.ofString())
-			.thenApply(HttpResponse::body)
-			.thenApply(todoAppClient::readValueGson)
-			.get();
+      List<Todo> todo = HttpClient.newHttpClient()
+            .sendAsync(request, BodyHandlers.ofString())
+            .thenApply(HttpResponse::body)
+            .thenApply(todoAppClient::readValueGson)
+            .get();
 
-		return todo.get(1);
+      return todo.get(1);
 
-	}
+   }
 
-	List<Todo> readValueJackson(String content) {
+   List<Todo> readValueJackson(String content) {
 
-		try {
-			return objectMapper.readValue(content, new TypeReference<List<Todo>>() {
-			});
-		} catch (IOException ioe) {
-			throw new CompletionException(ioe);
-		}
-	}
+      try {
+         return objectMapper.readValue(content, new TypeReference<List<Todo>>() {
+         });
+      } catch (IOException ioe) {
+         throw new CompletionException(ioe);
+      }
+   }
 
-	List<Todo> readValueGson(String content) {
+   List<Todo> readValueGson(String content) {
 
-		return gson.fromJson(content, new TypeToken<List<Todo>>() {
-		}.getType());
+      return gson.fromJson(content, new TypeToken<List<Todo>>() {
+      }.getType());
 
-	}
+   }
 
 }

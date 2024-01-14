@@ -6,20 +6,20 @@ import org.openjdk.jol.vm.VM;
 
 public class BooleanSizeUnitTest {
 
-	@Test
-	public void printingTheVMDetails() {
-		System.out.println(VM.current().details());
-	}
+   @Test
+   public void printingTheVMDetails() {
+      System.out.println(VM.current().details());
+   }
 
-	@Test
-	public void printingTheBoolWrapper() {
-		System.out.println(ClassLayout.parseClass(BooleanWrapper.class).toPrintable());
-	}
+   @Test
+   public void printingTheBoolWrapper() {
+      System.out.println(ClassLayout.parseClass(BooleanWrapper.class).toPrintable());
+   }
 
-	@Test
-	public void printingTheBoolArray() {
-		boolean[] value = new boolean[3];
+   @Test
+   public void printingTheBoolArray() {
+      boolean[] value = new boolean[3];
 
-		System.out.println(ClassLayout.parseInstance(value).toPrintable());
-	}
+      System.out.println(ClassLayout.parseInstance(value).toPrintable());
+   }
 }

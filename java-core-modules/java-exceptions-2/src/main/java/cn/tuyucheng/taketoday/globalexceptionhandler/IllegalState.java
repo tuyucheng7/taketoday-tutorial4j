@@ -9,24 +9,24 @@ import java.util.List;
 
 public class IllegalState {
 
-    private static Logger LOGGER = LoggerFactory.getLogger(IllegalState.class);
+   private static Logger LOGGER = LoggerFactory.getLogger(IllegalState.class);
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
 
-        List<Integer> intList = new ArrayList<>();
+      List<Integer> intList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            intList.add(i);
-        }
+      for (int i = 0; i < 10; i++) {
+         intList.add(i);
+      }
 
-        Iterator<Integer> intListIterator = intList.iterator(); // Initialized with index at -1
+      Iterator<Integer> intListIterator = intList.iterator(); // Initialized with index at -1
 
-        try {
-            intListIterator.remove(); // IllegalStateException
-        } catch (IllegalStateException e) {
-            LOGGER.error("IllegalStateException caught!");
-        }
+      try {
+         intListIterator.remove(); // IllegalStateException
+      } catch (IllegalStateException e) {
+         LOGGER.error("IllegalStateException caught!");
+      }
 
-    }
+   }
 
 }

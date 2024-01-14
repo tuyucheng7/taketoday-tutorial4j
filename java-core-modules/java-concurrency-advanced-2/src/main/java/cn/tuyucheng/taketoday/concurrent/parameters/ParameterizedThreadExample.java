@@ -5,21 +5,21 @@ import java.util.stream.IntStream;
 
 public class ParameterizedThreadExample {
 
-	public static void parameterisedThreadAnonymousClass() {
-		final String parameter = "123";
-		Thread parameterizedThread = new Thread(() ->
-				System.out.println(Thread.currentThread().getName() + " : " + parameter));
+   public static void parameterisedThreadAnonymousClass() {
+      final String parameter = "123";
+      Thread parameterizedThread = new Thread(() ->
+            System.out.println(Thread.currentThread().getName() + " : " + parameter));
 
-		parameterizedThread.start();
-	}
+      parameterizedThread.start();
+   }
 
-	public static Callable<Integer> sumCalculator(int... numbers) {
-		return () -> numbers != null ? IntStream.of(numbers).sum() : 0;
-	}
+   public static Callable<Integer> sumCalculator(int... numbers) {
+      return () -> numbers != null ? IntStream.of(numbers).sum() : 0;
+   }
 
-	public static Callable<Double> averageCalculator(int... numbers) {
-		return () -> numbers != null ? IntStream.of(numbers)
-				.average()
-				.orElse(0d) : 0d;
-	}
+   public static Callable<Double> averageCalculator(int... numbers) {
+      return () -> numbers != null ? IntStream.of(numbers)
+            .average()
+            .orElse(0d) : 0d;
+   }
 }

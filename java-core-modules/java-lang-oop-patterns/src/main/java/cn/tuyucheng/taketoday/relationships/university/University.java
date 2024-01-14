@@ -4,6 +4,6 @@ import java.util.List;
 
 public class University {
 
-	private List<Department> department;
+   private List<Department> department;
 
 }

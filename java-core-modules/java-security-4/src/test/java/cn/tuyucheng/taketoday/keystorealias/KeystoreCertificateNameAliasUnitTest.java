@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class KeystoreCertificateNameAliasUnitTest {
    private static final String KEYSTORE_FILE = "my-keystore.jks";
    private static final String KEYSTORE_PWD = "storepw@1";
-   private static final String KEYSTORE_ALIAS = "baeldung";
+   private static final String KEYSTORE_ALIAS = "tuyucheng";
 
    private KeyStore readKeyStore() throws Exception {
       KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());

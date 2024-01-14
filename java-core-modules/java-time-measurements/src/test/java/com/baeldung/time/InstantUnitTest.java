@@ -1,4 +1,4 @@
-package com.baeldung.time;
+package cn.tuyucheng.taketoday.time;
 
 import org.junit.Test;
 import org.mockito.MockedStatic;
@@ -12,26 +12,26 @@ import static org.mockito.Mockito.mockStatic;
 
 public class InstantUnitTest {
 
-    @Test
-    public void givenInstantMock_whenNow_thenGetFixedInstant() {
-        String instantExpected = "2014-12-22T10:15:30Z";
-        Clock clock = Clock.fixed(Instant.parse(instantExpected), ZoneId.of("UTC"));
-        Instant instant = Instant.now(clock);
+   @Test
+   public void givenInstantMock_whenNow_thenGetFixedInstant() {
+      String instantExpected = "2014-12-22T10:15:30Z";
+      Clock clock = Clock.fixed(Instant.parse(instantExpected), ZoneId.of("UTC"));
+      Instant instant = Instant.now(clock);
 
-        try (MockedStatic<Instant> mockedStatic = mockStatic(Instant.class)) {
-            mockedStatic.when(Instant::now).thenReturn(instant);
-            Instant now = Instant.now();
-            assertThat(now.toString()).isEqualTo(instantExpected);
-        }
-    }
+      try (MockedStatic<Instant> mockedStatic = mockStatic(Instant.class)) {
+         mockedStatic.when(Instant::now).thenReturn(instant);
+         Instant now = Instant.now();
+         assertThat(now.toString()).isEqualTo(instantExpected);
+      }
+   }
 
-    @Test
-    public void givenFixedClock_whenNow_thenGetFixedInstant() {
-        String instantExpected = "2014-12-22T10:15:30Z";
-        Clock clock = Clock.fixed(Instant.parse(instantExpected), ZoneId.of("UTC"));
+   @Test
+   public void givenFixedClock_whenNow_thenGetFixedInstant() {
+      String instantExpected = "2014-12-22T10:15:30Z";
+      Clock clock = Clock.fixed(Instant.parse(instantExpected), ZoneId.of("UTC"));
 
-        Instant instant = Instant.now(clock);
+      Instant instant = Instant.now(clock);
 
-        assertThat(instant.toString()).isEqualTo(instantExpected);
-    }
+      assertThat(instant.toString()).isEqualTo(instantExpected);
+   }
 }

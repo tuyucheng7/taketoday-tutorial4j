@@ -9,8 +9,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class MathUtilsUnitTest {
 
-	@Test
-	void whenCalledFactorialMethod_thenCorrect() {
-		assertThat(MathUtils.factorial(2)).isEqualTo(new BigInteger("2"));
-	}
+   @Test
+   void whenCalledFactorialMethod_thenCorrect() {
+      assertThat(MathUtils.factorial(2)).isEqualTo(new BigInteger("2"));
+   }
 }

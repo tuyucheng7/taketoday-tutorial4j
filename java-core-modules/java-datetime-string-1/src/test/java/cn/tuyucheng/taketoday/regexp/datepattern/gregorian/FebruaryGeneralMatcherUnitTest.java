@@ -6,12 +6,12 @@ import org.junit.Test;
 
 public class FebruaryGeneralMatcherUnitTest {
 
-    private DateMatcher matcher = new FebruaryGeneralMatcher();
+   private DateMatcher matcher = new FebruaryGeneralMatcher();
 
-    private GregorianDateTestHelper testHelper = new GregorianDateTestHelper(matcher);
+   private GregorianDateTestHelper testHelper = new GregorianDateTestHelper(matcher);
 
-    @Test
-    public void whenMonthIsFebruary_thenMonthContainsUpTo28Days() {
-        testHelper.assertFebruaryGeneralDates();
-    }
+   @Test
+   public void whenMonthIsFebruary_thenMonthContainsUpTo28Days() {
+      testHelper.assertFebruaryGeneralDates();
+   }
 }

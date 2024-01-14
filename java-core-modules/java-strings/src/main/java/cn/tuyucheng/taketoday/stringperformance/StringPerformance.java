@@ -27,179 +27,179 @@ import java.util.regex.Pattern;
 @State(Scope.Thread)
 public class StringPerformance {
 
-	protected String baeldung = "baeldung";
-	protected String longString = "Hello baeldung, I am a bit longer than other Strings";
-	protected String formatString = "hello %s, nice to meet you";
-	protected String formatDigit = "%d";
-	protected String emptyString = " ";
-	protected String result = "";
+   protected String tuyucheng = "tuyucheng";
+   protected String longString = "Hello tuyucheng, I am a bit longer than other Strings";
+   protected String formatString = "hello %s, nice to meet you";
+   protected String formatDigit = "%d";
+   protected String emptyString = " ";
+   protected String result = "";
 
-	protected int sampleNumber = 100;
+   protected int sampleNumber = 100;
 
-	protected Pattern spacePattern = Pattern.compile(emptyString);
-	protected Pattern longPattern = Pattern.compile(longString);
-	protected List<String> stringSplit = new ArrayList<>();
-	protected List<String> stringTokenizer = new ArrayList<>();
+   protected Pattern spacePattern = Pattern.compile(emptyString);
+   protected Pattern longPattern = Pattern.compile(longString);
+   protected List<String> stringSplit = new ArrayList<>();
+   protected List<String> stringTokenizer = new ArrayList<>();
 
-	@Benchmark
-	public String benchmarkStringDynamicConcat() {
-		result += baeldung;
-		return result;
-	}
+   @Benchmark
+   public String benchmarkStringDynamicConcat() {
+      result += tuyucheng;
+      return result;
+   }
 
-	@Benchmark
-	public StringBuilder benchmarkStringBuilder() {
-		StringBuilder stringBuilder = new StringBuilder(result);
-		stringBuilder.append(baeldung);
-		return stringBuilder;
-	}
+   @Benchmark
+   public StringBuilder benchmarkStringBuilder() {
+      StringBuilder stringBuilder = new StringBuilder(result);
+      stringBuilder.append(tuyucheng);
+      return stringBuilder;
+   }
 
-	@Benchmark
-	public StringBuffer benchmarkStringBuffer() {
-		StringBuffer stringBuffer = new StringBuffer(result);
-		stringBuffer.append(baeldung);
-		return stringBuffer;
-	}
+   @Benchmark
+   public StringBuffer benchmarkStringBuffer() {
+      StringBuffer stringBuffer = new StringBuffer(result);
+      stringBuffer.append(tuyucheng);
+      return stringBuffer;
+   }
 
-	@Benchmark
-	public String benchmarkStringConstructor() {
-		String result = new String("baeldung");
-		return result;
-	}
+   @Benchmark
+   public String benchmarkStringConstructor() {
+      String result = new String("tuyucheng");
+      return result;
+   }
 
-	@Benchmark
-	public String benchmarkStringLiteral() {
-		String result = "baeldung";
-		return result;
-	}
+   @Benchmark
+   public String benchmarkStringLiteral() {
+      String result = "tuyucheng";
+      return result;
+   }
 
-	@Benchmark
-	public String benchmarkStringFormat_s() {
-		return String.format(formatString, baeldung);
-	}
+   @Benchmark
+   public String benchmarkStringFormat_s() {
+      return String.format(formatString, tuyucheng);
+   }
 
-	@Benchmark
-	public String benchmarkStringConcat() {
-		result = result.concat(baeldung);
-		return result;
-	}
+   @Benchmark
+   public String benchmarkStringConcat() {
+      result = result.concat(tuyucheng);
+      return result;
+   }
 
-	@Benchmark
-	public String benchmarkStringIntern() {
-		return baeldung.intern();
-	}
+   @Benchmark
+   public String benchmarkStringIntern() {
+      return tuyucheng.intern();
+   }
 
-	@Benchmark
-	public String benchmarkStringReplace() {
-		return longString.replace("average", " average !!!");
-	}
+   @Benchmark
+   public String benchmarkStringReplace() {
+      return longString.replace("average", " average !!!");
+   }
 
-	@Benchmark
-	public String benchmarkStringUtilsReplace() {
-		return StringUtils.replace(longString, "average", " average !!!");
-	}
+   @Benchmark
+   public String benchmarkStringUtilsReplace() {
+      return StringUtils.replace(longString, "average", " average !!!");
+   }
 
-	@Benchmark
-	public List<String> benchmarkGuavaSplitter() {
-		return Splitter.on(" ").trimResults()
-			.omitEmptyStrings()
-			.splitToList(longString);
-	}
+   @Benchmark
+   public List<String> benchmarkGuavaSplitter() {
+      return Splitter.on(" ").trimResults()
+            .omitEmptyStrings()
+            .splitToList(longString);
+   }
 
-	@Benchmark
-	public String[] benchmarkStringSplit() {
-		return longString.split(emptyString);
-	}
+   @Benchmark
+   public String[] benchmarkStringSplit() {
+      return longString.split(emptyString);
+   }
 
-	@Benchmark
-	public String[] benchmarkStringSplitPattern() {
-		return spacePattern.split(longString, 0);
-	}
+   @Benchmark
+   public String[] benchmarkStringSplitPattern() {
+      return spacePattern.split(longString, 0);
+   }
 
-	@Benchmark
-	public List benchmarkStringTokenizer() {
-		StringTokenizer st = new StringTokenizer(longString);
-		while (st.hasMoreTokens()) {
-			stringTokenizer.add(st.nextToken());
-		}
-		return stringTokenizer;
-	}
+   @Benchmark
+   public List benchmarkStringTokenizer() {
+      StringTokenizer st = new StringTokenizer(longString);
+      while (st.hasMoreTokens()) {
+         stringTokenizer.add(st.nextToken());
+      }
+      return stringTokenizer;
+   }
 
-	@Benchmark
-	public List benchmarkStringIndexOf() {
-		int pos = 0, end;
-		while ((end = longString.indexOf(' ', pos)) >= 0) {
-			stringSplit.add(longString.substring(pos, end));
-			pos = end + 1;
-		}
-		// Add last token of string
-		stringSplit.add(longString.substring(pos));
-		return stringSplit;
-	}
+   @Benchmark
+   public List benchmarkStringIndexOf() {
+      int pos = 0, end;
+      while ((end = longString.indexOf(' ', pos)) >= 0) {
+         stringSplit.add(longString.substring(pos, end));
+         pos = end + 1;
+      }
+      // Add last token of string
+      stringSplit.add(longString.substring(pos));
+      return stringSplit;
+   }
 
-	@Benchmark
-	public String benchmarkIntegerToString() {
-		return Integer.toString(sampleNumber);
-	}
+   @Benchmark
+   public String benchmarkIntegerToString() {
+      return Integer.toString(sampleNumber);
+   }
 
-	@Benchmark
-	public String benchmarkStringValueOf() {
-		return String.valueOf(sampleNumber);
-	}
-
-
-	@Benchmark
-	public String benchmarkStringConvertPlus() {
-		return sampleNumber + "";
-	}
-
-	@Benchmark
-	public String benchmarkStringFormat_d() {
-		return String.format(formatDigit, sampleNumber);
-	}
-
-	@Benchmark
-	public boolean benchmarkStringEquals() {
-		return longString.equals(baeldung);
-	}
+   @Benchmark
+   public String benchmarkStringValueOf() {
+      return String.valueOf(sampleNumber);
+   }
 
 
-	@Benchmark
-	public boolean benchmarkStringEqualsIgnoreCase() {
-		return longString.equalsIgnoreCase(baeldung);
-	}
+   @Benchmark
+   public String benchmarkStringConvertPlus() {
+      return sampleNumber + "";
+   }
 
-	@Benchmark
-	public boolean benchmarkStringMatches() {
-		return longString.matches(baeldung);
-	}
+   @Benchmark
+   public String benchmarkStringFormat_d() {
+      return String.format(formatDigit, sampleNumber);
+   }
 
-	@Benchmark
-	public boolean benchmarkPrecompiledMatches() {
-		return longPattern.matcher(baeldung).matches();
-	}
+   @Benchmark
+   public boolean benchmarkStringEquals() {
+      return longString.equals(tuyucheng);
+   }
 
-	@Benchmark
-	public int benchmarkStringCompareTo() {
-		return longString.compareTo(baeldung);
-	}
 
-	@Benchmark
-	public boolean benchmarkStringIsEmpty() {
-		return longString.isEmpty();
-	}
+   @Benchmark
+   public boolean benchmarkStringEqualsIgnoreCase() {
+      return longString.equalsIgnoreCase(tuyucheng);
+   }
 
-	@Benchmark
-	public boolean benchmarkStringLengthZero() {
-		return longString.length() == 0;
-	}
+   @Benchmark
+   public boolean benchmarkStringMatches() {
+      return longString.matches(tuyucheng);
+   }
 
-	public static void main(String[] args) throws Exception {
-		Options options = new OptionsBuilder()
-			.include(StringPerformance.class.getSimpleName()).threads(1)
-			.forks(1).shouldFailOnError(true)
-			.shouldDoGC(true)
-			.jvmArgs("-server").build();
-		new Runner(options).run();
-	}
+   @Benchmark
+   public boolean benchmarkPrecompiledMatches() {
+      return longPattern.matcher(tuyucheng).matches();
+   }
+
+   @Benchmark
+   public int benchmarkStringCompareTo() {
+      return longString.compareTo(tuyucheng);
+   }
+
+   @Benchmark
+   public boolean benchmarkStringIsEmpty() {
+      return longString.isEmpty();
+   }
+
+   @Benchmark
+   public boolean benchmarkStringLengthZero() {
+      return longString.length() == 0;
+   }
+
+   public static void main(String[] args) throws Exception {
+      Options options = new OptionsBuilder()
+            .include(StringPerformance.class.getSimpleName()).threads(1)
+            .forks(1).shouldFailOnError(true)
+            .shouldDoGC(true)
+            .jvmArgs("-server").build();
+      new Runner(options).run();
+   }
 }

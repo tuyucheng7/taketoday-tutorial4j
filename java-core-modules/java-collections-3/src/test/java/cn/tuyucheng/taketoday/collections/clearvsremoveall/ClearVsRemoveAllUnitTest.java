@@ -14,27 +14,27 @@ import static org.junit.Assert.assertTrue;
  */
 class ClearVsRemoveAllUnitTest {
 
-    /*
-     * Tests
-     */
-    @Test
-    void givenArrayListWithElements_whenClear_thenListBecomesEmpty() {
-        Collection<Integer> collection = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+   /*
+    * Tests
+    */
+   @Test
+   void givenArrayListWithElements_whenClear_thenListBecomesEmpty() {
+      Collection<Integer> collection = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
-        collection.clear();
+      collection.clear();
 
-        assertTrue(collection.isEmpty());
-    }
+      assertTrue(collection.isEmpty());
+   }
 
-    @Test
-    void givenTwoArrayListsWithCommonElements_whenRemoveAll_thenFirstListMissElementsFromSecondList() {
-        Collection<Integer> firstCollection = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-        Collection<Integer> secondCollection = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7));
+   @Test
+   void givenTwoArrayListsWithCommonElements_whenRemoveAll_thenFirstListMissElementsFromSecondList() {
+      Collection<Integer> firstCollection = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+      Collection<Integer> secondCollection = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7));
 
-        firstCollection.removeAll(secondCollection);
+      firstCollection.removeAll(secondCollection);
 
-        assertEquals(Arrays.asList(1, 2), firstCollection);
-        assertEquals(Arrays.asList(3, 4, 5, 6, 7), secondCollection);
-    }
+      assertEquals(Arrays.asList(1, 2), firstCollection);
+      assertEquals(Arrays.asList(3, 4, 5, 6, 7), secondCollection);
+   }
 
 }
