@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.lang.invoke.VarHandle;
 import java.nio.ByteOrder;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class ForeignMemoryUnitTest {
 

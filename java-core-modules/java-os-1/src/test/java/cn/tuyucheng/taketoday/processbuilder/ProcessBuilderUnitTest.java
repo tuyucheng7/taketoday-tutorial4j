@@ -17,13 +17,14 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProcessBuilderUnitTest {
 
@@ -42,7 +43,7 @@ public class ProcessBuilderUnitTest {
       assertThat("Results should contain java version: ", results, hasItem(containsString("version")));
 
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
    }
 
    @Test
@@ -62,7 +63,7 @@ public class ProcessBuilderUnitTest {
       assertThat("Results should contain a greeting ", results, hasItem(containsString("Hola Mundo")));
 
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
    }
 
    @Test
@@ -78,7 +79,7 @@ public class ProcessBuilderUnitTest {
       assertThat("Results should contain directory listing: ", results, hasItems(containsString("main"), containsString("test")));
 
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
    }
 
    @Test
@@ -91,10 +92,10 @@ public class ProcessBuilderUnitTest {
 
       Process process = processBuilder.start();
 
-      assertEquals("If redirected, should be -1 ", -1, process.getInputStream()
-            .read());
+      assertEquals(-1, process.getInputStream()
+            .read(), "If redirected, should be -1 ");
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
 
       List<String> lines = Files.lines(log.toPath())
             .collect(Collectors.toList());
@@ -113,11 +114,11 @@ public class ProcessBuilderUnitTest {
 
       Process process = processBuilder.start();
 
-      assertEquals("If redirected output, should be -1 ", -1, process.getInputStream()
-            .read());
+      assertEquals(-1, process.getInputStream()
+            .read(), "If redirected output, should be -1 ");
 
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
 
       List<String> lines = Files.lines(log.toPath())
             .collect(Collectors.toList());
@@ -150,7 +151,7 @@ public class ProcessBuilderUnitTest {
       Process process = processBuilder.start();
 
       int exitCode = process.waitFor();
-      assertEquals("No errors should be detected", 0, exitCode);
+      assertEquals(0, exitCode, "No errors should be detected");
    }
 
    private List<String> readOutput(InputStream inputStream) throws IOException {

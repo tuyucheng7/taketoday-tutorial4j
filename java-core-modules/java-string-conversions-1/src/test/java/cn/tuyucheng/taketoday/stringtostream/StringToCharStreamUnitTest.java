@@ -9,8 +9,9 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class StringToCharStreamUnitTest {
 
@@ -42,8 +43,8 @@ public class StringToCharStreamUnitTest {
             .mapToObj(c -> (char) c);
       Stream<Character> characterStream1 = testString.codePoints()
             .mapToObj(c -> (char) c);
-      assertNotNull("IntStream returned by chars() did not map to Stream<Character>", characterStream);
-      assertNotNull("IntStream returned by codePoints() did not map to Stream<Character>", characterStream1);
+      assertNotNull(characterStream, "IntStream returned by chars() did not map to Stream<Character>");
+      assertNotNull(characterStream1, "IntStream returned by codePoints() did not map to Stream<Character>");
    }
 
    @Test

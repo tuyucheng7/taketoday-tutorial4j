@@ -3,7 +3,7 @@ package cn.tuyucheng.taketoday.maths;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MathSinUnitTest {
 

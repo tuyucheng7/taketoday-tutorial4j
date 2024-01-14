@@ -26,9 +26,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class StringFilenameValidationUnitTest {
 
    private static final String CORRECT_FILENAME_PATTERN = "tuyucheng.txt";
-   private static final String FILENAME_WITH_COLON = "bael:dung.txt";
-   private static final String FILENAME_WITH_FORWARD_SLASH = "bael/dung.txt";
-   private static final String FILENAME_WITH_BACKWARD_SLASH = "bael\\dung.txt";
+   private static final String FILENAME_WITH_COLON = "tuyu:cheng.txt";
+   private static final String FILENAME_WITH_FORWARD_SLASH = "tuyu/cheng.txt";
+   private static final String FILENAME_WITH_BACKWARD_SLASH = "tuyu\\cheng.txt";
 
    @ParameterizedTest
    @MethodSource("correctAlphanumericFilenamesProvider")

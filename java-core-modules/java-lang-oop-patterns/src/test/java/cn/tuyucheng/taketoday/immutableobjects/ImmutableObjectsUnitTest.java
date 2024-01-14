@@ -16,13 +16,13 @@ public class ImmutableObjectsUnitTest {
       final String newName = name.replace("dung", "----");
 
       assertEquals("tuyucheng", name);
-      assertEquals("bael----", newName);
+      assertEquals("tuyu----", newName);
    }
 
    public void whenReassignFinalValue_thenCompilerError() {
       // 3. The final Keyword in Java (1)
       final String name = "tuyucheng";
-      // name = "bael...";
+      // name = "tuyu...";
    }
 
    @Test

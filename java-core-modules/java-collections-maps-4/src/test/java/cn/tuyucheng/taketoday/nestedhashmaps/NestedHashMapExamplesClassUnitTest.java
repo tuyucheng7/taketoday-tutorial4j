@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class NestedHashMapExamplesClassUnitTest {
    private MapsUtil mUtil = new MapsUtil();
@@ -32,7 +32,7 @@ public class NestedHashMapExamplesClassUnitTest {
    public void whenCreateNestedHashMap_thenNestedMap() {
       assertThat(mUtil.buildInnerMap(batterList), is(notNullValue()));
       Assertions.assertEquals(actualBakedGoodsMap.keySet().size(), 2);
-      Assertions.assertThat(actualBakedGoodsMap, IsMapContaining.hasValue(equalTo(mUtil.buildInnerMap(batterList))));
+      assertThat(actualBakedGoodsMap, IsMapContaining.hasValue(equalTo(mUtil.buildInnerMap(batterList))));
    }
 
    private Map<Integer, Map<String, String>> setup() {

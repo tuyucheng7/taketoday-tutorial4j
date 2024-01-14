@@ -14,10 +14,10 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsInRelativeOrder;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.assertThat;
 
 public class JavaCollectionCleanupUnitTest {
 

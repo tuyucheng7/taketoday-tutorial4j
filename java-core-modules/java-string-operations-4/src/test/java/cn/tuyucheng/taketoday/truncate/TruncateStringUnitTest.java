@@ -36,7 +36,7 @@ public class TruncateStringUnitTest {
    @Test
    public void givenStringAndLength_whenUsingLeftMethod_thenTruncate() {
 
-      assertEquals(TruncateString.usingLeftMethod(TEXT, 15), "Welcome to bael");
+      assertEquals(TruncateString.usingLeftMethod(TEXT, 15), "Welcome to tuyu");
    }
 
    @Test

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CombiningMapsUnitTest {
    private static final Map<String, String> first = new HashMap<>();

@@ -6,14 +6,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SuppressedExceptionsUnitTest {
 
-   @Test(expected = NullPointerException.class)
+   @Test
    public void givenNonExistentFileName_whenAttemptFileOpen_thenNullPointerException() throws IOException {
-      SuppressedExceptionsDemo.demoSuppressedException("/non-existent-path/non-existent-file.txt");
+      assertThrows(NullPointerException.class, () -> SuppressedExceptionsDemo.demoSuppressedException("/non-existent-path/non-existent-file.txt"));
    }
 
    @Test

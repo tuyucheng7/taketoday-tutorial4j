@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CombiningSetsUnitTest {
    private static final Set<Object> first = new HashSet<Object>(Arrays.asList(new Object[]{"One", "Two", "Three"}));

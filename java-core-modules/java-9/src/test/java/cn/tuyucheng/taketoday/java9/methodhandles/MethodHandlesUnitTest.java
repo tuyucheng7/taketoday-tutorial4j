@@ -11,9 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -120,13 +121,13 @@ public class MethodHandlesUnitTest {
       assertEquals(12, sum);
    }
 
-   @Test(expected = WrongMethodTypeException.class)
+   @Test
    public void givenSumMethodHandleAndIncompatibleArguments_whenInvokingExact_thenException() throws Throwable {
       MethodHandles.Lookup lookup = MethodHandles.lookup();
       MethodType mt = MethodType.methodType(int.class, int.class, int.class);
       MethodHandle sumMH = lookup.findStatic(Integer.class, "sum", mt);
 
-      sumMH.invokeExact(Integer.valueOf(1), 11);
+      assertThrows(WrongMethodTypeException.class, () -> sumMH.invokeExact(1, 11));
    }
 
    @Test
