@@ -22,7 +22,6 @@ class Java8ComparatorUnitTest {
    private Employee[] sortedEmployeesByNameAge;
    private Employee[] someMoreEmployees;
    private Employee[] sortedEmployeesByAgeName;
-   ;
 
    @BeforeEach
    void initData() {

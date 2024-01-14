@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class NullSafeCollectionStreamsUsingCommonsEmptyIfNullUnitTest {
@@ -39,5 +39,4 @@ public class NullSafeCollectionStreamsUsingCommonsEmptyIfNullUnitTest {
          assertEquals(iter1.next(), iter2.next());
       assert !iter1.hasNext() && !iter2.hasNext();
    }
-
 }

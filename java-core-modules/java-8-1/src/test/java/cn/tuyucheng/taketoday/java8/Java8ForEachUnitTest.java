@@ -45,8 +45,6 @@ public class Java8ForEachUnitTest {
          public void accept(String name) {
             System.out.println(name);
          }
-
-         ;
       };
 
       names.forEach(printConsumer);
@@ -109,5 +107,4 @@ public class Java8ForEachUnitTest {
 
       namesMap.forEach((key, value) -> System.out.println(key + " " + value));
    }
-
 }

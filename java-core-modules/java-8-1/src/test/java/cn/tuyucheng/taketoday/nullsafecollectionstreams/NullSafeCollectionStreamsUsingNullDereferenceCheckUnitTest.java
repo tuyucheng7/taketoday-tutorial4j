@@ -7,11 +7,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * @author Kwaje Anthony <kwajeanthony@gmail.com>
- */
 public class NullSafeCollectionStreamsUsingNullDereferenceCheckUnitTest {
 
    private final NullSafeCollectionStreamsUsingNullDereferenceCheck instance =
@@ -41,5 +38,4 @@ public class NullSafeCollectionStreamsUsingNullDereferenceCheckUnitTest {
          assertEquals(iter1.next(), iter2.next());
       assert !iter1.hasNext() && !iter2.hasNext();
    }
-
 }

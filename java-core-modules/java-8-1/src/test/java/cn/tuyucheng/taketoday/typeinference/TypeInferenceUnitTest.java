@@ -83,5 +83,4 @@ public class TypeInferenceUnitTest {
       });
       assertEquals("[Blue, Green, Red]", Arrays.toString(strList.toArray()));
    }
-
 }

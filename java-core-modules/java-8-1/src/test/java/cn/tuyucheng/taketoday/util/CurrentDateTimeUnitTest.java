@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoField;
 
-import static org.junit.jupiter.api.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CurrentDateTimeUnitTest {
 

@@ -1,7 +1,10 @@
 package cn.tuyucheng.taketoday.monad;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MonadSampleUnitTest {
 
@@ -26,14 +29,14 @@ public class MonadSampleUnitTest {
    @Test
    public void whenTestingMonadProperties_shouldBeOk() {
       MonadSample4 test = new MonadSample4();
-      assertEquals(true, test.leftIdentity());
-      assertEquals(true, test.rightIdentity());
-      assertEquals(true, test.associativity());
+      assertTrue(test.leftIdentity());
+      assertTrue(test.rightIdentity());
+      assertTrue(test.associativity());
    }
 
    @Test
    public void whenBreakingMonadProperties_shouldBeFalse() {
       MonadSample5 test = new MonadSample5();
-      assertEquals(false, test.fail());
+      assertFalse(test.fail());
    }
 }

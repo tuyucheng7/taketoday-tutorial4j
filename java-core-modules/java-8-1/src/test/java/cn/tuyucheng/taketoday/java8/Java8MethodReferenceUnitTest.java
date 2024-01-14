@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Java8MethodReferenceUnitTest {
@@ -62,6 +63,6 @@ public class Java8MethodReferenceUnitTest {
       Stream<User> stream = list.stream().map(User::new);
       List<User> userList = stream.collect(Collectors.toList());
       assertEquals(userList.size(), list.size());
-      assertTrue(userList.get(0) instanceof User);
+      assertInstanceOf(User.class, userList.get(0));
    }
 }
