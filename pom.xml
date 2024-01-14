@@ -390,6 +390,7 @@
             <module>java-core-modules</module>
             <module>javafx</module>
             <module>kotlin-modules</module>
+            <module>logging-modules</module>
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
@@ -467,6 +468,7 @@
             <module>java-core-modules</module>
             <module>javafx</module>
             <module>kotlin-modules</module>
+            <module>logging-modules</module>
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
@@ -522,6 +524,7 @@
             <!-- <module>java-core-modules</module> -->
             <!-- <module>javafx</module> -->
             <!-- <module>kotlin-modules</module> -->
+            <module>logging-modules</module>
             <!-- <module>maven.modules</module> -->
             <!-- <module>messaging-modules</module> -->
             <!-- <module>microservices</module> -->
