@@ -5,9 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * BAEL-3755: LTrim and RTrim examples.
- */
 public class LTrimRTrimUnitTest {
 
    private String src = "        White spaces left and right            ";

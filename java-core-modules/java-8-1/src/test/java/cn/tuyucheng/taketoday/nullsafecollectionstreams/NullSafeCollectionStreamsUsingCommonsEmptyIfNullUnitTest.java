@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.assertEquals;
 
 
 public class NullSafeCollectionStreamsUsingCommonsEmptyIfNullUnitTest {

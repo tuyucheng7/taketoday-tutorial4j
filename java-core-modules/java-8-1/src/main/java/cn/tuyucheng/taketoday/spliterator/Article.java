@@ -40,5 +40,4 @@ public class Article {
    public void setListOfAuthors(List<Author> listOfAuthors) {
       this.listOfAuthors = listOfAuthors;
    }
-
 }

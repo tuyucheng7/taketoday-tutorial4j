@@ -16,5 +16,4 @@ public final class MyUtilityClass {
    public static String[] splitStringInput(String stringInput, String delimiter) {
       return stringInput.split(delimiter);
    }
-
 }

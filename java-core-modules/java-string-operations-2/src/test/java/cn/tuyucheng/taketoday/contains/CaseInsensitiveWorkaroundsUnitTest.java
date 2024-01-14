@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.regex.Pattern;
 
-/**
- * BAEL-3739: Different ways to solve the contains() case insensitive behavior.
- */
 public class CaseInsensitiveWorkaroundsUnitTest {
 
    private String src = "Lorem ipsum dolor sit amet";

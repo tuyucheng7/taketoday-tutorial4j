@@ -11,5 +11,4 @@ class MyUtilityClassUnitTest {
       assertEquals("INIUBONG", MyUtilityClass.returnUpperCase("iniubong"));
       assertEquals("accra", MyUtilityClass.returnLowerCase("AcCrA"));
    }
-
 }

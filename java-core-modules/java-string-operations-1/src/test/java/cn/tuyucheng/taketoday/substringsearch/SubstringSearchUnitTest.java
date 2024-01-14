@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * BAEL-2832: Different ways to check if a Substring could be found in a String.
- */
 public class SubstringSearchUnitTest {
 
    @Test

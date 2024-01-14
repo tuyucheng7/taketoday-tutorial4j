@@ -19,5 +19,4 @@ public abstract class CircleClass {
    public void setColor(String color) {
       this.color = color;
    }
-
 }

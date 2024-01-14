@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Java8DefaultStaticIntefaceMethodsUnitTest {
+class Java8DefaultStaticInterfaceMethodsUnitTest {
 
    @Test
-   public void callStaticInterfaceMethdosMethods_whenExpectedResults_thenCorrect() {
+   void callStaticInterfaceMethdosMethods_whenExpectedResults_thenCorrect() {
       Vehicle vehicle = new VehicleImpl();
       String overview = vehicle.getOverview();
       long[] startPosition = vehicle.startPosition();
@@ -20,7 +20,7 @@ public class Java8DefaultStaticIntefaceMethodsUnitTest {
    }
 
    @Test
-   public void callDefaultInterfaceMethods_whenExpectedResults_thenCorrect() {
+   void callDefaultInterfaceMethods_whenExpectedResults_thenCorrect() {
       String producer = Vehicle.producer();
       assertEquals(producer, "N&F Vehicles");
    }

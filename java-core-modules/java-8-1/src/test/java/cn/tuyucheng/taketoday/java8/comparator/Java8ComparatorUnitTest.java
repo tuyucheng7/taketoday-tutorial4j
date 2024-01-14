@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class Java8ComparatorUnitTest {
+class Java8ComparatorUnitTest {
 
    private Employee[] employees;
    private Employee[] employeesArrayWithNulls;
@@ -25,7 +25,7 @@ public class Java8ComparatorUnitTest {
    ;
 
    @BeforeEach
-   public void initData() {
+   void initData() {
       employees = new Employee[]{new Employee("John", 25, 3000, 9922001), new Employee("Ace", 22, 2000, 5924001), new Employee("Keith", 35, 4000, 3924401)};
       employeesArrayWithNulls = new Employee[]{new Employee("John", 25, 3000, 9922001), null, new Employee("Ace", 22, 2000, 5924001), null, new Employee("Keith", 35, 4000, 3924401)};
 
@@ -48,106 +48,105 @@ public class Java8ComparatorUnitTest {
    }
 
    @Test
-   public void whenComparing_thenSortedByName() {
+   void whenComparing_thenSortedByName() {
       Comparator<Employee> employeeNameComparator = Comparator.comparing(Employee::getName);
       Arrays.sort(employees, employeeNameComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByName));
+      assertArrayEquals(employees, sortedEmployeesByName);
    }
 
    @Test
-   public void whenComparingWithComparator_thenSortedByNameDesc() {
+   void whenComparingWithComparator_thenSortedByNameDesc() {
       Comparator<Employee> employeeNameComparator = Comparator.comparing(Employee::getName, (s1, s2) -> {
          return s2.compareTo(s1);
       });
       Arrays.sort(employees, employeeNameComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByNameDesc));
+      assertArrayEquals(employees, sortedEmployeesByNameDesc);
    }
 
    @Test
-   public void whenReversed_thenSortedByNameDesc() {
+   void whenReversed_thenSortedByNameDesc() {
       Comparator<Employee> employeeNameComparator = Comparator.comparing(Employee::getName);
       Comparator<Employee> employeeNameComparatorReversed = employeeNameComparator.reversed();
       Arrays.sort(employees, employeeNameComparatorReversed);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByNameDesc));
+      assertArrayEquals(employees, sortedEmployeesByNameDesc);
    }
 
    @Test
-   public void whenComparingInt_thenSortedByAge() {
+   void whenComparingInt_thenSortedByAge() {
       Comparator<Employee> employeeAgeComparator = Comparator.comparingInt(Employee::getAge);
       Arrays.sort(employees, employeeAgeComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByAge));
+      assertArrayEquals(employees, sortedEmployeesByAge);
    }
 
    @Test
-   public void whenComparingLong_thenSortedByMobile() {
+   void whenComparingLong_thenSortedByMobile() {
       Comparator<Employee> employeeMobileComparator = Comparator.comparingLong(Employee::getMobile);
       Arrays.sort(employees, employeeMobileComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByMobile));
+      assertArrayEquals(employees, sortedEmployeesByMobile);
    }
 
    @Test
-   public void whenComparingDouble_thenSortedBySalary() {
+   void whenComparingDouble_thenSortedBySalary() {
       Comparator<Employee> employeeSalaryComparator = Comparator.comparingDouble(Employee::getSalary);
       Arrays.sort(employees, employeeSalaryComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesBySalary));
+      assertArrayEquals(employees, sortedEmployeesBySalary);
    }
 
    @Test
-   public void whenNaturalOrder_thenSortedByName() {
-      Comparator<Employee> employeeNameComparator = Comparator.<Employee>naturalOrder();
+   void whenNaturalOrder_thenSortedByName() {
+      Comparator<Employee> employeeNameComparator = Comparator.naturalOrder();
       Arrays.sort(employees, employeeNameComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByName));
+      assertArrayEquals(employees, sortedEmployeesByName);
    }
 
    @Test
-   public void whenReverseOrder_thenSortedByNameDesc() {
-      Comparator<Employee> employeeNameComparator = Comparator.<Employee>reverseOrder();
+   void whenReverseOrder_thenSortedByNameDesc() {
+      Comparator<Employee> employeeNameComparator = Comparator.reverseOrder();
       Arrays.sort(employees, employeeNameComparator);
       // System.out.println(Arrays.toString(employees));
-      assertTrue(Arrays.equals(employees, sortedEmployeesByNameDesc));
+      assertArrayEquals(employees, sortedEmployeesByNameDesc);
    }
 
    @Test
-   public void whenNullsFirst_thenSortedByNameWithNullsFirst() {
+   void whenNullsFirst_thenSortedByNameWithNullsFirst() {
       Comparator<Employee> employeeNameComparator = Comparator.comparing(Employee::getName);
       Comparator<Employee> employeeNameComparator_nullFirst = Comparator.nullsFirst(employeeNameComparator);
       Arrays.sort(employeesArrayWithNulls, employeeNameComparator_nullFirst);
       // System.out.println(Arrays.toString(employeesArrayWithNulls));
-      assertTrue(Arrays.equals(employeesArrayWithNulls, sortedEmployeesArray_WithNullsFirst));
+      assertArrayEquals(employeesArrayWithNulls, sortedEmployeesArray_WithNullsFirst);
    }
 
    @Test
-   public void whenNullsLast_thenSortedByNameWithNullsLast() {
+   void whenNullsLast_thenSortedByNameWithNullsLast() {
       Comparator<Employee> employeeNameComparator = Comparator.comparing(Employee::getName);
       Comparator<Employee> employeeNameComparator_nullLast = Comparator.nullsLast(employeeNameComparator);
       Arrays.sort(employeesArrayWithNulls, employeeNameComparator_nullLast);
       // System.out.println(Arrays.toString(employeesArrayWithNulls));
-      assertTrue(Arrays.equals(employeesArrayWithNulls, sortedEmployeesArray_WithNullsLast));
+      assertArrayEquals(employeesArrayWithNulls, sortedEmployeesArray_WithNullsLast);
    }
 
    @Test
-   public void whenThenComparing_thenSortedByAgeName() {
+   void whenThenComparing_thenSortedByAgeName() {
       Comparator<Employee> employee_Age_Name_Comparator = Comparator.comparing(Employee::getAge).thenComparing(Employee::getName);
 
       Arrays.sort(someMoreEmployees, employee_Age_Name_Comparator);
       // System.out.println(Arrays.toString(someMoreEmployees));
-      assertTrue(Arrays.equals(someMoreEmployees, sortedEmployeesByAgeName));
+      assertArrayEquals(someMoreEmployees, sortedEmployeesByAgeName);
    }
 
    @Test
-   public void whenThenComparing_thenSortedByNameAge() {
+   void whenThenComparing_thenSortedByNameAge() {
       Comparator<Employee> employee_Name_Age_Comparator = Comparator.comparing(Employee::getName).thenComparingInt(Employee::getAge);
 
       Arrays.sort(someMoreEmployees, employee_Name_Age_Comparator);
       // System.out.println(Arrays.toString(someMoreEmployees));
-      assertTrue(Arrays.equals(someMoreEmployees, sortedEmployeesByNameAge));
+      assertArrayEquals(someMoreEmployees, sortedEmployeesByNameAge);
    }
-
 }

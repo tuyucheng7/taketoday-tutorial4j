@@ -30,4 +30,3 @@ public class Author {
       return "[name: " + name + ", relatedId: " + relatedArticleId + "]";
    }
 }
-

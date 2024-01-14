@@ -38,5 +38,4 @@ class MyHelperClass {
       }
       return min;
    }
-
 }
