@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>cn.tuyucheng.taketoday.java.panama</groupId>
+   <artifactId>java-panama</artifactId>
+   <version>1.0.0</version>
+   <name>java-panama</name>
+   <packaging>jar</packaging>
+
+   <parent>
+      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <artifactId>java-core-modules</artifactId>
+      <version>1.0.0</version>
+   </parent>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven-compiler-plugin.version}</version>
+            <configuration>
+               <source>${maven.compiler.source}</source>
+               <target>${maven.compiler.target}</target>
+               <compilerArgs>
+                  <arg>--add-opens=java.base/java.lang.foreign=ALL-UNNAMED</arg>
+                  <arg>--enable-preview</arg>
+               </compilerArgs>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <properties>
+      <project.model.version>4.0.0</project.model.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.version>1.0.0</project.version>
+      <maven.compiler.source>21</maven.compiler.source>
+      <maven.compiler.target>21</maven.compiler.target>
+   </properties>
+</project>

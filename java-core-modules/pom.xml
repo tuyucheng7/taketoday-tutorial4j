@@ -117,6 +117,7 @@
       <module>java-io-conversions-2</module>
       <module>java-ipc</module>
       <module>java-jar</module>
+      <module>java-jdi</module>
       <module>java-jndi</module>
       <module>java-jpms</module>
       <module>java-jvm-1</module>
@@ -149,6 +150,7 @@
       <module>java-locale</module>
       <module>java-loops</module>
       <module>java-methods</module>
+      <module>java-nashorn</module>
       <module>java-native</module>
       <module>java-networking-1</module>
       <module>java-networking-2</module>
@@ -167,6 +169,7 @@
       <module>java-optional</module>
       <module>java-os-1</module>
       <module>java-os-2</module>
+      <module>java-panama</module>
       <module>java-perf-1</module>
       <module>java-perf-2</module>
       <module>java-properties</module>
