@@ -391,6 +391,7 @@
             <module>javafx</module>
             <module>kotlin-modules</module>
             <module>logging-modules</module>
+            <module>mapstruct</module>
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
@@ -469,6 +470,7 @@
             <module>javafx</module>
             <module>kotlin-modules</module>
             <module>logging-modules</module>
+            <module>mapstruct</module>
             <module>maven.modules</module>
             <module>messaging-modules</module>
             <module>microservices</module>
@@ -525,6 +527,7 @@
             <!-- <module>javafx</module> -->
             <!-- <module>kotlin-modules</module> -->
             <module>logging-modules</module>
+            <module>mapstruct</module>
             <!-- <module>maven.modules</module> -->
             <!-- <module>messaging-modules</module> -->
             <!-- <module>microservices</module> -->
