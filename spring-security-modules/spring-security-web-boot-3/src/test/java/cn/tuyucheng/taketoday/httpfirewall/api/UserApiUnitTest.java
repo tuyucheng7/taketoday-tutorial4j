@@ -133,7 +133,7 @@ class UserApiUnitTest {
         when(userService.findAll()).thenReturn(UserTestUtility.createUsers());
 
         MvcResult result = mockMvc
-          .perform(get("/api/v1/users/")
+          .perform(get("/api/v1/users")
             .accept("application/json"))
           .andDo(print())
           .andReturn();
@@ -160,5 +160,4 @@ class UserApiUnitTest {
         assertTrue(result.getResponse().getContentAsString().contains("The user has been deleted successfully"));
         // @formatter:on
    }
-
 }

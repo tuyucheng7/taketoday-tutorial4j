@@ -1,30 +1,27 @@
 package cn.tuyucheng.taketoday.httpfirewall;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.security.web.firewall.HttpStatusRequestRejectedHandler;
 import org.springframework.security.web.firewall.RequestRejectedHandler;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
-import java.util.Arrays;
-
 @Configuration
 public class HttpFirewallConfiguration {
 
    @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      http.csrf()
-            .disable()
-            .authorizeRequests()
-            .antMatchers("/error")
-            .permitAll()
-            .anyRequest()
-            .authenticated()
-            .and()
-            .httpBasic();
+      http.csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
+                  authorizationManagerRequestMatcherRegistry.requestMatchers("/error").permitAll().anyRequest().authenticated())
+            .httpBasic(Customizer.withDefaults());
       return http.build();
    }
 
@@ -42,5 +39,4 @@ public class HttpFirewallConfiguration {
    public RequestRejectedHandler requestRejectedHandler() {
       return new HttpStatusRequestRejectedHandler(); // Default status code is 400. Can be customized
    }
-
 }

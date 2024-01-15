@@ -4,7 +4,7 @@ import io.restassured.http.ContentType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
@@ -44,5 +44,4 @@ public class ResourceEndpointIntegrationTest {
    private String getBaseUrl() {
       return String.format("http://localhost:%d", serverPort);
    }
-
 }
