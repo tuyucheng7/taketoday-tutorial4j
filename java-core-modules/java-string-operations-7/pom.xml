@@ -52,6 +52,11 @@
          <scope>test</scope>
       </dependency>
       <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-collections4</artifactId>
+         <version>${apache.commons.collection.version}</version>
+      </dependency>
+      <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
          <version>4.13.2</version>
@@ -79,6 +84,6 @@
       <commons-text.version>1.10.0</commons-text.version>
       <icu4j.version>74.1</icu4j.version>
       <liquibase.core.version>4.25.0</liquibase.core.version>
+      <apache.commons.collection.version>4.4</apache.commons.collection.version>
    </properties>
-
 </project>
