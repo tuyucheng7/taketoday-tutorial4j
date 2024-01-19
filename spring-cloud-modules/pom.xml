@@ -17,12 +17,10 @@
    </parent>
 
    <modules>
-      <!-- failed modules -->
-
       <module>spring-cloud-archaius</module>
       <module>spring-cloud-aws</module>
       <module>spring-cloud-aws-v3</module>
-      <!-- <module>spring-cloud-azure</module> &lt;!&ndash; build fails &ndash;&gt; -->
+      <module>spring-cloud-azure</module>
       <module>spring-cloud-bootstrap</module>
       <module>spring-cloud-bus</module>
       <module>spring-cloud-circuit-breaker</module>
@@ -31,7 +29,7 @@
       <module>spring-cloud-consul</module>
       <module>spring-cloud-contract</module>
       <module>spring-cloud-dapr</module>
-      <!-- <module>spring-cloud-data-flow</module> -->
+      <module>spring-cloud-data-flow</module>
       <module>spring-cloud-docker</module>
       <module>spring-cloud-eureka</module>
       <module>spring-cloud-eureka-self-preservation</module>
@@ -41,7 +39,7 @@
       <module>spring-cloud-hystrix</module>
       <module>spring-cloud-kubernetes</module>
       <module>spring-cloud-loadbalancer</module>
-      <!-- <module>spring-cloud-netflix-feign</module> -->
+      <module>spring-cloud-netflix-feign</module>
       <module>spring-cloud-netflix-sidecar</module>
       <module>spring-cloud-open-service-broker</module>
       <module>spring-cloud-open-telemetry</module>
