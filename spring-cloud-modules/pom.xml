@@ -21,6 +21,7 @@
 
       <module>spring-cloud-archaius</module>
       <module>spring-cloud-aws</module>
+      <module>spring-cloud-aws-v3</module>
       <!-- <module>spring-cloud-azure</module> &lt;!&ndash; build fails &ndash;&gt; -->
       <module>spring-cloud-bootstrap</module>
       <module>spring-cloud-bus</module>
