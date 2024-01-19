@@ -28,7 +28,7 @@
 + [Spring Cloud Netflix Sidecar](spring-cloud-netflix-sidecar/README.md)
 + [Spring Cloud Open Service Broker](spring-cloud-open-service-broker/README.md)
 + [Spring Cloud Open Telemetry](spring-cloud-open-telemetry/README.md)
-+ [Spring Cloud OpenFeign](spring-cloud-openfeign/README.md)
++ [Spring Cloud OpenFeign](spring-cloud-openfeign-1/README.md)
 + [Spring Cloud Ribbon Client](spring-cloud-ribbon-client/README.md)
 + [Spring Cloud Ribbon Retry](spring-cloud-ribbon-retry/README.md)
 + [Spring Cloud Security](spring-cloud-security/README.md)
