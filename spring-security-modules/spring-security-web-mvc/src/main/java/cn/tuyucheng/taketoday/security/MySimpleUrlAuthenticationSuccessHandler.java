@@ -1,5 +1,12 @@
 package cn.tuyucheng.taketoday.security;
 
+import java.io.IOException;
+import java.util.Collection;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -8,12 +15,6 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.Collection;
 
 public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
    protected final Log logger = LogFactory.getLog(this.getClass());
@@ -24,12 +25,14 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
       super();
    }
 
+   // API
    @Override
    public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
       handle(request, response, authentication);
       clearAuthenticationAttributes(request);
    }
 
+   // IMPL
    protected void handle(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
       final String targetUrl = determineTargetUrl(authentication);
 
@@ -56,9 +59,9 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
       }
 
       if (isUser) {
-         return "/homepage.html";
+         return "/homepage";
       } else if (isAdmin) {
-         return "/console.html";
+         return "/console";
       } else {
          throw new IllegalStateException();
       }
@@ -67,7 +70,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
    /**
     * Removes temporary authentication-related data which may have been stored in the session
     * during the authentication process.
-    */
+    *
    protected final void clearAuthenticationAttributes(final HttpServletRequest request) {
       final HttpSession session = request.getSession(false);
 
@@ -85,5 +88,4 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
    protected RedirectStrategy getRedirectStrategy() {
       return redirectStrategy;
    }
-
 }
