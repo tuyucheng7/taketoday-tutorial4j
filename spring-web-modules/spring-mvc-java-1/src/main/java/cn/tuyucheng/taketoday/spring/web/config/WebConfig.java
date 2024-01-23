@@ -1,5 +1,8 @@
 package cn.tuyucheng.taketoday.spring.web.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +12,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -23,9 +26,6 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @EnableWebMvc
 @Configuration
@@ -100,7 +100,7 @@ public class WebConfig implements WebMvcConfigurer {
    }
 
    private List<MediaType> getSupportedMediaTypes() {
-      final List<MediaType> list = new ArrayList<>();
+      final List<MediaType> list = new ArrayList<MediaType>();
       list.add(MediaType.IMAGE_JPEG);
       list.add(MediaType.IMAGE_PNG);
       list.add(MediaType.APPLICATION_OCTET_STREAM);
@@ -112,14 +112,11 @@ public class WebConfig implements WebMvcConfigurer {
    public void configurePathMatch(final PathMatchConfigurer configurer) {
       final UrlPathHelper urlPathHelper = new UrlPathHelper();
       urlPathHelper.setRemoveSemicolonContent(false);
-
       configurer.setUrlPathHelper(urlPathHelper);
    }
 
    @Bean(name = "multipartResolver")
-   public CommonsMultipartResolver multipartResolver() {
-      CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-      multipartResolver.setMaxUploadSize(100000);
-      return multipartResolver;
+   public StandardServletMultipartResolver multipartResolver() {
+      return new StandardServletMultipartResolver();
    }
 }

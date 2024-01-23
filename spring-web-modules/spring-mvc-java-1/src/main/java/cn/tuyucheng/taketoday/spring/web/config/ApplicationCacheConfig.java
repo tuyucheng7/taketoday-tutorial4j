@@ -17,16 +17,16 @@ import java.util.Arrays;
 @Configuration
 public class ApplicationCacheConfig extends CachingConfigurerSupport {
 
-    @Bean
-    public CacheManager cacheManager() {
-        SimpleCacheManager cacheManager = new SimpleCacheManager();
-        Cache booksCache = new ConcurrentMapCache("books");
-        cacheManager.setCaches(Arrays.asList(booksCache));
-        return cacheManager;
-    }
+   @Bean
+   public CacheManager cacheManager() {
+      SimpleCacheManager cacheManager = new SimpleCacheManager();
+      Cache booksCache = new ConcurrentMapCache("books");
+      cacheManager.setCaches(Arrays.asList(booksCache));
+      return cacheManager;
+   }
 
-    @Bean("customKeyGenerator")
-    public KeyGenerator keyGenerator() {
-        return new CustomKeyGenerator();
-    }
+   @Bean("customKeyGenerator")
+   public KeyGenerator keyGenerator() {
+      return new CustomKeyGenerator();
+   }
 }
