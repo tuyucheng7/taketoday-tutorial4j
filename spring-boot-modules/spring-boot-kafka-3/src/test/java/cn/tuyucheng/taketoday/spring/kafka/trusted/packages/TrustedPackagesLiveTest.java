@@ -1,11 +1,8 @@
-package cn.tuyucheng.taketoday.spring.kafka;
-
-import java.time.Instant;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+package cn.tuyucheng.taketoday.spring.kafka.trusted.packages;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +12,15 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 /**
  * This test requires a running instance of kafka to be present
  */
 @SpringBootTest
+@Disabled("This test requires a running instance of kafka to be present - manually run it")
 public class TrustedPackagesLiveTest {
 
    @Autowired
@@ -43,7 +45,7 @@ public class TrustedPackagesLiveTest {
       SomeData someData = new SomeData("1", "active", "sent", Instant.now());
       kafkaTemplate.send(new ProducerRecord<>("sourceTopic", null, someData));
 
-      Assertions.assertTrue(latch.await(20L, TimeUnit.SECONDS));
+      Assertions.assertTrue(latch.await(10, TimeUnit.SECONDS));
    }
 
    @Component
