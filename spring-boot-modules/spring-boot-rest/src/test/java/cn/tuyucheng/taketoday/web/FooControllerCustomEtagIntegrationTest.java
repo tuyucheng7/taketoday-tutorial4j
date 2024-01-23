@@ -14,7 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,7 +28,7 @@ public class FooControllerCustomEtagIntegrationTest {
    @Autowired
    private MockMvc mvc;
 
-   private String FOOS_ENDPOINT = "/foos/";
+   private String FOOS_ENDPOINT = "/foos";
    private String CUSTOM_ETAG_ENDPOINT_SUFFIX = "/custom-etag";
 
    private static String serializeFoo(Foo foo) throws Exception {
@@ -110,5 +112,4 @@ public class FooControllerCustomEtagIntegrationTest {
       result.andExpect(status().isOk())
             .andExpect(header().string(HttpHeaders.ETAG, "\"1\""));
    }
-
 }

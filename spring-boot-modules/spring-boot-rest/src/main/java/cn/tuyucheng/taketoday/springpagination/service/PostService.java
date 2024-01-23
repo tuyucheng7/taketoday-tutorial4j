@@ -21,7 +21,6 @@ public class PostService implements IPostService {
 
    @Override
    public List<Post> getPostsList(int page, int size, String sortDir, String sort) {
-
       PageRequest pageReq
             = PageRequest.of(page, size, Sort.Direction.fromString(sortDir), sort);
 
@@ -41,6 +40,6 @@ public class PostService implements IPostService {
 
    @Override
    public Post getPostById(Long id) {
-      return postRepository.getOne(id);
+      return postRepository.getReferenceById(id);
    }
 }

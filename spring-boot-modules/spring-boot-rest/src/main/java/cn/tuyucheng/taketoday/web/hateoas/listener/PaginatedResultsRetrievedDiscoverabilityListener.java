@@ -4,11 +4,11 @@ import cn.tuyucheng.taketoday.web.hateoas.event.PaginatedResultsRetrievedEvent;
 import cn.tuyucheng.taketoday.web.util.LinkUtil;
 import com.google.common.base.Preconditions;
 import com.google.common.net.HttpHeaders;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.StringJoiner;
 
 @SuppressWarnings({"rawtypes"})
@@ -22,7 +22,6 @@ class PaginatedResultsRetrievedDiscoverabilityListener implements ApplicationLis
    }
 
    // API
-
    @Override
    public final void onApplicationEvent(final PaginatedResultsRetrievedEvent ev) {
       Preconditions.checkNotNull(ev);
@@ -109,11 +108,9 @@ class PaginatedResultsRetrievedDiscoverabilityListener implements ApplicationLis
    }
 
    // template
-
    protected void plural(final UriComponentsBuilder uriBuilder, final Class clazz) {
       final String resourceName = clazz.getSimpleName()
             .toLowerCase() + "s";
       uriBuilder.path("/" + resourceName);
    }
-
 }

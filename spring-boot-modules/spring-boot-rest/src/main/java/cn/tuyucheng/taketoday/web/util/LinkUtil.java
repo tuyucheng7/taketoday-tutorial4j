@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.web.util;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Provides some constants and utility methods to build a Link Header to be stored in the {@link HttpServletResponse} object
@@ -17,8 +17,6 @@ public final class LinkUtil {
       throw new AssertionError();
    }
 
-   //
-
    /**
     * Creates a Link Header to be stored in the {@link HttpServletResponse} to provide Discoverability features to the user
     *
@@ -29,5 +27,4 @@ public final class LinkUtil {
    public static String createLinkHeader(final String uri, final String rel) {
       return "<" + uri + ">; rel=\"" + rel + "\"";
    }
-
 }

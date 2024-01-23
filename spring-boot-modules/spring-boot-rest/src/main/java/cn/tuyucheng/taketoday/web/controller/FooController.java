@@ -10,6 +10,7 @@ import cn.tuyucheng.taketoday.web.hateoas.event.ResourceCreatedEvent;
 import cn.tuyucheng.taketoday.web.hateoas.event.SingleResourceRetrievedEvent;
 import cn.tuyucheng.taketoday.web.util.RestPreconditions;
 import com.google.common.base.Preconditions;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -56,7 +66,6 @@ public class FooController {
    }
 
    // read - one
-
    @GetMapping(value = "/{id}")
    public Foo findById(@PathVariable("id") final Long id, final HttpServletResponse response) {
       try {
@@ -68,11 +77,9 @@ public class FooController {
          throw new ResponseStatusException(
                HttpStatus.NOT_FOUND, "Foo Not Found", exc);
       }
-
    }
 
    // read - all
-
    @GetMapping
    public List<Foo> findAll() {
       return service.findAll();
@@ -105,7 +112,6 @@ public class FooController {
    }
 
    // write
-
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public Foo create(@RequestBody final Foo resource, final HttpServletResponse response) {

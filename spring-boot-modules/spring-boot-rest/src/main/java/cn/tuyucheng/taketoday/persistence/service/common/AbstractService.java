@@ -4,7 +4,7 @@ import cn.tuyucheng.taketoday.persistence.IOperations;
 import com.google.common.collect.Lists;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -13,15 +13,11 @@ import java.util.List;
 @Transactional
 public abstract class AbstractService<T extends Serializable> implements IOperations<T> {
 
-   // read - one
-
    @Override
    @Transactional(readOnly = true)
    public T findById(final long id) {
       return getDao().findById(id).orElse(null);
    }
-
-   // read - all
 
    @Override
    @Transactional(readOnly = true)
@@ -33,8 +29,6 @@ public abstract class AbstractService<T extends Serializable> implements IOperat
    public Page<T> findPaginated(final int page, final int size) {
       return getDao().findAll(PageRequest.of(page, size));
    }
-
-   // write
 
    @Override
    public T create(final T entity) {
@@ -56,6 +50,5 @@ public abstract class AbstractService<T extends Serializable> implements IOperat
       getDao().deleteById(entityId);
    }
 
-   protected abstract PagingAndSortingRepository<T, Long> getDao();
-
+   protected abstract JpaRepository<T, Long> getDao();
 }

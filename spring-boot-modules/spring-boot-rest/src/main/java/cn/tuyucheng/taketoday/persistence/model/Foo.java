@@ -1,8 +1,13 @@
 package cn.tuyucheng.taketoday.persistence.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @XStreamAlias("Foo")
@@ -10,7 +15,7 @@ import java.io.Serializable;
 public class Foo implements Serializable {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long id;
 
    @Column(nullable = false)
@@ -25,11 +30,8 @@ public class Foo implements Serializable {
 
    public Foo(final String name) {
       super();
-
       this.name = name;
    }
-
-   // API
 
    public long getId() {
       return id;
@@ -55,8 +57,6 @@ public class Foo implements Serializable {
       this.version = version;
    }
 
-   //
-
    @Override
    public int hashCode() {
       final int prime = 31;
@@ -75,18 +75,12 @@ public class Foo implements Serializable {
          return false;
       final Foo other = (Foo) obj;
       if (name == null) {
-         if (other.name != null)
-            return false;
-      } else if (!name.equals(other.name))
-         return false;
-      return true;
+         return other.name == null;
+      } else return name.equals(other.name);
    }
 
    @Override
    public String toString() {
-      final StringBuilder builder = new StringBuilder();
-      builder.append("Foo [name=").append(name).append("]");
-      return builder.toString();
+      return "Foo [name=" + name + "]";
    }
-
 }

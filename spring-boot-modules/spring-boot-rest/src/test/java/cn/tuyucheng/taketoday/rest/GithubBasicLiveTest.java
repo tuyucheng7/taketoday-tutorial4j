@@ -13,9 +13,9 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 public class GithubBasicLiveTest {
 
@@ -60,5 +60,4 @@ public class GithubBasicLiveTest {
       final GitHubUser resource = RetrieveUtil.retrieveResourceFromResponse(response, GitHubUser.class);
       assertThat("eugenp", Matchers.is(resource.getLogin()));
    }
-
 }

@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.web.hateoas.event;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 
 /**
@@ -31,7 +31,6 @@ public final class PaginatedResultsRetrievedEvent<T extends Serializable> extend
    }
 
    // API
-
    public final UriComponentsBuilder getUriBuilder() {
       return uriBuilder;
    }
@@ -61,5 +60,4 @@ public final class PaginatedResultsRetrievedEvent<T extends Serializable> extend
    public final Class<T> getClazz() {
       return (Class<T>) getSource();
    }
-
 }
