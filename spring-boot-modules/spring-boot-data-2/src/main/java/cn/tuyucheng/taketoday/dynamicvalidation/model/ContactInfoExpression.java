@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.dynamicvalidation.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class ContactInfoExpression {
@@ -13,7 +13,6 @@ public class ContactInfoExpression {
    private String pattern;
 
    public ContactInfoExpression() {
-
    }
 
    public ContactInfoExpression(final String type, final String pattern) {

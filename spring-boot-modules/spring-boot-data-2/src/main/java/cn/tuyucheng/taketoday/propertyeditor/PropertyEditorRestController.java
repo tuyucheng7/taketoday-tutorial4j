@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/property-editor")
 public class PropertyEditorRestController {
 
-   @GetMapping(value = "/credit-card/{card-no}",
-         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+   @GetMapping(value = "/credit-card/{card-no}", produces = MediaType.APPLICATION_JSON_VALUE)
    public CreditCard parseCreditCardNumber(@PathVariable("card-no") CreditCard creditCard) {
       return creditCard;
    }
 
-   @GetMapping(value = "/exotic-type/{value}",
-         produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+   @GetMapping(value = "/exotic-type/{value}", produces = MediaType.APPLICATION_JSON_VALUE)
    public ExoticType parseExoticType(@PathVariable("value") ExoticType exoticType) {
       return exoticType;
    }
