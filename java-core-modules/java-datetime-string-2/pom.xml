@@ -13,6 +13,14 @@
       <version>1.0.0</version>
    </parent>
 
+   <dependencies>
+      <dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time</artifactId>
+         <version>${joda-time.version}</version>
+      </dependency>
+   </dependencies>
+
    <build>
       <plugins>
          <plugin>
@@ -22,4 +30,7 @@
       </plugins>
    </build>
 
+   <properties>
+      <joda-time.version>2.12.5</joda-time.version>
+   </properties>
 </project>
