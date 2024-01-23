@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.boot.daos.impl;
 
-import cn.tuyucheng.taketoday.boot.daos.CustomItemRepository;
-import cn.tuyucheng.taketoday.boot.domain.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
+import cn.tuyucheng.taketoday.boot.daos.CustomItemRepository;
+import cn.tuyucheng.taketoday.boot.domain.Item;
+import jakarta.persistence.EntityManager;
 
 @Repository
 public class CustomItemRepositoryImpl implements CustomItemRepository {

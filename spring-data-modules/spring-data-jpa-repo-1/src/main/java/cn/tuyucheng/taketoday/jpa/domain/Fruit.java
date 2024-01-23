@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.jpa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity

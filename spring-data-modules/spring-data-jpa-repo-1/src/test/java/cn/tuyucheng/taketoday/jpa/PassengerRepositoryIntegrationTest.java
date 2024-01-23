@@ -1,37 +1,39 @@
 package cn.tuyucheng.taketoday.jpa;
 
-import cn.tuyucheng.taketoday.jpa.domain.Passenger;
-import cn.tuyucheng.taketoday.jpa.repository.PassengerRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.IsNot.not;
 
-@ExtendWith(SpringExtension.class)
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import cn.tuyucheng.taketoday.jpa.domain.Passenger;
+import cn.tuyucheng.taketoday.jpa.repository.PassengerRepository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
+
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {JpaApplication.class})
 @DirtiesContext
-class PassengerRepositoryIntegrationTest {
+public class PassengerRepositoryIntegrationTest {
 
    @PersistenceContext
    private EntityManager entityManager;
    @Autowired
    private PassengerRepository repository;
 
-   @BeforeEach
+   @Before
    @Transactional
-   void before() {
+   public void before() {
       entityManager.persist(Passenger.from("Jill", "Smith"));
       entityManager.persist(Passenger.from("Eve", "Jackson"));
       entityManager.persist(Passenger.from("Fred", "Bloggs"));
@@ -41,7 +43,7 @@ class PassengerRepositoryIntegrationTest {
 
    @Transactional
    @Test
-   void givenPassengers_whenMatchingIgnoreCase_thenExpectedReturned() {
+   public void givenPassengers_whenMatchingIgnoreCase_thenExpectedReturned() {
       Passenger jill = Passenger.from("Jill", "Smith");
       Passenger eve = Passenger.from("Eve", "Jackson");
       Passenger fred = Passenger.from("Fred", "Bloggs");
