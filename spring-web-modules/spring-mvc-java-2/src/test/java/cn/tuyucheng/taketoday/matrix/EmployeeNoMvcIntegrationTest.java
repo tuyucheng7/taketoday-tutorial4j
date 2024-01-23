@@ -2,48 +2,39 @@ package cn.tuyucheng.taketoday.matrix;
 
 import cn.tuyucheng.taketoday.matrix.config.MatrixWebConfig;
 import cn.tuyucheng.taketoday.matrix.controller.EmployeeController;
-import cn.tuyucheng.taketoday.matrix.model.Employee;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {MatrixWebConfig.class, EmployeeController.class})
-public class EmployeeNoMvcIntegrationTest {
+public class EmployeeMvcIntegrationTest {
 
-    @Autowired
-    private EmployeeController employeeController;
+   @Autowired
+   private WebApplicationContext webAppContext;
+   private MockMvc mockMvc;
 
-    @Before
-    public void setup() {
-        employeeController.initEmployees();
-    }
+   @Before
+   public void setup() {
+      MockitoAnnotations.openMocks(this);
+      mockMvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
+   }
 
-    @Test
-    public void whenInitEmployees_thenVerifyValuesInitiation() {
-        Employee employee1 = employeeController.employeeMap.get(1L);
-        Employee employee2 = employeeController.employeeMap.get(2L);
-        Employee employee3 = employeeController.employeeMap.get(3L);
-
-        Assert.assertTrue(employee1.getId() == 1L);
-        Assert.assertTrue(employee1.getName().equals("John"));
-        Assert.assertTrue(employee1.getContactNumber().equals("223334411"));
-        Assert.assertTrue(employee1.getWorkingArea().equals("rh"));
-
-        Assert.assertTrue(employee2.getId() == 2L);
-        Assert.assertTrue(employee2.getName().equals("Peter"));
-        Assert.assertTrue(employee2.getContactNumber().equals("22001543"));
-        Assert.assertTrue(employee2.getWorkingArea().equals("informatics"));
-
-        Assert.assertTrue(employee3.getId() == 3L);
-        Assert.assertTrue(employee3.getName().equals("Mike"));
-        Assert.assertTrue(employee3.getContactNumber().equals("223334411"));
-        Assert.assertTrue(employee3.getWorkingArea().equals("admin"));
-    }
+   @Test
+   public void whenEmployeeGETisPerformed_thenRetrievedStatusAndViewNameAndAttributeAreCorrect() throws Exception {
+      mockMvc.perform(get("/employee")).andExpect(status().isOk()).andExpect(view().name("employeeHome")).andExpect(model().attributeExists("employee")).andDo(print());
+   }
 }

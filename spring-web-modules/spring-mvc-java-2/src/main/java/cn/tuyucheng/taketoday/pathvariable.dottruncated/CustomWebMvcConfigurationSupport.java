@@ -7,11 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 public class CustomWebMvcConfigurationSupport extends WebMvcConfigurationSupport {
 
-    @Override
-    protected PathMatchConfigurer getPathMatchConfigurer() {
-        PathMatchConfigurer pathMatchConfigurer = super.getPathMatchConfigurer();
-        pathMatchConfigurer.setUseSuffixPatternMatch(false);
-
-        return pathMatchConfigurer;
-    }
+   @Override
+   protected PathMatchConfigurer getPathMatchConfigurer() {
+      PathMatchConfigurer pathMatchConfigurer = super.getPathMatchConfigurer();
+      return pathMatchConfigurer;
+   }
 }

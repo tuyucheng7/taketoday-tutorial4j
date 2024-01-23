@@ -10,8 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class MultipartPostRequestController {
 
-    @PostMapping(path = "/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-        return file.isEmpty() ? new ResponseEntity<String>(HttpStatus.NOT_FOUND) : new ResponseEntity<String>(HttpStatus.OK);
-    }
+   @PostMapping(path = "/upload")
+   public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+      return file.isEmpty() ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : new ResponseEntity<>(
+            HttpStatus.OK);
+   }
 }
