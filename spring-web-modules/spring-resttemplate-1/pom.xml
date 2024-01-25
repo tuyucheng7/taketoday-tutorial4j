@@ -10,71 +10,20 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-boot-2</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../parent-boot-2</relativePath>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
       <!-- Spring Boot Dependencies -->
       <dependency>
          <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-actuator</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-thymeleaf</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-devtools</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-web</artifactId>
       </dependency>
       <dependency>
          <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-test</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>au.com.dius</groupId>
-         <artifactId>pact-jvm-provider-junit5_2.12</artifactId>
-         <version>${pact.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>au.com.dius</groupId>
-         <artifactId>pact-jvm-consumer-junit5_2.12</artifactId>
-         <version>${pact.version}</version>
-         <scope>test</scope>
-      </dependency>
-      <!-- Spring -->
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-web</artifactId>
-         <exclusions>
-            <exclusion>
-               <artifactId>commons-logging</artifactId>
-               <groupId>commons-logging</groupId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-webmvc</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-oxm</artifactId>
-      </dependency>
-      <!-- marshalling -->
-      <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>com.fasterxml.jackson.dataformat</groupId>
-         <artifactId>jackson-dataformat-xml</artifactId>
+         <artifactId>spring-boot-starter-actuator</artifactId>
       </dependency>
       <dependency>
          <groupId>com.thoughtworks.xstream</groupId>
@@ -100,14 +49,15 @@
       </dependency>
       <!-- test scoped -->
       <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-test</artifactId>
-      </dependency>
-      <dependency>
-         <groupId>org.mockito</groupId>
-         <artifactId>mockito-junit-jupiter</artifactId>
-         <version>${mockito.version}</version>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
          <scope>test</scope>
+         <exclusions>
+            <exclusion>
+               <groupId>org.junit.vintage</groupId>
+               <artifactId>junit-vintage-engine</artifactId>
+            </exclusion>
+         </exclusions>
       </dependency>
    </dependencies>
 
@@ -121,18 +71,16 @@
       </resources>
       <plugins>
          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
+         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>${maven.version}</version>
-            <configuration>
-               <source>${source.version}</source>
-               <target>${target.version}</target>
-            </configuration>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
-            <version>${maven-war-plugin.version}</version>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -155,12 +103,12 @@
             <artifactId>cargo-maven2-plugin</artifactId>
             <version>${cargo-maven2-plugin.version}</version>
             <configuration>
-               <!--<wait>true</wait>-->
+               <wait>true</wait>
                <container>
                   <containerId>tomcat8x</containerId>
                   <type>embedded</type>
                   <systemProperties>
-                     <!--<provPersistenceTarget>cargo</provPersistenceTarget>-->
+                     <!-- <provPersistenceTarget>cargo</provPersistenceTarget> -->
                   </systemProperties>
                </container>
                <configuration>
@@ -255,16 +203,11 @@
    </profiles>
 
    <properties>
-      <xstream.version>1.4.9</xstream.version>
+      <xstream.version>1.4.20</xstream.version>
       <!-- Maven plugins -->
       <cargo-maven2-plugin.version>1.6.1</cargo-maven2-plugin.version>
-      <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
       <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
       <!-- okhttp -->
-      <com.squareup.okhttp3.version>3.4.1</com.squareup.okhttp3.version>
-      <pact.version>3.6.3</pact.version>
-      <source.version>1.8</source.version>
-      <target.version>1.8</target.version>
-      <maven.version>3.7.0</maven.version>
+      <com.squareup.okhttp3.version>4.12.0</com.squareup.okhttp3.version>
    </properties>
 </project>
