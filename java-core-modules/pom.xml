@@ -180,6 +180,7 @@
       <module>java-reflection-3</module>
       <module>java-regex-1</module>
       <module>java-regex-2</module>
+      <module>java-regex-3</module>
       <module>java-rmi</module>
       <module>java-scanner</module>
       <module>java-security-1</module>
