@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <artifactId>java-datetime-conversion</artifactId>
+   <artifactId>java-datetime-conversion-2</artifactId>
    <version>${project.parent.version}</version>
-   <name>java-datetime-conversion</name>
+   <name>java-datetime-conversion-2</name>
    <packaging>jar</packaging>
 
    <parent>
@@ -33,7 +33,7 @@
    </dependencies>
 
    <build>
-      <finalName>java-datetime-conversion</finalName>
+      <finalName>java-datetime-conversion-2</finalName>
       <resources>
          <resource>
             <directory>src/main/resources</directory>

@@ -95,7 +95,8 @@
       <module>java-date-operations-2</module>
       <module>java-date-operations-3</module>
       <module>java-date-operations-4</module>
-      <module>java-datetime-conversion</module>
+      <module>java-datetime-conversion-1</module>
+      <module>java-datetime-conversion-2</module>
       <module>java-datetime-string-1</module>
       <module>java-datetime-string-2</module>
       <module>java-documentation</module>
