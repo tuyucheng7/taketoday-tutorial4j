@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.junit5vstestng;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.EnumSet;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.EnumSet;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-public class ParameterizedUnitTest {
+class ParameterizedUnitTest {
 
    @ParameterizedTest
    @ValueSource(strings = {"Hello", "World"})
