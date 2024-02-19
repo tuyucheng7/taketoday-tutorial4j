@@ -39,6 +39,7 @@
       <module>java-19</module>
       <module>java-20</module>
       <module>java-21</module>
+      <module>java-22</module>
       <module>java-annotations</module>
       <module>java-arrays-convert</module>
       <module>java-arrays-guides</module>
