@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.optionalreturntype;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 public class PersistOptionalTypeExample2 {
    static String persistenceUnit = "cn.tuyucheng.taketoday.optionalreturntype";
@@ -12,11 +12,11 @@ public class PersistOptionalTypeExample2 {
 
    public static void main(String[] args) {
       UserOptional user1 = new UserOptional();
-      user1.setUserId(1l);
-      user1.setFirstName("Bael Dung");
+      user1.setUserId(1L);
+      user1.setFirstName("Tu Yucheng");
       em.persist(user1);
 
-      UserOptional user2 = em.find(UserOptional.class, 1l);
+      UserOptional user2 = em.find(UserOptional.class, 1L);
       System.out.print("User2.firstName:" + user2.getFirstName());
    }
 }

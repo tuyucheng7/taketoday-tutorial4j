@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.Optional;
 
 public class HandleOptionalTypeExample {
-   static Map<String, User> usersByName = new HashMap();
+   static Map<String, User> usersByName = new HashMap<>();
 
    static {
       User user1 = new User();
-      user1.setUserId(1l);
+      user1.setUserId(1L);
       user1.setFirstName("tuyucheng");
       usersByName.put("tuyucheng", user1);
    }
