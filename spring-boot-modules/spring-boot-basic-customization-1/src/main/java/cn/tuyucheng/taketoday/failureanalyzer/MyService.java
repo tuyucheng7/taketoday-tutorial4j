@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.failureanalyzer;
 
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 @Service
 public class MyService {

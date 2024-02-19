@@ -9,9 +9,10 @@
    <description>Module For Spring Boot Basic Customization</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-      <artifactId>spring-boot-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -75,7 +76,7 @@
    </build>
 
    <properties>
-      <spring-boot-maven-plugin.version>1.5.2.RELEASE</spring-boot-maven-plugin.version>
+      <spring-boot-maven-plugin.version>3.1.5</spring-boot-maven-plugin.version>
       <!-- The main class to start by executing "java -jar" -->
       <start-class>cn.tuyucheng.taketoday.changeport.CustomApplication</start-class>
    </properties>

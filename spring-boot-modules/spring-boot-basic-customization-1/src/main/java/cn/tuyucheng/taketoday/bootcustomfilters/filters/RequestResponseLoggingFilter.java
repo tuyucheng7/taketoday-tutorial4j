@@ -1,13 +1,18 @@
 package cn.tuyucheng.taketoday.bootcustomfilters.filters;
 
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -20,7 +25,7 @@ import java.io.IOException;
 @Order(2)
 public class RequestResponseLoggingFilter implements Filter {
 
-   private static final Logger LOG = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
+   private final static Logger LOG = LoggerFactory.getLogger(RequestResponseLoggingFilter.class);
 
    @Override
    public void init(final FilterConfig filterConfig) {
@@ -28,8 +33,7 @@ public class RequestResponseLoggingFilter implements Filter {
    }
 
    @Override
-   public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
-         throws IOException, ServletException {
+   public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
       HttpServletRequest req = (HttpServletRequest) request;
       HttpServletResponse res = (HttpServletResponse) response;
       LOG.info("Logging Request  {} : {}", req.getMethod(), req.getRequestURI());
