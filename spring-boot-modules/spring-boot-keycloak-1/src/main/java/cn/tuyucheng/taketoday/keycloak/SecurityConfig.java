@@ -76,7 +76,7 @@ class SecurityConfig {
                var roles = (Collection<String>) realmAccess.get(ROLES_CLAIM);
                mappedAuthorities.addAll(generateAuthoritiesFromClaim(roles));
             } else if (userInfo.hasClaim(GROUPS)) {
-               Collection<String> roles = (Collection<String>) userInfo.getClaim(
+               Collection<String> roles = userInfo.getClaim(
                      GROUPS);
                mappedAuthorities.addAll(generateAuthoritiesFromClaim(roles));
             }
