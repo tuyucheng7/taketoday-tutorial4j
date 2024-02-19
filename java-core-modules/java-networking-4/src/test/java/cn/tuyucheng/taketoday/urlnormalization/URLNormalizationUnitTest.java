@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.urlnormalization;
 
-import org.junit.jupiter.api.Test;
 import org.apache.commons.validator.routines.UrlValidator;
+import org.junit.jupiter.api.Test;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class URLNormalizationUnitTest {
    String originalUrl = "https://www.example.com:8080/path/to/resource?param1=value1&param2=value2#fragment";
@@ -22,7 +22,7 @@ public class URLNormalizationUnitTest {
          String normalizedUri = originalUrl.split("\\?")[0];
          assertEquals(expectedNormalizedUrl, normalizedUri);
       } else {
-         throw new IllegalArgumentException("Invalid URL: " + originalUrl);
+         fail(originalUrl);
       }
    }
 
@@ -35,7 +35,7 @@ public class URLNormalizationUnitTest {
    }
 
    @Test
-   public void givenOriginalUrl_whenUsingRegularExpression_thenNormalizedUrl() throws URISyntaxException, UnsupportedEncodingException {
+   public void givenOriginalUrl_whenUsingRegularExpression_thenNormalizedUrl() {
       String regex = "^(https?://[^/]+/[^?#]+)";
       Pattern pattern = Pattern.compile(regex);
       Matcher matcher = pattern.matcher(originalUrl);
@@ -44,7 +44,7 @@ public class URLNormalizationUnitTest {
          String normalizedUrl = matcher.group(1);
          assertEquals(expectedNormalizedUrl, normalizedUrl);
       } else {
-         throw new IllegalArgumentException("Invalid URL: " + originalUrl);
+         fail(originalUrl);
       }
    }
 }
