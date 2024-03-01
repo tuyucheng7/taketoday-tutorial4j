@@ -1,6 +1,12 @@
 package cn.tuyucheng.taketoday;
 
-import lombok.RequiredArgsConstructor;
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +22,7 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity.CsrfSpec;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
@@ -28,15 +35,10 @@ import org.springframework.security.web.server.context.NoOpServerSecurityContext
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @SpringBootApplication
 public class ReactiveResourceServerApplication {
@@ -53,7 +55,7 @@ public class ReactiveResourceServerApplication {
       SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
          http.oauth2ResourceServer(resourceServer -> resourceServer.jwt(withDefaults()));
          http.securityContextRepository(NoOpServerSecurityContextRepository.getInstance());
-         http.csrf(csrf -> csrf.disable());
+         http.csrf(CsrfSpec::disable);
          http.exceptionHandling(eh -> eh
                .accessDeniedHandler((var exchange, var ex) -> exchange.getPrincipal().flatMap(principal -> {
                   final var response = exchange.getResponse();
@@ -70,7 +72,6 @@ public class ReactiveResourceServerApplication {
          http.authorizeExchange(req -> req
                .pathMatchers("/secured-route").hasRole("AUTHORIZED_PERSONNEL").anyExchange()
                .authenticated());
-
          return http.build();
       }
 
@@ -88,7 +89,8 @@ public class ReactiveResourceServerApplication {
       }
 
       @Bean
-      ReactiveJwtAuthenticationConverter authenticationConverter(Converter<Jwt, Flux<GrantedAuthority>> authoritiesConverter) {
+      ReactiveJwtAuthenticationConverter authenticationConverter(
+            Converter<Jwt, Flux<GrantedAuthority>> authoritiesConverter) {
          final var authenticationConverter = new ReactiveJwtAuthenticationConverter();
          authenticationConverter.setPrincipalClaimName(StandardClaimNames.PREFERRED_USERNAME);
          authenticationConverter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);

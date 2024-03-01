@@ -1,7 +1,5 @@
 package cn.tuyucheng.taketoday;
 
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -9,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithJwt;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
 
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureWebTestClient
@@ -23,7 +24,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetGreet_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetGreet_thenUnauthorized() {
       api.get()
             .uri("/greet")
             .exchange()
@@ -33,7 +34,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithJwt("ch4mpy.json")
-   void givenUserIsAuthenticated_whenGetGreet_thenOk() throws Exception {
+   void givenUserIsAuthenticated_whenGetGreet_thenOk() {
       api.get()
             .uri("/greet")
             .exchange()
@@ -50,7 +51,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetSecuredRoute_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetSecuredRoute_thenUnauthorized() {
       api.get()
             .uri("/secured-route")
             .exchange()
@@ -60,7 +61,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithMockAuthentication("ROLE_AUTHORIZED_PERSONNEL")
-   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenOk() throws Exception {
+   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenOk() {
       api.get()
             .uri("/secured-route")
             .exchange()
@@ -72,7 +73,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithMockAuthentication("admin")
-   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenForbidden() throws Exception {
+   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenForbidden() {
       api.get()
             .uri("/secured-route")
             .exchange()
@@ -84,10 +85,9 @@ class ReactiveResourceServerApplicationIntegrationTest {
    /* /secured-method                                                                                         */
    /* This end-point is secured with "@PreAuthorize("hasRole('AUTHORIZED_PERSONNEL')")" on @Controller method */
    /*---------------------------------------------------------------------------------------------------------*/
-
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetSecuredMethod_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetSecuredMethod_thenUnauthorized() {
       api.get()
             .uri("/secured-method")
             .exchange()
@@ -97,7 +97,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithMockAuthentication("ROLE_AUTHORIZED_PERSONNEL")
-   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenOk() throws Exception {
+   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenOk() {
       api.get()
             .uri("/secured-method")
             .exchange()
@@ -109,7 +109,7 @@ class ReactiveResourceServerApplicationIntegrationTest {
 
    @Test
    @WithMockAuthentication("admin")
-   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenForbidden() throws Exception {
+   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenForbidden() {
       api.get()
             .uri("/secured-method")
             .exchange()
