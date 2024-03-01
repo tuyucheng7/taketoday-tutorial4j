@@ -10,8 +10,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>spring-security-modules</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -29,7 +30,7 @@
       </dependency>
       <dependency>
          <groupId>org.thymeleaf.extras</groupId>
-         <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+         <artifactId>thymeleaf-extras-springsecurity6</artifactId>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
@@ -55,4 +56,8 @@
          </plugin>
       </plugins>
    </build>
+
+   <properties>
+      <start-class>cn.tuyucheng.taketoday.manuallogout.ManualLogoutApplication</start-class>
+   </properties>
 </project>

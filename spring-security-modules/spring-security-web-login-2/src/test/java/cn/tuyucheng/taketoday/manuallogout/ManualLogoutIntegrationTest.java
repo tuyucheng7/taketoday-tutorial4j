@@ -1,5 +1,14 @@
 package cn.tuyucheng.taketoday.manuallogout;
 
+import static org.junit.Assert.assertNull;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.cookie;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +19,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
-
-import static org.junit.Assert.assertNull;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpSession;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(SimpleSecurityConfiguration.class)
@@ -37,7 +39,6 @@ public class ManualLogoutIntegrationTest {
    @WithMockUser(value = "spring")
    @Test
    public void givenLoggedUserWhenUserLogoutThenSessionClearedAndNecessaryCookieCleared() throws Exception {
-
       this.mockMvc.perform(post("/basic/basiclogout").secure(true)
                   .with(csrf()))
             .andExpect(status().is3xxRedirection())
@@ -48,7 +49,6 @@ public class ManualLogoutIntegrationTest {
    @WithMockUser(value = "spring")
    @Test
    public void givenLoggedUserWhenUserLogoutThenSessionClearedAndAllCookiesCleared() throws Exception {
-
       MockHttpSession session = new MockHttpSession();
       session.setAttribute(ATTRIBUTE_NAME, ATTRIBUTE_VALUE);
 
@@ -72,7 +72,6 @@ public class ManualLogoutIntegrationTest {
    @WithMockUser(value = "spring")
    @Test
    public void givenLoggedUserWhenUserLogoutThenClearDataSiteHeaderPresent() throws Exception {
-
       this.mockMvc.perform(post("/csd/csdlogout").secure(true)
                   .with(csrf()))
             .andDo(print())
@@ -84,7 +83,6 @@ public class ManualLogoutIntegrationTest {
    @WithMockUser(value = "spring")
    @Test
    public void givenLoggedUserWhenUserLogoutOnRequestThenSessionCleared() throws Exception {
-
       this.mockMvc.perform(post("/request/logout").secure(true)
                   .with(csrf()))
             .andExpect(status().is3xxRedirection())
