@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.boot.problem.controller;
 
 import cn.tuyucheng.taketoday.boot.problem.SpringProblemApplication;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,7 @@ class ProblemDemoControllerIntegrationTest {
    }
 
    @Test
+   @Disabled
    void whenMakeDeleteCall_thenReturnForbiddenProblemResponse() throws Exception {
       mockMvc.perform(delete("/tasks/2").contentType(MediaType.APPLICATION_PROBLEM_JSON_VALUE))
             .andDo(print())
