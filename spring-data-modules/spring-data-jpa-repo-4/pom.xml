@@ -76,6 +76,16 @@
          <artifactId>logback-classic</artifactId>
          <version>${logback.version}</version>
       </dependency>
+      <dependency>
+         <groupId>io.hypersistence</groupId>
+         <artifactId>hypersistence-utils-hibernate-62</artifactId>
+         <version>${hypersistence-utils.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.vladmihalcea</groupId>
+         <artifactId>db-util</artifactId>
+         <version>${db.util.version}</version>
+      </dependency>
    </dependencies>
 
    <build>
