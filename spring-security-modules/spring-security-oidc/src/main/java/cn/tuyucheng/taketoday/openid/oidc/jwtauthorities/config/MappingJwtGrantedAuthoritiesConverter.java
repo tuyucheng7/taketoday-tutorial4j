@@ -1,12 +1,17 @@
 package cn.tuyucheng.taketoday.openid.oidc.jwtauthorities.config;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class MappingJwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
@@ -49,7 +54,7 @@ public class MappingJwtGrantedAuthoritiesConverter implements Converter<Jwt, Col
 
       if (this.authoritiesClaimName == null) {
          scopeClaim = WELL_KNOWN_AUTHORITIES_CLAIM_NAMES.stream()
-               .filter(claim -> jwt.hasClaim(claim))
+               .filter(jwt::hasClaim)
                .findFirst()
                .orElse(null);
 
@@ -69,7 +74,7 @@ public class MappingJwtGrantedAuthoritiesConverter implements Converter<Jwt, Col
          return Arrays.asList(v.toString().split(" "));
       } else if (v instanceof Collection) {
          return ((Collection<?>) v).stream()
-               .map(s -> s.toString())
+               .map(Object::toString)
                .collect(Collectors.toCollection(HashSet::new));
       }
       return Collections.emptyList();

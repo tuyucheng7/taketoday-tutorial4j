@@ -1,10 +1,11 @@
 package cn.tuyucheng.taketoday.openid.oidc.discovery;
 
-import cn.tuyucheng.taketoday.openid.oidc.utils.YamlLoaderInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import cn.tuyucheng.taketoday.openid.oidc.utils.YamlLoaderInitializer;
 
 @SpringBootApplication
 public class SpringOidcDiscoveryApplication {
@@ -15,5 +16,4 @@ public class SpringOidcDiscoveryApplication {
       application.addInitializers(yamlInitializer);
       application.run(args);
    }
-
 }
