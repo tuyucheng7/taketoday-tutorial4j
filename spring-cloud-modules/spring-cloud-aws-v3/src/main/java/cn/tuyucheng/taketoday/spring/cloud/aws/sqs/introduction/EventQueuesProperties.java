@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.cloud.aws.sqs;
+package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

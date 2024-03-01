@@ -1,4 +1,4 @@
-package cn.tuyucheng.taketoday.spring.cloud.aws.sqs;
+package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction;
 
 import static io.awspring.cloud.sqs.listener.SqsHeaders.MessageSystemAttributes.SQS_APPROXIMATE_FIRST_RECEIVE_TIMESTAMP;
 

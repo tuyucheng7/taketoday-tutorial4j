@@ -68,7 +68,7 @@
    </dependencies>
 
    <properties>
-      <start-class>cn.tuyucheng.taketoday.spring.cloud.aws.SpringCloudAwsApplication</start-class>
+      <start-class>cn.tuyucheng.taketoday.spring.cloud.aws.sqs.SpringCloudAwsApplication</start-class>
       <spring-cloud.version>Dalston.SR4</spring-cloud.version>
       <spring-cloud>2.2.6.RELEASE</spring-cloud>
    </properties>
