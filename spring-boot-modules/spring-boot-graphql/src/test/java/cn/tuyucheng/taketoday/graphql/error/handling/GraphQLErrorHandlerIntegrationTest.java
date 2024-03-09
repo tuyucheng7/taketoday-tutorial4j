@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday.graphql.error.handling;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureHttpGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.graphql.test.tester.HttpGraphQlTester;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -17,10 +16,10 @@ import static graphql.ErrorType.NullValueInNonNullableField;
 import static org.springframework.graphql.execution.ErrorType.INTERNAL_ERROR;
 import static org.springframework.graphql.execution.ErrorType.NOT_FOUND;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = GraphQLErrorHandlerApplication.class)
+@SpringBootTest(classes = GraphQLErrorHandlerApplication.class)
 @ActiveProfiles("error-handling")
-@Disabled("Disabled until we have a way to test the error handler")
-public class GraphQLErrorHandlerIntegrationTest {
+@AutoConfigureHttpGraphQlTester
+class GraphQLErrorHandlerIntegrationTest {
 
    private static final String GRAPHQL_TEST_REQUEST_PATH = "src/test/resources/graphql-files/request/%s_request.graphql";
    private static final String GRAPHQL_TEST_RESPONSE_PATH = "src/test/resources/graphql-files/response/%s_response.json";

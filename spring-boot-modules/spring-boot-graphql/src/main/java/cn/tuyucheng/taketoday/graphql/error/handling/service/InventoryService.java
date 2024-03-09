@@ -7,11 +7,15 @@ import cn.tuyucheng.taketoday.graphql.error.handling.exception.VehicleAlreadyPre
 import cn.tuyucheng.taketoday.graphql.error.handling.exception.VehicleNotFoundException;
 import cn.tuyucheng.taketoday.graphql.error.handling.repository.InventoryRepository;
 import cn.tuyucheng.taketoday.graphql.error.handling.repository.LocationRepository;
-import org.apache.commons.lang3.StringUtils;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class InventoryService {
@@ -49,7 +53,7 @@ public class InventoryService {
    }
 
    public List<Vehicle> searchByLocation(String zipcode) {
-      if (StringUtils.isEmpty(zipcode) || zipcode.length() != 5) {
+      if (StringUtils.hasText(zipcode) || zipcode.length() != 5) {
          throw new InvalidInputException("Invalid zipcode " + zipcode + " provided.");
       }
       return this.locationRepository.findById(zipcode)

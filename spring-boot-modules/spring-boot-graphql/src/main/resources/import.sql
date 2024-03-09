@@ -1,8 +1,8 @@
-insert into "location"
+insert into "location" ("zipcode", "city", "state")
 values ('07092', 'Mountainside', 'NJ');
-insert into "location"
+insert into "location" ("zipcode", "city", "state")
 values ('94118', 'San Francisco', 'CA');
-insert into "location"
+insert into "location" ("zipcode", "city", "state")
 values ('10002', 'New York', 'NY');
 
 insert into "vehicle" ("vin", "year", "make", "model", "trim", "fk_location")
