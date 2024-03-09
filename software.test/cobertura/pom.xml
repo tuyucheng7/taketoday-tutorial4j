@@ -18,8 +18,8 @@
          <artifactId>tools</artifactId>
          <version>1.8</version>
          <scope>system</scope>
-         <!-- set JAVA_8 env variable on your machine to point to the JDK 8 directory  -->
-         <systemPath>${env.JAVA_8}/lib/tools.jar</systemPath>
+         <!-- set JAVA8_HOME env variable on your machine to point to the JDK 8 directory  -->
+         <systemPath>${env.JAVA8_HOME}/lib/tools.jar</systemPath>
       </dependency>
    </dependencies>
 
@@ -75,8 +75,8 @@
                   <artifactId>tools</artifactId>
                   <version>1.8</version>
                   <scope>system</scope>
-                  <!-- set JAVA_8 env variable on your machine to point to the JDK 8 directory  -->
-                  <systemPath>${env.JAVA_8}/lib/tools.jar</systemPath>
+                  <!-- set JAVA8_HOME env variable on your machine to point to the JDK 8 directory  -->
+                  <systemPath>${env.JAVA8_HOME}/lib/tools.jar</systemPath>
                </dependency>
             </dependencies>
          </plugin>
