@@ -1,12 +1,11 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service;
 
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
+import org.springframework.stereotype.Service;
+
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Service;
-
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
 
 @Service
 public class OrderService {

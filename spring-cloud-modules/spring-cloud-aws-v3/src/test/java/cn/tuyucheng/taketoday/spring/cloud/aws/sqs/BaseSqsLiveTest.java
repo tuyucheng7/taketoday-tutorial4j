@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs;
 
-import static org.testcontainers.containers.localstack.LocalStackContainer.Service.SQS;
-
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.localstack.LocalStackContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
+
+import static org.testcontainers.containers.localstack.LocalStackContainer.Service.SQS;
 
 @Testcontainers
 public class BaseSqsLiveTest {

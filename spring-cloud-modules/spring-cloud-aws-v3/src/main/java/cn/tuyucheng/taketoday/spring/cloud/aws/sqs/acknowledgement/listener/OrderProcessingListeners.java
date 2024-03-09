@@ -1,19 +1,17 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.listener;
 
-import java.util.concurrent.CompletableFuture;
-
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderCreatedEvent;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.InventoryService;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.OrderService;
+import io.awspring.cloud.sqs.annotation.SqsListener;
+import io.awspring.cloud.sqs.annotation.SqsListenerAcknowledgementMode;
+import io.awspring.cloud.sqs.listener.acknowledgement.Acknowledgement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderCreatedEvent;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.OrderService;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.InventoryService;
-
-import io.awspring.cloud.sqs.annotation.SqsListener;
-import io.awspring.cloud.sqs.annotation.SqsListenerAcknowledgementMode;
-import io.awspring.cloud.sqs.listener.acknowledgement.Acknowledgement;
+import java.util.concurrent.CompletableFuture;
 
 @Component
 public class OrderProcessingListeners {

@@ -1,12 +1,7 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction;
 
-import static cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction.UserEventListeners.EVENT_TYPE_CUSTOM_HEADER;
-import static org.awaitility.Awaitility.await;
-
-import java.time.Duration;
-import java.util.Map;
-import java.util.UUID;
-
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.BaseSqsLiveTest;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.BaseSqsLiveTest;
+import java.time.Duration;
+import java.util.Map;
+import java.util.UUID;
 
-import io.awspring.cloud.sqs.operations.SqsTemplate;
+import static cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction.UserEventListeners.EVENT_TYPE_CUSTOM_HEADER;
+import static org.awaitility.Awaitility.await;
 
 @ActiveProfiles("introduction")
 @SpringBootTest

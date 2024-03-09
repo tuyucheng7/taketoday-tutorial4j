@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration;
 
-import java.util.UUID;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.util.UUID;
 
 @ConfigurationProperties("product.id")
 public class ProductIdProperties {

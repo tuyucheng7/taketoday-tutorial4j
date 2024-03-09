@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository {

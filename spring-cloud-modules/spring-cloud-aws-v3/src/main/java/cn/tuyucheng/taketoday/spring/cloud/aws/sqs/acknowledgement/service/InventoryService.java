@@ -1,15 +1,14 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.stereotype.Service;
-
 import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration.ProductIdProperties;
 import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.exception.OutOfStockException;
 import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.exception.ProductNotFoundException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class InventoryService implements InitializingBean {

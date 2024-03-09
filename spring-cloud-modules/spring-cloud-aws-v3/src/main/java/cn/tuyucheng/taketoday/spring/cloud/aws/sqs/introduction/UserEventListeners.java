@@ -1,16 +1,15 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.introduction;
 
-import static io.awspring.cloud.sqs.listener.SqsHeaders.MessageSystemAttributes.SQS_APPROXIMATE_FIRST_RECEIVE_TIMESTAMP;
-
-import java.util.UUID;
-
+import io.awspring.cloud.sqs.annotation.SqsListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
-import io.awspring.cloud.sqs.annotation.SqsListener;
+import java.util.UUID;
+
+import static io.awspring.cloud.sqs.listener.SqsHeaders.MessageSystemAttributes.SQS_APPROXIMATE_FIRST_RECEIVE_TIMESTAMP;
 
 @Component
 public class UserEventListeners {

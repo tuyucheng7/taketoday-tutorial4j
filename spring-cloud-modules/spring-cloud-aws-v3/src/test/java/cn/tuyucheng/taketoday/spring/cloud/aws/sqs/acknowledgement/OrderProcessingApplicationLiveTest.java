@@ -1,11 +1,13 @@
 package cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.time.Duration;
-import java.util.Objects;
-import java.util.UUID;
-
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.BaseSqsLiveTest;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration.EventsQueuesProperties;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration.ProductIdProperties;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderCreatedEvent;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
+import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.OrderService;
+import io.awspring.cloud.sqs.listener.MessageListenerContainerRegistry;
+import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -14,15 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.BaseSqsLiveTest;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration.EventsQueuesProperties;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.configuration.ProductIdProperties;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderCreatedEvent;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.model.OrderStatus;
-import cn.tuyucheng.taketoday.spring.cloud.aws.sqs.acknowledgement.service.OrderService;
+import java.time.Duration;
+import java.util.Objects;
+import java.util.UUID;
 
-import io.awspring.cloud.sqs.listener.MessageListenerContainerRegistry;
-import io.awspring.cloud.sqs.operations.SqsTemplate;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("acknowledgement")
 @SpringBootTest
