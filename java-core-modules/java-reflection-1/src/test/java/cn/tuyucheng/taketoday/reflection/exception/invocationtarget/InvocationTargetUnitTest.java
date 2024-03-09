@@ -8,15 +8,16 @@ import java.lang.reflect.Method;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class InvocationTargetUnitTest {
+public class InvocationTargetUnitTest {
 
-	@Test
-	void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
-		InvocationTargetExample targetExample = new InvocationTargetExample();
-		Method method = InvocationTargetExample.class.getMethod("divideByZeroExample");
+   @Test
+   public void whenCallingMethodThrowsException_thenAssertCauseOfInvocationTargetException() throws Exception {
 
-		Exception exception = assertThrows(InvocationTargetException.class, () -> method.invoke(targetExample));
+      InvocationTargetExample targetExample = new InvocationTargetExample();
+      Method method = InvocationTargetExample.class.getMethod("divideByZeroExample");
 
-		assertEquals(ArithmeticException.class, exception.getCause().getClass());
-	}
+      Exception exception = assertThrows(InvocationTargetException.class, () -> method.invoke(targetExample));
+
+      assertEquals(ArithmeticException.class, exception.getCause().getClass());
+   }
 }

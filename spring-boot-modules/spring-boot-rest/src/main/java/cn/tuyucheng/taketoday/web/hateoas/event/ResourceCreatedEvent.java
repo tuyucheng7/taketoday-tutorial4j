@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.web.hateoas.event;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationEvent;
-
-import javax.servlet.http.HttpServletResponse;
 
 public class ResourceCreatedEvent extends ApplicationEvent {
    private final HttpServletResponse response;
@@ -16,7 +15,6 @@ public class ResourceCreatedEvent extends ApplicationEvent {
    }
 
    // API
-
    public HttpServletResponse getResponse() {
       return response;
    }
@@ -24,5 +22,4 @@ public class ResourceCreatedEvent extends ApplicationEvent {
    public long getIdOfNewResource() {
       return idOfNewResource;
    }
-
 }

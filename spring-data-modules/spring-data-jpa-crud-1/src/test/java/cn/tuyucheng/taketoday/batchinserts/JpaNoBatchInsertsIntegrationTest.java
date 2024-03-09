@@ -23,19 +23,19 @@ import static cn.tuyucheng.taketoday.batchinserts.TestObjectHelper.createSchool;
 @TestPropertySource(properties = "spring.jpa.properties.hibernate.jdbc.batch_size=-1")
 class JpaNoBatchInsertsIntegrationTest {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-	@Test
-	void whenNotConfigured_ThenSendsInsertsSeparately() {
-		for (int i = 0; i < 10; i++) {
-			School school = createSchool(i);
-			entityManager.persist(school);
-		}
-	}
+   @Test
+   void whenNotConfigured_ThenSendsInsertsSeparately() {
+      for (int i = 0; i < 10; i++) {
+         School school = createSchool(i);
+         entityManager.persist(school);
+      }
+   }
 
-	@AfterEach
-	void tearDown() {
-		entityManager.flush();
-	}
+   @AfterEach
+   void tearDown() {
+      entityManager.flush();
+   }
 }

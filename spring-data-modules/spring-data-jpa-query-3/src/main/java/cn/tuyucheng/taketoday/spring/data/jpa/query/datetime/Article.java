@@ -6,20 +6,20 @@ import java.util.Date;
 @Entity
 public class Article {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+   @Id
+   @GeneratedValue
+   private Integer id;
 
-    @Temporal(TemporalType.DATE)
-    private Date publicationDate;
+   @Temporal(TemporalType.DATE)
+   private Date publicationDate;
 
-    @Temporal(TemporalType.TIME)
-    private Date publicationTime;
+   @Temporal(TemporalType.TIME)
+   private Date publicationTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDateTime;
+   @Temporal(TemporalType.TIMESTAMP)
+   private Date creationDateTime;
 
-    public Integer getId() {
-        return id;
-    }
+   public Integer getId() {
+      return id;
+   }
 }

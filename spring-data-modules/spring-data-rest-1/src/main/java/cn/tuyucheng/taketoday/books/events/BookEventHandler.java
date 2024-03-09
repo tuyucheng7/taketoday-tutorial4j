@@ -9,17 +9,17 @@ import java.util.logging.Logger;
 
 @RepositoryEventHandler
 public class BookEventHandler {
-	Logger logger = Logger.getLogger("Class BookEventHandler");
+   Logger logger = Logger.getLogger("Class BookEventHandler");
 
-	@HandleBeforeCreate
-	public void handleBookBeforeCreate(Book book) {
-		logger.info("Inside Book Before Create ....");
-		book.getAuthors();
-	}
+   @HandleBeforeCreate
+   public void handleBookBeforeCreate(Book book) {
+      logger.info("Inside Book Before Create ....");
+      book.getAuthors();
+   }
 
-	@HandleBeforeCreate
-	public void handleAuthorBeforeCreate(Author author) {
-		logger.info("Inside Author Before Create ....");
-		author.getBooks();
-	}
+   @HandleBeforeCreate
+   public void handleAuthorBeforeCreate(Author author) {
+      logger.info("Inside Author Before Create ....");
+      author.getBooks();
+   }
 }

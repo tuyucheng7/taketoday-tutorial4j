@@ -2,22 +2,24 @@ package cn.tuyucheng.taketoday.concurrent.semaphores;
 
 import java.util.concurrent.Semaphore;
 
-public class LoginQueueUsingSemaphore {
-	private final Semaphore semaphore;
+class LoginQueueUsingSemaphore {
 
-	LoginQueueUsingSemaphore(int slotLimit) {
-		semaphore = new Semaphore(slotLimit);
-	}
+   private final Semaphore semaphore;
 
-	boolean tryLogin() {
-		return semaphore.tryAcquire();
-	}
+   LoginQueueUsingSemaphore(int slotLimit) {
+      semaphore = new Semaphore(slotLimit);
+   }
 
-	void logout() {
-		semaphore.release();
-	}
+   boolean tryLogin() {
+      return semaphore.tryAcquire();
+   }
 
-	int availableSlots() {
-		return semaphore.availablePermits();
-	}
+   void logout() {
+      semaphore.release();
+   }
+
+   int availableSlots() {
+      return semaphore.availablePermits();
+   }
+
 }

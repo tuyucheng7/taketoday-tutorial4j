@@ -5,56 +5,56 @@
  */
 package cn.tuyucheng.taketoday.enums.values;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * @author chris
  */
 public class Element2UnitTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Element2UnitTest.class);
+   private static final Logger LOGGER = LoggerFactory.getLogger(Element2UnitTest.class);
 
-	public Element2UnitTest() {
-	}
+   public Element2UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeAll
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterAll
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @BeforeEach
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @AfterEach
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenLocatebyLabel_thenReturnCorrectValue() {
-		for (Element2 e2 : Element2.values()) {
-			assertSame(e2, Element2.valueOfLabel(e2.label));
-		}
-	}
+   @Test
+   public void whenLocatebyLabel_thenReturnCorrectValue() {
+      for (Element2 e2 : Element2.values()) {
+         assertSame(e2, Element2.valueOfLabel(e2.label));
+      }
+   }
 
-	/**
-	 * Test of toString method, of class Element2.
-	 */
-	@Test
-	public void whenCallingToString_thenReturnLabel() {
-		for (Element2 e2 : Element2.values()) {
-			assertEquals(e2.label, e2.toString());
-		}
-	}
+   /**
+    * Test of toString method, of class Element2.
+    */
+   @Test
+   public void whenCallingToString_thenReturnLabel() {
+      for (Element2 e2 : Element2.values()) {
+         assertEquals(e2.label, e2.toString());
+      }
+   }
 }

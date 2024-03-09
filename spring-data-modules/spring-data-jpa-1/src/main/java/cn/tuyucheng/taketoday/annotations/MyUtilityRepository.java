@@ -9,5 +9,5 @@ import java.util.Optional;
 @NoRepositoryBean
 public interface MyUtilityRepository<T, ID extends Serializable> extends CrudRepository<T, ID> {
 
-	Optional<T> findById(ID id);
+   Optional<T> findById(ID id);
 }

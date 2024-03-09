@@ -9,19 +9,19 @@ import java.util.List;
 @RestController
 public class Controller {
 
-	@Autowired
-	UserRepository userRepository;
+   @Autowired
+   UserRepository userRepository;
 
-	@GetMapping
-	public User get() {
-		User user = new User();
-		userRepository.save(user);
-		return user;
-	}
+   @GetMapping
+   public User get() {
+      User user = new User();
+      userRepository.save(user);
+      return user;
+   }
 
-	@GetMapping("/find")
-	public List<User> find() {
-		List<User> users = userRepository.findAll();
-		return users;
-	}
+   @GetMapping("/find")
+   public List<User> find() {
+      List<User> users = userRepository.findAll();
+      return users;
+   }
 }

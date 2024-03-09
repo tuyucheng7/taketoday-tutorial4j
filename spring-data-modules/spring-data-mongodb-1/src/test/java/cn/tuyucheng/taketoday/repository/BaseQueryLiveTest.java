@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.repository;
 
 import cn.tuyucheng.taketoday.model.User;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 
@@ -10,23 +10,23 @@ import org.springframework.data.mongodb.core.MongoOperations;
  * This test requires:
  * * mongodb instance running on the environment
  */
-public class BaseQueryLiveTest {
+class BaseQueryLiveTest {
 
-	@Autowired
-	protected UserRepository userRepository;
+   @Autowired
+   protected UserRepository userRepository;
 
-	@Autowired
-	protected MongoOperations mongoOps;
+   @Autowired
+   protected MongoOperations mongoOps;
 
-	@Before
-	public void testSetup() {
-		if (!mongoOps.collectionExists(User.class)) {
-			mongoOps.createCollection(User.class);
-		}
-	}
+   @BeforeEach
+   void testSetup() {
+      if (!mongoOps.collectionExists(User.class)) {
+         mongoOps.createCollection(User.class);
+      }
+   }
 
-	@After
-	public void tearDown() {
-		mongoOps.dropCollection(User.class);
-	}
+   @AfterEach
+   void tearDown() {
+      mongoOps.dropCollection(User.class);
+   }
 }

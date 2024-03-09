@@ -12,13 +12,13 @@ import cn.tuyucheng.taketoday.persistence.service.ParentServicePersistenceIntegr
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AuditTestSuite.class
-        , FooServiceBasicPersistenceIntegrationTest.class
-        , FooPaginationPersistenceIntegrationTest.class
-        , FooServicePersistenceIntegrationTest.class
-        , ParentServicePersistenceIntegrationTest.class
-        , FooSortingPersistenceIntegrationTest.class
+      AuditTestSuite.class
+      , FooServiceBasicPersistenceIntegrationTest.class
+      , FooPaginationPersistenceIntegrationTest.class
+      , FooServicePersistenceIntegrationTest.class
+      , ParentServicePersistenceIntegrationTest.class
+      , FooSortingPersistenceIntegrationTest.class
 })
 public class IntegrationTestSuite {
-    //
+   //
 }

@@ -1,39 +1,39 @@
 package cn.tuyucheng.taketoday.networking.udp.multicast;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MulticastLiveTest {
-    private MulticastingClient client;
+   private MulticastingClient client;
 
-    @Test
-    public void whenBroadcasting_thenDiscoverExpectedServers() throws Exception {
-        int expectedServers = 4;
-        initializeForExpectedServers(expectedServers);
+   @Test
+   public void whenBroadcasting_thenDiscoverExpectedServers() throws Exception {
+      int expectedServers = 4;
+      initializeForExpectedServers(expectedServers);
 
-        int serversDiscovered = client.discoverServers("hello server");
-        assertEquals(expectedServers, serversDiscovered);
-    }
+      int serversDiscovered = client.discoverServers("hello server");
+      assertEquals(expectedServers, serversDiscovered);
+   }
 
-    private void initializeForExpectedServers(int expectedServers) throws Exception {
-        for (int i = 0; i < expectedServers; i++) {
-            new MulticastEchoServer().start();
-        }
+   private void initializeForExpectedServers(int expectedServers) throws Exception {
+      for (int i = 0; i < expectedServers; i++) {
+         new MulticastEchoServer().start();
+      }
 
-        client = new MulticastingClient(expectedServers);
-    }
+      client = new MulticastingClient(expectedServers);
+   }
 
-    @After
-    public void tearDown() throws IOException {
-        stopEchoServer();
-        client.close();
-    }
+   @AfterEach
+   public void tearDown() throws IOException {
+      stopEchoServer();
+      client.close();
+   }
 
-    private void stopEchoServer() throws IOException {
-        client.discoverServers("end");
-    }
+   private void stopEchoServer() throws IOException {
+      client.discoverServers("end");
+   }
 }

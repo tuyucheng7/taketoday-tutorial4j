@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CustomFonts {
-
    public static void main(String[] args) {
       usingCustomFonts();
    }
@@ -35,6 +34,7 @@ public class CustomFonts {
       } catch (FontFormatException | IOException exception) {
          JOptionPane.showMessageDialog(null, exception.getMessage());
       }
+
 
       JFrame frame = new JFrame("Custom Font Example");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

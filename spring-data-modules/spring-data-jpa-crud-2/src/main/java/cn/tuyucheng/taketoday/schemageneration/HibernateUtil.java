@@ -16,24 +16,24 @@ import java.util.Map;
 
 public class HibernateUtil {
 
-	/**
-	 * Generates database create commands for the specified entities using Hibernate native API, SchemaExport.
-	 * Creation commands are exported into the create.sql file.
-	 */
-	public static void generateSchema() {
-		Map<String, String> settings = new HashMap<>();
-		settings.put(Environment.URL, "jdbc:h2:mem:schema");
+   /**
+    * Generates database create commands for the specified entities using Hibernate native API, SchemaExport.
+    * Creation commands are exported into the create.sql file.
+    */
+   public static void generateSchema() {
+      Map<String, String> settings = new HashMap<>();
+      settings.put(Environment.URL, "jdbc:h2:mem:schema");
 
-		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
+      StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
 
-		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-		metadataSources.addAnnotatedClass(Account.class);
-		metadataSources.addAnnotatedClass(AccountSetting.class);
-		Metadata metadata = metadataSources.buildMetadata();
+      MetadataSources metadataSources = new MetadataSources(serviceRegistry);
+      metadataSources.addAnnotatedClass(Account.class);
+      metadataSources.addAnnotatedClass(AccountSetting.class);
+      Metadata metadata = metadataSources.buildMetadata();
 
-		SchemaExport schemaExport = new SchemaExport();
-		schemaExport.setFormat(true);
-		schemaExport.setOutputFile("create.sql");
-		schemaExport.createOnly(EnumSet.of(TargetType.SCRIPT), metadata);
-	}
+      SchemaExport schemaExport = new SchemaExport();
+      schemaExport.setFormat(true);
+      schemaExport.setOutputFile("create.sql");
+      schemaExport.createOnly(EnumSet.of(TargetType.SCRIPT), metadata);
+   }
 }

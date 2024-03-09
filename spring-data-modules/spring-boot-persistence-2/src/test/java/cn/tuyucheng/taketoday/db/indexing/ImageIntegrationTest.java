@@ -36,7 +36,7 @@ class ImageIntegrationTest {
    ImageDbRepository imageRepository;
 
    @Test
-   void givenBaeldungJpegImage_whenUploadIt_thenReturnItsId() throws Exception {
+   void givenTuyuchengJpegImage_whenUploadIt_thenReturnItsId() throws Exception {
       given(imageRepository.save(any()))
             .willReturn(new Image(1L));
 
@@ -52,7 +52,7 @@ class ImageIntegrationTest {
    @Test
    void givenExistingImage_whenDownloadIt_thenReturnHttpStatusOk() throws Exception {
       given(imageRepository.findById(1L))
-            .willReturn(Optional.of(baeldungImage()));
+            .willReturn(Optional.of(tuyuchengImage()));
 
       mockMvc.perform(MockMvcRequestBuilders
                   .get("/image/1")
@@ -68,7 +68,7 @@ class ImageIntegrationTest {
             .file(new MockMultipartFile("multipartImage", "taketoday", MediaType.TEXT_PLAIN_VALUE, image));
    }
 
-   private Image baeldungImage() throws IOException {
+   private Image tuyuchengImage() throws IOException {
       ClassLoader classLoader = ClassLoader.getSystemClassLoader();
       try {
          final URL resource = classLoader.getResource("taketoday.jpeg");

@@ -5,9 +5,9 @@ package cn.tuyucheng.taketoday.variableandmethodhiding.variable;
  */
 public class ParentVariable {
 
-	String instanceVariable = "parent variable";
+   String instanceVariable = "parent variable";
 
-	public void printInstanceVariable() {
-		System.out.println(instanceVariable);
-	}
+   public void printInstanceVariable() {
+      System.out.println(instanceVariable);
+   }
 }

@@ -2,45 +2,45 @@ package cn.tuyucheng.taketoday.comparator;
 
 public class Player {
 
-	private int ranking;
+   private int ranking;
 
-	private String name;
+   private String name;
 
-	private int age;
+   private int age;
 
-	public Player(int ranking, String name, int age) {
-		this.ranking = ranking;
-		this.name = name;
-		this.age = age;
-	}
+   public Player(int ranking, String name, int age) {
+      this.ranking = ranking;
+      this.name = name;
+      this.age = age;
+   }
 
-	public int getRanking() {
-		return ranking;
-	}
+   public int getRanking() {
+      return ranking;
+   }
 
-	public void setRanking(int ranking) {
-		this.ranking = ranking;
-	}
+   public void setRanking(int ranking) {
+      this.ranking = ranking;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public int getAge() {
-		return age;
-	}
+   public int getAge() {
+      return age;
+   }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+   public void setAge(int age) {
+      this.age = age;
+   }
 
-	@Override
-	public String toString() {
-		return this.name;
-	}
+   @Override
+   public String toString() {
+      return this.name;
+   }
 
 }

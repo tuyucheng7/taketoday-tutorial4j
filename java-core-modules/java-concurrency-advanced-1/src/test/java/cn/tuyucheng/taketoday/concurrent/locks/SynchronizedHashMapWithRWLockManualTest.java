@@ -5,51 +5,51 @@ import org.junit.jupiter.api.Test;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 
-class SynchronizedHashMapWithRWLockManualTest {
+public class SynchronizedHashMapWithRWLockManualTest {
 
-	@Test
-	void whenWriting_ThenNoReading() {
-		SynchronizedHashMapWithRWLock object = new SynchronizedHashMapWithRWLock();
-		final int threadCount = 3;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+   @Test
+   public void whenWriting_ThenNoReading() {
+      SynchronizedHashMapWithRWLock object = new SynchronizedHashMapWithRWLock();
+      final int threadCount = 3;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
 
-		executeWriterThreads(object, threadCount, service);
+      executeWriterThreads(object, threadCount, service);
 
-		assertFalse(object.isReadLockAvailable());
+      assertEquals(object.isReadLockAvailable(), false);
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	@Test
-	void whenReading_ThenMultipleReadingAllowed() {
-		SynchronizedHashMapWithRWLock object = new SynchronizedHashMapWithRWLock();
-		final int threadCount = 5;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+   @Test
+   public void whenReading_ThenMultipleReadingAllowed() {
+      SynchronizedHashMapWithRWLock object = new SynchronizedHashMapWithRWLock();
+      final int threadCount = 5;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
 
-		executeReaderThreads(object, threadCount, service);
+      executeReaderThreads(object, threadCount, service);
 
-		assertTrue(object.isReadLockAvailable());
+      assertEquals(object.isReadLockAvailable(), true);
 
-		service.shutdown();
-	}
+      service.shutdown();
+   }
 
-	private void executeWriterThreads(SynchronizedHashMapWithRWLock object, int threadCount, ExecutorService service) {
-		for (int i = 0; i < threadCount; i++) {
-			service.execute(() -> {
-				try {
-					object.put("key" + threadCount, "value" + threadCount);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			});
-		}
-	}
+   private void executeWriterThreads(SynchronizedHashMapWithRWLock object, int threadCount, ExecutorService service) {
+      for (int i = 0; i < threadCount; i++) {
+         service.execute(() -> {
+            try {
+               object.put("key" + threadCount, "value" + threadCount);
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+         });
+      }
+   }
 
-	private void executeReaderThreads(SynchronizedHashMapWithRWLock object, int threadCount, ExecutorService service) {
-		for (int i = 0; i < threadCount; i++)
-			service.execute(() -> object.get("key" + threadCount));
-	}
+   private void executeReaderThreads(SynchronizedHashMapWithRWLock object, int threadCount, ExecutorService service) {
+      for (int i = 0; i < threadCount; i++)
+         service.execute(() -> object.get("key" + threadCount));
+   }
+
 }

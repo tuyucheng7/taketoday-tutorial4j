@@ -8,7 +8,7 @@ import org.springframework.data.rest.core.config.Projection;
 @Projection(name = "person-view", types = Person.class)
 public interface PersonView {
 
-	Long getId();
+   Long getId();
 
-	String getName();
+   String getName();
 }

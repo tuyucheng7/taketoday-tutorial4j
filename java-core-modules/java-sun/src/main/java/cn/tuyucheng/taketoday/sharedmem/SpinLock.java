@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.sharedmem;
 
-//import sun.misc.Unsafe;
+// import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
@@ -38,4 +38,5 @@ public class SpinLock {
    public void unlock() {
       unsafe.putInt(addr, 0);
    }
+
 }

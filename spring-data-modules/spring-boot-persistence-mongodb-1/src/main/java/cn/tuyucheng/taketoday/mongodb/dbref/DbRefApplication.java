@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = {"cn.tuyucheng.taketoday"})
 public class DbRefApplication {
 
-	public static void main(String... args) {
-		SpringApplication.run(DbRefApplication.class, args);
-	}
+   public static void main(String... args) {
+      SpringApplication.run(DbRefApplication.class, args);
+   }
 }

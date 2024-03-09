@@ -25,9 +25,10 @@ package cn.tuyucheng.taketoday.snippettag;
  * }
  *}
  */
-public class GreetingsHighlightTag {
 
+public class GreetingsHighlightTag {
    public void helloTuyucheng() {
       System.out.println("Hello From Team Tuyucheng");
    }
+
 }

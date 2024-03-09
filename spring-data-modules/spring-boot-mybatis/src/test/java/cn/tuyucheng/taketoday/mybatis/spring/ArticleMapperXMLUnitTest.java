@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.mybatis.spring;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = "classpath:/beans.xml")
-public class ArticleMapperXMLUnitTest extends ArticleMapperCommonUnitTest {
+class ArticleMapperXMLUnitTest extends ArticleMapperCommonUnitTest {
 }

@@ -20,10 +20,10 @@ public class Application {
       CompletableFuture<String> cf = new CompletableFuture<>();
       asyncOperationEmulation.submit(() -> {
          // The following lines simulate an exception happening on the 567th operation
-         // if (operationId.endsWith("567")) {
-         //    cf.completeExceptionally(new Exception("Error on operation " + operationId));
-         //    return;
-         // }
+         //  if (operationId.endsWith("567")) {
+         //      cf.completeExceptionally(new Exception("Error on operation " + operationId));
+         //      return;
+         //  }
          try {
             Thread.sleep(100);
             cf.complete(operationId);
@@ -93,7 +93,8 @@ public class Application {
    public static void main(String[] args) {
       new Application().initialize()
             // Switch between .startNaive() and .start() to test both implementations
-            // .startNaive();
+            //  .startNaive();
             .start();
    }
+
 }

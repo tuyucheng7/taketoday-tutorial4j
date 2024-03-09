@@ -19,42 +19,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = {Application.class})
 class DeleteInRelationshipsUnitTest {
 
-	@Autowired
-	private BookRepository bookRepository;
+   @Autowired
+   private BookRepository bookRepository;
 
-	@Autowired
-	private CategoryRepository categoryRepository;
+   @Autowired
+   private CategoryRepository categoryRepository;
 
-	@BeforeEach
-	void setup() {
-		Book book1 = new Book("The Hobbit");
-		Category category1 = new Category("Cat1", book1);
-		categoryRepository.save(category1);
+   @BeforeEach
+   void setup() {
+      Book book1 = new Book("The Hobbit");
+      Category category1 = new Category("Cat1", book1);
+      categoryRepository.save(category1);
 
-		Book book2 = new Book("All Quiet on the Western Front");
-		Category category2 = new Category("Cat2", book2);
-		categoryRepository.save(category2);
-	}
+      Book book2 = new Book("All Quiet on the Western Front");
+      Category category2 = new Category("Cat2", book2);
+      categoryRepository.save(category2);
+   }
 
-	@AfterEach
-	void teardown() {
-		bookRepository.deleteAll();
-		categoryRepository.deleteAll();
-	}
+   @AfterEach
+   void teardown() {
+      bookRepository.deleteAll();
+      categoryRepository.deleteAll();
+   }
 
-	@Test
-	void whenDeletingCategories_thenBooksShouldAlsoBeDeleted() {
-		categoryRepository.deleteAll();
+   @Test
+   void whenDeletingCategories_thenBooksShouldAlsoBeDeleted() {
+      categoryRepository.deleteAll();
 
-		assertThat(bookRepository.count()).isEqualTo(0);
-		assertThat(categoryRepository.count()).isEqualTo(0);
-	}
+      assertThat(bookRepository.count()).isEqualTo(0);
+      assertThat(categoryRepository.count()).isEqualTo(0);
+   }
 
-	@Test
-	void whenDeletingBooks_thenCategoriesShouldAlsoBeDeleted() {
-		bookRepository.deleteAll();
+   @Test
+   void whenDeletingBooks_thenCategoriesShouldAlsoBeDeleted() {
+      bookRepository.deleteAll();
 
-		assertThat(bookRepository.count()).isEqualTo(0);
-		assertThat(categoryRepository.count()).isEqualTo(2);
-	}
+      assertThat(bookRepository.count()).isEqualTo(0);
+      assertThat(categoryRepository.count()).isEqualTo(2);
+   }
 }

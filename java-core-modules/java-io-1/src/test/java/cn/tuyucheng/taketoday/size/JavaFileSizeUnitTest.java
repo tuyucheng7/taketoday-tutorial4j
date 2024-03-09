@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.size;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,13 +13,14 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class JavaFileSizeUnitTest {
    private static final long EXPECTED_FILE_SIZE_IN_BYTES = 11;
    private String filePath;
 
-   @Before
+   @BeforeEach
    public void init() {
       final String separator = File.separator;
       filePath = String.join(separator, new String[]{"src", "test", "resources", "size", "sample_file_1.in"});
@@ -69,6 +70,7 @@ public class JavaFileSizeUnitTest {
 
    @Test
    public void whenGetFileSizeUsingFileInputStream_thenCorrect() throws IOException {
+
       try (FileInputStream fis = new FileInputStream(filePath)) {
          long result = fis.getChannel().size();
          assertEquals(EXPECTED_FILE_SIZE_IN_BYTES, result);
@@ -77,11 +79,31 @@ public class JavaFileSizeUnitTest {
 
    @Test
    public void whenGetFileSizeUsingUrlAndInputStream_thenCorrect() throws IOException {
+
       File file = new File(filePath);
       URL url = file.toURI().toURL();
 
       try (InputStream stream = url.openStream()) {
          assertEquals(EXPECTED_FILE_SIZE_IN_BYTES, stream.available());
+      }
+   }
+
+   @Test
+   public void whenGetFileSizeInDifferentUnits_thenCorrect() {
+      filePath = String.join(File.separator, new String[]{"src", "test", "resources", "size", "sample_file_1.in"});
+      File file = new File(filePath);
+      if (file.exists()) {
+         long expectedBytes = file.length();
+         double expectedKilobytes = (double) expectedBytes / 1024;
+         double expectedMegabytes = expectedKilobytes / 1024;
+         double expectedGigabytes = expectedMegabytes / 1024;
+
+         assertEquals(expectedBytes, FileSizeUtils.getFileSizeInBytes(file));
+         assertEquals(expectedKilobytes, FileSizeUtils.getFileSizeInKilobytes(file), 0.01);
+         assertEquals(expectedMegabytes, FileSizeUtils.getFileSizeInMegabytes(file), 0.01);
+         assertEquals(expectedGigabytes, FileSizeUtils.getFileSizeInGigabytes(file), 0.01);
+      } else {
+         fail("File not found.");
       }
    }
 }

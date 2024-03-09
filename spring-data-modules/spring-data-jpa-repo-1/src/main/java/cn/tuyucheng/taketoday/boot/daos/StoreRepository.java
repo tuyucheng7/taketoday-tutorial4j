@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Long> {
-	List<Store> findStoreByLocationId(Long locationId);
+   List<Store> findStoreByLocationId(Long locationId);
 }

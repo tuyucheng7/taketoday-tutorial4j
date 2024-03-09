@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.concurrent.atomic;
 
 public class UnsafeCounter {
-	private int counter;
+   private int counter;
 
-	int getValue() {
-		return counter;
-	}
+   int getValue() {
+      return counter;
+   }
 
-	void increment() {
-		counter++;
-	}
+   void increment() {
+      counter++;
+   }
 }

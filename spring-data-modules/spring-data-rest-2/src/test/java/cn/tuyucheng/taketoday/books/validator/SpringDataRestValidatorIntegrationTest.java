@@ -24,117 +24,117 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @SpringBootTest(classes = SpringDataRestApplication.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 class SpringDataRestValidatorIntegrationTest {
-	public static final String URL = "http://localhost";
+   public static final String URL = "http://localhost";
 
-	@Autowired
-	private MockMvc mockMvc;
+   @Autowired
+   private MockMvc mockMvc;
 
-	@Autowired
-	protected WebApplicationContext wac;
+   @Autowired
+   protected WebApplicationContext wac;
 
-	@BeforeEach
-	void setup() {
-		mockMvc = webAppContextSetup(wac).build();
-	}
+   @BeforeEach
+   void setup() {
+      mockMvc = webAppContextSetup(wac).build();
+   }
 
-	@Test
-	void whenStartingApplication_thenCorrectStatusCode() throws Exception {
-		mockMvc.perform(get("/users"))
-				.andExpect(status().is2xxSuccessful());
-	}
+   @Test
+   void whenStartingApplication_thenCorrectStatusCode() throws Exception {
+      mockMvc.perform(get("/users"))
+            .andExpect(status().is2xxSuccessful());
+   }
 
-	@Test
-	@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
-	void whenAddingNewCorrectUser_thenCorrectStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
-		user.setName("John Doe");
+   @Test
+   @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+   void whenAddingNewCorrectUser_thenCorrectStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
+      user.setName("John Doe");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(redirectedUrl("http://localhost/users/1"));
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(redirectedUrl("http://localhost/users/1"));
+   }
 
-	@Test
-	void whenAddingNewUserWithoutName_thenErrorStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
+   @Test
+   void whenAddingNewUserWithoutName_thenErrorStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().isNotAcceptable())
-				.andExpect(redirectedUrl(null));
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().isNotAcceptable())
+            .andExpect(redirectedUrl(null));
+   }
 
-	@Test
-	void whenAddingNewUserWithEmptyName_thenErrorStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
-		user.setName("");
+   @Test
+   void whenAddingNewUserWithEmptyName_thenErrorStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
+      user.setName("");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().isNotAcceptable())
-				.andExpect(redirectedUrl(null));
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().isNotAcceptable())
+            .andExpect(redirectedUrl(null));
+   }
 
-	@Test
-	void whenAddingNewUserWithoutEmail_thenErrorStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setName("John Doe");
+   @Test
+   void whenAddingNewUserWithoutEmail_thenErrorStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setName("John Doe");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().isNotAcceptable())
-				.andExpect(redirectedUrl(null));
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().isNotAcceptable())
+            .andExpect(redirectedUrl(null));
+   }
 
-	@Test
-	void whenAddingNewUserWithEmptyEmail_thenErrorStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setName("John Doe");
-		user.setEmail("");
+   @Test
+   void whenAddingNewUserWithEmptyEmail_thenErrorStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setName("John Doe");
+      user.setEmail("");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().isNotAcceptable())
-				.andExpect(redirectedUrl(null));
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().isNotAcceptable())
+            .andExpect(redirectedUrl(null));
+   }
 
-	@Test
-	@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
-	void whenDeletingCorrectUser_thenCorrectStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
-		user.setName("John Doe");
+   @Test
+   @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+   void whenDeletingCorrectUser_thenCorrectStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
+      user.setName("John Doe");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(redirectedUrl("http://localhost/users/1"));
-		mockMvc.perform(delete("/users/1").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().isMethodNotAllowed());
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(redirectedUrl("http://localhost/users/1"));
+      mockMvc.perform(delete("/users/1").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().isMethodNotAllowed());
+   }
 
-	@Test
-	@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
-	void whenSearchingByEmail_thenCorrectStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
-		user.setName("John Doe");
+   @Test
+   @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+   void whenSearchingByEmail_thenCorrectStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
+      user.setName("John Doe");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(redirectedUrl("http://localhost/users/1"));
-		mockMvc.perform(get("/users/search/byEmail").param("email", user.getEmail()).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().is2xxSuccessful());
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(redirectedUrl("http://localhost/users/1"));
+      mockMvc.perform(get("/users/search/byEmail").param("email", user.getEmail()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().is2xxSuccessful());
+   }
 
-	@Test
-	void whenSearchingByEmailWithOriginalMethodName_thenErrorStatusCodeAndResponse() throws Exception {
-		WebsiteUser user = new WebsiteUser();
-		user.setEmail("john.doe@john.com");
-		user.setName("John Doe");
+   @Test
+   void whenSearchingByEmailWithOriginalMethodName_thenErrorStatusCodeAndResponse() throws Exception {
+      WebsiteUser user = new WebsiteUser();
+      user.setEmail("john.doe@john.com");
+      user.setName("John Doe");
 
-		mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(redirectedUrl("http://localhost/users/1"));
-		mockMvc.perform(get("/users/search/findByEmail").param("email", user.getEmail()).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound());
-	}
+      mockMvc.perform(post("/users", user).contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(user)))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(redirectedUrl("http://localhost/users/1"));
+      mockMvc.perform(get("/users/search/findByEmail").param("email", user.getEmail()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isNotFound());
+   }
 }

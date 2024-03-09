@@ -8,29 +8,35 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
 public class CustomRecursiveTask extends RecursiveTask<Integer> {
-	private final int[] array;
-	private static final int THRESHOLD = 20;
 
-	public CustomRecursiveTask(int[] array) {
-		this.array = array;
-	}
+   private int[] arr;
 
-	@Override
-	protected Integer compute() {
-		if (array.length > THRESHOLD)
-			return ForkJoinTask.invokeAll(createSubTasks()).stream().mapToInt(ForkJoinTask::join).sum();
-		else
-			return processing(array);
-	}
+   private static final int THRESHOLD = 20;
 
-	private Collection<CustomRecursiveTask> createSubTasks() {
-		List<CustomRecursiveTask> dividedTasks = new ArrayList<>();
-		dividedTasks.add(new CustomRecursiveTask(Arrays.copyOfRange(array, 0, array.length / 2)));
-		dividedTasks.add(new CustomRecursiveTask(Arrays.copyOfRange(array, array.length / 2, array.length)));
-		return dividedTasks;
-	}
+   public CustomRecursiveTask(int[] arr) {
+      this.arr = arr;
+   }
 
-	private Integer processing(int[] array) {
-		return Arrays.stream(array).filter(a -> a > 10 && a < 27).map(a -> a * 10).sum();
-	}
+   @Override
+   protected Integer compute() {
+
+      if (arr.length > THRESHOLD) {
+
+         return ForkJoinTask.invokeAll(createSubtasks()).stream().mapToInt(ForkJoinTask::join).sum();
+
+      } else {
+         return processing(arr);
+      }
+   }
+
+   private Collection<CustomRecursiveTask> createSubtasks() {
+      List<CustomRecursiveTask> dividedTasks = new ArrayList<>();
+      dividedTasks.add(new CustomRecursiveTask(Arrays.copyOfRange(arr, 0, arr.length / 2)));
+      dividedTasks.add(new CustomRecursiveTask(Arrays.copyOfRange(arr, arr.length / 2, arr.length)));
+      return dividedTasks;
+   }
+
+   private Integer processing(int[] arr) {
+      return Arrays.stream(arr).filter(a -> a > 10 && a < 27).map(a -> a * 10).sum();
+   }
 }

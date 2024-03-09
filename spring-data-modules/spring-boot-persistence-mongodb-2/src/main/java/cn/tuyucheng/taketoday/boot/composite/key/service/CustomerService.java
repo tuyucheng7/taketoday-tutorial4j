@@ -10,18 +10,18 @@ import java.util.Optional;
 
 @Service
 public class CustomerService {
-    @Autowired
-    private TicketRepository ticketRepository;
+   @Autowired
+   private TicketRepository ticketRepository;
 
-    public Optional<Ticket> find(TicketId id) {
-        return ticketRepository.findById(id);
-    }
+   public Optional<Ticket> find(TicketId id) {
+      return ticketRepository.findById(id);
+   }
 
-    public Ticket insert(Ticket ticket) {
-        return ticketRepository.insert(ticket);
-    }
+   public Ticket insert(Ticket ticket) {
+      return ticketRepository.insert(ticket);
+   }
 
-    public Ticket save(Ticket ticket) {
-        return ticketRepository.save(ticket);
-    }
+   public Ticket save(Ticket ticket) {
+      return ticketRepository.save(ticket);
+   }
 }

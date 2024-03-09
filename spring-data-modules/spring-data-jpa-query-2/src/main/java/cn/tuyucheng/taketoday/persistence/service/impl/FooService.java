@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class FooService extends AbstractHibernateService<Foo> implements IFooService {
 
-    @Autowired
-    @Qualifier("fooHibernateDao")
-    private IFooDao dao;
+   @Autowired
+   @Qualifier("fooHibernateDao")
+   private IFooDao dao;
 
-    public FooService() {
-        super();
-    }
+   public FooService() {
+      super();
+   }
 
-    @Override
-    protected IOperations<Foo> getDao() {
-        return dao;
-    }
+   @Override
+   protected IOperations<Foo> getDao() {
+      return dao;
+   }
 }

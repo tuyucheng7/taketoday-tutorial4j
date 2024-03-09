@@ -15,25 +15,25 @@ import javax.sql.DataSource;
 @Configuration
 public class InitialConfiguration {
 
-	@Autowired
-	private DataSource dataSource;
+   @Autowired
+   private DataSource dataSource;
 
-	@Bean
-	public DataSourceConnectionProvider connectionProvider() {
-		return new DataSourceConnectionProvider(new TransactionAwareDataSourceProxy(dataSource));
-	}
+   @Bean
+   public DataSourceConnectionProvider connectionProvider() {
+      return new DataSourceConnectionProvider(new TransactionAwareDataSourceProxy(dataSource));
+   }
 
-	@Bean
-	public DefaultDSLContext dsl() {
-		return new DefaultDSLContext(configuration());
-	}
+   @Bean
+   public DefaultDSLContext dsl() {
+      return new DefaultDSLContext(configuration());
+   }
 
-	public DefaultConfiguration configuration() {
-		DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
+   public DefaultConfiguration configuration() {
+      DefaultConfiguration jooqConfiguration = new DefaultConfiguration();
 
-		jooqConfiguration.set(connectionProvider());
-		jooqConfiguration.set(new DefaultExecuteListenerProvider(new ExceptionTranslator()));
+      jooqConfiguration.set(connectionProvider());
+      jooqConfiguration.set(new DefaultExecuteListenerProvider(new ExceptionTranslator()));
 
-		return jooqConfiguration;
-	}
+      return jooqConfiguration;
+   }
 }

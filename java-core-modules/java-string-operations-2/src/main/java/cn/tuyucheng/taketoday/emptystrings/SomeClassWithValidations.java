@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.emptystrings;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 class SomeClassWithValidations {
 
-	@Pattern(regexp = "\\A(?!\\s*\\Z).+")
-	private String someString;
+   @Pattern(regexp = "\\A(?!\\s*\\Z).+")
+   private String someString;
 
-	SomeClassWithValidations setSomeString(String someString) {
-		this.someString = someString;
-		return this;
-	}
+   SomeClassWithValidations setSomeString(String someString) {
+      this.someString = someString;
+      return this;
+   }
 }

@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 @Getter
@@ -17,10 +17,10 @@ import javax.persistence.Id;
 @Immutable
 public class Document {
 
-	@Id
-	private Long id;
+   @Id
+   private Long id;
 
-	private String title;
+   private String title;
 
-	private Long userId;
+   private Long userId;
 }

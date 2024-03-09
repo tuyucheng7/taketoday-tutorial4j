@@ -15,18 +15,18 @@ import cn.tuyucheng.taketoday.jooq.introduction.db.public_.tables.Book;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Tables {
 
-	/**
-	 * The table <code>PUBLIC.AUTHOR</code>.
-	 */
-	public static final Author AUTHOR = Author.AUTHOR;
+   /**
+    * The table <code>PUBLIC.AUTHOR</code>.
+    */
+   public static final Author AUTHOR = Author.AUTHOR;
 
-	/**
-	 * The table <code>PUBLIC.AUTHOR_BOOK</code>.
-	 */
-	public static final AuthorBook AUTHOR_BOOK = AuthorBook.AUTHOR_BOOK;
+   /**
+    * The table <code>PUBLIC.AUTHOR_BOOK</code>.
+    */
+   public static final AuthorBook AUTHOR_BOOK = AuthorBook.AUTHOR_BOOK;
 
-	/**
-	 * The table <code>PUBLIC.BOOK</code>.
-	 */
-	public static final Book BOOK = Book.BOOK;
+   /**
+    * The table <code>PUBLIC.BOOK</code>.
+    */
+   public static final Book BOOK = Book.BOOK;
 }

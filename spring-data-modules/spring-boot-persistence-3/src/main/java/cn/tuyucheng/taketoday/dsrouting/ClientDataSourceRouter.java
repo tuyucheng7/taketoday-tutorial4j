@@ -11,17 +11,17 @@ import java.util.Map;
  */
 public class ClientDataSourceRouter extends AbstractRoutingDataSource {
 
-	@Override
-	protected Object determineCurrentLookupKey() {
-		return ClientDatabaseContextHolder.getClientDatabase();
-	}
+   @Override
+   protected Object determineCurrentLookupKey() {
+      return ClientDatabaseContextHolder.getClientDatabase();
+   }
 
-	public void initDatasource(DataSource clientADataSource,
-							   DataSource clientBDataSource) {
-		Map<Object, Object> dataSourceMap = new HashMap<>();
-		dataSourceMap.put(ClientDatabase.CLIENT_A, clientADataSource);
-		dataSourceMap.put(ClientDatabase.CLIENT_A, clientBDataSource);
-		this.setTargetDataSources(dataSourceMap);
-		this.setDefaultTargetDataSource(clientADataSource);
-	}
+   public void initDatasource(DataSource clientADataSource,
+                              DataSource clientBDataSource) {
+      Map<Object, Object> dataSourceMap = new HashMap<>();
+      dataSourceMap.put(ClientDatabase.CLIENT_A, clientADataSource);
+      dataSourceMap.put(ClientDatabase.CLIENT_A, clientBDataSource);
+      this.setTargetDataSources(dataSourceMap);
+      this.setDefaultTargetDataSource(clientADataSource);
+   }
 }

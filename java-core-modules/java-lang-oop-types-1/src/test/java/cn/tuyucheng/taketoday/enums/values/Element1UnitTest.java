@@ -1,49 +1,49 @@
 package cn.tuyucheng.taketoday.enums.values;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * @author chris
  */
 public class Element1UnitTest {
 
-	public Element1UnitTest() {
-	}
+   public Element1UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeAll
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterAll
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @BeforeEach
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @AfterEach
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenAccessingToString_thenItShouldEqualName() {
-		for (Element1 e1 : Element1.values()) {
-			assertEquals(e1.name(), e1.toString());
-		}
-	}
+   @Test
+   public void whenAccessingToString_thenItShouldEqualName() {
+      for (Element1 e1 : Element1.values()) {
+         assertEquals(e1.name(), e1.toString());
+      }
+   }
 
-	@Test
-	public void whenCallingValueOf_thenReturnTheCorrectEnum() {
-		for (Element1 e1 : Element1.values()) {
-			assertSame(e1, Element1.valueOf(e1.name()));
-		}
-	}
+   @Test
+   public void whenCallingValueOf_thenReturnTheCorrectEnum() {
+      for (Element1 e1 : Element1.values()) {
+         assertSame(e1, Element1.valueOf(e1.name()));
+      }
+   }
 }

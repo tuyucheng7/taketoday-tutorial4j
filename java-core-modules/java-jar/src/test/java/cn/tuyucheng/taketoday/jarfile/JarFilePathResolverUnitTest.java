@@ -17,40 +17,40 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class JarFilePathResolverUnitTest {
-	@Spy
-	JarFilePathResolver jarFilePathResolver;
+   @Spy
+   JarFilePathResolver jarFilePathResolver;
 
-	@Test
-	void givenClassObjectWhenCallingByGetProtectionDomainShouldGetExpectedPath() throws Exception {
-		String jarPath = jarFilePathResolver.byGetProtectionDomain(Ascii.class);
-		assertThat(jarPath).endsWith(".jar").contains("guava");
-		assertThat(new File(jarPath)).exists();
-	}
+   @Test
+   void givenClassObjectWhenCallingByGetProtectionDomainShouldGetExpectedPath() throws Exception {
+      String jarPath = jarFilePathResolver.byGetProtectionDomain(Ascii.class);
+      assertThat(jarPath).endsWith(".jar").contains("guava");
+      assertThat(new File(jarPath)).exists();
+   }
 
-	@Test
-	void givenClassObjectWhenCallingByGetResourceShouldGetExpectedPath() {
-		String jarPath = jarFilePathResolver.byGetResource(Ascii.class);
-		assertThat(jarPath).endsWith(".jar").contains("guava");
-		assertThat(new File(jarPath)).exists();
-	}
+   @Test
+   void givenClassObjectWhenCallingByGetResourceShouldGetExpectedPath() {
+      String jarPath = jarFilePathResolver.byGetResource(Ascii.class);
+      assertThat(jarPath).endsWith(".jar").contains("guava");
+      assertThat(new File(jarPath)).exists();
+   }
 
-	@Test
-	void givenClassObjectWhenNoSecurityExceptionRaisedShouldGetExpectedPath() throws URISyntaxException {
-		String jarPath = jarFilePathResolver.getJarFilePath(Ascii.class);
-		assertThat(jarPath).endsWith(".jar").contains("guava");
-		assertThat(new File(jarPath)).exists();
-		verify(jarFilePathResolver, times(1)).byGetProtectionDomain(Ascii.class);
-		verify(jarFilePathResolver, never()).byGetResource(Ascii.class);
-	}
+   @Test
+   void givenClassObjectWhenNoSecurityExceptionRaisedShouldGetExpectedPath() throws URISyntaxException {
+      String jarPath = jarFilePathResolver.getJarFilePath(Ascii.class);
+      assertThat(jarPath).endsWith(".jar").contains("guava");
+      assertThat(new File(jarPath)).exists();
+      verify(jarFilePathResolver, times(1)).byGetProtectionDomain(Ascii.class);
+      verify(jarFilePathResolver, never()).byGetResource(Ascii.class);
+   }
 
-	@Test
-	void givenClassObjectWhenSecurityExceptionRaisedShouldGetExpectedPath() throws URISyntaxException {
-		when(jarFilePathResolver.byGetProtectionDomain(Ascii.class)).thenThrow(new SecurityException("not allowed"));
-		String jarPath = jarFilePathResolver.getJarFilePath(Ascii.class);
-		assertThat(jarPath).endsWith(".jar").contains("guava");
-		assertThat(new File(jarPath)).exists();
-		verify(jarFilePathResolver, times(1)).byGetProtectionDomain(Ascii.class);
-		verify(jarFilePathResolver, times(1)).byGetResource(Ascii.class);
-	}
+   @Test
+   void givenClassObjectWhenSecurityExceptionRaisedShouldGetExpectedPath() throws URISyntaxException {
+      when(jarFilePathResolver.byGetProtectionDomain(Ascii.class)).thenThrow(new SecurityException("not allowed"));
+      String jarPath = jarFilePathResolver.getJarFilePath(Ascii.class);
+      assertThat(jarPath).endsWith(".jar").contains("guava");
+      assertThat(new File(jarPath)).exists();
+      verify(jarFilePathResolver, times(1)).byGetProtectionDomain(Ascii.class);
+      verify(jarFilePathResolver, times(1)).byGetResource(Ascii.class);
+   }
 
 }

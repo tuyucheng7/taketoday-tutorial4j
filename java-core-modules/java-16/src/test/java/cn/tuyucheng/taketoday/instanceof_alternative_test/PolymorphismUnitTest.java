@@ -1,25 +1,25 @@
 package cn.tuyucheng.taketoday.instanceof_alternative_test;
 
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Anatotitan;
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Dinosaur;
-import cn.tuyucheng.taketoday.instanceof_alternatives.model.Euraptor;
+import cn.tuyucheng.taketoday.instanceofalternative.model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PolymorphismUnitTest {
+public class PolymorphismUnitTest {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfAnatotitan() {
-		assertEquals("running", moveDinosaurUsingPolymorphism(new Anatotitan()));
-	}
+   @Test
+   public void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfAnatotitan() {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfEuraptor() {
-		assertEquals("flying", moveDinosaurUsingPolymorphism(new Euraptor()));
-	}
+      assertEquals("running", moveDinosaurUsingPolymorphism(new Anatotitan()));
+   }
 
-	static String moveDinosaurUsingPolymorphism(Dinosaur dinosaur) {
-		return dinosaur.move();
-	}
+   @Test
+   public void givenADinosaurSpecie_whenUsingPolymorphism_thenGetMovementOfEuraptor() {
+      assertEquals("flying", moveDinosaurUsingPolymorphism(new Euraptor()));
+   }
+
+   public static String moveDinosaurUsingPolymorphism(Dinosaur dinosaur) {
+      return dinosaur.move();
+   }
+
 }

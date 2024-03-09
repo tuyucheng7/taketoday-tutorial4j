@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {AppConfig.class})
-public class FlushIntegrationTest {
+class FlushIntegrationTest {
 
    private static final Customer EXPECTED_CUSTOMER = aCustomer();
 
@@ -74,7 +74,7 @@ public class FlushIntegrationTest {
    }
 
    @Test
-   public void givenANewCustomer_whenPersistAndFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
+   void givenANewCustomer_whenPersistAndFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
       entityManager.setFlushMode(FlushModeType.COMMIT);
       EntityTransaction transaction = getTransaction();
 
@@ -117,7 +117,7 @@ public class FlushIntegrationTest {
    }
 
    @Test
-   public void givenFlushModeAutoAndNewCustomer_whenPersistAndNoFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
+   void givenFlushModeAutoAndNewCustomer_whenPersistAndNoFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
       entityManager.setFlushMode(FlushModeType.AUTO);
       EntityTransaction transaction = getTransaction();
 
@@ -140,7 +140,7 @@ public class FlushIntegrationTest {
    }
 
    @Test
-   public void givenFlushModeAutoAndNewCustomer_whenPersistAndFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
+   void givenFlushModeAutoAndNewCustomer_whenPersistAndFlush_thenCustomerIdGeneratedToBeAddedInAddress() {
       entityManager.setFlushMode(FlushModeType.AUTO);
       EntityTransaction transaction = getTransaction();
 
@@ -178,7 +178,7 @@ public class FlushIntegrationTest {
    }
 
    @AfterEach
-   public void cleanup() {
+   void cleanup() {
       entityManager.clear();
    }
 

@@ -7,67 +7,87 @@ import java.util.concurrent.TimeUnit;
 
 public class Delay {
 
-	public static void main(String[] args) throws InterruptedException {
-		threadSleep(4, 1);
+   public static void main(String args[]) throws InterruptedException {
 
-		timeunitSleep(4, 1);
+      threadSleep(4, 1);
 
-		delayedServiceTask(5);
+      timeunitSleep(4, 1);
 
-		fixedRateServiceTask(5);
+      delayedServiceTask(5);
 
-		System.out.println("Done.");
-	}
+      fixedRateServiceTask(5);
 
-	private static void threadSleep(Integer iterations, Integer secondsToSleep) {
-		for (int i = 0; i < iterations; i++) {
-			System.out.println("This is loop iteration number " + i);
-			try {
-				Thread.sleep(secondsToSleep * 1000);
-			} catch (InterruptedException ie) {
-				Thread.currentThread().interrupt();
-			}
-		}
-	}
+      System.out.println("Done.");
 
-	private static void timeunitSleep(Integer iterations, Integer secondsToSleep) {
-		for (int i = 0; i < iterations; i++) {
-			System.out.println("This is loop iteration number " + i);
-			try {
-				TimeUnit.SECONDS.sleep(secondsToSleep);
-			} catch (InterruptedException ie) {
-				Thread.currentThread().interrupt();
-			}
-		}
-	}
+      return;
 
-	private static void delayedServiceTask(Integer delayInSeconds) {
-		ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-		executorService.schedule(Delay::someTask1, delayInSeconds, TimeUnit.SECONDS);
-		executorService.shutdown();
-	}
+   }
 
-	private static void fixedRateServiceTask(Integer delayInSeconds) {
-		ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+   private static void threadSleep(Integer iterations, Integer secondsToSleep) {
 
-		ScheduledFuture<?> sf = executorService.scheduleAtFixedRate(Delay::someTask2, 0, delayInSeconds,
-			TimeUnit.SECONDS);
+      for (Integer i = 0; i < iterations; i++) {
 
-		try {
-			TimeUnit.SECONDS.sleep(20);
-		} catch (InterruptedException ie) {
-			Thread.currentThread().interrupt();
-		}
+         System.out.println("This is loop iteration number " + i.toString());
 
-		sf.cancel(true);
-		executorService.shutdown();
-	}
+         try {
+            Thread.sleep(secondsToSleep * 1000);
+         } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+         }
 
-	private static void someTask1() {
-		System.out.println("Task 1 completed.");
-	}
+      }
 
-	private static void someTask2() {
-		System.out.println("Task 2 completed.");
-	}
+   }
+
+   private static void timeunitSleep(Integer iterations, Integer secondsToSleep) {
+
+      for (Integer i = 0; i < iterations; i++) {
+
+         System.out.println("This is loop iteration number " + i.toString());
+
+         try {
+            TimeUnit.SECONDS.sleep(secondsToSleep);
+         } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+         }
+
+      }
+
+   }
+
+   private static void delayedServiceTask(Integer delayInSeconds) {
+
+      ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+      executorService.schedule(Delay::someTask1, delayInSeconds, TimeUnit.SECONDS);
+
+      executorService.shutdown();
+   }
+
+   private static void fixedRateServiceTask(Integer delayInSeconds) {
+
+      ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+      ScheduledFuture<?> sf = executorService.scheduleAtFixedRate(Delay::someTask2, 0, delayInSeconds,
+            TimeUnit.SECONDS);
+
+      try {
+         TimeUnit.SECONDS.sleep(20);
+      } catch (InterruptedException ie) {
+         Thread.currentThread().interrupt();
+      }
+
+      sf.cancel(true);
+
+      executorService.shutdown();
+   }
+
+   private static void someTask1() {
+      System.out.println("Task 1 completed.");
+   }
+
+   private static void someTask2() {
+      System.out.println("Task 2 completed.");
+   }
+
 }

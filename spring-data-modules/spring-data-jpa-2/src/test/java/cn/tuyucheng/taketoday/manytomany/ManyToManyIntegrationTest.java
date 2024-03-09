@@ -6,32 +6,32 @@ import cn.tuyucheng.taketoday.manytomany.model.CourseRatingKey;
 import cn.tuyucheng.taketoday.manytomany.model.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ManyToManyTestConfiguration.class)
 @DirtiesContext
 @Transactional
-public class ManyToManyIntegrationTest {
+class ManyToManyIntegrationTest {
 
    @PersistenceContext
    EntityManager entityManager;
 
    @Test
-   public void contextStarted() {
+   void contextStarted() {
    }
 
    @Test
-   public void whenCourseRatingPersisted_thenCorrect() {
+   void whenCourseRatingPersisted_thenCorrect() {
       Student student = new Student(101L);
       entityManager.persist(student);
 

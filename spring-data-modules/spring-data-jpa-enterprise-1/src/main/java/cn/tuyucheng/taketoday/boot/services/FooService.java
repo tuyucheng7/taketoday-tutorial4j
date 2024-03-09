@@ -7,7 +7,7 @@ import cn.tuyucheng.taketoday.boot.domain.Foo;
 
 public interface FooService extends Operations<Foo> {
 
-	Foo retrieveByName(String name);
+   Foo retrieveByName(String name);
 
-	Page<Foo> findPaginated(Pageable pageable);
+   Page<Foo> findPaginated(Pageable pageable);
 }

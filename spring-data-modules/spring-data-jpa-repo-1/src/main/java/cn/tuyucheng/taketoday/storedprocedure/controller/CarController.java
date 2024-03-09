@@ -11,36 +11,36 @@ import java.util.List;
 
 @RestController
 public class CarController {
-	@Autowired
-	private CarService carService;
+   @Autowired
+   private CarService carService;
 
-	@GetMapping(path = "/modelcount")
-	public long getTotalCarsByModel(@RequestParam("model") String model) {
-		return carService.getTotalCarsByModel(model);
-	}
+   @GetMapping(path = "/modelcount")
+   public long getTotalCarsByModel(@RequestParam("model") String model) {
+      return carService.getTotalCarsByModel(model);
+   }
 
-	@GetMapping(path = "/modelcountP")
-	public long getTotalCarsByModelProcedureName(@RequestParam("model") String model) {
-		return carService.getTotalCarsByModelProcedureName(model);
-	}
+   @GetMapping(path = "/modelcountP")
+   public long getTotalCarsByModelProcedureName(@RequestParam("model") String model) {
+      return carService.getTotalCarsByModelProcedureName(model);
+   }
 
-	@GetMapping(path = "/modelcountV")
-	public long getTotalCarsByModelVaue(@RequestParam("model") String model) {
-		return carService.getTotalCarsByModelValue(model);
-	}
+   @GetMapping(path = "/modelcountV")
+   public long getTotalCarsByModelVaue(@RequestParam("model") String model) {
+      return carService.getTotalCarsByModelValue(model);
+   }
 
-	@GetMapping(path = "/modelcountEx")
-	public long getTotalCarsByModelExplicit(@RequestParam("model") String model) {
-		return carService.getTotalCarsByModelExplicit(model);
-	}
+   @GetMapping(path = "/modelcountEx")
+   public long getTotalCarsByModelExplicit(@RequestParam("model") String model) {
+      return carService.getTotalCarsByModelExplicit(model);
+   }
 
-	@GetMapping(path = "/modelcountEn")
-	public long getTotalCarsByModelEntity(@RequestParam("model") String model) {
-		return carService.getTotalCarsByModelEntity(model);
-	}
+   @GetMapping(path = "/modelcountEn")
+   public long getTotalCarsByModelEntity(@RequestParam("model") String model) {
+      return carService.getTotalCarsByModelEntity(model);
+   }
 
-	@GetMapping(path = "/carsafteryear")
-	public List<Car> findCarsAfterYear(@RequestParam("year") Integer year) {
-		return carService.findCarsAfterYear(year);
-	}
+   @GetMapping(path = "/carsafteryear")
+   public List<Car> findCarsAfterYear(@RequestParam("year") Integer year) {
+      return carService.findCarsAfterYear(year);
+   }
 }

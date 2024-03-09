@@ -27,85 +27,88 @@ import static org.junit.jupiter.api.Assertions.fail;
  * Before running the test ensure that the file is present.
  * If not, please run mvn install on the module.
  */
+
 public class PrimeNumbersManualTest {
-	private static final Logger logger = Logger.getAnonymousLogger();
 
-	@Test
-	void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
-		Options opt = new OptionsBuilder()
-			.include(Benchmarked.class.getSimpleName())
-			.forks(1)
-			.build();
+   private static Logger logger = Logger.getAnonymousLogger();
 
-		try {
-			new Runner(opt).run();
-		} catch (RunnerException e) {
-			fail();
-		}
-	}
+   @Test
+   public void givenPrimesCalculated_whenUsingPoolsAndOneThread_thenOneThreadSlowest() {
+      Options opt = new OptionsBuilder()
+            .include(Benchmarker.class.getSimpleName())
+            .forks(1)
+            .build();
 
-	@Test
-	void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
-		StringBuilder info = new StringBuilder();
+      try {
+         new Runner(opt).run();
+      } catch (RunnerException e) {
+         fail();
+      }
+   }
 
-		for (int granularity : PrimeNumbers.GRANULARITIES) {
-			int parallelism = ForkJoinPool.getCommonPoolParallelism();
-			ForkJoinPool pool = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
+   @Test
+   public void givenNewWorkStealingPool_whenGettingPrimes_thenStealCountChanges() {
+      StringBuilder info = new StringBuilder();
 
-			stealCountInfo(info, granularity, pool);
-		}
-		logger.info("\nExecutors.newWorkStealingPool ->" + info);
-	}
+      for (int granularity : PrimeNumbers.GRANULARITIES) {
+         int parallelism = ForkJoinPool.getCommonPoolParallelism();
+         ForkJoinPool pool =
+               (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
 
-	@Test
-	void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
-		StringBuilder info = new StringBuilder();
+         stealCountInfo(info, granularity, pool);
+      }
+      logger.info("\nExecutors.newWorkStealingPool ->" + info.toString());
+   }
 
-		for (int granularity : PrimeNumbers.GRANULARITIES) {
-			ForkJoinPool pool = ForkJoinPool.commonPool();
-			stealCountInfo(info, granularity, pool);
-		}
-		logger.info("\nForkJoinPool.commonPool ->" + info);
-	}
+   @Test
+   public void givenCommonPool_whenGettingPrimes_thenStealCountChangesSlowly() {
+      StringBuilder info = new StringBuilder();
 
-	private void stealCountInfo(StringBuilder info, int granularity, ForkJoinPool forkJoinPool) {
-		PrimeNumbers primes = new PrimeNumbers(1, 10000, granularity, new AtomicInteger(0));
-		forkJoinPool.invoke(primes);
-		forkJoinPool.shutdown();
+      for (int granularity : PrimeNumbers.GRANULARITIES) {
+         ForkJoinPool pool = ForkJoinPool.commonPool();
+         stealCountInfo(info, granularity, pool);
+      }
+      logger.info("\nForkJoinPool.commonPool ->" + info.toString());
+   }
 
-		long steals = forkJoinPool.getStealCount();
-		String output = "\nGranularity: [" + granularity + "], Steals: [" + steals + "]";
-		info.append(output);
-	}
+   private void stealCountInfo(StringBuilder info, int granularity, ForkJoinPool forkJoinPool) {
+      PrimeNumbers primes = new PrimeNumbers(1, 10000, granularity, new AtomicInteger(0));
+      forkJoinPool.invoke(primes);
+      forkJoinPool.shutdown();
+
+      long steals = forkJoinPool.getStealCount();
+      String output = "\nGranularity: [" + granularity + "], Steals: [" + steals + "]";
+      info.append(output);
+   }
 
 
-	@BenchmarkMode(Mode.AverageTime)
-	@OutputTimeUnit(TimeUnit.MILLISECONDS)
-	@State(Scope.Benchmark)
-	@Fork(value = 2, warmups = 1, jvmArgs = {"-Xms2G", "-Xmx2G"})
-	public static class Benchmarked {
+   @BenchmarkMode(Mode.AverageTime)
+   @OutputTimeUnit(TimeUnit.MILLISECONDS)
+   @State(Scope.Benchmark)
+   @Fork(value = 2, warmups = 1, jvmArgs = {"-Xms2G", "-Xmx2G"})
+   public static class Benchmarker {
 
-		@Benchmark
-		public void singleThread() {
-			PrimeNumbers primes = new PrimeNumbers(10000);
-			primes.findPrimeNumbers(); // get prime numbers using a single thread
-		}
+      @Benchmark
+      public void singleThread() {
+         PrimeNumbers primes = new PrimeNumbers(10000);
+         primes.findPrimeNumbers(); // get prime numbers using a single thread
+      }
 
-		@Benchmark
-		public void commonPoolBenchmark() {
-			PrimeNumbers primes = new PrimeNumbers(10000);
-			ForkJoinPool pool = ForkJoinPool.commonPool();
-			pool.invoke(primes);
-			pool.shutdown();
-		}
+      @Benchmark
+      public void commonPoolBenchmark() {
+         PrimeNumbers primes = new PrimeNumbers(10000);
+         ForkJoinPool pool = ForkJoinPool.commonPool();
+         pool.invoke(primes);
+         pool.shutdown();
+      }
 
-		@Benchmark
-		public void newWorkStealingPoolBenchmark() {
-			PrimeNumbers primes = new PrimeNumbers(10000);
-			int parallelism = ForkJoinPool.getCommonPoolParallelism();
-			ForkJoinPool stealer = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
-			stealer.invoke(primes);
-			stealer.shutdown();
-		}
-	}
+      @Benchmark
+      public void newWorkStealingPoolBenchmark() {
+         PrimeNumbers primes = new PrimeNumbers(10000);
+         int parallelism = ForkJoinPool.getCommonPoolParallelism();
+         ForkJoinPool stealer = (ForkJoinPool) Executors.newWorkStealingPool(parallelism);
+         stealer.invoke(primes);
+         stealer.shutdown();
+      }
+   }
 }

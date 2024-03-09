@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CharacteristicsRepository extends JpaRepository<Characteristic, Long> {
 
-	@EntityGraph(attributePaths = {"item"})
-	Characteristic findByType(String type);
+   @EntityGraph(attributePaths = {"item"})
+   Characteristic findByType(String type);
 }

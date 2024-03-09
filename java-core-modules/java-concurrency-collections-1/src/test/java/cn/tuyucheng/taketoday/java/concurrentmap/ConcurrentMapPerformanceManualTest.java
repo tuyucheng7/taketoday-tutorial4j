@@ -15,83 +15,85 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentMapPerformanceManualTest {
+public class ConcurrentMapPerformanceManualTest {
 
-	@Test
-	void givenMaps_whenGetPut500KTimes_thenConcurrentMapFaster() throws Exception {
-		final Map<String, Object> hashtable = new Hashtable<>();
-		final Map<String, Object> synchronizedHashMap = Collections.synchronizedMap(new HashMap<>());
-		final Map<String, Object> concurrentHashMap = new ConcurrentHashMap<>();
+   @Test
+   public void givenMaps_whenGetPut500KTimes_thenConcurrentMapFaster() throws Exception {
+      final Map<String, Object> hashtable = new Hashtable<>();
+      final Map<String, Object> synchronizedHashMap = Collections.synchronizedMap(new HashMap<>());
+      final Map<String, Object> concurrentHashMap = new ConcurrentHashMap<>();
 
-		final long hashtableAvgRuntime = timeElapseForGetPut(hashtable);
-		final long syncHashMapAvgRuntime = timeElapseForGetPut(synchronizedHashMap);
-		final long concurrentHashMapAvgRuntime = timeElapseForGetPut(concurrentHashMap);
+      final long hashtableAvgRuntime = timeElapseForGetPut(hashtable);
+      final long syncHashMapAvgRuntime = timeElapseForGetPut(synchronizedHashMap);
+      final long concurrentHashMapAvgRuntime = timeElapseForGetPut(concurrentHashMap);
 
-		System.out.printf("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s%n", hashtableAvgRuntime, syncHashMapAvgRuntime, concurrentHashMapAvgRuntime);
+      System.out.println(String.format("Hashtable: %s, syncHashMap: %s, ConcurrentHashMap: %s", hashtableAvgRuntime, syncHashMapAvgRuntime, concurrentHashMapAvgRuntime));
 
-		assertTrue(hashtableAvgRuntime > concurrentHashMapAvgRuntime);
-		assertTrue(syncHashMapAvgRuntime > concurrentHashMapAvgRuntime);
-	}
+      assertTrue(hashtableAvgRuntime > concurrentHashMapAvgRuntime);
+      assertTrue(syncHashMapAvgRuntime > concurrentHashMapAvgRuntime);
 
-	private long timeElapseForGetPut(Map<String, Object> map) throws InterruptedException {
-		final ExecutorService executorService = Executors.newFixedThreadPool(4);
-		final long startTime = System.nanoTime();
-		for (int i = 0; i < 4; i++) {
-			executorService.execute(() -> {
-				for (int j = 0; j < 500_000; j++) {
-					final int value = ThreadLocalRandom.current().nextInt(10000);
-					final String key = String.valueOf(value);
-					map.put(key, value);
-					map.get(key);
-				}
-			});
-		}
-		executorService.shutdown();
-		executorService.awaitTermination(1, TimeUnit.MINUTES);
-		return (System.nanoTime() - startTime) / 500_000;
-	}
+   }
 
-	@Test
-	void givenConcurrentMap_whenKeyWithSameHashCode_thenPerformanceDegrades() throws InterruptedException {
-		class SameHash {
-			@Override
-			public int hashCode() {
-				return 1;
-			}
-		}
-		final int executeTimes = 5000;
+   private long timeElapseForGetPut(Map<String, Object> map) throws InterruptedException {
+      final ExecutorService executorService = Executors.newFixedThreadPool(4);
+      final long startTime = System.nanoTime();
+      for (int i = 0; i < 4; i++) {
+         executorService.execute(() -> {
+            for (int j = 0; j < 500_000; j++) {
+               final int value = ThreadLocalRandom.current().nextInt(10000);
+               final String key = String.valueOf(value);
+               map.put(key, value);
+               map.get(key);
+            }
+         });
+      }
+      executorService.shutdown();
+      executorService.awaitTermination(1, TimeUnit.MINUTES);
+      return (System.nanoTime() - startTime) / 500_000;
+   }
 
-		final Map<SameHash, Integer> mapOfSameHash = new ConcurrentHashMap<>();
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		final long sameHashStartTime = System.currentTimeMillis();
-		for (int i = 0; i < 2; i++) {
-			executorService.execute(() -> {
-				for (int j = 0; j < executeTimes; j++) {
-					mapOfSameHash.put(new SameHash(), 1);
-				}
-			});
-		}
-		executorService.shutdown();
-		executorService.awaitTermination(5, TimeUnit.SECONDS);
+   @Test
+   public void givenConcurrentMap_whenKeyWithSameHashCode_thenPerformanceDegrades() throws InterruptedException {
+      class SameHash {
+         @Override
+         public int hashCode() {
+            return 1;
+         }
+      }
+      final int executeTimes = 5000;
 
-		final long mapOfSameHashDuration = System.currentTimeMillis() - sameHashStartTime;
-		final Map<Object, Integer> mapOfDefaultHash = new ConcurrentHashMap<>();
-		executorService = Executors.newFixedThreadPool(2);
-		final long defaultHashStartTime = System.currentTimeMillis();
-		for (int i = 0; i < 2; i++) {
-			executorService.execute(() -> {
-				for (int j = 0; j < executeTimes; j++) {
-					mapOfDefaultHash.put(new Object(), 1);
-				}
-			});
-		}
-		executorService.shutdown();
-		executorService.awaitTermination(5, TimeUnit.SECONDS);
+      final Map<SameHash, Integer> mapOfSameHash = new ConcurrentHashMap<>();
+      ExecutorService executorService = Executors.newFixedThreadPool(2);
+      final long sameHashStartTime = System.currentTimeMillis();
+      for (int i = 0; i < 2; i++) {
+         executorService.execute(() -> {
+            for (int j = 0; j < executeTimes; j++) {
+               mapOfSameHash.put(new SameHash(), 1);
+            }
+         });
+      }
+      executorService.shutdown();
+      executorService.awaitTermination(5, TimeUnit.SECONDS);
 
-		final long mapOfDefaultHashDuration = System.currentTimeMillis() - defaultHashStartTime;
-		assertEquals(executeTimes * 2, mapOfDefaultHash.size());
-		assertEquals(executeTimes * 2, mapOfSameHash.size());
-		System.out.printf("same-hash: %s, default-hash: %s%n", mapOfSameHashDuration, mapOfDefaultHashDuration);
-		assertTrue(mapOfSameHashDuration > (mapOfDefaultHashDuration * 10), "same hashCode() should greatly degrade performance");
-	}
+      final long mapOfSameHashDuration = System.currentTimeMillis() - sameHashStartTime;
+      final Map<Object, Integer> mapOfDefaultHash = new ConcurrentHashMap<>();
+      executorService = Executors.newFixedThreadPool(2);
+      final long defaultHashStartTime = System.currentTimeMillis();
+      for (int i = 0; i < 2; i++) {
+         executorService.execute(() -> {
+            for (int j = 0; j < executeTimes; j++) {
+               mapOfDefaultHash.put(new Object(), 1);
+            }
+         });
+      }
+      executorService.shutdown();
+      executorService.awaitTermination(5, TimeUnit.SECONDS);
+
+      final long mapOfDefaultHashDuration = System.currentTimeMillis() - defaultHashStartTime;
+      assertEquals(executeTimes * 2, mapOfDefaultHash.size());
+      assertEquals(executeTimes * 2, mapOfSameHash.size());
+      System.out.println(String.format("same-hash: %s, default-hash: %s", mapOfSameHashDuration, mapOfDefaultHashDuration));
+      assertTrue("same hashCode() should greatly degrade performance", mapOfSameHashDuration > (mapOfDefaultHashDuration * 10));
+   }
+
 }

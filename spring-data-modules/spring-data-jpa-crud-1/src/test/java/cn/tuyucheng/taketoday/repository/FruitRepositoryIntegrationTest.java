@@ -17,53 +17,53 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class FruitRepositoryIntegrationTest {
 
-	@Autowired
-	private FruitRepository fruitRepository;
+   @Autowired
+   private FruitRepository fruitRepository;
 
-	@Transactional
-	@Test
-	@Sql(scripts = {"/test-fruit-data.sql"})
-	void givenFruits_WhenDeletedByColor_ThenDeletedFruitsShouldReturn() {
-		List<Fruit> fruits = fruitRepository.deleteByColor("green");
+   @Transactional
+   @Test
+   @Sql(scripts = {"/test-fruit-data.sql"})
+   void givenFruits_WhenDeletedByColor_ThenDeletedFruitsShouldReturn() {
+      List<Fruit> fruits = fruitRepository.deleteByColor("green");
 
-		assertEquals(2, fruits.size(), "number of fruits are not matching");
-		fruits.forEach(fruit -> assertEquals("green", fruit.getColor(), "Its not a green fruit"));
-	}
+      assertEquals(2, fruits.size(), "number of fruits are not matching");
+      fruits.forEach(fruit -> assertEquals("green", fruit.getColor(), "Its not a green fruit"));
+   }
 
-	@Transactional
-	@Test
-	@Sql(scripts = {"/test-fruit-data.sql"})
-	void givenFruits_WhenDeletedByName_ThenDeletedFruitCountShouldReturn() {
-		Long deletedFruitCount = fruitRepository.deleteByName("apple");
+   @Transactional
+   @Test
+   @Sql(scripts = {"/test-fruit-data.sql"})
+   void givenFruits_WhenDeletedByName_ThenDeletedFruitCountShouldReturn() {
+      Long deletedFruitCount = fruitRepository.deleteByName("apple");
 
-		assertEquals(1, deletedFruitCount.intValue(), "deleted fruit count is not matching");
-	}
+      assertEquals(1, deletedFruitCount.intValue(), "deleted fruit count is not matching");
+   }
 
-	@Transactional
-	@Test
-	@Sql(scripts = {"/test-fruit-data.sql"})
-	void givenFruits_WhenRemovedByColor_ThenDeletedFruitsShouldReturn() {
-		List<Fruit> fruits = fruitRepository.removeByColor("green");
+   @Transactional
+   @Test
+   @Sql(scripts = {"/test-fruit-data.sql"})
+   void givenFruits_WhenRemovedByColor_ThenDeletedFruitsShouldReturn() {
+      List<Fruit> fruits = fruitRepository.removeByColor("green");
 
-		assertEquals(2, fruits.size(), "number of fruits are not matching");
-		fruits.forEach(fruit -> assertEquals("green", fruit.getColor(), "Its not a green fruit"));
-	}
+      assertEquals(2, fruits.size(), "number of fruits are not matching");
+      fruits.forEach(fruit -> assertEquals("green", fruit.getColor(), "Its not a green fruit"));
+   }
 
-	@Transactional
-	@Test
-	@Sql(scripts = {"/test-fruit-data.sql"})
-	void givenFruits_WhenRemovedByName_ThenDeletedFruitCountShouldReturn() {
-		Long deletedFruitCount = fruitRepository.removeByName("apple");
+   @Transactional
+   @Test
+   @Sql(scripts = {"/test-fruit-data.sql"})
+   void givenFruits_WhenRemovedByName_ThenDeletedFruitCountShouldReturn() {
+      Long deletedFruitCount = fruitRepository.removeByName("apple");
 
-		assertEquals(1, deletedFruitCount.intValue(), "deleted fruit count is not matching");
-	}
+      assertEquals(1, deletedFruitCount.intValue(), "deleted fruit count is not matching");
+   }
 
-	@Transactional
-	@Test
-	@Sql(scripts = {"/test-fruit-data.sql"})
-	void givenFruits_WhenDeletedByColorOrName_ThenDeletedFruitsShouldReturn() {
-		int deletedCount = fruitRepository.deleteFruits("apple", "green");
+   @Transactional
+   @Test
+   @Sql(scripts = {"/test-fruit-data.sql"})
+   void givenFruits_WhenDeletedByColorOrName_ThenDeletedFruitsShouldReturn() {
+      int deletedCount = fruitRepository.deleteFruits("apple", "green");
 
-		assertEquals(3, deletedCount, "number of fruits are not matching");
-	}
+      assertEquals(3, deletedCount, "number of fruits are not matching");
+   }
 }

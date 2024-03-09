@@ -1,15 +1,14 @@
 package cn.tuyucheng.taketoday.formatinstant;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.joda.time.format.DateTimeFormat;
+import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import java.util.TimeZone;
 
-import org.joda.time.format.DateTimeFormat;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FormatInstantUnitTest {
 
@@ -51,4 +50,5 @@ public class FormatInstantUnitTest {
 
       assertThat(formattedInstant).isEqualTo("20.03.2022");
    }
+
 }

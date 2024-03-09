@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PolynomUnitTest {
 
-	@Test
-	void givenaEqualTo0_WhenNewPolynom_ThenThrows() {
-		assertThrows(IllegalArgumentException.class, () -> new Polynom(0, 1, 1));
-	}
+   @Test
+   void givenaEqualTo0_WhenNewPolynom_ThenThrows() {
+      assertThrows(IllegalArgumentException.class, () -> new Polynom(0, 1, 1));
+   }
 
 }

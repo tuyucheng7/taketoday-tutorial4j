@@ -23,45 +23,45 @@ import java.util.Properties;
 // @PropertySource("persistence-sqlite.properties")
 public class DbConfig {
 
-    public static final String HIBERNATE_HBM_2_DDL_AUTO = "hibernate.hbm2ddl.auto";
-    public static final String HIBERNATE_DIALECT = "hibernate.dialect";
-    public static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    @Autowired
-    private Environment env;
+   public static final String HIBERNATE_HBM_2_DDL_AUTO = "hibernate.hbm2ddl.auto";
+   public static final String HIBERNATE_DIALECT = "hibernate.dialect";
+   public static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
+   @Autowired
+   private Environment env;
 
-    @Bean
-    public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("driverClassName")));
-        dataSource.setUrl(env.getProperty("url"));
-        dataSource.setUsername(env.getProperty("user"));
-        dataSource.setPassword(env.getProperty("password"));
-        return dataSource;
-    }
+   @Bean
+   public DataSource dataSource() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("driverClassName")));
+      dataSource.setUrl(env.getProperty("url"));
+      dataSource.setUsername(env.getProperty("user"));
+      dataSource.setPassword(env.getProperty("password"));
+      return dataSource;
+   }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan("cn.tuyucheng.taketoday.books.models");
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(additionalProperties());
-        return em;
-    }
+   @Bean
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource());
+      em.setPackagesToScan("cn.tuyucheng.taketoday.books.models");
+      em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+      em.setJpaProperties(additionalProperties());
+      return em;
+   }
 
-    final Properties additionalProperties() {
-        final Properties hibernateProperties = new Properties();
-        if (env.getProperty(HIBERNATE_HBM_2_DDL_AUTO) != null) {
-            hibernateProperties.setProperty(HIBERNATE_HBM_2_DDL_AUTO, env.getProperty(HIBERNATE_HBM_2_DDL_AUTO));
-        }
-        if (env.getProperty(HIBERNATE_DIALECT) != null) {
-            hibernateProperties.setProperty(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
-        }
-        if (env.getProperty(HIBERNATE_SHOW_SQL) != null) {
-            hibernateProperties.setProperty(HIBERNATE_SHOW_SQL, env.getProperty(HIBERNATE_SHOW_SQL));
-        }
-        return hibernateProperties;
-    }
+   final Properties additionalProperties() {
+      final Properties hibernateProperties = new Properties();
+      if (env.getProperty(HIBERNATE_HBM_2_DDL_AUTO) != null) {
+         hibernateProperties.setProperty(HIBERNATE_HBM_2_DDL_AUTO, env.getProperty(HIBERNATE_HBM_2_DDL_AUTO));
+      }
+      if (env.getProperty(HIBERNATE_DIALECT) != null) {
+         hibernateProperties.setProperty(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
+      }
+      if (env.getProperty(HIBERNATE_SHOW_SQL) != null) {
+         hibernateProperties.setProperty(HIBERNATE_SHOW_SQL, env.getProperty(HIBERNATE_SHOW_SQL));
+      }
+      return hibernateProperties;
+   }
 }
 
 @Configuration

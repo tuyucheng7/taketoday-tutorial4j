@@ -4,6 +4,6 @@ import java.util.List;
 
 public class Department {
 
-	private List<Professor> professors;
+   private List<Professor> professors;
 
 }

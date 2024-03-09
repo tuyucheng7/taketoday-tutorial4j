@@ -5,22 +5,22 @@ package cn.tuyucheng.taketoday.superkeyword;
  */
 public class SuperSub extends SuperBase {
 
-	String message = "child class";
+   String message = "child class";
 
-	public SuperSub(String message) {
-		super(message);
-	}
+   public SuperSub(String message) {
+      super(message);
+   }
 
-	public SuperSub() {
-		super.printMessage();
-		printMessage();
-	}
+   public SuperSub() {
+      super.printMessage();
+      printMessage();
+   }
 
-	public void getParentMessage() {
-		System.out.println(super.message);
-	}
+   public void getParentMessage() {
+      System.out.println(super.message);
+   }
 
-	public void printMessage() {
-		System.out.println(message);
-	}
+   public void printMessage() {
+      System.out.println(message);
+   }
 }

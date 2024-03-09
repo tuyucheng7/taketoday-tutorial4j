@@ -9,14 +9,14 @@ import java.util.UUID;
 
 public class UuidIdentifiedEntityEventListener extends AbstractMongoEventListener<UuidIdentifiedEntity> {
 
-	@Override
-	public void onBeforeConvert(BeforeConvertEvent<UuidIdentifiedEntity> event) {
+   @Override
+   public void onBeforeConvert(BeforeConvertEvent<UuidIdentifiedEntity> event) {
 
-		super.onBeforeConvert(event);
-		UuidIdentifiedEntity entity = event.getSource();
+      super.onBeforeConvert(event);
+      UuidIdentifiedEntity entity = event.getSource();
 
-		if (entity.getId() == null) {
-			entity.setId(UUID.randomUUID());
-		}
-	}
+      if (entity.getId() == null) {
+         entity.setId(UUID.randomUUID());
+      }
+   }
 }

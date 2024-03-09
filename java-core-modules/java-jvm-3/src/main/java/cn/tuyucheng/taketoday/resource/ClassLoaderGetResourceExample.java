@@ -7,15 +7,15 @@ import java.net.URL;
 
 public class ClassLoaderGetResourceExample {
 
-	private static Logger logger = LoggerFactory.getLogger(ClassLoaderGetResourceExample.class);
+   private static Logger logger = LoggerFactory.getLogger(ClassLoaderGetResourceExample.class);
 
-	public static void main(String[] args) {
-		URL resourceAbsolutePath = ClassLoaderGetResourceExample.class.getClassLoader()
-			.getResource("cn/tuyucheng/taketoday/resource/example.txt");
-		logger.info("Resource with absolute path = {}", resourceAbsolutePath);
+   public static void main(String[] args) {
+      URL resourceAbsolutePath = ClassLoaderGetResourceExample.class.getClassLoader()
+            .getResource("com/tuyucheng/resource/example.txt");
+      logger.info("Resource with absolute path = {}", resourceAbsolutePath);
 
-		URL resourceRelativePath = ClassLoaderGetResourceExample.class.getClassLoader()
-			.getResource("example.txt");
-		logger.info("Resource with relative path = {}", resourceRelativePath);
-	}
+      URL resourceRelativePath = ClassLoaderGetResourceExample.class.getClassLoader()
+            .getResource("example.txt");
+      logger.info("Resource with relative path = {}", resourceRelativePath);
+   }
 }

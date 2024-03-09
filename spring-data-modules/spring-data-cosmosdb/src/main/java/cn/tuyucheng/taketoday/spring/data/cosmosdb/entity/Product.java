@@ -11,13 +11,13 @@ import org.springframework.data.annotation.Id;
 @Document(collection = "products")
 public class Product {
 
-    @Id
-    private String productid;
+   @Id
+   private String productid;
 
-    private String productName;
+   private String productName;
 
-    private double price;
+   private double price;
 
-    @PartitionKey
-    private String productCategory;
+   @PartitionKey
+   private String productCategory;
 }

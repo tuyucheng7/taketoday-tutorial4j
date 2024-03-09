@@ -9,41 +9,41 @@ import java.util.stream.Collectors;
 
 public class Album {
 
-	private String albumName;
-	private int albumCost;
-	private List<Artist> artists;
+   private String albumName;
+   private int albumCost;
+   private List<Artist> artists;
 
-	Album(String name, int albumCost, List<Artist> artists) {
-		this.albumName = name;
-		this.artists = artists;
-		this.albumCost = albumCost;
-	}
+   Album(String name, int albumCost, List<Artist> artists) {
+      this.albumName = name;
+      this.artists = artists;
+      this.albumCost = albumCost;
+   }
 
-	public void artistAlbumPairsToMajorLabels(Consumer<Pair<String, String>> consumer) {
+   public void artistAlbumPairsToMajorLabels(Consumer<Pair<String, String>> consumer) {
 
-		for (Artist artist : artists) {
-			if (artist.isAssociatedMajorLabels()) {
-				String concatLabels = artist.getMajorLabels()
-					.stream()
-					.collect(Collectors.joining(","));
-				consumer.accept(new ImmutablePair<>(artist.getName() + ":" + albumName, concatLabels));
-			}
-		}
-	}
+      for (Artist artist : artists) {
+         if (artist.isAssociatedMajorLabels()) {
+            String concatLabels = artist.getMajorLabels()
+                  .stream()
+                  .collect(Collectors.joining(","));
+            consumer.accept(new ImmutablePair<>(artist.getName() + ":" + albumName, concatLabels));
+         }
+      }
+   }
 
-	public String getAlbumName() {
-		return albumName;
-	}
+   public String getAlbumName() {
+      return albumName;
+   }
 
-	public int getAlbumCost() {
-		return albumCost;
-	}
+   public int getAlbumCost() {
+      return albumCost;
+   }
 
-	List<Artist> getArtists() {
-		return artists;
-	}
+   List<Artist> getArtists() {
+      return artists;
+   }
 
-	public String toString() {
-		return albumName;
-	}
+   public String toString() {
+      return albumName;
+   }
 }

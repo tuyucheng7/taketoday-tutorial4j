@@ -9,9 +9,9 @@ import java.awt.event.WindowEvent;
  * method can be used.
  */
 public class ChatWindow {
-	public void windowStateChanged(WindowEvent event) {
-		if (event.getNewState() == WindowEvent.WINDOW_DEACTIVATED) {
-			System.gc(); // if it ends up running, great!
-		}
-	}
+   public void windowStateChanged(WindowEvent event) {
+      if (event.getNewState() == WindowEvent.WINDOW_DEACTIVATED) {
+         System.gc(); // if it ends up running, great!
+      }
+   }
 }

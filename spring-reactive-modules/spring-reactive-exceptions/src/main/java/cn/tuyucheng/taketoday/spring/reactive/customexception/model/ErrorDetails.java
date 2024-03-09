@@ -1,7 +1,9 @@
 package cn.tuyucheng.taketoday.spring.reactive.customexception.model;
 
+
 import cn.tuyucheng.taketoday.spring.reactive.customexception.config.ErrorDetailsSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import lombok.Getter;
 
 @JsonSerialize(using = ErrorDetailsSerializer.class)

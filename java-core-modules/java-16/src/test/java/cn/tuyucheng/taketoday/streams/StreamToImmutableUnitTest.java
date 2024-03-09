@@ -6,13 +6,18 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.Stream;
 
-class StreamToImmutableUnitTest {
+public class StreamToImmutableUnitTest {
 
-	@Test
-	void whenUsingStreamToList_thenReturnImmutableList() {
-		List<String> immutableList = Stream.of("a", "b", "c", "d")
-			.toList();
+   @Test
+   public void whenUsingStreamToList_thenReturnImmutableList() {
 
-		Assertions.assertThrows(UnsupportedOperationException.class, () -> immutableList.add("e"));
-	}
+      List<String> immutableList = Stream.of("a", "b", "c", "d")
+            .toList();
+
+      Assertions.assertThrows(UnsupportedOperationException.class, () -> {
+         immutableList.add("e");
+      });
+
+   }
+
 }

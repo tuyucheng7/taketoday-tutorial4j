@@ -11,23 +11,23 @@ import java.util.Collection;
 @Service
 public class ServiceLayer {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Transactional(readOnly = true)
-	public long countAllDocsTransactional() {
-		return countAllDocs();
-	}
+   @Transactional(readOnly = true)
+   public long countAllDocsTransactional() {
+      return countAllDocs();
+   }
 
-	public long countAllDocsNonTransactional() {
-		return countAllDocs();
-	}
+   public long countAllDocsNonTransactional() {
+      return countAllDocs();
+   }
 
-	private long countAllDocs() {
-		return userRepository.findAll()
-			.stream()
-			.map(User::getDocs)
-			.mapToLong(Collection::size)
-			.sum();
-	}
+   private long countAllDocs() {
+      return userRepository.findAll()
+            .stream()
+            .map(User::getDocs)
+            .mapToLong(Collection::size)
+            .sum();
+   }
 }

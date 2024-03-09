@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 public abstract class AbstractDao<T extends Serializable> implements IOperations<T> {
 
-    protected Class<T> clazz;
+   protected Class<T> clazz;
 
-    protected final void setClazz(final Class<T> clazzToSet) {
-        clazz = Preconditions.checkNotNull(clazzToSet);
-    }
+   protected final void setClazz(final Class<T> clazzToSet) {
+      clazz = Preconditions.checkNotNull(clazzToSet);
+   }
 }

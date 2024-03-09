@@ -16,80 +16,78 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.ServletContext;
+import jakarta.servlet.ServletContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {WebConfig.class})
 @WebAppConfiguration
-class GreetControllerIntegrationTest {
+public class GreetControllerIntegrationTest {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    private static final String CONTENT_TYPE = "application/json";
+   private static final String CONTENT_TYPE = "application/json";
 
-    @BeforeEach
-    void setup() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
-    }
+   @BeforeEach
+   public void setup() {
+      this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+   }
 
-    @Test
-    void givenWac_whenServletContext_thenItProvidesGreetController() {
-        final ServletContext servletContext = webApplicationContext.getServletContext();
-        assertNotNull(servletContext);
-        assertTrue(servletContext instanceof MockServletContext);
-        assertNotNull(webApplicationContext.getBean("greetController"));
-    }
+   @Test
+   public void givenWac_whenServletContext_thenItProvidesGreetController() {
+      final ServletContext servletContext = webApplicationContext.getServletContext();
+      assertNotNull(servletContext);
+      assertTrue(servletContext instanceof MockServletContext);
+      assertNotNull(webApplicationContext.getBean("greetController"));
+   }
 
-    @Test
-    void givenHomePageURI_whenMockMVC_thenReturnsIndexJSPViewName() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/homePage")).andDo(print()).andExpect(MockMvcResultMatchers.view().name("index"));
-    }
+   @Test
+   public void givenHomePageURI_whenMockMVC_thenReturnsIndexJSPViewName() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.get("/homePage")).andDo(print()).andExpect(MockMvcResultMatchers.view().name("index"));
+   }
 
-    @Test
-    void givenGreetURI_whenMockMVC_thenVerifyResponse() throws Exception {
-        final MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get("/greet"))
-              .andDo(print())
-              .andExpect(MockMvcResultMatchers.status().isOk())
-              .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World!!!"))
-              .andReturn();
-        assertEquals(CONTENT_TYPE, mvcResult.getResponse().getContentType());
-    }
+   @Test
+   public void givenGreetURI_whenMockMVC_thenVerifyResponse() throws Exception {
+      final MvcResult mvcResult = this.mockMvc.perform(MockMvcRequestBuilders.get("/greet"))
+            .andDo(print())
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World!!!"))
+            .andReturn();
+      assertEquals(CONTENT_TYPE, mvcResult.getResponse().getContentType());
+   }
 
-    @Test
-    void givenGreetURIWithPathVariable_whenMockMVC_thenResponseOK() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithPathVariable/John")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John!!!"));
-    }
+   @Test
+   public void givenGreetURIWithPathVariable_whenMockMVC_thenResponseOK() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithPathVariable/John")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John!!!"));
+   }
 
-    @Test
-    void givenGreetURIWithPathVariable_2_whenMockMVC_thenVerifyResponse() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithPathVariable/{name}", "Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World Doe!!!"));
-    }
+   @Test
+   public void givenGreetURIWithPathVariable_2_whenMockMVC_thenVerifyResponse() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithPathVariable/{name}", "Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World Doe!!!"));
+   }
 
-    @Test
-    void givenGreetURIWithQueryParameter_whenMockMVC_thenResponseOK() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithQueryVariable").param("name", "John Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John Doe!!!"));
-    }
+   @Test
+   public void givenGreetURIWithQueryParameter_whenMockMVC_thenResponseOK() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.get("/greetWithQueryVariable").param("name", "John Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John Doe!!!"));
+   }
 
-    @Test
-    void givenGreetURIWithPost_whenMockMVC_thenVerifyResponse() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/greetWithPost")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World!!!"));
-    }
+   @Test
+   public void givenGreetURIWithPost_whenMockMVC_thenVerifyResponse() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/greetWithPost")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World!!!"));
+   }
 
-    @Test
-    void givenGreetURIWithPostAndFormData_whenMockMVC_thenResponseOK() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/greetWithPostAndFormData").param("id", "1").param("name", "John Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk())
-              .andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE)).andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John Doe!!!")).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
-    }
+   @Test
+   public void givenGreetURIWithPostAndFormData_whenMockMVC_thenResponseOK() throws Exception {
+      this.mockMvc.perform(MockMvcRequestBuilders.post("/greetWithPostAndFormData").param("id", "1").param("name", "John Doe")).andDo(print()).andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.content().contentType(CONTENT_TYPE)).andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Hello World John Doe!!!")).andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+   }
 }

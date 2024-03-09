@@ -12,85 +12,93 @@ import java.util.concurrent.locks.StampedLock;
 import static java.lang.Thread.sleep;
 
 public class StampedLockDemo {
-	private final Map<String, String> map = new HashMap<>();
-	private final Logger logger = LoggerFactory.getLogger(StampedLockDemo.class);
-	private final StampedLock lock = new StampedLock();
+   private Map<String, String> map = new HashMap<>();
+   private Logger logger = LoggerFactory.getLogger(StampedLockDemo.class);
 
-	public void put(String key, String value) throws InterruptedException {
-		long stamp = lock.writeLock();
+   private final StampedLock lock = new StampedLock();
 
-		try {
-			logger.info(Thread.currentThread().getName() + " acquired the write lock with stamp " + stamp);
-			map.put(key, value);
-		} finally {
-			lock.unlockWrite(stamp);
-			logger.info(Thread.currentThread().getName() + " unlocked the write lock with stamp " + stamp);
-		}
-	}
+   public void put(String key, String value) throws InterruptedException {
+      long stamp = lock.writeLock();
 
-	public String get(String key) throws InterruptedException {
-		long stamp = lock.readLock();
-		logger.info(Thread.currentThread().getName() + " acquired the read lock with stamp " + stamp);
-		try {
-			sleep(5000);
-			return map.get(key);
+      try {
+         logger.info(Thread.currentThread().getName() + " acquired the write lock with stamp " + stamp);
+         map.put(key, value);
+      } finally {
+         lock.unlockWrite(stamp);
+         logger.info(Thread.currentThread().getName() + " unlocked the write lock with stamp " + stamp);
+      }
+   }
 
-		} finally {
-			lock.unlockRead(stamp);
-			logger.info(Thread.currentThread().getName() + " unlocked the read lock with stamp " + stamp);
-		}
-	}
+   public String get(String key) throws InterruptedException {
+      long stamp = lock.readLock();
+      logger.info(Thread.currentThread().getName() + " acquired the read lock with stamp " + stamp);
+      try {
+         sleep(5000);
+         return map.get(key);
 
-	private String readWithOptimisticLock(String key) throws InterruptedException {
-		long stamp = lock.tryOptimisticRead();
-		String value = map.get(key);
+      } finally {
+         lock.unlockRead(stamp);
+         logger.info(Thread.currentThread().getName() + " unlocked the read lock with stamp " + stamp);
 
-		if (!lock.validate(stamp)) {
-			stamp = lock.readLock();
-			try {
-				sleep(5000);
-				return map.get(key);
+      }
 
-			} finally {
-				lock.unlock(stamp);
-				logger.info(Thread.currentThread().getName() + " unlocked the read lock with stamp " + stamp);
+   }
 
-			}
-		}
-		return value;
-	}
+   private String readWithOptimisticLock(String key) throws InterruptedException {
+      long stamp = lock.tryOptimisticRead();
+      String value = map.get(key);
 
-	public static void main(String[] args) {
-		final int threadCount = 4;
-		final ExecutorService service = Executors.newFixedThreadPool(threadCount);
-		StampedLockDemo object = new StampedLockDemo();
+      if (!lock.validate(stamp)) {
+         stamp = lock.readLock();
+         try {
+            sleep(5000);
+            return map.get(key);
 
-		Runnable writeTask = () -> {
-			try {
-				object.put("key1", "value1");
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
-		Runnable readTask = () -> {
-			try {
-				object.get("key1");
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
-		Runnable readOptimisticTask = () -> {
-			try {
-				object.readWithOptimisticLock("key1");
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
-		service.submit(writeTask);
-		service.submit(writeTask);
-		service.submit(readTask);
-		service.submit(readOptimisticTask);
+         } finally {
+            lock.unlock(stamp);
+            logger.info(Thread.currentThread().getName() + " unlocked the read lock with stamp " + stamp);
 
-		service.shutdown();
-	}
+         }
+      }
+      return value;
+   }
+
+   public static void main(String[] args) {
+      final int threadCount = 4;
+      final ExecutorService service = Executors.newFixedThreadPool(threadCount);
+      StampedLockDemo object = new StampedLockDemo();
+
+      Runnable writeTask = () -> {
+
+         try {
+            object.put("key1", "value1");
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      };
+      Runnable readTask = () -> {
+
+         try {
+            object.get("key1");
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      };
+      Runnable readOptimisticTask = () -> {
+
+         try {
+            object.readWithOptimisticLock("key1");
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      };
+      service.submit(writeTask);
+      service.submit(writeTask);
+      service.submit(readTask);
+      service.submit(readOptimisticTask);
+
+      service.shutdown();
+
+   }
+
 }

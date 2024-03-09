@@ -4,9 +4,9 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
@@ -15,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -25,71 +25,71 @@ import static org.mockito.Mockito.verify;
 
 public class AnimalActivityUnitTest {
 
-	@Mock
-	private Appender mockAppender;
-	@Captor
-	private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
+   @Mock
+   private Appender mockAppender;
+   @Captor
+   private ArgumentCaptor<LoggingEvent> captorLoggingEvent;
 
-	@Before
-	public void setup() {
-		final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-		logger.addAppender(mockAppender);
-	}
+   @BeforeEach
+   public void setup() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.addAppender(mockAppender);
+   }
 
-	@After
-	public void teardown() {
-		final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
-		logger.detachAppender(mockAppender);
-	}
+   @AfterEach
+   public void teardown() {
+      final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+      logger.detachAppender(mockAppender);
+   }
 
-	@Test
-	public void givenAnimalReference__whenRefersAnimalObject_shouldCallFunctionWithAnimalParam() {
+   @Test
+   public void givenAnimalReference__whenRefersAnimalObject_shouldCallFunctionWithAnimalParam() {
 
-		Animal animal = new Animal();
+      Animal animal = new Animal();
 
-		AnimalActivity.sleep(animal);
+      AnimalActivity.sleep(animal);
 
-		verify(mockAppender).doAppend(captorLoggingEvent.capture());
+      verify(mockAppender).doAppend(captorLoggingEvent.capture());
 
-		final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+      final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
 
-		assertThat(loggingEvent.getLevel(), is(Level.INFO));
+      assertThat(loggingEvent.getLevel(), is(Level.INFO));
 
-		assertThat(loggingEvent.getFormattedMessage(),
-			is("Animal is sleeping"));
-	}
+      assertThat(loggingEvent.getFormattedMessage(),
+            is("Animal is sleeping"));
+   }
 
-	@Test
-	public void givenDogReference__whenRefersCatObject_shouldCallFunctionWithAnimalParam() {
+   @Test
+   public void givenDogReference__whenRefersCatObject_shouldCallFunctionWithAnimalParam() {
 
-		Dog dog = new Dog();
+      Dog dog = new Dog();
 
-		AnimalActivity.sleep(dog);
+      AnimalActivity.sleep(dog);
 
-		verify(mockAppender).doAppend(captorLoggingEvent.capture());
+      verify(mockAppender).doAppend(captorLoggingEvent.capture());
 
-		final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+      final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
 
-		assertThat(loggingEvent.getLevel(), is(Level.INFO));
+      assertThat(loggingEvent.getLevel(), is(Level.INFO));
 
-		assertThat(loggingEvent.getFormattedMessage(),
-			is("Cat is sleeping"));
-	}
+      assertThat(loggingEvent.getFormattedMessage(),
+            is("Cat is sleeping"));
+   }
 
-	@Test
-	public void givenAnimaReference__whenRefersDogObject_shouldCallFunctionWithAnimalParam() {
+   @Test
+   public void givenAnimaReference__whenRefersDogObject_shouldCallFunctionWithAnimalParam() {
 
-		Animal cat = new Dog();
+      Animal cat = new Dog();
 
-		AnimalActivity.sleep(cat);
+      AnimalActivity.sleep(cat);
 
-		verify(mockAppender).doAppend(captorLoggingEvent.capture());
+      verify(mockAppender).doAppend(captorLoggingEvent.capture());
 
-		final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
+      final LoggingEvent loggingEvent = captorLoggingEvent.getValue();
 
-		assertThat(loggingEvent.getLevel(), is(Level.INFO));
+      assertThat(loggingEvent.getLevel(), is(Level.INFO));
 
-		assertThat(loggingEvent.getFormattedMessage(),
-			is("Animal is sleeping"));
-	}
+      assertThat(loggingEvent.getFormattedMessage(),
+            is("Animal is sleeping"));
+   }
 }

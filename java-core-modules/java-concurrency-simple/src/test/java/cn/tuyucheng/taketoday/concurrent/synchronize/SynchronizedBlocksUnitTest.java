@@ -9,10 +9,10 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SynchronizedBlocksUnitTest {
+public class SynchronizedBlocksUnitTest {
 
    @Test
-   void givenMultiThread_whenBlockSync() throws InterruptedException {
+   public void givenMultiThread_whenBlockSync() throws InterruptedException {
       ExecutorService service = Executors.newFixedThreadPool(3);
       SynchronizedBlocks synchronizedBlocks = new SynchronizedBlocks();
 
@@ -24,7 +24,7 @@ class SynchronizedBlocksUnitTest {
    }
 
    @Test
-   void givenMultiThread_whenStaticSyncBlock() throws InterruptedException {
+   public void givenMultiThread_whenStaticSyncBlock() throws InterruptedException {
       ExecutorService service = Executors.newCachedThreadPool();
 
       IntStream.range(0, 1000)
@@ -35,7 +35,7 @@ class SynchronizedBlocksUnitTest {
    }
 
    @Test
-   void givenHoldingTheLock_whenReentrant_thenCanAcquireItAgain() {
+   public void givenHoldingTheLock_whenReentrant_thenCanAcquireItAgain() {
       Object lock = new Object();
       synchronized (lock) {
          System.out.println("First time acquiring it");
@@ -49,4 +49,5 @@ class SynchronizedBlocksUnitTest {
          }
       }
    }
+
 }

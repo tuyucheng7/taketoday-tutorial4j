@@ -11,53 +11,53 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoreOldUnitTest {
 
-	private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory1";
-	private final String subDirectoryName = "/childDirectory";
-	private final String fileName = "/file.txt";
-	private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory1";
+   private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory1";
+   private final String subDirectoryName = "/childDirectory";
+   private final String fileName = "/file.txt";
+   private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory1";
 
-	@BeforeEach
-	public void createDirectoryWithSubdirectoryAndFile() throws IOException {
-		Files.createDirectories(Paths.get(sourceDirectoryLocation));
-		Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
-		Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
-	}
+   @BeforeEach
+   public void createDirectoryWithSubdirectoryAndFile() throws IOException {
+      Files.createDirectories(Paths.get(sourceDirectoryLocation));
+      Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
+      Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
+   }
 
-	@Test
-	public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
-		File sourceDirectory = new File(sourceDirectoryLocation);
-		File destinationDirectory = new File(destinationDirectoryLocation);
-		CoreOld.copyDirectoryJavaUnder7(sourceDirectory, destinationDirectory);
+   @Test
+   public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
+      File sourceDirectory = new File(sourceDirectoryLocation);
+      File destinationDirectory = new File(destinationDirectoryLocation);
+      CoreOld.copyDirectoryJavaUnder7(sourceDirectory, destinationDirectory);
 
-		assertTrue(new File(destinationDirectoryLocation).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
-	}
+      assertTrue(new File(destinationDirectoryLocation).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
+   }
 
-	@Test
-	public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() throws IOException {
-		File sourceDirectory = new File("nonExistingDirectory");
-		File destinationDirectory = new File(destinationDirectoryLocation);
-		assertThrows(IOException.class, () -> CoreOld.copyDirectoryJavaUnder7(sourceDirectory, destinationDirectory));
-	}
+   @Test
+   public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() throws IOException {
+      File sourceDirectory = new File("nonExistingDirectory");
+      File destinationDirectory = new File(destinationDirectoryLocation);
+      assertThrows(IOException.class, () -> CoreOld.copyDirectoryJavaUnder7(sourceDirectory, destinationDirectory));
+   }
 
-	@AfterEach
-	public void cleanUp() throws IOException {
-		Files.walk(Paths.get(sourceDirectoryLocation))
-			.sorted(Comparator.reverseOrder())
-			.map(Path::toFile)
-			.forEach(File::delete);
-		if (new File(destinationDirectoryLocation).exists()) {
-			Files.walk(Paths.get(destinationDirectoryLocation))
-				.sorted(Comparator.reverseOrder())
-				.map(Path::toFile)
-				.forEach(File::delete);
-		}
-	}
+   @AfterEach
+   public void cleanUp() throws IOException {
+      Files.walk(Paths.get(sourceDirectoryLocation))
+            .sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .forEach(File::delete);
+      if (new File(destinationDirectoryLocation).exists()) {
+         Files.walk(Paths.get(destinationDirectoryLocation))
+               .sorted(Comparator.reverseOrder())
+               .map(Path::toFile)
+               .forEach(File::delete);
+      }
+   }
 
 }

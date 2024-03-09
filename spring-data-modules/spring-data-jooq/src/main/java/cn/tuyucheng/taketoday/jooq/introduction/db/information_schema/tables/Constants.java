@@ -26,126 +26,126 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Constants extends TableImpl<ConstantsRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.CONSTANTS</code>
-	 */
-	public static final Constants CONSTANTS = new Constants();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.CONSTANTS</code>
+    */
+   public static final Constants CONSTANTS = new Constants();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<ConstantsRecord> getRecordType() {
-		return ConstantsRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<ConstantsRecord> getRecordType() {
+      return ConstantsRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_CATALOG</code>.
-	 */
-	public final TableField<ConstantsRecord, String> CONSTANT_CATALOG = createField(DSL.name("CONSTANT_CATALOG"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_CATALOG</code>.
+    */
+   public final TableField<ConstantsRecord, String> CONSTANT_CATALOG = createField(DSL.name("CONSTANT_CATALOG"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_SCHEMA</code>.
-	 */
-	public final TableField<ConstantsRecord, String> CONSTANT_SCHEMA = createField(DSL.name("CONSTANT_SCHEMA"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_SCHEMA</code>.
+    */
+   public final TableField<ConstantsRecord, String> CONSTANT_SCHEMA = createField(DSL.name("CONSTANT_SCHEMA"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_NAME</code>.
-	 */
-	public final TableField<ConstantsRecord, String> CONSTANT_NAME = createField(DSL.name("CONSTANT_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.CONSTANT_NAME</code>.
+    */
+   public final TableField<ConstantsRecord, String> CONSTANT_NAME = createField(DSL.name("CONSTANT_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.DATA_TYPE</code>.
-	 */
-	public final TableField<ConstantsRecord, Integer> DATA_TYPE = createField(DSL.name("DATA_TYPE"), SQLDataType.INTEGER, this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.DATA_TYPE</code>.
+    */
+   public final TableField<ConstantsRecord, Integer> DATA_TYPE = createField(DSL.name("DATA_TYPE"), SQLDataType.INTEGER, this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.REMARKS</code>.
-	 */
-	public final TableField<ConstantsRecord, String> REMARKS = createField(DSL.name("REMARKS"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.REMARKS</code>.
+    */
+   public final TableField<ConstantsRecord, String> REMARKS = createField(DSL.name("REMARKS"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.SQL</code>.
-	 */
-	public final TableField<ConstantsRecord, String> SQL = createField(DSL.name("SQL"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.SQL</code>.
+    */
+   public final TableField<ConstantsRecord, String> SQL = createField(DSL.name("SQL"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CONSTANTS.ID</code>.
-	 */
-	public final TableField<ConstantsRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER, this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CONSTANTS.ID</code>.
+    */
+   public final TableField<ConstantsRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER, this, "");
 
-	private Constants(Name alias, Table<ConstantsRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private Constants(Name alias, Table<ConstantsRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private Constants(Name alias, Table<ConstantsRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private Constants(Name alias, Table<ConstantsRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
-	 */
-	public Constants(String alias) {
-		this(DSL.name(alias), CONSTANTS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
+    */
+   public Constants(String alias) {
+      this(DSL.name(alias), CONSTANTS);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
-	 */
-	public Constants(Name alias) {
-		this(alias, CONSTANTS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
+    */
+   public Constants(Name alias) {
+      this(alias, CONSTANTS);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
-	 */
-	public Constants() {
-		this(DSL.name("CONSTANTS"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.CONSTANTS</code> table reference
+    */
+   public Constants() {
+      this(DSL.name("CONSTANTS"), null);
+   }
 
-	public <O extends Record> Constants(Table<O> child, ForeignKey<O, ConstantsRecord> key) {
-		super(child, key, CONSTANTS);
-	}
+   public <O extends Record> Constants(Table<O> child, ForeignKey<O, ConstantsRecord> key) {
+      super(child, key, CONSTANTS);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public Constants as(String alias) {
-		return new Constants(DSL.name(alias), this);
-	}
+   @Override
+   public Constants as(String alias) {
+      return new Constants(DSL.name(alias), this);
+   }
 
-	@Override
-	public Constants as(Name alias) {
-		return new Constants(alias, this);
-	}
+   @Override
+   public Constants as(Name alias) {
+      return new Constants(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Constants rename(String name) {
-		return new Constants(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Constants rename(String name) {
+      return new Constants(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Constants rename(Name name) {
-		return new Constants(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Constants rename(Name name) {
+      return new Constants(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row7 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row7 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row7<String, String, String, Integer, String, String, Integer> fieldsRow() {
-		return (Row7) super.fieldsRow();
-	}
+   @Override
+   public Row7<String, String, String, Integer, String, String, Integer> fieldsRow() {
+      return (Row7) super.fieldsRow();
+   }
 }

@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -25,13 +25,13 @@ public class SecurityConfiguration {
    public InMemoryUserDetailsManager userDetailsService() {
       UserDetails user1 = User
             .withUsername("user")
-            .password(passwordEncoder().encode("tuyucheng"))
+            .password(passwordEncoder().encode("baeldung"))
             .roles("tenant_1")
             .build();
 
       UserDetails user2 = User
             .withUsername("admin")
-            .password(passwordEncoder().encode("tuyucheng"))
+            .password(passwordEncoder().encode("baeldung"))
             .roles("tenant_2")
             .build();
       return new InMemoryUserDetailsManager(user1, user2);
@@ -43,14 +43,20 @@ public class SecurityConfiguration {
    }
 
    @Bean
+   public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+      return authenticationConfiguration.getAuthenticationManager();
+   }
+
+   @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      final AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
-      http.authorizeHttpRequests(authorize ->
+      final AuthenticationManager authenticationManager = authenticationManager(http.getSharedObject(AuthenticationConfiguration.class));
+      http
+            .authorizeHttpRequests(authorize ->
                   authorize.requestMatchers("/login").permitAll().anyRequest().authenticated())
             .sessionManagement(securityContext -> securityContext.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(new LoginFilter("/login", authenticationManager), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-            .csrf(AbstractHttpConfigurer::disable)
+            .csrf(csrf -> csrf.disable())
             .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
             .httpBasic(Customizer.withDefaults());
 

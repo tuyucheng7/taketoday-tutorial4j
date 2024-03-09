@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.openid.oidc.login.config;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Configuration
 public class OAuth2LoginSecurityConfig {
@@ -21,10 +21,9 @@ public class OAuth2LoginSecurityConfig {
       OidcUserService googleUserService = new OidcUserService();
       googleUserService.setAccessibleScopes(googleScopes);
 
-      http.authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest()
-                  .authenticated())
-            .oauth2Login(oauthLogin -> oauthLogin.userInfoEndpoint()
-                  .oidcUserService(googleUserService));
+      http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
+            .oauth2Login(oauthLogin -> oauthLogin.userInfoEndpoint(userInfoEndpointConfig ->
+                  userInfoEndpointConfig.oidcUserService(googleUserService)));
       return http.build();
    }
 }

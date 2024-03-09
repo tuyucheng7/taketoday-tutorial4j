@@ -17,117 +17,117 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class CollationsRecord extends TableRecordImpl<CollationsRecord> implements Record2<String, String> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * Setter for <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
-	 */
-	public void setName(String value) {
-		set(0, value);
-	}
+   /**
+    * Setter for <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
+    */
+   public void setName(String value) {
+      set(0, value);
+   }
 
-	/**
-	 * Getter for <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
-	 */
-	public String getName() {
-		return (String) get(0);
-	}
+   /**
+    * Getter for <code>INFORMATION_SCHEMA.COLLATIONS.NAME</code>.
+    */
+   public String getName() {
+      return (String) get(0);
+   }
 
-	/**
-	 * Setter for <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
-	 */
-	public void setKey(String value) {
-		set(1, value);
-	}
+   /**
+    * Setter for <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
+    */
+   public void setKey(String value) {
+      set(1, value);
+   }
 
-	/**
-	 * Getter for <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
-	 */
-	public String getKey() {
-		return (String) get(1);
-	}
+   /**
+    * Getter for <code>INFORMATION_SCHEMA.COLLATIONS.KEY</code>.
+    */
+   public String getKey() {
+      return (String) get(1);
+   }
 
-	// -------------------------------------------------------------------------
-	// Record2 type implementation
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Record2 type implementation
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row2<String, String> fieldsRow() {
-		return (Row2) super.fieldsRow();
-	}
+   @Override
+   public Row2<String, String> fieldsRow() {
+      return (Row2) super.fieldsRow();
+   }
 
-	@Override
-	public Row2<String, String> valuesRow() {
-		return (Row2) super.valuesRow();
-	}
+   @Override
+   public Row2<String, String> valuesRow() {
+      return (Row2) super.valuesRow();
+   }
 
-	@Override
-	public Field<String> field1() {
-		return Collations.COLLATIONS.NAME;
-	}
+   @Override
+   public Field<String> field1() {
+      return Collations.COLLATIONS.NAME;
+   }
 
-	@Override
-	public Field<String> field2() {
-		return Collations.COLLATIONS.KEY;
-	}
+   @Override
+   public Field<String> field2() {
+      return Collations.COLLATIONS.KEY;
+   }
 
-	@Override
-	public String component1() {
-		return getName();
-	}
+   @Override
+   public String component1() {
+      return getName();
+   }
 
-	@Override
-	public String component2() {
-		return getKey();
-	}
+   @Override
+   public String component2() {
+      return getKey();
+   }
 
-	@Override
-	public String value1() {
-		return getName();
-	}
+   @Override
+   public String value1() {
+      return getName();
+   }
 
-	@Override
-	public String value2() {
-		return getKey();
-	}
+   @Override
+   public String value2() {
+      return getKey();
+   }
 
-	@Override
-	public CollationsRecord value1(String value) {
-		setName(value);
-		return this;
-	}
+   @Override
+   public CollationsRecord value1(String value) {
+      setName(value);
+      return this;
+   }
 
-	@Override
-	public CollationsRecord value2(String value) {
-		setKey(value);
-		return this;
-	}
+   @Override
+   public CollationsRecord value2(String value) {
+      setKey(value);
+      return this;
+   }
 
-	@Override
-	public CollationsRecord values(String value1, String value2) {
-		value1(value1);
-		value2(value2);
-		return this;
-	}
+   @Override
+   public CollationsRecord values(String value1, String value2) {
+      value1(value1);
+      value2(value2);
+      return this;
+   }
 
-	// -------------------------------------------------------------------------
-	// Constructors
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Constructors
+   // -------------------------------------------------------------------------
 
-	/**
-	 * Create a detached CollationsRecord
-	 */
-	public CollationsRecord() {
-		super(Collations.COLLATIONS);
-	}
+   /**
+    * Create a detached CollationsRecord
+    */
+   public CollationsRecord() {
+      super(Collations.COLLATIONS);
+   }
 
-	/**
-	 * Create a detached, initialised CollationsRecord
-	 */
-	public CollationsRecord(String name, String key) {
-		super(Collations.COLLATIONS);
+   /**
+    * Create a detached, initialised CollationsRecord
+    */
+   public CollationsRecord(String name, String key) {
+      super(Collations.COLLATIONS);
 
-		setName(name);
-		setKey(key);
-	}
+      setName(name);
+      setKey(key);
+   }
 }

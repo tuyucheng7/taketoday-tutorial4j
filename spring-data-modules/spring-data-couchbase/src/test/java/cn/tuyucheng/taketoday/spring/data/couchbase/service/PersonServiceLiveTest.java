@@ -8,8 +8,8 @@ import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.Collection;
 import com.couchbase.client.java.json.JsonObject;
 import org.joda.time.DateTime;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,12 +17,12 @@ import java.util.Optional;
 import static cn.tuyucheng.taketoday.spring.data.couchbase.MyCouchbaseConfig.BUCKET_PASSWORD;
 import static cn.tuyucheng.taketoday.spring.data.couchbase.MyCouchbaseConfig.BUCKET_USERNAME;
 import static cn.tuyucheng.taketoday.spring.data.couchbase.MyCouchbaseConfig.NODE_LIST;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public abstract class PersonServiceLiveTest extends IntegrationTest {
+abstract class PersonServiceLiveTest extends IntegrationTest {
 
    static final String typeField = "_class";
    static final String john = "John";
@@ -39,8 +39,8 @@ public abstract class PersonServiceLiveTest extends IntegrationTest {
 
    PersonService personService;
 
-   @BeforeClass
-   public static void setupBeforeClass() {
+   @BeforeAll
+   static void setupBeforeClass() {
       final Cluster cluster = Cluster.connect(NODE_LIST, BUCKET_USERNAME, BUCKET_PASSWORD);
       final Bucket bucket = cluster.bucket(MyCouchbaseConfig.BUCKET_NAME);
       final Collection collection = bucket.defaultCollection();
@@ -50,7 +50,7 @@ public abstract class PersonServiceLiveTest extends IntegrationTest {
    }
 
    @Test
-   public void whenFindingPersonByJohnSmithId_thenReturnsJohnSmith() {
+   void whenFindingPersonByJohnSmithId_thenReturnsJohnSmith() {
       final Optional<Person> actualPerson = personService.findOne(johnSmithId);
       assertTrue(actualPerson.isPresent());
       assertNotNull(actualPerson.get().getCreated());
@@ -58,7 +58,7 @@ public abstract class PersonServiceLiveTest extends IntegrationTest {
    }
 
    @Test
-   public void whenFindingAllPersons_thenReturnsTwoOrMorePersonsIncludingJohnSmithAndFooBar() {
+   void whenFindingAllPersons_thenReturnsTwoOrMorePersonsIncludingJohnSmithAndFooBar() {
       final List<Person> resultList = personService.findAll();
       assertNotNull(resultList);
       assertFalse(resultList.isEmpty());
@@ -68,7 +68,7 @@ public abstract class PersonServiceLiveTest extends IntegrationTest {
    }
 
    @Test
-   public void whenFindingByFirstNameJohn_thenReturnsOnlyPersonsNamedJohn() {
+   void whenFindingByFirstNameJohn_thenReturnsOnlyPersonsNamedJohn() {
       final String expectedFirstName = john;
       final List<Person> resultList = personService.findByFirstName(expectedFirstName);
       assertNotNull(resultList);
@@ -77,7 +77,7 @@ public abstract class PersonServiceLiveTest extends IntegrationTest {
    }
 
    @Test
-   public void whenFindingByLastNameSmith_thenReturnsOnlyPersonsNamedSmith() {
+   void whenFindingByLastNameSmith_thenReturnsOnlyPersonsNamedSmith() {
       final String expectedLastName = smith;
       final List<Person> resultList = personService.findByLastName(expectedLastName);
       assertNotNull(resultList);

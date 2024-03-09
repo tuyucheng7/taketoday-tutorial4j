@@ -25,47 +25,48 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class ArraySortingBenchmark {
 
-    @State(Scope.Benchmark)
-    public static class ArrayContainer {
+   @State(Scope.Benchmark)
+   public static class ArrayContainer {
 
-        @Param({"1000", "10000", "100000", "1000000"})
-        int arraySize;
+      @Param({"1000", "10000", "100000", "1000000"})
+      int arraySize;
 
-        // initial unsorted array
-        int[] unsortedArray;
+      // initial unsorted array
+      int[] unsortedArray;
 
-        // cloned array to sort
-        int[] arrayToSort;
+      // cloned array to sort
+      int[] arrayToSort;
 
-        @Setup(Level.Trial)
-        public void createUnSortedArray() {
-            unsortedArray = new int[arraySize];
-            for (int i = 0; i < arraySize; i++) {
-                unsortedArray[i] = new Random().nextInt(1000);
-            }
-        }
+      @Setup(Level.Trial)
+      public void createUnSortedArray() {
+         unsortedArray = new int[arraySize];
+         for (int i = 0; i < arraySize; i++) {
+            unsortedArray[i] = new Random().nextInt(1000);
+         }
+      }
 
-        @Setup(Level.Invocation)
-        public void createUnSortedArrayCopy() {
-            arrayToSort = unsortedArray.clone();
-        }
+      @Setup(Level.Invocation)
+      public void createUnSortedArrayCopy() {
+         arrayToSort = unsortedArray.clone();
+      }
 
-        int[] getArrayToSort() {
-            return arrayToSort;
-        }
-    }
+      int[] getArrayToSort() {
+         return arrayToSort;
+      }
+   }
 
-    @Benchmark
-    public void benchmark_arrays_parallel_sort(ArrayContainer d, Blackhole b) {
-        int[] arr = d.getArrayToSort();
-        Arrays.parallelSort(arr);
-        b.consume(arr);
-    }
+   @Benchmark
+   public void benchmark_arrays_parallel_sort(ArrayContainer d, Blackhole b) {
+      int[] arr = d.getArrayToSort();
+      Arrays.parallelSort(arr);
+      b.consume(arr);
+   }
 
-    @Benchmark
-    public void benchmark_arrays_sort(ArrayContainer d, Blackhole b) {
-        int[] arr = d.getArrayToSort();
-        Arrays.sort(arr);
-        b.consume(arr);
-    }
+   @Benchmark
+   public void benchmark_arrays_sort(ArrayContainer d, Blackhole b) {
+      int[] arr = d.getArrayToSort();
+      Arrays.sort(arr);
+      b.consume(arr);
+   }
+
 }

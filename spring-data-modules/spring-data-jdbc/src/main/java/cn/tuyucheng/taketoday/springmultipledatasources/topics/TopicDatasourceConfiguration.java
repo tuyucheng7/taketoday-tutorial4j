@@ -10,16 +10,16 @@ import javax.sql.DataSource;
 @Configuration
 public class TopicDatasourceConfiguration {
 
-	@Bean
-	@ConfigurationProperties("spring.datasource.topics")
-	public DataSourceProperties topicsDataSourceProperties() {
-		return new DataSourceProperties();
-	}
+   @Bean
+   @ConfigurationProperties("spring.datasource.topics")
+   public DataSourceProperties topicsDataSourceProperties() {
+      return new DataSourceProperties();
+   }
 
-	@Bean
-	public DataSource topicsDataSource() {
-		return topicsDataSourceProperties()
-				.initializeDataSourceBuilder()
-				.build();
-	}
+   @Bean
+   public DataSource topicsDataSource() {
+      return topicsDataSourceProperties()
+            .initializeDataSourceBuilder()
+            .build();
+   }
 }

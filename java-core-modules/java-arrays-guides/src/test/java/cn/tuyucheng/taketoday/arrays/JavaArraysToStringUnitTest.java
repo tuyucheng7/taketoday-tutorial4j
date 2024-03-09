@@ -10,34 +10,33 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class JavaArraysToStringUnitTest {
 
-class JavaArraysToStringUnitTest {
+   @Test
+   public void givenInstanceOfArray_whenTryingToConvertToString_thenNameOfClassIsShown() {
+      Object[] arrayOfObjects = {"John", 2, true};
+      assertTrue(arrayOfObjects.toString().startsWith("[Ljava.lang.Object;"));
+   }
 
-    @Test
-    void givenInstanceOfArray_whenTryingToConvertToString_thenNameOfClassIsShown() {
-        Object[] arrayOfObjects = {"John", 2, true};
-        assertTrue(arrayOfObjects.toString().startsWith("[Ljava.lang.Object;"));
-    }
+   @Test
+   public void givenInstanceOfArray_whenUsingArraysToStringToConvert_thenValueOfObjectsAreShown() {
+      Object[] arrayOfObjects = {"John", 2, true};
+      assertEquals(Arrays.toString(arrayOfObjects), "[John, 2, true]");
+   }
 
-    @Test
-    void givenInstanceOfArray_whenUsingArraysToStringToConvert_thenValueOfObjectsAreShown() {
-        Object[] arrayOfObjects = {"John", 2, true};
-        assertEquals(Arrays.toString(arrayOfObjects), "[John, 2, true]");
-    }
+   @Test
+   public void givenInstanceOfDeepArray_whenUsingArraysDeepToStringToConvert_thenValueOfInnerObjectsAreShown() {
+      Object[] innerArray = {"We", "Are", "Inside"};
+      Object[] arrayOfObjects = {"John", 2, innerArray};
+      assertEquals(Arrays.deepToString(arrayOfObjects), "[John, 2, [We, Are, Inside]]");
+   }
 
-    @Test
-    void givenInstanceOfDeepArray_whenUsingArraysDeepToStringToConvert_thenValueOfInnerObjectsAreShown() {
-        Object[] innerArray = {"We", "Are", "Inside"};
-        Object[] arrayOfObjects = {"John", 2, innerArray};
-        assertEquals(Arrays.deepToString(arrayOfObjects), "[John, 2, [We, Are, Inside]]");
-    }
-
-    @Test
-    void givenInstanceOfDeepArray_whenUsingStreamsToConvert_thenValueOfObjectsAreShown() {
-        Object[] arrayOfObjects = {"John", 2, true};
-        List<String> listOfString = Stream.of(arrayOfObjects)
-              .map(Object::toString)
-              .collect(Collectors.toList());
-        assertEquals(listOfString.toString(), "[John, 2, true]");
-    }
+   @Test
+   public void givenInstanceOfDeepArray_whenUsingStreamsToConvert_thenValueOfObjectsAreShown() {
+      Object[] arrayOfObjects = {"John", 2, true};
+      List<String> listOfString = Stream.of(arrayOfObjects)
+            .map(Object::toString)
+            .collect(Collectors.toList());
+      assertEquals(listOfString.toString(), "[John, 2, true]");
+   }
 }

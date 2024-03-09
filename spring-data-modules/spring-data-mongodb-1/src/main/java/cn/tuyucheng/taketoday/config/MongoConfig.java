@@ -25,50 +25,50 @@ import java.util.List;
 @EnableMongoRepositories(basePackages = "cn.tuyucheng.taketoday.repository")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-	private final List<Converter<?, ?>> converters = new ArrayList<Converter<?, ?>>();
+   private final List<Converter<?, ?>> converters = new ArrayList<Converter<?, ?>>();
 
-	@Override
-	protected String getDatabaseName() {
-		return "test";
-	}
+   @Override
+   protected String getDatabaseName() {
+      return "test";
+   }
 
-	@Override
-	public MongoClient mongoClient() {
-		final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
-		final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-			.applyConnectionString(connectionString)
-			.build();
-		return MongoClients.create(mongoClientSettings);
-	}
+   @Override
+   public MongoClient mongoClient() {
+      final ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/test");
+      final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+            .applyConnectionString(connectionString)
+            .build();
+      return MongoClients.create(mongoClientSettings);
+   }
 
-	@Override
-	public Collection<String> getMappingBasePackages() {
-		return Collections.singleton("cn.tuyucheng.taketoday");
-	}
+   @Override
+   public Collection<String> getMappingBasePackages() {
+      return Collections.singleton("cn.tuyucheng.taketoday");
+   }
 
-	@Bean
-	public UserCascadeSaveMongoEventListener userCascadingMongoEventListener() {
-		return new UserCascadeSaveMongoEventListener();
-	}
+   @Bean
+   public UserCascadeSaveMongoEventListener userCascadingMongoEventListener() {
+      return new UserCascadeSaveMongoEventListener();
+   }
 
-	@Bean
-	public CascadeSaveMongoEventListener cascadingMongoEventListener() {
-		return new CascadeSaveMongoEventListener();
-	}
+   @Bean
+   public CascadeSaveMongoEventListener cascadingMongoEventListener() {
+      return new CascadeSaveMongoEventListener();
+   }
 
-	@Override
-	public MongoCustomConversions customConversions() {
-		converters.add(new UserWriterConverter());
-		return new MongoCustomConversions(converters);
-	}
+   @Override
+   public MongoCustomConversions customConversions() {
+      converters.add(new UserWriterConverter());
+      return new MongoCustomConversions(converters);
+   }
 
-	@Bean
-	MongoTransactionManager transactionManager(MongoDatabaseFactory dbFactory) {
-		return new MongoTransactionManager(dbFactory);
-	}
+   @Bean
+   MongoTransactionManager transactionManager(MongoDatabaseFactory dbFactory) {
+      return new MongoTransactionManager(dbFactory);
+   }
 
-	@Override
-	protected boolean autoIndexCreation() {
-		return true;
-	}
+   @Override
+   protected boolean autoIndexCreation() {
+      return true;
+   }
 }

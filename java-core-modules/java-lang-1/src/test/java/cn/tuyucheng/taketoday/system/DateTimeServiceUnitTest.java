@@ -1,15 +1,15 @@
 package cn.tuyucheng.taketoday.system;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DateTimeServiceUnitTest {
 
-	@Test
-	public void givenClass_whenCalledMethods_thenNotNullInResult() {
-		DateTimeService dateTimeService = new DateTimeService();
+   @Test
+   public void givenClass_whenCalledMethods_thenNotNullInResult() {
+      DateTimeService dateTimeService = new DateTimeService();
 
-		Assert.assertNotNull(dateTimeService.nowPlusOneHour());
-		Assert.assertNotNull(dateTimeService.nowPrettyPrinted());
-	}
+      Assertions.assertNotNull(dateTimeService.nowPlusOneHour());
+      Assertions.assertNotNull(dateTimeService.nowPrettyPrinted());
+   }
 }

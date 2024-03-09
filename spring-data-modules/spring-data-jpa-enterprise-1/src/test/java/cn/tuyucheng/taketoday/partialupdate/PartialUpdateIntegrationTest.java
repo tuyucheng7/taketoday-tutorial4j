@@ -17,46 +17,46 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = PartialUpdateApplication.class)
 class PartialUpdateIntegrationTest {
 
-    @Autowired
-    CustomerService service;
+   @Autowired
+   CustomerService service;
 
-    @Test
-    void givenCustomer_whenUpdate_thenSuccess() {
-        Customer myCustomer = service.addCustomer("John");
-        myCustomer = service.updateCustomer(myCustomer.id, "+00");
-        assertEquals("+00", myCustomer.phone);
-    }
+   @Test
+   void givenCustomer_whenUpdate_thenSuccess() {
+      Customer myCustomer = service.addCustomer("John");
+      myCustomer = service.updateCustomer(myCustomer.id, "+00");
+      assertEquals("+00", myCustomer.phone);
+   }
 
-    @Test
-    void givenCustomer_whenUpdateWithQuery_thenSuccess() {
-        Customer myCustomer = service.addCustomer("John");
-        service.updateCustomerWithCustomQuery(myCustomer.id, "+88");
-        myCustomer = service.getCustomer(myCustomer.id);
-        assertEquals("+88", myCustomer.phone);
-    }
+   @Test
+   void givenCustomer_whenUpdateWithQuery_thenSuccess() {
+      Customer myCustomer = service.addCustomer("John");
+      service.updateCustomerWithCustomQuery(myCustomer.id, "+88");
+      myCustomer = service.getCustomer(myCustomer.id);
+      assertEquals("+88", myCustomer.phone);
+   }
 
-    @Test
-    void givenCustomerDto_whenUpdateWithMapper_thenSuccess() {
-        CustomerDto dto = new CustomerDto(new Customer());
-        dto.name = "Johnny";
-        Customer entity = service.addCustomer(dto);
+   @Test
+   void givenCustomerDto_whenUpdateWithMapper_thenSuccess() {
+      CustomerDto dto = new CustomerDto(new Customer());
+      dto.name = "Johnny";
+      Customer entity = service.addCustomer(dto);
 
-        CustomerDto dto2 = new CustomerDto(entity.id);
-        dto2.phone = "+44";
-        entity = service.updateCustomer(dto2);
+      CustomerDto dto2 = new CustomerDto(entity.id);
+      dto2.phone = "+44";
+      entity = service.updateCustomer(dto2);
 
-        assertEquals("Johnny", entity.name);
-    }
+      assertEquals("Johnny", entity.name);
+   }
 
-    @Test
-    void givenCustomerStructured_whenUpdateCustomerPhone_thenSuccess() {
-        CustomerStructured myCustomer = service.addCustomerStructured("John");
-        assertNull(myCustomer.contactPhones);
+   @Test
+   void givenCustomerStructured_whenUpdateCustomerPhone_thenSuccess() {
+      CustomerStructured myCustomer = service.addCustomerStructured("John");
+      assertNull(myCustomer.contactPhones);
 
-        service.addCustomerPhone(myCustomer.id, "+44");
-        myCustomer = service.updateCustomerStructured(myCustomer.id, "Mr. John");
+      service.addCustomerPhone(myCustomer.id, "+44");
+      myCustomer = service.updateCustomerStructured(myCustomer.id, "Mr. John");
 
-        assertNotEquals(null, myCustomer.contactPhones);
-        assertEquals(1, myCustomer.contactPhones.size());
-    }
+      assertNotEquals(null, myCustomer.contactPhones);
+      assertEquals(1, myCustomer.contactPhones.size());
+   }
 }

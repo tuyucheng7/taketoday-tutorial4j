@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StreamToListUnitTest {
+public class StreamToListUnitTest {
 
-	@Test
-	void givenAStream_whenCreatingANewListFromStream_thenCollectorsOrInbuiltFunctionAreEquivalent() {
-		List<String> integersAsString = Arrays.asList("1", "2", "3");
-		List<Integer> ints = integersAsString.stream().map(Integer::parseInt).collect(Collectors.toList());
-		List<Integer> intsEquivalent = integersAsString.stream().map(Integer::parseInt).toList();
-		assertThat(ints).isEqualTo(intsEquivalent);
-	}
+   @Test
+   void givenAStream_whenCreatingANewListFromStream_thenCollectorsOrInbuiltFunctionAreEquivalent() {
+      List<String> integersAsString = Arrays.asList("1", "2", "3");
+      List<Integer> ints = integersAsString.stream().map(Integer::parseInt).collect(Collectors.toList());
+      List<Integer> intsEquivalent = integersAsString.stream().map(Integer::parseInt).toList();
+      assertThat(ints).isEqualTo(intsEquivalent);
+   }
 }

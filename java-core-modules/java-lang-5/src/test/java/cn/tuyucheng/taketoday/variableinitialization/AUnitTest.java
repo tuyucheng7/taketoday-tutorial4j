@@ -8,10 +8,10 @@ import static org.mockito.Mockito.mock;
 
 public class AUnitTest {
 
-	@Test
-	public void whenCreatingTest_useDependencyInjection() {
-		// given
-		B b = mock(B.class);
-		A a = new A(b);
-	}
+   @Test
+   public void whenCreatingTest_useDependencyInjection() {
+      // given
+      B b = mock(B.class);
+      A a = new A(b);
+   }
 }

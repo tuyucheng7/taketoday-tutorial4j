@@ -6,13 +6,13 @@ import java.util.function.Supplier;
 
 public class ProcessorImpl implements Processor {
 
-    @Override
-    public String processWithCallable(Callable<String> c) throws Exception {
-        return c.call();
-    }
+   @Override
+   public String processWithCallable(Callable<String> c) throws Exception {
+      return c.call();
+   }
 
-    @Override
-    public String processWithSupplier(Supplier<String> s) {
-        return s.get();
-    }
+   @Override
+   public String processWithSupplier(Supplier<String> s) {
+      return s.get();
+   }
 }

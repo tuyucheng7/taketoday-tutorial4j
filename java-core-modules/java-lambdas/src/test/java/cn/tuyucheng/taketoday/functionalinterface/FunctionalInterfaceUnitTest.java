@@ -19,160 +19,171 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class FunctionalInterfaceUnitTest {
+public class FunctionalInterfaceUnitTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(FunctionalInterfaceUnitTest.class);
+   private static final Logger LOG = LoggerFactory.getLogger(FunctionalInterfaceUnitTest.class);
 
-	@Test
-	void whenPassingLambdaToComputeIfAbsent_thenTheValueGetComputedAndPutIntoMap() {
-		Map<String, Integer> nameMap = new HashMap<>();
-		Integer value = nameMap.computeIfAbsent("John", s -> s.length());
+   @Test
+   public void whenPassingLambdaToComputeIfAbsent_thenTheValueGetsComputedAndPutIntoMap() {
+      Map<String, Integer> nameMap = new HashMap<>();
+      Integer value = nameMap.computeIfAbsent("John", String::length);
 
-		assertEquals(Integer.valueOf(4), nameMap.get("John"));
-		assertEquals(Integer.valueOf(4), value);
-	}
+      assertEquals(new Integer(4), nameMap.get("John"));
+      assertEquals(new Integer(4), value);
+   }
 
-	@Test
-	void whenPassingMethodReferenceToComputeIfAbsent_thenTheValueGetsComputedAndPutIntoMap() {
-		Map<String, Integer> nameMap = new HashMap<>();
-		Integer value = nameMap.computeIfAbsent("John", String::length);
+   @Test
+   public void whenPassingMethodReferenceToComputeIfAbsent_thenTheValueGetsComputedAndPutIntoMap() {
+      Map<String, Integer> nameMap = new HashMap<>();
+      Integer value = nameMap.computeIfAbsent("John", String::length);
 
-		assertEquals(Integer.valueOf(4), nameMap.get("John"));
-		assertEquals(Integer.valueOf(4), value);
-	}
+      assertEquals(new Integer(4), nameMap.get("John"));
+      assertEquals(new Integer(4), value);
+   }
 
-	@Test
-	void whenUsingCustomFunctionalInterfaceForPrimitives_thenCanUseItAsLambda() {
-		short[] array = {(short) 1, (short) 2, (short) 3};
-		byte[] transformedArray = transformArray(array, s -> (byte) (s * 2));
+   @Test
+   public void whenUsingCustomFunctionalInterfaceForPrimitives_thenCanUseItAsLambda() {
 
-		byte[] expectedArray = {(byte) 2, (byte) 4, (byte) 6};
+      short[] array = {(short) 1, (short) 2, (short) 3};
+      byte[] transformedArray = transformArray(array, s -> (byte) (s * 2));
 
-		assertArrayEquals(expectedArray, transformedArray);
-	}
+      byte[] expectedArray = {(byte) 2, (byte) 4, (byte) 6};
+      assertArrayEquals(expectedArray, transformedArray);
 
-	@Test
-	void whenUsingBiFunction_thenCanUseItToReplaceMapValues() {
-		Map<String, Integer> salaries = new HashMap<>();
-		salaries.put("John", 40000);
-		salaries.put("Freddy", 30000);
-		salaries.put("Samuel", 50000);
+   }
 
-		salaries.replaceAll((name, oldValue) -> name.equals("Freddy") ? oldValue : oldValue + 10000);
+   @Test
+   public void whenUsingBiFunction_thenCanUseItToReplaceMapValues() {
+      Map<String, Integer> salaries = new HashMap<>();
+      salaries.put("John", 40000);
+      salaries.put("Freddy", 30000);
+      salaries.put("Samuel", 50000);
 
-		assertEquals(Integer.valueOf(50000), salaries.get("John"));
-		assertEquals(Integer.valueOf(30000), salaries.get("Freddy"));
-		assertEquals(Integer.valueOf(60000), salaries.get("Samuel"));
-	}
+      salaries.replaceAll((name, oldValue) -> name.equals("Freddy") ? oldValue : oldValue + 10000);
 
-	@Test
-	void whenPassingLambdaToThreadConstructor_thenLambdaInferredToRunnable() {
-		Thread thread = new Thread(() -> LOG.debug("Hello From Another Thread"));
-		thread.start();
-	}
+      assertEquals(new Integer(50000), salaries.get("John"));
+      assertEquals(new Integer(30000), salaries.get("Freddy"));
+      assertEquals(new Integer(60000), salaries.get("Samuel"));
+   }
 
-	@Test
-	void whenUsingSupplierToGenerateNumbers_thenCanUseItInStreamGenerate() {
-		int[] fibs = {0, 1};
-		Stream<Integer> fibonacci = Stream.generate(() -> {
-			int result = fibs[1];
-			int fib3 = fibs[0] + fibs[1];
-			fibs[0] = fibs[1];
-			fibs[1] = fib3;
-			return result;
-		});
+   @Test
+   public void whenPassingLambdaToThreadConstructor_thenLambdaInferredToRunnable() {
+      Thread thread = new Thread(() -> LOG.debug("Hello From Another Thread"));
+      thread.start();
+   }
 
-		List<Integer> fibonacci5 = fibonacci.limit(5)
-			.collect(Collectors.toList());
+   @Test
+   public void whenUsingSupplierToGenerateNumbers_thenCanUseItInStreamGenerate() {
 
-		assertEquals(Integer.valueOf(1), fibonacci5.get(0));
-		assertEquals(Integer.valueOf(1), fibonacci5.get(1));
-		assertEquals(Integer.valueOf(2), fibonacci5.get(2));
-		assertEquals(Integer.valueOf(3), fibonacci5.get(3));
-		assertEquals(Integer.valueOf(5), fibonacci5.get(4));
-	}
+      int[] fibs = {0, 1};
+      Stream<Integer> fibonacci = Stream.generate(() -> {
+         int result = fibs[1];
+         int fib3 = fibs[0] + fibs[1];
+         fibs[0] = fibs[1];
+         fibs[1] = fib3;
+         return result;
+      });
 
-	@Test
-	void whenUsingConsumerInForEach_thenConsumerExecutesForEachListElement() {
-		List<String> names = Arrays.asList("John", "Freddy", "Samuel");
-		names.forEach(name -> LOG.debug("Hello, " + name));
-	}
+      List<Integer> fibonacci5 = fibonacci.limit(5)
+            .collect(Collectors.toList());
 
-	@Test
-	void whenUsingBiConsumerInForEach_thenConsumerExecutesForEachMapElement() {
-		Map<String, Integer> ages = new HashMap<>();
-		ages.put("John", 25);
-		ages.put("Freddy", 24);
-		ages.put("Samuel", 30);
+      assertEquals(new Integer(1), fibonacci5.get(0));
+      assertEquals(new Integer(1), fibonacci5.get(1));
+      assertEquals(new Integer(2), fibonacci5.get(2));
+      assertEquals(new Integer(3), fibonacci5.get(3));
+      assertEquals(new Integer(5), fibonacci5.get(4));
+   }
 
-		ages.forEach((name, age) -> LOG.debug(name + " is " + age + " years old"));
-	}
+   @Test
+   public void whenUsingConsumerInForEach_thenConsumerExecutesForEachListElement() {
+      List<String> names = Arrays.asList("John", "Freddy", "Samuel");
+      names.forEach(name -> LOG.debug("Hello, " + name));
+   }
 
-	@Test
-	void whenUsingPredicateInFilter_thenListValuesAreFilteredOut() {
-		List<String> names = Arrays.asList("Angela", "Aaron", "Bob", "Claire", "David");
+   @Test
+   public void whenUsingBiConsumerInForEach_thenConsumerExecutesForEachMapElement() {
+      Map<String, Integer> ages = new HashMap<>();
+      ages.put("John", 25);
+      ages.put("Freddy", 24);
+      ages.put("Samuel", 30);
 
-		List<String> namesWithA = names.stream()
-			.filter(name -> name.startsWith("A"))
-			.toList();
+      ages.forEach((name, age) -> LOG.debug(name + " is " + age + " years old"));
+   }
 
-		assertEquals(2, namesWithA.size());
-		assertTrue(namesWithA.contains("Angela"));
-		assertTrue(namesWithA.contains("Aaron"));
-	}
+   @Test
+   public void whenUsingPredicateInFilter_thenListValuesAreFilteredOut() {
+      List<String> names = Arrays.asList("Angela", "Aaron", "Bob", "Claire", "David");
 
-	@Test
-	void whenUsingUnaryOperatorWithReplaceAll_thenAllValuesInTheListAreReplaced() {
-		List<String> names = Arrays.asList("bob", "josh", "megan");
+      List<String> namesWithA = names.stream()
+            .filter(name -> name.startsWith("A"))
+            .collect(Collectors.toList());
 
-		names.replaceAll(String::toUpperCase);
+      assertEquals(2, namesWithA.size());
+      assertTrue(namesWithA.contains("Angela"));
+      assertTrue(namesWithA.contains("Aaron"));
+   }
 
-		assertEquals("BOB", names.get(0));
-		assertEquals("JOSH", names.get(1));
-		assertEquals("MEGAN", names.get(2));
-	}
+   @Test
+   public void whenUsingUnaryOperatorWithReplaceAll_thenAllValuesInTheListAreReplaced() {
+      List<String> names = Arrays.asList("bob", "josh", "megan");
 
-	@Test
-	void whenUsingBinaryOperatorWithStreamReduce_thenResultIsSumOfValues() {
-		List<Integer> values = Arrays.asList(3, 5, 8, 9, 12);
+      names.replaceAll(String::toUpperCase);
 
-		int sum = values.stream()
-			.reduce(0, Integer::sum);
+      assertEquals("BOB", names.get(0));
+      assertEquals("JOSH", names.get(1));
+      assertEquals("MEGAN", names.get(2));
+   }
 
-		assertEquals(37, sum);
-	}
+   @Test
+   public void whenUsingBinaryOperatorWithStreamReduce_thenResultIsSumOfValues() {
 
-	@Test
-	void whenComposingTwoFunctions_thenFunctionsExecuteSequentially() {
-		Function<Integer, String> intToString = Object::toString;
-		Function<String, String> quote = s -> "'" + s + "'";
+      List<Integer> values = Arrays.asList(3, 5, 8, 9, 12);
 
-		Function<Integer, String> quoteIntToString = quote.compose(intToString);
+      int sum = values.stream()
+            .reduce(0, (i1, i2) -> i1 + i2);
 
-		assertEquals("'5'", quoteIntToString.apply(5));
-	}
+      assertEquals(37, sum);
 
-	@Test
-	void whenUsingSupplierToGenerateValue_thenValueIsGeneratedLazily() {
-		Supplier<Double> lazyValue = () -> {
-			Uninterruptibles.sleepUninterruptibly(1000, TimeUnit.MILLISECONDS);
-			return 9d;
-		};
+   }
 
-		double valueSquared = squareLazy(lazyValue);
+   @Test
+   public void whenComposingTwoFunctions_thenFunctionsExecuteSequentially() {
 
-		assertEquals(81d, valueSquared, 0);
-	}
+      Function<Integer, String> intToString = Object::toString;
+      Function<String, String> quote = s -> "'" + s + "'";
 
-	double squareLazy(Supplier<Double> lazyValue) {
-		return Math.pow(lazyValue.get(), 2);
-	}
+      Function<Integer, String> quoteIntToString = quote.compose(intToString);
 
-	byte[] transformArray(short[] array, ShortToByteFunction function) {
-		byte[] transformedArray = new byte[array.length];
-		for (int i = 0; i < array.length; i++) {
-			transformedArray[i] = function.applyAsByte(array[i]);
-		}
-		return transformedArray;
-	}
+      assertEquals("'5'", quoteIntToString.apply(5));
+
+   }
+
+   @Test
+   public void whenUsingSupplierToGenerateValue_thenValueIsGeneratedLazily() {
+
+      Supplier<Double> lazyValue = () -> {
+         Uninterruptibles.sleepUninterruptibly(1000, TimeUnit.MILLISECONDS);
+         return 9d;
+      };
+
+      double valueSquared = squareLazy(lazyValue);
+
+      assertEquals(81d, valueSquared, 0);
+
+   }
+
+   //
+
+   public double squareLazy(Supplier<Double> lazyValue) {
+      return Math.pow(lazyValue.get(), 2);
+   }
+
+   public byte[] transformArray(short[] array, ShortToByteFunction function) {
+      byte[] transformedArray = new byte[array.length];
+      for (int i = 0; i < array.length; i++) {
+         transformedArray[i] = function.applyAsByte(array[i]);
+      }
+      return transformedArray;
+   }
+
 }

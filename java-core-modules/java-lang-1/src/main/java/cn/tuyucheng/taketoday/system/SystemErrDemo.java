@@ -8,11 +8,11 @@ package cn.tuyucheng.taketoday.system;
  * demonstrates how the methods can be used.
  */
 public class SystemErrDemo {
-	public static void main(String[] args) {
-		// Print without 'hitting' return
-		System.err.print("some inline error message");
+   public static void main(String[] args) {
+      // Print without 'hitting' return
+      System.err.print("some inline error message");
 
-		// Print and then 'hit' return
-		System.err.println("an error message having new line at the end");
-	}
+      // Print and then 'hit' return
+      System.err.println("an error message having new line at the end");
+   }
 }

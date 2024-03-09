@@ -6,43 +6,48 @@ import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CharStackUsingJavaUnitTest {
+public class CharStackUsingJavaUnitTest {
 
-    @Test
-    void whenCharStackIsCreated_thenItHasSize0() {
-        Stack<Character> charStack = new Stack<>();
+   @Test
+   public void whenCharStackIsCreated_thenItHasSize0() {
 
-        assertEquals(0, charStack.size());
-    }
+      Stack<Character> charStack = new Stack<>();
 
-    @Test
-    void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
-        Stack<Character> charStack = new Stack<>();
+      assertEquals(0, charStack.size());
+   }
 
-        charStack.push('A');
+   @Test
+   public void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
 
-        assertEquals(1, charStack.size());
-    }
+      Stack<Character> charStack = new Stack<>();
 
-    @Test
-    void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
-        Stack<Character> charStack = new Stack<>();
-        charStack.push('A');
+      charStack.push('A');
 
-        char element = charStack.pop();
+      assertEquals(1, charStack.size());
+   }
 
-        assertEquals('A', element);
-        assertEquals(0, charStack.size());
-    }
+   @Test
+   public void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
 
-    @Test
-    void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
-        Stack<Character> charStack = new Stack<>();
-        charStack.push('A');
+      Stack<Character> charStack = new Stack<>();
+      charStack.push('A');
 
-        char element = charStack.peek();
+      char element = charStack.pop();
 
-        assertEquals('A', element);
-        assertEquals(1, charStack.size());
-    }
+      assertEquals('A', element);
+      assertEquals(0, charStack.size());
+   }
+
+   @Test
+   public void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+
+      Stack<Character> charStack = new Stack<>();
+      charStack.push('A');
+
+      char element = charStack.peek();
+
+      assertEquals('A', element);
+      assertEquals(1, charStack.size());
+   }
+
 }

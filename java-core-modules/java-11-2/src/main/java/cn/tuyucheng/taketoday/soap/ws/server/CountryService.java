@@ -9,6 +9,7 @@ import jakarta.jws.soap.SOAPBinding.Style;
 @SOAPBinding(style = Style.RPC)
 public interface CountryService {
 
-	@WebMethod
-	Country findByName(String name);
+   @WebMethod
+   Country findByName(String name);
+
 }

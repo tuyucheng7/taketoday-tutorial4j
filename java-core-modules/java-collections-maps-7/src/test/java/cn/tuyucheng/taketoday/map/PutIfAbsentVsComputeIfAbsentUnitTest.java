@@ -6,9 +6,15 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class Magic {
    public String nullFunc() {
@@ -94,4 +100,5 @@ public class PutIfAbsentVsComputeIfAbsentUnitTest {
       MY_MAP.computeIfAbsent("new key", k -> spyMagic.strFunc(k));
       verify(spyMagic, times(1)).strFunc(anyString());
    }
+
 }

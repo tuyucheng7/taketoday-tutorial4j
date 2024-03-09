@@ -15,7 +15,8 @@ import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationConverter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.util.Collections;
 
 @Configuration
@@ -93,5 +94,4 @@ public class CustomWebSecurityConfigurer {
       http.addFilterBefore(authenticationFilter(), BasicAuthenticationFilter.class);
       return http.build();
    }
-
 }

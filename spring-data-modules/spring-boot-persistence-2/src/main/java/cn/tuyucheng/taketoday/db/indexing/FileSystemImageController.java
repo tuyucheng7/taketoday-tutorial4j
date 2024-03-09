@@ -15,16 +15,16 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("file-system")
 class FileSystemImageController {
 
-	@Autowired
-	FileLocationService fileLocationService;
+   @Autowired
+   FileLocationService fileLocationService;
 
-	@PostMapping("/image")
-	Long uploadImage(@RequestParam MultipartFile image) throws Exception {
-		return fileLocationService.save(image.getBytes(), image.getOriginalFilename());
-	}
+   @PostMapping("/image")
+   Long uploadImage(@RequestParam MultipartFile image) throws Exception {
+      return fileLocationService.save(image.getBytes(), image.getOriginalFilename());
+   }
 
-	@GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
-	FileSystemResource downloadImage(@PathVariable Long imageId) throws Exception {
-		return fileLocationService.find(imageId);
-	}
+   @GetMapping(value = "/image/{imageId}", produces = MediaType.IMAGE_JPEG_VALUE)
+   FileSystemResource downloadImage(@PathVariable Long imageId) throws Exception {
+      return fileLocationService.find(imageId);
+   }
 }

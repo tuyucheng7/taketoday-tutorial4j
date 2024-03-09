@@ -8,7 +8,9 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 class PersonRepositoryIntegrationTest {
@@ -47,11 +49,16 @@ class PersonRepositoryIntegrationTest {
    }
 
    @Test
-   void givenFirstName_whenCallingFindOneByFirstName_ThenThrowException() {
-      IncorrectResultSizeDataAccessException exception = assertThrows(IncorrectResultSizeDataAccessException.class, () -> {
-         personRepository.findOneByFirstName("Stella");
-      });
+   void givenFirstName_whenCallingFindByFirstName_ThenThrowException() {
+      IncorrectResultSizeDataAccessException exception = assertThrows(IncorrectResultSizeDataAccessException.class, () -> personRepository.findByFirstName("Stella"));
 
-      assertEquals("query did not return a unique result: 2", exception.getMessage());
+      assertEquals("Query did not return a unique result: 2 results were returned", exception.getMessage());
+   }
+
+   @Test
+   void givenFirstName_whenCallingFindOneByFirstName_ThenThrowException() {
+      IncorrectResultSizeDataAccessException exception = assertThrows(IncorrectResultSizeDataAccessException.class, () -> personRepository.findOneByFirstName("Stella"));
+
+      assertEquals("Query did not return a unique result: 2 results were returned", exception.getMessage());
    }
 }

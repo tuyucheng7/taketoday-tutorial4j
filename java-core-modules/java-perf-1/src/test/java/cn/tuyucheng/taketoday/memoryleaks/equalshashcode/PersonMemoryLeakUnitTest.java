@@ -1,16 +1,16 @@
 package cn.tuyucheng.taketoday.memoryleaks.equalshashcode;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PersonMemoryLeakUnitTest {
    @Test
-   @Ignore // Test deliberately ignored as memory leak tests consume lots of resources
+   @Disabled // Test deliberately ignored as memory leak tests consume lots of resources
    public void givenMap_whenEqualsAndHashCodeNotOverridden_thenMemoryLeak() {
       Map<Person, Integer> map = new HashMap<Person, Integer>();
       for (int i = 0; i < 10000000; i++) {
@@ -21,7 +21,7 @@ public class PersonMemoryLeakUnitTest {
    }
 
    @Test
-   @Ignore // Test deliberately ignored as memory leak tests consume lots of resources
+   @Disabled // Test deliberately ignored as memory leak tests consume lots of resources
    public void givenMap_whenEqualsAndHashCodeOverridden_thenNoMemoryLeak() {
       Map<PersonOptimized, Integer> map = new HashMap<PersonOptimized, Integer>();
       for (int i = 0; i < 10000; i++) {

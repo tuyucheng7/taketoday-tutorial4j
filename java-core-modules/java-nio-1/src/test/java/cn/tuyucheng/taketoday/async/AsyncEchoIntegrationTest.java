@@ -1,36 +1,36 @@
 package cn.tuyucheng.taketoday.async;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AsyncEchoIntegrationTest {
 
-    Process server;
-    AsyncEchoClient client;
+   Process server;
+   AsyncEchoClient client;
 
-    @Before
-    public void setup() throws IOException, InterruptedException {
-        server = AsyncEchoServer2.start();
-        client = AsyncEchoClient.getInstance();
-    }
+   @BeforeEach
+   public void setup() throws IOException, InterruptedException {
+      server = AsyncEchoServer2.start();
+      client = AsyncEchoClient.getInstance();
+   }
 
-    @Test
-    public void givenServerClient_whenServerEchosMessage_thenCorrect() throws Exception {
-        String resp1 = client.sendMessage("hello");
-        String resp2 = client.sendMessage("world");
-        assertEquals("hello", resp1);
-        assertEquals("world", resp2);
-    }
+   @Test
+   public void givenServerClient_whenServerEchosMessage_thenCorrect() throws Exception {
+      String resp1 = client.sendMessage("hello");
+      String resp2 = client.sendMessage("world");
+      assertEquals("hello", resp1);
+      assertEquals("world", resp2);
+   }
 
-    @After
-    public void teardown() throws IOException {
-        server.destroy();
-        client.stop();
-    }
+   @AfterEach
+   public void teardown() throws IOException {
+      server.destroy();
+      client.stop();
+   }
 
 }

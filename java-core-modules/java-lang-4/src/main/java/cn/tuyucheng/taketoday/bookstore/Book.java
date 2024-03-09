@@ -1,5 +1,5 @@
 // The next line is commented out to avoid the code to fail the build.
-// package com.baeldung;
+// package cn.tuyucheng.taketoday;
 
 /**
  * If the below package declaration is commented out and the above incorrect package
@@ -9,13 +9,13 @@ package cn.tuyucheng.taketoday.bookstore;
 
 public class Book {
 
-	private String title;
-	private String author;
-	private long isbn;
+   private String title;
+   private String author;
+   private long isbn;
 
-	public Book(String title, String author, long isbn) {
-		this.title = title;
-		this.author = author;
-		this.isbn = isbn;
-	}
+   public Book(String title, String author, long isbn) {
+      this.title = title;
+      this.author = author;
+      this.isbn = isbn;
+   }
 }

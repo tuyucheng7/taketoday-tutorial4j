@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.IterableUtils;
 import org.apache.commons.collections4.IteratorUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,107 +15,107 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
-import static org.junit.Assert.assertThat;
 
 public class IterableToCollectionUnitTest {
 
-    Iterable<String> iterable = Arrays.asList("john", "tom", "jane");
-    Iterator<String> iterator = iterable.iterator();
+   Iterable<String> iterable = Arrays.asList("john", "tom", "jane");
+   Iterator<String> iterator = iterable.iterator();
 
-    @Test
-    public void whenConvertIterableToListUsingJava_thenSuccess() {
-        List<String> result = new ArrayList<String>();
-        for (String str : iterable) {
-            result.add(str);
-        }
+   @Test
+   public void whenConvertIterableToListUsingJava_thenSuccess() {
+      List<String> result = new ArrayList<String>();
+      for (String str : iterable) {
+         result.add(str);
+      }
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIterableToListUsingJava8_thenSuccess() {
-        List<String> result = new ArrayList<String>();
-        iterable.forEach(result::add);
+   @Test
+   public void whenConvertIterableToListUsingJava8_thenSuccess() {
+      List<String> result = new ArrayList<String>();
+      iterable.forEach(result::add);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIterableToListUsingJava8WithSpliterator_thenSuccess() {
-        List<String> result = StreamSupport.stream(iterable.spliterator(), false)
-              .collect(Collectors.toList());
+   @Test
+   public void whenConvertIterableToListUsingJava8WithSpliterator_thenSuccess() {
+      List<String> result = StreamSupport.stream(iterable.spliterator(), false)
+            .collect(Collectors.toList());
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIterableToListUsingGuava_thenSuccess() {
-        List<String> result = Lists.newArrayList(iterable);
+   @Test
+   public void whenConvertIterableToListUsingGuava_thenSuccess() {
+      List<String> result = Lists.newArrayList(iterable);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIterableToImmutableListUsingGuava_thenSuccess() {
-        List<String> result = ImmutableList.copyOf(iterable);
+   @Test
+   public void whenConvertIterableToImmutableListUsingGuava_thenSuccess() {
+      List<String> result = ImmutableList.copyOf(iterable);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIterableToListUsingApacheCommons_thenSuccess() {
-        List<String> result = IterableUtils.toList(iterable);
+   @Test
+   public void whenConvertIterableToListUsingApacheCommons_thenSuccess() {
+      List<String> result = IterableUtils.toList(iterable);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    // ======================== Iterator
+   // ======================== Iterator
 
-    @Test
-    public void whenConvertIteratorToListUsingJava_thenSuccess() {
-        List<String> result = new ArrayList<String>();
-        while (iterator.hasNext()) {
-            result.add(iterator.next());
-        }
+   @Test
+   public void whenConvertIteratorToListUsingJava_thenSuccess() {
+      List<String> result = new ArrayList<String>();
+      while (iterator.hasNext()) {
+         result.add(iterator.next());
+      }
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIteratorToListUsingJava8_thenSuccess() {
-        List<String> result = new ArrayList<String>();
-        iterator.forEachRemaining(result::add);
+   @Test
+   public void whenConvertIteratorToListUsingJava8_thenSuccess() {
+      List<String> result = new ArrayList<String>();
+      iterator.forEachRemaining(result::add);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIteratorToListUsingJava8WithSpliterator_thenSuccess() {
-        List<String> result = StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false)
-              .collect(Collectors.toList());
+   @Test
+   public void whenConvertIteratorToListUsingJava8WithSpliterator_thenSuccess() {
+      List<String> result = StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false)
+            .collect(Collectors.toList());
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIteratorToListUsingGuava_thenSuccess() {
-        List<String> result = Lists.newArrayList(iterator);
+   @Test
+   public void whenConvertIteratorToListUsingGuava_thenSuccess() {
+      List<String> result = Lists.newArrayList(iterator);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIteratorToImmutableListUsingGuava_thenSuccess() {
-        List<String> result = ImmutableList.copyOf(iterator);
+   @Test
+   public void whenConvertIteratorToImmutableListUsingGuava_thenSuccess() {
+      List<String> result = ImmutableList.copyOf(iterator);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 
-    @Test
-    public void whenConvertIteratorToListUsingApacheCommons_thenSuccess() {
-        List<String> result = IteratorUtils.toList(iterator);
+   @Test
+   public void whenConvertIteratorToListUsingApacheCommons_thenSuccess() {
+      List<String> result = IteratorUtils.toList(iterator);
 
-        assertThat(result, contains("john", "tom", "jane"));
-    }
+      assertThat(result, contains("john", "tom", "jane"));
+   }
 }

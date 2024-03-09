@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.subclassinnerclass;
 
 public class NotificationService {
-
    void notifyMessages() {
       // Sending a Text Message
       Message textMessage = new Message();

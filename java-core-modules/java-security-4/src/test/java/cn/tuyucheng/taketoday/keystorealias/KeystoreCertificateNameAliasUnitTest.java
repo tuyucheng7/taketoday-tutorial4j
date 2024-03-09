@@ -1,16 +1,16 @@
 package cn.tuyucheng.taketoday.keystorealias;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class KeystoreCertificateNameAliasUnitTest {
    private static final String KEYSTORE_FILE = "my-keystore.jks";
    private static final String KEYSTORE_PWD = "storepw@1";
-   private static final String KEYSTORE_ALIAS = "baeldung";
+   private static final String KEYSTORE_ALIAS = "tuyucheng";
 
    private KeyStore readKeyStore() throws Exception {
       KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());

@@ -8,12 +8,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Aggregate3 extends AbstractAggregateRoot<Aggregate3> {
-	@Id
-	@GeneratedValue
-	private long id;
+   @Id
+   @GeneratedValue
+   private long id;
 
-	public void domainOperation() {
-		// some domain operation
-		registerEvent(new DomainEvent());
-	}
+   public void domainOperation() {
+      // some domain operation
+      registerEvent(new DomainEvent());
+   }
 }

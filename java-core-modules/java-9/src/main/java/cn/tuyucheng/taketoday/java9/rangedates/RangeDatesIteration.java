@@ -6,37 +6,38 @@ import java.util.Date;
 
 public class RangeDatesIteration {
 
-	public void iterateBetweenDatesJava9(LocalDate startDate, LocalDate endDate) {
-		startDate.datesUntil(endDate)
-				.forEach(this::processDate);
-	}
+   public void iterateBetweenDatesJava9(LocalDate startDate, LocalDate endDate) {
 
-	public void iterateBetweenDatesJava8(LocalDate start, LocalDate end) {
-		for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
-			processDate(date);
-		}
-	}
+      startDate.datesUntil(endDate)
+            .forEach(this::processDate);
+   }
 
-	public void iterateBetweenDatesJava7(Date start, Date end) {
-		Date current = start;
+   public void iterateBetweenDatesJava8(LocalDate start, LocalDate end) {
+      for (LocalDate date = start; date.isBefore(end); date = date.plusDays(1)) {
+         processDate(date);
+      }
+   }
 
-		while (current.before(end)) {
-			processDate(current);
+   public void iterateBetweenDatesJava7(Date start, Date end) {
+      Date current = start;
 
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(current);
+      while (current.before(end)) {
+         processDate(current);
 
-			calendar.add(Calendar.DATE, 1);
+         Calendar calendar = Calendar.getInstance();
+         calendar.setTime(current);
 
-			current = calendar.getTime();
-		}
-	}
+         calendar.add(Calendar.DATE, 1);
 
-	private void processDate(LocalDate date) {
-		System.out.println(date);
-	}
+         current = calendar.getTime();
+      }
+   }
 
-	private void processDate(Date date) {
-		System.out.println(date);
-	}
+   private void processDate(LocalDate date) {
+      System.out.println(date);
+   }
+
+   private void processDate(Date date) {
+      System.out.println(date);
+   }
 }

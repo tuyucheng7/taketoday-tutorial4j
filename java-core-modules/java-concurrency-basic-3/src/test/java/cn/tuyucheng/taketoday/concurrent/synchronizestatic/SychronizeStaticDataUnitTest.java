@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.synchronizestatic;
 
-import org.junit.Test;
+import cn.tuyucheng.taketoday.concurrent.synchronizestatic.synchronizedmethod.Employee;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -18,6 +19,7 @@ public class SychronizeStaticDataUnitTest {
 
    @Test
    public void whenNotSynchronized_thenDataOutOfOrder() {
+
       System.out.println("No synchronization");
 
       for (int i = 0; i < numberToTest; i++) {
@@ -30,18 +32,20 @@ public class SychronizeStaticDataUnitTest {
 
    @Test
    public void whenSynchronizedMethod_thenDataInOrder() {
+
       System.out.println("Synchronization with synchronized method");
 
       for (int i = 0; i < numberToTest; i++) {
          int finalI = i;
          pool.execute(() -> {
-            new cn.tuyucheng.taketoday.concurrent.synchronizestatic.synchronizedmethod.Employee(finalI, "John", "Smith");
+            new Employee(finalI, "John", "Smith");
          });
       }
    }
 
    @Test
    public void whenSynchronizedClass_thenDataInOrder() {
+
       System.out.println("Synchronization with synchronized block on class");
 
       for (int i = 0; i < numberToTest; i++) {
@@ -54,6 +58,7 @@ public class SychronizeStaticDataUnitTest {
 
    @Test
    public void whenSynchronizedBlock_thenDataInOrder() {
+
       System.out.println("Synchronization with synchronized block on a private object");
 
       for (int i = 0; i < numberToTest; i++) {
@@ -73,6 +78,7 @@ public class SychronizeStaticDataUnitTest {
 
    @Test
    public void whenReentrantLock_thenDataInOrder() {
+
       System.out.println("Synchronization with ReentrantLock");
 
       for (int i = 0; i < numberToTest; i++) {

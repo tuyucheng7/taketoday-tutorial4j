@@ -8,36 +8,36 @@ import org.slf4j.LoggerFactory;
  */
 public class AnimalActivity {
 
-	final static Logger logger = LoggerFactory.getLogger(AnimalActivity.class);
+   final static Logger logger = LoggerFactory.getLogger(AnimalActivity.class);
 
 
-	public static void sleep(Animal animal) {
-		logger.info("Animal is sleeping");
-	}
+   public static void sleep(Animal animal) {
+      logger.info("Animal is sleeping");
+   }
 
-	public static void sleep(Dog dog) {
-		logger.info("Cat is sleeping");
-	}
+   public static void sleep(Dog dog) {
+      logger.info("Cat is sleeping");
+   }
 
-	public static void main(String[] args) {
+   public static void main(String[] args) {
 
-		Animal animal = new Animal();
+      Animal animal = new Animal();
 
-		// calling methods of animal object
-		animal.makeNoise();
+      // calling methods of animal object
+      animal.makeNoise();
 
-		animal.makeNoise(3);
+      animal.makeNoise(3);
 
 
-		// assigning a dog object to reference of type Animal
-		Animal catAnimal = new Dog();
+      // assigning a dog object to reference of type Animal
+      Animal catAnimal = new Dog();
 
-		catAnimal.makeNoise();
+      catAnimal.makeNoise();
 
-		// calling static function
-		AnimalActivity.sleep(catAnimal);
+      // calling static function
+      AnimalActivity.sleep(catAnimal);
 
-		return;
+      return;
 
-	}
+   }
 }

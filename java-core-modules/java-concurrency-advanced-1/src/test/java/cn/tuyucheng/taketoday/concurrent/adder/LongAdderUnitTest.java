@@ -9,53 +9,59 @@ import java.util.concurrent.atomic.LongAdder;
 import java.util.stream.IntStream;
 
 import static com.jayway.awaitility.Awaitility.await;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-class LongAdderUnitTest {
+public class LongAdderUnitTest {
+   @Test
+   public void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
+      // given
+      LongAdder counter = new LongAdder();
+      ExecutorService executorService = Executors.newFixedThreadPool(8);
 
-	@Test
-	void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThem() throws InterruptedException {
-		LongAdder counter = new LongAdder();
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
+      int numberOfThreads = 4;
+      int numberOfIncrements = 100;
 
-		int numberOfThreads = 4;
-		int numberOfIncrements = 100;
+      // when
+      Runnable incrementAction = () -> IntStream
+            .range(0, numberOfIncrements)
+            .forEach((i) -> counter.increment());
 
-		Runnable incrementAction = () -> IntStream
-				.range(0, numberOfIncrements)
-				.forEach(x -> counter.increment());
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(incrementAction);
+      }
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.submit(incrementAction);
-		}
+      // then
+      executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
 
-		executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executorService.shutdown();
+      assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
+      assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
+   }
 
-		assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
-		assertEquals(counter.sum(), numberOfIncrements * numberOfThreads);
-	}
+   @Test
+   public void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
+      // given
+      LongAdder counter = new LongAdder();
+      ExecutorService executorService = Executors.newFixedThreadPool(8);
 
-	@Test
-	void givenMultipleThread_whenTheyWriteToSharedLongAdder_thenShouldCalculateSumForThemAndResetAdderAfterward() throws InterruptedException {
-		LongAdder counter = new LongAdder();
-		ExecutorService executorService = Executors.newFixedThreadPool(8);
+      int numberOfThreads = 4;
+      int numberOfIncrements = 100;
 
-		int numberOfThreads = 4;
-		int numberOfIncrements = 100;
+      // when
+      Runnable incrementAction = () -> IntStream
+            .range(0, numberOfIncrements)
+            .forEach((i) -> counter.increment());
 
-		Runnable incrementAction = () -> IntStream
-				.range(0, numberOfIncrements)
-				.forEach(i -> counter.increment());
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(incrementAction);
+      }
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.execute(incrementAction);
-		}
+      // then
+      executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executorService.shutdown();
 
-		executorService.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executorService.shutdown();
+      assertEquals(counter.sumThenReset(), numberOfIncrements * numberOfThreads);
 
-		assertEquals(counter.sumThenReset(), numberOfIncrements * numberOfThreads);
-		await().until(() -> assertEquals(counter.sum(), 0));
-	}
+      await().until(() -> assertEquals(counter.sum(), 0));
+   }
 }

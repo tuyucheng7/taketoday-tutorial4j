@@ -2,20 +2,20 @@ package cn.tuyucheng.taketoday.optionaluses;
 
 public class User {
 
-	public User(String id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+   public User(String id, String name) {
+      this.id = id;
+      this.name = name;
+   }
 
-	private String id;
+   private String id;
 
-	private String name;
+   private String name;
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 }

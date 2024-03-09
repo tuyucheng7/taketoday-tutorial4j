@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.projection.view;
 
 public interface AddressView {
-	String getZipCode();
+   String getZipCode();
 
-	PersonView getPerson();
+   PersonView getPerson();
 }

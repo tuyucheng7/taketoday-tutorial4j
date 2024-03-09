@@ -23,40 +23,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class IntegrationTest {
 
-    final MediaType contentType =
-            new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype());
+   final MediaType contentType =
+         new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype());
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+   @Autowired
+   private WebApplicationContext webApplicationContext;
 
-    private MockMvc mockMvc;
+   private MockMvc mockMvc;
 
-    @BeforeEach
-    void setupMockMvc() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+   @BeforeEach
+   void setupMockMvc() {
+      mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+   }
 
-    @Test
-    void givenRequestHasBeenMade_whenQueryOverNameAttribute_thenGetJohn() throws Exception {
-        // Get John
-        mockMvc.perform(get("/users?name=John"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("John")))
-                .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
-                .andExpect(jsonPath("$[0].address.country", is("Spain")));
-    }
+   @Test
+   void givenRequestHasBeenMade_whenQueryOverNameAttribute_thenGetJohn() throws Exception {
+      // Get John
+      mockMvc.perform(get("/users?name=John"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].name", is("John")))
+            .andExpect(jsonPath("$[0].address.address", is("Fake Street 1")))
+            .andExpect(jsonPath("$[0].address.country", is("Spain")));
+   }
 
-    @Test
-    void givenRequestHasBeenMade_whenQueryOverNameAttribute_thenGetLisa() throws Exception {
-        // Get Lisa
-        mockMvc.perform(get("/users?name=Lisa"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("Lisa")))
-                .andExpect(jsonPath("$[0].address.address", is("Real Street 1")))
-                .andExpect(jsonPath("$[0].address.country", is("Germany")));
-    }
+   @Test
+   void givenRequestHasBeenMade_whenQueryOverNameAttribute_thenGetLisa() throws Exception {
+      // Get Lisa
+      mockMvc.perform(get("/users?name=Lisa"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(contentType))
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].name", is("Lisa")))
+            .andExpect(jsonPath("$[0].address.address", is("Real Street 1")))
+            .andExpect(jsonPath("$[0].address.country", is("Germany")));
+   }
 }

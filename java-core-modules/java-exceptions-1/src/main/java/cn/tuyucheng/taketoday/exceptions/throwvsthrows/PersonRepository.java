@@ -5,8 +5,8 @@ import java.util.List;
 
 public class PersonRepository {
 
-    public List<String> findAll() throws SQLException {
-        throw new SQLException();
-    }
+   public List<String> findAll() throws SQLException {
+      throw new SQLException();
+   }
 
 }

@@ -24,55 +24,55 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Transactional
 @DirtiesContext
 class AdvancedTaggingIntegrationTest {
-	@Resource
-	private StudentRepository studentRepository;
+   @Resource
+   private StudentRepository studentRepository;
 
-	@Resource
-	private ManyStudentRepository manyStudentRepository;
+   @Resource
+   private ManyStudentRepository manyStudentRepository;
 
-	@Resource
-	private ManyTagRepository manyTagRepository;
+   @Resource
+   private ManyTagRepository manyTagRepository;
 
-	@Test
-	void givenStudentWithSkillTags_whenSave_thenGetByNameAndSkillTag() {
-		Student student = new Student(1, "Will");
-		SkillTag skill1 = new SkillTag("java", 5);
-		student.setSkillTags(List.of(skill1));
-		studentRepository.save(student);
+   @Test
+   void givenStudentWithSkillTags_whenSave_thenGetByNameAndSkillTag() {
+      Student student = new Student(1, "Will");
+      SkillTag skill1 = new SkillTag("java", 5);
+      student.setSkillTags(List.of(skill1));
+      studentRepository.save(student);
 
-		Student student2 = new Student(2, "Joe");
-		SkillTag skill2 = new SkillTag("java", 1);
-		student2.setSkillTags(List.of(skill2));
-		studentRepository.save(student2);
+      Student student2 = new Student(2, "Joe");
+      SkillTag skill2 = new SkillTag("java", 1);
+      student2.setSkillTags(List.of(skill2));
+      studentRepository.save(student2);
 
-		List<Student> students = studentRepository.retrieveByNameFilterByMinimumSkillTag("java", 3);
-		assertEquals(1, students.size(), "size incorrect");
-	}
+      List<Student> students = studentRepository.retrieveByNameFilterByMinimumSkillTag("java", 3);
+      assertEquals(1, students.size(), "size incorrect");
+   }
 
-	@Test
-	void givenStudentWithKVTags_whenSave_thenGetByTagOk() {
-		Student student = new Student(0, "John");
-		student.setKVTags(List.of(new KVTag("department", "computer science")));
-		studentRepository.save(student);
+   @Test
+   void givenStudentWithKVTags_whenSave_thenGetByTagOk() {
+      Student student = new Student(0, "John");
+      student.setKVTags(List.of(new KVTag("department", "computer science")));
+      studentRepository.save(student);
 
-		Student student2 = new Student(1, "James");
-		student2.setKVTags(List.of(new KVTag("department", "humanities")));
-		studentRepository.save(student2);
+      Student student2 = new Student(1, "James");
+      student2.setKVTags(List.of(new KVTag("department", "humanities")));
+      studentRepository.save(student2);
 
-		List<Student> students = studentRepository.retrieveByKeyTag("department");
-		assertEquals(2, students.size(), "size incorrect");
-	}
+      List<Student> students = studentRepository.retrieveByKeyTag("department");
+      assertEquals(2, students.size(), "size incorrect");
+   }
 
-	@Test
-	void givenStudentWithManyTags_whenSave_theyGetByTagOk() {
-		ManyTag tag = new ManyTag("full time");
-		manyTagRepository.save(tag);
+   @Test
+   void givenStudentWithManyTags_whenSave_theyGetByTagOk() {
+      ManyTag tag = new ManyTag("full time");
+      manyTagRepository.save(tag);
 
-		ManyStudent student = new ManyStudent("John");
-		student.setManyTags(Collections.singleton(tag));
-		manyStudentRepository.save(student);
+      ManyStudent student = new ManyStudent("John");
+      student.setManyTags(Collections.singleton(tag));
+      manyStudentRepository.save(student);
 
-		List<ManyStudent> students = manyStudentRepository.findByManyTags_Name("full time");
-		assertEquals(1, students.size(), "size incorrect");
-	}
+      List<ManyStudent> students = manyStudentRepository.findByManyTags_Name("full time");
+      assertEquals(1, students.size(), "size incorrect");
+   }
 }

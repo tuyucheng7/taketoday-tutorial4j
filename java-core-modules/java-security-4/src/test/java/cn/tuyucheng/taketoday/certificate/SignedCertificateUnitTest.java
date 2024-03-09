@@ -7,6 +7,7 @@ import java.security.KeyStore;
 import java.security.SignatureException;
 import java.security.cert.X509Certificate;
 
+import static cn.tuyucheng.taketoday.certificate.RootCertificateUtil.getRootCertificate;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -44,14 +45,14 @@ class SignedCertificateUnitTest {
 
    @Test
    void whenCertificateIsCASigned_thenItCantBeVerifiedWithItsOwnPublicKey() throws Exception {
-      X509Certificate certificate = (X509Certificate) keyStore.getCertificate("baeldung");
+      X509Certificate certificate = (X509Certificate) keyStore.getCertificate("tuyucheng");
       assertThrows(SignatureException.class, () -> certificate.verify(certificate.getPublicKey()));
    }
 
    @Test
    void whenCertificateIsCASigned_thenRootCanBeFoundInTruststore() throws Exception {
-      X509Certificate endEntityCertificate = (X509Certificate) keyStore.getCertificate("baeldung");
-      X509Certificate rootCertificate = RootCertificateUtil.getRootCertificate(endEntityCertificate, trustStore);
+      X509Certificate endEntityCertificate = (X509Certificate) keyStore.getCertificate("tuyucheng");
+      X509Certificate rootCertificate = getRootCertificate(endEntityCertificate, trustStore);
       assertNotNull(rootCertificate);
    }
 

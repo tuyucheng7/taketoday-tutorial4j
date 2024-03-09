@@ -1,19 +1,19 @@
 package cn.tuyucheng.taketoday.concurrent.completablefuture.retry;
 
-import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryExceptionallyAsync;
-import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryNesting;
-import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryTask;
-import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryUnsafe;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryExceptionallyAsync;
+import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryNesting;
+import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryTask;
+import static cn.tuyucheng.taketoday.concurrent.completablefuture.retry.RetryCompletableFuture.retryUnsafe;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RetryCompletableFutureUnitTest {
    private AtomicInteger retriesCounter = new AtomicInteger(0);
@@ -116,4 +116,5 @@ class RetryCompletableFutureUnitTest {
       }
       return returnValue;
    }
+
 }

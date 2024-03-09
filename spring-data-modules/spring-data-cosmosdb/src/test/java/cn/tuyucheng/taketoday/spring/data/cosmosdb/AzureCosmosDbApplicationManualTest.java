@@ -11,20 +11,20 @@ import org.springframework.util.Assert;
 @SpringBootTest
 class AzureCosmosDbApplicationManualTest {
 
-    @Autowired
-    ProductRepository productRepository;
+   @Autowired
+   ProductRepository productRepository;
 
-    @Test
-    void givenProductIsCreated_whenCallFindById_thenProductIsFound() {
-        Product product = new Product();
-        product.setProductid("1001");
-        product.setProductCategory("Shirt");
-        product.setPrice(110.0);
-        product.setProductName("Blue Shirt");
+   @Test
+   void givenProductIsCreated_whenCallFindById_thenProductIsFound() {
+      Product product = new Product();
+      product.setProductid("1001");
+      product.setProductCategory("Shirt");
+      product.setPrice(110.0);
+      product.setProductName("Blue Shirt");
 
-        productRepository.save(product);
-        Product retrievedProduct = productRepository.findById("1001", new PartitionKey("Shirt"))
-              .orElse(null);
-        Assert.notNull(retrievedProduct, "Retrieved Product is Null");
-    }
+      productRepository.save(product);
+      Product retrievedProduct = productRepository.findById("1001", new PartitionKey("Shirt"))
+            .orElse(null);
+      Assert.notNull(retrievedProduct, "Retrieved Product is Null");
+   }
 }

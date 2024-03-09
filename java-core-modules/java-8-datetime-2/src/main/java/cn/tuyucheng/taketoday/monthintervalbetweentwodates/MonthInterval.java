@@ -40,4 +40,5 @@ public class MonthInterval {
 
       return (startDateDayOfMonth > endDateDayOfMonth) ? (endDateTotalMonths - startDateTotalMonths) - 1 : (endDateTotalMonths - startDateTotalMonths);
    }
+
 }

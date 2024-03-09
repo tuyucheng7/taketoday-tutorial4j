@@ -3,8 +3,8 @@ package cn.tuyucheng.taketoday.parallelstream;
 import cn.tuyucheng.taketoday.streams.parallelstream.Book;
 import cn.tuyucheng.taketoday.streams.parallelstream.MyBookContainer;
 import cn.tuyucheng.taketoday.streams.parallelstream.ParallelStreamApplication;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -13,19 +13,19 @@ public class ParallelStreamUnitTest {
    @Test
    public void givenCollectionWhenCollectionsParallelIsUsedThenReturnCount() {
       ParallelStreamApplication parallelStreamApplication = new ParallelStreamApplication();
-      Assert.assertEquals(parallelStreamApplication.usingCollectionsParallel(generateListOfBooks(), 1974), 2);
+      Assertions.assertEquals(parallelStreamApplication.usingCollectionsParallel(generateListOfBooks(), 1974), 2);
    }
 
    @Test
    public void givenCollectionWhenStreamParallelIsUsedThenReturnCount() {
       ParallelStreamApplication parallelStreamApplication = new ParallelStreamApplication();
-      Assert.assertEquals(parallelStreamApplication.usingStreamParallel(generateListOfBooks(), 1974), 2);
+      Assertions.assertEquals(parallelStreamApplication.usingStreamParallel(generateListOfBooks(), 1974), 2);
    }
 
    @Test
    public void givenBookContainerWhenParallelStreamIsUsedThenReturnIncorrectCount() {
       ParallelStreamApplication parallelStreamApplication = new ParallelStreamApplication();
-      Assert.assertNotEquals(parallelStreamApplication.usingWithCustomSpliterator(getBookContainer(), 1974), 2);
+      Assertions.assertNotEquals(parallelStreamApplication.usingWithCustomSpliterator(getBookContainer(), 1974), 2);
    }
 
    private List<Book> generateListOfBooks() {

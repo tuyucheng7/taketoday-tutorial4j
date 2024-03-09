@@ -1,16 +1,14 @@
 package cn.tuyucheng.taketoday.session.web.config;
 
-import org.springframework.web.WebApplicationInitializer;
+import jakarta.servlet.ServletContext;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
+import org.springframework.web.WebApplicationInitializer;
 
 public class MainWebAppInitializer implements WebApplicationInitializer {
 
    @Override
-   public void onStartup(ServletContext sc) throws ServletException {
+   public void onStartup(ServletContext sc) {
       sc.getSessionCookieConfig().setHttpOnly(true);
       sc.getSessionCookieConfig().setSecure(true);
    }
-
 }

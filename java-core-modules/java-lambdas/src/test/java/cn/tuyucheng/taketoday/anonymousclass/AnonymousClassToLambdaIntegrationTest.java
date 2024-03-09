@@ -1,34 +1,34 @@
 package cn.tuyucheng.taketoday.anonymousclass;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AnonymousClassToLambdaIntegrationTest {
 
-    @Test
-    public void whenPassingAnonymousClass_thenSuccess() {
-        final SenderService emailSenderService = new EmailSenderService();
+   @Test
+   public void whenPassingAnonymousClass_thenSuccess() {
+      final SenderService emailSenderService = new EmailSenderService();
 
-        final String emailNotif = emailSenderService.callSender(new Sender() {
-            @Override
-            public String send(String message) {
-                return message;
-            }
-        });
-
-        assertEquals(emailNotif, "Email Notification");
-    }
-
-    @Test
-    public void whenPassingLambdaExpression_thenSuccess() {
-        final SenderService smsSenderService = new SmsSenderService();
-
-        final String smsNotif = smsSenderService.callSender((String message) -> {
+      final String emailNotif = emailSenderService.callSender(new Sender() {
+         @Override
+         public String send(String message) {
             return message;
-        });
+         }
+      });
 
-        assertEquals(smsNotif, "SMS Notification");
-    }
+      assertEquals(emailNotif, "Email Notification");
+   }
+
+   @Test
+   public void whenPassingLambdaExpression_thenSuccess() {
+      final SenderService smsSenderService = new SmsSenderService();
+
+      final String smsNotif = smsSenderService.callSender((String message) -> {
+         return message;
+      });
+
+      assertEquals(smsNotif, "SMS Notification");
+   }
 
 }

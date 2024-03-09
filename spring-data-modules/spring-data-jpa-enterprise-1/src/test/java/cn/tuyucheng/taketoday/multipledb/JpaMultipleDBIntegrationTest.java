@@ -25,66 +25,66 @@ import static org.junit.jupiter.api.Assertions.*;
 @EnableTransactionManagement
 class JpaMultipleDBIntegrationTest {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Autowired
-	private PossessionRepository possessionRepository;
+   @Autowired
+   private PossessionRepository possessionRepository;
 
-	@Autowired
-	private ProductRepository productRepository;
+   @Autowired
+   private ProductRepository productRepository;
 
-	@Test
-	@Transactional("userTransactionManager")
-	void whenCreatingUser_thenCreated() {
-		User user = new User();
-		user.setName("John");
-		user.setEmail("john@test.com");
-		user.setAge(20);
-		Possession p = new Possession("sample");
-		p = possessionRepository.save(p);
-		user.setPossessionList(Collections.singletonList(p));
-		user = userRepository.save(user);
-		final Optional<User> result = userRepository.findById(user.getId());
-		assertTrue(result.isPresent());
-		System.out.println(result.get().getPossessionList());
-		assertEquals(1, result.get().getPossessionList().size());
-	}
+   @Test
+   @Transactional("userTransactionManager")
+   void whenCreatingUser_thenCreated() {
+      User user = new User();
+      user.setName("John");
+      user.setEmail("john@test.com");
+      user.setAge(20);
+      Possession p = new Possession("sample");
+      p = possessionRepository.save(p);
+      user.setPossessionList(Collections.singletonList(p));
+      user = userRepository.save(user);
+      final Optional<User> result = userRepository.findById(user.getId());
+      assertTrue(result.isPresent());
+      System.out.println(result.get().getPossessionList());
+      assertEquals(1, result.get().getPossessionList().size());
+   }
 
-	@Test
-	@Transactional("userTransactionManager")
-	void whenCreatingUsersWithSameEmail_thenRollback() {
-		User user1 = new User();
-		user1.setName("John");
-		user1.setEmail("john@test.com");
-		user1.setAge(20);
-		user1 = userRepository.save(user1);
-		assertTrue(userRepository.findById(user1.getId()).isPresent());
+   @Test
+   @Transactional("userTransactionManager")
+   void whenCreatingUsersWithSameEmail_thenRollback() {
+      User user1 = new User();
+      user1.setName("John");
+      user1.setEmail("john@test.com");
+      user1.setAge(20);
+      user1 = userRepository.save(user1);
+      assertTrue(userRepository.findById(user1.getId()).isPresent());
 
-		User user2 = new User();
-		user2.setName("Tom");
-		user2.setEmail("john@test.com");
-		user2.setAge(10);
-		try {
-			user2 = userRepository.save(user2);
-			userRepository.flush();
-			fail("DataIntegrityViolationException should be thrown!");
-		} catch (final DataIntegrityViolationException e) {
-			// Expected
-		} catch (final Exception e) {
-			fail("DataIntegrityViolationException should be thrown, instead got: " + e);
-		}
-	}
+      User user2 = new User();
+      user2.setName("Tom");
+      user2.setEmail("john@test.com");
+      user2.setAge(10);
+      try {
+         user2 = userRepository.save(user2);
+         userRepository.flush();
+         fail("DataIntegrityViolationException should be thrown!");
+      } catch (final DataIntegrityViolationException e) {
+         // Expected
+      } catch (final Exception e) {
+         fail("DataIntegrityViolationException should be thrown, instead got: " + e);
+      }
+   }
 
-	@Test
-	@Transactional("productTransactionManager")
-	void whenCreatingProduct_thenCreated() {
-		Product product = new Product();
-		product.setName("Book");
-		product.setId(2);
-		product.setPrice(20);
-		product = productRepository.save(product);
+   @Test
+   @Transactional("productTransactionManager")
+   void whenCreatingProduct_thenCreated() {
+      Product product = new Product();
+      product.setName("Book");
+      product.setId(2);
+      product.setPrice(20);
+      product = productRepository.save(product);
 
-		assertTrue(productRepository.findById(product.getId()).isPresent());
-	}
+      assertTrue(productRepository.findById(product.getId()).isPresent());
+   }
 }

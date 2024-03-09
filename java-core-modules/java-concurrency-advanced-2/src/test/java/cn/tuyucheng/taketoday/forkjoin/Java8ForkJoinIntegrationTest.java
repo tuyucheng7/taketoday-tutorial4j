@@ -7,81 +7,85 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java8ForkJoinIntegrationTest {
-	private int[] array;
-	private CustomRecursiveTask customRecursiveTask;
+public class Java8ForkJoinIntegrationTest {
 
-	@BeforeEach
-	void init() {
-		Random random = new Random();
-		array = new int[50];
-		for (int i = 0; i < array.length; i++) {
-			array[i] = random.nextInt(35);
-		}
-		customRecursiveTask = new CustomRecursiveTask(array);
-	}
+   private int[] arr;
+   private CustomRecursiveTask customRecursiveTask;
 
-	@Test
-	void callPoolUtil_whenExistsAndExpectedType_thenCorrect() {
-		ForkJoinPool forkJoinPool = PoolUtil.forkJoinPool;
-		ForkJoinPool forkJoinPoolTwo = PoolUtil.forkJoinPool;
+   @BeforeEach
+   public void init() {
+      Random random = new Random();
+      arr = new int[50];
+      for (int i = 0; i < arr.length; i++) {
+         arr[i] = random.nextInt(35);
+      }
+      customRecursiveTask = new CustomRecursiveTask(arr);
+   }
 
-		assertNotNull(forkJoinPool);
-		assertEquals(2, forkJoinPool.getParallelism());
-		assertEquals(forkJoinPool, forkJoinPoolTwo);
-	}
+   @Test
+   public void callPoolUtil_whenExistsAndExpectedType_thenCorrect() {
+      ForkJoinPool forkJoinPool = PoolUtil.forkJoinPool;
+      ForkJoinPool forkJoinPoolTwo = PoolUtil.forkJoinPool;
 
-	@Test
-	void callCommonPool_whenExistsAndExpectedType_thenCorrect() {
-		ForkJoinPool commonPool = ForkJoinPool.commonPool();
-		ForkJoinPool commonPoolTwo = ForkJoinPool.commonPool();
+      assertNotNull(forkJoinPool);
+      assertEquals(2, forkJoinPool.getParallelism());
+      assertEquals(forkJoinPool, forkJoinPoolTwo);
+   }
 
-		assertNotNull(commonPool);
-		assertEquals(commonPool, commonPoolTwo);
-	}
+   @Test
+   public void callCommonPool_whenExistsAndExpectedType_thenCorrect() {
+      ForkJoinPool commonPool = ForkJoinPool.commonPool();
+      ForkJoinPool commonPoolTwo = ForkJoinPool.commonPool();
 
-	@Test
-	void executeRecursiveAction_whenExecuted_thenCorrect() {
+      assertNotNull(commonPool);
+      assertEquals(commonPool, commonPoolTwo);
+   }
 
-		CustomRecursiveAction myRecursiveAction = new CustomRecursiveAction("ddddffffgggghhhh");
-		ForkJoinPool.commonPool().invoke(myRecursiveAction);
+   @Test
+   public void executeRecursiveAction_whenExecuted_thenCorrect() {
 
-		assertTrue(myRecursiveAction.isDone());
+      CustomRecursiveAction myRecursiveAction = new CustomRecursiveAction("ddddffffgggghhhh");
+      ForkJoinPool.commonPool().invoke(myRecursiveAction);
 
-	}
+      assertTrue(myRecursiveAction.isDone());
 
-	@Test
-	void executeRecursiveTask_whenExecuted_thenCorrect() {
-		ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+   }
 
-		forkJoinPool.execute(customRecursiveTask);
-		customRecursiveTask.join();
-		assertTrue(customRecursiveTask.isDone());
+   @Test
+   public void executeRecursiveTask_whenExecuted_thenCorrect() {
+      ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
 
-		forkJoinPool.submit(customRecursiveTask);
-		customRecursiveTask.join();
-		assertTrue(customRecursiveTask.isDone());
-	}
+      forkJoinPool.execute(customRecursiveTask);
+      customRecursiveTask.join();
+      assertTrue(customRecursiveTask.isDone());
 
-	@Test
-	void executeRecursiveTaskWithFJ_whenExecuted_thenCorrect() {
-		CustomRecursiveTask customRecursiveTaskFirst = new CustomRecursiveTask(array);
-		CustomRecursiveTask customRecursiveTaskSecond = new CustomRecursiveTask(array);
-		CustomRecursiveTask customRecursiveTaskLast = new CustomRecursiveTask(array);
+      forkJoinPool.submit(customRecursiveTask);
+      customRecursiveTask.join();
+      assertTrue(customRecursiveTask.isDone());
+   }
 
-		customRecursiveTaskFirst.fork();
-		customRecursiveTaskSecond.fork();
-		customRecursiveTaskLast.fork();
-		int result = 0;
-		result += customRecursiveTaskLast.join();
-		result += customRecursiveTaskSecond.join();
-		result += customRecursiveTaskFirst.join();
+   @Test
+   public void executeRecursiveTaskWithFJ_whenExecuted_thenCorrect() {
+      CustomRecursiveTask customRecursiveTaskFirst = new CustomRecursiveTask(arr);
+      CustomRecursiveTask customRecursiveTaskSecond = new CustomRecursiveTask(arr);
+      CustomRecursiveTask customRecursiveTaskLast = new CustomRecursiveTask(arr);
 
-		assertTrue(customRecursiveTaskFirst.isDone());
-		assertTrue(customRecursiveTaskSecond.isDone());
-		assertTrue(customRecursiveTaskLast.isDone());
-		assertTrue(result != 0);
-	}
+      customRecursiveTaskFirst.fork();
+      customRecursiveTaskSecond.fork();
+      customRecursiveTaskLast.fork();
+      int result = 0;
+      result += customRecursiveTaskLast.join();
+      result += customRecursiveTaskSecond.join();
+      result += customRecursiveTaskFirst.join();
+
+      assertTrue(customRecursiveTaskFirst.isDone());
+      assertTrue(customRecursiveTaskSecond.isDone());
+      assertTrue(customRecursiveTaskLast.isDone());
+      assertTrue(result != 0);
+   }
+
 }

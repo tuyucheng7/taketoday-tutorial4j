@@ -2,7 +2,7 @@
 -- findById
 --
 select id,
-	   name
+       name
 from car_maker
 where id = :id
 ;

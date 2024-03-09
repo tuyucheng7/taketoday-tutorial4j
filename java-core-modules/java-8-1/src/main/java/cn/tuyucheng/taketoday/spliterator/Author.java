@@ -1,32 +1,32 @@
 package cn.tuyucheng.taketoday.spliterator;
 
 public class Author {
-	private String name;
-	private int relatedArticleId;
+   private String name;
+   private int relatedArticleId;
 
-	public Author(String name, int relatedArticleId) {
-		this.name = name;
-		this.relatedArticleId = relatedArticleId;
-	}
+   public Author(String name, int relatedArticleId) {
+      this.name = name;
+      this.relatedArticleId = relatedArticleId;
+   }
 
-	public int getRelatedArticleId() {
-		return relatedArticleId;
-	}
+   public int getRelatedArticleId() {
+      return relatedArticleId;
+   }
 
-	public void setRelatedArticleId(int relatedArticleId) {
-		this.relatedArticleId = relatedArticleId;
-	}
+   public void setRelatedArticleId(int relatedArticleId) {
+      this.relatedArticleId = relatedArticleId;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	@Override
-	public String toString() {
-		return "[name: " + name + ", relatedId: " + relatedArticleId + "]";
-	}
+   @Override
+   public String toString() {
+      return "[name: " + name + ", relatedId: " + relatedArticleId + "]";
+   }
 }

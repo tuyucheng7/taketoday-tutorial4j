@@ -9,62 +9,62 @@ import java.util.Objects;
 @Document(collection = "inventory")
 public class Inventory {
 
-	@Id
-	private String id;
-	private String item;
-	private String status;
-	private Size size;
-	private List<InStock> inStock;
+   @Id
+   private String id;
+   private String item;
+   private String status;
+   private Size size;
+   private List<InStock> inStock;
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 
-	public String getItem() {
-		return item;
-	}
+   public String getItem() {
+      return item;
+   }
 
-	public void setItem(String item) {
-		this.item = item;
-	}
+   public void setItem(String item) {
+      this.item = item;
+   }
 
-	public String getStatus() {
-		return status;
-	}
+   public String getStatus() {
+      return status;
+   }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+   public void setStatus(String status) {
+      this.status = status;
+   }
 
-	public Size getSize() {
-		return size;
-	}
+   public Size getSize() {
+      return size;
+   }
 
-	public void setSize(Size size) {
-		this.size = size;
-	}
+   public void setSize(Size size) {
+      this.size = size;
+   }
 
-	public List<InStock> getInStock() {
-		return inStock;
-	}
+   public List<InStock> getInStock() {
+      return inStock;
+   }
 
-	public void setInStock(List<InStock> inStock) {
-		this.inStock = inStock;
-	}
+   public void setInStock(List<InStock> inStock) {
+      this.inStock = inStock;
+   }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		Inventory inventory = (Inventory) o;
-		return Objects.equals(id, inventory.id) && Objects.equals(item, inventory.item) && Objects.equals(status, inventory.status);
-	}
+   @Override
+   public boolean equals(Object o) {
+      if (this == o)
+         return true;
+      if (o == null || getClass() != o.getClass())
+         return false;
+      Inventory inventory = (Inventory) o;
+      return Objects.equals(id, inventory.id) && Objects.equals(item, inventory.item) && Objects.equals(status, inventory.status);
+   }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, item, status);
-	}
+   @Override
+   public int hashCode() {
+      return Objects.hash(id, item, status);
+   }
 
 }

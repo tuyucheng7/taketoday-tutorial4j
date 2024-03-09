@@ -12,18 +12,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/import-json")
 public class ImportJsonController {
-	@Autowired
-	private ImportJsonService service;
+   @Autowired
+   private ImportJsonService service;
 
-	@PostMapping("/{collection}")
-	public String postJson(@RequestBody String jsonStrings, @PathVariable String collection) {
-		List<String> jsonLines = ImportUtils.lines(jsonStrings);
-		return service.importTo(collection, jsonLines);
-	}
+   @PostMapping("/{collection}")
+   public String postJson(@RequestBody String jsonStrings, @PathVariable String collection) {
+      List<String> jsonLines = ImportUtils.lines(jsonStrings);
+      return service.importTo(collection, jsonLines);
+   }
 
-	@PostMapping("/file/{collection}")
-	public String postJsonFile(@RequestPart("parts") MultipartFile jsonStringsFile, @PathVariable String collection) throws IOException {
-		List<String> jsonLines = ImportUtils.lines(jsonStringsFile);
-		return service.importTo(collection, jsonLines);
-	}
+   @PostMapping("/file/{collection}")
+   public String postJsonFile(@RequestPart("parts") MultipartFile jsonStringsFile, @PathVariable String collection) throws IOException {
+      List<String> jsonLines = ImportUtils.lines(jsonStringsFile);
+      return service.importTo(collection, jsonLines);
+   }
 }

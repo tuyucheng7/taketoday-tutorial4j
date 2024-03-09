@@ -3,13 +3,13 @@ package cn.tuyucheng.taketoday.spring.hibernate;
 import java.util.List;
 
 public interface IFooDao {
-	Foo findOne(long id);
+   Foo findOne(long id);
 
-	List<Foo> findAll();
+   List<Foo> findAll();
 
-	Foo update(Foo entity);
+   Foo update(Foo entity);
 
-	void delete(Foo entity);
+   void delete(Foo entity);
 
-	void deleteById(long entityId);
+   void deleteById(long entityId);
 }

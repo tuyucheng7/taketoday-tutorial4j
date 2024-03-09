@@ -14,7 +14,7 @@
    </parent>
 
    <build>
-      <finalName>java-os-2</finalName>
+      <finalName>java-os</finalName>
       <resources>
          <resource>
             <directory>src/main/resources</directory>

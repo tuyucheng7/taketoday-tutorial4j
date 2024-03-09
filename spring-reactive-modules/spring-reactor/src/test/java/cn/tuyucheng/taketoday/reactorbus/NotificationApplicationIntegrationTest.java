@@ -1,22 +1,22 @@
 package cn.tuyucheng.taketoday.reactorbus;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-@ExtendWith(SpringExtension.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class NotificationApplicationIntegrationTest {
+public class NotificationApplicationIntegrationTest {
 
-	@LocalServerPort
-	private int port;
+   @LocalServerPort
+   private int port;
 
-	@Test
-	void givenAppStarted_whenNotificationTasksSubmitted_thenProcessed() {
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getForObject("http://localhost:" + port + "/startNotification/10", String.class);
-	}
+   @Test
+   public void givenAppStarted_whenNotificationTasksSubmitted_thenProcessed() {
+      RestTemplate restTemplate = new RestTemplate();
+      restTemplate.getForObject(STR."http://localhost:\{port}/startNotification/10", String.class);
+   }
 }

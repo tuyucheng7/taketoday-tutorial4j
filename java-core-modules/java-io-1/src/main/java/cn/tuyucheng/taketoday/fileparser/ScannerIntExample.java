@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 public class ScannerIntExample {
 
-	protected static ArrayList<Integer> generateArrayListFromFile(String filename) throws IOException {
+   protected static ArrayList<Integer> generateArrayListFromFile(String filename) throws IOException {
 
-		ArrayList<Integer> result = new ArrayList<>();
+      ArrayList<Integer> result = new ArrayList<>();
 
-		try (Scanner s = new Scanner(new FileReader(filename))) {
+      try (Scanner s = new Scanner(new FileReader(filename))) {
 
-			while (s.hasNext()) {
-				result.add(s.nextInt());
-			}
-			return result;
-		}
+         while (s.hasNext()) {
+            result.add(s.nextInt());
+         }
+         return result;
+      }
 
-	}
+   }
 
 }

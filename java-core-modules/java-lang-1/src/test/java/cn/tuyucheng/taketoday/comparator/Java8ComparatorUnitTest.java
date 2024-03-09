@@ -1,22 +1,22 @@
 package cn.tuyucheng.taketoday.comparator;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Java8ComparatorUnitTest {
 
    List<Player> footballTeam;
 
-   @Before
+   @BeforeEach
    public void setUp() {
-      footballTeam = new ArrayList<>();
+      footballTeam = new ArrayList<Player>();
       Player player1 = new Player(59, "John", 22);
       Player player2 = new Player(67, "Roger", 20);
       Player player3 = new Player(45, "Steven", 24);
@@ -27,7 +27,7 @@ public class Java8ComparatorUnitTest {
 
    @Test
    public void whenComparing_UsingLambda_thenSorted() {
-      System.out.println("************** Java 8 Comparator **************");
+      System.out.println("************** Java 8 Comaparator **************");
       Comparator<Player> byRanking = (Player player1, Player player2) -> Integer.compare(player1.getRanking(), player2.getRanking());
 
       Collections.sort(footballTeam, byRanking);
@@ -41,7 +41,7 @@ public class Java8ComparatorUnitTest {
 
    @Test
    public void whenComparing_UsingComparatorComparing_thenSorted() {
-      System.out.println("********* Comparator.comparing method *********");
+      System.out.println("********* Comaparator.comparing method *********");
       System.out.println("********* byRanking *********");
       Comparator<Player> byRanking = Comparator.comparing(Player::getRanking);
 
@@ -64,4 +64,5 @@ public class Java8ComparatorUnitTest {
       assertEquals(footballTeam.get(2).getName(), "Steven");
       assertEquals(footballTeam.get(2).getAge(), 24);
    }
+
 }

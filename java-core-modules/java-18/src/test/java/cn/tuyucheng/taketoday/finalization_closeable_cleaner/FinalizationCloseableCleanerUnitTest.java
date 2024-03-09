@@ -1,11 +1,11 @@
 package cn.tuyucheng.taketoday.finalization_closeable_cleaner;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class FinalizationCloseableCleanerUnitTest {
 
@@ -32,6 +32,6 @@ public class FinalizationCloseableCleanerUnitTest {
       try (MyCloseableResourceClass mcr = new MyCloseableResourceClass()) {
          length = mcr.getByteLength();
       }
-      Assert.assertEquals(20, length);
+      Assertions.assertEquals(20, length);
    }
 }

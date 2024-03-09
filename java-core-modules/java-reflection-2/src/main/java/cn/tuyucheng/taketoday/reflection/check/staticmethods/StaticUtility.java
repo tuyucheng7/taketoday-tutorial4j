@@ -5,15 +5,15 @@ import java.time.LocalTime;
 
 public class StaticUtility {
 
-	public static String getAuthorName() {
-		return "Umang Budhwar";
-	}
+   public static String getAuthorName() {
+      return "Umang Budhwar";
+   }
 
-	public static LocalDate getLocalDate() {
-		return LocalDate.now();
-	}
+   public static LocalDate getLocalDate() {
+      return LocalDate.now();
+   }
 
-	public static LocalTime getLocalTime() {
-		return LocalTime.now();
-	}
+   public static LocalTime getLocalTime() {
+      return LocalTime.now();
+   }
 }

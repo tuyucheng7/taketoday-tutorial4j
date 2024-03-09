@@ -8,35 +8,35 @@ import java.util.NoSuchElementException;
 
 public class UniqueRng implements Iterator<Integer> {
 
-	private int size;
-	private List<Integer> numbers = new ArrayList<>();
+   private int size;
+   private List<Integer> numbers = new ArrayList<>();
 
-	public UniqueRng(int size, boolean zeroBased) {
-		this.size = size;
-		int start = (zeroBased ? 0 : 1);
-		int limit = (zeroBased ? size - 1 : size);
+   public UniqueRng(int size, boolean zeroBased) {
+      this.size = size;
+      int start = (zeroBased ? 0 : 1);
+      int limit = (zeroBased ? size - 1 : size);
 
-		for (int i = start; i <= limit; i++) {
-			numbers.add(i);
-		}
+      for (int i = start; i <= limit; i++) {
+         numbers.add(i);
+      }
 
-		Collections.shuffle(numbers);
-	}
+      Collections.shuffle(numbers);
+   }
 
-	@Override
-	public Integer next() {
-		if (!hasNext())
-			throw new NoSuchElementException();
+   @Override
+   public Integer next() {
+      if (!hasNext())
+         throw new NoSuchElementException();
 
-		return numbers.remove(0);
-	}
+      return numbers.remove(0);
+   }
 
-	@Override
-	public boolean hasNext() {
-		return !numbers.isEmpty();
-	}
+   @Override
+   public boolean hasNext() {
+      return !numbers.isEmpty();
+   }
 
-	public int getSize() {
-		return size;
-	}
+   public int getSize() {
+      return size;
+   }
 }

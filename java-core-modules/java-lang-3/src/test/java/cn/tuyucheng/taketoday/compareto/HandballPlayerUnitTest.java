@@ -8,14 +8,14 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class HandballPlayerUnitTest {
 
-	@Test
-	public void givenComparableIsNotImplemented_whenSortingArray_thenExceptionIsThrown() {
-		HandballPlayer duvnjak = new HandballPlayer("Duvnjak", 197);
-		HandballPlayer hansen = new HandballPlayer("Hansen", 196);
+   @Test
+   public void givenComparableIsNotImplemented_whenSortingArray_thenExceptionIsThrown() {
+      HandballPlayer duvnjak = new HandballPlayer("Duvnjak", 197);
+      HandballPlayer hansen = new HandballPlayer("Hansen", 196);
 
-		HandballPlayer[] players = new HandballPlayer[]{duvnjak, hansen};
+      HandballPlayer[] players = new HandballPlayer[]{duvnjak, hansen};
 
-		assertThatExceptionOfType(ClassCastException.class).isThrownBy(() -> Arrays.sort(players));
-	}
+      assertThatExceptionOfType(ClassCastException.class).isThrownBy(() -> Arrays.sort(players));
+   }
 
 }

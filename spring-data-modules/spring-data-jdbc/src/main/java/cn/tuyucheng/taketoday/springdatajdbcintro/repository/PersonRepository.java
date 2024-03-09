@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
-	List<Person> findByFirstName(String firstName);
+   List<Person> findByFirstName(String firstName);
 
-	@Modifying
-	@Query("UPDATE person SET first_name = :name WHERE id = :id")
-	boolean updateByFirstName(@Param("id") Long id, @Param("name") String name);
+   @Modifying
+   @Query("UPDATE person SET first_name = :name WHERE id = :id")
+   boolean updateByFirstName(@Param("id") Long id, @Param("name") String name);
 }

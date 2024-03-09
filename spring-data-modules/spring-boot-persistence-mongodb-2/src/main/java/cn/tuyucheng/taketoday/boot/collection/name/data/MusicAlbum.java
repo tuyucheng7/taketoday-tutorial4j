@@ -5,44 +5,44 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("albums")
 public class MusicAlbum {
-	@Id
-	private String id;
+   @Id
+   private String id;
 
-	private String name;
+   private String name;
 
-	private String artist;
+   private String artist;
 
-	public MusicAlbum() {
+   public MusicAlbum() {
 
-	}
+   }
 
-	public MusicAlbum(String name, String artist) {
-		super();
-		this.name = name;
-		this.artist = artist;
-	}
+   public MusicAlbum(String name, String artist) {
+      super();
+      this.name = name;
+      this.artist = artist;
+   }
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+   public void setId(String id) {
+      this.id = id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public String getArtist() {
-		return artist;
-	}
+   public String getArtist() {
+      return artist;
+   }
 
-	public void setArtist(String artist) {
-		this.artist = artist;
-	}
+   public void setArtist(String artist) {
+      this.artist = artist;
+   }
 }

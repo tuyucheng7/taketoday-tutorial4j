@@ -8,8 +8,8 @@ import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.Collection;
 import com.couchbase.client.java.json.JsonObject;
 import org.joda.time.DateTime;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -18,12 +18,12 @@ import java.util.Optional;
 import static cn.tuyucheng.taketoday.spring.data.couchbase2b.MultiBucketCouchbaseConfig.DEFAULT_BUCKET_PASSWORD;
 import static cn.tuyucheng.taketoday.spring.data.couchbase2b.MultiBucketCouchbaseConfig.DEFAULT_BUCKET_USERNAME;
 import static cn.tuyucheng.taketoday.spring.data.couchbase2b.MultiBucketCouchbaseConfig.NODE_LIST;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
+class PersonServiceImplLiveTest extends MultiBucketLiveTest {
 
    static final String typeField = "_class";
    static final String john = "John";
@@ -41,8 +41,8 @@ public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
    @Autowired
    private PersonServiceImpl personService;
 
-   @BeforeClass
-   public static void setupBeforeClass() {
+   @BeforeAll
+   static void setupBeforeClass() {
       final Cluster cluster = Cluster.connect(NODE_LIST, DEFAULT_BUCKET_USERNAME, DEFAULT_BUCKET_PASSWORD);
       final Bucket bucket = cluster.bucket(MultiBucketCouchbaseConfig.DEFAULT_BUCKET_NAME);
       final Collection collection = bucket.defaultCollection();
@@ -52,7 +52,7 @@ public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public void whenFindingPersonByJohnSmithId_thenReturnsJohnSmith() {
+   void whenFindingPersonByJohnSmithId_thenReturnsJohnSmith() {
       final Optional<Person> actualPerson = personService.findOne(johnSmithId);
       assertTrue(actualPerson.isPresent());
       assertNotNull(actualPerson.get().getCreated());
@@ -60,7 +60,7 @@ public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public void whenFindingAllPersons_thenReturnsTwoOrMorePersonsIncludingJohnSmithAndFooBar() {
+   void whenFindingAllPersons_thenReturnsTwoOrMorePersonsIncludingJohnSmithAndFooBar() {
       final List<Person> resultList = personService.findAll();
       assertNotNull(resultList);
       assertFalse(resultList.isEmpty());
@@ -70,7 +70,7 @@ public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public void whenFindingByFirstNameJohn_thenReturnsOnlyPersonsNamedJohn() {
+   void whenFindingByFirstNameJohn_thenReturnsOnlyPersonsNamedJohn() {
       final String expectedFirstName = john;
       final List<Person> resultList = personService.findByFirstName(expectedFirstName);
       assertNotNull(resultList);
@@ -79,7 +79,7 @@ public class PersonServiceImplLiveTest extends MultiBucketLiveTest {
    }
 
    @Test
-   public void whenFindingByLastNameSmith_thenReturnsOnlyPersonsNamedSmith() {
+   void whenFindingByLastNameSmith_thenReturnsOnlyPersonsNamedSmith() {
       final String expectedLastName = smith;
       final List<Person> resultList = personService.findByLastName(expectedLastName);
       assertNotNull(resultList);

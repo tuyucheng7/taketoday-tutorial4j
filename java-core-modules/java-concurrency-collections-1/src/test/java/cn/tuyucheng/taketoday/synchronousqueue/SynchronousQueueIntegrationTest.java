@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.synchronousqueue;
 
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,78 +14,80 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
-class SynchronousQueueIntegrationTest {
-	private static final Logger LOG = LoggerFactory.getLogger(SynchronousQueueIntegrationTest.class);
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class SynchronousQueueIntegrationTest {
 
-	@Test
-	void givenTwoThreads_whenWantToExchangeUsingLockGuardedVariable_thenItSucceed() throws InterruptedException {
-		// given
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		AtomicInteger sharedState = new AtomicInteger();
-		CountDownLatch countDownLatch = new CountDownLatch(1);
+   private static final Logger LOG = LoggerFactory.getLogger(SynchronousQueueIntegrationTest.class);
 
-		Runnable producer = () -> {
-			int producedElement = ThreadLocalRandom.current().nextInt();
-			LOG.info("Saving an element: " + producedElement + " to the exchange point");
-			sharedState.set(producedElement);
-			countDownLatch.countDown();
-		};
 
-		Runnable consumer = () -> {
-			try {
-				countDownLatch.await();
-				int consumedElement = sharedState.get();
-				LOG.info("consumed an element: " + consumedElement + " from the exchange point");
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
+   @Test
+   public void givenTwoThreads_whenWantToExchangeUsingLockGuardedVariable_thenItSucceed() throws InterruptedException {
+      // given
+      ExecutorService executor = Executors.newFixedThreadPool(2);
+      AtomicInteger sharedState = new AtomicInteger();
+      CountDownLatch countDownLatch = new CountDownLatch(1);
 
-		// when
-		executor.execute(producer);
-		executor.execute(consumer);
+      Runnable producer = () -> {
+         Integer producedElement = ThreadLocalRandom.current().nextInt();
+         LOG.debug("Saving an element: " + producedElement + " to the exchange point");
+         sharedState.set(producedElement);
+         countDownLatch.countDown();
+      };
 
-		// then
-		executor.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executor.shutdown();
-		assertEquals(0, countDownLatch.getCount());
-	}
+      Runnable consumer = () -> {
+         try {
+            countDownLatch.await();
+            Integer consumedElement = sharedState.get();
+            LOG.debug("consumed an element: " + consumedElement + " from the exchange point");
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+         }
+      };
 
-	@Test
-	void givenTwoThreads_whenWantToExchangeUsingSynchronousQueue_thenItSucceed() throws InterruptedException {
-		// given
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		final SynchronousQueue<Integer> queue = new SynchronousQueue<>();
+      // when
+      executor.execute(producer);
+      executor.execute(consumer);
 
-		Runnable producer = () -> {
-			int producedElement = ThreadLocalRandom.current().nextInt();
-			try {
-				LOG.info("Saving an element: " + producedElement + " to the exchange point");
-				queue.put(producedElement);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
+      // then
+      executor.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executor.shutdown();
+      assertEquals(countDownLatch.getCount(), 0);
+   }
 
-		Runnable consumer = () -> {
-			try {
-				Integer consumedElement = queue.take();
-				LOG.info("consumed an element: " + consumedElement + " from the exchange point");
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		};
+   @Test
+   public void givenTwoThreads_whenWantToExchangeUsingSynchronousQueue_thenItSucceed() throws InterruptedException {
+      // given
+      ExecutorService executor = Executors.newFixedThreadPool(2);
+      final SynchronousQueue<Integer> queue = new SynchronousQueue<>();
 
-		// when
-		executor.execute(producer);
-		executor.execute(consumer);
+      Runnable producer = () -> {
+         Integer producedElement = ThreadLocalRandom.current().nextInt();
+         try {
+            LOG.debug("Saving an element: " + producedElement + " to the exchange point");
+            queue.put(producedElement);
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+         }
+      };
 
-		// then
-		executor.awaitTermination(500, TimeUnit.MILLISECONDS);
-		executor.shutdown();
-		assertEquals(0, queue.size());
-	}
+      Runnable consumer = () -> {
+         try {
+            Integer consumedElement = queue.take();
+            LOG.debug("consumed an element: " + consumedElement + " from the exchange point");
+         } catch (InterruptedException ex) {
+            ex.printStackTrace();
+         }
+      };
+
+      // when
+      executor.execute(producer);
+      executor.execute(consumer);
+
+      // then
+      executor.awaitTermination(500, TimeUnit.MILLISECONDS);
+      executor.shutdown();
+      assertEquals(queue.size(), 0);
+   }
 }

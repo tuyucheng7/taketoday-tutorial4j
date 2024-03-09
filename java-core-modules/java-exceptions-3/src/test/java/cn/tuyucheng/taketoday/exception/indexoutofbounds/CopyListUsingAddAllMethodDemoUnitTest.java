@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CopyListUsingAddAllMethodDemoUnitTest {
 
-    @Test
-    void whenPassValidArrayList_thenCopyListUsingAddAllMethod() {
-        List<Integer> source = Arrays.asList(11, 22, 33);
+   @Test
+   void whenPassValidArrayList_thenCopyListUsingAddAllMethod() {
+      List<Integer> source = Arrays.asList(11, 22, 33);
 
-        assertEquals(source, CopyListUsingAddAllMethodDemo.copyList(source));
-    }
+      assertEquals(source, CopyListUsingAddAllMethodDemo.copyList(source));
+   }
 }

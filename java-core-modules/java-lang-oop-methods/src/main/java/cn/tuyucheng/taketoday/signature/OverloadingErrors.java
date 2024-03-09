@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class OverloadingErrors<T extends Serializable> {
 
-	public void print() {
-		System.out.println("Signature is: print()");
-	}
+   public void print() {
+      System.out.println("Signature is: print()");
+   }
 
     /*
     // Uncommenting this method will lead to a compilation error: java: method print() is already defined in class
@@ -34,9 +34,9 @@ public class OverloadingErrors<T extends Serializable> {
     }
     */
 
-	public void print(int parameter) {
-		System.out.println("Signature is: print(int)");
-	}
+   public void print(int parameter) {
+      System.out.println("Signature is: print(int)");
+   }
 
     /*
     // Uncommenting this method will lead to a compilation error: java: method print(int) is already defined in class
@@ -46,9 +46,9 @@ public class OverloadingErrors<T extends Serializable> {
     }
     */
 
-	public void printElement(T t) {
-		System.out.println("Signature is: printElement(T)");
-	}
+   public void printElement(T t) {
+      System.out.println("Signature is: printElement(T)");
+   }
 
     /*
     // Uncommenting this method will lead to a compilation error: java: name clash: printElement(java.io.Serializable) and printElement(T) have the same erasure
@@ -58,9 +58,9 @@ public class OverloadingErrors<T extends Serializable> {
     }
     */
 
-	public void print(Object... parameter) {
-		System.out.println("Signature is: print(Object...)");
-	}
+   public void print(Object... parameter) {
+      System.out.println("Signature is: print(Object...)");
+   }
 
     /*
     // Uncommenting this method will lead to a compilation error: java cannot declare both sum(Object...) and sum(Object[])

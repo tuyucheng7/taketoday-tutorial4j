@@ -17,27 +17,27 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookstoreController {
 
-	@Autowired
-	private BookRepository repository;
+   @Autowired
+   private BookRepository repository;
 
-	@GetMapping(value = "/hello")
-	public String sayHello() {
-		return "Hello";
-	}
+   @GetMapping(value = "/hello")
+   public String sayHello() {
+      return "Hello";
+   }
 
-	@GetMapping("/all")
-	public List<Book> findAll() {
-		return repository.findAll();
-	}
+   @GetMapping("/all")
+   public List<Book> findAll() {
+      return repository.findAll();
+   }
 
-	@PostMapping("/create")
-	public Book newBook(@RequestBody Book newBook) {
-		return repository.save(newBook);
-	}
+   @PostMapping("/create")
+   public Book newBook(@RequestBody Book newBook) {
+      return repository.save(newBook);
+   }
 
-	@GetMapping("/get/{id}")
-	public Book findOne(@PathVariable Long id) throws BookstoreException {
-		return repository.findById(id)
-			.orElseThrow(BookstoreException::new);
-	}
+   @GetMapping("/get/{id}")
+   public Book findOne(@PathVariable Long id) throws BookstoreException {
+      return repository.findById(id)
+            .orElseThrow(BookstoreException::new);
+   }
 }

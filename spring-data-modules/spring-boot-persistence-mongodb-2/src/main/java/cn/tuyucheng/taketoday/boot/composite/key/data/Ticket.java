@@ -5,33 +5,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Ticket {
-	@Id
-	private TicketId id;
+   @Id
+   private TicketId id;
 
-	private String event;
+   private String event;
 
-	public Ticket() {
-	}
+   public Ticket() {
+   }
 
-	public Ticket(TicketId id, String event) {
-		super();
-		this.id = id;
-		this.event = event;
-	}
+   public Ticket(TicketId id, String event) {
+      super();
+      this.id = id;
+      this.event = event;
+   }
 
-	public TicketId getId() {
-		return id;
-	}
+   public TicketId getId() {
+      return id;
+   }
 
-	public void setId(TicketId id) {
-		this.id = id;
-	}
+   public void setId(TicketId id) {
+      this.id = id;
+   }
 
-	public String getEvent() {
-		return event;
-	}
+   public String getEvent() {
+      return event;
+   }
 
-	public void setEvent(String event) {
-		this.event = event;
-	}
+   public void setEvent(String event) {
+      this.event = event;
+   }
 }

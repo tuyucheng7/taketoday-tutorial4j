@@ -17,54 +17,54 @@ import java.util.HashMap;
 @Configuration
 @PropertySource({"classpath:persistence-multiple-db.properties"})
 @EnableJpaRepositories(
-		basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user",
-		entityManagerFactoryRef = "userEntityManager",
-		transactionManagerRef = "userTransactionManager"
+      basePackages = "cn.tuyucheng.taketoday.multipledb.dao.user",
+      entityManagerFactoryRef = "userEntityManager",
+      transactionManagerRef = "userTransactionManager"
 )
 @Profile("!tc")
 public class PersistenceUserConfiguration {
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	public PersistenceUserConfiguration() {
-		super();
-	}
+   public PersistenceUserConfiguration() {
+      super();
+   }
 
-	@Primary
-	@Bean
-	public LocalContainerEntityManagerFactoryBean userEntityManager() {
-		System.out.println("loading config");
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(userDataSource());
-		em.setPackagesToScan("cn.tuyucheng.taketoday.multipledb.model.user");
+   @Primary
+   @Bean
+   public LocalContainerEntityManagerFactoryBean userEntityManager() {
+      System.out.println("loading config");
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(userDataSource());
+      em.setPackagesToScan("cn.tuyucheng.taketoday.multipledb.model.user");
 
-		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		em.setJpaVendorAdapter(vendorAdapter);
-		final HashMap<String, Object> properties = new HashMap<>();
-		properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		em.setJpaPropertyMap(properties);
+      final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      em.setJpaVendorAdapter(vendorAdapter);
+      final HashMap<String, Object> properties = new HashMap<>();
+      properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+      properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+      em.setJpaPropertyMap(properties);
 
-		return em;
-	}
+      return em;
+   }
 
-	@Primary
-	@Bean
-	public DataSource userDataSource() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
-		dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("user.jdbc.url")));
-		dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
-		dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
+   @Primary
+   @Bean
+   public DataSource userDataSource() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName(Preconditions.checkNotNull(env.getProperty("jdbc.driverClassName")));
+      dataSource.setUrl(Preconditions.checkNotNull(env.getProperty("user.jdbc.url")));
+      dataSource.setUsername(Preconditions.checkNotNull(env.getProperty("jdbc.user")));
+      dataSource.setPassword(Preconditions.checkNotNull(env.getProperty("jdbc.pass")));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Primary
-	@Bean
-	public PlatformTransactionManager userTransactionManager() {
-		final JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(userEntityManager().getObject());
-		return transactionManager;
-	}
+   @Primary
+   @Bean
+   public PlatformTransactionManager userTransactionManager() {
+      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(userEntityManager().getObject());
+      return transactionManager;
+   }
 }

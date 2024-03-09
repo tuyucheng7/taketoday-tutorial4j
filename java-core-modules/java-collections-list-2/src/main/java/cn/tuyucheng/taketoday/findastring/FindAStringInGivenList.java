@@ -14,60 +14,60 @@ import java.util.stream.Collectors;
 public class FindAStringInGivenList {
 
 
-    public List<String> findUsingLoopWithRegex(String search, List<String> list) {
+   public List<String> findUsingLoopWithRegex(String search, List<String> list) {
 
-        List<String> matches = new ArrayList<String>();
+      List<String> matches = new ArrayList<String>();
 
-        String pattern = ".*" + search + ".*";
-        Pattern p = Pattern.compile(pattern);
+      String pattern = ".*" + search + ".*";
+      Pattern p = Pattern.compile(pattern);
 
-        for (String str : list) {
-            if (p.matcher(str).matches()) {
-                matches.add(str);
-            }
-        }
+      for (String str : list) {
+         if (p.matcher(str).matches()) {
+            matches.add(str);
+         }
+      }
 
-        return matches;
-    }
+      return matches;
+   }
 
 
-    public List<String> findUsingLoop(String search, List<String> list) {
+   public List<String> findUsingLoop(String search, List<String> list) {
 
-        List<String> matches = new ArrayList<String>();
+      List<String> matches = new ArrayList<String>();
 
-        for (String str : list) {
-            if (str.contains(search)) {
-                matches.add(str);
-            }
-        }
+      for (String str : list) {
+         if (str.contains(search)) {
+            matches.add(str);
+         }
+      }
 
-        return matches;
-    }
+      return matches;
+   }
 
-    public List<String> findUsingStream(String search, List<String> list) {
+   public List<String> findUsingStream(String search, List<String> list) {
 
-        List<String> matchingElements =
-              list.stream()
-                    .filter(str -> str.trim().contains(search))
-                    .collect(Collectors.toList());
+      List<String> matchingElements =
+            list.stream()
+                  .filter(str -> str.trim().contains(search))
+                  .collect(Collectors.toList());
 
-        return matchingElements;
-    }
+      return matchingElements;
+   }
 
-    public List<String> findUsingGuava(String search, List<String> list) {
-        Iterable<String> result = Iterables.filter(list, Predicates.containsPattern(search));
+   public List<String> findUsingGuava(String search, List<String> list) {
+      Iterable<String> result = Iterables.filter(list, Predicates.containsPattern(search));
 
-        return Lists.newArrayList(result.iterator());
-    }
+      return Lists.newArrayList(result.iterator());
+   }
 
-    public List<String> findUsingCommonsCollection(String search, List<String> list) {
-        Iterable<String> result = IterableUtils.filteredIterable(list, new org.apache.commons.collections4.Predicate<String>() {
-            public boolean evaluate(String listElement) {
-                return listElement.contains(search);
-            }
-        });
+   public List<String> findUsingCommonsCollection(String search, List<String> list) {
+      Iterable<String> result = IterableUtils.filteredIterable(list, new org.apache.commons.collections4.Predicate<String>() {
+         public boolean evaluate(String listElement) {
+            return listElement.contains(search);
+         }
+      });
 
-        return IteratorUtils.toList(result.iterator());
-    }
+      return IteratorUtils.toList(result.iterator());
+   }
 
 }

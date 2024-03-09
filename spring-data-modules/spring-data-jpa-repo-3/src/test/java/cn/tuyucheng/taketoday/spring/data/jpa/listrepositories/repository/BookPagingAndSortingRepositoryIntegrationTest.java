@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.spring.data.jpa.listrepositories.repository;
 
 import cn.tuyucheng.taketoday.spring.data.jpa.listrepositories.entity.Book;
-import cn.tuyucheng.taketoday.spring.data.jpa.listrepositories.repository.BookPagingAndSortingRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +13,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-public class BookPagingAndSortingRepositoryIntegrationTest {
+class BookPagingAndSortingRepositoryIntegrationTest {
 
    @Autowired
    private BookPagingAndSortingRepository bookPagingAndSortingRepository;
 
    @Test
-   public void givenDbContainsBooks_whenfindBooksByAuthor_thenReturnBooksByAuthor() {
+   void givenDbContainsBooks_whenfindBooksByAuthor_thenReturnBooksByAuthor() {
       Book book1 = new Book("Spring Data", "John Miller", "1234567890");
       Book book2 = new Book("Spring Data 2", "John Miller", "1234567891");
       Book book3 = new Book("Spring Data 3", "John Miller", "1234567892");

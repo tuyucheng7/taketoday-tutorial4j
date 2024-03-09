@@ -8,33 +8,34 @@ import java.util.concurrent.TransferQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Producer implements Runnable {
-	private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
-	private final TransferQueue<String> transferQueue;
-	private final String name;
-	final Integer numberOfMessagesToProduce;
-	final AtomicInteger numberOfProducedMessages = new AtomicInteger();
+   private static final Logger LOG = LoggerFactory.getLogger(Producer.class);
 
-	Producer(TransferQueue<String> transferQueue, String name, Integer numberOfMessagesToProduce) {
-		this.transferQueue = transferQueue;
-		this.name = name;
-		this.numberOfMessagesToProduce = numberOfMessagesToProduce;
-	}
+   private final TransferQueue<String> transferQueue;
+   private final String name;
+   final Integer numberOfMessagesToProduce;
+   final AtomicInteger numberOfProducedMessages = new AtomicInteger();
 
-	@Override
-	public void run() {
-		for (int i = 0; i < numberOfMessagesToProduce; i++) {
-			LOG.debug("Producer: " + name + " is waiting to transfer...");
-			try {
-				boolean added = transferQueue.tryTransfer("A" + i, 4000, TimeUnit.MILLISECONDS);
-				if (added) {
-					numberOfProducedMessages.incrementAndGet();
-					LOG.debug("Producer: " + name + " transferred element : A" + i);
-				} else {
-					LOG.debug("can not add an element due to the timeout");
-				}
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-		}
-	}
+   Producer(TransferQueue<String> transferQueue, String name, Integer numberOfMessagesToProduce) {
+      this.transferQueue = transferQueue;
+      this.name = name;
+      this.numberOfMessagesToProduce = numberOfMessagesToProduce;
+   }
+
+   @Override
+   public void run() {
+      for (int i = 0; i < numberOfMessagesToProduce; i++) {
+         try {
+            LOG.debug("Producer: " + name + " is waiting to transfer...");
+            boolean added = transferQueue.tryTransfer("A" + i, 4000, TimeUnit.MILLISECONDS);
+            if (added) {
+               numberOfProducedMessages.incrementAndGet();
+               LOG.debug("Producer: " + name + " transferred element: A" + i);
+            } else {
+               LOG.debug("can not add an element due to the timeout");
+            }
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      }
+   }
 }

@@ -12,103 +12,122 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-class RunnableVsThreadLiveTest {
+public class RunnableVsThreadLiveTest {
 
-	private static final Logger log = LoggerFactory.getLogger(RunnableVsThreadLiveTest.class);
+   private static Logger log =
+         LoggerFactory.getLogger(RunnableVsThreadLiveTest.class);
 
-	private static ExecutorService executorService;
+   private static ExecutorService executorService;
 
-	@BeforeAll
-	static void setup() {
-		executorService = Executors.newCachedThreadPool();
-	}
+   @BeforeAll
+   public static void setup() {
+      executorService = Executors.newCachedThreadPool();
+   }
 
-	@Test
-	void givenARunnable_whenRunIt_thenResult() throws Exception {
-		Thread thread = new Thread(new SimpleRunnable("SimpleRunnable executed using Thread"));
-		thread.start();
-		thread.join();
-	}
+   @Test
+   public void givenARunnable_whenRunIt_thenResult() throws Exception {
+      Thread thread = new Thread(new SimpleRunnable(
+            "SimpleRunnable executed using Thread"));
+      thread.start();
+      thread.join();
+   }
 
-	@Test
-	void givenARunnable_whenSubmitToES_thenResult() throws Exception {
-		executorService.submit(new SimpleRunnable(
-			"SimpleRunnable executed using ExecutorService")).get();
-	}
+   @Test
+   public void givenARunnable_whenSubmitToES_thenResult() throws Exception {
 
-	@Test
-	void givenARunnableLambda_whenSubmitToES_thenResult() throws Exception {
-		executorService.submit(() -> log.info("Lambda runnable executed!!!")).get();
-	}
+      executorService.submit(new SimpleRunnable(
+            "SimpleRunnable executed using ExecutorService")).get();
+   }
 
-	@Test
-	void givenAThread_whenRunIt_thenResult() throws Exception {
-		Thread thread = new SimpleThread("SimpleThread executed using Thread");
-		thread.start();
-		thread.join();
-	}
+   @Test
+   public void givenARunnableLambda_whenSubmitToES_thenResult()
+         throws Exception {
 
-	@Test
-	void givenAThread_whenSubmitToES_thenResult() throws Exception {
-		executorService.submit(new SimpleThread("SimpleThread executed using ExecutorService")).get();
-	}
+      executorService.submit(() ->
+            log.info("Lambda runnable executed!!!")).get();
+   }
 
-	@Test
-	void givenACallable_whenSubmitToES_thenResult() throws Exception {
-		Future<Integer> future = executorService.submit(new SimpleCallable());
-		log.info("Result from callable: {}", future.get());
-	}
+   @Test
+   public void givenAThread_whenRunIt_thenResult() throws Exception {
+      Thread thread = new SimpleThread(
+            "SimpleThread executed using Thread");
+      thread.start();
+      thread.join();
+   }
 
-	@Test
-	void givenACallableAsLambda_whenSubmitToES_thenResult() throws Exception {
-		Future<Integer> future = executorService.submit(() -> RandomUtils.nextInt(0, 100));
-		log.info("Result from callable: {}", future.get());
-	}
+   @Test
+   public void givenAThread_whenSubmitToES_thenResult() throws Exception {
 
-	@AfterAll
-	static void tearDown() {
-		if (executorService != null && !executorService.isShutdown()) {
-			executorService.shutdown();
-		}
-	}
+      executorService.submit(new SimpleThread(
+            "SimpleThread executed using ExecutorService")).get();
+   }
+
+   @Test
+   public void givenACallable_whenSubmitToES_thenResult() throws Exception {
+
+      Future<Integer> future = executorService.submit(
+            new SimpleCallable());
+      log.info("Result from callable: {}", future.get());
+   }
+
+   @Test
+   public void givenACallableAsLambda_whenSubmitToES_thenResult()
+         throws Exception {
+
+      Future<Integer> future = executorService.submit(() -> RandomUtils.nextInt(0, 100));
+
+      log.info("Result from callable: {}", future.get());
+   }
+
+   @AfterAll
+   public static void tearDown() {
+      if (executorService != null && !executorService.isShutdown()) {
+         executorService.shutdown();
+      }
+   }
 }
 
 class SimpleThread extends Thread {
 
-	private static final Logger log = LoggerFactory.getLogger(SimpleThread.class);
+   private static final Logger log =
+         LoggerFactory.getLogger(SimpleThread.class);
 
-	private final String message;
+   private String message;
 
-	SimpleThread(String message) {
-		this.message = message;
-	}
+   SimpleThread(String message) {
+      this.message = message;
+   }
 
-	@Override
-	public void run() {
-		log.info(message);
-	}
+   @Override
+   public void run() {
+      log.info(message);
+   }
 }
 
 class SimpleRunnable implements Runnable {
 
-	private static final Logger log = LoggerFactory.getLogger(SimpleRunnable.class);
+   private static final Logger log =
+         LoggerFactory.getLogger(SimpleRunnable.class);
 
-	private final String message;
+   private String message;
 
-	SimpleRunnable(String message) {
-		this.message = message;
-	}
+   SimpleRunnable(String message) {
+      this.message = message;
+   }
 
-	@Override
-	public void run() {
-		log.info(message);
-	}
+
+   @Override
+   public void run() {
+      log.info(message);
+   }
 }
 
 class SimpleCallable implements Callable<Integer> {
 
-	@Override
-	public Integer call() throws Exception {
-		return RandomUtils.nextInt(0, 100);
-	}
+   @Override
+   public Integer call() throws Exception {
+      return RandomUtils.nextInt(0, 100);
+   }
+
 }
+

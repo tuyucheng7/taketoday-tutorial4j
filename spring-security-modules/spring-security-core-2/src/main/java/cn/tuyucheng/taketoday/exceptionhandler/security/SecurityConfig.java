@@ -1,8 +1,10 @@
 package cn.tuyucheng.taketoday.exceptionhandler.security;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +20,6 @@ public class SecurityConfig {
 
    @Bean
    public UserDetailsService userDetailsService() {
-
       UserDetails user = User.withUsername("user")
             .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder()::encode)
             .password("password")
@@ -41,30 +42,23 @@ public class SecurityConfig {
 
    @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      http.csrf()
-            .disable()
-            .httpBasic()
-            .disable()
-            .authorizeRequests()
-            .antMatchers("/login")
-            .permitAll()
-            .antMatchers("/customError")
-            .permitAll()
-            .antMatchers("/access-denied")
-            .permitAll()
-            .antMatchers("/secured")
-            .hasRole("ADMIN")
-            .anyRequest()
-            .authenticated()
-            .and()
-            .formLogin()
-            .failureHandler(authenticationFailureHandler())
-            .successHandler(authenticationSuccessHandler())
-            .and()
-            .exceptionHandling()
-            .accessDeniedHandler(accessDeniedHandler())
-            .and()
-            .logout();
+      http.csrf(AbstractHttpConfigurer::disable)
+            .httpBasic(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(auth -> auth
+                  .requestMatchers("/login")
+                  .permitAll()
+                  .requestMatchers("/customError")
+                  .permitAll()
+                  .requestMatchers("/access-denied")
+                  .permitAll()
+                  .requestMatchers("/secured")
+                  .hasRole("ADMIN")
+                  .anyRequest()
+                  .authenticated())
+            .formLogin(form -> form.failureHandler(authenticationFailureHandler())
+                  .successHandler(authenticationSuccessHandler()))
+            .exceptionHandling(ex -> ex.accessDeniedHandler(accessDeniedHandler()))
+            .logout(Customizer.withDefaults());
       return http.build();
    }
 
@@ -82,5 +76,4 @@ public class SecurityConfig {
    public AccessDeniedHandler accessDeniedHandler() {
       return new CustomAccessDeniedHandler();
    }
-
 }

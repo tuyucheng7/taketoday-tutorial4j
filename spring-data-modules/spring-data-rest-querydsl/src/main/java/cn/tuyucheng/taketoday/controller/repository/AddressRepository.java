@@ -12,8 +12,8 @@ import org.springframework.data.querydsl.binding.SingleValueBinding;
 
 public interface AddressRepository extends JpaRepository<Address, Long>, QuerydslPredicateExecutor<Address>, QuerydslBinderCustomizer<QAddress> {
 
-	@Override
-	default void customize(final QuerydslBindings bindings, final QAddress root) {
-		bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::eq);
-	}
+   @Override
+   default void customize(final QuerydslBindings bindings, final QAddress root) {
+      bindings.bind(String.class).first((SingleValueBinding<StringPath, String>) StringExpression::eq);
+   }
 }

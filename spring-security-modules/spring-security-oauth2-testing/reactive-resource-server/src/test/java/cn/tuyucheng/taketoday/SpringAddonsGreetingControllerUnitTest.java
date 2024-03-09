@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday;
 
-import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
-import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
-import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 
-import static org.mockito.Mockito.*;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.GreetingController;
+import cn.tuyucheng.taketoday.ReactiveResourceServerApplication.MessageService;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.WithMockAuthentication;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.AuthenticationSource;
+import com.c4_soft.springaddons.security.oauth2.test.annotations.parameterized.ParameterizedAuthentication;
+
+import reactor.core.publisher.Mono;
 
 @WebFluxTest(controllers = GreetingController.class, properties = {"server.ssl.enabled=false"})
 class SpringAddonsGreetingControllerUnitTest {
@@ -35,7 +39,7 @@ class SpringAddonsGreetingControllerUnitTest {
 
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetGreet_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetGreet_thenUnauthorized() {
       api.get().uri("/greet").exchange().expectStatus().isUnauthorized();
    }
 
@@ -43,7 +47,7 @@ class SpringAddonsGreetingControllerUnitTest {
    @AuthenticationSource({
          @WithMockAuthentication(authorities = {"admin", "ROLE_AUTHORIZED_PERSONNEL"}, name = "ch4mpy"),
          @WithMockAuthentication(authorities = {"uncle", "PIRATE"}, name = "tonton-pirate")})
-   void givenUserIsAuthenticated_whenGetGreet_thenOk(@ParameterizedAuthentication Authentication auth) throws Exception {
+   void givenUserIsAuthenticated_whenGetGreet_thenOk(@ParameterizedAuthentication Authentication auth) {
       final var greeting = "Whatever the service returns";
       when(messageService.greet()).thenReturn(Mono.just(greeting));
 
@@ -63,13 +67,13 @@ class SpringAddonsGreetingControllerUnitTest {
 
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetSecuredRoute_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetSecuredRoute_thenUnauthorized() {
       api.get().uri("/secured-route").exchange().expectStatus().isUnauthorized();
    }
 
    @Test
    @WithMockAuthentication("ROLE_AUTHORIZED_PERSONNEL")
-   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenOk() throws Exception {
+   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenOk() {
       final var secret = "Secret!";
       when(messageService.getSecret()).thenReturn(Mono.just(secret));
 
@@ -78,7 +82,7 @@ class SpringAddonsGreetingControllerUnitTest {
 
    @Test
    @WithMockAuthentication("admin")
-   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenForbidden() throws Exception {
+   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredRoute_thenForbidden() {
       api.get().uri("/secured-route").exchange().expectStatus().isForbidden();
    }
 
@@ -92,13 +96,13 @@ class SpringAddonsGreetingControllerUnitTest {
 
    @Test
    @WithAnonymousUser
-   void givenRequestIsAnonymous_whenGetSecuredMethod_thenUnauthorized() throws Exception {
+   void givenRequestIsAnonymous_whenGetSecuredMethod_thenUnauthorized() {
       api.get().uri("/secured-method").exchange().expectStatus().isUnauthorized();
    }
 
    @Test
    @WithMockAuthentication("ROLE_AUTHORIZED_PERSONNEL")
-   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenOk() throws Exception {
+   void givenUserIsGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenOk() {
       final var secret = "Secret!";
       when(messageService.getSecret()).thenReturn(Mono.just(secret));
 
@@ -107,7 +111,7 @@ class SpringAddonsGreetingControllerUnitTest {
 
    @Test
    @WithMockAuthentication("admin")
-   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenForbidden() throws Exception {
+   void givenUserIsNotGrantedWithRoleAuthorizedPersonnel_whenGetSecuredMethod_thenForbidden() {
       api.get().uri("/secured-method").exchange().expectStatus().isForbidden();
    }
 }

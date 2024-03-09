@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -22,52 +21,52 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest(classes = LargeResultSetApplication.class)
 class LargeResultSetUnitTest {
 
-	@Autowired
-	private StudentRepository repository;
+   @Autowired
+   private StudentRepository repository;
 
-	@Autowired
-	private StudentService studentService;
+   @Autowired
+   private StudentService studentService;
 
-	@MockBean
-	private EmailService mockEmailService;
+   @MockBean
+   private EmailService mockEmailService;
 
-	@AfterEach
-	public void afterEach() {
-		repository.deleteAll();
-	}
+   @AfterEach
+   public void afterEach() {
+      repository.deleteAll();
+   }
 
-	@Test
-	void givenTwelveRowsMatchingCriteria_whenRetrievingDataSliceBySlice_allDataIsProcessed() {
-		saveStudents(12);
+   @Test
+   void givenTwelveRowsMatchingCriteria_whenRetrievingDataSliceBySlice_allDataIsProcessed() {
+      saveStudents(12);
 
-		studentService.processStudentsByFirstName("john");
+      studentService.processStudentsByFirstName("john");
 
-		verify(mockEmailService, times(12)).sendEmailToStudent(any());
-	}
+      verify(mockEmailService, times(12)).sendEmailToStudent(any());
+   }
 
-	@Test
-	void givenTwelveRowsMatchingCriteria_whenRetrievingDataPageByPage_allDataIsProcessed() {
-		saveStudents(12);
+   @Test
+   void givenTwelveRowsMatchingCriteria_whenRetrievingDataPageByPage_allDataIsProcessed() {
+      saveStudents(12);
 
-		studentService.processStudentsByLastName("doe");
+      studentService.processStudentsByLastName("doe");
 
-		verify(mockEmailService, times(12)).sendEmailToStudent(any());
-	}
+      verify(mockEmailService, times(12)).sendEmailToStudent(any());
+   }
 
-	@Test
-	void processStudentsByFirstNameUsingStreams() {
-		saveStudents(12);
+   @Test
+   void processStudentsByFirstNameUsingStreams() {
+      saveStudents(12);
 
-		studentService.processStudentsByFirstNameUsingStreams("john");
+      studentService.processStudentsByFirstNameUsingStreams("john");
 
-		verify(mockEmailService, times(12)).sendEmailToStudent(any());
-	}
+      verify(mockEmailService, times(12)).sendEmailToStudent(any());
+   }
 
-	private void saveStudents(int count) {
-		List<Student> students = IntStream.range(0, count)
-				.boxed()
-				.map(i -> new Student("john", "doe"))
-				.collect(Collectors.toList());
-		repository.saveAll(students);
-	}
+   private void saveStudents(int count) {
+      List<Student> students = IntStream.range(0, count)
+            .boxed()
+            .map(i -> new Student("john", "doe"))
+            .toList();
+      repository.saveAll(students);
+   }
 }

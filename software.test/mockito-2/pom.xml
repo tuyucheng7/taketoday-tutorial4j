@@ -11,13 +11,6 @@
 
    <artifactId>mockito-2</artifactId>
 
-   <properties>
-      <maven.compiler.source>8</maven.compiler.source>
-      <maven.compiler.target>8</maven.compiler.target>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <mockito-inline.version>4.8.1</mockito-inline.version>
-   </properties>
-
    <dependencies>
       <dependency>
          <groupId>org.mockito</groupId>
@@ -32,4 +25,9 @@
          <scope>test</scope>
       </dependency>
    </dependencies>
+
+   <properties>
+      <mockito-inline.version>4.8.1</mockito-inline.version>
+      <mockito.version>5.9.0</mockito.version>
+   </properties>
 </project>

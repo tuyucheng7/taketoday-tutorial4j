@@ -15,34 +15,34 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class JavaSecurityPemUtils {
 
-	public static RSAPrivateKey readPKCS8PrivateKey(File file) throws GeneralSecurityException, IOException {
-		String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
+   public static RSAPrivateKey readPKCS8PrivateKey(File file) throws GeneralSecurityException, IOException {
+      String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
 
-		String privateKeyPEM = key
-			.replace("-----BEGIN PRIVATE KEY-----", "")
-			.replaceAll(System.lineSeparator(), "")
-			.replace("-----END PRIVATE KEY-----", "");
+      String privateKeyPEM = key
+            .replace("-----BEGIN PRIVATE KEY-----", "")
+            .replaceAll(System.lineSeparator(), "")
+            .replace("-----END PRIVATE KEY-----", "");
 
-		byte[] encoded = Base64.decodeBase64(privateKeyPEM);
+      byte[] encoded = Base64.decodeBase64(privateKeyPEM);
 
-		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-		PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
-		return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
-	}
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encoded);
+      return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
+   }
 
-	public static RSAPublicKey readX509PublicKey(File file) throws GeneralSecurityException, IOException {
-		String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
+   public static RSAPublicKey readX509PublicKey(File file) throws GeneralSecurityException, IOException {
+      String key = new String(Files.readAllBytes(file.toPath()), Charset.defaultCharset());
 
-		String publicKeyPEM = key
-			.replace("-----BEGIN PUBLIC KEY-----", "")
-			.replaceAll(System.lineSeparator(), "")
-			.replace("-----END PUBLIC KEY-----", "");
+      String publicKeyPEM = key
+            .replace("-----BEGIN PUBLIC KEY-----", "")
+            .replaceAll(System.lineSeparator(), "")
+            .replace("-----END PUBLIC KEY-----", "");
 
-		byte[] encoded = Base64.decodeBase64(publicKeyPEM);
+      byte[] encoded = Base64.decodeBase64(publicKeyPEM);
 
-		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-		X509EncodedKeySpec keySpec = new X509EncodedKeySpec(encoded);
-		return (RSAPublicKey) keyFactory.generatePublic(keySpec);
-	}
+      KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+      X509EncodedKeySpec keySpec = new X509EncodedKeySpec(encoded);
+      return (RSAPublicKey) keyFactory.generatePublic(keySpec);
+   }
 
 }

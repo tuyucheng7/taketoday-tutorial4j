@@ -5,54 +5,54 @@
  */
 package cn.tuyucheng.taketoday.enums.values;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * @author chris
  */
 public class Element3UnitTest {
 
-	public Element3UnitTest() {
-	}
+   public Element3UnitTest() {
+   }
 
-	@BeforeClass
-	public static void setUpClass() {
-	}
+   @BeforeAll
+   public static void setUpClass() {
+   }
 
-	@AfterClass
-	public static void tearDownClass() {
-	}
+   @AfterAll
+   public static void tearDownClass() {
+   }
 
-	@Before
-	public void setUp() {
-	}
+   @BeforeEach
+   public void setUp() {
+   }
 
-	@After
-	public void tearDown() {
-	}
+   @AfterEach
+   public void tearDown() {
+   }
 
-	@Test
-	public void whenLocatebyLabel_thenReturnCorrectValue() {
-		for (Element3 e3 : Element3.values()) {
-			assertSame(e3, Element3.valueOfLabel(e3.label));
-		}
-	}
+   @Test
+   public void whenLocatebyLabel_thenReturnCorrectValue() {
+      for (Element3 e3 : Element3.values()) {
+         assertSame(e3, Element3.valueOfLabel(e3.label));
+      }
+   }
 
-	/**
-	 * Test of toString method, of class Element3.
-	 */
-	@Test
-	public void whenCallingToString_thenReturnLabel() {
-		for (Element3 e3 : Element3.values()) {
-			assertEquals(e3.label, e3.toString());
-		}
-	}
+   /**
+    * Test of toString method, of class Element3.
+    */
+   @Test
+   public void whenCallingToString_thenReturnLabel() {
+      for (Element3 e3 : Element3.values()) {
+         assertEquals(e3.label, e3.toString());
+      }
+   }
 
 }

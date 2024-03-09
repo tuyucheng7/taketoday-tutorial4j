@@ -29,6 +29,7 @@ public class ProducerAppWithSpinLock {
 
 
    public static void run(String[] args) throws Exception {
+
       MessageDigest digest = MessageDigest.getInstance("SHA1");
       digest.digest(new byte[256]);
       byte[] dummy = digest.digest();
@@ -51,6 +52,7 @@ public class ProducerAppWithSpinLock {
       System.out.println("Starting producer iterations...");
       SpinLock lock = new SpinLock(addr);
       while (System.currentTimeMillis() - start < 30000) {
+
          if (!lock.tryLock(5000)) {
             throw new RuntimeException("Unable to acquire lock");
          }
@@ -74,6 +76,7 @@ public class ProducerAppWithSpinLock {
       }
 
       System.out.printf("%d iterations run\n", iterations);
+
    }
 
    private static long getBufferAddress(MappedByteBuffer shm) {
@@ -92,6 +95,7 @@ public class ProducerAppWithSpinLock {
    }
 
    private static MappedByteBuffer createSharedMemory(String path, long size) {
+
       try (FileChannel fc = (FileChannel) Files.newByteChannel(new File(path).toPath(),
             EnumSet.of(
                   StandardOpenOption.CREATE,
@@ -104,5 +108,7 @@ public class ProducerAppWithSpinLock {
       } catch (IOException ioe) {
          throw new RuntimeException(ioe);
       }
+
    }
+
 }

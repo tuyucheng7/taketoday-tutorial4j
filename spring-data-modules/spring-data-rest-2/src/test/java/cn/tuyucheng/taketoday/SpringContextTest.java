@@ -11,7 +11,7 @@ import cn.tuyucheng.taketoday.books.SpringDataRestApplication;
 @SpringBootTest(classes = SpringDataRestApplication.class)
 class SpringContextTest {
 
-	@Test
-	void whenSpringContextIsBootstrapped_thenNoExceptions() {
-	}
+   @Test
+   void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

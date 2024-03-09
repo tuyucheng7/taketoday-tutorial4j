@@ -5,8 +5,9 @@ import cn.tuyucheng.taketoday.rate.spi.ExchangeRateProvider;
 
 public class YahooFinanceExchangeRateProvider implements ExchangeRateProvider {
 
-	@Override
-	public QuoteManager create() {
-		return new YahooQuoteManagerImpl();
-	}
+   @Override
+   public QuoteManager create() {
+      return new YahooQuoteManagerImpl();
+   }
+
 }

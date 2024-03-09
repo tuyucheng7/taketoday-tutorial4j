@@ -8,9 +8,10 @@ package cn.tuyucheng.taketoday.snippettag;
  * }
  *}
  */
-public class GreetingsInlineSnippet {
 
+public class GreetingsInlineSnippet {
    public void helloTuyucheng() {
       System.out.println("Hello From Team Tuyucheng");
    }
+
 }

@@ -1,24 +1,21 @@
 package cn.tuyucheng.taketoday.boot.daos;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.time.LocalDate;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
-
 import cn.tuyucheng.taketoday.boot.Application;
 import cn.tuyucheng.taketoday.boot.daos.user.UserRepository;
 import cn.tuyucheng.taketoday.boot.domain.User;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ActiveProfiles("tc-jdbc")
 @SpringBootTest(classes = Application.class)
-public class UserRepositoryTCJdbcLiveTest {
+class UserRepositoryTCJdbcLiveTest {
 
    final String USER_EMAIL = "email@example.com";
    final String USER_EMAIL2 = "email2@example.com";
@@ -32,7 +29,7 @@ public class UserRepositoryTCJdbcLiveTest {
 
    @Test
    @Transactional
-   public void givenUsersInDB_WhenUpdateStatusForNameModifyingQueryAnnotationNative_ThenModifyMatchingUsers() {
+   void givenUsersInDB_WhenUpdateStatusForNameModifyingQueryAnnotationNative_ThenModifyMatchingUsers() {
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE1", LocalDate.now(), USER_EMAIL2, ACTIVE_STATUS));
       userRepository.save(new User("SAMPLE", LocalDate.now(), USER_EMAIL3, ACTIVE_STATUS));

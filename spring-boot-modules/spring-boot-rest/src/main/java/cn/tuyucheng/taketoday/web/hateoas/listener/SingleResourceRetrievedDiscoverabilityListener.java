@@ -4,11 +4,10 @@ import cn.tuyucheng.taketoday.web.hateoas.event.SingleResourceRetrievedEvent;
 import cn.tuyucheng.taketoday.web.util.LinkUtil;
 import com.google.common.base.Preconditions;
 import com.google.common.net.HttpHeaders;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import javax.servlet.http.HttpServletResponse;
 
 @Component
 class SingleResourceRetrievedDiscoverabilityListener implements ApplicationListener<SingleResourceRetrievedEvent> {
@@ -29,5 +28,4 @@ class SingleResourceRetrievedDiscoverabilityListener implements ApplicationListe
       final String linkHeaderValue = LinkUtil.createLinkHeader(uriForResourceCreation, "collection");
       response.addHeader(HttpHeaders.LINK, linkHeaderValue);
    }
-
 }

@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.examples.r2dbc;
 
 import io.r2dbc.spi.ConnectionFactory;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
@@ -18,9 +18,9 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class R2dbcExampleApplicationIntegrationTest {
+class R2dbcExampleApplicationIntegrationTest {
 
    @Autowired
    private WebTestClient webTestClient;
@@ -28,8 +28,8 @@ public class R2dbcExampleApplicationIntegrationTest {
    @Autowired
    ConnectionFactory cf;
 
-   @Before
-   public void initDatabase() {
+   @BeforeEach
+   void initDatabase() {
       Flux.from(cf.create())
             .flatMap(c ->
                   c.createBatch()
@@ -44,7 +44,7 @@ public class R2dbcExampleApplicationIntegrationTest {
    }
 
    @Test
-   public void givenExistingAccountId_whenGetAccount_thenReturnExistingAccountInfo() {
+   void givenExistingAccountId_whenGetAccount_thenReturnExistingAccountInfo() {
       webTestClient
             .get()
             .uri("/accounts/1")
@@ -57,7 +57,7 @@ public class R2dbcExampleApplicationIntegrationTest {
    }
 
    @Test
-   public void givenDatabaseHasSomeAccounts_whenGetAccount_thenReturnExistingAccounts() {
+   void givenDatabaseHasSomeAccounts_whenGetAccount_thenReturnExistingAccounts() {
       webTestClient
             .get()
             .uri("/accounts")
@@ -71,7 +71,7 @@ public class R2dbcExampleApplicationIntegrationTest {
 
 
    @Test
-   public void givenNewAccountData_whenPostAccount_thenReturnNewAccountInfo() {
+   void givenNewAccountData_whenPostAccount_thenReturnNewAccountInfo() {
       webTestClient
             .post()
             .uri("/accounts")

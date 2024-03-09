@@ -24,4 +24,5 @@ public class CustomCompletableFuture<T> extends CompletableFuture<T> {
    public Executor defaultExecutor() {
       return executor;
    }
+
 }

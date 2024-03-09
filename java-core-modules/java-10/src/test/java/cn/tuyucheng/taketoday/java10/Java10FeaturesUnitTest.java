@@ -8,58 +8,56 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java10FeaturesUnitTest {
+public class Java10FeaturesUnitTest {
 
-	private List<Integer> someIntList;
+   private List<Integer> someIntList;
 
-	@BeforeEach
-	void setup() {
-		someIntList = new ArrayList<>();
+   @BeforeEach
+   public void setup() {
+      someIntList = new ArrayList<>();
 
-		someIntList.add(1);
-		someIntList.add(2);
-		someIntList.add(3);
-	}
+      someIntList.add(1);
+      someIntList.add(2);
+      someIntList.add(3);
+   }
 
-	@Test
-	void whenVarInitWithString_thenGetStringTypeVar() {
-		var message = "Hello, Java 10";
-		var hello = "Spring";
-		System.out.println(hello);
-		assertTrue(message instanceof String);
-	}
+   @Test
+   public void whenVarInitWithString_thenGetStringTypeVar() {
+      var message = "Hello, Java 10";
+      assertTrue(message instanceof String);
+   }
 
-	@Test
-	void whenVarInitWithAnonymous_thenGetAnonymousType() {
-		var obj = new Object() {
-		};
-		assertNotEquals(obj.getClass(), Object.class);
-	}
+   @Test
+   public void whenVarInitWithAnonymous_thenGetAnonymousType() {
+      var obj = new Object() {
+      };
+      assertFalse(obj.getClass().equals(Object.class));
+   }
 
-	@Test
-	void whenModifyCopyOfList_thenThrowsException() {
-		List<Integer> copyList = List.copyOf(someIntList);
-		assertThrows(UnsupportedOperationException.class, () -> copyList.add(4));
-	}
+   @Test
+   public void whenModifyCopyOfList_thenThrowsException() {
+      List<Integer> copyList = List.copyOf(someIntList);
+      assertThrows(UnsupportedOperationException.class, () -> copyList.add(4));
+   }
 
-	@Test
-	void whenModifyToUnmodifiableList_thenThrowsException() {
-		List<Integer> evenList = someIntList.stream()
-			.filter(i -> i % 2 == 0)
-			.collect(Collectors.toUnmodifiableList());
-		assertThrows(UnsupportedOperationException.class, () -> evenList.add(4));
-	}
+   @Test
+   public void whenModifyToUnmodifiableList_thenThrowsException() {
+      List<Integer> evenList = someIntList.stream()
+            .filter(i -> i % 2 == 0)
+            .collect(Collectors.toUnmodifiableList());
+      assertThrows(UnsupportedOperationException.class, () -> evenList.add(4));
+   }
 
-	@Test
-	void whenListContainsInteger_OrElseThrowReturnsInteger() {
-		Integer firstEven = someIntList.stream()
-			.filter(i -> i % 2 == 0)
-			.findFirst()
-			.orElseThrow();
-		is(firstEven).equals(2);
-	}
+   @Test
+   public void whenListContainsInteger_OrElseThrowReturnsInteger() {
+      Integer firstEven = someIntList.stream()
+            .filter(i -> i % 2 == 0)
+            .findFirst()
+            .orElseThrow();
+      is(firstEven).equals(Integer.valueOf(2));
+   }
 }

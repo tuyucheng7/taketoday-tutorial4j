@@ -21,50 +21,50 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 10)
 public class SetBenchMark {
 
-    @State(Scope.Thread)
-    public static class MyState {
+   @State(Scope.Thread)
+   public static class MyState {
 
-        // Set<Employee> employeeSet = new HashSet<>();
-        LinkedHashSet<Employee> employeeSet = new LinkedHashSet<>();
-        // ConcurrentSkipListSet<Employee> employeeSet = new ConcurrentSkipListSet <>();
+      // Set<Employee> employeeSet = new HashSet<>();
+      LinkedHashSet<Employee> employeeSet = new LinkedHashSet<>();
+      // ConcurrentSkipListSet<Employee> employeeSet = new ConcurrentSkipListSet <>();
 
-        // TreeSet
+      // TreeSet 
 
-        long iterations = 1000;
-        Employee employee = new Employee(100L, "Harry");
+      long iterations = 1000;
+      Employee employee = new Employee(100L, "Harry");
 
-        @Setup(Level.Trial)
-        public void setUp() {
-            for (long i = 0; i < iterations; i++) {
-                employeeSet.add(new Employee(i, "John"));
-            }
+      @Setup(Level.Trial)
+      public void setUp() {
+         for (long i = 0; i < iterations; i++) {
+            employeeSet.add(new Employee(i, "John"));
+         }
 
-            // employeeSet.add(employee);
-        }
-    }
+         // employeeSet.add(employee);
+      }
+   }
 
-    @Benchmark
-    public boolean testAdd(SetBenchMark.MyState state) {
-        return state.employeeSet.add(state.employee);
-    }
+   @Benchmark
+   public boolean testAdd(SetBenchMark.MyState state) {
+      return state.employeeSet.add(state.employee);
+   }
 
-    @Benchmark
-    public Boolean testContains(SetBenchMark.MyState state) {
-        return state.employeeSet.contains(state.employee);
-    }
+   @Benchmark
+   public Boolean testContains(SetBenchMark.MyState state) {
+      return state.employeeSet.contains(state.employee);
+   }
 
-    @Benchmark
-    public boolean testRemove(SetBenchMark.MyState state) {
-        return state.employeeSet.remove(state.employee);
-    }
+   @Benchmark
+   public boolean testRemove(SetBenchMark.MyState state) {
+      return state.employeeSet.remove(state.employee);
+   }
 
 
-    public static void main(String[] args) throws Exception {
-        Options options = new OptionsBuilder()
-              .include(SetBenchMark.class.getSimpleName()).threads(1)
-              .forks(1).shouldFailOnError(true)
-              .shouldDoGC(true)
-              .jvmArgs("-server").build();
-        new Runner(options).run();
-    }
+   public static void main(String[] args) throws Exception {
+      Options options = new OptionsBuilder()
+            .include(SetBenchMark.class.getSimpleName()).threads(1)
+            .forks(1).shouldFailOnError(true)
+            .shouldDoGC(true)
+            .jvmArgs("-server").build();
+      new Runner(options).run();
+   }
 }

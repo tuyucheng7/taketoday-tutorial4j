@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.enums.extendenum;
 
 public interface StringOperation {
-	String getDescription();
+   String getDescription();
 
-	String apply(String input);
+   String apply(String input);
 }

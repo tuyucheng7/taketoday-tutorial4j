@@ -9,32 +9,32 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class NullSafeCollectionStreamsUsingJava8OptionalContainerUnitTest {
+public class NullSafeCollectionStreamsUsingJava8OptionalContainerUnitTest {
 
-	private final NullSafeCollectionStreamsUsingJava8OptionalContainer instance = new NullSafeCollectionStreamsUsingJava8OptionalContainer();
+   private final NullSafeCollectionStreamsUsingJava8OptionalContainer instance = new NullSafeCollectionStreamsUsingJava8OptionalContainer();
 
-	@Test
-	void whenCollectionIsNull_thenExpectAnEmptyStream() {
-		Collection<String> collection = null;
-		Stream<String> expResult = Stream.empty();
-		Stream<String> result = instance.collectionAsStream(collection);
+   @Test
+   public void whenCollectionIsNull_thenExpectAnEmptyStream() {
+      Collection<String> collection = null;
+      Stream<String> expResult = Stream.empty();
+      Stream<String> result = instance.collectionAsStream(collection);
+      assertStreamEquals(expResult, result);
 
-		assertStreamEquals(expResult, result);
-	}
+   }
 
-	@Test
-	void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
-		Collection<String> collection = Arrays.asList("a", "b", "c");
-		Stream<String> expResult = Arrays.stream(new String[]{"a", "b", "c"});
-		Stream<String> result = instance.collectionAsStream(collection);
+   @Test
+   public void whenCollectionHasElements_thenExpectAStreamOfExactlyTheSameElements() {
 
-		assertStreamEquals(expResult, result);
-	}
+      Collection<String> collection = Arrays.asList("a", "b", "c");
+      Stream<String> expResult = Arrays.stream(new String[]{"a", "b", "c"});
+      Stream<String> result = instance.collectionAsStream(collection);
+      assertStreamEquals(expResult, result);
+   }
 
-	private static void assertStreamEquals(Stream<?> s1, Stream<?> s2) {
-		Iterator<?> iter1 = s1.iterator(), iter2 = s2.iterator();
-		while (iter1.hasNext() && iter2.hasNext())
-			assertEquals(iter1.next(), iter2.next());
-		assert !iter1.hasNext() && !iter2.hasNext();
-	}
+   private static void assertStreamEquals(Stream<?> s1, Stream<?> s2) {
+      Iterator<?> iter1 = s1.iterator(), iter2 = s2.iterator();
+      while (iter1.hasNext() && iter2.hasNext())
+         assertEquals(iter1.next(), iter2.next());
+      assert !iter1.hasNext() && !iter2.hasNext();
+   }
 }

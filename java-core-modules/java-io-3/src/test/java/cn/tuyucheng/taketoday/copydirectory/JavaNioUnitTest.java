@@ -11,49 +11,49 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JavaNioUnitTest {
 
-	private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory2";
-	private final String subDirectoryName = "/childDirectory";
-	private final String fileName = "/file.txt";
-	private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory2";
+   private final String sourceDirectoryLocation = "src/test/resources/sourceDirectory2";
+   private final String subDirectoryName = "/childDirectory";
+   private final String fileName = "/file.txt";
+   private final String destinationDirectoryLocation = "src/test/resources/destinationDirectory2";
 
-	@BeforeEach
-	public void createDirectoryWithSubdirectoryAndFile() throws IOException {
-		Files.createDirectories(Paths.get(sourceDirectoryLocation));
-		Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
-		Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
-	}
+   @BeforeEach
+   public void createDirectoryWithSubdirectoryAndFile() throws IOException {
+      Files.createDirectories(Paths.get(sourceDirectoryLocation));
+      Files.createDirectories(Paths.get(sourceDirectoryLocation + subDirectoryName));
+      Files.createFile(Paths.get(sourceDirectoryLocation + subDirectoryName + fileName));
+   }
 
-	@Test
-	public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
-		JavaNio.copyDirectory(sourceDirectoryLocation, destinationDirectoryLocation);
+   @Test
+   public void whenSourceDirectoryExists_thenDirectoryIsFullyCopied() throws IOException {
+      JavaNio.copyDirectory(sourceDirectoryLocation, destinationDirectoryLocation);
 
-		assertTrue(new File(destinationDirectoryLocation).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
-		assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
-	}
+      assertTrue(new File(destinationDirectoryLocation).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName).exists());
+      assertTrue(new File(destinationDirectoryLocation + subDirectoryName + fileName).exists());
+   }
 
-	@Test
-	public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() {
-		assertThrows(IOException.class, () -> JavaNio.copyDirectory("nonExistingDirectory", destinationDirectoryLocation));
-	}
+   @Test
+   public void whenSourceDirectoryDoesNotExist_thenExceptionIsThrown() {
+      assertThrows(IOException.class, () -> JavaNio.copyDirectory("nonExistingDirectory", destinationDirectoryLocation));
+   }
 
-	@AfterEach
-	public void cleanUp() throws IOException {
-		Files.walk(Paths.get(sourceDirectoryLocation))
-			.sorted(Comparator.reverseOrder())
-			.map(Path::toFile)
-			.forEach(File::delete);
-		if (new File(destinationDirectoryLocation).exists()) {
-			Files.walk(Paths.get(destinationDirectoryLocation))
-				.sorted(Comparator.reverseOrder())
-				.map(Path::toFile)
-				.forEach(File::delete);
-		}
-	}
+   @AfterEach
+   public void cleanUp() throws IOException {
+      Files.walk(Paths.get(sourceDirectoryLocation))
+            .sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .forEach(File::delete);
+      if (new File(destinationDirectoryLocation).exists()) {
+         Files.walk(Paths.get(destinationDirectoryLocation))
+               .sorted(Comparator.reverseOrder())
+               .map(Path::toFile)
+               .forEach(File::delete);
+      }
+   }
 
 }

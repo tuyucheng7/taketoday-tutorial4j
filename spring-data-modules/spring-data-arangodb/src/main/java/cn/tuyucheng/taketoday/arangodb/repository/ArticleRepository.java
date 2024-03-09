@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends ArangoRepository<Article, String> {
 
-    Iterable<Article> findByAuthor(String author);
+   Iterable<Article> findByAuthor(String author);
 
-    @Query("FOR a IN articles FILTER a.author == @author SORT a.publishDate ASC RETURN a")
-    Iterable<Article> getByAuthor(@Param("author") String author);
+   @Query("FOR a IN articles FILTER a.author == @author SORT a.publishDate ASC RETURN a")
+   Iterable<Article> getByAuthor(@Param("author") String author);
 }

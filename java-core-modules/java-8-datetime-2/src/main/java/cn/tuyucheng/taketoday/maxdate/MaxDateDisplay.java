@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.maxdate;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MaxDateDisplay {
    public String getMaxDateValue() {
@@ -15,3 +15,4 @@ public class MaxDateDisplay {
       System.out.println(display.getMaxDateValue());
    }
 }
+

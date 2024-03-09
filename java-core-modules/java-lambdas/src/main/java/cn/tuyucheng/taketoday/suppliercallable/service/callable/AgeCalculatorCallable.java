@@ -6,15 +6,15 @@ import java.util.concurrent.Callable;
 
 public class AgeCalculatorCallable implements Callable<Integer> {
 
-    private final LocalDate birthDate;
+   private final LocalDate birthDate;
 
-    @Override
-    public Integer call() throws Exception {
-        return Period.between(birthDate, LocalDate.now())
-          .getYears();
-    }
+   @Override
+   public Integer call() throws Exception {
+      return Period.between(birthDate, LocalDate.now())
+            .getYears();
+   }
 
-    public AgeCalculatorCallable(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+   public AgeCalculatorCallable(LocalDate birthDate) {
+      this.birthDate = birthDate;
+   }
 }

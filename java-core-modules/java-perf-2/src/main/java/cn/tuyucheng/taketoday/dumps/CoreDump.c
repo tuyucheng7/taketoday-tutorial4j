@@ -12,3 +12,4 @@ JNIEXPORT void JNICALL Java_CoreDump_core (JNIEnv *env, jobject obj) {
 
 void main() {
 }
+

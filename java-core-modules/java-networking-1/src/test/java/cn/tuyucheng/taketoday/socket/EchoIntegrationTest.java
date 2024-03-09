@@ -1,21 +1,20 @@
 package cn.tuyucheng.taketoday.socket;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.concurrent.Executors;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EchoIntegrationTest {
    private static int port;
 
-   @BeforeClass
+   @BeforeAll
    public static void start() throws InterruptedException, IOException {
 
       // Take an available port
@@ -30,12 +29,12 @@ public class EchoIntegrationTest {
 
    private EchoClient client = new EchoClient();
 
-   @Before
+   @BeforeEach
    public void init() {
       client.startConnection("127.0.0.1", port);
    }
 
-   @After
+   @AfterEach
    public void tearDown() {
       client.stopConnection();
    }
@@ -43,7 +42,6 @@ public class EchoIntegrationTest {
    //
 
    @Test
-   @Ignore("failed on local")
    public void givenClient_whenServerEchosMessage_thenCorrect() {
       String resp1 = client.sendMessage("hello");
       String resp2 = client.sendMessage("world");

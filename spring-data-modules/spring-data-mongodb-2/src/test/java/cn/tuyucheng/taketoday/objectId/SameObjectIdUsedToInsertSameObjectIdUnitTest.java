@@ -20,40 +20,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = MongoConfig.class)
-public class SameObjectIdUsedToInsertSameObjectIdUnitTest {
-	@Autowired
-	private MongoTemplate mongoTemplate;
+class SameObjectIdUsedToInsertSameObjectIdUnitTest {
+   @Autowired
+   private MongoTemplate mongoTemplate;
 
-	@BeforeEach
-	public void setUp() {
-		mongoTemplate.dropCollection(User.class);
-	}
+   @BeforeEach
+   void setUp() {
+      mongoTemplate.dropCollection(User.class);
+   }
 
-	@Test
-	public void givenUserInDatabase_whenInsertingAnotherUserWithTheSameObjectId_DKEThrownAndInsertRetried() {
-		// given
-		String userName = "Kevin";
-		User firstUser = new User(ObjectId.get(), userName);
-		User secondUser = new User(ObjectId.get(), userName);
+   @Test
+   void givenUserInDatabase_whenInsertingAnotherUserWithTheSameObjectId_DKEThrownAndInsertRetried() {
+      // given
+      String userName = "Kevin";
+      User firstUser = new User(ObjectId.get(), userName);
+      User secondUser = new User(ObjectId.get(), userName);
 
-		mongoTemplate.insert(firstUser);
+      mongoTemplate.insert(firstUser);
 
-		// when
-		try {
-			mongoTemplate.insert(firstUser);
-		} catch (DuplicateKeyException dke) {
-			mongoTemplate.insert(secondUser);
-		}
+      // when
+      try {
+         mongoTemplate.insert(firstUser);
+      } catch (DuplicateKeyException dke) {
+         mongoTemplate.insert(secondUser);
+      }
 
-		// then
-		Query query = new Query();
-		query.addCriteria(Criteria.where(User.NAME_FIELD)
-			.is(userName));
-		List<User> users = mongoTemplate.find(query, User.class);
+      // then
+      Query query = new Query();
+      query.addCriteria(Criteria.where(User.NAME_FIELD)
+            .is(userName));
+      List<User> users = mongoTemplate.find(query, User.class);
 
-		assertThat(users).usingRecursiveComparison()
-			.isEqualTo(Lists.newArrayList(firstUser, secondUser));
-	}
+      assertThat(users).usingRecursiveComparison()
+            .isEqualTo(Lists.newArrayList(firstUser, secondUser));
+   }
 }
 
 

@@ -19,80 +19,80 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class RootCauseFinderUnitTest {
 
-    @Test
-    public void givenBirthDate_whenCalculatingAge_thenAgeReturned() {
-        try {
-            int age = AgeCalculator.calculateAge("1990-01-01");
-            Assertions.assertEquals(1990, LocalDate
-                  .now()
-                  .minus(age, ChronoUnit.YEARS)
-                  .getYear());
-        } catch (CalculationException e) {
-            Assertions.fail(e.getMessage());
-        }
-    }
+   @Test
+   public void givenBirthDate_whenCalculatingAge_thenAgeReturned() {
+      try {
+         int age = AgeCalculator.calculateAge("1990-01-01");
+         Assertions.assertEquals(1990, LocalDate
+               .now()
+               .minus(age, ChronoUnit.YEARS)
+               .getYear());
+      } catch (CalculationException e) {
+         Assertions.fail(e.getMessage());
+      }
+   }
 
-    @Test
-    public void givenWrongFormatDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("010102");
-        } catch (CalculationException ex) {
-            assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof DateTimeParseException);
-        }
-    }
+   @Test
+   public void givenWrongFormatDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("010102");
+      } catch (CalculationException ex) {
+         assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof DateTimeParseException);
+      }
+   }
 
-    @Test
-    public void givenOutOfRangeDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("2020-04-04");
-        } catch (CalculationException ex) {
-            assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof DateOutOfRangeException);
-        }
-    }
+   @Test
+   public void givenOutOfRangeDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("2020-04-04");
+      } catch (CalculationException ex) {
+         assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof DateOutOfRangeException);
+      }
+   }
 
-    @Test
-    public void givenNullDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge(null);
-        } catch (Exception ex) {
-            assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof IllegalArgumentException);
-        }
-    }
+   @Test
+   public void givenNullDate_whenFindingRootCauseUsingJava_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge(null);
+      } catch (Exception ex) {
+         assertTrue(RootCauseFinder.findCauseUsingPlainJava(ex) instanceof IllegalArgumentException);
+      }
+   }
 
-    @Test
-    public void givenWrongFormatDate_whenFindingRootCauseUsingApacheCommons_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("010102");
-        } catch (CalculationException ex) {
-            assertTrue(ExceptionUtils.getRootCause(ex) instanceof DateTimeParseException);
-        }
-    }
+   @Test
+   public void givenWrongFormatDate_whenFindingRootCauseUsingApacheCommons_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("010102");
+      } catch (CalculationException ex) {
+         assertTrue(ExceptionUtils.getRootCause(ex) instanceof DateTimeParseException);
+      }
+   }
 
-    @Test
-    public void givenOutOfRangeDate_whenFindingRootCauseUsingApacheCommons_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("2020-04-04");
-        } catch (CalculationException ex) {
-            assertTrue(ExceptionUtils.getRootCause(ex) instanceof DateOutOfRangeException);
-        }
-    }
+   @Test
+   public void givenOutOfRangeDate_whenFindingRootCauseUsingApacheCommons_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("2020-04-04");
+      } catch (CalculationException ex) {
+         assertTrue(ExceptionUtils.getRootCause(ex) instanceof DateOutOfRangeException);
+      }
+   }
 
-    @Test
-    public void givenWrongFormatDate_whenFindingRootCauseUsingGuava_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("010102");
-        } catch (CalculationException ex) {
-            assertTrue(Throwables.getRootCause(ex) instanceof DateTimeParseException);
-        }
-    }
+   @Test
+   public void givenWrongFormatDate_whenFindingRootCauseUsingGuava_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("010102");
+      } catch (CalculationException ex) {
+         assertTrue(Throwables.getRootCause(ex) instanceof DateTimeParseException);
+      }
+   }
 
-    @Test
-    public void givenOutOfRangeDate_whenFindingRootCauseUsingGuava_thenRootCauseFound() {
-        try {
-            AgeCalculator.calculateAge("2020-04-04");
-        } catch (CalculationException ex) {
-            assertTrue(Throwables.getRootCause(ex) instanceof DateOutOfRangeException);
-        }
-    }
+   @Test
+   public void givenOutOfRangeDate_whenFindingRootCauseUsingGuava_thenRootCauseFound() {
+      try {
+         AgeCalculator.calculateAge("2020-04-04");
+      } catch (CalculationException ex) {
+         assertTrue(Throwables.getRootCause(ex) instanceof DateOutOfRangeException);
+      }
+   }
 
 }

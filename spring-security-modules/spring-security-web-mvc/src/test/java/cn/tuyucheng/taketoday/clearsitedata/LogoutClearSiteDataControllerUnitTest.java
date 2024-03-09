@@ -13,8 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import javax.servlet.Filter;
+import jakarta.servlet.Filter;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -38,11 +37,10 @@ public class LogoutClearSiteDataControllerUnitTest {
    void whenResponseBody_thenReturnCacheHeader() throws Exception {
       this.mockMvc
             .perform(MockMvcRequestBuilders
-                  .get("/baeldung/logout").secure(true))
+                  .get("/tuyucheng/logout").secure(true))
             .andDo(MockMvcResultHandlers.print())
             .andExpect(MockMvcResultMatchers.status().is(302))
             .andExpect(MockMvcResultMatchers.header()
                   .string("Clear-Site-Data", "\"cache\", \"cookies\", \"storage\""));
    }
-
 }

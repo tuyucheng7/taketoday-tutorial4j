@@ -1,17 +1,17 @@
 package cn.tuyucheng.taketoday.boot.naming.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Preference {
 
-	@Id
-	private Long id;
+   @Id
+   private Long id;
 
-	private String name;
+   private String name;
 
-	@ManyToOne
-	private Account account;
+   @ManyToOne
+   private Account account;
 }

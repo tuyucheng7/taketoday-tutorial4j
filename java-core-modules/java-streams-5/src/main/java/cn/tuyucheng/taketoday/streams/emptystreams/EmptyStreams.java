@@ -16,6 +16,7 @@ public class EmptyStreams {
    }
 
    private static void createEmptyStreams() {
+
       // Using Stream.empty()
       Stream<String> emptyStream = Stream.empty();
       System.out.println(emptyStream.findAny().isEmpty());

@@ -1,11 +1,12 @@
 package cn.tuyucheng.taketoday.web;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import jakarta.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionListener;
+
 import cn.tuyucheng.taketoday.monitoring.MetricRegistrySingleton;
 import com.codahale.metrics.Counter;
-
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SessionListenerWithMetrics implements HttpSessionListener {
 
@@ -20,6 +21,7 @@ public class SessionListenerWithMetrics implements HttpSessionListener {
       counterOfActiveSessions = MetricRegistrySingleton.metrics.counter("web.sessions.active.count");
    }
 
+   // API
    public final int getTotalActiveSession() {
       return activeSessions.get();
    }

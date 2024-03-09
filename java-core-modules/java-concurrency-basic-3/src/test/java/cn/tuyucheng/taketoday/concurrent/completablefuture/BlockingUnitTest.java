@@ -16,7 +16,7 @@ class BlockingUnitTest {
             .supplyAsync(() -> "Tuyucheng")
             .thenApply(String::toUpperCase);
 
-      assertEquals("TUYUCHENG", completableFuture.get());
+      assertEquals("BAELDUNG", completableFuture.get());
    }
 
    @Test

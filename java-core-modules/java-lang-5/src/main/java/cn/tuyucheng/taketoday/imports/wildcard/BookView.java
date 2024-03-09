@@ -7,12 +7,12 @@ import java.util.UUID;
 
 public class BookView extends Frame {
 
-	private UUID id;
+   private UUID id;
 
-	private String name;
+   private String name;
 
-	private Date datePublished;
+   private Date datePublished;
 
-	private List<String> authors;
+   private List<String> authors;
 
 }

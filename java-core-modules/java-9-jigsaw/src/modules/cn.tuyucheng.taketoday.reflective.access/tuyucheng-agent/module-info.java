@@ -1,3 +1,3 @@
 module tuyucheng.agent {
-	requires java.instrument;
+   requires java.instrument;
 }

@@ -14,14 +14,14 @@ import java.util.List;
 @UseClasspathSqlLocator
 public interface CarModelDao {
 
-	@SqlUpdate
-	@GetGeneratedKeys
-	Long insert(@BindBean CarModel carModel);
+   @SqlUpdate
+   @GetGeneratedKeys
+   Long insert(@BindBean CarModel carModel);
 
-	@SqlBatch("insert")
-	@GetGeneratedKeys
-	List<Long> bulkInsert(@BindBean List<CarModel> carModels);
+   @SqlBatch("insert")
+   @GetGeneratedKeys
+   List<Long> bulkInsert(@BindBean List<CarModel> carModels);
 
-	@SqlQuery
-	CarModel findByMakerIdAndSku(@Bind("makerId") Long makerId, @Bind("sku") String sku);
+   @SqlQuery
+   CarModel findByMakerIdAndSku(@Bind("makerId") Long makerId, @Bind("sku") String sku);
 }

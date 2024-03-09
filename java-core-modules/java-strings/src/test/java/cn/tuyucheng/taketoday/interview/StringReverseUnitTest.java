@@ -1,13 +1,13 @@
 package cn.tuyucheng.taketoday.interview;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringReverseUnitTest {
-	@Test
-	public void whenUsingInbuildMethods_thenStringReversed() {
-		String reversed = new StringBuilder("baeldung").reverse().toString();
-		assertEquals("gnudleab", reversed);
-	}
+   @Test
+   public void whenUsingInbuildMethods_thenStringReversed() {
+      String reversed = new StringBuilder("tuyucheng").reverse().toString();
+      assertEquals("gnudleab", reversed);
+   }
 }

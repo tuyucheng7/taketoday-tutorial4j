@@ -1,16 +1,16 @@
 package cn.tuyucheng.taketoday.system;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class SystemNanoUnitTest {
 
-	@Test
-	public void givenSystem_whenCalledNanoTime_thenGivesTimeinResult() {
-		long startTime = System.nanoTime();
-		// do something that takes time
-		long endTime = System.nanoTime();
+   @Test
+   public void givenSystem_whenCalledNanoTime_thenGivesTimeinResult() {
+      long startTime = System.nanoTime();
+      // do something that takes time
+      long endTime = System.nanoTime();
 
-		Assert.assertTrue(endTime - startTime < 10000);
-	}
+      Assertions.assertTrue(endTime - startTime < 10000);
+   }
 }

@@ -23,44 +23,44 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackageClasses = EmployeeRepository.class)
 public class SpringDataJpaConfig {
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource);
-        em.setPackagesToScan(Employee.class.getPackage()
-              .getName());
+   @Bean
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+      LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource);
+      em.setPackagesToScan(Employee.class.getPackage()
+            .getName());
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
+      JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+      em.setJpaVendorAdapter(vendorAdapter);
 
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+      Properties properties = new Properties();
+      properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+      properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 
-        em.setJpaProperties(properties);
+      em.setJpaProperties(properties);
 
-        return em;
-    }
+      return em;
+   }
 
-    @Bean
-    public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
-        return transactionManager;
-    }
+   @Bean
+   public PlatformTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactoryBean) {
+      JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(entityManagerFactoryBean.getObject());
+      return transactionManager;
+   }
 
-    @Bean
-    public DataSource dataSource() {
-        return DataSourceBuilder.create()
-              .url("jdbc:h2:mem:db;DB_CLOSE_DELAY=-1")
-              .driverClassName("org.h2.Driver")
-              .username("sa")
-              .password("sa")
-              .build();
-    }
+   @Bean
+   public DataSource dataSource() {
+      return DataSourceBuilder.create()
+            .url("jdbc:h2:mem:db;DB_CLOSE_DELAY=-1")
+            .driverClassName("org.h2.Driver")
+            .username("sa")
+            .password("sa")
+            .build();
+   }
 
-    @Bean
-    public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
-        return new JPAQueryFactory((entityManager));
-    }
+   @Bean
+   public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
+      return new JPAQueryFactory((entityManager));
+   }
 }

@@ -4,131 +4,154 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
 
-class CoreThreadPoolIntegrationTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CoreThreadPoolIntegrationTest.class);
+public class CoreThreadPoolIntegrationTest {
 
-	@Test
-	void whenCallingExecuteWithRunnable_thenRunnableIsExecuted() {
-		CountDownLatch lock = new CountDownLatch(1);
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.execute(() -> {
-			LOGGER.debug("Hello World");
-			lock.countDown();
-		});
+   private static final Logger LOG = LoggerFactory.getLogger(CoreThreadPoolIntegrationTest.class);
 
-		assertTimeout(Duration.ofMillis(1000), () -> lock.await(1000, TimeUnit.MILLISECONDS));
-	}
+   @Test(timeout = 1000)
+   public void whenCallingExecuteWithRunnable_thenRunnableIsExecuted() throws InterruptedException {
 
-	@Test
-	void whenUsingExecutorServiceAndFuture_thenCanWaitOnFutureResult() throws InterruptedException, ExecutionException {
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		Future<String> future = executorService.submit(() -> "Hello World");
-		// some operations
-		String result = future.get();
+      CountDownLatch lock = new CountDownLatch(1);
 
-		assertEquals("Hello World", result);
-	}
+      Executor executor = Executors.newSingleThreadExecutor();
+      executor.execute(() -> {
+         LOG.debug("Hello World");
+         lock.countDown();
+      });
 
-	@Test
-	void whenUsingFixedThreadPool_thenCoreAndMaximumThreadsSizeAreTheSame() {
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+      lock.await(1000, TimeUnit.MILLISECONDS);
+   }
 
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
-		assertEquals(2, executor.getPoolSize());
-		assertEquals(1, executor.getQueue().size());
-	}
+   @Test
+   public void whenUsingExecutorServiceAndFuture_thenCanWaitOnFutureResult() throws InterruptedException, ExecutionException {
 
-	@Test
-	void whenUsingCachedThreadPool_thenPoolSizeGrowsUnbounded() {
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
-		executor.submit(() -> {
-			Thread.sleep(1000);
-			return null;
-		});
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
+      Future<String> future = executorService.submit(() -> "Hello World");
+      String result = future.get();
 
-		assertEquals(3, executor.getPoolSize());
-		assertEquals(0, executor.getQueue().size());
-	}
+      assertEquals("Hello World", result);
 
-	@Test
-	void whenUsingSingleThreadPool_thenTasksExecuteSequentially() {
-		CountDownLatch lock = new CountDownLatch(2);
-		AtomicInteger counter = new AtomicInteger();
+   }
 
-		ExecutorService executor = Executors.newSingleThreadExecutor();
-		executor.submit(() -> {
-			counter.set(1);
-			lock.countDown();
-		});
-		executor.submit(() -> {
-			counter.compareAndSet(1, 2);
-			lock.countDown();
-		});
+   @Test
+   public void whenUsingFixedThreadPool_thenCoreAndMaximumThreadSizeAreTheSame() {
 
-		assertTimeout(Duration.ofMillis(1000), () -> lock.await(1000, TimeUnit.MILLISECONDS));
-		assertEquals(2, counter.get());
-	}
+      ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
 
-	@Test
-	void whenSchedulingTask_thenTaskExecutesWithinGivenPeriod() {
-		CountDownLatch lock = new CountDownLatch(1);
+      assertEquals(2, executor.getPoolSize());
+      assertEquals(1, executor.getQueue().size());
 
-		ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
-		executor.schedule(() -> {
-			LOGGER.debug("Hello World");
-			lock.countDown();
-		}, 500, TimeUnit.MILLISECONDS);
+   }
 
-		assertTimeout(Duration.ofMillis(1000), () -> lock.await(1000, TimeUnit.MILLISECONDS));
-	}
+   @Test
+   public void whenUsingCachedThreadPool_thenPoolSizeGrowsUnbounded() {
+      ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
+      executor.submit(() -> {
+         Thread.sleep(1000);
+         return null;
+      });
 
-	@Test
-	void whenSchedulingTaskWithFixedPeriod_thenTaskExecutesMultipleTimes() throws InterruptedException {
-		CountDownLatch lock = new CountDownLatch(3);
+      assertEquals(3, executor.getPoolSize());
+      assertEquals(0, executor.getQueue().size());
 
-		ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
-		ScheduledFuture<?> future = executor.scheduleAtFixedRate(() -> {
-			LOGGER.debug("Hello World");
-			lock.countDown();
-		}, 500, 100, TimeUnit.MILLISECONDS);
+   }
 
-		lock.await();
-		future.cancel(true);
-	}
+   @Test(timeout = 1000)
+   public void whenUsingSingleThreadPool_thenTasksExecuteSequentially() throws InterruptedException {
 
-	@Test
-	void whenUsingForkJoinPool_thenSumOfTreeElementsIsCalculatedCorrectly() {
-		TreeNode tree = new TreeNode(5,
-				new TreeNode(3),
-				new TreeNode(2, new TreeNode(2), new TreeNode(8)));
-		ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
-		int sum = forkJoinPool.invoke(new CountingTask(tree));
-		assertEquals(20, sum);
-	}
+      CountDownLatch lock = new CountDownLatch(2);
+      AtomicInteger counter = new AtomicInteger();
+
+      ExecutorService executor = Executors.newSingleThreadExecutor();
+      executor.submit(() -> {
+         counter.set(1);
+         lock.countDown();
+      });
+      executor.submit(() -> {
+         counter.compareAndSet(1, 2);
+         lock.countDown();
+      });
+
+      lock.await(1000, TimeUnit.MILLISECONDS);
+      assertEquals(2, counter.get());
+
+   }
+
+   @Test(timeout = 1000)
+   public void whenSchedulingTask_thenTaskExecutesWithinGivenPeriod() throws InterruptedException {
+
+      CountDownLatch lock = new CountDownLatch(1);
+
+      ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
+      executor.schedule(() -> {
+         LOG.debug("Hello World");
+         lock.countDown();
+      }, 500, TimeUnit.MILLISECONDS);
+
+      lock.await(1000, TimeUnit.MILLISECONDS);
+
+   }
+
+   @Test(timeout = 1000)
+   public void whenSchedulingTaskWithFixedPeriod_thenTaskExecutesMultipleTimes() throws InterruptedException {
+
+      CountDownLatch lock = new CountDownLatch(3);
+
+      ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
+      ScheduledFuture<?> future = executor.scheduleAtFixedRate(() -> {
+         LOG.debug("Hello World");
+         lock.countDown();
+      }, 500, 100, TimeUnit.MILLISECONDS);
+
+      lock.await();
+      future.cancel(true);
+
+   }
+
+   @Test
+   public void whenUsingForkJoinPool_thenSumOfTreeElementsIsCalculatedCorrectly() {
+
+      TreeNode tree = new TreeNode(5, new TreeNode(3), new TreeNode(2, new TreeNode(2), new TreeNode(8)));
+
+      ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
+      int sum = forkJoinPool.invoke(new CountingTask(tree));
+
+      assertEquals(20, sum);
+   }
+
 }

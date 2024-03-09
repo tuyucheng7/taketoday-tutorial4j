@@ -22,16 +22,16 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum Currency {
 
-	EUR,
-	INR,
-	USD;
+   EUR,
+   INR,
+   USD;
 
-	public String value() {
-		return name();
-	}
+   public String value() {
+      return name();
+   }
 
-	public static Currency fromValue(String v) {
-		return valueOf(v);
-	}
+   public static Currency fromValue(String v) {
+      return valueOf(v);
+   }
 
 }

@@ -16,16 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * called the method simultaneously. This may cause the build to fail occasionally. Hence excluding this
  * test from build by adding this in manual test
  */
-class ThreadUnsafeCounterManualTest {
+public class ThreadUnsafeCounterManualTest {
 
-	@Test
-	void givenMultiThread_whenUnsafeCounterIncrement() throws InterruptedException {
-		ExecutorService service = Executors.newFixedThreadPool(3);
-		UnsafeCounter unsafeCounter = new UnsafeCounter();
+   @Test
+   public void givenMultiThread_whenUnsafeCounterIncrement() throws InterruptedException {
+      ExecutorService service = Executors.newFixedThreadPool(3);
+      UnsafeCounter unsafeCounter = new UnsafeCounter();
 
-		IntStream.range(0, 1000).forEach(count -> service.submit(unsafeCounter::increment));
-		service.awaitTermination(100, TimeUnit.MILLISECONDS);
+      IntStream.range(0, 1000)
+            .forEach(count -> service.submit(unsafeCounter::increment));
+      service.awaitTermination(100, TimeUnit.MILLISECONDS);
 
-		assertEquals(1000, unsafeCounter.getValue());
-	}
+      assertEquals(1000, unsafeCounter.getValue());
+   }
+
 }

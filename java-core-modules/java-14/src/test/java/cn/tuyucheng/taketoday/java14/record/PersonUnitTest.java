@@ -1,136 +1,145 @@
 package cn.tuyucheng.taketoday.java14.record;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import org.junit.jupiter.api.Test;
 
 public class PersonUnitTest {
 
-	@Test
-	public void givenSameNameAndAddress_whenEquals_thenPersonsEqual() {
-		String name = "John Doe";
-		String address = "100 Linda Ln.";
+   @Test
+   public void givenSameNameAndAddress_whenEquals_thenPersonsEqual() {
 
-		Person person1 = new Person(name, address);
-		Person person2 = new Person(name, address);
+      String name = "John Doe";
+      String address = "100 Linda Ln.";
 
-		assertEquals(person1, person2);
-	}
+      Person person1 = new Person(name, address);
+      Person person2 = new Person(name, address);
 
-	@Test
-	public void givenDifferentObject_whenEquals_thenNotEqual() {
-		Person person = new Person("John Doe", "100 Linda Ln.");
+      assertTrue(person1.equals(person2));
+   }
 
-		assertNotEquals(person, new Object());
-	}
+   @Test
+   public void givenDifferentObject_whenEquals_thenNotEqual() {
 
-	@Test
-	public void givenDifferentName_whenEquals_thenPersonsNotEqual() {
-		String address = "100 Linda Ln.";
+      Person person = new Person("John Doe", "100 Linda Ln.");
 
-		Person person1 = new Person("Jane Doe", address);
-		Person person2 = new Person("John Doe", address);
+      assertFalse(person.equals(new Object()));
+   }
 
-		assertNotEquals(person1, person2);
-	}
+   @Test
+   public void givenDifferentName_whenEquals_thenPersonsNotEqual() {
 
-	@Test
-	public void givenDifferentAddress_whenEquals_thenPersonsNotEqual() {
-		String name = "John Doe";
+      String address = "100 Linda Ln.";
 
-		Person person1 = new Person(name, "100 Linda Ln.");
-		Person person2 = new Person(name, "200 London Ave.");
+      Person person1 = new Person("Jane Doe", address);
+      Person person2 = new Person("John Doe", address);
 
-		assertNotEquals(person1, person2);
-	}
+      assertFalse(person1.equals(person2));
+   }
 
-	@Test
-	public void givenSameNameAndAddress_whenHashCode_thenPersonsEqual() {
-		String name = "John Doe";
-		String address = "100 Linda Ln.";
+   @Test
+   public void givenDifferentAddress_whenEquals_thenPersonsNotEqual() {
 
-		Person person1 = new Person(name, address);
-		Person person2 = new Person(name, address);
+      String name = "John Doe";
 
-		assertEquals(person1.hashCode(), person2.hashCode());
-	}
+      Person person1 = new Person(name, "100 Linda Ln.");
+      Person person2 = new Person(name, "200 London Ave.");
 
-	@Test
-	public void givenDifferentObject_whenHashCode_thenNotEqual() {
-		Person person = new Person("John Doe", "100 Linda Ln.");
+      assertFalse(person1.equals(person2));
+   }
 
-		assertNotEquals(person.hashCode(), new Object().hashCode());
-	}
+   @Test
+   public void givenSameNameAndAddress_whenHashCode_thenPersonsEqual() {
 
-	@Test
-	public void givenDifferentName_whenHashCode_thenPersonsNotEqual() {
-		String address = "100 Linda Ln.";
+      String name = "John Doe";
+      String address = "100 Linda Ln.";
 
-		Person person1 = new Person("Jane Doe", address);
-		Person person2 = new Person("John Doe", address);
+      Person person1 = new Person(name, address);
+      Person person2 = new Person(name, address);
 
-		assertNotEquals(person1.hashCode(), person2.hashCode());
-	}
+      assertEquals(person1.hashCode(), person2.hashCode());
+   }
 
-	@Test
-	public void givenDifferentAddress_whenHashCode_thenPersonsNotEqual() {
-		String name = "John Doe";
+   @Test
+   public void givenDifferentObject_whenHashCode_thenNotEqual() {
 
-		Person person1 = new Person(name, "100 Linda Ln.");
-		Person person2 = new Person(name, "200 London Ave.");
+      Person person = new Person("John Doe", "100 Linda Ln.");
 
-		assertNotEquals(person1.hashCode(), person2.hashCode());
-	}
+      assertNotEquals(person.hashCode(), new Object().hashCode());
+   }
 
-	@Test
-	public void givenValidNameAndAddress_whenGetNameAndAddress_thenExpectedValuesReturned() {
-		String name = "John Doe";
-		String address = "100 Linda Ln.";
+   @Test
+   public void givenDifferentName_whenHashCode_thenPersonsNotEqual() {
 
-		Person person = new Person(name, address);
+      String address = "100 Linda Ln.";
 
-		assertEquals(name, person.name());
-		assertEquals(address, person.address());
-	}
+      Person person1 = new Person("Jane Doe", address);
+      Person person2 = new Person("John Doe", address);
 
-	@Test
-	public void givenValidNameAndAddress_whenToString_thenCorrectStringReturned() {
-		String name = "John Doe";
-		String address = "100 Linda Ln.";
+      assertNotEquals(person1.hashCode(), person2.hashCode());
+   }
 
-		Person person = new Person(name, address);
+   @Test
+   public void givenDifferentAddress_whenHashCode_thenPersonsNotEqual() {
 
-		assertEquals("Person[name=" + name + ", address=" + address + "]", person.toString());
-	}
+      String name = "John Doe";
 
-	@Test(expected = NullPointerException.class)
-	public void givenNullName_whenConstruct_thenErrorThrown() {
-		new Person(null, "100 Linda Ln.");
-	}
+      Person person1 = new Person(name, "100 Linda Ln.");
+      Person person2 = new Person(name, "200 London Ave.");
 
-	@Test(expected = NullPointerException.class)
-	public void givenNullAddress_whenConstruct_thenErrorThrown() {
-		new Person("John Doe", null);
-	}
+      assertNotEquals(person1.hashCode(), person2.hashCode());
+   }
 
-	@Test
-	public void givenUnknownAddress_whenConstructing_thenAddressPopulated() {
-		String name = "John Doe";
+   @Test
+   public void givenValidNameAndAddress_whenGetNameAndAddress_thenExpectedValuesReturned() {
 
-		Person person = new Person(name);
+      String name = "John Doe";
+      String address = "100 Linda Ln.";
 
-		assertEquals(name, person.name());
-		assertEquals(Person.UNKNOWN_ADDRESS, person.address());
-	}
+      Person person = new Person(name, address);
 
-	@Test
-	public void givenUnnamed_whenConstructingThroughFactory_thenNamePopulated() {
-		String address = "100 Linda Ln.";
+      assertEquals(name, person.name());
+      assertEquals(address, person.address());
+   }
 
-		Person person = Person.unnamed(address);
+   @Test
+   public void givenValidNameAndAddress_whenToString_thenCorrectStringReturned() {
 
-		assertEquals(Person.UNNAMED, person.name());
-		assertEquals(address, person.address());
-	}
+      String name = "John Doe";
+      String address = "100 Linda Ln.";
+
+      Person person = new Person(name, address);
+
+      assertEquals("Person[name=" + name + ", address=" + address + "]", person.toString());
+   }
+
+   @Test(expected = NullPointerException.class)
+   public void givenNullName_whenConstruct_thenErrorThrown() {
+      new Person(null, "100 Linda Ln.");
+   }
+
+   @Test(expected = NullPointerException.class)
+   public void givenNullAddress_whenConstruct_thenErrorThrown() {
+      new Person("John Doe", null);
+   }
+
+   @Test
+   public void givenUnknownAddress_whenConstructing_thenAddressPopulated() {
+
+      String name = "John Doe";
+
+      Person person = new Person(name);
+
+      assertEquals(name, person.name());
+      assertEquals(Person.UNKNOWN_ADDRESS, person.address());
+   }
+
+   @Test
+   public void givenUnnamed_whenConstructingThroughFactory_thenNamePopulated() {
+
+      String address = "100 Linda Ln.";
+
+      Person person = Person.unnamed(address);
+
+      assertEquals(Person.UNNAMED, person.name());
+      assertEquals(address, person.address());
+   }
 }

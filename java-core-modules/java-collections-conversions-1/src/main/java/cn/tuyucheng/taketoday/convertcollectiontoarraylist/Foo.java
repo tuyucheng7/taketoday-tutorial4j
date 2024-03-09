@@ -7,46 +7,46 @@ package cn.tuyucheng.taketoday.convertcollectiontoarraylist;
  */
 public class Foo {
 
-    private int id;
-    private String name;
-    private Foo parent;
+   private int id;
+   private String name;
+   private Foo parent;
 
-    public Foo() {
-    }
+   public Foo() {
+   }
 
-    public Foo(int id, String name, Foo parent) {
-        this.id = id;
-        this.name = name;
-        this.parent = parent;
-    }
+   public Foo(int id, String name, Foo parent) {
+      this.id = id;
+      this.name = name;
+      this.parent = parent;
+   }
 
-    public int getId() {
-        return id;
-    }
+   public int getId() {
+      return id;
+   }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+   public void setId(int id) {
+      this.id = id;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public Foo getParent() {
-        return parent;
-    }
+   public Foo getParent() {
+      return parent;
+   }
 
-    public void setParent(Foo parent) {
-        this.parent = parent;
-    }
+   public void setParent(Foo parent) {
+      this.parent = parent;
+   }
 
-    public Foo deepCopy() {
-        return new Foo(
-              this.id, this.name, this.parent != null ? this.parent.deepCopy() : null);
-    }
+   public Foo deepCopy() {
+      return new Foo(
+            this.id, this.name, this.parent != null ? this.parent.deepCopy() : null);
+   }
 
 }

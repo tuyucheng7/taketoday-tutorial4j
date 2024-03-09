@@ -16,15 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 class UserRepositoryIntegrationTest {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@Test
-	void whenCalledSave_thenCorrectNumberOfUsers() {
-		userRepository.save(new User("Bob", "bob@domain.com"));
-		List<User> users = (List<User>) userRepository.findAll();
+   @Test
+   void whenCalledSave_thenCorrectNumberOfUsers() {
+      userRepository.save(new User("Bob", "bob@domain.com"));
+      List<User> users = (List<User>) userRepository.findAll();
 
-		// 2 additional users are saved in the CommandLineRunner bean
-		assertThat(users.size()).isEqualTo(3);
-	}
+      // 2 additional users are saved in the CommandLineRunner bean
+      assertThat(users.size()).isEqualTo(3);
+   }
 }

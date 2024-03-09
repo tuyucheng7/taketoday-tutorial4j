@@ -26,131 +26,131 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class ColumnPrivileges extends TableImpl<ColumnPrivilegesRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code>
-	 */
-	public static final ColumnPrivileges COLUMN_PRIVILEGES = new ColumnPrivileges();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code>
+    */
+   public static final ColumnPrivileges COLUMN_PRIVILEGES = new ColumnPrivileges();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<ColumnPrivilegesRecord> getRecordType() {
-		return ColumnPrivilegesRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<ColumnPrivilegesRecord> getRecordType() {
+      return ColumnPrivilegesRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.GRANTOR</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> GRANTOR = createField(DSL.name("GRANTOR"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.GRANTOR</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> GRANTOR = createField(DSL.name("GRANTOR"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.GRANTEE</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> GRANTEE = createField(DSL.name("GRANTEE"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.GRANTEE</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> GRANTEE = createField(DSL.name("GRANTEE"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_CATALOG</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> TABLE_CATALOG = createField(DSL.name("TABLE_CATALOG"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_CATALOG</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> TABLE_CATALOG = createField(DSL.name("TABLE_CATALOG"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_SCHEMA</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> TABLE_SCHEMA = createField(DSL.name("TABLE_SCHEMA"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_SCHEMA</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> TABLE_SCHEMA = createField(DSL.name("TABLE_SCHEMA"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_NAME</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> TABLE_NAME = createField(DSL.name("TABLE_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.TABLE_NAME</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> TABLE_NAME = createField(DSL.name("TABLE_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.COLUMN_NAME</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> COLUMN_NAME = createField(DSL.name("COLUMN_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.COLUMN_NAME</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> COLUMN_NAME = createField(DSL.name("COLUMN_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.PRIVILEGE_TYPE</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> PRIVILEGE_TYPE = createField(DSL.name("PRIVILEGE_TYPE"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.PRIVILEGE_TYPE</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> PRIVILEGE_TYPE = createField(DSL.name("PRIVILEGE_TYPE"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.IS_GRANTABLE</code>.
-	 */
-	public final TableField<ColumnPrivilegesRecord, String> IS_GRANTABLE = createField(DSL.name("IS_GRANTABLE"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES.IS_GRANTABLE</code>.
+    */
+   public final TableField<ColumnPrivilegesRecord, String> IS_GRANTABLE = createField(DSL.name("IS_GRANTABLE"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	private ColumnPrivileges(Name alias, Table<ColumnPrivilegesRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private ColumnPrivileges(Name alias, Table<ColumnPrivilegesRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private ColumnPrivileges(Name alias, Table<ColumnPrivilegesRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private ColumnPrivileges(Name alias, Table<ColumnPrivilegesRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
-	 */
-	public ColumnPrivileges(String alias) {
-		this(DSL.name(alias), COLUMN_PRIVILEGES);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
+    */
+   public ColumnPrivileges(String alias) {
+      this(DSL.name(alias), COLUMN_PRIVILEGES);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
-	 */
-	public ColumnPrivileges(Name alias) {
-		this(alias, COLUMN_PRIVILEGES);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
+    */
+   public ColumnPrivileges(Name alias) {
+      this(alias, COLUMN_PRIVILEGES);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
-	 */
-	public ColumnPrivileges() {
-		this(DSL.name("COLUMN_PRIVILEGES"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.COLUMN_PRIVILEGES</code> table reference
+    */
+   public ColumnPrivileges() {
+      this(DSL.name("COLUMN_PRIVILEGES"), null);
+   }
 
-	public <O extends Record> ColumnPrivileges(Table<O> child, ForeignKey<O, ColumnPrivilegesRecord> key) {
-		super(child, key, COLUMN_PRIVILEGES);
-	}
+   public <O extends Record> ColumnPrivileges(Table<O> child, ForeignKey<O, ColumnPrivilegesRecord> key) {
+      super(child, key, COLUMN_PRIVILEGES);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public ColumnPrivileges as(String alias) {
-		return new ColumnPrivileges(DSL.name(alias), this);
-	}
+   @Override
+   public ColumnPrivileges as(String alias) {
+      return new ColumnPrivileges(DSL.name(alias), this);
+   }
 
-	@Override
-	public ColumnPrivileges as(Name alias) {
-		return new ColumnPrivileges(alias, this);
-	}
+   @Override
+   public ColumnPrivileges as(Name alias) {
+      return new ColumnPrivileges(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public ColumnPrivileges rename(String name) {
-		return new ColumnPrivileges(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public ColumnPrivileges rename(String name) {
+      return new ColumnPrivileges(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public ColumnPrivileges rename(Name name) {
-		return new ColumnPrivileges(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public ColumnPrivileges rename(Name name) {
+      return new ColumnPrivileges(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row8 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row8 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row8<String, String, String, String, String, String, String, String> fieldsRow() {
-		return (Row8) super.fieldsRow();
-	}
+   @Override
+   public Row8<String, String, String, String, String, String, String, String> fieldsRow() {
+      return (Row8) super.fieldsRow();
+   }
 }

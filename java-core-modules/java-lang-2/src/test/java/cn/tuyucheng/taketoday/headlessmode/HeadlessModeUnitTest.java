@@ -1,8 +1,11 @@
 package cn.tuyucheng.taketoday.headlessmode;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import org.assertj.core.api.Assertions;
+import org.junit.Assume;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -13,80 +16,77 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.imageio.ImageIO;
-
-import org.junit.Assume;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class HeadlessModeUnitTest {
 
-	private static final String IN_FILE = "/product.png";
-	private static final String OUT_FILE = System.getProperty("java.io.tmpdir") + "/product.jpg";
-	private static final String FORMAT = "jpg";
+   private static final String IN_FILE = "/product.png";
+   private static final String OUT_FILE = System.getProperty("java.io.tmpdir") + "/product.jpg";
+   private static final String FORMAT = "jpg";
 
-	@Before
-	public void setUpHeadlessMode() {
-		System.setProperty("java.awt.headless", "true");
-	}
+   @BeforeEach
+   public void setUpHeadlessMode() {
+      System.setProperty("java.awt.headless", "true");
+   }
 
-	@Test
-	public void whenJavaAwtHeadlessSetToTrue_thenIsHeadlessReturnsTrue() {
-		assertThat(GraphicsEnvironment.isHeadless()).isTrue();
-	}
+   @Test
+   public void whenJavaAwtHeadlessSetToTrue_thenIsHeadlessReturnsTrue() {
+      assertThat(GraphicsEnvironment.isHeadless()).isTrue();
+   }
 
-	@Test
-	public void whenHeadlessMode_thenFontsWork() {
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+   @Test
+   public void whenHeadlessMode_thenFontsWork() {
+      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 
-		String fonts[] = ge.getAvailableFontFamilyNames();
+      String fonts[] = ge.getAvailableFontFamilyNames();
 
-		assertThat(fonts).isNotEmpty();
+      assertThat(fonts).isNotEmpty();
 
-		Font font = new Font(fonts[0], Font.BOLD, 14);
+      Font font = new Font(fonts[0], Font.BOLD, 14);
 
-		FontMetrics fm = (new Canvas()).getFontMetrics(font);
+      FontMetrics fm = (new Canvas()).getFontMetrics(font);
 
-		assertThat(fm.getHeight()).isGreaterThan(0);
-		assertThat(fm.getAscent()).isGreaterThan(0);
-		assertThat(fm.getDescent()).isGreaterThan(0);
-	}
+      assertThat(fm.getHeight()).isGreaterThan(0);
+      assertThat(fm.getAscent()).isGreaterThan(0);
+      assertThat(fm.getDescent()).isGreaterThan(0);
+   }
 
-	@Test
-	public void whenHeadlessMode_thenImagesWork() throws IOException {
-		boolean result = false;
-		try (InputStream inStream = HeadlessModeUnitTest.class.getResourceAsStream(IN_FILE); FileOutputStream outStream = new FileOutputStream(OUT_FILE)) {
-			BufferedImage inputImage = ImageIO.read(inStream);
-			result = ImageIO.write(removeAlphaChannel(inputImage), FORMAT, outStream);
-		}
+   @Test
+   public void whenHeadlessMode_thenImagesWork() throws IOException {
+      boolean result = false;
+      try (InputStream inStream = HeadlessModeUnitTest.class.getResourceAsStream(IN_FILE); FileOutputStream outStream = new FileOutputStream(OUT_FILE)) {
+         BufferedImage inputImage = ImageIO.read(inStream);
+         result = ImageIO.write(removeAlphaChannel(inputImage), FORMAT, outStream);
+      }
 
-		assertThat(result).isTrue();
-	}
+      assertThat(result).isTrue();
+   }
 
-	@Test
-	public void whenHeadlessmode_thenFrameThrowsHeadlessException() {
-		assertThatExceptionOfType(HeadlessException.class).isThrownBy(() -> {
-			Frame frame = new Frame();
-			frame.setVisible(true);
-			frame.setSize(120, 120);
-		});
-	}
+   @Test
+   public void whenHeadlessmode_thenFrameThrowsHeadlessException() {
+      assertThatExceptionOfType(HeadlessException.class).isThrownBy(() -> {
+         Frame frame = new Frame();
+         frame.setVisible(true);
+         frame.setSize(120, 120);
+      });
+   }
 
-	@Test
-	public void whenHeadless_thenFlexibleAppAdjustsItsBehavior() {
-		assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADLESS);
-	}
+   @Test
+   public void whenHeadless_thenFlexibleAppAdjustsItsBehavior() {
+      Assertions.assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADLESS);
+   }
 
-	@Test
-	public void whenHeaded_thenFlexibleAppAdjustsItsBehavior() {
-		Assume.assumeFalse(GraphicsEnvironment.isHeadless());
-		assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADED);
-	}
+   @Test
+   public void whenHeaded_thenFlexibleAppAdjustsItsBehavior() {
+      Assume.assumeFalse(GraphicsEnvironment.isHeadless());
+      assertThat(FlexibleApp.iAmFlexible()).isEqualTo(FlexibleApp.HEADED);
+   }
 
-	private BufferedImage removeAlphaChannel(BufferedImage inputImage) {
-		final WritableRaster raster = inputImage.getRaster();
-		final WritableRaster newRaster = raster.createWritableChild(0, 0, inputImage.getWidth(), inputImage.getHeight(), 0, 0, new int[]{0, 1, 2});
-		ColorModel newCM = new ComponentColorModel(inputImage.getColorModel().getColorSpace(), false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
-		return new BufferedImage(newCM, newRaster, false, null);
-	}
+   private BufferedImage removeAlphaChannel(BufferedImage inputImage) {
+      final WritableRaster raster = inputImage.getRaster();
+      final WritableRaster newRaster = raster.createWritableChild(0, 0, inputImage.getWidth(), inputImage.getHeight(), 0, 0, new int[]{0, 1, 2});
+      ColorModel newCM = new ComponentColorModel(inputImage.getColorModel().getColorSpace(), false, false, Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
+      return new BufferedImage(newCM, newRaster, false, null);
+   }
 }

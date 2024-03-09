@@ -7,7 +7,7 @@ import org.apache.directory.server.core.annotations.CreateDS;
 import org.apache.directory.server.core.annotations.CreatePartition;
 import org.apache.directory.server.core.integ.AbstractLdapTestUnit;
 import org.apache.directory.server.core.integ.FrameworkRunner;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 
 import javax.naming.AuthenticationException;
@@ -26,7 +26,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @RunWith(FrameworkRunner.class)
 @CreateLdapServer(transports = {@CreateTransport(protocol = "LDAP", address = "localhost", port = 10390)})
-@CreateDS(allowAnonAccess = false, partitions = {@CreatePartition(name = "TestPartition", suffix = "dc=tuyucheng,dc=com")})
+@CreateDS(
+      allowAnonAccess = false, partitions = {@CreatePartition(name = "TestPartition", suffix = "dc=tuyucheng,dc=com")})
 @ApplyLdifFiles({"users.ldif"})
 // class marked as manual test, as it has to run independently from the other unit tests in the module
 public class JndiLdapAuthManualTest extends AbstractLdapTestUnit {
@@ -38,6 +39,7 @@ public class JndiLdapAuthManualTest extends AbstractLdapTestUnit {
 
    @Test
    public void givenPreloadedLDAPUserJoe_whenAuthUserWithCorrectPW_thenAuthSucceeds() throws Exception {
+
       Hashtable<String, String> environment = new Hashtable<String, String>();
       environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
       environment.put(Context.PROVIDER_URL, "ldap://localhost:10390");
@@ -51,6 +53,7 @@ public class JndiLdapAuthManualTest extends AbstractLdapTestUnit {
 
    @Test
    public void givenPreloadedLDAPUserJoe_whenAuthUserWithWrongPW_thenAuthFails() throws Exception {
+
       Hashtable<String, String> environment = new Hashtable<String, String>();
       environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
       environment.put(Context.PROVIDER_URL, "ldap://localhost:10390");
@@ -64,6 +67,7 @@ public class JndiLdapAuthManualTest extends AbstractLdapTestUnit {
 
    @Test
    public void givenPreloadedLDAPUserJoe_whenSearchAndAuthUserWithCorrectPW_thenAuthSucceeds() throws Exception {
+
       // first authenticate against LDAP as admin to search up DN of user : Joe Simms
 
       Hashtable<String, String> environment = new Hashtable<String, String>();
@@ -112,6 +116,7 @@ public class JndiLdapAuthManualTest extends AbstractLdapTestUnit {
 
    @Test
    public void givenPreloadedLDAPUserJoe_whenSearchAndAuthUserWithWrongPW_thenAuthFails() throws Exception {
+
       // first authenticate against LDAP as admin to search up DN of user : Joe Simms
 
       Hashtable<String, String> environment = new Hashtable<String, String>();

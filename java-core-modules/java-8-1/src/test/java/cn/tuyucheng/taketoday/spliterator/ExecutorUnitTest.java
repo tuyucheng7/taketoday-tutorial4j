@@ -1,6 +1,8 @@
 package cn.tuyucheng.taketoday.spliterator;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,16 +13,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import lombok.extern.slf4j.Slf4j;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class ExecutorUnitTest {
    Article article;
 
-   @Before
+   @BeforeEach
    public void init() {
       article = new Article(Arrays.asList(new Author("Ahmad", 0), new Author("Eugen", 0), new Author("Alice", 1), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0),
             new Author("Alice", 1), new Author("Mike", 0), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1), new Author("Mike", 0), new Author("Alice", 1),
@@ -72,8 +71,7 @@ public class ExecutorUnitTest {
             .collect(Collectors.toList());
 
       Spliterator<Article> spliterator = articles.spliterator();
-      while (spliterator.tryAdvance(article -> article.setName(article.getName()
-            .concat("- published by Tuyucheng")))) ;
+      while (spliterator.tryAdvance(article -> article.setName(article.getName().concat("- published by Tuyucheng")))) ;
 
       articles.forEach(article -> assertThat(article.getName()).isEqualTo("Java- published by Tuyucheng"));
    }
@@ -87,8 +85,8 @@ public class ExecutorUnitTest {
       Spliterator<Article> split1 = articles.spliterator();
       Spliterator<Article> split2 = split1.trySplit();
 
-      log.info("Size: " + split1.estimateSize());
-      log.info("Characteristics: " + split1.characteristics());
+      LOGGER.info("Size: " + split1.estimateSize());
+      LOGGER.info("Characteristics: " + split1.characteristics());
 
       List<Article> articlesListOne = new ArrayList<>();
       List<Article> articlesListTwo = new ArrayList<>();

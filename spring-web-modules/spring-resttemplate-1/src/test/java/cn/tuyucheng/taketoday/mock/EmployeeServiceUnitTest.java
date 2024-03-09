@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.mock;
 
-import cn.tuyucheng.taketoday.resttemplate.web.model.Employee;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,25 +15,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import cn.tuyucheng.taketoday.resttemplate.web.model.Employee;
+
 @ExtendWith(MockitoExtension.class)
-class EmployeeServiceUnitTest {
+public class EmployeeServiceUnitTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceUnitTest.class);
+   @Mock
+   private RestTemplate restTemplate;
 
-    @Mock
-    private RestTemplate restTemplate;
+   @InjectMocks
+   private EmployeeService empService = new EmployeeService();
 
-    @InjectMocks
-    private EmployeeService empService = new EmployeeService();
+   @Test
+   public void givenMockingIsDoneByMockito_whenGetIsCalled_shouldReturnMockedObject() throws Exception {
+      Employee emp = new Employee("E001", "Eric Simmons");
+      Mockito.when(restTemplate.getForEntity("http://localhost:8080/employee/E001", Employee.class))
+            .thenReturn(new ResponseEntity(emp, HttpStatus.OK));
 
-    @Test
-    void givenMockingIsDoneByMockito_whenGetIsCalled_shouldReturnMockedObject() throws Exception {
-        Employee emp = new Employee("E001", "Eric Simmons");
-        Mockito.when(restTemplate.getForEntity("http://localhost:8080/employee/E001", Employee.class))
-              .thenReturn(new ResponseEntity(emp, HttpStatus.OK));
+      Employee employee = empService.getEmployee("E001");
 
-        Employee employee = empService.getEmployee("E001");
-
-        Assertions.assertEquals(emp, employee);
-    }
+      assertEquals(emp, employee);
+   }
 }

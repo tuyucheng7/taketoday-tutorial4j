@@ -10,37 +10,37 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 public class StringBuilderStringBuffer {
 
-	public static void main(String[] args) throws RunnerException {
+   public static void main(String[] args) throws RunnerException {
 
-		Options opt = new OptionsBuilder()
-			.include(StringBuilderStringBuffer.class.getSimpleName())
-			.build();
+      Options opt = new OptionsBuilder()
+            .include(StringBuilderStringBuffer.class.getSimpleName())
+            .build();
 
-		new Runner(opt).run();
-	}
+      new Runner(opt).run();
+   }
 
-	@State(Scope.Benchmark)
-	public static class MyState {
-		int iterations = 1000;
-		String initial = "abc";
-		String suffix = "def";
-	}
+   @State(Scope.Benchmark)
+   public static class MyState {
+      int iterations = 1000;
+      String initial = "abc";
+      String suffix = "def";
+   }
 
-	@Benchmark
-	public StringBuffer benchmarkStringBuffer(MyState state) {
-		StringBuffer stringBuffer = new StringBuffer(state.initial);
-		for (int i = 0; i < state.iterations; i++) {
-			stringBuffer.append(state.suffix);
-		}
-		return stringBuffer;
-	}
+   @Benchmark
+   public StringBuffer benchmarkStringBuffer(MyState state) {
+      StringBuffer stringBuffer = new StringBuffer(state.initial);
+      for (int i = 0; i < state.iterations; i++) {
+         stringBuffer.append(state.suffix);
+      }
+      return stringBuffer;
+   }
 
-	@Benchmark
-	public StringBuilder benchmarkStringBuilder(MyState state) {
-		StringBuilder stringBuilder = new StringBuilder(state.initial);
-		for (int i = 0; i < state.iterations; i++) {
-			stringBuilder.append(state.suffix);
-		}
-		return stringBuilder;
-	}
+   @Benchmark
+   public StringBuilder benchmarkStringBuilder(MyState state) {
+      StringBuilder stringBuilder = new StringBuilder(state.initial);
+      for (int i = 0; i < state.iterations; i++) {
+         stringBuilder.append(state.suffix);
+      }
+      return stringBuilder;
+   }
 }

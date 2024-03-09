@@ -5,24 +5,24 @@ import java.util.Date;
 
 public class DateExtractYearMonthDayIntegerValues {
 
-    int getYear(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+   int getYear(Date date) {
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
 
-        return calendar.get(Calendar.YEAR);
-    }
+      return calendar.get(Calendar.YEAR);
+   }
 
-    int getMonth(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+   int getMonth(Date date) {
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
 
-        return calendar.get(Calendar.MONTH);
-    }
+      return calendar.get(Calendar.MONTH);
+   }
 
-    int getDay(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+   int getDay(Date date) {
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(date);
 
-        return calendar.get(Calendar.DAY_OF_MONTH);
-    }
+      return calendar.get(Calendar.DAY_OF_MONTH);
+   }
 }

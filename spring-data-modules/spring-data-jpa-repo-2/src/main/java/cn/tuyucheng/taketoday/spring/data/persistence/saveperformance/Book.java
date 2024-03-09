@@ -8,18 +8,18 @@ import javax.persistence.Id;
 @Entity
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
+   private long id;
 
-    private String title;
-    private String author;
+   private String title;
+   private String author;
 
-    public Book(final String title, final String author) {
-        this.title = title;
-        this.author = author;
-    }
+   public Book(final String title, final String author) {
+      this.title = title;
+      this.author = author;
+   }
 
-    public Book() {
-    }
+   public Book() {
+   }
 }

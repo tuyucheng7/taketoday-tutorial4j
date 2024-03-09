@@ -7,79 +7,80 @@ import java.util.concurrent.Phaser;
 
 public class ThreadsStartAtSameTime {
 
-	public static void main(String[] args) throws BrokenBarrierException, InterruptedException {
-		usingCountDownLatch();
+   public static void main(String[] args) throws BrokenBarrierException, InterruptedException {
+      usingCountDownLatch();
 
-		Thread.sleep(30);
+      Thread.sleep(30);
 
-		usingCyclicBarrier();
+      usingCyclicBarrier();
 
-		Thread.sleep(30);
+      Thread.sleep(30);
 
-		usingPhaser();
-	}
+      usingPhaser();
 
-	private static void usingCountDownLatch() throws InterruptedException {
-		System.out.println("===============================================");
-		System.out.println("        >>> Using CountDownLatch <<<<");
-		System.out.println("===============================================");
+   }
 
-		CountDownLatch latch = new CountDownLatch(1);
+   private static void usingCountDownLatch() throws InterruptedException {
+      System.out.println("===============================================");
+      System.out.println("        >>> Using CountDownLatch <<<<");
+      System.out.println("===============================================");
 
-		WorkerWithCountDownLatch worker1 = new WorkerWithCountDownLatch("Worker with latch 1", latch);
-		WorkerWithCountDownLatch worker2 = new WorkerWithCountDownLatch("Worker with latch 2", latch);
+      CountDownLatch latch = new CountDownLatch(1);
 
-		worker1.start();
-		worker2.start();
+      WorkerWithCountDownLatch worker1 = new WorkerWithCountDownLatch("Worker with latch 1", latch);
+      WorkerWithCountDownLatch worker2 = new WorkerWithCountDownLatch("Worker with latch 2", latch);
 
-		Thread.sleep(10);// simulation of some actual work
+      worker1.start();
+      worker2.start();
 
-		System.out.println("-----------------------------------------------");
-		System.out.println(" Now release the latch:");
-		System.out.println("-----------------------------------------------");
-		latch.countDown();
-	}
+      Thread.sleep(10);// simulation of some actual work
 
-	private static void usingCyclicBarrier() throws BrokenBarrierException, InterruptedException {
-		System.out.println("\n===============================================");
-		System.out.println("        >>> Using CyclicBarrier <<<<");
-		System.out.println("===============================================");
+      System.out.println("-----------------------------------------------");
+      System.out.println(" Now release the latch:");
+      System.out.println("-----------------------------------------------");
+      latch.countDown();
+   }
 
-		CyclicBarrier barrier = new CyclicBarrier(3);
+   private static void usingCyclicBarrier() throws BrokenBarrierException, InterruptedException {
+      System.out.println("\n===============================================");
+      System.out.println("        >>> Using CyclicBarrier <<<<");
+      System.out.println("===============================================");
 
-		WorkerWithCyclicBarrier worker1 = new WorkerWithCyclicBarrier("Worker with barrier 1", barrier);
-		WorkerWithCyclicBarrier worker2 = new WorkerWithCyclicBarrier("Worker with barrier 2", barrier);
+      CyclicBarrier barrier = new CyclicBarrier(3);
 
-		worker1.start();
-		worker2.start();
+      WorkerWithCyclicBarrier worker1 = new WorkerWithCyclicBarrier("Worker with barrier 1", barrier);
+      WorkerWithCyclicBarrier worker2 = new WorkerWithCyclicBarrier("Worker with barrier 2", barrier);
 
-		Thread.sleep(10);// simulation of some actual work
+      worker1.start();
+      worker2.start();
 
-		System.out.println("-----------------------------------------------");
-		System.out.println(" Now open the barrier:");
-		System.out.println("-----------------------------------------------");
-		barrier.await();
-	}
+      Thread.sleep(10);// simulation of some actual work
 
-	private static void usingPhaser() throws InterruptedException {
-		System.out.println("\n===============================================");
-		System.out.println("        >>> Using Phaser <<<");
-		System.out.println("===============================================");
+      System.out.println("-----------------------------------------------");
+      System.out.println(" Now open the barrier:");
+      System.out.println("-----------------------------------------------");
+      barrier.await();
+   }
 
-		Phaser phaser = new Phaser();
-		phaser.register();
+   private static void usingPhaser() throws InterruptedException {
+      System.out.println("\n===============================================");
+      System.out.println("        >>> Using Phaser <<<");
+      System.out.println("===============================================");
 
-		WorkerWithPhaser worker1 = new WorkerWithPhaser("Worker with phaser 1", phaser);
-		WorkerWithPhaser worker2 = new WorkerWithPhaser("Worker with phaser 2", phaser);
+      Phaser phaser = new Phaser();
+      phaser.register();
 
-		worker1.start();
-		worker2.start();
+      WorkerWithPhaser worker1 = new WorkerWithPhaser("Worker with phaser 1", phaser);
+      WorkerWithPhaser worker2 = new WorkerWithPhaser("Worker with phaser 2", phaser);
 
-		Thread.sleep(10);// simulation of some actual work
+      worker1.start();
+      worker2.start();
 
-		System.out.println("-----------------------------------------------");
-		System.out.println(" Now open the phaser barrier:");
-		System.out.println("-----------------------------------------------");
-		phaser.arriveAndAwaitAdvance();
-	}
+      Thread.sleep(10);// simulation of some actual work
+
+      System.out.println("-----------------------------------------------");
+      System.out.println(" Now open the phaser barrier:");
+      System.out.println("-----------------------------------------------");
+      phaser.arriveAndAwaitAdvance();
+   }
 }

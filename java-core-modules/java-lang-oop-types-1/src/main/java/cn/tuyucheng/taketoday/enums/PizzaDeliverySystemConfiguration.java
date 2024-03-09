@@ -1,21 +1,21 @@
 package cn.tuyucheng.taketoday.enums;
 
 public enum PizzaDeliverySystemConfiguration {
-	INSTANCE;
+   INSTANCE;
 
-	PizzaDeliverySystemConfiguration() {
-		// Do the configuration initialization which
-		// involves overriding defaults like delivery strategy
-	}
+   PizzaDeliverySystemConfiguration() {
+      // Do the configuration initialization which
+      // involves overriding defaults like delivery strategy
+   }
 
-	private PizzaDeliveryStrategy deliveryStrategy = PizzaDeliveryStrategy.NORMAL;
+   private PizzaDeliveryStrategy deliveryStrategy = PizzaDeliveryStrategy.NORMAL;
 
-	public static PizzaDeliverySystemConfiguration getInstance() {
-		return INSTANCE;
-	}
+   public static PizzaDeliverySystemConfiguration getInstance() {
+      return INSTANCE;
+   }
 
-	public PizzaDeliveryStrategy getDeliveryStrategy() {
-		return deliveryStrategy;
-	}
+   public PizzaDeliveryStrategy getDeliveryStrategy() {
+      return deliveryStrategy;
+   }
 
 }

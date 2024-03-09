@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface AccountCrudRepository extends ReactiveCrudRepository<Account, String> {
 
-	public Flux<Account> findAllByValue(Double value);
+   public Flux<Account> findAllByValue(Double value);
 
-	public Mono<Account> findFirstByOwner(Mono<String> owner);
+   public Mono<Account> findFirstByOwner(Mono<String> owner);
 }

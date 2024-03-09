@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-streams-maps</artifactId>
-   <version>1.0.0</version>
    <name>java-streams-maps</name>
    <packaging>jar</packaging>
 
@@ -15,11 +14,6 @@
    </parent>
 
    <dependencies>
-      <dependency>
-         <groupId>log4j</groupId>
-         <artifactId>log4j</artifactId>
-         <version>${log4j.version}</version>
-      </dependency>
       <dependency>
          <groupId>org.junit</groupId>
          <artifactId>junit-bom</artifactId>
@@ -54,8 +48,4 @@
       </plugins>
    </build>
 
-   <properties>
-      <!-- testing -->
-      <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-   </properties>
 </project>

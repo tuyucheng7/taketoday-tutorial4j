@@ -4,10 +4,10 @@ import net.datafaker.Faker;
 
 public class UserGenerator {
 
-   private static final Faker faker = new Faker();
-
    private UserGenerator() {
    }
+
+   private static final Faker faker = new Faker();
 
    public static User generateUser() {
       String name = faker.name().fullName();
@@ -19,4 +19,5 @@ public class UserGenerator {
       String zipCode = faker.address().zipCode();
       return new User(name, email, phone, street, city, state, zipCode);
    }
+
 }

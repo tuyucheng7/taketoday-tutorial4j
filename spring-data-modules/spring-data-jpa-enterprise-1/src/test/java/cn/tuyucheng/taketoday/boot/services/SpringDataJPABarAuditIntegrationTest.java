@@ -22,49 +22,49 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes = Application.class)
 class SpringDataJPABarAuditIntegrationTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(SpringDataJPABarAuditIntegrationTest.class);
+   private static final Logger logger = LoggerFactory.getLogger(SpringDataJPABarAuditIntegrationTest.class);
 
-    @BeforeAll
-    static void setUpBeforeClass() throws Exception {
-        logger.info("setUpBeforeClass()");
-    }
+   @BeforeAll
+   static void setUpBeforeClass() throws Exception {
+      logger.info("setUpBeforeClass()");
+   }
 
-    @AfterAll
-    static void tearDownAfterClass() throws Exception {
-        logger.info("tearDownAfterClass()");
-    }
+   @AfterAll
+   static void tearDownAfterClass() throws Exception {
+      logger.info("tearDownAfterClass()");
+   }
 
-    @Autowired
-    @Qualifier("barSpringDataJpaService")
-    private BarService barService;
+   @Autowired
+   @Qualifier("barSpringDataJpaService")
+   private BarService barService;
 
-    @Autowired
-    private EntityManagerFactory entityManagerFactory;
+   @Autowired
+   private EntityManagerFactory entityManagerFactory;
 
-    private EntityManager em;
+   private EntityManager em;
 
-    @BeforeEach
-    void setUp() throws Exception {
-        logger.info("setUp()");
-        em = entityManagerFactory.createEntityManager();
-    }
+   @BeforeEach
+   void setUp() throws Exception {
+      logger.info("setUp()");
+      em = entityManagerFactory.createEntityManager();
+   }
 
-    @AfterEach
-    void tearDown() throws Exception {
-        logger.info("tearDown()");
-        em.close();
-    }
+   @AfterEach
+   void tearDown() throws Exception {
+      logger.info("tearDown()");
+      em.close();
+   }
 
-    @Test
-    @WithMockUser(username = "tutorialuser")
-    final void whenBarsModified_thenBarsAudited() {
-        Bar bar = new Bar("BAR1");
-        barService.create(bar);
-        assertEquals(bar.getCreatedDate(), bar.getModifiedDate());
-        assertEquals(bar.getCreatedBy(), bar.getModifiedBy(), "tutorialuser");
-        bar.setName("BAR2");
-        bar = barService.update(bar);
-        assertTrue(bar.getCreatedDate() < bar.getModifiedDate());
-        assertEquals(bar.getCreatedBy(), bar.getModifiedBy(), "tutorialuser");
-    }
+   @Test
+   @WithMockUser(username = "tutorialuser")
+   final void whenBarsModified_thenBarsAudited() {
+      Bar bar = new Bar("BAR1");
+      barService.create(bar);
+      assertEquals(bar.getCreatedDate(), bar.getModifiedDate());
+      assertEquals(bar.getCreatedBy(), bar.getModifiedBy(), "tutorialuser");
+      bar.setName("BAR2");
+      bar = barService.update(bar);
+      assertTrue(bar.getCreatedDate() < bar.getModifiedDate());
+      assertEquals(bar.getCreatedBy(), bar.getModifiedBy(), "tutorialuser");
+   }
 }

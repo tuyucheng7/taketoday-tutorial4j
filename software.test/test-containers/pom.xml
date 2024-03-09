@@ -16,11 +16,6 @@
 
    <dependencies>
       <dependency>
-         <groupId>org.apache.logging.log4j</groupId>
-         <artifactId>log4j-core</artifactId>
-         <version>${log4j2.version}</version>
-      </dependency>
-      <dependency>
          <groupId>org.testcontainers</groupId>
          <artifactId>testcontainers</artifactId>
          <version>${testcontainers.version}</version>
@@ -53,8 +48,7 @@
    </dependencies>
 
    <properties>
-      <log4j2.version>2.17.1</log4j2.version>
-      <testcontainers.version>1.19.6</testcontainers.version>
+      <testcontainers.version>1.11.4</testcontainers.version>
       <postgresql.version>42.2.6</postgresql.version>
       <selenium-remote-driver.version>3.141.59</selenium-remote-driver.version>
    </properties>

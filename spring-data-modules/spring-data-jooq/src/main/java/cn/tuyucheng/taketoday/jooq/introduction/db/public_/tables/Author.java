@@ -31,116 +31,116 @@ import java.util.List;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Author extends TableImpl<AuthorRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>PUBLIC.AUTHOR</code>
-	 */
-	public static final Author AUTHOR = new Author();
+   /**
+    * The reference instance of <code>PUBLIC.AUTHOR</code>
+    */
+   public static final Author AUTHOR = new Author();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<AuthorRecord> getRecordType() {
-		return AuthorRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<AuthorRecord> getRecordType() {
+      return AuthorRecord.class;
+   }
 
-	/**
-	 * The column <code>PUBLIC.AUTHOR.ID</code>.
-	 */
-	public final TableField<AuthorRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false), this, "");
+   /**
+    * The column <code>PUBLIC.AUTHOR.ID</code>.
+    */
+   public final TableField<AuthorRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false), this, "");
 
-	/**
-	 * The column <code>PUBLIC.AUTHOR.FIRST_NAME</code>.
-	 */
-	public final TableField<AuthorRecord, String> FIRST_NAME = createField(DSL.name("FIRST_NAME"), SQLDataType.VARCHAR(50), this, "");
+   /**
+    * The column <code>PUBLIC.AUTHOR.FIRST_NAME</code>.
+    */
+   public final TableField<AuthorRecord, String> FIRST_NAME = createField(DSL.name("FIRST_NAME"), SQLDataType.VARCHAR(50), this, "");
 
-	/**
-	 * The column <code>PUBLIC.AUTHOR.LAST_NAME</code>.
-	 */
-	public final TableField<AuthorRecord, String> LAST_NAME = createField(DSL.name("LAST_NAME"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+   /**
+    * The column <code>PUBLIC.AUTHOR.LAST_NAME</code>.
+    */
+   public final TableField<AuthorRecord, String> LAST_NAME = createField(DSL.name("LAST_NAME"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
-	private Author(Name alias, Table<AuthorRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private Author(Name alias, Table<AuthorRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private Author(Name alias, Table<AuthorRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private Author(Name alias, Table<AuthorRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>PUBLIC.AUTHOR</code> table reference
-	 */
-	public Author(String alias) {
-		this(DSL.name(alias), AUTHOR);
-	}
+   /**
+    * Create an aliased <code>PUBLIC.AUTHOR</code> table reference
+    */
+   public Author(String alias) {
+      this(DSL.name(alias), AUTHOR);
+   }
 
-	/**
-	 * Create an aliased <code>PUBLIC.AUTHOR</code> table reference
-	 */
-	public Author(Name alias) {
-		this(alias, AUTHOR);
-	}
+   /**
+    * Create an aliased <code>PUBLIC.AUTHOR</code> table reference
+    */
+   public Author(Name alias) {
+      this(alias, AUTHOR);
+   }
 
-	/**
-	 * Create a <code>PUBLIC.AUTHOR</code> table reference
-	 */
-	public Author() {
-		this(DSL.name("AUTHOR"), null);
-	}
+   /**
+    * Create a <code>PUBLIC.AUTHOR</code> table reference
+    */
+   public Author() {
+      this(DSL.name("AUTHOR"), null);
+   }
 
-	public <O extends Record> Author(Table<O> child, ForeignKey<O, AuthorRecord> key) {
-		super(child, key, AUTHOR);
-	}
+   public <O extends Record> Author(Table<O> child, ForeignKey<O, AuthorRecord> key) {
+      super(child, key, AUTHOR);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return Public.PUBLIC;
-	}
+   @Override
+   public Schema getSchema() {
+      return Public.PUBLIC;
+   }
 
-	@Override
-	public UniqueKey<AuthorRecord> getPrimaryKey() {
-		return Keys.CONSTRAINT_7;
-	}
+   @Override
+   public UniqueKey<AuthorRecord> getPrimaryKey() {
+      return Keys.CONSTRAINT_7;
+   }
 
-	@Override
-	public List<UniqueKey<AuthorRecord>> getKeys() {
-		return Arrays.<UniqueKey<AuthorRecord>>asList(Keys.CONSTRAINT_7);
-	}
+   @Override
+   public List<UniqueKey<AuthorRecord>> getKeys() {
+      return Arrays.<UniqueKey<AuthorRecord>>asList(Keys.CONSTRAINT_7);
+   }
 
-	@Override
-	public Author as(String alias) {
-		return new Author(DSL.name(alias), this);
-	}
+   @Override
+   public Author as(String alias) {
+      return new Author(DSL.name(alias), this);
+   }
 
-	@Override
-	public Author as(Name alias) {
-		return new Author(alias, this);
-	}
+   @Override
+   public Author as(Name alias) {
+      return new Author(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Author rename(String name) {
-		return new Author(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Author rename(String name) {
+      return new Author(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Author rename(Name name) {
-		return new Author(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Author rename(Name name) {
+      return new Author(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row3 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row3 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row3<Integer, String, String> fieldsRow() {
-		return (Row3) super.fieldsRow();
-	}
+   @Override
+   public Row3<Integer, String, String> fieldsRow() {
+      return (Row3) super.fieldsRow();
+   }
 }

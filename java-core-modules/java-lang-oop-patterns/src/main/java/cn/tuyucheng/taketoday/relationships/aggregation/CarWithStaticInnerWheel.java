@@ -4,10 +4,10 @@ import java.util.List;
 
 public class CarWithStaticInnerWheel {
 
-	private List<Wheel> wheels;
+   private List<Wheel> wheels;
 
-	public static class Wheel {
+   public static class Wheel {
 
-	}
+   }
 
 }

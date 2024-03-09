@@ -4,8 +4,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.logging.Logger;
 
-import static cn.tuyucheng.taketoday.producerconsumer.ThreadUtil.sleep;
-
 public class SimpleProducerConsumerDemonstrator {
    private static final Logger log = Logger.getLogger(SimpleProducerConsumerDemonstrator.class.getCanonicalName());
    BlockingQueue<Double> blockingQueue = new LinkedBlockingDeque<>(5);
@@ -56,7 +54,7 @@ public class SimpleProducerConsumerDemonstrator {
    public static void main(String[] args) {
       SimpleProducerConsumerDemonstrator simpleProducerConsumerDemonstrator = new SimpleProducerConsumerDemonstrator();
       simpleProducerConsumerDemonstrator.runProducerConsumer();
-      sleep(2000);
+      ThreadUtil.sleep(2000);
       System.exit(0);
    }
 }

@@ -12,17 +12,17 @@ import java.sql.SQLException;
 @Profile("oracle")
 public class OracleConfiguration {
 
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		OracleDataSource dataSource = new OracleDataSource();
-		dataSource.setUser("books");
-		dataSource.setPassword("books");
-		dataSource.setURL("jdbc:oracle:thin:@//localhost:11521/ORCLPDB1");
-		// Only with clients prior to v21
-		// dataSource.setFastConnectionFailoverEnabled(true);
-		dataSource.setImplicitCachingEnabled(true);
-		// Only with clients prior to v11.2
-		// dataSource.setConnectionCachingEnabled(true);
-		return dataSource;
-	}
+   @Bean
+   public DataSource dataSource() throws SQLException {
+      OracleDataSource dataSource = new OracleDataSource();
+      dataSource.setUser("books");
+      dataSource.setPassword("books");
+      dataSource.setURL("jdbc:oracle:thin:@//localhost:11521/ORCLPDB1");
+      // Only with clients prior to v21
+      // dataSource.setFastConnectionFailoverEnabled(true);
+      dataSource.setImplicitCachingEnabled(true);
+      // Only with clients prior to v11.2
+      // dataSource.setConnectionCachingEnabled(true);
+      return dataSource;
+   }
 }

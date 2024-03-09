@@ -32,21 +32,6 @@ public class JmxConnectionWrapper {
             .collect(Collectors.toMap(MBeanAttributeInfo::getName, Function.identity()));
    }
 
-   private static Object parse(String value) {
-      if (value == null)
-         return null;
-
-      if (value.matches("\\d+")) {
-         return Integer.valueOf(value);
-      } else if (value.trim()
-            .toLowerCase()
-            .matches("true|false")) {
-         return Boolean.valueOf(value);
-      }
-
-      return value.equals("null") ? null : value;
-   }
-
    public boolean hasAttribute(String attributeName) {
       return attributeMap.containsKey(attributeName);
    }
@@ -63,5 +48,20 @@ public class JmxConnectionWrapper {
       Object[] params = new Object[]{};
 
       return connection.invoke(objectName, operation, params, signature);
+   }
+
+   private static Object parse(String value) {
+      if (value == null)
+         return null;
+
+      if (value.matches("\\d+")) {
+         return Integer.valueOf(value);
+      } else if (value.trim()
+            .toLowerCase()
+            .matches("true|false")) {
+         return Boolean.valueOf(value);
+      }
+
+      return value.equals("null") ? null : value;
    }
 }

@@ -2,7 +2,6 @@ package cn.tuyucheng.taketoday.rate.impl;
 
 import cn.tuyucheng.taketoday.rate.api.Quote;
 import cn.tuyucheng.taketoday.rate.api.QuoteManager;
-
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

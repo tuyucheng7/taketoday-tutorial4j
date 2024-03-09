@@ -9,20 +9,20 @@ import static org.mockito.Mockito.mock;
 
 class AuthorEventHandlerUnitTest {
 
-	@Test
-	void whenCreateAuthorThenSuccess() {
-		Author author = mock(Author.class);
-		AuthorEventHandler authorEventHandler = new AuthorEventHandler();
-		authorEventHandler.handleAuthorBeforeCreate(author);
-		Mockito.verify(author, Mockito.times(1)).getName();
+   @Test
+   void whenCreateAuthorThenSuccess() {
+      Author author = mock(Author.class);
+      AuthorEventHandler authorEventHandler = new AuthorEventHandler();
+      authorEventHandler.handleAuthorBeforeCreate(author);
+      Mockito.verify(author, Mockito.times(1)).getName();
 
-	}
+   }
 
-	@Test
-	void whenDeleteAuthorThenSuccess() {
-		Author author = mock(Author.class);
-		AuthorEventHandler authorEventHandler = new AuthorEventHandler();
-		authorEventHandler.handleAuthorAfterDelete(author);
-		Mockito.verify(author, Mockito.times(1)).getName();
-	}
+   @Test
+   void whenDeleteAuthorThenSuccess() {
+      Author author = mock(Author.class);
+      AuthorEventHandler authorEventHandler = new AuthorEventHandler();
+      authorEventHandler.handleAuthorAfterDelete(author);
+      Mockito.verify(author, Mockito.times(1)).getName();
+   }
 }

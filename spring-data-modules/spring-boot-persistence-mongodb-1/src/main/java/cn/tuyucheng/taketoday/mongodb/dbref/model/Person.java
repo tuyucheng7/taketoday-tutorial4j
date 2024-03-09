@@ -9,40 +9,40 @@ import java.util.List;
 @Document(collection = "Person")
 public class Person {
 
-	@Id
-	private String id;
+   @Id
+   private String id;
 
-	private String name;
+   private String name;
 
-	@DBRef
-	private List<Pet> pets;
+   @DBRef
+   private List<Pet> pets;
 
-	public String getId() {
-		return id;
-	}
+   public String getId() {
+      return id;
+   }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+   public void setId(String id) {
+      this.id = id;
+   }
 
-	public List<Pet> getPets() {
-		return pets;
-	}
+   public List<Pet> getPets() {
+      return pets;
+   }
 
-	public void setPets(List<Pet> pets) {
-		this.pets = pets;
-	}
+   public void setPets(List<Pet> pets) {
+      this.pets = pets;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", pets=" + pets + "]";
-	}
+   @Override
+   public String toString() {
+      return "Person [id=" + id + ", name=" + name + ", pets=" + pets + "]";
+   }
 }

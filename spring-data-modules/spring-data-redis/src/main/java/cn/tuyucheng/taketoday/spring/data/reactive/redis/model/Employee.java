@@ -14,8 +14,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class Employee implements Serializable {
-	private static final long serialVersionUID = 1603714798906422731L;
-	private String id;
-	private String name;
-	private String department;
+   private static final long serialVersionUID = 1603714798906422731L;
+   private String id;
+   private String name;
+   private String department;
 }

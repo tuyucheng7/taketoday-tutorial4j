@@ -12,24 +12,24 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    EmployeeRepository employeeRepository;
+   @Autowired
+   EmployeeRepository employeeRepository;
 
-    public void initializeEmployees(List<Employee> employees) {
-        Flux<Employee> savedEmployees = employeeRepository.saveAll(employees);
-        savedEmployees.subscribe();
-    }
+   public void initializeEmployees(List<Employee> employees) {
+      Flux<Employee> savedEmployees = employeeRepository.saveAll(employees);
+      savedEmployees.subscribe();
+   }
 
-    public Flux<Employee> getAllEmployees() {
-        Flux<Employee> employees = employeeRepository.findAll();
-        return employees;
-    }
+   public Flux<Employee> getAllEmployees() {
+      Flux<Employee> employees = employeeRepository.findAll();
+      return employees;
+   }
 
-    public Flux<Employee> getEmployeesFilterByAge(int age) {
-        return employeeRepository.findByAgeGreaterThan(age);
-    }
+   public Flux<Employee> getEmployeesFilterByAge(int age) {
+      return employeeRepository.findByAgeGreaterThan(age);
+   }
 
-    public Mono<Employee> getEmployeeById(int id) {
-        return employeeRepository.findById(id);
-    }
+   public Mono<Employee> getEmployeeById(int id) {
+      return employeeRepository.findById(id);
+   }
 }

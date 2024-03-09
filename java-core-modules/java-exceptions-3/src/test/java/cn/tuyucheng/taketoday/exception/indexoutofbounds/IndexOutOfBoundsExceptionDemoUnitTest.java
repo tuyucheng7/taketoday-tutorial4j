@@ -12,17 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class IndexOutOfBoundsExceptionDemoUnitTest {
 
-    @Test
-    void givenDestinationArrayListSizeIsZero_whenCopySourceArrayListToDestination_thenShouldThrowIndexOutOfBoundsException() {
-        List<Integer> source = Arrays.asList(1, 2, 3, 4, 5);
+   @Test
+   void givenDestinationArrayListSizeIsZero_whenCopySourceArrayListToDestination_thenShouldThrowIndexOutOfBoundsException() {
+      List<Integer> source = Arrays.asList(1, 2, 3, 4, 5);
 
-        assertThrows(IndexOutOfBoundsException.class, () -> IndexOutOfBoundsExceptionDemo.copyList(source));
-    }
+      assertThrows(IndexOutOfBoundsException.class, () -> IndexOutOfBoundsExceptionDemo.copyList(source));
+   }
 
-    @Test
-    void givenSourceAndDestinationListSizeIsEqual_whenCopySourceArrayListToDestination_thenShouldNotThrowIndexOutOfBoundsException() {
-        List<Integer> source = Collections.emptyList();
+   @Test
+   void givenSourceAndDestinationListSizeIsEqual_whenCopySourceArrayListToDestination_thenShouldNotThrowIndexOutOfBoundsException() {
+      List<Integer> source = Collections.emptyList();
 
-        assertEquals(source, IndexOutOfBoundsExceptionDemo.copyList(source));
-    }
+      assertEquals(source, IndexOutOfBoundsExceptionDemo.copyList(source));
+   }
 }

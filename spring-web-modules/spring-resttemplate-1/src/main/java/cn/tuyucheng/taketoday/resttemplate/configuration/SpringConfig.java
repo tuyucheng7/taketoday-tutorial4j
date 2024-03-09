@@ -13,15 +13,15 @@ import org.springframework.context.annotation.DependsOn;
 @ComponentScan("cn.tuyucheng.taketoday.resttemplate.configuration")
 public class SpringConfig {
 
-    @Bean
-    @Qualifier("customRestTemplateCustomizer")
-    public CustomRestTemplateCustomizer customRestTemplateCustomizer() {
-        return new CustomRestTemplateCustomizer();
-    }
+   @Bean
+   @Qualifier("customRestTemplateCustomizer")
+   public CustomRestTemplateCustomizer customRestTemplateCustomizer() {
+      return new CustomRestTemplateCustomizer();
+   }
 
-    @Bean
-    @DependsOn(value = {"customRestTemplateCustomizer"})
-    public RestTemplateBuilder restTemplateBuilder() {
-        return new RestTemplateBuilder(customRestTemplateCustomizer());
-    }
+   @Bean
+   @DependsOn(value = {"customRestTemplateCustomizer"})
+   public RestTemplateBuilder restTemplateBuilder() {
+      return new RestTemplateBuilder(customRestTemplateCustomizer());
+   }
 }

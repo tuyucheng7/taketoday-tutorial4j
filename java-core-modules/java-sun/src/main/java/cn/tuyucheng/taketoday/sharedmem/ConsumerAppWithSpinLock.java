@@ -31,6 +31,7 @@ public class ConsumerAppWithSpinLock {
    }
 
    private static void run(String args[]) throws Exception {
+
       MessageDigest digest = MessageDigest.getInstance("SHA1");
       digest.digest(new byte[256]);
       byte[] dummy = digest.digest();
@@ -55,6 +56,7 @@ public class ConsumerAppWithSpinLock {
       SpinLock lock = new SpinLock(addr);
 
       while (System.currentTimeMillis() - start < 30_000) {
+
          if (!lock.tryLock(5_000)) {
             throw new RuntimeException("Unable to acquire lock");
          }
@@ -85,6 +87,7 @@ public class ConsumerAppWithSpinLock {
    }
 
    private static MappedByteBuffer createSharedMemory(String path, long size) {
+
       try (FileChannel fc = (FileChannel) Files.newByteChannel(
             new File(path).toPath(),
             EnumSet.of(
@@ -112,4 +115,5 @@ public class ConsumerAppWithSpinLock {
          throw new RuntimeException(ex);
       }
    }
+
 }

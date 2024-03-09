@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-jvm-2</artifactId>
-   <version>1.0.0</version>
    <name>java-jvm-2</name>
    <packaging>jar</packaging>
 
@@ -45,4 +44,5 @@
       <jol-core.version>0.10</jol-core.version>
       <reflections.version>0.10.2</reflections.version>
    </properties>
+
 </project>

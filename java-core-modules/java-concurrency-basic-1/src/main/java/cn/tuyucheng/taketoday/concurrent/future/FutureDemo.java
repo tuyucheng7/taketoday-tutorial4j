@@ -9,33 +9,36 @@ import java.util.concurrent.TimeoutException;
 
 public class FutureDemo {
 
-	public String invoke() {
-		String str = null;
+   public String invoke() {
 
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
+      String str = null;
 
-		Future<String> future = executorService.submit(() -> {
-			// Task
-			Thread.sleep(10000L);
-			return "Hello world";
-		});
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-		future.cancel(false);
+      Future<String> future = executorService.submit(() -> {
+         // Task
+         Thread.sleep(10000l);
+         return "Hellow world";
+      });
 
-		try {
-			future.get(20, TimeUnit.SECONDS);
-		} catch (InterruptedException | ExecutionException | TimeoutException e1) {
-			e1.printStackTrace();
-		}
+      future.cancel(false);
 
-		if (future.isDone() && !future.isCancelled()) {
-			try {
-				str = future.get();
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}
-		}
+      try {
+         future.get(20, TimeUnit.SECONDS);
+      } catch (InterruptedException | ExecutionException | TimeoutException e1) {
+         e1.printStackTrace();
+      }
 
-		return str;
-	}
+      if (future.isDone() && !future.isCancelled()) {
+         try {
+            str = future.get();
+         } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+         }
+      }
+
+      return str;
+
+   }
+
 }

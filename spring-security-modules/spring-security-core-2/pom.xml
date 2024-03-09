@@ -10,8 +10,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>spring-security-modules</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -51,12 +52,10 @@
       <dependency>
          <groupId>org.springframework.security</groupId>
          <artifactId>spring-security-web</artifactId>
-         <version>${spring.security.version}</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.security</groupId>
          <artifactId>spring-security-core</artifactId>
-         <version>${spring.security.version}</version>
       </dependency>
    </dependencies>
 
@@ -110,6 +109,6 @@
    </profiles>
 
    <properties>
-      <spring.security.version>5.8.4</spring.security.version>
+      <start-class>cn.tuyucheng.taketoday.authresolver.AuthResolverApplication</start-class>
    </properties>
 </project>

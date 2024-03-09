@@ -1,15 +1,16 @@
 package cn.tuyucheng.taketoday.branchprediction;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.stream.LongStream;
 
 public class CombiningUnitTest {
+   private static final Logger LOG = LoggerFactory.getLogger(CombiningUnitTest.class);
+
    public static final int TOP = 1000000;
    public static final double FRACTION = 0.1;
-   private static final Logger LOG = LoggerFactory.getLogger(CombiningUnitTest.class);
 
    @Test
    public void combined() {

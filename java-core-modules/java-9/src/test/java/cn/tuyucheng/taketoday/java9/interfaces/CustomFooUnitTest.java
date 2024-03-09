@@ -10,29 +10,29 @@ import java.io.PrintStream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CustomFooUnitTest {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final PrintStream originalOut = System.out;
+   private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+   private PrintStream originalOut = System.out;
 
-	@BeforeEach
-	void setup() {
-		System.setOut(new PrintStream(outContent));
-	}
+   @BeforeEach
+   void setup() {
+      System.setOut(new PrintStream(outContent));
+   }
 
-	@AfterEach
-	void tearDown() {
-		System.setOut(originalOut);
-	}
+   @AfterEach
+   void tearDown() {
+      System.setOut(originalOut);
+   }
 
-	@Test
-	void givenACustomFooObject_whenCallingDefaultMethodBar_thenExpectedStringIsWrittenToSystemOut() {
-		CustomFoo customFoo = new CustomFoo();
-		customFoo.bar();
-		assertThat(outContent.toString()).isEqualTo("Hello world!");
-	}
+   @Test
+   void givenACustomFooObject_whenCallingDefaultMethodBar_thenExpectedStringIsWrittenToSystemOut() {
+      CustomFoo customFoo = new CustomFoo();
+      customFoo.bar();
+      assertThat(outContent.toString()).isEqualTo("Hello world!");
+   }
 
-	@Test
-	void givenAFooInterface_whenCallingStaticMethodBuzz_thenExpectedStringIsWrittenToSystemOut() {
-		Foo.buzz();
-		assertThat(outContent.toString()).isEqualTo("Hello static world!");
-	}
+   @Test
+   void givenAFooInterface_whenCallingStaticMethodBuzz_thenExpectedStringIsWrittenToSystemOut() {
+      Foo.buzz();
+      assertThat(outContent.toString()).isEqualTo("Hello static world!");
+   }
 }

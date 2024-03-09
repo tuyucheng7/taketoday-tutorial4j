@@ -15,64 +15,64 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LastModifiedFileAppUnitTest {
 
-	private final static String SOURCEDIRECTORY = "src/test/resources/lastmodfiles";
+   private final static String SOURCEDIRECTORY = "src/test/resources/lastmodfiles";
 
-	@BeforeAll
-	public static void setUpFiles() throws IOException, InterruptedException {
-		File srcDir = new File(SOURCEDIRECTORY);
-		if (!srcDir.exists()) {
-			srcDir.mkdir();
-		}
+   @BeforeAll
+   public static void setUpFiles() throws IOException, InterruptedException {
+      File srcDir = new File(SOURCEDIRECTORY);
+      if (!srcDir.exists()) {
+         srcDir.mkdir();
+      }
 
-		FileUtils.cleanDirectory(srcDir);
+      FileUtils.cleanDirectory(srcDir);
 
-		File file01 = new File(SOURCEDIRECTORY + "/file01.txt");
-		file01.createNewFile();
+      File file01 = new File(SOURCEDIRECTORY + "/file01.txt");
+      file01.createNewFile();
 
-		Thread.sleep(2000);
+      Thread.sleep(2000);
 
-		File file02 = new File(SOURCEDIRECTORY + "/file02.txt");
-		file02.createNewFile();
+      File file02 = new File(SOURCEDIRECTORY + "/file02.txt");
+      file02.createNewFile();
 
-		Thread.sleep(2000);
+      Thread.sleep(2000);
 
-		File file03 = new File(SOURCEDIRECTORY + "/file03.txt");
-		file03.createNewFile();
+      File file03 = new File(SOURCEDIRECTORY + "/file03.txt");
+      file03.createNewFile();
 
-		Thread.sleep(2000);
+      Thread.sleep(2000);
 
-		Files.write(Paths.get(SOURCEDIRECTORY + "/file02.txt"), "Hello File02".getBytes());
+      Files.write(Paths.get(SOURCEDIRECTORY + "/file02.txt"), "Hello File02".getBytes());
 
-	}
+   }
 
-	@Test
-	public void givenDirectory_whenUsingIoApi_thenFindLastModfile() throws IOException {
-		File lastModFile = LastModifiedFileApp.findUsingIOApi(SOURCEDIRECTORY);
+   @Test
+   public void givenDirectory_whenUsingIoApi_thenFindLastModfile() throws IOException {
+      File lastModFile = LastModifiedFileApp.findUsingIOApi(SOURCEDIRECTORY);
 
-		assertThat(lastModFile).isNotNull();
-		assertThat(lastModFile.getName()).isEqualTo("file02.txt");
-	}
+      assertThat(lastModFile).isNotNull();
+      assertThat(lastModFile.getName()).isEqualTo("file02.txt");
+   }
 
-	@Test
-	public void givenDirectory_whenUsingNioApi_thenFindLastModfile() throws IOException {
-		Path lastModPath = LastModifiedFileApp.findUsingNIOApi(SOURCEDIRECTORY);
+   @Test
+   public void givenDirectory_whenUsingNioApi_thenFindLastModfile() throws IOException {
+      Path lastModPath = LastModifiedFileApp.findUsingNIOApi(SOURCEDIRECTORY);
 
-		assertThat(lastModPath).isNotNull();
-		assertThat(lastModPath.toFile().getName()).isEqualTo("file02.txt");
-	}
+      assertThat(lastModPath).isNotNull();
+      assertThat(lastModPath.toFile().getName()).isEqualTo("file02.txt");
+   }
 
-	@Test
-	public void givenDirectory_whenUsingApacheCommons_thenFindLastModfile() throws IOException {
-		File lastModFile = LastModifiedFileApp.findUsingCommonsIO(SOURCEDIRECTORY);
+   @Test
+   public void givenDirectory_whenUsingApacheCommons_thenFindLastModfile() throws IOException {
+      File lastModFile = LastModifiedFileApp.findUsingCommonsIO(SOURCEDIRECTORY);
 
-		assertThat(lastModFile).isNotNull();
-		assertThat(lastModFile.getName()).isEqualTo("file02.txt");
-	}
+      assertThat(lastModFile).isNotNull();
+      assertThat(lastModFile.getName()).isEqualTo("file02.txt");
+   }
 
-	@AfterAll
-	public static void cleanUp() throws IOException {
-		File srcDir = new File(SOURCEDIRECTORY);
-		FileUtils.deleteDirectory(srcDir);
-	}
+   @AfterAll
+   public static void cleanUp() throws IOException {
+      File srcDir = new File(SOURCEDIRECTORY);
+      FileUtils.deleteDirectory(srcDir);
+   }
 
 }

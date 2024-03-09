@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ChildDao extends AbstractHibernateDao<Child> implements IChildDao {
 
-    public ChildDao() {
-        super();
-        setClazz(Child.class);
-    }
+   public ChildDao() {
+      super();
+      setClazz(Child.class);
+   }
 }

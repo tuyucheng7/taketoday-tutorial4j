@@ -10,20 +10,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 class SimpleCustomKeyValueUnitTest {
 
 
-    @Test
-    public void givenModifiableEntries_whenVerifying_thenShouldContainKeyValues() {
-        Map.Entry<String, String> firstEntry = new SimpleCustomKeyValue<>("key1", "value1");
+   @Test
+   public void givenModifiableEntries_whenVerifying_thenShouldContainKeyValues() {
+      Map.Entry<String, String> firstEntry = new SimpleCustomKeyValue<>("key1", "value1");
 
-        Map.Entry<String, String> secondEntry = new SimpleCustomKeyValue<>("key2", "value2");
-        secondEntry.setValue("different value");
+      Map.Entry<String, String> secondEntry = new SimpleCustomKeyValue<>("key2", "value2");
+      secondEntry.setValue("different value");
 
-        Map<String, String> map = Map.ofEntries(firstEntry, secondEntry);
+      Map<String, String> map = Map.ofEntries(firstEntry, secondEntry);
 
-        assertThat(map)
-              .isEqualTo(ImmutableMap.<String, String>builder()
-                    .put("key1", "value1")
-                    .put("key2", "different value")
-                    .build());
-    }
+      assertThat(map)
+            .isEqualTo(ImmutableMap.<String, String>builder()
+                  .put("key1", "value1")
+                  .put("key2", "different value")
+                  .build());
+   }
 
 }

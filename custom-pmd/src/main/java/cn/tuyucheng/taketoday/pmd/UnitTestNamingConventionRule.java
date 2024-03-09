@@ -9,29 +9,29 @@ import java.util.Objects;
 
 public class UnitTestNamingConventionRule extends AbstractJavaRule {
 
-	private static List<String> allowedEndings = Arrays.asList(
-		"IntegrationTest",
-		"IntTest",
-		"ManualTest",
-		"JdbcTest",
-		"LiveTest",
-		"UnitTest",
-		"jmhTest");
+   private static List<String> allowedEndings = Arrays.asList(
+         "IntegrationTest",
+         "IntTest",
+         "ManualTest",
+         "JdbcTest",
+         "LiveTest",
+         "UnitTest",
+         "jmhTest");
 
-	@Override
-	public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
-		String className = node.getSimpleName();
-		Objects.requireNonNull(className);
+   @Override
+   public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+      String className = node.getSimpleName();
+      Objects.requireNonNull(className);
 
-		if (className.endsWith("SpringContextTest")) {
-			return data;
-		}
+      if (className.endsWith("SpringContextTest")) {
+         return data;
+      }
 
-		if (className.endsWith("Tests")
-			|| (className.endsWith("Test") && allowedEndings.stream().noneMatch(className::endsWith))) {
-			addViolation(data, node);
-		}
+      if (className.endsWith("Tests")
+            || (className.endsWith("Test") && allowedEndings.stream().noneMatch(className::endsWith))) {
+         addViolation(data, node);
+      }
 
-		return data;
-	}
+      return data;
+   }
 }

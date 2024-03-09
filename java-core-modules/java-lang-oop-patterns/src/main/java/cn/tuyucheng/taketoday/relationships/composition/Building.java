@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Building {
 
-	private String address;
-	private List<Room> rooms;
+   private String address;
+   private List<Room> rooms;
 
-	public class Room {
+   public class Room {
 
-		public String getBuildingAddress() {
-			return Building.this.address;
-		}
+      public String getBuildingAddress() {
+         return Building.this.address;
+      }
 
-	}
+   }
 
 }

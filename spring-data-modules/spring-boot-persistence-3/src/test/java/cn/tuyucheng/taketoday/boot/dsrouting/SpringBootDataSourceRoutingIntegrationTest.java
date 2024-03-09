@@ -1,5 +1,8 @@
-package cn.tuyucheng.taketoday.dsrouting;
+package cn.tuyucheng.taketoday.boot.dsrouting;
 
+import cn.tuyucheng.taketoday.dsrouting.ClientDatabase;
+import cn.tuyucheng.taketoday.dsrouting.ClientDatabaseContextHolder;
+import cn.tuyucheng.taketoday.dsrouting.ClientService;
 import cn.tuyucheng.taketoday.dsrouting.model.ClientADetails;
 import cn.tuyucheng.taketoday.dsrouting.model.ClientBDetails;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,43 +22,44 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
-	classes = {ClientADetails.class, ClientBDetails.class})
+      classes = {ClientADetails.class, ClientBDetails.class})
 @ContextConfiguration(classes = SpringBootDataSourceRoutingTestConfiguration.class)
 @DirtiesContext
 @EnableConfigurationProperties(ClientBDetails.class)
 class SpringBootDataSourceRoutingIntegrationTest {
 
-	@Autowired
-	DataSource routingDatasource;
+   @Autowired
+   DataSource routingDatasource;
 
-	@Autowired
-	ClientService clientService;
+   @Autowired
+   ClientService clientService;
 
-	@BeforeEach
-	void setup() {
-		final String SQL_CLIENT_A = "insert into client (id, name) values (1, 'CLIENT A')";
-		final String SQL_CLIENT_B = "insert into client (id, name) values (2, 'CLIENT B')";
+   @BeforeEach
+   void setup() {
+      final String SQL_CLIENT_A = "insert into client (id, name) values (1, 'CLIENT A')";
+      final String SQL_CLIENT_B = "insert into client (id, name) values (2, 'CLIENT B')";
 
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-		jdbcTemplate.setDataSource(routingDatasource);
+      JdbcTemplate jdbcTemplate = new JdbcTemplate();
+      jdbcTemplate.setDataSource(routingDatasource);
 
-		ClientDatabaseContextHolder.set(ClientDatabase.CLIENT_A);
-		jdbcTemplate.execute(SQL_CLIENT_A);
-		ClientDatabaseContextHolder.clear();
+      ClientDatabaseContextHolder.set(ClientDatabase.CLIENT_A);
+      jdbcTemplate.execute(SQL_CLIENT_A);
+      ClientDatabaseContextHolder.clear();
 
-		ClientDatabaseContextHolder.set(ClientDatabase.CLIENT_B);
-		jdbcTemplate.execute(SQL_CLIENT_B);
-		ClientDatabaseContextHolder.clear();
-	}
+      ClientDatabaseContextHolder.set(ClientDatabase.CLIENT_B);
+      jdbcTemplate.execute(SQL_CLIENT_B);
+      ClientDatabaseContextHolder.clear();
+   }
 
-	@Test
-	void givenClientDbs_whenContextsSwitch_thenRouteToCorrectDatabase() throws Exception {
-		// test ACME WIDGETS
-		String clientName = clientService.getClientName(ClientDatabase.CLIENT_A);
-		assertEquals(clientName, "CLIENT A");
+   @Test
+   void givenClientDbs_whenContextsSwitch_thenRouteToCorrectDatabase() throws Exception {
 
-		// test WIDGETS_ARE_US
-		clientName = clientService.getClientName(ClientDatabase.CLIENT_B);
-		assertEquals(clientName, "CLIENT B");
-	}
+      // test ACME WIDGETS
+      String clientName = clientService.getClientName(ClientDatabase.CLIENT_A);
+      assertEquals(clientName, "CLIENT A");
+
+      // test WIDGETS_ARE_US
+      clientName = clientService.getClientName(ClientDatabase.CLIENT_B);
+      assertEquals(clientName, "CLIENT B");
+   }
 }

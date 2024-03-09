@@ -1,4 +1,4 @@
 module tuyucheng.reflecting.named {
-	requires tuyucheng.intermedium;
-	requires tuyucheng.reflected;
+   requires tuyucheng.intermedium;
+   requires tuyucheng.reflected;
 }

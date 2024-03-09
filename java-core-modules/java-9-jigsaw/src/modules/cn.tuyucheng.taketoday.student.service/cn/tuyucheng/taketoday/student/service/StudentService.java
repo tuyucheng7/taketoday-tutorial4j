@@ -4,11 +4,11 @@ import cn.tuyucheng.taketoday.student.model.Student;
 
 public interface StudentService {
 
-	String create(Student student);
+   public String create(Student student);
 
-	Student read(String registrationId);
+   public Student read(String registrationId);
 
-	Student update(Student student);
+   public Student update(Student student);
 
-	String delete(String registrationId);
+   public String delete(String registrationId);
 }

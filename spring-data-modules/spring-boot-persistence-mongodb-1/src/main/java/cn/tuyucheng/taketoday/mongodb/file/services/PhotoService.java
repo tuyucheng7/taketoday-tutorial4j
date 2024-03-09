@@ -13,17 +13,17 @@ import java.io.IOException;
 @Service
 public class PhotoService {
 
-	@Autowired
-	private PhotoRepository photoRepo;
+   @Autowired
+   private PhotoRepository photoRepo;
 
-	public Photo getPhoto(String id) {
-		return photoRepo.findById(id).get();
-	}
+   public Photo getPhoto(String id) {
+      return photoRepo.findById(id).get();
+   }
 
-	public String addPhoto(String title, MultipartFile file) throws IOException {
-		Photo photo = new Photo(title);
-		photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-		photo = photoRepo.insert(photo);
-		return photo.getId();
-	}
+   public String addPhoto(String title, MultipartFile file) throws IOException {
+      Photo photo = new Photo(title);
+      photo.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+      photo = photoRepo.insert(photo);
+      return photo.getId();
+   }
 }

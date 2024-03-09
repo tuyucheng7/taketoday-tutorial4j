@@ -13,21 +13,21 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-	private final CustomerRepository customerRepository;
+   private final CustomerRepository customerRepository;
 
-	@Autowired
-	public CustomerController(CustomerRepository customerRepository) {
-		this.customerRepository = customerRepository;
-	}
+   @Autowired
+   public CustomerController(CustomerRepository customerRepository) {
+      this.customerRepository = customerRepository;
+   }
 
-	@PostMapping("/customers")
-	public Customer addCustomer(@RequestBody Customer customer) {
-		customerRepository.save(customer);
-		return customer;
-	}
+   @PostMapping("/customers")
+   public Customer addCustomer(@RequestBody Customer customer) {
+      customerRepository.save(customer);
+      return customer;
+   }
 
-	@GetMapping("/customers")
-	public List<Customer> getCustomers() {
-		return (List<Customer>) customerRepository.findAll();
-	}
+   @GetMapping("/customers")
+   public List<Customer> getCustomers() {
+      return (List<Customer>) customerRepository.findAll();
+   }
 }

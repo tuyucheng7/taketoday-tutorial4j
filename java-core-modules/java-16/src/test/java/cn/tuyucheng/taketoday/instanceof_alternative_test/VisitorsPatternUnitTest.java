@@ -1,29 +1,28 @@
 package cn.tuyucheng.taketoday.instanceof_alternative_test;
 
-import cn.tuyucheng.taketoday.instanceof_alternatives.visitorspattern.Anatotitan;
-import cn.tuyucheng.taketoday.instanceof_alternatives.visitorspattern.Dino;
-import cn.tuyucheng.taketoday.instanceof_alternatives.visitorspattern.DinoVisitorImpl;
-import cn.tuyucheng.taketoday.instanceof_alternatives.visitorspattern.Euraptor;
-import cn.tuyucheng.taketoday.instanceof_alternatives.visitorspattern.Visitor;
+import cn.tuyucheng.taketoday.instanceofalternative.visitorspattern.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class VisitorsPatternUnitTest {
+public class VisitorsPatternUnitTest {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfAnatotitan() {
-		assertEquals("running", moveDinosaurUsingVisitorPattern((Dino) new Anatotitan()));
-	}
+   @Test
+   public void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfAnatotitan() {
 
-	@Test
-	void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfEuraptor() {
-		assertEquals("flying", moveDinosaurUsingVisitorPattern((Dino) new Euraptor()));
-	}
+      assertEquals("running", moveDinosaurUsingVisitorPattern((Dino) new Anatotitan()));
+   }
 
-	static String moveDinosaurUsingVisitorPattern(Dino dinosaur) {
-		Visitor visitor = new DinoVisitorImpl();
+   @Test
+   public void givenADinosaurSpecie_whenUsingVisitorPattern_thenGetMovementOfEuraptor() {
 
-		return dinosaur.move(visitor);
-	}
+      assertEquals("flying", moveDinosaurUsingVisitorPattern((Dino) new Euraptor()));
+   }
+
+   public static String moveDinosaurUsingVisitorPattern(Dino dinosaur) {
+      Visitor visitor = new DinoVisitorImpl();
+
+      return dinosaur.move(visitor);
+   }
+
 }

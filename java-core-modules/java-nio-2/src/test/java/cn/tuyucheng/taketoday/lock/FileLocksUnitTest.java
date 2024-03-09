@@ -14,41 +14,41 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FileLocksUnitTest {
 
-    @Test
-    void givenAnInputStream_whenGetWriteLock_thenThrowNonWritableChannelException() {
-        assertThrows(NonWritableChannelException.class, () -> FileLocks.getExclusiveLockFromInputStream());
-    }
+   @Test
+   void givenAnInputStream_whenGetWriteLock_thenThrowNonWritableChannelException() {
+      assertThrows(NonWritableChannelException.class, () -> FileLocks.getExclusiveLockFromInputStream());
+   }
 
-    @Test
-    void givenARandomAccessFileWithReadWriteAccess_whenGetWriteLock_thenLock() throws IOException {
-        FileLock lock = FileLocks.getExclusiveLockFromRandomAccessFile(0, 10);
-        assertNotNull(lock);
-        assertFalse(lock.isShared());
-    }
+   @Test
+   void givenARandomAccessFileWithReadWriteAccess_whenGetWriteLock_thenLock() throws IOException {
+      FileLock lock = FileLocks.getExclusiveLockFromRandomAccessFile(0, 10);
+      assertNotNull(lock);
+      assertFalse(lock.isShared());
+   }
 
-    @Test
-    void givenAPath_whenGetExclusiveLock_thenLock() throws IOException {
-        FileLock lock = FileLocks.getExclusiveLockFromFileChannelOpen(0, 10);
-        assertNotNull(lock);
-        assertFalse(lock.isShared());
-    }
+   @Test
+   void givenAPath_whenGetExclusiveLock_thenLock() throws IOException {
+      FileLock lock = FileLocks.getExclusiveLockFromFileChannelOpen(0, 10);
+      assertNotNull(lock);
+      assertFalse(lock.isShared());
+   }
 
-    @Test
-    void givenAFileOutputStream_whenGetSharedLock_thenThrowNonReadableChannelException() {
-        assertThrows(NonReadableChannelException.class, FileLocks::getReadLockFromOutputStream);
-    }
+   @Test
+   void givenAFileOutputStream_whenGetSharedLock_thenThrowNonReadableChannelException() {
+      assertThrows(NonReadableChannelException.class, FileLocks::getReadLockFromOutputStream);
+   }
 
-    @Test
-    void givenAnInputStream_whenGetSharedLock_thenLock() throws IOException {
-        FileLock lock = FileLocks.getReadLockFromInputStream(0, 10);
-        assertNotNull(lock);
-        assertTrue(lock.isShared());
-    }
+   @Test
+   void givenAnInputStream_whenGetSharedLock_thenLock() throws IOException {
+      FileLock lock = FileLocks.getReadLockFromInputStream(0, 10);
+      assertNotNull(lock);
+      assertTrue(lock.isShared());
+   }
 
-    @Test
-    void givenARandomAccessFile_whenGetSharedLock_thenLock() throws IOException {
-        FileLock lock = FileLocks.getReadLockFromRandomAccessFile(0, 10);
-        assertNotNull(lock);
-        assertTrue(lock.isShared());
-    }
+   @Test
+   void givenARandomAccessFile_whenGetSharedLock_thenLock() throws IOException {
+      FileLock lock = FileLocks.getReadLockFromRandomAccessFile(0, 10);
+      assertNotNull(lock);
+      assertTrue(lock.isShared());
+   }
 }

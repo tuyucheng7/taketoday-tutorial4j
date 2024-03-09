@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootHashMapApplication {
 
-    public static void main(String... args) {
-        SpringApplication.run(SpringBootHashMapApplication.class, args);
-    }
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootHashMapApplication.class, args);
+   }
 }

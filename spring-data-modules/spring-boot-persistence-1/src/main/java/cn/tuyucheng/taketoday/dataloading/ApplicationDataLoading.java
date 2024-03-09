@@ -7,9 +7,9 @@ import org.springframework.core.env.AbstractEnvironment;
 @SpringBootApplication(scanBasePackages = {"cn.tuyucheng.taketoday.dataloading"})
 public class ApplicationDataLoading {
 
-	public static void main(String[] args) {
-		System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "datasource");
+   public static void main(String[] args) {
+      System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "datasource");
 
-		SpringApplication.run(ApplicationDataLoading.class, args);
-	}
+      SpringApplication.run(ApplicationDataLoading.class, args);
+   }
 }

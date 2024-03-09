@@ -19,33 +19,33 @@ import javax.annotation.PreDestroy;
 @Configuration
 public class RedisConfig {
 
-	@Autowired
-	RedisConnectionFactory factory;
+   @Autowired
+   RedisConnectionFactory factory;
 
-	@Bean
-	public ReactiveRedisTemplate<String, Employee> reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
-		Jackson2JsonRedisSerializer<Employee> serializer = new Jackson2JsonRedisSerializer<>(Employee.class);
-		RedisSerializationContext.RedisSerializationContextBuilder<String, Employee> builder = RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
-		RedisSerializationContext<String, Employee> context = builder.value(serializer)
-			.build();
-		return new ReactiveRedisTemplate<>(factory, context);
-	}
+   @Bean
+   public ReactiveRedisTemplate<String, Employee> reactiveRedisTemplate(ReactiveRedisConnectionFactory factory) {
+      Jackson2JsonRedisSerializer<Employee> serializer = new Jackson2JsonRedisSerializer<>(Employee.class);
+      RedisSerializationContext.RedisSerializationContextBuilder<String, Employee> builder = RedisSerializationContext.newSerializationContext(new StringRedisSerializer());
+      RedisSerializationContext<String, Employee> context = builder.value(serializer)
+            .build();
+      return new ReactiveRedisTemplate<>(factory, context);
+   }
 
-	@Bean
-	public ReactiveKeyCommands keyCommands(final ReactiveRedisConnectionFactory reactiveRedisConnectionFactory) {
-		return reactiveRedisConnectionFactory.getReactiveConnection()
-			.keyCommands();
-	}
+   @Bean
+   public ReactiveKeyCommands keyCommands(final ReactiveRedisConnectionFactory reactiveRedisConnectionFactory) {
+      return reactiveRedisConnectionFactory.getReactiveConnection()
+            .keyCommands();
+   }
 
-	@Bean
-	public ReactiveStringCommands stringCommands(final ReactiveRedisConnectionFactory reactiveRedisConnectionFactory) {
-		return reactiveRedisConnectionFactory.getReactiveConnection()
-			.stringCommands();
-	}
+   @Bean
+   public ReactiveStringCommands stringCommands(final ReactiveRedisConnectionFactory reactiveRedisConnectionFactory) {
+      return reactiveRedisConnectionFactory.getReactiveConnection()
+            .stringCommands();
+   }
 
-	@PreDestroy
-	public void cleanRedis() {
-		factory.getConnection()
-			.flushDb();
-	}
+   @PreDestroy
+   public void cleanRedis() {
+      factory.getConnection()
+            .flushDb();
+   }
 }

@@ -1,51 +1,51 @@
 package cn.tuyucheng.taketoday.orelseoptional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrElseOptionalUnitTest {
 
-	@Test
-	public void givenOptional_whenValue_thenOptionalGeneralMethod() {
-		String name = "Filan Fisteku";
-		String missingOptional = "Name not provided";
-		Optional<String> optionalString = Optional.ofNullable(name);
-		Optional<String> fallbackOptionalString = Optional.ofNullable(missingOptional);
-		assertEquals(optionalString, OptionalUtils.or(optionalString, fallbackOptionalString));
-	}
+   @Test
+   public void givenOptional_whenValue_thenOptionalGeneralMethod() {
+      String name = "Filan Fisteku";
+      String missingOptional = "Name not provided";
+      Optional<String> optionalString = Optional.ofNullable(name);
+      Optional<String> fallbackOptionalString = Optional.ofNullable(missingOptional);
+      assertEquals(optionalString, OptionalUtils.or(optionalString, fallbackOptionalString));
+   }
 
-	@Test
-	public void givenEmptyOptional_whenValue_thenOptionalGeneralMethod() {
-		String missingOptional = "Name not provided";
-		Optional<String> optionalString = Optional.empty();
-		Optional<String> fallbackOptionalString = Optional.ofNullable(missingOptional);
-		assertEquals(fallbackOptionalString, OptionalUtils.or(optionalString, fallbackOptionalString));
-	}
+   @Test
+   public void givenEmptyOptional_whenValue_thenOptionalGeneralMethod() {
+      String missingOptional = "Name not provided";
+      Optional<String> optionalString = Optional.empty();
+      Optional<String> fallbackOptionalString = Optional.ofNullable(missingOptional);
+      assertEquals(fallbackOptionalString, OptionalUtils.or(optionalString, fallbackOptionalString));
+   }
 
-	@Test
-	public void givenTwoOptionalMethods_whenFirstEmpty_thenSecondEvaluated() {
-		ItemsProvider itemsProvider = new ItemsProvider();
+   @Test
+   public void givenTwoOptionalMethods_whenFirstEmpty_thenSecondEvaluated() {
+      ItemsProvider itemsProvider = new ItemsProvider();
 
-		Optional<String> item = itemsProvider.getEmptyItem()
-			.map(Optional::of)
-			.orElseGet(itemsProvider::getNail);
+      Optional<String> item = itemsProvider.getEmptyItem()
+            .map(Optional::of)
+            .orElseGet(itemsProvider::getNail);
 
-		assertEquals(Optional.of("nail"), item);
-	}
+      assertEquals(Optional.of("nail"), item);
+   }
 
-	@Test
-	public void givenTwoOptionalMethods_whenFirstNonEmpty_thenSecondNotEvaluated() {
-		ItemsProvider itemsProvider = new ItemsProvider();
+   @Test
+   public void givenTwoOptionalMethods_whenFirstNonEmpty_thenSecondNotEvaluated() {
+      ItemsProvider itemsProvider = new ItemsProvider();
 
-		Optional<String> item = itemsProvider.getNail()
-			.map(Optional::of)
-			.orElseGet(itemsProvider::getHammer);
+      Optional<String> item = itemsProvider.getNail()
+            .map(Optional::of)
+            .orElseGet(itemsProvider::getHammer);
 
-		assertEquals(Optional.of("nail"), item);
-	}
+      assertEquals(Optional.of("nail"), item);
+   }
 
 //    Uncomment code when code base is compatible with Java 9
 //    @Test

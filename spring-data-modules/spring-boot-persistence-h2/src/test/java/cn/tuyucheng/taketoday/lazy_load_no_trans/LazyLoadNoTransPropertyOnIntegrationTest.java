@@ -17,31 +17,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ActiveProfiles("lazy-load-no-trans-on")
 class LazyLoadNoTransPropertyOnIntegrationTest {
 
-	@Autowired
-	private ServiceLayer serviceLayer;
+   @Autowired
+   private ServiceLayer serviceLayer;
 
-	private static final long EXPECTED_DOCS_COLLECTION_SIZE = 6;
-	private static final long EXPECTED_USERS_COUNT = 5;
+   private static final long EXPECTED_DOCS_COLLECTION_SIZE = 6;
+   private static final long EXPECTED_USERS_COUNT = 5;
 
-	@Test
-	void whenCallNonTransactionalMethodWithPropertyOn_thenGetNplusOne() {
-		SQLStatementCountValidator.reset();
+   @Test
+   void whenCallNonTransactionalMethodWithPropertyOn_thenGetNplusOne() {
+      SQLStatementCountValidator.reset();
 
-		long docsCount = serviceLayer.countAllDocsNonTransactional();
+      long docsCount = serviceLayer.countAllDocsNonTransactional();
 
-		assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
+      assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
 
-		SQLStatementCountValidator.assertSelectCount(EXPECTED_USERS_COUNT + 1);
-	}
+      SQLStatementCountValidator.assertSelectCount(EXPECTED_USERS_COUNT + 1);
+   }
 
-	@Test
-	void whenCallTransactionalMethodWithPropertyOn_thenTestPass() {
-		SQLStatementCountValidator.reset();
+   @Test
+   void whenCallTransactionalMethodWithPropertyOn_thenTestPass() {
+      SQLStatementCountValidator.reset();
 
-		long docsCount = serviceLayer.countAllDocsTransactional();
+      long docsCount = serviceLayer.countAllDocsTransactional();
 
-		assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
+      assertEquals(EXPECTED_DOCS_COLLECTION_SIZE, docsCount);
 
-		SQLStatementCountValidator.assertSelectCount(2);
-	}
+      SQLStatementCountValidator.assertSelectCount(2);
+   }
 }

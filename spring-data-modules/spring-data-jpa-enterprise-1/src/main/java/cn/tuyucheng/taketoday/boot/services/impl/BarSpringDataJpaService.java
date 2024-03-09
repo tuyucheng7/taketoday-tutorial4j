@@ -12,20 +12,20 @@ import java.io.Serializable;
 
 public class BarSpringDataJpaService extends AbstractSpringDataJpaService<Bar> implements BarService {
 
-    @Autowired
-    private BarCrudRepository dao;
+   @Autowired
+   private BarCrudRepository dao;
 
-    public BarSpringDataJpaService() {
-        super();
-    }
+   public BarSpringDataJpaService() {
+      super();
+   }
 
-    @Override
-    protected CrudRepository<Bar, Serializable> getDao() {
-        return dao;
-    }
+   @Override
+   protected CrudRepository<Bar, Serializable> getDao() {
+      return dao;
+   }
 
-    @Override
-    public Page<Bar> findPaginated(int page, int size) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
+   @Override
+   public Page<Bar> findPaginated(int page, int size) {
+      throw new UnsupportedOperationException("Not implemented yet");
+   }
 }

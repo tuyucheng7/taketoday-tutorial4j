@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class LocalDateExtractYearMonthDayIntegerValues {
 
-    int getYear(LocalDate localDate) {
-        return localDate.getYear();
-    }
+   int getYear(LocalDate localDate) {
+      return localDate.getYear();
+   }
 
-    int getMonth(LocalDate localDate) {
-        return localDate.getMonthValue();
-    }
+   int getMonth(LocalDate localDate) {
+      return localDate.getMonthValue();
+   }
 
-    int getDay(LocalDate localDate) {
-        return localDate.getDayOfMonth();
-    }
+   int getDay(LocalDate localDate) {
+      return localDate.getDayOfMonth();
+   }
 }

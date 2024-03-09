@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.recordproperties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.RecordComponent;
 import java.util.ArrayList;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 record Player(String name, int age, Long score) {
 }
@@ -49,6 +49,7 @@ public class ReadRecordPropertiesByReflectionUnitTest {
       } catch (IllegalAccessException exception) {
          // for simplicity, error handling is skipped
       }
+
    }
 
    @Test
@@ -82,5 +83,7 @@ public class ReadRecordPropertiesByReflectionUnitTest {
       } catch (IllegalAccessException ex) {
          // for simplicity, error handling is skipped
       }
+
    }
+
 }

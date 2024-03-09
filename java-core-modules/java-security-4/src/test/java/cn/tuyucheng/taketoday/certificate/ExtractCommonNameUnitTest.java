@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExtractCommonNameUnitTest {
 
-   private static final String EXPECTED_CN = "Baeldung";
+   private static final String EXPECTED_CN = "Tuyucheng";
 
-   private String certificatePath = "src/main/resources/Baeldung.cer";
+   private String certificatePath = "src/main/resources/Tuyucheng.cer";
 
    private X509Certificate certificate;
 

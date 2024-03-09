@@ -2,29 +2,29 @@ package cn.tuyucheng.taketoday.defaultstaticinterfacemethods.model;
 
 public class Motorbike implements Vehicle {
 
-	private final String brand;
+   private final String brand;
 
-	public Motorbike(String brand) {
-		this.brand = brand;
-	}
+   public Motorbike(String brand) {
+      this.brand = brand;
+   }
 
-	@Override
-	public String getBrand() {
-		return brand;
-	}
+   @Override
+   public String getBrand() {
+      return brand;
+   }
 
-	@Override
-	public String speedUp() {
-		return "The motorbike is speeding up.";
-	}
+   @Override
+   public String speedUp() {
+      return "The motorbike is speeding up.";
+   }
 
-	@Override
-	public String slowDown() {
-		return "The motorbike is slowing down.";
-	}
+   @Override
+   public String slowDown() {
+      return "The motorbike is slowing down.";
+   }
 
-	@Override
-	public double getSpeed() {
-		return 0;
-	}
+   @Override
+   public double getSpeed() {
+      return 0;
+   }
 }

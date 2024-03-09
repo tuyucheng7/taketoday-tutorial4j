@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-11-1</artifactId>
-   <version>1.0.0</version>
    <name>java-11-1</name>
    <packaging>jar</packaging>
 
    <parent>
-      <artifactId>java-core-modules</artifactId>
-      <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>taketoday-tutorial4j</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../pom.xml</relativePath>
    </parent>
 
    <dependencies>
@@ -76,11 +76,11 @@
                      <filters>
                         <filter>
                            <!-- Shading signed JARs will fail without this. http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar -->
-                           <artifact>:</artifact>
+                           <artifact>*:*</artifact>
                            <excludes>
-                              <exclude>META-INF/.SF</exclude>
-                              <exclude>META-INF/.DSA</exclude>
-                              <exclude>META-INF/.RSA</exclude>
+                              <exclude>META-INF/*.SF</exclude>
+                              <exclude>META-INF/*.DSA</exclude>
+                              <exclude>META-INF/*.RSA</exclude>
                            </excludes>
                         </filter>
                      </filters>

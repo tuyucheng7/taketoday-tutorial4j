@@ -55,4 +55,5 @@ public class User implements Serializable {
    private Object readResolve() {
       return this;
    }
+
 }

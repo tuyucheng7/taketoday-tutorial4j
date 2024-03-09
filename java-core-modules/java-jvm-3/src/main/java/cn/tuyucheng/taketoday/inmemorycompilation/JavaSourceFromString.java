@@ -10,17 +10,17 @@ import static java.util.Objects.requireNonNull;
  */
 public class JavaSourceFromString extends SimpleJavaFileObject {
 
-    private final String sourceCode;
+   private final String sourceCode;
 
-    public JavaSourceFromString(String name, String sourceCode) {
-        super(URI.create("string:///" + name.replace('.', '/') + Kind.SOURCE.extension),
+   public JavaSourceFromString(String name, String sourceCode) {
+      super(URI.create("string:///" + name.replace('.', '/') + Kind.SOURCE.extension),
             Kind.SOURCE
-        );
-        this.sourceCode = requireNonNull(sourceCode, "sourceCode must not be null");
-    }
+      );
+      this.sourceCode = requireNonNull(sourceCode, "sourceCode must not be null");
+   }
 
-    @Override
-    public CharSequence getCharContent(boolean ignoreEncodingErrors) {
-        return sourceCode;
-    }
+   @Override
+   public CharSequence getCharContent(boolean ignoreEncodingErrors) {
+      return sourceCode;
+   }
 }

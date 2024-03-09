@@ -17,60 +17,60 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(classes = SpringBootLifecycleEventApplication.class)
 class UserRepositoryIntegrationTest {
 
-	@Autowired
-	private UserRepository userRepository;
+   @Autowired
+   private UserRepository userRepository;
 
-	@BeforeEach
-	void setup() {
-		User user = new User();
-		user.setFirstName("Jane");
-		user.setLastName("Smith");
-		user.setUserName("jsmith123");
-		userRepository.save(user);
-	}
+   @BeforeEach
+   void setup() {
+      User user = new User();
+      user.setFirstName("Jane");
+      user.setLastName("Smith");
+      user.setUserName("jsmith123");
+      userRepository.save(user);
+   }
 
-	@AfterEach
-	void cleanup() {
-		userRepository.deleteAll();
-	}
+   @AfterEach
+   void cleanup() {
+      userRepository.deleteAll();
+   }
 
-	@Test
-	void whenNewUserProvided_userIsAdded() {
-		User user = new User();
-		user.setFirstName("John");
-		user.setLastName("Doe");
-		user.setUserName("jdoe123");
-		user = userRepository.save(user);
-		assertTrue(user.getId() > 0);
-	}
+   @Test
+   void whenNewUserProvided_userIsAdded() {
+      User user = new User();
+      user.setFirstName("John");
+      user.setLastName("Doe");
+      user.setUserName("jdoe123");
+      user = userRepository.save(user);
+      assertTrue(user.getId() > 0);
+   }
 
-	@Test
-	void whenUserNameProvided_userIsLoaded() {
-		User user = userRepository.findByUserName("jsmith123");
-		assertNotNull(user);
-		assertEquals("jsmith123", user.getUserName());
-	}
+   @Test
+   void whenUserNameProvided_userIsLoaded() {
+      User user = userRepository.findByUserName("jsmith123");
+      assertNotNull(user);
+      assertEquals("jsmith123", user.getUserName());
+   }
 
-	@Test
-	void whenExistingUserProvided_userIsUpdated() {
-		User user = userRepository.findByUserName("jsmith123");
-		user.setFirstName("Joe");
-		user = userRepository.save(user);
-		assertEquals("Joe", user.getFirstName());
-	}
+   @Test
+   void whenExistingUserProvided_userIsUpdated() {
+      User user = userRepository.findByUserName("jsmith123");
+      user.setFirstName("Joe");
+      user = userRepository.save(user);
+      assertEquals("Joe", user.getFirstName());
+   }
 
-	@Test
-	void whenExistingUserDeleted_userIsDeleted() {
-		User user = userRepository.findByUserName("jsmith123");
-		userRepository.delete(user);
-		user = userRepository.findByUserName("jsmith123");
-		assertNull(user);
-	}
+   @Test
+   void whenExistingUserDeleted_userIsDeleted() {
+      User user = userRepository.findByUserName("jsmith123");
+      userRepository.delete(user);
+      user = userRepository.findByUserName("jsmith123");
+      assertNull(user);
+   }
 
-	@Test
-	void whenExistingUserLoaded_fullNameIsAvailable() {
-		String expectedFullName = "Jane Smith";
-		User user = userRepository.findByUserName("jsmith123");
-		assertEquals(expectedFullName, user.getFullName());
-	}
+   @Test
+   void whenExistingUserLoaded_fullNameIsAvailable() {
+      String expectedFullName = "Jane Smith";
+      User user = userRepository.findByUserName("jsmith123");
+      assertEquals(expectedFullName, user.getFullName());
+   }
 }

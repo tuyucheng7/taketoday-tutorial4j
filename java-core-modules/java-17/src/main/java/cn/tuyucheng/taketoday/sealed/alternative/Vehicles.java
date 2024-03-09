@@ -2,44 +2,48 @@ package cn.tuyucheng.taketoday.sealed.alternative;
 
 public class Vehicles {
 
-	abstract static class Vehicle {
+   abstract static class Vehicle {
 
-		private final String registrationNumber;
+      private final String registrationNumber;
 
-		public Vehicle(String registrationNumber) {
-			this.registrationNumber = registrationNumber;
-		}
+      public Vehicle(String registrationNumber) {
+         this.registrationNumber = registrationNumber;
+      }
 
-		public String getRegistrationNumber() {
-			return registrationNumber;
-		}
-	}
+      public String getRegistrationNumber() {
+         return registrationNumber;
+      }
 
-	public static final class Car extends Vehicle {
+   }
 
-		private final int numberOfSeats;
+   public static final class Car extends Vehicle {
 
-		public Car(int numberOfSeats, String registrationNumber) {
-			super(registrationNumber);
-			this.numberOfSeats = numberOfSeats;
-		}
+      private final int numberOfSeats;
 
-		public int getNumberOfSeats() {
-			return numberOfSeats;
-		}
-	}
+      public Car(int numberOfSeats, String registrationNumber) {
+         super(registrationNumber);
+         this.numberOfSeats = numberOfSeats;
+      }
 
-	public static final class Truck extends Vehicle {
+      public int getNumberOfSeats() {
+         return numberOfSeats;
+      }
 
-		private final int loadCapacity;
+   }
 
-		public Truck(int loadCapacity, String registrationNumber) {
-			super(registrationNumber);
-			this.loadCapacity = loadCapacity;
-		}
+   public static final class Truck extends Vehicle {
 
-		public int getLoadCapacity() {
-			return loadCapacity;
-		}
-	}
+      private final int loadCapacity;
+
+      public Truck(int loadCapacity, String registrationNumber) {
+         super(registrationNumber);
+         this.loadCapacity = loadCapacity;
+      }
+
+      public int getLoadCapacity() {
+         return loadCapacity;
+      }
+
+   }
+
 }

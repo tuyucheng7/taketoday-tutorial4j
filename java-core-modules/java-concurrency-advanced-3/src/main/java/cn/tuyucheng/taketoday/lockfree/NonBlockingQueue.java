@@ -5,76 +5,77 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class NonBlockingQueue<T> {
-	private final AtomicReference<Node<T>> head, tail;
-	private final AtomicInteger size;
 
-	public NonBlockingQueue() {
-		head = new AtomicReference<>(null);
-		tail = new AtomicReference<>(null);
-		size = new AtomicInteger();
-		size.set(0);
-	}
+   private final AtomicReference<Node<T>> head, tail;
+   private final AtomicInteger size;
 
-	public void add(T element) {
-		if (element == null) {
-			throw new NullPointerException();
-		}
+   public NonBlockingQueue() {
+      head = new AtomicReference<>(null);
+      tail = new AtomicReference<>(null);
+      size = new AtomicInteger();
+      size.set(0);
+   }
 
-		Node<T> node = new Node<>(element);
-		Node<T> currentTail;
-		do {
-			currentTail = tail.get();
-			node.setPrevious(currentTail);
-		} while (!tail.compareAndSet(currentTail, node));
+   public void add(T element) {
+      if (element == null) {
+         throw new NullPointerException();
+      }
 
-		if (node.previous != null) {
-			node.previous.next = node;
-		}
+      Node<T> node = new Node<>(element);
+      Node<T> currentTail;
+      do {
+         currentTail = tail.get();
+         node.setPrevious(currentTail);
+      } while (!tail.compareAndSet(currentTail, node));
 
-		head.compareAndSet(null, node); // if we are inserting the first element
-		size.incrementAndGet();
-	}
+      if (node.previous != null) {
+         node.previous.next = node;
+      }
 
-	public T get() {
-		if (head.get() == null) {
-			throw new NoSuchElementException();
-		}
+      head.compareAndSet(null, node); // if we are inserting the first element
+      size.incrementAndGet();
+   }
 
-		Node<T> currentHead;
-		Node<T> nextNode;
-		do {
-			currentHead = head.get();
-			nextNode = currentHead.getNext();
-		} while (!head.compareAndSet(currentHead, nextNode));
+   public T get() {
+      if (head.get() == null) {
+         throw new NoSuchElementException();
+      }
 
-		size.decrementAndGet();
-		return currentHead.getValue();
-	}
+      Node<T> currentHead;
+      Node<T> nextNode;
+      do {
+         currentHead = head.get();
+         nextNode = currentHead.getNext();
+      } while (!head.compareAndSet(currentHead, nextNode));
 
-	public int size() {
-		return this.size.get();
-	}
+      size.decrementAndGet();
+      return currentHead.getValue();
+   }
 
-	private static class Node<T> {
-		private final T value;
-		private volatile Node<T> next;
-		private volatile Node<T> previous;
+   public int size() {
+      return this.size.get();
+   }
 
-		public Node(T value) {
-			this.value = value;
-			this.next = null;
-		}
+   private class Node<T> {
+      private final T value;
+      private volatile Node<T> next;
+      private volatile Node<T> previous;
 
-		public T getValue() {
-			return value;
-		}
+      public Node(T value) {
+         this.value = value;
+         this.next = null;
+      }
 
-		public Node<T> getNext() {
-			return next;
-		}
+      public T getValue() {
+         return value;
+      }
 
-		public void setPrevious(Node<T> previous) {
-			this.previous = previous;
-		}
-	}
+      public Node<T> getNext() {
+         return next;
+      }
+
+      public void setPrevious(Node<T> previous) {
+         this.previous = previous;
+      }
+   }
 }

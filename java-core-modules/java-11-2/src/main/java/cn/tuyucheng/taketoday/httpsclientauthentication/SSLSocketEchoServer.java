@@ -12,33 +12,34 @@ import java.net.Socket;
 
 public class SSLSocketEchoServer {
 
-	static void startServer(int port) throws IOException {
-		ServerSocketFactory factory = SSLServerSocketFactory.getDefault();
+   static void startServer(int port) throws IOException {
 
-		try (SSLServerSocket listener = (SSLServerSocket) factory.createServerSocket(port)) {
-			listener.setNeedClientAuth(true);
-			listener.setEnabledCipherSuites(new String[]{"TLS_AES_128_GCM_SHA256"});
-			listener.setEnabledProtocols(new String[]{"TLSv1.3"});
-			System.out.println("listening for messages...");
-			try (Socket socket = listener.accept()) {
-				InputStream is = new BufferedInputStream(socket.getInputStream());
-				OutputStream os = new BufferedOutputStream(socket.getOutputStream());
-				byte[] data = new byte[2048];
-				int len = is.read(data);
-				if (len <= 0) {
-					throw new IOException("no data received");
-				}
-				String message = new String(data, 0, len);
-				System.out.printf("server received %d bytes: %s%n", len, message);
-				String response = message + " processed by server";
-				os.write(response.getBytes(), 0, response.getBytes().length);
-				os.flush();
-			}
-			System.out.println("message processed, exiting");
-		}
-	}
+      ServerSocketFactory factory = SSLServerSocketFactory.getDefault();
 
-	public static void main(String[] args) throws IOException {
-		startServer(8443);
-	}
+      try (SSLServerSocket listener = (SSLServerSocket) factory.createServerSocket(port)) {
+         listener.setNeedClientAuth(true);
+         listener.setEnabledCipherSuites(new String[]{"TLS_AES_128_GCM_SHA256"});
+         listener.setEnabledProtocols(new String[]{"TLSv1.3"});
+         System.out.println("listening for messages...");
+         try (Socket socket = listener.accept()) {
+            InputStream is = new BufferedInputStream(socket.getInputStream());
+            OutputStream os = new BufferedOutputStream(socket.getOutputStream());
+            byte[] data = new byte[2048];
+            int len = is.read(data);
+            if (len <= 0) {
+               throw new IOException("no data received");
+            }
+            String message = new String(data, 0, len);
+            System.out.printf("server received %d bytes: %s%n", len, message);
+            String response = message + " processed by server";
+            os.write(response.getBytes(), 0, response.getBytes().length);
+            os.flush();
+         }
+         System.out.println("message processed, exiting");
+      }
+   }
+
+   public static void main(String[] args) throws IOException {
+      startServer(8443);
+   }
 }

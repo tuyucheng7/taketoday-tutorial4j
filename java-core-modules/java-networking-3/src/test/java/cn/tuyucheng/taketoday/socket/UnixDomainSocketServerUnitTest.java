@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.socket;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,41 +10,41 @@ import java.nio.file.Path;
 
 import static java.nio.file.Files.deleteIfExists;
 import static org.assertj.core.util.Files.newTemporaryFile;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UnixDomainSocketServerUnitTest {
 
-    @Test
-    public void givenSocketPath_shouldCreateUnixDomainSocketAddress() {
-        // given
-        File tempFile = newTemporaryFile();
-        Path socketPath = tempFile.toPath();
+   @Test
+   public void givenSocketPath_shouldCreateUnixDomainSocketAddress() {
+      // given
+      File tempFile = newTemporaryFile();
+      Path socketPath = tempFile.toPath();
 
-        // when
-        UnixDomainSocketAddress address = new UnixDomainSocketServer().getAddress(socketPath);
+      // when
+      UnixDomainSocketAddress address = new UnixDomainSocketServer().getAddress(socketPath);
 
-        // then
-        assertEquals(address.getPath(), socketPath);
+      // then
+      assertEquals(address.getPath(), socketPath);
 
-        // cleanup
-        tempFile.delete();
-    }
+      // cleanup
+      tempFile.delete();
+   }
 
-    @Test
-    public void givenUnixDomainSocketAddress_shouldCreateServerSocketChannel() throws IOException {
-        // given
-        File tempFile = newTemporaryFile();
-        Path socketPath = tempFile.toPath();
-        deleteIfExists(socketPath);
-        UnixDomainSocketAddress address = UnixDomainSocketAddress.of(socketPath);
+   @Test
+   public void givenUnixDomainSocketAddress_shouldCreateServerSocketChannel() throws IOException {
+      // given
+      File tempFile = newTemporaryFile();
+      Path socketPath = tempFile.toPath();
+      deleteIfExists(socketPath);
+      UnixDomainSocketAddress address = UnixDomainSocketAddress.of(socketPath);
 
-        // when
-        ServerSocketChannel serverSocketChannel = new UnixDomainSocketServer().createServerSocketChannel(address);
+      // when
+      ServerSocketChannel serverSocketChannel = new UnixDomainSocketServer().createServerSocketChannel(address);
 
-        // then
-        assertEquals(serverSocketChannel.getLocalAddress(), address);
+      // then
+      assertEquals(serverSocketChannel.getLocalAddress(), address);
 
-        // cleanup
-        tempFile.delete();
-    }
+      // cleanup
+      tempFile.delete();
+   }
 }

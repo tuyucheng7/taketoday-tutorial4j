@@ -2,13 +2,13 @@ package cn.tuyucheng.taketoday.methodmultiplereturnvalues;
 
 class MultipleReturnValuesUsingContainer {
 
-	static Coordinates getCoordinates() {
+   static Coordinates getCoordinates() {
 
-		double longitude = 10;
-		double latitude = 12.5;
-		String placeName = "home";
+      double longitude = 10;
+      double latitude = 12.5;
+      String placeName = "home";
 
-		return new Coordinates(longitude, latitude, placeName);
-	}
+      return new Coordinates(longitude, latitude, placeName);
+   }
 
 }

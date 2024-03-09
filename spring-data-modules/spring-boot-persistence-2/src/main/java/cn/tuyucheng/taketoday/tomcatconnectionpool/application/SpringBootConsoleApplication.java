@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = "cn.tuyucheng.taketoday.tomcatconnectionpool.application.entities")
 public class SpringBootConsoleApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootConsoleApplication.class);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(SpringBootConsoleApplication.class);
+   }
 }

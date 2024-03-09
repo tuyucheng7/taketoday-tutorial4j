@@ -4,71 +4,72 @@ import java.util.concurrent.Semaphore;
 
 public class PrintEvenOddSemaphore {
 
-	public static void main(String[] args) {
-		SharedPrinter sp = new SharedPrinter();
-		Thread odd = new Thread(new Odd(sp, 10), "Odd");
-		Thread even = new Thread(new Even(sp, 10), "Even");
+   public static void main(String[] args) {
+      SharedPrinter sp = new SharedPrinter();
+      Thread odd = new Thread(new Odd(sp, 10), "Odd");
+      Thread even = new Thread(new Even(sp, 10), "Even");
 
-		odd.start();
-		even.start();
-	}
+      odd.start();
+      even.start();
+   }
+}
 
-	static class SharedPrinter {
-		private final Semaphore semEven = new Semaphore(0);
-		private final Semaphore semOdd = new Semaphore(1);
+class SharedPrinter {
 
-		void printEvenNum(int num) {
-			try {
-				semEven.acquire();
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-			System.out.println(Thread.currentThread().getName() + ":" + num);
-			semOdd.release();
-		}
+   private final Semaphore semEven = new Semaphore(0);
+   private final Semaphore semOdd = new Semaphore(1);
 
-		void printOddNum(int num) {
-			try {
-				semOdd.acquire();
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-			System.out.println(Thread.currentThread().getName() + ":" + num);
-			semEven.release();
-		}
-	}
+   void printEvenNum(int num) {
+      try {
+         semEven.acquire();
+      } catch (InterruptedException e) {
+         Thread.currentThread().interrupt();
+      }
+      System.out.println(Thread.currentThread().getName() + ":" + num);
+      semOdd.release();
+   }
 
-	static class Even implements Runnable {
-		private final SharedPrinter printer;
-		private final int max;
+   void printOddNum(int num) {
+      try {
+         semOdd.acquire();
+      } catch (InterruptedException e) {
+         Thread.currentThread().interrupt();
+      }
+      System.out.println(Thread.currentThread().getName() + ":" + num);
+      semEven.release();
+   }
+}
 
-		Even(SharedPrinter printer, int max) {
-			this.printer = printer;
-			this.max = max;
-		}
+class Even implements Runnable {
+   private final SharedPrinter sp;
+   private final int max;
 
-		@Override
-		public void run() {
-			for (int i = 2; i <= max; i = i + 2) {
-				printer.printEvenNum(i);
-			}
-		}
-	}
+   Even(SharedPrinter sp, int max) {
+      this.sp = sp;
+      this.max = max;
+   }
 
-	static class Odd implements Runnable {
-		private final SharedPrinter printer;
-		private final int max;
+   @Override
+   public void run() {
+      for (int i = 2; i <= max; i = i + 2) {
+         sp.printEvenNum(i);
+      }
+   }
+}
 
-		Odd(SharedPrinter printer, int max) {
-			this.printer = printer;
-			this.max = max;
-		}
+class Odd implements Runnable {
+   private SharedPrinter sp;
+   private int max;
 
-		@Override
-		public void run() {
-			for (int i = 1; i <= max; i = i + 2) {
-				printer.printOddNum(i);
-			}
-		}
-	}
+   Odd(SharedPrinter sp, int max) {
+      this.sp = sp;
+      this.max = max;
+   }
+
+   @Override
+   public void run() {
+      for (int i = 1; i <= max; i = i + 2) {
+         sp.printOddNum(i);
+      }
+   }
 }

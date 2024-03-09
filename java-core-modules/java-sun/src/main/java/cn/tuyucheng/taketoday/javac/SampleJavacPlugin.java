@@ -2,11 +2,7 @@ package cn.tuyucheng.taketoday.javac;
 
 import com.sun.source.tree.MethodTree;
 import com.sun.source.tree.VariableTree;
-import com.sun.source.util.JavacTask;
-import com.sun.source.util.Plugin;
-import com.sun.source.util.TaskEvent;
-import com.sun.source.util.TaskListener;
-import com.sun.source.util.TreeScanner;
+import com.sun.source.util.*;
 import com.sun.tools.javac.api.BasicJavacTask;
 import com.sun.tools.javac.code.TypeTag;
 import com.sun.tools.javac.tree.JCTree;
@@ -16,11 +12,7 @@ import com.sun.tools.javac.util.Name;
 import com.sun.tools.javac.util.Names;
 
 import javax.tools.JavaCompiler;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.sun.tools.javac.util.List.nil;
@@ -127,4 +119,5 @@ public class SampleJavacPlugin implements Plugin {
                                     factory.Ident(parameterId)),
                               factory.Literal(TypeTag.CLASS, errorMessageSuffix))), null))));
    }
+
 }

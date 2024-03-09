@@ -9,28 +9,28 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class NativeFSUnitTest {
 
 
-	@Test
-	public void whenCallNative_thenSuccess() throws IOException {
-		NativeFS lib = NativeFS.INSTANCE;
+   @Test
+   public void whenCallNative_thenSuccess() throws IOException {
+      NativeFS lib = NativeFS.INSTANCE;
 
-		File f = Files.createTempFile("junit", ".bin").toFile();
-		f.deleteOnExit();
-		Stat stat = new Stat();
-		try {
-			if (Platform.isWindows()) {
-				int rc = lib.stat(f.getAbsolutePath(), stat);
-				assertEquals(0, rc);
-				assertEquals(0, stat.st_size.longValue());
-			}
-		} catch (LastErrorException error) {
-			fail("stat failed: error code=" + error.getErrorCode());
-		}
+      File f = Files.createTempFile("junit", ".bin").toFile();
+      f.deleteOnExit();
+      Stat stat = new Stat();
+      try {
+         if (Platform.isWindows()) {
+            int rc = lib.stat(f.getAbsolutePath(), stat);
+            assertEquals(0, rc);
+            assertEquals(0, stat.st_size.longValue());
+         }
+      } catch (LastErrorException error) {
+         fail("stat failed: error code=" + error.getErrorCode());
+      }
 
-	}
+   }
 }

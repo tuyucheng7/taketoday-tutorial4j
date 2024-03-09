@@ -20,85 +20,85 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext
 @ExtendWith(SpringExtension.class)
 class ImportJsonServiceIntegrationTest {
-	@Autowired
-	private ImportJsonService service;
+   @Autowired
+   private ImportJsonService service;
 
-	@Autowired
-	private MongoTemplate mongoDb;
+   @Autowired
+   private MongoTemplate mongoDb;
 
-	@Autowired
-	BookRepository bookRepository;
+   @Autowired
+   BookRepository bookRepository;
 
-	@Test
-	void givenJsonString_whenGenericType_thenDocumentImported() {
-		String collection = "items";
-		List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeBefore = docs.size();
+   @Test
+   void givenJsonString_whenGenericType_thenDocumentImported() {
+      String collection = "items";
+      List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeBefore = docs.size();
 
-		String json = "{\"name\":\"Item A\"}\n{\"name\":\"Item B\"}";
-		List<String> jsonLines = ImportUtils.lines(json);
-		service.importTo(collection, jsonLines);
+      String json = "{\"name\":\"Item A\"}\n{\"name\":\"Item B\"}";
+      List<String> jsonLines = ImportUtils.lines(json);
+      service.importTo(collection, jsonLines);
 
-		docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeAfter = docs.size();
-		assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
-	}
+      docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeAfter = docs.size();
+      assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
+   }
 
-	@Test
-	void givenJsonFile_whenClasspathSource_thenDocumentImported() {
-		String collection = "movies";
-		List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeBefore = docs.size();
+   @Test
+   void givenJsonFile_whenClasspathSource_thenDocumentImported() {
+      String collection = "movies";
+      List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeBefore = docs.size();
 
-		String resource = "boot.json.convertfile/movies.json.log";
-		List<String> jsonLines = ImportUtils.linesFromResource(resource);
-		service.importTo(collection, jsonLines);
+      String resource = "boot.json.convertfile/movies.json.log";
+      List<String> jsonLines = ImportUtils.linesFromResource(resource);
+      service.importTo(collection, jsonLines);
 
-		docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeAfter = docs.size();
-		assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
-	}
+      docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeAfter = docs.size();
+      assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
+   }
 
-	@Test
-	void givenJsonClasspathFile_whenCorrectlyTyped_thenDocumentImported() {
-		List<Book> books = bookRepository.findAll();
-		int sizeBefore = books.size();
+   @Test
+   void givenJsonClasspathFile_whenCorrectlyTyped_thenDocumentImported() {
+      List<Book> books = bookRepository.findAll();
+      int sizeBefore = books.size();
 
-		String resource = "boot.json.convertfile/books.json.log";
-		List<String> jsonLines = ImportUtils.linesFromResource(resource);
-		service.importTo(Book.class, jsonLines);
+      String resource = "boot.json.convertfile/books.json.log";
+      List<String> jsonLines = ImportUtils.linesFromResource(resource);
+      service.importTo(Book.class, jsonLines);
 
-		books = bookRepository.findAll();
-		int sizeAfter = books.size();
-		assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
-	}
+      books = bookRepository.findAll();
+      int sizeAfter = books.size();
+      assertThat(sizeAfter - sizeBefore).isEqualTo(jsonLines.size());
+   }
 
-	@Test
-	void givenIncorrectlyTypedJson_whenUsingTypes_thenDocumentNotImported() {
-		List<Book> books = bookRepository.findAll();
-		int sizeBefore = books.size();
+   @Test
+   void givenIncorrectlyTypedJson_whenUsingTypes_thenDocumentNotImported() {
+      List<Book> books = bookRepository.findAll();
+      int sizeBefore = books.size();
 
-		String resource = "boot.json.convertfile/movies.json.log";
-		List<String> jsonLines = ImportUtils.linesFromResource(resource);
-		service.importTo(Book.class, jsonLines);
+      String resource = "boot.json.convertfile/movies.json.log";
+      List<String> jsonLines = ImportUtils.linesFromResource(resource);
+      service.importTo(Book.class, jsonLines);
 
-		books = bookRepository.findAll();
-		int sizeAfter = books.size();
-		assertThat(sizeAfter - sizeBefore).isEqualTo(0);
-	}
+      books = bookRepository.findAll();
+      int sizeAfter = books.size();
+      assertThat(sizeAfter - sizeBefore).isEqualTo(0);
+   }
 
-	@Test
-	void whenInvalidJson_thenDocumentNotImported() {
-		String collection = "items";
-		List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeBefore = docs.size();
+   @Test
+   void whenInvalidJson_thenDocumentNotImported() {
+      String collection = "items";
+      List<DBObject> docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeBefore = docs.size();
 
-		String json = "{name: Item A}\n{name: Item B}";
-		List<String> jsonLines = ImportUtils.lines(json);
-		service.importTo(collection, jsonLines);
+      String json = "{name: Item A}\n{name: Item B}";
+      List<String> jsonLines = ImportUtils.lines(json);
+      service.importTo(collection, jsonLines);
 
-		docs = mongoDb.findAll(DBObject.class, collection);
-		int sizeAfter = docs.size();
-		assertThat(sizeAfter - sizeBefore).isEqualTo(0);
-	}
+      docs = mongoDb.findAll(DBObject.class, collection);
+      int sizeAfter = docs.size();
+      assertThat(sizeAfter - sizeBefore).isEqualTo(0);
+   }
 }

@@ -5,8 +5,8 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 
 public class UnquotedLowerCaseNamingStrategy extends SpringPhysicalNamingStrategy {
-    @Override
-    protected Identifier getIdentifier(String name, boolean quoted, JdbcEnvironment jdbcEnvironment) {
-        return new Identifier(name.toLowerCase(), false);
-    }
+   @Override
+   protected Identifier getIdentifier(String name, boolean quoted, JdbcEnvironment jdbcEnvironment) {
+      return new Identifier(name.toLowerCase(), false);
+   }
 }

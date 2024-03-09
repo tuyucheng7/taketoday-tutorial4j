@@ -1,22 +1,23 @@
 package cn.tuyucheng.taketoday.boot.naming.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.util.List;
 
 @Entity
 public class Account {
 
-	@Id
-	private Long id;
+   @Id
+   private Long id;
 
-	private String defaultEmail;
+   private String defaultEmail;
 
-	@OneToMany
-	List<Preference> preferences;
+   @OneToMany
+   List<Preference> preferences;
 
-	@Column(name = "\"Secondary_Email\"")
-	private String secondaryEmail;
+   @Column(name = "\"Secondary_Email\"")
+   private String secondaryEmail;
 }

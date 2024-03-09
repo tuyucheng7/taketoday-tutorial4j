@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.transferqueue;
 
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runners.MethodSorters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,69 +10,69 @@ import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TransferQueue;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
-class TransferQueueIntegrationTest {
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class TransferQueueIntegrationTest {
 
-	@Test
-	void whenMultipleConsumersAndProducers_thenProcessAllMessages() throws InterruptedException {
-		// given
-		TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
-		ExecutorService executor = Executors.newFixedThreadPool(3);
-		Producer producer1 = new Producer(transferQueue, "1", 3);
-		Producer producer2 = new Producer(transferQueue, "2", 3);
-		Consumer consumer1 = new Consumer(transferQueue, "1", 3);
-		Consumer consumer2 = new Consumer(transferQueue, "2", 3);
+   @Test
+   public void whenMultipleConsumersAndProducers_thenProcessAllMessages() throws InterruptedException {
+      // given
+      TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
+      ExecutorService exService = Executors.newFixedThreadPool(3);
+      Producer producer1 = new Producer(transferQueue, "1", 3);
+      Producer producer2 = new Producer(transferQueue, "2", 3);
+      Consumer consumer1 = new Consumer(transferQueue, "1", 3);
+      Consumer consumer2 = new Consumer(transferQueue, "2", 3);
 
-		// when
-		executor.execute(producer1);
-		executor.execute(producer2);
-		executor.execute(consumer1);
-		executor.execute(consumer2);
+      // when
+      exService.execute(producer1);
+      exService.execute(producer2);
+      exService.execute(consumer1);
+      exService.execute(consumer2);
 
-		// then
-		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
-		executor.shutdown();
+      // then
+      exService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      exService.shutdown();
 
-		assertEquals(3, producer1.numberOfProducedMessages.intValue());
-		assertEquals(3, producer2.numberOfProducedMessages.intValue());
-	}
+      assertEquals(producer1.numberOfProducedMessages.intValue(), 3);
+      assertEquals(producer2.numberOfProducedMessages.intValue(), 3);
+   }
 
-	@Test
-	void whenUseOneConsumerAndOneProducer_thenShouldProcessAllMessages() throws InterruptedException {
-		// given
-		TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		Producer producer = new Producer(transferQueue, "1", 3);
-		Consumer consumer = new Consumer(transferQueue, "1", 3);
+   @Test
+   public void whenUseOneConsumerAndOneProducer_thenShouldProcessAllMessages() throws InterruptedException {
+      // given
+      TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
+      ExecutorService exService = Executors.newFixedThreadPool(2);
+      Producer producer = new Producer(transferQueue, "1", 3);
+      Consumer consumer = new Consumer(transferQueue, "1", 3);
 
-		// when
-		executor.execute(producer);
-		executor.execute(consumer);
+      // when
+      exService.execute(producer);
+      exService.execute(consumer);
 
-		// then
-		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
-		executor.shutdown();
+      // then
+      exService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      exService.shutdown();
 
-		assertEquals(3, producer.numberOfProducedMessages.intValue());
-		assertEquals(3, consumer.numberOfConsumedMessages.intValue());
-	}
+      assertEquals(producer.numberOfProducedMessages.intValue(), 3);
+      assertEquals(consumer.numberOfConsumedMessages.intValue(), 3);
+   }
 
-	@Test
-	void whenUseOneProducerAndNoConsumers_thenShouldFailWithTimeout() throws InterruptedException {
-		// given
-		TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		Producer producer = new Producer(transferQueue, "1", 3);
+   @Test
+   public void whenUseOneProducerAndNoConsumers_thenShouldFailWithTimeout() throws InterruptedException {
+      // given
+      TransferQueue<String> transferQueue = new LinkedTransferQueue<>();
+      ExecutorService exService = Executors.newFixedThreadPool(2);
+      Producer producer = new Producer(transferQueue, "1", 3);
 
-		// when
-		executor.execute(producer);
+      // when
+      exService.execute(producer);
 
-		// then
-		executor.awaitTermination(5000, TimeUnit.MILLISECONDS);
-		executor.shutdown();
+      // then
+      exService.awaitTermination(5000, TimeUnit.MILLISECONDS);
+      exService.shutdown();
 
-		assertEquals(0, producer.numberOfProducedMessages.intValue());
-	}
+      assertEquals(producer.numberOfProducedMessages.intValue(), 0);
+   }
 }

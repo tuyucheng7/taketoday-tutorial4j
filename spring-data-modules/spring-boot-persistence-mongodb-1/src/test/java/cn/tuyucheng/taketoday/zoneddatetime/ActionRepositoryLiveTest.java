@@ -26,32 +26,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ContextConfiguration(classes = MongoConfig.class)
 class ActionRepositoryLiveTest {
 
-	@Autowired
-	private MongoOperations mongoOps;
+   @Autowired
+   private MongoOperations mongoOps;
 
-	@Autowired
-	private ActionRepository actionRepository;
+   @Autowired
+   private ActionRepository actionRepository;
 
-	@BeforeEach
-	void setup() {
-		if (!mongoOps.collectionExists(Action.class)) {
-			mongoOps.createCollection(Action.class);
-		}
-	}
+   @BeforeEach
+   void setup() {
+      if (!mongoOps.collectionExists(Action.class)) {
+         mongoOps.createCollection(Action.class);
+      }
+   }
 
-	@Test
-	void givenSavedAction_TimeIsRetrievedCorrectly() {
-		String id = "testId";
-		ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+   @Test
+   void givenSavedAction_TimeIsRetrievedCorrectly() {
+      String id = "testId";
+      ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
 
-		actionRepository.save(new Action(id, "click-action", now));
-		Action savedAction = actionRepository.findById(id).get();
+      actionRepository.save(new Action(id, "click-action", now));
+      Action savedAction = actionRepository.findById(id).get();
 
-		assertEquals(now.withNano(0), savedAction.getTime().withNano(0));
-	}
+      assertEquals(now.withNano(0), savedAction.getTime().withNano(0));
+   }
 
-	@AfterEach
-	void tearDown() {
-		mongoOps.dropCollection(Action.class);
-	}
+   @AfterEach
+   void tearDown() {
+      mongoOps.dropCollection(Action.class);
+   }
 }

@@ -1,6 +1,5 @@
 package cn.tuyucheng.taketoday.trustedcert;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.TrustManager;
@@ -25,73 +24,71 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CertificatesUnitTest {
 
-	private static final String GODADDY_CA_ALIAS = "godaddyrootg2ca [jdk]";
+   private static final String GODADDY_CA_ALIAS = "godaddyrootg2ca [jdk]";
 
-	@Test
-	public void whenLoadingCacertsKeyStore_thenCertificatesArePresent() throws Exception {
-		KeyStore keyStore = loadKeyStore();
-		PKIXParameters params = new PKIXParameters(keyStore);
+   @Test
+   public void whenLoadingCacertsKeyStore_thenCertificatesArePresent() throws Exception {
+      KeyStore keyStore = loadKeyStore();
+      PKIXParameters params = new PKIXParameters(keyStore);
 
-		Set<TrustAnchor> trustAnchors = params.getTrustAnchors();
-		List<Certificate> certificates = trustAnchors.stream()
-			.map(TrustAnchor::getTrustedCert)
-			.collect(Collectors.toList());
+      Set<TrustAnchor> trustAnchors = params.getTrustAnchors();
+      List<Certificate> certificates = trustAnchors.stream()
+            .map(TrustAnchor::getTrustedCert)
+            .collect(Collectors.toList());
 
-		assertFalse(certificates.isEmpty());
-	}
+      assertFalse(certificates.isEmpty());
+   }
 
-	@Test
-	public void whenLoadingDefaultKeyStore_thenCertificatesArePresent() throws Exception {
-		TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-		trustManagerFactory.init((KeyStore) null);
+   @Test
+   public void whenLoadingDefaultKeyStore_thenCertificatesArePresent() throws Exception {
+      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+      trustManagerFactory.init((KeyStore) null);
 
-		List<TrustManager> trustManagers = Arrays.asList(trustManagerFactory.getTrustManagers());
-		List<X509Certificate> certificates = trustManagers.stream()
-			.filter(X509TrustManager.class::isInstance)
-			.map(X509TrustManager.class::cast)
-			.map(trustManager -> Arrays.asList(trustManager.getAcceptedIssuers()))
-			.flatMap(Collection::stream)
-			.collect(Collectors.toList());
+      List<TrustManager> trustManagers = Arrays.asList(trustManagerFactory.getTrustManagers());
+      List<X509Certificate> certificates = trustManagers.stream()
+            .filter(X509TrustManager.class::isInstance)
+            .map(X509TrustManager.class::cast)
+            .map(trustManager -> Arrays.asList(trustManager.getAcceptedIssuers()))
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
 
-		assertFalse(certificates.isEmpty());
-	}
+      assertFalse(certificates.isEmpty());
+   }
 
-	@Test
-	@Disabled("Fails On CI")
-	public void whenLoadingKeyStore_thenGoDaddyCALabelIsPresent() throws Exception {
-		KeyStore keyStore = loadKeyStore();
+   @Test
+   public void whenLoadingKeyStore_thenGoDaddyCALabelIsPresent() throws Exception {
+      KeyStore keyStore = loadKeyStore();
 
-		Enumeration<String> aliasEnumeration = keyStore.aliases();
-		List<String> aliases = Collections.list(aliasEnumeration);
+      Enumeration<String> aliasEnumeration = keyStore.aliases();
+      List<String> aliases = Collections.list(aliasEnumeration);
 
-		assertTrue(aliases.contains(GODADDY_CA_ALIAS));
-	}
+      assertTrue(aliases.contains(GODADDY_CA_ALIAS));
+   }
 
-	@Test
-	@Disabled("Fails On CI")
-	public void whenLoadingKeyStore_thenGoDaddyCertificateIsPresent() throws Exception {
-		KeyStore keyStore = loadKeyStore();
+   @Test
+   public void whenLoadingKeyStore_thenGoDaddyCertificateIsPresent() throws Exception {
+      KeyStore keyStore = loadKeyStore();
 
-		Certificate goDaddyCertificate = keyStore.getCertificate(GODADDY_CA_ALIAS);
+      Certificate goDaddyCertificate = keyStore.getCertificate(GODADDY_CA_ALIAS);
 
-		assertNotNull(goDaddyCertificate);
-	}
+      assertNotNull(goDaddyCertificate);
+   }
 
-	private KeyStore loadKeyStore() throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException {
-		String relativeCacertsPath = "/lib/security/cacerts".replace("/", File.separator);
-		String filename = System.getProperty("java.home") + relativeCacertsPath;
-		FileInputStream is = new FileInputStream(filename);
+   private KeyStore loadKeyStore() throws CertificateException, NoSuchAlgorithmException, IOException, KeyStoreException {
+      String relativeCacertsPath = "/lib/security/cacerts".replace("/", File.separator);
+      String filename = System.getProperty("java.home") + relativeCacertsPath;
+      FileInputStream is = new FileInputStream(filename);
 
-		KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-		String password = "changeit";
-		keystore.load(is, password.toCharArray());
+      KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+      String password = "changeit";
+      keystore.load(is, password.toCharArray());
 
-		return keystore;
-	}
+      return keystore;
+   }
 }

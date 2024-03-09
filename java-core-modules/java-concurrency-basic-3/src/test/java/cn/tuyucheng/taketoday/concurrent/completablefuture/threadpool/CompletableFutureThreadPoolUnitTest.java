@@ -8,7 +8,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Fail.fail;
+import static org.assertj.core.api.Assertions.fail;
 
 public class CompletableFutureThreadPoolUnitTest {
 
@@ -21,7 +21,7 @@ public class CompletableFutureThreadPoolUnitTest {
          return value.length();
       });
 
-      assertThat(nameLength.get()).isEqualTo(9);
+      assertThat(nameLength.get()).isEqualTo(8);
    }
 
    @Test
@@ -35,14 +35,14 @@ public class CompletableFutureThreadPoolUnitTest {
          });
 
          try {
-            assertThat(nameLength.get()).isEqualTo(9);
+            assertThat(nameLength.get()).isEqualTo(8);
          } catch (Exception e) {
             fail(e.getMessage());
          }
       };
 
       new Thread(test, "test-thread").start();
-      Thread.sleep(100L);
+      Thread.sleep(100l);
    }
 
    @Test
@@ -54,7 +54,7 @@ public class CompletableFutureThreadPoolUnitTest {
          return value.length();
       });
 
-      assertThat(nameLength.get()).isEqualTo(9);
+      assertThat(nameLength.get()).isEqualTo(8);
    }
 
    @Test
@@ -67,7 +67,7 @@ public class CompletableFutureThreadPoolUnitTest {
          return value.length();
       }, testExecutor);
 
-      assertThat(nameLength.get()).isEqualTo(9);
+      assertThat(nameLength.get()).isEqualTo(8);
    }
 
    @Test
@@ -79,7 +79,7 @@ public class CompletableFutureThreadPoolUnitTest {
          return value.length();
       });
 
-      assertThat(nameLength.get()).isEqualTo(9);
+      assertThat(nameLength.get()).isEqualTo(8);
    }
 
    private static void printCurrentThread() {

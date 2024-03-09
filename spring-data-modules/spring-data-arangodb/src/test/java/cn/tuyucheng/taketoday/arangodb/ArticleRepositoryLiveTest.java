@@ -23,99 +23,99 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class ArticleRepositoryLiveTest {
 
-    @Autowired
-    ArticleRepository articleRepository;
+   @Autowired
+   ArticleRepository articleRepository;
 
-    @AfterEach
-    void tearDown(){
-        articleRepository.deleteAll();
-    }
+   @AfterEach
+   void tearDown() {
+      articleRepository.deleteAll();
+   }
 
-    @Test
-    void givenNewArticle_whenSaveInArangoDb_thenDataIsCorrect() {
-        Article newArticle = new Article(
-                "ArangoDb with Spring Data",
-                "Baeldung Writer",
-                ZonedDateTime.now(),
-                "<html>Some HTML content</html>"
-        );
+   @Test
+   void givenNewArticle_whenSaveInArangoDb_thenDataIsCorrect() {
+      Article newArticle = new Article(
+            "ArangoDb with Spring Data",
+            "Tuyucheng Writer",
+            ZonedDateTime.now(),
+            "<html>Some HTML content</html>"
+      );
 
-        Article savedArticle = articleRepository.save(newArticle);
+      Article savedArticle = articleRepository.save(newArticle);
 
-        assertNotNull(savedArticle.getId());
-        assertNotNull(savedArticle.getArangoId());
+      assertNotNull(savedArticle.getId());
+      assertNotNull(savedArticle.getArangoId());
 
-        assertEquals(savedArticle.getName(), newArticle.getName());
-        assertEquals(savedArticle.getAuthor(), newArticle.getAuthor());
-        assertEquals(savedArticle.getPublishDate(), newArticle.getPublishDate());
-        assertEquals(savedArticle.getHtmlContent(), newArticle.getHtmlContent());
-    }
+      assertEquals(savedArticle.getName(), newArticle.getName());
+      assertEquals(savedArticle.getAuthor(), newArticle.getAuthor());
+      assertEquals(savedArticle.getPublishDate(), newArticle.getPublishDate());
+      assertEquals(savedArticle.getHtmlContent(), newArticle.getHtmlContent());
+   }
 
-    @Test
-    void givenArticleId_whenReadFromArangoDb_thenDataIsCorrect() {
-        Article newArticle = new Article(
-                "ArangoDb with Spring Data",
-                "Baeldung Writer",
-                ZonedDateTime.now(),
-                "<html>Some HTML content</html>"
-        );
+   @Test
+   void givenArticleId_whenReadFromArangoDb_thenDataIsCorrect() {
+      Article newArticle = new Article(
+            "ArangoDb with Spring Data",
+            "Tuyucheng Writer",
+            ZonedDateTime.now(),
+            "<html>Some HTML content</html>"
+      );
 
-        Article savedArticle = articleRepository.save(newArticle);
+      Article savedArticle = articleRepository.save(newArticle);
 
-        String articleId = savedArticle.getId();
+      String articleId = savedArticle.getId();
 
-        Optional<Article> article = articleRepository.findById(articleId);
-        assertTrue(article.isPresent());
+      Optional<Article> article = articleRepository.findById(articleId);
+      assertTrue(article.isPresent());
 
-        Article foundArticle = article.get();
+      Article foundArticle = article.get();
 
-        assertEquals(foundArticle.getId(), articleId);
-        assertEquals(foundArticle.getArangoId(), savedArticle.getArangoId());
-        assertEquals(foundArticle.getName(), savedArticle.getName());
-        assertEquals(foundArticle.getAuthor(), savedArticle.getAuthor());
-        assertEquals(foundArticle.getPublishDate(), savedArticle.getPublishDate());
-        assertEquals(foundArticle.getHtmlContent(), savedArticle.getHtmlContent());
-    }
+      assertEquals(foundArticle.getId(), articleId);
+      assertEquals(foundArticle.getArangoId(), savedArticle.getArangoId());
+      assertEquals(foundArticle.getName(), savedArticle.getName());
+      assertEquals(foundArticle.getAuthor(), savedArticle.getAuthor());
+      assertEquals(foundArticle.getPublishDate(), savedArticle.getPublishDate());
+      assertEquals(foundArticle.getHtmlContent(), savedArticle.getHtmlContent());
+   }
 
-    @Test
-    void givenArticleId_whenDeleteFromArangoDb_thenDataIsGone() {
-        Article newArticle = new Article(
-                "ArangoDb with Spring Data",
-                "Baeldung Writer",
-                ZonedDateTime.now(),
-                "<html>Some HTML content</html>"
-        );
+   @Test
+   void givenArticleId_whenDeleteFromArangoDb_thenDataIsGone() {
+      Article newArticle = new Article(
+            "ArangoDb with Spring Data",
+            "Tuyucheng Writer",
+            ZonedDateTime.now(),
+            "<html>Some HTML content</html>"
+      );
 
-        Article savedArticle = articleRepository.save(newArticle);
+      Article savedArticle = articleRepository.save(newArticle);
 
-        String articleId = savedArticle.getId();
+      String articleId = savedArticle.getId();
 
-        articleRepository.deleteById(articleId);
+      articleRepository.deleteById(articleId);
 
-        Optional<Article> article = articleRepository.findById(articleId);
-        assertFalse(article.isPresent());
-    }
+      Optional<Article> article = articleRepository.findById(articleId);
+      assertFalse(article.isPresent());
+   }
 
-    @Test
-    void givenAuthorName_whenGetByAuthor_thenListOfArticles() {
-        Article newArticle = new Article(
-                "ArangoDb with Spring Data",
-                "Baeldung Writer",
-                ZonedDateTime.now(),
-                "<html>Some HTML content</html>"
-        );
-        articleRepository.save(newArticle);
+   @Test
+   void givenAuthorName_whenGetByAuthor_thenListOfArticles() {
+      Article newArticle = new Article(
+            "ArangoDb with Spring Data",
+            "Tuyucheng Writer",
+            ZonedDateTime.now(),
+            "<html>Some HTML content</html>"
+      );
+      articleRepository.save(newArticle);
 
-        Iterable<Article> articlesByAuthor = articleRepository.findByAuthor(newArticle.getAuthor());
-        List<Article> articlesByAuthorList = new ArrayList<>();
-        articlesByAuthor.forEach(articlesByAuthorList::add);
+      Iterable<Article> articlesByAuthor = articleRepository.findByAuthor(newArticle.getAuthor());
+      List<Article> articlesByAuthorList = new ArrayList<>();
+      articlesByAuthor.forEach(articlesByAuthorList::add);
 
-        assertEquals(1, articlesByAuthorList.size());
+      assertEquals(1, articlesByAuthorList.size());
 
-        Article foundArticle = articlesByAuthorList.get(0);
-        assertEquals(foundArticle.getName(), newArticle.getName());
-        assertEquals(foundArticle.getAuthor(), newArticle.getAuthor());
-        assertEquals(foundArticle.getPublishDate(), newArticle.getPublishDate());
-        assertEquals(foundArticle.getHtmlContent(), newArticle.getHtmlContent());
-    }
+      Article foundArticle = articlesByAuthorList.get(0);
+      assertEquals(foundArticle.getName(), newArticle.getName());
+      assertEquals(foundArticle.getAuthor(), newArticle.getAuthor());
+      assertEquals(foundArticle.getPublishDate(), newArticle.getPublishDate());
+      assertEquals(foundArticle.getHtmlContent(), newArticle.getHtmlContent());
+   }
 }

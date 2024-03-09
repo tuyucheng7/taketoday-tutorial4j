@@ -5,11 +5,11 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class XmlFormatter implements Formatter {
 
-	private static final XmlMapper mapper = new XmlMapper();
+   private static final XmlMapper mapper = new XmlMapper();
 
-	@Override
-	public <T> String format(T object) throws JsonProcessingException {
-		return mapper.writeValueAsString(object);
-	}
+   @Override
+   public <T> String format(T object) throws JsonProcessingException {
+      return mapper.writeValueAsString(object);
+   }
 
 }

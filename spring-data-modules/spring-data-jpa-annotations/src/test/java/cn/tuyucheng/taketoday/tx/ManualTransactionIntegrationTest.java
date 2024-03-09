@@ -25,127 +25,127 @@ import static org.springframework.transaction.annotation.Propagation.NOT_SUPPORT
 @Transactional(propagation = NOT_SUPPORTED)
 class ManualTransactionIntegrationTest {
 
-	@Autowired
-	private PlatformTransactionManager transactionManager;
+   @Autowired
+   private PlatformTransactionManager transactionManager;
 
-	@Autowired
-	private EntityManager entityManager;
+   @Autowired
+   private EntityManager entityManager;
 
-	private TransactionTemplate transactionTemplate;
+   private TransactionTemplate transactionTemplate;
 
-	@BeforeEach
-	void setUp() {
-		transactionTemplate = new TransactionTemplate(transactionManager);
-	}
+   @BeforeEach
+   void setUp() {
+      transactionTemplate = new TransactionTemplate(transactionManager);
+   }
 
-	@AfterEach
-	void flushDb() {
-		transactionTemplate.execute(status -> entityManager
-				.createQuery("delete from Payment")
-				.executeUpdate());
-	}
+   @AfterEach
+   void flushDb() {
+      transactionTemplate.execute(status -> entityManager
+            .createQuery("delete from Payment")
+            .executeUpdate());
+   }
 
-	@Test
-	void givenAPayment_WhenNotDuplicate_ThenShouldCommit() {
-		Long id = transactionTemplate.execute(status -> {
-			Payment payment = new Payment();
-			payment.setAmount(1000L);
-			payment.setReferenceNumber("Ref-1");
-			payment.setState(Payment.State.SUCCESSFUL);
+   @Test
+   void givenAPayment_WhenNotDuplicate_ThenShouldCommit() {
+      Long id = transactionTemplate.execute(status -> {
+         Payment payment = new Payment();
+         payment.setAmount(1000L);
+         payment.setReferenceNumber("Ref-1");
+         payment.setState(Payment.State.SUCCESSFUL);
 
-			entityManager.persist(payment);
+         entityManager.persist(payment);
 
-			return payment.getId();
-		});
+         return payment.getId();
+      });
 
-		Payment payment = entityManager.find(Payment.class, id);
-		assertThat(payment).isNotNull();
-	}
+      Payment payment = entityManager.find(Payment.class, id);
+      assertThat(payment).isNotNull();
+   }
 
-	@Test
-	void givenAPayment_WhenMarkAsRollback_ThenShouldRollback() {
-		transactionTemplate.execute(status -> {
-			Payment payment = new Payment();
-			payment.setAmount(1000L);
-			payment.setReferenceNumber("Ref-1");
-			payment.setState(Payment.State.SUCCESSFUL);
+   @Test
+   void givenAPayment_WhenMarkAsRollback_ThenShouldRollback() {
+      transactionTemplate.execute(status -> {
+         Payment payment = new Payment();
+         payment.setAmount(1000L);
+         payment.setReferenceNumber("Ref-1");
+         payment.setState(Payment.State.SUCCESSFUL);
 
-			entityManager.persist(payment);
-			status.setRollbackOnly();
+         entityManager.persist(payment);
+         status.setRollbackOnly();
 
-			return payment.getId();
-		});
+         return payment.getId();
+      });
 
-		assertThat(entityManager
-				.createQuery("select p from Payment p", Payment.class)
-				.getResultList()).isEmpty();
-	}
+      assertThat(entityManager
+            .createQuery("select p from Payment p", Payment.class)
+            .getResultList()).isEmpty();
+   }
 
-	@Test
-	void givenTwoPayments_WhenRefIsDuplicate_ThenShouldRollback() {
-		try {
-			transactionTemplate.execute(s -> {
-				Payment first = new Payment();
-				first.setAmount(1000L);
-				first.setReferenceNumber("Ref-1");
-				first.setState(Payment.State.SUCCESSFUL);
+   @Test
+   void givenTwoPayments_WhenRefIsDuplicate_ThenShouldRollback() {
+      try {
+         transactionTemplate.execute(s -> {
+            Payment first = new Payment();
+            first.setAmount(1000L);
+            first.setReferenceNumber("Ref-1");
+            first.setState(Payment.State.SUCCESSFUL);
 
-				Payment second = new Payment();
-				second.setAmount(2000L);
-				second.setReferenceNumber("Ref-1");
-				second.setState(Payment.State.SUCCESSFUL);
+            Payment second = new Payment();
+            second.setAmount(2000L);
+            second.setReferenceNumber("Ref-1");
+            second.setState(Payment.State.SUCCESSFUL);
 
-				entityManager.persist(first); // ok
-				entityManager.persist(second); // fails
+            entityManager.persist(first); // ok
+            entityManager.persist(second); // fails
 
-				return "Ref-1";
-			});
-		} catch (Exception ignored) {
-		}
+            return "Ref-1";
+         });
+      } catch (Exception ignored) {
+      }
 
-		assertThat(entityManager
-				.createQuery("select p from Payment p", Payment.class)
-				.getResultList()).isEmpty();
-	}
+      assertThat(entityManager
+            .createQuery("select p from Payment p", Payment.class)
+            .getResultList()).isEmpty();
+   }
 
-	@Test
-	void givenAPayment_WhenNotExpectingAnyResult_ThenShouldCommit() {
-		transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-			@Override
-			protected void doInTransactionWithoutResult(TransactionStatus status) {
-				Payment payment = new Payment();
-				payment.setReferenceNumber("Ref-1");
-				payment.setState(Payment.State.SUCCESSFUL);
+   @Test
+   void givenAPayment_WhenNotExpectingAnyResult_ThenShouldCommit() {
+      transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+         @Override
+         protected void doInTransactionWithoutResult(TransactionStatus status) {
+            Payment payment = new Payment();
+            payment.setReferenceNumber("Ref-1");
+            payment.setState(Payment.State.SUCCESSFUL);
 
-				entityManager.persist(payment);
-			}
-		});
+            entityManager.persist(payment);
+         }
+      });
 
-		assertThat(entityManager
-				.createQuery("select p from Payment p", Payment.class)
-				.getResultList()).hasSize(1);
-	}
+      assertThat(entityManager
+            .createQuery("select p from Payment p", Payment.class)
+            .getResultList()).hasSize(1);
+   }
 
-	@Test
-	void givenAPayment_WhenUsingTxManager_ThenShouldCommit() {
-		DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
-		definition.setIsolationLevel(TransactionDefinition.ISOLATION_REPEATABLE_READ);
-		definition.setTimeout(3);
+   @Test
+   void givenAPayment_WhenUsingTxManager_ThenShouldCommit() {
+      DefaultTransactionDefinition definition = new DefaultTransactionDefinition();
+      definition.setIsolationLevel(TransactionDefinition.ISOLATION_REPEATABLE_READ);
+      definition.setTimeout(3);
 
-		TransactionStatus status = transactionManager.getTransaction(definition);
-		try {
-			Payment payment = new Payment();
-			payment.setReferenceNumber("Ref-1");
-			payment.setState(Payment.State.SUCCESSFUL);
+      TransactionStatus status = transactionManager.getTransaction(definition);
+      try {
+         Payment payment = new Payment();
+         payment.setReferenceNumber("Ref-1");
+         payment.setState(Payment.State.SUCCESSFUL);
 
-			entityManager.persist(payment);
-			transactionManager.commit(status);
-		} catch (Exception ex) {
-			transactionManager.rollback(status);
-		}
+         entityManager.persist(payment);
+         transactionManager.commit(status);
+      } catch (Exception ex) {
+         transactionManager.rollback(status);
+      }
 
-		assertThat(entityManager
-				.createQuery("select p from Payment p", Payment.class)
-				.getResultList()).hasSize(1);
-	}
+      assertThat(entityManager
+            .createQuery("select p from Payment p", Payment.class)
+            .getResultList()).hasSize(1);
+   }
 }

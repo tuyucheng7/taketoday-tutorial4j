@@ -21,20 +21,21 @@ import static org.openjdk.jcstress.annotations.Expect.ACCEPTABLE_INTERESTING;
 @State
 public class MyCounterJCStressManualTest {
 
-	private MyCounter counter;
+   private MyCounter counter;
 
-	@Actor
-	public void actor1() {
-		counter.increment();
-	}
+   @Actor
+   public void actor1() {
+      counter.increment();
+   }
 
-	@Actor
-	public void actor2() {
-		counter.increment();
-	}
+   @Actor
+   public void actor2() {
+      counter.increment();
+   }
 
-	@Arbiter
-	public void arbiter(I_Result r) {
-		r.r1 = counter.getCount();
-	}
+   @Arbiter
+   public void arbiter(I_Result r) {
+      r.r1 = counter.getCount();
+   }
+
 }

@@ -7,11 +7,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class CopyListServiceUnitTest {
+public class CopyListServiceUnitTest {
 
-	@Test
-	void whenModifyCopyOfList_thenThrowsException() {
-		List<Integer> copyList = List.copyOf(Arrays.asList(1, 2, 3, 4));
-		assertThrows(UnsupportedOperationException.class, () -> copyList.add(4));
-	}
+   @Test
+   public void whenModifyCopyOfList_thenThrowsException() {
+      List<Integer> copyList = List.copyOf(Arrays.asList(1, 2, 3, 4));
+      assertThrows(UnsupportedOperationException.class, () -> copyList.add(4));
+   }
 }

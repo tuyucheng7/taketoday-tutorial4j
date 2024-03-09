@@ -1,12 +1,10 @@
 package cn.tuyucheng.taketoday.persistence.hibernate;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.lessThan;
-
-import java.util.List;
-
+import cn.tuyucheng.taketoday.persistence.model.Foo;
+import cn.tuyucheng.taketoday.persistence.service.IFooService;
+import cn.tuyucheng.taketoday.spring.config.PersistenceTestConfig;
+import com.google.common.collect.Lists;
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.hibernate.ScrollMode;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
@@ -14,23 +12,23 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.hibernate.query.SelectionQuery;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import cn.tuyucheng.taketoday.persistence.model.Foo;
-import cn.tuyucheng.taketoday.persistence.service.IFooService;
-import cn.tuyucheng.taketoday.spring.config.PersistenceTestConfig;
-import com.google.common.collect.Lists;
+import java.util.List;
 
-import jakarta.persistence.criteria.CriteriaQuery;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.lessThan;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {PersistenceTestConfig.class}, loader = AnnotationConfigContextLoader.class)
 public class FooPaginationPersistenceIntegrationTest {
 
@@ -42,8 +40,8 @@ public class FooPaginationPersistenceIntegrationTest {
 
    private Session session;
 
-   @Before
-   public final void before() {
+   @BeforeEach
+   final void before() {
       final int minimalNumberOfEntities = 25;
       if (fooService.findAll().size() <= minimalNumberOfEntities) {
          for (int i = 0; i < minimalNumberOfEntities; i++) {
@@ -54,18 +52,18 @@ public class FooPaginationPersistenceIntegrationTest {
       session = sessionFactory.openSession();
    }
 
-   @After
-   public final void after() {
+   @AfterEach
+   final void after() {
       session.close();
    }
 
    @Test
-   public final void whenContextIsBootstrapped_thenNoExceptions() {
+   final void whenContextIsBootstrapped_thenNoExceptions() {
       //
    }
 
    @Test
-   public final void whenRetrievingPaginatedEntities_thenCorrectSize() {
+   final void whenRetrievingPaginatedEntities_thenCorrectSize() {
       final int pageNumber = 1;
       final int pageSize = 10;
 
@@ -78,7 +76,7 @@ public class FooPaginationPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenRetrievingAllPages_thenCorrect() {
+   final void whenRetrievingAllPages_thenCorrect() {
       int pageNumber = 1;
       final int pageSize = 10;
 
@@ -99,7 +97,7 @@ public class FooPaginationPersistenceIntegrationTest {
    }
 
    @Test
-   public final void whenRetrievingLastPage_thenCorrectSize() {
+   final void whenRetrievingLastPage_thenCorrectSize() {
       final int pageSize = 10;
 
       final String countQ = "Select count (f.id) from Foo f";
@@ -118,7 +116,7 @@ public class FooPaginationPersistenceIntegrationTest {
    // testing - scrollable
 
    @Test
-   public final void givenUsingTheScrollableApi_whenRetrievingPaginatedData_thenCorrect() {
+   final void givenUsingTheScrollableApi_whenRetrievingPaginatedData_thenCorrect() {
       final int pageSize = 10;
       final String hql = "FROM Foo f order by f.name";
       final Query<Foo> query = session.createQuery(hql, Foo.class);
@@ -143,7 +141,7 @@ public class FooPaginationPersistenceIntegrationTest {
    }
 
    @Test
-   public final void givenUsingTheCriteriaApi_whenRetrievingFirstPage_thenCorrect() {
+   final void givenUsingTheCriteriaApi_whenRetrievingFirstPage_thenCorrect() {
       final int pageSize = 10;
 
       CriteriaQuery<Foo> selectQuery = session.getCriteriaBuilder().createQuery(Foo.class);
@@ -158,7 +156,7 @@ public class FooPaginationPersistenceIntegrationTest {
    }
 
    @Test
-   public final void givenUsingTheCriteriaApi_whenRetrievingPaginatedData_thenCorrect() {
+   final void givenUsingTheCriteriaApi_whenRetrievingPaginatedData_thenCorrect() {
       HibernateCriteriaBuilder qb = session.getCriteriaBuilder();
       CriteriaQuery<Long> cq = qb.createQuery(Long.class);
       cq.select(qb.count(cq.from(Foo.class)));

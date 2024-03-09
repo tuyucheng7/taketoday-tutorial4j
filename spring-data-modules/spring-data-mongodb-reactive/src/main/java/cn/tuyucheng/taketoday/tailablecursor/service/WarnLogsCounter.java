@@ -16,26 +16,26 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Slf4j
 public class WarnLogsCounter implements LogsCounter {
 
-	private static final String LEVEL_FIELD_NAME = "level";
+   private static final String LEVEL_FIELD_NAME = "level";
 
-	private final AtomicInteger counter = new AtomicInteger();
-	private final Disposable subscription;
+   private final AtomicInteger counter = new AtomicInteger();
+   private final Disposable subscription;
 
-	public WarnLogsCounter(ReactiveMongoOperations template) {
-		Flux<Log> stream = template.tail(query(where(LEVEL_FIELD_NAME).is(LogLevel.WARN)), Log.class);
-		subscription = stream.subscribe(logEntity -> {
-			LOGGER.warn("WARN log received: " + logEntity);
-			counter.incrementAndGet();
-		});
-	}
+   public WarnLogsCounter(ReactiveMongoOperations template) {
+      Flux<Log> stream = template.tail(query(where(LEVEL_FIELD_NAME).is(LogLevel.WARN)), Log.class);
+      subscription = stream.subscribe(logEntity -> {
+         LOGGER.warn("WARN log received: " + logEntity);
+         counter.incrementAndGet();
+      });
+   }
 
-	@Override
-	public int count() {
-		return counter.get();
-	}
+   @Override
+   public int count() {
+      return counter.get();
+   }
 
-	@PreDestroy
-	public void close() {
-		subscription.dispose();
-	}
+   @PreDestroy
+   public void close() {
+      subscription.dispose();
+   }
 }

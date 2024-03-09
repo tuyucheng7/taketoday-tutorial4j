@@ -1,21 +1,30 @@
 package cn.tuyucheng.taketoday.exceptionhandler;
 
-import cn.tuyucheng.taketoday.exceptionhandler.security.SecurityConfig;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import cn.tuyucheng.taketoday.exceptionhandler.security.CustomAccessDeniedHandler;
+import cn.tuyucheng.taketoday.exceptionhandler.security.CustomAuthenticationFailureHandler;
+import cn.tuyucheng.taketoday.global.exceptionhandler.controller.LoginController;
+import cn.tuyucheng.taketoday.global.exceptionhandler.security.CustomAuthenticationEntryPoint;
+import cn.tuyucheng.taketoday.global.exceptionhandler.security.DelegatedAuthenticationEntryPoint;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import cn.tuyucheng.taketoday.exceptionhandler.security.SecurityConfig;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(SecurityConfig.class)
+@Import(SecurityConfig.class)
 class SecurityConfigUnitTest {
    @Autowired
    private MockMvc mvc;

@@ -18,43 +18,43 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.AFTER_TES
 @Sql(scripts = "/projection-insert-data.sql")
 @Sql(scripts = "/projection-clean-up-data.sql", executionPhase = AFTER_TEST_METHOD)
 class JpaProjectionIntegrationTest {
-	@Autowired
-	private AddressRepository addressRepository;
+   @Autowired
+   private AddressRepository addressRepository;
 
-	@Autowired
-	private PersonRepository personRepository;
+   @Autowired
+   private PersonRepository personRepository;
 
-	@Test
-	void whenUsingClosedProjections_thenViewWithRequiredPropertiesIsReturned() {
-		AddressView addressView = addressRepository.getAddressByState("CA").get(0);
-		assertThat(addressView.getZipCode()).isEqualTo("90001");
+   @Test
+   void whenUsingClosedProjections_thenViewWithRequiredPropertiesIsReturned() {
+      AddressView addressView = addressRepository.getAddressByState("CA").get(0);
+      assertThat(addressView.getZipCode()).isEqualTo("90001");
 
-		PersonView personView = addressView.getPerson();
-		assertThat(personView.getFirstName()).isEqualTo("John");
-		assertThat(personView.getLastName()).isEqualTo("Doe");
-	}
+      PersonView personView = addressView.getPerson();
+      assertThat(personView.getFirstName()).isEqualTo("John");
+      assertThat(personView.getLastName()).isEqualTo("Doe");
+   }
 
-	@Test
-	void whenUsingOpenProjections_thenViewWithRequiredPropertiesIsReturned() {
-		PersonView personView = personRepository.findByLastName("Doe");
-		assertThat(personView.getFullName()).isEqualTo("John Doe");
-	}
+   @Test
+   void whenUsingOpenProjections_thenViewWithRequiredPropertiesIsReturned() {
+      PersonView personView = personRepository.findByLastName("Doe");
+      assertThat(personView.getFullName()).isEqualTo("John Doe");
+   }
 
-	@Test
-	void whenUsingClassBasedProjections_thenDtoWithRequiredPropertiesIsReturned() {
-		PersonDto personDto = personRepository.findByFirstName("John");
-		assertThat(personDto.getFirstName()).isEqualTo("John");
-		assertThat(personDto.getLastName()).isEqualTo("Doe");
-	}
+   @Test
+   void whenUsingClassBasedProjections_thenDtoWithRequiredPropertiesIsReturned() {
+      PersonDto personDto = personRepository.findByFirstName("John");
+      assertThat(personDto.getFirstName()).isEqualTo("John");
+      assertThat(personDto.getLastName()).isEqualTo("Doe");
+   }
 
-	@Test
-	void whenUsingDynamicProjections_thenObjectWithRequiredPropertiesIsReturned() {
-		Person person = personRepository.findByLastName("Doe", Person.class);
-		PersonView personView = personRepository.findByLastName("Doe", PersonView.class);
-		PersonDto personDto = personRepository.findByLastName("Doe", PersonDto.class);
+   @Test
+   void whenUsingDynamicProjections_thenObjectWithRequiredPropertiesIsReturned() {
+      Person person = personRepository.findByLastName("Doe", Person.class);
+      PersonView personView = personRepository.findByLastName("Doe", PersonView.class);
+      PersonDto personDto = personRepository.findByLastName("Doe", PersonDto.class);
 
-		assertThat(person.getFirstName()).isEqualTo("John");
-		assertThat(personView.getFirstName()).isEqualTo("John");
-		assertThat(personDto.getFirstName()).isEqualTo("John");
-	}
+      assertThat(person.getFirstName()).isEqualTo("John");
+      assertThat(personView.getFirstName()).isEqualTo("John");
+      assertThat(personDto.getFirstName()).isEqualTo("John");
+   }
 }

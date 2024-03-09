@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CyclicBarrierResetExampleUnitTest {
+public class CyclicBarrierResetExampleUnitTest {
 
-	@Test
-	void whenCyclicBarrier_reset() {
-		CyclicBarrierResetExample ex = new CyclicBarrierResetExample(7, 20);
-		int lineCount = ex.countWaits();
-		assertTrue(lineCount > 7);
-	}
+   @Test
+   public void whenCyclicBarrier_reset() {
+      CyclicBarrierResetExample ex = new CyclicBarrierResetExample(7, 20);
+      int lineCount = ex.countWaits();
+      assertTrue(lineCount > 7);
+   }
 }

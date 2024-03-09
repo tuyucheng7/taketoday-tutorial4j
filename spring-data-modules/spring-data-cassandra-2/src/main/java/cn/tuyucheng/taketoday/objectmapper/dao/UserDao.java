@@ -9,30 +9,30 @@ import cn.tuyucheng.taketoday.objectmapper.entity.User;
 @Dao
 public interface UserDao {
 
-    @Insert
-    void insertUser(User user);
+   @Insert
+   void insertUser(User user);
 
-    @Select
-    User getUserById(int id);
+   @Select
+   User getUserById(int id);
 
-    @Select
-    PagingIterable<User> getAllUsers();
+   @Select
+   PagingIterable<User> getAllUsers();
 
-    @Update
-    void updateUser(User user);
+   @Update
+   void updateUser(User user);
 
-    @Delete
-    void deleteUser(User user);
+   @Delete
+   void deleteUser(User user);
 
-    @GetEntity
-    User getUser(Row row);
+   @GetEntity
+   User getUser(Row row);
 
-    @SetEntity
-    BoundStatement setUser(BoundStatement udtValue, User user);
+   @SetEntity
+   BoundStatement setUser(BoundStatement udtValue, User user);
 
-    @Query(value = "select * from user_profile where user_age > :userAge ALLOW FILTERING")
-    PagingIterable<User> getUsersOlderThanAge(int userAge);
+   @Query(value = "select * from user_profile where user_age > :userAge ALLOW FILTERING")
+   PagingIterable<User> getUsersOlderThanAge(int userAge);
 
-    @QueryProvider(providerClass = UserQueryProvider.class, entityHelpers = User.class, providerMethod = "getUsersOlderThanAge")
-    PagingIterable<User> getUsersOlderThan(String age);
+   @QueryProvider(providerClass = UserQueryProvider.class, entityHelpers = User.class, providerMethod = "getUsersOlderThanAge")
+   PagingIterable<User> getUsersOlderThan(String age);
 }

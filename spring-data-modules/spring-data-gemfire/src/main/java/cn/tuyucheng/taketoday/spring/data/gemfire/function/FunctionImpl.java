@@ -6,13 +6,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class FunctionImpl {
 
-    @GemfireFunction
-    public void greeting(String message){
-        System.out.println("Message "+message);
-    }
+   @GemfireFunction
+   public void greeting(String message) {
+      System.out.println("Message " + message);
+   }
 
-    @GemfireFunction
-    public String sayHello(String message){
-        return "Hello "+message;
-    }
+   @GemfireFunction
+   public String sayHello(String message) {
+      return "Hello " + message;
+   }
 }

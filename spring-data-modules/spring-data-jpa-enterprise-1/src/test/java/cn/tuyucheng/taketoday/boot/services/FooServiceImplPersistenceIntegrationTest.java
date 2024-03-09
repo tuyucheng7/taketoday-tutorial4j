@@ -19,48 +19,48 @@ import static org.testcontainers.shaded.org.apache.commons.lang3.RandomStringUti
 @SpringBootTest(classes = Application.class)
 class FooServiceImplPersistenceIntegrationTest extends AbstractServicePersistenceIntegrationTest<Foo> {
 
-	@Autowired
-	private FooService service;
+   @Autowired
+   private FooService service;
 
-	@Test
-	final void whenContextIsBootstrapped_thenNoExceptions() {
-		//
-	}
+   @Test
+   final void whenContextIsBootstrapped_thenNoExceptions() {
+      //
+   }
 
-	@Test
-	final void whenEntityIsCreated_thenNoExceptions() {
-		service.create(new Foo(randomAlphabetic(6)));
-	}
+   @Test
+   final void whenEntityIsCreated_thenNoExceptions() {
+      service.create(new Foo(randomAlphabetic(6)));
+   }
 
-	@Test
-	final void whenInvalidEntityIsCreated_thenDataException() {
-		assertThrows(DataIntegrityViolationException.class, () -> service.create(new Foo()));
-	}
+   @Test
+   final void whenInvalidEntityIsCreated_thenDataException() {
+      assertThrows(DataIntegrityViolationException.class, () -> service.create(new Foo()));
+   }
 
-	@Test
-	final void whenEntityWithLongNameIsCreated_thenDataException() {
-		assertThrows(DataIntegrityViolationException.class, () -> service.create(new Foo(randomAlphabetic(2048))));
-	}
+   @Test
+   final void whenEntityWithLongNameIsCreated_thenDataException() {
+      assertThrows(DataIntegrityViolationException.class, () -> service.create(new Foo(randomAlphabetic(2048))));
+   }
 
-	@Test
-	final void givenUsingCustomQuery_whenRetrievingEntity_thenFound() {
-		final String name = randomAlphabetic(6);
-		service.create(new Foo(name));
+   @Test
+   final void givenUsingCustomQuery_whenRetrievingEntity_thenFound() {
+      final String name = randomAlphabetic(6);
+      service.create(new Foo(name));
 
-		final Foo retrievedByName = service.retrieveByName(name);
-		assertNotNull(retrievedByName);
-	}
+      final Foo retrievedByName = service.retrieveByName(name);
+      assertNotNull(retrievedByName);
+   }
 
-	@Test
-	@Disabled("Right now, persist has saveOrUpdate semantics, so this will no longer fail")
-	final void whenSameEntityIsCreatedTwice_thenDataException() {
-		final Foo entity = new Foo(randomAlphabetic(8));
-		service.create(entity);
-		assertThrows(InvalidDataAccessApiUsageException.class, () -> service.create(entity));
-	}
+   @Test
+   @Disabled("Right now, persist has saveOrUpdate semantics, so this will no longer fail")
+   final void whenSameEntityIsCreatedTwice_thenDataException() {
+      final Foo entity = new Foo(randomAlphabetic(8));
+      service.create(entity);
+      assertThrows(InvalidDataAccessApiUsageException.class, () -> service.create(entity));
+   }
 
-	@Override
-	protected final Operations<Foo> getApi() {
-		return service;
-	}
+   @Override
+   protected final Operations<Foo> getApi() {
+      return service;
+   }
 }

@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class LocalEvent {
 
-	LocalDate date;
+   LocalDate date;
 
-	public LocalEvent(LocalDate date) {
-		this.date = date;
-	}
+   public LocalEvent(LocalDate date) {
+      this.date = date;
+   }
 
-	public LocalDate getDate() {
-		return date;
-	}
+   public LocalDate getDate() {
+      return date;
+   }
 }

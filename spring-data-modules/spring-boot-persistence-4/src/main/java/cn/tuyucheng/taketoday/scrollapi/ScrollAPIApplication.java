@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ScrollAPIApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ScrollAPIApplication.class, args);
-    }
+   public static void main(String[] args) {
+      SpringApplication.run(ScrollAPIApplication.class, args);
+   }
 }

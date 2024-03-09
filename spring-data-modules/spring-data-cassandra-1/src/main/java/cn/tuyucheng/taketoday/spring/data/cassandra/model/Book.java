@@ -13,55 +13,55 @@ import java.util.UUID;
 @Table
 public class Book {
 
-    @PrimaryKeyColumn(name = "id", ordinal = 0, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
-    private UUID id;
+   @PrimaryKeyColumn(name = "id", ordinal = 0, type = PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
+   private UUID id;
 
-    @PrimaryKeyColumn(name = "title", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
-    private String title;
+   @PrimaryKeyColumn(name = "title", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
+   private String title;
 
-    @PrimaryKeyColumn(name = "publisher", ordinal = 2, type = PrimaryKeyType.PARTITIONED)
-    private String publisher;
+   @PrimaryKeyColumn(name = "publisher", ordinal = 2, type = PrimaryKeyType.PARTITIONED)
+   private String publisher;
 
-    @Column
-    private Set<String> tags = new HashSet<>();
+   @Column
+   private Set<String> tags = new HashSet<>();
 
-    public Book(final UUID id, final String title, final String publisher, final Set<String> tags) {
-        this.id = id;
-        this.title = title;
-        this.publisher = publisher;
-        this.tags.addAll(tags);
-    }
+   public Book(final UUID id, final String title, final String publisher, final Set<String> tags) {
+      this.id = id;
+      this.title = title;
+      this.publisher = publisher;
+      this.tags.addAll(tags);
+   }
 
-    public UUID getId() {
-        return id;
-    }
+   public UUID getId() {
+      return id;
+   }
 
-    public String getTitle() {
-        return title;
-    }
+   public String getTitle() {
+      return title;
+   }
 
-    public String getPublisher() {
-        return publisher;
-    }
+   public String getPublisher() {
+      return publisher;
+   }
 
-    public Set getTags() {
-        return tags;
-    }
+   public Set getTags() {
+      return tags;
+   }
 
-    public void setId(final UUID id) {
-        this.id = id;
-    }
+   public void setId(final UUID id) {
+      this.id = id;
+   }
 
-    public void setTitle(final String title) {
-        this.title = title;
-    }
+   public void setTitle(final String title) {
+      this.title = title;
+   }
 
-    public void setPublisher(final String publisher) {
-        this.publisher = publisher;
-    }
+   public void setPublisher(final String publisher) {
+      this.publisher = publisher;
+   }
 
-    public void setTags(final Set<String> tags) {
-        this.tags = tags;
-    }
+   public void setTags(final Set<String> tags) {
+      this.tags = tags;
+   }
 
 }

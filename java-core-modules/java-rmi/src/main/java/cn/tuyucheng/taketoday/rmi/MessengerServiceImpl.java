@@ -7,27 +7,31 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class MessengerServiceImpl implements MessengerService {
 
-	public String sendMessage(String clientMessage) {
-		String serverMessage = null;
-		if (clientMessage.equals("Client Message")) {
-			serverMessage = "Server Message";
-		}
+   public String sendMessage(String clientMessage) {
 
-		return serverMessage;
-	}
+      String serverMessage = null;
+      if (clientMessage.equals("Client Message")) {
+         serverMessage = "Server Message";
+      }
 
-	public void createStubAndBind() throws RemoteException {
-		MessengerService stub = (MessengerService) UnicastRemoteObject.exportObject((MessengerService) this, 0);
-		Registry registry = LocateRegistry.createRegistry(1099);
-		registry.rebind("MessengerService", stub);
-	}
+      return serverMessage;
+   }
 
-	public Message sendMessage(Message clientMessage) throws RemoteException {
-		Message serverMessage = null;
-		if (clientMessage.getMessageText().equals("Client Message")) {
-			serverMessage = new Message("Server Message", "text/plain");
-		}
+   public void createStubAndBind() throws RemoteException {
 
-		return serverMessage;
-	}
+      MessengerService stub = (MessengerService) UnicastRemoteObject.exportObject((MessengerService) this, 0);
+      Registry registry = LocateRegistry.createRegistry(1099);
+      registry.rebind("MessengerService", stub);
+   }
+
+   public Message sendMessage(Message clientMessage) throws RemoteException {
+
+      Message serverMessage = null;
+      if (clientMessage.getMessageText().equals("Client Message")) {
+         serverMessage = new Message("Server Message", "text/plain");
+      }
+
+      return serverMessage;
+   }
+
 }

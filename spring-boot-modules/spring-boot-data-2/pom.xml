@@ -6,9 +6,10 @@
    <artifactId>spring-boot-data-2</artifactId>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-      <artifactId>spring-boot-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -42,5 +43,6 @@
 
    <properties>
       <javers.version>6.6.5</javers.version>
+      <start-class>com.baeldung.boot.bootstrapmode.Application</start-class>
    </properties>
 </project>

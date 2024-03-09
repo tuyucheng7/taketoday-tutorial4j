@@ -1,17 +1,22 @@
 package cn.tuyucheng.taketoday.bootcustomfilters.filters;
 
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
  * A filter to create transaction before and commit it once request completes
- * The current implementation is just for demo
+ * The current implemenatation is just for demo
  *
  * @author tuyucheng
  */
@@ -19,10 +24,10 @@ import java.io.IOException;
 @Order(1)
 public class TransactionFilter implements Filter {
 
-   private static final Logger LOG = LoggerFactory.getLogger(TransactionFilter.class);
+   private final static Logger LOG = LoggerFactory.getLogger(TransactionFilter.class);
 
    @Override
-   public void init(final FilterConfig filterConfig) {
+   public void init(final FilterConfig filterConfig) throws ServletException {
       LOG.info("Initializing filter :{}", this);
    }
 

@@ -8,8 +8,8 @@ import org.springframework.data.gemfire.function.annotation.RegionData;
 import java.util.Map;
 import java.util.Set;
 
-@OnRegion(region="employee")
+@OnRegion(region = "employee")
 public interface FunctionExecution {
-    @FunctionId("greeting")
-    public void execute(String message);
+   @FunctionId("greeting")
+   public void execute(String message);
 }

@@ -10,7 +10,6 @@ import cn.tuyucheng.taketoday.deserializationfilters.service.SmallObjectService;
 import cn.tuyucheng.taketoday.deserializationfilters.utils.DeserializationUtils;
 import cn.tuyucheng.taketoday.deserializationfilters.utils.FilterUtils;
 import cn.tuyucheng.taketoday.deserializationfilters.utils.SerializationUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +20,7 @@ import java.io.ObjectInputFilter;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ContextSpecificDeserializationFilterIntegrationTest {
 
@@ -113,6 +113,6 @@ public class ContextSpecificDeserializationFilterIntegrationTest {
 
       Sample deserializedA = (Sample) DeserializationUtils.deserialize(bytes(outStream));
 
-      Assertions.assertNull(deserializedA);
+      assertNull(deserializedA);
    }
 }

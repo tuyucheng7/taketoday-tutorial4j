@@ -2,42 +2,42 @@ package cn.tuyucheng.taketoday.nestedhashmaps;
 
 public class Employee {
 
-    private Integer employeeId;
-    private Address address;
-    private String employeeName;
+   private Integer employeeId;
+   private Address address;
+   private String employeeName;
 
-    public Employee() {
-        super();
-    }
+   public Employee() {
+      super();
+   }
 
-    public Employee(Integer employeeId, Address address, String employeeName) {
-        this.employeeId = employeeId;
-        this.address = address;
-        this.employeeName = employeeName;
-    }
+   public Employee(Integer employeeId, Address address, String employeeName) {
+      this.employeeId = employeeId;
+      this.address = address;
+      this.employeeName = employeeName;
+   }
 
-    public Integer getEmployeeId() {
-        return employeeId;
-    }
+   public Integer getEmployeeId() {
+      return employeeId;
+   }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
-    }
+   public void setEmployeeId(Integer employeeId) {
+      this.employeeId = employeeId;
+   }
 
-    public Address getAddress() {
-        return address;
-    }
+   public Address getAddress() {
+      return address;
+   }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+   public void setAddress(Address address) {
+      this.address = address;
+   }
 
-    public String getEmployeeName() {
-        return employeeName;
-    }
+   public String getEmployeeName() {
+      return employeeName;
+   }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
+   public void setEmployeeName(String employeeName) {
+      this.employeeName = employeeName;
+   }
 
 }

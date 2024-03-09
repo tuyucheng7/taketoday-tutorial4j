@@ -18,54 +18,54 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class AggregateEventsIntegrationTest {
 
-	@Autowired
-	private DomainService domainService;
+   @Autowired
+   private DomainService domainService;
 
-	@MockBean
-	private TestEventHandler eventHandler;
-	@Autowired
-	private ApplicationEventPublisher eventPublisher;
-	@Autowired
-	private AggregateRepository repository;
+   @MockBean
+   private TestEventHandler eventHandler;
+   @Autowired
+   private ApplicationEventPublisher eventPublisher;
+   @Autowired
+   private AggregateRepository repository;
 
-	@DisplayName("given existing aggregate, when do domain operation directly on aggregate, then domain event is NOT published")
-	@Test
-	void aggregateEventsTest() {
-		Aggregate existingDomainEntity = new Aggregate(0, eventPublisher);
-		repository.save(existingDomainEntity);
+   @DisplayName("given existing aggregate, when do domain operation directly on aggregate, then domain event is NOT published")
+   @Test
+   void aggregateEventsTest() {
+      Aggregate existingDomainEntity = new Aggregate(0, eventPublisher);
+      repository.save(existingDomainEntity);
 
-		// when
-		repository.findById(existingDomainEntity.getId())
-				.get()
-				.domainOperation();
+      // when
+      repository.findById(existingDomainEntity.getId())
+            .get()
+            .domainOperation();
 
-		// then
-		verifyNoInteractions(eventHandler);
-	}
+      // then
+      verifyNoInteractions(eventHandler);
+   }
 
-	@BeforeEach
-	void beforeEach() {
-		repository.deleteAll();
-	}
+   @BeforeEach
+   void beforeEach() {
+      repository.deleteAll();
+   }
 
-	@DisplayName("given existing aggregate, when do domain operation on service, then domain event is published")
-	@Test
-	void serviceEventsTest() {
-		Aggregate existingDomainEntity = new Aggregate(1, eventPublisher);
-		repository.save(existingDomainEntity);
+   @DisplayName("given existing aggregate, when do domain operation on service, then domain event is published")
+   @Test
+   void serviceEventsTest() {
+      Aggregate existingDomainEntity = new Aggregate(1, eventPublisher);
+      repository.save(existingDomainEntity);
 
-		// when
-		domainService.serviceDomainOperation(existingDomainEntity.getId());
+      // when
+      domainService.serviceDomainOperation(existingDomainEntity.getId());
 
-		// then
-		verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
-	}
+      // then
+      verify(eventHandler, times(1)).handleEvent(any(DomainEvent.class));
+   }
 
-	@TestConfiguration
-	public static class TestConfig {
-		@Bean
-		public DomainService domainService(AggregateRepository repository, ApplicationEventPublisher eventPublisher) {
-			return new DomainService(repository, eventPublisher);
-		}
-	}
+   @TestConfiguration
+   public static class TestConfig {
+      @Bean
+      public DomainService domainService(AggregateRepository repository, ApplicationEventPublisher eventPublisher) {
+         return new DomainService(repository, eventPublisher);
+      }
+   }
 }

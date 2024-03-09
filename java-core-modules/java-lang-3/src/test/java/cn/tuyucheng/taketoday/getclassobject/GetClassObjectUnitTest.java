@@ -1,59 +1,59 @@
 package cn.tuyucheng.taketoday.getclassobject;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetClassObjectUnitTest {
-	@Test
-	public void givenObjectAndType_whenGettingClassObject_thenTwoMethodsHaveTheSameResult() {
-		String str = "I am an object of the String class";
-		Class fromStrObject = str.getClass();
-		Class clazz = String.class;
-		assertSame(fromStrObject, clazz);
-	}
+   @Test
+   public void givenObjectAndType_whenGettingClassObject_thenTwoMethodsHaveTheSameResult() {
+      String str = "I am an object of the String class";
+      Class fromStrObject = str.getClass();
+      Class clazz = String.class;
+      assertSame(fromStrObject, clazz);
+   }
 
-	@Test
-	public void givenClassInheritance_whenGettingRuntimeTypeAndStaticType_thenGetDifferentResult() {
-		Animal animal = new Monkey();
-		Class runtimeType = animal.getClass();
-		Class staticType = Animal.class;
-		// Not equals
-		assertNotEquals(staticType, runtimeType);
+   @Test
+   public void givenClassInheritance_whenGettingRuntimeTypeAndStaticType_thenGetDifferentResult() {
+      Animal animal = new Monkey();
+      Class runtimeType = animal.getClass();
+      Class staticType = Animal.class;
+      // Not equals
+      assertNotEquals(staticType, runtimeType);
 
-		Class monkeyClass = Monkey.class;
-		assertSame(runtimeType, monkeyClass);
-	}
+      Class monkeyClass = Monkey.class;
+      assertSame(runtimeType, monkeyClass);
+   }
 
-	@Test
-	public void givenPrimitiveType_whenGettingClassObject_thenOnlyStaticTypeWorks() {
-		int number = 7;
-		// Class numberClass = number.getClass();   <-- compilation error
-		Class intType = int.class;
+   @Test
+   public void givenPrimitiveType_whenGettingClassObject_thenOnlyStaticTypeWorks() {
+      int number = 7;
+      // Class numberClass = number.getClass();   <-- compilation error
+      Class intType = int.class;
 
-		assertNotNull(intType);
-		assertEquals("int", intType.getName());
-		assertTrue(intType.isPrimitive());
-	}
+      assertNotNull(intType);
+      assertEquals("int", intType.getName());
+      assertTrue(intType.isPrimitive());
+   }
 
-	@Test
-	public void givenTypeCannotInstantiate_whenGetTypeStatically_thenGetTypesSuccefully() {
-		Class interfaceType = SomeInterface.class;
-		Class abstractClassType = SomeAbstractClass.class;
-		Class utilClassType = SomeUtils.class;
+   @Test
+   public void givenTypeCannotInstantiate_whenGetTypeStatically_thenGetTypesSuccefully() {
+      Class interfaceType = SomeInterface.class;
+      Class abstractClassType = SomeAbstractClass.class;
+      Class utilClassType = SomeUtils.class;
 
-		assertNotNull(interfaceType);
-		assertTrue(interfaceType.isInterface());
-		assertEquals("SomeInterface", interfaceType.getSimpleName());
+      assertNotNull(interfaceType);
+      assertTrue(interfaceType.isInterface());
+      assertEquals("SomeInterface", interfaceType.getSimpleName());
 
-		assertNotNull(abstractClassType);
-		assertEquals("SomeAbstractClass", abstractClassType.getSimpleName());
+      assertNotNull(abstractClassType);
+      assertEquals("SomeAbstractClass", abstractClassType.getSimpleName());
 
-		assertNotNull(utilClassType);
-		assertEquals("SomeUtils", utilClassType.getSimpleName());
-	}
+      assertNotNull(utilClassType);
+      assertEquals("SomeUtils", utilClassType.getSimpleName());
+   }
 }

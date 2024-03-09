@@ -11,23 +11,23 @@ import java.util.Date;
 @Repository
 class FileSystemRepository {
 
-	String RESOURCES_DIR = FileSystemRepository.class.getResource("/").getPath();
+   String RESOURCES_DIR = FileSystemRepository.class.getResource("/").getPath();
 
-	String save(byte[] content, String imageName) throws Exception {
-		Path newFile = Paths.get(RESOURCES_DIR + new Date().getTime() + "-" + imageName);
-		Files.createDirectories(newFile.getParent());
+   String save(byte[] content, String imageName) throws Exception {
+      Path newFile = Paths.get(RESOURCES_DIR + new Date().getTime() + "-" + imageName);
+      Files.createDirectories(newFile.getParent());
 
-		Files.write(newFile, content);
+      Files.write(newFile, content);
 
-		return newFile.toAbsolutePath().toString();
-	}
+      return newFile.toAbsolutePath().toString();
+   }
 
-	FileSystemResource findInFileSystem(String location) {
-		try {
-			return new FileSystemResource(Paths.get(location));
-		} catch (Exception e) {
-			// Handle access or file not found problems.
-			throw new RuntimeException();
-		}
-	}
+   FileSystemResource findInFileSystem(String location) {
+      try {
+         return new FileSystemResource(Paths.get(location));
+      } catch (Exception e) {
+         // Handle access or file not found problems.
+         throw new RuntimeException();
+      }
+   }
 }

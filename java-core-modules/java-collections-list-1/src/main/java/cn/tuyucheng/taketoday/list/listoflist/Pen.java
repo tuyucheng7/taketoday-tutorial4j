@@ -2,17 +2,17 @@ package cn.tuyucheng.taketoday.list.listoflist;
 
 public class Pen implements Stationery {
 
-    public String name;
+   public String name;
 
-    public Pen(String name) {
-        this.name = name;
-    }
+   public Pen(String name) {
+      this.name = name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public String getName() {
-        return this.name;
-    }
+   public String getName() {
+      return this.name;
+   }
 }

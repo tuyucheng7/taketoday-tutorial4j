@@ -9,16 +9,16 @@ import org.springframework.context.annotation.Configuration;
 @EnableArangoRepositories(basePackages = {"cn.tuyucheng.taketoday"})
 public class ArangoDbConfiguration implements ArangoConfiguration {
 
-    @Override
-    public ArangoDB.Builder arango() {
-        return new ArangoDB.Builder()
-          .host("127.0.0.1", 8529)
-          .user("baeldung")
-          .password("password");
-    }
+   @Override
+   public ArangoDB.Builder arango() {
+      return new ArangoDB.Builder()
+            .host("127.0.0.1", 8529)
+            .user("tuyucheng")
+            .password("password");
+   }
 
-    @Override
-    public String database() {
-        return "baeldung-database";
-    }
+   @Override
+   public String database() {
+      return "tuyucheng-database";
+   }
 }

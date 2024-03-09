@@ -1,5 +1,10 @@
 package cn.tuyucheng.taketoday.features;
 
+import cn.tuyucheng.taketoday.features.JEP409.Circle;
+import cn.tuyucheng.taketoday.features.JEP409.Rectangle;
+import cn.tuyucheng.taketoday.features.JEP409.Shape;
+import cn.tuyucheng.taketoday.features.JEP409.Square;
+import cn.tuyucheng.taketoday.features.JEP409.Triangle;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,30 +13,31 @@ import static org.mockito.Mockito.verify;
 
 class JEP409UnitTest {
 
-	static class WeirdTriangle extends JEP409.Triangle {
-		@Override
-		public int getNumberOfSides() {
-			return 40;
-		}
-	}
+   static class WeirdTriangle extends Triangle {
+      @Override
+      public int getNumberOfSides() {
+         return 40;
+      }
+   }
 
-	@Test
-	void testSealedClass_shouldInvokeRightClass() {
-		JEP409.Shape shape = spy(new WeirdTriangle());
+   @Test
+   void testSealedClass_shouldInvokeRightClass() {
 
-		int numberOfSides = getNumberOfSides(shape);
+      Shape shape = spy(new WeirdTriangle());
 
-		assertEquals(40, numberOfSides);
-		verify(shape).getNumberOfSides();
-	}
+      int numberOfSides = getNumberOfSides(shape);
 
-	int getNumberOfSides(JEP409.Shape shape) {
-		return switch (shape) {
-			case WeirdTriangle t -> t.getNumberOfSides();
-			case JEP409.Circle c -> c.getNumberOfSides();
-			case JEP409.Triangle t -> t.getNumberOfSides();
-			case JEP409.Rectangle r -> r.getNumberOfSides();
-			case JEP409.Square s -> s.getNumberOfSides();
-		};
-	}
+      assertEquals(40, numberOfSides);
+      verify(shape).getNumberOfSides();
+   }
+
+   int getNumberOfSides(Shape shape) {
+      return switch (shape) {
+         case WeirdTriangle t -> t.getNumberOfSides();
+         case Circle c -> c.getNumberOfSides();
+         case Triangle t -> t.getNumberOfSides();
+         case Rectangle r -> r.getNumberOfSides();
+         case Square s -> s.getNumberOfSides();
+      };
+   }
 }

@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class ParentService extends AbstractHibernateService<Parent> implements IParentService {
 
-    @Autowired
-    private IParentDao dao;
+   @Autowired
+   private IParentDao dao;
 
-    public ParentService() {
-        super();
-    }
+   public ParentService() {
+      super();
+   }
 
-    @Override
-    protected IOperations<Parent> getDao() {
-        return dao;
-    }
+   @Override
+   protected IOperations<Parent> getDao() {
+      return dao;
+   }
 }

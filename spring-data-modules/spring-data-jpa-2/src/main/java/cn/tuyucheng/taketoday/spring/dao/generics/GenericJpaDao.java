@@ -9,5 +9,5 @@ import java.io.Serializable;
 @Repository
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class GenericJpaDao<T extends Serializable> extends AbstractJpaDAO<T> implements IGenericDao<T> {
-	//
+   //
 }

@@ -6,81 +6,81 @@ import java.util.stream.Stream;
 
 public class ConcatenatingNull {
 
-	public static void main(String[] args) {
-		String[] values = {"Java ", null, "", "is ", "great!"};
+   public static void main(String[] args) {
+      String[] values = {"Java ", null, "", "is ", "great!"};
 
-		concatenateUsingPlusOperator(values);
-		concatenateUsingHelperMethod(values);
-		concatenateUsingStringBuilder(values);
-		concatenateUsingJoin(values);
-		concatenateUsingStringJoiner(values);
-		concatenateUsingCollectorsJoining(values);
-		concatenateUsingStringConcat(values);
-	}
+      concatenateUsingPlusOperator(values);
+      concatenateUsingHelperMethod(values);
+      concatenateUsingStringBuilder(values);
+      concatenateUsingJoin(values);
+      concatenateUsingStringJoiner(values);
+      concatenateUsingCollectorsJoining(values);
+      concatenateUsingStringConcat(values);
+   }
 
-	public static String concatenateUsingStringConcat(String[] values) {
-		String result = "";
+   public static String concatenateUsingStringConcat(String[] values) {
+      String result = "";
 
-		for (String value : values) {
-			result = result.concat(getNonNullString(value));
-		}
+      for (String value : values) {
+         result = result.concat(getNonNullString(value));
+      }
 
-		return result;
-	}
+      return result;
+   }
 
-	public static String concatenateUsingCollectorsJoining(String[] values) {
-		String result = Stream.of(values).filter(value -> null != value).collect(Collectors.joining(""));
+   public static String concatenateUsingCollectorsJoining(String[] values) {
+      String result = Stream.of(values).filter(value -> null != value).collect(Collectors.joining(""));
 
-		return result;
-	}
+      return result;
+   }
 
-	public static String concatenateUsingStringJoiner(String[] values) {
-		StringJoiner result = new StringJoiner("");
+   public static String concatenateUsingStringJoiner(String[] values) {
+      StringJoiner result = new StringJoiner("");
 
-		for (String value : values) {
-			result = result.add(getNonNullString(value));
-		}
+      for (String value : values) {
+         result = result.add(getNonNullString(value));
+      }
 
-		return result.toString();
-	}
+      return result.toString();
+   }
 
-	public static String concatenateUsingJoin(String[] values) {
-		String result = String.join("", values);
+   public static String concatenateUsingJoin(String[] values) {
+      String result = String.join("", values);
 
-		return result;
-	}
+      return result;
+   }
 
-	public static String concatenateUsingStringBuilder(String[] values) {
-		StringBuilder result = new StringBuilder();
+   public static String concatenateUsingStringBuilder(String[] values) {
+      StringBuilder result = new StringBuilder();
 
-		for (String value : values) {
-			result = result.append(getNonNullString(value));
-		}
+      for (String value : values) {
+         result = result.append(getNonNullString(value));
+      }
 
-		return result.toString();
-	}
+      return result.toString();
+   }
 
-	public static String concatenateUsingHelperMethod(String[] values) {
-		String result = "";
+   public static String concatenateUsingHelperMethod(String[] values) {
+      String result = "";
 
-		for (String value : values) {
-			result = result + getNonNullString(value);
-		}
+      for (String value : values) {
+         result = result + getNonNullString(value);
+      }
 
-		return result;
-	}
+      return result;
+   }
 
-	public static String concatenateUsingPlusOperator(String[] values) {
-		String result = "";
+   public static String concatenateUsingPlusOperator(String[] values) {
+      String result = "";
 
-		for (String value : values) {
-			result = result + (value == null ? "" : value);
-		}
+      for (String value : values) {
+         result = result + (value == null ? "" : value);
+      }
 
-		return result;
-	}
+      return result;
+   }
 
-	private static String getNonNullString(String value) {
-		return value == null ? "" : value;
-	}
+   private static String getNonNullString(String value) {
+      return value == null ? "" : value;
+   }
 }

@@ -6,27 +6,27 @@ import java.util.stream.Stream;
 
 public class CustomForEach {
 
-	public static class Breaker {
-		private boolean shouldBreak = false;
+   public static class Breaker {
+      private boolean shouldBreak = false;
 
-		public void stop() {
-			shouldBreak = true;
-		}
+      public void stop() {
+         shouldBreak = true;
+      }
 
-		boolean get() {
-			return shouldBreak;
-		}
-	}
+      boolean get() {
+         return shouldBreak;
+      }
+   }
 
-	public static <T> void forEach(Stream<T> stream, BiConsumer<T, Breaker> consumer) {
-		Spliterator<T> spliterator = stream.spliterator();
-		boolean hadNext = true;
-		Breaker breaker = new Breaker();
+   public static <T> void forEach(Stream<T> stream, BiConsumer<T, Breaker> consumer) {
+      Spliterator<T> spliterator = stream.spliterator();
+      boolean hadNext = true;
+      Breaker breaker = new Breaker();
 
-		while (hadNext && !breaker.get()) {
-			hadNext = spliterator.tryAdvance(elem -> {
-				consumer.accept(elem, breaker);
-			});
-		}
-	}
+      while (hadNext && !breaker.get()) {
+         hadNext = spliterator.tryAdvance(elem -> {
+            consumer.accept(elem, breaker);
+         });
+      }
+   }
 }

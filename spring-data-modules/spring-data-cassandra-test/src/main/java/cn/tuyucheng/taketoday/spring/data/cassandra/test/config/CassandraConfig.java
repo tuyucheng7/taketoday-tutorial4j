@@ -5,18 +5,18 @@ import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 
 @Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
-    @Override
-    protected String getKeyspaceName() {
-        return "inventory";
-    }
+   @Override
+   protected String getKeyspaceName() {
+      return "inventory";
+   }
 
-    @Override
-    public String getContactPoints() {
-        return "localhost";
-    }
+   @Override
+   public String getContactPoints() {
+      return "localhost";
+   }
 
-    @Override
-    protected String getLocalDataCenter() {
-        return "datacenter1";
-    }
+   @Override
+   protected String getLocalDataCenter() {
+      return "datacenter1";
+   }
 }

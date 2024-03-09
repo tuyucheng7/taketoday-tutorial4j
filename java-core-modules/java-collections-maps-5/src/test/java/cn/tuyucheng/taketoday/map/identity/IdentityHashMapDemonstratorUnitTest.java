@@ -8,7 +8,6 @@ import org.junit.jupiter.api.condition.JRE;
 import java.util.IdentityHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class IdentityHashMapDemonstratorUnitTest {
 
@@ -30,7 +29,7 @@ public class IdentityHashMapDemonstratorUnitTest {
       IdentityHashMap<Book, String> identityHashMap = new IdentityHashMap<>(10);
       identityHashMap.put(book, "A great work of fiction");
       identityHashMap.remove(book, new String("A great work of fiction"));
-       assertNull(identityHashMap.get(book));
+      assertEquals(null, identityHashMap.get(book));
    }
 
    @Test

@@ -1,15 +1,16 @@
 package cn.tuyucheng.taketoday.session;
 
-import io.restassured.filter.session.SessionFilter;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.junit.Test;
-import org.springframework.http.HttpStatus;
+import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
-import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
+import org.springframework.http.HttpStatus;
+
+import io.restassured.filter.session.SessionFilter;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 /**
  * This Live Test requires the service to be up and running.
@@ -34,11 +35,11 @@ public class SessionConfigurationLiveTest {
       Response resp3 = simpleResponseRequestUsingSessionNotFollowingRedirects(sessionFilter);
 
       assertThat(resp3.getStatusCode()).isEqualTo(HttpStatus.FOUND.value());
-      assertThat(resp3.getHeader("Location")).isEqualTo("http://localhost:8080/invalidSession.html");
+      assertThat(resp3.getHeader("Location")).isEqualTo("http://localhost:8080/invalidSession");
    }
 
    @Test
-   public void givenValidUser_whenLoginMoreThanMaxValidSession_thenRedirectedToExpiredSessionUri() throws Exception {
+   public void givenValidUser_whenLoginMoreThanMaxValidSession_thenRedirectedToExpiredSessionUri() {
       SessionFilter sessionFilter = new SessionFilter();
       simpleSvcRequestLoggingIn(sessionFilter);
       simpleSvcRequestLoggingIn();
@@ -55,7 +56,7 @@ public class SessionConfigurationLiveTest {
             .get(SESSION_SVC_URL);
 
       assertThat(resp4.getStatusCode()).isEqualTo(HttpStatus.FOUND.value());
-      assertThat(resp4.getHeader("Location")).isEqualTo("http://localhost:8080/sessionExpired.html");
+      assertThat(resp4.getHeader("Location")).isEqualTo("http://localhost:8080/sessionExpired");
    }
 
    private static void simpleSvcRequestLoggingIn() {
@@ -87,5 +88,4 @@ public class SessionConfigurationLiveTest {
             .when()
             .get(SESSION_SVC_URL);
    }
-
 }

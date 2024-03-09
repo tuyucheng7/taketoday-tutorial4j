@@ -15,4 +15,5 @@ public class HeapDump {
          System.out.println("Out of memory error occurred!");
       }
    }
+
 }

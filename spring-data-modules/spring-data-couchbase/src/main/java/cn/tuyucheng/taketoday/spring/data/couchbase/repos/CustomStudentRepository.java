@@ -5,5 +5,5 @@ import cn.tuyucheng.taketoday.spring.data.couchbase.model.Student;
 import java.util.List;
 
 public interface CustomStudentRepository {
-    List<Student> findByFirstNameStartsWith(String s);
+   List<Student> findByFirstNameStartsWith(String s);
 }

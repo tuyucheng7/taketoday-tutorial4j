@@ -5,31 +5,31 @@ import javax.persistence.Id;
 
 @Entity
 public class Person {
-    @Id
-    private Long id;
+   @Id
+   private Long id;
 
-    private String firstName;
+   private String firstName;
 
-    private String lastName;
+   private String lastName;
 
-    public Person() {
-    }
+   public Person() {
+   }
 
-    public Person(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+   public Person(Long id, String firstName, String lastName) {
+      this.id = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+   }
 
-    public Long id() {
-        return id;
-    }
+   public Long id() {
+      return id;
+   }
 
-    public String firstName() {
-        return firstName;
-    }
+   public String firstName() {
+      return firstName;
+   }
 
-    public String lastName() {
-        return lastName;
-    }
+   public String lastName() {
+      return lastName;
+   }
 }

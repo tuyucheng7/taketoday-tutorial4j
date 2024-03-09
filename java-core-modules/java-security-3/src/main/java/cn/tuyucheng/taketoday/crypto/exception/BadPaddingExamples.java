@@ -10,56 +10,56 @@ import java.security.InvalidKeyException;
 
 public class BadPaddingExamples {
 
-	public static byte[] encryptAndDecryptUsingDifferentKeys(byte[] plainTextBytes)
-		throws InvalidKeyException, GeneralSecurityException {
-		SecretKey encryptionKey = CryptoUtils.getKeyForText("BaeldungIsASuperCoolSite");
-		SecretKey differentKey = CryptoUtils.getKeyForText("ThisGivesUsAnAlternative");
+   public static byte[] encryptAndDecryptUsingDifferentKeys(byte[] plainTextBytes)
+         throws InvalidKeyException, GeneralSecurityException {
+      SecretKey encryptionKey = CryptoUtils.getKeyForText("TuyuchengIsASuperCoolSite");
+      SecretKey differentKey = CryptoUtils.getKeyForText("ThisGivesUsAnAlternative");
 
-		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
-		cipher.init(Cipher.ENCRYPT_MODE, encryptionKey);
-		byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
+      cipher.init(Cipher.ENCRYPT_MODE, encryptionKey);
+      byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
 
-		cipher.init(Cipher.DECRYPT_MODE, differentKey);
+      cipher.init(Cipher.DECRYPT_MODE, differentKey);
 
-		return cipher.doFinal(cipherTextBytes);
-	}
+      return cipher.doFinal(cipherTextBytes);
+   }
 
-	public static byte[] encryptAndDecryptUsingDifferentAlgorithms(SecretKey key, IvParameterSpec ivParameterSpec,
-																   byte[] plainTextBytes) throws InvalidKeyException, GeneralSecurityException {
-		Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+   public static byte[] encryptAndDecryptUsingDifferentAlgorithms(SecretKey key, IvParameterSpec ivParameterSpec,
+                                                                  byte[] plainTextBytes) throws InvalidKeyException, GeneralSecurityException {
+      Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
-		cipher.init(Cipher.ENCRYPT_MODE, key, ivParameterSpec);
-		byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
+      cipher.init(Cipher.ENCRYPT_MODE, key, ivParameterSpec);
+      byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
 
-		cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 
-		cipher.init(Cipher.DECRYPT_MODE, key);
+      cipher.init(Cipher.DECRYPT_MODE, key);
 
-		return cipher.doFinal(cipherTextBytes);
-	}
+      return cipher.doFinal(cipherTextBytes);
+   }
 
-	public static byte[] encryptAndDecryptUsingDifferentPaddings(SecretKey key, byte[] plainTextBytes)
-		throws InvalidKeyException, GeneralSecurityException {
-		Cipher cipher = Cipher.getInstance("AES/ECB/ISO10126Padding");
-		cipher.init(Cipher.ENCRYPT_MODE, key);
-		byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
+   public static byte[] encryptAndDecryptUsingDifferentPaddings(SecretKey key, byte[] plainTextBytes)
+         throws InvalidKeyException, GeneralSecurityException {
+      Cipher cipher = Cipher.getInstance("AES/ECB/ISO10126Padding");
+      cipher.init(Cipher.ENCRYPT_MODE, key);
+      byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
 
-		cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-		cipher.init(Cipher.DECRYPT_MODE, key);
+      cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      cipher.init(Cipher.DECRYPT_MODE, key);
 
-		return cipher.doFinal(cipherTextBytes);
-	}
+      return cipher.doFinal(cipherTextBytes);
+   }
 
-	public static byte[] encryptAndDecryptUsingSamePaddingKeyAndAlgorithm(SecretKey key, byte[] plainTextBytes)
-		throws InvalidKeyException, GeneralSecurityException {
-		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-		cipher.init(Cipher.ENCRYPT_MODE, key);
-		byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
+   public static byte[] encryptAndDecryptUsingSamePaddingKeyAndAlgorithm(SecretKey key, byte[] plainTextBytes)
+         throws InvalidKeyException, GeneralSecurityException {
+      Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      cipher.init(Cipher.ENCRYPT_MODE, key);
+      byte[] cipherTextBytes = cipher.doFinal(plainTextBytes);
 
-		cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-		cipher.init(Cipher.DECRYPT_MODE, key);
+      cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      cipher.init(Cipher.DECRYPT_MODE, key);
 
-		return cipher.doFinal(cipherTextBytes);
-	}
+      return cipher.doFinal(cipherTextBytes);
+   }
 }

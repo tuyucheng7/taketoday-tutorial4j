@@ -1,8 +1,7 @@
 package cn.tuyucheng.taketoday.web.hateoas.event;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationEvent;
-
-import javax.servlet.http.HttpServletResponse;
 
 public class SingleResourceRetrievedEvent extends ApplicationEvent {
    private final HttpServletResponse response;
@@ -14,9 +13,7 @@ public class SingleResourceRetrievedEvent extends ApplicationEvent {
    }
 
    // API
-
    public HttpServletResponse getResponse() {
       return response;
    }
-
 }

@@ -15,27 +15,27 @@ import cn.tuyucheng.taketoday.books.events.BookEventHandler;
 @EnableWebMvc
 public class MvcConfig implements WebMvcConfigurer {
 
-	public MvcConfig() {
-		super();
-	}
+   public MvcConfig() {
+      super();
+   }
 
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+   @Override
+   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+      configurer.enable();
+   }
 
-	@Bean
-	WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
-		return factory -> factory.setRegisterDefaultServlet(true);
-	}
+   @Bean
+   WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> enableDefaultServlet() {
+      return factory -> factory.setRegisterDefaultServlet(true);
+   }
 
-	@Bean
-	AuthorEventHandler authorEventHandler() {
-		return new AuthorEventHandler();
-	}
+   @Bean
+   AuthorEventHandler authorEventHandler() {
+      return new AuthorEventHandler();
+   }
 
-	@Bean
-	BookEventHandler bookEventHandler() {
-		return new BookEventHandler();
-	}
+   @Bean
+   BookEventHandler bookEventHandler() {
+      return new BookEventHandler();
+   }
 }

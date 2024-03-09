@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = {"cn.tuyucheng.taketoday.boot.composite.key"})
 public class SpringBootCompositeKeyApplication {
 
-	public static void main(String... args) {
-		SpringApplication.run(SpringBootCompositeKeyApplication.class, args);
-	}
+   public static void main(String... args) {
+      SpringApplication.run(SpringBootCompositeKeyApplication.class, args);
+   }
 }

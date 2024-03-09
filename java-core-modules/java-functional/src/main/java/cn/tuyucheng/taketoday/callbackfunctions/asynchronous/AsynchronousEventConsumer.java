@@ -4,17 +4,17 @@ import cn.tuyucheng.taketoday.callbackfunctions.EventListener;
 
 public class AsynchronousEventConsumer {
 
-	private EventListener listener;
+   private EventListener listener;
 
-	public AsynchronousEventConsumer(EventListener listener) {
-		this.listener = listener;
-	}
+   public AsynchronousEventConsumer(EventListener listener) {
+      this.listener = listener;
+   }
 
-	public void doAsynchronousOperation() {
-		System.out.println("Performing operation in Asynchronous Task");
+   public void doAsynchronousOperation() {
+      System.out.println("Performing operation in Asynchronous Task");
 
-		new Thread(() -> listener.onTrigger()).start();
-	}
+      new Thread(() -> listener.onTrigger()).start();
+   }
 
 
 }

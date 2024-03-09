@@ -2,19 +2,19 @@ package cn.tuyucheng.taketoday.immutableobjects;
 
 // 4. Immutability in Java
 public final class Money {
-	private final double amount;
-	private final Currency currency;
+   private final double amount;
+   private final Currency currency;
 
-	public Money(double amount, Currency currency) {
-		this.amount = amount;
-		this.currency = currency;
-	}
+   public Money(double amount, Currency currency) {
+      this.amount = amount;
+      this.currency = currency;
+   }
 
-	public Currency getCurrency() {
-		return currency;
-	}
+   public Currency getCurrency() {
+      return currency;
+   }
 
-	public double getAmount() {
-		return amount;
-	}
+   public double getAmount() {
+      return amount;
+   }
 }

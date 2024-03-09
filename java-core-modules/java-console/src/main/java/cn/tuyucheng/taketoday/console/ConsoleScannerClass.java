@@ -8,69 +8,69 @@ import java.util.regex.Pattern;
 
 public class ConsoleScannerClass {
 
-    public static void main(String[] args) {
-        System.out.println("Please enter your name and surname: ");
+   public static void main(String[] args) {
+      System.out.println("Please enter your name and surname: ");
 
-        Scanner scanner = new Scanner(System.in);
+      Scanner scanner = new Scanner(System.in);
 
-        String nameSurname = scanner.nextLine();
+      String nameSurname = scanner.nextLine();
 
-        System.out.println("Please enter your gender: ");
+      System.out.println("Please enter your gender: ");
 
-        char gender = scanner.next().charAt(0);
+      char gender = scanner.next().charAt(0);
 
-        System.out.println("Please enter your age: ");
+      System.out.println("Please enter your age: ");
 
-        int age = scanner.nextInt();
+      int age = scanner.nextInt();
 
-        System.out.println("Please enter your height in meters: ");
+      System.out.println("Please enter your height in meters: ");
 
-        double height = scanner.nextDouble();
+      double height = scanner.nextDouble();
 
-        System.out.println(nameSurname + ", " + age + ", is a great " + (gender == 'm' ? "guy" : "girl") + " with " + height + " meters height" + " and " + (gender == 'm' ? "he" : "she") + " reads Baeldung.");
+      System.out.println(nameSurname + ", " + age + ", is a great " + (gender == 'm' ? "guy" : "girl") + " with " + height + " meters height" + " and " + (gender == 'm' ? "he" : "she") + " reads Tuyucheng.");
 
-        System.out.print("Have a good");
-        System.out.print(" one!");
+      System.out.print("Have a good");
+      System.out.print(" one!");
 
-        System.out.println("\nPlease enter number of years of experience as a developer: ");
+      System.out.println("\nPlease enter number of years of experience as a developer: ");
 
-        BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
+      BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
 
-        int i = 0;
+      int i = 0;
 
-        try {
-            i = Integer.parseInt(buffReader.readLine());
-        } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+      try {
+         i = Integer.parseInt(buffReader.readLine());
+      } catch (NumberFormatException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      } catch (IOException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+      }
 
-        System.out.println("You are a " + (i > 5 ? "great" : "good") + " developer!");
+      System.out.println("You are a " + (i > 5 ? "great" : "good") + " developer!");
 
-        int sum = 0, count = 0;
+      int sum = 0, count = 0;
 
-        System.out.println("Please enter your college degrees. To finish, enter baeldung website url");
+      System.out.println("Please enter your college degrees. To finish, enter tuyucheng website url");
 
-        while (scanner.hasNextInt()) {
-            int nmbr = scanner.nextInt();
-            sum += nmbr;
-            count++;
-        }
-        int mean = sum / count;
+      while (scanner.hasNextInt()) {
+         int nmbr = scanner.nextInt();
+         sum += nmbr;
+         count++;
+      }
+      int mean = sum / count;
 
-        System.out.println("Your average degree is " + mean);
+      System.out.println("Your average degree is " + mean);
 
-        if (scanner.hasNext(Pattern.compile("www.baeldung.com")))
-            System.out.println("Correct!");
-        else
-            System.out.println("Baeldung website url is www.baeldung.com");
+      if (scanner.hasNext(Pattern.compile("www.tuyucheng.com")))
+         System.out.println("Correct!");
+      else
+         System.out.println("Tuyucheng website url is www.tuyucheng.com");
 
-        if (scanner != null)
-            scanner.close();
+      if (scanner != null)
+         scanner.close();
 
-    }
+   }
 
 }

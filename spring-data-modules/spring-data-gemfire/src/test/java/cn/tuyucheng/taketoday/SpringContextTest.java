@@ -9,10 +9,10 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import cn.tuyucheng.taketoday.spring.data.gemfire.function.GemfireConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=GemfireConfiguration.class, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = GemfireConfiguration.class, loader = AnnotationConfigContextLoader.class)
 public class SpringContextTest {
 
-    @Test
-    public void whenSpringContextIsBootstrapped_thenNoExceptions() {
-    }
+   @Test
+   public void whenSpringContextIsBootstrapped_thenNoExceptions() {
+   }
 }

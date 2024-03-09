@@ -1,13 +1,16 @@
 package cn.tuyucheng.taketoday.web;
 
-import cn.tuyucheng.taketoday.Consts;
 import cn.tuyucheng.taketoday.common.web.AbstractLiveTest;
 import cn.tuyucheng.taketoday.persistence.model.Foo;
 import cn.tuyucheng.taketoday.spring.ConfigIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
@@ -22,17 +25,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static cn.tuyucheng.taketoday.Consts.APPLICATION_PORT;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ConfigIntegrationTest.class}, loader = AnnotationConfigContextLoader.class)
 @ActiveProfiles("test")
 public class FooMessageConvertersLiveTest extends AbstractLiveTest<Foo> {
 
-   private static final String BASE_URI = "http://localhost:" + Consts.APPLICATION_PORT + "/spring-boot-rest/";
+   private static final String BASE_URI = "http://localhost:" + APPLICATION_PORT + "/spring-boot-rest/";
 
    public FooMessageConvertersLiveTest() {
       super(Foo.class);
@@ -142,5 +146,4 @@ public class FooMessageConvertersLiveTest extends AbstractLiveTest<Foo> {
       converters.addAll(getXmlMessageConverters());
       return converters;
    }
-
 }

@@ -20,38 +20,38 @@ import java.time.LocalDate;
 @SpringBootTest(classes = {Application.class})
 class AttributeOverrideIntegrationTest {
 
-	private static final LocalDate FORD_FOUNDATION_DATE = LocalDate.parse("1903-06-16");
+   private static final LocalDate FORD_FOUNDATION_DATE = LocalDate.parse("1903-06-16");
 
-	@Autowired
-	CarRepository carRepository;
+   @Autowired
+   CarRepository carRepository;
 
-	@Test
-	@Transactional
-	void whenInsertingCar_thenEmbeddedAndMappedFieldsArePopulated() {
+   @Test
+   @Transactional
+   void whenInsertingCar_thenEmbeddedAndMappedFieldsArePopulated() {
 
-		Car fordMustang = createMustang();
+      Car fordMustang = createMustang();
 
-		carRepository.save(fordMustang);
-		Car actualCar = carRepository.getOne(fordMustang.getId());
+      carRepository.save(fordMustang);
+      Car actualCar = carRepository.getOne(fordMustang.getId());
 
-		Assertions.assertThat(actualCar).isEqualTo(fordMustang);
-	}
+      Assertions.assertThat(actualCar).isEqualTo(fordMustang);
+   }
 
-	@NotNull
-	private Car createMustang() {
-		Address address = new Address();
-		address.setName("Ford United States");
-		address.setCity("Dearborn");
+   @NotNull
+   private Car createMustang() {
+      Address address = new Address();
+      address.setName("Ford United States");
+      address.setCity("Dearborn");
 
-		Brand ford = new Brand();
-		ford.setName("Ford");
-		ford.setFoundationDate(FORD_FOUNDATION_DATE);
+      Brand ford = new Brand();
+      ford.setName("Ford");
+      ford.setFoundationDate(FORD_FOUNDATION_DATE);
 
-		Car fordMustang = new Car();
-		fordMustang.setIdentifier("WP1AB29P88LA47599");
-		fordMustang.setModel("Ford");
-		fordMustang.setName("My car");
-		fordMustang.setBrand(ford);
-		return fordMustang;
-	}
+      Car fordMustang = new Car();
+      fordMustang.setIdentifier("WP1AB29P88LA47599");
+      fordMustang.setModel("Ford");
+      fordMustang.setName("My car");
+      fordMustang.setBrand(ford);
+      return fordMustang;
+   }
 }

@@ -6,20 +6,20 @@ import java.io.FileReader;
 
 class Resource implements AutoCloseable {
 
-	final BufferedReader reader;
+   final BufferedReader reader;
 
-	public Resource(String filename) throws FileNotFoundException {
-		reader = new BufferedReader(new FileReader(filename));
-	}
+   public Resource(String filename) throws FileNotFoundException {
+      reader = new BufferedReader(new FileReader(filename));
+   }
 
-	public long getLineNumber() {
-		return reader.lines()
-				.count();
-	}
+   public long getLineNumber() {
+      return reader.lines()
+            .count();
+   }
 
-	@Override
-	public void close() throws Exception {
-		reader.close();
-		System.out.println("BufferedReader resource closed");
-	}
+   @Override
+   public void close() throws Exception {
+      reader.close();
+      System.out.println("BufferedReader resource closed");
+   }
 }

@@ -1,18 +1,18 @@
 package cn.tuyucheng.taketoday.map.hashing;
 
 public class MemberWithId extends Member {
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
 
-        MemberWithId that = (MemberWithId) o;
+      MemberWithId that = (MemberWithId) o;
 
-        return id.equals(that.id);
-    }
+      return id.equals(that.id);
+   }
 
-    @Override
-    public int hashCode() {
-        return id;
-    }
+   @Override
+   public int hashCode() {
+      return id;
+   }
 }

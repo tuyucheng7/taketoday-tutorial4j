@@ -1,9 +1,7 @@
 package cn.tuyucheng.taketoday.concurrent.waitandnotify;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -13,57 +11,57 @@ import java.io.StringWriter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Slf4j
-@Disabled("Unknown suspension")
-class NetworkIntegrationTest {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-	private String expected;
+public class NetworkIntegrationTest {
 
-	@BeforeEach
-	void setUpStreams() {
-		System.setOut(new PrintStream(outContent));
-		System.setErr(new PrintStream(errContent));
-	}
+   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+   private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+   private String expected;
 
-	@BeforeEach
-	void setUpExpectedOutput() {
-		StringWriter expectedStringWriter = new StringWriter();
+   @BeforeEach
+   public void setUpStreams() {
+      System.setOut(new PrintStream(outContent));
+      System.setErr(new PrintStream(errContent));
+   }
 
-		PrintWriter printWriter = new PrintWriter(expectedStringWriter);
-		printWriter.println("First packet");
-		printWriter.println("Second packet");
-		printWriter.println("Third packet");
-		printWriter.println("Fourth packet");
-		printWriter.close();
+   @BeforeEach
+   public void setUpExpectedOutput() {
+      StringWriter expectedStringWriter = new StringWriter();
 
-		expected = expectedStringWriter.toString();
-	}
+      PrintWriter printWriter = new PrintWriter(expectedStringWriter);
+      printWriter.println("First packet");
+      printWriter.println("Second packet");
+      printWriter.println("Third packet");
+      printWriter.println("Fourth packet");
+      printWriter.close();
 
-	@AfterEach
-	void cleanUpStreams() {
-		System.setOut(null);
-		System.setErr(null);
-	}
+      expected = expectedStringWriter.toString();
+   }
 
-	@Test
-	void givenSenderAndReceiver_whenSendingPackets_thenNetworkSynchronized() {
-		Data data = new Data();
-		Thread sender = new Thread(new Sender(data));
-		Thread receiver = new Thread(new Receiver(data));
+   @AfterEach
+   public void cleanUpStreams() {
+      System.setOut(null);
+      System.setErr(null);
+   }
 
-		sender.start();
-		receiver.start();
+   @Test
+   public void givenSenderAndReceiver_whenSendingPackets_thenNetworkSynchronized() {
+      Data data = new Data();
+      Thread sender = new Thread(new Sender(data));
+      Thread receiver = new Thread(new Receiver(data));
 
-		// wait for sender and receiver to finish before we test against expected
-		try {
-			sender.join();
-			receiver.join();
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-			LOGGER.error("context ", e);
-		}
+      sender.start();
+      receiver.start();
 
-		assertEquals(expected, outContent.toString());
-	}
+      // wait for sender and receiver to finish before we test against expected
+      try {
+         sender.join();
+         receiver.join();
+      } catch (InterruptedException e) {
+         Thread.currentThread()
+               .interrupt();
+         System.err.println("Thread Interrupted");
+      }
+
+      assertEquals(expected, outContent.toString());
+   }
 }

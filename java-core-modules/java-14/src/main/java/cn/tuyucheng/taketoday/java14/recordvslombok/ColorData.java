@@ -7,11 +7,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class ColorData {
 
-	private int red;
-	private int green;
-	private int blue;
+   private int red;
+   private int green;
+   private int blue;
 
-	public String getHexString() {
-		return String.format("#%02X%02X%02X", red, green, blue);
-	}
+   public String getHexString() {
+      return String.format("#%02X%02X%02X", red, green, blue);
+   }
+
 }

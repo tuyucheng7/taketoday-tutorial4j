@@ -2,8 +2,6 @@ package cn.tuyucheng.taketoday.derivedquery.repository;
 
 import cn.tuyucheng.taketoday.derivedquery.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;

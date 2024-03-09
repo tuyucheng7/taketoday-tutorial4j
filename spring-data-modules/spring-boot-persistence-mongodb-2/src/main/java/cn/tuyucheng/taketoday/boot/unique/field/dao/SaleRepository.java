@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface SaleRepository extends MongoRepository<Sale, String> {
-	Optional<Sale> findBySaleId(SaleId id);
+   Optional<Sale> findBySaleId(SaleId id);
 }

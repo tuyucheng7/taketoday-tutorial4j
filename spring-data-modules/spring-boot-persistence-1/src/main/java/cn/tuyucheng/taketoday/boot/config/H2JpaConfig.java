@@ -13,9 +13,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
+
 import javax.sql.DataSource;
-import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
@@ -30,45 +30,45 @@ import java.util.Properties;
 // Profile annotations are only necessary because the different techniques are sharing a project
 public class H2JpaConfig {
 
-	@Autowired
-	private Environment env;
+   @Autowired
+   private Environment env;
 
-	@Bean
-	public DataSource dataSource() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("jdbc.driverClassName")));
-		dataSource.setUrl(env.getProperty("jdbc.url"));
-		dataSource.setUsername(env.getProperty("jdbc.user"));
-		dataSource.setPassword(env.getProperty("jdbc.pass"));
+   @Bean
+   public DataSource dataSource() {
+      final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+      dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+      dataSource.setUrl(env.getProperty("jdbc.url"));
+      dataSource.setUsername(env.getProperty("jdbc.user"));
+      dataSource.setPassword(env.getProperty("jdbc.pass"));
 
-		return dataSource;
-	}
+      return dataSource;
+   }
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-		em.setDataSource(dataSource());
-		em.setPackagesToScan("cn.tuyucheng.taketoday.boot.domain");
-		em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		em.setJpaProperties(additionalProperties());
-		return em;
-	}
+   @Bean
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+      final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+      em.setDataSource(dataSource());
+      em.setPackagesToScan(new String[]{"cn.tuyucheng.taketoday.boot.domain"});
+      em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+      em.setJpaProperties(additionalProperties());
+      return em;
+   }
 
-	@Bean
-	JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {
-		final JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory);
-		return transactionManager;
-	}
+   @Bean
+   JpaTransactionManager transactionManager(final EntityManagerFactory entityManagerFactory) {
+      final JpaTransactionManager transactionManager = new JpaTransactionManager();
+      transactionManager.setEntityManagerFactory(entityManagerFactory);
+      return transactionManager;
+   }
 
-	final Properties additionalProperties() {
-		final Properties hibernateProperties = new Properties();
+   final Properties additionalProperties() {
+      final Properties hibernateProperties = new Properties();
 
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-		hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", env.getProperty("hibernate.globally_quoted_identifiers"));
+      hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+      hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+      hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+      hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", env.getProperty("hibernate.globally_quoted_identifiers"));
 
-		return hibernateProperties;
-	}
+      return hibernateProperties;
+   }
 }

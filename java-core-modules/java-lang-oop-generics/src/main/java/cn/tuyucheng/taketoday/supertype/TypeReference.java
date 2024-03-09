@@ -5,14 +5,14 @@ import java.lang.reflect.Type;
 
 public abstract class TypeReference<T> {
 
-	private final Type type;
+   private final Type type;
 
-	public TypeReference() {
-		Type superclass = getClass().getGenericSuperclass();
-		type = ((ParameterizedType) superclass).getActualTypeArguments()[0];
-	}
+   public TypeReference() {
+      Type superclass = getClass().getGenericSuperclass();
+      type = ((ParameterizedType) superclass).getActualTypeArguments()[0];
+   }
 
-	public Type getType() {
-		return type;
-	}
+   public Type getType() {
+      return type;
+   }
 }

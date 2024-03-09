@@ -14,23 +14,23 @@ import jakarta.xml.ws.Action;
  * JAX-WS RI 3.0.2
  * Generated source version: 3.0
  */
-@WebService(name = "CountryService", targetNamespace = "http://server.ws.soap.baeldung.com/")
+@WebService(name = "CountryService", targetNamespace = "http://server.ws.soap.tuyucheng.com/")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 @XmlSeeAlso({
-	ObjectFactory.class
+      ObjectFactory.class
 })
 public interface CountryService {
 
 
-	/**
-	 * @param arg0
-	 * @return returns com.baeldung.soap.ws.client.generated.Country
-	 */
-	@WebMethod
-	@WebResult(partName = "return")
-	@Action(input = "http://server.ws.soap.baeldung.com/CountryService/findByNameRequest", output = "http://server.ws.soap.baeldung.com/CountryService/findByNameResponse")
-	public Country findByName(
-		@WebParam(name = "arg0", partName = "arg0")
-		String arg0);
+   /**
+    * @param arg0
+    * @return returns cn.tuyucheng.taketoday.soap.ws.client.generated.Country
+    */
+   @WebMethod
+   @WebResult(partName = "return")
+   @Action(input = "http://server.ws.soap.tuyucheng.com/CountryService/findByNameRequest", output = "http://server.ws.soap.tuyucheng.com/CountryService/findByNameResponse")
+   public Country findByName(
+         @WebParam(name = "arg0", partName = "arg0")
+         String arg0);
 
 }

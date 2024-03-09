@@ -1,3 +1,3 @@
 module tuyucheng.intermedium {
-	exports cn.tuyucheng.taketoday.intermedium;
+   exports cn.tuyucheng.taketoday.intermedium;
 }

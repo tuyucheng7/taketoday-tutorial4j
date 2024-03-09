@@ -26,96 +26,96 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class Catalogs extends TableImpl<CatalogsRecord> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * The reference instance of <code>INFORMATION_SCHEMA.CATALOGS</code>
-	 */
-	public static final Catalogs CATALOGS = new Catalogs();
+   /**
+    * The reference instance of <code>INFORMATION_SCHEMA.CATALOGS</code>
+    */
+   public static final Catalogs CATALOGS = new Catalogs();
 
-	/**
-	 * The class holding records for this type
-	 */
-	@Override
-	public Class<CatalogsRecord> getRecordType() {
-		return CatalogsRecord.class;
-	}
+   /**
+    * The class holding records for this type
+    */
+   @Override
+   public Class<CatalogsRecord> getRecordType() {
+      return CatalogsRecord.class;
+   }
 
-	/**
-	 * The column <code>INFORMATION_SCHEMA.CATALOGS.CATALOG_NAME</code>.
-	 */
-	public final TableField<CatalogsRecord, String> CATALOG_NAME = createField(DSL.name("CATALOG_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
+   /**
+    * The column <code>INFORMATION_SCHEMA.CATALOGS.CATALOG_NAME</code>.
+    */
+   public final TableField<CatalogsRecord, String> CATALOG_NAME = createField(DSL.name("CATALOG_NAME"), SQLDataType.VARCHAR(2147483647), this, "");
 
-	private Catalogs(Name alias, Table<CatalogsRecord> aliased) {
-		this(alias, aliased, null);
-	}
+   private Catalogs(Name alias, Table<CatalogsRecord> aliased) {
+      this(alias, aliased, null);
+   }
 
-	private Catalogs(Name alias, Table<CatalogsRecord> aliased, Field<?>[] parameters) {
-		super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
-	}
+   private Catalogs(Name alias, Table<CatalogsRecord> aliased, Field<?>[] parameters) {
+      super(alias, null, aliased, parameters, DSL.comment(""), TableOptions.table());
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
-	 */
-	public Catalogs(String alias) {
-		this(DSL.name(alias), CATALOGS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
+    */
+   public Catalogs(String alias) {
+      this(DSL.name(alias), CATALOGS);
+   }
 
-	/**
-	 * Create an aliased <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
-	 */
-	public Catalogs(Name alias) {
-		this(alias, CATALOGS);
-	}
+   /**
+    * Create an aliased <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
+    */
+   public Catalogs(Name alias) {
+      this(alias, CATALOGS);
+   }
 
-	/**
-	 * Create a <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
-	 */
-	public Catalogs() {
-		this(DSL.name("CATALOGS"), null);
-	}
+   /**
+    * Create a <code>INFORMATION_SCHEMA.CATALOGS</code> table reference
+    */
+   public Catalogs() {
+      this(DSL.name("CATALOGS"), null);
+   }
 
-	public <O extends Record> Catalogs(Table<O> child, ForeignKey<O, CatalogsRecord> key) {
-		super(child, key, CATALOGS);
-	}
+   public <O extends Record> Catalogs(Table<O> child, ForeignKey<O, CatalogsRecord> key) {
+      super(child, key, CATALOGS);
+   }
 
-	@Override
-	public Schema getSchema() {
-		return InformationSchema.INFORMATION_SCHEMA;
-	}
+   @Override
+   public Schema getSchema() {
+      return InformationSchema.INFORMATION_SCHEMA;
+   }
 
-	@Override
-	public Catalogs as(String alias) {
-		return new Catalogs(DSL.name(alias), this);
-	}
+   @Override
+   public Catalogs as(String alias) {
+      return new Catalogs(DSL.name(alias), this);
+   }
 
-	@Override
-	public Catalogs as(Name alias) {
-		return new Catalogs(alias, this);
-	}
+   @Override
+   public Catalogs as(Name alias) {
+      return new Catalogs(alias, this);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Catalogs rename(String name) {
-		return new Catalogs(DSL.name(name), null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Catalogs rename(String name) {
+      return new Catalogs(DSL.name(name), null);
+   }
 
-	/**
-	 * Rename this table
-	 */
-	@Override
-	public Catalogs rename(Name name) {
-		return new Catalogs(name, null);
-	}
+   /**
+    * Rename this table
+    */
+   @Override
+   public Catalogs rename(Name name) {
+      return new Catalogs(name, null);
+   }
 
-	// -------------------------------------------------------------------------
-	// Row1 type methods
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Row1 type methods
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row1<String> fieldsRow() {
-		return (Row1) super.fieldsRow();
-	}
+   @Override
+   public Row1<String> fieldsRow() {
+      return (Row1) super.fieldsRow();
+   }
 }

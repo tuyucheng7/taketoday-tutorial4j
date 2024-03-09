@@ -14,15 +14,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class ExitingExecutorServiceExample {
 
-	public static void main(String... args) {
+   public static void main(String... args) {
 
-		final ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
-		final ExecutorService executorService = MoreExecutors.getExitingExecutorService(executor, 100, TimeUnit.MILLISECONDS);
+      final ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(5);
+      final ExecutorService executorService = MoreExecutors.getExitingExecutorService(executor, 100, TimeUnit.MILLISECONDS);
 
-		executorService.submit((Runnable) () -> {
-			while (true) {
-			}
-		});
+      executorService.submit((Runnable) () -> {
+         while (true) {
+         }
+      });
 
-	}
+   }
+
 }

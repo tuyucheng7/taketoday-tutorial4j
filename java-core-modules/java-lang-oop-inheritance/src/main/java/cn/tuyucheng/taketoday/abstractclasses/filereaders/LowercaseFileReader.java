@@ -4,12 +4,12 @@ import java.nio.file.Path;
 
 public class LowercaseFileReader extends BaseFileReader {
 
-	public LowercaseFileReader(Path filePath) {
-		super(filePath);
-	}
+   public LowercaseFileReader(Path filePath) {
+      super(filePath);
+   }
 
-	@Override
-	public String mapFileLine(String line) {
-		return line.toLowerCase();
-	}
+   @Override
+   public String mapFileLine(String line) {
+      return line.toLowerCase();
+   }
 }

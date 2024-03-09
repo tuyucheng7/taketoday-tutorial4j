@@ -14,13 +14,13 @@ import java.util.Optional;
 @Repository
 public interface InventoryRepository extends CrudRepository<Vehicle, String> {
 
-    @Query("select * from vehicles")
-    @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
-    List<Vehicle> findAllVehicles();
+   @Query("select * from vehicles")
+   @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
+   List<Vehicle> findAllVehicles();
 
-    @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
-    Optional<Vehicle> findByVin(@Param("vin") String vin);
+   @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
+   Optional<Vehicle> findByVin(@Param("vin") String vin);
 
-    @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
-    void deleteByVin(String vin);
+   @Consistency(DefaultConsistencyLevel.LOCAL_QUORUM)
+   void deleteByVin(String vin);
 }

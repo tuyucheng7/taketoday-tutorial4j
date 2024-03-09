@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-	public void sendEmailToStudent(Student student) {
-		System.out.println("sending email to: " + student);
-	}
+   public void sendEmailToStudent(Student student) {
+      System.out.println("sending email to: " + student);
+   }
 }

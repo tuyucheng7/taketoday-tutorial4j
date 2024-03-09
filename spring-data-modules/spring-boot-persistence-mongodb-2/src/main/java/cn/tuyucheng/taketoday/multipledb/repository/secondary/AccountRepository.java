@@ -8,5 +8,5 @@ import cn.tuyucheng.taketoday.multipledb.model.Account;
 @Repository
 public interface AccountRepository extends MongoRepository<Account, String> {
 
-	Account findByAccountDomain(String account);
+   Account findByAccountDomain(String account);
 }

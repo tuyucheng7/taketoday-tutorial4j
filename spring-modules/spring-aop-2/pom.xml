@@ -8,9 +8,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-boot-2</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../parent-boot-2</relativePath>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -35,6 +35,16 @@
          <groupId>org.mockito</groupId>
          <artifactId>mockito-core</artifactId>
          <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+         <version>${commons-lang3.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-rng-simple</artifactId>
+         <version>${commons-rng-core.version}</version>
       </dependency>
    </dependencies>
 
@@ -161,5 +171,7 @@
    <properties>
       <aspectj-plugin.version>1.14.0</aspectj-plugin.version>
       <spring.version>5.3.27</spring.version>
+      <start-class>cn.tuyucheng.taketoday.Application</start-class>
+      <commons-rng-core.version>1.5</commons-rng-core.version>
    </properties>
 </project>

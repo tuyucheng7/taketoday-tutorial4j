@@ -21,46 +21,46 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ManualEmbeddedMongoDbIntegrationTest {
 
-	private static final String CONNECTION_STRING = "mongodb://%s:%d";
+   private static final String CONNECTION_STRING = "mongodb://%s:%d";
 
-	private MongodExecutable mongodExecutable;
-	private MongoTemplate mongoTemplate;
+   private MongodExecutable mongodExecutable;
+   private MongoTemplate mongoTemplate;
 
-	@AfterEach
-	void clean() {
-		mongodExecutable.stop();
-	}
+   @AfterEach
+   void clean() {
+      mongodExecutable.stop();
+   }
 
-	@BeforeEach
-	void setup() throws Exception {
-		String ip = "localhost";
-		int randomPort = SocketUtils.findAvailableTcpPort();
+   @BeforeEach
+   void setup() throws Exception {
+      String ip = "localhost";
+      int randomPort = SocketUtils.findAvailableTcpPort();
 
-		ImmutableMongodConfig mongodbConfig = MongodConfig
-				.builder()
-				.version(Version.Main.PRODUCTION)
-				.net(new Net(ip, randomPort, Network.localhostIsIPv6()))
-				.build();
+      ImmutableMongodConfig mongodbConfig = MongodConfig
+            .builder()
+            .version(Version.Main.PRODUCTION)
+            .net(new Net(ip, randomPort, Network.localhostIsIPv6()))
+            .build();
 
-		MongodStarter starter = MongodStarter.getDefaultInstance();
-		mongodExecutable = starter.prepare(mongodbConfig);
-		mongodExecutable.start();
-		mongoTemplate = new MongoTemplate(MongoClients.create(String.format(CONNECTION_STRING, ip, randomPort)), "test");
-	}
+      MongodStarter starter = MongodStarter.getDefaultInstance();
+      mongodExecutable = starter.prepare(mongodbConfig);
+      mongodExecutable.start();
+      mongoTemplate = new MongoTemplate(MongoClients.create(String.format(CONNECTION_STRING, ip, randomPort)), "test");
+   }
 
-	@DisplayName("Given object When save object using MongoDB template Then object can be found")
-	@Test
-	void test() throws Exception {
-		// given
-		DBObject objectToSave = BasicDBObjectBuilder.start()
-				.add("key", "value")
-				.get();
+   @DisplayName("Given object When save object using MongoDB template Then object can be found")
+   @Test
+   void test() throws Exception {
+      // given
+      DBObject objectToSave = BasicDBObjectBuilder.start()
+            .add("key", "value")
+            .get();
 
-		// when
-		mongoTemplate.save(objectToSave, "collection");
+      // when
+      mongoTemplate.save(objectToSave, "collection");
 
-		// then
-		assertThat(mongoTemplate.findAll(DBObject.class, "collection")).extracting("key")
-				.containsOnly("value");
-	}
+      // then
+      assertThat(mongoTemplate.findAll(DBObject.class, "collection")).extracting("key")
+            .containsOnly("value");
+   }
 }

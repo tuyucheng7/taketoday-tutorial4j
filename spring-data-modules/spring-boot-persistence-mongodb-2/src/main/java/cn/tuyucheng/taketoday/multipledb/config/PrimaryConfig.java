@@ -25,37 +25,37 @@ import static java.util.Collections.singletonList;
 @EnableConfigurationProperties
 public class PrimaryConfig {
 
-    @Bean(name = "primaryProperties")
-    @ConfigurationProperties(prefix = "mongodb.primary")
-    @Primary
-    public MongoProperties primaryProperties() {
-        return new MongoProperties();
-    }
+   @Bean(name = "primaryProperties")
+   @ConfigurationProperties(prefix = "mongodb.primary")
+   @Primary
+   public MongoProperties primaryProperties() {
+      return new MongoProperties();
+   }
 
-    @Bean(name = "primaryMongoClient")
-    public MongoClient mongoClient(@Qualifier("primaryProperties") MongoProperties mongoProperties) {
+   @Bean(name = "primaryMongoClient")
+   public MongoClient mongoClient(@Qualifier("primaryProperties") MongoProperties mongoProperties) {
 
-        MongoCredential credential = MongoCredential.createCredential(
-                mongoProperties.getUsername(),
-                mongoProperties.getAuthenticationDatabase(),
-                mongoProperties.getPassword());
+      MongoCredential credential = MongoCredential.createCredential(
+            mongoProperties.getUsername(),
+            mongoProperties.getAuthenticationDatabase(),
+            mongoProperties.getPassword());
 
-        return MongoClients.create(MongoClientSettings.builder()
-                .applyToClusterSettings(builder -> builder.hosts(singletonList(new ServerAddress(mongoProperties.getHost(), mongoProperties.getPort()))))
-                .credential(credential)
-                .build());
-    }
+      return MongoClients.create(MongoClientSettings.builder()
+            .applyToClusterSettings(builder -> builder.hosts(singletonList(new ServerAddress(mongoProperties.getHost(), mongoProperties.getPort()))))
+            .credential(credential)
+            .build());
+   }
 
-    @Primary
-    @Bean(name = "primaryMongoDBFactory")
-    public MongoDatabaseFactory mongoDatabaseFactory(@Qualifier("primaryMongoClient") MongoClient mongoClient,
-                                                     @Qualifier("primaryProperties") MongoProperties mongoProperties) {
-        return new SimpleMongoClientDatabaseFactory(mongoClient, mongoProperties.getDatabase());
-    }
+   @Primary
+   @Bean(name = "primaryMongoDBFactory")
+   public MongoDatabaseFactory mongoDatabaseFactory(@Qualifier("primaryMongoClient") MongoClient mongoClient,
+                                                    @Qualifier("primaryProperties") MongoProperties mongoProperties) {
+      return new SimpleMongoClientDatabaseFactory(mongoClient, mongoProperties.getDatabase());
+   }
 
-    @Primary
-    @Bean(name = "primaryMongoTemplate")
-    public MongoTemplate mongoTemplate(@Qualifier("primaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {
-        return new MongoTemplate(mongoDatabaseFactory);
-    }
+   @Primary
+   @Bean(name = "primaryMongoTemplate")
+   public MongoTemplate mongoTemplate(@Qualifier("primaryMongoDBFactory") MongoDatabaseFactory mongoDatabaseFactory) {
+      return new MongoTemplate(mongoDatabaseFactory);
+   }
 }

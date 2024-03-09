@@ -12,14 +12,14 @@ import java.sql.SQLException;
 @Profile("c3p0")
 public class C3P0Configuration {
 
-	@Bean
-	public DataSource dataSource() throws SQLException {
-		ComboPooledDataSource dataSource = new ComboPooledDataSource();
-		dataSource.setUser("books");
-		dataSource.setPassword("books");
-		dataSource.setJdbcUrl("jdbc:oracle:thin:@//localhost:11521/ORCLPDB1");
-		dataSource.setMinPoolSize(5);
-		dataSource.setMaxPoolSize(10);
-		return dataSource;
-	}
+   @Bean
+   public DataSource dataSource() throws SQLException {
+      ComboPooledDataSource dataSource = new ComboPooledDataSource();
+      dataSource.setUser("books");
+      dataSource.setPassword("books");
+      dataSource.setJdbcUrl("jdbc:oracle:thin:@//localhost:11521/ORCLPDB1");
+      dataSource.setMinPoolSize(5);
+      dataSource.setMaxPoolSize(10);
+      return dataSource;
+   }
 }

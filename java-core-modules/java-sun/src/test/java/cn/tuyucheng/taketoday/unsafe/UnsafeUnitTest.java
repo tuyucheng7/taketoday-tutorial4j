@@ -26,6 +26,7 @@ public class UnsafeUnitTest {
       unsafe = (Unsafe) f.get(null);
    }
 
+
    @Test
    public void givenClass_whenInitializeIt_thenShouldHaveDifferentStateWhenUseUnsafe() throws IllegalAccessException, InstantiationException {
       // when
@@ -76,6 +77,7 @@ public class UnsafeUnitTest {
       // then
       assertEquals(arraySize, SUPER_SIZE);
       assertEquals(sum, 300);
+
    }
 
    @Test
@@ -97,6 +99,7 @@ public class UnsafeUnitTest {
 
       // then
       assertEquals(NUM_OF_INCREMENTS * NUM_OF_THREADS, casCounter.getCounter());
+
    }
 
    class InitializationOrdering {
@@ -118,4 +121,5 @@ public class UnsafeUnitTest {
          return SECRET_VALUE == 1;
       }
    }
+
 }

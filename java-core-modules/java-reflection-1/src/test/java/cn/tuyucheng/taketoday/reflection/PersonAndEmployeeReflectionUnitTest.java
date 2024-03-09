@@ -1,7 +1,6 @@
 package cn.tuyucheng.taketoday.reflection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -12,7 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PersonAndEmployeeReflectionUnitTest {
 
@@ -188,4 +188,5 @@ public class PersonAndEmployeeReflectionUnitTest {
       result.addAll(filteredFields);
       return result;
    }
+
 }

@@ -1,12 +1,12 @@
 package cn.tuyucheng.taketoday.concurrent.queue;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BlockingQueueUnitTest {
 
@@ -15,7 +15,6 @@ public class BlockingQueueUnitTest {
       BlockingQueue<String> arrayBlockingQueue = new ArrayBlockingQueue<>(10);
       arrayBlockingQueue.add("TestString1");
       arrayBlockingQueue.add("TestString2");
-
       assertEquals(8, arrayBlockingQueue.remainingCapacity());
    }
 
@@ -23,7 +22,6 @@ public class BlockingQueueUnitTest {
    public void givenLinkedBlockingQueue_whenAddedElements_thenReturnQueueRemainingCapacity() {
       BlockingQueue<String> linkedBlockingQueue = new LinkedBlockingQueue<>(10);
       linkedBlockingQueue.add("TestString1");
-
       assertEquals(9, linkedBlockingQueue.remainingCapacity());
    }
 }

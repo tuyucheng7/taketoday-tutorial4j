@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Error {
-   protected String reference;
+
    private int code;
+
    private String message;
+
+   protected String reference;
 }

@@ -11,23 +11,23 @@ import reactor.core.publisher.Mono;
 @Service
 public class AccountTemplateOperations {
 
-	@Autowired
-	ReactiveMongoTemplate template;
+   @Autowired
+   ReactiveMongoTemplate template;
 
-	public Mono<Account> findById(String id) {
-		return template.findById(id, Account.class);
-	}
+   public Mono<Account> findById(String id) {
+      return template.findById(id, Account.class);
+   }
 
-	public Flux<Account> findAll() {
-		return template.findAll(Account.class);
-	}
+   public Flux<Account> findAll() {
+      return template.findAll(Account.class);
+   }
 
-	public Mono<Account> save(Mono<Account> account) {
-		return template.save(account);
-	}
+   public Mono<Account> save(Mono<Account> account) {
+      return template.save(account);
+   }
 
-	public ReactiveRemoveOperation.ReactiveRemove<Account> deleteAll() {
-		return template.remove(Account.class);
-	}
+   public ReactiveRemoveOperation.ReactiveRemove<Account> deleteAll() {
+      return template.remove(Account.class);
+   }
 
 }

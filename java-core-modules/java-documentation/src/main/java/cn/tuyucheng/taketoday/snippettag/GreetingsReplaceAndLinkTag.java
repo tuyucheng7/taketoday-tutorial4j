@@ -14,8 +14,8 @@ package cn.tuyucheng.taketoday.snippettag;
  * }
  *}
  */
-public class GreetingsReplaceAndLinkTag {
 
+public class GreetingsReplaceAndLinkTag {
    public void helloTuyucheng() {
       System.out.println("Hello From Team Tuyucheng");
    }

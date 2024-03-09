@@ -16,25 +16,25 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		basePackageClasses = Topic.class,
-		entityManagerFactoryRef = "topicsEntityManagerFactory",
-		transactionManagerRef = "topicsTransactionManager"
+      basePackageClasses = Topic.class,
+      entityManagerFactoryRef = "topicsEntityManagerFactory",
+      transactionManagerRef = "topicsTransactionManager"
 )
 public class TopicJpaConfiguration {
 
-	@Bean
-	public LocalContainerEntityManagerFactoryBean topicsEntityManagerFactory(
-			@Qualifier("topicsDataSource") DataSource dataSource,
-			EntityManagerFactoryBuilder builder) {
-		return builder
-				.dataSource(dataSource)
-				.packages(Topic.class)
-				.build();
-	}
+   @Bean
+   public LocalContainerEntityManagerFactoryBean topicsEntityManagerFactory(
+         @Qualifier("topicsDataSource") DataSource dataSource,
+         EntityManagerFactoryBuilder builder) {
+      return builder
+            .dataSource(dataSource)
+            .packages(Topic.class)
+            .build();
+   }
 
-	@Bean
-	public PlatformTransactionManager topicsTransactionManager(
-			@Qualifier("topicsEntityManagerFactory") LocalContainerEntityManagerFactoryBean topicsEntityManagerFactory) {
-		return new JpaTransactionManager(Objects.requireNonNull(topicsEntityManagerFactory.getObject()));
-	}
+   @Bean
+   public PlatformTransactionManager topicsTransactionManager(
+         @Qualifier("topicsEntityManagerFactory") LocalContainerEntityManagerFactoryBean topicsEntityManagerFactory) {
+      return new JpaTransactionManager(Objects.requireNonNull(topicsEntityManagerFactory.getObject()));
+   }
 }

@@ -11,9 +11,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-boot-2</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../parent-boot-2/pom.xml</relativePath>
+      <relativePath>../../parent-boot-3/pom.xml</relativePath>
    </parent>
 
    <dependencies>
@@ -144,8 +144,8 @@
          </exclusions>
       </dependency>
       <dependency>
-         <groupId>org.glassfish.jaxb</groupId>
-         <artifactId>jaxb-runtime</artifactId>
+         <groupId>com.sun.xml.bind</groupId>
+         <artifactId>jaxb-impl</artifactId>
          <version>${jaxb-runtime.version}</version>
       </dependency>
    </dependencies>
@@ -162,9 +162,8 @@
    <properties>
       <start-class>cn.tuyucheng.taketoday.SpringBootRestApplication</start-class>
       <xstream.version>1.4.11.1</xstream.version>
-      <modelmapper.version>3.1.0</modelmapper.version>
-      <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+      <modelmapper.version>3.2.0</modelmapper.version>
       <rest-assured.version>3.3.0</rest-assured.version>
-      <jaxb-runtime.version>2.3.7</jaxb-runtime.version>
+      <jaxb-runtime.version>4.0.1</jaxb-runtime.version>
    </properties>
 </project>

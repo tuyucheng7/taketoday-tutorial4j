@@ -12,6 +12,6 @@ import java.util.Optional;
 @Transactional
 public interface BasicUserRepository extends JpaRepository<BasicUser, Long> {
 
-    @EntityGraph(attributePaths = "permissions")
-    Optional<BasicUser> findDetailedByUsername(String username);
+   @EntityGraph(attributePaths = "permissions")
+   Optional<BasicUser> findDetailedByUsername(String username);
 }

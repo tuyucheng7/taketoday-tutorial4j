@@ -4,13 +4,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class SafeAtomicCounter {
 
-	private final AtomicInteger counter = new AtomicInteger(0);
+   private final AtomicInteger counter = new AtomicInteger(0);
 
-	public int getValue() {
-		return counter.get();
-	}
+   public int getValue() {
+      return counter.get();
+   }
 
-	public void increment() {
-		counter.incrementAndGet();
-	}
+   public void increment() {
+      counter.incrementAndGet();
+   }
 }

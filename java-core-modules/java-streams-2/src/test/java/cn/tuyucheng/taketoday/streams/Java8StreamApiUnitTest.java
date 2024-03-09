@@ -1,8 +1,8 @@
 package cn.tuyucheng.taketoday.streams;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,231 +30,232 @@ import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Java8StreamApiUnitTest {
 
-	private long counter;
+   private long counter;
 
-	private static Logger log = LoggerFactory.getLogger(Java8StreamApiUnitTest.class);
+   private static Logger log = LoggerFactory.getLogger(Java8StreamApiUnitTest.class);
 
-	private List<Product> productList;
+   private List<Product> productList;
 
-	@Before
-	public void init() {
-		productList = Arrays.asList(new Product(23, "potatoes"), new Product(14, "orange"), new Product(13, "lemon"), new Product(23, "bread"), new Product(13, "sugar"));
-	}
+   @BeforeEach
+   public void init() {
+      productList = Arrays.asList(new Product(23, "potatoes"), new Product(14, "orange"), new Product(13, "lemon"), new Product(23, "bread"), new Product(13, "sugar"));
+   }
 
-	@Test
-	public void checkPipeline_whenStreamOneElementShorter_thenCorrect() {
+   @Test
+   public void checkPipeline_whenStreamOneElementShorter_thenCorrect() {
 
-		List<String> list = Arrays.asList("abc1", "abc2", "abc3");
-		long size = list.stream().skip(1).map(element -> element.substring(0, 3)).count();
-		assertEquals(list.size() - 1, size);
-	}
+      List<String> list = Arrays.asList("abc1", "abc2", "abc3");
+      long size = list.stream().skip(1).map(element -> element.substring(0, 3)).count();
+      assertEquals(list.size() - 1, size);
+   }
 
-	@Test
-	@Ignore
-	public void checkOrder_whenChangeQuantityOfMethodCalls_thenCorrect() {
-		List<String> list = Arrays.asList("abc1", "abc2", "abc3");
+   @Disabled
+   @Test
+   public void checkOrder_whenChangeQuantityOfMethodCalls_thenCorrect() {
 
-		counter = 0;
-		long sizeFirst = list.stream().skip(2).map(element -> {
-			wasCalled();
-			return element.substring(0, 3);
-		}).count();
-		assertEquals(1, counter);
+      List<String> list = Arrays.asList("abc1", "abc2", "abc3");
 
-		counter = 0;
-		long sizeSecond = list.stream().map(element -> {
-			wasCalled();
-			return element.substring(0, 3);
-		}).skip(2).count();
-		assertEquals(3, counter);
-	}
+      counter = 0;
+      long sizeFirst = list.stream().skip(2).map(element -> {
+         wasCalled();
+         return element.substring(0, 3);
+      }).count();
+      assertEquals(1, counter);
 
-	@Test
-	public void createEmptyStream_whenEmpty_thenCorrect() {
+      counter = 0;
+      long sizeSecond = list.stream().map(element -> {
+         wasCalled();
+         return element.substring(0, 3);
+      }).skip(2).count();
+      assertEquals(3, counter);
+   }
 
-		Stream<String> streamEmpty = Stream.empty();
-		assertEquals(0, streamEmpty.count());
+   @Test
+   public void createEmptyStream_whenEmpty_thenCorrect() {
 
-		List<String> names = Collections.emptyList();
-		Stream<String> streamOf = Product.streamOf(names);
-		assertTrue(streamOf.count() == 0);
-	}
+      Stream<String> streamEmpty = Stream.empty();
+      assertEquals(0, streamEmpty.count());
 
-	@Test
-	public void createStream_whenCreated_thenCorrect() {
+      List<String> names = Collections.emptyList();
+      Stream<String> streamOf = Product.streamOf(names);
+      assertTrue(streamOf.count() == 0);
+   }
 
-		Collection<String> collection = Arrays.asList("a", "b", "c");
-		Stream<String> streamOfCollection = collection.stream();
-		assertEquals(3, streamOfCollection.count());
+   @Test
+   public void createStream_whenCreated_thenCorrect() {
 
-		Stream<String> streamOfArray = Stream.of("a", "b", "c");
-		assertEquals(3, streamOfArray.count());
+      Collection<String> collection = Arrays.asList("a", "b", "c");
+      Stream<String> streamOfCollection = collection.stream();
+      assertEquals(3, streamOfCollection.count());
 
-		String[] arr = new String[]{"a", "b", "c"};
-		Stream<String> streamOfArrayPart = Arrays.stream(arr, 1, 3);
-		assertEquals(2, streamOfArrayPart.count());
+      Stream<String> streamOfArray = Stream.of("a", "b", "c");
+      assertEquals(3, streamOfArray.count());
 
-		IntStream intStream = IntStream.range(1, 3);
-		LongStream longStream = LongStream.rangeClosed(1, 3);
-		Random random = new Random();
-		DoubleStream doubleStream = random.doubles(3);
-		assertEquals(2, intStream.count());
-		assertEquals(3, longStream.count());
-		assertEquals(3, doubleStream.count());
+      String[] arr = new String[]{"a", "b", "c"};
+      Stream<String> streamOfArrayPart = Arrays.stream(arr, 1, 3);
+      assertEquals(2, streamOfArrayPart.count());
 
-		IntStream streamOfChars = "abc".chars();
-		IntStream str = "".chars();
-		assertEquals(3, streamOfChars.count());
+      IntStream intStream = IntStream.range(1, 3);
+      LongStream longStream = LongStream.rangeClosed(1, 3);
+      Random random = new Random();
+      DoubleStream doubleStream = random.doubles(3);
+      assertEquals(2, intStream.count());
+      assertEquals(3, longStream.count());
+      assertEquals(3, doubleStream.count());
 
-		Stream<String> streamOfString = Pattern.compile(", ").splitAsStream("a, b, c");
-		assertEquals("a", streamOfString.findFirst().get());
+      IntStream streamOfChars = "abc".chars();
+      IntStream str = "".chars();
+      assertEquals(3, streamOfChars.count());
 
-		Path path = getPath();
-		Stream<String> streamOfStrings = null;
-		try {
-			streamOfStrings = Files.lines(path, Charset.forName("UTF-8"));
-		} catch (IOException e) {
-			log.error("Error creating streams from paths {}", path, e.getMessage(), e);
-		}
-		assertEquals("a", streamOfStrings.findFirst().get());
+      Stream<String> streamOfString = Pattern.compile(", ").splitAsStream("a, b, c");
+      assertEquals("a", streamOfString.findFirst().get());
 
-		Stream<String> streamBuilder = Stream.<String>builder().add("a").add("b").add("c").build();
-		assertEquals(3, streamBuilder.count());
+      Path path = getPath();
+      Stream<String> streamOfStrings = null;
+      try {
+         streamOfStrings = Files.lines(path, Charset.forName("UTF-8"));
+      } catch (IOException e) {
+         log.error("Error creating streams from paths {}", path, e.getMessage(), e);
+      }
+      assertEquals("a", streamOfStrings.findFirst().get());
 
-		Stream<String> streamGenerated = Stream.generate(() -> "element").limit(10);
-		assertEquals(10, streamGenerated.count());
+      Stream<String> streamBuilder = Stream.<String>builder().add("a").add("b").add("c").build();
+      assertEquals(3, streamBuilder.count());
 
-		Stream<Integer> streamIterated = Stream.iterate(40, n -> n + 2).limit(20);
-		assertTrue(40 <= streamIterated.findAny().get());
-	}
+      Stream<String> streamGenerated = Stream.generate(() -> "element").limit(10);
+      assertEquals(10, streamGenerated.count());
 
-	@Test
-	public void runStreamPipeline_whenOrderIsRight_thenCorrect() {
+      Stream<Integer> streamIterated = Stream.iterate(40, n -> n + 2).limit(20);
+      assertTrue(40 <= streamIterated.findAny().get());
+   }
 
-		List<String> list = Arrays.asList("abc1", "abc2", "abc3");
-		Optional<String> stream = list.stream().filter(element -> {
-			log.info("filter() was called");
-			return element.contains("2");
-		}).map(element -> {
-			log.info("map() was called");
-			return element.toUpperCase();
-		}).findFirst();
-	}
+   @Test
+   public void runStreamPipeline_whenOrderIsRight_thenCorrect() {
 
-	@Test
-	public void reduce_whenExpected_thenCorrect() {
+      List<String> list = Arrays.asList("abc1", "abc2", "abc3");
+      Optional<String> stream = list.stream().filter(element -> {
+         log.info("filter() was called");
+         return element.contains("2");
+      }).map(element -> {
+         log.info("map() was called");
+         return element.toUpperCase();
+      }).findFirst();
+   }
 
-		OptionalInt reduced = IntStream.range(1, 4).reduce((a, b) -> a + b);
-		assertEquals(6, reduced.getAsInt());
+   @Test
+   public void reduce_whenExpected_thenCorrect() {
 
-		int reducedTwoParams = IntStream.range(1, 4).reduce(10, (a, b) -> a + b);
-		assertEquals(16, reducedTwoParams);
+      OptionalInt reduced = IntStream.range(1, 4).reduce((a, b) -> a + b);
+      assertEquals(6, reduced.getAsInt());
 
-		int reducedThreeParams = Stream.of(1, 2, 3).reduce(10, (a, b) -> a + b, (a, b) -> {
-			log.info("combiner was called");
-			return a + b;
-		});
-		assertEquals(16, reducedThreeParams);
+      int reducedTwoParams = IntStream.range(1, 4).reduce(10, (a, b) -> a + b);
+      assertEquals(16, reducedTwoParams);
 
-		int reducedThreeParamsParallel = Arrays.asList(1, 2, 3).parallelStream().reduce(10, (a, b) -> a + b, (a, b) -> {
-			log.info("combiner was called");
-			return a + b;
-		});
-		assertEquals(36, reducedThreeParamsParallel);
-	}
+      int reducedThreeParams = Stream.of(1, 2, 3).reduce(10, (a, b) -> a + b, (a, b) -> {
+         log.info("combiner was called");
+         return a + b;
+      });
+      assertEquals(16, reducedThreeParams);
 
-	@Test
-	public void collecting_whenAsExpected_thenCorrect() {
+      int reducedThreeParamsParallel = Arrays.asList(1, 2, 3).parallelStream().reduce(10, (a, b) -> a + b, (a, b) -> {
+         log.info("combiner was called");
+         return a + b;
+      });
+      assertEquals(36, reducedThreeParamsParallel);
+   }
 
-		List<String> collectorCollection = productList.stream().map(Product::getName).collect(Collectors.toList());
+   @Test
+   public void collecting_whenAsExpected_thenCorrect() {
 
-		assertTrue(collectorCollection instanceof List);
-		assertEquals(5, collectorCollection.size());
+      List<String> collectorCollection = productList.stream().map(Product::getName).collect(Collectors.toList());
 
-		String listToString = productList.stream().map(Product::getName).collect(Collectors.joining(", ", "[", "]"));
+      assertTrue(collectorCollection instanceof List);
+      assertEquals(5, collectorCollection.size());
 
-		assertTrue(listToString.contains(",") && listToString.contains("[") && listToString.contains("]"));
+      String listToString = productList.stream().map(Product::getName).collect(Collectors.joining(", ", "[", "]"));
 
-		double averagePrice = productList.stream().collect(Collectors.averagingInt(Product::getPrice));
-		assertTrue(17.2 == averagePrice);
+      assertTrue(listToString.contains(",") && listToString.contains("[") && listToString.contains("]"));
 
-		int summingPrice = productList.stream().collect(Collectors.summingInt(Product::getPrice));
-		assertEquals(86, summingPrice);
+      double averagePrice = productList.stream().collect(Collectors.averagingInt(Product::getPrice));
+      assertTrue(17.2 == averagePrice);
 
-		IntSummaryStatistics statistics = productList.stream().collect(Collectors.summarizingInt(Product::getPrice));
-		assertEquals(23, statistics.getMax());
+      int summingPrice = productList.stream().collect(Collectors.summingInt(Product::getPrice));
+      assertEquals(86, summingPrice);
 
-		Map<Integer, List<Product>> collectorMapOfLists = productList.stream().collect(Collectors.groupingBy(Product::getPrice));
-		assertEquals(3, collectorMapOfLists.keySet().size());
+      IntSummaryStatistics statistics = productList.stream().collect(Collectors.summarizingInt(Product::getPrice));
+      assertEquals(23, statistics.getMax());
 
-		Map<Boolean, List<Product>> mapPartioned = productList.stream().collect(Collectors.partitioningBy(element -> element.getPrice() > 15));
-		assertEquals(2, mapPartioned.keySet().size());
+      Map<Integer, List<Product>> collectorMapOfLists = productList.stream().collect(Collectors.groupingBy(Product::getPrice));
+      assertEquals(3, collectorMapOfLists.keySet().size());
 
-	}
+      Map<Boolean, List<Product>> mapPartioned = productList.stream().collect(Collectors.partitioningBy(element -> element.getPrice() > 15));
+      assertEquals(2, mapPartioned.keySet().size());
 
-	@Test(expected = UnsupportedOperationException.class)
-	public void collect_whenThrows_thenCorrect() {
-		Set<Product> unmodifiableSet = productList.stream().collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
-		unmodifiableSet.add(new Product(4, "tea"));
-	}
+   }
 
-	@Test
-	public void customCollector_whenResultContainsAllElementsFrSource_thenCorrect() {
-		Collector<Product, ?, LinkedList<Product>> toLinkedList = Collector.of(LinkedList::new, LinkedList::add, (first, second) -> {
-			first.addAll(second);
-			return first;
-		});
+   @Test(expected = UnsupportedOperationException.class)
+   public void collect_whenThrows_thenCorrect() {
+      Set<Product> unmodifiableSet = productList.stream().collect(Collectors.collectingAndThen(Collectors.toSet(), Collections::unmodifiableSet));
+      unmodifiableSet.add(new Product(4, "tea"));
+   }
 
-		LinkedList<Product> linkedListOfPersons = productList.stream().collect(toLinkedList);
-		assertTrue(linkedListOfPersons.containsAll(productList));
-	}
+   @Test
+   public void customCollector_whenResultContainsAllElementsFrSource_thenCorrect() {
+      Collector<Product, ?, LinkedList<Product>> toLinkedList = Collector.of(LinkedList::new, LinkedList::add, (first, second) -> {
+         first.addAll(second);
+         return first;
+      });
 
-	@Test
-	public void parallelStream_whenWorks_thenCorrect() {
-		Stream<Product> streamOfCollection = productList.parallelStream();
-		boolean isParallel = streamOfCollection.isParallel();
-		boolean haveBigPrice = streamOfCollection.map(product -> product.getPrice() * 12).anyMatch(price -> price > 200);
-		assertTrue(isParallel && haveBigPrice);
-	}
+      LinkedList<Product> linkedListOfPersons = productList.stream().collect(toLinkedList);
+      assertTrue(linkedListOfPersons.containsAll(productList));
+   }
 
-	@Test
-	public void parallel_whenIsParallel_thenCorrect() {
-		IntStream intStreamParallel = IntStream.range(1, 150).parallel().map(element -> element * 34);
-		boolean isParallel = intStreamParallel.isParallel();
-		assertTrue(isParallel);
-	}
+   @Test
+   public void parallelStream_whenWorks_thenCorrect() {
+      Stream<Product> streamOfCollection = productList.parallelStream();
+      boolean isParallel = streamOfCollection.isParallel();
+      boolean haveBigPrice = streamOfCollection.map(product -> product.getPrice() * 12).anyMatch(price -> price > 200);
+      assertTrue(isParallel && haveBigPrice);
+   }
 
-	@Test
-	public void parallel_whenIsSequential_thenCorrect() {
-		IntStream intStreamParallel = IntStream.range(1, 150).parallel().map(element -> element * 34);
-		IntStream intStreamSequential = intStreamParallel.sequential();
-		boolean isParallel = intStreamParallel.isParallel();
-		assertFalse(isParallel);
-	}
+   @Test
+   public void parallel_whenIsParallel_thenCorrect() {
+      IntStream intStreamParallel = IntStream.range(1, 150).parallel().map(element -> element * 34);
+      boolean isParallel = intStreamParallel.isParallel();
+      assertTrue(isParallel);
+   }
 
-	private Path getPath() {
-		Path path = null;
-		try {
-			path = Files.createTempFile(null, ".txt");
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
+   @Test
+   public void parallel_whenIsSequential_thenCorrect() {
+      IntStream intStreamParallel = IntStream.range(1, 150).parallel().map(element -> element * 34);
+      IntStream intStreamSequential = intStreamParallel.sequential();
+      boolean isParallel = intStreamParallel.isParallel();
+      assertFalse(isParallel);
+   }
 
-		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-			writer.write("a\nb\nc");
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
-		return path;
-	}
+   private Path getPath() {
+      Path path = null;
+      try {
+         path = Files.createTempFile(null, ".txt");
+      } catch (IOException e) {
+         log.error(e.getMessage());
+      }
 
-	private void wasCalled() {
-		counter++;
-	}
+      try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+         writer.write("a\nb\nc");
+      } catch (IOException e) {
+         log.error(e.getMessage());
+      }
+      return path;
+   }
+
+   private void wasCalled() {
+      counter++;
+   }
 }

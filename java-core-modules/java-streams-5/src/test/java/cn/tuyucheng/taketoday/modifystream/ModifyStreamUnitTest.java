@@ -128,4 +128,5 @@ public class ModifyStreamUnitTest {
 
       personList.forEach(e -> assertEquals(e.getEmail(), e.getEmail().toUpperCase()));
    }
+
 }

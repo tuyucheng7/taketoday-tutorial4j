@@ -15,4 +15,5 @@ public class PropertiesExample {
       String customProperty = System.getProperty("non-existent-property", "default value");
       System.out.println("Custom property: " + customProperty);
    }
+
 }

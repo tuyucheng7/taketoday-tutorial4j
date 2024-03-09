@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RepositoryRestController
 public class PersonController {
 
-	@Autowired
-	PersonRepository repository;
+   @Autowired
+   PersonRepository repository;
 
-	@GetMapping("/persons")
-	ResponseEntity<?> persons(PagedResourcesAssembler resourcesAssembler) {
-		Page<Person> persons = this.repository.findAll(Pageable.ofSize(20));
-		Page<PersonDto> personDtos = persons.map(PersonDto::new);
-		PagedModel<EntityModel<PersonDto>> pagedModel = resourcesAssembler.toModel(personDtos);
-		return ResponseEntity.ok(pagedModel);
-	}
+   @GetMapping("/persons")
+   ResponseEntity<?> persons(PagedResourcesAssembler resourcesAssembler) {
+      Page<Person> persons = this.repository.findAll(Pageable.ofSize(20));
+      Page<PersonDto> personDtos = persons.map(PersonDto::new);
+      PagedModel<EntityModel<PersonDto>> pagedModel = resourcesAssembler.toModel(personDtos);
+      return ResponseEntity.ok(pagedModel);
+   }
 }

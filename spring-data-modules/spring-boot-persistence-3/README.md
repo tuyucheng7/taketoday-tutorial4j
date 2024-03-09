@@ -1,6 +1,5 @@
-## 相关文章
-
-+ [使用Spring Data JPA迭代大型结果集的模式](http://tu-yucheng.github.io/springdata/2023/05/18/spring-data-jpa-iterate-large-result-sets.html)
-
-- 更多文章： [[<-- prev]](../spring-boot-persistence-2/README.md)
-- 更多文章： [[next -->]](../spring-boot-persistence-h2/README.md)
+### Relevant Articles:
+- [Patterns for Iterating Over Large Result Sets With Spring Data JPA](https://www.baeldung.com/spring-data-jpa-iterate-large-result-sets)
+- [Count the Number of Rows in Spring Data JPA](https://www.baeldung.com/spring-data-jpa-row-count)
+- [A Guide to Spring AbstractRoutingDatasource](https://www.baeldung.com/spring-abstract-routing-data-source)
+- More articles: [[<-- prev]](../spring-boot-persistence-2)

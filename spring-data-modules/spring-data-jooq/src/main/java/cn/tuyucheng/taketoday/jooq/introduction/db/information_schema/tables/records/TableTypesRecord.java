@@ -17,80 +17,80 @@ import org.jooq.impl.TableRecordImpl;
 @SuppressWarnings({"all", "unchecked", "rawtypes"})
 public class TableTypesRecord extends TableRecordImpl<TableTypesRecord> implements Record1<String> {
 
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-	/**
-	 * Setter for <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
-	 */
-	public void setType(String value) {
-		set(0, value);
-	}
+   /**
+    * Setter for <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
+    */
+   public void setType(String value) {
+      set(0, value);
+   }
 
-	/**
-	 * Getter for <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
-	 */
-	public String getType() {
-		return (String) get(0);
-	}
+   /**
+    * Getter for <code>INFORMATION_SCHEMA.TABLE_TYPES.TYPE</code>.
+    */
+   public String getType() {
+      return (String) get(0);
+   }
 
-	// -------------------------------------------------------------------------
-	// Record1 type implementation
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Record1 type implementation
+   // -------------------------------------------------------------------------
 
-	@Override
-	public Row1<String> fieldsRow() {
-		return (Row1) super.fieldsRow();
-	}
+   @Override
+   public Row1<String> fieldsRow() {
+      return (Row1) super.fieldsRow();
+   }
 
-	@Override
-	public Row1<String> valuesRow() {
-		return (Row1) super.valuesRow();
-	}
+   @Override
+   public Row1<String> valuesRow() {
+      return (Row1) super.valuesRow();
+   }
 
-	@Override
-	public Field<String> field1() {
-		return TableTypes.TABLE_TYPES.TYPE;
-	}
+   @Override
+   public Field<String> field1() {
+      return TableTypes.TABLE_TYPES.TYPE;
+   }
 
-	@Override
-	public String component1() {
-		return getType();
-	}
+   @Override
+   public String component1() {
+      return getType();
+   }
 
-	@Override
-	public String value1() {
-		return getType();
-	}
+   @Override
+   public String value1() {
+      return getType();
+   }
 
-	@Override
-	public TableTypesRecord value1(String value) {
-		setType(value);
-		return this;
-	}
+   @Override
+   public TableTypesRecord value1(String value) {
+      setType(value);
+      return this;
+   }
 
-	@Override
-	public TableTypesRecord values(String value1) {
-		value1(value1);
-		return this;
-	}
+   @Override
+   public TableTypesRecord values(String value1) {
+      value1(value1);
+      return this;
+   }
 
-	// -------------------------------------------------------------------------
-	// Constructors
-	// -------------------------------------------------------------------------
+   // -------------------------------------------------------------------------
+   // Constructors
+   // -------------------------------------------------------------------------
 
-	/**
-	 * Create a detached TableTypesRecord
-	 */
-	public TableTypesRecord() {
-		super(TableTypes.TABLE_TYPES);
-	}
+   /**
+    * Create a detached TableTypesRecord
+    */
+   public TableTypesRecord() {
+      super(TableTypes.TABLE_TYPES);
+   }
 
-	/**
-	 * Create a detached, initialised TableTypesRecord
-	 */
-	public TableTypesRecord(String type) {
-		super(TableTypes.TABLE_TYPES);
+   /**
+    * Create a detached, initialised TableTypesRecord
+    */
+   public TableTypesRecord(String type) {
+      super(TableTypes.TABLE_TYPES);
 
-		setType(type);
-	}
+      setType(type);
+   }
 }

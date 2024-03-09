@@ -4,13 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-10</artifactId>
-   <version>1.0.0</version>
    <name>java-10</name>
    <packaging>jar</packaging>
 
    <parent>
-      <artifactId>java-core-modules</artifactId>
       <groupId>cn.tuyucheng.taketoday.java-core-modules</groupId>
+      <artifactId>java-core-modules</artifactId>
       <version>1.0.0</version>
    </parent>
 
@@ -39,4 +38,5 @@
       <maven.compiler.source.version>10</maven.compiler.source.version>
       <maven.compiler.target.version>10</maven.compiler.target.version>
    </properties>
+
 </project>

@@ -6,16 +6,16 @@ package cn.tuyucheng.taketoday.dsrouting;
  */
 public class ClientService {
 
-	private final ClientDao clientDao;
+   private final ClientDao clientDao;
 
-	public ClientService(ClientDao clientDao) {
-		this.clientDao = clientDao;
-	}
+   public ClientService(ClientDao clientDao) {
+      this.clientDao = clientDao;
+   }
 
-	public String getClientName(ClientDatabase clientDb) {
-		ClientDatabaseContextHolder.set(clientDb);
-		String clientName = this.clientDao.getClientName();
-		ClientDatabaseContextHolder.clear();
-		return clientName;
-	}
+   public String getClientName(ClientDatabase clientDb) {
+      ClientDatabaseContextHolder.set(clientDb);
+      String clientName = this.clientDao.getClientName();
+      ClientDatabaseContextHolder.clear();
+      return clientName;
+   }
 }

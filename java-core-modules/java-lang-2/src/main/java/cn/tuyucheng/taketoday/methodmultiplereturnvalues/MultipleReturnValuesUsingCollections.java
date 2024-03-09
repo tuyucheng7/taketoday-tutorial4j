@@ -7,24 +7,24 @@ import java.util.Map;
 
 class MultipleReturnValuesUsingCollections {
 
-	static List<Number> getCoordinatesList() {
+   static List<Number> getCoordinatesList() {
 
-		List<Number> coordinates = new ArrayList<>();
+      List<Number> coordinates = new ArrayList<>();
 
-		coordinates.add(10);
-		coordinates.add(12.5);
+      coordinates.add(10);
+      coordinates.add(12.5);
 
-		return coordinates;
-	}
+      return coordinates;
+   }
 
-	static Map<String, Number> getCoordinatesMap() {
+   static Map<String, Number> getCoordinatesMap() {
 
-		Map<String, Number> coordinates = new HashMap<>();
+      Map<String, Number> coordinates = new HashMap<>();
 
-		coordinates.put("longitude", 10);
-		coordinates.put("latitude", 12.5);
+      coordinates.put("longitude", 10);
+      coordinates.put("latitude", 12.5);
 
-		return coordinates;
-	}
+      return coordinates;
+   }
 
 }

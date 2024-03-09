@@ -89,8 +89,8 @@ public class CompletableFutureAllOffUnitTest {
    private CompletableFuture<String> waitAndReturn(long millis, String value) {
       return CompletableFuture.supplyAsync(() -> {
          try {
-            // Thread.sleep() is commented to avoid slowing down the pipeline
-            // Thread.sleep(millis);
+            //                Thread.sleep() is commented to avoid slowing down the pipeline
+            //                Thread.sleep(millis);
             return value;
          } catch (Exception e) {
             throw new RuntimeException(e);
@@ -101,11 +101,12 @@ public class CompletableFutureAllOffUnitTest {
    private CompletableFuture<String> waitAndThrow(long millis) {
       return CompletableFuture.supplyAsync(() -> {
          try {
-            // Thread.sleep() is commented to avoid slowing down the pipeline
-            // Thread.sleep(millis);
+            //                Thread.sleep() is commented to avoid slowing down the pipeline
+            //                Thread.sleep(millis);
          } finally {
             throw new RuntimeException();
          }
       });
    }
+
 }

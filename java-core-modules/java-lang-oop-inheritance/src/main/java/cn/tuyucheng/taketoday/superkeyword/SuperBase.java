@@ -5,16 +5,16 @@ package cn.tuyucheng.taketoday.superkeyword;
  */
 public class SuperBase {
 
-	String message = "super class";
+   String message = "super class";
 
-	public SuperBase() {
-	}
+   public SuperBase() {
+   }
 
-	public SuperBase(String message) {
-		this.message = message;
-	}
+   public SuperBase(String message) {
+      this.message = message;
+   }
 
-	public void printMessage() {
-		System.out.println(message);
-	}
+   public void printMessage() {
+      System.out.println(message);
+   }
 }

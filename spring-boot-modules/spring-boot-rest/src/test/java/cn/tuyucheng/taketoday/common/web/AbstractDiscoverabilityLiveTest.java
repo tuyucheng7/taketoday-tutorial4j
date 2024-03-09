@@ -12,10 +12,10 @@ import org.springframework.http.MediaType;
 import java.io.Serializable;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 public abstract class AbstractDiscoverabilityLiveTest<T extends Serializable> extends AbstractLiveTest<T> {
 
@@ -75,5 +75,4 @@ public abstract class AbstractDiscoverabilityLiveTest<T extends Serializable> ex
    }
 
    // template method
-
 }

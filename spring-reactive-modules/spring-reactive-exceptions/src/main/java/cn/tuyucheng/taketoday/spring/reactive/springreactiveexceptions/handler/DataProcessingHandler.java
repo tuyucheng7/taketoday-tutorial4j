@@ -9,11 +9,11 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class DataProcessingHandler implements HandlerFunction<ServerResponse> {
-	@Override
-	public Mono<ServerResponse> handle(ServerRequest request) {
-		return ServerResponse
-			.ok()
-			.body(request
-				.bodyToMono(Users.class), Users.class);
-	}
+   @Override
+   public Mono<ServerResponse> handle(ServerRequest request) {
+      return ServerResponse
+            .ok()
+            .body(request
+                  .bodyToMono(Users.class), Users.class);
+   }
 }

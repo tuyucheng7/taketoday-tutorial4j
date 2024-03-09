@@ -9,23 +9,24 @@ import static org.mockito.Mockito.verify;
 
 class PatternMatchingForInstanceOfUnitTest {
 
-	@Test
-	void givenAnAnimal_whenTypeIsCat_ThenCatGoesMeow() {
-		Cat animal = mock(Cat.class);
+   @Test
+   void givenAnAnimal_whenTypeIsCat_ThenCatGoesMeow() {
+      Cat animal = mock(Cat.class);
 
-		PatternMatchingForInstanceOf instanceOf = new PatternMatchingForInstanceOf();
-		instanceOf.performAnimalOperations(animal);
+      PatternMatchingForInstanceOf instanceOf = new PatternMatchingForInstanceOf();
+      instanceOf.performAnimalOperations(animal);
 
-		verify(animal).meow();
-	}
+      verify(animal).meow();
+   }
 
-	@Test
-	void givenAnAnimal_whenTypeIsDog_ThenDogGoesWoof() {
-		Dog animal = mock(Dog.class);
+   @Test
+   void givenAnAnimal_whenTypeIsDog_ThenDogGoesWoof() {
+      Dog animal = mock(Dog.class);
 
-		PatternMatchingForInstanceOf instanceOf = new PatternMatchingForInstanceOf();
-		instanceOf.performAnimalOperations(animal);
+      PatternMatchingForInstanceOf instanceOf = new PatternMatchingForInstanceOf();
+      instanceOf.performAnimalOperations(animal);
 
-		verify(animal).woof();
-	}
+      verify(animal).woof();
+   }
+
 }

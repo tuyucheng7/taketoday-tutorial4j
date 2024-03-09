@@ -11,8 +11,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>spring-security-modules</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
@@ -35,4 +36,8 @@
          <scope>test</scope>
       </dependency>
    </dependencies>
+
+   <properties>
+      <start-class>cn.tuyucheng.taketoday.enablemethodsecurity.EnableMethodSecurityApplication</start-class>
+   </properties>
 </project>

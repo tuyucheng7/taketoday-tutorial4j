@@ -10,10 +10,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
-class LazyLambdaSupplierUnitTest {
+public class LazyLambdaSupplierUnitTest {
 
    @Test
-   void whenCalledMultipleTimes_thenShouldBeCalledOnlyOnce() {
+   public void whenCalledMultipleTimes_thenShouldBeCalledOnlyOnce() {
       @SuppressWarnings("unchecked") Supplier<String> mockedExpensiveFunction = Mockito.mock(Supplier.class);
       Mockito.when(mockedExpensiveFunction.get())
             .thenReturn("expensive call");
@@ -27,10 +27,10 @@ class LazyLambdaSupplierUnitTest {
    }
 
    @Test
-   void whenCalledMultipleTimesConcurrently_thenShouldBeCalledMultipleTimes() throws InterruptedException {
+   public void whenCalledMultipleTimesConcurrently_thenShouldBeCalledMultipleTimes() throws InterruptedException {
       @SuppressWarnings("unchecked") Supplier<String> mockedExpensiveFunction = Mockito.mock(Supplier.class);
       Mockito.when(mockedExpensiveFunction.get())
-            .thenAnswer((Answer<String>) _ -> {
+            .thenAnswer((Answer<String>) invocation -> {
                Thread.sleep(1000L);
                return "Late response!";
             });

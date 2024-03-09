@@ -1,12 +1,11 @@
 package cn.tuyucheng.taketoday.boot.csfle;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import cn.tuyucheng.taketoday.boot.csfle.data.Citizen;
+import cn.tuyucheng.taketoday.boot.csfle.data.EncryptedCitizen;
+import cn.tuyucheng.taketoday.boot.csfle.service.CitizenService;
 import org.bson.types.Binary;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -14,17 +13,17 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import cn.tuyucheng.taketoday.boot.csfle.data.Citizen;
-import cn.tuyucheng.taketoday.boot.csfle.data.EncryptedCitizen;
-import cn.tuyucheng.taketoday.boot.csfle.service.CitizenService;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @DirtiesContext
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @TestPropertySource("/embedded.properties")
 @SpringBootTest(classes = MongoDbCsfleApplication.class)
-public class CitizenServiceLiveTest {
+class CitizenServiceLiveTest {
 
    @Autowired
    private MongoTemplate mongo;
@@ -33,7 +32,7 @@ public class CitizenServiceLiveTest {
    private CitizenService service;
 
    @Test
-   public void givenCitizen_whenEncryptingEmail_thenEncryptedCitizenEmailMatches() {
+   void givenCitizen_whenEncryptingEmail_thenEncryptedCitizenEmailMatches() {
       final Citizen citizen = new Citizen();
       citizen.setName("Foo");
       citizen.setEmail("foo@citizen.com");
@@ -49,7 +48,7 @@ public class CitizenServiceLiveTest {
    }
 
    @Test
-   public void givenRandomEncryptedField_whenFilteringByField_thenDocumentNotFound() {
+   void givenRandomEncryptedField_whenFilteringByField_thenDocumentNotFound() {
       Citizen john = new Citizen();
       john.setName("Jane Doe");
       john.setEmail("jane.doe@citizen.com");
@@ -65,7 +64,7 @@ public class CitizenServiceLiveTest {
    }
 
    @Test
-   public void givenDeterministicallyEncryptedField_whenFilteringByField_thenDocumentFound() {
+   void givenDeterministicallyEncryptedField_whenFilteringByField_thenDocumentFound() {
       Citizen jane = new Citizen();
       jane.setName("Jane Doe");
       jane.setEmail("jane.doe@citizen.com");

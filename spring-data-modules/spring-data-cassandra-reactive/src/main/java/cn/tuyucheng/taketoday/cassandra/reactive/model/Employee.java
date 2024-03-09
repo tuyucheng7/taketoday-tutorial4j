@@ -11,10 +11,10 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee {
-    @PrimaryKey
-    private int id;
-    private String name;
-    private String address;
-    private String email;
-    private int age;
+   @PrimaryKey
+   private int id;
+   private String name;
+   private String address;
+   private String email;
+   private int age;
 }

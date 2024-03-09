@@ -1,14 +1,14 @@
 package cn.tuyucheng.taketoday.inheritance;
 
 public interface Flyable {
-	int duration = 10;
+   int duration = 10;
 
-	void fly();
+   void fly();
 
-	/*
-	 * Commented
-	 */
-	// default void repair() {
-	//    System.out.println("Repairing Flyable object");
-	//}
+   /*
+    * Commented
+    */
+   // default void repair() {
+   //    System.out.println("Repairing Flyable object");
+   //}
 }

@@ -1,24 +1,13 @@
 package cn.tuyucheng.taketoday.spring.data.es;
 
-import static java.util.Arrays.asList;
-import static org.elasticsearch.index.query.Operator.AND;
-import static org.elasticsearch.index.query.QueryBuilders.fuzzyQuery;
-import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
-import static org.elasticsearch.index.query.QueryBuilders.regexpQuery;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
 import cn.tuyucheng.taketoday.spring.data.es.config.Config;
 import cn.tuyucheng.taketoday.spring.data.es.model.Article;
 import cn.tuyucheng.taketoday.spring.data.es.model.Author;
 import cn.tuyucheng.taketoday.spring.data.es.repository.ArticleRepository;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +17,17 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.elasticsearch.index.query.Operator.AND;
+import static org.elasticsearch.index.query.QueryBuilders.fuzzyQuery;
+import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.regexpQuery;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This Manual test requires: Elasticsearch instance running on localhost:9200.
@@ -36,9 +35,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * The following docker command can be used: docker run -d --name es762 -p
  * 9200:9200 -e "discovery.type=single-node" elasticsearch:7.6.2
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = Config.class)
-public class ElasticSearchManualTest {
+class ElasticSearchManualTest {
 
    @Autowired
    private ElasticsearchOperations elasticsearchOperations;
@@ -49,8 +48,8 @@ public class ElasticSearchManualTest {
    private final Author johnSmith = new Author("John Smith");
    private final Author johnDoe = new Author("John Doe");
 
-   @Before
-   public void before() {
+   @BeforeEach
+   void before() {
       Article article = new Article("Spring Data Elasticsearch");
       article.setAuthors(asList(johnSmith, johnDoe));
       article.setTags("elasticsearch", "spring data");
@@ -72,13 +71,13 @@ public class ElasticSearchManualTest {
       articleRepository.save(article);
    }
 
-   @After
-   public void after() {
+   @AfterEach
+   void after() {
       articleRepository.deleteAll();
    }
 
    @Test
-   public void givenArticleService_whenSaveArticle_thenIdIsAssigned() {
+   void givenArticleService_whenSaveArticle_thenIdIsAssigned() {
       final List<Author> authors = asList(new Author("John Smith"), johnDoe);
 
       Article article = new Article("Making Search Elastic");
@@ -89,31 +88,31 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenPersistedArticles_whenSearchByAuthorsName_thenRightFound() {
+   void givenPersistedArticles_whenSearchByAuthorsName_thenRightFound() {
       final Page<Article> articleByAuthorName = articleRepository.findByAuthorsName(johnSmith.getName(), PageRequest.of(0, 10));
       assertEquals(2L, articleByAuthorName.getTotalElements());
    }
 
    @Test
-   public void givenCustomQuery_whenSearchByAuthorsName_thenArticleIsFound() {
+   void givenCustomQuery_whenSearchByAuthorsName_thenArticleIsFound() {
       final Page<Article> articleByAuthorName = articleRepository.findByAuthorsNameUsingCustomQuery("Smith", PageRequest.of(0, 10));
       assertEquals(2L, articleByAuthorName.getTotalElements());
    }
 
    @Test
-   public void givenTagFilterQuery_whenSearchByTag_thenArticleIsFound() {
+   void givenTagFilterQuery_whenSearchByTag_thenArticleIsFound() {
       final Page<Article> articleByAuthorName = articleRepository.findByFilteredTagQuery("elasticsearch", PageRequest.of(0, 10));
       assertEquals(3L, articleByAuthorName.getTotalElements());
    }
 
    @Test
-   public void givenTagFilterQuery_whenSearchByAuthorsName_thenArticleIsFound() {
+   void givenTagFilterQuery_whenSearchByAuthorsName_thenArticleIsFound() {
       final Page<Article> articleByAuthorName = articleRepository.findByAuthorsNameAndFilteredTagQuery("Doe", "elasticsearch", PageRequest.of(0, 10));
       assertEquals(2L, articleByAuthorName.getTotalElements());
    }
 
    @Test
-   public void givenPersistedArticles_whenUseRegexQuery_thenRightArticlesFound() {
+   void givenPersistedArticles_whenUseRegexQuery_thenRightArticlesFound() {
       final Query searchQuery = new NativeSearchQueryBuilder().withFilter(regexpQuery("title", ".*data.*"))
             .build();
 
@@ -123,7 +122,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenSavedDoc_whenTitleUpdated_thenCouldFindByUpdatedTitle() {
+   void givenSavedDoc_whenTitleUpdated_thenCouldFindByUpdatedTitle() {
       final Query searchQuery = new NativeSearchQueryBuilder().withQuery(fuzzyQuery("title", "serch"))
             .build();
       final SearchHits<Article> articles = elasticsearchOperations.search(searchQuery, Article.class, IndexCoordinates.of("blog"));
@@ -142,7 +141,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenSavedDoc_whenDelete_thenRemovedFromIndex() {
+   void givenSavedDoc_whenDelete_thenRemovedFromIndex() {
       final String articleTitle = "Spring Data Elasticsearch";
 
       final Query searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", articleTitle).minimumShouldMatch("75%"))
@@ -159,7 +158,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenSavedDoc_whenOneTermMatches_thenFindByTitle() {
+   void givenSavedDoc_whenOneTermMatches_thenFindByTitle() {
       final Query searchQuery = new NativeSearchQueryBuilder().withQuery(matchQuery("title", "Search engines").operator(AND))
             .build();
       final SearchHits<Article> articles = elasticsearchOperations.search(searchQuery, Article.class, IndexCoordinates.of("blog"));

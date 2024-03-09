@@ -11,9 +11,9 @@ import java.util.Set;
 
 public interface CampusRepository extends CrudRepository<Campus, String> {
 
-    @View(designDocument = "campus", viewName = "byName")
-    Set<Campus> findByName(String name);
+   @View(designDocument = "campus", viewName = "byName")
+   Set<Campus> findByName(String name);
 
-    @Dimensional(dimensions = 2, designDocument = "campus_spatial", spatialViewName = "byLocation")
-    Set<Campus> findByLocationNear(Point point, Distance distance);
+   @Dimensional(dimensions = 2, designDocument = "campus_spatial", spatialViewName = "byLocation")
+   Set<Campus> findByLocationNear(Point point, Distance distance);
 }

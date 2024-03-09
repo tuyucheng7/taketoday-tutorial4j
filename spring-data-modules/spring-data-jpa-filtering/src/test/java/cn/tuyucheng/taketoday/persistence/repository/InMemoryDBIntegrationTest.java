@@ -24,60 +24,60 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DirtiesContext
 class InMemoryDBIntegrationTest {
 
-	@Resource
-	private StudentRepository studentRepository;
+   @Resource
+   private StudentRepository studentRepository;
 
-	private static final long ID = 1;
-	private static final String NAME = "john";
+   private static final long ID = 1;
+   private static final String NAME = "john";
 
-	@Test
-	void givenStudent_whenSave_thenGetOk() {
-		Student student = new Student(ID, NAME);
-		studentRepository.save(student);
+   @Test
+   void givenStudent_whenSave_thenGetOk() {
+      Student student = new Student(ID, NAME);
+      studentRepository.save(student);
 
-		Student student2 = studentRepository.findById(ID).get();
-		assertEquals(NAME, student2.getName(), "name incorrect");
-	}
+      Student student2 = studentRepository.findById(ID).get();
+      assertEquals(NAME, student2.getName(), "name incorrect");
+   }
 
-	@Test
-	void givenStudentWithTags_whenSave_thenGetByTagOk() {
-		Student student = new Student(ID, NAME);
-		student.setTags(Arrays.asList("full time", "computer science"));
-		studentRepository.save(student);
+   @Test
+   void givenStudentWithTags_whenSave_thenGetByTagOk() {
+      Student student = new Student(ID, NAME);
+      student.setTags(Arrays.asList("full time", "computer science"));
+      studentRepository.save(student);
 
-		Student student2 = studentRepository.retrieveByTag("full time").get(0);
-		assertEquals(NAME, student2.getName(), "name incorrect");
-	}
+      Student student2 = studentRepository.retrieveByTag("full time").get(0);
+      assertEquals(NAME, student2.getName(), "name incorrect");
+   }
 
-	@Test
-	void givenMultipleStudentsWithTags_whenSave_thenGetByTagReturnsCorrectCount() {
-		Student student1 = new Student(0, "Larry");
-		student1.setTags(Arrays.asList("full time", "computer science"));
-		studentRepository.save(student1);
+   @Test
+   void givenMultipleStudentsWithTags_whenSave_thenGetByTagReturnsCorrectCount() {
+      Student student1 = new Student(0, "Larry");
+      student1.setTags(Arrays.asList("full time", "computer science"));
+      studentRepository.save(student1);
 
-		Student student2 = new Student(1, "Curly");
-		student2.setTags(Arrays.asList("part time", "rocket science"));
-		studentRepository.save(student2);
+      Student student2 = new Student(1, "Curly");
+      student2.setTags(Arrays.asList("part time", "rocket science"));
+      studentRepository.save(student2);
 
-		Student student3 = new Student(2, "Moe");
-		student3.setTags(Arrays.asList("full time", "philosophy"));
-		studentRepository.save(student3);
+      Student student3 = new Student(2, "Moe");
+      student3.setTags(Arrays.asList("full time", "philosophy"));
+      studentRepository.save(student3);
 
-		Student student4 = new Student(3, "Shemp");
-		student4.setTags(Arrays.asList("part time", "mathematics"));
-		studentRepository.save(student4);
+      Student student4 = new Student(3, "Shemp");
+      student4.setTags(Arrays.asList("part time", "mathematics"));
+      studentRepository.save(student4);
 
-		List<Student> students = studentRepository.retrieveByTag("full time");
-		assertEquals(2, students.size(), "size incorrect");
-	}
+      List<Student> students = studentRepository.retrieveByTag("full time");
+      assertEquals(2, students.size(), "size incorrect");
+   }
 
-	@Test
-	void givenStudentWithTags_whenSave_thenGetByNameAndTagOk() {
-		Student student = new Student(ID, NAME);
-		student.setTags(Arrays.asList("full time", "computer science"));
-		studentRepository.save(student);
+   @Test
+   void givenStudentWithTags_whenSave_thenGetByNameAndTagOk() {
+      Student student = new Student(ID, NAME);
+      student.setTags(Arrays.asList("full time", "computer science"));
+      studentRepository.save(student);
 
-		Student student2 = studentRepository.retrieveByNameFilterByTag("John", "full time").get(0);
-		assertEquals(NAME, student2.getName(), "name incorrect");
-	}
+      Student student2 = studentRepository.retrieveByNameFilterByTag("John", "full time").get(0);
+      assertEquals(NAME, student2.getName(), "name incorrect");
+   }
 }

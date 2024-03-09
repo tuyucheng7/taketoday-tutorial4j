@@ -1,33 +1,33 @@
 package cn.tuyucheng.taketoday.benchmark;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class IntegerListSumUnitTest {
 
-	private IntegerListSum integerListSum;
+   private IntegerListSum integerListSum;
 
-	@Before
-	public void init() {
-		integerListSum = new IntegerListSum();
-		integerListSum.setup();
-	}
+   @BeforeEach
+   public void init() {
+      integerListSum = new IntegerListSum();
+      integerListSum.setup();
+   }
 
-	@Test
-	public void whenBenchmarkIsExecute_thenJDKListsMustHaveSameValue() {
-		assertEquals(integerListSum.jdkList(), integerListSum.jdkListParallel());
-	}
+   @Test
+   public void whenBenchmarkIsExecute_thenJDKListsMustHaveSameValue() {
+      assertEquals(integerListSum.jdkList(), integerListSum.jdkListParallel());
+   }
 
-	@Test
-	public void whenBenchmarkIsExecute_thenMutableListsMustHaveSameValue() {
-		assertEquals(integerListSum.ecMutableList(), integerListSum.ecMutableListParallel());
-	}
+   @Test
+   public void whenBenchmarkIsExecute_thenMutableListsMustHaveSameValue() {
+      assertEquals(integerListSum.ecMutableList(), integerListSum.ecMutableListParallel());
+   }
 
-	@Test
-	public void whenBenchmarkIsExecute_thenPrimitiveListsMustHaveSameValue() {
-		assertEquals(integerListSum.ecPrimitive(), integerListSum.ecPrimitiveParallel());
-	}
+   @Test
+   public void whenBenchmarkIsExecute_thenPrimitiveListsMustHaveSameValue() {
+      assertEquals(integerListSum.ecPrimitive(), integerListSum.ecPrimitiveParallel());
+   }
 }

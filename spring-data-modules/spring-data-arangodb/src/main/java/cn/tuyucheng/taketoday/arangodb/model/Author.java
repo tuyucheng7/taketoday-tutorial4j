@@ -7,43 +7,43 @@ import org.springframework.data.annotation.Id;
 @Document("articles")
 public class Author {
 
-    @Id
-    private String id;
+   @Id
+   private String id;
 
-    @ArangoId
-    private String arangoId;
+   @ArangoId
+   private String arangoId;
 
-    private String name;
+   private String name;
 
-    public Author() {
-        super();
-    }
+   public Author() {
+      super();
+   }
 
-    public Author(String name) {
-        this.name = name;
-    }
+   public Author(String name) {
+      this.name = name;
+   }
 
-    public String getId() {
-        return id;
-    }
+   public String getId() {
+      return id;
+   }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+   public void setId(String id) {
+      this.id = id;
+   }
 
-    public String getArangoId() {
-        return arangoId;
-    }
+   public String getArangoId() {
+      return arangoId;
+   }
 
-    public void setArangoId(String arangoId) {
-        this.arangoId = arangoId;
-    }
+   public void setArangoId(String arangoId) {
+      this.arangoId = arangoId;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 }

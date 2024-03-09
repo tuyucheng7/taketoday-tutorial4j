@@ -5,11 +5,11 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	FooPaginationPersistenceIntegrationTest.class
-	, FooServicePersistenceIntegrationTest.class
-	, FooServiceSortingIntegrationTest.class
-	, FooServiceSortingWitNullsManualIntegrationTest.class
+      FooPaginationPersistenceIntegrationTest.class
+      , FooServicePersistenceIntegrationTest.class
+      , FooServiceSortingIntegrationTest.class
+      , FooServiceSortingWitNullsManualIntegrationTest.class
 })
 public class PersistenceTestSuite {
-	//
+   //
 }

@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.largeresultset.service;
 
 import cn.tuyucheng.taketoday.largeresultset.Student;
 import cn.tuyucheng.taketoday.largeresultset.StudentRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -10,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Stream;
-
-import jakarta.persistence.EntityManager;
 
 @Service
 public class StudentService {
@@ -33,17 +32,20 @@ public class StudentService {
 
       while (slice.hasNext()) {
          slice = repository.findAllByFirstName(firstName, slice.nextPageable());
-         slice.getContent().forEach(emailService::sendEmailToStudent);
+         slice.getContent()
+               .forEach(emailService::sendEmailToStudent);
       }
    }
 
    public void processStudentsByLastName(String lastName) {
       Page<Student> page = repository.findAllByLastName(lastName, PageRequest.of(0, BATCH_SIZE));
-      page.getContent().forEach(emailService::sendEmailToStudent);
+      page.getContent()
+            .forEach(emailService::sendEmailToStudent);
 
       while (page.hasNext()) {
          page = repository.findAllByLastName(lastName, page.nextPageable());
-         page.getContent().forEach(emailService::sendEmailToStudent);
+         page.getContent()
+               .forEach(emailService::sendEmailToStudent);
       }
    }
 

@@ -5,138 +5,158 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class Java8ExecutorServiceIntegrationTest {
-	private Runnable runnableTask;
-	private Callable<String> callableTask;
-	private List<Callable<String>> callableTasks;
+public class Java8ExecutorServiceIntegrationTest {
 
-	@BeforeEach
-	void init() {
-		runnableTask = () -> {
-			try {
-				TimeUnit.MILLISECONDS.sleep(300);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		};
+   private Runnable runnableTask;
+   private Callable<String> callableTask;
+   private List<Callable<String>> callableTasks;
 
-		callableTask = () -> {
-			TimeUnit.MILLISECONDS.sleep(300);
-			return "Task's execution";
-		};
+   @BeforeEach
+   public void init() {
 
-		callableTasks = new ArrayList<>();
-		callableTasks.add(callableTask);
-		callableTasks.add(callableTask);
-		callableTasks.add(callableTask);
-	}
+      runnableTask = () -> {
+         try {
+            TimeUnit.MILLISECONDS.sleep(300);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      };
 
-	@Test
-	void creationSubmittingTaskShuttingDown_whenShutDown_thenCorrect() {
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
-		executorService.submit(runnableTask);
-		executorService.submit(callableTask);
-		executorService.shutdown();
+      callableTask = () -> {
+         TimeUnit.MILLISECONDS.sleep(300);
+         return "Task's execution";
+      };
 
-		assertTrue(executorService.isShutdown());
-	}
+      callableTasks = new ArrayList<>();
+      callableTasks.add(callableTask);
+      callableTasks.add(callableTask);
+      callableTasks.add(callableTask);
+   }
 
-	@Test
-	void creationSubmittingTasksShuttingDownNow_whenShutDownAfterAwating_thenCorrect() {
-		ExecutorService threadPoolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
+   @Test
+   public void creationSubmittingTaskShuttingDown_whenShutDown_thenCorrect() {
 
-		for (int i = 0; i < 100; i++) {
-			threadPoolExecutor.submit(callableTask);
-		}
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
+      executorService.submit(runnableTask);
+      executorService.submit(callableTask);
+      executorService.shutdown();
 
-		List<Runnable> notExecutedTasks = smartShutdown(threadPoolExecutor);
+      assertTrue(executorService.isShutdown());
+   }
 
-		assertTrue(threadPoolExecutor.isShutdown());
-		assertFalse(notExecutedTasks.isEmpty());
-		assertTrue(notExecutedTasks.size() < 98);
-	}
+   @Test
+   public void creationSubmittingTasksShuttingDownNow_whenShutDownAfterAwating_thenCorrect() {
 
-	private List<Runnable> smartShutdown(ExecutorService executorService) {
-		List<Runnable> notExecutedTasks = new ArrayList<>();
-		executorService.shutdown();
-		try {
-			if (!executorService.awaitTermination(800, TimeUnit.MILLISECONDS)) {
-				notExecutedTasks = executorService.shutdownNow();
-			}
-		} catch (InterruptedException e) {
-			notExecutedTasks = executorService.shutdownNow();
-		}
-		return notExecutedTasks;
-	}
+      ExecutorService threadPoolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>());
 
-	@Test
-	void submittingTasks_whenExecutedOneAndAll_thenCorrect() {
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
+      for (int i = 0; i < 100; i++) {
+         threadPoolExecutor.submit(callableTask);
+      }
 
-		String result = null;
-		List<Future<String>> futures = new ArrayList<>();
-		try {
-			result = executorService.invokeAny(callableTasks);
-			futures = executorService.invokeAll(callableTasks);
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
+      List<Runnable> notExecutedTasks = smartShutdown(threadPoolExecutor);
 
-		assertEquals("Task's execution", result);
-		assertEquals(3, futures.size());
-	}
+      assertTrue(threadPoolExecutor.isShutdown());
+      assertFalse(notExecutedTasks.isEmpty());
+      assertTrue(notExecutedTasks.size() < 98);
+   }
 
-	@Test
-	void submittingTaskShuttingDown_whenGetExpectedResult_thenCorrect() {
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
+   private List<Runnable> smartShutdown(ExecutorService executorService) {
 
-		Future<String> future = executorService.submit(callableTask);
-		String result = null;
-		try {
-			result = future.get();
-			result = future.get(200, TimeUnit.MILLISECONDS);
-		} catch (InterruptedException | ExecutionException | TimeoutException e) {
-			e.printStackTrace();
-		}
+      List<Runnable> notExecutedTasks = new ArrayList<>();
+      executorService.shutdown();
+      try {
+         if (!executorService.awaitTermination(800, TimeUnit.MILLISECONDS)) {
+            notExecutedTasks = executorService.shutdownNow();
+         }
+      } catch (InterruptedException e) {
+         notExecutedTasks = executorService.shutdownNow();
+      }
+      return notExecutedTasks;
+   }
 
-		executorService.shutdown();
+   @Test
+   public void submittingTasks_whenExecutedOneAndAll_thenCorrect() {
 
-		assertEquals("Task's execution", result);
-	}
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-	@Test
-	void submittingTask_whenCanceled_thenCorrect() {
-		ExecutorService executorService = Executors.newFixedThreadPool(10);
+      String result = null;
+      List<Future<String>> futures = new ArrayList<>();
+      try {
+         result = executorService.invokeAny(callableTasks);
+         futures = executorService.invokeAll(callableTasks);
+      } catch (InterruptedException | ExecutionException e) {
+         e.printStackTrace();
+      }
 
-		Future<String> future = executorService.submit(callableTask);
+      assertEquals("Task's execution", result);
+      assertTrue(futures.size() == 3);
+   }
 
-		boolean canceled = future.cancel(true);
-		boolean isCancelled = future.isCancelled();
+   @Test
+   public void submittingTaskShuttingDown_whenGetExpectedResult_thenCorrect() {
 
-		executorService.shutdown();
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-		assertTrue(canceled);
-		assertTrue(isCancelled);
-	}
+      Future<String> future = executorService.submit(callableTask);
+      String result = null;
+      try {
+         result = future.get();
+         result = future.get(200, TimeUnit.MILLISECONDS);
+      } catch (InterruptedException | ExecutionException | TimeoutException e) {
+         e.printStackTrace();
+      }
 
-	@Test
-	void submittingTaskScheduling_whenExecuted_thenCorrect() {
-		ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+      executorService.shutdown();
 
-		Future<String> resultFuture = executorService.schedule(callableTask, 1, TimeUnit.SECONDS);
-		String result = null;
-		try {
-			result = resultFuture.get();
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
+      assertEquals("Task's execution", result);
+   }
 
-		executorService.shutdown();
+   @Test
+   public void submittingTask_whenCanceled_thenCorrect() {
 
-		assertEquals("Task's execution", result);
-	}
+      ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+      Future<String> future = executorService.submit(callableTask);
+
+      boolean canceled = future.cancel(true);
+      boolean isCancelled = future.isCancelled();
+
+      executorService.shutdown();
+
+      assertTrue(canceled);
+      assertTrue(isCancelled);
+   }
+
+   @Test
+   public void submittingTaskScheduling_whenExecuted_thenCorrect() {
+
+      ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+      Future<String> resultFuture = executorService.schedule(callableTask, 1, TimeUnit.SECONDS);
+      String result = null;
+      try {
+         result = resultFuture.get();
+      } catch (InterruptedException | ExecutionException e) {
+         e.printStackTrace();
+      }
+
+      executorService.shutdown();
+
+      assertEquals("Task's execution", result);
+   }
 }

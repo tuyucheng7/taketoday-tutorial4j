@@ -13,44 +13,44 @@ import java.util.Collection;
  * perform lookup in the arrays either of Java primitive types or their wrappers.
  */
 public abstract class Lookup {
-	/**
-	 * the array size
-	 */
-	final protected int s = 50000000;
+   /**
+    * the array size
+    */
+   final protected int s = 50000000;
 
-	/**
-	 * Initialize the array: fill in the array with the same
-	 * elements except for the last one.
-	 */
-	abstract public void prepare();
+   /**
+    * Initialize the array: fill in the array with the same
+    * elements except for the last one.
+    */
+   abstract public void prepare();
 
-	/**
-	 * Free the array's reference.
-	 */
-	abstract public void clean();
+   /**
+    * Free the array's reference.
+    */
+   abstract public void clean();
 
-	/**
-	 * Find the position of the element that is different from the others.
-	 * By construction, it is the last array element.
-	 *
-	 * @return array's last element index
-	 */
-	abstract public int findPosition();
+   /**
+    * Find the position of the element that is different from the others.
+    * By construction, it is the last array element.
+    *
+    * @return array's last element index
+    */
+   abstract public int findPosition();
 
-	/**
-	 * Get the name of the class that extends this one. It is needed in order
-	 * to set up the benchmark.
-	 *
-	 * @return
-	 */
-	abstract public String getSimpleClassName();
+   /**
+    * Get the name of the class that extends this one. It is needed in order
+    * to set up the benchmark.
+    *
+    * @return
+    */
+   abstract public String getSimpleClassName();
 
-	Collection<RunResult> run() throws RunnerException {
-		Options opt = new OptionsBuilder()
-			.include(getSimpleClassName())
-			.forks(1)
-			.build();
-		return new Runner(opt).run();
-	}
+   Collection<RunResult> run() throws RunnerException {
+      Options opt = new OptionsBuilder()
+            .include(getSimpleClassName())
+            .forks(1)
+            .build();
+      return new Runner(opt).run();
+   }
 
 }

@@ -6,175 +6,177 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 
-class SetFieldsUsingReflectionUnitTest {
+public class SetFieldsUsingReflectionUnitTest {
 
-	@Test
-	void whenSetIntegerFields_thenSuccess() throws Exception {
-		Person person = new Person();
+   @Test
+   public void whenSetIntegerFields_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		Field ageField = person.getClass()
-			.getDeclaredField("age");
-		ageField.setAccessible(true);
+      Field ageField = person.getClass()
+            .getDeclaredField("age");
+      ageField.setAccessible(true);
 
-		byte age = 26;
-		ageField.setByte(person, age);
-		Assertions.assertEquals(age, person.getAge());
+      byte age = 26;
+      ageField.setByte(person, age);
+      Assertions.assertEquals(age, person.getAge());
 
-		Field uidNumberField = person.getClass()
-			.getDeclaredField("uidNumber");
-		uidNumberField.setAccessible(true);
+      Field uidNumberField = person.getClass()
+            .getDeclaredField("uidNumber");
+      uidNumberField.setAccessible(true);
 
-		short uidNumber = 5555;
-		uidNumberField.setShort(person, uidNumber);
-		Assertions.assertEquals(uidNumber, person.getUidNumber());
+      short uidNumber = 5555;
+      uidNumberField.setShort(person, uidNumber);
+      Assertions.assertEquals(uidNumber, person.getUidNumber());
 
-		Field pinCodeField = person.getClass()
-			.getDeclaredField("pinCode");
-		pinCodeField.setAccessible(true);
+      Field pinCodeField = person.getClass()
+            .getDeclaredField("pinCode");
+      pinCodeField.setAccessible(true);
 
-		int pinCode = 411057;
-		pinCodeField.setInt(person, pinCode);
-		Assertions.assertEquals(pinCode, person.getPinCode());
+      int pinCode = 411057;
+      pinCodeField.setInt(person, pinCode);
+      Assertions.assertEquals(pinCode, person.getPinCode());
 
-		Field contactNumberField = person.getClass()
-			.getDeclaredField("contactNumber");
-		contactNumberField.setAccessible(true);
+      Field contactNumberField = person.getClass()
+            .getDeclaredField("contactNumber");
+      contactNumberField.setAccessible(true);
 
-		long contactNumber = 123456789L;
-		contactNumberField.setLong(person, contactNumber);
-		Assertions.assertEquals(contactNumber, person.getContactNumber());
-	}
+      long contactNumber = 123456789L;
+      contactNumberField.setLong(person, contactNumber);
+      Assertions.assertEquals(contactNumber, person.getContactNumber());
 
-	@Test
-	void whenDoUnboxing_thenSuccess() throws Exception {
-		Person person = new Person();
+   }
 
-		Field pinCodeField = person.getClass()
-			.getDeclaredField("pinCode");
-		pinCodeField.setAccessible(true);
+   @Test
+   public void whenDoUnboxing_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		Integer pinCode = 411057;
-		pinCodeField.setInt(person, pinCode);
-		Assertions.assertEquals(pinCode, person.getPinCode());
-	}
+      Field pinCodeField = person.getClass()
+            .getDeclaredField("pinCode");
+      pinCodeField.setAccessible(true);
 
-	@Test
-	void whenDoNarrowing_thenSuccess() throws Exception {
-		Person person = new Person();
+      Integer pinCode = 411057;
+      pinCodeField.setInt(person, pinCode);
+      Assertions.assertEquals(pinCode, person.getPinCode());
+   }
 
-		Field pinCodeField = person.getClass()
-			.getDeclaredField("pinCode");
-		pinCodeField.setAccessible(true);
+   @Test
+   public void whenDoNarrowing_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		short pinCode = 4110;
-		pinCodeField.setInt(person, pinCode);
-		Assertions.assertEquals(pinCode, person.getPinCode());
-	}
+      Field pinCodeField = person.getClass()
+            .getDeclaredField("pinCode");
+      pinCodeField.setAccessible(true);
 
-	@Test
-	void whenSetFloatingTypeFields_thenSuccess() throws Exception {
-		Person person = new Person();
+      short pinCode = 4110;
+      pinCodeField.setInt(person, pinCode);
+      Assertions.assertEquals(pinCode, person.getPinCode());
+   }
 
-		Field heightField = person.getClass()
-			.getDeclaredField("height");
-		heightField.setAccessible(true);
+   @Test
+   public void whenSetFloatingTypeFields_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		float height = 6.1242f;
-		heightField.setFloat(person, height);
-		Assertions.assertEquals(height, person.getHeight());
+      Field heightField = person.getClass()
+            .getDeclaredField("height");
+      heightField.setAccessible(true);
 
-		Field weightField = person.getClass()
-			.getDeclaredField("weight");
-		weightField.setAccessible(true);
+      float height = 6.1242f;
+      heightField.setFloat(person, height);
+      Assertions.assertEquals(height, person.getHeight());
 
-		double weight = 75.2564;
-		weightField.setDouble(person, weight);
-		Assertions.assertEquals(weight, person.getWeight());
-	}
+      Field weightField = person.getClass()
+            .getDeclaredField("weight");
+      weightField.setAccessible(true);
 
-	@Test
-	void whenSetCharacterFields_thenSuccess() throws Exception {
-		Person person = new Person();
+      double weight = 75.2564;
+      weightField.setDouble(person, weight);
+      Assertions.assertEquals(weight, person.getWeight());
+   }
 
-		Field genderField = person.getClass()
-			.getDeclaredField("gender");
-		genderField.setAccessible(true);
+   @Test
+   public void whenSetCharacterFields_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		char gender = 'M';
-		genderField.setChar(person, gender);
-		Assertions.assertEquals(gender, person.getGender());
-	}
+      Field genderField = person.getClass()
+            .getDeclaredField("gender");
+      genderField.setAccessible(true);
 
-	@Test
-	void whenSetBooleanFields_thenSuccess() throws Exception {
-		Person person = new Person();
+      char gender = 'M';
+      genderField.setChar(person, gender);
+      Assertions.assertEquals(gender, person.getGender());
+   }
 
-		Field activeField = person.getClass()
-			.getDeclaredField("active");
-		activeField.setAccessible(true);
+   @Test
+   public void whenSetBooleanFields_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		activeField.setBoolean(person, true);
-		Assertions.assertTrue(person.isActive());
-	}
+      Field activeField = person.getClass()
+            .getDeclaredField("active");
+      activeField.setAccessible(true);
 
-	@Test
-	void whenSetObjectFields_thenSuccess() throws Exception {
-		Person person = new Person();
+      activeField.setBoolean(person, true);
+      Assertions.assertTrue(person.isActive());
+   }
 
-		Field nameField = person.getClass()
-			.getDeclaredField("name");
-		nameField.setAccessible(true);
+   @Test
+   public void whenSetObjectFields_thenSuccess() throws Exception {
+      Person person = new Person();
 
-		String name = "Umang Budhwar";
-		nameField.set(person, name);
-		Assertions.assertEquals(name, person.getName());
-	}
+      Field nameField = person.getClass()
+            .getDeclaredField("name");
+      nameField.setAccessible(true);
 
-	@Test
-	void givenInt_whenSetStringField_thenIllegalArgumentException() throws Exception {
-		Person person = new Person();
-		Field nameField = person.getClass()
-			.getDeclaredField("name");
-		nameField.setAccessible(true);
+      String name = "Umang Budhwar";
+      nameField.set(person, name);
+      Assertions.assertEquals(name, person.getName());
+   }
 
-		Assertions.assertThrows(IllegalArgumentException.class, () -> nameField.setInt(person, 26));
-	}
+   @Test
+   public void givenInt_whenSetStringField_thenIllegalArgumentException() throws Exception {
+      Person person = new Person();
+      Field nameField = person.getClass()
+            .getDeclaredField("name");
+      nameField.setAccessible(true);
 
-	@Test
-	void givenInt_whenSetLongField_thenIllegalArgumentException() throws Exception {
-		Person person = new Person();
+      Assertions.assertThrows(IllegalArgumentException.class, () -> nameField.setInt(person, 26));
+   }
 
-		Field pinCodeField = person.getClass()
-			.getDeclaredField("pinCode");
-		pinCodeField.setAccessible(true);
+   @Test
+   public void givenInt_whenSetLongField_thenIllegalArgumentException() throws Exception {
+      Person person = new Person();
 
-		long pinCode = 411057L;
+      Field pinCodeField = person.getClass()
+            .getDeclaredField("pinCode");
+      pinCodeField.setAccessible(true);
 
-		Assertions.assertThrows(IllegalArgumentException.class, () -> pinCodeField.setLong(person, pinCode));
-	}
+      long pinCode = 411057L;
 
-	@Test
-	void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
-		Person person = new Person();
-		Field nameField = person.getClass()
-			.getDeclaredField("name");
+      Assertions.assertThrows(IllegalArgumentException.class, () -> pinCodeField.setLong(person, pinCode));
+   }
 
-		Assertions.assertThrows(IllegalAccessException.class, () -> nameField.set(person, "Umang Budhwar"));
-	}
+   @Test
+   public void whenFieldNotSetAccessible_thenIllegalAccessException() throws Exception {
+      Person person = new Person();
+      Field nameField = person.getClass()
+            .getDeclaredField("name");
 
-	@Test
-	void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
-		Person person = new Person();
+      Assertions.assertThrows(IllegalAccessException.class, () -> nameField.set(person, "Umang Budhwar"));
+   }
 
-		Assertions.assertThrows(NoSuchFieldException.class, () -> person.getClass()
-			.getDeclaredField("firstName"));
-	}
+   @Test
+   public void whenAccessingWrongProperty_thenNoSuchFieldException() throws Exception {
+      Person person = new Person();
 
-	@Test
-	void whenAccessingNullProperty_thenNullPointerException() throws Exception {
-		Person person = new Person();
+      Assertions.assertThrows(NoSuchFieldException.class, () -> person.getClass()
+            .getDeclaredField("firstName"));
+   }
 
-		Assertions.assertThrows(NullPointerException.class, () -> person.getClass()
-			.getDeclaredField(null));
-	}
+   @Test
+   public void whenAccessingNullProperty_thenNullPointerException() throws Exception {
+      Person person = new Person();
+
+      Assertions.assertThrows(NullPointerException.class, () -> person.getClass()
+            .getDeclaredField(null));
+   }
+
 }

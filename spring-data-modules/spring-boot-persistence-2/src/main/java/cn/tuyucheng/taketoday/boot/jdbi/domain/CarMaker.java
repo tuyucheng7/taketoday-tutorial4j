@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 public class CarMaker {
 
-	private Long id;
-	private String name;
-	private List<CarModel> models;
+   private Long id;
+   private String name;
+   private List<CarModel> models;
 }

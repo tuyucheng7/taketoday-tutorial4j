@@ -1,13 +1,11 @@
 package cn.tuyucheng.taketoday.commandline;
 
-import org.junit.Test;
-
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
 public class CommandLineWithoutErrorHandlingUnitTest {
 
-	@Test(expected = NullPointerException.class)
-	public void givenNullCommandLineArgument_whenPassedToMainFunction_thenExpectNullPointerException() {
-		CommandLineWithoutErrorHandling.main(null);
-	}
+   @Test(expected = NullPointerException.class)
+   public void givenNullCommandLineArgument_whenPassedToMainFunction_thenExpectNullPointerException() {
+      CommandLineWithoutErrorHandling.main(null);
+   }
 }

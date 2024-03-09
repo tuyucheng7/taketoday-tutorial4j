@@ -2,12 +2,12 @@ package cn.tuyucheng.taketoday.web.hateoas.listener;
 
 import cn.tuyucheng.taketoday.web.hateoas.event.ResourceCreatedEvent;
 import com.google.common.base.Preconditions;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.http.HttpHeaders;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 
 @Component
@@ -30,5 +30,4 @@ class ResourceCreatedDiscoverabilityListener implements ApplicationListener<Reso
       final URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{idOfNewResource}").buildAndExpand(idOfNewResource).toUri();
       response.setHeader(HttpHeaders.LOCATION, uri.toASCIIString());
    }
-
 }

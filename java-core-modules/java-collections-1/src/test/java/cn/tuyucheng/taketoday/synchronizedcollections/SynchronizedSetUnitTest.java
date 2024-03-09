@@ -1,6 +1,6 @@
 package cn.tuyucheng.taketoday.synchronizedcollections;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,20 +11,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SynchronizedSetUnitTest {
 
-    @Test
-    public void givenSynchronizedSet_whenTwoThreadsAddElements_thenCorrectSetSize() throws InterruptedException {
-        Set<Integer> syncSet = Collections.synchronizedSet(new HashSet<>());
+   @Test
+   public void givenSynchronizedSet_whenTwoThreadsAddElements_thenCorrectSetSize() throws InterruptedException {
+      Set<Integer> syncSet = Collections.synchronizedSet(new HashSet<>());
 
-        Runnable setOperations = () -> {
-            syncSet.addAll(Arrays.asList(1, 2, 3, 4, 5, 6));
-        };
-        Thread thread1 = new Thread(setOperations);
-        Thread thread2 = new Thread(setOperations);
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
+      Runnable setOperations = () -> {
+         syncSet.addAll(Arrays.asList(1, 2, 3, 4, 5, 6));
+      };
+      Thread thread1 = new Thread(setOperations);
+      Thread thread2 = new Thread(setOperations);
+      thread1.start();
+      thread2.start();
+      thread1.join();
+      thread2.join();
 
-        assertThat(syncSet).hasSize(6);
-    }
+      assertThat(syncSet.size()).isEqualTo(6);
+   }
 }

@@ -13,24 +13,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class InfoLogsCounter implements LogsCounter {
 
-	private final AtomicInteger counter = new AtomicInteger();
-	private final Disposable subscription;
+   private final AtomicInteger counter = new AtomicInteger();
+   private final Disposable subscription;
 
-	public InfoLogsCounter(LogsRepository repository) {
-		Flux<Log> stream = repository.findByLevel(LogLevel.INFO);
-		this.subscription = stream.subscribe(logEntity -> {
-			LOGGER.info("INFO log received: " + logEntity);
-			counter.incrementAndGet();
-		});
-	}
+   public InfoLogsCounter(LogsRepository repository) {
+      Flux<Log> stream = repository.findByLevel(LogLevel.INFO);
+      this.subscription = stream.subscribe(logEntity -> {
+         LOGGER.info("INFO log received: " + logEntity);
+         counter.incrementAndGet();
+      });
+   }
 
-	@Override
-	public int count() {
-		return this.counter.get();
-	}
+   @Override
+   public int count() {
+      return this.counter.get();
+   }
 
-	@PreDestroy
-	public void close() {
-		this.subscription.dispose();
-	}
+   @PreDestroy
+   public void close() {
+      this.subscription.dispose();
+   }
 }

@@ -17,7 +17,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="capital" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="currency" type="{http://server.ws.soap.baeldung.com/}currency" minOccurs="0"/&gt;
+ *         &lt;element name="currency" type="{http://server.ws.soap.tuyucheng.com/}currency" minOccurs="0"/&gt;
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="population" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
@@ -28,91 +28,91 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "country", propOrder = {
-	"capital",
-	"currency",
-	"name",
-	"population"
+      "capital",
+      "currency",
+      "name",
+      "population"
 })
 public class Country {
 
-	protected String capital;
-	@XmlSchemaType(name = "string")
-	protected Currency currency;
-	protected String name;
-	protected int population;
+   protected String capital;
+   @XmlSchemaType(name = "string")
+   protected Currency currency;
+   protected String name;
+   protected int population;
 
-	/**
-	 * Gets the value of the capital property.
-	 *
-	 * @return possible object is
-	 * {@link String }
-	 */
-	public String getCapital() {
-		return capital;
-	}
+   /**
+    * Gets the value of the capital property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
+   public String getCapital() {
+      return capital;
+   }
 
-	/**
-	 * Sets the value of the capital property.
-	 *
-	 * @param value allowed object is
-	 *              {@link String }
-	 */
-	public void setCapital(String value) {
-		this.capital = value;
-	}
+   /**
+    * Sets the value of the capital property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
+   public void setCapital(String value) {
+      this.capital = value;
+   }
 
-	/**
-	 * Gets the value of the currency property.
-	 *
-	 * @return possible object is
-	 * {@link Currency }
-	 */
-	public Currency getCurrency() {
-		return currency;
-	}
+   /**
+    * Gets the value of the currency property.
+    *
+    * @return possible object is
+    * {@link Currency }
+    */
+   public Currency getCurrency() {
+      return currency;
+   }
 
-	/**
-	 * Sets the value of the currency property.
-	 *
-	 * @param value allowed object is
-	 *              {@link Currency }
-	 */
-	public void setCurrency(Currency value) {
-		this.currency = value;
-	}
+   /**
+    * Sets the value of the currency property.
+    *
+    * @param value allowed object is
+    *              {@link Currency }
+    */
+   public void setCurrency(Currency value) {
+      this.currency = value;
+   }
 
-	/**
-	 * Gets the value of the name property.
-	 *
-	 * @return possible object is
-	 * {@link String }
-	 */
-	public String getName() {
-		return name;
-	}
+   /**
+    * Gets the value of the name property.
+    *
+    * @return possible object is
+    * {@link String }
+    */
+   public String getName() {
+      return name;
+   }
 
-	/**
-	 * Sets the value of the name property.
-	 *
-	 * @param value allowed object is
-	 *              {@link String }
-	 */
-	public void setName(String value) {
-		this.name = value;
-	}
+   /**
+    * Sets the value of the name property.
+    *
+    * @param value allowed object is
+    *              {@link String }
+    */
+   public void setName(String value) {
+      this.name = value;
+   }
 
-	/**
-	 * Gets the value of the population property.
-	 */
-	public int getPopulation() {
-		return population;
-	}
+   /**
+    * Gets the value of the population property.
+    */
+   public int getPopulation() {
+      return population;
+   }
 
-	/**
-	 * Sets the value of the population property.
-	 */
-	public void setPopulation(int value) {
-		this.population = value;
-	}
+   /**
+    * Sets the value of the population property.
+    */
+   public void setPopulation(int value) {
+      this.population = value;
+   }
 
 }

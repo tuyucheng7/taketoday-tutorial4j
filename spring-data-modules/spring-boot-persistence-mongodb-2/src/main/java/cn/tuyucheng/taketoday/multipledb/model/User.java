@@ -9,65 +9,65 @@ import java.util.Objects;
 @Document(collection = "user")
 public class User {
 
-	@MongoId
-	private ObjectId id;
+   @MongoId
+   private ObjectId id;
 
-	private String name;
+   private String name;
 
-	private String surname;
+   private String surname;
 
-	private String email;
+   private String email;
 
-	private int age;
+   private int age;
 
-	public ObjectId getId() {
-		return id;
-	}
+   public ObjectId getId() {
+      return id;
+   }
 
-	public String getName() {
-		return name;
-	}
+   public String getName() {
+      return name;
+   }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+   public void setName(String name) {
+      this.name = name;
+   }
 
-	public String getSurname() {
-		return surname;
-	}
+   public String getSurname() {
+      return surname;
+   }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+   public void setSurname(String surname) {
+      this.surname = surname;
+   }
 
-	public String getEmail() {
-		return email;
-	}
+   public String getEmail() {
+      return email;
+   }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
-	public int getAge() {
-		return age;
-	}
+   public int getAge() {
+      return age;
+   }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+   public void setAge(int age) {
+      this.age = age;
+   }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		User book = (User) o;
-		return Objects.equals(id, book.id);
-	}
+   @Override
+   public boolean equals(Object o) {
+      if (this == o)
+         return true;
+      if (o == null || getClass() != o.getClass())
+         return false;
+      User book = (User) o;
+      return Objects.equals(id, book.id);
+   }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+   @Override
+   public int hashCode() {
+      return Objects.hash(id);
+   }
 }

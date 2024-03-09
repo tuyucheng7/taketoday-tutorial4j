@@ -23,51 +23,51 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class StringDiffBenchmarkUnitTest {
 
-	private DiffMatchPatch diffMatchPatch = new DiffMatchPatch();
+   private DiffMatchPatch diffMatchPatch = new DiffMatchPatch();
 
-	private List<String> inputs = randomizeInputs(10000);
+   private List<String> inputs = randomizeInputs(10000);
 
-	public static void main(String[] args) throws RunnerException {
-		Options opts = new OptionsBuilder().include(".*")
-			.warmupIterations(1)
-			.measurementIterations(50)
-			.jvmArgs("-Xms2g", "-Xmx2g")
-			.shouldDoGC(true)
-			.forks(1)
-			.build();
+   public static void main(String[] args) throws RunnerException {
+      Options opts = new OptionsBuilder().include(".*")
+            .warmupIterations(1)
+            .measurementIterations(50)
+            .jvmArgs("-Xms2g", "-Xmx2g")
+            .shouldDoGC(true)
+            .forks(1)
+            .build();
 
-		new Runner(opts).run();
-	}
+      new Runner(opts).run();
+   }
 
-	@Benchmark
-	public int diffMatchPatch() {
-		for (int i = 0; i < inputs.size() - 1; i++) {
-			diffMatchPatch.diffMain(inputs.get(i), inputs.get(i + 1), false);
-		}
-		return inputs.size();
-	}
+   @Benchmark
+   public int diffMatchPatch() {
+      for (int i = 0; i < inputs.size() - 1; i++) {
+         diffMatchPatch.diffMain(inputs.get(i), inputs.get(i + 1), false);
+      }
+      return inputs.size();
+   }
 
-	@Benchmark
-	public int stringUtils() {
-		for (int i = 0; i < inputs.size() - 1; i++) {
-			StringUtils.difference(inputs.get(i), inputs.get(i + 1));
-		}
-		return inputs.size();
-	}
+   @Benchmark
+   public int stringUtils() {
+      for (int i = 0; i < inputs.size() - 1; i++) {
+         StringUtils.difference(inputs.get(i), inputs.get(i + 1));
+      }
+      return inputs.size();
+   }
 
-	/**
-	 * Creates a list of a given size, containing 30 character long strings,
-	 * each starting with a static prefix of 10 characters and followed by
-	 * a random 20 character suffix
-	 *
-	 * @return a {@link List} of randomised strings
-	 */
-	private List<String> randomizeInputs(int size) {
-		String staticPart = "ABCDEF1234";
-		List<String> inputs = new ArrayList<>();
-		for (int i = 0; i < size; i++) {
-			inputs.add(staticPart + RandomStringUtils.randomAlphabetic(20));
-		}
-		return inputs;
-	}
+   /**
+    * Creates a list of a given size, containing 30 character long strings,
+    * each starting with a static prefix of 10 characters and followed by
+    * a random 20 character suffix
+    *
+    * @return a {@link List} of randomised strings
+    */
+   private List<String> randomizeInputs(int size) {
+      String staticPart = "ABCDEF1234";
+      List<String> inputs = new ArrayList<>();
+      for (int i = 0; i < size; i++) {
+         inputs.add(staticPart + RandomStringUtils.randomAlphabetic(20));
+      }
+      return inputs;
+   }
 }

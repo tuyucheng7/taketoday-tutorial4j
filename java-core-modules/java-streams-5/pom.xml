@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-streams-5</artifactId>
-   <version>1.0.0</version>
    <name>java-streams-5</name>
    <packaging>jar</packaging>
 
@@ -15,11 +14,6 @@
    </parent>
 
    <dependencies>
-      <dependency>
-         <groupId>log4j</groupId>
-         <artifactId>log4j</artifactId>
-         <version>${log4j.version}</version>
-      </dependency>
       <dependency>
          <groupId>org.junit</groupId>
          <artifactId>junit-bom</artifactId>
@@ -49,10 +43,21 @@
          <artifactId>guava</artifactId>
          <version>${guava.version}</version>
       </dependency>
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-collections4</artifactId>
+         <version>${commons-collections4.version}</version>
+      </dependency>
    </dependencies>
 
    <build>
-      <finalName>java-streams-5</finalName>
+      <finalName>java-streams-4</finalName>
+      <resources>
+         <resource>
+            <directory>../java-streams-4/src/main</directory>
+            <filtering>true</filtering>
+         </resource>
+      </resources>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -65,8 +70,7 @@
    </build>
 
    <properties>
-      <!-- testing -->
-      <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
       <vavr.version>0.10.2</vavr.version>
    </properties>
+
 </project>

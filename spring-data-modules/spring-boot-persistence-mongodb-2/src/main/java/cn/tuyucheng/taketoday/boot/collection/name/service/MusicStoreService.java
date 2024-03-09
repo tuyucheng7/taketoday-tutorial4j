@@ -15,47 +15,47 @@ import java.util.List;
 
 @Service
 public class MusicStoreService {
-    @Autowired
-    private MusicAlbumRepository albumRepository;
+   @Autowired
+   private MusicAlbumRepository albumRepository;
 
-    @Autowired
-    private CompilationRepository compilationRepository;
+   @Autowired
+   private CompilationRepository compilationRepository;
 
-    @Autowired
-    private StoreRepository storeRepository;
+   @Autowired
+   private StoreRepository storeRepository;
 
-    @Autowired
-    private MusicTrackRepository trackRepository;
+   @Autowired
+   private MusicTrackRepository trackRepository;
 
-    public MusicAlbum add(MusicAlbum item) {
-        return albumRepository.save(item);
-    }
+   public MusicAlbum add(MusicAlbum item) {
+      return albumRepository.save(item);
+   }
 
-    public List<MusicAlbum> getAlbumList() {
-        return albumRepository.findAll();
-    }
+   public List<MusicAlbum> getAlbumList() {
+      return albumRepository.findAll();
+   }
 
-    public Compilation add(Compilation item) {
-        return compilationRepository.save(item);
-    }
+   public Compilation add(Compilation item) {
+      return compilationRepository.save(item);
+   }
 
-    public List<Compilation> getCompilationList() {
-        return compilationRepository.findAll();
-    }
+   public List<Compilation> getCompilationList() {
+      return compilationRepository.findAll();
+   }
 
-    public Store add(Store item) {
-        return storeRepository.save(item);
-    }
+   public Store add(Store item) {
+      return storeRepository.save(item);
+   }
 
-    public List<Store> getStoreList() {
-        return storeRepository.findAll();
-    }
+   public List<Store> getStoreList() {
+      return storeRepository.findAll();
+   }
 
-    public MusicTrack add(MusicTrack item) {
-        return trackRepository.save(item);
-    }
+   public MusicTrack add(MusicTrack item) {
+      return trackRepository.save(item);
+   }
 
-    public List<MusicTrack> getTrackList() {
-        return trackRepository.findAll();
-    }
+   public List<MusicTrack> getTrackList() {
+      return trackRepository.findAll();
+   }
 }

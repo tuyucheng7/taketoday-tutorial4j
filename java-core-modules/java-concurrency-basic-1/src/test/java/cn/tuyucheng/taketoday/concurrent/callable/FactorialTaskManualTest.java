@@ -9,42 +9,40 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static junit.framework.Assert.assertEquals;
 
-class FactorialTaskManualTest {
+public class FactorialTaskManualTest {
 
-	private ExecutorService executorService;
+   private ExecutorService executorService;
 
-	@BeforeEach
-	void setup() {
-		executorService = Executors.newSingleThreadExecutor();
-	}
+   @BeforeEach
+   public void setup() {
+      executorService = Executors.newSingleThreadExecutor();
+   }
 
-	@Test
-	void whenTaskSubmitted_ThenFutureResultObtained() throws ExecutionException, InterruptedException {
-		FactorialTask task = new FactorialTask(5);
-		Future<Integer> future = executorService.submit(task);
-		assertEquals(120, future.get().intValue());
-	}
+   @Test
+   public void whenTaskSubmitted_ThenFutureResultObtained() throws ExecutionException, InterruptedException {
+      FactorialTask task = new FactorialTask(5);
+      Future<Integer> future = executorService.submit(task);
+      assertEquals(120, future.get().intValue());
+   }
 
-	@Test
-	void whenException_ThenCallableThrowsIt() throws ExecutionException, InterruptedException {
-		FactorialTask task = new FactorialTask(-5);
-		Future<Integer> future = executorService.submit(task);
-		assertThrows(ExecutionException.class, future::get);
-	}
+   @Test(expected = ExecutionException.class)
+   public void whenException_ThenCallableThrowsIt() throws ExecutionException, InterruptedException {
+      FactorialTask task = new FactorialTask(-5);
+      Future<Integer> future = executorService.submit(task);
+      Integer result = future.get().intValue();
+   }
 
-	@Test
-	void whenException_ThenCallableDoesntThrowsItIfGetIsNotCalled() {
-		FactorialTask task = new FactorialTask(-5);
-		Future<Integer> future = executorService.submit(task);
-		assertFalse(future.isDone());
-	}
+   @Test
+   public void whenException_ThenCallableDoesntThrowsItIfGetIsNotCalled() {
+      FactorialTask task = new FactorialTask(-5);
+      Future<Integer> future = executorService.submit(task);
+      assertEquals(false, future.isDone());
+   }
 
-	@AfterEach
-	void cleanup() {
-		executorService.shutdown();
-	}
+   @AfterEach
+   public void cleanup() {
+      executorService.shutdown();
+   }
 }

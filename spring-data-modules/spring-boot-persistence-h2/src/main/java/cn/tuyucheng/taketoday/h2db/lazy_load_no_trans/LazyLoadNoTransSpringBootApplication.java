@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class LazyLoadNoTransSpringBootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LazyLoadNoTransSpringBootApplication.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(LazyLoadNoTransSpringBootApplication.class, args);
+   }
 }

@@ -1,8 +1,5 @@
 package cn.tuyucheng.taketoday.elasticsearch;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
@@ -13,18 +10,19 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This Manual test requires: Elasticsearch instance running on localhost:9200.
@@ -41,12 +39,12 @@ class GeoQueriesManualTest {
    private ElasticsearchClient client;
 
    @BeforeEach
-   public void setUp() throws Exception {
+   void setUp() throws Exception {
       RestClient restClient = RestClient.builder(HttpHost.create("http://localhost:9200"))
             .build();
       ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
       client = new ElasticsearchClient(transport);
-      log.info("Creating index: {}", WONDERS_OF_WORLD);
+      LOGGER.info("Creating index: {}", WONDERS_OF_WORLD);
       client.indices()
             .create(builder -> builder.index(WONDERS_OF_WORLD)
                   .mappings(typeMapping -> typeMapping.properties("region", region -> region.geoShape(gs -> gs))
@@ -82,9 +80,9 @@ class GeoQueriesManualTest {
                   .shape(geoShapeFieldQuery -> geoShapeFieldQuery.relation(GeoShapeRelation.Within)
                         .shape(JsonData.from(jsonData)))))))
             .build();
-      log.info("Search request: {}", searchRequest);
+      LOGGER.info("Search request: {}", searchRequest);
       SearchResponse<Object> search = client.search(searchRequest, Object.class);
-      log.info("Search response: {}", search);
+      LOGGER.info("Search response: {}", search);
       List<String> searchResults = search.hits()
             .hits()
             .stream()
@@ -101,7 +99,7 @@ class GeoQueriesManualTest {
 
       String pyramidsOfGizaId = response.id();
 
-      log.info("Indexed pyramid of Giza: {}", pyramidsOfGizaId);
+      LOGGER.info("Indexed pyramid of Giza: {}", pyramidsOfGizaId);
       client.indices()
             .refresh();
 
@@ -110,9 +108,9 @@ class GeoQueriesManualTest {
             .boundingBox(geoBounds -> geoBounds.tlbr(bl4 -> bl4.topLeft(geoLocation -> geoLocation.coords(List.of(30.0, 31.0)))
                   .bottomRight(geoLocation -> geoLocation.coords(List.of(32.0, 28.0)))))));
       SearchRequest build = builder.build();
-      log.info("Search request: {}", build);
+      LOGGER.info("Search request: {}", build);
       SearchResponse<Location> searchResponse = client.search(build, Location.class);
-      log.info("Search response: {}", searchResponse);
+      LOGGER.info("Search response: {}", searchResponse);
       List<Location> returnedLocations = searchResponse.hits()
             .hits()
             .stream()
@@ -141,9 +139,9 @@ class GeoQueriesManualTest {
                   .location(geoLocation -> geoLocation.latlon(latLonGeoLocation -> latLonGeoLocation.lon(29.88)
                         .lat(31.21)))))
             .build();
-      log.info("Search request: {}", searchRequest);
+      LOGGER.info("Search request: {}", searchRequest);
       SearchResponse<Object> search = client.search(searchRequest, Object.class);
-      log.info("Search response: {}", search);
+      LOGGER.info("Search response: {}", search);
       List<String> ids = search.hits()
             .hits()
             .stream()
@@ -165,7 +163,7 @@ class GeoQueriesManualTest {
       String greatRannOfKutchid = response.id();
       client.indices()
             .refresh();
-      log.info("Indexed greatRannOfKutchid: {}", greatRannOfKutchid);
+      LOGGER.info("Indexed greatRannOfKutchid: {}", greatRannOfKutchid);
 
       JsonData jsonData = JsonData.fromJson("""
             {
@@ -178,9 +176,9 @@ class GeoQueriesManualTest {
                   .shape(geoShapeFieldQuery -> geoShapeFieldQuery.relation(GeoShapeRelation.Within)
                         .shape(jsonData))))))
             .build();
-      log.info("Search request: {}", build);
+      LOGGER.info("Search request: {}", build);
       SearchResponse<Object> search = client.search(build, Object.class);
-      log.info("Search response: {}", search);
+      LOGGER.info("Search response: {}", search);
       List<String> searchResults = search.hits()
             .hits()
             .stream()
@@ -190,7 +188,7 @@ class GeoQueriesManualTest {
    }
 
    @AfterEach
-   public void destroy() throws Exception {
+   void destroy() throws Exception {
       client.indices()
             .delete(builder -> builder.index(WONDERS_OF_WORLD));
    }

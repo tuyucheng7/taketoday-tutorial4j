@@ -10,13 +10,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class Employee implements Comparable<Employee> {
-	String name;
-	int age;
-	double salary;
-	long mobile;
+   String name;
+   int age;
+   double salary;
+   long mobile;
 
-	@Override
-	public int compareTo(Employee argEmployee) {
-		return name.compareTo(argEmployee.getName());
-	}
+   @Override
+   public int compareTo(Employee argEmployee) {
+      return name.compareTo(argEmployee.getName());
+   }
 }

@@ -22,19 +22,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext
 class MongoDbSpringIntegrationTest {
 
-	@DisplayName("Given object When save object using MongoDB template Then object can be found")
-	@Test
-	void test(@Autowired MongoTemplate mongoTemplate) {
-		// given
-		DBObject objectToSave = BasicDBObjectBuilder.start()
-				.add("key", "value")
-				.get();
+   @DisplayName("Given object When save object using MongoDB template Then object can be found")
+   @Test
+   void test(@Autowired MongoTemplate mongoTemplate) {
+      // given
+      DBObject objectToSave = BasicDBObjectBuilder.start()
+            .add("key", "value")
+            .get();
 
-		// when
-		mongoTemplate.save(objectToSave, "collection");
+      // when
+      mongoTemplate.save(objectToSave, "collection");
 
-		// then
-		assertThat(mongoTemplate.findAll(DBObject.class, "collection"))
-				.extracting("key").containsOnly("value");
-	}
+      // then
+      assertThat(mongoTemplate.findAll(DBObject.class, "collection"))
+            .extracting("key").containsOnly("value");
+   }
 }

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CourseDao extends AbstractHibernateDao<Course> {
-	public CourseDao() {
-		super();
-		setClazz(Course.class);
-	}
+   public CourseDao() {
+      super();
+      setClazz(Course.class);
+   }
 }

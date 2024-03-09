@@ -2,9 +2,10 @@ package cn.tuyucheng.taketoday.sealed.classes;
 
 public sealed interface Service permits Car, Truck {
 
-	int getMaxServiceIntervalInMonths();
+   int getMaxServiceIntervalInMonths();
 
-	default int getMaxDistanceBetweenServicesInKilometers() {
-		return 100000;
-	}
+   default int getMaxDistanceBetweenServicesInKilometers() {
+      return 100000;
+   }
+
 }

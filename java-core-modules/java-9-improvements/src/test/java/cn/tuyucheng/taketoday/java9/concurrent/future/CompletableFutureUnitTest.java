@@ -7,69 +7,69 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CompletableFutureUnitTest {
+public class CompletableFutureUnitTest {
+   @Test
+   public void testDelay() throws Exception {
+      Object input = new Object();
+      CompletableFuture<Object> future = new CompletableFuture<>();
+      future.completeAsync(() -> input, CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
 
-	@Test
-	void testDelay() throws Exception {
+      Thread.sleep(100);
 
-		Object input = new Object();
-		CompletableFuture<Object> future = new CompletableFuture<>();
-		future.completeAsync(() -> input, CompletableFuture.delayedExecutor(1, TimeUnit.SECONDS));
+      assertFalse(future.isDone());
 
-		Thread.sleep(100);
+      Thread.sleep(1000);
+      assertTrue(future.isDone());
+      assertSame(input, future.get());
+   }
 
-		assertFalse(future.isDone());
+   @Test
+   public void testTimeoutTriggered() throws Exception {
+      CompletableFuture<Object> future = new CompletableFuture<>();
+      future.orTimeout(1, TimeUnit.SECONDS);
 
-		Thread.sleep(1000);
-		assertTrue(future.isDone());
-		assertSame(input, future.get());
-	}
+      Thread.sleep(1100);
 
-	@Test
-	void testTimeoutTriggered() throws Exception {
-		CompletableFuture<Object> future = new CompletableFuture<>();
-		future.orTimeout(1, TimeUnit.SECONDS);
+      assertTrue(future.isDone());
 
-		Thread.sleep(1100);
+      try {
+         future.get();
+      } catch (ExecutionException e) {
+         assertTrue(e.getCause() instanceof TimeoutException);
+      }
+   }
 
-		assertTrue(future.isDone());
+   @Test
+   public void testTimeoutNotTriggered() throws Exception {
+      Object input = new Object();
+      CompletableFuture<Object> future = new CompletableFuture<>();
 
-		try {
-			future.get();
-		} catch (ExecutionException e) {
-			assertTrue(e.getCause() instanceof TimeoutException);
-		}
-	}
+      future.orTimeout(1, TimeUnit.SECONDS);
 
-	@Test
-	void testTimeoutNotTriggered() throws Exception {
-		Object input = new Object();
-		CompletableFuture<Object> future = new CompletableFuture<>();
+      Thread.sleep(100);
 
-		future.orTimeout(1, TimeUnit.SECONDS);
+      future.complete(input);
 
-		Thread.sleep(100);
+      Thread.sleep(1000);
 
-		future.complete(input);
-
-		Thread.sleep(1000);
-
-		assertTrue(future.isDone());
-		assertSame(input, future.get());
-	}
+      assertTrue(future.isDone());
+      assertSame(input, future.get());
+   }
 
 
-	@Test
-	void completeOnTimeout() throws Exception {
-		Object input = new Object();
-		CompletableFuture<Object> future = new CompletableFuture<>();
-		future.completeOnTimeout(input, 1, TimeUnit.SECONDS);
+   @Test
+   public void completeOnTimeout() throws Exception {
+      Object input = new Object();
+      CompletableFuture<Object> future = new CompletableFuture<>();
+      future.completeOnTimeout(input, 1, TimeUnit.SECONDS);
 
-		Thread.sleep(1100);
+      Thread.sleep(1100);
 
-		assertTrue(future.isDone());
-		assertSame(input, future.get());
-	}
+      assertTrue(future.isDone());
+      assertSame(input, future.get());
+   }
 }

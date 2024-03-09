@@ -7,10 +7,10 @@ import java.math.BigInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class MathUtilsUnitTest {
+public class MathUtilsUnitTest {
 
-	@Test
-	void whenCalledFactorialMethod_thenCorrect() {
-		assertThat(MathUtils.factorial(2)).isEqualTo(new BigInteger("2"));
-	}
+   @Test
+   public void whenCalledFactorialMethod_thenCorrect() {
+      assertThat(MathUtils.factorial(2)).isEqualTo(new BigInteger("2"));
+   }
 }

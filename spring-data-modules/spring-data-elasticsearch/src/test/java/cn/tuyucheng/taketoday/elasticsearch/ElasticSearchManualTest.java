@@ -35,11 +35,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * docker run -d --name elastic-test -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:8.9.0
  */
 @Slf4j
-public class ElasticSearchManualTest {
+class ElasticSearchManualTest {
    private ElasticsearchClient client = null;
 
    @BeforeEach
-   public void setUp() throws IOException {
+   void setUp() throws IOException {
       RestClient restClient = RestClient.builder(HttpHost.create("http://localhost:9200"))
             .build();
       ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
@@ -59,32 +59,32 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenJsonDocument_whenJavaObject_thenIndexDocument() throws Exception {
+   void givenJsonDocument_whenJavaObject_thenIndexDocument() throws Exception {
       Person person = new Person(20, "Mark Doe", new Date(1471466076564L));
       IndexResponse response = client.index(i -> i.index("person")
             .id(person.getFullName())
             .document(person));
 
-      log.info("Indexed with version: {}", response.version());
+      LOGGER.info("Indexed with version: {}", response.version());
       assertEquals(Result.Created, response.result());
       assertEquals("person", response.index());
       assertEquals("Mark Doe", response.id());
    }
 
    @Test
-   public void givenJsonString_whenJavaObject_thenIndexDocument() throws Exception {
+   void givenJsonString_whenJavaObject_thenIndexDocument() throws Exception {
       String jsonString = "{\"age\":10,\"dateOfBirth\":1471466076564,\"fullName\":\"John Doe\"}";
       StringReader stringReader = new StringReader(jsonString);
       IndexResponse response = client.index(i -> i.index("person")
             .id("John Doe")
             .withJson(stringReader));
-      log.info("Indexed with version: {}", response.version());
+      LOGGER.info("Indexed with version: {}", response.version());
       assertEquals("person", response.index());
       assertEquals("John Doe", response.id());
    }
 
    @Test
-   public void givenDocumentId_whenJavaObject_thenDeleteDocument() throws Exception {
+   void givenDocumentId_whenJavaObject_thenDeleteDocument() throws Exception {
       String documentId = "Mark Doe";
       DeleteResponse response = client.delete(i -> i.index("person")
             .id(documentId));
@@ -93,7 +93,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenSearchRequest_whenMatch_thenReturnAllResults() throws Exception {
+   void givenSearchRequest_whenMatch_thenReturnAllResults() throws Exception {
       String searchText = "John";
       SearchResponse<Person> searchResponse = client.search(s -> s.index("person")
             .query(q -> q.match(t -> t.field("fullName")
@@ -108,7 +108,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenGetRequest_whenMatch_thenReturnAllResults() throws IOException {
+   void givenGetRequest_whenMatch_thenReturnAllResults() throws IOException {
       String documentId = "John Doe";
       GetResponse<Person> getResponse = client.get(s -> s.index("person")
             .id(documentId), Person.class);
@@ -117,7 +117,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenSearchRequest_whenMatchAndRange_thenReturnAllResults() throws Exception {
+   void givenSearchRequest_whenMatchAndRange_thenReturnAllResults() throws Exception {
       String searchText = "John";
       SearchResponse<Person> searchResponse = client.search(s -> s.index("person")
             .query(q -> q.match(t -> t.field("fullName")
@@ -135,7 +135,7 @@ public class ElasticSearchManualTest {
    }
 
    @Test
-   public void givenMultipleQueries_thenReturnResults() throws Exception {
+   void givenMultipleQueries_thenReturnResults() throws Exception {
       Query ageQuery = RangeQuery.of(r -> r.field("age")
                   .from("5")
                   .to("15"))
@@ -143,7 +143,7 @@ public class ElasticSearchManualTest {
       SearchResponse<Person> response1 = client.search(s -> s.query(q -> q.bool(b -> b.must(ageQuery))), Person.class);
       response1.hits()
             .hits()
-            .forEach(hit -> log.info("Response 1: {}", hit.source()));
+            .forEach(hit -> LOGGER.info("Response 1: {}", hit.source()));
 
       Query fullNameQuery = MatchQuery.of(m -> m.field("fullName")
                   .query("John"))
@@ -151,26 +151,26 @@ public class ElasticSearchManualTest {
       SearchResponse<Person> response2 = client.search(s -> s.query(q -> q.bool(b -> b.must(fullNameQuery))), Person.class);
       response2.hits()
             .hits()
-            .forEach(hit -> log.info("Response 2: {}", hit.source()));
+            .forEach(hit -> LOGGER.info("Response 2: {}", hit.source()));
       Query doeContainsQuery = SimpleQueryStringQuery.of(q -> q.query("*Doe"))
             ._toQuery();
       SearchResponse<Person> response3 = client.search(s -> s.query(q -> q.bool(b -> b.must(doeContainsQuery))), Person.class);
       response3.hits()
             .hits()
-            .forEach(hit -> log.info("Response 3: {}", hit.source()));
+            .forEach(hit -> LOGGER.info("Response 3: {}", hit.source()));
 
       Query simpleStringQuery = SimpleQueryStringQuery.of(q -> q.query("+John -Doe OR Janette"))
             ._toQuery();
       SearchResponse<Person> response4 = client.search(s -> s.query(q -> q.bool(b -> b.must(simpleStringQuery))), Person.class);
       response4.hits()
             .hits()
-            .forEach(hit -> log.info("Response 4: {}", hit.source()));
+            .forEach(hit -> LOGGER.info("Response 4: {}", hit.source()));
 
       SearchResponse<Person> response5 = client.search(s -> s.query(q -> q.bool(b -> b.must(ageQuery)
             .must(fullNameQuery)
             .must(simpleStringQuery))), Person.class);
       response5.hits()
             .hits()
-            .forEach(hit -> log.info("Response 5: {}", hit.source()));
+            .forEach(hit -> LOGGER.info("Response 5: {}", hit.source()));
    }
 }

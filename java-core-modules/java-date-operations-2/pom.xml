@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-date-operations-2</artifactId>
-   <version>${project.parent.version}</version>
    <name>java-date-operations-2</name>
    <packaging>jar</packaging>
 
@@ -54,4 +53,5 @@
       <time4j-base.version>5.9</time4j-base.version>
       <time4j-sqlxml.version>5.8</time4j-sqlxml.version>
    </properties>
+
 </project>

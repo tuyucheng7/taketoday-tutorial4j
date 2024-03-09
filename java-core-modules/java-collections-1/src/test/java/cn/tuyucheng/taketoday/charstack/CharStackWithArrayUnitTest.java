@@ -4,56 +4,62 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CharStackWithArrayUnitTest {
+public class CharStackWithArrayUnitTest {
 
-    @Test
-    void whenCharStackIsCreated_thenItHasSize0() {
-        CharStackWithArray charStack = new CharStackWithArray();
+   @Test
+   public void whenCharStackIsCreated_thenItHasSize0() {
 
-        assertEquals(0, charStack.size());
-    }
+      CharStackWithArray charStack = new CharStackWithArray();
 
-    @Test
-    void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
-        CharStackWithArray charStack = new CharStackWithArray();
+      assertEquals(0, charStack.size());
+   }
 
-        charStack.push('A');
+   @Test
+   public void givenEmptyCharStack_whenElementIsPushed_thenStackSizeisIncreased() {
 
-        assertEquals(1, charStack.size());
-    }
+      CharStackWithArray charStack = new CharStackWithArray();
 
-    @Test
-    void givenEmptyCharStack_when5ElementIsPushed_thenStackSizeis() {
-        CharStackWithArray charStack = new CharStackWithArray();
+      charStack.push('A');
 
-        charStack.push('A');
-        charStack.push('B');
-        charStack.push('C');
-        charStack.push('D');
-        charStack.push('E');
+      assertEquals(1, charStack.size());
+   }
 
-        assertEquals(5, charStack.size());
-    }
+   @Test
+   public void givenEmptyCharStack_when5ElementIsPushed_thenStackSizeis() {
 
-    @Test
-    void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
-        CharStackWithArray charStack = new CharStackWithArray();
-        charStack.push('A');
+      CharStackWithArray charStack = new CharStackWithArray();
 
-        char element = charStack.pop();
+      charStack.push('A');
+      charStack.push('B');
+      charStack.push('C');
+      charStack.push('D');
+      charStack.push('E');
 
-        assertEquals('A', element);
-        assertEquals(0, charStack.size());
-    }
+      assertEquals(5, charStack.size());
+   }
 
-    @Test
-    void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
-        CharStackWithArray charStack = new CharStackWithArray();
-        charStack.push('A');
+   @Test
+   public void givenCharStack_whenElementIsPoppedFromStack_thenElementIsRemovedAndSizeChanges() {
 
-        char element = charStack.peek();
+      CharStackWithArray charStack = new CharStackWithArray();
+      charStack.push('A');
 
-        assertEquals('A', element);
-        assertEquals(1, charStack.size());
-    }
+      char element = charStack.pop();
+
+      assertEquals('A', element);
+      assertEquals(0, charStack.size());
+   }
+
+   @Test
+   public void givenCharStack_whenElementIsPeeked_thenElementIsNotRemovedAndSizeDoesNotChange() {
+
+      CharStackWithArray charStack = new CharStackWithArray();
+      charStack.push('A');
+
+      char element = charStack.peek();
+
+      assertEquals('A', element);
+      assertEquals(1, charStack.size());
+   }
+
 }

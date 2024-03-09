@@ -10,11 +10,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CollectionUtilsUnitTest {
 
-    @Test
-    void givenListOfNumbers_whenReverseStaticMethodIsCalled_thenNumbersInReversedOrderAreReturned() {
-        List<String> list = Arrays.asList("1", "2", "3");
-        Collections.reverse(list);
-        assertThat(list).containsExactly("3", "2", "1");
-    }
+   @Test
+   void givenListOfNumbers_whenReverseStaticMethodIsCalled_thenNumbersInReversedOrderAreReturned() {
+      List<String> list = Arrays.asList("1", "2", "3");
+      Collections.reverse(list);
+      assertThat(list).containsExactly("3", "2", "1");
+   }
 
 }

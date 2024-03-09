@@ -7,33 +7,33 @@ import com.arangodb.springframework.annotation.To;
 @Edge
 public class ArticleLink {
 
-    @From
-    private Article article;
+   @From
+   private Article article;
 
-    @To
-    private Author author;
+   @To
+   private Author author;
 
-    public ArticleLink() {
-    }
+   public ArticleLink() {
+   }
 
-    public ArticleLink(Article article, Author author) {
-        this.article = article;
-        this.author = author;
-    }
+   public ArticleLink(Article article, Author author) {
+      this.article = article;
+      this.author = author;
+   }
 
-    public Article getArticle() {
-        return article;
-    }
+   public Article getArticle() {
+      return article;
+   }
 
-    public void setArticle(Article article) {
-        this.article = article;
-    }
+   public void setArticle(Article article) {
+      this.article = article;
+   }
 
-    public Author getAuthor() {
-        return author;
-    }
+   public Author getAuthor() {
+      return author;
+   }
 
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
+   public void setAuthor(Author author) {
+      this.author = author;
+   }
 }

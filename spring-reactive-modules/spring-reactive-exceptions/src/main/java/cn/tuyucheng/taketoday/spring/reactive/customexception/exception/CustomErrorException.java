@@ -1,6 +1,7 @@
 package cn.tuyucheng.taketoday.spring.reactive.customexception.exception;
 
 import cn.tuyucheng.taketoday.spring.reactive.customexception.model.CustomErrorResponse;
+
 import lombok.Getter;
 
 public class CustomErrorException extends RuntimeException {

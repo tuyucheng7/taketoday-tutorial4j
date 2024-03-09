@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <artifactId>java-io-1</artifactId>
-   <version>1.0.0</version>
    <name>java-io-1</name>
    <packaging>jar</packaging>
 
@@ -56,6 +55,13 @@
       </resources>
       <plugins>
          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+               <source>11</source>
+               <target>11</target>
+            </configuration>
+         </plugin>
+         <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <configuration>
@@ -103,7 +109,7 @@
                   <executions>
                      <execution>
                         <id>run-benchmarks</id>
-                        <!--<phase>integration-test</phase>-->
+                        <!-- <phase>integration-test</phase> -->
                         <phase>none</phase>
                         <goals>
                            <goal>exec</goal>
@@ -128,12 +134,11 @@
 
    <properties>
       <!-- maven plugins -->
-      <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+      <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
       <hsqldb.version>2.7.1</hsqldb.version>
       <!-- Mime Type Libraries -->
       <tika.version>2.8.0</tika.version>
       <jmime-magic.version>0.1.5</jmime-magic.version>
-      <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
       <fscontext.version>4.4.2</fscontext.version>
       <jakarta-activation-api.version>2.1.2</jakarta-activation-api.version>
       <angus-activation.version>2.0.1</angus-activation.version>

@@ -7,36 +7,36 @@ import java.util.Set;
 @Table(name = "basic_users")
 public class BasicUser {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+   @Id
+   @GeneratedValue
+   private Long id;
 
-    private String username;
+   private String username;
 
-    @ElementCollection
-    private Set<String> permissions;
+   @ElementCollection
+   private Set<String> permissions;
 
-    public Long getId() {
-        return id;
-    }
+   public Long getId() {
+      return id;
+   }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-    public String getUsername() {
-        return username;
-    }
+   public String getUsername() {
+      return username;
+   }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+   public void setUsername(String username) {
+      this.username = username;
+   }
 
-    public Set<String> getPermissions() {
-        return permissions;
-    }
+   public Set<String> getPermissions() {
+      return permissions;
+   }
 
-    public void setPermissions(Set<String> permissions) {
-        this.permissions = permissions;
-    }
+   public void setPermissions(Set<String> permissions) {
+      this.permissions = permissions;
+   }
 }

@@ -1,15 +1,14 @@
 package cn.tuyucheng.taketoday.crypto.sha1;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.google.common.hash.Hashing;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.junit.jupiter.api.Test;
-
-import com.google.common.hash.Hashing;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HexRepresentationSha1DigestUnitTest {
 

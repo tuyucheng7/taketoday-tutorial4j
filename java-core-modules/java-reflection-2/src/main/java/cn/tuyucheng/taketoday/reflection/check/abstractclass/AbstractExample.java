@@ -5,11 +5,11 @@ import java.time.LocalTime;
 
 public abstract class AbstractExample {
 
-	public static String getAuthorName() {
-		return "Umang Budhwar";
-	}
+   public static String getAuthorName() {
+      return "Umang Budhwar";
+   }
 
-	public abstract LocalDate getLocalDate();
+   public abstract LocalDate getLocalDate();
 
-	public abstract LocalTime getLocalTime();
+   public abstract LocalTime getLocalTime();
 }

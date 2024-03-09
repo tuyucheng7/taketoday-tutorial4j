@@ -13,33 +13,33 @@ import java.util.concurrent.Future;
 
 public class Server {
 
-	private static final List<User> AUTHENTICATED_USERS = List.of(
-		new User("1", "admin", "123456", true),
-		new User("2", "user", "123456", false)
-	);
-	private final Controller controller = new Controller();
-	private final ExecutorService executor = Executors.newFixedThreadPool(5);
+   private static final List<User> AUTHENTICATED_USERS = List.of(
+         new User("1", "admin", "123456", true),
+         new User("2", "user", "123456", false)
+   );
+   private final Controller controller = new Controller();
+   private final ExecutorService executor = Executors.newFixedThreadPool(5);
 
-	public void serve(HttpServletRequest request, HttpServletResponse response) throws InterruptedException, ExecutionException {
-		String s = "hello world";
-		Optional<User> user = authenticateUser(request);
-		if (user.isPresent()) {
-			Future<?> future = executor.submit(() ->
-				controller.processRequest(request, response, user.get()));
-			future.get();
-		} else {
-			response.setStatus(401);
-		}
-	}
+   public void serve(HttpServletRequest request, HttpServletResponse response) throws InterruptedException, ExecutionException {
+      Optional<User> user = authenticateUser(request);
+      if (user.isPresent()) {
+         Future<?> future = executor.submit(() ->
+               controller.processRequest(request, response, user.get()));
+         future.get();
+      } else {
+         response.setStatus(401);
+      }
+   }
 
-	private Optional<User> authenticateUser(HttpServletRequest request) {
-		return AUTHENTICATED_USERS.stream()
-			.filter(user -> checkUserPassword(user, request))
-			.findFirst();
-	}
+   private Optional<User> authenticateUser(HttpServletRequest request) {
+      return AUTHENTICATED_USERS.stream()
+            .filter(user -> checkUserPassword(user, request))
+            .findFirst();
+   }
 
-	private boolean checkUserPassword(User user, HttpServletRequest request) {
-		return user.name().equals(request.getParameter("user_name"))
-			&& user.password().equals(request.getParameter("user_pw"));
-	}
+   private boolean checkUserPassword(User user, HttpServletRequest request) {
+      return user.name().equals(request.getParameter("user_name"))
+            && user.password().equals(request.getParameter("user_pw"));
+   }
+
 }

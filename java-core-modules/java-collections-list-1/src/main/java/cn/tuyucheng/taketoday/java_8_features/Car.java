@@ -2,30 +2,30 @@ package cn.tuyucheng.taketoday.java_8_features;
 
 public class Car {
 
-    private String model;
-    private int topSpeed;
+   private String model;
+   private int topSpeed;
 
-    public Car(String model, int topSpeed) {
-        super();
-        this.model = model;
-        this.topSpeed = topSpeed;
-    }
+   public Car(String model, int topSpeed) {
+      super();
+      this.model = model;
+      this.topSpeed = topSpeed;
+   }
 
-    public String getModel() {
-        return model;
-    }
+   public String getModel() {
+      return model;
+   }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+   public void setModel(String model) {
+      this.model = model;
+   }
 
-    public int getTopSpeed() {
-        return topSpeed;
-    }
+   public int getTopSpeed() {
+      return topSpeed;
+   }
 
-    public void setTopSpeed(int topSpeed) {
-        this.topSpeed = topSpeed;
-    }
+   public void setTopSpeed(int topSpeed) {
+      this.topSpeed = topSpeed;
+   }
 
 
 }

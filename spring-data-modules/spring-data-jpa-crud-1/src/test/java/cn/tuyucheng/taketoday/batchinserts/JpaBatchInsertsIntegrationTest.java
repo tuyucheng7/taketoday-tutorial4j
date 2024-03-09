@@ -25,72 +25,72 @@ import static cn.tuyucheng.taketoday.batchinserts.TestObjectHelper.createStudent
 @ActiveProfiles("batchinserts")
 class JpaBatchInsertsIntegrationTest {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+   @PersistenceContext
+   private EntityManager entityManager;
 
-	private static final int BATCH_SIZE = 5;
+   private static final int BATCH_SIZE = 5;
 
-	@Transactional
-	@Test
-	void whenInsertingSingleTypeOfEntity_thenCreatesSingleBatch() {
-		for (int i = 0; i < 10; i++) {
-			School school = createSchool(i);
-			entityManager.persist(school);
-		}
-	}
+   @Transactional
+   @Test
+   void whenInsertingSingleTypeOfEntity_thenCreatesSingleBatch() {
+      for (int i = 0; i < 10; i++) {
+         School school = createSchool(i);
+         entityManager.persist(school);
+      }
+   }
 
-	@Transactional
-	@Test
-	void whenFlushingAfterBatch_ThenClearsMemory() {
-		for (int i = 0; i < 10; i++) {
-			if (i > 0 && i % BATCH_SIZE == 0) {
-				entityManager.flush();
-				entityManager.clear();
-			}
+   @Transactional
+   @Test
+   void whenFlushingAfterBatch_ThenClearsMemory() {
+      for (int i = 0; i < 10; i++) {
+         if (i > 0 && i % BATCH_SIZE == 0) {
+            entityManager.flush();
+            entityManager.clear();
+         }
 
-			School school = createSchool(i);
-			entityManager.persist(school);
-		}
-	}
+         School school = createSchool(i);
+         entityManager.persist(school);
+      }
+   }
 
-	@Transactional
-	@Test
-	void whenThereAreMultipleEntities_ThenCreatesNewBatch() {
-		for (int i = 0; i < 10; i++) {
-			if (i > 0 && i % BATCH_SIZE == 0) {
-				entityManager.flush();
-				entityManager.clear();
-			}
+   @Transactional
+   @Test
+   void whenThereAreMultipleEntities_ThenCreatesNewBatch() {
+      for (int i = 0; i < 10; i++) {
+         if (i > 0 && i % BATCH_SIZE == 0) {
+            entityManager.flush();
+            entityManager.clear();
+         }
 
-			School school = createSchool(i);
-			entityManager.persist(school);
-			Student firstStudent = createStudent(school);
-			Student secondStudent = createStudent(school);
-			entityManager.persist(firstStudent);
-			entityManager.persist(secondStudent);
-		}
-	}
+         School school = createSchool(i);
+         entityManager.persist(school);
+         Student firstStudent = createStudent(school);
+         Student secondStudent = createStudent(school);
+         entityManager.persist(firstStudent);
+         entityManager.persist(secondStudent);
+      }
+   }
 
-	@Transactional
-	@Test
-	void whenUpdatingEntities_thenCreatesBatch() {
-		for (int i = 0; i < 10; i++) {
-			School school = createSchool(i);
-			entityManager.persist(school);
-		}
+   @Transactional
+   @Test
+   void whenUpdatingEntities_thenCreatesBatch() {
+      for (int i = 0; i < 10; i++) {
+         School school = createSchool(i);
+         entityManager.persist(school);
+      }
 
-		entityManager.flush();
+      entityManager.flush();
 
-		TypedQuery<School> schoolQuery = entityManager.createQuery("SELECT s from School s", School.class);
-		List<School> allSchools = schoolQuery.getResultList();
+      TypedQuery<School> schoolQuery = entityManager.createQuery("SELECT s from School s", School.class);
+      List<School> allSchools = schoolQuery.getResultList();
 
-		for (School school : allSchools) {
-			school.setName("Updated_" + school.getName());
-		}
-	}
+      for (School school : allSchools) {
+         school.setName("Updated_" + school.getName());
+      }
+   }
 
-	@AfterEach
-	void tearDown() {
-		entityManager.flush();
-	}
+   @AfterEach
+   void tearDown() {
+      entityManager.flush();
+   }
 }

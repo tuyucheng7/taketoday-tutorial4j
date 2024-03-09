@@ -9,9 +9,10 @@
    <description>Module For Spring Boot Basic Customization 2</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring-boot-modules</groupId>
-      <artifactId>spring-boot-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>

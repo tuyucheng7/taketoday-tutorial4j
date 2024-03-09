@@ -8,69 +8,78 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeNumbers extends RecursiveAction {
-	private final int lowerBound;
-	private final int upperBound;
-	private final int granularity;
-	static final List<Integer> GRANULARITIES = Arrays.asList(1, 10, 100, 1000, 10000);
-	private final AtomicInteger noOfPrimeNumbers;
 
-	PrimeNumbers(int lowerBound, int upperBound, int granularity, AtomicInteger noOfPrimeNumbers) {
-		this.lowerBound = lowerBound;
-		this.upperBound = upperBound;
-		this.granularity = granularity;
-		this.noOfPrimeNumbers = noOfPrimeNumbers;
-	}
+   private int lowerBound;
+   private int upperBound;
+   private int granularity;
+   static final List<Integer> GRANULARITIES
+         = Arrays.asList(1, 10, 100, 1000, 10000);
+   private AtomicInteger noOfPrimeNumbers;
 
-	PrimeNumbers(int upperBound) {
-		this(1, upperBound, 100, new AtomicInteger(0));
-	}
+   PrimeNumbers(int lowerBound, int upperBound, int granularity, AtomicInteger noOfPrimeNumbers) {
+      this.lowerBound = lowerBound;
+      this.upperBound = upperBound;
+      this.granularity = granularity;
+      this.noOfPrimeNumbers = noOfPrimeNumbers;
+   }
 
-	private PrimeNumbers(int lowerBound, int upperBound, AtomicInteger noOfPrimeNumbers) {
-		this(lowerBound, upperBound, 100, noOfPrimeNumbers);
-	}
+   PrimeNumbers(int upperBound) {
+      this(1, upperBound, 100, new AtomicInteger(0));
+   }
 
-	private List<PrimeNumbers> subTasks() {
-		List<PrimeNumbers> subTasks = new ArrayList<>();
+   private PrimeNumbers(int lowerBound, int upperBound, AtomicInteger noOfPrimeNumbers) {
+      this(lowerBound, upperBound, 100, noOfPrimeNumbers);
+   }
 
-		for (int i = 1; i <= this.upperBound / granularity; i++) {
-			int upper = i * granularity;
-			int lower = (upper - granularity) + 1;
-			subTasks.add(new PrimeNumbers(lower, upper, noOfPrimeNumbers));
-		}
-		return subTasks;
-	}
+   private List<PrimeNumbers> subTasks() {
+      List<PrimeNumbers> subTasks = new ArrayList<>();
 
-	@Override
-	protected void compute() {
-		if (((upperBound + 1) - lowerBound) > granularity)
-			ForkJoinTask.invokeAll(subTasks());
-		else
-			findPrimeNumbers();
-	}
+      for (int i = 1; i <= this.upperBound / granularity; i++) {
+         int upper = i * granularity;
+         int lower = (upper - granularity) + 1;
+         subTasks.add(new PrimeNumbers(lower, upper, noOfPrimeNumbers));
+      }
+      return subTasks;
+   }
 
-	void findPrimeNumbers() {
-		for (int num = lowerBound; num <= upperBound; num++)
-			if (isPrime(num))
-				noOfPrimeNumbers.getAndIncrement();
-	}
+   @Override
+   protected void compute() {
+      if (((upperBound + 1) - lowerBound) > granularity) {
+         ForkJoinTask.invokeAll(subTasks());
+      } else {
+         findPrimeNumbers();
+      }
+   }
 
-	private boolean isPrime(int number) {
-		if (number == 2)
-			return true;
+   void findPrimeNumbers() {
+      for (int num = lowerBound; num <= upperBound; num++) {
+         if (isPrime(num)) {
+            noOfPrimeNumbers.getAndIncrement();
+         }
+      }
+   }
 
-		if (number == 1 || number % 2 == 0)
-			return false;
+   private boolean isPrime(int number) {
+      if (number == 2) {
+         return true;
+      }
 
-		int noOfNaturalNumbers = 0;
+      if (number == 1 || number % 2 == 0) {
+         return false;
+      }
 
-		for (int i = 1; i <= number; i++)
-			if (number % i == 0)
-				noOfNaturalNumbers++;
+      int noOfNaturalNumbers = 0;
 
-		return noOfNaturalNumbers == 2;
-	}
+      for (int i = 1; i <= number; i++) {
+         if (number % i == 0) {
+            noOfNaturalNumbers++;
+         }
+      }
 
-	public int noOfPrimeNumbers() {
-		return noOfPrimeNumbers.intValue();
-	}
+      return noOfNaturalNumbers == 2;
+   }
+
+   public int noOfPrimeNumbers() {
+      return noOfPrimeNumbers.intValue();
+   }
 }

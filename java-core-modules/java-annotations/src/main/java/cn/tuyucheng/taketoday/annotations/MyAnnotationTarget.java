@@ -2,15 +2,15 @@ package cn.tuyucheng.taketoday.annotations;
 
 class MyAnnotationTarget {
 
-    // this is OK
-    @MyAnnotation
-    String someField;
+   // this is OK
+   @MyAnnotation
+   String someField;
 
-    // @MyAnnotation <- this is invalid usage!
-    void doSomething() {
+   // @MyAnnotation <- this is invalid usage!
+   void doSomething() {
 
-        // this also works
-        @MyAnnotation
-        String localVariable;
-    }
+      // this also works
+      @MyAnnotation
+      String localVariable;
+   }
 }

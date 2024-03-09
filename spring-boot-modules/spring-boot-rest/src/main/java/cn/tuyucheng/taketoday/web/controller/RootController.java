@@ -1,22 +1,18 @@
 package cn.tuyucheng.taketoday.web.controller;
 
 import cn.tuyucheng.taketoday.web.util.LinkUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriTemplate;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 
 @Controller
 public class RootController {
-
-   // API
-
-   // discover
 
    @GetMapping("/")
    @ResponseStatus(value = HttpStatus.NO_CONTENT)
@@ -28,5 +24,4 @@ public class RootController {
       final String linkToFoos = LinkUtil.createLinkHeader(fooUri.toASCIIString(), "collection");
       response.addHeader("Link", linkToFoos);
    }
-
 }

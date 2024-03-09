@@ -8,9 +8,9 @@ import cn.tuyucheng.taketoday.objectmapper.entity.Counter;
 @Dao
 public interface CounterDao {
 
-    @Increment(entityClass = Counter.class)
-    void incrementCounter(String id, long count);
+   @Increment(entityClass = Counter.class)
+   void incrementCounter(String id, long count);
 
-    @Select
-    Counter getCounterById(String id);
+   @Select
+   Counter getCounterById(String id);
 }

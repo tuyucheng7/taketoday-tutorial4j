@@ -18,20 +18,20 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 public class OrElseAndOrElseGetBenchmarkRunner {
 
-	private OrElseAndOrElseGet orElsevsOrElseGet = new OrElseAndOrElseGet();
+   private OrElseAndOrElseGet orElsevsOrElseGet = new OrElseAndOrElseGet();
 
-	public static void main(String[] args) throws RunnerException, IOException {
-		org.openjdk.jmh.Main.main(args);
-	}
+   public static void main(String[] args) throws RunnerException, IOException {
+      org.openjdk.jmh.Main.main(args);
+   }
 
-	@Benchmark
-	public String orElseBenchmark() {
-		return orElsevsOrElseGet.getNameUsingOrElse("tuyucheng");
-	}
+   @Benchmark
+   public String orElseBenchmark() {
+      return orElsevsOrElseGet.getNameUsingOrElse("tuyucheng");
+   }
 
-	@Benchmark
-	public String orElseGetBenchmark() {
-		return orElsevsOrElseGet.getNameUsingOrElseGet("tuyucheng");
-	}
+   @Benchmark
+   public String orElseGetBenchmark() {
+      return orElsevsOrElseGet.getNameUsingOrElseGet("tuyucheng");
+   }
 
 }

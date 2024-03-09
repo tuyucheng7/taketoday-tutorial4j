@@ -17,34 +17,34 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @EnableDynamoDBRepositories(basePackages = "cn.tuyucheng.taketoday.spring.data.dynamodb.repositories")
 public class DynamoDBConfig {
 
-    @Value("${amazon.dynamodb.endpoint}")
-    private String amazonDynamoDBEndpoint;
+   @Value("${amazon.dynamodb.endpoint}")
+   private String amazonDynamoDBEndpoint;
 
-    @Value("${amazon.aws.accesskey}")
-    private String amazonAWSAccessKey;
+   @Value("${amazon.aws.accesskey}")
+   private String amazonAWSAccessKey;
 
-    @Value("${amazon.aws.secretkey}")
-    private String amazonAWSSecretKey;
+   @Value("${amazon.aws.secretkey}")
+   private String amazonAWSSecretKey;
 
-    @Autowired
-    private ApplicationContext context;
+   @Autowired
+   private ApplicationContext context;
 
-    @Bean
-    public AmazonDynamoDB amazonDynamoDB() {
-        AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
-        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
-            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
-        }
-        return amazonDynamoDB;
-    }
+   @Bean
+   public AmazonDynamoDB amazonDynamoDB() {
+      AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
+      if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
+         amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
+      }
+      return amazonDynamoDB;
+   }
 
-    @Bean
-    public AWSCredentials amazonAWSCredentials() {
-        return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
-    }
+   @Bean
+   public AWSCredentials amazonAWSCredentials() {
+      return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
+   }
 
-    @Bean(name = "mvcHandlerMappingIntrospectorCustom")
-    public HandlerMappingIntrospector mvcHandlerMappingIntrospectorCustom() {
-        return new HandlerMappingIntrospector(context);
-    }
+   @Bean(name = "mvcHandlerMappingIntrospectorCustom")
+   public HandlerMappingIntrospector mvcHandlerMappingIntrospectorCustom() {
+      return new HandlerMappingIntrospector(context);
+   }
 }

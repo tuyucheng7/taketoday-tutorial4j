@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorService {
 
-    @ContinuousQuery(query = "SELECT * FROM /Authors a WHERE a.id = 1")
-    public void process(CqEvent event) {
-        System.out.println("Author #" + event.getKey() + " updated to " + event.getNewValue());
-    }
+   @ContinuousQuery(query = "SELECT * FROM /Authors a WHERE a.id = 1")
+   public void process(CqEvent event) {
+      System.out.println("Author #" + event.getKey() + " updated to " + event.getNewValue());
+   }
 }

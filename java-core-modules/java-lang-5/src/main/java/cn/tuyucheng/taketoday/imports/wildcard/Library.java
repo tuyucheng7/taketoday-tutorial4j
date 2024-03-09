@@ -7,14 +7,14 @@ import java.util.UUID;
 
 public class Library {
 
-	private UUID id;
+   private UUID id;
 
-	private String name;
+   private String name;
 
-	private Time openingTime;
+   private Time openingTime;
 
-	private Time closingTime;
+   private Time closingTime;
 
-	private List<Date> datesClosed;
+   private List<Date> datesClosed;
 
 }

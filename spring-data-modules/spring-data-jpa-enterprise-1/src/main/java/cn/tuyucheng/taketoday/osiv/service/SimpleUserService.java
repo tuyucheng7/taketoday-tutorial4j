@@ -10,15 +10,15 @@ import java.util.Optional;
 @Service
 public class SimpleUserService implements UserService {
 
-    private final BasicUserRepository userRepository;
+   private final BasicUserRepository userRepository;
 
-    public SimpleUserService(BasicUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+   public SimpleUserService(BasicUserRepository userRepository) {
+      this.userRepository = userRepository;
+   }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<BasicUser> findOne(String username) {
-        return userRepository.findDetailedByUsername(username);
-    }
+   @Override
+   @Transactional(readOnly = true)
+   public Optional<BasicUser> findOne(String username) {
+      return userRepository.findDetailedByUsername(username);
+   }
 }

@@ -1,5 +1,7 @@
 package cn.tuyucheng.taketoday.streams.partitioning;
 
+import com.google.common.collect.Iterables;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -10,8 +12,6 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import com.google.common.collect.Iterables;
 
 public class PartitionStream {
 
@@ -86,4 +86,5 @@ public class PartitionStream {
          return this;
       }
    }
+
 }

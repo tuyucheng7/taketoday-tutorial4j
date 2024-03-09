@@ -1,7 +1,7 @@
 package cn.tuyucheng.taketoday.map.copyhashmap;
 
 import com.google.common.collect.ImmutableMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,67 +10,67 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CopyHashMapUnitTest {
 
-    @Test
-    public void givenHashMap_whenShallowCopy_thenCopyisNotSameAsOriginal() {
+   @Test
+   public void givenHashMap_whenShallowCopy_thenCopyisNotSameAsOriginal() {
 
-        HashMap<String, Employee> map = new HashMap<>();
-        Employee emp1 = new Employee("John");
-        Employee emp2 = new Employee("Norman");
-        map.put("emp1", emp1);
-        map.put("emp2", emp2);
+      HashMap<String, Employee> map = new HashMap<>();
+      Employee emp1 = new Employee("John");
+      Employee emp2 = new Employee("Norman");
+      map.put("emp1", emp1);
+      map.put("emp2", emp2);
 
-        HashMap<String, Employee> shallowCopy = CopyHashMap.shallowCopy(map);
+      HashMap<String, Employee> shallowCopy = CopyHashMap.shallowCopy(map);
 
-        assertThat(shallowCopy).isNotSameAs(map);
+      assertThat(shallowCopy).isNotSameAs(map);
 
-    }
+   }
 
-    @Test
-    public void givenHashMap_whenShallowCopyModifyingOriginalObject_thenCopyShouldChange() {
+   @Test
+   public void givenHashMap_whenShallowCopyModifyingOriginalObject_thenCopyShouldChange() {
 
-        HashMap<String, Employee> map = new HashMap<>();
-        Employee emp1 = new Employee("John");
-        Employee emp2 = new Employee("Norman");
-        map.put("emp1", emp1);
-        map.put("emp2", emp2);
+      HashMap<String, Employee> map = new HashMap<>();
+      Employee emp1 = new Employee("John");
+      Employee emp2 = new Employee("Norman");
+      map.put("emp1", emp1);
+      map.put("emp2", emp2);
 
-        HashMap<String, Employee> shallowCopy = CopyHashMap.shallowCopy(map);
+      HashMap<String, Employee> shallowCopy = CopyHashMap.shallowCopy(map);
 
-        emp1.setName("Johny");
+      emp1.setName("Johny");
 
-        assertThat(shallowCopy.get("emp1")).isEqualTo(map.get("emp1"));
+      assertThat(shallowCopy.get("emp1")).isEqualTo(map.get("emp1"));
 
-    }
+   }
 
-    @Test
-    public void givenHashMap_whenDeepCopyModifyingOriginalObject_thenCopyShouldNotChange() {
+   @Test
+   public void givenHashMap_whenDeepCopyModifyingOriginalObject_thenCopyShouldNotChange() {
 
-        HashMap<String, Employee> map = new HashMap<>();
-        Employee emp1 = new Employee("John");
-        Employee emp2 = new Employee("Norman");
-        map.put("emp1", emp1);
-        map.put("emp2", emp2);
-        HashMap<String, Employee> deepCopy = CopyHashMap.deepCopy(map);
+      HashMap<String, Employee> map = new HashMap<>();
+      Employee emp1 = new Employee("John");
+      Employee emp2 = new Employee("Norman");
+      map.put("emp1", emp1);
+      map.put("emp2", emp2);
+      HashMap<String, Employee> deepCopy = CopyHashMap.deepCopy(map);
 
-        emp1.setName("Johny");
+      emp1.setName("Johny");
 
-        assertThat(deepCopy.get("emp1")).isNotEqualTo(map.get("emp1"));
+      assertThat(deepCopy.get("emp1")).isNotEqualTo(map.get("emp1"));
 
-    }
+   }
 
-    @Test
-    public void givenImmutableMap_whenCopyUsingGuava_thenCopyShouldNotChange() {
-        Employee emp1 = new Employee("John");
-        Employee emp2 = new Employee("Norman");
+   @Test
+   public void givenImmutableMap_whenCopyUsingGuava_thenCopyShouldNotChange() {
+      Employee emp1 = new Employee("John");
+      Employee emp2 = new Employee("Norman");
 
-        Map<String, Employee> map = ImmutableMap.<String, Employee>builder()
-              .put("emp1", emp1)
-              .put("emp2", emp2)
-              .build();
-        Map<String, Employee> shallowCopy = ImmutableMap.copyOf(map);
+      Map<String, Employee> map = ImmutableMap.<String, Employee>builder()
+            .put("emp1", emp1)
+            .put("emp2", emp2)
+            .build();
+      Map<String, Employee> shallowCopy = ImmutableMap.copyOf(map);
 
-        assertThat(shallowCopy).isSameAs(map);
+      assertThat(shallowCopy).isSameAs(map);
 
-    }
+   }
 
 }

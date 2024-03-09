@@ -15,27 +15,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SuppressWarnings("deprecation")
 class SimpleNamingContextBuilderManualTest {
 
-	private InitialContext initContext;
+   private InitialContext initContext;
 
-	@BeforeEach
-	void init() throws Exception {
-		SimpleNamingContextBuilder.emptyActivatedContextBuilder();
-		this.initContext = new InitialContext();
-	}
+   @BeforeEach
+   void init() throws Exception {
+      SimpleNamingContextBuilder.emptyActivatedContextBuilder();
+      this.initContext = new InitialContext();
+   }
 
-	@Test
-	void whenMockJndiDataSource_thenReturnJndiDataSource() throws Exception {
-		this.initContext.bind("java:comp/env/jdbc/datasource", new DriverManagerDataSource("jdbc:h2:mem:testdb"));
-		DataSource ds = (DataSource) this.initContext.lookup("java:comp/env/jdbc/datasource");
+   @Test
+   void whenMockJndiDataSource_thenReturnJndiDataSource() throws Exception {
+      this.initContext.bind("java:comp/env/jdbc/datasource", new DriverManagerDataSource("jdbc:h2:mem:testdb"));
+      DataSource ds = (DataSource) this.initContext.lookup("java:comp/env/jdbc/datasource");
 
-		assertNotNull(ds.getConnection());
-	}
+      assertNotNull(ds.getConnection());
+   }
 
-	@AfterEach
-	void tearDown() throws Exception {
-		if (this.initContext != null) {
-			this.initContext.close();
-			this.initContext = null;
-		}
-	}
+   @AfterEach
+   void tearDown() throws Exception {
+      if (this.initContext != null) {
+         this.initContext.close();
+         this.initContext = null;
+      }
+   }
 }

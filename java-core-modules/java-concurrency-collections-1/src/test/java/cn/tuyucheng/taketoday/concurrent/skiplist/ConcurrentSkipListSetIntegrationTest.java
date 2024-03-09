@@ -13,108 +13,108 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ConcurrentSkipListSetIntegrationTest {
+public class ConcurrentSkipListSetIntegrationTest {
 
-	@Test
-	void givenThreadsProducingEvents_whenGetForEventsFromLastMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
-		// given
-		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		EventWindowSort eventWindowSort = new EventWindowSort();
-		int numberOfThreads = 2;
+   @Test
+   public void givenThreadsProducingEvents_whenGetForEventsFromLastMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
+      // given
+      ExecutorService executorService = Executors.newFixedThreadPool(3);
+      EventWindowSort eventWindowSort = new EventWindowSort();
+      int numberOfThreads = 2;
+      // when
+      Runnable producer = () -> IntStream
+            .rangeClosed(0, 100)
+            .forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
+                  .now()
+                  .minusSeconds(index), UUID
+                  .randomUUID()
+                  .toString())));
 
-		// when
-		Runnable producer = () -> IntStream
-			.rangeClosed(0, 100)
-			.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
-				.now()
-				.minusSeconds(index), UUID
-				.randomUUID()
-				.toString())));
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(producer);
+      }
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.execute(producer);
-		}
+      Thread.sleep(500);
 
-		Thread.sleep(500);
+      ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsFromLastMinute();
 
-		ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsFromLastMinute();
+      long eventsOlderThanOneMinute = eventsFromLastMinute
+            .entrySet()
+            .stream()
+            .filter(e -> e
+                  .getKey()
+                  .isBefore(ZonedDateTime
+                        .now()
+                        .minusMinutes(1)))
+            .count();
+      assertEquals(eventsOlderThanOneMinute, 0);
 
-		long eventsOlderThanOneMinute = eventsFromLastMinute
-			.entrySet()
-			.stream()
-			.filter(e -> e
-				.getKey()
-				.isBefore(ZonedDateTime
-					.now()
-					.minusMinutes(1)))
-			.count();
-		assertEquals(0, eventsOlderThanOneMinute);
+      long eventYoungerThanOneMinute = eventsFromLastMinute
+            .entrySet()
+            .stream()
+            .filter(e -> e
+                  .getKey()
+                  .isAfter(ZonedDateTime
+                        .now()
+                        .minusMinutes(1)))
+            .count();
 
-		long eventsYoungerThanOneMinute = eventsFromLastMinute
-			.entrySet()
-			.stream()
-			.filter(e -> e
-				.getKey()
-				.isAfter(ZonedDateTime
-					.now()
-					.minusMinutes(1)))
-			.count();
+      // then
+      assertTrue(eventYoungerThanOneMinute > 0);
 
-		// then
-		assertTrue(eventsYoungerThanOneMinute > 0);
+      executorService.awaitTermination(1, TimeUnit.SECONDS);
+      executorService.shutdown();
+   }
 
-		executorService.awaitTermination(1, TimeUnit.SECONDS);
-		executorService.shutdown();
-	}
+   @Test
+   public void givenThreadsProducingEvents_whenGetForEventsOlderThanOneMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
+      // given
+      ExecutorService executorService = Executors.newFixedThreadPool(3);
+      EventWindowSort eventWindowSort = new EventWindowSort();
+      int numberOfThreads = 2;
+      // when
+      Runnable producer = () -> IntStream
+            .rangeClosed(0, 100)
+            .forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
+                  .now()
+                  .minusSeconds(index), UUID
+                  .randomUUID()
+                  .toString())));
 
-	@Test
-	void givenThreadsProducingEvents_whenGetForEventsOlderThanOneMinute_thenReturnThoseEventsInTheLockFreeWay() throws InterruptedException {
-		// given
-		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		EventWindowSort eventWindowSort = new EventWindowSort();
-		int numberOfThreads = 2;
-		// when
-		Runnable producer = () -> IntStream
-			.rangeClosed(0, 100)
-			.forEach(index -> eventWindowSort.acceptEvent(new Event(ZonedDateTime
-				.now()
-				.minusSeconds(index), UUID
-				.randomUUID()
-				.toString())));
+      for (int i = 0; i < numberOfThreads; i++) {
+         executorService.execute(producer);
+      }
 
-		for (int i = 0; i < numberOfThreads; i++) {
-			executorService.execute(producer);
-		}
+      Thread.sleep(500);
 
-		Thread.sleep(500);
+      ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsOlderThatOneMinute();
 
-		ConcurrentNavigableMap<ZonedDateTime, String> eventsFromLastMinute = eventWindowSort.getEventsOlderThatOneMinute();
+      long eventsOlderThanOneMinute = eventsFromLastMinute
+            .entrySet()
+            .stream()
+            .filter(e -> e
+                  .getKey()
+                  .isBefore(ZonedDateTime
+                        .now()
+                        .minusMinutes(1)))
+            .count();
+      assertTrue(eventsOlderThanOneMinute > 0);
 
-		long eventsOlderThanOneMinute = eventsFromLastMinute
-			.entrySet()
-			.stream()
-			.filter(e -> e
-				.getKey()
-				.isBefore(ZonedDateTime
-					.now()
-					.minusMinutes(1)))
-			.count();
-		assertTrue(eventsOlderThanOneMinute > 0);
+      long eventYoungerThanOneMinute = eventsFromLastMinute
+            .entrySet()
+            .stream()
+            .filter(e -> e
+                  .getKey()
+                  .isAfter(ZonedDateTime
+                        .now()
+                        .minusMinutes(1)))
+            .count();
 
-		long eventYoungerThanOneMinute = eventsFromLastMinute
-			.entrySet()
-			.stream()
-			.filter(e -> e
-				.getKey()
-				.isAfter(ZonedDateTime
-					.now()
-					.minusMinutes(1)))
-			.count();
+      // then
+      assertEquals(eventYoungerThanOneMinute, 0);
 
-		// then
-		assertEquals(0, eventYoungerThanOneMinute);
+      executorService.awaitTermination(1, TimeUnit.SECONDS);
+      executorService.shutdown();
+   }
 
-		executorService.awaitTermination(1, TimeUnit.SECONDS);
-		executorService.shutdown();
-	}
 }

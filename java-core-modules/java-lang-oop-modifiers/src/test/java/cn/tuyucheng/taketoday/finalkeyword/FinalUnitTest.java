@@ -1,34 +1,34 @@
 package cn.tuyucheng.taketoday.finalkeyword;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FinalUnitTest {
 
-	@Test
-	public void whenChangedFinalClassProperties_thenChanged() {
-		Cat cat = new Cat();
-		cat.setWeight(1);
+   @Test
+   public void whenChangedFinalClassProperties_thenChanged() {
+      Cat cat = new Cat();
+      cat.setWeight(1);
 
-		assertEquals(1, cat.getWeight());
+      assertEquals(1, cat.getWeight());
 
-	}
+   }
 
-	@Test
-	public void whenFinalVariableAssign_thenOnlyOnce() {
-		final int i;
-		i = 1;
-		// i=2;
-	}
+   @Test
+   public void whenFinalVariableAssign_thenOnlyOnce() {
+      final int i;
+      i = 1;
+      // i=2;
+   }
 
-	@Test
-	public void whenChangedFinalReference_thenChanged() {
+   @Test
+   public void whenChangedFinalReference_thenChanged() {
 
-		final Cat cat = new Cat();
-		// cat=new Cat();
-		cat.setWeight(5);
+      final Cat cat = new Cat();
+      // cat=new Cat();
+      cat.setWeight(5);
 
-		assertEquals(5, cat.getWeight());
-	}
+      assertEquals(5, cat.getWeight());
+   }
 }
