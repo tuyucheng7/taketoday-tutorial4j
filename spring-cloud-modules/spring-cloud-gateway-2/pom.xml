@@ -8,8 +8,9 @@
    <packaging>jar</packaging>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
-      <artifactId>spring-cloud-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
+      <relativePath>../../parent-boot-3</relativePath>
       <version>1.0.0</version>
    </parent>
 
@@ -60,10 +61,6 @@
          <groupId>org.hibernate.validator</groupId>
          <artifactId>hibernate-validator-cdi</artifactId>
          <version>${hibernate-validator.version}</version>
-      </dependency>
-      <dependency>
-         <groupId>javax.validation</groupId>
-         <artifactId>validation-api</artifactId>
       </dependency>
       <dependency>
          <groupId>org.springframework.boot</groupId>
@@ -119,5 +116,6 @@
       <hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
       <redis.version>0.7.2</redis.version>
       <oauth2-oidc-sdk.version>9.19</oauth2-oidc-sdk.version>
+      <spring-cloud-dependencies.version>2022.0.4</spring-cloud-dependencies.version>
    </properties>
 </project>
