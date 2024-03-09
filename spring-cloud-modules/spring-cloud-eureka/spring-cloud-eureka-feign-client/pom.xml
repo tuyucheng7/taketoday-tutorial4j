@@ -10,7 +10,7 @@
    <description>Spring Cloud Eureka - Sample Feign Client</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring.cloud</groupId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
       <artifactId>spring-cloud-eureka</artifactId>
       <version>1.0.0</version>
    </parent>
