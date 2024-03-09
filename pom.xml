@@ -255,7 +255,6 @@
                <verbose>true</verbose>
                <linkXRef>true</linkXRef>
                <includeTests>true</includeTests>
-               <sourceEncoding>UTF-8</sourceEncoding>
                <targetJdk>11</targetJdk>
                <rulesets>
                   <ruleset>${tutorialsproject.basedir}/tuyucheng-pmd-rules.xml</ruleset>
