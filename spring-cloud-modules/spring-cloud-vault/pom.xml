@@ -76,6 +76,6 @@
    </build>
 
    <properties>
-      <spring-cloud.version>2020.0.3</spring-cloud.version>
+      <spring-cloud.version>2023.0.0</spring-cloud.version>
    </properties>
 </project>
