@@ -129,6 +129,8 @@
       <module>spring-boot-testing-spock</module>
       <module>spring-boot-threads</module>
       <module>spring-boot-vaadin</module>
+      <module>spring-boot-validation</module>
+      <module>spring-boot-validations</module>
       <module>spring-boot-vue</module>
       <module>spring-boot-websockets</module>
    </modules>
