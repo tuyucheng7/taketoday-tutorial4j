@@ -1,17 +1,15 @@
 package cn.tuyucheng.taketoday.springcloudgateway.custompredicates.factories;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
-
-import javax.validation.constraints.NotEmpty;
-
+import cn.tuyucheng.taketoday.springcloudgateway.custompredicates.service.GoldenCustomerService;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
 import org.springframework.http.HttpCookie;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.server.ServerWebExchange;
 
-import cn.tuyucheng.taketoday.springcloudgateway.custompredicates.service.GoldenCustomerService;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 public class GoldenCustomerRoutePredicateFactory extends AbstractRoutePredicateFactory<GoldenCustomerRoutePredicateFactory.Config> {
 
@@ -22,12 +20,10 @@ public class GoldenCustomerRoutePredicateFactory extends AbstractRoutePredicateF
       this.goldenCustomerService = goldenCustomerService;
    }
 
-
    @Override
    public List<String> shortcutFieldOrder() {
       return Arrays.asList("isGolden", "customerIdCookie");
    }
-
 
    @Override
    public Predicate<ServerWebExchange> apply(Config config) {
