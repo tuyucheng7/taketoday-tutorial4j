@@ -1,9 +1,9 @@
 package cn.tuyucheng.taketoday.domain;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Document(collection = "STUDENT")

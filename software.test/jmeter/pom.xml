@@ -10,9 +10,9 @@
 
    <parent>
       <groupId>cn.tuyucheng.taketoday</groupId>
-      <artifactId>parent-boot-2</artifactId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
-      <relativePath>../../parent-boot-2/pom.xml</relativePath>
+      <relativePath>../../parent-boot-3/pom.xml</relativePath>
    </parent>
 
    <dependencies>
