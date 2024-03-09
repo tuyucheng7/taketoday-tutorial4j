@@ -525,8 +525,8 @@
             <!-- <module>java-core-modules</module> -->
             <!-- <module>javafx</module> -->
             <!-- <module>kotlin-modules</module> -->
-            <module>logging-modules</module>
-            <module>mapstruct</module>
+            <!-- <module>logging-modules</module> -->
+            <!-- <module>mapstruct</module> -->
             <!-- <module>maven.modules</module> -->
             <!-- <module>messaging-modules</module> -->
             <!-- <module>microservices</module> -->
@@ -537,7 +537,7 @@
             <!-- <module>protobuffer</module> -->
             <!-- <module>quarkus-modules</module> -->
             <!-- <module>reactive-systems</module> -->
-            <module>reactor-core</module>
+            <!-- <module>reactor-core</module> -->
             <!-- <module>rsocket</module> -->
             <!-- <module>rxjava-modules</module> -->
             <!-- <module>security-modules</module> -->
