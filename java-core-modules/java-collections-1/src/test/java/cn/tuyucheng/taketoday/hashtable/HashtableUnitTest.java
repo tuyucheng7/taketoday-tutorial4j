@@ -2,6 +2,7 @@ package cn.tuyucheng.taketoday.hashtable;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ConcurrentModificationException;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -10,6 +11,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -63,14 +65,15 @@ public class HashtableUnitTest {
       table.put(new Word("dog"), "another animal");
 
       Iterator<Word> it = table.keySet().iterator();
-      System.out.println("iterator created");
+      // System.out.println("iterator created");
 
       table.remove(new Word("dog"));
-      System.out.println("element removed");
+      // System.out.println("element removed");
 
       while (it.hasNext()) {
          Word key = it.next();
-         System.out.println(table.get(key));
+         // System.out.println(table.get(key));
+         assertNotNull(table.get(key));
       }
    }
 
