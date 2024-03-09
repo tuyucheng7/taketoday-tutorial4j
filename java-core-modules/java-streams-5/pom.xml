@@ -51,13 +51,7 @@
    </dependencies>
 
    <build>
-      <finalName>java-streams-4</finalName>
-      <resources>
-         <resource>
-            <directory>../java-streams-4/src/main</directory>
-            <filtering>true</filtering>
-         </resource>
-      </resources>
+      <finalName>java-streams-5</finalName>
       <plugins>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
