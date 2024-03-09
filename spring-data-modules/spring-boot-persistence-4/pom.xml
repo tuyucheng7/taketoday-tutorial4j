@@ -62,8 +62,8 @@
    </build>
 
    <properties>
-      <maven.compiler.source>21</maven.compiler.source>
-      <maven.compiler.target>21</maven.compiler.target>
+      <maven.compiler.source>22</maven.compiler.source>
+      <maven.compiler.target>22</maven.compiler.target>
       <db.util.version>1.0.7</db.util.version>
       <hypersistence-utils.version>3.7.0</hypersistence-utils.version>
       <jackson.version>2.16.0</jackson.version>

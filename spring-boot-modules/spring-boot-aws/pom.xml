@@ -61,10 +61,6 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-               <source>${maven.compiler.source.version}</source>
-               <target>${maven.compiler.target.version}</target>
-            </configuration>
          </plugin>
       </plugins>
    </build>
@@ -72,7 +68,5 @@
    <properties>
       <aws-serverless-java-container-springboot2.version>1.9.1</aws-serverless-java-container-springboot2.version>
       <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
-      <maven.compiler.source.version>21</maven.compiler.source.version>
-      <maven.compiler.target.version>21</maven.compiler.target.version>
    </properties>
 </project>
