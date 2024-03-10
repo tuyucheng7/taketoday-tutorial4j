@@ -25,13 +25,13 @@ public class MapperLiveTest {
    private static final String KEYSPACE_NAME = "tuyucheng";
 
    @Container
-   private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:3.11.2").withExposedPorts(9042);
+   private static final CassandraContainer<?> cassandra = new CassandraContainer<>("cassandra:3.11.2").withExposedPorts(9042);
 
    @BeforeAll
    static void setupCassandraConnectionProperties() {
-      System.setProperty("spring.data.cassandra.keyspace-name", KEYSPACE_NAME);
-      System.setProperty("spring.data.cassandra.contact-points", cassandra.getHost());
-      System.setProperty("spring.data.cassandra.port", String.valueOf(cassandra.getMappedPort(9042)));
+      System.setProperty("spring.cassandra.keyspace-name", KEYSPACE_NAME);
+      System.setProperty("spring.cassandra.contact-points", cassandra.getHost());
+      System.setProperty("spring.cassandra.port", String.valueOf(cassandra.getMappedPort(9042)));
       setupCassandra(new InetSocketAddress(cassandra.getHost(), cassandra.getMappedPort(9042)), cassandra.getLocalDatacenter());
    }
 

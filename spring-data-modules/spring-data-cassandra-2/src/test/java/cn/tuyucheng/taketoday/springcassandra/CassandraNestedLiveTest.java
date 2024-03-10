@@ -1,10 +1,10 @@
 package cn.tuyucheng.taketoday.springcassandra;
 
-import cn.tuyucheng.taketoday.springcassandra.model.Car;
-import cn.tuyucheng.taketoday.springcassandra.repository.CarRepository;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.utils.UUIDs;
+import cn.tuyucheng.taketoday.springcassandra.model.Car;
+import cn.tuyucheng.taketoday.springcassandra.repository.CarRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,7 @@ import org.testcontainers.containers.CassandraContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,14 +29,14 @@ class CassandraNestedLiveTest {
    private static final String KEYSPACE_NAME = "test";
 
    @Container
-   private static final CassandraContainer cassandra = (CassandraContainer) new CassandraContainer("cassandra:3.11.2")
+   private static final CassandraContainer<?> cassandra = new CassandraContainer<>("cassandra:3.11.2")
          .withExposedPorts(9042);
 
    @BeforeAll
    static void setupCassandraConnectionProperties() {
-      System.setProperty("spring.data.cassandra.keyspace-name", KEYSPACE_NAME);
-      System.setProperty("spring.data.cassandra.contact-points", cassandra.getContainerIpAddress());
-      System.setProperty("spring.data.cassandra.port", String.valueOf(cassandra.getMappedPort(9042)));
+      System.setProperty("spring.cassandra.keyspace-name", KEYSPACE_NAME);
+      System.setProperty("spring.cassandra.contact-points", cassandra.getContainerIpAddress());
+      System.setProperty("spring.cassandra.port", String.valueOf(cassandra.getMappedPort(9042)));
 
       createKeyspace(cassandra.getCluster());
    }
@@ -54,7 +55,6 @@ class CassandraNestedLiveTest {
       void givenCassandraContainer_whenSpringContextIsBootstrapped_thenContainerIsRunningWithNoExceptions() {
          assertThat(cassandra.isRunning()).isTrue();
       }
-
    }
 
    @Nested
@@ -70,7 +70,7 @@ class CassandraNestedLiveTest {
 
          carRepository.save(newCar);
 
-         List<Car> savedCars = carRepository.findAllById(List.of(carId));
+         List<Car> savedCars = carRepository.findAllById(Collections.singletonList(carId));
          assertThat(savedCars.get(0)).isEqualTo(newCar);
       }
 
@@ -82,7 +82,7 @@ class CassandraNestedLiveTest {
          existingCar.setModel("X-Trail");
          carRepository.save(existingCar);
 
-         List<Car> savedCars = carRepository.findAllById(List.of(carId));
+         List<Car> savedCars = carRepository.findAllById(Collections.singletonList(carId));
          assertThat(savedCars.get(0).getModel()).isEqualTo("X-Trail");
       }
 
@@ -93,10 +93,8 @@ class CassandraNestedLiveTest {
 
          carRepository.delete(existingCar);
 
-         List<Car> savedCars = carRepository.findAllById(List.of(carId));
-         assertThat(savedCars.isEmpty()).isTrue();
+         List<Car> savedCars = carRepository.findAllById(Collections.singletonList(carId));
+         assertThat(savedCars).isEmpty();
       }
-
    }
-
 }
