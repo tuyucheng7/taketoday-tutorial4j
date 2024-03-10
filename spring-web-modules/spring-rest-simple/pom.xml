@@ -56,6 +56,7 @@
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-oxm</artifactId>
+         <version>${spring-oxm.version}</version>
       </dependency>
       <dependency>
          <groupId>commons-fileupload</groupId>
@@ -288,5 +289,6 @@
       <!-- okhttp -->
       <com.squareup.okhttp3.version>3.4.1</com.squareup.okhttp3.version>
       <json.path.version>2.2.0</json.path.version>
+      <spring-oxm.version>6.1.4</spring-oxm.version>
    </properties>
 </project>

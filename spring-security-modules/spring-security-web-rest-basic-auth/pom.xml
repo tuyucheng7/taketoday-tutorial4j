@@ -75,6 +75,7 @@
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-oxm</artifactId>
+         <version>${spring-oxm.version}</version>
       </dependency>
       <!-- marshalling -->
       <dependency>
@@ -219,5 +220,6 @@
       <!-- Maven plugins -->
       <cargo-maven2-plugin.version>1.6.1</cargo-maven2-plugin.version>
       <start-class>cn.tuyucheng.taketoday.inmemory.InMemoryAuthApplication</start-class>
+      <spring-oxm.version>6.1.4</spring-oxm.version>
    </properties>
 </project>
