@@ -10,15 +10,25 @@
    <description>spring boot sample project about new features</description>
 
    <parent>
-      <groupId>cn.tuyucheng.taketoday.spring.reactive</groupId>
-      <artifactId>spring-reactive-modules</artifactId>
+      <groupId>cn.tuyucheng.taketoday</groupId>
+      <artifactId>parent-boot-3</artifactId>
       <version>1.0.0</version>
+      <relativePath>../../parent-boot-3</relativePath>
    </parent>
 
    <dependencies>
       <dependency>
          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-starter-webflux</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>io.projectreactor</groupId>
+         <artifactId>reactor-core</artifactId>
+         <version>${reactor.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>io.netty</groupId>
+         <artifactId>netty-all</artifactId>
       </dependency>
       <!-- runtime and test scoped -->
       <dependency>
@@ -41,16 +51,16 @@
          <artifactId>reactor-test</artifactId>
          <scope>test</scope>
       </dependency>
-      <!-- Fix ERROR i.n.r.d.DnsServerAddressStreamProviders - Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider -->
       <dependency>
-         <groupId>io.netty</groupId>
-         <artifactId>netty-all</artifactId>
+         <groupId>org.wiremock</groupId>
+         <artifactId>wiremock-standalone</artifactId>
+         <version>${wiremock-standalone.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
-         <groupId>com.github.tomakehurst</groupId>
-         <artifactId>wiremock-standalone</artifactId>
-         <version>${wiremock-standalone.version}</version>
+         <groupId>io.projectreactor</groupId>
+         <artifactId>reactor-test</artifactId>
+         <version>${reactor.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
@@ -69,6 +79,7 @@
    </build>
 
    <properties>
-      <wiremock-standalone.version>2.26.0</wiremock-standalone.version>
+      <wiremock-standalone.version>3.4.2</wiremock-standalone.version>
+      <reactor.version>3.6.0</reactor.version>
    </properties>
 </project>
