@@ -264,5 +264,6 @@
    <properties>
       <maven.compiler.source>22</maven.compiler.source>
       <maven.compiler.target>22</maven.compiler.target>
+      <org.json.version>20240303</org.json.version>
    </properties>
 </project>
