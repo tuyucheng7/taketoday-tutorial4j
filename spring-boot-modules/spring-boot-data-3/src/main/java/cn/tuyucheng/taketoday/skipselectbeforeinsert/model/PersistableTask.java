@@ -1,10 +1,9 @@
 package cn.tuyucheng.taketoday.skipselectbeforeinsert.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import org.springframework.data.domain.Persistable;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class PersistableTask implements Persistable<Integer> {
