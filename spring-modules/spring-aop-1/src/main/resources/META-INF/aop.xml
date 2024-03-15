@@ -1,8 +1,0 @@
-<aspectj>
-	<aspects>
-		<aspect name="cn.tuyucheng.taketoday.aspectj.SecuredMethodAspect"/>
-		<weaver options="-verbose -showWeaveInfo">
-			<include within="cn.tuyucheng.taketoday.aspectj.*"/>
-		</weaver>
-	</aspects>
-</aspectj>
