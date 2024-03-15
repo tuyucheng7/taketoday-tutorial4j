@@ -108,6 +108,9 @@
             <configuration>
                <source>${java.version}</source>
                <target>${java.version}</target>
+               <compilerArgs>
+                  <compilerArg>--enable-preview</compilerArg>
+               </compilerArgs>
             </configuration>
          </plugin>
          <!-- 默认情况下，单元测试"mvn clean install"(可选：-P unit)跳过集成测试 -->
@@ -118,6 +121,7 @@
             <configuration>
                <forkCount>3</forkCount>
                <reuseForks>true</reuseForks>
+               <argLine>--enable-preview</argLine>
                <skipTests>${skip.unit.tests}</skipTests>
                <excludes>
                   <exclude>**/*IntegrationTest</exclude>
@@ -154,6 +158,7 @@
                      <goal>verify</goal>
                   </goals>
                   <configuration>
+                     <argLine>--enable-preview</argLine>
                      <skipTests>${skip.integration.tests}</skipTests>
                      <excludes>
                         <exclude>**/*ManualTest</exclude>
