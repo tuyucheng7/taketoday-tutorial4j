@@ -12,6 +12,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.RestClient;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations="classpath:connectiondetails/application-r2dbc.properties")
 public class RestClientIntegrationTest {
 
    @LocalServerPort
@@ -112,7 +114,7 @@ public class RestClientIntegrationTest {
             .onStatus(status -> status.value() == 404, (_, _) -> {
                throw new ArticleNotFoundException();
             })
-            .body(new ParameterizedTypeReference<>() {
+            .body(new ParameterizedTypeReference<String>() {
             })).isInstanceOf(ArticleNotFoundException.class);
    }
 
