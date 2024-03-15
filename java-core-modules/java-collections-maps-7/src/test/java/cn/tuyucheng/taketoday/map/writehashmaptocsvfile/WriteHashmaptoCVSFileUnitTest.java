@@ -3,6 +3,7 @@ package cn.tuyucheng.taketoday.map.writehashmaptocsvfile;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -58,5 +59,17 @@ public class WriteHashmaptoCVSFileUnitTest {
 
       // Ensure the CSV file exists
       assertTrue(new File("employee_data2.csv").exists());
+   }
+
+   @AfterAll
+   public static void cleanUp() {
+      final File employeeData = new File("employee_data.csv");
+      if (employeeData.exists()) {
+         employeeData.deleteOnExit();
+      }
+      final File employeeData2 = new File("employee_data2.csv");
+      if (employeeData2.exists()) {
+         employeeData2.deleteOnExit();
+      }
    }
 }
