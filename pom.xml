@@ -381,6 +381,7 @@
             <module>parent-spring-5</module>
             <module>parent-spring-6</module>
             <module>parent-boot-2</module>
+            <module>parent-boot-3</module>
             <module>akka-modules</module>
             <module>algorithms-modules</module>
             <module>annotations</module>
@@ -460,6 +461,7 @@
             <module>parent-spring-5</module>
             <module>parent-spring-6</module>
             <module>parent-boot-2</module>
+            <module>parent-boot-3</module>
             <module>akka-modules</module>
             <module>algorithms-modules</module>
             <module>annotations</module>
@@ -514,9 +516,10 @@
          <modules>
             <module>custom-pmd</module>
             <module>jacoco-aggregate-report</module>
-            <module>parent-spring-5</module>
-            <!-- <module>parent-spring-6</module> -->
-            <module>parent-boot-2</module>
+            <!-- <module>parent-spring-5</module> -->
+            <module>parent-spring-6</module>
+            <!-- <module>parent-boot-2</module> -->
+            <module>parent-boot-3</module>
             <!-- <module>akka-modules</module> -->
             <!-- <module>algorithms-modules</module> -->
             <!-- <module>annotations</module> -->
@@ -550,7 +553,7 @@
             <!-- <module>spring-boot-modules</module> -->
             <!-- <module>spring-cloud-modules</module> -->
             <!-- <module>spring-data-modules</module> -->
-            <!-- <module>spring-modules</module> -->
+            <module>spring-modules</module>
             <!-- <module>spring-reactive-modules</module> -->
             <!-- <module>spring-security-modules</module> -->
             <!-- <module>spring-web-modules</module> -->
